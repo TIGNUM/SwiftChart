@@ -17,7 +17,7 @@ final class CalendarEventSelectionInteractor {
     private let presenter: CalendarEventSelectionPresenterInterface!
     private var qdmEvents: [QDMUserCalendarEvent] = []
     private var events: [CalendarEvent] = []
-    
+    private var calendarSettings: [QDMUserCalendarSetting] = []
 
     // MARK: - Init
     init(presenter: CalendarEventSelectionPresenterInterface) {
@@ -26,8 +26,11 @@ final class CalendarEventSelectionInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        calendarWorker.getCalendarSettings { [weak self] (settings) in
+            self?.calendarSettings = settings
+        }
         calendarWorker.getCalendarEvents { [weak self] (events) in
-            self?.qdmEvents = events
+            self?.setUserCalendarEvents(events)
             self?.convertEvents(events)
             self?.presenter.setupView()
         }
@@ -40,8 +43,21 @@ extension CalendarEventSelectionInteractor: CalendarEventSelectionInteractorInte
         return qdmEvents.count
     }
 
+    var rightBarItemTitle: String {
+        return AppTextService.get(.addNewEvent)
+    }
+
     func event(at row: Int) -> CalendarEvent? {
         return events.at(index: row)
+    }
+
+    func didSelectPreparationEvent(at row: Int) {
+
+    }
+
+    func getCalendarIds() -> [String] {
+        let calendarIds = calendarSettings.filter { $0.syncEnabled == true }.compactMap { $0.calendarId }
+        return calendarIds
     }
 }
 
@@ -57,5 +73,12 @@ private extension CalendarEventSelectionInteractor {
                                             dateString: date))
             }
         }
+    }
+
+    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent]) {
+        self.qdmEvents.removeAll()
+        self.qdmEvents = events.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
+        }).unique
     }
 }

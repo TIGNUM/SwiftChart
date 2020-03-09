@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol CalendarEventSelectionViewControllerInterface: class {
     func setupView()
@@ -18,9 +19,13 @@ protocol CalendarEventSelectionPresenterInterface {
 
 protocol CalendarEventSelectionInteractorInterface: Interactor {
     var rowCount: Int { get }
+    var rightBarItemTitle: String { get }
     func event(at row: Int) -> CalendarEvent?
+    func didSelectPreparationEvent(at row: Int)
+    func getCalendarIds() -> [String]
 }
 
 protocol CalendarEventSelectionRouterInterface {
     func dismiss()
+    func presentEditEventController(_ calendarToggleIdentifiers: [String])
 }

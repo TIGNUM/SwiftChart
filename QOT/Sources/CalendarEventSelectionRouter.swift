@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 
 final class CalendarEventSelectionRouter {
 
@@ -23,5 +25,20 @@ final class CalendarEventSelectionRouter {
 extension CalendarEventSelectionRouter: CalendarEventSelectionRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func presentEditEventController(_ calendarToggleIdentifiers: [String]) {
+        let eventEditVC = EKEventEditViewController()
+        eventEditVC.eventStore = EKEventStore.shared
+        eventEditVC.editViewDelegate = viewController
+        eventEditVC.event = EKEvent(eventStore: EKEventStore.shared)
+        eventEditVC.event?.calendar = EKEventStore.shared.calendars(for: .event).filter { // mutable & not subscribed
+            calendarToggleIdentifiers.contains($0.toggleIdentifier) == true &&
+                $0.allowsContentModifications &&
+                $0.isSubscribed == false
+        }.first ?? EKEventStore.shared.calendars(for: .event).filter { // mutable
+            calendarToggleIdentifiers.contains($0.toggleIdentifier) == true && $0.allowsContentModifications
+        }.first ?? EKEventStore.shared.calendars(for: .event).first // don't care
+        viewController?.present(eventEditVC, animated: true)
     }
 }

@@ -98,6 +98,7 @@ extension CGFloat.Button.Width {
     static let Activate: CGFloat = 100
     static let Continue: CGFloat = 100
     static let Save: CGFloat = 80
+    static let AddNewEvent: CGFloat = 140
 }
 
 extension CGRect {

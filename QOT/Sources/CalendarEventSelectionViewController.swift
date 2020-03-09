@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKitUI
+import EventKit
 
 final class CalendarEventSelectionViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
@@ -24,9 +26,16 @@ final class CalendarEventSelectionViewController: BaseWithGroupedTableViewContro
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
+    }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return [roundedBarButtonItem(title: "Add new event",//interactor.rightBarItemTitle,
+                                     buttonWidth: .AddNewEvent,
+                                     action: #selector(addNewEvent))]
     }
 }
 
@@ -37,19 +46,21 @@ private extension CalendarEventSelectionViewController {
 
 // MARK: - Actions
 private extension CalendarEventSelectionViewController {
-
+   @objc func addNewEvent() {
+        router.presentEditEventController(interactor.getCalendarIds())
+    }
 }
 
 // MARK: - CalendarEventSelectionViewControllerInterface
 extension CalendarEventSelectionViewController: CalendarEventSelectionViewControllerInterface {
     func setupView() {
         tableView.registerDequeueable(PrepareEventTableViewCell.self)
-        tableView.backgroundColor = .accent
+        view.fill(subview: tableView)
+        tableView.backgroundColor = .sand
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        self.view.fill(subview: tableView)
-        tableView.contentInset.top = 84
+        tableView.contentInset.top = 64
         tableView.contentInset.bottom = 40
         tableView.estimatedSectionHeaderHeight = 100
         view.layoutIfNeeded()
@@ -67,5 +78,34 @@ extension CalendarEventSelectionViewController: UITableViewDelegate, UITableView
         let event = interactor.event(at: indexPath.row)
         cell.configure(title: event?.title, dateString: event?.dateString)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        interactor.didSelectPreparationEvent(at: indexPath.row)
+        router.dismiss()
+    }
+}
+
+// MARK: - EKEventEditViewDelegate
+extension CalendarEventSelectionViewController: EKEventEditViewDelegate {
+    func eventEditViewController(_ controller: EKEventEditViewController,
+                                 didCompleteWith action: EKEventEditViewAction) {
+        switch action {
+        case .canceled,
+             .deleted:
+            controller.dismiss(animated: true)
+        case .saved:
+            DispatchQueue.main.async { [weak self] in
+                self?.router.dismiss()
+                //                self?.interactor.setCreatedCalendarEvent(controller.event) { [weak self] (success) in65
+                //                    controller.dismiss(animated: true) { [weak self] in
+                //                        if success {
+                //                            self?.router.dismiss()
+                //                        } else {
+                //                            self?.showAlert(type: .calendarNotSynced)
+                //                        }
+                //                    }
+            }
+        }
     }
 }
