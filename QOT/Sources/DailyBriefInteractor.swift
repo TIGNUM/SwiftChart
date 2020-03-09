@@ -1088,11 +1088,13 @@ extension DailyBriefInteractor {
 
         guard sprintBucket.sprint != nil else {
             let relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel()]
+            let relatedLinksModels = [SprintChallengeViewModel.RelatedLinksModel()]
             createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: "",
                                                                        sprintTitle: "",
                                                                        sprintInfo: "",
                                                                        sprintStepNumber: 0,
                                                                        relatedStrategiesModels: relatedStrategiesModels,
+                                                                       relatedLinksModel: relatedLinksModels,
                                                                        domainModel: sprintBucket,
                                                                        sprint: sprintBucket.sprint!))
             return createSprintChanllengeList
@@ -1101,6 +1103,7 @@ extension DailyBriefInteractor {
         let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
         let sprintInfo = getSprintInfo(sprintBucket, sprintTag, searchTag)
         var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel] = []
+        let relatedLinksModels: [SprintChallengeViewModel.RelatedLinksModel] = []
         sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
             relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(content.title,
                                                                                            content.durationString,
@@ -1124,6 +1127,7 @@ extension DailyBriefInteractor {
                                                                    sprintInfo: sprintInfo,
                                                                    sprintStepNumber: sprintBucket.sprint?.currentDay,
                                                                    relatedStrategiesModels: relatedStrategiesModels,
+                                                                   relatedLinksModel: relatedLinksModels,
                                                                    domainModel: sprintBucket,
                                                                    sprint: sprintBucket.sprint!))
         return createSprintChanllengeList

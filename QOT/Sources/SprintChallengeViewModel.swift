@@ -18,6 +18,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
     var sprintStepNumber: Int?
     var sprint: QDMSprint
     var relatedStrategiesModels: [RelatedStrategiesModel]
+    var relatedLinksModel: [RelatedLinksModel]
 
     struct RelatedStrategiesModel {
         var title: String?
@@ -47,12 +48,26 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         }
     }
 
+    struct RelatedLinksModel {
+        var description: String?
+        var link: QDMAppLink?
+
+        init() {}
+
+        init(_ description: String?,
+             _ link: QDMAppLink) {
+            self.description = description
+            self.link = link
+        }
+    }
+
     // MARK: - Init
     init(bucketTitle: String?,
          sprintTitle: String?,
          sprintInfo: String?,
          sprintStepNumber: Int?,
          relatedStrategiesModels: [RelatedStrategiesModel],
+         relatedLinksModel: [RelatedLinksModel],
          domainModel: QDMDailyBriefBucket?,
          sprint: QDMSprint) {
 
@@ -62,6 +77,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         self.sprint = sprint
         self.sprintStepNumber = sprintStepNumber
         self.relatedStrategiesModels = relatedStrategiesModels
+        self.relatedLinksModel = relatedLinksModel
         super.init(domainModel)
     }
 
