@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import qot_dal
 
 final class CalendarEventSelectionInteractor {
 
     // MARK: - Properties
     private lazy var worker = CalendarEventSelectionWorker()
+    private lazy var calendarWorker = WorkerCalendar()
     private let presenter: CalendarEventSelectionPresenterInterface!
+    private var qdmEvents: [QDMUserCalendarEvent] = []
+    private var events: [CalendarEvent] = []
+    
 
     // MARK: - Init
     init(presenter: CalendarEventSelectionPresenterInterface) {
@@ -21,11 +26,36 @@ final class CalendarEventSelectionInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        calendarWorker.getCalendarEvents { [weak self] (events) in
+            self?.qdmEvents = events
+            self?.convertEvents(events)
+            self?.presenter.setupView()
+        }
     }
 }
 
 // MARK: - CalendarEventSelectionInteractorInterface
 extension CalendarEventSelectionInteractor: CalendarEventSelectionInteractorInterface {
+    var rowCount: Int {
+        return qdmEvents.count
+    }
 
+    func event(at row: Int) -> CalendarEvent? {
+        return events.at(index: row)
+    }
+}
+
+// MARK: - Private
+private extension CalendarEventSelectionInteractor {
+    func convertEvents(_ qdmEvents: [QDMUserCalendarEvent]) {
+        qdmEvents.forEach { (qdmEvent) in
+            if let remoteId = qdmEvent.remoteID,
+                let title = qdmEvent.title,
+                let date = Prepare.dateString(for: qdmEvent.startDate) {
+                events.append(CalendarEvent(remoteId: remoteId,
+                                            title: title,
+                                            dateString: date))
+            }
+        }
+    }
 }

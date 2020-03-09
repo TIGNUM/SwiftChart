@@ -29,6 +29,9 @@ final class DTSprintPresenter: DTPresenter {
 
     override func updatedQuestionTitle(_ question: QDMQuestion?, replacement: String?) -> String? {
         if let replacement = replacement {
+            if question?.key == Sprint.QuestionKey.Schedule {
+                return (question?.title ?? "") + " " + replacement
+            }
             return question?.title.replacingOccurrences(of: "${sprintName}", with: replacement)
         }
         return nil

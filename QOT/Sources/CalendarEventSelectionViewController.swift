@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CalendarEventSelectionViewController: UIViewController {
+final class CalendarEventSelectionViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: CalendarEventSelectionInteractorInterface!
@@ -43,6 +43,29 @@ private extension CalendarEventSelectionViewController {
 // MARK: - CalendarEventSelectionViewControllerInterface
 extension CalendarEventSelectionViewController: CalendarEventSelectionViewControllerInterface {
     func setupView() {
-        // Do any additional setup after loading the view.
+        tableView.registerDequeueable(PrepareEventTableViewCell.self)
+        tableView.backgroundColor = .accent
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.view.fill(subview: tableView)
+        tableView.contentInset.top = 84
+        tableView.contentInset.bottom = 40
+        tableView.estimatedSectionHeaderHeight = 100
+        view.layoutIfNeeded()
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension CalendarEventSelectionViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return interactor.rowCount
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
+        let event = interactor.event(at: indexPath.row)
+        cell.configure(title: event?.title, dateString: event?.dateString)
+        return cell
     }
 }

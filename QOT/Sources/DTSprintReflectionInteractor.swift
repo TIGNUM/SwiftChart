@@ -21,7 +21,7 @@ final class DTSprintReflectionInteractor: DTInteractor {
     }
 
     override func loadIntroQuestion(_ firstQuestion: QDMQuestion?) {
-        let questionUpdate = getTitleUpdate(selectedAnswers: [], questionKey: nil)
+        let questionUpdate = getTitleUpdate(selectedAnswers: [], questionKey: nil, content: nil)
         let presentationModel = createPresentationModel(questionId: firstQuestion?.remoteID ?? 0,
                                                         answerFilter: introKey,
                                                         userInputText: nil,
@@ -34,7 +34,9 @@ final class DTSprintReflectionInteractor: DTInteractor {
         sprintRefelctionPresenter?.showNextQuestion(presentationModel, isDark: isDark)
     }
 
-    override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+    override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer],
+                                 questionKey: String?,
+                                 content: QDMContentCollection?) -> String? {
         return sprint?.title
     }
 

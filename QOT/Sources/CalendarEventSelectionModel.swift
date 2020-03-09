@@ -8,6 +8,8 @@
 
 import UIKit
 
-struct CalendarEventSelectionModel {
-
+struct CalendarEvent {
+    let remoteId: Int
+    let title: String
+    let dateString: String
 }

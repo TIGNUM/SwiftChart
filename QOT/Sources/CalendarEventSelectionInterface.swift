@@ -16,7 +16,10 @@ protocol CalendarEventSelectionPresenterInterface {
     func setupView()
 }
 
-protocol CalendarEventSelectionInteractorInterface: Interactor {}
+protocol CalendarEventSelectionInteractorInterface: Interactor {
+    var rowCount: Int { get }
+    func event(at row: Int) -> CalendarEvent?
+}
 
 protocol CalendarEventSelectionRouterInterface {
     func dismiss()

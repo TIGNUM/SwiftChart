@@ -87,18 +87,19 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let knowIds = getAnswerIds(.know, selectedAnswers)
         let feelIds = getAnswerIds(.feel, selectedAnswers)
         prepareWorker?.getRelatedStrategies(eventAnswer?.targetId(.content) ?? 0) { [weak self] (strategyIds) in
-            self?.prepareWorker?.createUserPreparation(level: .LEVEL_CRITICAL,
-                                                       benefits: self?.inputText,
-                                                       answerFilter: Prepare.AnswerFilter,
-                                                       contentCollectionId: QDMUserPreparation.Level.LEVEL_CRITICAL.contentID,
-                                                       relatedStrategyId: eventAnswer?.targetId(.content) ?? 0,
-                                                       strategyIds: strategyIds,
-                                                       preceiveAnswerIds: perceivedIds,
-                                                       knowAnswerIds: knowIds,
-                                                       feelAnswerIds: feelIds,
-                                                       eventType: eventAnswer?.title ?? "",
-                                                       event: event ?? QDMUserCalendarEvent(),
-                                                       completion)
+            var model = CreateUserPreparationModel()
+            model.level = .LEVEL_CRITICAL
+            model.benefits = self?.inputText
+            model.answerFilter = Prepare.AnswerFilter
+            model.contentCollectionId = QDMUserPreparation.Level.LEVEL_CRITICAL.contentID
+            model.relatedStrategyId = eventAnswer?.targetId(.content) ?? 0
+            model.strategyIds = strategyIds
+            model.preceiveAnswerIds = perceivedIds
+            model.knowAnswerIds = knowIds
+            model.feelAnswerIds = feelIds
+            model.eventType = eventAnswer?.title ?? ""
+            model.event = event ?? QDMUserCalendarEvent()
+            self?.prepareWorker?.createUserPreparation(from: model, completion)
         }
     }
 
@@ -113,18 +114,19 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let calendarEvent = createdUserCalendarEvent ?? events.filter { $0.remoteID == calendarEvent?.remoteId }.first
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
-        self.prepareWorker?.createUserPreparation(level: existingPrep?.type ?? .LEVEL_CRITICAL,
-                                                  benefits: existingPrep?.benefits,
-                                                  answerFilter: existingPrep?.answerFilter,
-                                                  contentCollectionId: existingPrep?.contentCollectionId ?? 0,
-                                                  relatedStrategyId: existingPrep?.relatedStrategyId ?? 0,
-                                                  strategyIds: existingPrep?.strategyIds ?? [],
-                                                  preceiveAnswerIds: existingPrep?.preceiveAnswerIds ?? [],
-                                                  knowAnswerIds: existingPrep?.knowAnswerIds ?? [],
-                                                  feelAnswerIds: existingPrep?.feelAnswerIds ?? [],
-                                                  eventType: eventAnswer?.title ?? "",
-                                                  event: calendarEvent ?? QDMUserCalendarEvent(),
-                                                  completion)
+        var model = CreateUserPreparationModel()
+        model.level = existingPrep?.type ?? .LEVEL_CRITICAL
+        model.benefits = existingPrep?.benefits
+        model.answerFilter = existingPrep?.answerFilter
+        model.contentCollectionId = existingPrep?.contentCollectionId ?? 0
+        model.relatedStrategyId = existingPrep?.relatedStrategyId ?? 0
+        model.strategyIds = existingPrep?.strategyIds ?? []
+        model.preceiveAnswerIds = existingPrep?.preceiveAnswerIds ?? []
+        model.knowAnswerIds = existingPrep?.knowAnswerIds ?? []
+        model.feelAnswerIds = existingPrep?.feelAnswerIds ?? []
+        model.eventType = eventAnswer?.title ?? ""
+        model.event = calendarEvent ?? QDMUserCalendarEvent()
+        self.prepareWorker?.createUserPreparation(from: model, completion)
     }
 
     func getUserPreparation(answer: DTViewModel.Answer,
