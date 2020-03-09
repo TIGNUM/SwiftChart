@@ -24,18 +24,19 @@ extension DTMindsetWorker {
 
 private extension DTMindsetWorker {
     func createMindsetShifter(mindsetItem: MindsetResult.Item, completion: @escaping (QDMMindsetShifter?) -> Void) {
-        UserService.main.createMindsetShifter(mindsetKillerAnswerId: mindsetItem.mindsetKillerAnswerId,
-                                              triggerAnswerId: mindsetItem.triggerAnswerId,
-                                              toBeVisionText: mindsetItem.toBeVisionText,
-                                              reactionsAnswerIds: mindsetItem.reactionsAnswerIds,
-                                              lowPerformanceAnswerIds: mindsetItem.lowPerformanceAnswerIds,
-                                              workAnswerIds: [],
-                                              homeAnswerIds: [],
-                                              highPerformanceContentItemIds: mindsetItem.highPerformanceContentItemIds) { (mindsetShifter, error) in
-                                                if let error = error {
-                                                    log("Error createMindsetShifter: \(error)", level: .error)
-                                                }
-                                                completion(mindsetShifter)
+        var model = CreateMindsetKillerModel()
+        model.mindsetKillerAnswerId = mindsetItem.mindsetKillerAnswerId
+        model.triggerAnswerId = mindsetItem.triggerAnswerId
+        model.toBeVisionText = mindsetItem.toBeVisionText
+        model.reactionsAnswerIds = mindsetItem.reactionsAnswerIds
+        model.lowPerformanceAnswerIds = mindsetItem.lowPerformanceAnswerIds
+        model.highPerformanceContentItemIds = mindsetItem.highPerformanceContentItemIds
+
+        UserService.main.createMindsetShifter(from: model) { (mindsetShifter, error) in
+            if let error = error {
+                log("Error createMindsetShifter: \(error)", level: .error)
+            }
+            completion(mindsetShifter)
         }
     }
 

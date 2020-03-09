@@ -181,7 +181,9 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     private func setupPageViewController(_ backgroundColor: UIColor?) {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
         pageController.view.backgroundColor = backgroundColor
-        pageController.automaticallyAdjustsScrollViewInsets = false
+        if let scrollview = pageController.view as? UIScrollView {
+            scrollview.contentInsetAdjustmentBehavior = .automatic
+        }
         addChildViewController(pageController)
         view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
         self.pageController = pageController

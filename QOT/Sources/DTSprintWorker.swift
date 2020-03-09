@@ -67,6 +67,17 @@ extension DTSprintWorker {
             }
         }
     }
+
+    func getUpdatedTitle(contentId: Int, completion: @escaping (String?) -> Void) {
+        ContentService.main.getContentCollectionById(contentId) { (content) in
+            let filteredItems = content?.contentItems.filter { $0.searchTags.contains(obj: "sprint_task_day_") }
+            var result = ""
+            filteredItems?.compactMap { $0.valueText }.forEach { (title) in
+                result.append(title)
+            }
+            completion(result)
+        }
+    }
 }
 
 // MARK: - Notifications
@@ -100,22 +111,15 @@ private extension DTSprintWorker {
 
     func createSprint(_ targetContentId: Int, completion: @escaping (QDMSprint?) -> Void) {
         ContentService.main.getContentCollectionById(targetContentId) { (content) in
-            let sprintContentId = content?.remoteID
-            let relatedContentIds = content?.relatedContentCollectionIDs
-            let title = content?.contentItems.filter { $0.format == .header1 }.first?.valueText
-            let subTitle = content?.contentItems.filter { $0.format == .subtitle }.first?.valueText
-            let taskItemIds = content?.contentItems.filter { $0.format == .title }.compactMap { $0.remoteID }
-            let planItemIds = content?.contentItems.filter { $0.format == .listitem }.compactMap { $0.remoteID }
-            UserService.main.createSprint(title: title ?? "",
-                                                  subTitle: subTitle ?? "",
-                                                  sprintContentId: sprintContentId ?? 0,
-                                                  relatedContentIds: relatedContentIds ?? [],
-                                                  taskItemIds: taskItemIds ?? [],
-                                                  planItemIds: planItemIds ?? []) { (sprint, error) in
-                                                    if let error = error {
-                                                        log("Error while trying to create sprint: \(error.localizedDescription)", level: .error)
-                                                    }
-                                                    completion(sprint)
+            var model = CreateSprintModel()
+            model.sprintContentId = content?.remoteID ?? 0
+            model.relatedContentIds = content?.relatedContentCollectionIDs ?? [Int]()
+            model.title = content?.contentItems.filter { $0.format == .header1 }.first?.valueText ?? ""
+            model.subTitle = content?.contentItems.filter { $0.format == .subtitle }.first?.valueText ?? ""
+            model.taskItemIds = content?.contentItems.filter { $0.format == .title }.compactMap { $0.remoteID } ?? []
+            model.planItemIds = content?.contentItems.filter { $0.format == .listitem }.compactMap { $0.remoteID } ?? []
+            UserService.main.createSprint(data: model) { (sprint, _) in
+                completion(sprint)
             }
         }
     }

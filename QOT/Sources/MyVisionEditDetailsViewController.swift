@@ -85,9 +85,9 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsControllerInterf
         titleTextView.returnKeyType = .next
         didChangeTitle = !title.isEmpty
         didChangeVision = !vision.isEmpty
-        titleTextField.attributedText = title.isEmpty ? interactor.formatPlaceholder(title: "TITLE") : interactor.formatPlaceholder(title: "")
+        titleTextField.attributedText = title.isEmpty ? interactor.formatPlaceholder(title: AppTextService.get(.my_qot_my_tbv_edit_title_placeholder)) : interactor.formatPlaceholder(title: "")
         titleTextView.attributedText = interactor.format(title: title)
-        visionTextField.attributedText = vision.isEmpty ? interactor.formatPlaceholder(vision: "Write your to be vision...") : interactor.formatPlaceholder(vision: "")
+        visionTextField.attributedText = vision.isEmpty ? interactor.formatPlaceholder(vision: AppTextService.get(.my_qot_my_tbv_edit_body_placeholder)) : interactor.formatPlaceholder(vision: "")
         descriptionTextView.attributedText = interactor.format(vision: vision)
         titleTextView.becomeFirstResponder()
         keyboardInputView.delegate = self
@@ -118,11 +118,11 @@ extension MyVisionEditDetailsViewController: UITextViewDelegate {
             if textView == titleTextView {
                 didChangeTitle = !changedText.isEmpty
                 enableSaveButton(didChangeTitle && didChangeVision)
-                titleTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(title: "TITLE") : interactor?.formatPlaceholder(title: "")
+                titleTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(title: AppTextService.get(.my_qot_my_tbv_edit_title_placeholder)) : interactor?.formatPlaceholder(title: "")
             } else {
                 didChangeVision = !changedText.isEmpty
                 enableSaveButton(didChangeTitle && didChangeVision)
-                visionTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(vision: "Write your to be vision...") : interactor?.formatPlaceholder(vision: "")
+                visionTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(vision: AppTextService.get(.my_qot_my_tbv_edit_body_placeholder)) : interactor?.formatPlaceholder(vision: "")
             }
         }
         return true

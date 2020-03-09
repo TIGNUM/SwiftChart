@@ -17,4 +17,10 @@ class DTWorker: WorkerTBV {
             completion(questions)
         }
     }
+
+    func getContent(contentId: Int, completion: @escaping (QDMContentCollection?) -> Void) {
+        ContentService.main.getContentCollectionById(contentId) { (content) in
+            completion(content)
+        }
+    }
 }

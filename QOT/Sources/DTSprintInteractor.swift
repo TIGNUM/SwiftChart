@@ -31,12 +31,23 @@ final class DTSprintInteractor: DTInteractor {
         sprintWorker?.isPresentedFromCoach = isPresentedFromCoach
     }
 
-    override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+    override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer],
+                                    questionKey: String?,
+                                    content: QDMContentCollection?) -> String? {
         let firstSelectedAnswer = selectedAnswers.first
         if firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
             selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? 0
             selectedSprintTargetQuestionId = firstSelectedAnswer?.targetId(.question) ?? 0
             selectedSprintTitle = firstSelectedAnswer?.title ?? ""
+            var result = ""
+            if questionKey == Sprint.QuestionKey.Schedule {
+                let sprintTitle = content?.contentItems.filter { $0.format == .header1 }.first?.valueText ?? ""
+                let title = (content?.contentCategoryTitle ?? "") + ": " + sprintTitle + "\n"
+                result.append(title)
+                let filteredItems = content?.contentItems.filter { $0.format == .title }
+                filteredItems?.reversed().forEach { result.append("\n" + "\n" + $0.valueText) }
+                return result
+            }
             return firstSelectedAnswer?.title
         } else if
             firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.StartTomorrow) == true ||
@@ -44,6 +55,31 @@ final class DTSprintInteractor: DTInteractor {
             return selectedSprintTitle
         }
         return nil
+    }
+
+    override func loadNextQuestion(selection: DTSelectionModel) {
+        selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
+        if selection.question?.key == Sprint.QuestionKey.Selection {
+            let contentId = selection.selectedAnswers.first?.decisions.filter { $0.targetType == TargetType.content }.first?.targetTypeId ?? 0
+            sprintWorker?.getContent(contentId: contentId, completion: { [weak self] (content) in
+                if let presentationModel = self?.createPresentationModel(selection: selection,
+                                                                         questions: self?.questions ?? [],
+                                                                         content: content) {
+                    self?.presenter?.showNextQuestion(presentationModel, isDark: self?.isDark ?? true)
+                    let node = Node(questionId: presentationModel.question?.remoteID,
+                                    answerFilter: selection.answerFilter,
+                                    titleUpdate: presentationModel.questionUpdate)
+                    self?.presentedNodes.append(node)
+                }
+            })
+        } else {
+            let presentationModel = createPresentationModel(selection: selection, questions: questions, content: nil)
+            presenter?.showNextQuestion(presentationModel, isDark: isDark)
+            let node = Node(questionId: presentationModel.question?.remoteID,
+                            answerFilter: selection.answerFilter,
+                            titleUpdate: presentationModel.questionUpdate)
+            presentedNodes.append(node)
+        }
     }
 }
 
