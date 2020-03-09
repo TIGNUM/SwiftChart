@@ -47,6 +47,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var refLabel3: UILabel!
     @IBOutlet weak var rollingDataLabel: UILabel!
     @IBOutlet weak var trackedDaysLabel: UILabel!
+    var sleepTarget: Double?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -188,10 +189,11 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         // Button
         moreData.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_my_data), for: .normal)
+        self.sleepTarget = viewModel?.targetSleepQuantity
     }
 
     @IBAction func targetReference(_ sender: Any) {
-            delegate?.showCustomizeTarget()
+        delegate?.showCustomizeTarget(sleepTarget:self.sleepTarget)
     }
     @IBAction func presentMyData(_ sender: Any) {
             delegate?.presentMyDataScreen()
