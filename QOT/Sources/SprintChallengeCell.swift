@@ -108,10 +108,10 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
                 delegate?.presentStrategyList(strategyID: contentCollectionId)
             } else if relatedItem?.section == .QOTLibrary {
                 delegate?.openTools(toolID: contentCollectionId)
+            } else if relatedItem?.link !=  nil {
+                           relatedItem?.link?.launch()
             } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionId)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
-            } else if relatedItem?.link !=  nil {
-                relatedItem?.link?.launch()
             }
         }
     }
