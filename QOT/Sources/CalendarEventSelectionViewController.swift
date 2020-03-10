@@ -47,7 +47,8 @@ private extension CalendarEventSelectionViewController {
 
 // MARK: - Actions
 private extension CalendarEventSelectionViewController {
-   @objc func addNewEvent() {
+    @objc func addNewEvent() {
+        removeBottomNavigation()
         router.presentEditEventController(interactor.getCalendarIds())
     }
 }
