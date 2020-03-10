@@ -35,7 +35,7 @@ final class CalendarEventSelectionViewController: BaseWithGroupedTableViewContro
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return [roundedBarButtonItem(title: interactor.rightBarItemTitle,
-                                     image: R.image.ic_calendar(),
+                                     image: R.image.ic_calendar_accent(),
                                      buttonWidth: .AddNewEvent,
                                      action: #selector(addNewEvent))]
     }

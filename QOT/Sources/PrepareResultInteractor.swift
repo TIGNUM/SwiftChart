@@ -158,8 +158,6 @@ extension PrepareResultInteractor: AskPermissionDelegate {
     func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
         if granted {
             router.presentCalendarSettings(delegate: self)
-        } else {
-//            resetSelectedAnswers()
         }
     }
 }
@@ -167,11 +165,8 @@ extension PrepareResultInteractor: AskPermissionDelegate {
 // MARK: - SyncedCalendarsDelegate
 extension PrepareResultInteractor: SyncedCalendarsDelegate {
     func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
-        if qdmEvents.isEmpty {
-//            resetSelectedAnswers()
-        } else {
-//            prepareInteractor?.setUserCalendarEvents(qdmEvents)
-//            loadNextQuestion()
+        if !qdmEvents.isEmpty {
+            router.presentCalendarEventSelection()
         }
     }
 }
