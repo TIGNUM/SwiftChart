@@ -37,7 +37,7 @@ protocol DailyBriefInteractorInterface: Interactor {
 
     func saveAnswerValue(_ value: Int)
     func saveTargetValue(value: Int?)
-    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
+    func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
 }
