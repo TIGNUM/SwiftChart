@@ -104,11 +104,6 @@ extension PrepareResultsWorker {
         return preparation?.relatedStrategyId ?? 0
     }
 
-    var setReminder: Bool {
-        get { return preparation?.setReminder ?? false }
-        set { preparation?.setReminder = newValue }
-    }
-
     func getSelectedIDs(_ completion: @escaping (([Int]) -> Void)) {
         var readMoreIDs = [Int]()
         getStrategyItems(strategyIds, suggestedStrategyId) { items in
@@ -197,12 +192,17 @@ extension PrepareResultsWorker {
         self.benefits = benefits
         generateCriticalItemsAndUpdateView(preparation)
     }
+
+    func updateEvent(_ qdmEvent: QDMUserCalendarEvent?, ekEvent: EKEvent?) {
+        
+    }
 }
 
 // MARK: - Update, Delete
 extension PrepareResultsWorker {
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
-        guard let preparation = preparation else { return }
+        guard var preparation = preparation else { return }
+        preparation.setReminder = preparation.eventDate != nil
         UserService.main.updateUserPreparation(preparation) { (updatedPrep, error) in
             if let error = error {
                 log("Error updateUserPreparation \(error.localizedDescription)", level: .error)

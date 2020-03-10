@@ -61,11 +61,6 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         return worker.getType
     }
 
-    var setReminder: Bool {
-        get { return worker.setReminder }
-        set { worker.setReminder = newValue }
-    }
-
     var sectionCount: Int {
         return worker.sectionCount
     }
