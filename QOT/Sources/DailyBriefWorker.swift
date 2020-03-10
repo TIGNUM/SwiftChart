@@ -128,7 +128,8 @@ extension DailyBriefWorker {
         settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
             guard let savedTarget = settings?.first?.longValue else {  completion(270)
                 // 270 Minutes is 4:30 hours
-               return}
+                return
+            }
             completion(NSNumber(value: savedTarget).intValue)
         })
     }
