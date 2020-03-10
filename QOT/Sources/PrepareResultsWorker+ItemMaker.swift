@@ -130,15 +130,6 @@ extension PrepareResultsWorker {
         }
         return items
     }
-
-    //TODO: no hardcoded strings
-    func getReminderItems(_ setReminder: Bool) -> [PrepareResultsType] {
-        let setReminderItem = PrepareResultsType.reminder(title: "SET REMINDER",
-                                                          subbtitle: "To help you remember planned events",
-                                                          active: setReminder,
-                                                          type: .reminder)
-        return [setReminderItem]
-    }
 }
 
 extension PrepareResultsWorker {

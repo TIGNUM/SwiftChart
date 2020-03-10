@@ -22,7 +22,6 @@ protocol PrepareResultsPresenterInterface {
 }
 
 protocol PrepareResultsInteractorInterface: Interactor {
-    var setReminder: Bool { get set }
     var getType: QDMUserPreparation.Level { get }
     var getResultType: ResultType { get }
     var sectionCount: Int { get }
@@ -43,7 +42,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func deletePreparation()
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
-    func checkSyncedCalendars()    
+    func checkSyncedCalendars()
 }
 
 protocol PrepareResultsRouterInterface: BaseRouterInterface {

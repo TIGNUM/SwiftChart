@@ -10,16 +10,10 @@ import UIKit
 import qot_dal
 //FIXME: https://tignum.atlassian.net/browse/QOT-2688
 // We need to rebuild the complete prepare results structure
-enum ReminderType {
-    case iCal
-    case reminder
-}
-
 enum PrepareResultsType {
     case contentItem(format: ContentFormat, title: String)
     case eventItem(title: String, date: Date, type: String)
     case strategy(title: String, durationString: String, readMoreID: Int)
-    case reminder(title: String, subbtitle: String, active: Bool, type: ReminderType)
     case intentionContentItem(format: ContentFormat, title: String?, key: Prepare.Key)
     case intentionItem(title: String)
     case benefitContentItem(format: ContentFormat, title: String?, benefits: String?, questionID: Int)

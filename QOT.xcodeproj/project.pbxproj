@@ -194,8 +194,6 @@
 		369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */; };
 		369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */; };
 		369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */; };
-		369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */; };
-		369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */; };
 		36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */; };
 		36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A5E75622786014006A522C /* MediaPlayerOverlay.xib */; };
 		36AEA4DD2271AC6E00EC9C55 /* AudioPlayerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEA4DC2271AC6E00EC9C55 /* AudioPlayerBar.swift */; };
@@ -1452,8 +1450,6 @@
 		369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsContentTableViewCell.xib; sourceTree = "<group>"; };
 		369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedStrategyTableViewCell.swift; sourceTree = "<group>"; };
 		369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelatedStrategyTableViewCell.xib; sourceTree = "<group>"; };
-		369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
-		369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderTableViewCell.xib; sourceTree = "<group>"; };
 		36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerOverlay.swift; sourceTree = "<group>"; };
 		36A5E75622786014006A522C /* MediaPlayerOverlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaPlayerOverlay.xib; sourceTree = "<group>"; };
 		36A5E7582278612C006A522C /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
@@ -2999,11 +2995,9 @@
 				38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */,
 				369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */,
 				369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */,
-				369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */,
 				38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */,
 				369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */,
 				369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */,
-				369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -5743,7 +5737,6 @@
 				F9D2BC1D22D48DE600DBF2CC /* GoodToKnowCell.xib in Resources */,
 				DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */,
 				B4AB48D4230D3A9B003B3C1F /* MyDataChartTableViewCell.xib in Resources */,
-				369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */,
 				F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */,
 				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
 				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
@@ -6280,7 +6273,6 @@
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
-				369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */,
 				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
 				36E12EC8232B57F0009E96EA /* DTPrepare.swift in Sources */,
 				B47953B7230AD512006EFE0F /* MyDataScreenInteractor.swift in Sources */,

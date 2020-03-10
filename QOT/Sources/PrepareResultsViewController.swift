@@ -11,7 +11,6 @@ import qot_dal
 
 protocol PrepareResultsDelegatge: class {
     func openEditStrategyView()
-    func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
     func reloadData()
     func setupBarButtonItems(resultType: ResultType)
     func didUpdateIntentions(_ answerIds: [Int])
@@ -87,17 +86,6 @@ private extension PrepareResultsViewController {
         return cell
     }
 
-    func reminderCell(title: String,
-                      subTitle: String,
-                      isOn: Bool,
-                      indexPath: IndexPath,
-                      type: ReminderType) -> ReminderTableViewCell {
-        let cell: ReminderTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: title, subTitle: subTitle, isOn: isOn, type: type)
-        cell.delegate = self
-        return cell
-    }
-
     func addToCalendarCell(title: String,
                            subtitle: String,
                            indexPath: IndexPath) -> PrepareResultsAddToCalendarTableViewCell {
@@ -165,7 +153,6 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
             tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
             tableView.registerDequeueable(PrepareEventTableViewCell.self)
             tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
-            tableView.registerDequeueable(ReminderTableViewCell.self)
             tableView.registerDequeueable(PrepareResultsAddToCalendarTableViewCell.self)
         case .LEVEL_ON_THE_GO:
             tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
@@ -207,8 +194,6 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
             return eventCell(title: title, date: date, type: type, indexPath: indexPath)
         case .strategy(let title, let readingTime, _):
             return strategyCell(title: title, duration: readingTime, indexPath: indexPath)
-        case .reminder(let title, let subTitle, let isOn, let type):
-            return reminderCell(title: title, subTitle: subTitle, isOn: isOn, indexPath: indexPath, type: type)
         case .intentionContentItem(let format, let title, _):
             return contentItemCell(format: format,
                                    title: title,
@@ -293,15 +278,6 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
 
     func reloadData() {
         tableView.reloadData()
-    }
-
-    func didChangeReminderValue(for type: ReminderType, value isOn: Bool) {
-        switch type {
-        case .reminder:
-            interactor.setReminder = isOn
-        default: break
-        }
-        refreshBottomNavigationItems()
     }
 
     func openEditStrategyView() {
