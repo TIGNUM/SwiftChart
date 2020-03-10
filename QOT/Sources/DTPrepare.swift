@@ -10,7 +10,7 @@ import UIKit
 
 struct Prepare {
 	struct QuestionKey {
-        static let Intro = "prepare-key-intro"
+        static let Intro = "prepare-key-intro-v3.0.5"
         static let CalendarEventSelectionDaily = "prepare-key-calendar-event-selection-daily"
         static let CalendarEventSelectionCritical = "prepare-key-calendar-event-selection-critical"
         static let EventTypeSelectionDaily = "prepare-event-type-selection-daily"

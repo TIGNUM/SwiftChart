@@ -733,7 +733,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 // MARK: - Navigation
 extension DailyBriefViewController {
     func showCustomizeTarget() {
-        interactor.customzieSleepQuestion { [weak self] (question) in
+        interactor.customizeSleepQuestion { [weak self] (question) in
             self?.router.presentCustomizeTarget(question)
         }
     }
@@ -798,7 +798,7 @@ extension DailyBriefViewController: QuestionnaireAnswer {
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = 0
         if index == NSNotFound { return }
-        interactor.customzieSleepQuestion { (question) in
+        interactor.customizeSleepQuestion { (question) in
             let answers = question?.answers?.count ?? 0
             question?.selectedAnswerIndex = (answers - 1) - answer
         }

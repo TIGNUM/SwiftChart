@@ -312,8 +312,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.saveTargetValue(value: value)
     }
 
-    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
-        worker.customzieSleepQuestion(completion: completion)
+    func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
+        worker.customizeSleepQuestion(completion: completion)
     }
 
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]) {
