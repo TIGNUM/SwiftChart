@@ -36,8 +36,6 @@ extension PrepareResultsWorker {
                 items[PrepareResult.Daily.INTENTION_TITLES] = self?.getIntentionTitleItems(contentItems ?? [])
                 items[PrepareResult.Daily.STRATEGY_LIST] = [.contentItem(format: .list, title: "SUGGESTED STRATEGIES")]
                 items[PrepareResult.Daily.STRATEGY_ITEMS] = strategyItems
-                items[PrepareResult.Daily.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                items[PrepareResult.Daily.REMINDER_ITEMS] = self?.getReminderItems(prepare.setReminder)
                 completion(items)
             }
         }
@@ -80,9 +78,6 @@ extension PrepareResultsWorker {
                             items[PrepareResult.Critical.STRATEGY_LIST] = [.contentItem(format: .list,
                                                                                         title: "SUGGESTED STRATEGIES")]
                             items[PrepareResult.Critical.STRATEGY_ITEMS] = strategyItems
-
-                            items[PrepareResult.Critical.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                            items[PrepareResult.Critical.REMINDER_ITEMS] = self?.getReminderItems(prepare.setReminder)
                             completion(items)
                         })
                     })

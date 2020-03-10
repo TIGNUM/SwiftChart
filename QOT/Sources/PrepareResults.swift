@@ -102,8 +102,6 @@ struct PrepareResult {
         static let INTENTION_TITLES = 3
         static let STRATEGY_LIST = 4
         static let STRATEGY_ITEMS = 5
-        static let REMINDER_LIST = 6
-        static let REMINDER_ITEMS = 7
     }
 
     struct Critical: Hashable {
@@ -121,7 +119,5 @@ struct PrepareResult {
         static let BENEFITS = 11
         static let STRATEGY_LIST = 12
         static let STRATEGY_ITEMS = 13
-        static let REMINDER_LIST = 14
-        static let REMINDER_ITEMS = 15
     }
 }

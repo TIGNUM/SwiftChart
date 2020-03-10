@@ -114,25 +114,6 @@ private extension PrepareResultsViewController {
         }
     }
 
-    func showAlert() {
-        let confirm = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
-            self?.interactor.setReminder = true
-            self?.interactor.updatePreparation { (_) in
-                self?.interactor.didTapDismissView()
-                self?.interactor.presentMyPreps()
-            }
-        }
-        let decline = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
-            self?.interactor.updatePreparation { (_) in
-                self?.interactor.didTapDismissView()
-                self?.interactor.presentMyPreps()
-            }
-        }
-        QOTAlert.show(title: AppTextService.get(.coach_prepare_alert_activate_reminder_title),
-                      message: AppTextService.get(.coach_prepare_alert_activate_reminder_body),
-                      bottomItems: [confirm, decline])
-    }
-
     func checkCalendarPermission() {
         switch CalendarPermission().authorizationStatus {
         case .notDetermined:
@@ -160,22 +141,14 @@ private extension PrepareResultsViewController {
 
     @objc func didTapDone() {
         trackUserEvent(.CLOSE, action: .TAP)
-        if interactor.setReminder == false {
-            showAlert()
-        } else {
-            interactor.updatePreparation { [weak self] (_) in
-                self?.interactor.didTapDismissView()
-            }
+        interactor.updatePreparation { [weak self] (_) in
+            self?.interactor.didTapDismissView()
         }
     }
 
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        if interactor.setReminder == false {
-            showAlert()
-        } else {
-            interactor.didClickSaveAndContinue()
-        }
+        interactor.didClickSaveAndContinue()
     }
 }
 
