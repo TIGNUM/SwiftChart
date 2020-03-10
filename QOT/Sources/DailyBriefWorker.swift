@@ -73,7 +73,7 @@ final class DailyBriefWorker {
 // MARK: - Daily Checkin 1
 extension DailyBriefWorker {
 
-    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
+    func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
         questionService.question(with: 100360, in: .DailyCheckIn1) { (question) in
         // FIXME: need to separate question and answers from daily-check-in.
             guard let question = question else { return }
@@ -83,16 +83,20 @@ extension DailyBriefWorker {
                                                           title: qdmAnswer.title,
                                                           subtitle: qdmAnswer.subtitle)
                 })
-            let model = RatingQuestionViewModel.Question(remoteID: question.remoteID,
-                                                         title: question.title,
-                                                         htmlTitle: question.htmlTitleString ?? "",
-                                                         subtitle: question.subtitle,
-                                                         dailyPrepTitle: "",
-                                                         key: question.key ?? "",
-                                                         answers: answers,
-                                                         range: nil,
-                                                         selectedAnswerIndex: nil)
-            completion(model)
+            self.getTargetValue { (sleepTargetValue) in
+                guard let sleepTargetValue = sleepTargetValue else { return }
+                let selectedAnswerIndex = question.answers.count - 1 - (sleepTargetValue - 60)/30
+                let model = RatingQuestionViewModel.Question(remoteID: question.remoteID,
+                                                             title: question.title,
+                                                             htmlTitle: question.htmlTitleString ?? "",
+                                                             subtitle: question.subtitle,
+                                                             dailyPrepTitle: "",
+                                                             key: question.key ?? "",
+                                                             answers: answers,
+                                                             range: nil,
+                                                             selectedAnswerIndex: selectedAnswerIndex)
+                completion(model)
+            }
         }
     }
 
@@ -109,14 +113,21 @@ extension DailyBriefWorker {
         settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
             if let setting = settings?.first {
                 var updatedSetting = setting
-                //                    turning sleep target from an answer index to a number of hours per day
-                updatedSetting.longValue = (60 + (Int64(value ?? 0) * 30))
+                // turning sleep target from an answer index to a number of hours per day
+                updatedSetting.longValue = 60 + (Int64(value ?? 0) * 30)
                 self.settingService.updateSetting(updatedSetting, true, {(error) in
                     if let error = error {
                         log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
                     }
                 })
             }
+        })
+    }
+
+    func getTargetValue(completion: @escaping (Int?) -> Void) {
+        settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
+            guard let savedTarget = settings?.first?.longValue else { return }
+            completion(NSNumber(value: savedTarget).intValue)
         })
     }
 }
