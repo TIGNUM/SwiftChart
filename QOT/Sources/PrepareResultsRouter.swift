@@ -13,6 +13,7 @@ final class PrepareResultsRouter: BaseRouter {
 
     // MARK: - Properties
     private weak var prepareResultsViewController: PrepareResultsViewController?
+    weak var delegate: CalendarEventSelectionDelegate?
 
     // MARK: - Init
     init(viewController: PrepareResultsViewController) {
@@ -71,7 +72,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func presentCalendarEventSelection() {
-        let configurator = CalendarEventSelectionConfigurator.make()
+        let configurator = CalendarEventSelectionConfigurator.make(delegate: delegate)
         let controller = CalendarEventSelectionViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }

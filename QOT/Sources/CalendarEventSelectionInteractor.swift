@@ -18,6 +18,7 @@ final class CalendarEventSelectionInteractor {
     private var qdmEvents: [QDMUserCalendarEvent] = []
     private var events: [CalendarEvent] = []
     private var calendarSettings: [QDMUserCalendarSetting] = []
+    weak var delegate: CalendarEventSelectionDelegate?
 
     // MARK: - Init
     init(presenter: CalendarEventSelectionPresenterInterface) {
@@ -52,7 +53,8 @@ extension CalendarEventSelectionInteractor: CalendarEventSelectionInteractorInte
     }
 
     func didSelectPreparationEvent(at row: Int) {
-
+        guard let qdmEvent = qdmEvents.at(index: row) else { return }
+        delegate?.didSelectEvent(qdmEvent)
     }
 
     func getCalendarIds() -> [String] {

@@ -34,7 +34,7 @@ final class CalendarEventSelectionViewController: BaseWithGroupedTableViewContro
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [roundedBarButtonItem(title: "Add new event",//interactor.rightBarItemTitle,
+        return [roundedBarButtonItem(title: interactor.rightBarItemTitle,
                                      buttonWidth: .AddNewEvent,
                                      action: #selector(addNewEvent))]
     }
@@ -98,16 +98,8 @@ extension CalendarEventSelectionViewController: EKEventEditViewDelegate {
         case .saved:
             DispatchQueue.main.async { [weak self] in
                 let event = controller.event
-                self?.delegate?.didCreateEvent(<#T##event: CalendarEvent##CalendarEvent#>)
+                self?.delegate?.didCreateEvent(event)
                 self?.router.dismiss()
-                //                self?.interactor.setCreatedCalendarEvent(controller.event) { [weak self] (success) in65
-                //                    controller.dismiss(animated: true) { [weak self] in
-                //                        if success {
-                //                            self?.router.dismiss()
-                //                        } else {
-                //                            self?.showAlert(type: .calendarNotSynced)
-                //                        }
-                //                    }
             }
         }
     }
