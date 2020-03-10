@@ -16,14 +16,6 @@ enum AnswerKey {
         static let UploadImage = "tbv-answer-key-upload-image"
     }
 
-    struct Prepare {
-        static let OpenCheckList = "open_preparation_check_list_on_the_go"
-        static let EventTypeSelectionDaily = "open_preparation_event_selection_daily"
-        static let EventTypeSelectionCritical = "open_preparation_event_selection_critical"
-        static let PeakPlanNew = "prepare_peak_prep_plan_new"
-        static let PeakPlanTemplate = "prepare_peak_prep_plan_template"
-    }
-
     enum Solve: String {
         case letsDoIt = "solve-lets-do-it"
         case openVisionPage = "open-vision-page"
