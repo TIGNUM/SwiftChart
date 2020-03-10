@@ -23,11 +23,10 @@ final class DailyBriefRouter: BaseRouter {
 
 // MARK: - DailyBriefRouterInterface
 extension DailyBriefRouter: DailyBriefRouterInterface {
-    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?, sleepTarget: Double?) {
+    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
         if let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
                                                                         delegate: dailyBriefViewController,
-                                                                        sleepTarget: sleepTarget,
                                                                         controllerType: .customize) {
             viewController?.present(controller, animated: true)
         }

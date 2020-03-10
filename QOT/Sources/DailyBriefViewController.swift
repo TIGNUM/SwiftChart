@@ -17,7 +17,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func didPressGotItSprint(sprint: QDMSprint)
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
-    func showCustomizeTarget(sleepTarget: Double?)
+    func showCustomizeTarget()
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
     func saveTargetValue(value: Int?)
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
@@ -732,9 +732,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
 // MARK: - Navigation
 extension DailyBriefViewController {
-    func showCustomizeTarget(sleepTarget: Double?) {
+    func showCustomizeTarget() {
         interactor.customzieSleepQuestion { [weak self] (question) in
-            self?.router.presentCustomizeTarget(question, sleepTarget: sleepTarget)
+            self?.router.presentCustomizeTarget(question)
         }
     }
 

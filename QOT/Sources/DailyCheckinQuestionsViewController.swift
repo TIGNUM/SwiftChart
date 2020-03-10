@@ -82,7 +82,7 @@ private extension DailyCheckinQuestionsViewController {
 
     func questionnaireViewController(with question: RatingQuestionViewModel.Question?) -> UIViewController? {
         guard let questionnaire = question else { return nil }
-        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, sleepTarget: nil, controllerType: .dailyCheckin)
+        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .dailyCheckin)
     }
 
     func indexOf(_ viewController: UIViewController?) -> Int {

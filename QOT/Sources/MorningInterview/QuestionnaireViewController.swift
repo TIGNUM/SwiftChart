@@ -127,7 +127,6 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
                                   delegate: QuestionnaireAnswer? = nil,
                                   dailyCheckinDelegate: DailyBriefViewControllerDelegate? = nil,
                                   presentationType: QuestionnairePresentationType = .fill,
-                                  sleepTarget: Double?,
                                   controllerType: ControllerType = .vision) -> QuestionnaireViewController?
         where T: RatingQuestionnaire {
             guard let viewController = R.storyboard.questionnaireViewController.instantiateInitialViewController() else {
@@ -196,12 +195,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     }
 
     public func currentAnswerIndex() -> Int {
-        switch controllerType {
-        case .customize:
-            return currentIndex
-        default:
-            return currentIndex
-        }
+        return currentIndex
     }
 
     override func showTransitionBackButton() -> Bool {
@@ -339,7 +333,7 @@ extension QuestionnaireViewController {
         })
 
         DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_02) {
-            self.animateToIndex(index: self.currentAnswerIndex(), isTouch: false)
+            self.animateToIndex(index: self.currentIndex, isTouch: false)
             self.answerDelegate?.isPresented(for: self.questionID(), from: self)
         }
     }
