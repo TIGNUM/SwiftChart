@@ -8,7 +8,8 @@
 
 import UIKit
 import qot_dal
-
+//FIXME: https://tignum.atlassian.net/browse/QOT-2688
+// We need to rebuild the complete prepare results structure
 enum ReminderType {
     case iCal
     case reminder
