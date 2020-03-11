@@ -603,14 +603,16 @@ extension DailyBriefInteractor {
     // MARK: - Mindset Shifter
     func createMindsetShifterViewModel(mindsetBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var mindsetList: [BaseDailyBriefViewModel] = []
-        guard let collection = mindsetBucket.contentCollections?.first else {
+        guard let shifters = mindsetBucket.mindsetShifters else {
             mindsetList.append(MindsetShifterViewModel(title: "",
                                                        subtitle: "",
+                                                       mindsetShifter: nil,
                                                        domainModel: mindsetBucket))
             return mindsetList
         }
         let model = MindsetShifterViewModel(title: "MINDSET SHIFTER",
                                             subtitle: "this is the subtitle",
+                                            mindsetShifter: shifters.last,
                                             domainModel: mindsetBucket)
         mindsetList.append(model)
         return mindsetList

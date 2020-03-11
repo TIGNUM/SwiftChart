@@ -13,11 +13,13 @@ final class MindsetShifterViewModel: BaseDailyBriefViewModel {
     // MARK: - Properties
     let title: String?
     let subtitle: String?
+    let mindsetShifter: QDMMindsetShifter?
 
     // MARK: - Init
-   init(title: String?, subtitle: String?, domainModel: QDMDailyBriefBucket?) {
+   init(title: String?, subtitle: String?, mindsetShifter: QDMMindsetShifter?, domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.subtitle = subtitle
+        self.mindsetShifter = mindsetShifter
         super.init(domainModel)
     }
 
@@ -27,6 +29,6 @@ final class MindsetShifterViewModel: BaseDailyBriefViewModel {
         }
         return super.isContentEqual(to: source) &&
             title == source.title &&
-            subtitle == source.subtitle
+            subtitle == source.subtitle &&
     }
 }
