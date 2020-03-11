@@ -287,6 +287,14 @@
 		38532AB4236C355600155643 /* walkThrough_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AB3236C355600155643 /* walkThrough_know.mp4 */; };
 		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
 		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
+		386C279A2418EBFF00184EC9 /* ResultsPreparePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */; };
+		386C279B2418EBFF00184EC9 /* ResultsPrepareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */; };
+		386C279C2418EBFF00184EC9 /* ResultsPrepareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */; };
+		386C279D2418EBFF00184EC9 /* ResultsPrepareInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27952418EBFF00184EC9 /* ResultsPrepareInterface.swift */; };
+		386C279E2418EBFF00184EC9 /* ResultsPrepareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27962418EBFF00184EC9 /* ResultsPrepareViewController.swift */; };
+		386C279F2418EBFF00184EC9 /* ResultsPrepareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27972418EBFF00184EC9 /* ResultsPrepareInteractor.swift */; };
+		386C27A02418EBFF00184EC9 /* ResultsPrepareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27982418EBFF00184EC9 /* ResultsPrepareModel.swift */; };
+		386C27A12418EBFF00184EC9 /* ResultsPrepareConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27992418EBFF00184EC9 /* ResultsPrepareConfigurator.swift */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
 		389BBC86235EE68B0009FA02 /* CoachMarksWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */; };
@@ -1532,6 +1540,14 @@
 		38532AB3236C355600155643 /* walkThrough_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_know.mp4; sourceTree = "<group>"; };
 		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
+		386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPreparePresenter.swift; sourceTree = "<group>"; };
+		386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareWorker.swift; sourceTree = "<group>"; };
+		386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareRouter.swift; sourceTree = "<group>"; };
+		386C27952418EBFF00184EC9 /* ResultsPrepareInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareInterface.swift; sourceTree = "<group>"; };
+		386C27962418EBFF00184EC9 /* ResultsPrepareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareViewController.swift; sourceTree = "<group>"; };
+		386C27972418EBFF00184EC9 /* ResultsPrepareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareInteractor.swift; sourceTree = "<group>"; };
+		386C27982418EBFF00184EC9 /* ResultsPrepareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareModel.swift; sourceTree = "<group>"; };
+		386C27992418EBFF00184EC9 /* ResultsPrepareConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareConfigurator.swift; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
 		389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksWorker.swift; sourceTree = "<group>"; };
@@ -2940,6 +2956,7 @@
 		3693539822983A78008BBB72 /* ResultsPrepare */ = {
 			isa = PBXGroup;
 			children = (
+				386C27912418EBD400184EC9 /* New */,
 				36CB720422B855E400C99AFC /* Core */,
 				36CB720322B855D100C99AFC /* Cells */,
 				36CB720222B855B800C99AFC /* Views */,
@@ -3100,6 +3117,21 @@
 				363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */,
 			);
 			name = Worker;
+			sourceTree = "<group>";
+		};
+		386C27912418EBD400184EC9 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				386C27992418EBFF00184EC9 /* ResultsPrepareConfigurator.swift */,
+				386C27972418EBFF00184EC9 /* ResultsPrepareInteractor.swift */,
+				386C27952418EBFF00184EC9 /* ResultsPrepareInterface.swift */,
+				386C27982418EBFF00184EC9 /* ResultsPrepareModel.swift */,
+				386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */,
+				386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */,
+				386C27962418EBFF00184EC9 /* ResultsPrepareViewController.swift */,
+				386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */,
+			);
+			name = New;
 			sourceTree = "<group>";
 		};
 		389BBC7C235EE63C0009FA02 /* Walkthrough */ = {
@@ -5997,6 +6029,7 @@
 				36C8F17623089F0500CD718F /* EKEventStore+Ext.swift in Sources */,
 				7582615B22D77531000094DE /* TBVRateHistoryNullStateViewController.swift in Sources */,
 				B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */,
+				386C279D2418EBFF00184EC9 /* ResultsPrepareInterface.swift in Sources */,
 				8DC59B6522FDA6BE00587EA4 /* Notification+Registration.swift in Sources */,
 				9C24238222F099BE00B911E6 /* MeAtMyBestCellViewModel.swift in Sources */,
 				B430D7CE23A911DE00C75C9C /* MyQotAdminLocalNotificationsViewController.swift in Sources */,
@@ -6171,6 +6204,7 @@
 				367A58652326B85B0089A082 /* DTWorker.swift in Sources */,
 				F95B923A228EAE96000DEAEC /* ToolsInteractor.swift in Sources */,
 				F99DF6082292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift in Sources */,
+				386C279F2418EBFF00184EC9 /* ResultsPrepareInteractor.swift in Sources */,
 				7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */,
 				36B5BD2F23142B4A00439A64 /* AskPermissionInterface.swift in Sources */,
 				36CB720822B86CF900C99AFC /* QDMContentCollection+Ext.swift in Sources */,
@@ -6299,6 +6333,7 @@
 				5F7BE79422899EA100BA5DCF /* MyQotAboutUsInterface.swift in Sources */,
 				B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */,
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
+				386C279B2418EBFF00184EC9 /* ResultsPrepareWorker.swift in Sources */,
 				36E12EC5232B57F0009E96EA /* DTPrepareInterface.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
 				75423EFF22CE242B008EE726 /* TBVRateHistoryConfigurator.swift in Sources */,
@@ -6338,6 +6373,7 @@
 				9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */,
 				9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */,
 				B430D7D423A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsPresenter.swift in Sources */,
+				386C27A12418EBFF00184EC9 /* ResultsPrepareConfigurator.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				75423EFB22CE242B008EE726 /* TBVRateHistoryInterface.swift in Sources */,
 				3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */,
@@ -6384,6 +6420,7 @@
 				38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */,
 				B4AB48CA230BF982003B3C1F /* MyDataExplanationViewController.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,
+				386C279E2418EBFF00184EC9 /* ResultsPrepareViewController.swift in Sources */,
 				8D8AA75E22FDCB6700B59A81 /* RegistrationInteractor.swift in Sources */,
 				B4A075B8230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.swift in Sources */,
 				F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */,
@@ -6398,6 +6435,7 @@
 				9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */,
 				3666FD45232A4B7D00FC67D0 /* DTRecoveryViewController.swift in Sources */,
 				F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */,
+				386C27A02418EBFF00184EC9 /* ResultsPrepareModel.swift in Sources */,
 				B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */,
 				5F62BE98228AB64E00852F7E /* MyQotSupportDetailsRouter.swift in Sources */,
 				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
@@ -6780,6 +6818,7 @@
 				B47953B5230AD512006EFE0F /* MyDataScreenModel.swift in Sources */,
 				B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */,
 				3632D0C822534E6400A4F234 /* ComponentHeaderView.swift in Sources */,
+				386C279A2418EBFF00184EC9 /* ResultsPreparePresenter.swift in Sources */,
 				F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */,
 				38290B882330F825004B5C14 /* DTSprintReflectionRouter.swift in Sources */,
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,
@@ -6795,6 +6834,7 @@
 				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
 				75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */,
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
+				386C279C2418EBFF00184EC9 /* ResultsPrepareRouter.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				5F8A89952296DEDF0011A05C /* MyVisionConfigurator.swift in Sources */,
 				B45DA6BE23AA6316006E7E33 /* MyQOTAdminChooseBucketsRouter.swift in Sources */,

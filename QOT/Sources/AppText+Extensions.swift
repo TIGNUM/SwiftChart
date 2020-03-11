@@ -869,6 +869,19 @@ public extension AppTextKey {
 
     static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
+
+    // MARK: - Results Prepare
+    static let results_prepare_header_title = AppTextKey("results_prepare.header.title")
+    static let results_prepare_connect_calendar_title = AppTextKey("prepare_results.connect_calaendar.title")
+    static let results_prepare_connect_calendar_subtitle = AppTextKey("prepare_results.connect_calaendar.subtitle")
+    static let results_prepare_critical_questions = AppTextKey("prepare_results.critical.questions")
+    static let results_prepare_perceived = AppTextKey("prepare_results.perceived.title")
+    static let results_prepare_know = AppTextKey("prepare_results.know.title")
+    static let results_prepare_feel = AppTextKey("prepare_results.feel.title")
+    static let results_prepare_header_benefits = AppTextKey("prepare_results.benefits.header")
+    static let results_prepare_benefits = AppTextKey("prepare_results.benefits.title")
+    static let results_prepare_strategies = AppTextKey("prepare_results.strategies.title")
+
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")
