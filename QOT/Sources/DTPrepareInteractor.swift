@@ -69,6 +69,15 @@ final class DTPrepareInteractor: DTInteractor {
 
 // MARK: - DTPrepareInteractorInterface
 extension DTPrepareInteractor: DTPrepareInteractorInterface {
+    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void) {
+        workerCalendar?.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
+            self?.workerCalendar?.storeLocalEvent(event?.eventIdentifier,
+                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
+            self?.createdUserCalendarEvent = userCalendarEvent
+            completion(userCalendarEvent != nil)
+        }
+    }
+
     //TODO Unify to one single createPrep func with ServiceModel.
     func getUserPreparation(event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
