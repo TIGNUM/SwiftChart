@@ -18,7 +18,7 @@ final class PrepareResultInteractor {
     private let router: PrepareResultsRouterInterface
     private var events: [QDMUserCalendarEvent] = []
     private var selectedEvent: QDMUserCalendarEvent?
-    private var createdEvent: EKEvent?
+    private var createdUserCalendarEvent: QDMUserCalendarEvent?
 
     // MARK: - Init
     init(worker: PrepareResultsWorker,
@@ -48,6 +48,14 @@ private extension PrepareResultInteractor {
         self.events = events.sorted(by: { (lhs, rhs) -> Bool in
             return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
         }).unique
+    }
+
+    func setCreatedCalendarEvent(_ event: EKEvent?) {
+        workerCalendar.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
+            self?.workerCalendar.storeLocalEvent(event?.eventIdentifier,
+                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
+            self?.createdUserCalendarEvent = userCalendarEvent
+        }
     }
 }
 
@@ -177,6 +185,6 @@ extension PrepareResultInteractor: CalendarEventSelectionDelegate {
     }
 
     func didCreateEvent(_ event: EKEvent?) {
-        createdEvent = event
+        setCreatedCalendarEvent(event)
     }
 }

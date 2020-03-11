@@ -193,8 +193,9 @@ extension PrepareResultsWorker {
         generateCriticalItemsAndUpdateView(preparation)
     }
 
-    func updateEvent(_ qdmEvent: QDMUserCalendarEvent?, ekEvent: EKEvent?) {
-        
+    func updateEvent(_ qdmEvent: QDMUserCalendarEvent?) {
+        preparation?.eventDate = qdmEvent?.startDate
+        preparation?.eventId = qdmEvent?.remoteID ?? 0
     }
 }
 

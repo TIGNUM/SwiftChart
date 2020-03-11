@@ -135,15 +135,6 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                                               completion)
     }
 
-    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void) {
-        workerCalendar?.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
-            self?.workerCalendar?.storeLocalEvent(event?.eventIdentifier,
-                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
-            self?.createdUserCalendarEvent = userCalendarEvent
-            completion(userCalendarEvent != nil)
-        }
-    }
-
     func setUserCalendarEvents(_ events: [QDMUserCalendarEvent]) {
         self.events.removeAll()
         self.events = events.sorted(by: { (lhs, rhs) -> Bool in
