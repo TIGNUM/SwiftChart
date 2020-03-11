@@ -14,7 +14,7 @@ final class ResultsPrepareConfigurator {
                      resultType: ResultType) -> (ResultsPrepareViewController) -> Void {
         return { (viewController) in
             let presenter = ResultsPreparePresenter(viewController: viewController)
-            let interactor = ResultsPrepareInteractor(presenter: presenter)
+            let interactor = ResultsPrepareInteractor(presenter: presenter, preparation, resultType: resultType)
             viewController.interactor = interactor
         }
     }

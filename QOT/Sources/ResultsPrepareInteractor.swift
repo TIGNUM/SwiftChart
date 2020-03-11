@@ -32,5 +32,16 @@ final class ResultsPrepareInteractor {
 
 // MARK: - ResultsPrepareInteractorInterface
 extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
+    var sectionCount: Int {
+        guard let level = preparation?.type else { return 0 }
+        return ResultsPrepare.sectionCount(level: level)
+    }
 
+    var rowCount: Int {
+        return 0
+    }
+
+    func item(at row: Int) {
+
+    }
 }
