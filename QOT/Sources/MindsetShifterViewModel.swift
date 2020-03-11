@@ -29,6 +29,6 @@ final class MindsetShifterViewModel: BaseDailyBriefViewModel {
         }
         return super.isContentEqual(to: source) &&
             title == source.title &&
-            subtitle == source.subtitle &&
+            subtitle == source.subtitle
     }
 }
