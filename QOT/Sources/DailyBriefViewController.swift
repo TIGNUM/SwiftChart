@@ -157,6 +157,8 @@ extension DailyBriefViewController {
                 return getFromTignumMessageCell(tableView, indexPath, nil)
             case 14:
                 return getWeatherCell(tableView, indexPath, nil)
+            case 15:
+                return getMindsetShifterCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -240,6 +242,8 @@ extension DailyBriefViewController {
             return getGuidedTrack(tableView, indexPath, showDivider, bucketItem as? GuidedTrackViewModel)
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
+        case .MINDSET_SHIFTER?:
+            return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
         default:
            return UITableViewCell()
         }
@@ -414,6 +418,19 @@ private extension DailyBriefViewController {
                         _ aboutMeViewModel: AboutMeViewModel?) -> UITableViewCell {
         let cell: AboutMeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: aboutMeViewModel)
+        return cell
+    }
+
+    /**
+     * Method name: getMindsetShifterCell.
+     * Description: Placeholder to display the Mindset Shifter Information.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getMindsetShifterCell(_ tableView: UITableView,
+                        _ indexPath: IndexPath,
+                        _ mindsetShifterViewModel: MindsetShifterViewModel?) -> UITableViewCell {
+        let cell: MindsetShifterCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: mindsetShifterViewModel)
         return cell
     }
 
@@ -686,6 +703,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
+        tableView.registerDequeueable(MindsetShifterCell.self)
     }
 
     func scrollToSection(at: Int) {

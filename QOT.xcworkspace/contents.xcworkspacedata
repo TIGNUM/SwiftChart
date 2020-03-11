@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/anaisplancoulaine/Documents/Projects/qos_ios/QOT/Sources/MindsetShifterModel.swift">
+   </FileRef>
+   <FileRef
       location = "group:QOT.xcodeproj">
    </FileRef>
    <FileRef

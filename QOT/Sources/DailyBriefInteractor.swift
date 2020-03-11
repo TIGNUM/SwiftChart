@@ -173,6 +173,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .weather,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .mindsetShifter,
+                                                   elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -278,6 +280,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     if elements.isEmpty == false {
                         sectionDataList.append(ArraySection(model: .guidedTrack, elements: elements))
                     }
+                case .MINDSET_SHIFTER?:
+                    sectionDataList.append(ArraySection(model: .mindsetShifter,
+                                                        elements: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket)))
+                    
+
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -591,6 +598,22 @@ extension DailyBriefInteractor {
                                                domainModel: depatureBespokeFeast)
         departureBespokeFeastList.append(model)
         return departureBespokeFeastList
+    }
+
+    // MARK: - Mindset Shifter
+    func createMindsetShifterViewModel(mindsetBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var mindsetList: [BaseDailyBriefViewModel] = []
+        guard let collection = mindsetBucket.contentCollections?.first else {
+            mindsetList.append(MindsetShifterViewModel(title: "",
+                                                       subtitle: "",
+                                                       domainModel: mindsetBucket))
+            return mindsetList
+        }
+        let model = MindsetShifterViewModel(title: "MINDSET SHIFTER",
+                                            subtitle: "this is the subtitle",
+                                            domainModel: mindsetBucket)
+        mindsetList.append(model)
+        return mindsetList
     }
 
     // MARK: - Products we love
