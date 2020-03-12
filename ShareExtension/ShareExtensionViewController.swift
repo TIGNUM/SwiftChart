@@ -89,7 +89,7 @@ class ShareExtensionViewController: SLComposeServiceViewController {
 
     func urls(from string: String) -> [URL]? {
         do {
-            let pattern = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$"
+            let pattern = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?(\\?)?([[=a-z0-9!#$%%^&*-_]+]+)?"
             let regex = try NSRegularExpression(pattern: pattern)
             let results = regex.matches(in: string, range: NSRange(string.startIndex..., in: string))
                 .compactMap {
