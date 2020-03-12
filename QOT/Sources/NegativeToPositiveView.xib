@@ -46,7 +46,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First low perfm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYF-x1-Hsj">
-                                <rect key="frame" x="24" y="74.5" width="473" height="19.5"/>
+                                <rect key="frame" x="24" y="74.5" width="473" height="19"/>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second low perfm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xE2-Yn-75i">
-                                <rect key="frame" x="24" y="144.5" width="473" height="19.5"/>
+                                <rect key="frame" x="24" y="144.5" width="473" height="19"/>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -74,7 +74,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third low perfm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaa-Bi-hLU">
-                                <rect key="frame" x="24" y="214.5" width="473" height="19.5"/>
+                                <rect key="frame" x="24" y="214.5" width="473" height="19"/>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -127,7 +127,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First high performance item" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA8-tJ-HDQ">
-                                                <rect key="frame" x="24" y="74.5" width="473" height="19.5"/>
+                                                <rect key="frame" x="24" y="74.5" width="473" height="19"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                 <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -141,9 +141,9 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second high performance item" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7L-XP-YRI">
-                                                <rect key="frame" x="24" y="144.5" width="473" height="19.5"/>
+                                                <rect key="frame" x="24" y="144.5" width="473" height="19"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                                <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.0" alpha="0.59794560185185186" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nC9-zl-5jl">
@@ -155,7 +155,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third high performance item" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYC-s6-Uy6">
-                                                <rect key="frame" x="24" y="214.5" width="473" height="19.5"/>
+                                                <rect key="frame" x="24" y="214.5" width="473" height="19"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                 <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -240,7 +240,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.90980392156862744" green="0.8901960784313725" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="bpO-Tk-7Th" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="0X0-6T-Dw4"/>
                     <constraint firstItem="c6q-F0-S63" firstAttribute="height" secondItem="bpO-Tk-7Th" secondAttribute="height" id="1IM-VS-Pfm"/>
@@ -274,6 +274,10 @@
                 <outlet property="lowThirdItemLabel" destination="uaa-Bi-hLU" id="7ku-Ce-w5R"/>
                 <outlet property="lowTitleLabel" destination="FDX-qp-twp" id="e35-fE-te0"/>
                 <outlet property="titleLabel" destination="EeF-dJ-jhx" id="Pb2-KK-zSZ"/>
+                <outletCollection property="barViews" destination="aCl-1U-EdR" collectionClass="NSMutableArray" id="dqC-Ym-gaY"/>
+                <outletCollection property="barViews" destination="PYB-dM-VIA" collectionClass="NSMutableArray" id="HwA-7K-U6x"/>
+                <outletCollection property="barViews" destination="nC9-zl-5jl" collectionClass="NSMutableArray" id="aWz-qf-Bt0"/>
+                <outletCollection property="barViews" destination="fJl-ts-JYw" collectionClass="NSMutableArray" id="sBC-BJ-66p"/>
             </connections>
             <point key="canvasLocation" x="319.19999999999999" y="283.80809595202402"/>
         </tableViewCell>

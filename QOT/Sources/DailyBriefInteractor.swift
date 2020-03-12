@@ -610,8 +610,8 @@ extension DailyBriefInteractor {
                                                        domainModel: mindsetBucket))
             return mindsetList
         }
-        let model = MindsetShifterViewModel(title: "MINDSET SHIFTER",
-                                            subtitle: "this is the subtitle",
+        let model = MindsetShifterViewModel(title: AppTextService.get(.daily_brief_section_mindset_shifter_title),
+                                            subtitle: AppTextService.get(.daily_brief_section_mindset_shifter_subtitle),
                                             mindsetShifter: shifters.last,
                                             domainModel: mindsetBucket)
         mindsetList.append(model)

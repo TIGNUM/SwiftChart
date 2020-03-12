@@ -24,7 +24,10 @@ final class NegativeToPositiveView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet private weak var highPerformanceView: UIView!
     @IBOutlet private weak var highPerformanceContainerView: UIView!
     @IBOutlet private weak var highPerformanceConstraint: NSLayoutConstraint!
+    @IBOutlet private var barViews: [UIView]!
+
     private var darkMode: Bool = true
+    private var themeMode: ThemeColorMode = .dark
     private var skeletonManager = SkeletonManager()
 
     private var initialOffset: CGFloat = 0
@@ -75,8 +78,14 @@ final class NegativeToPositiveView: UIView, UIGestureRecognizerDelegate {
 extension NegativeToPositiveView {
     func configure(title: String, lowTitle: String, lowItems: [String], highTitle: String, highItems: [String]) {
         skeletonManager.hide()
-        ThemeView.mindsetShifter.apply(self)
-        ThemeView.tbvLowPerformance.apply(lowPerformanceView)
+        if self.darkMode { themeMode = .dark
+        } else { themeMode = .light }
+
+        barViews.forEach { (view) in
+            ThemeView.barViews(themeMode).apply(view)
+        }
+        ThemeView.tbvLowPerformance(themeMode).apply(lowPerformanceView)
+        ThemeView.tbvHighPerformance(themeMode).apply(highPerformanceView)
         ThemeText.resultTitle.apply(title, to: titleLabel)
 
         ThemeText.tbvQuestionLight.apply(lowTitle, to: lowTitleLabel)
@@ -85,10 +94,13 @@ extension NegativeToPositiveView {
         ThemeText.tbvQuestionLight.apply(lowItems[2, default: "lowItem_\(2) not set"], to: lowThirdItemLabel)
 
         let indexHi = randomSet(max: highItems.count)
-        ThemeText.resultTitle.apply(highTitle, to: highTitleLabel)
-        ThemeText.resultHeader2.apply(highItems[indexHi.index1, default: "highItem_\(indexHi.index1) not set"], to: highFirstItemLabel)
-        ThemeText.resultHeader2.apply(highItems[indexHi.index2, default: "highItem_\(indexHi.index2) not set"], to: highSecondItemLabel)
-        ThemeText.resultHeader2.apply(highItems[indexHi.index3, default: "highItem_\(indexHi.index3) not set"], to: highThirdItemLabel)
+        ThemeText.resultTitleTheme(themeMode).apply(highTitle, to: highTitleLabel)
+        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[indexHi.index1,
+                                                       default: "highItem_\(indexHi.index1) not set"], to: highFirstItemLabel)
+        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[indexHi.index2,
+                                                       default: "highItem_\(indexHi.index2) not set"], to: highSecondItemLabel)
+        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[indexHi.index3,
+                                                       default: "highItem_\(indexHi.index3) not set"], to: highThirdItemLabel)
     }
 }
 

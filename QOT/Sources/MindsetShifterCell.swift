@@ -23,7 +23,7 @@ final class MindsetShifterCell: BaseDailyBriefCell {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         negativeToPositiveView = R.nib.negativeToPositiveView.firstView(owner: self)
-        negativeToPositiveView?.addTo(superview: sliderView, showSkeleton: true)
+        negativeToPositiveView?.addTo(superview: sliderView, showSkeleton: true, darkMode: true)
     }
 
     func configure(with viewModel: MindsetShifterViewModel?) {
@@ -32,7 +32,7 @@ final class MindsetShifterCell: BaseDailyBriefCell {
         }
         skeletonManager.hide()
         baseHeaderView?.configure(title: viewModel.title?.uppercased(), subtitle: viewModel.subtitle)
-        negativeToPositiveView?.configure(title: AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos),
+        negativeToPositiveView?.configure(title: "",
                                           lowTitle: AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_low),
                                           lowItems: viewModel.mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? "" } ?? [],
                                           highTitle: AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high),
