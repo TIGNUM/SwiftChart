@@ -190,12 +190,8 @@
 		369353A622983AB9008BBB72 /* PrepareResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539E22983AB9008BBB72 /* PrepareResultInteractor.swift */; };
 		369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539F22983AB9008BBB72 /* PrepareResults.swift */; };
 		369353A822983AB9008BBB72 /* PrepareResultsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A022983AB9008BBB72 /* PrepareResultsConfigurator.swift */; };
-		369353AB22984267008BBB72 /* PrepareResultsContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */; };
-		369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */; };
 		369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */; };
 		369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */; };
-		369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */; };
-		369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */; };
 		36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */; };
 		36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A5E75622786014006A522C /* MediaPlayerOverlay.xib */; };
 		36AEA4DD2271AC6E00EC9C55 /* AudioPlayerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEA4DC2271AC6E00EC9C55 /* AudioPlayerBar.swift */; };
@@ -295,6 +291,16 @@
 		386C279F2418EBFF00184EC9 /* ResultsPrepareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27972418EBFF00184EC9 /* ResultsPrepareInteractor.swift */; };
 		386C27A02418EBFF00184EC9 /* ResultsPrepareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27982418EBFF00184EC9 /* ResultsPrepareModel.swift */; };
 		386C27A12418EBFF00184EC9 /* ResultsPrepareConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27992418EBFF00184EC9 /* ResultsPrepareConfigurator.swift */; };
+		386C27A4241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27A2241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift */; };
+		386C27A5241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27A3241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib */; };
+		386C27A8241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27A6241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift */; };
+		386C27A9241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27A7241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib */; };
+		386C27AC241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27AA241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.swift */; };
+		386C27AD241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27AB241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.xib */; };
+		386C27B4241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27B2241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.swift */; };
+		386C27B5241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27B3241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib */; };
+		386C27BA241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27B8241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift */; };
+		386C27BB241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
 		389BBC86235EE68B0009FA02 /* CoachMarksWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */; };
@@ -1446,12 +1452,8 @@
 		3693539E22983AB9008BBB72 /* PrepareResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultInteractor.swift; sourceTree = "<group>"; };
 		3693539F22983AB9008BBB72 /* PrepareResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResults.swift; sourceTree = "<group>"; };
 		369353A022983AB9008BBB72 /* PrepareResultsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsConfigurator.swift; sourceTree = "<group>"; };
-		369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsContentTableViewCell.swift; sourceTree = "<group>"; };
-		369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsContentTableViewCell.xib; sourceTree = "<group>"; };
 		369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedStrategyTableViewCell.swift; sourceTree = "<group>"; };
 		369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelatedStrategyTableViewCell.xib; sourceTree = "<group>"; };
-		369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
-		369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderTableViewCell.xib; sourceTree = "<group>"; };
 		36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerOverlay.swift; sourceTree = "<group>"; };
 		36A5E75622786014006A522C /* MediaPlayerOverlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaPlayerOverlay.xib; sourceTree = "<group>"; };
 		36A5E7582278612C006A522C /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
@@ -1548,6 +1550,16 @@
 		386C27972418EBFF00184EC9 /* ResultsPrepareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareInteractor.swift; sourceTree = "<group>"; };
 		386C27982418EBFF00184EC9 /* ResultsPrepareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareModel.swift; sourceTree = "<group>"; };
 		386C27992418EBFF00184EC9 /* ResultsPrepareConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareConfigurator.swift; sourceTree = "<group>"; };
+		386C27A2241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareTitleTableViewCell.swift; sourceTree = "<group>"; };
+		386C27A3241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareTitleTableViewCell.xib; sourceTree = "<group>"; };
+		386C27A6241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareEditableTableViewCell.swift; sourceTree = "<group>"; };
+		386C27A7241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareEditableTableViewCell.xib; sourceTree = "<group>"; };
+		386C27AA241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareDashTitleTableViewCell.swift; sourceTree = "<group>"; };
+		386C27AB241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareDashTitleTableViewCell.xib; sourceTree = "<group>"; };
+		386C27B2241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareAddEventTableViewCell.swift; sourceTree = "<group>"; };
+		386C27B3241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareAddEventTableViewCell.xib; sourceTree = "<group>"; };
+		386C27B8241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareEventTableViewCell.swift; sourceTree = "<group>"; };
+		386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareEventTableViewCell.xib; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
 		389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksWorker.swift; sourceTree = "<group>"; };
@@ -2992,12 +3004,18 @@
 		36CB720322B855D100C99AFC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */,
-				369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */,
 				369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */,
+				386C27B2241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.swift */,
+				386C27AA241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.swift */,
+				386C27A6241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift */,
+				386C27B8241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift */,
+				386C27A2241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift */,
 				369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */,
-				369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */,
-				369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */,
+				386C27B3241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib */,
+				386C27AB241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.xib */,
+				386C27A7241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib */,
+				386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */,
+				386C27A3241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -5552,7 +5570,6 @@
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
-				369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
 				38532AB4236C355600155643 /* walkThrough_know.mp4 in Resources */,
 				8DF7870F22FEB53D00CDE0A9 /* RegistrationCode.storyboard in Resources */,
@@ -5568,8 +5585,10 @@
 				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
 				759AB42022C4D5B50091BFB8 /* TBVGraphBarRangeCell.xib in Resources */,
+				386C27BB241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib in Resources */,
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
+				386C27B5241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib in Resources */,
 				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
@@ -5597,6 +5616,7 @@
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */,
+				386C27A9241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */,
 				F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */,
@@ -5617,6 +5637,7 @@
 				75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */,
 				B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */,
 				8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */,
+				386C27AD241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.xib in Resources */,
 				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
 				9C7F419B232BF499007E4B5D /* MyPeakPerformanceFooter.xib in Resources */,
 				5FF1A0EB228561FE00D76D55 /* TitleTableHeaderView.xib in Resources */,
@@ -5728,6 +5749,7 @@
 				AC103E532289621900F426F0 /* TriggerTableViewCell.xib in Resources */,
 				B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */,
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
+				386C27A5241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib in Resources */,
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */,
@@ -5736,7 +5758,6 @@
 				F9D2BC1D22D48DE600DBF2CC /* GoodToKnowCell.xib in Resources */,
 				DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */,
 				B4AB48D4230D3A9B003B3C1F /* MyDataChartTableViewCell.xib in Resources */,
-				369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */,
 				F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */,
 				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
 				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
@@ -5966,6 +5987,7 @@
 				8D8AA76822FDCB6700B59A81 /* RegistrationEmailConfigurator.swift in Sources */,
 				365825792327D19200AC3F4A /* DTShortTBVWorker.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
+				386C27AC241A48DA00184EC9 /* ResultsPrepareDashTitleTableViewCell.swift in Sources */,
 				B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */,
 				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
@@ -6052,6 +6074,7 @@
 				B4AB48C6230BF982003B3C1F /* MyDataExplanationPresenter.swift in Sources */,
 				389BBC8A235EE68B0009FA02 /* CoachMarksInteractor.swift in Sources */,
 				36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */,
+				386C27A4241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift in Sources */,
 				369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */,
 				B430D7D623A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsConfigurator.swift in Sources */,
 				36735C7B22C60C8A0041678D /* QDMAnswer+Ext.swift in Sources */,
@@ -6218,7 +6241,6 @@
 				F902CF5522DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift in Sources */,
 				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
-				369353AB22984267008BBB72 /* PrepareResultsContentTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
 				B45DA6C023AA6316006E7E33 /* MyQOTAdminChooseBucketsViewController.swift in Sources */,
@@ -6270,7 +6292,6 @@
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
-				369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */,
 				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
 				36E12EC8232B57F0009E96EA /* DTPrepare.swift in Sources */,
 				B47953B7230AD512006EFE0F /* MyDataScreenInteractor.swift in Sources */,
@@ -6417,6 +6438,7 @@
 				8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */,
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
 				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
+				386C27BA241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift in Sources */,
 				38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */,
 				B4AB48CA230BF982003B3C1F /* MyDataExplanationViewController.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,
@@ -6638,6 +6660,7 @@
 				9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */,
 				B4AB48D5230D3A9B003B3C1F /* MyDataChartTableViewCell.swift in Sources */,
 				B474CA8F2398F85F00A829B5 /* RegisterIntroRouter.swift in Sources */,
+				386C27B4241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.swift in Sources */,
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
@@ -6738,6 +6761,7 @@
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
 				7F9217B71FD01C1600CAE9E0 /* CalendarPermission.swift in Sources */,
 				F9B102A422D336D000F99E85 /* WhatsHotLatestCell.swift in Sources */,
+				386C27A8241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift in Sources */,
 				7582617E22DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift in Sources */,
 				5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */,
 				B430D80023A916B600C75C9C /* MyQotAdminLocalNotificationsWorker.swift in Sources */,

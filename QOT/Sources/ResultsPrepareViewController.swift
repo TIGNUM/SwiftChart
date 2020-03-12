@@ -14,6 +14,7 @@ final class ResultsPrepareViewController: BaseWithGroupedTableViewController, Sc
     // MARK: - Properties
     var interactor: ResultsPrepareInteractorInterface!
     private lazy var router: ResultsPrepareRouterInterface = ResultsPrepareRouter(viewController: self)
+    private var items: [ResultsPrepare.Items] = []
 
     // MARK: - Init
     init(configure: Configurator<ResultsPrepareViewController>) {
@@ -50,18 +51,25 @@ private extension ResultsPrepareViewController {
 
 // MARK: - ResultsPrepareViewControllerInterface
 extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
-       func registerTableViewCell(_ type: QDMUserPreparation.Level) {
-        switch type {
-        case .LEVEL_DAILY,
-             .LEVEL_CRITICAL:
-            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
-            tableView.registerDequeueable(PrepareEventTableViewCell.self)
-            tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
-            tableView.registerDequeueable(ReminderTableViewCell.self)
-        case .LEVEL_ON_THE_GO:
-            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
-        default: return
-        }
+    func updateView(items: [ResultsPrepare.Items]) {
+        self.items = items
+        tableView.reloadData()
+    }
+    
+    func registerTableViewCell(_ type: QDMUserPreparation.Level) {
+        tableView.registerDequeueable(ResultsPrepareTitleTableViewCell.self)
+        tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
+        //        switch type {
+        //        case .LEVEL_DAILY,
+        //             .LEVEL_CRITICAL:
+        //            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
+        //            tableView.registerDequeueable(PrepareEventTableViewCell.self)
+        //            tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
+        //            tableView.registerDequeueable(ReminderTableViewCell.self)
+        //        case .LEVEL_ON_THE_GO:
+        //            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
+        //        default: return
+        //        }
     }
 
     func setupView() {

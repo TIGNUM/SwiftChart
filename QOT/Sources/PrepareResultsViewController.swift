@@ -48,14 +48,14 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
 
 // MARK: - Private
 private extension PrepareResultsViewController {
-    func contentItemCell(format: ContentFormat,
-                         title: String?,
-                         indexPath: IndexPath) -> PrepareResultsContentTableViewCell {
-        let cell: PrepareResultsContentTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(format, title: title, type: interactor.getType)
-        cell.setSelectedColor(.accent, alphaComponent: 0.1)
-        return cell
-    }
+//    func contentItemCell(format: ContentFormat,
+//                         title: String?,
+//                         indexPath: IndexPath) -> PrepareResultsContentTableViewCell {
+//        let cell: PrepareResultsContentTableViewCell = tableView.dequeueCell(for: indexPath)
+//        cell.configure(format, title: title, type: interactor.getType)
+//        cell.setSelectedColor(.accent, alphaComponent: 0.1)
+//        return cell
+//    }
 
     func eventCell(title: String?, date: Date, type: String?, indexPath: IndexPath) -> PrepareEventTableViewCell {
         let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -73,16 +73,16 @@ private extension PrepareResultsViewController {
         return cell
     }
 
-    func reminderCell(title: String,
-                      subTitle: String,
-                      isOn: Bool,
-                      indexPath: IndexPath,
-                      type: ReminderType) -> ReminderTableViewCell {
-        let cell: ReminderTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: title, subTitle: subTitle, isOn: isOn, type: type)
-        cell.delegate = self
-        return cell
-    }
+//    func reminderCell(title: String,
+//                      subTitle: String,
+//                      isOn: Bool,
+//                      indexPath: IndexPath,
+//                      type: ReminderType) -> ReminderTableViewCell {
+//        let cell: ReminderTableViewCell = tableView.dequeueCell(for: indexPath)
+//        cell.configure(title: title, subTitle: subTitle, isOn: isOn, type: type)
+//        cell.delegate = self
+//        return cell
+//    }
 }
 
 // MARK: - Actions
@@ -153,17 +153,17 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     }
 
     func registerTableViewCell(_ type: QDMUserPreparation.Level) {
-        switch type {
-        case .LEVEL_DAILY,
-             .LEVEL_CRITICAL:
-            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
-            tableView.registerDequeueable(PrepareEventTableViewCell.self)
-            tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
-            tableView.registerDequeueable(ReminderTableViewCell.self)
-        case .LEVEL_ON_THE_GO:
-            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
-        default: return
-        }
+//        switch type {
+//        case .LEVEL_DAILY,
+//             .LEVEL_CRITICAL:
+//            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
+//            tableView.registerDequeueable(PrepareEventTableViewCell.self)
+//            tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
+//            tableView.registerDequeueable(ReminderTableViewCell.self)
+//        case .LEVEL_ON_THE_GO:
+//            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
+//        default: return
+//        }
     }
 
     func setupView() {
@@ -190,35 +190,36 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = interactor.item(at: indexPath) else { return UITableViewCell() }
-        switch item {
-        case .contentItem(let format, let title):
-            return contentItemCell(format: format,
-                                   title: title,
-                                   indexPath: indexPath)
-        case .eventItem(let title, let date, let type):
-            return eventCell(title: title, date: date, type: type, indexPath: indexPath)
-        case .strategy(let title, let readingTime, _):
-            return strategyCell(title: title, duration: readingTime, indexPath: indexPath)
-        case .reminder(let title, let subTitle, let isOn, let type):
-            return reminderCell(title: title, subTitle: subTitle, isOn: isOn, indexPath: indexPath, type: type)
-        case .intentionContentItem(let format, let title, _):
-            return contentItemCell(format: format,
-                                   title: title,
-                                   indexPath: indexPath)
-        case .intentionItem(let title):
-            return contentItemCell(format: .listitem,
-                                   title: title,
-                                   indexPath: indexPath)
-        case .benefitContentItem(let format, let title, _, _):
-            return contentItemCell(format: format,
-                                   title: title,
-                                   indexPath: indexPath)
-        case .benefitItem(let benefits):
-            return contentItemCell(format: .listitem,
-                                   title: benefits,
-                                   indexPath: indexPath)
-        }
+        return UITableViewCell()
+//        guard let item = interactor.item(at: indexPath) else { return UITableViewCell() }
+//        switch item {
+//        case .contentItem(let format, let title):
+//            return contentItemCell(format: format,
+//                                   title: title,
+//                                   indexPath: indexPath)
+//        case .eventItem(let title, let date, let type):
+//            return eventCell(title: title, date: date, type: type, indexPath: indexPath)
+//        case .strategy(let title, let readingTime, _):
+//            return strategyCell(title: title, duration: readingTime, indexPath: indexPath)
+//        case .reminder(let title, let subTitle, let isOn, let type):
+//            return reminderCell(title: title, subTitle: subTitle, isOn: isOn, indexPath: indexPath, type: type)
+//        case .intentionContentItem(let format, let title, _):
+//            return contentItemCell(format: format,
+//                                   title: title,
+//                                   indexPath: indexPath)
+//        case .intentionItem(let title):
+//            return contentItemCell(format: .listitem,
+//                                   title: title,
+//                                   indexPath: indexPath)
+//        case .benefitContentItem(let format, let title, _, _):
+//            return contentItemCell(format: format,
+//                                   title: title,
+//                                   indexPath: indexPath)
+//        case .benefitItem(let benefits):
+//            return contentItemCell(format: .listitem,
+//                                   title: benefits,
+//                                   indexPath: indexPath)
+//        }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

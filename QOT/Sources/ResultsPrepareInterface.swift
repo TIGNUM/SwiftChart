@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol ResultsPrepareViewControllerInterface: class {
     func setupView()
+    func updateView(items: [ResultsPrepare.Items])
 }
 
 protocol ResultsPreparePresenterInterface {
     func setupView()
+    func createListItems(preparation: QDMUserPreparation?)
 }
 
 protocol ResultsPrepareInteractorInterface: Interactor {
@@ -25,5 +28,4 @@ protocol ResultsPrepareInteractorInterface: Interactor {
 
 protocol ResultsPrepareRouterInterface {
     func dismiss()
-    
 }

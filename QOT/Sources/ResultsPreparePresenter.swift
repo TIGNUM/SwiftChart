@@ -71,11 +71,7 @@ private extension ResultsPreparePresenter {
 
 // MARK: - ResultsPrepareInterface
 extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
-    func setupView() {
-        viewController?.setupView()
-    }
-
-    func createItems(preparation: QDMUserPreparation?) {
+    func createListItems(preparation: QDMUserPreparation?) {
         items.removeAll()
         items.append(getHeaderItem())
         items.append(getCalendarItem(preparation: preparation))
@@ -85,9 +81,10 @@ extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
         items.append(getFeelItem(preparation: preparation))
         items.append(getBenefitsItem(preparation: preparation))
         items.append(getStrategiesItem(preparation: preparation))
+        viewController?.updateView(items: items)
     }
 
-    func updateView() {
-
+    func setupView() {
+        viewController?.setupView()
     }
 }
