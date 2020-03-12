@@ -40,20 +40,29 @@ final class ExternalLinkImporter {
 
     func importLink() {
         guard SessionService.main.getCurrentSession() != nil,
-            let externalLink: ShareExtentionData = ExtensionUserDefaults.object(for: .share, key: .saveLink) else {
+            let externalLinks: [ShareExtentionData] = ExtensionUserDefaults.object(for: .share, key: .saveLink),
+            externalLinks.count > 0 else {
                 updateLinkTitleAndThumbnail()
                 return
         }
         ExtensionUserDefaults.removeObject(for: .share, key: .saveLink)
-        if let url = externalLink.url {
-            UserStorageService.main.addLink(title: "", url: url) { (_, _) in
-                self.updateLinkTitleAndThumbnail()
-            }
+        let dispatchGroup = DispatchGroup()
+        for externalLink in externalLinks {
+            if let url = externalLink.url {
+                dispatchGroup.enter()
+                UserStorageService.main.addLink(title: "", url: url) { (_, _) in
+                    dispatchGroup.leave()
+                }
 
-        } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
-            UserStorageService.main.addNote(note) { (_, _) in
-                self.updateLinkTitleAndThumbnail()
+            } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
+                dispatchGroup.enter()
+                UserStorageService.main.addNote(note) { (_, _) in
+                    dispatchGroup.leave()
+                }
             }
+        }
+        dispatchGroup.notify(queue: .main) {
+            self.updateLinkTitleAndThumbnail()
         }
     }
 

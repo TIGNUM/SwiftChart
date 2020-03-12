@@ -26,7 +26,9 @@ class ShareExtensionViewController: SLComposeServiceViewController {
             self.imageView.isHidden = false
         }
         self.shareExtensionData.date = Date()
-        ExtensionUserDefaults.set(self.shareExtensionData, for: .saveLink, in: .share)
+        var dataArray = ExtensionUserDefaults.object(for: .share, key: .saveLink) ?? [ShareExtentionData]()
+        dataArray.append(self.shareExtensionData)
+        ExtensionUserDefaults.set(dataArray, for: .saveLink, in: .share)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             if let context = self.extensionContext {
                 context.completeRequest(returningItems: [], completionHandler: nil)
