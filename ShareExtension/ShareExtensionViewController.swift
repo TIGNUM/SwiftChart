@@ -74,6 +74,7 @@ class ShareExtensionViewController: SLComposeServiceViewController {
                 strongSelf.handleURL(url)
             }
         } else {
+            var handled = false
             for type in textTypes where itemProvider.hasItemConformingToTypeIdentifier(type) {
                 itemProvider.loadItem(forTypeIdentifier: type, options: nil) { [weak self] (item, error) -> Void in
                     guard let strongSelf = self, let string = item as? String else {
@@ -82,14 +83,18 @@ class ShareExtensionViewController: SLComposeServiceViewController {
                     }
                     strongSelf.handleString(string)
                 }
+                handled = true
                 break
+            }
+            if !handled {
+                handleFailure()
             }
         }
     }
 
     func urls(from string: String) -> [URL]? {
         do {
-            let pattern = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?(\\?)?([[=a-z0-9!#$%%^&*-_]+]+)?"
+            let pattern = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?(\\\\?)?([=a-z0-9!#$\\%^&*-_]+)?"
             let regex = try NSRegularExpression(pattern: pattern)
             let results = regex.matches(in: string, range: NSRange(string.startIndex..., in: string))
                 .compactMap {
@@ -104,8 +109,12 @@ class ShareExtensionViewController: SLComposeServiceViewController {
     func handleString(_ string: String) {
         if let url = URL(string: string) {
             handleURL(url)
-        } else if let urls = urls(from: string), urls.count == 1, let url = urls.first {
-            handleURL(url)
+        } else if let urls = urls(from: string), urls.count > 0 {
+            let sorted = urls.filter { $0.absoluteString.contains("@") == false }
+                .sorted { $0.absoluteString.count >  $1.absoluteString.count }
+            if let url = sorted.first {
+                handleURL(url)
+            }
         } else {
             addNote(string)
         }
