@@ -16,7 +16,7 @@ final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeuea
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        negativeToPositiveView = NegativeToPositiveView.instantiateMindsetView(superview: self.contentView, darkMode: false)
+        negativeToPositiveView = NegativeToPositiveView.instantiateMindsetView(superview: self, showSkeleton: true, darkMode: false)
     }
 
 
@@ -32,6 +32,14 @@ final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeuea
                                          lowItems: lowItems,
                                          highTitle: highTitle,
                                          highItems: highItems)
+    }
 
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
     }
 }

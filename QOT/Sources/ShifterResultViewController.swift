@@ -137,12 +137,23 @@ extension ShifterResultViewController: UITableViewDataSource {
         case .lowToHigh(let title, let lowTitle, let lowItems, let highTitle, let highItems)?:
             let cell: NegativeToPositiveTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, lowTitle: lowTitle, lowItems: lowItems, highTitle: highTitle, highItems: highItems)
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
             return cell
         case .vision(let title, let text)?:
             let cell: MindsetVisionTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, vision: text)
             return cell
         default: preconditionFailure()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch model?.sections[indexPath.row] {
+        case .lowToHigh:
+            return 400
+        default:
+            return UITableViewAutomaticDimension
         }
     }
 }
