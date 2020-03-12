@@ -289,7 +289,11 @@ extension ProfileSettingsViewController {
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        let cancelItem = cancelButtonItem(#selector(didCancel))
+        let cancelItem = roundedBarButtonItem(title: AppTextService.get(.generic_view_button_cancel),
+                                              buttonWidth: .Cancel,
+                                              action: #selector(didCancel),
+                                              backgroundColor: .carbon,
+                                              borderColor: .accent40)
         let saveItem = saveButtonItem(#selector(didSave))
         return [saveItem, cancelItem]
     }
