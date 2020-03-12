@@ -26,21 +26,20 @@
 		<dict>
 			<key>NSExtensionActivationRule</key>
 			<string>SUBQUERY (
-                extensionItems,
-                $extensionItem,
-                SUBQUERY (
-                $extensionItem.attachments,
-                $attachment,
-                ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url"
-                ).@count == $extensionItem.attachments.@count
-                ).@count == 1</string>
-			<key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
-			<integer>1</integer>
-			<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
-			<integer>1</integer>
+            extensionItems,
+            $extensionItem,
+            SUBQUERY (
+            $extensionItem.attachments,
+            $attachment,
+            (
+            ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.text&quot;
+            || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.plain-text&quot;
+            || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.utf8-plain-text&quot;
+            || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.url&quot;
+            )
+            ).@count != 0
+            ).@count != 0</string>
 		</dict>
-		<key>NSExtensionJavaScriptPreprocessingFile</key>
-		<string>Share</string>
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>

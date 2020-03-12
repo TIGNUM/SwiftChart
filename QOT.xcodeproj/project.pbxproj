@@ -940,6 +940,8 @@
 		B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744622A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift */; };
 		B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744722A9519900B0AE75 /* MyLibraryCategoryListModel.swift */; };
 		B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744822A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift */; };
+		B88A19E6241A3A0200FC5019 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B88A19E5241A3A0200FC5019 /* Media.xcassets */; };
+		B88A19E8241A41A000FC5019 /* OpenGraphMetaDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A19E7241A41A000FC5019 /* OpenGraphMetaDataParser.swift */; };
 		B8AE11A523DAEA16000AF4C4 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412722C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift */; };
 		B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412922C4BEDE002897E4 /* CoachButton.swift */; };
@@ -949,12 +951,10 @@
 		B8BCE58722AAB5EF0012AAAC /* ShareExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE58622AAB5EF0012AAAC /* ShareExtensionViewController.swift */; };
 		B8BCE58A22AAB5EF0012AAAC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */; };
 		B8BCE58E22AAB5EF0012AAAC /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		B8BCE59722AAB61F0012AAAC /* Share.js in Resources */ = {isa = PBXBuildFile; fileRef = B8BCE59622AAB61F0012AAAC /* Share.js */; };
 		B8BCE59822AAC2710012AAAC /* ExtensionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91842AE220F63CAD007605FD /* ExtensionModel.swift */; };
 		B8BCE59922AAC2770012AAAC /* ExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912AB11620F38BD700E34328 /* ExtensionUserDefaults.swift */; };
 		B8BCE59B22AF8FEA0012AAAC /* ShareExtentionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */; };
 		B8BCE59C22AF95B20012AAAC /* ShareExtentionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */; };
-		B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */; };
 		B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */; };
 		BB0ED0982317FF7B006A0476 /* UISegmentedControl+Underline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */; };
 		BB15775A233A0E0500202978 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB157759233A0E0500202978 /* BaseViewController.swift */; };
@@ -2168,6 +2168,8 @@
 		B86E744622A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCategoryListInteractor.swift; sourceTree = "<group>"; };
 		B86E744722A9519900B0AE75 /* MyLibraryCategoryListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCategoryListModel.swift; sourceTree = "<group>"; };
 		B86E744822A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCategoryListConfigurator.swift; sourceTree = "<group>"; };
+		B88A19E5241A3A0200FC5019 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		B88A19E7241A41A000FC5019 /* OpenGraphMetaDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGraphMetaDataParser.swift; sourceTree = "<group>"; };
 		B8BB412722C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+BottomNavigation.swift"; sourceTree = "<group>"; };
 		B8BB412922C4BEDE002897E4 /* CoachButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachButton.swift; sourceTree = "<group>"; };
 		B8BB412C22C4C0FE002897E4 /* BottomNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationItem.swift; sourceTree = "<group>"; };
@@ -2178,9 +2180,7 @@
 		B8BCE58922AAB5EF0012AAAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B8BCE58B22AAB5EF0012AAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8BCE59522AAB5FA0012AAAC /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
-		B8BCE59622AAB61F0012AAAC /* Share.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Share.js; sourceTree = "<group>"; };
 		B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtentionData.swift; sourceTree = "<group>"; };
-		B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+ShareExtension.swift"; sourceTree = "<group>"; };
 		B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkImporter.swift; sourceTree = "<group>"; };
 		BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Underline.swift"; sourceTree = "<group>"; };
 		BB157759233A0E0500202978 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -4459,8 +4459,8 @@
 				B8BCE58622AAB5EF0012AAAC /* ShareExtensionViewController.swift */,
 				B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */,
 				B8BCE58B22AAB5EF0012AAAC /* Info.plist */,
-				B8BCE59622AAB61F0012AAAC /* Share.js */,
 				B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */,
+				B88A19E5241A3A0200FC5019 /* Media.xcassets */,
 			);
 			path = ShareExtension;
 			sourceTree = "<group>";
@@ -4766,7 +4766,6 @@
 			children = (
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
 				CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */,
-				B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */,
 				7F6567431FE28FBC00A6CB7F /* Clean.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
 				BB4061612302F3A600E5AB19 /* OrientationManager.swift */,
@@ -4852,6 +4851,7 @@
 				CB3029E72050335A00DD4440 /* KeyboardListener.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
+				B88A19E7241A41A000FC5019 /* OpenGraphMetaDataParser.swift */,
 				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
 				7F42767C1F58665100AEE3D7 /* URLScheme.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
@@ -5490,7 +5490,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8BCE59722AAB61F0012AAAC /* Share.js in Resources */,
+				B88A19E6241A3A0200FC5019 /* Media.xcassets in Resources */,
 				B8BCE58A22AAB5EF0012AAAC /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6321,7 +6321,6 @@
 				B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */,
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
 				36376622223A4C0400C2C429 /* MyQotProfileConfigurator.swift in Sources */,
-				B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */,
 				36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */,
 				ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */,
 				8D204C2622F06F1000DF6A76 /* MySprintNotesPresenter.swift in Sources */,
@@ -6350,6 +6349,7 @@
 				38290B8B2330F825004B5C14 /* DTSprintReflectionInteractor.swift in Sources */,
 				B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */,
 				F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */,
+				B88A19E8241A41A000FC5019 /* OpenGraphMetaDataParser.swift in Sources */,
 				367A58552326A15D0089A082 /* DTSolveRouter.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				3666FD48232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift in Sources */,
