@@ -10,14 +10,26 @@ import UIKit
 import qot_dal
 
 struct ResultsPrepare {
-    enum Sections {
-        case header(title: String, subtitle: String)
-        case calendar(title: String, subtitle: String)
+    enum CalendarItem {
+        case selected
+        case unselected
+
+        var icon: UIImage? {
+            switch self {
+            case .selected: return R.image.ic_close()
+            case .unselected: return R.image.ic_arrow_right()
+            }
+        }
+    }
+
+    enum Items {
+        case header(title: String)
+        case calendar(title: String, subtitle: String, calendarItem: CalendarItem)
         case question(title: String)
         case perceived(title: String, preceiveAnswers: [QDMAnswer])
         case know(title: String, knowAnswers: [QDMAnswer])
         case feel(title: String, feelAnswers: [QDMAnswer])
-        case benefits(title: String, subtitle: String, benfits: String)
+        case benefits(title: String, subtitle: String, benefits: String)
         case strategies(title: String, strategies: [QDMContentCollection])
     }
 

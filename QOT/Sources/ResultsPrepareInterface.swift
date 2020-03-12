@@ -25,4 +25,5 @@ protocol ResultsPrepareInteractorInterface: Interactor {
 
 protocol ResultsPrepareRouterInterface {
     func dismiss()
+    
 }

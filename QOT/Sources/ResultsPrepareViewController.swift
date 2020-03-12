@@ -80,11 +80,11 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return interactor.sectionCount
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return interactor.rowCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
