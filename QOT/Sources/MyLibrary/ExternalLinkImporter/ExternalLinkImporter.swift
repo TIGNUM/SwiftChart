@@ -67,20 +67,30 @@ final class ExternalLinkImporter {
     }
 
     func updateLinkTitleAndThumbnail() {
+        let dispatchGroup = DispatchGroup()
         UserStorageService.main.getUserStorages(for: .EXTERNAL_LINK) { (links, _, error) in
             for link in links ?? [] where (link.title ?? "").isEmpty == true {
                 var link = link
                 let parser = OpenGraphMetaDataParser(with: URL(string: link.url ?? ""))
+                dispatchGroup.enter()
                 parser.parseMeta { (meta, error) in
                     guard error == nil, meta != nil else {
+                        dispatchGroup.leave()
                         return
                     }
 
                     link.title = meta?.content(for: .title)
                     link.note = meta?.content(for: .image)
-                    UserStorageService.main.updateUserStorage(link) { (_, _) in }
+                    dispatchGroup.enter()
+                    UserStorageService.main.updateUserStorage(link) { (_, _) in
+                        dispatchGroup.leave()
+                    }
+                    dispatchGroup.leave()
                 }
             }
+        }
+        dispatchGroup.notify(queue: .main) {
+            NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
         }
     }
 }

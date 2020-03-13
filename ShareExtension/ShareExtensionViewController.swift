@@ -75,22 +75,23 @@ class ShareExtensionViewController: SLComposeServiceViewController {
                 }
                 strongSelf.handleURL(url)
             }
-        } else {
-            var handled = false
-            for type in textTypes where itemProvider.hasItemConformingToTypeIdentifier(type) {
-                itemProvider.loadItem(forTypeIdentifier: type, options: nil) { [weak self] (item, error) -> Void in
-                    guard let strongSelf = self, let string = item as? String else {
-                        self?.handleFailure()
-                        return
-                    }
-                    strongSelf.handleString(string)
+            return
+        }
+
+        var handled = false
+        for type in textTypes where itemProvider.hasItemConformingToTypeIdentifier(type) {
+            itemProvider.loadItem(forTypeIdentifier: type, options: nil) { [weak self] (item, error) -> Void in
+                guard let strongSelf = self, let string = item as? String else {
+                    self?.handleFailure()
+                    return
                 }
-                handled = true
-                break
+                strongSelf.handleString(string)
             }
-            if !handled {
-                handleFailure()
-            }
+            handled = true
+            break
+        }
+        if !handled {
+            handleFailure()
         }
     }
 
@@ -123,6 +124,10 @@ class ShareExtensionViewController: SLComposeServiceViewController {
     }
 
     func handleURL(_ url: URL) {
+        guard url.isFileURL == false else {
+            handleFailure()
+            return
+        }
         shareExtensionData.type = "EXTERNAL_LINK"
         shareExtensionData.url = url.absoluteString
         didSelectPost()
@@ -135,11 +140,11 @@ class ShareExtensionViewController: SLComposeServiceViewController {
     }
 
     func handleFailure() {
+        self.loadingIndicator.stopAnimating()
+        self.loadingIndicator.isHidden = true
+        self.imageView.image = UIImage(named: "CrossImage")
+        self.imageView.isHidden = false
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            self.loadingIndicator.stopAnimating()
-            self.loadingIndicator.isHidden = true
-            self.imageView.image = UIImage(named: "CrossImage")
-            self.imageView.isHidden = false
             self.cancel()
         }
     }
