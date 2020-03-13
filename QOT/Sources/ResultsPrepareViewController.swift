@@ -89,6 +89,14 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         return interactor.rowCount(in: section)
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = sections[indexPath.section] else { fatalError("Invalid section") }
         switch section {
