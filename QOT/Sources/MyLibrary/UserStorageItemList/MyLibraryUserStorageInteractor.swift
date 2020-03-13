@@ -493,7 +493,7 @@ extension MyLibraryUserStorageInteractor {
                                       description: description,
                                       duration: "",
                                       icon: R.image.my_library_link(),
-                                      previewURL: URL(string: item.previewImageUrl ?? ""),
+                                      previewURL: URL(string: item.previewImageUrl ?? item.note ?? ""),
                                       type: item.userStorageType,
                                       mediaType: item.mediaType ?? .UNKOWN,
                                       downloadStatus: .none,

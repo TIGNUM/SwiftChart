@@ -48,11 +48,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
         if SessionService.main.getCurrentSession() != nil {
             appCoordinator.importHealthKitDataIfAuthorized()
             appCoordinator.importCalendarEventsIfAuthorized()
-            ExternalLinkImporter.main.importLink()
         }
 
         #if UNIT_TEST
@@ -88,7 +86,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         #else
             application.applicationIconBadgeNumber = 0
-            importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
         #endif //#if UNIT_TEST
     }
@@ -113,6 +110,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
+            ExternalLinkImporter.main.importLink()
             appCoordinator.checkVersionIfNeeded()
             sendSiriEventsIfNeeded()
             QOTService.main.reportAppStatus(.didBecomeActive)

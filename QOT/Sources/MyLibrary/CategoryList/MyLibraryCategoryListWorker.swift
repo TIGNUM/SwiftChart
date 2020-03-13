@@ -88,9 +88,6 @@ final class MyLibraryCategoryListWorker {
 
 extension QDMUserStorage: Equatable {
     public static func == (lhs: QDMUserStorage, rhs: QDMUserStorage) -> Bool {
-        return
-            lhs.author == rhs.author &&
-            lhs.title == rhs.title &&
-            lhs.durationInSeconds == rhs.durationInSeconds
+        return lhs.author == rhs.author && lhs.title == rhs.title && lhs.durationInSeconds == rhs.durationInSeconds
     }
 }
