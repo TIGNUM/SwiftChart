@@ -33,12 +33,4 @@ final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeuea
                                          highTitle: highTitle,
                                          highItems: highItems)
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
-    override func updateConstraints() {
-        super.updateConstraints()
-    }
 }

@@ -596,13 +596,13 @@ extension DailyBriefInteractor {
     func createMindsetShifterViewModel(mindsetBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var mindsetList: [BaseDailyBriefViewModel] = []
         guard let shifters = mindsetBucket.mindsetShifters else {
-            return []
+            return mindsetList
         }
         let date = Date(timeIntervalSince1970: 0)
         let mindsetShifter = shifters.sorted(by: {$0.createdAt ?? date > $1.createdAt ?? date }).first
         guard let createdDate = mindsetShifter?.createdAt ?? mindsetShifter?.createdOnDevice,
             createdDate.dateAfterYears(1).isFuture() else {
-                return []
+                return mindsetList
         }
         let model = MindsetShifterViewModel(title: AppTextService.get(.daily_brief_section_mindset_shifter_title),
                                             subtitle: AppTextService.get(.daily_brief_section_mindset_shifter_subtitle),
