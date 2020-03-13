@@ -35,14 +35,14 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
     }
 
     func presentPrepareResults(_ contentId: Int) {
-        let configurator = PrepareResultsConfigurator.configurate(contentId)
-        let controller = PrepareResultsViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
+//        let configurator = ResultsPrepareConfigurator.configurate(contentId)
+//        let controller = ResultsViewController(configure: configurator)
+//        viewController?.present(controller, animated: true)
     }
 
     func presentPrepareResults(_ preparation: QDMUserPreparation?) {
-        let configurator = PrepareResultsConfigurator.make(preparation, resultType: .prepareDecisionTree)
-        let controller = PrepareResultsViewController(configure: configurator)
+        let configurator = ResultsPrepareConfigurator.make(preparation, resultType: .prepareDecisionTree)
+        let controller = ResultsPrepareViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }
 

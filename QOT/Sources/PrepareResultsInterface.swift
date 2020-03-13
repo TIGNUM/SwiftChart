@@ -22,7 +22,6 @@ protocol PrepareResultsPresenterInterface {
 }
 
 protocol PrepareResultsInteractorInterface: Interactor {
-    var setReminder: Bool { get set }
     var getType: QDMUserPreparation.Level { get }
     var getResultType: ResultType { get }
     var sectionCount: Int { get }
@@ -42,6 +41,8 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func didTapDismissView()
     func deletePreparation()
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
+    func checkSyncedCalendars()
 }
 
 protocol PrepareResultsRouterInterface: BaseRouterInterface {
@@ -50,4 +51,7 @@ protocol PrepareResultsRouterInterface: BaseRouterInterface {
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?)
     func presentEditBenefits(benefits: String?, questionID: Int)
     func presentMyPreps()
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind, delegate: AskPermissionDelegate)
+    func presentCalendarSettings(delegate: SyncedCalendarsDelegate)
+    func presentCalendarEventSelection()
 }

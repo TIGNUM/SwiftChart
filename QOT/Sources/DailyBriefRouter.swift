@@ -62,8 +62,8 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
 
     func presentPrepareResults(for preparation: QDMUserPreparation?) {
         if let preparation = preparation {
-            let configurator = PrepareResultsConfigurator.make(preparation, resultType: .prepareDailyBrief)
-            let controller = PrepareResultsViewController(configure: configurator)
+            let configurator = ResultsPrepareConfigurator.make(preparation, resultType: .prepareDailyBrief)
+            let controller = ResultsPrepareViewController(configure: configurator)
             viewController?.present(controller, animated: true)
         }
     }

@@ -881,7 +881,7 @@ public extension AppTextKey {
     static let results_prepare_header_benefits = AppTextKey("prepare_results.benefits.header")
     static let results_prepare_benefits = AppTextKey("prepare_results.benefits.title")
     static let results_prepare_strategies = AppTextKey("prepare_results.strategies.title")
-
+    static let addNewEvent = AppTextKey("results_prepare.right_bar_item.add_new_event")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")

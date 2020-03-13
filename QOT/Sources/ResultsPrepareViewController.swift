@@ -49,6 +49,7 @@ private extension ResultsPrepareViewController {
         tableView.registerDequeueable(ResultsPrepareEventTableViewCell.self)
         tableView.registerDequeueable(ResultsPrepareTitleTableViewCell.self)
         tableView.registerDequeueable(ResultsPrepareQuestionTableViewCell.self)
+        tableView.registerDequeueable(ResultsPrepareHeaderTableViewCell.self)
     }
 }
 
@@ -61,6 +62,8 @@ private extension ResultsPrepareViewController {
 extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
     func updateView(items: [Int: ResultsPrepare.Sections]) {
         self.sections = items
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.reloadData()
     }
 
@@ -68,8 +71,6 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         registerTableViewCells()
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.dataSource = self
         view.fill(subview: tableView)
         tableView.contentInset.top = 84
         tableView.contentInset.bottom = 40

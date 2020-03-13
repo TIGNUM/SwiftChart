@@ -27,6 +27,7 @@ final class ResultsPrepareInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        presenter.createListItems(preparation: preparation)
     }
 }
 
