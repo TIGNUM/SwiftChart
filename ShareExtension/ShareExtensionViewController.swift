@@ -55,18 +55,18 @@ class ShareExtensionViewController: SLComposeServiceViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.title = "QOT"
-
-        let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem
-        guard let itemProvider = extensionItem.attachments?.first else {
-            handleFailure()
-            return
-        }
         let typeURL = String(kUTTypeURL)
         let textTypes = [String(kUTTypeText),
                          String(kUTTypePlainText),
                          String(kUTTypeUTF8PlainText),
                          String(kUTTypeUTF16PlainText)]
+        let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem
+        let urlItemProvider = extensionItem.attachments?.filter { $0.hasItemConformingToTypeIdentifier(typeURL) }.first
+        guard let itemProvider = urlItemProvider ?? extensionItem.attachments?.first else {
+            handleFailure()
+            return
+        }
+
         if itemProvider.hasItemConformingToTypeIdentifier(typeURL) {
             itemProvider.loadItem(forTypeIdentifier: typeURL, options: nil) { [weak self] (item, error) -> Void in
                 guard let strongSelf = self, let url = item as? URL else {
