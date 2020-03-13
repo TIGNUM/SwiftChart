@@ -42,6 +42,7 @@ final class OpenGraphMetaDataParser: NSObject, XMLParserDelegate {
     private var currentElement = ""
     private var imageURL: String?
     private var title: String?
+
     init(with url: URL?) {
         self.url = url
     }
