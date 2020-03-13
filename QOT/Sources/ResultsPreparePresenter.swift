@@ -23,11 +23,13 @@ final class ResultsPreparePresenter {
 
 // MARK: - Private
 private extension ResultsPreparePresenter {
-    func getHeaderItem() -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.header(title: AppTextService.get(.results_prepare_header_title))
+    func getHeaderItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+        let appText = AppTextService.get(.results_prepare_header_title)
+        let title = appText.replacingOccurrences(of: "[TYPE OF PREPARATION]", with: preparation?.eventType ?? "")
+        return ResultsPrepare.Sections.header(title: title.uppercased())
     }
 
-    func getCalendarItem(preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getCalendarItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         if let title = preparation?.eventTitle, let date = preparation?.eventDate {
             return ResultsPrepare.Sections.calendar(title: title,
                                                     subtitle: date.eventDateString,
@@ -42,22 +44,22 @@ private extension ResultsPreparePresenter {
         return ResultsPrepare.Sections.title(title: AppTextService.get(.results_prepare_critical_questions))
     }
 
-    func getPerceivedItem(preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getPerceivedItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return ResultsPrepare.Sections.perceived(title: AppTextService.get(.results_prepare_perceived),
                                                  preceiveAnswers: preparation?.preceiveAnswers ?? [])
     }
 
-    func getKnowItem(preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getKnowItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return ResultsPrepare.Sections.know(title: AppTextService.get(.results_prepare_know),
                                             knowAnswers: preparation?.knowAnswers ?? [])
     }
 
-    func getFeelItem(preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getFeelItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return ResultsPrepare.Sections.feel(title: AppTextService.get(.results_prepare_feel),
                                             feelAnswers: preparation?.feelAnswers ?? [])
     }
 
-    func getBenefitsItem(preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getBenefitsItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return ResultsPrepare.Sections.benefits(title: AppTextService.get(.results_prepare_header_benefits),
                                                 subtitle: AppTextService.get(.results_prepare_benefits),
                                                 benefits: preparation?.benefits ?? "")
@@ -67,7 +69,7 @@ private extension ResultsPreparePresenter {
         return ResultsPrepare.Sections.title(title: AppTextService.get(.results_prepare_strategies))
     }
 
-    func getStrategiesItem(preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getStrategiesItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return ResultsPrepare.Sections.strategies(strategies: preparation?.strategies ?? [])
     }
 }
@@ -76,20 +78,20 @@ private extension ResultsPreparePresenter {
 extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
     func createListItems(preparation: QDMUserPreparation?) {
         sections.removeAll()
-        sections[0] = getHeaderItem()
-        sections[1] = getCalendarItem(preparation: preparation)
+        sections[0] = getHeaderItem(preparation)
+        sections[1] = getCalendarItem(preparation)
         sections[2] = getQuestionTitleItem()
-        sections[3] = getPerceivedItem(preparation: preparation)
-        sections[4] = getKnowItem(preparation: preparation)
-        sections[5] = getFeelItem(preparation: preparation)
+        sections[3] = getPerceivedItem(preparation)
+        sections[4] = getKnowItem(preparation)
+        sections[5] = getFeelItem(preparation)
 
         if preparation?.type == .LEVEL_CRITICAL {
-            sections[6] = getBenefitsItem(preparation: preparation)
+            sections[6] = getBenefitsItem(preparation)
             sections[7] = getStrategyTitleItem()
-            sections[8] = getStrategiesItem(preparation: preparation)
+            sections[8] = getStrategiesItem(preparation)
         } else {
             sections[6] = getStrategyTitleItem()
-            sections[7] = getStrategiesItem(preparation: preparation)
+            sections[7] = getStrategiesItem(preparation)
         }
 
         viewController?.updateView(items: sections)
