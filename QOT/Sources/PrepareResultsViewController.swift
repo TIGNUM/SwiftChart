@@ -11,7 +11,6 @@ import qot_dal
 
 protocol PrepareResultsDelegatge: class {
     func openEditStrategyView()
-    func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
     func reloadData()
     func setupBarButtonItems(resultType: ResultType)
     func didUpdateIntentions(_ answerIds: [Int])
@@ -46,6 +45,20 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
     }
 }
 
+// MARK: - Bottom Navigation
+extension PrepareResultsViewController {
+    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if interactor.getType == .LEVEL_ON_THE_GO {
+            return [doneButtonItem(#selector(didTapDismiss))]
+        }
+        return rightBarItems
+    }
+}
+
 // MARK: - Private
 private extension PrepareResultsViewController {
     func contentItemCell(format: ContentFormat,
@@ -73,15 +86,31 @@ private extension PrepareResultsViewController {
         return cell
     }
 
-    func reminderCell(title: String,
-                      subTitle: String,
-                      isOn: Bool,
-                      indexPath: IndexPath,
-                      type: ReminderType) -> ReminderTableViewCell {
-        let cell: ReminderTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: title, subTitle: subTitle, isOn: isOn, type: type)
-        cell.delegate = self
+    func addToCalendarCell(title: String,
+                           subtitle: String,
+                           indexPath: IndexPath) -> PrepareResultsAddToCalendarTableViewCell {
+        let cell: PrepareResultsAddToCalendarTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: title, subtitle: subtitle)
         return cell
+    }
+
+    func getSelector(_ buttonItem: ButtonItem) -> Selector {
+        switch buttonItem {
+        case .cancel: return #selector(didTapCancel)
+        case .done: return #selector(didTapDone)
+        case .save: return #selector(didTapSave)
+        }
+    }
+
+    func checkCalendarPermission() {
+        switch CalendarPermission().authorizationStatus {
+        case .notDetermined:
+            interactor.presentCalendarPermission(.calendar)
+        case .denied, .restricted:
+            interactor.presentCalendarPermission(.calendarOpenSettings)
+        default:
+            interactor.checkSyncedCalendars()
+        }
     }
 }
 
@@ -100,49 +129,14 @@ private extension PrepareResultsViewController {
 
     @objc func didTapDone() {
         trackUserEvent(.CLOSE, action: .TAP)
-        if interactor.setReminder == false {
-            showAlert()
-        } else {
-            interactor.updatePreparation { [weak self] (_) in
-                self?.interactor.didTapDismissView()
-            }
+        interactor.updatePreparation { [weak self] (_) in
+            self?.interactor.didTapDismissView()
         }
     }
 
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        if interactor.setReminder == false {
-            showAlert()
-        } else {
-            interactor.didClickSaveAndContinue()
-        }
-    }
-
-    func getSelector(_ buttonItem: ButtonItem) -> Selector {
-        switch buttonItem {
-        case .cancel: return #selector(didTapCancel)
-        case .done: return #selector(didTapDone)
-        case .save: return #selector(didTapSave)
-        }
-    }
-
-    func showAlert() {
-        let confirm = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
-            self?.interactor.setReminder = true
-            self?.interactor.updatePreparation { (_) in
-                self?.interactor.didTapDismissView()
-                self?.interactor.presentMyPreps()
-            }
-        }
-        let decline = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
-            self?.interactor.updatePreparation { (_) in
-                self?.interactor.didTapDismissView()
-                self?.interactor.presentMyPreps()
-            }
-        }
-        QOTAlert.show(title: AppTextService.get(.coach_prepare_alert_activate_reminder_title),
-                      message: AppTextService.get(.coach_prepare_alert_activate_reminder_body),
-                      bottomItems: [confirm, decline])
+        interactor.didClickSaveAndContinue()
     }
 }
 
@@ -159,7 +153,7 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
             tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
             tableView.registerDequeueable(PrepareEventTableViewCell.self)
             tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
-            tableView.registerDequeueable(ReminderTableViewCell.self)
+            tableView.registerDequeueable(PrepareResultsAddToCalendarTableViewCell.self)
         case .LEVEL_ON_THE_GO:
             tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
         default: return
@@ -200,8 +194,6 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
             return eventCell(title: title, date: date, type: type, indexPath: indexPath)
         case .strategy(let title, let readingTime, _):
             return strategyCell(title: title, duration: readingTime, indexPath: indexPath)
-        case .reminder(let title, let subTitle, let isOn, let type):
-            return reminderCell(title: title, subTitle: subTitle, isOn: isOn, indexPath: indexPath, type: type)
         case .intentionContentItem(let format, let title, _):
             return contentItemCell(format: format,
                                    title: title,
@@ -218,6 +210,9 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
             return contentItemCell(format: .listitem,
                                    title: benefits,
                                    indexPath: indexPath)
+        case .addToCalendar(let title, let subtitle):
+            return addToCalendarCell(title: title, subtitle: subtitle, indexPath: indexPath)
+
         }
     }
 
@@ -246,6 +241,8 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
                 removeBottomNavigation()
                 interactor.presentEditStrategyView()
             }
+        case .addToCalendar:
+            checkCalendarPermission()
         default:
             return
         }
@@ -283,15 +280,6 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
         tableView.reloadData()
     }
 
-    func didChangeReminderValue(for type: ReminderType, value isOn: Bool) {
-        switch type {
-        case .reminder:
-            interactor.setReminder = isOn
-        default: break
-        }
-        refreshBottomNavigationItems()
-    }
-
     func openEditStrategyView() {
         interactor.presentEditStrategyView()
         refreshBottomNavigationItems()
@@ -317,19 +305,5 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 
     func dismiss(_ viewController: UIViewController) {
         viewController.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - Bottom Navigation
-extension PrepareResultsViewController {
-    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-
-    @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if interactor.getType == .LEVEL_ON_THE_GO {
-            return [doneButtonItem(#selector(didTapDismiss))]
-        }
-        return rightBarItems
     }
 }
