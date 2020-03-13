@@ -13,4 +13,6 @@ struct ShareExtentionData: Codable {
     var url: String?
     var date: Date?
     var type: String?
+    var thumbnail: String?
+    var description: String?
 }

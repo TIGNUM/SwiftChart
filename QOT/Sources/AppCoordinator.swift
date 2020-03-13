@@ -254,7 +254,6 @@ extension AppCoordinator {
         if SessionService.main.getCurrentSession() != nil {
             importHealthKitDataIfAuthorized()
             importCalendarEventsIfAuthorized()
-            ExternalLinkImporter.main.importLink()
         }
         showApp()
     }

@@ -56,7 +56,7 @@ extension UIViewController {
         return roundedBarButtonItem(title: AppTextService.get(.my_qot_my_profile_account_settings_edit_button_save),
                                     buttonWidth: .Cancel,
                                     action: action,
-                                    backgroundColor: .sand08)
+                                    backgroundColor: .accent40)
     }
 
     func updateChangesButtonItem(_ action: Selector) -> UIBarButtonItem {

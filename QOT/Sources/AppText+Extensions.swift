@@ -871,6 +871,8 @@ public extension AppTextKey {
 
     static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
+
+    static let addNewEvent = AppTextKey("results_prepare.right_bar_item.add_new_event")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")

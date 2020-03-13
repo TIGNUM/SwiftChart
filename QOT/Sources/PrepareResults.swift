@@ -8,21 +8,17 @@
 
 import UIKit
 import qot_dal
-
-enum ReminderType {
-    case iCal
-    case reminder
-}
-
+//FIXME: https://tignum.atlassian.net/browse/QOT-2688
+// We need to rebuild the complete prepare results structure
 enum PrepareResultsType {
     case contentItem(format: ContentFormat, title: String)
     case eventItem(title: String, date: Date, type: String)
     case strategy(title: String, durationString: String, readMoreID: Int)
-    case reminder(title: String, subbtitle: String, active: Bool, type: ReminderType)
     case intentionContentItem(format: ContentFormat, title: String?, key: Prepare.Key)
     case intentionItem(title: String)
     case benefitContentItem(format: ContentFormat, title: String?, benefits: String?, questionID: Int)
     case benefitItem(benefits: String?)
+    case addToCalendar(title: String, subtitle: String)
 }
 
 extension ContentFormat {
@@ -96,33 +92,27 @@ extension ContentFormat {
 struct PrepareResult {
     struct Daily: Hashable {
         static let HEADER = 0
-        static let EVENT_LIST = 1
-        static let EVENT_ITEMS = 2
-        static let INTENTION_LIST = 3
-        static let INTENTION_TITLES = 4
-        static let STRATEGY_LIST = 5
-        static let STRATEGY_ITEMS = 6
-        static let REMINDER_LIST = 7
-        static let REMINDER_ITEMS = 8
+        static let ADD_TO_CALENDAR = 1
+        static let INTENTION_LIST = 2
+        static let INTENTION_TITLES = 3
+        static let STRATEGY_LIST = 4
+        static let STRATEGY_ITEMS = 5
     }
 
     struct Critical: Hashable {
         static let HEADER = 0
-        static let EVENT_LIST = 1
-        static let EVENT_ITEMS = 2
-        static let INTENTION_LIST = 3
-        static let PERCEIVED_TITLE = 4
-        static let PERCEIVED_ITEMS = 5
-        static let KNOW_TITLE = 6
-        static let KNOW_ITEMS = 7
-        static let FEEL_TITLE = 8
-        static let FEEL_ITEMS = 9
-        static let BENEFIT_LIST = 10
-        static let BENEFIT_TITLE = 11
-        static let BENEFITS = 12
-        static let STRATEGY_LIST = 13
-        static let STRATEGY_ITEMS = 14
-        static let REMINDER_LIST = 15
-        static let REMINDER_ITEMS = 16
+        static let ADD_TO_CALENDAR = 1
+        static let INTENTION_LIST = 2
+        static let PERCEIVED_TITLE = 3
+        static let PERCEIVED_ITEMS = 4
+        static let KNOW_TITLE = 5
+        static let KNOW_ITEMS = 6
+        static let FEEL_TITLE = 7
+        static let FEEL_ITEMS = 8
+        static let BENEFIT_LIST = 8
+        static let BENEFIT_TITLE = 10
+        static let BENEFITS = 11
+        static let STRATEGY_LIST = 12
+        static let STRATEGY_ITEMS = 13
     }
 }
