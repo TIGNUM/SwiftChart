@@ -18,20 +18,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVo-4g-wBt">
-                        <rect key="frame" x="24" y="12" width="236" height="21"/>
+                        <rect key="frame" x="24" y="12" width="244" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_close" translatesAutoresizingMaskIntoConstraints="NO" id="XMQ-8G-Ebf">
-                        <rect key="frame" x="272" y="22" width="24" height="24"/>
+                        <rect key="frame" x="280" y="26" width="16" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="R2y-9g-W3Z"/>
-                            <constraint firstAttribute="width" constant="24" id="Ydb-YR-Ydp"/>
+                            <constraint firstAttribute="height" constant="16" id="R2y-9g-W3Z"/>
+                            <constraint firstAttribute="width" constant="16" id="Ydb-YR-Ydp"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihO-Ro-43b">
-                        <rect key="frame" x="48" y="41" width="212" height="14.5"/>
+                        <rect key="frame" x="48" y="41" width="220" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -61,6 +61,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="dateIcon" destination="rOs-FS-tgg" id="1gf-sG-psk"/>
                 <outlet property="subtitleLabel" destination="ihO-Ro-43b" id="N5g-VA-Vwq"/>
                 <outlet property="titleLabel" destination="pVo-4g-wBt" id="bRz-qY-FVC"/>
             </connections>

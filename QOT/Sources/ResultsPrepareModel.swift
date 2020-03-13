@@ -13,13 +13,6 @@ struct ResultsPrepare {
     enum CalendarItem {
         case selected
         case unselected
-
-        var icon: UIImage? {
-            switch self {
-            case .selected: return R.image.ic_close()
-            case .unselected: return R.image.ic_arrow_right()
-            }
-        }
     }
 
     enum Sections {

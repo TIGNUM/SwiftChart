@@ -12,9 +12,16 @@ final class ResultsPrepareEventTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var dateIcon: UIImageView!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        dateIcon.image = R.image.ic_event()?.withRenderingMode(.alwaysTemplate)
+        dateIcon.tintColor = .carbon40
+    }
 
     func configure(title: String, subtitle: String) {
         ThemeText.H02Light.apply(title, to: titleLabel)
-        ThemeText.Text03Light.apply(title, to: subtitleLabel)
+        ThemeText.Text03Light.apply(subtitle, to: subtitleLabel)
     }
 }
