@@ -1071,7 +1071,7 @@ enum ThemeText {
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle, .dailyQuestion, .audioFullScreenTitle:
             return Palette.carbon
         case .resultTitleTheme(let mode):
-            return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
+            return Palette.light(Palette.sand, or: Palette.sand, forcedColorMode: mode)
         case .resultHeaderTheme2(let mode):
             return Palette.light(Palette.redOrange, or: Palette.sand70, forcedColorMode: mode)
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
