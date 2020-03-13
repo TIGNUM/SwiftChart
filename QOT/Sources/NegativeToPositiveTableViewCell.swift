@@ -34,7 +34,6 @@ final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeuea
                                          highItems: highItems)
     }
 
-
     override func layoutSubviews() {
         super.layoutSubviews()
     }

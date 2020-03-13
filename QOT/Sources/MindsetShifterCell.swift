@@ -44,7 +44,7 @@ final class MindsetShifterCell: BaseDailyBriefCell {
 
     override func updateConstraints() {
         super.updateConstraints()
-        sliderViewHeightConstraint.constant = 380
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+        sliderViewHeightConstraint.constant = negativeToPositiveView?.calculateHeight(for: self.frame.size.width) ?? 0
     }
 }

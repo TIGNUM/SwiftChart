@@ -24,6 +24,8 @@ final class NegativeToPositiveView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet private weak var highPerformanceView: UIView!
     @IBOutlet private weak var highPerformanceContainerView: UIView!
     @IBOutlet private weak var highPerformanceConstraint: NSLayoutConstraint!
+    @IBOutlet private var horizontalConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var verticalConstraints: [NSLayoutConstraint]!
     @IBOutlet private var barViews: [UIView]!
 
     private var darkMode: Bool = true
@@ -184,6 +186,23 @@ extension NegativeToPositiveView {
         guard let pan = gestureRecognizer as? UIPanGestureRecognizer else { return false }
         let velocity = pan.velocity(in: highPerformanceContainerView)
         return fabs(velocity.x) > fabs(velocity.y)
+    }
+
+    func calculateHeight(for width: CGFloat) -> CGFloat {
+        // setting minimum to 1
+        var height: CGFloat = 1
+        var verticalConstraintsSum: CGFloat = 0
+        var horizontalConstraintsSum: CGFloat = 0
+        for constraint in verticalConstraints {
+            verticalConstraintsSum += constraint.constant
+        }
+        for constraint in horizontalConstraints {
+            horizontalConstraintsSum += constraint.constant
+        }
+        let titleLabelSize = titleLabel.sizeThatFits(CGSize(width: width - horizontalConstraintsSum,
+                                                            height: .greatestFiniteMagnitude))
+        height = height + titleLabelSize.height + verticalConstraintsSum
+        return height
     }
 }
 
