@@ -252,7 +252,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     if elements.isEmpty == false {
                         sectionDataList.append(ArraySection(model: .fromMyCoach, elements: elements))
                     }
-
                 case .MY_PEAK_PERFORMANCE?:
                     let elements = strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)
                     if elements.count > 0 {
@@ -284,7 +283,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .mindsetShifter,
                                                         elements: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket)))
                     
-
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -573,12 +571,6 @@ extension DailyBriefInteractor {
     func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureBespokeFeast: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var departureBespokeFeastList: [BaseDailyBriefViewModel] = []
         guard let collection = depatureBespokeFeast.contentCollections?.first else {
-            departureBespokeFeastList.append(DepartureBespokeFeastModel(title: "",
-                                                                        subtitle: "",
-                                                                        text: "",
-                                                                        images: [""],
-                                                                        copyrights: [""],
-                                                                        domainModel: depatureBespokeFeast))
             return departureBespokeFeastList
         }
         let title = AppTextService.get(.daily_brief_section_on_the_road_title)
@@ -604,15 +596,17 @@ extension DailyBriefInteractor {
     func createMindsetShifterViewModel(mindsetBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var mindsetList: [BaseDailyBriefViewModel] = []
         guard let shifters = mindsetBucket.mindsetShifters else {
-            mindsetList.append(MindsetShifterViewModel(title: "",
-                                                       subtitle: "",
-                                                       mindsetShifter: nil,
-                                                       domainModel: mindsetBucket))
-            return mindsetList
+            return []
+        }
+        let date = Date(timeIntervalSince1970: 0)
+        let mindsetShifter = shifters.sorted(by: {$0.createdAt ?? date > $1.createdAt ?? date }).first
+        guard let createdDate = mindsetShifter?.createdAt ?? mindsetShifter?.createdOnDevice,
+            createdDate.dateAfterYears(1).isFuture() else {
+                return []
         }
         let model = MindsetShifterViewModel(title: AppTextService.get(.daily_brief_section_mindset_shifter_title),
                                             subtitle: AppTextService.get(.daily_brief_section_mindset_shifter_subtitle),
-                                            mindsetShifter: shifters.last,
+                                            mindsetShifter: mindsetShifter,
                                             domainModel: mindsetBucket)
         mindsetList.append(model)
         return mindsetList
@@ -622,12 +616,6 @@ extension DailyBriefInteractor {
     func createProductsWeLove(productsBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var productsList: [BaseDailyBriefViewModel] = []
         guard let collection = productsBucket.contentCollections?.first else {
-            productsList.append(DepartureBespokeFeastModel(title: "",
-                                                           subtitle: "",
-                                                           text: "",
-                                                           images: [""],
-                                                           copyrights: [""],
-                                                           domainModel: productsBucket))
             return productsList
         }
         let title = AppTextService.get(.daily_brief_section_products_we_love_title)
@@ -653,12 +641,6 @@ extension DailyBriefInteractor {
      func createOnTheRoad(onTheRoadBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
          var onTheRoadList: [BaseDailyBriefViewModel] = []
          guard let collection = onTheRoadBucket.contentCollections?.first else {
-             onTheRoadList.append(DepartureBespokeFeastModel(title: "",
-                                                            subtitle: "",
-                                                            text: "",
-                                                            images: [""],
-                                                            copyrights: [""],
-                                                            domainModel: onTheRoadBucket))
              return onTheRoadList
          }
          let title = AppTextService.get(.daily_brief_section_on_the_road_title)
@@ -684,12 +666,6 @@ extension DailyBriefInteractor {
     func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createSolveList: [BaseDailyBriefViewModel] = []
         guard (solveBucket.solves?.first) != nil else {
-            createSolveList.append(SolveReminderCellViewModel(bucketTitle: "",
-                                                              twoDayAgo: "",
-                                                              question1: "",
-                                                              question2: "",
-                                                              question3: "",
-                                                              domainModel: solveBucket))
             return createSolveList
         }
 
@@ -733,12 +709,7 @@ extension DailyBriefInteractor {
         let date = Date()
         let dateComponents = Calendar.current.dateComponents([.hour], from: date)
         guard let exploreContentCollections = explore.contentCollections else {
-            exploreModelList.append(ExploreCellViewModel(bucketTitle: "",
-                                                         title: "",
-                                                         introText: "",
-                                                         remoteID: 0,
-                                                         domainModel: explore,
-                                                         section: ContentSection.Unkown))
+
             return exploreModelList
         }
         if let hour = dateComponents.hour {
@@ -972,19 +943,6 @@ extension DailyBriefInteractor {
     func createLeaderWisdom(createLeadersWisdom leadersWisdom: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var leadersWisdomList: [BaseDailyBriefViewModel] = []
         guard let collection = leadersWisdom.contentCollections?.first else {
-            leadersWisdomList.append(LeaderWisdomCellViewModel(title: "",
-                                                               subtitle: "",
-                                                               description: "",
-                                                               audioDuration: 0,
-                                                               audioLink: URL(string: ""),
-                                                               videoTitle: "",
-                                                               videoDuration: 0.0,
-                                                               videoThumbnail: URL(string: ""),
-                                                               format: .unknown,
-                                                               remoteID: 0,
-                                                               durationString: "",
-                                                               domainModel: nil))
-
             return leadersWisdomList
         }
         leadersWisdomList.append(LeaderWisdomCellViewModel(title: AppTextService.get(.daily_brief_section_leader_wisdom_title),
@@ -1049,10 +1007,6 @@ extension DailyBriefInteractor {
     func createGoodToKnow(createGoodToKnowBucket createGoodToKnow: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createGoodToKnowList: [BaseDailyBriefViewModel] = []
         guard let collection = createGoodToKnow.contentCollections?.first else {
-            createGoodToKnowList.append(GoodToKnowCellViewModel(title: "",
-                                                                fact: "",
-                                                                copyright: "",
-                                                                domainModel: createGoodToKnow))
             return createGoodToKnowList }
         createGoodToKnowList.append(GoodToKnowCellViewModel(title: AppTextService.get(.daily_brief_section_good_to_know_title),
                                                             fact: collection.contentItems.first?.valueText,
@@ -1066,12 +1020,6 @@ extension DailyBriefInteractor {
         var latestWhatsHotList: [BaseDailyBriefViewModel] = []
 
         guard let collection = whatsHotLatest.contentCollections?.first else {
-            latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "",
-                                                                  title: "",
-                                                                  image: URL(string: "") ?? URL(string: "")!,
-                                                                  author: "", publisheDate: Date(), timeToRead: 0,
-                                                                  isNew: false, remoteID: 0,
-                                                                  domainModel: whatsHotLatest))
             return latestWhatsHotList
         }
         latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "test",
@@ -1113,13 +1061,6 @@ extension DailyBriefInteractor {
 
         guard sprintBucket.sprint != nil else {
             let relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel()]
-            createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: "",
-                                                                       sprintTitle: "",
-                                                                       sprintInfo: "",
-                                                                       sprintStepNumber: 0,
-                                                                       relatedStrategiesModels: relatedStrategiesModels,
-                                                                       domainModel: sprintBucket,
-                                                                       sprint: sprintBucket.sprint!))
             return createSprintChanllengeList
         }
         let searchTag: String = "SPRINT_BUCKET_DAY_" + String(sprintBucket.sprint?.currentDay ?? 0)

@@ -160,18 +160,28 @@
                                                 <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSo-5G-U6r">
+                                                <rect key="frame" x="0.0" y="0.0" width="1" height="280"/>
+                                                <color key="backgroundColor" red="0.83921568627450982" green="0.78823529411764703" blue="0.75294117647058822" alpha="0.69667245370370368" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="1" id="eun-cN-RNq"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="hYC-s6-Uy6" secondAttribute="trailing" constant="50" id="0wN-dN-6JB"/>
                                             <constraint firstItem="hYC-s6-Uy6" firstAttribute="centerY" secondItem="nC9-zl-5jl" secondAttribute="centerY" id="3mt-f9-vXG"/>
                                             <constraint firstItem="UA8-tJ-HDQ" firstAttribute="leading" secondItem="aCl-1U-EdR" secondAttribute="trailing" constant="8" id="5wJ-Lm-na8"/>
+                                            <constraint firstItem="eSo-5G-U6r" firstAttribute="leading" secondItem="TLH-dw-USe" secondAttribute="leading" id="70w-zC-WPT"/>
                                             <constraint firstItem="Ta9-jO-w3F" firstAttribute="top" secondItem="TLH-dw-USe" secondAttribute="top" constant="24" id="Ayg-3t-SpM"/>
                                             <constraint firstAttribute="trailing" secondItem="UA8-tJ-HDQ" secondAttribute="trailing" constant="50" id="EjF-LA-UQo"/>
                                             <constraint firstItem="nC9-zl-5jl" firstAttribute="leading" secondItem="TLH-dw-USe" secondAttribute="leading" id="Es2-Mh-YnN"/>
                                             <constraint firstItem="h7L-XP-YRI" firstAttribute="centerY" secondItem="PYB-dM-VIA" secondAttribute="centerY" id="KSV-xn-8uS"/>
                                             <constraint firstItem="hYC-s6-Uy6" firstAttribute="leading" secondItem="nC9-zl-5jl" secondAttribute="trailing" constant="8" id="OCu-ev-vDD"/>
                                             <constraint firstItem="aCl-1U-EdR" firstAttribute="leading" secondItem="TLH-dw-USe" secondAttribute="leading" id="Obw-PN-pSW"/>
+                                            <constraint firstAttribute="bottom" secondItem="eSo-5G-U6r" secondAttribute="bottom" id="Qvi-Kt-SVl"/>
+                                            <constraint firstItem="eSo-5G-U6r" firstAttribute="top" secondItem="TLH-dw-USe" secondAttribute="top" id="U0n-gz-0WA"/>
                                             <constraint firstItem="PYB-dM-VIA" firstAttribute="leading" secondItem="TLH-dw-USe" secondAttribute="leading" id="Vqe-9v-AMc"/>
                                             <constraint firstItem="Ta9-jO-w3F" firstAttribute="leading" secondItem="TLH-dw-USe" secondAttribute="leading" constant="25" id="ltV-xg-qXp"/>
                                             <constraint firstAttribute="trailing" secondItem="Ta9-jO-w3F" secondAttribute="trailing" constant="50" id="sqf-sr-2dz"/>
@@ -279,7 +289,7 @@
                 <outletCollection property="barViews" destination="nC9-zl-5jl" collectionClass="NSMutableArray" id="aWz-qf-Bt0"/>
                 <outletCollection property="barViews" destination="fJl-ts-JYw" collectionClass="NSMutableArray" id="sBC-BJ-66p"/>
             </connections>
-            <point key="canvasLocation" x="319.19999999999999" y="283.80809595202402"/>
+            <point key="canvasLocation" x="319.19999999999999" y="283.35832083958024"/>
         </tableViewCell>
     </objects>
     <resources>

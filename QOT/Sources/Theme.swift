@@ -142,7 +142,7 @@ enum ThemeView {
         case .barViews(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand70, forcedColorMode: mode)
         case .tbvHighPerformance(let mode):
-            return Palette.light(Palette.white40, or: Palette.carbon60, forcedColorMode: mode)
+            return Palette.light(Palette.white40, or: Palette.carbon90, forcedColorMode: mode)
         case .myDataHeatMapLegendHigh:
             return Palette.heatMapBrightRed
         case .myDataHeatMapLegendLow:
@@ -1071,9 +1071,9 @@ enum ThemeText {
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle, .dailyQuestion, .audioFullScreenTitle:
             return Palette.carbon
         case .resultTitleTheme(let mode):
-            return Palette.light(Palette.sand, or: Palette.sand, forcedColorMode: mode)
+            return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
         case .resultHeaderTheme2(let mode):
-            return Palette.light(Palette.redOrange, or: Palette.sand70, forcedColorMode: mode)
+            return Palette.light(Palette.carbon, or: Palette.sand70, forcedColorMode: mode)
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
             return Palette.carbon70
@@ -1204,7 +1204,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
         case .bucketTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
-             .resultTitle, .resultListHeader, .resultHeader1, .resultHeader2, .resultList, .coachHeaderSubtitle, .coachSubtitle, .dailyInsightsTbvAdvice,
+             .resultTitle, .resultTitleTheme, .resultListHeader, .resultHeader1, .resultHeader2, .resultHeaderTheme2, .resultList, .coachHeaderSubtitle, .coachSubtitle, .dailyInsightsTbvAdvice,
              .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .accountDetailAge, .tbvCustomizeBody, .shpiQuestion, .shpiContent, .strategyTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1649,6 +1649,10 @@ private struct Palette {
     static var carbon70: UIColor {
         return UIColor.carbon.withAlphaComponent(0.7)
     }
+
+    static var carbon90: UIColor {
+          return UIColor.carbon.withAlphaComponent(0.9)
+      }
 
     static var redOrange: UIColor {
         return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 1)

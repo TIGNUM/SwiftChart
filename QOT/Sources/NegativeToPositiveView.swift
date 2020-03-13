@@ -24,7 +24,6 @@ final class NegativeToPositiveView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet private weak var highPerformanceView: UIView!
     @IBOutlet private weak var highPerformanceContainerView: UIView!
     @IBOutlet private weak var highPerformanceConstraint: NSLayoutConstraint!
-    var highImpactTitle: String?
     @IBOutlet private var barViews: [UIView]!
 
     private var darkMode: Bool = true
@@ -85,9 +84,7 @@ extension NegativeToPositiveView {
         barViews.forEach { (view) in
             ThemeView.barViews(themeMode).apply(view)
         }
-        self.highImpactTitle = highTitle
-//        ThemeText.resultTitle.apply(highTitle, to: highTitleLabel)
-        ThemeText.resultTitleTheme(themeMode).apply(highTitle, to: highTitleLabel)
+
         ThemeView.tbvLowPerformance(themeMode).apply(lowPerformanceView)
         ThemeView.tbvHighPerformance(themeMode).apply(highPerformanceView)
         ThemeText.resultTitle.apply(title, to: titleLabel)
@@ -99,6 +96,7 @@ extension NegativeToPositiveView {
 
         let indexHi = randomSet(max: highItems.count)
 
+        ThemeText.resultTitleTheme(themeMode).apply(highTitle, to: highTitleLabel)
         ThemeText.resultHeaderTheme2(themeMode).apply(highItems[indexHi.index1,
                                                        default: "highItem_\(indexHi.index1) not set"], to: highFirstItemLabel)
         ThemeText.resultHeaderTheme2(themeMode).apply(highItems[indexHi.index2,
