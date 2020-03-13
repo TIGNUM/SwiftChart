@@ -10,7 +10,7 @@ import UIKit
 import EventKit
 import qot_dal
 
-final class PrepareResultsWorker {
+class PrepareResultsWorker {
 
     // MARK: - Properties
     typealias ListItems = [Int: [PrepareResultsType]]
@@ -21,6 +21,10 @@ final class PrepareResultsWorker {
     weak var delegate: PrepareResultsDelegatge?
     private var currentEditKey: Prepare.Key?
     private let resultType: ResultType
+
+    //FIXME: https://tignum.atlassian.net/browse/QOT-2688
+    static let ADD_TO_CALENDAR_TITLE = "CONNECT TO CALENDAR"
+    static let ADD_TO_CALENDAR_SUBTITLE = "Add this preparation to an event in your calendar to get timely reminders."
 
     // MARK: - Init
     init(_ contentId: Int) {
@@ -98,11 +102,6 @@ extension PrepareResultsWorker {
 
     var suggestedStrategyId: Int {
         return preparation?.relatedStrategyId ?? 0
-    }
-
-    var setReminder: Bool {
-        get { return preparation?.setReminder ?? false }
-        set { preparation?.setReminder = newValue }
     }
 
     func getSelectedIDs(_ completion: @escaping (([Int]) -> Void)) {
@@ -193,12 +192,18 @@ extension PrepareResultsWorker {
         self.benefits = benefits
         generateCriticalItemsAndUpdateView(preparation)
     }
+
+    func updateEvent(_ qdmEvent: QDMUserCalendarEvent?) {
+        preparation?.eventDate = qdmEvent?.startDate
+        preparation?.eventId = qdmEvent?.remoteID ?? 0
+    }
 }
 
 // MARK: - Update, Delete
 extension PrepareResultsWorker {
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
-        guard let preparation = preparation else { return }
+        guard var preparation = preparation else { return }
+        preparation.setReminder = preparation.eventDate != nil
         UserService.main.updateUserPreparation(preparation) { (updatedPrep, error) in
             if let error = error {
                 log("Error updateUserPreparation \(error.localizedDescription)", level: .error)

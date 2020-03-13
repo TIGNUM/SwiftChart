@@ -22,21 +22,20 @@ extension PrepareResultsWorker {
 }
 
 extension PrepareResultsWorker {
+    //FIXME: https://tignum.atlassian.net/browse/QOT-2688
     func dailyItems(_ prepare: QDMUserPreparation, completion: @escaping ItemCompletion) {
         getContentItems(prepare.contentCollectionId ?? 0) { [weak self] contentItems in
             self?.getStrategyItems(prepare.strategyIds, prepare.relatedStrategyId) { strategyItems in
                 var items = [Int: [PrepareResultsType]]()
                 items[PrepareResult.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])
-                items[PrepareResult.Daily.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
-                items[PrepareResult.Daily.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
-                                                                             title: prepare.name ?? "",
-                                                                             type: prepare.eventType ?? "")
+                items[PrepareResult.Daily.ADD_TO_CALENDAR] = [
+                    .addToCalendar(title: PrepareResultsWorker.ADD_TO_CALENDAR_TITLE,
+                                   subtitle: PrepareResultsWorker.ADD_TO_CALENDAR_SUBTITLE)
+                ]
                 items[PrepareResult.Daily.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
                 items[PrepareResult.Daily.INTENTION_TITLES] = self?.getIntentionTitleItems(contentItems ?? [])
                 items[PrepareResult.Daily.STRATEGY_LIST] = [.contentItem(format: .list, title: "SUGGESTED STRATEGIES")]
                 items[PrepareResult.Daily.STRATEGY_ITEMS] = strategyItems
-                items[PrepareResult.Daily.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                items[PrepareResult.Daily.REMINDER_ITEMS] = self?.getReminderItems(prepare.setReminder)
                 completion(items)
             }
         }
@@ -44,6 +43,7 @@ extension PrepareResultsWorker {
 }
 
 extension PrepareResultsWorker {
+    //FIXME: https://tignum.atlassian.net/browse/QOT-2688
     func criticalItems(_ prepare: QDMUserPreparation,
                        _ answerFilter: String?,
                        _ suggestedStrategyId: Int?,
@@ -55,10 +55,10 @@ extension PrepareResultsWorker {
                     self?.getSelectedIntentionItems(prepare.knowAnswerIds, .know, completion: {  [weak self] (knowItems) in
                         self?.getSelectedIntentionItems(prepare.feelAnswerIds, .feel, completion: {  [weak self] (feelItems) in
                             items[PrepareResult.Critical.HEADER] = self?.getHeaderItems(contentItems ?? [])
-                            items[PrepareResult.Critical.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
-                            items[PrepareResult.Critical.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
-                                                                                            title: prepare.name ?? "",
-                                                                                            type: prepare.eventType ?? "")
+                            items[PrepareResult.Daily.ADD_TO_CALENDAR] = [
+                                .addToCalendar(title: PrepareResultsWorker.ADD_TO_CALENDAR_TITLE,
+                                               subtitle: PrepareResultsWorker.ADD_TO_CALENDAR_SUBTITLE)
+                            ]
                             items[PrepareResult.Critical.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
                             items[PrepareResult.Critical.PERCEIVED_TITLE] = self?.getIntentionTitle(contentItems ?? [], .perceived)
                             items[PrepareResult.Critical.PERCEIVED_ITEMS] = perceivedItems
@@ -78,9 +78,6 @@ extension PrepareResultsWorker {
                             items[PrepareResult.Critical.STRATEGY_LIST] = [.contentItem(format: .list,
                                                                                         title: "SUGGESTED STRATEGIES")]
                             items[PrepareResult.Critical.STRATEGY_ITEMS] = strategyItems
-
-                            items[PrepareResult.Critical.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                            items[PrepareResult.Critical.REMINDER_ITEMS] = self?.getReminderItems(prepare.setReminder)
                             completion(items)
                         })
                     })
@@ -132,15 +129,6 @@ extension PrepareResultsWorker {
                                              questionID: key.questionID))
         }
         return items
-    }
-
-    //TODO: no hardcoded strings
-    func getReminderItems(_ setReminder: Bool) -> [PrepareResultsType] {
-        let setReminderItem = PrepareResultsType.reminder(title: "SET REMINDER",
-                                                          subbtitle: "To help you remember planned events",
-                                                          active: setReminder,
-                                                          type: .reminder)
-        return [setReminderItem]
     }
 }
 

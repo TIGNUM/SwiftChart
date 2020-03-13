@@ -12,9 +12,13 @@ import qot_dal
 final class PrepareResultInteractor {
 
     // MARK: - Properties
+    private lazy var workerCalendar = WorkerCalendar()
     private let worker: PrepareResultsWorker
     private let presenter: PrepareResultsPresenterInterface
     private let router: PrepareResultsRouterInterface
+    private var events: [QDMUserCalendarEvent] = []
+    private var selectedEvent: QDMUserCalendarEvent?
+    private var createdUserCalendarEvent: QDMUserCalendarEvent?
 
     // MARK: - Init
     init(worker: PrepareResultsWorker,
@@ -27,8 +31,31 @@ final class PrepareResultInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        workerCalendar.hasSyncedCalendars { [weak self] available in
+            self?.workerCalendar.getCalendarEvents { [weak self] events in
+                self?.setUserCalendarEvents(events)
+            }
+        }
         presenter.registerTableViewCell(worker.getType)
         presenter.setupView()
+    }
+}
+
+// MARK: - Private
+private extension PrepareResultInteractor {
+    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent]) {
+        self.events.removeAll()
+        self.events = events.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
+        }).unique
+    }
+
+    func setCreatedCalendarEvent(_ event: EKEvent?) {
+        workerCalendar.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
+            self?.workerCalendar.storeLocalEvent(event?.eventIdentifier,
+                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
+            self?.createdUserCalendarEvent = userCalendarEvent
+        }
     }
 }
 
@@ -40,11 +67,6 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
 
     var getType: QDMUserPreparation.Level {
         return worker.getType
-    }
-
-    var setReminder: Bool {
-        get { return worker.setReminder }
-        set { worker.setReminder = newValue }
     }
 
     var sectionCount: Int {
@@ -94,6 +116,10 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         router.presentMyPreps()
     }
 
+    func presentCalendarEventSelection() {
+        router.presentCalendarEventSelection()
+    }
+
     func updateStrategies(selectedIds: [Int]) {
        worker.updateStrategies(selectedIds: selectedIds)
     }
@@ -117,5 +143,48 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     func didClickSaveAndContinue() {
         router.presentMyPreps()
         updatePreparation { _ in }
+    }
+
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
+        router.presentCalendarPermission(permissionType, delegate: self)
+    }
+
+    func checkSyncedCalendars() {
+        workerCalendar.hasSyncedCalendars { [weak self] (available) in
+            guard let strongSelf = self else { return }
+            if available == true {
+                strongSelf.router.presentCalendarEventSelection()
+            } else {
+                strongSelf.router.presentCalendarSettings(delegate: strongSelf)
+            }
+        }
+    }
+}
+
+// MARK: - AskPermissionDelegate
+extension PrepareResultInteractor: AskPermissionDelegate {
+    func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
+        if granted {
+            router.presentCalendarSettings(delegate: self)
+        }
+    }
+}
+
+// MARK: - SyncedCalendarsDelegate
+extension PrepareResultInteractor: SyncedCalendarsDelegate {
+    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
+        if !qdmEvents.isEmpty {
+            router.presentCalendarEventSelection()
+        }
+    }
+}
+
+extension PrepareResultInteractor: CalendarEventSelectionDelegate {
+    func didSelectEvent(_ event: QDMUserCalendarEvent) {
+        selectedEvent = event
+    }
+
+    func didCreateEvent(_ event: EKEvent?) {
+        setCreatedCalendarEvent(event)
     }
 }

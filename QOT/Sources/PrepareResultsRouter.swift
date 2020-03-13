@@ -13,6 +13,7 @@ final class PrepareResultsRouter: BaseRouter {
 
     // MARK: - Properties
     private weak var prepareResultsViewController: PrepareResultsViewController?
+    weak var delegate: CalendarEventSelectionDelegate?
 
     // MARK: - Init
     init(viewController: PrepareResultsViewController) {
@@ -53,5 +54,26 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
             let launchURL = URLScheme.myPreps.launchURLWithParameterValue("") {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
+    }
+
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind, delegate: AskPermissionDelegate) {
+         guard let controller = R.storyboard.askPermission().instantiateInitialViewController() as?
+             AskPermissionViewController else { return }
+         AskPermissionConfigurator.make(viewController: controller, type: permissionType, delegate: delegate)
+         viewController?.present(controller, animated: true, completion: nil)
+     }
+
+    func presentCalendarSettings(delegate: SyncedCalendarsDelegate) {
+        guard let controller = R.storyboard.myQot.syncedCalendarsViewController() else { return }
+        SyncedCalendarsConfigurator.configure(viewController: controller,
+                                              isInitialCalendarSelection: true,
+                                              delegate: delegate)
+        viewController?.present(controller, animated: true)
+    }
+
+    func presentCalendarEventSelection() {
+        let configurator = CalendarEventSelectionConfigurator.make(delegate: delegate)
+        let controller = CalendarEventSelectionViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
     }
 }
