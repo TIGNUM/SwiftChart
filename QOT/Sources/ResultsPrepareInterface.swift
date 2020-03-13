@@ -11,7 +11,7 @@ import qot_dal
 
 protocol ResultsPrepareViewControllerInterface: class {
     func setupView()
-    func updateView(items: [ResultsPrepare.Items])
+    func updateView(items: [Int: ResultsPrepare.Sections])
 }
 
 protocol ResultsPreparePresenterInterface {
@@ -21,9 +21,7 @@ protocol ResultsPreparePresenterInterface {
 
 protocol ResultsPrepareInteractorInterface: Interactor {
     var sectionCount: Int { get }
-    var rowCount: Int { get }
-
-    func item(at row: Int)
+    func rowCount(in section: Int) -> Int
 }
 
 protocol ResultsPrepareRouterInterface {

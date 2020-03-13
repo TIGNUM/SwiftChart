@@ -850,8 +850,9 @@ enum ThemeText {
     case registerIntroBody
 
     // MARK: - New Approach
-    case H03Light
+    case H01Light
     case H02Light
+    case H03Light
     case Text01Light
     case Text02Light
     case Text03Light
@@ -1009,7 +1010,7 @@ enum ThemeText {
         case .strategyTitle:
             return Fonts.fontDisplayThin38
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
-             .mySprintDetailsTitle:
+             .mySprintDetailsTitle, .H01Light:
             return Fonts.fontDisplayLight24
         // MARK: - .fontLight12
         case .dailyInsightsChartBarLabelSelected, .dailyInsightsChartBarLabelUnselected:
@@ -1059,14 +1060,14 @@ enum ThemeText {
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
              .articleAudioBar, .coachTitle, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
-             .mySprintDetailsCta, .Text02Light:
+             .mySprintDetailsCta, .Text02Light, .customAlertAction:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle, .H03Light, .Text03Light:
             return Palette.carbon40
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
-             .dailyQuestion, .audioFullScreenTitle, .H02Light:
+             .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light:
             return Palette.carbon
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle,
@@ -1178,7 +1179,7 @@ enum ThemeText {
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader, .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
-             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .Text03Light:
+             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .Text03Light, .H01Light:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)

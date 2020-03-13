@@ -1,5 +1,5 @@
 //
-//  ResultsPrepareDashTitleTableViewCell.swift
+//  ResultsPrepareHeaderTableViewCell.swift
 //  QOT
 //
 //  Created by karmic on 12.03.20.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class ResultsPrepareDashTitleTableViewCell: UITableViewCell, Dequeueable {
+final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
 
     func configure(title: String) {
-        ThemeText.Text01Light.apply(title, to: titleLabel)
+        ThemeText.H01Light.apply(title, to: titleLabel)
     }
 }

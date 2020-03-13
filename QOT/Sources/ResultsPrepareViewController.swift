@@ -14,7 +14,7 @@ final class ResultsPrepareViewController: BaseWithGroupedTableViewController, Sc
     // MARK: - Properties
     var interactor: ResultsPrepareInteractorInterface!
     private lazy var router: ResultsPrepareRouterInterface = ResultsPrepareRouter(viewController: self)
-    private var items: [ResultsPrepare.Items] = []
+    private var sections: [Int: ResultsPrepare.Sections] = [:]
 
     // MARK: - Init
     init(configure: Configurator<ResultsPrepareViewController>) {
@@ -41,7 +41,15 @@ final class ResultsPrepareViewController: BaseWithGroupedTableViewController, Sc
 
 // MARK: - Private
 private extension ResultsPrepareViewController {
-
+    func registerTableViewCells() {
+        tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
+        tableView.registerDequeueable(ResultsPrepareAddEventTableViewCell.self)
+        tableView.registerDequeueable(ResultsPrepareBenefitsTableViewCell.self)
+        tableView.registerDequeueable(ResultsPrepareEditableTableViewCell.self)
+        tableView.registerDequeueable(ResultsPrepareEventTableViewCell.self)
+        tableView.registerDequeueable(ResultsPrepareTitleTableViewCell.self)
+        tableView.registerDequeueable(ResultsPrepareQuestionTableViewCell.self)
+    }
 }
 
 // MARK: - Actions
@@ -51,33 +59,18 @@ private extension ResultsPrepareViewController {
 
 // MARK: - ResultsPrepareViewControllerInterface
 extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
-    func updateView(items: [ResultsPrepare.Items]) {
-        self.items = items
+    func updateView(items: [Int: ResultsPrepare.Sections]) {
+        self.sections = items
         tableView.reloadData()
-    }
-    
-    func registerTableViewCell(_ type: QDMUserPreparation.Level) {
-        tableView.registerDequeueable(ResultsPrepareTitleTableViewCell.self)
-        tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
-        //        switch type {
-        //        case .LEVEL_DAILY,
-        //             .LEVEL_CRITICAL:
-        //            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
-        //            tableView.registerDequeueable(PrepareEventTableViewCell.self)
-        //            tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
-        //            tableView.registerDequeueable(ReminderTableViewCell.self)
-        //        case .LEVEL_ON_THE_GO:
-        //            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
-        //        default: return
-        //        }
     }
 
     func setupView() {
+        registerTableViewCells()
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-        self.view.fill(subview: tableView)
+        view.fill(subview: tableView)
         tableView.contentInset.top = 84
         tableView.contentInset.bottom = 40
         tableView.estimatedSectionHeaderHeight = 100
@@ -92,10 +85,65 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor.rowCount
+        return interactor.rowCount(in: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let section = sections[indexPath.section] else { fatalError("Invalid section") }
+        switch section {
+        case .benefits(let title, let subtitle, let benefits):
+            let cell: ResultsPrepareBenefitsTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title, subtitle: subtitle, benefits: benefits)
+            return cell
+
+        case .calendar(let title, let subtitle, let calendarItem):
+            switch calendarItem {
+            case .selected:
+                let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
+                cell.configure(title: title, subtitle: subtitle)
+                return cell
+            case .unselected:
+                let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
+                cell.configure(title: title, subtitle: subtitle)
+                return cell
+            }
+
+        case .feel(let title, let answers):
+            let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title,
+                           firstItem: answers.at(index: 0)?.subtitle,
+                           secondItem: answers.at(index: 1)?.subtitle,
+                           thirdItem: answers.at(index: 2)?.subtitle)
+            return cell
+
+        case .header(let title):
+            let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title)
+            return cell
+
+        case .know(let title, let answers):
+            let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title,
+                           firstItem: answers.at(index: 0)?.subtitle,
+                           secondItem: answers.at(index: 1)?.subtitle,
+                           thirdItem: answers.at(index: 2)?.subtitle)
+            return cell
+
+        case .perceived(let title, let answers):
+            let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title,
+                           firstItem: answers.at(index: 0)?.subtitle,
+                           secondItem: answers.at(index: 1)?.subtitle,
+                           thirdItem: answers.at(index: 2)?.subtitle)
+            return cell
+
+        case .title(let title):
+            let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title)
+            return cell
+
+        case .strategies(let strategies):
+            return UITableViewCell()
+        }
     }
 }
