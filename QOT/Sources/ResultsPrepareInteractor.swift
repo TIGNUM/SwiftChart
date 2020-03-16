@@ -14,7 +14,7 @@ final class ResultsPrepareInteractor {
     // MARK: - Properties
     private lazy var worker = ResultsPrepareWorker()
     private let presenter: ResultsPreparePresenterInterface!
-    private let preparation: QDMUserPreparation?
+    private var preparation: QDMUserPreparation?
     private let resultType: ResultType
 
     // MARK: - Init
@@ -48,5 +48,14 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
             return strategyCount
         }
         return 1
+    }
+
+    func getDTBenefitsViewModel(_ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
+        worker.getDTViewModel(Prepare.Key.benefits, preparation: preparation, completion)
+    }
+
+    func updateBenefits(_ benefits: String) {
+        preparation?.benefits = benefits
+        presenter.createListItems(preparation: preparation)
     }
 }

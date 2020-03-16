@@ -14,7 +14,7 @@ import qot_dal
 final class DTPrepareViewController: DTViewController {
 
     // MARK: - Properties
-    weak var resultsDelegate: PrepareResultsDelegatge?
+    weak var delegate: ResultsPrepareViewControllerInterface?
     var prepareInteractor: DTPrepareInteractor?
     var prepareRouter: DTPrepareRouterInterface?
     private var selectedEvent: DTViewModel.Event?
@@ -32,7 +32,7 @@ final class DTPrepareViewController: DTViewController {
 
     // MARK: - Answer Handling
     override func didTapClose() {
-        if resultsDelegate != nil {
+        if delegate != nil {
             prepareRouter?.dismissResultView()
             trackQuestionInteraction()
         } else {
@@ -42,13 +42,13 @@ final class DTPrepareViewController: DTViewController {
     }
 
     override func didTapNext() {
-        if resultsDelegate != nil {
+        if delegate != nil {
             if viewModel?.question.key == Prepare.QuestionKey.BenefitsInput {
-                resultsDelegate?.didUpdateBenefits(prepareInteractor?.inputText ?? "")
+                delegate?.didUpdateBenefits(prepareInteractor?.inputText ?? "")
                 prepareRouter?.dismissResultView()
             } else {
                 let answerIds = viewModel?.selectedAnswers.compactMap { $0.remoteId } ?? []
-                resultsDelegate?.didUpdateIntentions(answerIds)
+                delegate?.didUpdateIntentions(answerIds)
                 prepareRouter?.dismissResultView()
             }
             return

@@ -33,7 +33,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?) {
         let configurator = DTPrepareConfigurator.make(viewModel: viewModel, question: question)
         let controller = DTPrepareViewController(configure: configurator)
-        controller.resultsDelegate = prepareResultsViewController
+//        controller.resultsDelegate = prepareResultsViewController
         viewController?.present(controller, animated: true)
     }
 

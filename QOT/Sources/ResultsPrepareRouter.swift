@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ResultsPrepareRouter {
 
@@ -21,8 +22,11 @@ final class ResultsPrepareRouter {
 
 // MARK: - ResultsPrepareRouterInterface
 extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
-    func presentEditBenefits(benefits: String?) {
-        
+    func presentDTEditView(_ viewModel: DTViewModel, question: QDMQuestion?) {
+        let configurator = DTPrepareConfigurator.make(viewModel: viewModel, question: question)
+        let controller = DTPrepareViewController(configure: configurator)
+        controller.delegate = viewController
+        viewController?.present(controller, animated: true)
     }
 
     func dismiss() {

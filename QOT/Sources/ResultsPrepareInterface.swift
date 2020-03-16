@@ -12,6 +12,11 @@ import qot_dal
 protocol ResultsPrepareViewControllerInterface: class {
     func setupView()
     func updateView(items: [Int: ResultsPrepare.Sections])
+    func openEditStrategyView()
+    func reloadData()
+    func setupBarButtonItems(resultType: ResultType)
+    func didUpdateIntentions(_ answerIds: [Int])
+    func didUpdateBenefits(_ benefits: String)
 }
 
 protocol ResultsPreparePresenterInterface {
@@ -22,10 +27,12 @@ protocol ResultsPreparePresenterInterface {
 protocol ResultsPrepareInteractorInterface: Interactor {
     var sectionCount: Int { get }
     func rowCount(in section: Int) -> Int
+    func getDTBenefitsViewModel(_ completion: @escaping (DTViewModel, QDMQuestion?) -> Void)
+    func updateBenefits(_ benefits: String)
 }
 
 protocol ResultsPrepareRouterInterface {
     func dismiss()
     func presentContent(_ contentId: Int)
-    func presentEditBenefits(benefits: String?)
+    func presentDTEditView(_ viewModel: DTViewModel, question: QDMQuestion?)
 }

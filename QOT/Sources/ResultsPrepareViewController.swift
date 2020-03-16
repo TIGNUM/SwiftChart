@@ -77,6 +77,23 @@ private extension ResultsPrepareViewController {
 
 // MARK: - ResultsPrepareViewControllerInterface
 extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
+    func openEditStrategyView() {
+    }
+
+    func reloadData() {
+    }
+
+    func setupBarButtonItems(resultType: ResultType) {
+    }
+
+    func didUpdateIntentions(_ answerIds: [Int]) {
+    }
+
+    func didUpdateBenefits(_ benefits: String) {
+        refreshBottomNavigationItems()
+        interactor.updateBenefits(benefits)
+    }
+
     func updateView(items: [Int: ResultsPrepare.Sections]) {
         self.sections = items
         tableView.delegate = self
@@ -162,6 +179,12 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         guard let section = sections[indexPath.section] else { return }
 
         switch section {
+        case .benefits:
+            interactor.getDTBenefitsViewModel { [weak self] (viewModel, question) in
+                self?.removeBottomNavigation()
+                self?.router.presentDTEditView(viewModel, question: question)
+            }
+
         case .strategies(let strategies):
             if let contentId = strategies.at(index: indexPath.row)?.remoteID {
                 router.presentContent(contentId)
