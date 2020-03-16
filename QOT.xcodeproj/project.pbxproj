@@ -688,8 +688,8 @@
 		AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */; };
 		AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */; };
 		AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */; };
-		AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */; };
-		AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */; };
+		AC103E5E2289942100F426F0 /* NegativeToPositiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E5C2289942100F426F0 /* NegativeToPositiveView.swift */; };
+		AC103E5F2289942100F426F0 /* NegativeToPositiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E5D2289942100F426F0 /* NegativeToPositiveView.xib */; };
 		AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC108C4F22A677C00035C3AF /* SolveFollowUpTableViewCell.swift */; };
 		AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC108C5022A677C00035C3AF /* SolveFollowUpTableViewCell.xib */; };
 		AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */; };
@@ -1094,6 +1094,11 @@
 		F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F90BD422230164B100008702 /* SolveTableViewCell.xib */; };
 		F90BD425230164CA00008702 /* SolveTableViewCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD424230164CA00008702 /* SolveTableViewCelll.swift */; };
 		F90BD4292301669A00008702 /* SolveReminderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */; };
+		F916AAEB2418E943002C1EFE /* MindsetShifterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F916AAEA2418E943002C1EFE /* MindsetShifterCell.swift */; };
+		F916AAED2418E958002C1EFE /* MindsetShifterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F916AAEC2418E958002C1EFE /* MindsetShifterCell.xib */; };
+		F916AAF12418E9D6002C1EFE /* MindsetShifterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F916AAF02418E9D6002C1EFE /* MindsetShifterViewModel.swift */; };
+		F916AAF324192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */; };
+		F916AAF524192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */; };
 		F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */; };
 		F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */; };
 		F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */; };
@@ -1947,8 +1952,8 @@
 		AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReactionsTableViewCell.xib; sourceTree = "<group>"; };
 		AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetVisionTableViewCell.swift; sourceTree = "<group>"; };
 		AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetVisionTableViewCell.xib; sourceTree = "<group>"; };
-		AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeToPositiveTableViewCell.swift; sourceTree = "<group>"; };
-		AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveTableViewCell.xib; sourceTree = "<group>"; };
+		AC103E5C2289942100F426F0 /* NegativeToPositiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeToPositiveView.swift; sourceTree = "<group>"; };
+		AC103E5D2289942100F426F0 /* NegativeToPositiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveView.xib; sourceTree = "<group>"; };
 		AC108C4F22A677C00035C3AF /* SolveFollowUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveFollowUpTableViewCell.swift; sourceTree = "<group>"; };
 		AC108C5022A677C00035C3AF /* SolveFollowUpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveFollowUpTableViewCell.xib; sourceTree = "<group>"; };
 		AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionsHeaderView.xib; sourceTree = "<group>"; };
@@ -2338,6 +2343,11 @@
 		F90BD422230164B100008702 /* SolveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveTableViewCell.xib; sourceTree = "<group>"; };
 		F90BD424230164CA00008702 /* SolveTableViewCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveTableViewCelll.swift; sourceTree = "<group>"; };
 		F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCellViewModel.swift; sourceTree = "<group>"; };
+		F916AAEA2418E943002C1EFE /* MindsetShifterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterCell.swift; sourceTree = "<group>"; };
+		F916AAEC2418E958002C1EFE /* MindsetShifterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetShifterCell.xib; sourceTree = "<group>"; };
+		F916AAF02418E9D6002C1EFE /* MindsetShifterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterViewModel.swift; sourceTree = "<group>"; };
+		F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeToPositiveTableViewCell.swift; sourceTree = "<group>"; };
+		F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveTableViewCell.xib; sourceTree = "<group>"; };
 		F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCell.swift; sourceTree = "<group>"; };
 		F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtsCell.xib; sourceTree = "<group>"; };
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
@@ -2545,6 +2555,7 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F916AAE92418E915002C1EFE /* MindsetShifter */,
 				9C24237022F0817F00B911E6 /* AboutMe */,
 				F9462248230C2C21000A3B42 /* Copyright */,
 				9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */,
@@ -3961,14 +3972,16 @@
 			children = (
 				AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */,
 				AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */,
-				AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */,
 				AC103E54228969EF00F426F0 /* ReactionsTableViewCell.swift */,
 				AC103E502289621900F426F0 /* TriggerTableViewCell.swift */,
 				AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */,
 				AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */,
-				AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */,
 				AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */,
 				AC103E512289621900F426F0 /* TriggerTableViewCell.xib */,
+				AC103E5D2289942100F426F0 /* NegativeToPositiveView.xib */,
+				AC103E5C2289942100F426F0 /* NegativeToPositiveView.swift */,
+				F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */,
+				F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -5064,6 +5077,16 @@
 			name = MyPreps;
 			sourceTree = "<group>";
 		};
+		F916AAE92418E915002C1EFE /* MindsetShifter */ = {
+			isa = PBXGroup;
+			children = (
+				F916AAEA2418E943002C1EFE /* MindsetShifterCell.swift */,
+				F916AAEC2418E958002C1EFE /* MindsetShifterCell.xib */,
+				F916AAF02418E9D6002C1EFE /* MindsetShifterViewModel.swift */,
+			);
+			name = MindsetShifter;
+			sourceTree = "<group>";
+		};
 		F92A76DF22F2E8C0000BB378 /* Level5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5542,7 +5565,7 @@
 				8D08065323029FF1004576A9 /* QotPlaceholderTextField.xib in Resources */,
 				38532AB0236AFBB100155643 /* CoachMarkCollectionViewCell.xib in Resources */,
 				366AFD1F20BEAA6700109F29 /* Apercu-Bold.otf in Resources */,
-				AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */,
+				AC103E5F2289942100F426F0 /* NegativeToPositiveView.xib in Resources */,
 				754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */,
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
 				B47CA1AE2334F66C001A65AE /* ArticleEmptyTableViewCell.xib in Resources */,
@@ -5591,6 +5614,7 @@
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
 				B49AC28D233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib in Resources */,
 				AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */,
+				F916AAF524192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
@@ -5740,6 +5764,7 @@
 				F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */,
 				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
 				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
+				F916AAED2418E958002C1EFE /* MindsetShifterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6072,6 +6097,7 @@
 				36B5BD2D23142B4A00439A64 /* AskPermissionWorker.swift in Sources */,
 				B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */,
 				B8AE11A523DAEA16000AF4C4 /* PrepareResultsPresenter.swift in Sources */,
+				F916AAEB2418E943002C1EFE /* MindsetShifterCell.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				8D0B4D242301CC4000A1AC47 /* RegistrationNamesRouter.swift in Sources */,
@@ -6280,6 +6306,7 @@
 				36288A7723257F060036C8C0 /* DTViewModel.swift in Sources */,
 				8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */,
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
+				F916AAF324192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift in Sources */,
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
 				36EC23012323F45700DB5696 /* DTSprintPresenter.swift in Sources */,
 				36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */,
@@ -6365,7 +6392,7 @@
 				36288A7123257EDD0036C8C0 /* DTPresentationModel.swift in Sources */,
 				F96B23B32350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift in Sources */,
 				DB5121622331945F009BFF22 /* PreparationWithMissingEventInteractor.swift in Sources */,
-				AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */,
+				AC103E5E2289942100F426F0 /* NegativeToPositiveView.swift in Sources */,
 				8DC849B32326463900C4D4A3 /* Reachability.m in Sources */,
 				B4AB48C8230BF982003B3C1F /* MyDataExplanationRouter.swift in Sources */,
 				CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */,
@@ -6589,6 +6616,7 @@
 				B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */,
 				CBCCF3941F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift in Sources */,
 				B45DA6BF23AA6316006E7E33 /* MyQOTAdminChooseBucketsInterface.swift in Sources */,
+				F916AAF12418E9D6002C1EFE /* MindsetShifterViewModel.swift in Sources */,
 				363B9CC4232BF34A00C1A29E /* DTTBVInteractor.swift in Sources */,
 				DBFDCE0422B2354C00C94C86 /* VideoBookmarkTableViewCell.swift in Sources */,
 				36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */,
