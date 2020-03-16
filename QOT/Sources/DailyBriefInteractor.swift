@@ -57,8 +57,11 @@ final class DailyBriefInteractor {
                                                selector: #selector(didGetScrollNotificationToBucket(_ :)),
                                                name: .scrollToBucket, object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didGetScrollNotificationToBucket(_ :)),
-                                               name: .userLogin, object: nil)
+                                               selector: #selector(didLogout(_:)),
+                                               name: .userLogout, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didLogout(_:)),
+                                               name: .automaticLogout, object: nil)
 
         getDailyBriefBucketsForViewModel()
     }
