@@ -14,7 +14,6 @@ import SafariServices
 protocol DailyBriefViewControllerDelegate: class {
     func openTools(toolID: Int?)
     func presentStrategyList(strategyID: Int?)
-    func didPressGotItSprint(sprint: QDMSprint)
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
     func showCustomizeTarget()
@@ -737,10 +736,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func reloadSprintCell(cell: UITableViewCell) {
         tableView.beginUpdates()
         tableView.endUpdates()
-    }
-
-    func didPressGotItSprint(sprint: QDMSprint) {
-        interactor.didPressGotItSprint(sprint: sprint)
     }
 
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) {
