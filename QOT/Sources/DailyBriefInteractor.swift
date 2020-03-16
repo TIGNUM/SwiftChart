@@ -316,6 +316,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 })
                 strongSelf.targetBucketName = nil
             }
+            if changeSet.count == 0 {
+                requestSynchronization(.BUCKET_RECORD, .UP_SYNC)
+            }
         }
     }
 
