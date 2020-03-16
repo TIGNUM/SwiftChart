@@ -49,7 +49,24 @@ private extension ResultsPrepareViewController {
         tableView.registerDequeueable(ResultsPrepareEventTableViewCell.self)
         tableView.registerDequeueable(ResultsPrepareTitleTableViewCell.self)
         tableView.registerDequeueable(ResultsPrepareQuestionTableViewCell.self)
+        tableView.registerDequeueable(ResultsPrepareQuestionDailyTableViewCell.self)
         tableView.registerDequeueable(ResultsPrepareHeaderTableViewCell.self)
+    }
+
+    func getQuestionCell(title: String,
+                         answers: [QDMAnswer],
+                         indexPath: IndexPath) -> ResultsPrepareQuestionTableViewCell {
+        if answers.isEmpty {
+            let cell: ResultsPrepareQuestionDailyTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title)
+            return cell
+        }
+        let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: title,
+                       firstItem: answers.at(index: 0)?.subtitle,
+                       secondItem: answers.at(index: 1)?.subtitle,
+                       thirdItem: answers.at(index: 2)?.subtitle)
+        return cell
     }
 }
 
@@ -117,34 +134,15 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
                 return cell
             }
 
-        case .feel(let title, let answers):
-            let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title,
-                           firstItem: answers.at(index: 0)?.subtitle,
-                           secondItem: answers.at(index: 1)?.subtitle,
-                           thirdItem: answers.at(index: 2)?.subtitle)
-            return cell
-
         case .header(let title):
             let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title)
             return cell
 
-        case .know(let title, let answers):
-            let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title,
-                           firstItem: answers.at(index: 0)?.subtitle,
-                           secondItem: answers.at(index: 1)?.subtitle,
-                           thirdItem: answers.at(index: 2)?.subtitle)
-            return cell
-
-        case .perceived(let title, let answers):
-            let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title,
-                           firstItem: answers.at(index: 0)?.subtitle,
-                           secondItem: answers.at(index: 1)?.subtitle,
-                           thirdItem: answers.at(index: 2)?.subtitle)
-            return cell
+        case .know(let title, let answers),
+             .feel(let title, let answers),
+             .perceived(let title, let answers):
+            return getQuestionCell(title: title, answers: answers, indexPath: indexPath)
 
         case .title(let title):
             let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)

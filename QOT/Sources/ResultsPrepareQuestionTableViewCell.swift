@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ResultsPrepareQuestionTableViewCell: UITableViewCell, Dequeueable {
+class ResultsPrepareQuestionTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var firstItemLabel: UILabel!

@@ -264,6 +264,8 @@
 		36EC230C2323F89900DB5696 /* DTQuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
 		36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */; };
+		380B03CA241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B03C8241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift */; };
+		380B03CB241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B03C9241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib */; };
 		38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */; };
 		38290B872330F825004B5C14 /* DTSprintReflectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */; };
 		38290B882330F825004B5C14 /* DTSprintReflectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */; };
@@ -1537,6 +1539,8 @@
 		36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTQuestionnaireViewController.swift; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
 		36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+Convenience.swift"; sourceTree = "<group>"; };
+		380B03C8241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareQuestionDailyTableViewCell.swift; sourceTree = "<group>"; };
+		380B03C9241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareQuestionDailyTableViewCell.xib; sourceTree = "<group>"; };
 		38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionPresenter.swift; sourceTree = "<group>"; };
 		38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionWorker.swift; sourceTree = "<group>"; };
 		38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionRouter.swift; sourceTree = "<group>"; };
@@ -3040,6 +3044,7 @@
 				386C27A6241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift */,
 				386C27B8241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift */,
 				38E84B7E241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift */,
+				380B03C8241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift */,
 				386C27BC241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift */,
 				386C27A2241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift */,
 				38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */,
@@ -3049,6 +3054,7 @@
 				386C27A7241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib */,
 				386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */,
 				38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */,
+				380B03C9241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib */,
 				386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */,
 				386C27A3241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib */,
 			);
@@ -5767,6 +5773,7 @@
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
 				36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
+				380B03CB241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				9C7F4197232BB993007E4B5D /* MyPeakPerformanceCell.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
@@ -6095,6 +6102,7 @@
 				363B9CC3232BF34A00C1A29E /* DTTBVViewController.swift in Sources */,
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
 				36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */,
+				380B03CA241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift in Sources */,
 				B4AB48CD230BF982003B3C1F /* MyDataExplanationConfigurator.swift in Sources */,
 				F9A5C94A22B7D08500AB2E94 /* PaymentReminderPresenter.swift in Sources */,
 				F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */,
