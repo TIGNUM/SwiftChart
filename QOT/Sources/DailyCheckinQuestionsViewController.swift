@@ -21,7 +21,6 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     var isDoneButtonEnabled: Bool = false
     var interactor: DailyCheckinQuestionsInteractorInterface?
     private var pageController: UIPageViewController?
-    private var nextPageTimer: Timer?
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var loadingDots: DotsLoadingView?
 
@@ -140,8 +139,6 @@ private extension DailyCheckinQuestionsViewController {
         let index = indexOf(currentViewController)
         guard index > 0 && index != NSNotFound else { return }
         trackUserEvent(.OPEN, value: index, valueType: "DailyCheckin.PresentedQuestion", action: .TAP)
-        nextPageTimer?.invalidate()
-        nextPageTimer = nil
         let question = interactor?.questions[index - 1]
         guard let viewController = questionnaireViewController(with: question) else { return }
         pageController?.setViewControllers([viewController], direction: .reverse, animated: false, completion: nil)
@@ -151,8 +148,6 @@ private extension DailyCheckinQuestionsViewController {
         guard let vc = pageController?.viewControllers?.first as? QuestionnaireViewController else {
             return
         }
-        nextPageTimer?.invalidate()
-        nextPageTimer = nil
         let answer = vc.currentAnswerIndex()
 
         trackUserEvent(.NEXT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .TAP)
@@ -222,26 +217,20 @@ extension DailyCheckinQuestionsViewController: UIPageViewControllerDelegate, UIP
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        nextPageTimer?.invalidate()
-        nextPageTimer = nil
         return previous(from: viewController)
     }
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        nextPageTimer?.invalidate()
-        nextPageTimer = nil
         return next(from: viewController)
-    }
-
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            willTransitionTo pendingViewControllers: [UIViewController]) {
-        nextPageTimer?.invalidate()
-        nextPageTimer = nil
     }
 }
 
 extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
+    func isSelecting(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
+        // DO NOTHING
+    }
+
     func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
         if index == NSNotFound { return }
@@ -251,11 +240,6 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         refreshBottomNavigationItems()
     }
 
-    func isSelecting(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
-        nextPageTimer?.invalidate()
-        nextPageTimer = nil
-    }
-
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
         if index == NSNotFound { return }
@@ -263,11 +247,5 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         trackUserEvent(.SELECT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .SWIPE)
         isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
         refreshBottomNavigationItems()
-        guard let nextViewController = next(from: viewController) else {
-            return
-        }
-        nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_04, repeats: false) { timer in
-            self.pageController?.setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
-        }
     }
 }
