@@ -41,10 +41,10 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     func rowCount(in section: Int) -> Int {
         guard let level = preparation?.type else { return 0 }
         let strategyCount = ((preparation?.strategies.count ?? 0) + 1)
-        if level == .LEVEL_CRITICAL && section == 9 {
+        if level == .LEVEL_CRITICAL && section == 8 {
             return strategyCount + 1
         }
-        if level == .LEVEL_DAILY && section == 8 {
+        if level == .LEVEL_DAILY && section == 7 {
             return strategyCount + 1
         }
         return 1

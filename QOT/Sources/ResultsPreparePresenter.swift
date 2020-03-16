@@ -40,7 +40,7 @@ private extension ResultsPreparePresenter {
                                                     calendarItem: .selected)
         }
         return ResultsPrepare.Sections.calendar(title: AppTextService.get(.results_prepare_connect_calendar_title),
-                                                subtitle: AppTextService.get(.results_prepare_connect_calendar_title),
+                                                subtitle: AppTextService.get(.results_prepare_connect_calendar_subtitle),
                                                 calendarItem: .unselected)
     }
 

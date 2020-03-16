@@ -152,7 +152,10 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             return cell
 
         case .strategies(let strategies):
-            return UITableViewCell()
+            let strategy = strategies.at(index: indexPath.row)
+            let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: strategy?.title, duration: strategy?.durationString)
+            return cell
         }
     }
 }

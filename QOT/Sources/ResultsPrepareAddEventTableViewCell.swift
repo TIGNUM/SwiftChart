@@ -15,6 +15,6 @@ final class ResultsPrepareAddEventTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String, subtitle: String) {
         ThemeText.H02Light.apply(title, to: titleLabel)
-        ThemeText.Text02Light.apply(title, to: subtitleLabel)
+        ThemeText.Text02Light.apply(subtitle, to: subtitleLabel)
     }
 }
