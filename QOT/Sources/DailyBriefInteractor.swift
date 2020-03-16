@@ -600,7 +600,7 @@ extension DailyBriefInteractor {
         }
         let date = Date(timeIntervalSince1970: 0)
         let mindsetShifter = shifters.sorted(by: {$0.createdAt ?? $0.createdOnDevice ?? date > $1.createdAt ?? $1.createdOnDevice ?? date }).first
-        guard let createdDate = mindsetShifter?.createdAt ?? mindsetShifter?.createdOnDevice,
+        guard let createdDate = mindsetShifter?.createdAt,
             createdDate.dateAfterDays(1).isFuture() else {
                 return mindsetList
         }

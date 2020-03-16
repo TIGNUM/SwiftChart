@@ -12,7 +12,7 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="553" id="PNe-5A-3mF" customClass="MindsetShifterCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="489" height="553"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PNe-5A-3mF" id="KMm-sn-iAg">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PNe-5A-3mF" id="KMm-sn-iAg">
                 <rect key="frame" x="0.0" y="0.0" width="489" height="553"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -35,7 +35,7 @@
                 <constraints>
                     <constraint firstItem="fds-sg-jrb" firstAttribute="leading" secondItem="KMm-sn-iAg" secondAttribute="leading" id="79Z-Ui-0iO"/>
                     <constraint firstItem="fds-sg-jrb" firstAttribute="top" secondItem="KMm-sn-iAg" secondAttribute="top" id="9KW-gS-EHE"/>
-                    <constraint firstAttribute="bottom" secondItem="4B1-Yw-RwG" secondAttribute="bottom" constant="20" symbolic="YES" id="9yp-32-tOs"/>
+                    <constraint firstAttribute="bottom" secondItem="4B1-Yw-RwG" secondAttribute="bottom" constant="40" id="9yp-32-tOs"/>
                     <constraint firstAttribute="trailing" secondItem="4B1-Yw-RwG" secondAttribute="trailing" id="FQ9-kz-pZ7"/>
                     <constraint firstItem="4B1-Yw-RwG" firstAttribute="top" secondItem="fds-sg-jrb" secondAttribute="bottom" id="WVI-H2-eIk"/>
                     <constraint firstItem="4B1-Yw-RwG" firstAttribute="leading" secondItem="KMm-sn-iAg" secondAttribute="leading" id="gQi-Q1-LpH"/>
