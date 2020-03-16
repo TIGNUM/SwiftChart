@@ -886,3 +886,10 @@ public extension AppTextKey {
     static let onboarding_sign_up_age_verification_section_body_placeholder_title = AppTextKey("onboarding.sign_up.age_verification.section_body.placeholder_title")
     static let my_qot_my_profile_account_settings_edit_title_date_of_birth = AppTextKey("my_qot.my_profile.account_settings.edit.title_date_of_birth")
 }
+
+@available(*, unavailable, message: "Unavailable from QOT v3.1.5")
+public extension AppTextKey {
+    static let daily_brief_sprint_challenge_alert_title = AppTextKey("daily_brief.sprint_challenge.alert_title")
+    static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
+    static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
+}
