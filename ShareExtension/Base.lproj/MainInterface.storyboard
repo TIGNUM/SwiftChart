@@ -17,17 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="2020" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yfj-L4-KWI">
-                                <rect key="frame" x="132" y="265" width="150" height="150"/>
+                                <rect key="frame" x="157" y="290" width="100" height="100"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radio_selected" translatesAutoresizingMaskIntoConstraints="NO" id="7ea-SA-JdF">
-                                        <rect key="frame" x="37.5" y="37.5" width="75" height="75"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="75" id="3cO-N1-7u4"/>
-                                            <constraint firstAttribute="height" constant="75" id="yiF-du-BUB"/>
-                                        </constraints>
+                                        <rect key="frame" x="34" y="34" width="32" height="32"/>
                                     </imageView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="D8W-JJ-Aaz">
-                                        <rect key="frame" x="56.5" y="56.5" width="37" height="37"/>
+                                        <rect key="frame" x="31.5" y="31.5" width="37" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -35,9 +31,9 @@
                                     <constraint firstItem="7ea-SA-JdF" firstAttribute="centerY" secondItem="Yfj-L4-KWI" secondAttribute="centerY" id="FSq-ot-xpi"/>
                                     <constraint firstItem="7ea-SA-JdF" firstAttribute="centerX" secondItem="Yfj-L4-KWI" secondAttribute="centerX" id="G9H-oJ-MUe"/>
                                     <constraint firstItem="D8W-JJ-Aaz" firstAttribute="centerX" secondItem="Yfj-L4-KWI" secondAttribute="centerX" id="JgB-Ez-yCZ"/>
-                                    <constraint firstAttribute="height" constant="150" id="Qz0-ax-FYj"/>
+                                    <constraint firstAttribute="height" constant="100" id="Qz0-ax-FYj"/>
                                     <constraint firstItem="D8W-JJ-Aaz" firstAttribute="centerY" secondItem="Yfj-L4-KWI" secondAttribute="centerY" id="Tsd-cz-XmT"/>
-                                    <constraint firstAttribute="width" constant="150" id="nRs-HD-9UV"/>
+                                    <constraint firstAttribute="width" constant="100" id="nRs-HD-9UV"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
