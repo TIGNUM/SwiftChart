@@ -39,6 +39,9 @@ final class DailyBriefInteractor {
                                                userService: UserService.main,
                                                settingService: SettingService.main)
 
+    private var butcketsToMarkAsSeen = [QDMDailyBriefBucket]()
+    private var markAsSeenBuketTimer: Timer?
+
     // MARK: - Init
     init(presenter: DailyBriefPresenterInterface) {
         self.presenter = presenter
@@ -53,6 +56,9 @@ final class DailyBriefInteractor {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didGetScrollNotificationToBucket(_ :)),
                                                name: .scrollToBucket, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didGetScrollNotificationToBucket(_ :)),
+                                               name: .userLogin, object: nil)
 
         getDailyBriefBucketsForViewModel()
     }
@@ -73,8 +79,13 @@ private extension DailyBriefInteractor {
         if let bucketList = bucketList,
             bucketList.count > indexPath.row {
             if let bucket = bucketList[indexPath.row].domainModel {
-                DailyBriefService.main.markAsSeenBuckets([bucket])
+                butcketsToMarkAsSeen.append(bucket)
             }
+            markAsSeenBuketTimer?.invalidate()
+            markAsSeenBuketTimer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false, block: { (_) in
+                DailyBriefService.main.markAsSeenBuckets(self.butcketsToMarkAsSeen)
+                self.butcketsToMarkAsSeen.removeAll()
+            })
         }
     }
 
@@ -121,6 +132,11 @@ extension DailyBriefInteractor {
         }
 
         scrollToBucket(bucketName)
+    }
+
+    @objc func didLogout(_ notification: Notification) {
+        markAsSeenBuketTimer?.invalidate()
+        markAsSeenBuketTimer = nil
     }
 }
 
@@ -282,7 +298,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .MINDSET_SHIFTER?:
                     sectionDataList.append(ArraySection(model: .mindsetShifter,
                                                         elements: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket)))
-                    
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
