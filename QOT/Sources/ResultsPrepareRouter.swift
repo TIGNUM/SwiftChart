@@ -21,6 +21,10 @@ final class ResultsPrepareRouter {
 
 // MARK: - ResultsPrepareRouterInterface
 extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
+    func presentEditBenefits(benefits: String?) {
+        
+    }
+
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }

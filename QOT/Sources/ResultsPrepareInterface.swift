@@ -27,4 +27,5 @@ protocol ResultsPrepareInteractorInterface: Interactor {
 protocol ResultsPrepareRouterInterface {
     func dismiss()
     func presentContent(_ contentId: Int)
+    func presentEditBenefits(benefits: String?)
 }
