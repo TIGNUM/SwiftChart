@@ -156,4 +156,21 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             return cell
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectRow(at: indexPath)
+        guard let section = sections[indexPath.section] else { return }
+
+        switch section {
+        case .strategies(let strategies):
+            if let contentId = strategies.at(index: indexPath.row)?.remoteID {
+                router.presentContent(contentId)
+            }
+        default: return
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        didDeselectRow(at: indexPath)
+    }
 }

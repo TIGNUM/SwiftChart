@@ -24,4 +24,8 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
+
+    func presentContent(_ contentId: Int) {
+        AppDelegate.current.launchHandler.showContentCollection(contentId)
+    }
 }
