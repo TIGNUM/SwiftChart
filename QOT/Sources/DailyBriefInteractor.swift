@@ -599,9 +599,9 @@ extension DailyBriefInteractor {
             return mindsetList
         }
         let date = Date(timeIntervalSince1970: 0)
-        let mindsetShifter = shifters.sorted(by: {$0.createdAt ?? date > $1.createdAt ?? date }).first
+        let mindsetShifter = shifters.sorted(by: {$0.createdAt ?? $0.createdOnDevice ?? date > $1.createdAt ?? $1.createdOnDevice ?? date }).first
         guard let createdDate = mindsetShifter?.createdAt ?? mindsetShifter?.createdOnDevice,
-            createdDate.dateAfterYears(1).isFuture() else {
+            createdDate.dateAfterDays(1).isFuture() else {
                 return mindsetList
         }
         let model = MindsetShifterViewModel(title: AppTextService.get(.daily_brief_section_mindset_shifter_title),
