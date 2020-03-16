@@ -148,10 +148,15 @@ private extension DailyCheckinQuestionsViewController {
         guard let vc = pageController?.viewControllers?.first as? QuestionnaireViewController else {
             return
         }
+        let currentIndex = indexOf(vc)
+        trackUserEvent(.SELECT, value: currentIndex, valueType: "DailyCheckin.PresentNextQuestion", action: .TAP)
         let answer = vc.currentAnswerIndex()
-
-        trackUserEvent(.NEXT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .TAP)
         didSelect(answer: answer, for: vc.questionID(), from: vc)
+        guard let nextVC = next(from: vc) else {
+            return
+        }
+        let nextIndex = currentIndex + 1
+        self.pageController?.setViewControllers([nextVC], direction: .forward, animated: true, completion: nil)
     }
 }
 
@@ -206,6 +211,12 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
     @objc private func doneAction() {
         NotificationCenter.default.post(name: .didFinishDailyCheckin, object: nil)
         guard isDoneButtonEnabled else { return }
+        if let answeredCount = interactor?.questions.count, answeredCount != 0,
+            answeredCount != interactor?.answeredQuestionCount,
+            let vc = pageController?.viewControllers?.first as? QuestionnaireViewController {
+            let answer = vc.currentAnswerIndex()
+            didSelect(answer: answer, for: vc.questionID(), from: vc)
+        }
         trackUserEvent(.CONFIRM, valueType: "DailyCheckin.SaveAnswers", action: .TAP)
         interactor?.saveAnswers()
     }
@@ -236,7 +247,12 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         if index == NSNotFound { return }
         pageIndicator.currentPageIndex = index
         backButton.isHidden = index < 1
-        isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
+        let isLastQuestion = index == ((interactor?.questions.count ?? 0) - 1)
+        if isLastQuestion, let interactor = self.interactor {
+            self.isDoneButtonEnabled = interactor.questions.count == (interactor.answeredQuestionCount + 1)
+        } else {
+            isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
+        }
         refreshBottomNavigationItems()
     }
 
