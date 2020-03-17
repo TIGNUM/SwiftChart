@@ -22,6 +22,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
 
     // MARK: - Properties
     var copyrightURL: String?
+    var descriptionText: String?
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var backgroundView: UIView!
@@ -29,9 +30,10 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
 
     // MARK: - Init
 
-    init(delegate: PopUpCopyrightViewControllerProtocol?, copyrightURL: String?) {
+    init(delegate: PopUpCopyrightViewControllerProtocol?, copyrightURL: String?, description: String?) {
         self.copyrightURL = copyrightURL
         self.delegate = delegate
+        self.descriptionText = description
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -81,7 +83,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
     private func setupView() {
         containerView.backgroundColor = .carbon
         backgroundView.backgroundColor = UIColor.carbon.withAlphaComponent(0.95)
-        descriptionLabel.text = AppTextService.get(.daily_brief_alert_copyright_title) + (copyrightURL ?? "")
+        descriptionLabel.text = (descriptionText ?? "") + (copyrightURL ?? "")
     }
 
     @IBAction func didTapClose(_ sender: Any) {
