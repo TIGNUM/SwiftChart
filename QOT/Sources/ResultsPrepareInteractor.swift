@@ -51,6 +51,10 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         return 1
     }
 
+    func hideEditIcon(title: String) -> Bool {
+        return title != AppTextService.get(.results_prepare_strategies)
+    }
+
     func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         editKey = key
         worker.getDTViewModel(key, preparation: preparation, completion)

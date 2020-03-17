@@ -27,6 +27,7 @@ protocol ResultsPreparePresenterInterface {
 protocol ResultsPrepareInteractorInterface: Interactor {
     var sectionCount: Int { get }
     func rowCount(in section: Int) -> Int
+    func hideEditIcon(title: String) -> Bool
     func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void)
     func updateBenefits(_ benefits: String)
     func updateIntentions(_ answerIds: [Int])

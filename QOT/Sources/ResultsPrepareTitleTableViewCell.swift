@@ -11,8 +11,10 @@ import UIKit
 final class ResultsPrepareTitleTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var editIcon: UIImageView!
 
-    func configure(title: String) {
+    func configure(title: String, hideEditIcon: Bool) {
+        editIcon.isHidden = hideEditIcon
         ThemeText.H03Light.apply(title, to: titleLabel)
     }
 }

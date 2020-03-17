@@ -172,7 +172,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
 
         case .title(let title):
             let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title)
+            cell.configure(title: title, hideEditIcon: interactor.hideEditIcon(title: title))
             return cell
 
         case .strategies(let strategies):
