@@ -21,7 +21,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func saveTargetValue(value: Int?)
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
-    func presentCopyRight(copyrightURL: String?)
+    func presentPopUp(copyrightURL: String?, description: String?)
     func reloadSprintCell(cell: UITableViewCell)
     func didUpdateLevel5()
     func displayCoachPreparationScreen()
@@ -776,8 +776,8 @@ extension DailyBriefViewController {
         router.showMyDataScreen()
     }
 
-    func presentCopyRight(copyrightURL: String?) {
-        router.presentCopyRight(copyrightURL: copyrightURL)
+    func presentPopUp(copyrightURL: String?, description: String?) {
+        router.presentPopUp(copyrightURL: copyrightURL, description: description)
     }
 
     func openTools(toolID: Int?) {

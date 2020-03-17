@@ -195,7 +195,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     }
 
     @IBAction func sleepQuantityTapped(_ sender: Any) {
-        print("HI")
+        delegate?.presentPopUp(copyrightURL: nil, description: "hello lalalsa")
     }
     
     @IBAction func targetReference(_ sender: Any) {

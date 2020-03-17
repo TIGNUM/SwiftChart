@@ -32,9 +32,10 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func presentCopyRight(copyrightURL: String?) {
+    func presentPopUp(copyrightURL: String?, description: String?) {
         let popUpController = PopUpCopyrightViewController(delegate: dailyBriefViewController,
-                                                           copyrightURL: copyrightURL)
+                                                           copyrightURL: copyrightURL,
+                                                           description: description)
         popUpController.modalPresentationStyle = .overCurrentContext
         viewController?.present(popUpController, animated: true)
     }

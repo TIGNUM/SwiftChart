@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import qot_dal
 
 final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     // MARK: Properties
@@ -90,7 +91,8 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     // MARK: Actions
     @IBAction func didTapCopyright(_ sender: Any) {
         guard let urlString = departureBespokeFeastModel?.copyrights.at(index: visibleIndexPath.item) else { return }
-        delegate?.presentCopyRight(copyrightURL: urlString)
+         let copyrightDescription = AppTextService.get(.daily_brief_alert_copyright_title)
+        delegate?.presentPopUp(copyrightURL: urlString, description: copyrightDescription )
     }
 }
 
@@ -110,7 +112,8 @@ extension DepartureBespokeFeastCell: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let urlString = departureBespokeFeastModel?.copyrights.at(index: indexPath.item) else { return }
-        delegate?.presentCopyRight(copyrightURL: urlString)
+        let copyrightDescription = AppTextService.get(.daily_brief_alert_copyright_title)
+        delegate?.presentPopUp(copyrightURL: urlString, description: copyrightDescription)
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
