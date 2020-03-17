@@ -319,7 +319,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.tableView:
             let key = searchResults[indexPath.row].contentID
             trackUserEvent(.SELECT, value: key, valueType: .CONTENT, action: .TAP)
-            if let appLink = searchResults[indexPath.row].appLink {
+            if searchResults[indexPath.row].displayType == QOT.Search.DisplayType.audio {
+                let audioItem = searchResults[indexPath.row]
+                let media = MediaPlayerModel(title: audioItem.title,
+                                             subtitle: "",
+                                             url: audioItem.mediaURL,
+                                             totalDuration: 0,
+                                             progress: 0,
+                                             currentTime: 0,
+                                             mediaRemoteId: audioItem.contentItemID ?? 0)
+                NotificationCenter.default.post(name: .playPauseAudio, object: media)
+                tableView.deselectRow(at: indexPath, animated: true)
+            } else if let appLink = searchResults[indexPath.row].appLink {
                 appLink.launch()
             } else {
                 handleSelection(for: indexPath)
