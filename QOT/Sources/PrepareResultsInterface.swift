@@ -37,10 +37,12 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func updateStrategies(selectedIds: [Int])
     func updateIntentions(_ answersIds: [Int])
     func updateBenefits(_ benefits: String)
+
     func didClickSaveAndContinue()
     func didTapDismissView()
     func deletePreparation()
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
+
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
     func checkSyncedCalendars()
 }
