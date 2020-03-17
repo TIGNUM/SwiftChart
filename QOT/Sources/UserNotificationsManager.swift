@@ -42,11 +42,11 @@ final class UserNotificationsManager {
 
     func getDailyCheckInLocalNotificationConfigruations(_ completion: @escaping ([DailyCheckInLocalNotificationConfig]) -> Void) {
         SettingService.main.getSettingFor(key: .DailyCheckInLocalNotifidationConfiguration) { (setting, _, _) in
-            var configs: [DailyCheckInLocalNotificationConfig] = Array(1...7).compactMap({ /// create default config
+            var configs: [DailyCheckInLocalNotificationConfig] = Array(1...7).compactMap({ // create default config
                 DailyCheckInLocalNotificationConfig(weekday: $0)
             })
             if let json = setting?.textValue, let jsonData = json.data(using: .utf8) {
-                do { /// update config from setting
+                do { // update config from setting
                     configs = try JSONDecoder().decode([DailyCheckInLocalNotificationConfig].self, from: jsonData)
                 } catch {
                     log("failed to get Daily check in local notification configuration", level: .error)
