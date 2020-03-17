@@ -16,6 +16,7 @@ final class ResultsPrepareInteractor {
     private let presenter: ResultsPreparePresenterInterface!
     private var preparation: QDMUserPreparation?
     private let resultType: ResultType
+    private var editKey = Prepare.Key.benefits
 
     // MARK: - Init
     init(presenter: ResultsPreparePresenterInterface, _ preparation: QDMUserPreparation?, resultType: ResultType) {
@@ -50,12 +51,37 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         return 1
     }
 
-    func getDTBenefitsViewModel(_ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
-        worker.getDTViewModel(Prepare.Key.benefits, preparation: preparation, completion)
+    func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
+        editKey = key
+        worker.getDTViewModel(key, preparation: preparation, completion)
     }
 
     func updateBenefits(_ benefits: String) {
         preparation?.benefits = benefits
         presenter.createListItems(preparation: preparation)
+    }
+
+    func updateIntentions(_ answerIds: [Int]) {
+        switch editKey {
+        case .feel:
+            preparation?.feelAnswerIds = answerIds
+            worker.getAnswers(answerIds: answerIds, key: editKey) { [weak self] (answers) in
+                self?.preparation?.feelAnswers = answers
+                self?.presenter.createListItems(preparation: self?.preparation)
+            }
+        case .know:
+            preparation?.knowAnswerIds = answerIds
+            worker.getAnswers(answerIds: answerIds, key: editKey) { [weak self] (answers) in
+                self?.preparation?.knowAnswers = answers
+                self?.presenter.createListItems(preparation: self?.preparation)
+            }
+        case .perceived:
+            preparation?.preceiveAnswerIds = answerIds
+            worker.getAnswers(answerIds: answerIds, key: editKey) { [weak self] (answers) in
+                self?.preparation?.preceiveAnswers = answers
+                self?.presenter.createListItems(preparation: self?.preparation)
+            }
+        default: break
+        }
     }
 }

@@ -68,6 +68,13 @@ private extension ResultsPrepareViewController {
                        thirdItem: answers.at(index: 2)?.subtitle)
         return cell
     }
+
+    func presentEditView(key: Prepare.Key) {
+        interactor.getDTViewModel(key: key) { [weak self] (viewModel, question) in
+            self?.removeBottomNavigation()
+            self?.router.presentDTEditView(viewModel, question: question)
+        }
+    }
 }
 
 // MARK: - Actions
@@ -87,6 +94,8 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
     }
 
     func didUpdateIntentions(_ answerIds: [Int]) {
+        refreshBottomNavigationItems()
+        interactor.updateIntentions(answerIds)
     }
 
     func didUpdateBenefits(_ benefits: String) {
@@ -179,11 +188,10 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         guard let section = sections[indexPath.section] else { return }
 
         switch section {
-        case .benefits:
-            interactor.getDTBenefitsViewModel { [weak self] (viewModel, question) in
-                self?.removeBottomNavigation()
-                self?.router.presentDTEditView(viewModel, question: question)
-            }
+        case .benefits: presentEditView(key: .benefits)
+        case .feel: presentEditView(key: .feel)
+        case .know: presentEditView(key: .know)
+        case .perceived: presentEditView(key: .perceived)
 
         case .strategies(let strategies):
             if let contentId = strategies.at(index: indexPath.row)?.remoteID {

@@ -27,8 +27,9 @@ protocol ResultsPreparePresenterInterface {
 protocol ResultsPrepareInteractorInterface: Interactor {
     var sectionCount: Int { get }
     func rowCount(in section: Int) -> Int
-    func getDTBenefitsViewModel(_ completion: @escaping (DTViewModel, QDMQuestion?) -> Void)
+    func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void)
     func updateBenefits(_ benefits: String)
+    func updateIntentions(_ answerIds: [Int])
 }
 
 protocol ResultsPrepareRouterInterface {

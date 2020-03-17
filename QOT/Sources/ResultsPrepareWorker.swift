@@ -50,3 +50,12 @@ extension ResultsPrepareWorker {
         }
     }
 }
+
+// MARK: - QDMQuestion
+extension ResultsPrepareWorker {
+    func getAnswers(answerIds: [Int], key: Prepare.Key, _ completion: @escaping ([QDMAnswer]) -> Void) {
+        QuestionService.main.questions(with: key.rawValue) { (questions) in
+            completion(questions?.first?.answers.filter { answerIds.contains($0.remoteID ?? 0) } ?? [])
+        }
+    }
+}
