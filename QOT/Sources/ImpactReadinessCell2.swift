@@ -17,6 +17,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var sleepQuantityTitleLabel: UILabel!
     @IBOutlet weak var sleepQuantitySubtitleLabel: UILabel!
     @IBOutlet weak var sleepQuantityLabel: UILabel!
+    @IBOutlet weak var sleepQuantityButton: UIButton!
     @IBOutlet weak var sleepQuantityTarget: UIButton!
     ////  sleepquality
     @IBOutlet weak var sleepQualityTitle: UILabel!
@@ -128,9 +129,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                         AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h),
                                                         ThemeText.quotationSmall)
 
-        let sleepQuantityTap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
-        sleepQuantityLabel.isUserInteractionEnabled = true
-        sleepQuantityLabel.addGestureRecognizer(sleepQuantityTap)
+
 
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         targetLabel.text = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_target)
@@ -195,6 +194,10 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         moreData.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_my_data), for: .normal)
     }
 
+    @IBAction func sleepQuantityTapped(_ sender: Any) {
+        print("HI")
+    }
+    
     @IBAction func targetReference(_ sender: Any) {
             delegate?.showCustomizeTarget()
     }
@@ -224,8 +227,4 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         combine.addAttributes([.paragraphStyle: style], range: NSRange(location: 0, length: combine.length))
         return combine
     }
-
-    @objc func labelTapped(_ sender: UITapGestureRecognizer) {
-        print("labelTapped")
-        }
 }
