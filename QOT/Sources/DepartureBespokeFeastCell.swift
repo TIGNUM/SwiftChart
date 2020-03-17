@@ -91,7 +91,7 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     // MARK: Actions
     @IBAction func didTapCopyright(_ sender: Any) {
         guard let urlString = departureBespokeFeastModel?.copyrights.at(index: visibleIndexPath.item) else { return }
-         let copyrightDescription = AppTextService.get(.daily_brief_alert_copyright_title)
+        let copyrightDescription = AppTextService.get(.daily_brief_alert_copyright_title)
         delegate?.presentPopUp(copyrightURL: urlString, description: copyrightDescription )
     }
 }
