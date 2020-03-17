@@ -34,6 +34,10 @@ final class ResultsPrepareInteractor {
 
 // MARK: - ResultsPrepareInteractorInterface
 extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
+    func checkSyncedCalendars() {
+        
+    }
+    
     var sectionCount: Int {
         guard let level = preparation?.type else { return 0 }
         return ResultsPrepare.sectionCount(level: level)

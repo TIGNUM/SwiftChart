@@ -22,6 +22,22 @@ final class ResultsPrepareRouter {
 
 // MARK: - ResultsPrepareRouterInterface
 extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
+    func presentPlans() {
+
+    }
+
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
+
+    }
+
+    func presentCalendarSettings(delegate: SyncedCalendarsDelegate) {
+
+    }
+
+    func presentCalendarEventSelection() {
+
+    }
+
     func presentDTEditView(_ viewModel: DTViewModel, question: QDMQuestion?) {
         let configurator = DTPrepareConfigurator.make(viewModel: viewModel, question: question)
         let controller = DTPrepareViewController(configure: configurator)

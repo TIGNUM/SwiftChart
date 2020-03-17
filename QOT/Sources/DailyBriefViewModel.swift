@@ -37,5 +37,6 @@ struct DailyBriefViewModel {
         case myPeakPerformance
         case solveReflection
         case weather
+        case mindsetShifter
     }
 }
