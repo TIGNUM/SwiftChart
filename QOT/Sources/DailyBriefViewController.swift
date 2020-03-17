@@ -14,7 +14,6 @@ import SafariServices
 protocol DailyBriefViewControllerDelegate: class {
     func openTools(toolID: Int?)
     func presentStrategyList(strategyID: Int?)
-    func didPressGotItSprint(sprint: QDMSprint)
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
     func showCustomizeTarget()
@@ -157,6 +156,8 @@ extension DailyBriefViewController {
                 return getFromTignumMessageCell(tableView, indexPath, nil)
             case 14:
                 return getWeatherCell(tableView, indexPath, nil)
+            case 15:
+                return getMindsetShifterCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -240,6 +241,8 @@ extension DailyBriefViewController {
             return getGuidedTrack(tableView, indexPath, showDivider, bucketItem as? GuidedTrackViewModel)
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
+        case .MINDSET_SHIFTER?:
+            return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
         default:
            return UITableViewCell()
         }
@@ -274,7 +277,16 @@ extension DailyBriefViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         navBarHeader?.updateAlpha(basedOn: scrollView.contentOffset.y)
         delegate?.handlePan(offsetY: scrollView.contentOffset.y,
-                            isDragging: scrollView.isDragging && !scrollView.isDecelerating)
+                            isDragging: scrollView.isDragging && !scrollView.isDecelerating,
+                            isScrolling: scrollView.isDragging || scrollView.isDecelerating)
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidScroll(scrollView)
     }
 }
 
@@ -414,6 +426,19 @@ private extension DailyBriefViewController {
                         _ aboutMeViewModel: AboutMeViewModel?) -> UITableViewCell {
         let cell: AboutMeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: aboutMeViewModel)
+        return cell
+    }
+
+    /**
+     * Method name: getMindsetShifterCell.
+     * Description: Placeholder to display the Mindset Shifter Information.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getMindsetShifterCell(_ tableView: UITableView,
+                        _ indexPath: IndexPath,
+                        _ mindsetShifterViewModel: MindsetShifterViewModel?) -> UITableViewCell {
+        let cell: MindsetShifterCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: mindsetShifterViewModel)
         return cell
     }
 
@@ -686,6 +711,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
+        tableView.registerDequeueable(MindsetShifterCell.self)
     }
 
     func scrollToSection(at: Int) {
@@ -710,10 +736,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func reloadSprintCell(cell: UITableViewCell) {
         tableView.beginUpdates()
         tableView.endUpdates()
-    }
-
-    func didPressGotItSprint(sprint: QDMSprint) {
-        interactor.didPressGotItSprint(sprint: sprint)
     }
 
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) {

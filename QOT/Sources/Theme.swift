@@ -61,7 +61,9 @@ enum ThemeView {
     case audioPlaying
     case exploreButton
     case selectedButton
-    case tbvLowPerformance
+    case tbvLowPerformance(ThemeColorMode?)
+    case barViews(ThemeColorMode?)
+    case tbvHighPerformance(ThemeColorMode?)
     case myDataHeatMapLegendHigh
     case myDataHeatMapLegendLow
     case paymentReminder
@@ -135,8 +137,12 @@ enum ThemeView {
         // MARK: - .sand40
         case .syncedCalendarSeparator, .dailyInsightsChartBarUnselected:
             return Palette.sand40
-        case .tbvLowPerformance:
-            return Palette.carbon70
+        case .tbvLowPerformance(let mode):
+            return Palette.light(Palette.carbon70, or: Palette.carbon, forcedColorMode: mode)
+        case .barViews(let mode):
+            return Palette.light(Palette.carbon, or: Palette.sand70, forcedColorMode: mode)
+        case .tbvHighPerformance(let mode):
+            return Palette.light(Palette.white40, or: Palette.carbon90, forcedColorMode: mode)
         case .myDataHeatMapLegendHigh:
             return Palette.heatMapBrightRed
         case .myDataHeatMapLegendLow:
@@ -776,8 +782,10 @@ enum ThemeText {
 
     case resultDate
     case resultTitle
+    case resultTitleTheme(ThemeColorMode?)
     case resultHeader1
     case resultHeader2
+    case resultHeaderTheme2(ThemeColorMode?)
     case resultList
     case resultListHeader
     case resultFollowUp
@@ -927,7 +935,7 @@ enum ThemeText {
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeaderTitle,
-             .resultTitle, .resultHeader2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
+             .resultTitle, .resultTitleTheme, .resultHeader2,.resultHeaderTheme2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
              .myLibraryItemsItemName, .mySprintsCellTitle, .mySprintDetailsDescription,
@@ -1062,6 +1070,10 @@ enum ThemeText {
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle, .dailyQuestion, .audioFullScreenTitle:
             return Palette.carbon
+        case .resultTitleTheme(let mode):
+            return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
+        case .resultHeaderTheme2(let mode):
+            return Palette.light(Palette.carbon, or: Palette.sand70, forcedColorMode: mode)
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
             return Palette.carbon70
@@ -1192,7 +1204,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
         case .bucketTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
-             .resultTitle, .resultListHeader, .resultHeader1, .resultHeader2, .resultList, .coachHeaderSubtitle, .coachSubtitle, .dailyInsightsTbvAdvice,
+             .resultTitle, .resultTitleTheme, .resultListHeader, .resultHeader1, .resultHeader2, .resultHeaderTheme2, .resultList, .coachHeaderSubtitle, .coachSubtitle, .dailyInsightsTbvAdvice,
              .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .accountDetailAge, .tbvCustomizeBody, .shpiQuestion, .shpiContent, .strategyTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1637,6 +1649,10 @@ private struct Palette {
     static var carbon70: UIColor {
         return UIColor.carbon.withAlphaComponent(0.7)
     }
+
+    static var carbon90: UIColor {
+          return UIColor.carbon.withAlphaComponent(0.9)
+      }
 
     static var redOrange: UIColor {
         return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 1)

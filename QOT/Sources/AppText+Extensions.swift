@@ -336,7 +336,6 @@ public extension AppTextKey {
     static let daily_brief_section_solve_reflection_bullet_3 = AppTextKey("daily_brief.section_solve_reflection.bullet_3")
     static let daily_brief_section_solve_reflection_button_check_it = AppTextKey("daily_brief.section_solve_reflection.button_check_it")
     static let daily_brief_section_solve_reflection_title = AppTextKey("daily_brief.section_solve_reflection.title")
-    static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
     static let daily_brief_section_sprint_challenge_button_show_more = AppTextKey("daily_brief.section_sprint_challenge.button_show_more")
     static let daily_brief_section_sprint_challenge_title = AppTextKey("daily_brief.section_sprint_challenge.title")
     static let daily_brief_section_visual_delights_title = AppTextKey("daily_brief.section_visual_delights.title")
@@ -356,6 +355,8 @@ public extension AppTextKey {
     static let daily_brief = AppTextKey("daily_brief")
     static let daily_brief_customize_sleep_amount = AppTextKey("daily_brief.customize_sleep_amount")
     static let daily_brief_daily_check_in_questionnaire = AppTextKey("daily_brief.daily_check_in.questionnaire")
+    static let daily_brief_section_mindset_shifter_subtitle = AppTextKey("daily_brief.section_mindset_shifter.subtitle")
+    static let daily_brief_section_mindset_shifter_title = AppTextKey("daily_brief.section_mindset_shifter.title")
 
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
@@ -785,8 +786,6 @@ public extension AppTextKey {
     static let my_qot_my_sprints_null_state_button_add_sprint = AppTextKey("my_qot.my_sprints.null_state.button_add_sprint")
     static let generic_alert_no_email_body = AppTextKey("generic.alert.no_email.body")
     static let onboarding_guided_track_section_footer_button_get_started = AppTextKey("onboarding.guided_track.section_footer.button_get_started")
-    static let daily_brief_sprint_challenge_alert_title = AppTextKey("daily_brief.sprint_challenge.alert_title")
-    static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
     static let onboarding_register_intro_video_section_header_title = AppTextKey("onboarding.register_intro.video_section_header.title")
     static let onboarding_register_intro_video_section_body = AppTextKey("onboarding.register_intro.video_section.body")
     static let onboarding_register_intro_note_section_title = AppTextKey("onboarding.register_intro.note_section.title")
@@ -885,4 +884,11 @@ public extension AppTextKey {
     static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
     static let onboarding_sign_up_age_verification_section_body_placeholder_title = AppTextKey("onboarding.sign_up.age_verification.section_body.placeholder_title")
     static let my_qot_my_profile_account_settings_edit_title_date_of_birth = AppTextKey("my_qot.my_profile.account_settings.edit.title_date_of_birth")
+}
+
+@available(*, unavailable, message: "Unavailable from QOT v3.1.5")
+public extension AppTextKey {
+    static let daily_brief_sprint_challenge_alert_title = AppTextKey("daily_brief.sprint_challenge.alert_title")
+    static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
+    static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
 }
