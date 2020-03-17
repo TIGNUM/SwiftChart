@@ -866,7 +866,6 @@ public extension AppTextKey {
     static let generic_event_date_format_prefix_tomorrow_at = AppTextKey("generic_event_date.format_prefix.tomorrow_at")
     static let generic_event_date_format_prefix_at = AppTextKey("generic_event_date.format_prefix.at")
 
-    static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
 
     static let addNewEvent = AppTextKey("results_prepare.right_bar_item.add_new_event")
@@ -891,4 +890,5 @@ public extension AppTextKey {
     static let daily_brief_sprint_challenge_alert_title = AppTextKey("daily_brief.sprint_challenge.alert_title")
     static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
     static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
+    static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
 }
