@@ -17,7 +17,7 @@ protocol PopUpCopyrightViewControllerProtocol: class {
 final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverlay {
 
     struct Config {
-        var description: String
+        let description: String
     }
 
     // MARK: - Properties
