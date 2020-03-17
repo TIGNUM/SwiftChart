@@ -23,6 +23,7 @@ struct ResultsPrepare {
         case know(title: String, knowAnswers: [QDMAnswer])
         case feel(title: String, feelAnswers: [QDMAnswer])
         case benefits(title: String, subtitle: String, benefits: String)
+        case strategyTitle(title: String)
         case strategies(strategies: [QDMContentCollection])
     }
 

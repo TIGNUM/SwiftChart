@@ -36,4 +36,11 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
     func presentContent(_ contentId: Int) {
         AppDelegate.current.launchHandler.showContentCollection(contentId)
     }
+
+    func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int]) {
+        let configurator = ChoiceConfigurator.make(selectedIDs, relatedStrategyId)
+        let controller = ChoiceViewController(configure: configurator)
+        controller.delegate = viewController
+        viewController?.present(controller, animated: true)
+    }
 }

@@ -70,7 +70,7 @@ private extension ResultsPreparePresenter {
     }
 
     func getStrategyTitleItem() -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.title(title: AppTextService.get(.results_prepare_strategies))
+        return ResultsPrepare.Sections.strategyTitle(title: AppTextService.get(.results_prepare_strategies))
     }
 
     func getStrategiesItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {

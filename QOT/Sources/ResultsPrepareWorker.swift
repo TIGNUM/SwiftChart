@@ -21,7 +21,7 @@ extension ResultsPrepareWorker {
     func getDTViewModel(_ key: Prepare.Key,
                         preparation: QDMUserPreparation?,
                         _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
-        let selectedIds: [Int] = getSelectedIds(key: key, preparation: preparation)
+        let selectedIds: [Int] = getSelectedIntentionIds(key: key, preparation: preparation)
         QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
             guard let qdmQuestion = qdmQuestion else { return }
             let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
@@ -41,7 +41,7 @@ extension ResultsPrepareWorker {
         }
     }
 
-    func getSelectedIds(key: Prepare.Key, preparation: QDMUserPreparation?) -> [Int] {
+    func getSelectedIntentionIds(key: Prepare.Key, preparation: QDMUserPreparation?) -> [Int] {
         switch key {
         case .feel: return preparation?.feelAnswerIds ?? []
         case .know: return preparation?.knowAnswerIds ?? []
@@ -57,5 +57,9 @@ extension ResultsPrepareWorker {
         QuestionService.main.questions(with: key.rawValue) { (questions) in
             completion(questions?.first?.answers.filter { answerIds.contains($0.remoteID ?? 0) } ?? [])
         }
+    }
+
+    func getStrategies(_ collectionIds: [Int], _ completion: @escaping ([QDMContentCollection]?) -> Void) {
+        ContentService.main.getContentCollectionsByIds(collectionIds, completion)
     }
 }

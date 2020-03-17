@@ -84,12 +84,6 @@ private extension ResultsPrepareViewController {
 
 // MARK: - ResultsPrepareViewControllerInterface
 extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
-    func openEditStrategyView() {
-    }
-
-    func reloadData() {
-    }
-
     func setupBarButtonItems(resultType: ResultType) {
     }
 
@@ -170,7 +164,8 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
              .perceived(let title, let answers):
             return getQuestionCell(title: title, answers: answers, indexPath: indexPath)
 
-        case .title(let title):
+        case .title(let title),
+             .strategyTitle(let title):
             let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, hideEditIcon: interactor.hideEditIcon(title: title))
             return cell
@@ -192,7 +187,9 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         case .feel: presentEditView(key: .feel)
         case .know: presentEditView(key: .know)
         case .perceived: presentEditView(key: .perceived)
-
+        case .strategyTitle:
+            let ids = interactor.getStrategyIds()
+            router.presentEditStrategyView(ids.relatedId, ids.selectedIds)
         case .strategies(let strategies):
             if let contentId = strategies.at(index: indexPath.row)?.remoteID {
                 router.presentContent(contentId)
@@ -203,5 +200,19 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         didDeselectRow(at: indexPath)
+    }
+}
+
+// MARK: - ChoiceViewControllerDelegate
+extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
+    func dismiss(_ viewController: UIViewController, selections: [Choice]) {
+        let selectedIds = selections.compactMap { $0.contentId }
+        viewController.dismiss(animated: true) { [weak self] in
+            self?.interactor.updateStrategies(selectedIds)
+        }
+    }
+
+    func didTapRow(_ viewController: UIViewController, contentId: Int) {
+        router.presentContent(contentId)
     }
 }

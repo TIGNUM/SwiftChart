@@ -60,6 +60,10 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         worker.getDTViewModel(key, preparation: preparation, completion)
     }
 
+    func getStrategyIds() -> (relatedId: Int, selectedIds: [Int]) {
+        return (relatedId: preparation?.relatedStrategyId ?? 0, selectedIds: preparation?.strategyIds ?? [])
+    }
+
     func updateBenefits(_ benefits: String) {
         preparation?.benefits = benefits
         presenter.createListItems(preparation: preparation)
@@ -86,6 +90,14 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
                 self?.presenter.createListItems(preparation: self?.preparation)
             }
         default: break
+        }
+    }
+
+    func updateStrategies(_ selectedIds: [Int]) {
+        preparation?.strategyIds = selectedIds
+        worker.getStrategies(selectedIds) { [weak self] (strategies) in
+            self?.preparation?.strategies = strategies ?? []
+            self?.presenter.createListItems(preparation: self?.preparation)
         }
     }
 }
