@@ -128,6 +128,7 @@ extension AudioPlayerBar {
                                       remoteID: media.mediaRemoteId)
             audioPlayer.play()
             trackUserEvent(.PLAY)
+            NotificationCenter.default.post(name: .showAudioFullScreen, object: media)
         }
     }
 
