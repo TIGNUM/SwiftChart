@@ -14,25 +14,21 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var howYouFeelToday: UILabel!
     @IBOutlet weak var asterixText: UILabel!
 //// sleepQuantity
-    @IBOutlet weak var sleepQuantityTitleLabel: UILabel!
     @IBOutlet weak var sleepQuantitySubtitleLabel: UILabel!
     @IBOutlet weak var sleepQuantityLabel: UILabel!
     @IBOutlet weak var sleepQuantityButton: UIButton!
     @IBOutlet weak var sleepQuantityTarget: UIButton!
     ////  sleepquality
-    @IBOutlet weak var sleepQualityTitle: UILabel!
     @IBOutlet weak var sleepQualitySubtitle: UILabel!
     @IBOutlet weak var sleepQualityLabel: UILabel!
     @IBOutlet weak var sleepQualityReferenceLabel: UILabel!
     @IBOutlet weak var sleepQualityButton: UIButton!
     ////  load
-    @IBOutlet weak var loadTitleLabel: UILabel!
     @IBOutlet weak var loadSubtitleLabel: UILabel!
     @IBOutlet weak var loadLabel: UILabel!
     @IBOutlet weak var loadReferenceLabel: UILabel!
     @IBOutlet weak var loadButton: UIButton!
     ////  futureload
-    @IBOutlet weak var futureLoadTitleLabel: UILabel!
     @IBOutlet weak var futureLoadSubtitleLabel: UILabel!
     @IBOutlet weak var futureLoadLabel: UILabel!
     @IBOutlet weak var futureLoadReferenceLabel: UILabel!
@@ -69,19 +65,19 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         rollingDataLabel.isHidden = hidden
         howYouFeelToday.isHidden = hidden
         asterixText.isHidden = hidden
-        sleepQuantityTitleLabel.isHidden = hidden
+        sleepQuantityButton.isHidden = hidden
         sleepQuantitySubtitleLabel.isHidden = hidden
         sleepQuantityLabel.isHidden = hidden
         sleepQuantityTarget.isHidden = hidden
-        sleepQualityTitle.isHidden = hidden
+        sleepQualityButton.isHidden = hidden
         sleepQualitySubtitle.isHidden = hidden
         sleepQualityLabel.isHidden = hidden
         sleepQualityReferenceLabel.isHidden = hidden
-        loadTitleLabel.isHidden = hidden
+        loadButton.isHidden = hidden
         loadSubtitleLabel.isHidden = hidden
         loadLabel.isHidden = hidden
         loadReferenceLabel.isHidden = hidden
-        futureLoadTitleLabel.isHidden = hidden
+        futureLoadButton.isHidden = hidden
         futureLoadSubtitleLabel.isHidden = hidden
         futureLoadLabel.isHidden = hidden
         futureLoadReferenceLabel.isHidden = hidden
@@ -124,7 +120,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Sleep Quantity
         let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
         let quantitySubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_subtitle)
-//        ThemeText.bucketTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
         sleepQuantityButton.setTitle(quantityTitle, for: .normal)
         ThemeText.durationString.apply(quantitySubtitle, to: sleepQuantitySubtitleLabel)
 
@@ -133,8 +128,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                         AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h),
                                                         ThemeText.quotationSmall)
 
-
-
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         targetLabel.text = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_target)
         sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
@@ -142,7 +135,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Sleep Quality
         let qualityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_title)
         let qualitySubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_subtitle)
-//        ThemeText.bucketTitle.apply(qualityTitle, to: sleepQualityTitle)
         sleepQualityButton.setTitle(qualityTitle, for: .normal)
         ThemeText.durationString.apply(qualitySubtitle, to: sleepQualitySubtitle)
 
@@ -160,7 +152,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Load
         let loadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_title)
         let loadSubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_subtitle)
-//        ThemeText.bucketTitle.apply(loadTitle, to: loadTitleLabel)
         loadButton.setTitle(loadTitle, for: .normal)
         ThemeText.durationString.apply(loadSubtitle, to: loadSubtitleLabel)
 
@@ -177,7 +168,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Future Load
         let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_title)
         let futureLoadSubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_subtitle)
-//        ThemeText.bucketTitle.apply(futureLoadTitle, to: futureLoadTitleLabel)
         futureLoadButton.setTitle(futureLoadTitle, for: .normal)
         ThemeText.durationString.apply(futureLoadSubtitle, to: futureLoadSubtitleLabel)
 
@@ -224,7 +214,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBAction func targetReference(_ sender: Any) {
             delegate?.showCustomizeTarget()
     }
-    
+
     @IBAction func presentMyData(_ sender: Any) {
             delegate?.presentMyDataScreen()
     }

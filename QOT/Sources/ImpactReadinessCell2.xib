@@ -94,20 +94,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="231" height="64.666666666666671"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypq-XO-6MU">
-                                                <rect key="frame" x="0.0" y="0.0" width="231" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="231" height="44.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                 <state key="normal" title="button"/>
                                                 <connections>
                                                     <action selector="sleepQuantityTapped:" destination="j0e-ng-78g" eventType="touchUpInside" id="Q69-ec-j5n"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLEEP QUANTITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nn-gt-HYO">
-                                                <rect key="frame" x="0.0" y="30" width="231" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 5 days total hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FmY-Lw-ihX">
-                                                <rect key="frame" x="0.0" y="50.333333333333343" width="231" height="14.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="44.666666666666686" width="231" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -165,21 +160,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="231" height="64.666666666666671"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prj-E5-bhL">
-                                                <rect key="frame" x="0.0" y="0.0" width="231" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="231" height="44.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
-                                                    <action selector="sleepQualityButton:" destination="j0e-ng-78g" eventType="touchUpInside" id="6uC-O7-a0t"/>
                                                     <action selector="sleepQualityTapped:" destination="j0e-ng-78g" eventType="touchUpInside" id="iSN-Iv-UUt"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLEEP QUALITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpz-33-Gj7">
-                                                <rect key="frame" x="0.0" y="30" width="231" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next 5 days average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="L3o-bN-0qM">
-                                                <rect key="frame" x="0.0" y="50.333333333333314" width="231" height="14.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="44.666666666666629" width="231" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -234,20 +223,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="231" height="64.666666666666671"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSt-qD-ewf">
-                                                <rect key="frame" x="0.0" y="0.0" width="231" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="231" height="45"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="17"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
                                                     <action selector="loadButtonTapped:" destination="j0e-ng-78g" eventType="touchUpInside" id="3me-Pp-XoY"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOAD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GK8-ZS-BA2">
-                                                <rect key="frame" x="0.0" y="30" width="231" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next 5 days average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bsD-GU-oFc">
-                                                <rect key="frame" x="0.0" y="50.333333333333314" width="231" height="14.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="45" width="231" height="19.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -302,20 +286,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="231" height="64.666666666666671"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5g-f8-m9S">
-                                                <rect key="frame" x="0.0" y="0.0" width="231" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="231" height="44.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
                                                     <action selector="futureLoadTapped:" destination="j0e-ng-78g" eventType="touchUpInside" id="Yna-Gp-7Df"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FUTURE LOAD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nK0-Yg-9Ff">
-                                                <rect key="frame" x="0.0" y="30" width="231" height="20.333333333333329"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next 5 days average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="X9c-9s-jX3">
-                                                <rect key="frame" x="0.0" y="50.333333333333371" width="231" height="14.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="44.666666666666742" width="231" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -429,13 +408,11 @@
                 <outlet property="futureLoadLabel" destination="hAs-nk-1tF" id="AyG-Pd-3zd"/>
                 <outlet property="futureLoadReferenceLabel" destination="fnT-YY-q6T" id="Asa-O9-muD"/>
                 <outlet property="futureLoadSubtitleLabel" destination="X9c-9s-jX3" id="M5u-R3-BxO"/>
-                <outlet property="futureLoadTitleLabel" destination="nK0-Yg-9Ff" id="sZs-lN-Isy"/>
                 <outlet property="howYouFeelToday" destination="4qF-wR-EDc" id="ti8-f9-Qis"/>
                 <outlet property="loadButton" destination="dSt-qD-ewf" id="xad-r1-b3T"/>
                 <outlet property="loadLabel" destination="UE3-sq-y2g" id="lGd-QD-s7L"/>
                 <outlet property="loadReferenceLabel" destination="2uj-Yp-X4s" id="uTY-LA-QQF"/>
                 <outlet property="loadSubtitleLabel" destination="bsD-GU-oFc" id="ghw-7A-35N"/>
-                <outlet property="loadTitleLabel" destination="GK8-ZS-BA2" id="SGH-TZ-ecD"/>
                 <outlet property="mainStackView" destination="oE2-5Z-F6x" id="xFu-aO-Xus"/>
                 <outlet property="moreData" destination="7iz-cZ-qYd" id="OBh-AY-RYF"/>
                 <outlet property="refLabel1" destination="7Pd-sS-Feo" id="XaE-hh-rRF"/>
@@ -446,12 +423,10 @@
                 <outlet property="sleepQualityLabel" destination="gpZ-rP-fVA" id="u2r-et-nFo"/>
                 <outlet property="sleepQualityReferenceLabel" destination="ZhC-mg-22S" id="nrF-SD-n01"/>
                 <outlet property="sleepQualitySubtitle" destination="L3o-bN-0qM" id="ulz-O0-kj6"/>
-                <outlet property="sleepQualityTitle" destination="Tpz-33-Gj7" id="Pcq-VX-F6T"/>
                 <outlet property="sleepQuantityButton" destination="ypq-XO-6MU" id="h4n-Sv-kof"/>
                 <outlet property="sleepQuantityLabel" destination="P6T-C4-ajR" id="J3H-GV-F6I"/>
                 <outlet property="sleepQuantitySubtitleLabel" destination="FmY-Lw-ihX" id="6Fc-WF-L82"/>
                 <outlet property="sleepQuantityTarget" destination="aRR-Ip-F4R" id="YHe-HV-hIe"/>
-                <outlet property="sleepQuantityTitleLabel" destination="2nn-gt-HYO" id="83T-xc-Z7K"/>
                 <outlet property="targetLabel" destination="jiN-WT-uaH" id="zwT-Mg-k6L"/>
                 <outlet property="trackedDaysLabel" destination="9wK-nL-2qR" id="ZS3-Oa-srI"/>
             </connections>
