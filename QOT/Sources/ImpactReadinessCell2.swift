@@ -24,17 +24,20 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var sleepQualitySubtitle: UILabel!
     @IBOutlet weak var sleepQualityLabel: UILabel!
     @IBOutlet weak var sleepQualityReferenceLabel: UILabel!
-////  load
+    @IBOutlet weak var sleepQualityButton: UIButton!
+    ////  load
     @IBOutlet weak var loadTitleLabel: UILabel!
     @IBOutlet weak var loadSubtitleLabel: UILabel!
     @IBOutlet weak var loadLabel: UILabel!
     @IBOutlet weak var loadReferenceLabel: UILabel!
-////  futureload
+    @IBOutlet weak var loadButton: UIButton!
+    ////  futureload
     @IBOutlet weak var futureLoadTitleLabel: UILabel!
     @IBOutlet weak var futureLoadSubtitleLabel: UILabel!
     @IBOutlet weak var futureLoadLabel: UILabel!
     @IBOutlet weak var futureLoadReferenceLabel: UILabel!
-////  delagate
+    @IBOutlet weak var futureLoadButton: UIButton!
+    ////  delagate
     @IBOutlet weak var mainStackView: UIStackView!
     weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var moreData: AnimatedButton!
@@ -121,7 +124,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Sleep Quantity
         let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
         let quantitySubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_subtitle)
-        ThemeText.bucketTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
+//        ThemeText.bucketTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
+        sleepQuantityButton.setTitle(quantityTitle, for: .normal)
         ThemeText.durationString.apply(quantitySubtitle, to: sleepQuantitySubtitleLabel)
 
         sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0),
@@ -138,7 +142,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Sleep Quality
         let qualityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_title)
         let qualitySubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_subtitle)
-        ThemeText.bucketTitle.apply(qualityTitle, to: sleepQualityTitle)
+//        ThemeText.bucketTitle.apply(qualityTitle, to: sleepQualityTitle)
+        sleepQualityButton.setTitle(qualityTitle, for: .normal)
         ThemeText.durationString.apply(qualitySubtitle, to: sleepQualitySubtitle)
 
         sleepQualityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQualityValue ?? 0),
@@ -155,7 +160,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Load
         let loadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_title)
         let loadSubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_subtitle)
-        ThemeText.bucketTitle.apply(loadTitle, to: loadTitleLabel)
+//        ThemeText.bucketTitle.apply(loadTitle, to: loadTitleLabel)
+        loadButton.setTitle(loadTitle, for: .normal)
         ThemeText.durationString.apply(loadSubtitle, to: loadSubtitleLabel)
 
         loadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.loadValue ?? 0),
@@ -171,7 +177,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Future Load
         let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_title)
         let futureLoadSubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_subtitle)
-        ThemeText.bucketTitle.apply(futureLoadTitle, to: futureLoadTitleLabel)
+//        ThemeText.bucketTitle.apply(futureLoadTitle, to: futureLoadTitleLabel)
+        futureLoadButton.setTitle(futureLoadTitle, for: .normal)
         ThemeText.durationString.apply(futureLoadSubtitle, to: futureLoadSubtitleLabel)
 
         futureLoadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.futureLoadValue ?? 0),
@@ -195,12 +202,29 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     }
 
     @IBAction func sleepQuantityTapped(_ sender: Any) {
-        delegate?.presentPopUp(copyrightURL: nil, description: "hello lalalsa")
+        let description = AppTextService.get(.daily_brief_section_impact_readiness_sleep_quantity_description)
+        delegate?.presentPopUp(copyrightURL: nil, description: description)
     }
-    
+
+    @IBAction func sleepQualityTapped(_ sender: Any) {
+        let description = AppTextService.get(.daily_brief_section_impact_readiness_sleep_quality_description)
+        delegate?.presentPopUp(copyrightURL: nil, description: description)
+    }
+
+    @IBAction func loadButtonTapped(_ sender: Any) {
+        let description = AppTextService.get(.daily_brief_section_impact_readiness_load_description)
+        delegate?.presentPopUp(copyrightURL: nil, description: description)
+    }
+
+    @IBAction func futureLoadTapped(_ sender: Any) {
+        let description = AppTextService.get(.daily_brief_section_impact_readiness_future_load_description)
+        delegate?.presentPopUp(copyrightURL: nil, description: description)
+    }
+
     @IBAction func targetReference(_ sender: Any) {
             delegate?.showCustomizeTarget()
     }
+    
     @IBAction func presentMyData(_ sender: Any) {
             delegate?.presentMyDataScreen()
     }
