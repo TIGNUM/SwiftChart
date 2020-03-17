@@ -172,6 +172,7 @@ extension BaseRootViewController {
 
     @objc func hideAudioFullScreen(_ notification: Notification) {
         audioPlayerBar.setBarMode(.playPause)
+        NotificationCenter.default.post(name: .stopAudio, object: nil)
     }
 
     @objc override public func QOTVisibleViewController() -> UIViewController? {
