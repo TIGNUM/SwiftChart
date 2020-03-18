@@ -343,11 +343,6 @@ extension DailyBriefInteractor {
         return isNewArticle
     }
 
-    func didPressGotItSprint(sprint: QDMSprint) {
-        worker.didPressGotItSprint(sprint: sprint)
-        presenter.showSprintCompletedAlert()
-    }
-
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath) {
         forCell.setTimer(with: 3.0) { [weak self] in
             self?.setVisibleBucketsAsSeenIfNeeded(indexPath: indexPath)

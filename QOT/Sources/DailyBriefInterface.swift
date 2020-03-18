@@ -20,7 +20,6 @@ protocol DailyBriefPresenterInterface {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
     func scrollToSection(at: Int)
-    func showSprintCompletedAlert()
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
@@ -31,7 +30,6 @@ protocol DailyBriefInteractorInterface: Interactor {
     func getDailyBriefBucketsForViewModel()
     func getToBeVisionImage(completion: @escaping (URL?) -> Void)
 
-    func didPressGotItSprint(sprint: QDMSprint)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
 
