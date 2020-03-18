@@ -21,7 +21,6 @@ enum CoachSection: Int, CaseIterable {
 
 struct CoachModel {
     let headerTitle: String?
-    let headerSubtitle: String?
     let coachItems: [Item]
 
     struct Item {
