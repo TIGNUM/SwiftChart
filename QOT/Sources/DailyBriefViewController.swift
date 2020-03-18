@@ -50,6 +50,8 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
 
     private lazy var router = DailyBriefRouter(viewController: self)
 
+    private var isDragging = false
+
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -276,12 +278,15 @@ extension DailyBriefViewController {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         navBarHeader?.updateAlpha(basedOn: scrollView.contentOffset.y)
-        delegate?.handlePan(offsetY: scrollView.contentOffset.y,
-                            isDragging: scrollView.isDragging && !scrollView.isDecelerating,
-                            isScrolling: scrollView.isDragging || scrollView.isDecelerating)
+        delegate?.handlePan(offsetY: scrollView.contentOffset.y, isDragging: isDragging)
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isDragging = true
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        isDragging = false
         scrollViewDidScroll(scrollView)
     }
 
