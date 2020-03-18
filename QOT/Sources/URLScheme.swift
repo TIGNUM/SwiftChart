@@ -176,7 +176,7 @@ enum URLScheme: String {
     }
 
     func launchPathWithParameterValue(_ value: String) -> String {
-        guard let urlSchemes = URLScheme.urlSchemes() else { return "qot://" }
+        guard let urlSchemes = URLScheme.urlSchemes() else { return "tignumx://" }
         var urlString = "\(urlSchemes[0])://\(self.rawValue)"
         if !queryName.isEmpty {
             urlString = "\(urlSchemes[0])://\(self.rawValue)?\(queryName)=\(value)"

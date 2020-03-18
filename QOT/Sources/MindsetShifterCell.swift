@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 
 final class MindsetShifterCell: BaseDailyBriefCell {
-    
+
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var sliderView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!

@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>TIGNUM X</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleGetInfoString</key>
@@ -42,6 +42,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>INTERNAL_VALIDATION_SCHEME</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.tignum.x.v3</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tignumx</string>
 			</array>
 		</dict>
 	</array>
@@ -87,27 +97,27 @@
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>QOT needs access to calendar to prepare events and to create calendar events.</string>
+	<string>TIGNUM X needs access to calendar to prepare events and to create calendar events.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>QOT needs camera access for changing images.</string>
+	<string>TIGNUM X needs camera access for changing images.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>QOT needs access to contacts to create calendar events.</string>
+	<string>TIGNUM X needs access to contacts to create calendar events.</string>
 	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>QOT needs Health app access to calculate Impact Readiness from your sleep pattern.</string>
+	<string>TIGNUM X needs Health app access to calculate Impact Readiness from your sleep pattern.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>QOT needs Health app access to calculate Impact Readiness from your sleep pattern.</string>
+	<string>TIGNUM X needs Health app access to calculate Impact Readiness from your sleep pattern.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>QOT needs Health app access to calculate Impact Readiness from your sleep pattern.</string>
 	<key>NSHumanReadableCopyright</key>
 	<false/>
 	<key>NSLocationUsageDescription</key>
-	<string>QOT needs access to your location to update your time zone.</string>
+	<string>TIGNUM X needs access to your location to update your time zone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>QOT needs access to your location to update your time zone.</string>
+	<string>TIGNUM X needs access to your location to update your time zone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>QOT needs access to your Library to set your images.</string>
+	<string>TIGNUM X needs access to your Library to set your images.</string>
 	<key>NSRemindersUsageDescription</key>
-	<string>QOT needs access to reminder to remind you and to help you</string>
+	<string>TIGNUM X needs access to reminder to remind you and to help you</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>DailyPrepIntent</string>
