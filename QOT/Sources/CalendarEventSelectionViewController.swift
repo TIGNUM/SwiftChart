@@ -15,7 +15,7 @@ final class CalendarEventSelectionViewController: BaseWithGroupedTableViewContro
     // MARK: - Properties
     weak var delegate: CalendarEventSelectionDelegate?
     var interactor: CalendarEventSelectionInteractorInterface!
-    private lazy var router: CalendarEventSelectionRouterInterface = CalendarEventSelectionRouter(viewController: self)
+    private lazy var router = CalendarEventSelectionRouter(viewController: self)
 
     // MARK: - Init
     init(configure: Configurator<CalendarEventSelectionViewController>) {

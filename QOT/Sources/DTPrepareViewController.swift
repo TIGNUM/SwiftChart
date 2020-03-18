@@ -190,17 +190,17 @@ extension DTPrepareViewController: DTPrepareViewControllerInterface {
     }
 }
 
-// MARK: - SyncedCalendarsDelegate
-extension DTPrepareViewController: SyncedCalendarsDelegate {
-    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
-        if qdmEvents.isEmpty {
-            resetSelectedAnswers()
-        } else {
-            prepareInteractor?.setUserCalendarEvents(qdmEvents)
-            loadNextQuestion()
-        }
-    }
-}
+//// MARK: - SyncedCalendarsDelegate
+//extension DTPrepareViewController: SyncedCalendarsDelegate {
+//    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
+//        if qdmEvents.isEmpty {
+//            resetSelectedAnswers()
+//        } else {
+//            prepareInteractor?.setUserCalendarEvents(qdmEvents)
+//            loadNextQuestion()
+//        }
+//    }
+//}
 
 extension DTPrepareViewController: EKEventEditViewDelegate {
     func eventEditViewController(_ controller: EKEventEditViewController,

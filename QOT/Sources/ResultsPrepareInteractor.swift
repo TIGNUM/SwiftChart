@@ -12,6 +12,7 @@ import qot_dal
 final class ResultsPrepareInteractor {
 
     // MARK: - Properties
+    private lazy var workerCalendar = WorkerCalendar()
     private lazy var worker = ResultsPrepareWorker()
     private let presenter: ResultsPreparePresenterInterface!
     private var preparation: QDMUserPreparation?
@@ -32,12 +33,18 @@ final class ResultsPrepareInteractor {
     }
 }
 
+// MARK: - Private
+private extension ResultsPrepareInteractor {
+    func setPreparationEvent(event: QDMUserCalendarEvent?) {
+        preparation?.eventTitle = event?.title
+        preparation?.eventId = event?.remoteID ?? 0
+        preparation?.eventDate = event?.startDate
+        presenter.createListItems(preparation: preparation)
+    }
+}
+
 // MARK: - ResultsPrepareInteractorInterface
 extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
-    func checkSyncedCalendars() {
-        
-    }
-    
     var sectionCount: Int {
         guard let level = preparation?.type else { return 0 }
         return ResultsPrepare.sectionCount(level: level)
@@ -102,6 +109,21 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         worker.getStrategies(selectedIds) { [weak self] (strategies) in
             self?.preparation?.strategies = strategies ?? []
             self?.presenter.createListItems(preparation: self?.preparation)
+        }
+    }
+}
+
+// MARK: - CalendarEventSelectionDelegate
+extension ResultsPrepareInteractor: CalendarEventSelectionDelegate {
+    func didSelectEvent(_ event: QDMUserCalendarEvent) {
+        setPreparationEvent(event: event)
+    }
+
+    func didCreateEvent(_ event: EKEvent?) {
+        workerCalendar.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
+            self?.workerCalendar.storeLocalEvent(event?.eventIdentifier,
+                                                 qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
+            self?.setPreparationEvent(event: userCalendarEvent)
         }
     }
 }

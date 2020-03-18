@@ -54,11 +54,11 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
     }
 
     func presentCalendarSettings() {
-        guard let controller = R.storyboard.myQot.syncedCalendarsViewController() else { return }
-        SyncedCalendarsConfigurator.configure(viewController: controller,
-                                              isInitialCalendarSelection: true,
-                                              delegate: prepareViewController)
-        viewController?.present(controller, animated: true)
+//        guard let controller = R.storyboard.myQot.syncedCalendarsViewController() else { return }
+//        SyncedCalendarsConfigurator.configure(viewController: controller,
+//                                              isInitialCalendarSelection: true,
+//                                              delegate: prepareViewController)
+//        viewController?.present(controller, animated: true)
     }
 
     func presentEditEventController(_ calendarToggleIdentifiers: [String]?) {

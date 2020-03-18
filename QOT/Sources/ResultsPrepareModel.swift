@@ -10,14 +10,10 @@ import UIKit
 import qot_dal
 
 struct ResultsPrepare {
-    enum CalendarItem {
-        case selected
-        case unselected
-    }
-
     enum Sections {
         case header(title: String)
-        case calendar(title: String, subtitle: String, calendarItem: CalendarItem)
+        case calendar(title: String, subtitle: String)
+        case calendarConnect(title: String, subtitle: String)
         case title(title: String)
         case perceived(title: String, preceiveAnswers: [QDMAnswer])
         case know(title: String, knowAnswers: [QDMAnswer])

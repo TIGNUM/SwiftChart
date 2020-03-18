@@ -13,7 +13,9 @@ final class ResultsPrepareViewController: BaseWithGroupedTableViewController, Sc
 
     // MARK: - Properties
     var interactor: ResultsPrepareInteractorInterface!
-    private lazy var router: ResultsPrepareRouterInterface = ResultsPrepareRouter(viewController: self)
+    weak var delegate: CalendarEventSelectionDelegate?
+    private lazy var router: ResultsPrepareRouterInterface = ResultsPrepareRouter(viewController: self,
+                                                                                  delegate: delegate)
     private var sections: [Int: ResultsPrepare.Sections] = [:]
 
     // MARK: - Init
@@ -142,17 +144,15 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             cell.configure(title: title, subtitle: subtitle, benefits: benefits)
             return cell
 
-        case .calendar(let title, let subtitle, let calendarItem):
-            switch calendarItem {
-            case .selected:
-                let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(title: title, subtitle: subtitle)
-                return cell
-            case .unselected:
-                let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(title: title, subtitle: subtitle)
-                return cell
-            }
+        case .calendar(let title, let subtitle):
+            let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title, subtitle: subtitle)
+            return cell
+
+        case .calendarConnect(let title, let subtitle):
+            let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title, subtitle: subtitle)
+            return cell
 
         case .header(let title):
             let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -183,6 +183,10 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         guard let section = sections[indexPath.section] else { return }
 
         switch section {
+        case .calendar:
+            break
+        case .calendarConnect:
+            router.didSelectConnectToCalendar()
         case .benefits: presentEditView(key: .benefits)
         case .feel: presentEditView(key: .feel)
         case .know: presentEditView(key: .know)

@@ -150,14 +150,14 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func checkSyncedCalendars() {
-        workerCalendar.hasSyncedCalendars { [weak self] (available) in
-            guard let strongSelf = self else { return }
-            if available == true {
-                strongSelf.router.presentCalendarEventSelection()
-            } else {
-                strongSelf.router.presentCalendarSettings(delegate: strongSelf)
-            }
-        }
+//        workerCalendar.hasSyncedCalendars { [weak self] (available) in
+//            guard let strongSelf = self else { return }
+//            if available == true {
+//                strongSelf.router.presentCalendarEventSelection()
+//            } else {
+//                strongSelf.router.presentCalendarSettings(delegate: strongSelf)
+//            }
+//        }
     }
 }
 
@@ -165,19 +165,19 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
 extension PrepareResultInteractor: AskPermissionDelegate {
     func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
         if granted {
-            router.presentCalendarSettings(delegate: self)
+//            router.presentCalendarSettings(delegate: self)
         }
     }
 }
 
-// MARK: - SyncedCalendarsDelegate
-extension PrepareResultInteractor: SyncedCalendarsDelegate {
-    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
-        if !qdmEvents.isEmpty {
-            router.presentCalendarEventSelection()
-        }
-    }
-}
+//// MARK: - SyncedCalendarsDelegate
+//extension PrepareResultInteractor: SyncedCalendarsDelegate {
+//    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
+//        if !qdmEvents.isEmpty {
+//            router.presentCalendarEventSelection()
+//        }
+//    }
+//}
 
 extension PrepareResultInteractor: CalendarEventSelectionDelegate {
     func didSelectEvent(_ event: QDMUserCalendarEvent) {

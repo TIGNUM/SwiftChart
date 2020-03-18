@@ -35,46 +35,43 @@ private extension ResultsPreparePresenter {
             if let date = preparation?.eventDate?.eventDateString, let type = preparation?.eventType {
                 subtitle = date + " | " + type
             }
-            return ResultsPrepare.Sections.calendar(title: title,
-                                                    subtitle: subtitle,
-                                                    calendarItem: .selected)
+            return .calendar(title: title, subtitle: subtitle)
         }
-        return ResultsPrepare.Sections.calendar(title: AppTextService.get(.results_prepare_connect_calendar_title),
-                                                subtitle: AppTextService.get(.results_prepare_connect_calendar_subtitle),
-                                                calendarItem: .unselected)
+        return .calendarConnect(title: AppTextService.get(.results_prepare_connect_calendar_title),
+                                subtitle: AppTextService.get(.results_prepare_connect_calendar_subtitle))
     }
 
     func getQuestionTitleItem() -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.title(title: AppTextService.get(.results_prepare_critical_questions))
+        return .title(title: AppTextService.get(.results_prepare_critical_questions))
     }
 
     func getPerceivedItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.perceived(title: AppTextService.get(.results_prepare_perceived),
+        return .perceived(title: AppTextService.get(.results_prepare_perceived),
                                                  preceiveAnswers: preparation?.preceiveAnswers ?? [])
     }
 
     func getKnowItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.know(title: AppTextService.get(.results_prepare_know),
+        return .know(title: AppTextService.get(.results_prepare_know),
                                             knowAnswers: preparation?.knowAnswers ?? [])
     }
 
     func getFeelItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.feel(title: AppTextService.get(.results_prepare_feel),
+        return .feel(title: AppTextService.get(.results_prepare_feel),
                                             feelAnswers: preparation?.feelAnswers ?? [])
     }
 
     func getBenefitsItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.benefits(title: AppTextService.get(.results_prepare_header_benefits),
-                                                subtitle: AppTextService.get(.results_prepare_benefits),
-                                                benefits: preparation?.benefits ?? "")
+        return .benefits(title: AppTextService.get(.results_prepare_header_benefits),
+                         subtitle: AppTextService.get(.results_prepare_benefits),
+                         benefits: preparation?.benefits ?? "")
     }
 
     func getStrategyTitleItem() -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.strategyTitle(title: AppTextService.get(.results_prepare_strategies))
+        return .strategyTitle(title: AppTextService.get(.results_prepare_strategies))
     }
 
     func getStrategiesItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
-        return ResultsPrepare.Sections.strategies(strategies: preparation?.strategies ?? [])
+        return .strategies(strategies: preparation?.strategies ?? [])
     }
 }
 

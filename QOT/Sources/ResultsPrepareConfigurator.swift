@@ -16,6 +16,7 @@ final class ResultsPrepareConfigurator {
             let presenter = ResultsPreparePresenter(viewController: viewController)
             let interactor = ResultsPrepareInteractor(presenter: presenter, preparation, resultType: resultType)
             viewController.interactor = interactor
+            viewController.delegate = interactor
         }
     }
 

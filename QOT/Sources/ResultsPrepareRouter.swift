@@ -12,12 +12,44 @@ import qot_dal
 final class ResultsPrepareRouter {
 
     // MARK: - Properties
+    private lazy var workerCalendar = WorkerCalendar()
     private weak var viewController: ResultsPrepareViewController?
+    weak var delegate: CalendarEventSelectionDelegate?
 
     // MARK: - Init
-    init(viewController: ResultsPrepareViewController?) {
+    init(viewController: ResultsPrepareViewController?, delegate: CalendarEventSelectionDelegate?) {
         self.viewController = viewController
+        self.delegate = delegate
     }
+}
+
+// MARK: - Private
+private extension ResultsPrepareRouter {
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
+         guard let controller = R.storyboard.askPermission().instantiateInitialViewController() as?
+             AskPermissionViewController else { return }
+         AskPermissionConfigurator.make(viewController: controller, type: permissionType, delegate: self)
+         viewController?.present(controller, animated: true, completion: nil)
+     }
+
+    func presentCalendarSettings() {
+        guard let controller = R.storyboard.myQot.syncedCalendarsViewController() else { return }
+        SyncedCalendarsConfigurator.configure(viewController: controller,
+                                              isInitialCalendarSelection: true,
+                                              delegate: self)
+        viewController?.present(controller, animated: true)
+    }
+
+    func hasSyncedCalendars() {
+        workerCalendar.hasSyncedCalendars { [weak self] (available) in
+            guard let strongSelf = self else { return }
+            if available == true {
+                strongSelf.presentCalendarEventSelection()
+            } else {
+                strongSelf.presentCalendarSettings()
+            }
+        }
+     }
 }
 
 // MARK: - ResultsPrepareRouterInterface
@@ -26,16 +58,21 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
 
     }
 
-    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
-
-    }
-
-    func presentCalendarSettings(delegate: SyncedCalendarsDelegate) {
-
+    func didSelectConnectToCalendar() {
+        switch CalendarPermission().authorizationStatus {
+        case .notDetermined:
+            presentCalendarPermission(.calendar)
+        case .denied, .restricted:
+            presentCalendarPermission(.calendarOpenSettings)
+        default:
+            hasSyncedCalendars()
+        }
     }
 
     func presentCalendarEventSelection() {
-
+        let configurator = CalendarEventSelectionConfigurator.make(delegate: delegate)
+        let controller = CalendarEventSelectionViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
     }
 
     func presentDTEditView(_ viewModel: DTViewModel, question: QDMQuestion?) {
@@ -58,5 +95,23 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
         let controller = ChoiceViewController(configure: configurator)
         controller.delegate = viewController
         viewController?.present(controller, animated: true)
+    }
+}
+
+// MARK: - AskPermissionDelegate
+extension ResultsPrepareRouter: AskPermissionDelegate {
+    func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
+        if granted {
+            presentCalendarSettings()
+        }
+    }
+}
+
+// MARK: - SyncedCalendarsDelegate
+extension ResultsPrepareRouter: SyncedCalendarsDelegate {
+    func didFinishSyncingCalendars(hasSyncedCalendars: Bool, qdmEvents: [QDMUserCalendarEvent]) {
+        if hasSyncedCalendars {
+            presentCalendarEventSelection()
+        }
     }
 }

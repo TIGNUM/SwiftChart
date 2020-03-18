@@ -31,7 +31,6 @@ protocol ResultsPrepareInteractorInterface: Interactor {
     func updateBenefits(_ benefits: String)
     func updateIntentions(_ answerIds: [Int])
     func updateStrategies(_ selectedIds: [Int])
-    func checkSyncedCalendars()
 }
 
 protocol ResultsPrepareRouterInterface {
@@ -40,7 +39,6 @@ protocol ResultsPrepareRouterInterface {
     func presentContent(_ contentId: Int)
     func presentDTEditView(_ viewModel: DTViewModel, question: QDMQuestion?)
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int])
-    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
-    func presentCalendarSettings(delegate: SyncedCalendarsDelegate)
     func presentCalendarEventSelection()
+    func didSelectConnectToCalendar()
 }

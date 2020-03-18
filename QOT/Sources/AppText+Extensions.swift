@@ -880,6 +880,10 @@ public extension AppTextKey {
     static let results_prepare_benefits = AppTextKey("prepare_results.benefits.title")
     static let results_prepare_strategies = AppTextKey("prepare_results.strategies.title")
     static let addNewEvent = AppTextKey("results_prepare.right_bar_item.add_new_event")
+
+    // MARK: - Event Selection
+    static let event_selection_empty = AppTextKey("event_selection.empty.title")
+    static let event_selection_header = AppTextKey("event_selection.header.title")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")
