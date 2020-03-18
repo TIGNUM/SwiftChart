@@ -125,6 +125,7 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         preparation?.event = event
         preparation?.eventTitle = event?.title
         preparation?.eventDate = event?.startDate
+        preparation?.eventId = event?.remoteID ?? 0
         preparation?.eventExternalUniqueIdentifierId = event?.qotId
         presenter.createListItems(preparation: preparation)
     }
