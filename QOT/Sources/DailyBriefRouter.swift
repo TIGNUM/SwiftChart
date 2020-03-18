@@ -86,7 +86,6 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
           let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
                                                             resultType: .mindsetShifterBucket)
           let controller = ShifterResultViewController(configure: configurator)
-//          controller.baseRouter = self
           viewController?.present(controller, animated: true)
       }
 }
