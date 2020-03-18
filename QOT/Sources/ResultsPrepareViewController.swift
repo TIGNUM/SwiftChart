@@ -124,6 +124,7 @@ private extension ResultsPrepareViewController {
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor.didClickSaveAndContinue()
+        router.didTapDismiss()
     }
 }
 

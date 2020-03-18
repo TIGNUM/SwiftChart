@@ -15,22 +15,11 @@ final class DTPrepareInteractor: DTInteractor {
 
     // MARK: - Properties
     private lazy var prepareWorker: DTPrepareWorker? = DTPrepareWorker()
-    private lazy var workerCalendar: WorkerCalendar? = WorkerCalendar()
-    private var events: [QDMUserCalendarEvent] = []
     private var preparations: [QDMUserPreparation] = []
-    private var createdUserCalendarEvent: QDMUserCalendarEvent?
-    var preparePresenter: DTPreparePresenterInterface?
-
-    var calendarSettings: [QDMUserCalendarSetting] = []
 
     // MARK: - DTInteractor
     override func viewDidLoad() {
         super.viewDidLoad()
-        workerCalendar?.hasSyncedCalendars { [weak self] available in
-            self?.workerCalendar?.getCalendarEvents { [weak self] events in
-                self?.setUserCalendarEvents(events)
-            }
-        }
         prepareWorker?.getPreparations { [weak self] (preparations, _) in
             self?.preparations = preparations
         }
@@ -38,17 +27,6 @@ final class DTPrepareInteractor: DTInteractor {
 
     override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         return questionKey == Prepare.QuestionKey.ShowTBV ? tbv : nil
-    }
-
-    override func getEvents(questionKey: String?) -> [QDMUserCalendarEvent] {
-        workerCalendar?.getCalendarSettings({ [weak self] (settings) in
-            self?.calendarSettings = settings
-        })
-        return Prepare.isCalendarEventSelection(questionKey ?? "") ? events : []
-    }
-
-    override func getCalendarSetting() -> [QDMUserCalendarSetting] {
-        return calendarSettings
     }
 
     override func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
@@ -69,21 +47,11 @@ final class DTPrepareInteractor: DTInteractor {
 
 // MARK: - DTPrepareInteractorInterface
 extension DTPrepareInteractor: DTPrepareInteractorInterface {
-    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void) {
-        workerCalendar?.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
-            self?.workerCalendar?.storeLocalEvent(event?.eventIdentifier,
-                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
-            self?.createdUserCalendarEvent = userCalendarEvent
-            completion(userCalendarEvent != nil)
-        }
-    }
-
     //TODO Unify to one single createPrep func with ServiceModel.
     func getUserPreparation(event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
-        let event = createdUserCalendarEvent ?? events.filter { $0.remoteID == event?.remoteId }.first
         let perceivedIds = getAnswerIds(.perceived, selectedAnswers)
         let knowIds = getAnswerIds(.know, selectedAnswers)
         let feelIds = getAnswerIds(.feel, selectedAnswers)
@@ -99,7 +67,6 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
             model.knowAnswerIds = knowIds
             model.feelAnswerIds = feelIds
             model.eventType = eventAnswer?.title ?? ""
-            model.event = event ?? QDMUserCalendarEvent()
             self?.prepareWorker?.createUserPreparation(from: model, completion)
         }
     }
@@ -112,7 +79,6 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                             calendarEvent: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let existingPrep = preparations.filter { $0.remoteID == event?.remoteId }.first
-        let calendarEvent = createdUserCalendarEvent ?? events.filter { $0.remoteID == calendarEvent?.remoteId }.first
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
         var model = CreateUserPreparationModel()
@@ -126,7 +92,6 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         model.knowAnswerIds = existingPrep?.knowAnswerIds ?? []
         model.feelAnswerIds = existingPrep?.feelAnswerIds ?? []
         model.eventType = eventAnswer?.title ?? ""
-        model.event = calendarEvent ?? QDMUserCalendarEvent()
         self.prepareWorker?.createUserPreparation(from: model, completion)
     }
 
@@ -136,49 +101,10 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
         let relatedStrategyId = answer.targetId(.content) ?? 0
         let eventType = answer.title
-        let userEvent = createdUserCalendarEvent ?? events.filter { $0.remoteID == event?.remoteId }.first
         prepareWorker?.createPreparationDaily(answerFilter: answerFilter,
                                               relatedStategyId: relatedStrategyId,
                                               eventType: eventType,
-                                              event: userEvent ?? QDMUserCalendarEvent(),
                                               completion)
-    }
-
-    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent]) {
-        self.events.removeAll()
-        self.events = events.sorted(by: { (lhs, rhs) -> Bool in
-            return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
-        }).unique
-    }
-
-    func removeCreatedCalendarEvent() {
-        let externalIdentifier = createdUserCalendarEvent?.storedExternalIdentifier.components(separatedBy: "[//]").first
-        workerCalendar?.deleteLocalEvent(externalIdentifier)
-    }
-}
-
-// MARK: - CalendarPermission
-private extension DTPrepareInteractor {
-    func checkCalendarPermissionForSelection(_ selection: DTSelectionModel) {
-        let answerKeys = selection.selectedAnswers.first?.keys ?? []
-        if answerKeys.contains(Prepare.AnswerKey.EventTypeSelectionDaily) ||
-            answerKeys.contains(Prepare.AnswerKey.EventTypeSelectionCritical) {
-
-            switch CalendarPermission().authorizationStatus {
-            case .notDetermined:
-                preparePresenter?.presentCalendarPermission(.calendar)
-            case .denied, .restricted:
-                preparePresenter?.presentCalendarPermission(.calendarOpenSettings)
-            default:
-                workerCalendar?.hasSyncedCalendars { [weak self] available in
-                    if available == true {
-                        self?.loadNextQuestion(selection: selection)
-                    } else {
-                        self?.preparePresenter?.presentCalendarSettings()
-                    }
-                }
-            }
-        }
     }
 }
 

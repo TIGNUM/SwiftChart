@@ -18,8 +18,6 @@ final class DTPrepareConfigurator {
                                                  questionGroup: .Prepare_3_0,
                                                  introKey: Prepare.QuestionKey.Intro)
             router.prepareViewController = viewController
-            presenter.prepareViewController = viewController
-            interactor.preparePresenter = presenter
             viewController.interactor = interactor
             viewController.prepareInteractor = interactor
             viewController.prepareRouter = router

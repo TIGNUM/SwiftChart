@@ -19,6 +19,7 @@ final class ResultsPrepareInteractor {
     private let resultType: ResultType
     private var editKey = Prepare.Key.benefits
     private var newEvent: QDMUserCalendarEvent?
+    private var newCreatedEvent: QDMUserCalendarEvent?
 
     // MARK: - Init
     init(presenter: ResultsPreparePresenterInterface, _ preparation: QDMUserPreparation?, resultType: ResultType) {
@@ -31,6 +32,14 @@ final class ResultsPrepareInteractor {
     func viewDidLoad() {
         presenter.setupView()
         presenter.createListItems(preparation: preparation)
+    }
+}
+
+// MARK: - Private
+private extension ResultsPrepareInteractor {
+    func removeCreatedCalendarEvent(event: QDMUserCalendarEvent?) {
+        let externalIdentifier = event?.storedExternalIdentifier.components(separatedBy: "[//]").first
+        workerCalendar.deleteLocalEvent(externalIdentifier)
     }
 }
 
@@ -108,7 +117,11 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func updatePreparationEvent(event: QDMUserCalendarEvent?) {
-        newEvent = event
+        if event == nil {
+            removeCreatedCalendarEvent(event: newCreatedEvent)
+            newCreatedEvent = nil
+            newEvent = nil
+        }
         preparation?.eventTitle = event?.title
         preparation?.eventDate = event?.startDate
         preparation?.eventExternalUniqueIdentifierId = event?.qotId
@@ -116,11 +129,11 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
-        worker.updatePreparation(preparation, newEvent, completion)
+        worker.updatePreparation(preparation, newEvent ?? newCreatedEvent, completion)
     }
 
     func didClickSaveAndContinue() {
-        worker.updatePreparation(preparation, newEvent, { _ in })
+        worker.updatePreparation(preparation, newEvent ?? newCreatedEvent, { _ in })
     }
 
     func deletePreparation() {
@@ -131,6 +144,7 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
 // MARK: - CalendarEventSelectionDelegate
 extension ResultsPrepareInteractor: CalendarEventSelectionDelegate {
     func didSelectEvent(_ event: QDMUserCalendarEvent) {
+        newEvent = event
         updatePreparationEvent(event: event)
     }
 
@@ -139,6 +153,7 @@ extension ResultsPrepareInteractor: CalendarEventSelectionDelegate {
             self?.workerCalendar.storeLocalEvent(event?.eventIdentifier,
                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
             self?.preparation?.eventIsCreatedFromQOT = true
+            self?.newCreatedEvent = userCalendarEvent
             self?.updatePreparationEvent(event: userCalendarEvent)
         }
     }
