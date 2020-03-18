@@ -33,16 +33,6 @@ final class ResultsPrepareInteractor {
     }
 }
 
-// MARK: - Private
-private extension ResultsPrepareInteractor {
-    func setPreparationEvent(event: QDMUserCalendarEvent?) {
-        preparation?.eventTitle = event?.title
-        preparation?.eventId = event?.remoteID ?? 0
-        preparation?.eventDate = event?.startDate
-        presenter.createListItems(preparation: preparation)
-    }
-}
-
 // MARK: - ResultsPrepareInteractorInterface
 extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     var sectionCount: Int {
@@ -111,19 +101,26 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
             self?.presenter.createListItems(preparation: self?.preparation)
         }
     }
+
+    func updatePreparationEvent(event: QDMUserCalendarEvent?) {
+        preparation?.eventTitle = event?.title
+        preparation?.eventId = event?.remoteID ?? 0
+        preparation?.eventDate = event?.startDate
+        presenter.createListItems(preparation: preparation)
+    }
 }
 
 // MARK: - CalendarEventSelectionDelegate
 extension ResultsPrepareInteractor: CalendarEventSelectionDelegate {
     func didSelectEvent(_ event: QDMUserCalendarEvent) {
-        setPreparationEvent(event: event)
+        updatePreparationEvent(event: event)
     }
 
     func didCreateEvent(_ event: EKEvent?) {
         workerCalendar.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
             self?.workerCalendar.storeLocalEvent(event?.eventIdentifier,
                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
-            self?.setPreparationEvent(event: userCalendarEvent)
+            self?.updatePreparationEvent(event: userCalendarEvent)
         }
     }
 }

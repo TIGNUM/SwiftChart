@@ -184,13 +184,17 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
 
         switch section {
         case .calendar:
-            break
+            interactor.updatePreparationEvent(event: nil)
         case .calendarConnect:
             router.didSelectConnectToCalendar()
-        case .benefits: presentEditView(key: .benefits)
-        case .feel: presentEditView(key: .feel)
-        case .know: presentEditView(key: .know)
-        case .perceived: presentEditView(key: .perceived)
+        case .benefits:
+            presentEditView(key: .benefits)
+        case .feel:
+            presentEditView(key: .feel)
+        case .know:
+            presentEditView(key: .know)
+        case .perceived:
+            presentEditView(key: .perceived)
         case .strategyTitle:
             let ids = interactor.getStrategyIds()
             router.presentEditStrategyView(ids.relatedId, ids.selectedIds)

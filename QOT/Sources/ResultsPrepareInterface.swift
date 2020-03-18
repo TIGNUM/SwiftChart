@@ -31,6 +31,7 @@ protocol ResultsPrepareInteractorInterface: Interactor {
     func updateBenefits(_ benefits: String)
     func updateIntentions(_ answerIds: [Int])
     func updateStrategies(_ selectedIds: [Int])
+    func updatePreparationEvent(event: QDMUserCalendarEvent?)
 }
 
 protocol ResultsPrepareRouterInterface {
