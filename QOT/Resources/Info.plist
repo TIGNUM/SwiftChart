@@ -107,7 +107,7 @@
 	<key>NSHealthShareUsageDescription</key>
 	<string>TIGNUM X needs Health app access to calculate Impact Readiness from your sleep pattern.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>QOT needs Health app access to calculate Impact Readiness from your sleep pattern.</string>
+	<string>TIGNUM X needs Health app access to calculate Impact Readiness from your sleep pattern.</string>
 	<key>NSHumanReadableCopyright</key>
 	<false/>
 	<key>NSLocationUsageDescription</key>

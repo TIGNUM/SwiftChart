@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
-               BuildableName = "QOT.app"
+               BuildableName = "TIGNUM X.app"
                BlueprintName = "QOT"
                ReferencedContainer = "container:QOT.xcodeproj">
             </BuildableReference>
@@ -27,29 +27,27 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
+            BuildableName = "TIGNUM X.app"
+            BlueprintName = "QOT"
+            ReferencedContainer = "container:QOT.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CBB237FF1E6FFF1200AB5AEF"
+               BlueprintIdentifier = "BB8807192372B453001D61CE"
                BuildableName = "QOTTests.xctest"
                BlueprintName = "QOTTests"
                ReferencedContainer = "container:QOT.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
-            BuildableName = "QOT.app"
-            BlueprintName = "QOT"
-            ReferencedContainer = "container:QOT.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Database"
@@ -66,13 +64,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
-            BuildableName = "QOT.app"
+            BuildableName = "TIGNUM X.app"
             BlueprintName = "QOT"
             ReferencedContainer = "container:QOT.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -85,7 +81,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
-            BuildableName = "QOT.app"
+            BuildableName = "TIGNUM X.app"
             BlueprintName = "QOT"
             ReferencedContainer = "container:QOT.xcodeproj">
          </BuildableReference>

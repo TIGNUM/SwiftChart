@@ -38,6 +38,7 @@ enum URLScheme: String {
     case tutorial = "tutorial" // open tutorial screen
     case faq = "faq" // FAQ screen
     case usingQOT = "using-qot" // Using QOT screen
+    case usingTIGNUMX = "using-tignum-x" // Using QOT screen
     case aboutTignum = "about-tignum" // open about tignum screen
     case qotBenefits = "qot-benefits" // open qot benefits screen
     case aboutTignumDetail = "about-tignum-detail" // open about tignum content screen

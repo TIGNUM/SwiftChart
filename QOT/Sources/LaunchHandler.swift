@@ -169,6 +169,7 @@ final class LaunchHandler {
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQ)
             push(viewController: controller)
         case .usingQOT,
+             .usingTIGNUMX,
              .tutorial:
             guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .UsingQOT)
