@@ -10,13 +10,16 @@ import UIKit
 import qot_dal
 
 final class MindsetShifterCell: BaseDailyBriefCell {
-    
+
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var sliderView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var ctaButton: AnimatedButton!
     var negativeToPositiveView: NegativeToPositiveView?
+    private var mindsetShifter: QDMMindsetShifter?
     @IBOutlet weak var sliderViewHeightConstraint: NSLayoutConstraint!
+    weak var delegate: DailyBriefViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +27,9 @@ final class MindsetShifterCell: BaseDailyBriefCell {
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         negativeToPositiveView = R.nib.negativeToPositiveView.firstView(owner: self)
         negativeToPositiveView?.addTo(superview: sliderView, showSkeleton: true, darkMode: true)
+        ThemeBorder.accent40.apply(ctaButton)
+        skeletonManager.addOtherView(ctaButton)
+        ctaButton.setButtonContentInset(padding: 16)
     }
 
     func configure(with viewModel: MindsetShifterViewModel?) {
@@ -39,7 +45,14 @@ final class MindsetShifterCell: BaseDailyBriefCell {
                                           highItems: viewModel.mindsetShifter?.highPerformanceContentItems.compactMap { $0.valueText } ?? [])
         ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel.subtitle, to: baseHeaderView?.subtitleTextView)
+        self.mindsetShifter = viewModel.mindsetShifter
+//        TO DO: add into apptext.
+        ctaButton.setTitle("My mindset shifter plan", for: .normal)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+    }
+    
+    @IBAction func mindsetButtonTapped(_ sender: Any) {
+        delegate?.presentMindsetResults(for: mindsetShifter)
     }
 
     override func updateConstraints() {
