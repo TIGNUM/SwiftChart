@@ -71,7 +71,11 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
     }
 
     func presentPlans() {
-
+        dismissChatBotFlow()
+        if !(baseRootViewController?.navigationController?.viewControllers.last is MyPrepsViewController),
+            let launchURL = URLScheme.myPreps.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
+        }
     }
 
     func didSelectConnectToCalendar() {

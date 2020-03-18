@@ -124,7 +124,7 @@ private extension ResultsPrepareViewController {
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor.didClickSaveAndContinue()
-        router.didTapDismiss()
+        router.presentPlans()
     }
 }
 
@@ -238,6 +238,8 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         guard let section = sections[indexPath.section] else { return }
 
         switch section {
+        case .header(let title):
+            break
         case .calendar:
             interactor.updatePreparationEvent(event: nil)
         case .calendarConnect:

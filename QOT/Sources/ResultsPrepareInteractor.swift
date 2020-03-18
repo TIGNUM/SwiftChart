@@ -122,6 +122,7 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
             newCreatedEvent = nil
             newEvent = nil
         }
+        preparation?.event = event
         preparation?.eventTitle = event?.title
         preparation?.eventDate = event?.startDate
         preparation?.eventExternalUniqueIdentifierId = event?.qotId
