@@ -43,7 +43,6 @@ public extension AppTextKey {
     static let coach_section_header_title = AppTextKey("coach.section_header.title")
     static let coach_section_sprint_subtitle = AppTextKey("coach.section_sprint.subtitle")
     static let coach_section_search_title = AppTextKey("coach.section_search.title")
-    static let coach_section_header_subtitle = AppTextKey("coach.section_header.subtitle")
     static let coach_section_solve_title = AppTextKey("coach.section_solve.title")
     static let coach_section_solve_subtitle = AppTextKey("coach.section_solve.subtitle")
     static let coach_section_mindset_title = AppTextKey("coach.section_mindset.title")
@@ -357,6 +356,11 @@ public extension AppTextKey {
     static let daily_brief_daily_check_in_questionnaire = AppTextKey("daily_brief.daily_check_in.questionnaire")
     static let daily_brief_section_mindset_shifter_subtitle = AppTextKey("daily_brief.section_mindset_shifter.subtitle")
     static let daily_brief_section_mindset_shifter_title = AppTextKey("daily_brief.section_mindset_shifter.title")
+
+    static let daily_brief_section_impact_readiness_sleep_quantity_description = AppTextKey("daily_brief.section_impact_readiness.sleep_quantity_description")
+    static let daily_brief_section_impact_readiness_sleep_quality_description = AppTextKey("daily_brief.section_impact_readiness.sleep_quality_description")
+    static let daily_brief_section_impact_readiness_load_description = AppTextKey("daily_brief.section_impact_readiness.load_description")
+    static let daily_brief_section_impact_readiness_future_load_description = AppTextKey("daily_brief.section_impact_readiness.future_load_description")
 
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
@@ -866,7 +870,6 @@ public extension AppTextKey {
     static let generic_event_date_format_prefix_tomorrow_at = AppTextKey("generic_event_date.format_prefix.tomorrow_at")
     static let generic_event_date_format_prefix_at = AppTextKey("generic_event_date.format_prefix.at")
 
-    static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
 
     static let addNewEvent = AppTextKey("results_prepare.right_bar_item.add_new_event")
@@ -891,4 +894,7 @@ public extension AppTextKey {
     static let daily_brief_sprint_challenge_alert_title = AppTextKey("daily_brief.sprint_challenge.alert_title")
     static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
     static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
+    static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
+    static let coach_section_header_subtitle = AppTextKey("coach.section_header.subtitle")
+
 }
