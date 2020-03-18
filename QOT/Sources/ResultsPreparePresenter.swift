@@ -30,12 +30,10 @@ private extension ResultsPreparePresenter {
     }
 
     func getCalendarItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
-        if let title = preparation?.eventTitle {
-            var subtitle = ""
-            if let date = preparation?.eventDate?.eventDateString, let type = preparation?.eventType {
-                subtitle = date + " | " + type
-            }
-            return .calendar(title: title, subtitle: subtitle)
+        if let title = preparation?.eventTitle,
+            let date = preparation?.eventDate?.eventDateString,
+            let type = preparation?.eventType {
+                return .calendar(title: title, subtitle: date + " | " + type)
         }
         return .calendarConnect(title: AppTextService.get(.results_prepare_connect_calendar_title),
                                 subtitle: AppTextService.get(.results_prepare_connect_calendar_subtitle))

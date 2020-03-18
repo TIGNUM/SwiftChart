@@ -9,17 +9,29 @@
 import UIKit
 import qot_dal
 
-final class ResultsPrepareRouter {
+final class ResultsPrepareRouter: BaseRouter {
 
     // MARK: - Properties
+    private var resultType = ResultType.prepareMyPlans
     private lazy var workerCalendar = WorkerCalendar()
-    private weak var viewController: ResultsPrepareViewController?
     weak var delegate: CalendarEventSelectionDelegate?
 
     // MARK: - Init
-    init(viewController: ResultsPrepareViewController?, delegate: CalendarEventSelectionDelegate?) {
-        self.viewController = viewController
+    init(viewController: ResultsPrepareViewController,
+         delegate: CalendarEventSelectionDelegate?,
+         resultType: ResultType) {
+        super.init(viewController: viewController)
+        
         self.delegate = delegate
+        self.resultType = resultType
+    }
+
+    override func dismiss() {
+        if resultType == .prepareDecisionTree {
+            dismissChatBotFlow()
+        } else {
+            super.dismiss()
+        }
     }
 }
 
@@ -54,6 +66,10 @@ private extension ResultsPrepareRouter {
 
 // MARK: - ResultsPrepareRouterInterface
 extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
+    func didTapDismiss() {
+        dismiss()
+    }
+
     func presentPlans() {
 
     }
@@ -69,31 +85,31 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
         }
     }
 
+    func didSelectStrategy(_ contentId: Int) {
+        presentContent(contentId)
+    }
+
     func presentCalendarEventSelection() {
         let configurator = CalendarEventSelectionConfigurator.make(delegate: delegate)
         let controller = CalendarEventSelectionViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }
 
-    func presentDTEditView(_ viewModel: DTViewModel, question: QDMQuestion?) {
+    func presentDTEditView(_ viewModel: DTViewModel,
+                           question: QDMQuestion?,
+                           delegate: ResultsPrepareViewControllerInterface?) {
         let configurator = DTPrepareConfigurator.make(viewModel: viewModel, question: question)
         let controller = DTPrepareViewController(configure: configurator)
-        controller.delegate = viewController
+        controller.delegate = delegate
         viewController?.present(controller, animated: true)
     }
 
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-
-    func presentContent(_ contentId: Int) {
-        AppDelegate.current.launchHandler.showContentCollection(contentId)
-    }
-
-    func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int]) {
+    func presentEditStrategyView(_ relatedStrategyId: Int,
+                                 _ selectedIDs: [Int],
+                                 delegate: ChoiceViewControllerDelegate?) {
         let configurator = ChoiceConfigurator.make(selectedIDs, relatedStrategyId)
         let controller = ChoiceViewController(configure: configurator)
-        controller.delegate = viewController
+        controller.delegate = delegate
         viewController?.present(controller, animated: true)
     }
 }

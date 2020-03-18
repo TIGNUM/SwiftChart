@@ -14,9 +14,12 @@ final class ResultsPrepareViewController: BaseWithGroupedTableViewController, Sc
     // MARK: - Properties
     var interactor: ResultsPrepareInteractorInterface!
     weak var delegate: CalendarEventSelectionDelegate?
+    var resultType = ResultType.prepareMyPlans
     private lazy var router: ResultsPrepareRouterInterface = ResultsPrepareRouter(viewController: self,
-                                                                                  delegate: delegate)
+                                                                                  delegate: delegate,
+                                                                                  resultType: resultType)
     private var sections: [Int: ResultsPrepare.Sections] = [:]
+    private var rightBarItems: [UIBarButtonItem] = []
 
     // MARK: - Init
     init(configure: Configurator<ResultsPrepareViewController>) {
@@ -38,6 +41,17 @@ final class ResultsPrepareViewController: BaseWithGroupedTableViewController, Sc
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+    }
+}
+
+// MARK: - Bottom Navigation
+extension ResultsPrepareViewController {
+    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return rightBarItems
     }
 }
 
@@ -74,19 +88,57 @@ private extension ResultsPrepareViewController {
     func presentEditView(key: Prepare.Key) {
         interactor.getDTViewModel(key: key) { [weak self] (viewModel, question) in
             self?.removeBottomNavigation()
-            self?.router.presentDTEditView(viewModel, question: question)
+            self?.router.presentDTEditView(viewModel, question: question, delegate: self)
         }
     }
+
+    func getSelector(_ buttonItem: ButtonItem) -> Selector {
+         switch buttonItem {
+         case .cancel: return #selector(didTapCancel)
+         case .done: return #selector(didTapDone)
+         case .save: return #selector(didTapSave)
+         }
+     }
 }
 
 // MARK: - Actions
 private extension ResultsPrepareViewController {
+    @objc func didTapCancel() {
+        trackUserEvent(.CANCEL, action: .TAP)
+        interactor.deletePreparation()
+        router.didTapDismiss()
+    }
 
+    @objc func didTapDismiss() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        router.didTapDismiss()
+    }
+
+    @objc func didTapDone() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        interactor.updatePreparation { [weak self] (_) in
+            self?.router.didTapDismiss()
+        }
+    }
+
+    @objc func didTapSave() {
+        trackUserEvent(.CONFIRM, action: .TAP)
+        interactor.didClickSaveAndContinue()
+    }
 }
 
 // MARK: - ResultsPrepareViewControllerInterface
 extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
-    func setupBarButtonItems(resultType: ResultType) {
+    func setupBarButtonItems() {
+        rightBarItems.removeAll()
+        resultType.buttonItems.forEach { (buttonItem) in
+            rightBarItems.append(roundedBarButtonItem(title: buttonItem.title,
+                                                      buttonWidth: buttonItem.width,
+                                                      action: getSelector(buttonItem),
+                                                      backgroundColor: buttonItem.backgroundColor,
+                                                      borderColor: buttonItem.borderColor))
+        }
+        updateBottomNavigation([], rightBarItems)
     }
 
     func didUpdateIntentions(_ answerIds: [Int]) {
@@ -104,6 +156,7 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
+        refreshBottomNavigationItems()
     }
 
     func setupView() {
@@ -114,6 +167,7 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         tableView.contentInset.top = 84
         tableView.contentInset.bottom = 40
         tableView.estimatedSectionHeaderHeight = 100
+        setupBarButtonItems()
         view.layoutIfNeeded()
     }
 }
@@ -197,10 +251,10 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             presentEditView(key: .perceived)
         case .strategyTitle:
             let ids = interactor.getStrategyIds()
-            router.presentEditStrategyView(ids.relatedId, ids.selectedIds)
+            router.presentEditStrategyView(ids.relatedId, ids.selectedIds, delegate: self)
         case .strategies(let strategies):
             if let contentId = strategies.at(index: indexPath.row)?.remoteID {
-                router.presentContent(contentId)
+                router.didSelectStrategy(contentId)
             }
         default: return
         }
@@ -221,6 +275,6 @@ extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
     }
 
     func didTapRow(_ viewController: UIViewController, contentId: Int) {
-        router.presentContent(contentId)
+        router.didSelectStrategy(contentId)
     }
 }

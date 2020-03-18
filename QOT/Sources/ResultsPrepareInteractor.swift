@@ -18,6 +18,7 @@ final class ResultsPrepareInteractor {
     private var preparation: QDMUserPreparation?
     private let resultType: ResultType
     private var editKey = Prepare.Key.benefits
+    private var newEvent: QDMUserCalendarEvent?
 
     // MARK: - Init
     init(presenter: ResultsPreparePresenterInterface, _ preparation: QDMUserPreparation?, resultType: ResultType) {
@@ -35,6 +36,10 @@ final class ResultsPrepareInteractor {
 
 // MARK: - ResultsPrepareInteractorInterface
 extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
+    var getType: String {
+        return preparation?.type ?? .LEVEL_CRITICAL
+    }
+
     var sectionCount: Int {
         guard let level = preparation?.type else { return 0 }
         return ResultsPrepare.sectionCount(level: level)
@@ -103,10 +108,23 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func updatePreparationEvent(event: QDMUserCalendarEvent?) {
+        newEvent = event
         preparation?.eventTitle = event?.title
-        preparation?.eventId = event?.remoteID ?? 0
         preparation?.eventDate = event?.startDate
+        preparation?.eventExternalUniqueIdentifierId = event?.qotId
         presenter.createListItems(preparation: preparation)
+    }
+
+    func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
+        worker.updatePreparation(preparation, newEvent, completion)
+    }
+
+    func didClickSaveAndContinue() {
+        worker.updatePreparation(preparation, newEvent, { _ in })
+    }
+
+    func deletePreparation() {
+        worker.deletePreparation(preparation)
     }
 }
 
@@ -120,6 +138,7 @@ extension ResultsPrepareInteractor: CalendarEventSelectionDelegate {
         workerCalendar.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
             self?.workerCalendar.storeLocalEvent(event?.eventIdentifier,
                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
+            self?.preparation?.eventIsCreatedFromQOT = true
             self?.updatePreparationEvent(event: userCalendarEvent)
         }
     }

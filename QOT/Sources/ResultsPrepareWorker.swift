@@ -63,3 +63,31 @@ extension ResultsPrepareWorker {
         ContentService.main.getContentCollectionsByIds(collectionIds, completion)
     }
 }
+
+// MARK: - Update, Delete
+extension ResultsPrepareWorker {
+    func updatePreparation(_ preparation: QDMUserPreparation?,
+                           _ event: QDMUserCalendarEvent?,
+                           _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        guard var preparation = preparation else { return }
+        preparation.setReminder = preparation.eventDate != nil && preparation.eventTitle != nil
+        UserService.main.updateUserPreparation(preparation, newEvent: event) { (updatedPrep, error) in
+            if let error = error {
+                log("Error updateUserPreparation \(error.localizedDescription)", level: .error)
+            }
+            completion(updatedPrep)
+        }
+    }
+
+    func deletePreparation(_ preparation: QDMUserPreparation?) {
+        if let preparation = preparation {
+            let externalIdentifier = preparation.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first
+            WorkerCalendar().deleteLocalEvent(externalIdentifier)
+            UserService.main.deleteUserPreparation(preparation) { (error) in
+                if let error = error {
+                    log("Error deleteUserPreparation \(error.localizedDescription)", level: .error)
+                }
+            }
+        }
+    }
+}
