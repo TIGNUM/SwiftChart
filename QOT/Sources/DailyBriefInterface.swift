@@ -47,7 +47,7 @@ protocol DailyBriefRouterInterface: BaseRouterInterface {
     func presentPrepareResults(for preparation: QDMUserPreparation?)
     func presentDailyCheckInQuestions()
     func presentCoachPreparation()
-
+    func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?)
     func showMyDataScreen()
 
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)

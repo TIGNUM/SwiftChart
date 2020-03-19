@@ -59,6 +59,7 @@ enum ResultType {
     case recoveryDecisionTree
     case recoveryMyPlans
     case mindsetShifterDecisionTree
+    case mindsetShifterBucket
     case mindsetShifterMyPlans
     case prepareDecisionTree
     case prepareMyPlans
@@ -80,11 +81,12 @@ enum ResultType {
              .recoveryMyPlans,
              .mindsetShifterMyPlans,
              .prepareMyPlans,
-             .prepareDailyBrief: return [.done]
+             .prepareDailyBrief,
+             .mindsetShifterBucket,
+             .solveDecisionTree: return [.done]
         case .recoveryDecisionTree,
              .mindsetShifterDecisionTree,
              .prepareDecisionTree: return [.save, .cancel]
-        case .solveDecisionTree: return [.done]
         }
     }
 }
