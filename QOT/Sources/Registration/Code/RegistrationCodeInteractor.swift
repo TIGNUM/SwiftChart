@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 
 private enum URLActions: String {
-    static let urlProtocol = "qotApp"
+    static let urlProtocol = "tignumx"
     case termsOfUse
     case privacyPolicy
     case changeEmail

@@ -169,6 +169,7 @@ final class LaunchHandler {
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQ)
             push(viewController: controller)
         case .usingQOT,
+             .usingTIGNUMX,
              .tutorial:
             guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .UsingQOT)
@@ -336,12 +337,12 @@ extension LaunchHandler {
 
             switch contentCollection.section {
             case .Tools, .QOTLibrary:
-                if let controller = R.storyboard.tools.qotToolsItemsViewController() {
+                if let controller = R.storyboard.tools.tignum_XToolsItemsViewController() {
                     ToolsItemsConfigurator.make(viewController: controller, selectedToolID: collectionId)
                     self?.present(viewController: controller)
                 }
             default:
-                if let controller = R.storyboard.main.qotArticleViewController() {
+                if let controller = R.storyboard.main.tignum_XArticleViewController() {
                     ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
                     self?.present(viewController: controller)
                 }
@@ -412,7 +413,7 @@ extension LaunchHandler {
     }
 
     func showCategory(_ categoryId: Int?) {
-        if let controller = R.storyboard.main.qotStrategyListViewController() {
+        if let controller = R.storyboard.main.tignum_XStrategyListViewController() {
             StrategyListConfigurator.configure(viewController: controller, selectedStrategyID: categoryId)
             push(viewController: controller)
         }

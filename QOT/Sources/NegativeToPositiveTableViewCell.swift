@@ -19,7 +19,6 @@ final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeuea
         negativeToPositiveView = NegativeToPositiveView.instantiateMindsetView(superview: self, showSkeleton: true, darkMode: false)
     }
 
-
      // MARK: - Cell configuration
 
     func configure(title: String,

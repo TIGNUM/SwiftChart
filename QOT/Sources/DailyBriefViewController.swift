@@ -22,6 +22,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
     func presentPopUp(copyrightURL: String?, description: String?)
+    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
     func reloadSprintCell(cell: UITableViewCell)
     func didUpdateLevel5()
     func displayCoachPreparationScreen()
@@ -444,6 +445,7 @@ private extension DailyBriefViewController {
                         _ mindsetShifterViewModel: MindsetShifterViewModel?) -> UITableViewCell {
         let cell: MindsetShifterCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: mindsetShifterViewModel)
+        cell.delegate = self
         return cell
     }
 
@@ -726,6 +728,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 // MARK: - DailyBriefViewControllerDelegate
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+
     func didChangeLocationPermission(granted: Bool) {
         if granted {
             requestSynchronization(.DAILY_BRIEF_WEATHER, .DOWN_SYNC)
@@ -801,6 +804,10 @@ extension DailyBriefViewController {
 
     func presentMyToBeVision() {
         router.showTBV()
+    }
+
+    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?) {
+        router.presentMindsetResults(mindsetShifter)
     }
 
     @objc func openStrategy(sender: UITapGestureRecognizer) {
