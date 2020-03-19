@@ -1059,7 +1059,7 @@
 		D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */; };
 		D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */; };
 		D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F211ED57AE200A08D1A /* SearchViewController.swift */; };
-		D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
+		D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreenX.storyboard */; };
 		DB2969EA22C6105300B8A590 /* AudioFullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969E922C6105300B8A590 /* AudioFullScreenViewController.swift */; };
 		DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB2969EB22C611B500B8A590 /* AudioFullScreenViewController.storyboard */; };
 		DB2969EE22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969ED22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift */; };
@@ -2284,7 +2284,7 @@
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 		CBB237EC1E6FFF1200AB5AEF /* TIGNUM X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TIGNUM X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CBB237F91E6FFF1200AB5AEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CBB237F91E6FFF1200AB5AEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreenX.storyboard; sourceTree = "<group>"; };
 		CBB237FB1E6FFF1200AB5AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Convenience.swift"; sourceTree = "<group>"; };
 		CBB4DCDF1ED8178A0071494A /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
@@ -4905,7 +4905,7 @@
 		CBB4DD3F1EE08EF90071494A /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */,
+				CBB237F81E6FFF1200AB5AEF /* LaunchScreenX.storyboard */,
 			);
 			name = Launch;
 			sourceTree = "<group>";
@@ -5692,7 +5692,7 @@
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
-				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
+				D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */,
@@ -7055,12 +7055,12 @@
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
-		CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */ = {
+		CBB237F81E6FFF1200AB5AEF /* LaunchScreenX.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CBB237F91E6FFF1200AB5AEF /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = LaunchScreenX.storyboard;
 			path = .;
 			sourceTree = "<group>";
 		};
