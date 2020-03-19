@@ -21,7 +21,7 @@ final class ResultsPrepareRouter: BaseRouter {
          delegate: CalendarEventSelectionDelegate?,
          resultType: ResultType) {
         super.init(viewController: viewController)
-        
+
         self.delegate = delegate
         self.resultType = resultType
     }

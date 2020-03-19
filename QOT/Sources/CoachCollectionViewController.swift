@@ -16,7 +16,7 @@ public extension Notification.Name {
 
 protocol CoachCollectionViewControllerDelegate: class {
     func didTapCancel()
-    func handlePan(offsetY: CGFloat, isDragging: Bool)
+    func handlePan(offsetY: CGFloat, isDragging: Bool, isScrolling: Bool)
     func moveToCell(item: Int)
 }
 
@@ -215,11 +215,11 @@ extension CoachCollectionViewController {
     }
 
     private func refreshCoachButton(isDragging: Bool) {
-        if isDragging && coachButton.alpha >= 1 {
+        if isDragging, bottomSearchViewConstraint.constant <= 0 {
             UIView.animate(withDuration: 0.5) {
                 self.coachButton.alpha = 0
             }
-        } else if !isDragging {
+        } else if !isDragging || bottomSearchViewConstraint.constant > 0 {
             let newAlpha: CGFloat = abs(1 - min((CGFloat(bottomSearchViewConstraint.constant) / 100), 1))
             let alpha = min(newAlpha, 1.0)
             UIView.animate(withDuration: 0.5) {
@@ -317,7 +317,7 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
         }
     }
 
-    func handlePan(offsetY: CGFloat, isDragging: Bool) {
+    func handlePan(offsetY: CGFloat, isDragging: Bool, isScrolling: Bool) {
         if panSearchShowing { return }
 
         let maxDistance = displaySearchDragOffset

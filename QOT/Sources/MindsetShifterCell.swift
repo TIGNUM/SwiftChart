@@ -50,7 +50,7 @@ final class MindsetShifterCell: BaseDailyBriefCell {
         ctaButton.setTitle("My mindset shifter plan", for: .normal)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
     }
-    
+
     @IBAction func mindsetButtonTapped(_ sender: Any) {
         delegate?.presentMindsetResults(for: mindsetShifter)
     }
