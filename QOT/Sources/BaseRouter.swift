@@ -37,7 +37,7 @@ class BaseRouter: BaseRouterInterface {
     }
 
     // MARK: - BaseRouterInterface
-    func dismiss() {
+    @objc func dismiss() {
         viewController?.dismiss(animated: true)
     }
 

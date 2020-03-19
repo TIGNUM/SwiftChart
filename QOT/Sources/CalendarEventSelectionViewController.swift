@@ -15,7 +15,7 @@ final class CalendarEventSelectionViewController: BaseWithGroupedTableViewContro
     // MARK: - Properties
     weak var delegate: CalendarEventSelectionDelegate?
     var interactor: CalendarEventSelectionInteractorInterface!
-    private lazy var router: CalendarEventSelectionRouterInterface = CalendarEventSelectionRouter(viewController: self)
+    private lazy var router = CalendarEventSelectionRouter(viewController: self)
 
     // MARK: - Init
     init(configure: Configurator<CalendarEventSelectionViewController>) {
@@ -30,6 +30,7 @@ final class CalendarEventSelectionViewController: BaseWithGroupedTableViewContro
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        trackPage()
         interactor.viewDidLoad()
     }
 
@@ -101,7 +102,9 @@ extension CalendarEventSelectionViewController: EKEventEditViewDelegate {
             DispatchQueue.main.async { [weak self] in
                 let event = controller.event
                 self?.delegate?.didCreateEvent(event)
-                self?.router.dismiss()
+                controller.dismiss(animated: true) {
+                    self?.router.dismiss()
+                }
             }
         }
     }

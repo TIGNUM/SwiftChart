@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="KGk-i7-Jjw" customClass="ResultsPrepareEventTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVo-4g-wBt">
+                        <rect key="frame" x="24" y="12" width="244" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_close" translatesAutoresizingMaskIntoConstraints="NO" id="XMQ-8G-Ebf">
+                        <rect key="frame" x="280" y="26" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="R2y-9g-W3Z"/>
+                            <constraint firstAttribute="width" constant="16" id="Ydb-YR-Ydp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihO-Ro-43b">
+                        <rect key="frame" x="48" y="41" width="220" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="rOs-FS-tgg">
+                        <rect key="frame" x="24" y="41" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="TMD-oE-et5"/>
+                            <constraint firstAttribute="width" constant="16" id="zMS-Vq-oHo"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ihO-Ro-43b" firstAttribute="leading" secondItem="rOs-FS-tgg" secondAttribute="trailing" constant="8" id="6ZC-ZS-Emb"/>
+                    <constraint firstItem="rOs-FS-tgg" firstAttribute="top" secondItem="pVo-4g-wBt" secondAttribute="bottom" constant="8" id="6x8-H0-JWB"/>
+                    <constraint firstItem="ihO-Ro-43b" firstAttribute="top" secondItem="pVo-4g-wBt" secondAttribute="bottom" constant="8" id="F3X-LD-ePL"/>
+                    <constraint firstItem="XMQ-8G-Ebf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GwX-Yz-OQi"/>
+                    <constraint firstItem="XMQ-8G-Ebf" firstAttribute="leading" secondItem="pVo-4g-wBt" secondAttribute="trailing" constant="12" id="K7Q-ZX-yAf"/>
+                    <constraint firstItem="pVo-4g-wBt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="N2Z-0d-y3m"/>
+                    <constraint firstItem="rOs-FS-tgg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="Us4-YB-GrL"/>
+                    <constraint firstAttribute="bottom" secondItem="ihO-Ro-43b" secondAttribute="bottom" constant="12.5" id="g3q-Ml-2qk"/>
+                    <constraint firstAttribute="trailing" secondItem="XMQ-8G-Ebf" secondAttribute="trailing" constant="24" id="hKT-oK-m2m"/>
+                    <constraint firstItem="XMQ-8G-Ebf" firstAttribute="leading" secondItem="ihO-Ro-43b" secondAttribute="trailing" constant="12" id="w1e-Tw-pkq"/>
+                    <constraint firstItem="pVo-4g-wBt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="y0L-2S-4Q7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateIcon" destination="rOs-FS-tgg" id="1gf-sG-psk"/>
+                <outlet property="subtitleLabel" destination="ihO-Ro-43b" id="N5g-VA-Vwq"/>
+                <outlet property="titleLabel" destination="pVo-4g-wBt" id="bRz-qY-FVC"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="160.04464285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_calendar" width="16" height="16"/>
+        <image name="ic_close" width="16" height="16"/>
+    </resources>
+</document>

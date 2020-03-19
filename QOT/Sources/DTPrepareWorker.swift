@@ -23,7 +23,6 @@ final class DTPrepareWorker: DTWorker {
     func createPreparationDaily(answerFilter: String,
                                 relatedStategyId: Int,
                                 eventType: String,
-                                event: QDMUserCalendarEvent,
                                 _ completion: @escaping (QDMUserPreparation?) -> Void) {
         var model = CreateUserPreparationModel()
         model.level = QDMUserPreparation.Level.LEVEL_DAILY
@@ -32,7 +31,6 @@ final class DTPrepareWorker: DTWorker {
         model.contentCollectionId = QDMUserPreparation.Level.LEVEL_DAILY.contentID
         model.relatedStrategyId = relatedStategyId
         model.eventType = eventType
-        model.event = event
         UserService.main.createUserPreparation(from: model) { (preparation, error) in
             if let error = error {
                 log("Error createUserPreparation DAILY: \(error.localizedDescription)", level: .error)
