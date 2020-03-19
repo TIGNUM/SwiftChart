@@ -392,7 +392,7 @@ extension DailyBriefInteractor {
         var readinessIntro: String? = ""
         var models: [ImpactReadinessScoreViewModel.ImpactDataViewModel] = []
         let impactReadinessImageURL = impactReadiness.toBeVision?.profileImageResource?.url()
-        if impactReadiness.dailyCheckInResult?.impactReadiness == nil && impactReadiness.dailyCheckInAnswers == nil {
+        if impactReadiness.dailyCheckInResult?.impactReadiness == nil, impactReadiness.dailyCheckInAnswers == nil {
             readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_empty_body)
         }
 
