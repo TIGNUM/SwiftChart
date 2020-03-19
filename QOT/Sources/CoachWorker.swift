@@ -20,12 +20,11 @@ final class CoachWorker {
 
     func coachSections() -> CoachModel {
         let headerTitle = AppTextService.get(.coach_section_header_title)
-        let headerSubtitle = AppTextService.get(.coach_section_header_subtitle)
         let coachItems =  CoachSection.allCases.map {
             return CoachModel.Item(coachSections: $0,
                                    title: coachSectionTitles(for: $0),
                                    subtitle: coachSectionSubtitles(for: $0)) }
-        return CoachModel(headerTitle: headerTitle, headerSubtitle: headerSubtitle, coachItems: coachItems)
+        return CoachModel(headerTitle: headerTitle, coachItems: coachItems)
     }
 
     func coachSectionTitles(for coachItem: CoachSection) -> String? {

@@ -42,6 +42,7 @@ final class DailyCheckinSHPICell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
         ThemeText.shpiQuestion.apply(model.shpiQuestion, to: shpiQuestionLabel)
         ThemeText.shpiContent.apply(model.shpiContent, to: shpiContentLabel)
+        ThemeText.shpiSubtitle.apply(AppTextService.get(.daily_brief_section_daily_insights_shpi_title_rated_yourself).uppercased(), to: barsTitleLabel)
     }
 }
 

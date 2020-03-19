@@ -92,6 +92,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
                        section: relatedStrategy?.section,
                        format: relatedStrategy?.format,
                        numberOfItems: relatedStrategy?.numberOfItems ?? 0)
+        cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
         cell.delegate = self.delegate
         return cell
     }

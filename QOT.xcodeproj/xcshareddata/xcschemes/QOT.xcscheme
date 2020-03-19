@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
-               BuildableName = "QOT.app"
+               BuildableName = "TIGNUM X.app"
                BlueprintName = "QOT"
                ReferencedContainer = "container:QOT.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
-            BuildableName = "QOT.app"
+            BuildableName = "TIGNUM X.app"
             BlueprintName = "QOT"
             ReferencedContainer = "container:QOT.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
-            BuildableName = "QOT.app"
+            BuildableName = "TIGNUM X.app"
             BlueprintName = "QOT"
             ReferencedContainer = "container:QOT.xcodeproj">
          </BuildableReference>
@@ -81,7 +81,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CBB237EB1E6FFF1200AB5AEF"
-            BuildableName = "QOT.app"
+            BuildableName = "TIGNUM X.app"
             BlueprintName = "QOT"
             ReferencedContainer = "container:QOT.xcodeproj">
          </BuildableReference>

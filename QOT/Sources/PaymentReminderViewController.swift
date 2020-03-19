@@ -55,8 +55,8 @@ final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["support@qot.io"])
-            mail.setMessageBody("<p>About my Qot Membership</p>", isHTML: true)
+            mail.setToRecipients(["support@tignumx.com"])
+            mail.setMessageBody("<p>About my TIGNUM X Membership</p>", isHTML: true)
 
             present(mail, animated: true)
         } else {

@@ -92,7 +92,7 @@ final class OpenGraphMetaDataParser: NSObject, XMLParserDelegate {
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?,
-                qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+                qualifiedName qName: String?, attributes attributeDict: [String: String] = [:]) {
         currentElement = elementName
         if elementName == "meta", let poperty = attributeDict["property"] {
             dictionary[poperty] = attributeDict["content"]

@@ -101,7 +101,9 @@ extension CalendarEventSelectionViewController: EKEventEditViewDelegate {
             DispatchQueue.main.async { [weak self] in
                 let event = controller.event
                 self?.delegate?.didCreateEvent(event)
-                self?.router.dismiss()
+                controller.dismiss(animated: true) {
+                    self?.router.dismiss()
+                }
             }
         }
     }

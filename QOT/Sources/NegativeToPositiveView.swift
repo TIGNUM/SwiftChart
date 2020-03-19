@@ -95,16 +95,10 @@ extension NegativeToPositiveView {
         ThemeText.tbvQuestionLight.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowFirstItemLabel)
         ThemeText.tbvQuestionLight.apply(lowItems[1, default: "lowItem_\(1) not set"], to: lowSecondItemLabel)
         ThemeText.tbvQuestionLight.apply(lowItems[2, default: "lowItem_\(2) not set"], to: lowThirdItemLabel)
-
-        let indexHi = randomSet(max: highItems.count)
-
         ThemeText.resultTitleTheme(themeMode).apply(highTitle, to: highTitleLabel)
-        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[indexHi.index1,
-                                                       default: "highItem_\(indexHi.index1) not set"], to: highFirstItemLabel)
-        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[indexHi.index2,
-                                                       default: "highItem_\(indexHi.index2) not set"], to: highSecondItemLabel)
-        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[indexHi.index3,
-                                                       default: "highItem_\(indexHi.index3) not set"], to: highThirdItemLabel)
+        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[0, default: "highItem_\(0) not set"], to: highFirstItemLabel)
+        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[1, default: "highItem_\(1) not set"], to: highSecondItemLabel)
+        ThemeText.resultHeaderTheme2(themeMode).apply(highItems[2, default: "highItem_\(2) not set"], to: highThirdItemLabel)
     }
 }
 

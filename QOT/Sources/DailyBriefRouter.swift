@@ -23,6 +23,7 @@ final class DailyBriefRouter: BaseRouter {
 
 // MARK: - DailyBriefRouterInterface
 extension DailyBriefRouter: DailyBriefRouterInterface {
+
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
         if let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
@@ -80,4 +81,11 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?) {
         appLink?.launch()
     }
+
+     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?) {
+          let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
+                                                            resultType: .mindsetShifterBucket)
+          let controller = ShifterResultViewController(configure: configurator)
+          viewController?.present(controller, animated: true)
+      }
 }

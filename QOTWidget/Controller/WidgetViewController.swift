@@ -10,10 +10,10 @@ import UIKit
 import NotificationCenter
 
 enum Scene: String {
-    case toBeVision = "qot://to-be-vision"
-    case prepareEvent = "qot://prepare-event"
-    case comingEvent = "qot://coming-event"
-    case signIn = "qot://"
+    case toBeVision = "tignumx://to-be-vision"
+    case prepareEvent = "tignumx://prepare-event"
+    case comingEvent = "tignumx://coming-event"
+    case signIn = "tignumx://"
 }
 
 final class WidgetViewController: UIViewController, NCWidgetProviding {
