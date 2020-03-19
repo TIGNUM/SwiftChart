@@ -61,6 +61,9 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
             return strategyCount
         }
         if level == .LEVEL_DAILY && section == 7 {
+            if preparation?.strategyIds.isEmpty == true {
+                return presenter.getStrategyCount
+            }
             return strategyCount
         }
         return 1

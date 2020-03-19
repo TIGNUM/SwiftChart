@@ -17,6 +17,7 @@ protocol ResultsPrepareViewControllerInterface: class {
 }
 
 protocol ResultsPreparePresenterInterface {
+    var getStrategyCount: Int { get }
     func setupView()
     func createListItems(preparation: QDMUserPreparation?)
 }

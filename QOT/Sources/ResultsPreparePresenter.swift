@@ -14,6 +14,7 @@ final class ResultsPreparePresenter {
     // MARK: - Properties
     private weak var viewController: ResultsPrepareViewControllerInterface?
     private var sections: [Int: ResultsPrepare.Sections] = [:]
+    var strategyCount = 0
 
     // MARK: - Init
     init(viewController: ResultsPrepareViewControllerInterface?) {
@@ -69,13 +70,37 @@ private extension ResultsPreparePresenter {
         return .strategyTitle(title: AppTextService.get(.results_prepare_strategies))
     }
 
-    func getStrategiesItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
-        return .strategies(strategies: preparation?.strategies ?? [])
+    func getStrategyItems(_ preparation: QDMUserPreparation?,
+                           _ completion: @escaping (ResultsPrepare.Sections) -> Void) {
+        if preparation?.strategyIds.isEmpty == true,
+            let relatedStrategyId = preparation?.relatedStrategyId {
+            strategyIDsDefault(relatedStrategyId) { [weak self] (strategies) in
+                self?.strategyCount = strategies?.count ?? 0
+                completion(.strategies(strategies: strategies ?? []))
+            }
+        } else {
+            completion(.strategies(strategies: preparation?.strategies ?? []))
+        }
+    }
+
+    func strategyIDsDefault(_ relatedStrategyID: Int?, _ completion: @escaping (([QDMContentCollection]?) -> Void)) {
+        if let relatedStrategyID = relatedStrategyID {
+            ContentService.main.getContentCollectionById(relatedStrategyID) { content in
+                let relatedIds = content?.relatedContentIDsPrepareDefault ?? []
+                ContentService.main.getContentCollectionsByIds(relatedIds, completion)
+            }
+        } else {
+            completion([])
+        }
     }
 }
 
 // MARK: - ResultsPrepareInterface
 extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
+    var getStrategyCount: Int {
+        return strategyCount
+    }
+
     func createListItems(preparation: QDMUserPreparation?) {
         sections.removeAll()
         sections[0] = getHeaderItem(preparation)
@@ -88,13 +113,19 @@ extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
         if preparation?.type == .LEVEL_CRITICAL {
             sections[6] = getBenefitsItem(preparation)
             sections[7] = getStrategyTitleItem()
-            sections[8] = getStrategiesItem(preparation)
+            getStrategyItems(preparation) { [weak self] (strategySections) in
+                guard let strongSelf = self else { return }
+                strongSelf.sections[8] = strategySections
+                strongSelf.viewController?.updateView(items: strongSelf.sections)
+            }
         } else {
             sections[6] = getStrategyTitleItem()
-            sections[7] = getStrategiesItem(preparation)
+            getStrategyItems(preparation) { [weak self] (strategySections) in
+                guard let strongSelf = self else { return }
+                strongSelf.sections[7] = strategySections
+                strongSelf.viewController?.updateView(items: strongSelf.sections)
+            }
         }
-
-        viewController?.updateView(items: sections)
     }
 
     func setupView() {
