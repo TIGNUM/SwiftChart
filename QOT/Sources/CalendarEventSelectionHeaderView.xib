@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CalendarEventSelectionHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlU-Xf-hgo">
+                    <rect key="frame" x="24" y="24" width="16" height="1"/>
+                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="99t-QX-HjO"/>
+                        <constraint firstAttribute="height" constant="1" id="YWf-nV-jhY"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which of the following events are you preparing for?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBv-xO-c8X">
+                    <rect key="frame" x="24" y="37" width="366" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nBv-xO-c8X" secondAttribute="bottom" constant="24" id="G8s-Ch-rDA"/>
+                <constraint firstItem="nBv-xO-c8X" firstAttribute="top" secondItem="IlU-Xf-hgo" secondAttribute="bottom" constant="12" id="Sbo-Va-OR4"/>
+                <constraint firstItem="IlU-Xf-hgo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="Yyz-6Y-TxO"/>
+                <constraint firstItem="IlU-Xf-hgo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="bUL-bl-tZN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nBv-xO-c8X" secondAttribute="trailing" constant="24" id="byO-tf-Kbi"/>
+                <constraint firstItem="nBv-xO-c8X" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="qln-3L-Iz1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="titleLabel" destination="nBv-xO-c8X" id="tII-2a-kuz"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="156.36160714285714"/>
+        </view>
+    </objects>
+</document>
