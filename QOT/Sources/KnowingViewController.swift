@@ -28,6 +28,8 @@ final class KnowingViewController: BaseViewController {
                                 dequeables: ComponentCollectionViewCell.self)
     }()
 
+    private var isDragging = false
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -279,11 +281,16 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y,
-                            isDragging: scrollView.isDragging && !scrollView.isDecelerating,
+                            isDragging: isDragging,
                             isScrolling: scrollView.isDragging || scrollView.isDecelerating)
     }
 
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isDragging = true
+    }
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        isDragging = false
         scrollViewDidScroll(scrollView)
     }
 
