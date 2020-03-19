@@ -57,7 +57,7 @@ extension EKEvent: EKEventEditable {
 
     func removePreparationLink() throws {
         guard let currentNotes = self.notes, self.hasNotes == true else { return }
-        let regex = try NSRegularExpression(pattern: "(qotapp:\\/\\/preparation#[A-Z0-9-]+)", options: [])
+        let regex = try NSRegularExpression(pattern: "(tignumx:\\/\\/preparation#[A-Z0-9-]+)", options: [])
         guard let regexMatch = regex.matches(in: currentNotes,
                                              options: [],
                                              range: NSRange(location: 0, length: currentNotes.count)).first else {

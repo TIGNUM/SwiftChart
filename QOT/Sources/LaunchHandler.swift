@@ -93,8 +93,8 @@ final class LaunchHandler {
             present(viewController: controller)
         case .prepareEvent,
              .prepareDay:
-            let configurator = DTPrepareConfigurator.make()
-            let controller = DTPrepareViewController(configure: configurator)
+            let configurator = DTPrepareStartConfigurator.make()
+            let controller = DTPrepareStartViewController(configure: configurator)
             controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .preparation:
@@ -169,6 +169,7 @@ final class LaunchHandler {
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQ)
             push(viewController: controller)
         case .usingQOT,
+             .usingTIGNUMX,
              .tutorial:
             guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .UsingQOT)
@@ -336,12 +337,12 @@ extension LaunchHandler {
 
             switch contentCollection.section {
             case .Tools, .QOTLibrary:
-                if let controller = R.storyboard.tools.qotToolsItemsViewController() {
+                if let controller = R.storyboard.tools.tignum_XToolsItemsViewController() {
                     ToolsItemsConfigurator.make(viewController: controller, selectedToolID: collectionId)
                     self?.present(viewController: controller)
                 }
             default:
-                if let controller = R.storyboard.main.qotArticleViewController() {
+                if let controller = R.storyboard.main.tignum_XArticleViewController() {
                     ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
                     self?.present(viewController: controller)
                 }
@@ -370,8 +371,8 @@ extension LaunchHandler {
     func showPreparationWith(identifier: String) {
         UserService.main.getUserPreparationWith(qotId: identifier) { (preparation, initialized, _) in
             if let qdmUserPreparation = preparation {
-                let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDailyBrief)
-                let controller = PrepareResultsViewController(configure: configurator)
+                let configurator = ResultsPrepareConfigurator.make(qdmUserPreparation, resultType: .prepareDailyBrief)
+                let controller = ResultsPrepareViewController(configure: configurator)
                 self.present(viewController: controller)
             }
         }
@@ -412,7 +413,7 @@ extension LaunchHandler {
     }
 
     func showCategory(_ categoryId: Int?) {
-        if let controller = R.storyboard.main.qotStrategyListViewController() {
+        if let controller = R.storyboard.main.tignum_XStrategyListViewController() {
             StrategyListConfigurator.configure(viewController: controller, selectedStrategyID: categoryId)
             push(viewController: controller)
         }

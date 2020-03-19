@@ -43,7 +43,6 @@ public extension AppTextKey {
     static let coach_section_header_title = AppTextKey("coach.section_header.title")
     static let coach_section_sprint_subtitle = AppTextKey("coach.section_sprint.subtitle")
     static let coach_section_search_title = AppTextKey("coach.section_search.title")
-    static let coach_section_header_subtitle = AppTextKey("coach.section_header.subtitle")
     static let coach_section_solve_title = AppTextKey("coach.section_solve.title")
     static let coach_section_solve_subtitle = AppTextKey("coach.section_solve.subtitle")
     static let coach_section_mindset_title = AppTextKey("coach.section_mindset.title")
@@ -873,7 +872,32 @@ public extension AppTextKey {
 
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
 
+    // MARK: - Results Prepare
+    static let results_prepare_header_title = AppTextKey("results_prepare.header.title")
+    static let results_prepare_connect_calendar_title = AppTextKey("prepare_results.connect_calaendar.title")
+    static let results_prepare_connect_calendar_subtitle = AppTextKey("prepare_results.connect_calaendar.subtitle")
+    static let results_prepare_critical_questions = AppTextKey("prepare_results.critical.questions")
+    static let results_prepare_perceived = AppTextKey("prepare_results.perceived.title")
+    static let results_prepare_know = AppTextKey("prepare_results.know.title")
+    static let results_prepare_feel = AppTextKey("prepare_results.feel.title")
+    static let results_prepare_header_benefits = AppTextKey("prepare_results.benefits.header")
+    static let results_prepare_benefits = AppTextKey("prepare_results.benefits.title")
+    static let results_prepare_strategies = AppTextKey("prepare_results.strategies.title")
     static let addNewEvent = AppTextKey("results_prepare.right_bar_item.add_new_event")
+
+    // MARK: - ChatBot Prepare
+    static let chatbot_prepare_start_header = AppTextKey("chatbot_prepare_start.header.title")
+    static let chatbot_prepare_start_intentionTitle = AppTextKey("chatbot_prepare_start.intention.title")
+    static let chatbot_prepare_start_intentions = AppTextKey("chatbot_prepare_start.intentions.content")
+    static let chatbot_prepare_start_strategyTitle = AppTextKey("chatbot_prepare_start.strategy.title")
+    static let chatbot_prepare_start_strategies = AppTextKey("chatbot_prepare_start.strategy.content")
+    static let chatbot_prepare_start_selectionTitle = AppTextKey("chatbot_prepare_start.selection.title")
+    static let chatbot_prepare_start_critical_button = AppTextKey("chatbot_prepare_start.button.critical")
+    static let chatbot_prepare_start_daily_button = AppTextKey("chatbot_prepare_start.button.daily")
+
+    // MARK: - Event Selection
+    static let event_selection_empty = AppTextKey("event_selection.empty.title")
+    static let event_selection_header = AppTextKey("event_selection.header.title")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")
@@ -896,4 +920,6 @@ public extension AppTextKey {
     static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
     static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
     static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
+    static let coach_section_header_subtitle = AppTextKey("coach.section_header.subtitle")
+
 }

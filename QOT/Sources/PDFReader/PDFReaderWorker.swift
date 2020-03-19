@@ -29,7 +29,7 @@ final class PDFReaderWorker {
     func prepareShareContent(completion: @escaping ((Result) -> Void)) {
         ContentService.main.getContentItemShareData(contentItemId: contentItemID) { (shareData, error) in
             guard let value = shareData else {
-                completion(.failure(error ?? NSError(domain: "QOT", code: 500, userInfo: nil) ))
+                completion(.failure(error ?? NSError(domain: "TIGNUM X", code: 500, userInfo: nil) ))
                 return
             }
 

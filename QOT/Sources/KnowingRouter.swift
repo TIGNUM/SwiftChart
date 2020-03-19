@@ -30,7 +30,7 @@ extension KnowingRouter: KnowingRouterInterface {
     }
 
     func presentStrategyList(selectedStrategyID: Int?) {
-        if let controller = R.storyboard.main.qotStrategyListViewController() {
+        if let controller = R.storyboard.main.tignum_XStrategyListViewController() {
             StrategyListConfigurator.configure(viewController: controller, selectedStrategyID: selectedStrategyID)
             viewController?.pushToStart(childViewController: controller)
         }

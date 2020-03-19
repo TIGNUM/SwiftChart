@@ -240,7 +240,7 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func handleNotification(notification: UNNotification) {
-        log("dailyPrep://handleNotification, notification:: \(notification)")
+        log("handle local notification: \(notification)")
         var link: URL?
         if let linkString = notification.request.content.userInfo["link"] as? String {
             link = URL(string: linkString)
@@ -248,7 +248,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             link = URL(string: urlString)
         } else {
             let stringValues = notification.request.content.userInfo.values.filter { ($0 is String) } as? [String]
-            let userInfoUrlString = stringValues?.filter { $0.contains("qot://") }.first
+            let userInfoUrlString = stringValues?.filter {
+                $0.contains("qot://") || $0.contains("tignumx://")
+            }.first
             if let urlString = userInfoUrlString {
                 link = URL(string: urlString)
             }

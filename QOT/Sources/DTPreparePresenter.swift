@@ -12,7 +12,6 @@ import qot_dal
 final class DTPreparePresenter: DTPresenter {
 
     // MARK: - Properties
-    weak var prepareViewController: DTPrepareViewControllerInterface?
     var intensionViewModel: DTViewModel?
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
@@ -27,7 +26,10 @@ final class DTPreparePresenter: DTPresenter {
     }
 
     override func previousIsHidden(questionKey: String) -> Bool {
-        return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
+        return
+            questionKey == Prepare.QuestionKey.EventTypeSelectionCritical ||
+            questionKey == Prepare.QuestionKey.EventTypeSelectionDaily ||
+            questionKey == Prepare.QuestionKey.Last
     }
 
     override func getNavigationButton(_ presentationModel: DTPresentationModel, isDark: Bool) -> NavigationButton? {
@@ -45,16 +47,5 @@ final class DTPreparePresenter: DTPresenter {
             return navigationButton
         }
         return super.getNavigationButton(presentationModel, isDark: isDark)
-    }
-}
-
-// MARK: - DTPrepareInterface
-extension DTPreparePresenter: DTPreparePresenterInterface {
-    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
-        prepareViewController?.presentCalendarPermission(permissionType)
-    }
-
-    func presentCalendarSettings() {
-        prepareViewController?.presentCalendarSettings()
     }
 }

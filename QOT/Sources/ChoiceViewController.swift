@@ -10,7 +10,6 @@ import UIKit
 import qot_dal
 
 protocol ChoiceViewControllerDelegate: class {
-    func dismiss(_ viewController: UIViewController)
     func dismiss(_ viewController: UIViewController, selections: [Choice])
     func didTapRow(_ viewController: UIViewController, contentId: Int)
 }
