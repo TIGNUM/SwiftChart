@@ -5,20 +5,22 @@
 	<key>INEnums</key>
 	<array/>
 	<key>INIntentDefinitionModelVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
+	<key>INIntentDefinitionNamespace</key>
+	<string>Z7zitR</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>18G87</string>
+	<string>18G3020</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>10G8</string>
+	<string>11C504</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>10.3</string>
+	<string>11.3.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>QOT will read and display your To Be Vision.</string>
+			<string>TIGNUM X will read and display your To Be Vision.</string>
 			<key>INIntentDescriptionID</key>
 			<string>FCJPbG</string>
 			<key>INIntentLastParameterTag</key>
@@ -31,34 +33,14 @@
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>Wm9RGC</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string></string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>9Bdqsq</string>
 				</dict>
 			</dict>
-			<key>INIntentParameters</key>
-			<array/>
 			<key>INIntentResponse</key>
 			<dict>
 				<key>INIntentResponseCodes</key>
 				<array>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string>I am sorry, I could not read your To Be Vision</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>7okmYU</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
 						<string>${vision}</string>
@@ -68,6 +50,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>I am sorry, I could not read your To Be Vision</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>7okmYU</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
@@ -99,8 +89,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>headline</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>6</integer>
 						<key>INIntentResponseParameterType</key>
@@ -111,8 +99,6 @@
 						<integer>2</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>vision</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>12</integer>
 						<key>INIntentResponseParameterType</key>
@@ -123,8 +109,6 @@
 						<integer>3</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>imageURL</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
@@ -132,16 +116,12 @@
 					</dict>
 				</array>
 			</dict>
-			<key>INIntentRestrictions</key>
-			<integer>0</integer>
 			<key>INIntentTitle</key>
 			<string>Read my To Be Vision</string>
 			<key>INIntentTitleID</key>
 			<string>l287a6</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>View</string>
 		</dict>
@@ -149,11 +129,9 @@
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>QOT will display the newest What's Hot articles.</string>
+			<string>TIGNUM X will display the newest What's Hot articles.</string>
 			<key>INIntentDescriptionID</key>
 			<string>cCU33I</string>
-			<key>INIntentLastParameterTag</key>
-			<integer>0</integer>
 			<key>INIntentName</key>
 			<string>WhatsHot</string>
 			<key>INIntentParameterCombinations</key>
@@ -162,24 +140,20 @@
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>9N5Qnz</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string></string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>SQjvVQ</string>
 				</dict>
 			</dict>
-			<key>INIntentParameters</key>
-			<array/>
 			<key>INIntentResponse</key>
 			<dict>
 				<key>INIntentResponseCodes</key>
 				<array>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
 						<string>Sorry, I could not see any new Whats Hot Article</string>
@@ -187,18 +161,6 @@
 						<string>A8IutA</string>
 						<key>INIntentResponseCodeName</key>
 						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string></string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>kvztd2</string>
-						<key>INIntentResponseCodeName</key>
-						<string>success</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
@@ -250,8 +212,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>firstArticleImageURL</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>11</integer>
 						<key>INIntentResponseParameterType</key>
@@ -262,8 +222,6 @@
 						<integer>2</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>firstArticleTitle</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>5</integer>
 						<key>INIntentResponseParameterType</key>
@@ -274,8 +232,6 @@
 						<integer>3</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>firstArticleAuthor</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
@@ -286,8 +242,6 @@
 						<integer>4</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>firstArticleDuration</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>8</integer>
 						<key>INIntentResponseParameterType</key>
@@ -298,8 +252,6 @@
 						<integer>5</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>secondArticleImageURL</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>13</integer>
 						<key>INIntentResponseParameterType</key>
@@ -310,8 +262,6 @@
 						<integer>6</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>secondArticleAuthor</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>6</integer>
 						<key>INIntentResponseParameterType</key>
@@ -322,8 +272,6 @@
 						<integer>7</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>secondArticleTitle</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>7</integer>
 						<key>INIntentResponseParameterType</key>
@@ -334,8 +282,6 @@
 						<integer>8</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>secondArticleDuration</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>9</integer>
 						<key>INIntentResponseParameterType</key>
@@ -343,16 +289,12 @@
 					</dict>
 				</array>
 			</dict>
-			<key>INIntentRestrictions</key>
-			<integer>0</integer>
 			<key>INIntentTitle</key>
 			<string>New What's Hot Articles</string>
 			<key>INIntentTitleID</key>
 			<string>Qu6wYU</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>View</string>
 		</dict>
@@ -360,11 +302,9 @@
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>QOT will lead you to Daily Check In</string>
+			<string>TIGNUM X will lead you to Daily Check In</string>
 			<key>INIntentDescriptionID</key>
 			<string>KRbSNC</string>
-			<key>INIntentLastParameterTag</key>
-			<integer>0</integer>
 			<key>INIntentName</key>
 			<string>DailyPrep</string>
 			<key>INIntentParameterCombinations</key>
@@ -373,34 +313,14 @@
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>0IUh7j</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string></string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>RNsRM1</string>
 				</dict>
 			</dict>
-			<key>INIntentParameters</key>
-			<array/>
 			<key>INIntentResponse</key>
 			<dict>
 				<key>INIntentResponseCodes</key>
 				<array>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string></string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>1BdlUq</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
 						<string>${feedback}</string>
@@ -410,6 +330,10 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
@@ -441,8 +365,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>loadValue</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -453,8 +375,6 @@
 						<integer>2</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>recoveryValue</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>5</integer>
 						<key>INIntentResponseParameterType</key>
@@ -465,8 +385,6 @@
 						<integer>3</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>feedback</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
@@ -474,19 +392,17 @@
 					</dict>
 				</array>
 			</dict>
-			<key>INIntentRestrictions</key>
-			<integer>0</integer>
 			<key>INIntentTitle</key>
 			<string>Daily Check In</string>
 			<key>INIntentTitleID</key>
 			<string>qQqRKl</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>View</string>
 		</dict>
 	</array>
+	<key>INTypes</key>
+	<array/>
 </dict>
 </plist>

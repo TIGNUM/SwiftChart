@@ -287,7 +287,7 @@ extension UIViewController {
     }
 
     @objc open func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if NSStringFromClass(type(of: self)).hasPrefix("QOT.") == false {
+        if NSStringFromClass(type(of: self)).hasPrefix("TIGNUM_X.") == false {
             return nil
         }
 
