@@ -26,7 +26,10 @@ final class DTPreparePresenter: DTPresenter {
     }
 
     override func previousIsHidden(questionKey: String) -> Bool {
-        return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
+        return
+            questionKey == Prepare.QuestionKey.EventTypeSelectionCritical ||
+            questionKey == Prepare.QuestionKey.EventTypeSelectionDaily ||
+            questionKey == Prepare.QuestionKey.Last
     }
 
     override func getNavigationButton(_ presentationModel: DTPresentationModel, isDark: Bool) -> NavigationButton? {
