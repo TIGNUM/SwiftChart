@@ -69,7 +69,7 @@ private extension ResultsPreparePresenter {
         return .strategyTitle(title: AppTextService.get(.results_prepare_strategies))
     }
 
-    func getStrategiesItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getStrategyItems(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .strategies(strategies: preparation?.strategies ?? [])
     }
 }
@@ -88,12 +88,11 @@ extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
         if preparation?.type == .LEVEL_CRITICAL {
             sections[6] = getBenefitsItem(preparation)
             sections[7] = getStrategyTitleItem()
-            sections[8] = getStrategiesItem(preparation)
+            sections[8] = getStrategyItems(preparation)
         } else {
             sections[6] = getStrategyTitleItem()
-            sections[7] = getStrategiesItem(preparation)
+            sections[7] = getStrategyItems(preparation)
         }
-
         viewController?.updateView(items: sections)
     }
 
