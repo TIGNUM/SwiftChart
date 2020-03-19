@@ -25,6 +25,25 @@ final class MyQotAppSettingsRouter {
 
 extension MyQotAppSettingsRouter: MyQotAppSettingsRouterInterface {
 
+    func askNotificationPermission() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                switch settings.authorizationStatus {
+                case .notDetermined:
+                    guard let vc = R.storyboard.askPermission().instantiateInitialViewController(),
+                        let controller = vc as? AskPermissionViewController else {
+                            self.openAppSettings()
+                            return
+                    }
+                    AskPermissionConfigurator.make(viewController: controller, type: .notification)
+                    self.viewController?.present(controller, animated: true, completion: nil)
+                default:
+                    self.openAppSettings()
+                }
+            }
+        }
+    }
+
     func openAppSettings() {
         viewController?.showAlert(type: .changeNotifications, handler: {
             UIApplication.openAppSettings()

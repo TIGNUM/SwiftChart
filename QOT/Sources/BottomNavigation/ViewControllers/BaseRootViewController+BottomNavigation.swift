@@ -46,7 +46,7 @@ extension BaseRootViewController {
                               rightItems: navigationItem.rightBarButtonItems,
                               backgroundColor: navigationItem.backgroundColor)
         // check last navigation items.
-        checkBottomNavigationItemAfterPeriod(1.5, for: notification)
+        checkBottomNavigationItemAfterPeriod(2.0, for: notification)
     }
 
     func bringBottomNavigationBarToFront(_ completion: (() -> Void)? = nil) {
