@@ -279,7 +279,9 @@ extension DailyBriefViewController {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         navBarHeader?.updateAlpha(basedOn: scrollView.contentOffset.y)
-        delegate?.handlePan(offsetY: scrollView.contentOffset.y, isDragging: isDragging)
+        delegate?.handlePan(offsetY: scrollView.contentOffset.y,
+                            isDragging: isDragging,
+                            isScrolling: scrollView.isDragging || scrollView.isDecelerating)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
