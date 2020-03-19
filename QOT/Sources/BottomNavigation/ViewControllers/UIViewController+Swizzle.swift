@@ -339,6 +339,16 @@ extension UIViewController {
         return UIBarButtonItem(customView: button)
     }
 
+    @objc open func backNavigationItemLight() -> UIBarButtonItem {
+         let button = RoundedButton.init(title: nil, target: self, action: #selector(didTapBackButton))
+         let heightConstraint = getLayoutConstraint(item: button, attribute: .height)
+         let widthConstraint = getLayoutConstraint(item: button, attribute: .width)
+         button.addConstraints([heightConstraint, widthConstraint])
+         button.setImage(R.image.arrowBack(), for: .normal)
+         ThemeButton.backButtonLight.apply(button)
+         return UIBarButtonItem(customView: button)
+     }
+
     @objc open func dismissNavigationItem(action: Selector? = nil) -> UIBarButtonItem {
         var buttonAction = #selector(didTapDismissButton)
         if let action = action {

@@ -93,8 +93,8 @@ final class LaunchHandler {
             present(viewController: controller)
         case .prepareEvent,
              .prepareDay:
-            let configurator = DTPrepareConfigurator.make()
-            let controller = DTPrepareViewController(configure: configurator)
+            let configurator = DTPrepareStartConfigurator.make()
+            let controller = DTPrepareStartViewController(configure: configurator)
             controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .preparation:
@@ -371,8 +371,8 @@ extension LaunchHandler {
     func showPreparationWith(identifier: String) {
         UserService.main.getUserPreparationWith(qotId: identifier) { (preparation, initialized, _) in
             if let qdmUserPreparation = preparation {
-                let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDailyBrief)
-                let controller = PrepareResultsViewController(configure: configurator)
+                let configurator = ResultsPrepareConfigurator.make(qdmUserPreparation, resultType: .prepareDailyBrief)
+                let controller = ResultsPrepareViewController(configure: configurator)
                 self.present(viewController: controller)
             }
         }
