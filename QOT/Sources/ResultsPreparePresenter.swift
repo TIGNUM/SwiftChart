@@ -70,7 +70,7 @@ private extension ResultsPreparePresenter {
     }
 
     func getStrategyItems(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
-        return(.strategies(strategies: preparation?.strategies ?? []))
+        return .strategies(strategies: preparation?.strategies ?? [])
     }
 }
 
