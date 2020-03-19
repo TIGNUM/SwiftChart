@@ -1058,7 +1058,7 @@ enum ThemeText {
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
-             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle , .shpiSubtitle:
+             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -1334,7 +1334,7 @@ enum ThemeText {
         case .myDataParameterLegendText, .myDataHeatMapLegendText:
             string = NSAttributedString(string: text, letterSpacing: 0.17, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
-        case .myDataParameterSelectionTitle:
+        case .myDataParameterSelectionTitle :
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:
