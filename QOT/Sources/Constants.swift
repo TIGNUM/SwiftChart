@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct Defaults {
-    static let firstLevelSupportEmail = "support@qot.io"
-    static let firstLevelFeatureEmail = "feature@qot.io"
+    static let firstLevelSupportEmail = "support@tignumx.com"
+    static let firstLevelFeatureEmail = "feature@tignumx.com"
 }
 
 struct Toggle {
