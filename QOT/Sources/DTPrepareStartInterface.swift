@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DTPrepareStartViewControllerInterface: class {
-    func setupView()
+    func setupView(viewModel: DTPrepareStartViewModel)
 }
 
 protocol DTPrepareStartPresenterInterface {
@@ -20,4 +20,6 @@ protocol DTPrepareStartInteractorInterface: Interactor {}
 
 protocol DTPrepareStartRouterInterface {
     func dismiss()
+    func presentChatBotCritical()
+    func presentChatBotDaily()
 }

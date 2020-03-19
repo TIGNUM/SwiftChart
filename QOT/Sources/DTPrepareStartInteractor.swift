@@ -26,6 +26,4 @@ final class DTPrepareStartInteractor {
 }
 
 // MARK: - DTPrepareStartInteractorInterface
-extension DTPrepareStartInteractor: DTPrepareStartInteractorInterface {
-
-}
+extension DTPrepareStartInteractor: DTPrepareStartInteractorInterface {}

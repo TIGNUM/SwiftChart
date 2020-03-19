@@ -30,6 +30,7 @@ final class CalendarEventSelectionViewController: BaseWithGroupedTableViewContro
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        trackPage()
         interactor.viewDidLoad()
     }
 

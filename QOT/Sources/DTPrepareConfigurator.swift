@@ -10,13 +10,13 @@ import Foundation
 import qot_dal
 
 final class DTPrepareConfigurator {
-    static func make() -> (DTPrepareViewController) -> Void {
+    static func make(introKey: String) -> (DTPrepareViewController) -> Void {
         return { (viewController) in
             let router = DTPrepareRouter(viewController: viewController)
             let presenter = DTPreparePresenter(viewController: viewController)
             let interactor = DTPrepareInteractor(presenter,
                                                  questionGroup: .Prepare_3_0,
-                                                 introKey: Prepare.QuestionKey.Intro)
+                                                 introKey: introKey)
             router.prepareViewController = viewController
             viewController.interactor = interactor
             viewController.prepareInteractor = interactor

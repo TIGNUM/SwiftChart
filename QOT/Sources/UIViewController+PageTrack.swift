@@ -93,6 +93,8 @@ extension UIViewController {
         case is PaymentReminderViewController: return subscriptionReminderPageKey
         case is RegisterIntroViewController: return "onboarding.createaccount.info"
         case is ResultsPrepareViewController: return resultsPareparePageKey
+        case is DTPrepareStartViewController: return "decisiontree.prepare.start"
+        case is CalendarEventSelectionViewController: return "calendar.event.selection"
         default: preconditionFailure()
         }
     }

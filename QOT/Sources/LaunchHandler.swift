@@ -93,8 +93,8 @@ final class LaunchHandler {
             present(viewController: controller)
         case .prepareEvent,
              .prepareDay:
-            let configurator = DTPrepareConfigurator.make()
-            let controller = DTPrepareViewController(configure: configurator)
+            let configurator = DTPrepareStartConfigurator.make()
+            let controller = DTPrepareStartViewController(configure: configurator)
             controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .preparation:

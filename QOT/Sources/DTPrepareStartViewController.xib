@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DTPrepareStartViewController" customModule="TIGNUM_X" customModuleProvider="target">
             <connections>
@@ -18,6 +23,7 @@
                 <outlet property="selectionTitleLabel" destination="qh0-8P-bNO" id="l72-eP-T1G"/>
                 <outlet property="strategiesLabel" destination="eyI-oV-x4x" id="tTT-lJ-UyJ"/>
                 <outlet property="strategyTitleLabel" destination="XVs-yt-ECl" id="emJ-EF-Nk4"/>
+                <outlet property="view" destination="iN0-l3-epB" id="VnP-h1-COu"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -55,28 +61,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMu-ys-Vb7">
-                    <rect key="frame" x="312" y="722" width="78" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="ELA-qj-vxg"/>
-                    </constraints>
-                    <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="didTapDailyEvent" destination="-1" eventType="touchUpInside" id="rxK-4s-8QM"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO3-v8-Pa0">
-                    <rect key="frame" x="312" y="666" width="78" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="C0j-CP-ZT5"/>
-                    </constraints>
-                    <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="didTapCriticalEvent" destination="-1" eventType="touchUpInside" id="IEU-bh-eh1"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh0-8P-bNO">
                     <rect key="frame" x="24" y="621" width="366" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -91,8 +75,36 @@
                         <constraint firstAttribute="width" constant="16" id="x80-9A-uLF"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO3-v8-Pa0">
+                    <rect key="frame" x="311" y="666" width="79" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="C0j-CP-ZT5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapCriticalEvent" destination="-1" eventType="touchUpInside" id="IEU-bh-eh1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMu-ys-Vb7">
+                    <rect key="frame" x="311" y="722" width="79" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ELA-qj-vxg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapDailyEvent" destination="-1" eventType="touchUpInside" id="rxK-4s-8QM"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XVs-yt-ECl" secondAttribute="trailing" constant="24" id="2fM-KB-9K9"/>
                 <constraint firstItem="aO3-v8-Pa0" firstAttribute="top" secondItem="qh0-8P-bNO" secondAttribute="bottom" constant="24" id="3Ly-06-ZGP"/>

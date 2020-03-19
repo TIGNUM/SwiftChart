@@ -245,6 +245,7 @@ enum ThemeButton {
     case clear
     case onboarding
     case backButton
+    case backButtonLight
     case editButton
     case carbonButton
     case audioButtonGrey
@@ -266,7 +267,7 @@ enum ThemeButton {
             colorSelected = Palette.light(Palette.sand, or: Palette.carbon)
             colorUnselected = colorSelected
             colorBorder = .accent30
-        case .audioButtonGrey:
+        case .audioButtonGrey, .backButtonLight:
             colorSelected = .accent40
             colorUnselected = .clear
             colorBorder = .sand30

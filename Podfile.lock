@@ -35,7 +35,7 @@ DEPENDENCIES:
   - DifferenceKit
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `update_user-preparation-event`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -61,14 +61,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
-    :branch: update_user-preparation-event
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:SanggeonPark/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 2c7ee701791d8550bb46acc29577fb71007a2e00
+    :commit: aed0e15076445f64aa6b0b997e2725f52907fbd8
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -90,6 +89,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
   UrbanAirship-iOS-SDK: bc0d7363f62ac572211ba0191ddeac712d4d4b1f
 
-PODFILE CHECKSUM: 6520ba817880db1ff53a6aeb45eec6d87060ea4b
+PODFILE CHECKSUM: 836f2b17450f24ad8f18f2bbc5c4dc2c38d921be
 
 COCOAPODS: 1.8.4

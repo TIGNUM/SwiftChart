@@ -8,6 +8,13 @@
 
 import UIKit
 
-struct DTPrepareStartModel {
-
+struct DTPrepareStartViewModel {
+    let header: String
+    let intentionTitle: String
+    let intentions: String
+    let strategyTitle: String
+    let strategies: String
+    let selectionTitle: String
+    let buttonCritical: String
+    let buttonDaily: String
 }

@@ -24,4 +24,16 @@ extension DTPrepareStartRouter: DTPrepareStartRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
+
+    func presentChatBotCritical() {
+        let configurator = DTPrepareConfigurator.make(introKey: Prepare.QuestionKey.EventTypeSelectionCritical)
+        let controller = DTPrepareViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
+    }
+
+    func presentChatBotDaily() {
+        let configurator = DTPrepareConfigurator.make(introKey: Prepare.QuestionKey.EventTypeSelectionDaily)
+        let controller = DTPrepareViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
+    }
 }
