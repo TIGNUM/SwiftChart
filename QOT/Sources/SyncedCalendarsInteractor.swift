@@ -78,7 +78,6 @@ extension SyncedCalendarsInteractor: SyncedCalendarsInteractorInterface {
     }
 
     func didTapSkip() {
-        delegate?.didFinishSyncingCalendars(qdmEvents: [])
         router.dismiss(completion: nil)
         // Disable all calendars
         let enabledSettings = calendarSettings.filter { $0.syncEnabled == true }
@@ -87,13 +86,16 @@ extension SyncedCalendarsInteractor: SyncedCalendarsInteractorInterface {
             tmpSetting.syncEnabled = false
             return tmpSetting
         }
+        delegate?.didFinishSyncingCalendars(hasSyncedCalendars: !updatedSettings.isEmpty, qdmEvents: [])
         workerCalendar?.updateCalendarSettings(updatedSettings)
     }
 
     func didTapSave() {
+        let enabledSettings = calendarSettings.filter { $0.syncEnabled == true }
         workerCalendar?.getCalendarEvents { [weak self] (events) in
             self?.router.dismiss {
-                self?.delegate?.didFinishSyncingCalendars(qdmEvents: events)
+                self?.delegate?.didFinishSyncingCalendars(hasSyncedCalendars: !enabledSettings.isEmpty,
+                                                          qdmEvents: events)
             }
         }
     }

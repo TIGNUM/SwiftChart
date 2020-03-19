@@ -10,15 +10,9 @@ import Foundation
 import EventKit
 import qot_dal
 
-protocol DTPrepareViewControllerInterface: class {
-    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
-    func presentCalendarSettings()
-}
+protocol DTPrepareViewControllerInterface: class {}
 
-protocol DTPreparePresenterInterface {
-    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
-    func presentCalendarSettings()
-}
+protocol DTPreparePresenterInterface {}
 
 protocol DTPrepareInteractorInterface: Interactor {
     func getUserPreparation(answer: DTViewModel.Answer,
@@ -29,18 +23,11 @@ protocol DTPrepareInteractorInterface: Interactor {
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
     func getUserPreparation(event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
-    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void)
-    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent])
-    func removeCreatedCalendarEvent()
 }
 
 protocol DTPrepareRouterInterface {
     func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?)
-    func presentPrepareResults(_ contentId: Int)
     func presentPrepareResults(_ preparation: QDMUserPreparation?)
-    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
-    func presentCalendarSettings()
-    func presentEditEventController(_ calendarToggleIdentifiers: [String]?)
     func didUpdatePrepareResults()
     func dismissResultView()
 }

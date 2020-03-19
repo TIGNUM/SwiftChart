@@ -94,8 +94,10 @@ final class MyQotMainWorker {
     func getSubtitles(completion: @escaping ([String?]) -> Void) {
         var subtitles: [String?] = []
         ContentService.main.getContentCategory(.myQOT, {(category) in
-            category?.contentCollections[1].contentItems.forEach {(items) in
-                subtitles.append(items.valueText)
+            if category?.contentCollections.count ?? 0 > 1 {
+                category?.contentCollections[1].contentItems.forEach {(items) in
+                    subtitles.append(items.valueText)
+                }
             }
             completion(subtitles)
         })
