@@ -25,6 +25,7 @@ final class MyPrepsWorker {
                 let prepItem = MyPrepsModel.Item(title: $0.name ?? "",
                                                   date: dateString,
                                                   eventType: $0.eventType ?? "",
+                                                  type: $0.type ?? "",
                                                   qdmPrep: $0)
                 prepItems.append(prepItem)
             }

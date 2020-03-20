@@ -31,6 +31,7 @@ final class MyPrepsInteractor {
 
 // MARK: - MyPrepsInteractorInterface
 extension MyPrepsInteractor: MyPrepsInteractorInterface {
+
     func fetchItemsAndUpdateView() {
         worker.createModels {
             self.presenter.dataUpdated()
@@ -39,6 +40,14 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
 
     func numberOfRowsPreparations() -> Int {
         return (worker.model?.items.count ?? 0)
+    }
+
+    func numberOfRowsCriticalPreparations() -> Int {
+        return (worker.model?.items.filter { $0.type == "critical" }.count ?? 0)
+    }
+
+    func numberOfRowsEverydayPreparations() -> Int {
+        return  (worker.model?.items.filter { $0.type == "daily" }.count ?? 0)
     }
 
     func numberOfRowsRecoveries() -> Int {
@@ -54,6 +63,14 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
             return nil
         }
         return worker.model?.items[indexPath.row]
+    }
+
+    var criticalPrepItems: [MyPrepsModel.Item]? {
+        return worker.model?.items.filter { $0.type == "critical" }
+    }
+
+    var everydayPrepItems: [MyPrepsModel.Item]? {
+        return worker.model?.items.filter { $0.type == "daily" }
     }
 
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Item? {

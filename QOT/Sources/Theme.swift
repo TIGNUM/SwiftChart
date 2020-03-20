@@ -626,7 +626,7 @@ enum ThemeText {
 
     case settingsTitle
     case settingsTitleFade
-
+    case myPlansHeader
     case strategyHeader
     case strategySubHeader
     case myQOTBoxTitle
@@ -892,7 +892,7 @@ enum ThemeText {
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .durationString,
              .resultDate, .resultFollowUp,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .myDataChartValueLabels,
-             .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus, .Text03Light:
+             .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus, .Text03Light, .myPlansHeader:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle,
              .myLibraryGroupName:
@@ -1059,7 +1059,7 @@ enum ThemeText {
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
-             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle:
+             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -1189,7 +1189,7 @@ enum ThemeText {
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader, .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
-             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .Text03Light, .H01Light:
+             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .Text03Light, .H01Light, .myPlansHeader:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)

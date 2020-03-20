@@ -31,6 +31,7 @@ struct MyPrepsModel {
         var title: String
         var date: String
         var eventType: String
+        var type: String
         let qdmPrep: QDMUserPreparation
     }
 }

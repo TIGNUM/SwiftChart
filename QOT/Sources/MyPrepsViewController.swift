@@ -25,6 +25,12 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         case recovery
     }
 
+    enum PrepTypes: Int {
+        case criticalEvents = 0
+        case everyday
+        case total
+    }
+
     // MARK: - Properties
 
     var interactor: MyPrepsInteractorInterface!
@@ -48,7 +54,6 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorView: UIView!
-
     private var editPressed: Bool = false
     private var canDelete: Bool = false
     private var viewModel: MyPlansViewModel!
@@ -300,6 +305,8 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 80
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
@@ -319,7 +326,14 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            return interactor.numberOfRowsPreparations()
+            switch section {
+            case PrepTypes.criticalEvents.rawValue:
+                return interactor?.criticalPrepItems?.count ?? 0
+            case PrepTypes.everyday.rawValue:
+                return interactor?.everydayPrepItems?.count ?? 0
+            default:
+                return 0
+            }
         case SegmentView.mindsetShifter.rawValue:
             return interactor.numberOfRowsMindsetShifters()
         case SegmentView.recovery.rawValue:
@@ -337,6 +351,33 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCellEditingStyle.init(rawValue: 3)!
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        switch segmentedControl.selectedSegmentIndex {
+        case SegmentView.myPreps.rawValue:
+            return PrepTypes.total.rawValue
+        default:
+            return 1
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch segmentedControl.selectedSegmentIndex {
+        case SegmentView.myPreps.rawValue:
+            switch section {
+            case PrepTypes.criticalEvents.rawValue:
+                let title = AppTextService.get(.my_qot_my_plans_section_header_critical)
+                return MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2)
+            case PrepTypes.everyday.rawValue:
+                let title = AppTextService.get(.my_qot_my_plans_section_header_everyday)
+                return MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2)
+            default:
+                return nil
+            }
+        default:
+            return nil
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyPrepsTableViewCell = tableView.dequeueCell(for: indexPath)
         if editPressed == true {
@@ -344,7 +385,8 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            let item = interactor.itemPrep(at: indexPath)
+            let prepItems = [interactor.criticalPrepItems, interactor?.everydayPrepItems]
+            let item = prepItems[indexPath.section]?[indexPath.row]
             let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
             cell.configure(title: item?.title.uppercased(), subtitle: subtitle)
         case SegmentView.mindsetShifter.rawValue:

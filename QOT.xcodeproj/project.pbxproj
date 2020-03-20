@@ -1216,6 +1216,8 @@
 		F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D6381822D745A80092C482 /* ExploreCell.xib */; };
 		F9D6381B22D745FA0092C482 /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6381A22D745FA0092C482 /* ExploreCell.swift */; };
 		F9D6381D22D746D60092C482 /* ExploreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6381C22D746D60092C482 /* ExploreCellViewModel.swift */; };
+		F9E330342424A73D00967C28 /* MyPlansHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E330332424A73D00967C28 /* MyPlansHeaderView.swift */; };
+		F9E330362424A75800967C28 /* MyPlansHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9E330352424A75800967C28 /* MyPlansHeaderView.xib */; };
 		F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70C1322F9A26200E85BF3 /* SprintChallengeCell.swift */; };
 		F9F70C1622F9A2D300E85BF3 /* SprintChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F70C1522F9A2D300E85BF3 /* SprintChallengeCell.xib */; };
 		F9F70C1822F9A31E00E85BF3 /* SprintChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70C1722F9A31E00E85BF3 /* SprintChallengeViewModel.swift */; };
@@ -2487,6 +2489,8 @@
 		F9D6381822D745A80092C482 /* ExploreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExploreCell.xib; sourceTree = "<group>"; };
 		F9D6381A22D745FA0092C482 /* ExploreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
 		F9D6381C22D746D60092C482 /* ExploreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCellViewModel.swift; sourceTree = "<group>"; };
+		F9E330332424A73D00967C28 /* MyPlansHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlansHeaderView.swift; sourceTree = "<group>"; };
+		F9E330352424A75800967C28 /* MyPlansHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPlansHeaderView.xib; sourceTree = "<group>"; };
 		F9F70C1322F9A26200E85BF3 /* SprintChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeCell.swift; sourceTree = "<group>"; };
 		F9F70C1522F9A2D300E85BF3 /* SprintChallengeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeCell.xib; sourceTree = "<group>"; };
 		F9F70C1722F9A31E00E85BF3 /* SprintChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeViewModel.swift; sourceTree = "<group>"; };
@@ -2775,6 +2779,8 @@
 				365EC0BE224A74850019AFF9 /* WhatsHotComponentView.xib */,
 				B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */,
 				B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */,
+				F9E330352424A75800967C28 /* MyPlansHeaderView.xib */,
+				F9E330332424A73D00967C28 /* MyPlansHeaderView.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -5847,6 +5853,7 @@
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */,
+				F9E330362424A75800967C28 /* MyPlansHeaderView.xib in Resources */,
 				ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */,
 				8D6270AD23153D1B00B68DB1 /* QOTAlert.storyboard in Resources */,
 				F9D2BC1D22D48DE600DBF2CC /* GoodToKnowCell.xib in Resources */,
@@ -6219,6 +6226,7 @@
 				8D25327322E9DD0200FE4205 /* HeaderDetailsItemCell.swift in Sources */,
 				CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */,
 				8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */,
+				F9E330342424A73D00967C28 /* MyPlansHeaderView.swift in Sources */,
 				3666FD43232A4B7D00FC67D0 /* DTRecoveryRouter.swift in Sources */,
 				B4BCD0E723AB7CD900B80747 /* MyQOTAdminEditSprintsWorker.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
