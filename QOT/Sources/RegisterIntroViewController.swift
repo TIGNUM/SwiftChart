@@ -61,6 +61,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         super.viewWillDisappear(animated)
         videoCell.stopPlaying()
         AppCoordinator.orientationManager.regular()
+        UIApplication.shared.statusBarView?.isHidden = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +112,7 @@ extension RegisterIntroViewController {
                 self.videoCell.playerController.showsPlaybackControls = true
                 self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                 self.updateBottomNavigation([], [])
+                UIApplication.shared.statusBarView?.isHidden = true
             } else {
                 self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .PORTRAIT, action: .ROTATE)
                 UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
@@ -120,6 +122,7 @@ extension RegisterIntroViewController {
                 self.videoCell.soundToggleButton.isSelected = !(self.videoCell.playerController.player?.isMuted ?? true)
                 self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                 self.refreshBottomNavigationItems()
+                UIApplication.shared.statusBarView?.isHidden = false
             }
         }
     }

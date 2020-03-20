@@ -78,8 +78,10 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     @IBAction func didTapPrevious() {
         constraintBottom.constant = 0
         self.view.layoutIfNeeded()
-        interactor?.loadPreviousQuestion()
         trackQuestionInteraction(.PREVIOUS)
+        if interactor?.loadPreviousQuestion() == false {
+            router?.dismiss()
+        }
     }
 
     @IBAction func didTapClose() {
