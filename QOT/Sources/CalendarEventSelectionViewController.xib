@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalendarEventSelectionViewController" customModule="TIGNUM_X" customModuleProvider="target">
+            <connections>
+                <outlet property="emptyEventsLabel" destination="60l-9D-INn" id="nhF-AR-VW3"/>
+                <outlet property="tableView" destination="E4d-IJ-3Os" id="tuT-3V-1gP"/>
+                <outlet property="view" destination="iN0-l3-epB" id="LVG-5a-hk9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Im-Iz-TMt">
+                    <rect key="frame" x="24" y="688.5" width="16" height="1"/>
+                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="Abe-ZG-ttk"/>
+                        <constraint firstAttribute="height" constant="1" id="ujJ-p9-bC2"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60l-9D-INn">
+                    <rect key="frame" x="24" y="701.5" width="366" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E4d-IJ-3Os">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Hwh-Fm-SOk"/>
+                        <outlet property="delegate" destination="-1" id="lBI-ee-M6J"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="60l-9D-INn" secondAttribute="trailing" constant="24" id="6Rw-eA-Arl"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="60l-9D-INn" secondAttribute="bottom" constant="140" id="DgM-h3-RRo"/>
+                <constraint firstItem="60l-9D-INn" firstAttribute="top" secondItem="3Im-Iz-TMt" secondAttribute="bottom" constant="12" id="ErO-dW-sig"/>
+                <constraint firstAttribute="bottom" secondItem="E4d-IJ-3Os" secondAttribute="bottom" id="PNb-sL-eqE"/>
+                <constraint firstItem="3Im-Iz-TMt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="TIo-yw-73k"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="E4d-IJ-3Os" secondAttribute="trailing" id="TVu-Mz-rOK"/>
+                <constraint firstItem="60l-9D-INn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="euQ-6I-Ujb"/>
+                <constraint firstItem="E4d-IJ-3Os" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mPg-qY-4b8"/>
+                <constraint firstItem="E4d-IJ-3Os" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rCj-R9-kj3"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
+        </view>
+    </objects>
+</document>

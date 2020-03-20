@@ -877,7 +877,7 @@ public extension AppTextKey {
     // MARK: - Results Prepare
     static let results_prepare_header_title = AppTextKey("results_prepare.header.title")
     static let results_prepare_connect_calendar_title = AppTextKey("prepare_results.connect_calaendar.title")
-    static let results_prepare_connect_calendar_subtitle = AppTextKey("prepare_results.connect_calaendar.subtitle")
+    static let results_prepare_connect_calendar_subtitle = AppTextKey("prepare_results.connect_calendar.subtitle")
     static let results_prepare_critical_questions = AppTextKey("prepare_results.critical.questions")
     static let results_prepare_perceived = AppTextKey("prepare_results.perceived.title")
     static let results_prepare_know = AppTextKey("prepare_results.know.title")

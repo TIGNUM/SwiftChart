@@ -31,7 +31,7 @@ protocol DTInteractorInterface: Interactor {
     func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?)
     func didStopTypingAnimation()
     func loadNextQuestion(selection: DTSelectionModel)
-    func loadPreviousQuestion()
+    func loadPreviousQuestion() -> Bool
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
     func didUpdateUserInput(_ text: String, questionKey: String)
     var isDark: Bool { get set }

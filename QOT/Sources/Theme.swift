@@ -859,6 +859,7 @@ enum ThemeText {
     case H02Light
     case H03Light
     case Text01Light
+    case Text01LightCarbon100
     case Text02Light
     case Text03Light
 
@@ -947,7 +948,7 @@ enum ThemeText {
              .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
              .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
              .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle, .suggestionMyBest,
-             .H02Light, .Text01Light:
+             .H02Light, .Text01Light, .Text01LightCarbon100:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
@@ -1072,7 +1073,7 @@ enum ThemeText {
             return Palette.carbon40
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
-             .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light:
+             .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100:
             return Palette.carbon
         case .resultTitleTheme(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
@@ -1249,7 +1250,7 @@ enum ThemeText {
              .dailyBriefLevelContent,
              .weatherIntro,
              .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextInfo,
-             .mySprintDetailsTextActive, .H02Light, .Text01Light, .Text02Light:
+             .mySprintDetailsTextActive, .H02Light, .Text01Light, .Text01LightCarbon100, .Text02Light:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1334,7 +1335,7 @@ enum ThemeText {
         case .myDataParameterLegendText, .myDataHeatMapLegendText:
             string = NSAttributedString(string: text, letterSpacing: 0.17, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
-        case .myDataParameterSelectionTitle:
+        case .myDataParameterSelectionTitle :
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:

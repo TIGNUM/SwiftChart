@@ -31,7 +31,9 @@ final class ResultsPrepareInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        presenter.createListItems(preparation: preparation)
+        updatePreparationStrategisIfNeeded { [weak self] in
+            self?.presenter.createListItems(preparation: self?.preparation)
+        }
     }
 }
 
@@ -40,6 +42,30 @@ private extension ResultsPrepareInteractor {
     func removeCreatedCalendarEvent(event: QDMUserCalendarEvent?) {
         let externalIdentifier = event?.storedExternalIdentifier.components(separatedBy: "[//]").first
         workerCalendar.deleteLocalEvent(externalIdentifier)
+    }
+
+    func updatePreparationStrategisIfNeeded(_ completion: @escaping () -> Void) {
+        if preparation?.strategyIds.isEmpty == true,
+            let relatedStrategyId = preparation?.relatedStrategyId {
+            getDefaultStrategies(relatedStrategyId) { [weak self] (strategies) in
+                self?.preparation?.strategies = strategies ?? []
+                self?.preparation?.strategyIds = strategies?.compactMap { $0.remoteID } ?? []
+                completion()
+            }
+        } else {
+            completion()
+        }
+    }
+
+    func getDefaultStrategies(_ relatedStrategyID: Int?, _ completion: @escaping (([QDMContentCollection]?) -> Void)) {
+        if let relatedStrategyID = relatedStrategyID {
+            ContentService.main.getContentCollectionById(relatedStrategyID) { content in
+                let relatedIds = content?.relatedContentIDsPrepareDefault ?? []
+                ContentService.main.getContentCollectionsByIds(relatedIds, completion)
+            }
+        } else {
+            completion([])
+        }
     }
 }
 
@@ -57,10 +83,7 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     func rowCount(in section: Int) -> Int {
         guard let level = preparation?.type else { return 0 }
         let strategyCount = ((preparation?.strategies.count ?? 0))
-        if level == .LEVEL_CRITICAL && section == 8 {
-            return strategyCount
-        }
-        if level == .LEVEL_DAILY && section == 7 {
+        if (level == .LEVEL_CRITICAL && section == 8) || (level == .LEVEL_DAILY && section == 7) {
             return strategyCount
         }
         return 1

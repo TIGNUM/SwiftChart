@@ -316,6 +316,9 @@
 		38C23E5724235DCA0034571B /* DTPrepareStartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4F24235DCA0034571B /* DTPrepareStartModel.swift */; };
 		38C23E5824235DCA0034571B /* DTPrepareStartConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E5024235DCA0034571B /* DTPrepareStartConfigurator.swift */; };
 		38C23E5A24235E000034571B /* DTPrepareStartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5924235E000034571B /* DTPrepareStartViewController.xib */; };
+		38C23E5C2423D9B70034571B /* CalendarEventSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5B2423D9B70034571B /* CalendarEventSelectionViewController.xib */; };
+		38C23E5E2423E70F0034571B /* CalendarEventSelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E5D2423E70F0034571B /* CalendarEventSelectionHeaderView.swift */; };
+		38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */; };
 		38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */; };
@@ -1596,6 +1599,9 @@
 		38C23E4F24235DCA0034571B /* DTPrepareStartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartModel.swift; sourceTree = "<group>"; };
 		38C23E5024235DCA0034571B /* DTPrepareStartConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartConfigurator.swift; sourceTree = "<group>"; };
 		38C23E5924235E000034571B /* DTPrepareStartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DTPrepareStartViewController.xib; sourceTree = "<group>"; };
+		38C23E5B2423D9B70034571B /* CalendarEventSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionViewController.xib; sourceTree = "<group>"; };
+		38C23E5D2423E70F0034571B /* CalendarEventSelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionHeaderView.swift; sourceTree = "<group>"; };
+		38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionHeaderView.xib; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsAddToCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsAddToCalendarTableViewCell.xib; sourceTree = "<group>"; };
@@ -3232,6 +3238,7 @@
 			isa = PBXGroup;
 			children = (
 				38E5A0892412B06C008FCF8F /* CalendarEventSelectionConfigurator.swift */,
+				38C23E5D2423E70F0034571B /* CalendarEventSelectionHeaderView.swift */,
 				38E5A0872412B06C008FCF8F /* CalendarEventSelectionInteractor.swift */,
 				38E5A0852412B06C008FCF8F /* CalendarEventSelectionInterface.swift */,
 				38E5A0882412B06C008FCF8F /* CalendarEventSelectionModel.swift */,
@@ -3239,6 +3246,8 @@
 				38E5A0842412B06C008FCF8F /* CalendarEventSelectionRouter.swift */,
 				38E5A0862412B06C008FCF8F /* CalendarEventSelectionViewController.swift */,
 				38E5A0832412B06C008FCF8F /* CalendarEventSelectionWorker.swift */,
+				38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */,
+				38C23E5B2423D9B70034571B /* CalendarEventSelectionViewController.xib */,
 			);
 			name = CalendarEventSelection;
 			sourceTree = "<group>";
@@ -5796,6 +5805,7 @@
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
+				38C23E5C2423D9B70034571B /* CalendarEventSelectionViewController.xib in Resources */,
 				F9D2BC2422D496AF00DBF2CC /* FromTignumCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
@@ -5854,6 +5864,7 @@
 				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
 				38C23E5A24235E000034571B /* DTPrepareStartViewController.xib in Resources */,
 				F916AAED2418E958002C1EFE /* MindsetShifterCell.xib in Resources */,
+				38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6517,6 +6528,7 @@
 				367A58592326A15D0089A082 /* DTSolve.swift in Sources */,
 				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
 				363B9CC2232BF34A00C1A29E /* DTTBVInterface.swift in Sources */,
+				38C23E5E2423E70F0034571B /* CalendarEventSelectionHeaderView.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				F9A5C95022B7D0E000AB2E94 /* PaymentReminderWorker.swift in Sources */,
 				38C23E5724235DCA0034571B /* DTPrepareStartModel.swift in Sources */,

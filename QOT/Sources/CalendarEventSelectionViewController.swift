@@ -9,13 +9,17 @@
 import UIKit
 import EventKitUI
 import EventKit
+import qot_dal
 
-final class CalendarEventSelectionViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
+final class CalendarEventSelectionViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     weak var delegate: CalendarEventSelectionDelegate?
     var interactor: CalendarEventSelectionInteractorInterface!
     private lazy var router = CalendarEventSelectionRouter(viewController: self)
+
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var emptyEventsLabel: UILabel!
 
     // MARK: - Init
     init(configure: Configurator<CalendarEventSelectionViewController>) {
@@ -59,11 +63,9 @@ private extension CalendarEventSelectionViewController {
 extension CalendarEventSelectionViewController: CalendarEventSelectionViewControllerInterface {
     func setupView() {
         tableView.registerDequeueable(PrepareEventTableViewCell.self)
-        view.fill(subview: tableView)
+        ThemeText.Text01LightCarbon100.apply(AppTextService.get(.event_selection_empty), to: emptyEventsLabel)
+        tableView.isHidden = interactor.rowCount == 0
         tableView.backgroundColor = .sand
-        tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.contentInset.top = 64
         tableView.contentInset.bottom = 40
         tableView.estimatedSectionHeaderHeight = 100
@@ -82,6 +84,16 @@ extension CalendarEventSelectionViewController: UITableViewDelegate, UITableView
         let event = interactor.event(at: indexPath.row)
         cell.configure(title: event?.title, dateString: event?.dateString)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return .CalendarSelectionHeader
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = R.nib.calendarEventSelectionHeaderView.firstView(owner: self)
+        header?.configure(title: AppTextService.get(.event_selection_header))
+        return header
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

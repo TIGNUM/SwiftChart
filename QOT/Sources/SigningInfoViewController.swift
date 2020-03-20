@@ -57,6 +57,9 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
 
         interactor?.viewDidLoad()
         NotificationHandler.postNotification(withName: .showSigningInfoView)
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: nil)
+        gestureRecognizer.minimumNumberOfTouches = 1
+        view.addGestureRecognizer(gestureRecognizer)
     }
 
     override func viewWillAppear(_ animated: Bool) {

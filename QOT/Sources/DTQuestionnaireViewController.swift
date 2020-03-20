@@ -61,6 +61,7 @@ class DTQuestionnaireViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkScroll()
+        tableView.bounces = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +72,10 @@ class DTQuestionnaireViewController: BaseViewController {
                 self.tableView.flashScrollIndicators()
             }
         }
+    }
+
+    func contentOffset() -> CGPoint {
+        return tableView.contentOffset
     }
 }
 

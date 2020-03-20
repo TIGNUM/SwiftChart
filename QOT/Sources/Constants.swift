@@ -78,6 +78,7 @@ extension CGFloat.View.Height {
     static let ChildNode: CGFloat = 95
     static let Footer: CGFloat = 20
     static let TypingFooter: CGFloat = 80
+    static let CalendarSelectionHeader: CGFloat = 111
 }
 
 extension CGFloat.Button.Height {

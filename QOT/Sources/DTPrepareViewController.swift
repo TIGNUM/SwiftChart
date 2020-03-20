@@ -104,7 +104,8 @@ final class DTPrepareViewController: DTViewController {
         switch questionKey {
         case Prepare.QuestionKey.ShowTBV?,
              Prepare.Key.know.rawValue?,
-             Prepare.Key.perceived.rawValue?:
+             Prepare.Key.perceived.rawValue?,
+             Prepare.Key.eventType.rawValue?:
             return answerFilter
         default:
             return nil

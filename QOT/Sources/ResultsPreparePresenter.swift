@@ -34,7 +34,7 @@ private extension ResultsPreparePresenter {
             let title = preparation?.eventTitle,
             let date = preparation?.eventDate?.eventDateString,
             let type = preparation?.eventType {
-                return .calendar(title: title, subtitle: date + " | " + type)
+            return .calendar(title: title, subtitle: date + " | " + type)
         }
         return .calendarConnect(title: AppTextService.get(.results_prepare_connect_calendar_title),
                                 subtitle: AppTextService.get(.results_prepare_connect_calendar_subtitle))
@@ -46,17 +46,17 @@ private extension ResultsPreparePresenter {
 
     func getPerceivedItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .perceived(title: AppTextService.get(.results_prepare_perceived),
-                                                 preceiveAnswers: preparation?.preceiveAnswers ?? [])
+                          preceiveAnswers: preparation?.preceiveAnswers ?? [])
     }
 
     func getKnowItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .know(title: AppTextService.get(.results_prepare_know),
-                                            knowAnswers: preparation?.knowAnswers ?? [])
+                     knowAnswers: preparation?.knowAnswers ?? [])
     }
 
     func getFeelItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .feel(title: AppTextService.get(.results_prepare_feel),
-                                            feelAnswers: preparation?.feelAnswers ?? [])
+                     feelAnswers: preparation?.feelAnswers ?? [])
     }
 
     func getBenefitsItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
@@ -69,7 +69,7 @@ private extension ResultsPreparePresenter {
         return .strategyTitle(title: AppTextService.get(.results_prepare_strategies))
     }
 
-    func getStrategiesItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getStrategyItems(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .strategies(strategies: preparation?.strategies ?? [])
     }
 }
@@ -88,12 +88,11 @@ extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
         if preparation?.type == .LEVEL_CRITICAL {
             sections[6] = getBenefitsItem(preparation)
             sections[7] = getStrategyTitleItem()
-            sections[8] = getStrategiesItem(preparation)
+            sections[8] = getStrategyItems(preparation)
         } else {
             sections[6] = getStrategyTitleItem()
-            sections[7] = getStrategiesItem(preparation)
+            sections[7] = getStrategyItems(preparation)
         }
-
         viewController?.updateView(items: sections)
     }
 
