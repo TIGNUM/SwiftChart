@@ -15,7 +15,8 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var calendarIcon: UIImageView!
-
+    @IBOutlet weak var subtitleView: UIView!
+    
     private var editingOverlay: UIView!
     var skeletonManager = SkeletonManager()
     var hasData = false

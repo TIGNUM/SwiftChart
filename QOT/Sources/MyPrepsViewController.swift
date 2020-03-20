@@ -391,10 +391,10 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             var title = ""
             if item?.missingEvent == false {
                 title = item?.title.uppercased() ?? ""
+                cell.subtitleView.isHidden = false
             } else {
                 title = item?.eventType.uppercased() ?? ""
-                cell.calendarIcon.isHidden = true
-                cell.subtitleLabel.isHidden = true
+                cell.subtitleView.isHidden = true
             }
             cell.configure(title: title, subtitle: subtitle)
         case SegmentView.mindsetShifter.rawValue:
