@@ -54,7 +54,6 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorView: UIView!
-    var data = [PrepTypes: [MyPrepsModel.Item]]()
     private var editPressed: Bool = false
     private var canDelete: Bool = false
     private var viewModel: MyPlansViewModel!
@@ -356,12 +355,8 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             return PrepTypes.total.rawValue
-        case SegmentView.mindsetShifter.rawValue:
-            return 1
-        case SegmentView.recovery.rawValue:
-            return 1
         default:
-            return 0
+            return 1
         }
     }
 
