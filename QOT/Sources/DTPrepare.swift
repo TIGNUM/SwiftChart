@@ -29,7 +29,7 @@ struct Prepare {
         static let EventTypeSelectionCritical = "open_preparation_event_selection_critical"
         static let KindOfEventSelectionDaily = "x_prepare_event_type_selection_daily"
         static let KindOfEvenSelectionCritical = "x_prepare_event_type_selection_critical"
-        static let PeakPlanNew = "prepare_peak_prep_plan_new"
+        static let PeakPlanNew = "x_prepare_peak_prep_plan_new"
         static let PeakPlanTemplate = "x_prepare_peak_prep_plan_template"
     }
 
@@ -52,21 +52,21 @@ struct Prepare {
         return String(format: "Created %@", DateFormatter.mediumDate.string(from: date))
     }
 
-    static let AnswerFilter = "prepare_event_type_relationship_"
+    static let AnswerFilter = "x_prepare_event_type_relationship_"
 
     enum Key: String {
-        case perceived = "prepare_peak_prep_relationship_intentions_preceived"
+        case perceived = "x_prepare_peak_prep_relationship_intentions_preceived"
         case know = "x_prepare_peak_prep_relationship_intentions_know"
-        case feel = "prepare_peak_prep_relationship_intentions_feel"
+        case feel = "x_prepare_peak_prep_relationship_intentions_feel"
         case benefits = "prepare_peak_prep_benefits_input"
         case benefitsTitle = "prepare_check_list_critical_benefits_title"
-        case eventType = "prepare-event-type-selection-critical"
+        case eventType = "x-prepare-event-type-selection-critical"
 
         var questionID: Int {
             switch self {
-            case .perceived: return 100326
-            case .know: return 100330
-            case .feel: return 100331
+            case .perceived: return 100390
+            case .know: return 100396
+            case .feel: return 100397
             case .benefits: return 100332
             case .benefitsTitle: return 0
             case .eventType: return 100339

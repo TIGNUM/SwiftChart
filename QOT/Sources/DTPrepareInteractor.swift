@@ -46,7 +46,7 @@ final class DTPrepareInteractor: DTInteractor {
 
     override func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {
         var targetQuestionId = selection.selectedAnswers.first?.targetId(.question)
-        
+
         // Build Plan
         if targetQuestionId == 100324 {
             targetQuestionId = 100398
