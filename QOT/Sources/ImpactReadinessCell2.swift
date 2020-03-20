@@ -101,11 +101,11 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         sleepQuantityButton.setTitle(quantityTitle, for: .normal)
         let hour = " " + AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h)
         ThemeText.quotation.apply(String(viewModel?.sleepQuantityValue ?? 0) + hour + asterixCharacter, to: sleepQuantityLabel)
-        sleepQuantityLabel.textColor = viewModel?.hasFiveDaySleepQuantityValues == false &&
-                                        viewModel?.targetSleepQuantity?.isLess(than: viewModel?.sleepQuantityValue ?? 0 ) == true ?
-                                            .sand : .redOrange
-
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
+        sleepQuantityLabel.textColor = viewModel?.hasFiveDaySleepQuantityValues == true &&
+                                        viewModel?.sleepQuantityValue?.isLess(than: targetSleepQuantityInFiveDays) == true ?
+                                            .redOrange : .sand
+
         sleepQuantityTarget.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_section_customize_button), for: .normal)
         let target =  "/ " + String(targetSleepQuantityInFiveDays) + hour
 
@@ -124,7 +124,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         loadButton.setTitle(loadTitle, for: .normal)
 
         ThemeText.quotation.apply(String(viewModel?.loadValue ?? 0) + asteriskLoad, to: loadLabel)
-        loadLabel.textColor = loadReference?.isLess(than: viewModel?.loadValue ?? 0) ?? false ? .sand : .redOrange
+        loadLabel.textColor = viewModel?.loadValue?.isLess(than: loadReference ?? 0) == true ? .sand : .redOrange
 
         // Future Load
         let futureLoadReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_number_ref))
@@ -132,7 +132,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         futureLoadButton.setTitle(futureLoadTitle, for: .normal)
 
         ThemeText.quotation.apply(String(viewModel?.futureLoadValue ?? 0) + asteriskLoad, to: futureLoadLabel)
-        futureLoadLabel.textColor = futureLoadReference?.isLess(than: viewModel?.futureLoadValue ?? 0) == true ? .sand : .redOrange
+        futureLoadLabel.textColor = viewModel?.futureLoadValue?.isLess(than: futureLoadReference ?? 0) == true ? .sand : .redOrange
         // Tracked days
         if let  numberOfDays = viewModel?.maxTrackingDays {
             let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days", with: String(numberOfDays))
