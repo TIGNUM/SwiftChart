@@ -109,7 +109,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         sleepQuantityTarget.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_section_customize_button), for: .normal)
         let target =  "/ " + String(targetSleepQuantityInFiveDays) + hour
 
-        ThemeText.reference.apply(target,to: targetLabel)
+        ThemeText.reference.apply(target, to: targetLabel)
 
         // Sleep Quality
         let qualityReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_number_ref))
