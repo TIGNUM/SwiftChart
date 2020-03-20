@@ -82,9 +82,10 @@ class DTPresenter: DTPresenterInterface {
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
+        let events = getPreparations(presentationModel.preparations)
         return DTViewModel(question: question,
                            answers: answers,
-                           events: [],
+                           events: events,
                            tbvText: presentationModel.tbv?.text,
                            userInputText: presentationModel.userInputText,
                            hasTypingAnimation: hasTypingAnimation(answerType: question.answerType, answers: answers),
