@@ -128,7 +128,8 @@ class DTInteractor: DTInteractorInterface {
                                  content: QDMContentCollection?) -> DTPresentationModel {
         let question = getNextQuestion(selection: selection, questions: questions)
         let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers,
-                                            questionKey: question?.key, content: content)
+                                            questionKey: question?.key,
+                                            content: content)
         let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
         let events = getEvents(questionKey: question?.key)
         let preparations = getPreparations(answerKeys: selection.selectedAnswers.first?.keys)
@@ -143,7 +144,7 @@ class DTInteractor: DTInteractorInterface {
                                    preparations: preparations)
     }
 
-    func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {
+    func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {        
         let targetQuestionId = selection.selectedAnswers.first?.targetId(.question)
         return questions.filter { $0.remoteID == targetQuestionId }.first
     }
