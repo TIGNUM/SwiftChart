@@ -306,7 +306,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
-        tableView.estimatedSectionHeaderHeight = 80
+        tableView.estimatedSectionHeaderHeight = 90
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
