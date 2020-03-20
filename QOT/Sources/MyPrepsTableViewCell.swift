@@ -19,6 +19,7 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     private var editingOverlay: UIView!
     var skeletonManager = SkeletonManager()
     var hasData = false
+    var hasEvent = false
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
