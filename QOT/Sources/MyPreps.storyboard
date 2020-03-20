@@ -271,8 +271,6 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="R6X-GL-9iW" secondAttribute="bottom" id="EkR-Wv-Ftw"/>
-                                                        <constraint firstItem="R6X-GL-9iW" firstAttribute="leading" secondItem="YeH-Sn-OYn" secondAttribute="leading" constant="20" symbolic="YES" id="HPh-Kc-6nb"/>
-                                                        <constraint firstItem="R6X-GL-9iW" firstAttribute="top" secondItem="SP9-dr-hid" secondAttribute="bottom" constant="5" id="MNX-dz-DH3"/>
                                                         <constraint firstAttribute="trailing" secondItem="R6X-GL-9iW" secondAttribute="trailing" id="NH4-zt-zfH"/>
                                                     </constraints>
                                                 </stackView>
