@@ -378,6 +378,22 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch segmentedControl.selectedSegmentIndex {
+        case SegmentView.myPreps.rawValue:
+            switch section {
+            case PrepTypes.criticalEvents.rawValue:
+                return UITableViewAutomaticDimension
+            case PrepTypes.everyday.rawValue:
+                return UITableViewAutomaticDimension
+            default:
+                return 0
+            }
+        default:
+            return 0
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyPrepsTableViewCell = tableView.dequeueCell(for: indexPath)
         if editPressed == true {
