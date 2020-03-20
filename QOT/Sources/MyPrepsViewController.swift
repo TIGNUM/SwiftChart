@@ -381,14 +381,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            switch section {
-            case PrepTypes.criticalEvents.rawValue:
-                return UITableViewAutomaticDimension
-            case PrepTypes.everyday.rawValue:
-                return UITableViewAutomaticDimension
-            default:
-                return 0
-            }
+            return tableView.estimatedSectionHeaderHeight
         default:
             return 0
         }
