@@ -78,20 +78,24 @@ class DTInteractor: DTInteractorInterface {
         presentedNodes.append(node)
     }
 
-    func loadPreviousQuestion() {
+    func loadPreviousQuestion() -> Bool {
         if !presentedNodes.isEmpty {
             presentedNodes.removeLast()
             if !selectedAnswers.isEmpty {
                 selectedAnswers.removeLast()
             }
-            let lastNode = presentedNodes.last
-            let presentationModel = createPresentationModel(questionId: lastNode?.questionId,
-                                                            answerFilter: lastNode?.answerFilter,
+            guard let lastNode = presentedNodes.last else {
+                return false
+            }
+            let presentationModel = createPresentationModel(questionId: lastNode.questionId,
+                                                            answerFilter: lastNode.answerFilter,
                                                             userInputText: inputText,
-                                                            questionUpdate: lastNode?.titleUpdate,
+                                                            questionUpdate: lastNode.titleUpdate,
                                                             questions: questions)
             presenter?.showPreviousQuestion(presentationModel, isDark: isDark)
+            return true
         }
+        return false
     }
 
     var getIntroKey: String {
