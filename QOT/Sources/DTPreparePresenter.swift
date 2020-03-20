@@ -50,7 +50,10 @@ final class DTPreparePresenter: DTPresenter {
     }
 
     override func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [QDMAnswer] {
-        guard let filter = answerFilter else { return question?.answers ?? [] }
+        guard var filter = answerFilter else { return question?.answers ?? [] }
+        if filter == "x_prepare_event_type_relationship_meeting_with_conflicts" {
+            filter = "x_prepare_event_type_relationship_meeting_with_conflict"
+        }
         return question?.answers.filter { $0.keys.contains(filter) } ?? []
     }
 }

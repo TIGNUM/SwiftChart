@@ -14,7 +14,7 @@ struct Prepare {
         static let EventTypeSelectionCritical = "x-prepare-event-type-selection-critical"
         static let ShowTBV = "x_prepare_peak_prep_review_tbv"
         static let BenefitsInput = "prepare_peak_prep_benefits_input"
-        static let BuildCritical = "prepare_peak_prep_build_plan"
+        static let BuildCritical = "x_prepare_peak_prep_build_plan"
         static let SelectExisting = "prepare_previous_preps_selection"
         static let Last = "prepare_key_last"
     }
@@ -56,7 +56,7 @@ struct Prepare {
 
     enum Key: String {
         case perceived = "prepare_peak_prep_relationship_intentions_preceived"
-        case know = "prepare_peak_prep_relationship_intentions_know"
+        case know = "x_prepare_peak_prep_relationship_intentions_know"
         case feel = "prepare_peak_prep_relationship_intentions_feel"
         case benefits = "prepare_peak_prep_benefits_input"
         case benefitsTitle = "prepare_check_list_critical_benefits_title"
