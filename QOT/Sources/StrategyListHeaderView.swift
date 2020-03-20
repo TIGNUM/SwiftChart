@@ -18,7 +18,7 @@ final class StrategyListHeaderView: UIView {
         }
         let baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: headerView)
         baseHeaderView?.configure(title: title, subtitle: nil)
-        ThemeText.myPlansHeader.apply(title?.uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.strategyHeader.apply(title?.uppercased(), to: baseHeaderView?.titleLabel)
         theme?.apply(headerView)
         baseHeaderView?.addTo(superview: headerView)
         return headerView

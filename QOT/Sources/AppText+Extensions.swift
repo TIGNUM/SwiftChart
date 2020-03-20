@@ -739,6 +739,8 @@ public extension AppTextKey {
     static let my_qot_my_plans_recovery_plans_null_state_body = AppTextKey("my_qot.my_plans.recovery_plans.null_state.body")
     static let my_qot_my_plans_mindset_shifts_null_state_body = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.body")
     static let my_qot_my_plans_event_preps_null_state_body = AppTextKey("my_qot.my_plans.event_preps.null_state.body")
+    static let my_qot_my_plans_section_header_critical = AppTextKey("my_qot.my_plans_section.header_critical")
+    static let my_qot_my_plans_section_header_everyday = AppTextKey("my_qot.my_plans_section.header_everyday")
 
     static let my_qot_my_plans_mindset_shifts_null_state_cta = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.cta")
     static let my_qot_my_plans_event_preps_null_state_cta = AppTextKey("my_qot.my_plans.event_preps.null_state.cta")

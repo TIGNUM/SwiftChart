@@ -306,6 +306,8 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 80
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
@@ -368,14 +370,11 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         case SegmentView.myPreps.rawValue:
             switch section {
             case PrepTypes.criticalEvents.rawValue:
-                let title = "CROTICAL"
+                let title = AppTextService.get(.my_qot_my_plans_section_header_critical)
                 return MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2)
             case PrepTypes.everyday.rawValue:
-                let titleLabel: UILabel = UILabel()
-                titleLabel.text = "EVERYDAY"
-                titleLabel.textColor = UIColor.sand
-               return titleLabel
-
+                let title = AppTextService.get(.my_qot_my_plans_section_header_everyday)
+                return MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2)
             default:
                 return nil
             }
@@ -383,26 +382,6 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
     }
-
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        switch segmentedControl.selectedSegmentIndex {
-//        case SegmentView.myPreps.rawValue:
-//            switch section {
-//            case PrepTypes.criticalEvents.rawValue:
-//
-//            case PrepTypes.everyday.rawValue:
-//                return "EVERY DAY"
-//            default:
-//                return nil
-//            }
-//        case SegmentView.mindsetShifter.rawValue:
-//                return nil
-//        case SegmentView.recovery.rawValue:
-//                return nil
-//        default:
-//                return nil
-//        }
-//    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyPrepsTableViewCell = tableView.dequeueCell(for: indexPath)

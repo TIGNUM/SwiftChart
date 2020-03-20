@@ -1163,7 +1163,7 @@ enum ThemeText {
                 return isDark ? Palette.sand70 : Palette.carbon70
             }
         case .baseHeaderTitle(let mode):
-            return Palette.light(Palette.redOrange, or: Palette.redOrange, forcedColorMode: mode)
+            return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
         case .baseHeaderSubtitle(let mode):
             return Palette.light(Palette.carbon40, or: Palette.sand70, forcedColorMode: mode)
         case .tbvTrackerRatingDigits(let lowValue):

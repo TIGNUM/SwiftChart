@@ -10,13 +10,15 @@ import Foundation
 
 class MyPlansHeaderView: UIView {
 
-    static func instantiateFromNib(title: String?, theme: ThemeView?) -> MyPlansHeaderView {
+    static func
+        instantiateFromNib(title: String?, theme: ThemeView?) -> MyPlansHeaderView {
          guard let headerView = R.nib.myPlansHeaderView.instantiate(withOwner: self).first as? MyPlansHeaderView else {
              fatalError("Cannot load header view")
          }
          let baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: headerView)
          baseHeaderView?.configure(title: title, subtitle: nil)
-         ThemeText.strategyHeader.apply(title?.uppercased(), to: baseHeaderView?.titleLabel)
+         ThemeText.myPlansHeader.apply(title?.uppercased(), to: baseHeaderView?.titleLabel)
+         baseHeaderView?.lineView.isHidden = true
          theme?.apply(headerView)
          baseHeaderView?.addTo(superview: headerView)
          return headerView
