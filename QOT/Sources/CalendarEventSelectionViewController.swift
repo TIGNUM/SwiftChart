@@ -64,7 +64,7 @@ extension CalendarEventSelectionViewController: CalendarEventSelectionViewContro
     func setupView() {
         tableView.registerDequeueable(PrepareEventTableViewCell.self)
         ThemeText.Text01LightCarbon100.apply(AppTextService.get(.event_selection_empty), to: emptyEventsLabel)
-        tableView.isHidden = interactor.rowCount == 0        
+        tableView.isHidden = interactor.rowCount == 0
         tableView.backgroundColor = .sand
         tableView.contentInset.top = 64
         tableView.contentInset.bottom = 40

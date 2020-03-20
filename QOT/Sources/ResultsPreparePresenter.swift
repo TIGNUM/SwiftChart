@@ -34,7 +34,7 @@ private extension ResultsPreparePresenter {
             let title = preparation?.eventTitle,
             let date = preparation?.eventDate?.eventDateString,
             let type = preparation?.eventType {
-                return .calendar(title: title, subtitle: date + " | " + type)
+            return .calendar(title: title, subtitle: date + " | " + type)
         }
         return .calendarConnect(title: AppTextService.get(.results_prepare_connect_calendar_title),
                                 subtitle: AppTextService.get(.results_prepare_connect_calendar_subtitle))
@@ -46,17 +46,17 @@ private extension ResultsPreparePresenter {
 
     func getPerceivedItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .perceived(title: AppTextService.get(.results_prepare_perceived),
-                                                 preceiveAnswers: preparation?.preceiveAnswers ?? [])
+                          preceiveAnswers: preparation?.preceiveAnswers ?? [])
     }
 
     func getKnowItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .know(title: AppTextService.get(.results_prepare_know),
-                                            knowAnswers: preparation?.knowAnswers ?? [])
+                     knowAnswers: preparation?.knowAnswers ?? [])
     }
 
     func getFeelItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .feel(title: AppTextService.get(.results_prepare_feel),
-                                            feelAnswers: preparation?.feelAnswers ?? [])
+                     feelAnswers: preparation?.feelAnswers ?? [])
     }
 
     func getBenefitsItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
