@@ -12,7 +12,7 @@ struct Prepare {
 	struct QuestionKey {
         static let EventTypeSelectionDaily = "x-prepare-event-type-selection-daily"
         static let EventTypeSelectionCritical = "x-prepare-event-type-selection-critical"
-        static let ShowTBV = "prepare_peak_prep_review_tbv"
+        static let ShowTBV = "x_prepare_peak_prep_review_tbv"
         static let BenefitsInput = "prepare_peak_prep_benefits_input"
         static let BuildCritical = "prepare_peak_prep_build_plan"
         static let SelectExisting = "prepare_previous_preps_selection"
@@ -27,10 +27,10 @@ struct Prepare {
         static let OpenCheckList = "open_preparation_check_list_on_the_go"
         static let EventTypeSelectionDaily = "open_preparation_event_selection_daily"
         static let EventTypeSelectionCritical = "open_preparation_event_selection_critical"
-        static let KindOfEventSelectionDaily = "prepare_event_type_selection_daily"
-        static let KindOfEvenSelectionCritical = "prepare_event_type_selection_critical"
+        static let KindOfEventSelectionDaily = "x_prepare_event_type_selection_daily"
+        static let KindOfEvenSelectionCritical = "x_prepare_event_type_selection_critical"
         static let PeakPlanNew = "prepare_peak_prep_plan_new"
-        static let PeakPlanTemplate = "prepare_peak_prep_plan_template"
+        static let PeakPlanTemplate = "x_prepare_peak_prep_plan_template"
     }
 
     static func dateString(for date: Date?) -> String? {

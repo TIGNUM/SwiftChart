@@ -156,7 +156,8 @@ private extension UIViewController {
     var preparePageKey: String {
         if let introKey = (self as? DTPrepareViewController)?.interactor?.getIntroKey {
             switch introKey {
-            case Prepare.QuestionKey.Intro: return "decisiontree.prepare"
+            case Prepare.QuestionKey.EventTypeSelectionDaily,
+                 Prepare.QuestionKey.EventTypeSelectionCritical: return "decisiontree.prepare"
             case Prepare.QuestionKey.BenefitsInput: return "decisiontree.prepare.edit.benefits"
             case Prepare.Key.feel.rawValue: return "decisiontree.prepare.edit.intentions.feel"
             case Prepare.Key.know.rawValue: return "decisiontree.prepare.edit.intentions.know"

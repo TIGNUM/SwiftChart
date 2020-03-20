@@ -48,4 +48,9 @@ final class DTPreparePresenter: DTPresenter {
         }
         return super.getNavigationButton(presentationModel, isDark: isDark)
     }
+
+    override func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [QDMAnswer] {
+        guard let filter = answerFilter else { return question?.answers ?? [] }
+        return question?.answers.filter { $0.keys.contains(filter) } ?? []
+    }
 }
