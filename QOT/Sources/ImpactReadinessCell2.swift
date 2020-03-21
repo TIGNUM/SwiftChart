@@ -100,7 +100,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
         sleepQuantityButton.setTitle(quantityTitle, for: .normal)
         let hour = " " + AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h)
-        ThemeText.quotation.apply(String(viewModel?.sleepQuantityValue ?? 0) + hour + asterixCharacter, to: sleepQuantityLabel)
+        ThemeText.quotation.apply(String(viewModel?.sleepQuantityValue ?? 0) + hour, to: sleepQuantityLabel)
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         sleepQuantityLabel.textColor = viewModel?.hasFiveDaySleepQuantityValues == true &&
                                         viewModel?.sleepQuantityValue?.isLess(than: targetSleepQuantityInFiveDays) == true ?
