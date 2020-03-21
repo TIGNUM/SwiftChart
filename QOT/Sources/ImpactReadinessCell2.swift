@@ -106,7 +106,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                         viewModel?.sleepQuantityValue?.isLess(than: targetSleepQuantityInFiveDays) == true ?
                                             .redOrange : .sand
 
-        sleepQuantityTarget.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_section_customize_button), for: .normal)
+        sleepQuantityTarget.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_customize_button), for: .normal)
         let target =  "/ " + String(targetSleepQuantityInFiveDays) + hour
 
         ThemeText.reference.apply(target, to: targetLabel)
