@@ -48,6 +48,9 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            ThemeText.dailyBriefSubtitle.apply(AppTextService.get(.daily_brief_section_impact_readiness_loading_body), to: self.content)
+        }
     }
 
     @objc func didTapLeft() {
