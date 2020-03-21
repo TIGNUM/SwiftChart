@@ -727,6 +727,7 @@ enum ThemeText {
     case walkthroughMessage
     case shpiQuestion
     case shpiContent
+    case shpiSubtitle
 
     case tbvSectionHeader
     case tbvHeader
@@ -881,7 +882,7 @@ enum ThemeText {
              .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
              .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .articleContactSupportInfoTitle, .registrationNamesMandatory,
              .registrationAgeRestriction, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark, .audioPlayerTitleLight,
-             .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays, .asterixText:
+             .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays, .asterixText, .shpiSubtitle:
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .durationString,
              .resultDate, .resultFollowUp,
@@ -1052,7 +1053,7 @@ enum ThemeText {
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
-             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle:
+             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -1326,7 +1327,7 @@ enum ThemeText {
         case .myDataParameterLegendText, .myDataHeatMapLegendText:
             string = NSAttributedString(string: text, letterSpacing: 0.17, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
-        case .myDataParameterSelectionTitle:
+        case .myDataParameterSelectionTitle, .shpiSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:
