@@ -72,11 +72,11 @@ private extension ResultsPrepareViewController {
     func getQuestionCell(title: String,
                          answers: [QDMAnswer],
                          indexPath: IndexPath) -> ResultsPrepareQuestionTableViewCell {
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         if answers.isEmpty {
             let cell: ResultsPrepareQuestionDailyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title)
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
             cell.selectedBackgroundView = backgroundView
             return cell
         }
@@ -85,8 +85,6 @@ private extension ResultsPrepareViewController {
                        firstItem: answers.at(index: 0)?.subtitle,
                        secondItem: answers.at(index: 1)?.subtitle,
                        thirdItem: answers.at(index: 2)?.subtitle)
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         cell.selectedBackgroundView = backgroundView
         return cell
     }
