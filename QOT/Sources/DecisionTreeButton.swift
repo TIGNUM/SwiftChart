@@ -42,7 +42,7 @@ final class AnswerButton: AbstractTreeButton {
         defaultBackgroundColor = isSelected ? .accent30 : .clear
         selectedBackgroundColor = isSelected ? .clear : .accent30
         setAttributedTitle(ThemeText.chatbotButton.attributedString(title), for: .normal)
-        corner(radius: .Twenty, borderColor: .accent40)
+        corner(radius: .Twenty, borderColor: .accent30)
     }
 
     func switchBackgroundColor() {
@@ -61,13 +61,12 @@ final class SelectionButton: AbstractTreeButton {
         defaultBackgroundColor = isSelected ? .accent30 : .clear
         selectedBackgroundColor = isSelected ? .clear : .accent30
         selectionLabel.attributedText = ThemeText.chatbotButton.attributedString(title)
-        corner(radius: .Twenty, borderColor: isSelected ? .clear : .accent40)
+        corner(radius: .Twenty, borderColor: isSelected ? .accent30 : .accent30)
         switchBackgroundColor()
     }
 
     func switchBackgroundColor() {
         backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
-        layer.borderWidth = (backgroundColor == defaultBackgroundColor) ? 1 : 0
     }
 }
 

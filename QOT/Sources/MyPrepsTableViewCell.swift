@@ -49,6 +49,12 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
         addGradient(to: editingOverlay)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        subtitleLabel.text = nil
+    }
+
     // MARK: Configure
     func configure(title: String?, subtitle: String?) {
         guard let titleText = title else { return }
