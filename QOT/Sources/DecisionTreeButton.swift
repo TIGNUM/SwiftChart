@@ -61,7 +61,7 @@ final class SelectionButton: AbstractTreeButton {
         defaultBackgroundColor = isSelected ? .accent30 : .clear
         selectedBackgroundColor = isSelected ? .clear : .accent30
         selectionLabel.attributedText = ThemeText.chatbotButton.attributedString(title)
-        corner(radius: .Twenty, borderColor: isSelected ? .accent30 : .accent30)
+        corner(radius: .Twenty, borderColor: .accent30)
         switchBackgroundColor()
     }
 

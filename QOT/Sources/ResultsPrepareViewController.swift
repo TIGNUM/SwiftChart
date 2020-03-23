@@ -208,11 +208,17 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         case .calendar(let title, let subtitle):
             let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
+            cell.selectedBackgroundView = backgroundView
             return cell
 
         case .calendarConnect(let title, let subtitle):
             let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
+            cell.selectedBackgroundView = backgroundView
             return cell
 
         case .header(let title):
