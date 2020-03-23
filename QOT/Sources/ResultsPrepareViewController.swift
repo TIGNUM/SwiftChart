@@ -199,46 +199,36 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = sections[indexPath.section] else { fatalError("Invalid section") }
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         switch section {
         case .benefits(let title, let subtitle, let benefits):
             let cell: ResultsPrepareBenefitsTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle, benefits: benefits)
             return cell
-
         case .calendar(let title, let subtitle):
             let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
             cell.selectedBackgroundView = backgroundView
             return cell
-
         case .calendarConnect(let title, let subtitle):
             let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
             cell.selectedBackgroundView = backgroundView
             return cell
         case .header(let title):
             let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title)
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
             cell.selectedBackgroundView = backgroundView
             return cell
         case .know(let title, let answers),
              .feel(let title, let answers),
              .perceived(let title, let answers):
             return getQuestionCell(title: title, answers: answers, indexPath: indexPath)
-
         case .title(let title),
              .strategyTitle(let title):
             let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, hideEditIcon: interactor.hideEditIcon(title: title))
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
-            cell.selectedBackgroundView = backgroundView
             return cell
         case .strategies(let strategies):
             let strategy = strategies.at(index: indexPath.row)
