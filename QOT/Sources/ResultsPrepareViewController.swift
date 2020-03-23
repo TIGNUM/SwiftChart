@@ -220,12 +220,13 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
             cell.selectedBackgroundView = backgroundView
             return cell
-
         case .header(let title):
             let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title)
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
+            cell.selectedBackgroundView = backgroundView
             return cell
-
         case .know(let title, let answers),
              .feel(let title, let answers),
              .perceived(let title, let answers):
@@ -235,8 +236,10 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
              .strategyTitle(let title):
             let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, hideEditIcon: interactor.hideEditIcon(title: title))
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
+            cell.selectedBackgroundView = backgroundView
             return cell
-
         case .strategies(let strategies):
             let strategy = strategies.at(index: indexPath.row)
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
