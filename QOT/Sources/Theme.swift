@@ -1189,7 +1189,7 @@ enum ThemeText {
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader, .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
-             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .Text03Light, .H01Light, .myPlansHeader:
+             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1258,13 +1258,15 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
         case .articleBody, .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline,
-             .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent, .tbvQuestionLight, .dailyQuestion, .tbvQuestionMedium:
+             .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent, .tbvQuestionLight,
+             .dailyQuestion, .tbvQuestionMedium:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
             string = NSAttributedString(string: text,
                                         letterSpacing: lSpace, font: self.font, lineSpacing: lHeight,
                                         textColor: self.color, alignment: alignment ?? .left)
-        case .articleHeadlineSmall, .articleHeadlineSmallRed, .articleHeadlineSmallFade, .articleHeadlineSmallLight:
+        case .articleHeadlineSmall, .articleHeadlineSmallRed, .articleHeadlineSmallFade, .articleHeadlineSmallLight,
+             .Text03Light:
             let lSpace = lineSpacing != nil ? lineSpacing! : 0.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
             string = NSAttributedString(string: text,
