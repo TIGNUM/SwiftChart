@@ -356,6 +356,8 @@ public extension AppTextKey {
     static let daily_brief_daily_check_in_questionnaire = AppTextKey("daily_brief.daily_check_in.questionnaire")
     static let daily_brief_section_mindset_shifter_subtitle = AppTextKey("daily_brief.section_mindset_shifter.subtitle")
     static let daily_brief_section_mindset_shifter_title = AppTextKey("daily_brief.section_mindset_shifter.title")
+    static let daily_brief_section_mindset_shifter_cta = AppTextKey("daily_brief.section_mindset_shifter.cta")
+
 
     static let daily_brief_section_impact_readiness_sleep_quantity_description = AppTextKey("daily_brief.section_impact_readiness.sleep_quantity_description")
     static let daily_brief_section_impact_readiness_sleep_quality_description = AppTextKey("daily_brief.section_impact_readiness.sleep_quality_description")

@@ -306,7 +306,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
-        tableView.estimatedSectionHeaderHeight = 80
+        tableView.estimatedSectionHeaderHeight = 90
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
@@ -375,6 +375,15 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             }
         default:
             return nil
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch segmentedControl.selectedSegmentIndex {
+        case SegmentView.myPreps.rawValue:
+            return tableView.estimatedSectionHeaderHeight
+        default:
+            return 0
         }
     }
 

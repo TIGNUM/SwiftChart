@@ -336,7 +336,7 @@
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="trailing" secondItem="hvU-ex-T62" secondAttribute="trailing" id="qvs-Yx-klg"/>
                             <constraint firstAttribute="trailing" secondItem="dEq-o1-iv8" secondAttribute="trailing" id="uje-kp-l6X"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="trailing" secondItem="7BQ-4U-u9M" secondAttribute="trailing" constant="20" id="yqe-gr-R2r"/>
-                            <constraint firstItem="7BQ-4U-u9M" firstAttribute="bottom" secondItem="FQX-We-ykg" secondAttribute="bottom" constant="-5" id="z8N-tA-zRa"/>
+                            <constraint firstItem="7BQ-4U-u9M" firstAttribute="bottom" secondItem="FQX-We-ykg" secondAttribute="bottom" constant="-15" id="z8N-tA-zRa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="izd-Ti-FEs"/>
                     </view>
