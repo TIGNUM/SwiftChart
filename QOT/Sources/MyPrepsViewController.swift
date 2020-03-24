@@ -397,7 +397,15 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             let prepItems = [interactor.criticalPrepItems, interactor?.everydayPrepItems]
             let item = prepItems[indexPath.section]?[indexPath.row]
             let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
-            cell.configure(title: item?.title.uppercased(), subtitle: subtitle)
+            var title = ""
+            if item?.missingEvent == false {
+                title = item?.title.uppercased() ?? ""
+                cell.subtitleView.isHidden = false
+            } else {
+                title = item?.eventType.uppercased() ?? ""
+                cell.subtitleView.isHidden = true
+            }
+            cell.configure(title: title, subtitle: subtitle)
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor.itemMind(at: indexPath)
             cell.configure(title: item?.title, subtitle: item?.date)
@@ -414,21 +422,25 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView.isEditing {
             updateDeleteButtonIfNeeded(tableView)
         } else {
-            if segmentedControl.selectedSegmentIndex == 0 {
-                if let item = interactor.itemPrep(at: indexPath), tableView.isEditing == false {
+            switch segmentedControl.selectedSegmentIndex {
+            case SegmentView.myPreps.rawValue:
+                let prepItems = [interactor.criticalPrepItems, interactor?.everydayPrepItems]
+                if let item = prepItems[indexPath.section]?[indexPath.row], tableView.isEditing == false {
                     tableView.deselectRow(at: indexPath, animated: true)
                     interactor.presentPreparation(item: item.qdmPrep, viewController: self)
                 }
-            } else if segmentedControl.selectedSegmentIndex == 1 {
+            case SegmentView.mindsetShifter.rawValue:
                 if let item = interactor.itemMind(at: indexPath), tableView.isEditing == false {
                     tableView.deselectRow(at: indexPath, animated: true)
                     interactor.presentMindsetShifter(item: item.qdmMind, viewController: self)
                 }
-            } else if segmentedControl.selectedSegmentIndex == 2 {
+            case SegmentView.recovery.rawValue:
                 if let item = interactor.itemRec(at: indexPath), tableView.isEditing == false {
                     tableView.deselectRow(at: indexPath, animated: true)
                     interactor.present3DRecovery(item: item.qdmRec, viewController: self)
                 }
+            default:
+                break
             }
             updateIndicator()
         }

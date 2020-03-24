@@ -72,9 +72,12 @@ private extension ResultsPrepareViewController {
     func getQuestionCell(title: String,
                          answers: [QDMAnswer],
                          indexPath: IndexPath) -> ResultsPrepareQuestionTableViewCell {
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         if answers.isEmpty {
             let cell: ResultsPrepareQuestionDailyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title)
+            cell.selectedBackgroundView = backgroundView
             return cell
         }
         let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -82,6 +85,7 @@ private extension ResultsPrepareViewController {
                        firstItem: answers.at(index: 0)?.subtitle,
                        secondItem: answers.at(index: 1)?.subtitle,
                        thirdItem: answers.at(index: 2)?.subtitle)
+        cell.selectedBackgroundView = backgroundView
         return cell
     }
 
@@ -193,38 +197,37 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = sections[indexPath.section] else { fatalError("Invalid section") }
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         switch section {
         case .benefits(let title, let subtitle, let benefits):
             let cell: ResultsPrepareBenefitsTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle, benefits: benefits)
             return cell
-
         case .calendar(let title, let subtitle):
             let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
+            cell.selectedBackgroundView = backgroundView
             return cell
-
         case .calendarConnect(let title, let subtitle):
             let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
+            cell.selectedBackgroundView = backgroundView
             return cell
-
         case .header(let title):
             let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title)
+            cell.selectedBackgroundView = backgroundView
             return cell
-
         case .know(let title, let answers),
              .feel(let title, let answers),
              .perceived(let title, let answers):
             return getQuestionCell(title: title, answers: answers, indexPath: indexPath)
-
         case .title(let title),
              .strategyTitle(let title):
             let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, hideEditIcon: interactor.hideEditIcon(title: title))
             return cell
-
         case .strategies(let strategies):
             let strategy = strategies.at(index: indexPath.row)
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)

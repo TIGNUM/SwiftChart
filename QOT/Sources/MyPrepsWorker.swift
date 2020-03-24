@@ -26,6 +26,7 @@ final class MyPrepsWorker {
                                                   date: dateString,
                                                   eventType: $0.eventType ?? "",
                                                   type: $0.type ?? "",
+                                                  missingEvent: $0.missingEvent,
                                                   qdmPrep: $0)
                 prepItems.append(prepItem)
             }
