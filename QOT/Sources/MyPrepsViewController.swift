@@ -239,11 +239,13 @@ private extension MyPrepsViewController {
         updateEditButton(hidden: false)
         tableView.alpha = 1
         updateButton()
+        let title = AppTextService.get(.my_qot_my_plans_section_header_title)
         switch sender.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsPreparations() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noPreparationsView.isHidden = false
                 tableView.alpha = 0
                 updateEditButton(hidden: true)
@@ -252,6 +254,7 @@ private extension MyPrepsViewController {
             bottomNavigationItems.rightBarButtonItems = [addMindsetShiftButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsMindsetShifters() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
@@ -260,6 +263,7 @@ private extension MyPrepsViewController {
             bottomNavigationItems.rightBarButtonItems = [planRecoveryButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsRecoveries() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
