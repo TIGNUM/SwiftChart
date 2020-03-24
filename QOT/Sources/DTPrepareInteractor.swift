@@ -79,6 +79,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let perceivedIds = getAnswerIds(.perceived, selectedAnswers)
         let knowIds = getAnswerIds(.know, selectedAnswers)
         let feelIds = getAnswerIds(.feel, selectedAnswers)
+        let index = preparations.filter { $0.eventType == eventAnswer?.title }.count
         prepareWorker?.getRelatedStrategies(eventAnswer?.targetId(.content) ?? 0) { [weak self] (strategyIds) in
             var model = CreateUserPreparationModel()
             model.level = .LEVEL_CRITICAL
@@ -91,6 +92,8 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
             model.knowAnswerIds = knowIds
             model.feelAnswerIds = feelIds
             model.eventType = eventAnswer?.title ?? ""
+            let eventName = index > 0 ? (eventAnswer?.title ?? "") + " " + String(index + 1 ) : eventAnswer?.title ?? ""
+            model.name = eventName
             self?.prepareWorker?.createUserPreparation(from: model, completion)
         }
     }
