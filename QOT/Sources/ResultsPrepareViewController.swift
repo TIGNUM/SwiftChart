@@ -228,7 +228,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         case .strategies(let strategies):
             let strategy = strategies.at(index: indexPath.row)
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: strategy?.title, duration: strategy?.durationString)
+            cell.configure(title: strategy?.title.uppercased(), duration: strategy?.durationString)
             return cell
         }
     }
