@@ -36,6 +36,7 @@ final class MyPeakPerformanceCell: BaseDailyBriefCell {
     private func addFormHeaderView(with data: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle?) {
         guard let view = R.nib.qotBaseHeaderView.firstView(owner: self) else { return }
         view.configure(title: data?.title, subtitle: nil, darkMode: false)
+        ThemeText.performanceBucketTitle.apply(data?.title.uppercased(), to: view.titleLabel)
         stackView.addArrangedSubview(view)
     }
 
