@@ -46,8 +46,7 @@ final class MindsetShifterCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel.subtitle, to: baseHeaderView?.subtitleTextView)
         self.mindsetShifter = viewModel.mindsetShifter
-//        TO DO: add into apptext.
-        ctaButton.setTitle("My mindset shifter plan", for: .normal)
+        ctaButton.setTitle(AppTextService.get(.daily_brief_section_mindset_shifter_cta), for: .normal)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
     }
 
