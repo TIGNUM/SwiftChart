@@ -402,7 +402,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
                 title = item?.title.uppercased() ?? ""
                 cell.subtitleView.isHidden = false
             } else {
-                title = item?.eventType.uppercased() ?? ""
+                title = item?.title.uppercased() ?? ""
                 cell.subtitleView.isHidden = true
             }
             cell.configure(title: title, subtitle: subtitle)

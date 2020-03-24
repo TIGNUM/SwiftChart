@@ -92,8 +92,8 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
             model.knowAnswerIds = knowIds
             model.feelAnswerIds = feelIds
             model.eventType = eventAnswer?.title ?? ""
-            let eventName = index > 0 ? (eventAnswer?.title ?? "") + " " + String(index + 1 ) : eventAnswer?.title ?? ""
-            model.name = eventName
+            let name = index > 0 ? (eventAnswer?.title ?? "") + " " + String(index + 1 ) : eventAnswer?.title ?? ""
+            model.name = name
             self?.prepareWorker?.createUserPreparation(from: model, completion)
         }
     }
@@ -119,6 +119,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         model.knowAnswerIds = existingPrep?.knowAnswerIds ?? []
         model.feelAnswerIds = existingPrep?.feelAnswerIds ?? []
         model.eventType = eventAnswer?.title ?? ""
+        model.name = existingPrep?.name
         self.prepareWorker?.createUserPreparation(from: model, completion)
     }
 
