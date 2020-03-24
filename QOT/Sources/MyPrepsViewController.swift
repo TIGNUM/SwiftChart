@@ -400,16 +400,32 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         case SegmentView.myPreps.rawValue:
             let prepItems = [interactor.criticalPrepItems, interactor?.everydayPrepItems]
             let item = prepItems[indexPath.section]?[indexPath.row]
-            let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
-            var title = ""
-            if item?.missingEvent == false {
-                title = item?.title.uppercased() ?? ""
-                cell.subtitleView.isHidden = false
-            } else {
-                title = item?.title.uppercased() ?? ""
-                cell.subtitleView.isHidden = true
+            switch indexPath.section {
+            case PrepTypes.criticalEvents.rawValue:
+                let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
+                var title = ""
+                if item?.missingEvent == false {
+                    title = item?.title.uppercased() ?? ""
+                    cell.subtitleView.isHidden = false
+                } else {
+                    title = item?.title.uppercased() ?? ""
+                    cell.subtitleView.isHidden = true
+                }
+                cell.configure(title: title, subtitle: subtitle)
+            case PrepTypes.everyday.rawValue:
+                let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
+                var title = ""
+                if item?.missingEvent == false {
+                    title = item?.title.uppercased() ?? ""
+                    cell.subtitleView.isHidden = false
+                } else {
+                    title = item?.eventType.uppercased() ?? ""
+                    cell.subtitleView.isHidden = true
+                }
+                cell.configure(title: title, subtitle: subtitle)
+            default:
+                break
             }
-            cell.configure(title: title, subtitle: subtitle)
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor.itemMind(at: indexPath)
             cell.configure(title: item?.title, subtitle: item?.date)
