@@ -101,7 +101,9 @@ final class MyPrepsWorker {
 extension MyPrepsWorker {
     func remove(segmentedControl: Int, at indexPath: IndexPath, completion: @escaping () -> Void) {
         if segmentedControl == 0 {
-            if let qdmPrep = model?.items[indexPath.row].qdmPrep {
+            let prepItems = [model?.items.filter { $0.type == "critical" }, model?.items.filter { $0.type == "daily" }]
+            let item = prepItems[indexPath.section]?[indexPath.row]
+            if let qdmPrep = item?.qdmPrep {
                 let externalIdentifier = qdmPrep.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first
                 WorkerCalendar().deleteLocalEvent(externalIdentifier)
                 UserService.main.deleteUserPreparation(qdmPrep) { [weak self] (error) in
