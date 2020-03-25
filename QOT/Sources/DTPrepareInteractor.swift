@@ -128,7 +128,8 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
         let relatedStrategyId = answer.targetId(.content) ?? 0
-        let eventType = answer.title
+        let index = preparations.filter { $0.name == answer.title }.count
+        let eventType = index > 0 ? answer.title + " " + String(index + 1) : answer.title
         prepareWorker?.createPreparationDaily(answerFilter: answerFilter,
                                               relatedStategyId: relatedStrategyId,
                                               eventType: eventType,
