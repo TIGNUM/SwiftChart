@@ -114,8 +114,8 @@ private extension CoachMarksViewController {
 
     @objc func leftSwiped(_ sender: UISwipeGestureRecognizer) {
         if viewModel?.isLastPage == true {
-            interactor?.saveCoachMarksViewed()
-            router?.navigateToTrack()
+//            interactor?.saveCoachMarksViewed()
+//            router?.navigateToTrack()
         } else {
             trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
             interactor?.loadNextStep(page: getCurrentPage)
