@@ -189,6 +189,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         refreshBottomNavigationItems()
         updateControls()
         showEmptyStateViewIfNeeded(segmentedControl)
+        tableView.reloadData()
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
