@@ -369,11 +369,13 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         case SegmentView.myPreps.rawValue:
             switch section {
             case PrepTypes.criticalEvents.rawValue:
+                let count = interactor?.numberOfRowsCriticalPreparations()
                 let title = AppTextService.get(.my_qot_my_plans_section_header_critical)
-                return MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2)
+                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
             case PrepTypes.everyday.rawValue:
+                let count = interactor?.numberOfRowsEverydayPreparations()
                 let title = AppTextService.get(.my_qot_my_plans_section_header_everyday)
-                return MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2)
+                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
             default:
                 return nil
             }
@@ -385,7 +387,14 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            return tableView.estimatedSectionHeaderHeight
+            switch section {
+            case PrepTypes.criticalEvents.rawValue:
+                return interactor?.numberOfRowsCriticalPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+            case PrepTypes.everyday.rawValue:
+                return interactor?.numberOfRowsEverydayPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+            default:
+                return 0
+            }
         default:
             return 0
         }
@@ -405,7 +414,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
                 let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
                 var title = ""
                 if item?.missingEvent == false {
-                    title = item?.title.uppercased() ?? ""
+                    title = item?.calendarEventTitle.uppercased() ?? ""
                     cell.subtitleView.isHidden = false
                 } else {
                     title = item?.title.uppercased() ?? ""
@@ -416,7 +425,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
                 let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
                 var title = ""
                 if item?.missingEvent == false {
-                    title = item?.title.uppercased() ?? ""
+                    title = item?.calendarEventTitle.uppercased() ?? ""
                     cell.subtitleView.isHidden = false
                 } else {
                     title = item?.eventType.uppercased() ?? ""

@@ -33,6 +33,7 @@ struct MyPrepsModel {
         var eventType: String
         var type: String
         var missingEvent: Bool
+        var calendarEventTitle: String
         let qdmPrep: QDMUserPreparation
     }
 }
