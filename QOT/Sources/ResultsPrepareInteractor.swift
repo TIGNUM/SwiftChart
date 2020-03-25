@@ -143,9 +143,12 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         if event == nil {
             removeCreatedCalendarEvent(event: newCreatedEvent)
             newCreatedEvent = nil
-            newEvent = nil
+            preparation?.eventTitle = nil
+            preparation?.eventDate = nil
+            preparation?.eventId = 0
+            preparation?.eventQotId = nil
+            preparation?.eventExternalUniqueIdentifierId = nil
         }
-        preparation?.event = event
         preparation?.eventTitle = event?.title
         preparation?.eventDate = event?.startDate
         preparation?.eventId = event?.remoteID ?? 0
@@ -154,11 +157,11 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
-        worker.updatePreparation(preparation, newEvent ?? newCreatedEvent, completion)
+        worker.updatePreparation(preparation, (newEvent ?? newCreatedEvent), completion)
     }
 
     func didClickSaveAndContinue() {
-        worker.updatePreparation(preparation, newEvent ?? newCreatedEvent, { _ in })
+        worker.updatePreparation(preparation, (newEvent ?? newCreatedEvent), { _ in })
     }
 
     func deletePreparation() {
