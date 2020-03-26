@@ -144,7 +144,7 @@ class DTInteractor: DTInteractorInterface {
                                    preparations: preparations)
     }
 
-    func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {        
+    func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {
         let targetQuestionId = selection.selectedAnswers.first?.targetId(.question)
         return questions.filter { $0.remoteID == targetQuestionId }.first
     }
