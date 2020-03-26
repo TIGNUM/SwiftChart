@@ -106,21 +106,6 @@ private extension CoachMarksViewController {
             interactor?.loadNextStep(page: getCurrentPage)
         }
     }
-
-    @objc func rightSwiped(_ sender: UISwipeGestureRecognizer) {
-        trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
-        interactor?.loadPreviousStep(page: getCurrentPage)
-    }
-
-    @objc func leftSwiped(_ sender: UISwipeGestureRecognizer) {
-        if viewModel?.isLastPage == true {
-//            interactor?.saveCoachMarksViewed()
-//            router?.navigateToTrack()
-        } else {
-            trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
-            interactor?.loadNextStep(page: getCurrentPage)
-        }
-    }
 }
 
 // MARK: - CoachMarksViewControllerInterface
@@ -129,6 +114,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         ThemeButton.accent40.apply(buttonBack)
         buttonBack.isHidden = true
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
+        collectionView.isPagingEnabled = true
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)
@@ -153,19 +139,25 @@ extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDa
         return askedNotificationPermissions ? CoachMark.Step.allCases.count : 0
     }
 
+    func scrollViewWillBeginDragging(_ scroll: UIScrollView) {
+        let translation = scroll.panGestureRecognizer.translation(in: scroll.superview)
+        if translation.x < 0 {
+            if viewModel?.isLastPage == true {
+                interactor?.saveCoachMarksViewed()
+            } else {
+                trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+                interactor?.loadNextStep(page: getCurrentPage)
+            }
+        } else {
+            trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+            interactor?.loadPreviousStep(page: getCurrentPage)
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         currentIndexPath = indexPath
         let cell: CoachMarkCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(mediaName: getMediaName, title: getTitle, subtitle: getSubtitle)
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(rightSwiped))
-        swipeRight.direction = .right
-        swipeRight.delegate = self
-        cell.addGestureRecognizer(swipeRight)
-
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(leftSwiped))
-        swipeLeft.direction = .left
-        swipeLeft.delegate = self
-        cell.addGestureRecognizer(swipeLeft)
         return cell
     }
 
