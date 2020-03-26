@@ -143,16 +143,7 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         if event == nil {
             removeCreatedCalendarEvent(event: newCreatedEvent)
             newCreatedEvent = nil
-            preparation?.eventTitle = nil
-            preparation?.eventDate = nil
-            preparation?.eventId = 0
-            preparation?.eventQotId = nil
-            preparation?.eventExternalUniqueIdentifierId = nil
         }
-        preparation?.eventTitle = event?.title
-        preparation?.eventDate = event?.startDate
-        preparation?.eventId = event?.remoteID ?? 0
-        preparation?.eventExternalUniqueIdentifierId = event?.qotId
         presenter.createListItems(preparation: preparation)
     }
 
