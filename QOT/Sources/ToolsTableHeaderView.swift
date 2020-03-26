@@ -16,7 +16,7 @@ final class ToolsTableHeaderView: UIView {
     convenience init(title: String, subtitle: String?) {
         self.init(frame: .zero)
         baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
-        baseHeaderView?.configure(title: title, subtitle: subtitle)
+        baseHeaderView?.configure(title: title, subtitle: subtitle, darkMode: false)
     }
 
     override init(frame: CGRect) {
