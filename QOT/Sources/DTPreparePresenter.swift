@@ -60,7 +60,7 @@ final class DTPreparePresenter: DTPresenter {
             filter = "x_prepare_event_type_relationship_negotiation_pay_raise"
         }
 
-        if question?.remoteID == 100398 {
+        if question?.key == Prepare.QuestionKey.BuildCritical {
             var answers: [QDMAnswer] = []
             let newPalnAnswer = question?.answers.filter { $0.remoteID == 102479 }.first
             let templateAnswer = question?.answers.filter { $0.keys.contains(filter) }.first
