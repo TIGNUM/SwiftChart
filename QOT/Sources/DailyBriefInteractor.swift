@@ -815,7 +815,7 @@ extension DailyBriefInteractor {
             }
             if localPreparationList.count > 0 {
                 localPreparationList.forEach({ (prepareItem) in
-                    let subtitle = prepareItem.eventType ?? "" + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
+                    let subtitle = prepareItem.eventType ?? ""  + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
                     rows.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceRow(title: prepareItem.eventTitle ?? prepareItem.name,
                                                                                     subtitle: subtitle,
                                                                                     qdmUserPreparation: prepareItem))
