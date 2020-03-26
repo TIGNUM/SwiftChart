@@ -34,6 +34,7 @@ protocol ResultsPrepareInteractorInterface: Interactor {
     func updateIntentions(_ answerIds: [Int])
     func updateStrategies(_ selectedIds: [Int])
     func updatePreparationEvent(event: QDMUserCalendarEvent?)
+    func removePreparationCalendarEvent()
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
     func deletePreparation()
 

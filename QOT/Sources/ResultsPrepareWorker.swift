@@ -79,6 +79,17 @@ extension ResultsPrepareWorker {
         }
     }
 
+    func removePreparationCalendarEvent(_ preparation: QDMUserPreparation?,
+                                        _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        guard let preparation = preparation else { return }
+        UserService.main.removeCalendarEventUserPreparation(preparation, { (updatedPrep, error) in
+            if let error = error {
+                log("Error removePreparationCalendarEvent \(error.localizedDescription)", level: .error)
+            }
+            completion(updatedPrep)
+        })
+    }
+
     func deletePreparation(_ preparation: QDMUserPreparation?) {
         if let preparation = preparation {
             let externalIdentifier = preparation.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first
