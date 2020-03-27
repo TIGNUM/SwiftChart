@@ -57,9 +57,9 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func presentCoachPreparation() {
-        let configurator = DTPrepareStartConfigurator.make()
-        let controller = DTPrepareStartViewController(configure: configurator)
-        viewController?.pushToStart(childViewController: controller)
+        if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
+        }
     }
 
     func presentPrepareResults(for preparation: QDMUserPreparation?) {
