@@ -23,24 +23,17 @@ final class MyPrepsWorker {
             var everydayItems = [MyPrepsModel.Item]()
             preparations?.forEach {
                 let dateString = DateFormatter.ddMMM.string(from: $0.eventDate ?? Date())
+                let prepItem = MyPrepsModel.Item(title: $0.name ?? "",
+                                                 date: dateString,
+                                                 eventType: $0.eventType ?? "",
+                                                 type: $0.type ?? "",
+                                                 missingEvent: $0.missingEvent,
+                                                 calendarEventTitle: $0.eventTitle ?? "",
+                                                 qdmPrep: $0)
                 if $0.type == "critical" {
-                    let criticalItem = MyPrepsModel.Item(title: $0.name ?? "",
-                                                         date: dateString,
-                                                         eventType: $0.eventType ?? "",
-                                                         type: $0.type ?? "",
-                                                         missingEvent: $0.missingEvent,
-                                                         calendarEventTitle: $0.eventTitle ?? "",
-                                                         qdmPrep: $0)
-                    criticalItems.append(criticalItem)
+                    criticalItems.append(prepItem)
                 } else {
-                    let everydayItem = MyPrepsModel.Item(title: $0.name ?? "",
-                                                          date: dateString,
-                                                          eventType: $0.eventType ?? "",
-                                                          type: $0.type ?? "",
-                                                          missingEvent: $0.missingEvent,
-                                                          calendarEventTitle: $0.eventTitle ?? "",
-                                                          qdmPrep: $0)
-                    everydayItems.append(everydayItem)
+                    everydayItems.append(prepItem)
                 }
             }
             self?.model = MyPrepsModel(items: [criticalItems, everydayItems])
