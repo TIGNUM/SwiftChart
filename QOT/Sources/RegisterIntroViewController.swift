@@ -30,7 +30,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         let cell = R.nib.registerIntroMediaTableViewCell.firstView(owner: self)
         cell?.configure(title: AppTextService.get(.onboarding_register_intro_video_section_header_title),
                        body: AppTextService.get(.onboarding_register_intro_video_section_body),
-                       videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
+                       videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/tignum_x_video.mp4")
         return cell ?? RegisterIntroMediaTableViewCell()
     }()
 
