@@ -55,7 +55,7 @@ final class QOTBaseHeaderView: UIView {
         skeletonManager.hide()
         subtitleTextView.textContainerInset = .zero
         subtitleTextView.textContainer.lineFragmentPadding = 0
-        refresh(darkMode: self.darkMode, animated: animated)
+        refresh(darkMode: darkMode, animated: animated)
     }
 
     func refresh(darkMode: Bool? = nil, animated: Bool = false) {
