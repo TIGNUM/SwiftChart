@@ -162,7 +162,6 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         tableView.dataSource = self
         tableView.reloadData()
         refreshBottomNavigationItems()
-        tableView.isUserInteractionEnabled = true
     }
 
     func setupView() {
@@ -244,6 +243,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         switch section {
         case .calendar:
             interactor.removePreparationCalendarEvent()
+            didDeselectRow(at: indexPath)
         case .calendarConnect:
             router.didSelectConnectToCalendar()
         case .benefits:

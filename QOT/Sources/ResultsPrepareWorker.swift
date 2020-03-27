@@ -12,7 +12,7 @@ import qot_dal
 final class ResultsPrepareWorker {
 
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 
 }
 

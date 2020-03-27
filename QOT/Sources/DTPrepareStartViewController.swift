@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DTPrepareStartViewController: UIViewController {
+final class DTPrepareStartViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var headerLabel: UILabel!
@@ -41,11 +41,6 @@ final class DTPrepareStartViewController: UIViewController {
         interactor.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateBottomNavigation([backNavigationItemLight()], [])
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !animated && triggeredByLaunchHandler == true,
@@ -53,6 +48,10 @@ final class DTPrepareStartViewController: UIViewController {
             self.navigationController?.presentingViewController == mainNavigationController {
             router.dismiss()
         }
+    }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [backNavigationItemLight()]
     }
 }
 

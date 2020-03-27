@@ -37,11 +37,6 @@ final class ResultsPrepareInteractor {
 
 // MARK: - Private
 private extension ResultsPrepareInteractor {
-    func removeCreatedCalendarEvent(event: QDMUserCalendarEvent?) {
-        let externalIdentifier = event?.storedExternalIdentifier.components(separatedBy: "[//]").first
-        workerCalendar.deleteLocalEvent(externalIdentifier)
-    }
-
     func updatePreparationStrategisIfNeeded(_ completion: @escaping () -> Void) {
         if preparation?.strategyIds.isEmpty == true,
             let relatedStrategyId = preparation?.relatedStrategyId {

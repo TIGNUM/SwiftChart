@@ -77,6 +77,7 @@ extension BaseRootViewController {
         }
         bottomNavigationUpdateTimer?.invalidate()
         bottomNavigationUpdateTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { [weak self] (_) in
+            self?.bringBottomNavigationBarToFront()
             var needToUpdate = false
             let currentNavigationItem = self?.navigationController?.navigationBar.items?.last
             if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems?.count ?? 0 ||

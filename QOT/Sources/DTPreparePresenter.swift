@@ -51,10 +51,16 @@ final class DTPreparePresenter: DTPresenter {
 
     override func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [QDMAnswer] {
         guard var filter = answerFilter else { return question?.answers ?? [] }
+        // TODO: https://tignum.atlassian.net/browse/QOT-2850 - Update Survey Answer Keys
         if filter == "x_prepare_event_type_relationship_meeting_with_conflicts" {
             filter = "x_prepare_event_type_relationship_meeting_with_conflict"
         }
-        if question?.remoteID == 100398 {
+
+        if filter == "x_prepare_event_type_relationship_pay_raise" {
+            filter = "x_prepare_event_type_relationship_negotiation_pay_raise"
+        }
+
+        if question?.key == Prepare.QuestionKey.BuildCritical {
             var answers: [QDMAnswer] = []
             let newPalnAnswer = question?.answers.filter { $0.remoteID == 102479 }.first
             let templateAnswer = question?.answers.filter { $0.keys.contains(filter) }.first

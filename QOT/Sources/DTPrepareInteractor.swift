@@ -39,7 +39,7 @@ final class DTPrepareInteractor: DTInteractor {
     override func getAnswerFilter(questionKey: String?, answerFilter: String?) -> String? {
         if questionKey == Prepare.QuestionKey.BuildCritical {
             let criticalPreparations = preparations.filter { $0.type == .LEVEL_CRITICAL }
-            return criticalPreparations.isEmpty ? Prepare.AnswerKey.PeakPlanNew : answerFilter
+            return criticalPreparations.isEmpty ? Prepare.AnswerKey.PeakPlanNew : Prepare.AnswerKey.PeakPlanTemplate
         }
         return answerFilter
     }
@@ -51,6 +51,7 @@ final class DTPrepareInteractor: DTInteractor {
         if targetQuestionId == 100324 {
             targetQuestionId = 100398
         }
+        
         // PERCEIVED
         if targetQuestionId == 100393 {
             targetQuestionId = 100390
