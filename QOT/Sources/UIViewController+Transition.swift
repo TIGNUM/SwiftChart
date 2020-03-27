@@ -9,45 +9,55 @@
 import Foundation
 import UIKit
 
-extension UIViewController {
-
-    func presentRightToLeft(controller: UIViewController) {
-        DispatchQueue.main.async {
-            let transition = CATransition()
-            transition.duration = 0.5
-            transition.type = kCATransitionPush
-            transition.subtype = kCATransitionFromRight
-            self.view.window?.layer.add(transition, forKey: kCATransition)
-
-            if let nav = self.navigationController {
-                nav.pushViewController(controller, animated: false)
-            } else {
-                self.present(controller, animated: false, completion: nil)
+internal final class FakePresentedViewController: UIViewController, ScreenZLevelIgnore {
+    var isShown = false
+    var bgImage: UIImage?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let imageView = UIImageView(image: bgImage)
+        view.fill(subview: imageView)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if isShown {
+            DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
             }
+        } else {
+            isShown = true
         }
     }
 
-    func dismissLeftToRight() {
-        trackUserEvent(.DISMISS_LEFT_TO_RIGHT, action: .TAP)
-        DispatchQueue.main.async {
-            let transition = CATransition()
-            transition.duration = 0.25
-            transition.type = kCATransitionPush
-            transition.subtype = kCATransitionFromLeft
-            self.view.window?.layer.add(transition, forKey: kCATransition)
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return []
+    }
+}
 
-            var navController: UINavigationController?
-            if let nav = self as? UINavigationController {
-                navController = nav
-            } else if let nav = self.navigationController {
-                navController = nav
-            }
+extension UIViewController {
 
-            if let nav = navController {
-                nav.popViewController(animated: false)
-            } else {
-                self.dismiss(animated: false, completion: nil)
-            }
-        }
+    func presentRightToLeft(controller: UIViewController) {
+        let bgImage = captureScreenshot()
+        let emptyVC = FakePresentedViewController()
+        emptyVC.bgImage = bgImage
+        emptyVC.view.backgroundColor = .clear
+        let naviController = UINavigationController(rootViewController: emptyVC)
+        naviController.isToolbarHidden = true
+        naviController.isNavigationBarHidden = true
+        naviController.modalPresentationStyle = .fullScreen
+        naviController.modalPresentationCapturesStatusBarAppearance = false
+
+        self.present(naviController, animated: false, completion: {
+            naviController.pushViewController(controller, animated: true)
+        })
+    }
+
+    private func captureScreenshot() -> UIImage? {
+        let layer = UIApplication.shared.keyWindow!.layer
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return screenshot
     }
 }

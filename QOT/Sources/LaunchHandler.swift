@@ -96,7 +96,7 @@ final class LaunchHandler {
             let configurator = DTPrepareStartConfigurator.make()
             let controller = DTPrepareStartViewController(configure: configurator)
             controller.triggeredByLaunchHandler = true
-            present(viewController: controller)
+            baseRootViewController?.presentRightToLeft(controller: controller)
         case .preparation:
             showPreparationWith(identifier: (queries[scheme.queryName] as? String) ?? "" )
         case .myPreparations,
@@ -235,16 +235,6 @@ final class LaunchHandler {
     }
 }
 
-// MARK: - Preparation
-
-extension LaunchHandler {
-
-    func preparation(localID: String?) {
-//        guard let localID = localID else { return }
-        // FIXME: Show preparation detail
-    }
-}
-
 // MARK: - Show Screen
 
 extension LaunchHandler {
@@ -295,8 +285,6 @@ extension LaunchHandler {
     }
 
     func showContentItem(_ itemId: Int) {
-        //        guard let localID = localID else { return }
-        // FIXME: Show preparation detail
         ContentService.main.getContentItemById(itemId) { (contentItem) in
             guard let contentItem = contentItem else { return }
             switch contentItem.format {
