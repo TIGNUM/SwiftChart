@@ -114,6 +114,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         ThemeButton.accent40.apply(buttonBack)
         buttonBack.isHidden = true
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
+        collectionView.isPagingEnabled = true
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)
@@ -136,6 +137,21 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
 extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return askedNotificationPermissions ? CoachMark.Step.allCases.count : 0
+    }
+
+    func scrollViewWillBeginDragging(_ scroll: UIScrollView) {
+        let translation = scroll.panGestureRecognizer.translation(in: scroll.superview)
+        if translation.x < 0 {
+            if viewModel?.isLastPage == true {
+                interactor?.saveCoachMarksViewed()
+            } else {
+                trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+                interactor?.loadNextStep(page: getCurrentPage)
+            }
+        } else {
+            trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+            interactor?.loadPreviousStep(page: getCurrentPage)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
