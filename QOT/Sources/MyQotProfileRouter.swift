@@ -26,12 +26,7 @@ final class MyQotProfileRouter {
 extension MyQotProfileRouter: MyQotProfileRouterInterface {
 
     func presentAccountSettings() {
-        if let controller = R.storyboard.coachMark.coachMarksViewController() {
-              let configurator = CoachMarksConfigurator.make()
-              configurator(controller)
-              viewController?.pushToStart(childViewController: controller)
-          }
-//        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAccountSettingsSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAccountSettingsSegueIdentifier, sender: nil)
     }
 
     func presentAppSettings() {
