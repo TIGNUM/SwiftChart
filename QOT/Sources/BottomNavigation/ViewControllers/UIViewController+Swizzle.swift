@@ -199,10 +199,11 @@ extension UIViewController {
             return
         }
         var vc = viewControllerToPresent
-        if (vc as? UINavigationController) == nil && (viewControllerToPresent is UIAlertController) == false {
+        if (vc as? UINavigationController) == nil, (viewControllerToPresent is UIAlertController) == false {
             let naviController = UINavigationController(rootViewController: vc)
             naviController.isToolbarHidden = true
             naviController.isNavigationBarHidden = true
+            naviController.transitioningDelegate = viewControllerToPresent.transitioningDelegate
             naviController.modalPresentationStyle = viewControllerToPresent.modalPresentationStyle
             naviController.modalTransitionStyle = viewControllerToPresent.modalTransitionStyle
             naviController.modalPresentationCapturesStatusBarAppearance = viewControllerToPresent.modalPresentationCapturesStatusBarAppearance
@@ -409,7 +410,7 @@ extension UIViewController {
     }
 
     @objc open func didTapBackButton() {
-        navigationController?.dismissLeftToRight()
+        navigationController?.popViewController(animated: true)
         trackUserEvent(.PREVIOUS, action: .TAP)
     }
 
