@@ -16,7 +16,6 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     var router: CoachMarksRouterInterface?
     private var viewModel: CoachMark.ViewModel?
     private let pageIndicator = MyToBeVisionPageComponentView()
-    private var currentIndexPath = IndexPath(item: 0, section: 0)
     @IBOutlet private weak var buttonBack: RoundedButton!
     @IBOutlet private weak var buttonContinue: RoundedButton!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -25,7 +24,10 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     private var askedNotificationPermissions: Bool = false
 
     private var getCurrentPage: Int {
-        return viewModel?.page ?? 0
+        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        let currentIndexPath = collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
+        return currentIndexPath.item
     }
 
     private var getMediaName: String {
@@ -114,7 +116,6 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         ThemeButton.accent40.apply(buttonBack)
         buttonBack.isHidden = true
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
-        collectionView.isPagingEnabled = true
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)
@@ -128,9 +129,13 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         self.viewModel = viewModel
         setupButtons(viewModel.hideBackButton, viewModel.rightButtonTitle)
         let toIndexPath = IndexPath(item: getCurrentPage, section: 0)
-        pageIndicator.currentPageIndex = getCurrentPage
-        collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
+//        collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
         collectionView.reloadItems(at: [toIndexPath])
+        updatePageIndicator(forCollectionView: collectionView)
+    }
+
+    func updatePageIndicator(forCollectionView: UICollectionView) {
+        pageIndicator.currentPageIndex = getCurrentPage
     }
 }
 
@@ -145,17 +150,26 @@ extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDa
             if viewModel?.isLastPage == true {
                 interactor?.saveCoachMarksViewed()
             } else {
-                trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+                trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .SWIPE)
                 interactor?.loadNextStep(page: getCurrentPage)
             }
         } else {
-            trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
-            interactor?.loadPreviousStep(page: getCurrentPage)
+            trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .SWIPE)
+            interactor?.loadNextStep(page: getCurrentPage)
         }
     }
 
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let collectionView = scrollView as? UICollectionView else { return }
+        updatePageIndicator(forCollectionView: collectionView)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let collectionView = scrollView as? UICollectionView else { return }
+        updatePageIndicator(forCollectionView: collectionView)
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        currentIndexPath = indexPath
         let cell: CoachMarkCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(mediaName: getMediaName, title: getTitle, subtitle: getSubtitle)
         return cell

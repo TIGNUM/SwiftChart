@@ -3204,6 +3204,8 @@
 			isa = PBXGroup;
 			children = (
 				389BBC8D235EE8900009FA02 /* CoachMark.storyboard */,
+				38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */,
+				38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */,
 				389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */,
 				389BBC82235EE68B0009FA02 /* CoachMarksInteractor.swift */,
 				389BBC80235EE68B0009FA02 /* CoachMarksInterface.swift */,
@@ -3212,8 +3214,6 @@
 				389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */,
 				389BBC81235EE68B0009FA02 /* CoachMarksViewController.swift */,
 				389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */,
-				38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */,
-				38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */,
 			);
 			name = Walkthrough;
 			sourceTree = "<group>";
