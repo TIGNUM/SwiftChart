@@ -95,7 +95,9 @@ private extension CoachMarksViewController {
 // MARK: - Actions
 private extension CoachMarksViewController {
     @IBAction func didTapBack() {
+        let toIndexPath = IndexPath(item: getCurrentPage - 1, section: 0)
         trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+        collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
         interactor?.loadPreviousStep(page: getCurrentPage)
     }
 
@@ -104,7 +106,9 @@ private extension CoachMarksViewController {
             interactor?.saveCoachMarksViewed()
             router?.navigateToTrack()
         } else {
+            let toIndexPath = IndexPath(item: getCurrentPage + 1, section: 0)
             trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+            collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
             interactor?.loadNextStep(page: getCurrentPage)
         }
     }
@@ -129,7 +133,6 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         self.viewModel = viewModel
         setupButtons(viewModel.hideBackButton, viewModel.rightButtonTitle)
         let toIndexPath = IndexPath(item: getCurrentPage, section: 0)
-//        collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
         collectionView.reloadItems(at: [toIndexPath])
         updatePageIndicator(forCollectionView: collectionView)
     }
@@ -155,7 +158,7 @@ extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDa
             }
         } else {
             trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .SWIPE)
-            interactor?.loadNextStep(page: getCurrentPage)
+            interactor?.loadPreviousStep(page: getCurrentPage)
         }
     }
 
@@ -179,5 +182,9 @@ extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDa
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.bounds.size
+    }
+
+   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
