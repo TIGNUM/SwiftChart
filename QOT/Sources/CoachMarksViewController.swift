@@ -16,7 +16,6 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     var router: CoachMarksRouterInterface?
     private var viewModel: CoachMark.ViewModel?
     private let pageIndicator = MyToBeVisionPageComponentView()
-    private var currentIndexPath = IndexPath(item: 0, section: 0)
     @IBOutlet private weak var buttonBack: RoundedButton!
     @IBOutlet private weak var buttonContinue: RoundedButton!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -25,7 +24,10 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     private var askedNotificationPermissions: Bool = false
 
     private var getCurrentPage: Int {
-        return viewModel?.page ?? 0
+        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        let currentIndexPath = collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
+        return currentIndexPath.item
     }
 
     private var getMediaName: String {
@@ -93,7 +95,9 @@ private extension CoachMarksViewController {
 // MARK: - Actions
 private extension CoachMarksViewController {
     @IBAction func didTapBack() {
+        let toIndexPath = IndexPath(item: getCurrentPage - 1, section: 0)
         trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+        collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
         interactor?.loadPreviousStep(page: getCurrentPage)
     }
 
@@ -102,7 +106,9 @@ private extension CoachMarksViewController {
             interactor?.saveCoachMarksViewed()
             router?.navigateToTrack()
         } else {
+            let toIndexPath = IndexPath(item: getCurrentPage + 1, section: 0)
             trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
+            collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
             interactor?.loadNextStep(page: getCurrentPage)
         }
     }
@@ -127,9 +133,12 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         self.viewModel = viewModel
         setupButtons(viewModel.hideBackButton, viewModel.rightButtonTitle)
         let toIndexPath = IndexPath(item: getCurrentPage, section: 0)
-        pageIndicator.currentPageIndex = getCurrentPage
-        collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
         collectionView.reloadItems(at: [toIndexPath])
+        updatePageIndicator(forCollectionView: collectionView)
+    }
+
+    func updatePageIndicator(forCollectionView: UICollectionView) {
+        pageIndicator.currentPageIndex = getCurrentPage
     }
 }
 
@@ -138,8 +147,32 @@ extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDa
         return askedNotificationPermissions ? CoachMark.Step.allCases.count : 0
     }
 
+    func scrollViewWillBeginDragging(_ scroll: UIScrollView) {
+        let translation = scroll.panGestureRecognizer.translation(in: scroll.superview)
+        if translation.x < 0 {
+            if viewModel?.isLastPage == true {
+                interactor?.saveCoachMarksViewed()
+            } else {
+                trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .SWIPE)
+                interactor?.loadNextStep(page: getCurrentPage)
+            }
+        } else {
+            trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .SWIPE)
+            interactor?.loadPreviousStep(page: getCurrentPage)
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let collectionView = scrollView as? UICollectionView else { return }
+        updatePageIndicator(forCollectionView: collectionView)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let collectionView = scrollView as? UICollectionView else { return }
+        updatePageIndicator(forCollectionView: collectionView)
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        currentIndexPath = indexPath
         let cell: CoachMarkCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(mediaName: getMediaName, title: getTitle, subtitle: getSubtitle)
         return cell
@@ -149,5 +182,9 @@ extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDa
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.bounds.size
+    }
+
+   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
