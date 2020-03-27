@@ -243,6 +243,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         switch section {
         case .calendar:
             interactor.updatePreparationEvent(event: nil)
+            didDeselectRow(at: indexPath)
         case .calendarConnect:
             router.didSelectConnectToCalendar()
         case .benefits:
