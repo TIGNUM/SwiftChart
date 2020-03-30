@@ -11,5 +11,5 @@ import UIKit
 final class DTPrepareStartWorker {
 
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 }

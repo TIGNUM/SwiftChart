@@ -11,5 +11,5 @@ import UIKit
 final class MyQotAdminEnvironmentSettingsWorker {
 
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 }
