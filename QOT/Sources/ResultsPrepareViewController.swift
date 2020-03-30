@@ -223,10 +223,17 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
              .feel(let title, let answers),
              .perceived(let title, let answers):
             return getQuestionCell(title: title, answers: answers, indexPath: indexPath)
-        case .title(let title),
-             .strategyTitle(let title):
+        case .title(let title):
             let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, hideEditIcon: interactor.hideEditIcon(title: title))
+            cell.isUserInteractionEnabled = false
+            cell.selectionStyle = .none
+            return cell
+        case .strategyTitle(let title):
+            let cell: ResultsPrepareTitleTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title, hideEditIcon: interactor.hideEditIcon(title: title))
+            cell.isUserInteractionEnabled = true
+            cell.selectedBackgroundView = backgroundView
             return cell
         case .strategies(let strategies):
             let strategy = strategies.at(index: indexPath.row)
