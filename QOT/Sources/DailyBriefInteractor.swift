@@ -390,6 +390,7 @@ extension DailyBriefInteractor {
     func createImpactReadinessCell(impactReadinessBucket impactReadiness: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var impactReadinessList: [BaseDailyBriefViewModel] = []
         var readinessIntro: String? = ""
+        var feedback: String? = ""
         var models: [ImpactReadinessScoreViewModel.ImpactDataViewModel] = []
         let impactReadinessImageURL = impactReadiness.toBeVision?.profileImageResource?.url()
         if impactReadiness.dailyCheckInResult?.impactReadiness == nil, impactReadiness.dailyCheckInAnswers == nil {
@@ -430,11 +431,13 @@ extension DailyBriefInteractor {
         } else if impactReadiness.dailyCheckInResult != nil { // if we got the result.
             dailyCheckInResultRequestCheckTimer?.invalidate()
             dailyCheckInResultRequestCheckTimer = nil
-            readinessIntro = impactReadiness.dailyCheckInResult?.feedback
+            feedback = impactReadiness.dailyCheckInResult?.feedback
+            readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_intro)
             expendImpactReadiness = true
         }
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
+                                                                     feedback: feedback,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
                                                                      readinessScore: readinessscore,
                                                                      readinessIntro: readinessIntro,
