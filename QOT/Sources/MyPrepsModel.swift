@@ -25,7 +25,7 @@ struct MyPlansViewModel {
 
 struct MyPrepsModel {
 
-    var items: [Item]
+    var items: [[Item]]
 
     struct Item {
         var title: String
@@ -33,6 +33,7 @@ struct MyPrepsModel {
         var eventType: String
         var type: String
         var missingEvent: Bool
+        var calendarEventTitle: String
         let qdmPrep: QDMUserPreparation
     }
 }

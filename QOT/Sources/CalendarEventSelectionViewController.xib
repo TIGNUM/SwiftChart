@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,12 +47,12 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="60l-9D-INn" secondAttribute="trailing" constant="24" id="6Rw-eA-Arl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="60l-9D-INn" secondAttribute="bottom" constant="140" id="DgM-h3-RRo"/>
+                <constraint firstItem="E4d-IJ-3Os" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="DoR-kk-zZD"/>
                 <constraint firstItem="60l-9D-INn" firstAttribute="top" secondItem="3Im-Iz-TMt" secondAttribute="bottom" constant="12" id="ErO-dW-sig"/>
                 <constraint firstAttribute="bottom" secondItem="E4d-IJ-3Os" secondAttribute="bottom" id="PNb-sL-eqE"/>
                 <constraint firstItem="3Im-Iz-TMt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="TIo-yw-73k"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="E4d-IJ-3Os" secondAttribute="trailing" id="TVu-Mz-rOK"/>
                 <constraint firstItem="60l-9D-INn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="euQ-6I-Ujb"/>
-                <constraint firstItem="E4d-IJ-3Os" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mPg-qY-4b8"/>
                 <constraint firstItem="E4d-IJ-3Os" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rCj-R9-kj3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -80,6 +80,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let perceivedIds = getAnswerIds(.perceived, selectedAnswers)
         let knowIds = getAnswerIds(.know, selectedAnswers)
         let feelIds = getAnswerIds(.feel, selectedAnswers)
+        let preparationNames = preparations.compactMap { $0.name }
         prepareWorker?.getRelatedStrategies(eventAnswer?.targetId(.content) ?? 0) { [weak self] (strategyIds) in
             var model = CreateUserPreparationModel()
             model.level = .LEVEL_CRITICAL
@@ -92,6 +93,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
             model.knowAnswerIds = knowIds
             model.feelAnswerIds = feelIds
             model.eventType = eventAnswer?.title ?? ""
+            model.name = self?.createUniqueName(eventAnswer?.title ?? "", in: preparationNames)
             self?.prepareWorker?.createUserPreparation(from: model, completion)
         }
     }
@@ -107,6 +109,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
         var model = CreateUserPreparationModel()
+        let preparationNames = preparations.compactMap { $0.name }
         model.level = existingPrep?.type ?? .LEVEL_CRITICAL
         model.benefits = existingPrep?.benefits
         model.answerFilter = existingPrep?.answerFilter
@@ -117,6 +120,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         model.knowAnswerIds = existingPrep?.knowAnswerIds ?? []
         model.feelAnswerIds = existingPrep?.feelAnswerIds ?? []
         model.eventType = eventAnswer?.title ?? ""
+        model.name = createUniqueName(existingPrep?.eventType ?? "", in: preparationNames)
         self.prepareWorker?.createUserPreparation(from: model, completion)
     }
 
@@ -125,11 +129,38 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
         let relatedStrategyId = answer.targetId(.content) ?? 0
-        let eventType = answer.title
+        let preparationNames = preparations.compactMap { $0.name }
+        let eventType = createUniqueName(answer.title, in: preparationNames)
         prepareWorker?.createPreparationDaily(answerFilter: answerFilter,
                                               relatedStategyId: relatedStrategyId,
                                               eventType: eventType,
                                               completion)
+    }
+
+    func createUniqueName(_ defaultName: String, in names: [String]) -> String {
+        let existingTitles = names.compactMap({ $0.trimmingCharacters(in: .whitespacesAndNewlines)})
+        var hasSameName = false
+        for title in existingTitles {
+            guard defaultName != title else {
+                hasSameName = true
+                break
+            }
+        }
+        for title in existingTitles {
+            guard defaultName != title else {
+                hasSameName = true
+                break
+            }
+        }
+        var newName = defaultName
+        if hasSameName {
+            var postfix = 1
+            while existingTitles.contains(newName) {
+                newName = defaultName + " \(postfix)"
+                postfix += 1
+            }
+        }
+        return newName
     }
 }
 
