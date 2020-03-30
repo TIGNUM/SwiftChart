@@ -179,7 +179,7 @@ extension RegistrationNamesViewController {
     }
 
     private func animateKeyboardNotification(_ notification: NSNotification) {
-        guard let activeField = firstNameField.textField.isFirstResponder ? firstNameField : lastNameField else { return }
+        guard let activeField = getActiveField() else { return }
 
         // Get animation curve and duration
         guard let parameters = keyboardParameters(from: notification) else { return }
@@ -200,6 +200,20 @@ extension RegistrationNamesViewController {
                        options: animationCurve,
                        animations: { self.scrollView.contentOffset = CGPoint(x: 0, y: offset) },
                        completion: nil)
+    }
+
+    private func getActiveField() -> QotPlaceholderTextField? {
+        if firstNameField.textField.isFirstResponder {
+            return firstNameField
+        }
+        if lastNameField.textField.isFirstResponder {
+            return lastNameField
+        }
+        if ageInputField.textField.isFirstResponder {
+            createAccountBarButton.isEnabled = isEnabled()
+            return ageInputField
+        }
+        return nil
     }
 }
 
