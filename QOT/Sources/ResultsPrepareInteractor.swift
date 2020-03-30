@@ -18,8 +18,6 @@ final class ResultsPrepareInteractor {
     private var preparation: QDMUserPreparation?
     private let resultType: ResultType
     private var editKey = Prepare.Key.benefits
-    private var newEvent: QDMUserCalendarEvent?
-    private var newCreatedEvent: QDMUserCalendarEvent?
 
     // MARK: - Init
     init(presenter: ResultsPreparePresenterInterface, _ preparation: QDMUserPreparation?, resultType: ResultType) {
@@ -39,11 +37,6 @@ final class ResultsPrepareInteractor {
 
 // MARK: - Private
 private extension ResultsPrepareInteractor {
-    func removeCreatedCalendarEvent(event: QDMUserCalendarEvent?) {
-        let externalIdentifier = event?.storedExternalIdentifier.components(separatedBy: "[//]").first
-        workerCalendar.deleteLocalEvent(externalIdentifier)
-    }
-
     func updatePreparationStrategisIfNeeded(_ completion: @escaping () -> Void) {
         if preparation?.strategyIds.isEmpty == true,
             let relatedStrategyId = preparation?.relatedStrategyId {
@@ -140,25 +133,26 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func updatePreparationEvent(event: QDMUserCalendarEvent?) {
-        if event == nil {
-            removeCreatedCalendarEvent(event: newCreatedEvent)
-            newCreatedEvent = nil
-            newEvent = nil
+        preparation?.updatedName = event?.title
+        worker.updatePreparation(preparation, event) { (preparation) in
+            self.preparation = preparation
+            self.presenter.createListItems(preparation: preparation)
         }
-        preparation?.event = event
-        preparation?.eventTitle = event?.title
-        preparation?.eventDate = event?.startDate
-        preparation?.eventId = event?.remoteID ?? 0
-        preparation?.eventExternalUniqueIdentifierId = event?.qotId
-        presenter.createListItems(preparation: preparation)
     }
 
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
-        worker.updatePreparation(preparation, newEvent ?? newCreatedEvent, completion)
+        worker.updatePreparation(preparation, nil, completion)
+    }
+
+    func removePreparationCalendarEvent() {
+        worker.removePreparationCalendarEvent(preparation) { (preparation) in
+            self.preparation = preparation
+            self.presenter.createListItems(preparation: preparation)
+        }
     }
 
     func didClickSaveAndContinue() {
-        worker.updatePreparation(preparation, newEvent ?? newCreatedEvent, { _ in })
+        worker.updatePreparation(preparation, nil, { _ in })
     }
 
     func deletePreparation() {
@@ -169,7 +163,6 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
 // MARK: - CalendarEventSelectionDelegate
 extension ResultsPrepareInteractor: CalendarEventSelectionDelegate {
     func didSelectEvent(_ event: QDMUserCalendarEvent) {
-        newEvent = event
         updatePreparationEvent(event: event)
     }
 
@@ -178,7 +171,6 @@ extension ResultsPrepareInteractor: CalendarEventSelectionDelegate {
             self?.workerCalendar.storeLocalEvent(event?.eventIdentifier,
                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
             self?.preparation?.eventIsCreatedFromQOT = true
-            self?.newCreatedEvent = userCalendarEvent
             self?.updatePreparationEvent(event: userCalendarEvent)
         }
     }

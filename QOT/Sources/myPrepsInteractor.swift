@@ -39,15 +39,15 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func numberOfRowsPreparations() -> Int {
-        return (worker.model?.items.count ?? 0)
+        return (worker.model?.items.first?.count ?? 0) + (worker.model?.items.last?.count ?? 0)
     }
 
     func numberOfRowsCriticalPreparations() -> Int {
-        return (worker.model?.items.filter { $0.type == "critical" }.count ?? 0)
+        return (worker.model?.items.first?.count ?? 0)
     }
 
     func numberOfRowsEverydayPreparations() -> Int {
-        return  (worker.model?.items.filter { $0.type == "daily" }.count ?? 0)
+        return  (worker.model?.items.last?.count ?? 0)
     }
 
     func numberOfRowsRecoveries() -> Int {
@@ -58,19 +58,12 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         return (worker.mindModel?.items.count ?? 0)
     }
 
-    func itemPrep(at indexPath: IndexPath) -> MyPrepsModel.Item? {
-        guard worker.model?.items.count ?? 0 > indexPath.row else {
-            return nil
-        }
-        return worker.model?.items[indexPath.row]
-    }
-
     var criticalPrepItems: [MyPrepsModel.Item]? {
-        return worker.model?.items.filter { $0.type == "critical" }
+        return worker.model?.items.first
     }
 
     var everydayPrepItems: [MyPrepsModel.Item]? {
-        return worker.model?.items.filter { $0.type == "daily" }
+        return worker.model?.items.last
     }
 
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Item? {
