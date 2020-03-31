@@ -1039,7 +1039,7 @@ extension DailyBriefInteractor {
         }
         latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "test",
                                                               title: collection.title,
-                                                              image: URL(string: collection.thumbnailURLString ?? "") ?? URL(string: "")!,
+                                                              image: URL(string: collection.thumbnailURLString ?? ""),
                                                               author: collection.author ?? "",
                                                               publisheDate: collection.contentItems.first?.createdAt ?? Date(),
                                                               timeToRead: collection.secondsRequired,
