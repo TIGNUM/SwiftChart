@@ -12,13 +12,11 @@ import qot_dal
 final class SigningInfoInteractor {
 
     // MARK: - Properties
-
     private let worker: SigningInfoWorker
     private let presenter: SigningInfoPresenterInterface
     private let router: SigningInfoRouterInterface
 
     // MARK: - Init
-
     init(worker: SigningInfoWorker,
         presenter: SigningInfoPresenterInterface,
         router: SigningInfoRouterInterface) {
@@ -28,7 +26,6 @@ final class SigningInfoInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setup()
         presentUnoptimizedAlertViewIfNeeded()
@@ -39,15 +36,15 @@ final class SigningInfoInteractor {
             let title = AppTextService.get(.onboarding_log_in_alert_device_small_screen_title)
             let message = AppTextService.get(.onboarding_log_in_alert_device_small_screen_body)
             let dismissButtonTitle = AppTextService.get(.onboarding_log_in_alert_device_small_screen_button_got_it)
-            presenter.presentUnoptimizedAlertView(title: title, message: message, dismissButtonTitle: dismissButtonTitle)
+            presenter.presentUnoptimizedAlertView(title: title,
+                                                  message: message,
+                                                  dismissButtonTitle: dismissButtonTitle)
         }
     }
 }
 
 // MARK: - SigningInfoInteractorInterface
-
 extension SigningInfoInteractor: SigningInfoInteractorInterface {
-
     var titleText: String? {
         return worker.titleText
     }
@@ -60,11 +57,7 @@ extension SigningInfoInteractor: SigningInfoInteractorInterface {
         return worker.startButtonText
     }
 
-    func didTapLoginButton() {
-        router.goToLogin()
-    }
-
     func didTapStartButton() {
-        router.goToRegister(fromLogin: false)
+        router.goToLogin()
     }
 }

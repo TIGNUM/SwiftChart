@@ -23,11 +23,9 @@ protocol SigningInfoInteractorInterface: Interactor {
     var titleText: String? { get }
     var bodyText: String? { get }
     var startButtonText: String? { get }
-    func didTapLoginButton()
     func didTapStartButton()
 }
 
 protocol SigningInfoRouterInterface {
-    func goToRegister(fromLogin: Bool)
     func goToLogin()
 }

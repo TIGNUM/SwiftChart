@@ -26,9 +26,9 @@ extension RegisterIntroRouter: RegisterIntroRouterInterface {
     }
 
     func openRegistration() {
-        guard let controller = R.storyboard.registration.registrationViewController() else { return }
-        let configurator = RegistrationConfigurator.make()
-        configurator(controller)
-        viewController?.pushToStart(childViewController: controller)
+        let configurator = OnboardingLoginConfigurator.make()
+        let loginController = OnboardingLoginViewController()
+        configurator(loginController)
+        viewController?.pushToStart(childViewController: loginController)
     }
 }
