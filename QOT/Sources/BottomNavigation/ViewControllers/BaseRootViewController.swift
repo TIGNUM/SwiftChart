@@ -65,15 +65,6 @@ final class BaseRootViewController: BaseViewController, ScreenZLevel1 {
         setupAudioPlayerBar()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupBottomNavigationContainer()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let frame = bottomNavigationPlaceholder.frame
@@ -96,9 +87,13 @@ extension BaseRootViewController {
         addChildViewController(viewController)
         contentContainer.fill(subview: viewController.view)
         contentView = viewController.view
+        setupBottomNavigationContainer()
+        setupAudioPlayerBar()
+        view.setNeedsLayout()
     }
 
     func resetContent() {
+        audioPlayerBar.removeFromSuperview()
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self, name: .didStartAudio, object: nil)
         notificationCenter.removeObserver(self, name: .didStopAudio, object: nil)

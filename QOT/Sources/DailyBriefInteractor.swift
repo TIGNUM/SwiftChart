@@ -772,10 +772,12 @@ extension DailyBriefInteractor {
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
         let yesterday = -1, tomorrow = 1, threeDays = 3
-        myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
+        let tags: [MyPeakPerformanceBucketType] = [.IN_THREE_DAYS, .TOMORROW, .TODAY, .REFLECT]
+        for tag in tags {
             var localPreparationList = [QDMUserPreparation]()
             var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
-            if contentItem.searchTags.contains(obj: "IN_THREE_DAYS") {
+            switch tag {
+            case .IN_THREE_DAYS:
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_3_DAYS_BEFORE")
                 }.randomElement()?.contentItems.first?.valueText ?? ""
@@ -785,7 +787,7 @@ extension DailyBriefInteractor {
                     return remainingDays == threeDays
                     } ?? [QDMUserPreparation]()
                 contentSubtitle = AppTextService.get(.daily_brief_section_my_peak_performances_section_in_three_days_label)
-            } else if contentItem.searchTags.contains(obj: "TOMORROW") {
+            case .TOMORROW:
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_BEFORE")
                 }.randomElement()?.contentItems.first?.valueText ?? ""
@@ -794,7 +796,7 @@ extension DailyBriefInteractor {
                     return beginingOfToday.days(to: date) == tomorrow
                     } ?? [QDMUserPreparation]()
                 contentSubtitle = AppTextService.get(.daily_brief_section_my_peak_performances_section_tomorrow_label)
-            } else if contentItem.searchTags.contains(obj: "TODAY") {
+            case .TODAY:
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_SAME_DAY")
                 }.randomElement()?.contentItems.first?.valueText ?? ""
@@ -803,7 +805,7 @@ extension DailyBriefInteractor {
                     return beginingOfToday == date.beginingOfDate()
                     } ?? [QDMUserPreparation]()
                 contentSubtitle = AppTextService.get(.daily_brief_section_my_peak_performances_section_today_label)
-            } else if contentItem.searchTags.contains(obj: "REFLECT") {
+            case .REFLECT:
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_AFTER")
                 }.randomElement()?.contentItems.first?.valueText ?? ""
@@ -824,7 +826,7 @@ extension DailyBriefInteractor {
                                                                                           sectionContent: contentSentence)
                 sectionsModels.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceSections(sections: sections, rows: rows))
             }
-        })
+        }
         let cellViewModel = MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle(title: bucketTitle),
                                                                 sections: sectionsModels,
                                                                 domainModel: myPeakperformance)
@@ -1040,7 +1042,7 @@ extension DailyBriefInteractor {
         }
         latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "test",
                                                               title: collection.title,
-                                                              image: URL(string: collection.thumbnailURLString ?? "") ?? URL(string: "")!,
+                                                              image: URL(string: collection.thumbnailURLString ?? ""),
                                                               author: collection.author ?? "",
                                                               publisheDate: collection.contentItems.first?.createdAt ?? Date(),
                                                               timeToRead: collection.secondsRequired,
@@ -1076,7 +1078,6 @@ extension DailyBriefInteractor {
         var createSprintChanllengeList: [BaseDailyBriefViewModel] = []
 
         guard sprintBucket.sprint != nil else {
-            let relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel()]
             return createSprintChanllengeList
         }
         let searchTag: String = "SPRINT_BUCKET_DAY_" + String(sprintBucket.sprint?.currentDay ?? 0)

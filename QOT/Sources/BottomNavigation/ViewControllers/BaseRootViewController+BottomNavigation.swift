@@ -14,10 +14,10 @@ extension BaseRootViewController {
     }
 
     func setupBottomNavigationContainer() {
-        if UIApplication.shared.windows.first?.subviews.contains(bottomNavigationContainer) == true {
-            bringBottomNavigationBarToFront()
-        } else {
+        if bottomNavigationContainer.superview == nil {
             UIApplication.shared.windows.first?.addSubview(bottomNavigationContainer)
+        } else {
+            bringBottomNavigationBarToFront()
         }
     }
 
@@ -67,7 +67,7 @@ extension BaseRootViewController {
         bottomNavigationBar.setItems([navigationItem], animated: false)
         navigationItem.setLeftBarButtonItems(leftItems, animated: false)
         navigationItem.setRightBarButtonItems(rightItems, animated: false)
-        bringBottomNavigationBarToFront()
+        setupBottomNavigationContainer()
         audioPlayerBar.refreshColorMode(isLight: backgroundColor.isLightColor())
     }
 
@@ -77,7 +77,7 @@ extension BaseRootViewController {
         }
         bottomNavigationUpdateTimer?.invalidate()
         bottomNavigationUpdateTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { [weak self] (_) in
-            self?.bringBottomNavigationBarToFront()
+            self?.setupBottomNavigationContainer()
             var needToUpdate = false
             let currentNavigationItem = self?.navigationController?.navigationBar.items?.last
             if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems?.count ?? 0 ||
