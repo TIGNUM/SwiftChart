@@ -14,7 +14,7 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     // MARK: - Properties
     var interactor: CoachMarksInteractorInterface?
     var router: CoachMarksRouterInterface?
-    private var viewModel: CoachMark.ViewModel?
+    private var viewModels: [CoachMark.ViewModel]?
     private let pageIndicator = MyToBeVisionPageComponentView()
     @IBOutlet private weak var buttonBack: RoundedButton!
     @IBOutlet private weak var buttonContinue: RoundedButton!
@@ -22,25 +22,6 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var pageIndicatorView: UIView!
 
     private var askedNotificationPermissions: Bool = false
-
-    private var getCurrentPage: Int {
-        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
-        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        let currentIndexPath = collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
-        return currentIndexPath.item
-    }
-
-    private var getMediaName: String {
-        return viewModel?.mediaName ?? ""
-    }
-
-    private var getTitle: String {
-        return viewModel?.title ?? ""
-    }
-
-    private var getSubtitle: String {
-        return viewModel?.subtitle ?? ""
-    }
 
     // MARK: - Init
     init() {
@@ -83,6 +64,13 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     }
 }
 
+// MARK: - UIGestureRecognizerDelegate
+extension CoachMarksViewController {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+}
+
 // MARK: - Private
 private extension CoachMarksViewController {
     func setupButtons(_ hideBackButton: Bool, _ rightButtonTitle: String?) {
@@ -90,26 +78,49 @@ private extension CoachMarksViewController {
         buttonContinue.isHidden = false
         ThemableButton.continueButton.apply(buttonContinue, title: rightButtonTitle)
     }
+
+    func viewModel(at indexPath: IndexPath) -> CoachMark.ViewModel? {
+        let index = indexPath.item
+        if let models = viewModels, index < models.count {
+            return models[index]
+        }
+        return nil
+    }
+
+    func getCurrentIndexPath() -> IndexPath {
+        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
+    }
+    func getCurrentPageIndex() -> Int {
+        return getCurrentIndexPath().item
+    }
 }
 
 // MARK: - Actions
 private extension CoachMarksViewController {
     @IBAction func didTapBack() {
-        let toIndexPath = IndexPath(item: getCurrentPage - 1, section: 0)
-        trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
-        collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
-        interactor?.loadPreviousStep(page: getCurrentPage)
+        let indexPath = getCurrentIndexPath()
+        if indexPath.item != 0 {
+            let model = viewModel(at: indexPath)
+            trackUserEvent(.PREVIOUS, stringValue: model?.mediaName, valueType: .VIDEO, action: .TAP)
+
+            let previousIndexPath = IndexPath(item: (indexPath.item - 1), section: 0)
+            collectionView.scrollToItem(at: previousIndexPath, at: .centeredHorizontally, animated: true)
+        }
     }
 
     @IBAction func didTapContinue() {
-        if viewModel?.isLastPage == true {
+        let indexPath = getCurrentIndexPath()
+        if indexPath.item == ((viewModels?.count ?? -1) - 1) {
             interactor?.saveCoachMarksViewed()
             router?.navigateToTrack()
         } else {
-            let toIndexPath = IndexPath(item: getCurrentPage + 1, section: 0)
-            trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
-            collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
-            interactor?.loadNextStep(page: getCurrentPage)
+            let model = viewModel(at: indexPath)
+            trackUserEvent(.NEXT, stringValue: model?.mediaName, valueType: .VIDEO, action: .TAP)
+
+            let nextIndexPath = IndexPath(item: (indexPath.item + 1), section: 0)
+            collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
         }
     }
 }
@@ -128,53 +139,42 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         pageIndicator.currentPageIndex = 0
     }
 
-    func updateView(_ viewModel: CoachMark.ViewModel) {
+    func updateView(_ viewModels: [CoachMark.ViewModel]) {
+        self.viewModels = viewModels
+        collectionView.reloadData()
         trackPage()
-        self.viewModel = viewModel
-        setupButtons(viewModel.hideBackButton, viewModel.rightButtonTitle)
-        let toIndexPath = IndexPath(item: getCurrentPage, section: 0)
-        collectionView.reloadItems(at: [toIndexPath])
-        updatePageIndicator(forCollectionView: collectionView)
+        setupButtons(true, viewModels.first?.rightButtonTitle ?? "")
+        updatePageIndicator()
     }
 
-    func updatePageIndicator(forCollectionView: UICollectionView) {
-        pageIndicator.currentPageIndex = getCurrentPage
+    func updatePageIndicator() {
+        pageIndicator.currentPageIndex = getCurrentPageIndex()
     }
 }
 
-extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CoachMarksViewController: UICollectionViewDelegate,
+                                    UICollectionViewDataSource,
+                                    UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return askedNotificationPermissions ? CoachMark.Step.allCases.count : 0
-    }
-
-    func scrollViewWillBeginDragging(_ scroll: UIScrollView) {
-        let translation = scroll.panGestureRecognizer.translation(in: scroll.superview)
-        if translation.x < 0 {
-            if viewModel?.isLastPage == true {
-                interactor?.saveCoachMarksViewed()
-            } else {
-                trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .SWIPE)
-                interactor?.loadNextStep(page: getCurrentPage)
-            }
-        } else {
-            trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .SWIPE)
-            interactor?.loadPreviousStep(page: getCurrentPage)
-        }
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        guard let collectionView = scrollView as? UICollectionView else { return }
-        updatePageIndicator(forCollectionView: collectionView)
+        return askedNotificationPermissions ? (viewModels?.count ?? 0) : 0
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let collectionView = scrollView as? UICollectionView else { return }
-        updatePageIndicator(forCollectionView: collectionView)
+        let currentIndex = getCurrentPageIndex()
+        if currentIndex != pageIndicator.currentPageIndex {
+            updatePageIndicator()
+            let model = viewModel(at: IndexPath(item: currentIndex, section: 0))
+            setupButtons(currentIndex == 0, model?.rightButtonTitle ?? "")
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CoachMarkCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(mediaName: getMediaName, title: getTitle, subtitle: getSubtitle)
+        if let model = viewModel(at: indexPath) {
+            cell.configure(mediaName: model.mediaName, title: model.title ?? "", subtitle: model.subtitle ?? "")
+        } else {
+            cell.configure(mediaName: "", title: "", subtitle: "")
+        }
         return cell
     }
 

@@ -19,5 +19,5 @@ final class MyQotAdminDCSixthQuestionSettingsWorker {
                                dailyCheckinQuestionsPriorities.peakShpiTbv]
 
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 }

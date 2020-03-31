@@ -11,5 +11,5 @@ import UIKit
 final class CalendarEventSelectionWorker {
 
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 }

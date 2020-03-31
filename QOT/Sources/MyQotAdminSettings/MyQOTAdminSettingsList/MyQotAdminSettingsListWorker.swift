@@ -30,5 +30,5 @@ final class MyQotAdminSettingsListWorker {
 
     var currentSixthQuestionSetting: [Int] = dailyCheckinQuestionsPriorities.tbvShpiPeak
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 }

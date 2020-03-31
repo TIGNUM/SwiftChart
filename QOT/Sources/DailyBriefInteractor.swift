@@ -380,7 +380,7 @@ extension DailyBriefInteractor {
     }
 
     // MARK: - CREATING BUCKET MODELS
-    /**
+    /*
      * Method name:  createImpactReadinessCell.
      * Description: Create the impact readiness model which is required for the dailyCheck in Bucket.
      * Parameters: [QDMDailyBriefBucket]
