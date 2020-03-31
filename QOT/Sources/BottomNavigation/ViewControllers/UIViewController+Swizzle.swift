@@ -203,7 +203,6 @@ extension UIViewController {
             let naviController = UINavigationController(rootViewController: vc)
             naviController.isToolbarHidden = true
             naviController.isNavigationBarHidden = true
-            naviController.transitioningDelegate = viewControllerToPresent.transitioningDelegate
             naviController.modalPresentationStyle = viewControllerToPresent.modalPresentationStyle
             naviController.modalTransitionStyle = viewControllerToPresent.modalTransitionStyle
             naviController.modalPresentationCapturesStatusBarAppearance = viewControllerToPresent.modalPresentationCapturesStatusBarAppearance
