@@ -12,7 +12,7 @@ import qot_dal
 final class ResultsPrepareWorker {
 
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 
 }
 
@@ -77,6 +77,17 @@ extension ResultsPrepareWorker {
             }
             completion(updatedPrep)
         }
+    }
+
+    func removePreparationCalendarEvent(_ preparation: QDMUserPreparation?,
+                                        _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        guard let preparation = preparation else { return }
+        UserService.main.removeCalendarEventUserPreparation(preparation, { (updatedPrep, error) in
+            if let error = error {
+                log("Error removePreparationCalendarEvent \(error.localizedDescription)", level: .error)
+            }
+            completion(updatedPrep)
+        })
     }
 
     func deletePreparation(_ preparation: QDMUserPreparation?) {

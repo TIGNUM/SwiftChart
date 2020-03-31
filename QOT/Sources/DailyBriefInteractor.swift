@@ -380,7 +380,7 @@ extension DailyBriefInteractor {
     }
 
     // MARK: - CREATING BUCKET MODELS
-    /**
+    /*
      * Method name:  createImpactReadinessCell.
      * Description: Create the impact readiness model which is required for the dailyCheck in Bucket.
      * Parameters: [QDMDailyBriefBucket]
@@ -419,8 +419,7 @@ extension DailyBriefInteractor {
                 expendImpactReadiness = false
                 enableButton = false
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
-                readinessIntro = impactReadiness.bucketText?.contentItems
-                    .filter {$0.searchTags.contains("LOADING_DAILY_CHECK_IN_RESULT")}.first?.valueText
+                readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
                 dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(dailyCheckInResultRequestTimeOut),
                                                                            repeats: false) { (timer) in
                                                                             self.dailyCheckInResultRequestCheckTimer?.invalidate()
@@ -818,8 +817,8 @@ extension DailyBriefInteractor {
             }
             if localPreparationList.count > 0 {
                 localPreparationList.forEach({ (prepareItem) in
-                    let subtitle = prepareItem.eventType ?? "" + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
-                    rows.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceRow(title: prepareItem.name,
+                    let subtitle = prepareItem.eventType ?? ""  + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
+                    rows.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceRow(title: prepareItem.eventTitle ?? prepareItem.name,
                                                                                     subtitle: subtitle,
                                                                                     qdmUserPreparation: prepareItem))
                 })

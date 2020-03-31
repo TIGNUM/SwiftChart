@@ -28,22 +28,14 @@ final class CoachMarksInteractor {
         presenter.setupView()
         worker.getContentCategory(ContentCategory.CoachMarks.rawValue) { [weak self] (contentCategory) in
             self?.contentCategory = contentCategory
-            if let presentationModel = self?.createPresentationModel(CoachMark.Step.know, contentCategory) {
-                self?.presenter.updateView(presentationModel)
-            }
+            let models = CoachMark.Step.allCases.compactMap { self?.createPresentationModel($0, contentCategory) }
+            self?.presenter.updateView(models)
         }
     }
 }
 
 // MARK: - CoachMarksInteractorInterface
 extension CoachMarksInteractor: CoachMarksInteractorInterface {
-    func loadNextStep(page: Int) {
-        updateView(page + 1)
-    }
-
-    func loadPreviousStep(page: Int) {
-        updateView(page - 1)
-    }
 
     func saveCoachMarksViewed() {
         worker.saveCoachMarksViewed()
@@ -62,14 +54,6 @@ extension CoachMarksInteractor: CoachMarksInteractorInterface {
 
 // MARK: - Private  
 private extension CoachMarksInteractor {
-    func updateView(_ page: Int) {
-        currentPage = page
-        if let step = CoachMark.Step(rawValue: page) {
-            let presentationModel = createPresentationModel(step, contentCategory)
-            presenter.updateView(presentationModel)
-        }
-    }
-
     func createPresentationModel(_ step: CoachMark.Step,
                                  _ contentCategory: QDMContentCategory?) -> CoachMark.PresentationModel {
         let content = contentCategory?.contentCollections.filter { $0.remoteID == step.contentId }.first

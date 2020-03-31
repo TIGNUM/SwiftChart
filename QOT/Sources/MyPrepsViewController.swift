@@ -189,6 +189,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         refreshBottomNavigationItems()
         updateControls()
         showEmptyStateViewIfNeeded(segmentedControl)
+        tableView.reloadData()
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
@@ -239,11 +240,13 @@ private extension MyPrepsViewController {
         updateEditButton(hidden: false)
         tableView.alpha = 1
         updateButton()
+        let title = AppTextService.get(.my_qot_my_plans_section_header_title)
         switch sender.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsPreparations() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noPreparationsView.isHidden = false
                 tableView.alpha = 0
                 updateEditButton(hidden: true)
@@ -252,6 +255,7 @@ private extension MyPrepsViewController {
             bottomNavigationItems.rightBarButtonItems = [addMindsetShiftButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsMindsetShifters() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
@@ -260,6 +264,7 @@ private extension MyPrepsViewController {
             bottomNavigationItems.rightBarButtonItems = [planRecoveryButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsRecoveries() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
@@ -365,11 +370,13 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         case SegmentView.myPreps.rawValue:
             switch section {
             case PrepTypes.criticalEvents.rawValue:
+                let count = interactor?.numberOfRowsCriticalPreparations()
                 let title = AppTextService.get(.my_qot_my_plans_section_header_critical)
-                return MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2)
+                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
             case PrepTypes.everyday.rawValue:
+                let count = interactor?.numberOfRowsEverydayPreparations()
                 let title = AppTextService.get(.my_qot_my_plans_section_header_everyday)
-                return MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2)
+                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
             default:
                 return nil
             }
@@ -381,7 +388,14 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            return tableView.estimatedSectionHeaderHeight
+            switch section {
+            case PrepTypes.criticalEvents.rawValue:
+                return interactor?.numberOfRowsCriticalPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+            case PrepTypes.everyday.rawValue:
+                return interactor?.numberOfRowsEverydayPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+            default:
+                return 0
+            }
         default:
             return 0
         }
@@ -398,14 +412,24 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             let item = prepItems[indexPath.section]?[indexPath.row]
             let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
             var title = ""
-            if item?.missingEvent == false {
-                title = item?.title.uppercased() ?? ""
-                cell.subtitleView.isHidden = false
-            } else {
-                title = item?.eventType.uppercased() ?? ""
-                cell.subtitleView.isHidden = true
+            title = item?.calendarEventTitle.uppercased() ?? ""
+            cell.subtitleView.isHidden = false
+            switch indexPath.section {
+            case PrepTypes.criticalEvents.rawValue:
+                if item?.missingEvent == true {
+                    title = item?.title.uppercased() ?? ""
+                    cell.subtitleView.isHidden = true
+                }
+                cell.configure(title: title, subtitle: subtitle)
+            case PrepTypes.everyday.rawValue:
+                if item?.missingEvent == true {
+                    title = item?.eventType.uppercased() ?? ""
+                    cell.subtitleView.isHidden = true
+                }
+                cell.configure(title: title, subtitle: subtitle)
+            default:
+                break
             }
-            cell.configure(title: title, subtitle: subtitle)
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor.itemMind(at: indexPath)
             cell.configure(title: item?.title, subtitle: item?.date)
