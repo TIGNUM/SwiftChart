@@ -17,30 +17,24 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var sleepQuantityLabel: UILabel!
     @IBOutlet weak var sleepQuantityButton: UIButton!
     @IBOutlet weak var sleepQuantityTarget: UIButton!
+    @IBOutlet weak var targetLabel: UILabel!
     ////  sleepquality
     @IBOutlet weak var sleepQualityLabel: UILabel!
-    @IBOutlet weak var sleepQualityReferenceLabel: UILabel!
     @IBOutlet weak var sleepQualityButton: UIButton!
     ////  load
     @IBOutlet weak var loadLabel: UILabel!
-    @IBOutlet weak var loadReferenceLabel: UILabel!
     @IBOutlet weak var loadButton: UIButton!
     ////  futureload
     @IBOutlet weak var futureLoadLabel: UILabel!
-    @IBOutlet weak var futureLoadReferenceLabel: UILabel!
     @IBOutlet weak var futureLoadButton: UIButton!
     ////  delagate
     @IBOutlet weak var mainStackView: UIStackView!
     weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var moreData: AnimatedButton!
-    @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var dividerView: UIView!
     @IBOutlet weak var dividerView1: UIView!
     @IBOutlet weak var dividerView2: UIView!
     @IBOutlet weak var dividerView3: UIView!
-    @IBOutlet weak var refLabel1: UILabel!
-    @IBOutlet weak var refLabel2: UILabel!
-    @IBOutlet weak var refLabel3: UILabel!
     @IBOutlet weak var rollingDataLabel: UILabel!
     @IBOutlet weak var trackedDaysLabel: UILabel!
 
@@ -66,22 +60,15 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         sleepQuantityTarget.isHidden = hidden
         sleepQualityButton.isHidden = hidden
         sleepQualityLabel.isHidden = hidden
-        sleepQualityReferenceLabel.isHidden = hidden
         loadButton.isHidden = hidden
         loadLabel.isHidden = hidden
-        loadReferenceLabel.isHidden = hidden
         futureLoadButton.isHidden = hidden
         futureLoadLabel.isHidden = hidden
-        futureLoadReferenceLabel.isHidden = hidden
         moreData.isHidden = hidden
-        targetLabel.isHidden = hidden
         dividerView.isHidden = hidden
         dividerView1.isHidden = hidden
         dividerView2.isHidden = hidden
         dividerView3.isHidden = hidden
-        refLabel1.isHidden = hidden
-        refLabel2.isHidden = hidden
-        refLabel3.isHidden = hidden
     }
 
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
@@ -112,15 +99,18 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Sleep Quantity
         let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
         sleepQuantityButton.setTitle(quantityTitle, for: .normal)
-
+        let hour = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h) + " "
         sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0),
                                                         ThemeText.quotation,
-                                                        AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h),
+                                                         hour,
                                                         ThemeText.quotationSmall)
 
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
-        targetLabel.text = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_target)
-        sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
+        sleepQuantityTarget.setTitle("Customize your sleep target", for: .normal)
+        let target =  "/ " + String(targetSleepQuantityInFiveDays) + " " + hour
+
+        ThemeText.reference.apply(target,to: targetLabel)
+        targetLabel.textAlignment = .right
 
         // Sleep Quality
         let qualityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_title)
@@ -134,8 +124,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                   ThemeText.quotationSlash,
                                                   "10",
                                                   ThemeText.quotationLight)
-        refLabel1.text = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_label_ref)
-        ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityReferenceLabel)
 
         // Load
         let loadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_title)
@@ -149,8 +137,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                           ThemeText.quotationSlash,
                                           "10",
                                           ThemeText.quotationLight)
-        refLabel2.text = AppTextService.get(.daily_brief_section_impact_readiness_section_load_label_ref)
-        ThemeText.reference.apply(String(viewModel?.loadReference ?? 0), to: loadReferenceLabel)
         // Future Load
         let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_title)
         futureLoadButton.setTitle(futureLoadTitle, for: .normal)
@@ -163,8 +149,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                      ThemeText.quotationSlash,
                                                      "10",
                                                      ThemeText.quotationLight)
-        refLabel3.text = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_label_ref)
-        ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadReferenceLabel)
         // Tracked days
         if let  numberOfDays = viewModel?.maxTrackingDays {
             let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days", with: String(numberOfDays))

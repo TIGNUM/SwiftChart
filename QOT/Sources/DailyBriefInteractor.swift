@@ -447,9 +447,6 @@ extension DailyBriefInteractor {
         let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
         let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
         let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
-        let sleepQualityReference = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_number_ref)
-        let loadReference = AppTextService.get(.daily_brief_section_impact_readiness_section_load_number_ref)
-        let futureLoadReference = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_number_ref)
         impactReadiness.contentCollections?.filter {$0.searchTags.contains("TITLE") }.forEach {(collection) in
             models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title,
                                                                             subTitle: collection.contentItems.first?.valueText))
@@ -470,9 +467,6 @@ extension DailyBriefInteractor {
                                                                           hasFiveDayLoadValue: hasFullLoadData,
                                                                           futureLoadValue: futureLoad,
                                                                           targetSleepQuantity: targetSleepQuantity,
-                                                                          sleepQualityReference: Double(sleepQualityReference),
-                                                                          loadReference: Double(loadReference),
-                                                                          futureLoadReference: Double(futureLoadReference),
                                                                           impactDataModels: models,
                                                                           maxTrackingDays: maxTrackingDays,
                                                                           domainModel: impactReadiness, "detail"))
