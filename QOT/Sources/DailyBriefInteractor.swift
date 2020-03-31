@@ -418,8 +418,7 @@ extension DailyBriefInteractor {
                 expendImpactReadiness = false
                 enableButton = false
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
-                readinessIntro = impactReadiness.bucketText?.contentItems
-                    .filter {$0.searchTags.contains("LOADING_DAILY_CHECK_IN_RESULT")}.first?.valueText
+                readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
                 dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(dailyCheckInResultRequestTimeOut),
                                                                            repeats: false) { (timer) in
                                                                             self.dailyCheckInResultRequestCheckTimer?.invalidate()
