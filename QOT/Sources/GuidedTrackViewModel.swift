@@ -20,7 +20,13 @@ final class GuidedTrackViewModel: BaseDailyBriefViewModel {
     var type: GuidedTrackItemType?
 
     // MARK: - Init
-    internal init(bucketTitle: String = "", levelTitle: String, content: String?, buttonText: String?, type: GuidedTrackItemType?, appLink: QDMAppLink?, domain: QDMDailyBriefBucket) {
+    internal init(bucketTitle: String = "",
+                  levelTitle: String,
+                  content: String?,
+                  buttonText: String?,
+                  type: GuidedTrackItemType?,
+                  appLink: QDMAppLink?,
+                  domain: QDMDailyBriefBucket) {
         self.bucketTitle = bucketTitle
         self.levelTitle = levelTitle
         self.content = content
@@ -31,9 +37,7 @@ final class GuidedTrackViewModel: BaseDailyBriefViewModel {
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
-        guard let source = source as? GuidedTrackViewModel else {
-            return false
-        }
+        guard let source = source as? GuidedTrackViewModel else { return false }
         return super.isContentEqual(to: source) &&
         bucketTitle == source.bucketTitle &&
         levelTitle == source.levelTitle &&
