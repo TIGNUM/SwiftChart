@@ -94,16 +94,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="277.33333333333331" height="85"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypq-XO-6MU">
-                                                <rect key="frame" x="0.0" y="0.0" width="277.33333333333331" height="43.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="277.33333333333331" height="56.666666666666664"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                                <state key="normal" title="button"/>
+                                                <state key="normal" title="button">
+                                                    <color key="titleColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="sleepQuantityTapped:" destination="j0e-ng-78g" eventType="touchUpInside" id="Q69-ec-j5n"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRR-Ip-F4R" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="43.666666666666686" width="277.33333333333331" height="41.333333333333343"/>
-                                                <state key="normal">
+                                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRR-Ip-F4R" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="56.666666666666693" width="277.33333333333331" height="28.333333333333336"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                                                <state key="normal" image="arrowFront">
                                                     <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -157,7 +160,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prj-E5-bhL">
                                                 <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="64.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="sleepQualityTapped:" destination="j0e-ng-78g" eventType="touchUpInside" id="iSN-Iv-UUt"/>
                                                 </connections>
@@ -197,7 +202,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSt-qD-ewf">
                                                 <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="64.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="17"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="loadButtonTapped:" destination="j0e-ng-78g" eventType="touchUpInside" id="3me-Pp-XoY"/>
                                                 </connections>
@@ -237,7 +244,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5g-f8-m9S">
                                                 <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="64.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="futureLoadTapped:" destination="j0e-ng-78g" eventType="touchUpInside" id="Yna-Gp-7Df"/>
                                                 </connections>
@@ -349,4 +358,7 @@
             <point key="canvasLocation" x="-3825.5999999999999" y="219.08866995073893"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="arrowFront" width="16" height="16"/>
+    </resources>
 </document>
