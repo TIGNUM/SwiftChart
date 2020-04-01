@@ -15,39 +15,17 @@ final class SigningInfoRouter {
 
     // MARK: - Init
     init(viewController: SigningInfoViewController) {
-        self.viewController = viewController
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(goToLogin(notification:)),
-                                               name: .registrationShouldShowLogin,
-                                               object: nil)
-    }
-}
-
-// MARK: - Private
-private extension SigningInfoRouter {
-    @objc func goToLogin(notification: Notification) {
-        let email = notification.userInfo?[Notification.Name.RegistrationKeys.email] as? String
-        showLogin(OnboardingLoginConfigurator.make(email: email))
-    }
-
-    func showLogin(_ loginConfigurator: (OnboardingLoginViewController) -> Void) {
-        let loginController = OnboardingLoginViewController()
-        loginConfigurator(loginController)
-        viewController?.navigationController?.pushViewController(loginController, animated: true)
+        self.viewController = viewController        
     }
 }
 
 // MARK: - SigningInfoRouterInterface
 extension SigningInfoRouter: SigningInfoRouterInterface {
-    func goToRegister(fromLogin: Bool) {
+    func goToLogin() {
         if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
-            let configurator = RegisterIntroConfigurator.make(fromLogin: fromLogin)
+            let configurator = RegisterIntroConfigurator.make()
             configurator(controller)
             viewController?.navigationController?.pushViewController(controller, animated: true)
         }
-    }
-
-    func goToLogin() {
-        goToRegister(fromLogin: true)
     }
 }

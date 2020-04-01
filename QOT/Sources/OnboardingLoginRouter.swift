@@ -9,9 +9,9 @@
 import UIKit
 
 final class OnboardingLoginRouter: BaseRouter, OnboardingLoginRouterInterface {
-    func goToRegister() {
+    func goToRegister(email: String?) {
         guard let controller = R.storyboard.registration.registrationViewController() else { return }
-        let configurator = RegistrationConfigurator.make()
+        let configurator = RegistrationConfigurator.make(email: email)
         configurator(controller)
         viewController?.pushToStart(childViewController: controller)
     }
