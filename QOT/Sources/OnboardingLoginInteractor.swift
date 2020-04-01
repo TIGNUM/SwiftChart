@@ -90,6 +90,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
                 return
             case .allowedToRegister:
                 strongSelf.viewModel.emailError = nil
+                strongSelf.didTapSendCode(to: email)
             case .userDoesNotExist:
                 strongSelf.viewModel.emailError = strongSelf.worker.emailUserDoesntExist
             default:

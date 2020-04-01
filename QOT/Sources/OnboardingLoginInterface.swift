@@ -48,5 +48,5 @@ protocol OnboardingLoginInteractorInterface: Interactor {
 }
 
 protocol OnboardingLoginRouterInterface: BaseRouterInterface {
-    func goToRegister()
+    func goToRegister(email: String?)
 }
