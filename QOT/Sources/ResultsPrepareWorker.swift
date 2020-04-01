@@ -70,7 +70,9 @@ extension ResultsPrepareWorker {
                            _ event: QDMUserCalendarEvent?,
                            _ completion: @escaping (QDMUserPreparation?) -> Void) {
         guard var preparation = preparation else { return }
-        preparation.setReminder = preparation.eventDate != nil && preparation.eventTitle != nil
+        if event != nil {
+            preparation.setReminder = true
+        }
         UserService.main.updateUserPreparation(preparation, newEvent: event) { (updatedPrep, error) in
             if let error = error {
                 log("Error updateUserPreparation \(error.localizedDescription)", level: .error)
@@ -81,7 +83,8 @@ extension ResultsPrepareWorker {
 
     func removePreparationCalendarEvent(_ preparation: QDMUserPreparation?,
                                         _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        guard let preparation = preparation else { return }
+        guard var preparation = preparation else { return }
+        preparation.setReminder = false
         UserService.main.removeCalendarEventUserPreparation(preparation, { (updatedPrep, error) in
             if let error = error {
                 log("Error removePreparationCalendarEvent \(error.localizedDescription)", level: .error)
