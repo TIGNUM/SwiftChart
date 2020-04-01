@@ -1239,7 +1239,7 @@ enum ThemeText {
              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
-                                        alignment: alignment ?? .left)
+                                        alignment: alignment ?? .right)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead,
              .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle,
              .dailyBriefFromTignumTitle:

@@ -99,56 +99,40 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Sleep Quantity
         let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
         sleepQuantityButton.setTitle(quantityTitle, for: .normal)
-        let hour = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h) + " "
-        sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0),
-                                                        ThemeText.quotation,
-                                                         hour,
-                                                        ThemeText.quotationSmall)
+        let hour = " " + AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h)
+        ThemeText.quotation.apply(String(viewModel?.sleepQuantityValue ?? 0) + hour + asterixCharacter, to: sleepQuantityLabel)
+        sleepQuantityLabel.textColor = viewModel?.hasFiveDaySleepQuantityValues == false &&
+                                        viewModel?.targetSleepQuantity?.isLess(than: viewModel?.sleepQuantityValue ?? 0 ) == true ?
+                                            .sand : .redOrange
 
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
-        sleepQuantityTarget.setTitle("Customize your sleep target", for: .normal)
-        let target =  "/ " + String(targetSleepQuantityInFiveDays) + " " + hour
+        sleepQuantityTarget.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_section_customize_button), for: .normal)
+        let target =  "/ " + String(targetSleepQuantityInFiveDays) + hour
 
         ThemeText.reference.apply(target,to: targetLabel)
-        targetLabel.textAlignment = .right
 
         // Sleep Quality
+        let qualityReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_number_ref))
         let qualityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_title)
         sleepQualityButton.setTitle(qualityTitle, for: .normal)
-
-        sleepQualityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQualityValue ?? 0),
-                                                  ThemeText.quotation,
-                                                  asteriskQuality,
-                                                  ThemeText.quotation,
-                                                  "/",
-                                                  ThemeText.quotationSlash,
-                                                  "10",
-                                                  ThemeText.quotationLight)
+        ThemeText.quotation.apply(String(viewModel?.sleepQualityValue ?? 0) + asteriskQuality, to: sleepQualityLabel)
+        sleepQualityLabel.textColor = qualityReference?.isLess(than: viewModel?.sleepQualityValue ?? 0) == true ? .sand : .redOrange
 
         // Load
+        let loadReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_load_number_ref))
         let loadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_title)
         loadButton.setTitle(loadTitle, for: .normal)
 
-        loadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.loadValue ?? 0),
-                                          ThemeText.quotation,
-                                          asteriskLoad,
-                                          ThemeText.quotation,
-                                          "/",
-                                          ThemeText.quotationSlash,
-                                          "10",
-                                          ThemeText.quotationLight)
+        ThemeText.quotation.apply(String(viewModel?.loadValue ?? 0) + asteriskLoad, to: loadLabel)
+        loadLabel.textColor = loadReference?.isLess(than: viewModel?.loadValue ?? 0) ?? false ? .sand : .redOrange
+
         // Future Load
+        let futureLoadReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_number_ref))
         let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_title)
         futureLoadButton.setTitle(futureLoadTitle, for: .normal)
 
-        futureLoadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.futureLoadValue ?? 0),
-                                                     ThemeText.quotation,
-                                                     asteriskLoad,
-                                                     ThemeText.quotation,
-                                                     "/",
-                                                     ThemeText.quotationSlash,
-                                                     "10",
-                                                     ThemeText.quotationLight)
+        ThemeText.quotation.apply(String(viewModel?.futureLoadValue ?? 0) + asteriskLoad, to: futureLoadLabel)
+        futureLoadLabel.textColor = futureLoadReference?.isLess(than: viewModel?.futureLoadValue ?? 0) == true ? .sand : .redOrange
         // Tracked days
         if let  numberOfDays = viewModel?.maxTrackingDays {
             let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days", with: String(numberOfDays))
