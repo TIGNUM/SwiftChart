@@ -21,9 +21,6 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
     var hasFiveDayLoadValue: Bool?
     var futureLoadValue: Double?
     var targetSleepQuantity: Double?
-    var sleepQualityReference: Double?
-    var loadReference: Double?
-    var futureLoadReference: Double?
     var title: String?
     var subTitle: String?
     var impactDataModels: [ImpactDataViewModel]?
@@ -43,9 +40,6 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
          hasFiveDayLoadValue: Bool?,
          futureLoadValue: Double?,
          targetSleepQuantity: Double?,
-         sleepQualityReference: Double?,
-         loadReference: Double?,
-         futureLoadReference: Double?,
          impactDataModels: [ImpactDataViewModel]?,
          maxTrackingDays: Int?,
          domainModel: QDMDailyBriefBucket,
@@ -60,15 +54,10 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
         self.hasFiveDaySleepQualityValue = hasFiveDaySleepQualityValue
 
         self.targetSleepQuantity = targetSleepQuantity
-        self.sleepQualityReference = sleepQualityReference
 
         self.loadValue = loadValue
         self.hasFiveDayLoadValue = hasFiveDayLoadValue
         self.futureLoadValue = futureLoadValue
-
-        self.loadReference = loadReference
-        self.futureLoadReference = futureLoadReference
-
         self.maxTrackingDays = maxTrackingDays
 
         self.impactDataModels = impactDataModels
@@ -84,9 +73,6 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
             sleepQualityValue == source.sleepQualityValue &&
             loadValue == source.loadValue &&
             futureLoadValue == source.futureLoadValue &&
-            targetSleepQuantity == source.targetSleepQuantity &&
-            sleepQualityReference == source.sleepQualityReference &&
-            loadReference == source.loadReference &&
-            futureLoadReference == source.futureLoadReference
+            targetSleepQuantity == source.targetSleepQuantity
     }
 }
