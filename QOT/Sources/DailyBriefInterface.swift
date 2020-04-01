@@ -10,6 +10,13 @@ import Foundation
 import qot_dal
 import DifferenceKit
 
+enum MyPeakPerformanceBucketType: String, CaseIterable {
+    case IN_THREE_DAYS
+    case TOMORROW
+    case TODAY
+    case REFLECT
+}
+
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
