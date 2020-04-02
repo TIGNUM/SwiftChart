@@ -268,7 +268,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             presentEditView(key: .perceived)
         case .strategyTitle:
             let ids = interactor.getStrategyIds()
-            router.presentEditStrategyView(ids.relatedId, ids.selectedIds, delegate: self)
+            router.presentEditStrategyView(ids.relatedId, ids.selectedIds, ids.selectedItemIds, delegate: self)
         case .strategies(let strategies):
             if let contentId = strategies.at(index: indexPath.row)?.remoteID {
                 router.didSelectStrategy(contentId)

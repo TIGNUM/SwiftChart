@@ -28,7 +28,7 @@ protocol ResultsPrepareInteractorInterface: Interactor {
     func hideEditIcon(title: String) -> Bool
 
     func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void)
-    func getStrategyIds() -> (relatedId: Int, selectedIds: [Int])
+    func getStrategyIds() -> (relatedId: Int, selectedIds: [Int], selectedItemIds: [Int])
 
     func updateBenefits(_ benefits: String)
     func updateIntentions(_ answerIds: [Int])
@@ -48,6 +48,7 @@ protocol ResultsPrepareRouterInterface {
                            delegate: ResultsPrepareViewControllerInterface?)
     func presentEditStrategyView(_ relatedStrategyId: Int,
                                  _ selectedIDs: [Int],
+                                 _ selectedItemIds: [Int],
                                  delegate: ChoiceViewControllerDelegate?)
     func presentCalendarEventSelection()
     func didSelectConnectToCalendar()

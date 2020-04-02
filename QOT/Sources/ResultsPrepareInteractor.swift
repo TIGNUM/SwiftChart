@@ -96,10 +96,10 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         worker.getDTViewModel(key, preparation: preparation, completion)
     }
 
-    func getStrategyIds() -> (relatedId: Int, selectedIds: [Int]) {
+    func getStrategyIds() -> (relatedId: Int, selectedIds: [Int], selectedItemIds: [Int]) {
         let strategyIds = preparation?.strategyIds ?? []
         let strategyItemIds = preparation?.strategyItemIds ?? []
-        return (relatedId: preparation?.relatedStrategyId ?? 0, strategyIds + strategyItemIds)
+        return (relatedId: preparation?.relatedStrategyId ?? 0, strategyIds, strategyItemIds)
     }
 
     func updateBenefits(_ benefits: String) {

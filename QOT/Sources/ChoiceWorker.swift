@@ -24,8 +24,8 @@ final class ChoiceWorker {
     let choiceType: ChoiceType
 
     // MARK: - Init
-    init(selectedIds: [Int], relatedId: Int) {
-        self.selectedIds = selectedIds
+    init(selectedIds: [Int], selectedItemIds: [Int], relatedId: Int) {
+        self.selectedIds = selectedIds + selectedItemIds
         self.relatedId = relatedId
         self.choiceType = .CHOICE
     }
