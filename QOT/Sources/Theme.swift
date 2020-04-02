@@ -942,7 +942,7 @@ enum ThemeText {
             .bucketTitle, .solveQuestions, .impactBucket, .articleStrategyTitle, .articleStrategyRead,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
-             .tbvBody, .customizeQuestion, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeaderTitle,
+             .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeaderTitle,
              .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
@@ -1027,6 +1027,8 @@ enum ThemeText {
         case .registerIntroTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle:
             return Fonts.fontDisplayBold30
+        case .customizeQuestion:
+            return Fonts.fontRegular16
         // MARK: - .fontRegular20
         default:
             return Fonts.fontRegular20

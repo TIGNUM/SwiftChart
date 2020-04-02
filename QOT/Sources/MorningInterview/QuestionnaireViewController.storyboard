@@ -71,7 +71,13 @@
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-lO-wdT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcW-fn-aiq">
+                                <rect key="frame" x="187.66666666666666" y="332.33333333333331" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-lO-wdT">
                                 <rect key="frame" x="187.66666666666666" y="342.33333333333331" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -235,10 +241,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7th-Xx-vP4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2Ww-Nr-NF1"/>
-                            <constraint firstItem="rNb-KL-Z8H" firstAttribute="bottom" secondItem="Prp-lO-wdT" secondAttribute="top" constant="-15" id="7tF-78-yux"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="top" secondItem="Prp-lO-wdT" secondAttribute="bottom" constant="50" id="9g5-l7-lEm"/>
                             <constraint firstItem="QGs-RT-bhr" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="COR-YI-LfZ"/>
                             <constraint firstItem="7th-Xx-vP4" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.4" id="CRW-Xo-aQK"/>
+                            <constraint firstItem="KcW-fn-aiq" firstAttribute="centerX" secondItem="rNb-KL-Z8H" secondAttribute="centerX" id="CkE-m2-sCt"/>
                             <constraint firstItem="ZSG-Sa-kqJ" firstAttribute="top" secondItem="i80-hp-uz1" secondAttribute="bottom" constant="5" id="Dpd-fO-2yl"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="EPw-Ou-SDF"/>
                             <constraint firstItem="i80-hp-uz1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GET-2f-gqA"/>
@@ -247,12 +253,14 @@
                             <constraint firstItem="Prp-lO-wdT" firstAttribute="centerX" secondItem="7th-Xx-vP4" secondAttribute="centerX" id="KTV-FY-JQL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Prp-lO-wdT" secondAttribute="trailing" constant="80" id="QCz-qg-jPi"/>
                             <constraint firstItem="irz-At-l75" firstAttribute="top" secondItem="7th-Xx-vP4" secondAttribute="bottom" constant="9.3333333333333712" id="Re1-Yd-Qub"/>
+                            <constraint firstItem="KcW-fn-aiq" firstAttribute="top" secondItem="rNb-KL-Z8H" secondAttribute="bottom" constant="5" id="Thk-bu-CaI"/>
                             <constraint firstItem="irz-At-l75" firstAttribute="centerX" secondItem="7th-Xx-vP4" secondAttribute="centerX" id="VWp-Kf-JBp"/>
                             <constraint firstAttribute="trailing" secondItem="i80-hp-uz1" secondAttribute="trailing" id="Vtm-LL-6Os"/>
+                            <constraint firstItem="KcW-fn-aiq" firstAttribute="bottom" secondItem="Prp-lO-wdT" secondAttribute="top" constant="-10" id="Wof-Ys-vQP"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="top" secondItem="QGs-RT-bhr" secondAttribute="bottom" constant="24" id="aeV-Ef-IO9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZSG-Sa-kqJ" secondAttribute="trailing" constant="24" id="bnv-wh-LgL"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="cbd-gl-cyY"/>
-                            <constraint firstItem="Prp-lO-wdT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZSG-Sa-kqJ" secondAttribute="bottom" constant="10" id="gwc-s8-u3W"/>
+                            <constraint firstItem="Prp-lO-wdT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZSG-Sa-kqJ" secondAttribute="bottom" priority="999" constant="10" id="gwc-s8-u3W"/>
                             <constraint firstItem="IvG-bf-DRU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="irR-BR-UiV"/>
                             <constraint firstItem="i80-hp-uz1" firstAttribute="top" secondItem="eLZ-Ck-Uiv" secondAttribute="bottom" constant="8" id="lds-Gy-RTV"/>
                             <constraint firstItem="ZSG-Sa-kqJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="lqQ-LB-pNz"/>
@@ -288,6 +296,7 @@
                         <outlet property="tableView" destination="7th-Xx-vP4" id="5zd-fM-ZQN"/>
                         <outlet property="topImageView" destination="QGs-RT-bhr" id="R1p-Qj-Ufq"/>
                         <outlet property="topIndex" destination="IvG-bf-DRU" id="LH8-fv-hdq"/>
+                        <outlet property="totalHoursLabel" destination="KcW-fn-aiq" id="9ZB-or-T8j"/>
                         <outlet property="upArrowBottomConstraint" destination="vFt-iV-Hi8" id="7SZ-hg-kYg"/>
                     </connections>
                 </viewController>

@@ -79,8 +79,9 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var customizeTargetTitle: UILabel!
     @IBOutlet weak var labelCustomizeView: UILabel!
-    @IBOutlet weak var questionToTop: NSLayoutConstraint!
+    @IBOutlet private weak var questionToTop: NSLayoutConstraint!
     @IBOutlet private weak var questionLabel: UILabel!
+    @IBOutlet weak var totalHoursLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var ovalTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var progressHeightConstraint: NSLayoutConstraint!
@@ -412,6 +413,8 @@ extension QuestionnaireViewController {
                 switch controllerType {
                 case .customize:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
+                    let numberOfHours = (answerIndex / 2) + 1) * 5
+                    ThemeText.asterixText.apply("Total amount : " + String(numberOfHours) + "h/5days", to: totalHoursLabel)
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
                  }
