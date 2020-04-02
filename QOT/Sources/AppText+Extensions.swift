@@ -279,7 +279,7 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_section_sleep_quality_label_target =    AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.label_target")
     static let daily_brief_section_impact_readiness_section_sleep_quality_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.title")
     static let daily_brief_section_impact_readiness_section_sleep_quantity_label_h = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.label_h")
-    static let daily_brief_section_impact_readiness_section_customize_button = AppTextKey("daily_brief.section_impact_readiness.section_customize_button")
+    static let daily_brief_section_impact_readiness_customize_button = AppTextKey("daily_brief.section_impact_readiness.customize_button")
 
     static let daily_brief_section_impact_readiness_section_future_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_future_load.number_ref")
     static let daily_brief_section_impact_readiness_section_sleep_quality_number_ref =  AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.number_ref")
