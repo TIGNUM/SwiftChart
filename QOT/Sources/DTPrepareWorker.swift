@@ -24,18 +24,21 @@ final class DTPrepareWorker: DTWorker {
                                 relatedStategyId: Int,
                                 eventType: String,
                                 _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        var model = CreateUserPreparationModel()
-        model.level = QDMUserPreparation.Level.LEVEL_DAILY
-        model.benefits = nil
-        model.answerFilter = nil
-        model.contentCollectionId = QDMUserPreparation.Level.LEVEL_DAILY.contentID
-        model.relatedStrategyId = relatedStategyId
-        model.eventType = eventType
-        UserService.main.createUserPreparation(from: model) { (preparation, error) in
-            if let error = error {
-                log("Error createUserPreparation DAILY: \(error.localizedDescription)", level: .error)
+        getRelatedStrategies(relatedStategyId) { (ids) in
+            var model = CreateUserPreparationModel()
+            model.level = QDMUserPreparation.Level.LEVEL_DAILY
+            model.benefits = nil
+            model.answerFilter = nil
+            model.contentCollectionId = QDMUserPreparation.Level.LEVEL_DAILY.contentID
+            model.relatedStrategyId = relatedStategyId
+            model.strategyIds = ids
+            model.eventType = eventType
+            UserService.main.createUserPreparation(from: model) { (preparation, error) in
+                if let error = error {
+                    log("Error createUserPreparation DAILY: \(error.localizedDescription)", level: .error)
+                }
+                completion(preparation)
             }
-            completion(preparation)
         }
     }
 
@@ -51,7 +54,9 @@ final class DTPrepareWorker: DTWorker {
 
     func getRelatedStrategies(_ strategyId: Int, _ completion: @escaping ([Int]) -> Void) {
         ContentService.main.getContentCollectionById(strategyId) { (contentCollection) in
-            completion(contentCollection?.relatedContentIDsPrepareDefault ?? [])
+            var relatedIds = contentCollection?.relatedContentIDsPrepareDefault ?? []
+            relatedIds.append(contentsOf: (contentCollection?.relatedContentItemIDs ?? []))
+            completion(relatedIds)
         }
     }
 }

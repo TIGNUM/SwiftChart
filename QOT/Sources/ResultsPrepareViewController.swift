@@ -240,6 +240,11 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title.uppercased(), duration: strategy?.durationString)
             return cell
+        case .strategyItems(let strategyItems):
+        let strategyItem = strategyItems.at(index: indexPath.row)
+        let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: strategyItem?.valueText, duration: strategyItem?.durationString)
+        return cell
         }
     }
 
@@ -268,6 +273,10 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             if let contentId = strategies.at(index: indexPath.row)?.remoteID {
                 router.didSelectStrategy(contentId)
             }
+        case .strategyItems(let strategyItems):
+        if let contentItemId = strategyItems.at(index: indexPath.row)?.remoteID {
+            router.didSelectStrategyItem(contentItemId)
+        }
         default: return
         }
     }

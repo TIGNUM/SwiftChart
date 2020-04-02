@@ -53,7 +53,8 @@ private extension ResultsPrepareInteractor {
     func getDefaultStrategies(_ relatedStrategyID: Int?, _ completion: @escaping (([QDMContentCollection]?) -> Void)) {
         if let relatedStrategyID = relatedStrategyID {
             ContentService.main.getContentCollectionById(relatedStrategyID) { content in
-                let relatedIds = content?.relatedContentIDsPrepareDefault ?? []
+                var relatedIds = content?.relatedContentIDsPrepareDefault ?? []
+                relatedIds.append(contentsOf: content?.relatedContentItemIdsPrepareDefault ?? [])
                 ContentService.main.getContentCollectionsByIds(relatedIds, completion)
             }
         } else {
@@ -75,9 +76,13 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
 
     func rowCount(in section: Int) -> Int {
         guard let level = preparation?.type else { return 0 }
-        let strategyCount = ((preparation?.strategies.count ?? 0))
+        let strategyCount = (preparation?.strategies.count ?? 0)
+        let strytegyItemCount = (preparation?.strategyItems.count ?? 0)
         if (level == .LEVEL_CRITICAL && section == 8) || (level == .LEVEL_DAILY && section == 7) {
             return strategyCount
+        }
+        if (level == .LEVEL_CRITICAL && section == 9) || (level == .LEVEL_DAILY && section == 8) {
+            return strytegyItemCount
         }
         return 1
     }

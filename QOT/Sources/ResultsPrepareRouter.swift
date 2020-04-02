@@ -93,6 +93,10 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
         presentContent(contentId)
     }
 
+    func didSelectStrategyItem(_ contentItemId: Int) {
+        presentContentItem(with: contentItemId)
+    }
+
     func presentCalendarEventSelection() {
         let configurator = CalendarEventSelectionConfigurator.make(delegate: delegate)
         let controller = CalendarEventSelectionViewController(configure: configurator)

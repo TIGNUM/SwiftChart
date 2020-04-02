@@ -52,5 +52,6 @@ protocol ResultsPrepareRouterInterface {
     func presentCalendarEventSelection()
     func didSelectConnectToCalendar()
     func didSelectStrategy(_ contentId: Int)
+    func didSelectStrategyItem(_ contentItemId: Int)
     func didTapDismiss()
 }
