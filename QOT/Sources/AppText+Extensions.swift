@@ -208,7 +208,6 @@ public extension AppTextKey {
     static let daily_brief_section_header_title = AppTextKey("daily_brief.section_header.title")
     static let daily_brief_alert_copyright_title = AppTextKey("daily_brief.alert.copyright.title")
     static let daily_brief_customize_sleep_amount_section_question_question = AppTextKey("daily_brief.customize_sleep_amount.section_question.question")
-    static let daily_brief_customize_sleep_amount_section_question_body = AppTextKey("daily_brief.customize_sleep_amount.section_question.body")
     static let daily_brief_daily_check_in_questionnaire_section_footer_button_done = AppTextKey("daily_brief.daily_check_in.questionnaire.section_footer.button_done")
     static let daily_brief_daily_check_in_questionnaire_section_footer_button_next = AppTextKey("daily_brief.daily_check_in.questionnaire.section_footer.button_next")
     static let daily_brief_section_impact_readiness_button_explore_score = AppTextKey("daily_brief.section_impact_readiness.button_explore_score")
@@ -930,6 +929,8 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_section_future_load_label_ref = AppTextKey("daily_brief.section_impact_readiness.section_future_load.label_ref")
 
     static let daily_brief_section_impact_readiness_section_sleep_quantity_label_target = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.label_target")
+    static let daily_brief_customize_sleep_amount_section_question_body = AppTextKey("daily_brief.customize_sleep_amount.section_question.body")
+
 
 
 

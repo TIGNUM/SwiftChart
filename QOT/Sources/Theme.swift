@@ -731,6 +731,7 @@ enum ThemeText {
     case tbvVision
     case tbvButton
     case tbvBody
+    case customizeQuestion
     case tbvVisionHeader
     case tbvVisionBody
     case tvbTimeSinceTitle
@@ -941,7 +942,7 @@ enum ThemeText {
             .bucketTitle, .solveQuestions, .impactBucket, .articleStrategyTitle, .articleStrategyRead,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
-             .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeaderTitle,
+             .tbvBody, .customizeQuestion, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeaderTitle,
              .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
@@ -1050,7 +1051,7 @@ enum ThemeText {
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
-             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle,
+             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle, .customizeQuestion,
              .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand:
             return Palette.sand
 
@@ -1194,7 +1195,7 @@ enum ThemeText {
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
-        case .navigationBarHeader, .customAlertAction, .customAlertDestructiveAction:
+        case .navigationBarHeader, .customAlertAction, .customAlertDestructiveAction, .customizeQuestion:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .center)

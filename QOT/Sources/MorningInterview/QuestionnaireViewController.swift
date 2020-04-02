@@ -77,9 +77,9 @@ enum ControllerType {
 
 final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var customizeTargetTitle: UILabel!
     @IBOutlet weak var labelCustomizeView: UILabel!
+    @IBOutlet weak var questionToTop: NSLayoutConstraint!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var ovalTopConstraint: NSLayoutConstraint!
@@ -208,8 +208,8 @@ extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
         case .customize:
-        ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
-        ThemeText.tbvCustomizeBody.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_body), to: labelCustomizeView)
+            questionToTop.constant = questionToTop.constant * 10
+            ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
         default: break
@@ -292,9 +292,7 @@ extension QuestionnaireViewController {
         var attributedQuestion: NSAttributedString = NSAttributedString.init()
         switch controllerType {
         case .customize:
-            ThemeText.tbvCustomizeBody.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_body),
-                                                                to: labelCustomizeView)
-            attributedQuestion = ThemeText.tbvBody.attributedString(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question))
+            attributedQuestion = ThemeText.customizeQuestion.attributedString(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question))
         case .dailyCheckin:
             if let question = questionHtml {
                 attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed,
