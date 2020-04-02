@@ -82,8 +82,7 @@ class DTPresenter: DTPresenterInterface {
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
-        let events = Prepare.isCalendarEventSelection(question.key) ? getEvents(presentationModel.events)
-            : getPreparations(presentationModel.preparations)
+        let events = getPreparations(presentationModel.preparations)
         return DTViewModel(question: question,
                            answers: answers,
                            events: events,

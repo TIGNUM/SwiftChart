@@ -38,7 +38,7 @@ final class QOTBaseHeaderView: UIView {
         }
     }
 
-    func configure(title: String?, subtitle: String?, darkMode: Bool? = nil, animated: Bool = false) {
+    func configure(title: String?, subtitle: String?, darkMode: Bool? = true, animated: Bool = false) {
         self.title = title
         self.subtitle = subtitle
         if subtitle == nil {

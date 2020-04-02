@@ -48,11 +48,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
         if SessionService.main.getCurrentSession() != nil {
             appCoordinator.importHealthKitDataIfAuthorized()
             appCoordinator.importCalendarEventsIfAuthorized()
-            ExternalLinkImporter.main.importLink()
         }
 
         #if UNIT_TEST
@@ -88,7 +86,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         #else
             application.applicationIconBadgeNumber = 0
-            importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
         #endif //#if UNIT_TEST
     }
@@ -113,6 +110,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
+            ExternalLinkImporter.main.importLink()
             appCoordinator.checkVersionIfNeeded()
             sendSiriEventsIfNeeded()
             QOTService.main.reportAppStatus(.didBecomeActive)
@@ -242,7 +240,7 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func handleNotification(notification: UNNotification) {
-        log("dailyPrep://handleNotification, notification:: \(notification)")
+        log("handle local notification: \(notification)")
         var link: URL?
         if let linkString = notification.request.content.userInfo["link"] as? String {
             link = URL(string: linkString)
@@ -250,7 +248,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             link = URL(string: urlString)
         } else {
             let stringValues = notification.request.content.userInfo.values.filter { ($0 is String) } as? [String]
-            let userInfoUrlString = stringValues?.filter { $0.contains("qot://") }.first
+            let userInfoUrlString = stringValues?.filter {
+                $0.contains("qot://") || $0.contains("tignumx://")
+            }.first
             if let urlString = userInfoUrlString {
                 link = URL(string: urlString)
             }

@@ -34,5 +34,4 @@ extension DailyBriefPresenter: DailyBriefPresenterInterface {
     func scrollToSection(at: Int) {
         viewController?.scrollToSection(at: at)
     }
-
 }

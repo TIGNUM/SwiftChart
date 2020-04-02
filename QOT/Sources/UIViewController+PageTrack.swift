@@ -64,7 +64,6 @@ extension UIViewController {
         case is MyQotMainViewController: return "myqot.main"
         case is MyPrepsViewController: return "myqot.mypreps"
         case is AudioFullScreenViewController: return "fullscreen.audioplayer"
-        case is PrepareResultsViewController: return prepareResultsPageKey
         case is PreparationWithMissingEventViewController: return "prepare.missing.event"
         case is MyLibraryCategoryListViewController: return "mylibrary"
         case is DailyCheckinQuestionsViewController: return "dailyCheckin.questions"
@@ -93,6 +92,9 @@ extension UIViewController {
         case is CoachMarksViewController: return walkThroughPageKey
         case is PaymentReminderViewController: return subscriptionReminderPageKey
         case is RegisterIntroViewController: return "onboarding.createaccount.info"
+        case is ResultsPrepareViewController: return resultsPareparePageKey
+        case is DTPrepareStartViewController: return "decisiontree.prepare.start"
+        case is CalendarEventSelectionViewController: return "calendar.event.selection"
         default: preconditionFailure()
         }
     }
@@ -154,7 +156,8 @@ private extension UIViewController {
     var preparePageKey: String {
         if let introKey = (self as? DTPrepareViewController)?.interactor?.getIntroKey {
             switch introKey {
-            case Prepare.QuestionKey.Intro: return "decisiontree.prepare"
+            case Prepare.QuestionKey.EventTypeSelectionDaily,
+                 Prepare.QuestionKey.EventTypeSelectionCritical: return "decisiontree.prepare"
             case Prepare.QuestionKey.BenefitsInput: return "decisiontree.prepare.edit.benefits"
             case Prepare.Key.feel.rawValue: return "decisiontree.prepare.edit.intentions.feel"
             case Prepare.Key.know.rawValue: return "decisiontree.prepare.edit.intentions.know"
@@ -222,8 +225,8 @@ private extension UIViewController {
 
 // MARK: prepareReults IDs
 private extension UIViewController {
-    var prepareResultsPageKey: String {
-        switch (self as? PrepareResultsViewController)?.interactor?.getType {
+    var resultsPareparePageKey: String {
+        switch (self as? ResultsPrepareViewController)?.interactor.getType {
         case .LEVEL_DAILY?: return "solve.results.daily"
         case .LEVEL_CRITICAL?: return "solve.results.critical"
         case .LEVEL_ON_THE_GO?: return "solve.results.onthego"

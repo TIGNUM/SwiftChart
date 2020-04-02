@@ -10,17 +10,15 @@ import Foundation
 
 protocol CoachMarksViewControllerInterface: class {
     func setupView()
-    func updateView(_ viewModel: CoachMark.ViewModel)
+    func updateView(_ viewModels: [CoachMark.ViewModel])
 }
 
 protocol CoachMarksPresenterInterface {
     func setupView()
-    func updateView(_ presentationModel: CoachMark.PresentationModel)
+    func updateView(_ presentationModel: [CoachMark.PresentationModel])
 }
 
 protocol CoachMarksInteractorInterface: Interactor {
-    func loadNextStep(page: Int)
-    func loadPreviousStep(page: Int)
     func saveCoachMarksViewed()
     func askNotificationPermissions(_ completion: @escaping () -> Void)
     var currentPage: Int { get }

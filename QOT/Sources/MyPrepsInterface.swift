@@ -27,10 +27,13 @@ protocol MyPrepsInteractorInterface: Interactor {
     func numberOfRowsPreparations() -> Int
     func numberOfRowsRecoveries() -> Int
     func numberOfRowsMindsetShifters() -> Int
+    func numberOfRowsCriticalPreparations() -> Int
+    func numberOfRowsEverydayPreparations() -> Int
 
-    func itemPrep(at indexPath: IndexPath) -> MyPrepsModel.Item?
     func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Item?
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Item?
+    var criticalPrepItems: [MyPrepsModel.Item]? { get }
+    var everydayPrepItems: [MyPrepsModel.Item]? { get }
 
     func presentPreparation(item: QDMUserPreparation, viewController: UIViewController)
     func present3DRecovery(item: QDMRecovery3D, viewController: UIViewController)

@@ -11,5 +11,5 @@ import UIKit
 final class RegisterIntroWorker {
 
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 }

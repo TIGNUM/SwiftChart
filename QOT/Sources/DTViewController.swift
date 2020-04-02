@@ -27,6 +27,8 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     @IBOutlet weak var navBottomGradientImageView: UIImageView!
     @IBOutlet weak var viewNavTop: UIView!
 
+    private var canGetBackToPreviousQuestions = false
+
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,8 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         navigationController?.setNeedsStatusBarAppearanceUpdate()
         setupPageViewController(view.backgroundColor)
         interactor?.viewDidLoad()
+
+        setupSwipeGestureRecognizer()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,11 +74,14 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     }
 
     // MARK: - Actions
+
     @IBAction func didTapPrevious() {
         constraintBottom.constant = 0
         self.view.layoutIfNeeded()
-        interactor?.loadPreviousQuestion()
         trackQuestionInteraction(.PREVIOUS)
+        if interactor?.loadPreviousQuestion() == false {
+            router?.dismiss()
+        }
     }
 
     @IBAction func didTapClose() {
@@ -181,7 +188,9 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     private func setupPageViewController(_ backgroundColor: UIColor?) {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
         pageController.view.backgroundColor = backgroundColor
-        pageController.automaticallyAdjustsScrollViewInsets = false
+        if let scrollview = pageController.view as? UIScrollView {
+            scrollview.contentInsetAdjustmentBehavior = .automatic
+        }
         addChildViewController(pageController)
         view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
         self.pageController = pageController
@@ -305,5 +314,30 @@ extension DTViewController {
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension DTViewController {
+
+    func setupSwipeGestureRecognizer() {
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeDown(_:)))
+        swipeGestureRecognizer.direction = .down
+        swipeGestureRecognizer.numberOfTouchesRequired = 1
+        swipeGestureRecognizer.delegate = self
+        view.addGestureRecognizer(swipeGestureRecognizer)
+    }
+
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let viewController = pageController?.viewControllers?.first as? DTQuestionnaireViewController else {
+            return false
+        }
+        let offset = viewController.contentOffset()
+        return previousButton.isHidden == false && offset.y == 0
+    }
+
+    @objc func didSwipeDown(_ recognizer: UIGestureRecognizer) {
+        didTapPrevious()
     }
 }

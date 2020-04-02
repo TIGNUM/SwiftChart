@@ -145,6 +145,15 @@ extension ShifterResultViewController: UITableViewDataSource {
         default: preconditionFailure()
         }
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch model?.sections[indexPath.row] {
+        case .lowToHigh:
+            return 380
+        default:
+            return UITableViewAutomaticDimension
+        }
+    }
 }
 
 // MARK: - BottomNavigation Items

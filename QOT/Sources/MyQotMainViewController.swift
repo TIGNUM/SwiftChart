@@ -38,6 +38,8 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         return CGSize(width: widthForOneItem, height: heightForOneItem)
     }
 
+    private var isDragging = false
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -173,6 +175,20 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y,
-                            isDragging: scrollView.isDragging && !scrollView.isDecelerating)
+                            isDragging: isDragging,
+                            isScrolling: scrollView.isDragging || scrollView.isDecelerating)
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isDragging = true
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        isDragging = false
+        scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidScroll(scrollView)
     }
 }

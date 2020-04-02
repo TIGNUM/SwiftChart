@@ -81,15 +81,13 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return CoachTableHeaderView.init(title: coachModel?.headerTitle ?? "",
-                                             subtitle: coachModel?.headerSubtitle ?? "")
+            return CoachTableHeaderView.init(title: coachModel?.headerTitle ?? "")
         default: return nil
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CoachTableHeaderView.init(title: coachModel?.headerTitle ?? "",
-                                         subtitle: coachModel?.headerSubtitle ?? "").calculateHeight(for: tableView.frame.size.width)
+        return CoachTableHeaderView.init(title: coachModel?.headerTitle ?? "").calculateHeight(for: tableView.frame.size.width)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

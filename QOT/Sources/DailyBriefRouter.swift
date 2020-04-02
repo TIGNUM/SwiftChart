@@ -23,6 +23,7 @@ final class DailyBriefRouter: BaseRouter {
 
 // MARK: - DailyBriefRouterInterface
 extension DailyBriefRouter: DailyBriefRouterInterface {
+
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
         if let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
@@ -32,9 +33,10 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func presentCopyRight(copyrightURL: String?) {
+    func presentPopUp(copyrightURL: String?, description: String?) {
         let popUpController = PopUpCopyrightViewController(delegate: dailyBriefViewController,
-                                                           copyrightURL: copyrightURL)
+                                                           copyrightURL: copyrightURL,
+                                                           description: description)
         popUpController.modalPresentationStyle = .overCurrentContext
         viewController?.present(popUpController, animated: true)
     }
@@ -55,15 +57,15 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func presentCoachPreparation() {
-        let configurator = DTPrepareConfigurator.make()
-        let controller = DTPrepareViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
+        if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
+        }
     }
 
     func presentPrepareResults(for preparation: QDMUserPreparation?) {
         if let preparation = preparation {
-            let configurator = PrepareResultsConfigurator.make(preparation, resultType: .prepareDailyBrief)
-            let controller = PrepareResultsViewController(configure: configurator)
+            let configurator = ResultsPrepareConfigurator.make(preparation, resultType: .prepareDailyBrief)
+            let controller = ResultsPrepareViewController(configure: configurator)
             viewController?.present(controller, animated: true)
         }
     }
@@ -79,4 +81,11 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?) {
         appLink?.launch()
     }
+
+     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?) {
+          let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
+                                                            resultType: .mindsetShifterBucket)
+          let controller = ShifterResultViewController(configure: configurator)
+          viewController?.present(controller, animated: true)
+      }
 }

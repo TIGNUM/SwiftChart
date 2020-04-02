@@ -78,20 +78,24 @@ class DTInteractor: DTInteractorInterface {
         presentedNodes.append(node)
     }
 
-    func loadPreviousQuestion() {
+    func loadPreviousQuestion() -> Bool {
         if !presentedNodes.isEmpty {
             presentedNodes.removeLast()
             if !selectedAnswers.isEmpty {
                 selectedAnswers.removeLast()
             }
-            let lastNode = presentedNodes.last
-            let presentationModel = createPresentationModel(questionId: lastNode?.questionId,
-                                                            answerFilter: lastNode?.answerFilter,
+            guard let lastNode = presentedNodes.last else {
+                return false
+            }
+            let presentationModel = createPresentationModel(questionId: lastNode.questionId,
+                                                            answerFilter: lastNode.answerFilter,
                                                             userInputText: inputText,
-                                                            questionUpdate: lastNode?.titleUpdate,
+                                                            questionUpdate: lastNode.titleUpdate,
                                                             questions: questions)
             presenter?.showPreviousQuestion(presentationModel, isDark: isDark)
+            return true
         }
+        return false
     }
 
     var getIntroKey: String {
@@ -124,7 +128,8 @@ class DTInteractor: DTInteractorInterface {
                                  content: QDMContentCollection?) -> DTPresentationModel {
         let question = getNextQuestion(selection: selection, questions: questions)
         let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers,
-                                            questionKey: question?.key, content: content)
+                                            questionKey: question?.key,
+                                            content: content)
         let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
         let events = getEvents(questionKey: question?.key)
         let preparations = getPreparations(answerKeys: selection.selectedAnswers.first?.keys)

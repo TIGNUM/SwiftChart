@@ -15,10 +15,12 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var calendarIcon: UIImageView!
+    @IBOutlet weak var subtitleView: UIView!
 
     private var editingOverlay: UIView!
     var skeletonManager = SkeletonManager()
     var hasData = false
+    var hasEvent = false
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -45,6 +47,12 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
 
         removeGradient(from: editingOverlay)
         addGradient(to: editingOverlay)
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        subtitleLabel.text = nil
     }
 
     // MARK: Configure

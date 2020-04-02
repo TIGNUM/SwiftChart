@@ -43,7 +43,6 @@ public extension AppTextKey {
     static let coach_section_header_title = AppTextKey("coach.section_header.title")
     static let coach_section_sprint_subtitle = AppTextKey("coach.section_sprint.subtitle")
     static let coach_section_search_title = AppTextKey("coach.section_search.title")
-    static let coach_section_header_subtitle = AppTextKey("coach.section_header.subtitle")
     static let coach_section_solve_title = AppTextKey("coach.section_solve.title")
     static let coach_section_solve_subtitle = AppTextKey("coach.section_solve.subtitle")
     static let coach_section_mindset_title = AppTextKey("coach.section_mindset.title")
@@ -274,23 +273,18 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_label_out_of_100 = AppTextKey("daily_brief.section_impact_readiness.label_out_of_100")
     static let daily_brief_section_impact_readiness_loading_body = AppTextKey("daily_brief.section_impact_readiness.loading.body")
     static let daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer =  AppTextKey("daily_brief.section_impact_readiness.section_five_days_rolling.body_explainer")
-    static let daily_brief_section_impact_readiness_section_future_load_label_ref = AppTextKey("daily_brief.section_impact_readiness.section_future_load.label_ref")
     static let daily_brief_section_impact_readiness_body_tracking_days = AppTextKey("daily_brief.section_impact_readiness.body_tracking_days")
-    static let daily_brief_section_impact_readiness_section_future_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_future_load.number_ref")
-    static let daily_brief_section_impact_readiness_section_future_load_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_future_load.subtitle")
     static let daily_brief_section_impact_readiness_section_future_load_title = AppTextKey("daily_brief.section_impact_readiness.section_future_load.title")
-    static let daily_brief_section_impact_readiness_section_load_label_ref = AppTextKey("daily_brief.section_impact_readiness.section_load.label_ref")
-    static let daily_brief_section_impact_readiness_section_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_load.number_ref")
-    static let daily_brief_section_impact_readiness_section_load_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_load.subtitle")
     static let daily_brief_section_impact_readiness_section_load_title = AppTextKey("daily_brief.section_impact_readiness.section_load.title")
-    static let daily_brief_section_impact_readiness_section_sleep_quality_label_ref = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.label_ref")
     static let daily_brief_section_impact_readiness_section_sleep_quality_label_target =    AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.label_target")
-    static let daily_brief_section_impact_readiness_section_sleep_quality_number_ref =  AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.number_ref")
-    static let daily_brief_section_impact_readiness_section_sleep_quality_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.subtitle")
     static let daily_brief_section_impact_readiness_section_sleep_quality_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.title")
     static let daily_brief_section_impact_readiness_section_sleep_quantity_label_h = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.label_h")
-    static let daily_brief_section_impact_readiness_section_sleep_quantity_label_target =   AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.label_target")
-    static let daily_brief_section_impact_readiness_section_sleep_quantity_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.subtitle")
+    static let daily_brief_section_impact_readiness_customize_button = AppTextKey("daily_brief.section_impact_readiness.customize_button")
+
+    static let daily_brief_section_impact_readiness_section_future_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_future_load.number_ref")
+    static let daily_brief_section_impact_readiness_section_sleep_quality_number_ref =  AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.number_ref")
+    static let daily_brief_section_impact_readiness_section_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_load.number_ref")
+
     static let daily_brief_section_impact_readiness_section_sleep_quantity_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.title")
     static let daily_brief_section_impact_readiness_title = AppTextKey("daily_brief.section_impact_readiness.title")
     static let daily_brief_section_leader_wisdom_body = AppTextKey("daily_brief.section_leader_wisdom.body")
@@ -336,7 +330,6 @@ public extension AppTextKey {
     static let daily_brief_section_solve_reflection_bullet_3 = AppTextKey("daily_brief.section_solve_reflection.bullet_3")
     static let daily_brief_section_solve_reflection_button_check_it = AppTextKey("daily_brief.section_solve_reflection.button_check_it")
     static let daily_brief_section_solve_reflection_title = AppTextKey("daily_brief.section_solve_reflection.title")
-    static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
     static let daily_brief_section_sprint_challenge_button_show_more = AppTextKey("daily_brief.section_sprint_challenge.button_show_more")
     static let daily_brief_section_sprint_challenge_title = AppTextKey("daily_brief.section_sprint_challenge.title")
     static let daily_brief_section_visual_delights_title = AppTextKey("daily_brief.section_visual_delights.title")
@@ -356,6 +349,15 @@ public extension AppTextKey {
     static let daily_brief = AppTextKey("daily_brief")
     static let daily_brief_customize_sleep_amount = AppTextKey("daily_brief.customize_sleep_amount")
     static let daily_brief_daily_check_in_questionnaire = AppTextKey("daily_brief.daily_check_in.questionnaire")
+    static let daily_brief_section_mindset_shifter_subtitle = AppTextKey("daily_brief.section_mindset_shifter.subtitle")
+    static let daily_brief_section_mindset_shifter_title = AppTextKey("daily_brief.section_mindset_shifter.title")
+    static let daily_brief_section_mindset_shifter_cta = AppTextKey("daily_brief.section_mindset_shifter.cta")
+    static let daily_brief_section_impact_readiness_intro = AppTextKey("daily_brief.section_impact_readiness.intro")
+
+    static let daily_brief_section_impact_readiness_sleep_quantity_description = AppTextKey("daily_brief.section_impact_readiness.sleep_quantity_description")
+    static let daily_brief_section_impact_readiness_sleep_quality_description = AppTextKey("daily_brief.section_impact_readiness.sleep_quality_description")
+    static let daily_brief_section_impact_readiness_load_description = AppTextKey("daily_brief.section_impact_readiness.load_description")
+    static let daily_brief_section_impact_readiness_future_load_description = AppTextKey("daily_brief.section_impact_readiness.future_load_description")
 
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
@@ -734,6 +736,8 @@ public extension AppTextKey {
     static let my_qot_my_plans_recovery_plans_null_state_body = AppTextKey("my_qot.my_plans.recovery_plans.null_state.body")
     static let my_qot_my_plans_mindset_shifts_null_state_body = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.body")
     static let my_qot_my_plans_event_preps_null_state_body = AppTextKey("my_qot.my_plans.event_preps.null_state.body")
+    static let my_qot_my_plans_section_header_critical = AppTextKey("my_qot.my_plans_section.header_critical")
+    static let my_qot_my_plans_section_header_everyday = AppTextKey("my_qot.my_plans_section.header_everyday")
 
     static let my_qot_my_plans_mindset_shifts_null_state_cta = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.cta")
     static let my_qot_my_plans_event_preps_null_state_cta = AppTextKey("my_qot.my_plans.event_preps.null_state.cta")
@@ -785,8 +789,6 @@ public extension AppTextKey {
     static let my_qot_my_sprints_null_state_button_add_sprint = AppTextKey("my_qot.my_sprints.null_state.button_add_sprint")
     static let generic_alert_no_email_body = AppTextKey("generic.alert.no_email.body")
     static let onboarding_guided_track_section_footer_button_get_started = AppTextKey("onboarding.guided_track.section_footer.button_get_started")
-    static let daily_brief_sprint_challenge_alert_title = AppTextKey("daily_brief.sprint_challenge.alert_title")
-    static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
     static let onboarding_register_intro_video_section_header_title = AppTextKey("onboarding.register_intro.video_section_header.title")
     static let onboarding_register_intro_video_section_body = AppTextKey("onboarding.register_intro.video_section.body")
     static let onboarding_register_intro_note_section_title = AppTextKey("onboarding.register_intro.note_section.title")
@@ -867,8 +869,34 @@ public extension AppTextKey {
     static let generic_event_date_format_prefix_tomorrow_at = AppTextKey("generic_event_date.format_prefix.tomorrow_at")
     static let generic_event_date_format_prefix_at = AppTextKey("generic_event_date.format_prefix.at")
 
-    static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
+
+    // MARK: - Results Prepare
+    static let results_prepare_header_title = AppTextKey("results_prepare.header.title")
+    static let results_prepare_connect_calendar_title = AppTextKey("prepare_results.connect_calaendar.title")
+    static let results_prepare_connect_calendar_subtitle = AppTextKey("prepare_results.connect_calendar.subtitle")
+    static let results_prepare_critical_questions = AppTextKey("prepare_results.critical.questions")
+    static let results_prepare_perceived = AppTextKey("prepare_results.perceived.title")
+    static let results_prepare_know = AppTextKey("prepare_results.know.title")
+    static let results_prepare_feel = AppTextKey("prepare_results.feel.title")
+    static let results_prepare_header_benefits = AppTextKey("prepare_results.benefits.header")
+    static let results_prepare_benefits = AppTextKey("prepare_results.benefits.title")
+    static let results_prepare_strategies = AppTextKey("prepare_results.strategies.title")
+    static let addNewEvent = AppTextKey("results_prepare.right_bar_item.add_new_event")
+
+    // MARK: - ChatBot Prepare
+    static let chatbot_prepare_start_header = AppTextKey("chatbot_prepare_start.header.title")
+    static let chatbot_prepare_start_intentionTitle = AppTextKey("chatbot_prepare_start.intention.title")
+    static let chatbot_prepare_start_intentions = AppTextKey("chatbot_prepare_start.intentions.content")
+    static let chatbot_prepare_start_strategyTitle = AppTextKey("chatbot_prepare_start.strategy.title")
+    static let chatbot_prepare_start_strategies = AppTextKey("chatbot_prepare_start.strategy.content")
+    static let chatbot_prepare_start_selectionTitle = AppTextKey("chatbot_prepare_start.selection.title")
+    static let chatbot_prepare_start_critical_button = AppTextKey("chatbot_prepare_start.button.critical")
+    static let chatbot_prepare_start_daily_button = AppTextKey("chatbot_prepare_start.button.daily")
+
+    // MARK: - Event Selection
+    static let event_selection_empty = AppTextKey("event_selection.empty.title")
+    static let event_selection_header = AppTextKey("event_selection.header.title")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")
@@ -883,4 +911,27 @@ public extension AppTextKey {
     static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
     static let onboarding_sign_up_age_verification_section_body_placeholder_title = AppTextKey("onboarding.sign_up.age_verification.section_body.placeholder_title")
     static let my_qot_my_profile_account_settings_edit_title_date_of_birth = AppTextKey("my_qot.my_profile.account_settings.edit.title_date_of_birth")
+}
+
+@available(*, unavailable, message: "Unavailable from QOT v3.1.5")
+public extension AppTextKey {
+    static let daily_brief_sprint_challenge_alert_title = AppTextKey("daily_brief.sprint_challenge.alert_title")
+    static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
+    static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
+    static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
+    static let coach_section_header_subtitle = AppTextKey("coach.section_header.subtitle")
+
+    static let daily_brief_section_impact_readiness_section_future_load_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_future_load.subtitle")
+    static let daily_brief_section_impact_readiness_section_load_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_load.subtitle")
+    static let daily_brief_section_impact_readiness_section_sleep_quality_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.subtitle")
+    static let daily_brief_section_impact_readiness_section_sleep_quantity_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.subtitle")
+    static let daily_brief_section_impact_readiness_section_sleep_quality_label_ref = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.label_ref")
+    static let daily_brief_section_impact_readiness_section_load_label_ref = AppTextKey("daily_brief.section_impact_readiness.section_load.label_ref")
+    static let daily_brief_section_impact_readiness_section_future_load_label_ref = AppTextKey("daily_brief.section_impact_readiness.section_future_load.label_ref")
+
+    static let daily_brief_section_impact_readiness_section_sleep_quantity_label_target = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.label_target")
+
+
+
+
 }

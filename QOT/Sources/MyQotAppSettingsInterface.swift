@@ -18,6 +18,7 @@ protocol MyQotAppSettingsInteractorInterface: Interactor {
 }
 
 protocol MyQotAppSettingsRouterInterface {
+    func askNotificationPermission()
     func openAppSettings()
     func openCalendarSettings()
     func openActivityTrackerSettings()

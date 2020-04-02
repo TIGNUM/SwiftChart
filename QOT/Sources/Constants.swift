@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct Defaults {
-    static let firstLevelSupportEmail = "support@qot.io"
-    static let firstLevelFeatureEmail = "feature@qot.io"
+    static let firstLevelSupportEmail = "support@tignumx.com"
+    static let firstLevelFeatureEmail = "feature@tignumx.com"
 }
 
 struct Toggle {
@@ -78,6 +78,7 @@ extension CGFloat.View.Height {
     static let ChildNode: CGFloat = 95
     static let Footer: CGFloat = 20
     static let TypingFooter: CGFloat = 80
+    static let CalendarSelectionHeader: CGFloat = 111
 }
 
 extension CGFloat.Button.Height {
@@ -98,6 +99,7 @@ extension CGFloat.Button.Width {
     static let Activate: CGFloat = 100
     static let Continue: CGFloat = 100
     static let Save: CGFloat = 80
+    static let AddNewEvent: CGFloat = 158
 }
 
 extension CGRect {

@@ -22,8 +22,9 @@ final class CoachMarksPresenter {
 
 // MARK: - CoachMarksInterface
 extension CoachMarksPresenter: CoachMarksPresenterInterface {
-    func updateView(_ presentationModel: CoachMark.PresentationModel) {
-        viewController?.updateView(createViewModel(presentationModel))
+    func updateView(_ presentationModel: [CoachMark.PresentationModel]) {
+        let models = presentationModel.compactMap { createViewModel($0) }
+        viewController?.updateView(models)
     }
 
     func setupView() {

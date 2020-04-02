@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 protocol SyncedCalendarsDelegate: class {
-    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent])
+    func didFinishSyncingCalendars(hasSyncedCalendars: Bool, qdmEvents: [QDMUserCalendarEvent])
 }
 
 protocol SyncedCalendarsViewControllerInterface: class {

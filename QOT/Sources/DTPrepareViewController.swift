@@ -14,7 +14,7 @@ import qot_dal
 final class DTPrepareViewController: DTViewController {
 
     // MARK: - Properties
-    weak var resultsDelegate: PrepareResultsDelegatge?
+    weak var delegate: ResultsPrepareViewControllerInterface?
     var prepareInteractor: DTPrepareInteractor?
     var prepareRouter: DTPrepareRouterInterface?
     private var selectedEvent: DTViewModel.Event?
@@ -32,23 +32,22 @@ final class DTPrepareViewController: DTViewController {
 
     // MARK: - Answer Handling
     override func didTapClose() {
-        if resultsDelegate != nil {
+        if delegate != nil {
             prepareRouter?.dismissResultView()
             trackQuestionInteraction()
         } else {
-            prepareInteractor?.removeCreatedCalendarEvent()
             super.didTapClose()
         }
     }
 
     override func didTapNext() {
-        if resultsDelegate != nil {
+        if delegate != nil {
             if viewModel?.question.key == Prepare.QuestionKey.BenefitsInput {
-                resultsDelegate?.didUpdateBenefits(prepareInteractor?.inputText ?? "")
+                delegate?.didUpdateBenefits(prepareInteractor?.inputText ?? "")
                 prepareRouter?.dismissResultView()
             } else {
                 let answerIds = viewModel?.selectedAnswers.compactMap { $0.remoteId } ?? []
-                resultsDelegate?.didUpdateIntentions(answerIds)
+                delegate?.didUpdateIntentions(answerIds)
                 prepareRouter?.dismissResultView()
             }
             return
@@ -59,12 +58,6 @@ final class DTPrepareViewController: DTViewController {
         switch viewModel?.question.key {
         case Prepare.QuestionKey.BenefitsInput?:
             createPreparationAndPresent()
-        case Prepare.QuestionKey.CalendarEventSelectionCritical?,
-             Prepare.QuestionKey.CalendarEventSelectionDaily?:
-            let calendarIds = prepareInteractor?.getCalendarSetting()
-                .filter { $0.syncEnabled == true }
-                .compactMap { $0.calendarId }
-            prepareRouter?.presentEditEventController(calendarIds)
         default:
             loadNextQuestion()
         }
@@ -111,7 +104,8 @@ final class DTPrepareViewController: DTViewController {
         switch questionKey {
         case Prepare.QuestionKey.ShowTBV?,
              Prepare.Key.know.rawValue?,
-             Prepare.Key.perceived.rawValue?:
+             Prepare.Key.perceived.rawValue?,
+             Prepare.Key.eventType.rawValue?:
             return answerFilter
         default:
             return nil
@@ -127,9 +121,7 @@ final class DTPrepareViewController: DTViewController {
 // MARK: - Private
 private extension DTPrepareViewController {
     func handleAnswerSelection(_ answer: DTViewModel.Answer, contentId: Int) {
-        if answer.keys.contains(Prepare.AnswerKey.OpenCheckList) {
-            prepareRouter?.presentPrepareResults(contentId)
-        } else if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {
+        if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {
             prepareInteractor?.getUserPreparation(answer: answer, event: selectedEvent) { [weak self] (preparation) in
                 self?.prepareRouter?.presentPrepareResults(preparation)
             }
@@ -165,62 +157,6 @@ private extension DTPrepareViewController {
         if var viewModel = viewModel {
             viewModel.resetSelectedAnswers()
             showQuestion(viewModel: viewModel, direction: .forward, animated: false)
-        }
-    }
-}
-
-extension DTPrepareViewController: AskPermissionDelegate {
-    func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
-        if granted {
-            presentCalendarSettings()
-        } else {
-            resetSelectedAnswers()
-        }
-    }
-}
-
-// MARK: - DTPrepareViewControllerInterface
-extension DTPrepareViewController: DTPrepareViewControllerInterface {
-    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
-        prepareRouter?.presentCalendarPermission(permissionType)
-    }
-
-    func presentCalendarSettings() {
-        self.prepareRouter?.presentCalendarSettings()
-    }
-}
-
-// MARK: - SyncedCalendarsDelegate
-extension DTPrepareViewController: SyncedCalendarsDelegate {
-    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
-        if qdmEvents.isEmpty {
-            resetSelectedAnswers()
-        } else {
-            prepareInteractor?.setUserCalendarEvents(qdmEvents)
-            loadNextQuestion()
-        }
-    }
-}
-
-extension DTPrepareViewController: EKEventEditViewDelegate {
-    func eventEditViewController(_ controller: EKEventEditViewController,
-                                 didCompleteWith action: EKEventEditViewAction) {
-        switch action {
-        case .canceled,
-             .deleted:
-            controller.dismiss(animated: true)
-        case .saved:
-            DispatchQueue.main.async { [weak self] in
-                self?.prepareInteractor?.setCreatedCalendarEvent(controller.event) { [weak self] (success) in
-                    controller.dismiss(animated: true) { [weak self] in
-                        if success {
-                            self?.loadNextQuestion()
-                        } else {
-                            self?.showAlert(type: .calendarNotSynced)
-                        }
-                    }
-                }
-            }
         }
     }
 }

@@ -22,15 +22,18 @@ final class DTRecoveryWorker: DTWorker {
         let causeContentId = causeAnswer?.targetId(.content) ?? 0
 
         ContentService.main.getContentCollectionById(causeContentId) { (content) in
-            UserService.main.createRecovery3D(fatigueContentItemId: fatigueContentItemId,
-                                              causeAnwserId: causeAnswerId,
-                                              causeContentItemId: causeContentItemId,
-                                              exclusiveContentCollectionIds: content?.exclusiveContentIds ?? [],
-                                              suggestedSolutionsContentCollectionIds: content?.suggestedContentIds ?? []) { (recovery, error) in
-                                                if let error = error {
-                                                    log("Error createRecovery: \(error.localizedDescription)", level: .error)
-                                                }
-                                                completion(recovery)
+            var model = CreateRecovery3DModel()
+            model.fatigueContentItemId = fatigueContentItemId
+            model.causeAnwserId = causeAnswerId
+            model.causeContentItemId = causeContentItemId
+            model.exclusiveContentCollectionIds = content?.exclusiveContentIds ?? []
+            model.suggestedSolutionsContentCollectionIds = content?.suggestedContentIds ?? []
+
+            UserService.main.createRecovery3D(data: model) { (recovery, error) in
+                if let error = error {
+                    log("Error createRecovery: \(error.localizedDescription)", level: .error)
+                }
+                completion(recovery)
             }
         }
     }

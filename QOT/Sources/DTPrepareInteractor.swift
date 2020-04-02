@@ -15,48 +15,18 @@ final class DTPrepareInteractor: DTInteractor {
 
     // MARK: - Properties
     private lazy var prepareWorker: DTPrepareWorker? = DTPrepareWorker()
-    private lazy var workerCalendar: WorkerCalendar? = WorkerCalendar()
-    private var events: [QDMUserCalendarEvent] = []
     private var preparations: [QDMUserPreparation] = []
-    private var createdUserCalendarEvent: QDMUserCalendarEvent?
-    var preparePresenter: DTPreparePresenterInterface?
-
-    var calendarSettings: [QDMUserCalendarSetting] = []
 
     // MARK: - DTInteractor
     override func viewDidLoad() {
         super.viewDidLoad()
-        workerCalendar?.hasSyncedCalendars { [weak self] available in
-            self?.workerCalendar?.getCalendarEvents { [weak self] events in
-                self?.setUserCalendarEvents(events)
-            }
-        }
         prepareWorker?.getPreparations { [weak self] (preparations, _) in
             self?.preparations = preparations
         }
     }
 
-    override func loadNextQuestion(selection: DTSelectionModel) {
-        if selection.question?.key == Prepare.QuestionKey.Intro {
-            checkCalendarPermissionForSelection(selection)
-        } else {
-            loadNext(selection)
-        }
-    }
-
     override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         return questionKey == Prepare.QuestionKey.ShowTBV ? tbv : nil
-    }
-
-    override func getEvents(questionKey: String?) -> [QDMUserCalendarEvent] {
-        workerCalendar?.getCalendarSettings({ [weak self] (settings) in
-            self?.calendarSettings = settings
-        })
-        return Prepare.isCalendarEventSelection(questionKey ?? "") ? events : []
-    }
-
-    override func getCalendarSetting() -> [QDMUserCalendarSetting] {
-        return calendarSettings
     }
 
     override func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
@@ -69,9 +39,34 @@ final class DTPrepareInteractor: DTInteractor {
     override func getAnswerFilter(questionKey: String?, answerFilter: String?) -> String? {
         if questionKey == Prepare.QuestionKey.BuildCritical {
             let criticalPreparations = preparations.filter { $0.type == .LEVEL_CRITICAL }
-            return criticalPreparations.isEmpty ? Prepare.AnswerKey.PeakPlanNew : answerFilter
+            return criticalPreparations.isEmpty ? Prepare.AnswerKey.PeakPlanNew : Prepare.AnswerKey.PeakPlanTemplate
         }
         return answerFilter
+    }
+
+    override func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {
+        var targetQuestionId = selection.selectedAnswers.first?.targetId(.question)
+
+        // Build Plan
+        if targetQuestionId == 100324 {
+            targetQuestionId = 100398
+        }
+
+        // PERCEIVED
+        if targetQuestionId == 100393 {
+            targetQuestionId = 100390
+        }
+
+        // KNOW
+        if targetQuestionId == 100330 {
+            targetQuestionId = 100396
+        }
+
+        // TBV
+        if targetQuestionId == 100329 {
+            targetQuestionId = 100399
+        }
+        return questions.filter { $0.remoteID == targetQuestionId }.first
     }
 }
 
@@ -82,23 +77,24 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
-        let event = createdUserCalendarEvent ?? events.filter { $0.remoteID == event?.remoteId }.first
         let perceivedIds = getAnswerIds(.perceived, selectedAnswers)
         let knowIds = getAnswerIds(.know, selectedAnswers)
         let feelIds = getAnswerIds(.feel, selectedAnswers)
+        let preparationNames = preparations.compactMap { $0.name }
         prepareWorker?.getRelatedStrategies(eventAnswer?.targetId(.content) ?? 0) { [weak self] (strategyIds) in
-            self?.prepareWorker?.createUserPreparation(level: .LEVEL_CRITICAL,
-                                                       benefits: self?.inputText,
-                                                       answerFilter: Prepare.AnswerFilter,
-                                                       contentCollectionId: QDMUserPreparation.Level.LEVEL_CRITICAL.contentID,
-                                                       relatedStrategyId: eventAnswer?.targetId(.content) ?? 0,
-                                                       strategyIds: strategyIds,
-                                                       preceiveAnswerIds: perceivedIds,
-                                                       knowAnswerIds: knowIds,
-                                                       feelAnswerIds: feelIds,
-                                                       eventType: eventAnswer?.title ?? "",
-                                                       event: event ?? QDMUserCalendarEvent(),
-                                                       completion)
+            var model = CreateUserPreparationModel()
+            model.level = .LEVEL_CRITICAL
+            model.benefits = self?.inputText
+            model.answerFilter = Prepare.AnswerFilter
+            model.contentCollectionId = QDMUserPreparation.Level.LEVEL_CRITICAL.contentID
+            model.relatedStrategyId = eventAnswer?.targetId(.content) ?? 0
+            model.strategyIds = strategyIds
+            model.preceiveAnswerIds = perceivedIds
+            model.knowAnswerIds = knowIds
+            model.feelAnswerIds = feelIds
+            model.eventType = eventAnswer?.title ?? ""
+            model.name = self?.createUniqueName(eventAnswer?.title ?? "", in: preparationNames)
+            self?.prepareWorker?.createUserPreparation(from: model, completion)
         }
     }
 
@@ -110,21 +106,22 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                             calendarEvent: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let existingPrep = preparations.filter { $0.remoteID == event?.remoteId }.first
-        let calendarEvent = createdUserCalendarEvent ?? events.filter { $0.remoteID == calendarEvent?.remoteId }.first
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
-        self.prepareWorker?.createUserPreparation(level: existingPrep?.type ?? .LEVEL_CRITICAL,
-                                                  benefits: existingPrep?.benefits,
-                                                  answerFilter: existingPrep?.answerFilter,
-                                                  contentCollectionId: existingPrep?.contentCollectionId ?? 0,
-                                                  relatedStrategyId: existingPrep?.relatedStrategyId ?? 0,
-                                                  strategyIds: existingPrep?.strategyIds ?? [],
-                                                  preceiveAnswerIds: existingPrep?.preceiveAnswerIds ?? [],
-                                                  knowAnswerIds: existingPrep?.knowAnswerIds ?? [],
-                                                  feelAnswerIds: existingPrep?.feelAnswerIds ?? [],
-                                                  eventType: eventAnswer?.title ?? "",
-                                                  event: calendarEvent ?? QDMUserCalendarEvent(),
-                                                  completion)
+        var model = CreateUserPreparationModel()
+        let preparationNames = preparations.compactMap { $0.name }
+        model.level = existingPrep?.type ?? .LEVEL_CRITICAL
+        model.benefits = existingPrep?.benefits
+        model.answerFilter = existingPrep?.answerFilter
+        model.contentCollectionId = existingPrep?.contentCollectionId ?? 0
+        model.relatedStrategyId = existingPrep?.relatedStrategyId ?? 0
+        model.strategyIds = existingPrep?.strategyIds ?? []
+        model.preceiveAnswerIds = existingPrep?.preceiveAnswerIds ?? []
+        model.knowAnswerIds = existingPrep?.knowAnswerIds ?? []
+        model.feelAnswerIds = existingPrep?.feelAnswerIds ?? []
+        model.eventType = eventAnswer?.title ?? ""
+        model.name = createUniqueName(existingPrep?.eventType ?? "", in: preparationNames)
+        self.prepareWorker?.createUserPreparation(from: model, completion)
     }
 
     func getUserPreparation(answer: DTViewModel.Answer,
@@ -132,63 +129,38 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
         let relatedStrategyId = answer.targetId(.content) ?? 0
-        let eventType = answer.title
-        let userEvent = createdUserCalendarEvent ?? events.filter { $0.remoteID == event?.remoteId }.first
+        let preparationNames = preparations.compactMap { $0.name }
+        let eventType = createUniqueName(answer.title, in: preparationNames)
         prepareWorker?.createPreparationDaily(answerFilter: answerFilter,
                                               relatedStategyId: relatedStrategyId,
                                               eventType: eventType,
-                                              event: userEvent ?? QDMUserCalendarEvent(),
                                               completion)
     }
 
-    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void) {
-        workerCalendar?.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
-            self?.workerCalendar?.storeLocalEvent(event?.eventIdentifier,
-                                                  qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
-            self?.createdUserCalendarEvent = userCalendarEvent
-            completion(userCalendarEvent != nil)
-        }
-    }
-
-    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent]) {
-        self.events.removeAll()
-        self.events = events.sorted(by: { (lhs, rhs) -> Bool in
-            return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
-        }).unique
-    }
-
-    func removeCreatedCalendarEvent() {
-        let externalIdentifier = createdUserCalendarEvent?.storedExternalIdentifier.components(separatedBy: "[//]").first
-        workerCalendar?.deleteLocalEvent(externalIdentifier)
-    }
-}
-
-// MARK: - CalendarPermission
-private extension DTPrepareInteractor {
-    func checkCalendarPermissionForSelection(_ selection: DTSelectionModel) {
-        let answerKeys = selection.selectedAnswers.first?.keys ?? []
-        if answerKeys.contains(Prepare.AnswerKey.EventTypeSelectionDaily) ||
-            answerKeys.contains(Prepare.AnswerKey.EventTypeSelectionCritical) {
-
-            switch CalendarPermission().authorizationStatus {
-            case .notDetermined:
-                preparePresenter?.presentCalendarPermission(.calendar)
-            case .denied, .restricted:
-                preparePresenter?.presentCalendarPermission(.calendarOpenSettings)
-            default:
-                workerCalendar?.hasSyncedCalendars { [weak self] available in
-                    if available == true {
-                        self?.loadNext(selection)
-                    } else {
-                        self?.preparePresenter?.presentCalendarSettings()
-                    }
-                }
+    func createUniqueName(_ defaultName: String, in names: [String]) -> String {
+        let existingTitles = names.compactMap({ $0.trimmingCharacters(in: .whitespacesAndNewlines)})
+        var hasSameName = false
+        for title in existingTitles {
+            guard defaultName != title else {
+                hasSameName = true
+                break
             }
         }
-    }
-
-    func loadNext(_ selection: DTSelectionModel) {
-        super.loadNextQuestion(selection: selection)
+        for title in existingTitles {
+            guard defaultName != title else {
+                hasSameName = true
+                break
+            }
+        }
+        var newName = defaultName
+        if hasSameName {
+            var postfix = 1
+            while existingTitles.contains(newName) {
+                newName = defaultName + " \(postfix)"
+                postfix += 1
+            }
+        }
+        return newName
     }
 }
 

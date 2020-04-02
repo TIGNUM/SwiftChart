@@ -21,7 +21,8 @@ protocol DailyBriefViewControllerDelegate: class {
     func saveTargetValue(value: Int?)
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
-    func presentCopyRight(copyrightURL: String?)
+    func presentPopUp(copyrightURL: String?, description: String?)
+    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
     func reloadSprintCell(cell: UITableViewCell)
     func didUpdateLevel5()
     func displayCoachPreparationScreen()
@@ -49,6 +50,8 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     private var selectedToolID: Int?
 
     private lazy var router = DailyBriefRouter(viewController: self)
+
+    private var isDragging = false
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -156,6 +159,8 @@ extension DailyBriefViewController {
                 return getFromTignumMessageCell(tableView, indexPath, nil)
             case 14:
                 return getWeatherCell(tableView, indexPath, nil)
+            case 15:
+                return getMindsetShifterCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -239,6 +244,8 @@ extension DailyBriefViewController {
             return getGuidedTrack(tableView, indexPath, showDivider, bucketItem as? GuidedTrackViewModel)
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
+        case .MINDSET_SHIFTER?:
+            return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
         default:
            return UITableViewCell()
         }
@@ -273,7 +280,21 @@ extension DailyBriefViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         navBarHeader?.updateAlpha(basedOn: scrollView.contentOffset.y)
         delegate?.handlePan(offsetY: scrollView.contentOffset.y,
-                            isDragging: scrollView.isDragging && !scrollView.isDecelerating)
+                            isDragging: isDragging,
+                            isScrolling: scrollView.isDragging || scrollView.isDecelerating)
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isDragging = true
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        isDragging = false
+        scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidScroll(scrollView)
     }
 }
 
@@ -413,6 +434,20 @@ private extension DailyBriefViewController {
                         _ aboutMeViewModel: AboutMeViewModel?) -> UITableViewCell {
         let cell: AboutMeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: aboutMeViewModel)
+        return cell
+    }
+
+    /**
+     * Method name: getMindsetShifterCell.
+     * Description: Placeholder to display the Mindset Shifter Information.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getMindsetShifterCell(_ tableView: UITableView,
+                        _ indexPath: IndexPath,
+                        _ mindsetShifterViewModel: MindsetShifterViewModel?) -> UITableViewCell {
+        let cell: MindsetShifterCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: mindsetShifterViewModel)
+        cell.delegate = self
         return cell
     }
 
@@ -685,6 +720,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
+        tableView.registerDequeueable(MindsetShifterCell.self)
     }
 
     func scrollToSection(at: Int) {
@@ -694,6 +730,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 // MARK: - DailyBriefViewControllerDelegate
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+
     func didChangeLocationPermission(granted: Bool) {
         if granted {
             requestSynchronization(.DAILY_BRIEF_WEATHER, .DOWN_SYNC)
@@ -728,7 +765,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 // MARK: - Navigation
 extension DailyBriefViewController {
     func showCustomizeTarget() {
-        interactor.customzieSleepQuestion { [weak self] (question) in
+        interactor.customizeSleepQuestion { [weak self] (question) in
             self?.router.presentCustomizeTarget(question)
         }
     }
@@ -749,8 +786,8 @@ extension DailyBriefViewController {
         router.showMyDataScreen()
     }
 
-    func presentCopyRight(copyrightURL: String?) {
-        router.presentCopyRight(copyrightURL: copyrightURL)
+    func presentPopUp(copyrightURL: String?, description: String?) {
+        router.presentPopUp(copyrightURL: copyrightURL, description: description)
     }
 
     func openTools(toolID: Int?) {
@@ -769,6 +806,10 @@ extension DailyBriefViewController {
 
     func presentMyToBeVision() {
         router.showTBV()
+    }
+
+    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?) {
+        router.presentMindsetResults(mindsetShifter)
     }
 
     @objc func openStrategy(sender: UITapGestureRecognizer) {
@@ -793,7 +834,7 @@ extension DailyBriefViewController: QuestionnaireAnswer {
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = 0
         if index == NSNotFound { return }
-        interactor.customzieSleepQuestion { (question) in
+        interactor.customizeSleepQuestion { (question) in
             let answers = question?.answers?.count ?? 0
             question?.selectedAnswerIndex = (answers - 1) - answer
         }

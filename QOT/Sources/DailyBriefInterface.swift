@@ -10,6 +10,13 @@ import Foundation
 import qot_dal
 import DifferenceKit
 
+enum MyPeakPerformanceBucketType: String, CaseIterable {
+    case IN_THREE_DAYS
+    case TOMORROW
+    case TODAY
+    case REFLECT
+}
+
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
@@ -35,19 +42,19 @@ protocol DailyBriefInteractorInterface: Interactor {
 
     func saveAnswerValue(_ value: Int)
     func saveTargetValue(value: Int?)
-    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
+    func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
 }
 
 protocol DailyBriefRouterInterface: BaseRouterInterface {
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
-    func presentCopyRight(copyrightURL: String?)
+    func presentPopUp(copyrightURL: String?, description: String?)
     func presentSolveResults(solve: QDMSolve)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
     func presentDailyCheckInQuestions()
     func presentCoachPreparation()
-
+    func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?)
     func showMyDataScreen()
 
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)

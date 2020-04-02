@@ -38,10 +38,10 @@ final class DailyCheckinSHPICell: BaseDailyBriefCell {
         skeletonManager.hide()
         setupRatingChart(rating: model.shpiRating ?? 0)
         baseHeaderView?.configure(title: model.title, subtitle: nil)
-        ThemeText.shpiContent.apply(model.shpiContent, to: shpiContentLabel)
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
         ThemeText.shpiQuestion.apply(model.shpiQuestion, to: shpiQuestionLabel)
         ThemeText.shpiContent.apply(model.shpiContent, to: shpiContentLabel)
+        ThemeText.shpiSubtitle.apply(AppTextService.get(.daily_brief_section_daily_insights_shpi_title_rated_yourself).uppercased(), to: barsTitleLabel)
     }
 }
 

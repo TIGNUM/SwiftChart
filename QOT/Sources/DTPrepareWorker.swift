@@ -23,53 +23,29 @@ final class DTPrepareWorker: DTWorker {
     func createPreparationDaily(answerFilter: String,
                                 relatedStategyId: Int,
                                 eventType: String,
-                                event: QDMUserCalendarEvent,
                                 _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        UserService.main.createUserPreparation(level: QDMUserPreparation.Level.LEVEL_DAILY,
-                                               benefits: nil,
-                                               answerFilter: nil,
-                                               contentCollectionId: QDMUserPreparation.Level.LEVEL_DAILY.contentID,
-                                               relatedStrategyId: relatedStategyId,
-                                               strategyIds: [],
-                                               preceiveAnswerIds: [],
-                                               knowAnswerIds: [],
-                                               feelAnswerIds: [],
-                                               eventType: eventType,
-                                               event: event) { (preparation, error) in
-                                                if let error = error {
-                                                    log("Error createUserPreparation DAILY: \(error.localizedDescription)", level: .error)
-                                                }
-                                                completion(preparation)
+        var model = CreateUserPreparationModel()
+        model.level = QDMUserPreparation.Level.LEVEL_DAILY
+        model.benefits = nil
+        model.answerFilter = nil
+        model.contentCollectionId = QDMUserPreparation.Level.LEVEL_DAILY.contentID
+        model.relatedStrategyId = relatedStategyId
+        model.eventType = eventType
+        UserService.main.createUserPreparation(from: model) { (preparation, error) in
+            if let error = error {
+                log("Error createUserPreparation DAILY: \(error.localizedDescription)", level: .error)
+            }
+            completion(preparation)
         }
     }
 
-    func createUserPreparation(level: QDMUserPreparation.Level,
-                               benefits: String?,
-                               answerFilter: String?,
-                               contentCollectionId: Int,
-                               relatedStrategyId: Int,
-                               strategyIds: [Int],
-                               preceiveAnswerIds: [Int],
-                               knowAnswerIds: [Int],
-                               feelAnswerIds: [Int],
-                               eventType: String,
-                               event: QDMUserCalendarEvent,
+    func createUserPreparation(from model: CreateUserPreparationModel,
                                _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        UserService.main.createUserPreparation(level: level,
-                                               benefits: benefits,
-                                               answerFilter: answerFilter,
-                                               contentCollectionId: contentCollectionId,
-                                               relatedStrategyId: relatedStrategyId,
-                                               strategyIds: strategyIds,
-                                               preceiveAnswerIds: preceiveAnswerIds,
-                                               knowAnswerIds: knowAnswerIds,
-                                               feelAnswerIds: feelAnswerIds,
-                                               eventType: eventType,
-                                               event: event) { (preparation, error) in
-                                                if let error = error {
-                                                    log("Error createUserPreparation: \(error.localizedDescription)", level: .error)
-                                                }
-                                                completion(preparation)
+        UserService.main.createUserPreparation(from: model) { (preparation, error) in
+            if let error = error {
+                log("Error createUserPreparation: \(error.localizedDescription)", level: .error)
+            }
+            completion(preparation)
         }
     }
 

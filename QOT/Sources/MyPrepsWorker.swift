@@ -19,16 +19,24 @@ final class MyPrepsWorker {
     // MARK: - Functions
     func preparations(completion: @escaping (MyPrepsModel?) -> Void) {
         UserService.main.getUserPreparations { [weak self] (preparations, initialized, error) in
-            var prepItems = [MyPrepsModel.Item]()
+            var criticalItems = [MyPrepsModel.Item]()
+            var everydayItems = [MyPrepsModel.Item]()
             preparations?.forEach {
                 let dateString = DateFormatter.ddMMM.string(from: $0.eventDate ?? Date())
                 let prepItem = MyPrepsModel.Item(title: $0.name ?? "",
-                                                  date: dateString,
-                                                  eventType: $0.eventType ?? "",
-                                                  qdmPrep: $0)
-                prepItems.append(prepItem)
+                                                 date: dateString,
+                                                 eventType: $0.eventType ?? "",
+                                                 type: $0.type ?? "",
+                                                 missingEvent: $0.missingEvent,
+                                                 calendarEventTitle: $0.eventTitle ?? "",
+                                                 qdmPrep: $0)
+                if $0.type == "critical" {
+                    criticalItems.append(prepItem)
+                } else {
+                    everydayItems.append(prepItem)
+                }
             }
-            self?.model = MyPrepsModel(items: prepItems)
+            self?.model = MyPrepsModel(items: [criticalItems, everydayItems])
             completion(self?.model)
         }
     }
@@ -98,14 +106,15 @@ final class MyPrepsWorker {
 extension MyPrepsWorker {
     func remove(segmentedControl: Int, at indexPath: IndexPath, completion: @escaping () -> Void) {
         if segmentedControl == 0 {
-            if let qdmPrep = model?.items[indexPath.row].qdmPrep {
+            let item = model?.items[indexPath.section][indexPath.row]
+            if let qdmPrep = item?.qdmPrep {
                 let externalIdentifier = qdmPrep.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first
                 WorkerCalendar().deleteLocalEvent(externalIdentifier)
                 UserService.main.deleteUserPreparation(qdmPrep) { [weak self] (error) in
                     if let error = error {
                         log("Error deleteUserPreparation: \(error.localizedDescription)", level: .error)
                     }
-                    self?.model?.items.remove(at: indexPath.row)
+                    self?.model?.items[indexPath.section].remove(at: indexPath.row)
                     completion()
                 }
             }

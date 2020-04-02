@@ -27,9 +27,9 @@ extension MyPrepsRouter: MyPrepsRouterInterface {
     }
 
     func createEventPlan() {
-        let configurator = DTPrepareConfigurator.make()
-        let controller = DTPrepareViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
+        if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
+        }
     }
 
     func createRecoveryPlan() {

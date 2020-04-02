@@ -31,6 +31,7 @@ final class MyPrepsInteractor {
 
 // MARK: - MyPrepsInteractorInterface
 extension MyPrepsInteractor: MyPrepsInteractorInterface {
+
     func fetchItemsAndUpdateView() {
         worker.createModels {
             self.presenter.dataUpdated()
@@ -38,7 +39,15 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func numberOfRowsPreparations() -> Int {
-        return (worker.model?.items.count ?? 0)
+        return (worker.model?.items.first?.count ?? 0) + (worker.model?.items.last?.count ?? 0)
+    }
+
+    func numberOfRowsCriticalPreparations() -> Int {
+        return (worker.model?.items.first?.count ?? 0)
+    }
+
+    func numberOfRowsEverydayPreparations() -> Int {
+        return  (worker.model?.items.last?.count ?? 0)
     }
 
     func numberOfRowsRecoveries() -> Int {
@@ -49,11 +58,12 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         return (worker.mindModel?.items.count ?? 0)
     }
 
-    func itemPrep(at indexPath: IndexPath) -> MyPrepsModel.Item? {
-        guard worker.model?.items.count ?? 0 > indexPath.row else {
-            return nil
-        }
-        return worker.model?.items[indexPath.row]
+    var criticalPrepItems: [MyPrepsModel.Item]? {
+        return worker.model?.items.first
+    }
+
+    var everydayPrepItems: [MyPrepsModel.Item]? {
+        return worker.model?.items.last
     }
 
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Item? {
@@ -95,8 +105,8 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func presentPreparation(item: QDMUserPreparation, viewController: UIViewController) {
-        let configurator = PrepareResultsConfigurator.make(item, resultType: .prepareMyPlans)
-        let controller = PrepareResultsViewController(configure: configurator)
+        let configurator = ResultsPrepareConfigurator.make(item, resultType: .prepareMyPlans)
+        let controller = ResultsPrepareViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
 

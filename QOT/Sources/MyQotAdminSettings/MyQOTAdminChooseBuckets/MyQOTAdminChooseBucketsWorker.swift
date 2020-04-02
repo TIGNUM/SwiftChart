@@ -33,7 +33,7 @@ final class MyQOTAdminChooseBucketsWorker {
                                                                  (key: .WEATHER, value: false),
                                                                  (key: .GUIDE_TRACK, value: false)]
     // MARK: - Init
-    init() { /**/
+    init() {
         updateDisplayingBuckets()
     }
 

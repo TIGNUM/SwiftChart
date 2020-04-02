@@ -16,7 +16,7 @@ public extension Notification.Name {
 
 protocol CoachCollectionViewControllerDelegate: class {
     func didTapCancel()
-    func handlePan(offsetY: CGFloat, isDragging: Bool)
+    func handlePan(offsetY: CGFloat, isDragging: Bool, isScrolling: Bool)
     func moveToCell(item: Int)
 }
 
@@ -200,23 +200,32 @@ extension CoachCollectionViewController {
 
 extension CoachCollectionViewController {
 
-    private func updatePan(currentY: CGFloat) {
+    private func updatePan(currentY: CGFloat, isDragging: Bool) {
         let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
         bottomSearchViewConstraint.constant = panActive ? -currentY : -currentViewsYPositionInWindow
         let duration: Double = panSearchShowing ? 0.25 : 0.0
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
-        refreshCoachButton()
+        refreshCoachButton(isDragging: isDragging)
         searchViewController?.showing = panSearchShowing
         if panSearchShowing {
             searchViewController?.activate(duration)
         }
     }
 
-    private func refreshCoachButton() {
-        let newAlpha: CGFloat = 1 - min((CGFloat(bottomSearchViewConstraint.constant) / 100), 1)
-        coachButton.alpha = newAlpha
+    private func refreshCoachButton(isDragging: Bool) {
+        if isDragging, bottomSearchViewConstraint.constant <= 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.coachButton.alpha = 0
+            }
+        } else if !isDragging || bottomSearchViewConstraint.constant > 0 {
+            let newAlpha: CGFloat = abs(1 - min((CGFloat(bottomSearchViewConstraint.constant) / 100), 1))
+            let alpha = min(newAlpha, 1.0)
+            UIView.animate(withDuration: 0.5) {
+                self.coachButton.alpha = alpha
+            }
+        }
     }
 
     private func setupSearchConstraints(_ targetView: UIView, parentView: UIView) {
@@ -302,13 +311,13 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
             let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
             bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
             UIView.animate(withDuration: 0.25) {
-                self.refreshCoachButton()
+                self.refreshCoachButton(isDragging: false)
                 searchViewController.view.superview?.layoutIfNeeded()
             }
         }
     }
 
-    func handlePan(offsetY: CGFloat, isDragging: Bool) {
+    func handlePan(offsetY: CGFloat, isDragging: Bool, isScrolling: Bool) {
         if panSearchShowing { return }
 
         let maxDistance = displaySearchDragOffset
@@ -327,7 +336,7 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
             panSearchShowing = true
             newY = -view.frame.height
         }
-        updatePan(currentY: newY)
+        updatePan(currentY: newY, isDragging: isDragging)
     }
 
     func moveToCell(item: Int) {
@@ -349,7 +358,7 @@ private extension CoachCollectionViewController {
 extension CoachCollectionViewController {
 
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+                                    shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }

@@ -12,7 +12,6 @@ import qot_dal
 final class DTPreparePresenter: DTPresenter {
 
     // MARK: - Properties
-    weak var prepareViewController: DTPrepareViewControllerInterface?
     var intensionViewModel: DTViewModel?
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
@@ -27,7 +26,10 @@ final class DTPreparePresenter: DTPresenter {
     }
 
     override func previousIsHidden(questionKey: String) -> Bool {
-        return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
+        return
+            questionKey == Prepare.QuestionKey.EventTypeSelectionCritical ||
+            questionKey == Prepare.QuestionKey.EventTypeSelectionDaily ||
+            questionKey == Prepare.QuestionKey.Last
     }
 
     override func getNavigationButton(_ presentationModel: DTPresentationModel, isDark: Bool) -> NavigationButton? {
@@ -46,15 +48,30 @@ final class DTPreparePresenter: DTPresenter {
         }
         return super.getNavigationButton(presentationModel, isDark: isDark)
     }
-}
 
-// MARK: - DTPrepareInterface
-extension DTPreparePresenter: DTPreparePresenterInterface {
-    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
-        prepareViewController?.presentCalendarPermission(permissionType)
-    }
+    override func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [QDMAnswer] {
+        guard var filter = answerFilter else { return question?.answers ?? [] }
+        // TODO: https://tignum.atlassian.net/browse/QOT-2850 - Update Survey Answer Keys
+        if filter == "x_prepare_event_type_relationship_meeting_with_conflicts" {
+            filter = "x_prepare_event_type_relationship_meeting_with_conflict"
+        }
 
-    func presentCalendarSettings() {
-        prepareViewController?.presentCalendarSettings()
+        if filter == "x_prepare_event_type_relationship_pay_raise" {
+            filter = "x_prepare_event_type_relationship_negotiation_pay_raise"
+        }
+
+        if question?.key == Prepare.QuestionKey.BuildCritical {
+            var answers: [QDMAnswer] = []
+            let newPalnAnswer = question?.answers.filter { $0.remoteID == 102479 }.first
+            let templateAnswer = question?.answers.filter { $0.keys.contains(filter) }.first
+            if let new = newPalnAnswer {
+                answers.append(new)
+            }
+            if let template = templateAnswer {
+                answers.append(template)
+            }
+            return answers
+        }
+        return question?.answers.filter { $0.keys.contains(filter) } ?? []
     }
 }

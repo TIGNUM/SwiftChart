@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>QOT</string>
+	<string>TIGNUM X</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -26,21 +26,19 @@
 		<dict>
 			<key>NSExtensionActivationRule</key>
 			<string>SUBQUERY (
-                extensionItems,
-                $extensionItem,
-                SUBQUERY (
-                $extensionItem.attachments,
-                $attachment,
-                ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url"
-                ).@count == $extensionItem.attachments.@count
-                ).@count == 1</string>
-			<key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
-			<integer>1</integer>
-			<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
-			<integer>1</integer>
+    extensionItems,
+    $extensionItem,
+    SUBQUERY (
+        $extensionItem.attachments,
+        $attachment,
+        (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.utf8-plain-text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url")
+        AND NOT (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.file-url")
+    ).@count != 0
+).@count != 0</string>
 		</dict>
-		<key>NSExtensionJavaScriptPreprocessingFile</key>
-		<string>Share</string>
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>

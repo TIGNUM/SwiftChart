@@ -25,6 +25,12 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         case recovery
     }
 
+    enum PrepTypes: Int {
+        case criticalEvents = 0
+        case everyday
+        case total
+    }
+
     // MARK: - Properties
 
     var interactor: MyPrepsInteractorInterface!
@@ -48,7 +54,6 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorView: UIView!
-
     private var editPressed: Bool = false
     private var canDelete: Bool = false
     private var viewModel: MyPlansViewModel!
@@ -184,6 +189,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         refreshBottomNavigationItems()
         updateControls()
         showEmptyStateViewIfNeeded(segmentedControl)
+        tableView.reloadData()
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
@@ -234,11 +240,13 @@ private extension MyPrepsViewController {
         updateEditButton(hidden: false)
         tableView.alpha = 1
         updateButton()
+        let title = AppTextService.get(.my_qot_my_plans_section_header_title)
         switch sender.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsPreparations() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noPreparationsView.isHidden = false
                 tableView.alpha = 0
                 updateEditButton(hidden: true)
@@ -247,6 +255,7 @@ private extension MyPrepsViewController {
             bottomNavigationItems.rightBarButtonItems = [addMindsetShiftButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsMindsetShifters() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
@@ -255,6 +264,7 @@ private extension MyPrepsViewController {
             bottomNavigationItems.rightBarButtonItems = [planRecoveryButton]
             refreshBottomNavigationItems()
             if interactor.numberOfRowsRecoveries() == 0 {
+                baseHeaderView?.configure(title: title, subtitle: nil)
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
@@ -300,6 +310,8 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 90
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
@@ -319,7 +331,14 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            return interactor.numberOfRowsPreparations()
+            switch section {
+            case PrepTypes.criticalEvents.rawValue:
+                return interactor?.criticalPrepItems?.count ?? 0
+            case PrepTypes.everyday.rawValue:
+                return interactor?.everydayPrepItems?.count ?? 0
+            default:
+                return 0
+            }
         case SegmentView.mindsetShifter.rawValue:
             return interactor.numberOfRowsMindsetShifters()
         case SegmentView.recovery.rawValue:
@@ -337,6 +356,51 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCellEditingStyle.init(rawValue: 3)!
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        switch segmentedControl.selectedSegmentIndex {
+        case SegmentView.myPreps.rawValue:
+            return PrepTypes.total.rawValue
+        default:
+            return 1
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch segmentedControl.selectedSegmentIndex {
+        case SegmentView.myPreps.rawValue:
+            switch section {
+            case PrepTypes.criticalEvents.rawValue:
+                let count = interactor?.numberOfRowsCriticalPreparations()
+                let title = AppTextService.get(.my_qot_my_plans_section_header_critical)
+                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
+            case PrepTypes.everyday.rawValue:
+                let count = interactor?.numberOfRowsEverydayPreparations()
+                let title = AppTextService.get(.my_qot_my_plans_section_header_everyday)
+                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
+            default:
+                return nil
+            }
+        default:
+            return nil
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch segmentedControl.selectedSegmentIndex {
+        case SegmentView.myPreps.rawValue:
+            switch section {
+            case PrepTypes.criticalEvents.rawValue:
+                return interactor?.numberOfRowsCriticalPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+            case PrepTypes.everyday.rawValue:
+                return interactor?.numberOfRowsEverydayPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+            default:
+                return 0
+            }
+        default:
+            return 0
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyPrepsTableViewCell = tableView.dequeueCell(for: indexPath)
         if editPressed == true {
@@ -344,9 +408,28 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            let item = interactor.itemPrep(at: indexPath)
+            let prepItems = [interactor.criticalPrepItems, interactor?.everydayPrepItems]
+            let item = prepItems[indexPath.section]?[indexPath.row]
             let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
-            cell.configure(title: item?.title.uppercased(), subtitle: subtitle)
+            var title = ""
+            title = item?.calendarEventTitle.uppercased() ?? ""
+            cell.subtitleView.isHidden = false
+            switch indexPath.section {
+            case PrepTypes.criticalEvents.rawValue:
+                if item?.missingEvent == true {
+                    title = item?.title.uppercased() ?? ""
+                    cell.subtitleView.isHidden = true
+                }
+                cell.configure(title: title, subtitle: subtitle)
+            case PrepTypes.everyday.rawValue:
+                if item?.missingEvent == true {
+                    title = item?.eventType.uppercased() ?? ""
+                    cell.subtitleView.isHidden = true
+                }
+                cell.configure(title: title, subtitle: subtitle)
+            default:
+                break
+            }
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor.itemMind(at: indexPath)
             cell.configure(title: item?.title, subtitle: item?.date)
@@ -363,21 +446,25 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView.isEditing {
             updateDeleteButtonIfNeeded(tableView)
         } else {
-            if segmentedControl.selectedSegmentIndex == 0 {
-                if let item = interactor.itemPrep(at: indexPath), tableView.isEditing == false {
+            switch segmentedControl.selectedSegmentIndex {
+            case SegmentView.myPreps.rawValue:
+                let prepItems = [interactor.criticalPrepItems, interactor?.everydayPrepItems]
+                if let item = prepItems[indexPath.section]?[indexPath.row], tableView.isEditing == false {
                     tableView.deselectRow(at: indexPath, animated: true)
                     interactor.presentPreparation(item: item.qdmPrep, viewController: self)
                 }
-            } else if segmentedControl.selectedSegmentIndex == 1 {
+            case SegmentView.mindsetShifter.rawValue:
                 if let item = interactor.itemMind(at: indexPath), tableView.isEditing == false {
                     tableView.deselectRow(at: indexPath, animated: true)
                     interactor.presentMindsetShifter(item: item.qdmMind, viewController: self)
                 }
-            } else if segmentedControl.selectedSegmentIndex == 2 {
+            case SegmentView.recovery.rawValue:
                 if let item = interactor.itemRec(at: indexPath), tableView.isEditing == false {
                     tableView.deselectRow(at: indexPath, animated: true)
                     interactor.present3DRecovery(item: item.qdmRec, viewController: self)
                 }
+            default:
+                break
             }
             updateIndicator()
         }

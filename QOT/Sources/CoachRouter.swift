@@ -46,9 +46,9 @@ extension CoachRouter: CoachRouterInterface {
             let controller = DTSprintViewController(configure: configurator)
             viewController?.present(controller, animated: true)
         case .event:
-            let configurator = DTPrepareConfigurator.make()
-            let controller = DTPrepareViewController(configure: configurator)
-            viewController?.present(controller, animated: true)
+            if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+                AppDelegate.current.launchHandler.process(url: launchURL)
+            }
         case .challenge:
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
