@@ -53,11 +53,7 @@ extension ChoiceWorker {
     }
 
     var selected: [Choice] {
-        return dataSource.flatMap { (node: CollapsableNode) -> [Choice] in
-            return node.children.compactMap { (choice: Choice) -> Choice? in
-                return choice.selected == true ? choice : nil
-            }
-        }
+        return dataSource.flatMap { $0.children }.filter { $0.selected }
     }
 }
 

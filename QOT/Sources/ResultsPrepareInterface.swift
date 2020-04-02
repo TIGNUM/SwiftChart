@@ -32,7 +32,7 @@ protocol ResultsPrepareInteractorInterface: Interactor {
 
     func updateBenefits(_ benefits: String)
     func updateIntentions(_ answerIds: [Int])
-    func updateStrategies(_ selectedIds: [Int])
+    func updateStrategies(_ selectedIds: [Int], selectedItemIds: [Int])
     func updatePreparationEvent(event: QDMUserCalendarEvent?)
     func removePreparationCalendarEvent()
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)

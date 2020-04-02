@@ -131,10 +131,11 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         }
     }
 
-    func updateStrategies(_ selectedIds: [Int]) {
+    func updateStrategies(_ selectedIds: [Int], selectedItemIds: [Int]) {
         preparation?.strategyIds = selectedIds
-        worker.getStrategies(selectedIds) { [weak self] (strategies) in
+        worker.getStrategies(selectedIds, selectedItemIds) { [weak self] (strategies, strategyItems) in
             self?.preparation?.strategies = strategies ?? []
+            self?.preparation?.strategyItems = strategyItems ?? []
             self?.presenter.createListItems(preparation: self?.preparation)
         }
     }

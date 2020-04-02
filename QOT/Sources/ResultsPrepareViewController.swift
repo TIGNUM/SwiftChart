@@ -290,8 +290,9 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
 extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
     func dismiss(_ viewController: UIViewController, selections: [Choice]) {
         let selectedIds = selections.compactMap { $0.contentId }
+        let selectedIemIds = selections.compactMap { $0.contentItemId }
         viewController.dismiss(animated: true) { [weak self] in
-            self?.interactor.updateStrategies(selectedIds)
+            self?.interactor.updateStrategies(selectedIds, selectedItemIds: selectedIemIds)
         }
     }
 
