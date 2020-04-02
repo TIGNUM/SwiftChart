@@ -1236,11 +1236,15 @@ enum ThemeText {
              .mySprintDetailsProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .center)
-        case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle, .reference,
-             .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
-             .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
-                                        alignment: alignment ?? .right)
+        case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle,
+              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
+              .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText:
+             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
+                                         alignment: alignment ?? .left)
+
+         case .reference:
+             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
+                                                    alignment: alignment ?? .right)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead,
              .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle,
              .dailyBriefFromTignumTitle:
