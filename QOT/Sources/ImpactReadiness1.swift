@@ -18,6 +18,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBOutlet private weak var impactReadinessScore: UILabel!
     @IBOutlet private weak var impactReadinessOutOf100Label: UILabel!
     @IBOutlet private weak var content: UILabel!
+    @IBOutlet weak var intro: UILabel!
     @IBOutlet private weak var impactReadinessButton: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var score: Int = 0
@@ -66,7 +67,8 @@ final class ImpactReadiness1: BaseDailyBriefCell {
                                   model.domainModel?.dailyCheckInResult == nil)
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
-        ThemeText.dailyBriefSubtitle.apply(model.readinessIntro, to: content)
+        ThemeText.dailyBriefSubtitle.apply(model.readinessIntro, to: intro)
+        ThemeText.dailyBriefSand.apply(model.feedback, to: content)
         let score: Int = model.readinessScore ?? 0
         if score == -1 {
             ThemeText.readinessScore.apply(" - ", to: impactReadinessScore)

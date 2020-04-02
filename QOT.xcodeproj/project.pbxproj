@@ -319,6 +319,7 @@
 		38C23E5C2423D9B70034571B /* CalendarEventSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5B2423D9B70034571B /* CalendarEventSelectionViewController.xib */; };
 		38C23E5E2423E70F0034571B /* CalendarEventSelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E5D2423E70F0034571B /* CalendarEventSelectionHeaderView.swift */; };
 		38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */; };
+		38C6516F24360188002CE496 /* WorkerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6516E24360188002CE496 /* WorkerContent.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */; };
 		38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */; };
@@ -1602,6 +1603,7 @@
 		38C23E5B2423D9B70034571B /* CalendarEventSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionViewController.xib; sourceTree = "<group>"; };
 		38C23E5D2423E70F0034571B /* CalendarEventSelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionHeaderView.swift; sourceTree = "<group>"; };
 		38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionHeaderView.xib; sourceTree = "<group>"; };
+		38C6516E24360188002CE496 /* WorkerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerContent.swift; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsAddToCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsAddToCalendarTableViewCell.xib; sourceTree = "<group>"; };
@@ -3180,6 +3182,7 @@
 			isa = PBXGroup;
 			children = (
 				385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */,
+				38C6516E24360188002CE496 /* WorkerContent.swift */,
 				363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */,
 			);
 			name = Worker;
@@ -6825,6 +6828,7 @@
 				8D204C2122F06F1000DF6A76 /* MySprintNotesViewController.swift in Sources */,
 				B47953B6230AD512006EFE0F /* MyDataScreenConfigurator.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
+				38C6516F24360188002CE496 /* WorkerContent.swift in Sources */,
 				3658255C2327AC0D00AC3F4A /* DTShortTBV.swift in Sources */,
 				AC1A40DD22A54EB70022156C /* SolveResultsInterface.swift in Sources */,
 				9C24237422F0868300B911E6 /* AboutMeCell.swift in Sources */,

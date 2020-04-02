@@ -66,6 +66,7 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
 
     func didTapNext() {
         guard let email = checkEmailValidity(self.email) else { return }
+        UserDefault.existingEmail.setStringValue(value: "")
 
         presenter.presentActivity(state: .inProgress)
         worker.verifyEmail(email) { [weak self] (result, error) in
@@ -73,8 +74,7 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
             // Existing account
             if case .userExists = result.code {
                 strongSelf.presenter.presentActivity(state: nil)
-                let userInfo = [Notification.Name.RegistrationKeys.email: email]
-                NotificationCenter.default.post(name: .registrationShouldShowLogin, object: nil, userInfo: userInfo)
+                strongSelf.requestCode(for: email, existingUser: true)
                 return
             }
             // User isn't part of Tignum
@@ -91,7 +91,7 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
                 return
             }
             // Success
-            strongSelf.requestCode(for: email)
+            strongSelf.requestCode(for: email, existingUser: false)
         }
     }
 
@@ -125,13 +125,13 @@ private extension RegistrationEmailInteractor {
         presenter.present()
     }
 
-    func requestCode(for email: String) {
+    func requestCode(for email: String, existingUser: Bool) {
         worker.requestCode(for: email) { [weak self] (result, error) in
             guard let strongSelf = self else { return }
             strongSelf.presenter.presentActivity(state: nil)
             // Success
             if case .codeSent = result.code {
-                strongSelf.delegate?.didVerifyEmail(email)
+                strongSelf.delegate?.didVerifyEmail(email, existingUser: existingUser)
                 return
             }
             // Error

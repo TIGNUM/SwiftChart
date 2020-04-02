@@ -66,7 +66,9 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevel3 {
         if let email = preSetUserEmail {
             emailField.text = email
             preSetUserEmail = nil
-            didTapVerifyEmail()
+            moveCodeInputToTop()
+        } else {
+            resetCodeInputPosition()
         }
     }
 
@@ -220,7 +222,8 @@ private extension OnboardingLoginViewController {
             emailField.textField.resignFirstResponder()
             emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
             interactor.didTapVerify(email: emailField.text) {
-                self.router.goToRegister()
+                self.resetCodeInputPosition()
+                self.router.goToRegister(email: self.emailField.text)
             }
         }
     }

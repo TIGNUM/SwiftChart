@@ -108,37 +108,69 @@ extension ChoiceWorker {
 
 // MARK: - Private
 private extension ChoiceWorker {
-    func generateDataSource(_ selectedIds: [Int],
-                            _ relatedId: Int,
-                            _ completion: @escaping (([CollapsableNode]) -> Void)) {
-        var nodes = [CollapsableNode]()
-        getRelatedContents(relatedId) { [weak self] (relatedContents) in
-            self?._maxSelectionCount = relatedContents?.count ?? 0
-            let categoryIds = relatedContents?.flatMap { $0.categoryIDs } ?? []
-            ContentService.main.getContentCategoriesByIds(categoryIds) { (categories) in
-                categories?.forEach { (category) in
-                    let children: [Choice] = (relatedContents ?? []).filter { $0.categoryIDs.first == category.remoteID }
-                        .map { (content: QDMContentCollection) -> Choice in
-                    return Choice(categoryName: category.title,
-                                  contentId: content.remoteID ?? 0,
-                                  title: content.title,
-                                  readingTime: content.durationString,
-                                  isDefault: false,
-                                  isSuggested: false,
-                                  selected: selectedIds.contains(content.remoteID ?? 0))
-                    }
-                    let node = CollapsableNode(title: category.title, children: children, isOpen: false)
-                    nodes.append(node)
-                }
-                completion(nodes)
-            }
+    func getChildren(category: QDMContentCategory,
+                     relatedContents: [QDMContentCollection]?,
+                     relatedContentItems: [QDMContentItem]?,
+                     relatedContentItemsCollection: [QDMContentCollection]?) -> [Choice] {
+
+        let childrenContent: [Choice] = (relatedContents ?? [])
+            .filter { $0.categoryIDs.first == category.remoteID }
+            .map { (content: QDMContentCollection) -> Choice in
+                return Choice(categoryName: category.title,
+                              contentId: content.remoteID ?? 0,
+                              contentItemId: 0,
+                              title: content.title,
+                              readingTime: content.durationString,
+                              isDefault: false,
+                              isSuggested: false,
+                              selected: selectedIds.contains(content.remoteID ?? 0))
         }
+
+        let relatedContentItemIds = relatedContentItems?.compactMap { $0.remoteID } ?? []
+        let childrenContentItems = (relatedContentItemsCollection ?? []).filter { $0.categoryIDs.first == category.remoteID }
+            .flatMap { $0.contentItems }
+            .filter { relatedContentItemIds.contains($0.remoteID ?? 0) }
+            .map { (contentItem: QDMContentItem) -> Choice in
+                return Choice(categoryName: category.title,
+                              contentId: 0,
+                              contentItemId: contentItem.remoteID ?? 0,
+                              title: contentItem.valueText,
+                              readingTime: contentItem.durationString,
+                              isDefault: false,
+                              isSuggested: false,
+                              selected: selectedIds.contains(contentItem.remoteID ?? 0))
+        }
+
+        return childrenContent + childrenContentItems
     }
 
-    func getRelatedContents(_ relatedId: Int, completion: @escaping (([QDMContentCollection]?) -> Void)) {
-        ContentService.main.getContentCollectionById(relatedId) { (content) in
-            let relatedIds = content?.relatedContentIDsPrepareAll ?? []
-            ContentService.main.getContentCollectionsByIds(relatedIds, completion)
+    func generateDataSource(_ selectedIds: [Int],
+                            _ relatedId: Int,
+                            _ completion: @escaping ([CollapsableNode]) -> Void) {
+        let worker = WorkerContent()
+        var nodes = [CollapsableNode]()
+
+        worker.getRelatedContents(relatedId) { [weak self] (relatedContents) in
+            worker.getRelatedContentItems(relatedId) { [weak self] (relatedContentItems, itemCollections) in
+                guard let strongSelf = self else {
+                    completion([])
+                    return
+                }
+
+                strongSelf._maxSelectionCount = (relatedContents?.count ?? 0) + (relatedContentItems?.count ?? 0)
+                worker.getCategories(relatedContents, relatedContentItems) { (categories) in
+                    categories?.forEach { (category) in
+                        let children = strongSelf.getChildren(category: category,
+                                                   relatedContents: relatedContents,
+                                                   relatedContentItems: relatedContentItems,
+                                                   relatedContentItemsCollection: itemCollections)
+                        let node = CollapsableNode(title: category.title, children: children, isOpen: false)
+                        nodes.append(node)
+                    }
+                    completion(nodes)
+
+                }
+            }
         }
     }
 }

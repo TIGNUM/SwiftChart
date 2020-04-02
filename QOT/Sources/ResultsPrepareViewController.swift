@@ -295,7 +295,11 @@ extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
         }
     }
 
-    func didTapRow(_ viewController: UIViewController, contentId: Int) {
-        router.didSelectStrategy(contentId)
+    func didTapRow(_ viewController: UIViewController, contentId: Int, contentItemId: Int) {
+        if contentId != 0 {
+            router.didSelectStrategy(contentId)
+        } else if contentItemId != 0 {
+            router.didSelectStrategyItem(contentItemId)
+        }
     }
 }

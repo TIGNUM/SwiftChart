@@ -21,7 +21,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="652" id="8bY-dH-XWY" customClass="ImpactReadiness1" customModule="QOT" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="652" id="8bY-dH-XWY" customClass="ImpactReadiness1" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="436" height="597"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="8bY-dH-XWY" id="Auc-IE-jDT">
@@ -103,15 +103,21 @@
                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalCentering" alignment="bottom" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="g20-6W-mgh">
                         <rect key="frame" x="24" y="429.33333333333331" width="388" height="143.66666666666669"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inf-AX-msp">
+                                <rect key="frame" x="0.0" y="0.0" width="388" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.83921568629999999" green="0.78823529410000004" blue="0.75294117650000003" alpha="0.69667245369999997" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
-                                <rect key="frame" x="0.0" y="0.0" width="388" height="76.666666666666671"/>
+                                <rect key="frame" x="0.0" y="10" width="388" height="76.666666666666671"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">On days that you don't feel your best let your High Performance Mindset take over. Spend some time visualizing, in detail, what it will look like to Rule Your Impact today.</string>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjm-ra-cbt" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjm-ra-cbt" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="153" y="103.66666666666669" width="235" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Bs0-gv-xpB"/>
@@ -129,6 +135,11 @@
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Vjm-ra-cbt" firstAttribute="top" secondItem="w4g-tE-UTh" secondAttribute="bottom" constant="17" id="0Rq-ji-Xtt"/>
+                            <constraint firstItem="inf-AX-msp" firstAttribute="leading" secondItem="g20-6W-mgh" secondAttribute="leading" id="7G1-Pp-g3n"/>
+                            <constraint firstAttribute="trailing" secondItem="inf-AX-msp" secondAttribute="trailing" id="ARs-e8-YAN"/>
+                            <constraint firstItem="w4g-tE-UTh" firstAttribute="top" secondItem="inf-AX-msp" secondAttribute="bottom" constant="10" id="C0Y-61-MLT"/>
+                            <constraint firstItem="inf-AX-msp" firstAttribute="top" secondItem="g20-6W-mgh" secondAttribute="top" id="SYL-Lh-R65"/>
                             <constraint firstAttribute="trailing" secondItem="w4g-tE-UTh" secondAttribute="trailing" id="b5I-U1-vWd"/>
                             <constraint firstAttribute="trailing" secondItem="Vjm-ra-cbt" secondAttribute="trailing" id="orJ-wr-hqi"/>
                             <constraint firstItem="w4g-tE-UTh" firstAttribute="leading" secondItem="g20-6W-mgh" secondAttribute="leading" id="tev-2T-aPf"/>
@@ -170,6 +181,7 @@
                 <outlet property="impactReadinessOutOf100Label" destination="R2j-t5-POi" id="xFq-k8-tr4"/>
                 <outlet property="impactReadinessScore" destination="DM5-PW-enG" id="jgy-dv-ELQ"/>
                 <outlet property="impactReadinessView" destination="Ml6-kf-324" id="i3s-IS-k2q"/>
+                <outlet property="intro" destination="inf-AX-msp" id="mIr-ZL-sFA"/>
                 <outlet property="titleLabel" destination="1Kz-LO-SEb" id="YUp-yd-cB7"/>
                 <outlet property="toBeVisionImage" destination="Ml6-kf-324" id="LkD-9e-Ku0"/>
             </connections>

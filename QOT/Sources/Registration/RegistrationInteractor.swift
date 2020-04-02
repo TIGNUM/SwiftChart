@@ -26,11 +26,18 @@ final class RegistrationInteractor: RegistrationInteractorInterface {
     private var presentedControllers: [UIViewController] = [UIViewController]()
     private lazy var worker = RegistrationWorker()
 
-    private var codeController: RegistrationCodeViewController {
+    private lazy var codeController: RegistrationCodeViewController = {
         let configurator = RegistrationCodeConfigurator.make()
         let controller = R.storyboard.registrationCode.registrationCodeViewController() ?? RegistrationCodeViewController()
         configurator(controller, registrationData.email, self)
         return controller
+    }()
+
+    private func getExistingUserCodeController(email: String) -> OnboardingLoginViewController {
+        let configurator = OnboardingLoginConfigurator.make(email: email)
+        let loginController = OnboardingLoginViewController()
+        configurator(loginController)
+        return loginController
     }
 
     private lazy var namesController: RegistrationNamesViewController = {
@@ -53,14 +60,11 @@ final class RegistrationInteractor: RegistrationInteractorInterface {
     }
 
     // MARK: - Init
-    init(presenter: RegistrationPresenterInterface, router: RegistrationRouter) {
+    init(presenter: RegistrationPresenterInterface, router: RegistrationRouter, email: String?) {
         self.presenter = presenter
         self.router = router
-
-        let controller = R.storyboard.registrationEmail.registrationEmailViewController() ?? RegistrationEmailViewController()
-        let configurator = RegistrationEmailConfigurator.make()
-        presentedControllers = [controller]
-        configurator(controller, self)
+        self.registrationData.email = email ?? ""
+        presentedControllers = [codeController]
     }
 
     // MARK: - Interactorq
@@ -82,10 +86,16 @@ extension RegistrationInteractor: RegistrationDelegate {
         }
     }
 
-    func didVerifyEmail(_ email: String) {
-        registrationData.email = email
-        presentedControllers.append(codeController)
-        presenter.present(controller: codeController, direction: .forward)
+    func didVerifyEmail(_ email: String, existingUser: Bool) {
+        if existingUser {
+            let controller = getExistingUserCodeController(email: email)
+            presentedControllers.append(controller)
+            presenter.present(controller: controller, direction: .forward)
+        } else {
+            registrationData.email = email
+            presentedControllers.append(codeController)
+            presenter.present(controller: codeController, direction: .forward)
+        }
     }
 
     func didVerifyCode(_ code: String) {

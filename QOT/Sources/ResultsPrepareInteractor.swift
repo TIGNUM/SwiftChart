@@ -97,7 +97,9 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func getStrategyIds() -> (relatedId: Int, selectedIds: [Int]) {
-        return (relatedId: preparation?.relatedStrategyId ?? 0, selectedIds: preparation?.strategyIds ?? [])
+        let strategyIds = preparation?.strategyIds ?? []
+        let strategyItemIds = preparation?.strategyItemIds ?? []
+        return (relatedId: preparation?.relatedStrategyId ?? 0, strategyIds + strategyItemIds)
     }
 
     func updateBenefits(_ benefits: String) {
