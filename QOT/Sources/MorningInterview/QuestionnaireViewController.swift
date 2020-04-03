@@ -79,7 +79,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var customizeTargetTitle: UILabel!
     @IBOutlet weak var labelCustomizeView: UILabel!
-    @IBOutlet private weak var questionToTop: NSLayoutConstraint!
+    @IBOutlet weak var questionToTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet weak var totalHoursLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
@@ -209,7 +209,7 @@ extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
         case .customize:
-            questionToTop.constant = questionToTop.constant * 10
+            questionToTopConstraint = questionToTopConstraint.setMultiplier(multiplier: 1.5)
             ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
@@ -654,5 +654,30 @@ extension QuestionnaireViewController {
             break
         }
         return nil
+    }
+}
+
+extension NSLayoutConstraint {
+    /**
+     Change multiplier constraint
+
+     - parameter multiplier: CGFloat
+     - returns: NSLayoutConstraint
+    */
+    func setMultiplier(multiplier:CGFloat) -> NSLayoutConstraint {
+        NSLayoutConstraint.deactivate([self])
+        let newConstraint = NSLayoutConstraint(
+            item: firstItem as Any,
+            attribute: firstAttribute,
+            relatedBy: relation,
+            toItem: secondItem,
+            attribute: secondAttribute,
+            multiplier: multiplier,
+            constant: constant)
+        newConstraint.priority = priority
+        newConstraint.shouldBeArchived = self.shouldBeArchived
+        newConstraint.identifier = self.identifier
+        NSLayoutConstraint.activate([newConstraint])
+        return newConstraint
     }
 }

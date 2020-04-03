@@ -292,7 +292,7 @@
                         <outlet property="progressUpArrowImage" destination="WF2-iS-c2W" id="opM-ek-onS"/>
                         <outlet property="progressView" destination="VUb-uM-GZN" id="P3x-el-UFw"/>
                         <outlet property="questionLabel" destination="ZSG-Sa-kqJ" id="Kiv-7F-gmX"/>
-                        <outlet property="questionToTop" destination="Dpd-fO-2yl" id="FV0-z8-hqg"/>
+                        <outlet property="questionToTopConstraint" destination="Dpd-fO-2yl" id="C02-05-6Ws"/>
                         <outlet property="tableView" destination="7th-Xx-vP4" id="5zd-fM-ZQN"/>
                         <outlet property="topImageView" destination="QGs-RT-bhr" id="R1p-Qj-Ufq"/>
                         <outlet property="topIndex" destination="IvG-bf-DRU" id="LH8-fv-hdq"/>
