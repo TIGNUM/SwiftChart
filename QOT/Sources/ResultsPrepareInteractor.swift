@@ -54,7 +54,7 @@ private extension ResultsPrepareInteractor {
         if let relatedStrategyID = relatedStrategyID {
             ContentService.main.getContentCollectionById(relatedStrategyID) { content in
                 var relatedIds = content?.relatedContentIDsPrepareDefault ?? []
-                relatedIds.append(contentsOf: content?.relatedContentItemIdsPrepareDefault ?? [])
+                relatedIds.append(contentsOf: content?.relatedContentItemIDs ?? [])
                 ContentService.main.getContentCollectionsByIds(relatedIds, completion)
             }
         } else {
@@ -132,7 +132,8 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func updateStrategies(_ selectedIds: [Int], selectedItemIds: [Int]) {
-        preparation?.strategyIds = selectedIds
+        preparation?.strategyIds = selectedIds.filter { $0 != 0 }
+        preparation?.strategyItemIds = selectedItemIds.filter { $0 != 0 }
         worker.getStrategies(selectedIds, selectedItemIds) { [weak self] (strategies, strategyItems) in
             self?.preparation?.strategies = strategies ?? []
             self?.preparation?.strategyItems = strategyItems ?? []

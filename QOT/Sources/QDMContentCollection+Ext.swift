@@ -14,18 +14,9 @@ extension QDMContentCollection {
         return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" }.compactMap { $0.contentID }
     }
 
-    var relatedContentItemIdsPrepareDefault: [Int] {
-        return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" }.compactMap { $0.contentItemID }
-    }
-
     var relatedContentIDsPrepareAll: [Int] {
         return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" || $0.type == "PREPARE_OPTIONAL" }
         .compactMap { $0.contentID }
-    }
-
-    var relatedContentItemIDsPrepareAll: [Int] {
-        return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" || $0.type == "PREPARE_OPTIONAL" }
-            .compactMap { $0.contentItemID }
     }
 
     var exclusiveContentIds: [Int] {

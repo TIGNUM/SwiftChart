@@ -81,20 +81,24 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let knowIds = getAnswerIds(.know, selectedAnswers)
         let feelIds = getAnswerIds(.feel, selectedAnswers)
         let preparationNames = preparations.compactMap { $0.name }
-        prepareWorker?.getRelatedStrategies(eventAnswer?.targetId(.content) ?? 0) { [weak self] (strategyIds) in
-            var model = CreateUserPreparationModel()
-            model.level = .LEVEL_CRITICAL
-            model.benefits = self?.inputText
-            model.answerFilter = Prepare.AnswerFilter
-            model.contentCollectionId = QDMUserPreparation.Level.LEVEL_CRITICAL.contentID
-            model.relatedStrategyId = eventAnswer?.targetId(.content) ?? 0
-            model.strategyIds = strategyIds
-            model.preceiveAnswerIds = perceivedIds
-            model.knowAnswerIds = knowIds
-            model.feelAnswerIds = feelIds
-            model.eventType = eventAnswer?.title ?? ""
-            model.name = self?.createUniqueName(eventAnswer?.title ?? "", in: preparationNames)
-            self?.prepareWorker?.createUserPreparation(from: model, completion)
+        let relatedStrategyId = eventAnswer?.targetId(.content) ?? 0
+        prepareWorker?.getRelatedStrategies(relatedStrategyId) { [weak self] (strategyIds) in
+            self?.prepareWorker?.getRelatedStrategyItems(relatedStrategyId) { (strategyItemIds) in
+                var model = CreateUserPreparationModel()
+                model.level = .LEVEL_CRITICAL
+                model.benefits = self?.inputText
+                model.answerFilter = Prepare.AnswerFilter
+                model.contentCollectionId = QDMUserPreparation.Level.LEVEL_CRITICAL.contentID
+                model.relatedStrategyId = eventAnswer?.targetId(.content) ?? 0
+                model.strategyIds = strategyIds
+                model.strategyItemIds = strategyItemIds
+                model.preceiveAnswerIds = perceivedIds
+                model.knowAnswerIds = knowIds
+                model.feelAnswerIds = feelIds
+                model.eventType = eventAnswer?.title ?? ""
+                model.name = self?.createUniqueName(eventAnswer?.title ?? "", in: preparationNames)
+                self?.prepareWorker?.createUserPreparation(from: model, completion)
+            }
         }
     }
 
@@ -116,6 +120,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         model.contentCollectionId = existingPrep?.contentCollectionId ?? 0
         model.relatedStrategyId = existingPrep?.relatedStrategyId ?? 0
         model.strategyIds = existingPrep?.strategyIds ?? []
+        model.strategyItemIds = existingPrep?.strategyItemIds ?? []
         model.preceiveAnswerIds = existingPrep?.preceiveAnswerIds ?? []
         model.knowAnswerIds = existingPrep?.knowAnswerIds ?? []
         model.feelAnswerIds = existingPrep?.feelAnswerIds ?? []
