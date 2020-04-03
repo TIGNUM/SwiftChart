@@ -81,6 +81,7 @@ private extension MySprintsListViewController {
         bottomNavigationItems.leftBarButtonItems = nil
         bottomNavigationItems.rightBarButtonItems = buttons.map {
             let button = RoundedButton(title: $0.title, target: $0.target, action: $0.action)
+            ThemeButton.carbonButton.apply(button)
             button.isEnabled = $0.isEnabled
             return button.barButton
         }
