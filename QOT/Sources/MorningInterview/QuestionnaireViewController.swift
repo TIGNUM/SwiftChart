@@ -414,6 +414,7 @@ extension QuestionnaireViewController {
                 case .customize:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
                     let subtitle = AppTextService.get(.daily_brief_customize_sleep_amount_section_question_subtitle)
+//                    calculating 5 days * target amount of sleep relative to answerIndex
                     let hoursLabelText = subtitle.replacingOccurrences(of: "$(amount)", with: String(((answerIndex / 2) + 1) * 5))
                     ThemeText.asterixText.apply(hoursLabelText, to: totalHoursLabel)
                 default:
