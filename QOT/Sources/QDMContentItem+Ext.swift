@@ -19,8 +19,4 @@ extension QDMContentItem {
         default: return ""
         }
     }
-
-    var getCategory: QDMContentCategory? {
-        return nil
-    }
 }
