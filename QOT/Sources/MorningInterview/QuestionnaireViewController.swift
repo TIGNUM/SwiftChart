@@ -26,29 +26,33 @@ enum DailyCheckInQuestionKey: String {
 enum ControllerType {
     case vision
     case dailyCheckin
-    case customize
+    case customize(_ topConstraintMultiplier: CGFloat)
 
     struct Config {
         let currentIndexColor: UIColor
         let aboveCurrentIndexColor: UIColor
         let belowCurrentIndexColor: UIColor
+        let topConstraintMultiplier: CGFloat
 
         static func myVision() -> Config {
             return Config(currentIndexColor: .redOrange,
                           aboveCurrentIndexColor: .redOrange40,
-                          belowCurrentIndexColor: .accent40)
+                          belowCurrentIndexColor: .accent40,
+                          topConstraintMultiplier: 1)
         }
 
-        static func customize() -> Config {
+        static func customize(topConstraintMultiplier: CGFloat) -> Config {
             return Config(currentIndexColor: .accent,
                           aboveCurrentIndexColor: .accent70,
-                          belowCurrentIndexColor: .accent70)
+                          belowCurrentIndexColor: .accent70,
+                          topConstraintMultiplier: topConstraintMultiplier)
         }
 
         static func dailyCheckin() -> Config {
             return Config(currentIndexColor: .accent,
                           aboveCurrentIndexColor: .accent70,
-                          belowCurrentIndexColor: .accent70)
+                          belowCurrentIndexColor: .accent70,
+                          topConstraintMultiplier: 1)
         }
     }
 
@@ -58,8 +62,8 @@ enum ControllerType {
             return Config.myVision()
         case .dailyCheckin:
             return Config.dailyCheckin()
-        case .customize:
-            return Config.customize()
+        case .customize(let topConstraintMultiplier):
+            return Config.customize(topConstraintMultiplier: topConstraintMultiplier)
         }
     }
 
@@ -208,8 +212,8 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
 extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
-        case .customize:
-            questionToTopConstraint = questionToTopConstraint.setMultiplier(multiplier: 1.5)
+        case .customize(let topConstraintMultiplier):
+            questionToTopConstraint.constant = questionToTopConstraint.constant * topConstraintMultiplier
             ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
@@ -654,30 +658,5 @@ extension QuestionnaireViewController {
             break
         }
         return nil
-    }
-}
-
-extension NSLayoutConstraint {
-    /**
-     Change multiplier constraint
-
-     - parameter multiplier: CGFloat
-     - returns: NSLayoutConstraint
-    */
-    func setMultiplier(multiplier:CGFloat) -> NSLayoutConstraint {
-        NSLayoutConstraint.deactivate([self])
-        let newConstraint = NSLayoutConstraint(
-            item: firstItem as Any,
-            attribute: firstAttribute,
-            relatedBy: relation,
-            toItem: secondItem,
-            attribute: secondAttribute,
-            multiplier: multiplier,
-            constant: constant)
-        newConstraint.priority = priority
-        newConstraint.shouldBeArchived = self.shouldBeArchived
-        newConstraint.identifier = self.identifier
-        NSLayoutConstraint.activate([newConstraint])
-        return newConstraint
     }
 }
