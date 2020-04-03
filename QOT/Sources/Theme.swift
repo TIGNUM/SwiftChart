@@ -731,6 +731,7 @@ enum ThemeText {
     case tbvVision
     case tbvButton
     case tbvBody
+    case customizeQuestion
     case tbvVisionHeader
     case tbvVisionBody
     case tvbTimeSinceTitle
@@ -1026,6 +1027,8 @@ enum ThemeText {
         case .registerIntroTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle:
             return Fonts.fontDisplayBold30
+        case .customizeQuestion:
+            return Fonts.fontRegular16
         // MARK: - .fontRegular20
         default:
             return Fonts.fontRegular20
@@ -1050,7 +1053,7 @@ enum ThemeText {
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
-             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle,
+             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle, .customizeQuestion,
              .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand:
             return Palette.sand
 
@@ -1194,7 +1197,7 @@ enum ThemeText {
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
-        case .navigationBarHeader, .customAlertAction, .customAlertDestructiveAction:
+        case .navigationBarHeader, .customAlertAction, .customAlertDestructiveAction, .customizeQuestion:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .center)
