@@ -88,8 +88,11 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
         overlayControls?.configure(downloadTitle: interactor.downloadButtonTitle,
                                    isBokmarked: interactor.isBookmarked,
                                    isDownloaded: interactor.isDownloaded)
+    }
+
+    func showDestinationAlert() {
         let closeButtonItem = createCloseButton()
-        interactor.isDownloaded == true && interactor.isBookmarked == true ? QOTAlert.show(title: nil, message: "Added to my library", bottomItems: [closeButtonItem]) : nil
+        QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
     }
 
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface) {
@@ -115,9 +118,8 @@ extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
     func bookmarkMedia() {
         let value: QDMUserEventTracking.Name = interactor?.isBookmarked == true ? .DESELECT : .SELECT
         trackUserEvent(.BOOKMARK, value: interactor?.contentItemId, stringValue: value, valueType: .VIDEO, action: .TAP)
-        let closeButtonItem = createCloseButton()
-        interactor?.isBookmarked == true ? nil : QOTAlert.show(title: nil, message: "Saved to my library", bottomItems: [closeButtonItem])
         interactor?.didTapBookmark()
+        interactor?.isBookmarked == true ? nil : showDestinationAlert()
     }
 }
 

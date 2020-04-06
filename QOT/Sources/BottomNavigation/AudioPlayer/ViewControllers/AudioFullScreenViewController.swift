@@ -114,6 +114,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         case .DONE:
             title = AppTextService.get(.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
+            showDestinationAlert()
             downloadButton.layer.borderWidth = 0
         }
 
@@ -185,6 +186,7 @@ extension AudioFullScreenViewController {
                 self?.bookmark = storage
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
                 self?.bookmarkButton.isSelected ?? true ? (self?.bookmarkButton.layer.borderWidth = 0) : (self?.bookmarkButton.layer.borderWidth = 1)
+                self?.bookmarkButton.isSelected == false ? nil : self?.showDestinationAlert()
             }
         }
     }
@@ -221,6 +223,11 @@ private extension AudioFullScreenViewController {
                       bottomItems: [cancel, buttonContinue])
     }
 
+    func showDestinationAlert() {
+        let closeButtonItem = createCloseButton()
+        QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
+    }
+
     func continueDownload() {
         trackUserEvent(.DOWNLOAD, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         guard let item = contentItem else {
@@ -238,7 +245,8 @@ private extension AudioFullScreenViewController {
                 self?.updateDownloadButtonState(.NONE)
                 self?.download = nil
                 }
-            default: self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
+            default:
+                self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
             }
         } else {
             UserStorageService.main.addToDownload(contentItem: item) { [weak self] (storage, error) in

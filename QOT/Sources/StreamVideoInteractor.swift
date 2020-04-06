@@ -13,6 +13,7 @@ protocol StreamVideoInteractorDelegate: class {
     func didUpdateData(interactor: StreamVideoInteractorInterface)
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface)
     func showNoInternetConnectionAlert(interactor: StreamVideoInteractorInterface)
+    func showDestinationAlert()
 }
 
 protocol StreamVideoInteractorInterface {
@@ -143,6 +144,7 @@ private extension StreamVideoInteractor {
             worker.updateItemDownloadStatus { [weak self] in
                 guard let strongSelf = self else { return }
                 strongSelf.delegate?.didUpdateData(interactor: strongSelf)
+                strongSelf.isDownloaded == true ? strongSelf.delegate?.showDestinationAlert() : nil
             }
         }
     }
