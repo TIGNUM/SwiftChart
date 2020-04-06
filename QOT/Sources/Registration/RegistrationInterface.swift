@@ -37,5 +37,5 @@ protocol RegistrationDelegate: class {
     func didVerifyEmail(_ email: String, existingUser: Bool)
     func didVerifyCode(_ code: String)
     func didSave(firstName: String, lastName: String?)
-    func didTapCreateAccount(with birthYear: String)
+    func didTapCreateAccount()
 }

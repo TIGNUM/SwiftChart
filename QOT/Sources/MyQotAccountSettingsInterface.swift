@@ -22,7 +22,6 @@ protocol MyQotAccountSettingsInteractorInterface: Interactor {
     var accountSettingsText: String { get }
     var contactText: String { get }
     var emailText: String { get }
-    var dateOfBirthText: String { get }
     var companyText: String { get }
     var logoutQotText: String { get }
     var withoutDeletingAccountText: String { get }

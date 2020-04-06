@@ -17,13 +17,11 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var emailHeaderLabel: UILabel!
     @IBOutlet private weak var companyHeaderLabel: UILabel!
-    @IBOutlet private weak var dobHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotTitleLabel: UILabel!
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var userCompanyLabel: UILabel!
     @IBOutlet private weak var userEmailLabel: UILabel!
-    @IBOutlet private weak var userDobLabel: UILabel!
 
     @IBOutlet private weak var subHeaderView: UIView!
     @IBOutlet private weak var editButton: RoundedButton!
@@ -102,7 +100,6 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
 private extension MyQotAccountSettingsViewController {
     func setContentForView() {
         ThemeText.accountHeader.apply(interactor?.emailText, to: emailHeaderLabel)
-        ThemeText.accountHeader.apply(interactor?.dateOfBirthText, to: dobHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.companyText, to: companyHeaderLabel)
         ThemeText.accountHeaderTitle.apply(interactor?.logoutQotText, to: logoutQotHeaderLabel)
         ThemeText.accountDetail.apply(interactor?.withoutDeletingAccountText, to: logoutQotTitleLabel)
@@ -112,7 +109,6 @@ private extension MyQotAccountSettingsViewController {
         interactor?.userProfile({[weak self] (profile) in
             ThemeText.accountDetailEmail.apply(profile?.email, to: self?.userEmailLabel)
             ThemeText.accountDetailEmail.apply(profile?.company, to: self?.userCompanyLabel)
-            ThemeText.accountDetailAge.apply(profile?.birthday, to: self?.userDobLabel)
             ThemeText.accountUserName.apply(profile?.name, to: self?.userNameLabel)
         })
     }

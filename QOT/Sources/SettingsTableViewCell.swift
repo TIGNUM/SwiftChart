@@ -69,15 +69,8 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
             setupControlCell(title: title, source: source, isOn: enabled)
             setupControls(isSyncFinished: isSyncFinished)
-        case .datePicker(let title, let selectedYear, let settingsType):
-            self.settingsType = settingsType
-            setupDateCell(title: title, selectedYear: selectedYear, settingsType: settingsType)
         case .label(let title, let value, let settingsType):
-            if settingsType == .dateOfBirth {
-                expandArrow.isHidden = false
-            } else {
-                expandArrow.isHidden = true
-            }
+            expandArrow.isHidden = true
             self.settingsType = settingsType
             self.bottomSeperatorView.isHidden = true
             setupTextFieldCell(title: title, value: value ?? "", settingsType: settingsType)

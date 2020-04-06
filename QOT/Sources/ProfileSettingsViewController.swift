@@ -32,33 +32,6 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         }
     }
 
-    private var localizedYear = AppTextService.get(.my_qot_my_profile_account_settings_edit_placeholder_date_picker)
-
-    private lazy var yearPickerItems: [String] = {
-        var items = [String]()
-        let minYear = Date().minimumDateOfBirth.year()
-        let maxYear = Date().maximumDateOfBirth.year()
-
-        for year in minYear...maxYear {
-            items.append(String(year))
-        }
-
-        items.reverse()
-        items.insert(localizedYear, at: 0)
-        return items
-    }()
-
-    lazy private var datePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .date
-        picker.backgroundColor = .carbonNew
-        picker.minimumDate = Date().minimumDateOfBirth
-        picker.maximumDate = Date().maximumDateOfBirth
-        picker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        picker.setValue(UIColor.sand, forKey: "textColor")
-        return picker
-    }()
-
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,27 +87,6 @@ private extension ProfileSettingsViewController {
     }
 }
 
-// MARK: - PickerView
-extension ProfileSettingsViewController {
-    @objc func dateChanged(_ sender: UIDatePicker) {
-        shouldAllowSave = true
-        let dateOfBirth = DateFormatter.yyyyMMdd.string(from: sender.date)
-        interactor?.profile?.dateOfBirth = dateOfBirth
-        selectedCell?.textField.text = dateOfBirth
-    }
-
-    func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell else {
-            return
-        }
-        selectedCell = cell
-
-        let picker = self.datePicker
-        picker.setDate(selectedDate, animated: true)
-        cell.textField.inputView = picker
-        cell.textField.becomeFirstResponder()
-    }
-}
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ProfileSettingsViewController {
@@ -171,17 +123,17 @@ extension ProfileSettingsViewController {
         return settingsCell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let interactor = self.interactor else { return }
-        tableView.deselectRow(at: indexPath, animated: true)
-        switch interactor.row(at: indexPath) {
-        case .datePicker(let title, let selectedDate, _):
-            let dateOfBirth = DateFormatter.yyyyMMdd.date(from: selectedDate) ?? Date()
-            showDatePicker(title: title, selectedDate: dateOfBirth, indexPath: indexPath)
-        default:
-            break
-        }
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let interactor = self.interactor else { return }
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        switch interactor.row(at: indexPath) {
+//        case .datePicker(let title, let selectedDate, _):
+//            let dateOfBirth = DateFormatter.yyyyMMdd.date(from: selectedDate) ?? Date()
+//            showDatePicker(title: title, selectedDate: dateOfBirth, indexPath: indexPath)
+//        default:
+//            break
+//        }
+//    }
 }
 
 // MARK: - SettingsViewControllerDelegate

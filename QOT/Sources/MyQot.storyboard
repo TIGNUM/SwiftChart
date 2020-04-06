@@ -38,7 +38,7 @@
         <!--My Qot Profile View Controller-->
         <scene sceneID="Wdr-OO-R0H">
             <objects>
-                <viewController storyboardIdentifier="MyQotProfileID" id="CRw-Qf-58k" customClass="MyQotProfileViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotProfileID" id="CRw-Qf-58k" customClass="MyQotProfileViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UGX-qY-m7r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +88,7 @@
         <!--My Qot App Settings View Controller-->
         <scene sceneID="y48-53-cQf">
             <objects>
-                <viewController storyboardIdentifier="MyQotAppSettingsViewController" id="Hoi-oQ-X68" customClass="MyQotAppSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAppSettingsViewController" id="Hoi-oQ-X68" customClass="MyQotAppSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rfr-6c-UHN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,7 +137,7 @@
         <!--My Qot Siri Shortcuts View Controller-->
         <scene sceneID="9vm-qE-LUk">
             <objects>
-                <viewController storyboardIdentifier="MyQotSiriShortcutsViewController" id="XM2-FH-qGD" customClass="MyQotSiriShortcutsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSiriShortcutsViewController" id="XM2-FH-qGD" customClass="MyQotSiriShortcutsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ir6-2B-5vk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,7 +179,7 @@
         <!--Synced Calendars View Controller-->
         <scene sceneID="WOJ-Oa-Gqi">
             <objects>
-                <viewController storyboardIdentifier="SyncedCalendarsViewController" id="xt6-GT-5hV" customClass="SyncedCalendarsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SyncedCalendarsViewController" id="xt6-GT-5hV" customClass="SyncedCalendarsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dYG-vA-qi2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,7 +238,7 @@
         <!--My Qot Sensors View Controller-->
         <scene sceneID="gKo-9v-I0L">
             <objects>
-                <viewController storyboardIdentifier="MyQotSensorsViewController" id="TNS-Xr-HPB" customClass="MyQotSensorsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSensorsViewController" id="TNS-Xr-HPB" customClass="MyQotSensorsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xwq-vB-U48">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,7 +254,7 @@
                                 <rect key="frame" x="0.0" y="98" width="375" height="549"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bl-Cn-fx5">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="372.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="373.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nC5-Ib-OED">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="195"/>
@@ -269,7 +269,7 @@
                                                         <rect key="frame" x="0.0" y="57" width="375" height="63"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="HEALTH DATA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xj-B6-gla">
-                                                                <rect key="frame" x="24" y="12" width="103" height="19"/>
+                                                                <rect key="frame" x="24" y="12" width="105" height="19"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -314,13 +314,13 @@
                                                         <rect key="frame" x="0.0" y="120" width="375" height="63"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OURA RING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ng5-qF-9zE">
-                                                                <rect key="frame" x="24" y="12" width="88.5" height="19"/>
+                                                                <rect key="frame" x="24" y="12" width="87" height="19"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="NO DATA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ZN-l3-nZa">
-                                                                <rect key="frame" x="24" y="35" width="50" height="14"/>
+                                                                <rect key="frame" x="24" y="35" width="52.5" height="14"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -367,28 +367,28 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYp-fY-2yo">
-                                                <rect key="frame" x="0.0" y="195" width="375" height="177.5"/>
+                                                <rect key="frame" x="0.0" y="195" width="375" height="178.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rf-LP-Ue9">
-                                                        <rect key="frame" x="24" y="24" width="327" height="19"/>
+                                                        <rect key="frame" x="24" y="24" width="327" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5m-CN-Vhx">
-                                                        <rect key="frame" x="24" y="53" width="327" height="16.5"/>
+                                                        <rect key="frame" x="24" y="53.5" width="327" height="17"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OS-EL-liF">
-                                                        <rect key="frame" x="24" y="93.5" width="327" height="19"/>
+                                                        <rect key="frame" x="24" y="94.5" width="327" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEv-i6-oKV">
-                                                        <rect key="frame" x="24" y="122.5" width="327" height="16.5"/>
+                                                        <rect key="frame" x="24" y="124" width="327" height="17"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -468,7 +468,7 @@
         <!--My Qot Support View Controller-->
         <scene sceneID="P0x-Yi-MIP">
             <objects>
-                <viewController storyboardIdentifier="MyQotSupportViewController" id="VSV-MR-rgC" customClass="MyQotSupportViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSupportViewController" id="VSV-MR-rgC" customClass="MyQotSupportViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jhL-c4-95l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -516,7 +516,7 @@
         <!--My Qot Support Novartis View Controller-->
         <scene sceneID="mdu-yv-9s4">
             <objects>
-                <viewController storyboardIdentifier="MyQotSupportNovartisViewController" id="d5E-C9-vPS" customClass="MyQotSupportNovartisViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSupportNovartisViewController" id="d5E-C9-vPS" customClass="MyQotSupportNovartisViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L6u-2x-Aej">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -546,7 +546,7 @@
         <!--My Qot Support Details View Controller-->
         <scene sceneID="Avc-89-hCl">
             <objects>
-                <viewController storyboardIdentifier="MyQotSupportDetailsViewController" id="9qJ-t5-Bb5" customClass="MyQotSupportDetailsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSupportDetailsViewController" id="9qJ-t5-Bb5" customClass="MyQotSupportDetailsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hex-a7-A1f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -588,7 +588,7 @@
         <!--My Qot About Us View Controller-->
         <scene sceneID="Oey-y4-XLs">
             <objects>
-                <viewController storyboardIdentifier="MyQotAboutUsViewController" id="6Hh-bM-OFn" customClass="MyQotAboutUsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAboutUsViewController" id="6Hh-bM-OFn" customClass="MyQotAboutUsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6GP-dy-akx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -634,7 +634,7 @@
         <!--My Qot Account Settings View Controller-->
         <scene sceneID="6qO-oJ-SCF">
             <objects>
-                <viewController storyboardIdentifier="MyQotAccountSettingsViewController" id="BOZ-52-EXB" customClass="MyQotAccountSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAccountSettingsViewController" id="BOZ-52-EXB" customClass="MyQotAccountSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFX-9K-BFC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="830"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -643,7 +643,7 @@
                                 <rect key="frame" x="0.0" y="98" width="375" height="732"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vl2-o5-5qv">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="487"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="403.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pih-zv-4AU">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -653,16 +653,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tY0-lG-Fzz">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYd-Ab-nCR">
-                                                        <rect key="frame" x="24" y="24" width="327" height="28"/>
+                                                        <rect key="frame" x="24" y="24" width="327" height="29"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="24"/>
                                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f8-R9-3YO">
-                                                        <rect key="frame" x="24" y="79" width="327" height="1"/>
+                                                        <rect key="frame" x="24" y="80" width="327" height="1"/>
                                                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="hNF-Ea-tgj"/>
@@ -681,7 +681,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTI-JQ-ziZ">
-                                                <rect key="frame" x="0.0" y="80" width="375" height="407"/>
+                                                <rect key="frame" x="0.0" y="81" width="375" height="322.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uk-s2-VTI" userLabel="companyView">
                                                         <rect key="frame" x="24" y="24" width="327" height="64"/>
@@ -759,47 +759,8 @@
                                                             <constraint firstItem="hQZ-vh-lEE" firstAttribute="leading" secondItem="3Rc-py-rnV" secondAttribute="leading" id="xgM-8L-Nqj"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPS-jm-Kme" userLabel="dateOfBirthView">
-                                                        <rect key="frame" x="24" y="204" width="327" height="64"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year of birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ef-Qd-UBE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="327" height="17"/>
-                                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1969" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xed-pk-pmB">
-                                                                <rect key="frame" x="0.0" y="22" width="327" height="19"/>
-                                                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cx-tv-SYU">
-                                                                <rect key="frame" x="0.0" y="63" width="327" height="1"/>
-                                                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="zFo-Cs-Cz2"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstItem="7cx-tv-SYU" firstAttribute="leading" secondItem="cPS-jm-Kme" secondAttribute="leading" id="1rx-ZU-XQG"/>
-                                                            <constraint firstAttribute="trailing" secondItem="7ef-Qd-UBE" secondAttribute="trailing" id="B2I-kp-0Wa"/>
-                                                            <constraint firstItem="7cx-tv-SYU" firstAttribute="leading" secondItem="cPS-jm-Kme" secondAttribute="leading" id="E1u-CI-jHN"/>
-                                                            <constraint firstItem="7ef-Qd-UBE" firstAttribute="top" secondItem="cPS-jm-Kme" secondAttribute="top" id="IIH-Rb-5Xu"/>
-                                                            <constraint firstItem="xed-pk-pmB" firstAttribute="leading" secondItem="7ef-Qd-UBE" secondAttribute="leading" id="MBp-EQ-pIc"/>
-                                                            <constraint firstAttribute="trailing" secondItem="7cx-tv-SYU" secondAttribute="trailing" id="Om7-4N-M9q"/>
-                                                            <constraint firstAttribute="trailing" secondItem="xed-pk-pmB" secondAttribute="trailing" id="d4y-Sb-ybh"/>
-                                                            <constraint firstItem="xed-pk-pmB" firstAttribute="leading" secondItem="cPS-jm-Kme" secondAttribute="leading" id="dau-FC-fs1"/>
-                                                            <constraint firstItem="7ef-Qd-UBE" firstAttribute="leading" secondItem="cPS-jm-Kme" secondAttribute="leading" id="kUF-JO-Gjq"/>
-                                                            <constraint firstAttribute="bottom" secondItem="xed-pk-pmB" secondAttribute="bottom" constant="23" id="kzB-gA-SqB"/>
-                                                            <constraint firstAttribute="bottom" secondItem="7cx-tv-SYU" secondAttribute="bottom" id="lsC-he-AOo"/>
-                                                            <constraint firstItem="xed-pk-pmB" firstAttribute="top" secondItem="7ef-Qd-UBE" secondAttribute="bottom" constant="5" id="yOB-K3-Dko"/>
-                                                        </constraints>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsX-zz-hDh" userLabel="logoutView">
-                                                        <rect key="frame" x="24" y="293" width="327" height="61"/>
+                                                        <rect key="frame" x="24" y="208" width="327" height="61.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout QOT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAJ-7f-Eci">
                                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="19"/>
@@ -808,7 +769,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Without deleting your account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlb-jr-u2j">
-                                                                <rect key="frame" x="0.0" y="23" width="327" height="14"/>
+                                                                <rect key="frame" x="0.0" y="23" width="327" height="14.5"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -850,17 +811,14 @@
                                                     <constraint firstAttribute="trailing" secondItem="4uk-s2-VTI" secondAttribute="trailing" constant="24" id="3Ox-7b-cam"/>
                                                     <constraint firstItem="CsX-zz-hDh" firstAttribute="leading" secondItem="oTI-JQ-ziZ" secondAttribute="leading" constant="24" id="3To-XN-cX3"/>
                                                     <constraint firstAttribute="trailing" secondItem="CsX-zz-hDh" secondAttribute="trailing" constant="24" id="3qg-wO-HCA"/>
-                                                    <constraint firstItem="cPS-jm-Kme" firstAttribute="leading" secondItem="oTI-JQ-ziZ" secondAttribute="leading" constant="24" id="7Lc-Uq-K37"/>
                                                     <constraint firstItem="3Rc-py-rnV" firstAttribute="leading" secondItem="4uk-s2-VTI" secondAttribute="leading" id="Baf-tN-kjk"/>
                                                     <constraint firstItem="3Rc-py-rnV" firstAttribute="leading" secondItem="oTI-JQ-ziZ" secondAttribute="leading" constant="24" id="CIT-YH-xJc"/>
-                                                    <constraint firstItem="cPS-jm-Kme" firstAttribute="top" secondItem="3Rc-py-rnV" secondAttribute="bottom" constant="26" id="IiT-Cq-V4S"/>
                                                     <constraint firstItem="3Rc-py-rnV" firstAttribute="top" secondItem="4uk-s2-VTI" secondAttribute="bottom" constant="26" id="ZId-fp-TNQ"/>
                                                     <constraint firstItem="4uk-s2-VTI" firstAttribute="top" secondItem="oTI-JQ-ziZ" secondAttribute="top" constant="24" id="c23-jo-ggG"/>
-                                                    <constraint firstItem="CsX-zz-hDh" firstAttribute="top" secondItem="cPS-jm-Kme" secondAttribute="bottom" constant="25" id="ewm-41-fdK"/>
                                                     <constraint firstAttribute="bottom" secondItem="CsX-zz-hDh" secondAttribute="bottom" constant="53" id="lCm-5i-3MV"/>
+                                                    <constraint firstItem="CsX-zz-hDh" firstAttribute="top" secondItem="3Rc-py-rnV" secondAttribute="bottom" constant="30" id="pod-A4-sVz"/>
                                                     <constraint firstItem="4uk-s2-VTI" firstAttribute="leading" secondItem="oTI-JQ-ziZ" secondAttribute="leading" constant="24" id="qKp-Hv-smT"/>
                                                     <constraint firstItem="3Rc-py-rnV" firstAttribute="trailing" secondItem="4uk-s2-VTI" secondAttribute="trailing" id="umn-qc-vvw"/>
-                                                    <constraint firstAttribute="trailing" secondItem="cPS-jm-Kme" secondAttribute="trailing" constant="24" id="y4M-NM-4dy"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -888,7 +846,7 @@
                                     <constraint firstItem="vl2-o5-5qv" firstAttribute="top" secondItem="fgZ-Ah-mC0" secondAttribute="top" id="x5k-gx-qGJ"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-dp-pkH" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-dp-pkH" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="313" y="50" width="38" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="Zk9-2f-KGp"/>
@@ -924,7 +882,6 @@
                     <size key="freeformSize" width="375" height="850"/>
                     <connections>
                         <outlet property="companyHeaderLabel" destination="qZ7-nY-snp" id="TQV-Jj-akz"/>
-                        <outlet property="dobHeaderLabel" destination="7ef-Qd-UBE" id="d05-dU-oLb"/>
                         <outlet property="editButton" destination="F3h-dp-pkH" id="427-7j-d4e"/>
                         <outlet property="emailHeaderLabel" destination="vKs-Fs-oSu" id="sfa-nn-htg"/>
                         <outlet property="headerView" destination="bz7-sK-FQx" id="Jjw-vA-ZMt"/>
@@ -933,7 +890,6 @@
                         <outlet property="logoutQotTitleLabel" destination="Zlb-jr-u2j" id="FD5-6h-5uI"/>
                         <outlet property="subHeaderView" destination="Pih-zv-4AU" id="pLU-JM-KBV"/>
                         <outlet property="userCompanyLabel" destination="jxU-yX-0ot" id="yQe-K6-1Qj"/>
-                        <outlet property="userDobLabel" destination="xed-pk-pmB" id="BOM-hM-IQu"/>
                         <outlet property="userEmailLabel" destination="4dn-OH-nIe" id="aPj-SS-xgK"/>
                         <outlet property="userNameLabel" destination="iYd-Ab-nCR" id="DEu-CN-Awv"/>
                         <segue destination="6dh-gR-82N" kind="presentation" identifier="myQot.accountSettings.editAccount.segue.identifier" id="dwO-bk-7F5"/>
@@ -946,7 +902,7 @@
         <!--Profile Settings View Controller-->
         <scene sceneID="WKv-jD-fQ2">
             <objects>
-                <tableViewController storyboardIdentifier="ProfileSettingsViewController" id="6dh-gR-82N" customClass="ProfileSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProfileSettingsViewController" id="6dh-gR-82N" customClass="ProfileSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lTP-e8-wcO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -971,7 +927,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEb-xu-ZHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="Hvp-Aw-cye" customClass="MyQotProfileSettingsKeybaordInputView" customModule="QOT" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="Hvp-Aw-cye" customClass="MyQotProfileSettingsKeybaordInputView" customModule="TIGNUM_X" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -1033,7 +989,7 @@
         <!--My Qot Admin Settings List View Controller-->
         <scene sceneID="9cZ-ns-nOm">
             <objects>
-                <viewController storyboardIdentifier="MyQotAdminSettingsID" id="3ZV-BA-t3g" customClass="MyQotAdminSettingsListViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAdminSettingsID" id="3ZV-BA-t3g" customClass="MyQotAdminSettingsListViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JCO-W1-yh2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1083,7 +1039,7 @@
         <!--My Qot Admin Environment Settings View Controller-->
         <scene sceneID="EVJ-UE-qOH">
             <objects>
-                <viewController storyboardIdentifier="MyQotAdminEnvironmentSettingsID" id="d6F-rf-vw8" customClass="MyQotAdminEnvironmentSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAdminEnvironmentSettingsID" id="d6F-rf-vw8" customClass="MyQotAdminEnvironmentSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3or-De-2q5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1128,7 +1084,7 @@
         <!--My Qot Admin Local Notifications View Controller-->
         <scene sceneID="Jmf-fF-tny">
             <objects>
-                <viewController storyboardIdentifier="MyQotAdminLocalNotificationsID" id="oO3-uY-wR8" customClass="MyQotAdminLocalNotificationsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAdminLocalNotificationsID" id="oO3-uY-wR8" customClass="MyQotAdminLocalNotificationsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q7G-Ug-XnV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1173,7 +1129,7 @@
         <!--My Qot AdminDC Sixth Question Settings View Controller-->
         <scene sceneID="jQ0-lP-8VG">
             <objects>
-                <viewController storyboardIdentifier="MyQotAdminDCSixthQuestionID" id="V6D-ip-iPA" customClass="MyQotAdminDCSixthQuestionSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAdminDCSixthQuestionID" id="V6D-ip-iPA" customClass="MyQotAdminDCSixthQuestionSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yc0-M9-iWo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1218,7 +1174,7 @@
         <!--MyQOT Admin Choose Buckets View Controller-->
         <scene sceneID="Gxr-Dt-nLH">
             <objects>
-                <viewController storyboardIdentifier="MyQotAdminChooseBucketsID" id="7jH-od-wQ5" customClass="MyQOTAdminChooseBucketsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAdminChooseBucketsID" id="7jH-od-wQ5" customClass="MyQOTAdminChooseBucketsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2RD-qu-raq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1263,7 +1219,7 @@
         <!--MyQOT Admin Edit Sprints View Controller-->
         <scene sceneID="s99-bG-R2x">
             <objects>
-                <viewController storyboardIdentifier="MyQotAdminEditSprintsID" id="DcW-we-CHt" customClass="MyQOTAdminEditSprintsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAdminEditSprintsID" id="DcW-we-CHt" customClass="MyQOTAdminEditSprintsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2mA-cP-fZh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1309,7 +1265,7 @@
         <!--MyQOT Admin Edit Sprints Details View Controller-->
         <scene sceneID="Otx-Yl-lit">
             <objects>
-                <viewController storyboardIdentifier="MyQotAdminEditSprintsDetailsID" id="bDb-vd-EJG" customClass="MyQOTAdminEditSprintsDetailsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAdminEditSprintsDetailsID" id="bDb-vd-EJG" customClass="MyQOTAdminEditSprintsDetailsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N9C-tF-QaM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
