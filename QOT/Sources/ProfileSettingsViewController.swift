@@ -122,18 +122,6 @@ extension ProfileSettingsViewController {
         settingsCell.setup(settingsRow: row, indexPath: indexPath, isSyncFinished: true)
         return settingsCell
     }
-
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let interactor = self.interactor else { return }
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        switch interactor.row(at: indexPath) {
-//        case .datePicker(let title, let selectedDate, _):
-//            let dateOfBirth = DateFormatter.yyyyMMdd.date(from: selectedDate) ?? Date()
-//            showDatePicker(title: title, selectedDate: dateOfBirth, indexPath: indexPath)
-//        default:
-//            break
-//        }
-//    }
 }
 
 // MARK: - SettingsViewControllerDelegate
