@@ -161,7 +161,7 @@ extension UIViewController {
         if let contentView = playerController.view {
             contentView.addSubview(overlay)
             overlay.frame = CGRect(x: 0,
-                                   y: (contentView.frame.height * 0.66) + MediaPlayerOverlay.height,
+                                   y: (contentView.frame.height * 0.71) + MediaPlayerOverlay.height,
                                    width: contentView.frame.width,
                                    height: MediaPlayerOverlay.height)
         }
