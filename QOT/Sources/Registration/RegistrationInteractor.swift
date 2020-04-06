@@ -14,7 +14,6 @@ struct RegistrationData {
     var code: String = ""
     var firstName: String = ""
     var lastName: String?
-    var birthYear: String = ""
 }
 
 final class RegistrationInteractor: RegistrationInteractorInterface {
