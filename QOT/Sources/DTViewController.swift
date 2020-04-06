@@ -14,7 +14,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     // MARK: - Properties
     var viewModel: DTViewModel?
     var router: DTRouterInterface?
-    var interactor: DTInteractorInterface?
+    var interactor: DTInteractorInterface!
     var triggeredByLaunchHandler = false
     private weak var navigationButton: NavigationButton?
     private weak var pageController: UIPageViewController?
@@ -33,7 +33,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     override func viewDidLoad() {
         super.viewDidLoad()
         addObservers()
-        let isDark = interactor?.isDark ?? true
+        let isDark = interactor.isDark
 
         let theme: ThemeView = isDark ? .chatbotDark : .chatbot
         theme.apply(view)
@@ -50,7 +50,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
 
         navigationController?.setNeedsStatusBarAppearanceUpdate()
         setupPageViewController(view.backgroundColor)
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
 
         setupSwipeGestureRecognizer()
     }
@@ -79,7 +79,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         constraintBottom.constant = 0
         self.view.layoutIfNeeded()
         trackQuestionInteraction(.PREVIOUS)
-        if interactor?.loadPreviousQuestion() == false {
+        if interactor.loadPreviousQuestion(selectedIds: interactor.getSelectedIds()) == false {
             router?.dismiss()
         }
     }
@@ -119,7 +119,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
                                               trigger: trigger,
                                               answerFilter: filter,
                                               userInput: nil)
-        interactor?.loadNextQuestion(selection: selectionModel)
+        interactor.loadNextQuestion(selection: selectionModel)
     }
 
     func showQuestion(viewModel: DTViewModel,

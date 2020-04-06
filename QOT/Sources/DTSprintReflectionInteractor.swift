@@ -26,6 +26,7 @@ final class DTSprintReflectionInteractor: DTInteractor {
                                                         answerFilter: introKey,
                                                         userInputText: nil,
                                                         questionUpdate: questionUpdate,
+                                                        selectedIds: [],
                                                         questions: questions)
         let node = Node(questionId: firstQuestion?.remoteID,
                         answerFilter: nil,

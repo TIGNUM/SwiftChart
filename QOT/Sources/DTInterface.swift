@@ -20,7 +20,7 @@ protocol DTViewControllerInterface: class {
 
 protocol DTPresenterInterface {
     func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
-    func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
+    func showPreviousQuestion(_ presentationModel: DTPresentationModel, selectedIds: [Int], isDark: Bool)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
     func showNavigationButtonAfterAnimation()
     func hideNavigationButtonForAnimation()
@@ -28,10 +28,11 @@ protocol DTPresenterInterface {
 
 protocol DTInteractorInterface: Interactor {
     func getSelectedAnswers() -> [SelectedAnswer]
+    func getSelectedIds() -> [Int]
     func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?)
     func didStopTypingAnimation()
     func loadNextQuestion(selection: DTSelectionModel)
-    func loadPreviousQuestion() -> Bool
+    func loadPreviousQuestion(selectedIds: [Int]) -> Bool
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
     func didUpdateUserInput(_ text: String, questionKey: String)
     var isDark: Bool { get set }

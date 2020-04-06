@@ -15,6 +15,7 @@ struct DTPresentationModel {
     let answerFilter: String?
     let userInputText: String?
     let tbv: QDMToBeVision?
+    let selectedIds: [Int]
     let events: [QDMUserCalendarEvent]
     let preparations: [QDMUserPreparation]
 
@@ -23,6 +24,7 @@ struct DTPresentationModel {
          answerFilter: String?,
          userInputText: String?,
          tbv: QDMToBeVision?,
+         selectedIds: [Int],
          events: [QDMUserCalendarEvent],
          preparations: [QDMUserPreparation]) {
         self.question = question
@@ -30,6 +32,7 @@ struct DTPresentationModel {
         self.answerFilter = answerFilter
         self.userInputText = userInputText
         self.tbv = tbv
+        self.selectedIds = selectedIds
         self.events = events
         self.preparations = preparations
     }
@@ -40,6 +43,7 @@ struct DTPresentationModel {
         self.answerFilter = nil
         self.userInputText = nil
         self.tbv = nil
+        self.selectedIds = []
         self.events = []
         self.preparations = []
     }

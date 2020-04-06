@@ -59,6 +59,10 @@ class DTInteractor: DTInteractorInterface {
         return selectedAnswers
     }
 
+    func getSelectedIds() -> [Int] {
+        return selectedAnswers.flatMap { $0.answers }.compactMap { $0.remoteId }
+    }
+
     func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?) {
         let selectionModel = DTSelectionModel(selectedAnswers: viewModel?.answers ?? [], question: viewModel?.question)
         loadNextQuestion(selection: selectionModel)
@@ -78,7 +82,7 @@ class DTInteractor: DTInteractorInterface {
         presentedNodes.append(node)
     }
 
-    func loadPreviousQuestion() -> Bool {
+    func loadPreviousQuestion(selectedIds: [Int]) -> Bool {
         if !presentedNodes.isEmpty {
             presentedNodes.removeLast()
             if !selectedAnswers.isEmpty {
@@ -91,8 +95,9 @@ class DTInteractor: DTInteractorInterface {
                                                             answerFilter: lastNode.answerFilter,
                                                             userInputText: inputText,
                                                             questionUpdate: lastNode.titleUpdate,
+                                                            selectedIds: selectedIds,
                                                             questions: questions)
-            presenter?.showPreviousQuestion(presentationModel, isDark: isDark)
+            presenter?.showPreviousQuestion(presentationModel, selectedIds: selectedIds, isDark: isDark)
             return true
         }
         return false
@@ -107,6 +112,7 @@ class DTInteractor: DTInteractorInterface {
                                  answerFilter: String?,
                                  userInputText: String?,
                                  questionUpdate: String?,
+                                 selectedIds: [Int],
                                  questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
         let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
@@ -119,6 +125,7 @@ class DTInteractor: DTInteractorInterface {
                                    answerFilter: filter,
                                    userInputText: userInputText,
                                    tbv: tbv,
+                                   selectedIds: selectedIds,
                                    events: events,
                                    preparations: preparations)
     }
@@ -140,6 +147,7 @@ class DTInteractor: DTInteractorInterface {
                                    answerFilter: answerFilter,
                                    userInputText: selection.userInput,
                                    tbv: tbv,
+                                   selectedIds: [],
                                    events: events,
                                    preparations: preparations)
     }

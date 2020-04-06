@@ -27,7 +27,7 @@ class DTPresenter: DTPresenterInterface {
         viewController?.showNextQuestion(viewModel)
     }
 
-    func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
+    func showPreviousQuestion(_ presentationModel: DTPresentationModel, selectedIds: [Int], isDark: Bool) {
         let button = getNavigationButton(presentationModel, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
@@ -81,7 +81,9 @@ class DTPresenter: DTPresenterInterface {
 
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
-        let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
+        let answers = getAnswers(presentationModel.answerFilter,
+                                 question: presentationModel.question,
+                                 presentationModel: presentationModel)
         let events = getPreparations(presentationModel.preparations)
         return DTViewModel(question: question,
                            answers: answers,
@@ -110,8 +112,14 @@ class DTPresenter: DTPresenterInterface {
                                     maxSelections: question?.maxPossibleSelections ?? 0)
     }
 
-    func getAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [DTViewModel.Answer] {
+    func getAnswers(_ answerFilter: String?,
+                    question: QDMQuestion?,
+                    presentationModel: DTPresentationModel) -> [DTViewModel.Answer] {
         let filteredAnswers = getFilteredAnswers(answerFilter, question: question)
+        if !presentationModel.selectedIds.isEmpty {
+            return filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0,
+                                                                   selectedIds: presentationModel.selectedIds) }
+        }
         return filteredAnswers.compactMap { (answer) -> DTViewModel.Answer in
             let selected = answer.subtitle?.isEmpty == true && question?.answerType == AnswerType.accept.rawValue
             return DTViewModel.Answer(remoteId: answer.remoteID ?? 0,
