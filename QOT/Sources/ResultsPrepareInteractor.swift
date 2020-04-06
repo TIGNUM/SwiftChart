@@ -53,7 +53,8 @@ private extension ResultsPrepareInteractor {
     func getDefaultStrategies(_ relatedStrategyID: Int?, _ completion: @escaping (([QDMContentCollection]?) -> Void)) {
         if let relatedStrategyID = relatedStrategyID {
             ContentService.main.getContentCollectionById(relatedStrategyID) { content in
-                let relatedIds = content?.relatedContentIDsPrepareDefault ?? []
+                var relatedIds = content?.relatedContentIDsPrepareDefault ?? []
+                relatedIds.append(contentsOf: content?.relatedContentItemIDs ?? [])
                 ContentService.main.getContentCollectionsByIds(relatedIds, completion)
             }
         } else {
@@ -75,9 +76,13 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
 
     func rowCount(in section: Int) -> Int {
         guard let level = preparation?.type else { return 0 }
-        let strategyCount = ((preparation?.strategies.count ?? 0))
+        let strategyCount = (preparation?.strategies.count ?? 0)
+        let strytegyItemCount = (preparation?.strategyItems.count ?? 0)
         if (level == .LEVEL_CRITICAL && section == 8) || (level == .LEVEL_DAILY && section == 7) {
             return strategyCount
+        }
+        if (level == .LEVEL_CRITICAL && section == 9) || (level == .LEVEL_DAILY && section == 8) {
+            return strytegyItemCount
         }
         return 1
     }
@@ -91,8 +96,10 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         worker.getDTViewModel(key, preparation: preparation, completion)
     }
 
-    func getStrategyIds() -> (relatedId: Int, selectedIds: [Int]) {
-        return (relatedId: preparation?.relatedStrategyId ?? 0, selectedIds: preparation?.strategyIds ?? [])
+    func getStrategyIds() -> (relatedId: Int, selectedIds: [Int], selectedItemIds: [Int]) {
+        let strategyIds = preparation?.strategyIds ?? []
+        let strategyItemIds = preparation?.strategyItemIds ?? []
+        return (relatedId: preparation?.relatedStrategyId ?? 0, strategyIds, strategyItemIds)
     }
 
     func updateBenefits(_ benefits: String) {
@@ -124,10 +131,12 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         }
     }
 
-    func updateStrategies(_ selectedIds: [Int]) {
-        preparation?.strategyIds = selectedIds
-        worker.getStrategies(selectedIds) { [weak self] (strategies) in
+    func updateStrategies(_ selectedIds: [Int], selectedItemIds: [Int]) {
+        preparation?.strategyIds = selectedIds.filter { $0 != 0 }
+        preparation?.strategyItemIds = selectedItemIds.filter { $0 != 0 }
+        worker.getStrategies(selectedIds, selectedItemIds) { [weak self] (strategies, strategyItems) in
             self?.preparation?.strategies = strategies ?? []
+            self?.preparation?.strategyItems = strategyItems ?? []
             self?.presenter.createListItems(preparation: self?.preparation)
         }
     }

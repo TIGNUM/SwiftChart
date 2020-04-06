@@ -240,6 +240,11 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title.uppercased(), duration: strategy?.durationString)
             return cell
+        case .strategyItems(let strategyItems):
+        let strategyItem = strategyItems.at(index: indexPath.row)
+        let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: strategyItem?.valueText, duration: strategyItem?.durationString)
+        return cell
         }
     }
 
@@ -263,11 +268,15 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             presentEditView(key: .perceived)
         case .strategyTitle:
             let ids = interactor.getStrategyIds()
-            router.presentEditStrategyView(ids.relatedId, ids.selectedIds, delegate: self)
+            router.presentEditStrategyView(ids.relatedId, ids.selectedIds, ids.selectedItemIds, delegate: self)
         case .strategies(let strategies):
             if let contentId = strategies.at(index: indexPath.row)?.remoteID {
                 router.didSelectStrategy(contentId)
             }
+        case .strategyItems(let strategyItems):
+        if let contentItemId = strategyItems.at(index: indexPath.row)?.remoteID {
+            router.didSelectStrategyItem(contentItemId)
+        }
         default: return
         }
     }
@@ -281,12 +290,17 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
 extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
     func dismiss(_ viewController: UIViewController, selections: [Choice]) {
         let selectedIds = selections.compactMap { $0.contentId }
+        let selectedIemIds = selections.compactMap { $0.contentItemId }
         viewController.dismiss(animated: true) { [weak self] in
-            self?.interactor.updateStrategies(selectedIds)
+            self?.interactor.updateStrategies(selectedIds, selectedItemIds: selectedIemIds)
         }
     }
 
-    func didTapRow(_ viewController: UIViewController, contentId: Int) {
-        router.didSelectStrategy(contentId)
+    func didTapRow(_ viewController: UIViewController, contentId: Int, contentItemId: Int) {
+        if contentId != 0 {
+            router.didSelectStrategy(contentId)
+        } else if contentItemId != 0 {
+            router.didSelectStrategyItem(contentItemId)
+        }
     }
 }

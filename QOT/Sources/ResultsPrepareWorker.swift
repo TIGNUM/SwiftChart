@@ -59,8 +59,14 @@ extension ResultsPrepareWorker {
         }
     }
 
-    func getStrategies(_ collectionIds: [Int], _ completion: @escaping ([QDMContentCollection]?) -> Void) {
-        ContentService.main.getContentCollectionsByIds(collectionIds, completion)
+    func getStrategies(_ collectionIds: [Int],
+                       _ contentItemIds: [Int],
+                       _ completion: @escaping ([QDMContentCollection]?, [QDMContentItem]?) -> Void) {
+        ContentService.main.getContentCollectionsByIds(collectionIds) { (contentCollection) in
+            ContentService.main.getContentItemsByIds(contentItemIds) { (contentItems) in
+                completion(contentCollection, contentItems)
+            }
+        }
     }
 }
 

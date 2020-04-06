@@ -11,6 +11,7 @@ import UIKit
 struct Choice {
     let categoryName: String
     let contentId: Int
+    let contentItemId: Int
     let title: String
     let readingTime: String
     let isDefault: Bool

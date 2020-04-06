@@ -24,18 +24,24 @@ final class DTPrepareWorker: DTWorker {
                                 relatedStategyId: Int,
                                 eventType: String,
                                 _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        var model = CreateUserPreparationModel()
-        model.level = QDMUserPreparation.Level.LEVEL_DAILY
-        model.benefits = nil
-        model.answerFilter = nil
-        model.contentCollectionId = QDMUserPreparation.Level.LEVEL_DAILY.contentID
-        model.relatedStrategyId = relatedStategyId
-        model.eventType = eventType
-        UserService.main.createUserPreparation(from: model) { (preparation, error) in
-            if let error = error {
-                log("Error createUserPreparation DAILY: \(error.localizedDescription)", level: .error)
+        getRelatedStrategies(relatedStategyId) { [weak self] (strategyIds) in
+            self?.getRelatedStrategyItems(relatedStategyId) { (strategyItemIds) in
+                var model = CreateUserPreparationModel()
+                model.level = QDMUserPreparation.Level.LEVEL_DAILY
+                model.benefits = nil
+                model.answerFilter = nil
+                model.contentCollectionId = QDMUserPreparation.Level.LEVEL_DAILY.contentID
+                model.relatedStrategyId = relatedStategyId
+                model.strategyIds = strategyIds
+                model.strategyItemIds = strategyItemIds
+                model.eventType = eventType
+                UserService.main.createUserPreparation(from: model) { (preparation, error) in
+                    if let error = error {
+                        log("Error createUserPreparation DAILY: \(error.localizedDescription)", level: .error)
+                    }
+                    completion(preparation)
+                }
             }
-            completion(preparation)
         }
     }
 
@@ -52,6 +58,12 @@ final class DTPrepareWorker: DTWorker {
     func getRelatedStrategies(_ strategyId: Int, _ completion: @escaping ([Int]) -> Void) {
         ContentService.main.getContentCollectionById(strategyId) { (contentCollection) in
             completion(contentCollection?.relatedContentIDsPrepareDefault ?? [])
+        }
+    }
+
+    func getRelatedStrategyItems(_ strategyId: Int, _ completion: @escaping ([Int]) -> Void) {
+        ContentService.main.getContentCollectionById(strategyId) { (contentCollection) in
+            completion(contentCollection?.relatedContentItemIDs ?? [])
         }
     }
 }
