@@ -928,14 +928,12 @@ public extension AppTextKey {
 
     static let daily_brief_section_impact_readiness_section_sleep_quantity_label_target = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.label_target")
     static let daily_brief_customize_sleep_amount_section_question_body = AppTextKey("daily_brief.customize_sleep_amount.section_question.body")
+}
+
+@available(*, unavailable, message: "Unavailable from QOT v3.1.6")
+public extension AppTextKey {
     static let onboarding_sign_up_age_verification_section_body_create_account_label_restriction = AppTextKey("onboarding.sign_up.age_verification.section_body.create_account_label_restriction")
     static let my_qot_my_profile_account_settings_edit_placeholder_date_picker = AppTextKey("my_qot.my_profile.account_settings.edit.placeholder_date_picker")
     static let dateOfBirth = AppTextKey("onboarding.sign_up.age_verification.section_textfield_date_of_birth.placeholder")
-
-
-
-
-
-
-
 }
+
