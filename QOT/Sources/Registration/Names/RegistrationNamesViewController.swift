@@ -15,8 +15,6 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var firstNameField: QotPlaceholderTextField!
     @IBOutlet private weak var lastNameField: QotPlaceholderTextField!
-    @IBOutlet private weak var ageInputField: QotPlaceholderTextField!
-    @IBOutlet private weak var ageRestrictionLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var mandatoryLabel: UILabel!
     private var keyboardNotification: NSNotification?
@@ -48,16 +46,6 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
         createAccountBarButton.isEnabled = false
         toolbar.items = [space, createAccountBarButton.barButton]
         return toolbar
-    }()
-
-    lazy private var datePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .date
-        picker.backgroundColor = .carbonNew
-        picker.minimumDate = Date().minimumDateOfBirth
-        picker.maximumDate = Date().maximumDateOfBirth
-        picker.addTarget(self, action: #selector(datePickerValueChanged(datePicker:)), for: .valueChanged)
-        return picker
     }()
 
     var interactor: RegistrationNamesInteractorInterface!
@@ -94,7 +82,6 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
         interactor.resetErrors()
         firstNameField.text = nil
         lastNameField.text = nil
-        ageInputField.text = nil
         interactor.didTapBack()
     }
 }
@@ -102,31 +89,24 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - Private
 private extension RegistrationNamesViewController {
     func isEnabled() -> Bool {
-        return firstNameField.text?.isEmpty == false && ageInputField.text?.isEmpty == false
+        return firstNameField.text?.isEmpty == false
     }
 }
 
 // MARK: - Actions
 private extension RegistrationNamesViewController {
     @objc func didTapCreateAccount() {
-        guard let name = firstNameField.text, let dateOfBirth = ageInputField.text else { return }
+        guard let name = firstNameField.text else { return }
         updateBottomNavigation([], [])
         createAccountBarButton.alpha = 0
         createAccountButton.alpha = 0
-        ageInputField.textField.resignFirstResponder()
         view.endEditing(true)
-        interactor.didTapNext(with: name, lastName: lastNameField.text, birthDate: ageInputField.text)
+        interactor.didTapNext(with: name, lastName: lastNameField.text)
         let userName = name + " " + (lastNameField.text ?? "")
         trackUserEvent(.CREATE_ACCOUNT,
-                       stringValue: "userName: " + userName + ", dateOfBirth: " + dateOfBirth,
+                       stringValue: "userName: " + userName,
                        valueType: .USER_ANSWER,
                        action: .TAP)
-    }
-
-    @objc func datePickerValueChanged(datePicker: UIDatePicker) {
-        let formatter = DateFormatter.yyyyMMdd
-        ageInputField.text = formatter?.string(from: datePicker.date)
-        createAccountBarButton.isEnabled = isEnabled()
     }
 }
 
@@ -147,16 +127,7 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
         lastNameField.textField.returnKeyType = .next
         lastNameField.delegate = self
 
-        viewTheme.apply(ageInputField.textField)
         ThemeText.registrationAgeTitle.apply(interactor.title, to: titleLabel)
-        ThemeText.onboardingInputPlaceholder.apply(interactor.agePlaceholder, to: ageInputField.placeholderLabel)
-        ThemeText.registrationAgeRestriction.apply(interactor.ageRestrictionText, to: ageRestrictionLabel)
-
-        ageInputField.textField.inputView = datePicker
-        ageInputField.textField.inputAccessoryView = keyboardToolbar
-        ageInputField.textField.returnKeyType = .go
-        ageInputField.textField.tintColor = .clear
-        ageInputField.delegate = self
     }
 
     func updateView() {
@@ -209,10 +180,6 @@ extension RegistrationNamesViewController {
         if lastNameField.textField.isFirstResponder {
             return lastNameField
         }
-        if ageInputField.textField.isFirstResponder {
-            createAccountBarButton.isEnabled = isEnabled()
-            return ageInputField
-        }
         return nil
     }
 }
@@ -222,8 +189,6 @@ extension RegistrationNamesViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == firstNameField.textField {
             lastNameField.textField.becomeFirstResponder()
-        } else if textField == lastNameField.textField {
-            ageInputField.textField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
             didTapCreateAccount()

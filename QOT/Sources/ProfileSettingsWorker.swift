@@ -22,7 +22,6 @@ final class ProfileSettingsWorker {
     private var contactTxt = ""
     private var nameTxt = ""
     private var surnameTxt = ""
-    private var dateOfBirthTxt = ""
     private var companyTxt = ""
     private var emailTxt = ""
 
@@ -50,7 +49,6 @@ final class ProfileSettingsWorker {
         contactTitle()
         nameTitle()
         surnameTitle()
-        dateOfBirthTitle()
         companyTitle()
         emailTitle()
         getProfile()
@@ -126,10 +124,6 @@ private extension ProfileSettingsWorker {
         surnameTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_title_surname)
     }
 
-    func dateOfBirthTitle() {
-        dateOfBirthTxt = AppTextService.get(.dateOfBirth)
-    }
-
     func companyTitle() {
         companyTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_label_company)
     }
@@ -165,7 +159,6 @@ private extension ProfileSettingsWorker {
     private func personalRows(for user: QDMUser?) -> [SettingsRow] {
         guard let user = user else { return [] }
         return [.textField(title: nameTxt, value: user.givenName, secure: false, settingsType: .firstName),
-                .textField(title: surnameTxt, value: user.familyName, secure: false, settingsType: .lastName),
-                .datePicker(title: dateOfBirthTxt, dateOfBirth: user.dateOfBirth, settingsType: .dateOfBirth)]
+                .textField(title: surnameTxt, value: user.familyName, secure: false, settingsType: .lastName)]
     }
 }

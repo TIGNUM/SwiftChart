@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,43 +45,25 @@
                                                     <constraint firstAttribute="height" constant="80" id="npT-gE-trQ"/>
                                                 </constraints>
                                             </view>
-                                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRf-hX-jjL" customClass="QotPlaceholderTextField" customModule="TIGNUM_X" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="390" width="272" height="80"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="3cF-e5-S5a"/>
-                                                </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mandatory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hW4-aj-Sew">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mandatory" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hW4-aj-Sew">
                                                 <rect key="frame" x="24" y="523" width="272" height="10"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlU-cz-xof">
-                                                <rect key="frame" x="24" y="490" width="272" height="0.0"/>
-                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="hlU-cz-xof" firstAttribute="top" secondItem="xRf-hX-jjL" secondAttribute="bottom" constant="20" id="3cz-vR-Sxu"/>
-                                            <constraint firstItem="xRf-hX-jjL" firstAttribute="top" secondItem="3Ek-E0-5cV" secondAttribute="bottom" constant="32" id="7Np-SQ-sBp"/>
-                                            <constraint firstAttribute="trailing" secondItem="xRf-hX-jjL" secondAttribute="trailing" constant="24" id="83I-su-cId"/>
                                             <constraint firstItem="yiC-nr-3gH" firstAttribute="top" secondItem="4vL-CQ-Oa3" secondAttribute="top" constant="13" id="8T0-d5-2lB"/>
                                             <constraint firstItem="3Ek-E0-5cV" firstAttribute="leading" secondItem="4vL-CQ-Oa3" secondAttribute="leading" constant="24" id="A9B-Rj-WYQ"/>
                                             <constraint firstItem="yiC-nr-3gH" firstAttribute="leading" secondItem="4vL-CQ-Oa3" secondAttribute="leading" constant="24" id="Cez-yZ-zpE"/>
                                             <constraint firstItem="hW4-aj-Sew" firstAttribute="leading" secondItem="4vL-CQ-Oa3" secondAttribute="leading" constant="24" id="DBQ-tX-yOe"/>
                                             <constraint firstAttribute="trailing" secondItem="yiC-nr-3gH" secondAttribute="trailing" constant="24" id="Nsc-Sh-NGy"/>
                                             <constraint firstAttribute="trailing" secondItem="hW4-aj-Sew" secondAttribute="trailing" constant="24" id="VGE-59-CmP"/>
-                                            <constraint firstItem="xRf-hX-jjL" firstAttribute="leading" secondItem="4vL-CQ-Oa3" secondAttribute="leading" constant="24" id="ZXo-ex-Bif"/>
                                             <constraint firstAttribute="trailing" secondItem="3Ek-E0-5cV" secondAttribute="trailing" constant="24" id="agh-lJ-Wjo"/>
                                             <constraint firstAttribute="trailing" secondItem="IeX-ZI-QHv" secondAttribute="trailing" constant="24" id="gvD-kM-Mer"/>
-                                            <constraint firstItem="hlU-cz-xof" firstAttribute="leading" secondItem="4vL-CQ-Oa3" secondAttribute="leading" constant="24" id="iS7-VG-QhG"/>
-                                            <constraint firstItem="hW4-aj-Sew" firstAttribute="top" secondItem="hlU-cz-xof" secondAttribute="bottom" constant="33" id="jcj-zP-sG7"/>
-                                            <constraint firstAttribute="trailing" secondItem="hlU-cz-xof" secondAttribute="trailing" constant="24" id="lLs-Re-QdV"/>
+                                            <constraint firstItem="hW4-aj-Sew" firstAttribute="top" secondItem="3Ek-E0-5cV" secondAttribute="bottom" constant="165" id="hDQ-Ui-xU1"/>
                                             <constraint firstItem="3Ek-E0-5cV" firstAttribute="top" secondItem="IeX-ZI-QHv" secondAttribute="bottom" constant="32" id="omy-L8-lzt"/>
                                             <constraint firstItem="IeX-ZI-QHv" firstAttribute="leading" secondItem="4vL-CQ-Oa3" secondAttribute="leading" constant="24" id="sJf-ED-hp3"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hW4-aj-Sew" secondAttribute="bottom" constant="35" id="tmW-Er-xJH"/>
@@ -109,8 +91,6 @@
                         <viewLayoutGuide key="safeArea" id="Rpq-PO-rna"/>
                     </view>
                     <connections>
-                        <outlet property="ageInputField" destination="xRf-hX-jjL" id="UPb-SD-Oit"/>
-                        <outlet property="ageRestrictionLabel" destination="hlU-cz-xof" id="0tm-bS-hvV"/>
                         <outlet property="bottomConstraint" destination="tmW-Er-xJH" id="Gpl-us-H71"/>
                         <outlet property="firstNameField" destination="IeX-ZI-QHv" id="SMQ-Cm-wDz"/>
                         <outlet property="lastNameField" destination="3Ek-E0-5cV" id="fYA-x1-Lkc"/>
