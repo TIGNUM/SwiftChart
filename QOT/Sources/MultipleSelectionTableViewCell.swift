@@ -25,6 +25,7 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
     private var maxPossibleSelections = 0
     private var selectionCounter = 0
     private var answers: [DTViewModel.Answer] = []
+    private var selectedAnswers: [DTViewModel.Answer] = []
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -43,7 +44,7 @@ extension MultipleSelectionTableViewCell {
         layoutIfNeeded()
         self.answers = answers
         self.maxPossibleSelections = maxPossibleSelections
-        let selectedAnswers = answers.filter { $0.selected == true }
+        self.selectedAnswers = answers.filter { $0.selected == true }
         selectionCounter = selectedAnswers.count
         collectionView.reloadData()
     }

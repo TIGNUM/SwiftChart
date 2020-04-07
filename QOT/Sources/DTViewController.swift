@@ -183,6 +183,14 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         self.viewModel = viewModel
         previousButton.isHidden = viewModel.previousButtonIsHidden
         closeButton.isHidden = viewModel.dismissButtonIsHidden
+        setSelectedAnswersIfNeeded(viewModel: viewModel)
+    }
+
+    private func setSelectedAnswersIfNeeded(viewModel: DTViewModel) {
+        let selectedAnswers = viewModel.answers.filter { $0.selected == true }
+        selectedAnswers.forEach { (answer) in
+            didSelectAnswer(answer)
+        }
     }
 
     private func setupPageViewController(_ backgroundColor: UIColor?) {

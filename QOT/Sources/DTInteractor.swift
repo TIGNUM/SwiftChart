@@ -60,7 +60,10 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func getSelectedIds() -> [Int] {
-        return selectedAnswers.flatMap { $0.answers }.compactMap { $0.remoteId }
+        let lastQuestionId = selectedAnswers.last?.question?.remoteId
+        let lastSelectedAnswer = selectedAnswers.filter { $0.question?.remoteId == lastQuestionId }
+        let answers = lastSelectedAnswer.flatMap { $0.answers }
+        return answers.compactMap { $0.remoteId }
     }
 
     func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?) {
