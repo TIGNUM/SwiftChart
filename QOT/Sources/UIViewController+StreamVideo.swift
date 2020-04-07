@@ -11,14 +11,29 @@ import AVFoundation
 import AVKit
 import qot_dal
 
+
+protocol MediaPlayerViewControllerInterface: class {
+    func showDestinationAlert()
+}
+
 final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverlay {
     var overlayControls: MediaPlayerOverlay?
     var videoGravityObserver: NSKeyValueObservation?
     var zoomed: Bool = false
+
     var interactor: StreamVideoInteractorInterface? {
         didSet {
             interactor?.delegate = self
         }
+    }
+
+    init(configure: Configurator<MediaPlayerViewController>) {
+        super.init(nibName: nil, bundle: nil)
+        configure(self)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +95,20 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
         trackUserEvent(.CLOSE, value: interactor?.contentItemId, valueType: contentType, action: .SWIPE)
         dismiss(animated: true, completion: nil)
     }
+
+    @objc func dismissAlert() {
+        QOTAlert.dismiss()
+    }
 }
+
+extension MediaPlayerViewController: MediaPlayerViewControllerInterface {
+
+    func showDestinationAlert() {
+        let closeButtonItem = createCloseButton(#selector(dismissAlert))
+        QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
+    }
+}
+
 
 extension MediaPlayerViewController: StreamVideoInteractorDelegate {
 
@@ -88,15 +116,6 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
         overlayControls?.configure(downloadTitle: interactor.downloadButtonTitle,
                                    isBokmarked: interactor.isBookmarked,
                                    isDownloaded: interactor.isDownloaded)
-    }
-
-    func showDestinationAlert() {
-        let closeButtonItem = createCloseButton(#selector(dismissAlert))
-        QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
-    }
-
-    @objc func dismissAlert() {
-        QOTAlert.dismiss()
     }
 
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface) {
@@ -123,21 +142,20 @@ extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
         let value: QDMUserEventTracking.Name = interactor?.isBookmarked == true ? .DESELECT : .SELECT
         trackUserEvent(.BOOKMARK, value: interactor?.contentItemId, stringValue: value, valueType: .VIDEO, action: .TAP)
         interactor?.didTapBookmark()
-        interactor?.isBookmarked == true ? nil : showDestinationAlert()
     }
 }
 
 extension UIViewController {
     @discardableResult
     func stream(videoURL: URL, contentItem: QDMContentItem?) -> MediaPlayerViewController? {
-        let interactor = StreamVideoInteractor(content: contentItem)
-        guard QOTReachability().isReachable || interactor.isDownloaded else {
+        let configurator = StreamVideoConfigurator.make(content: contentItem)
+        let playerController = MediaPlayerViewController(configure: configurator)
+        let interactor = playerController.interactor
+        guard QOTReachability().isReachable || interactor?.isDownloaded ?? false else {
             self.showNoInternetConnectionAlert()
             return nil
         }
         let player = AVPlayer(url: videoURL)
-        let playerController = MediaPlayerViewController(contentItem: contentItem)
-        playerController.interactor = interactor
         playerController.player = player
 
         do {
@@ -152,7 +170,7 @@ extension UIViewController {
             player.volume = 1
             player.play()
         }
-        if interactor.isLoggedIn {
+        if interactor?.isLoggedIn ?? false {
             addOverlay(to: playerController)
         }
         return playerController
@@ -181,20 +199,6 @@ extension UIViewController {
                               isDownloaded: interactor.isDownloaded)
         }
     }
-
-//    @objc func closeAction() {
-//        QOTAlert.dismiss()
-//    }
-//
-//    func createCloseButton() -> UIBarButtonItem {
-//        let button = RoundedButton.init(title: nil, target: self, action: #selector(closeAction))
-//        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-//        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-//        button.addConstraints([heightConstraint, widthConstraint])
-//        button.setImage(R.image.ic_close(), for: .normal)
-//        ThemeButton.closeButton(.dark).apply(button)
-//        return UIBarButtonItem(customView: button)
-//    }
 }
 
 class AVPlayerObserver: NSObject {

@@ -13,7 +13,6 @@ protocol StreamVideoInteractorDelegate: class {
     func didUpdateData(interactor: StreamVideoInteractorInterface)
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface)
     func showNoInternetConnectionAlert(interactor: StreamVideoInteractorInterface)
-    func showDestinationAlert()
 }
 
 protocol StreamVideoInteractorInterface {
@@ -38,9 +37,12 @@ final class StreamVideoInteractor {
 
     weak var delegate: StreamVideoInteractorDelegate?
     private let worker: StreamVideoWorker
+    private let presenter: StreamVideoPresenter
 
-    init(content: QDMContentItem?) {
-        worker = StreamVideoWorker(content: content)
+    init(worker: StreamVideoWorker,
+         presenter: StreamVideoPresenter) {
+        self.worker = worker
+        self.presenter = presenter
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateDownloadStatus(_:)),
                                                name: .didUpdateDownloadStatus, object: nil)
     }
@@ -87,6 +89,10 @@ final class StreamVideoInteractor {
     var contentFormat: ContentFormat? {
         return worker.contentFormat
     }
+
+    var isBookmarkedAndDownloaded: Bool? {
+        return worker.isBookmarked && worker.downloadStatus == .DOWNLOADED
+    }
 }
 
 extension StreamVideoInteractor: StreamVideoInteractorInterface {
@@ -116,6 +122,7 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
             guard let strongSelf = self else { return }
             strongSelf.delegate?.didUpdateData(interactor: strongSelf)
             NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
+            strongSelf.isBookmarked ? strongSelf.presenter.showDestinationAlert() : nil
         }
     }
 }
@@ -144,8 +151,12 @@ private extension StreamVideoInteractor {
             worker.updateItemDownloadStatus { [weak self] in
                 guard let strongSelf = self else { return }
                 strongSelf.delegate?.didUpdateData(interactor: strongSelf)
-                strongSelf.isDownloaded == true ? strongSelf.delegate?.showDestinationAlert() : nil
+                strongSelf.isDownloaded == true ? strongSelf.presenter.showDestinationAlert() : nil
             }
         }
+    }
+
+    func showDestinationAlert() {
+        presenter.showDestinationAlert()
     }
 }
