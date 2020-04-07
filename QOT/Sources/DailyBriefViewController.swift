@@ -30,6 +30,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func presentMyDataScreen()
     func didChangeLocationPermission(granted: Bool)
     func showDailyCheckInQuestions()
+    func showAlert(message: String?)
 }
 
 final class DailyBriefNavigationController: UINavigationController {
@@ -726,6 +727,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     func scrollToSection(at: Int) {
         tableView.scrollToRow(at: IndexPath(row: 0, section: at), at: .middle, animated: true)
     }
+
+    @objc func dismissAlert() {
+        QOTAlert.dismiss()
+    }
 }
 
 // MARK: - DailyBriefViewControllerDelegate
@@ -756,6 +761,11 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         interactor.saveTargetValue(value: value)
     }
 
+    func showAlert( message: String?) {
+        let closeButtonItem = createCloseButton(#selector(dismissAlert))
+        QOTAlert.show(title: nil, message: message, bottomItems: [closeButtonItem])
+    }
+
     // TODO Set correct pageName
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?) {
         stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem)
@@ -764,6 +774,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
 // MARK: - Navigation
 extension DailyBriefViewController {
+
     func showCustomizeTarget() {
         interactor.customizeSleepQuestion { [weak self] (question) in
             self?.router.presentCustomizeTarget(question)

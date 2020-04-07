@@ -61,24 +61,10 @@ final class Level5Cell: BaseDailyBriefCell {
         ThemeView.selectedButton.apply(saveButton)
         savedAnswer = tmpAnswer
         delegate?.saveAnswerValue(tmpAnswer + 1, from: self)
-        let closeButtonItem = createCloseButton()
-        QOTAlert.show(title: nil, message: confirmationMessage, bottomItems: [closeButtonItem])
+        delegate?.showAlert(message: confirmationMessage)
         updateUI(levelMessages.at(index: tmpAnswer)?.levelContent)
     }
 
-    @objc func dismissAction() {
-        QOTAlert.dismiss()
-    }
-
-    func createCloseButton() -> UIBarButtonItem {
-        let button = RoundedButton.init(title: nil, target: self, action: #selector(dismissAction))
-        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        button.addConstraints([heightConstraint, widthConstraint])
-        button.setImage(R.image.ic_close(), for: .normal)
-        ThemeButton.closeButton(.dark).apply(button)
-        return UIBarButtonItem(customView: button)
-    }
 
     func configure(with model: Level5ViewModel?) {
         skeletonManager.hide()

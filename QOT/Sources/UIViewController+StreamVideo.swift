@@ -91,8 +91,12 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
     }
 
     func showDestinationAlert() {
-        let closeButtonItem = createCloseButton()
+        let closeButtonItem = createCloseButton(#selector(dismissAlert))
         QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
+    }
+
+    @objc func dismissAlert() {
+        QOTAlert.dismiss()
     }
 
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface) {
@@ -178,19 +182,19 @@ extension UIViewController {
         }
     }
 
-    @objc func closeAction() {
-        QOTAlert.dismiss()
-    }
-
-    func createCloseButton() -> UIBarButtonItem {
-        let button = RoundedButton.init(title: nil, target: self, action: #selector(closeAction))
-        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        button.addConstraints([heightConstraint, widthConstraint])
-        button.setImage(R.image.ic_close(), for: .normal)
-        ThemeButton.closeButton(.dark).apply(button)
-        return UIBarButtonItem(customView: button)
-    }
+//    @objc func closeAction() {
+//        QOTAlert.dismiss()
+//    }
+//
+//    func createCloseButton() -> UIBarButtonItem {
+//        let button = RoundedButton.init(title: nil, target: self, action: #selector(closeAction))
+//        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+//        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+//        button.addConstraints([heightConstraint, widthConstraint])
+//        button.setImage(R.image.ic_close(), for: .normal)
+//        ThemeButton.closeButton(.dark).apply(button)
+//        return UIBarButtonItem(customView: button)
+//    }
 }
 
 class AVPlayerObserver: NSObject {

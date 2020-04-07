@@ -224,8 +224,12 @@ private extension AudioFullScreenViewController {
     }
 
     func showDestinationAlert() {
-        let closeButtonItem = createCloseButton()
+        let closeButtonItem = createCloseButton(#selector(dismissAlert))
         QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
+    }
+
+    @objc func dismissAlert() {
+        QOTAlert.dismiss()
     }
 
     func continueDownload() {

@@ -144,27 +144,23 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     }
 
     @IBAction func sleepQuantityTapped(_ sender: Any) {
-        let closeButtonItem = createCloseButton()
         let description = AppTextService.get(.daily_brief_section_impact_readiness_sleep_quantity_description)
-        QOTAlert.show(title: nil, message: description, bottomItems: [closeButtonItem])
+            delegate?.showAlert(message: description)
     }
 
     @IBAction func sleepQualityTapped(_ sender: Any) {
-        let closeButtonItem = createCloseButton()
         let description = AppTextService.get(.daily_brief_section_impact_readiness_sleep_quality_description)
-        QOTAlert.show(title: nil, message: description, bottomItems: [closeButtonItem])
+        delegate?.showAlert(message: description)
     }
 
     @IBAction func loadButtonTapped(_ sender: Any) {
-        let closeButtonItem = createCloseButton()
         let description = AppTextService.get(.daily_brief_section_impact_readiness_load_description)
-        QOTAlert.show(title: nil, message: description, bottomItems: [closeButtonItem])
+        delegate?.showAlert(message: description)
     }
 
     @IBAction func futureLoadTapped(_ sender: Any) {
-        let closeButtonItem = createCloseButton()
         let description = AppTextService.get(.daily_brief_section_impact_readiness_future_load_description)
-        QOTAlert.show(title: nil, message: description, bottomItems: [closeButtonItem])
+        delegate?.showAlert(message: description)
     }
 
     @IBAction func targetReference(_ sender: Any) {
@@ -196,19 +192,5 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         style.alignment = textAlignment
         combine.addAttributes([.paragraphStyle: style], range: NSRange(location: 0, length: combine.length))
         return combine
-    }
-
-    @objc func dismissAction() {
-        QOTAlert.dismiss()
-    }
-
-    func createCloseButton() -> UIBarButtonItem {
-        let button = RoundedButton.init(title: nil, target: self, action: #selector(dismissAction))
-        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        button.addConstraints([heightConstraint, widthConstraint])
-        button.setImage(R.image.ic_close(), for: .normal)
-        ThemeButton.closeButton(.dark).apply(button)
-        return UIBarButtonItem(customView: button)
     }
 }

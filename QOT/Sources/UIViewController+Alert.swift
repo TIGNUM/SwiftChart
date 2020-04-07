@@ -200,6 +200,16 @@ extension UIViewController {
         let message = AppTextService.get(.generic_alert_unknown_error_body).replacingOccurrences(of: "%@", with: messageType)
         showAlert(type: .custom(title: title, message: message))
     }
+
+    func createCloseButton(_ action: Selector) -> UIBarButtonItem {
+         let button = RoundedButton.init(title: nil, target: self, action: action)
+         let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+         let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+         button.addConstraints([heightConstraint, widthConstraint])
+         button.setImage(R.image.ic_close(), for: .normal)
+         ThemeButton.closeButton(.dark).apply(button)
+         return UIBarButtonItem(customView: button)
+     }
 }
 
 extension UIViewController {
