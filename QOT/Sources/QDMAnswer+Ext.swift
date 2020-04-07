@@ -25,3 +25,15 @@ extension QDMAnswer {
         return decisions.first(where: { $0.targetType == type.rawValue })?.targetTypeId
     }
 }
+
+extension QDMAnswer {
+    func getDTViewModelAnswerDecisions() -> [DTViewModel.Answer.Decision] {
+        return decisions.compactMap { (decision) -> DTViewModel.Answer.Decision in
+            return DTViewModel.Answer.Decision(targetType: TargetType(rawValue: decision.targetType) ?? .question,
+                                               targetTypeId: decision.targetTypeId,
+                                               questionGroupId: decision.questionGroupId,
+                                               targetGroupId: decision.targetGroupId,
+                                               targetGroupName: decision.targetGroupName)
+        }
+    }
+}

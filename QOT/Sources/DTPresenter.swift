@@ -118,7 +118,8 @@ class DTPresenter: DTPresenterInterface {
         let filteredAnswers = getFilteredAnswers(answerFilter, question: question)
         if !presentationModel.selectedIds.isEmpty {
             return filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0,
-                                                                   selectedIds: presentationModel.selectedIds) }
+                                                                   selectedIds: presentationModel.selectedIds,
+                                                                   decisions: $0.getDTViewModelAnswerDecisions()) }
         }
         return filteredAnswers.compactMap { (answer) -> DTViewModel.Answer in
             let selected = answer.subtitle?.isEmpty == true && question?.answerType == AnswerType.accept.rawValue
@@ -127,7 +128,7 @@ class DTPresenter: DTPresenterInterface {
                                       keys: answer.keys,
                                       selected: selected,
                                       backgroundColor: answerBackgroundColor(answer: answer),
-                                      decisions: getDecisions(answer: answer))
+                                      decisions: answer.getDTViewModelAnswerDecisions() )
         }
     }
 
@@ -146,16 +147,6 @@ class DTPresenter: DTPresenterInterface {
                                      title: preparation.name,
                                      dateString: Prepare.prepareDateString(preparation.createdAt),
                                      isCalendarEvent: false)
-        }
-    }
-
-    func getDecisions(answer: QDMAnswer) -> [DTViewModel.Answer.Decision] {
-        return answer.decisions.compactMap { (decision) -> DTViewModel.Answer.Decision in
-            return DTViewModel.Answer.Decision(targetType: TargetType(rawValue: decision.targetType) ?? .question,
-                                               targetTypeId: decision.targetTypeId,
-                                               questionGroupId: decision.questionGroupId,
-                                               targetGroupId: decision.targetGroupId,
-                                               targetGroupName: decision.targetGroupName)
         }
     }
 

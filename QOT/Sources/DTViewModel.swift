@@ -100,13 +100,13 @@ struct DTViewModel {
             self.decisions = [Decision(answer, newTargetId)]
         }
 
-        init(qdmAnswer: QDMAnswer, selectedIds: [Int]) {
+        init(qdmAnswer: QDMAnswer, selectedIds: [Int], decisions: [Decision]) {
             self.remoteId = qdmAnswer.remoteID ?? 0
             self.title = qdmAnswer.subtitle ?? ""
             self.keys = qdmAnswer.keys
             self.selected = selectedIds.contains(obj: qdmAnswer.remoteID ?? 0)
             self.backgroundColor = .clear
-            self.decisions = []
+            self.decisions = decisions
         }
 
         static func == (lhs: DTViewModel.Answer, rhs: DTViewModel.Answer) -> Bool {
