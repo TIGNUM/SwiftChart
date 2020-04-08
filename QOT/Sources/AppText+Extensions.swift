@@ -667,7 +667,6 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_data_section_header_title = AppTextKey("my_qot.my_tbv.tbv_tracker_data.section_header.title")
     static let my_qot_my_tbv_section_navigation_bar_title = AppTextKey("my_qot.my_tbv.section_navigation_bar.title")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_always")
-    static let daily_brief_customize_sleep_amount_section_header_title = AppTextKey("daily_brief.customize_sleep_amount.section_header.title")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.body_rate_yourself")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_never")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_sometimes")
@@ -935,5 +934,6 @@ public extension AppTextKey {
     static let onboarding_sign_up_age_verification_section_body_create_account_label_restriction = AppTextKey("onboarding.sign_up.age_verification.section_body.create_account_label_restriction")
     static let my_qot_my_profile_account_settings_edit_placeholder_date_picker = AppTextKey("my_qot.my_profile.account_settings.edit.placeholder_date_picker")
     static let dateOfBirth = AppTextKey("onboarding.sign_up.age_verification.section_textfield_date_of_birth.placeholder")
+    static let daily_brief_customize_sleep_amount_section_header_title = AppTextKey("daily_brief.customize_sleep_amount.section_header.title")
 }
 
