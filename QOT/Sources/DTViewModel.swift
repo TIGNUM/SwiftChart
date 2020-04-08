@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-struct DTViewModel {
+class DTViewModel {
     let question: Question
     var answers: [Answer]
     let events: [Event]
@@ -20,6 +20,28 @@ struct DTViewModel {
     let previousButtonIsHidden: Bool
     let dismissButtonIsHidden: Bool
     let showNextQuestionAutomated: Bool
+
+    init(question: DTViewModel.Question,
+                  answers: [DTViewModel.Answer],
+                  events: [DTViewModel.Event],
+                  tbvText: String?,
+                  userInputText: String?,
+                  hasTypingAnimation: Bool,
+                  typingAnimationDuration: Double,
+                  previousButtonIsHidden: Bool,
+                  dismissButtonIsHidden: Bool,
+                  showNextQuestionAutomated: Bool) {
+        self.question = question
+        self.answers = answers
+        self.events = events
+        self.tbvText = tbvText
+        self.userInputText = userInputText
+        self.hasTypingAnimation = hasTypingAnimation
+        self.typingAnimationDuration = typingAnimationDuration
+        self.previousButtonIsHidden = previousButtonIsHidden
+        self.dismissButtonIsHidden = dismissButtonIsHidden
+        self.showNextQuestionAutomated = showNextQuestionAutomated
+    }
 
     // -ReadOnly
     var selectedAnswers: [DTViewModel.Answer] {
@@ -100,13 +122,13 @@ struct DTViewModel {
             self.decisions = [Decision(answer, newTargetId)]
         }
 
-        init(qdmAnswer: QDMAnswer, selectedIds: [Int]) {
+        init(qdmAnswer: QDMAnswer, selectedIds: [Int], decisions: [Decision]) {
             self.remoteId = qdmAnswer.remoteID ?? 0
             self.title = qdmAnswer.subtitle ?? ""
             self.keys = qdmAnswer.keys
             self.selected = selectedIds.contains(obj: qdmAnswer.remoteID ?? 0)
             self.backgroundColor = .clear
-            self.decisions = []
+            self.decisions = decisions
         }
 
         static func == (lhs: DTViewModel.Answer, rhs: DTViewModel.Answer) -> Bool {
@@ -158,17 +180,17 @@ private extension DTViewModel {
 }
 
 extension DTViewModel {
-    mutating func setSelectedAnswer(_ answer: Answer) {
+    func setSelectedAnswer(_ answer: Answer) {
         if let index = indexOf(answer.remoteId) {
             answers.remove(at: index)
             answers.insert(answer, at: index)
-            if question.answerType == .multiSelection {
+            if question.answerType == .multiSelection || question.answerType == .singleSelection {
                 notifyCounterChanged()
             }
         }
     }
 
-    mutating func resetSelectedAnswers() {
+    func resetSelectedAnswers() {
         selectedAnswers.forEach { (answer) in
             var answerToReset = answer
             answerToReset.selected = false
