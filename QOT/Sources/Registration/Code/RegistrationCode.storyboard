@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +19,7 @@
         <!--Registration Code View Controller-->
         <scene sceneID="hFL-5q-3pV">
             <objects>
-                <viewController storyboardIdentifier="RegistrationCodeViewController" id="oFf-ev-5tD" customClass="RegistrationCodeViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegistrationCodeViewController" id="oFf-ev-5tD" customClass="RegistrationCodeViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f2x-Wc-aAT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +48,7 @@
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70271832190000005" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U0Y-xw-lo2" userLabel="digit_001" customClass="TextField" customModule="QOT" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U0Y-xw-lo2" userLabel="digit_001" customClass="TextField" customModule="TIGNUM_X" customModuleProvider="target">
                                                 <rect key="frame" x="24" y="147.5" width="40" height="52"/>
                                                 <color key="tintColor" red="0.92156862750000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -64,7 +62,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5so-KB-ti4">
                                                 <rect key="frame" x="64" y="147.5" width="123" height="52"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pGZ-WE-gWl" userLabel="digit_002" customClass="TextField" customModule="QOT" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pGZ-WE-gWl" userLabel="digit_002" customClass="TextField" customModule="TIGNUM_X" customModuleProvider="target">
                                                         <rect key="frame" x="41.5" y="0.0" width="40" height="52"/>
                                                         <color key="tintColor" red="0.92156862750000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -83,7 +81,7 @@
                                                     <constraint firstItem="pGZ-WE-gWl" firstAttribute="centerX" secondItem="5so-KB-ti4" secondAttribute="centerX" id="xm1-bG-aYE"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wbW-uG-XIO" userLabel="digit_003" customClass="TextField" customModule="QOT" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wbW-uG-XIO" userLabel="digit_003" customClass="TextField" customModule="TIGNUM_X" customModuleProvider="target">
                                                 <rect key="frame" x="187" y="147.5" width="40" height="52"/>
                                                 <color key="tintColor" red="0.92156862750000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -97,7 +95,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X5g-tx-mol">
                                                 <rect key="frame" x="227" y="147.5" width="123" height="52"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ux4-aW-Ns5" userLabel="digit_004" customClass="TextField" customModule="QOT" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ux4-aW-Ns5" userLabel="digit_004" customClass="TextField" customModule="TIGNUM_X" customModuleProvider="target">
                                                         <rect key="frame" x="41.5" y="0.0" width="40" height="52"/>
                                                         <color key="tintColor" red="0.92156862750000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -116,7 +114,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="ux4-aW-Ns5" secondAttribute="bottom" id="x2l-oy-4Vs"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27y-mO-oUB" userLabel="digit_005" customClass="TextField" customModule="QOT" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="27y-mO-oUB" userLabel="digit_005" customClass="TextField" customModule="TIGNUM_X" customModuleProvider="target">
                                                 <rect key="frame" x="350" y="147.5" width="40" height="52"/>
                                                 <color key="tintColor" red="0.92156862750000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -176,8 +174,8 @@
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="lhs-gG-sKl"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fuf-vE-MTP">
-                                                <rect key="frame" x="24" y="401.5" width="10" height="33"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fuf-vE-MTP">
+                                                <rect key="frame" x="24" y="401.5" width="10" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
@@ -217,7 +215,7 @@
                                             <constraint firstItem="5so-KB-ti4" firstAttribute="top" secondItem="U0Y-xw-lo2" secondAttribute="top" id="aqD-B8-zVy"/>
                                             <constraint firstAttribute="trailing" secondItem="Y9l-gp-T60" secondAttribute="trailing" id="cjW-wp-icn"/>
                                             <constraint firstAttribute="trailing" secondItem="27y-mO-oUB" secondAttribute="trailing" constant="24" id="crg-DD-8zI"/>
-                                            <constraint firstItem="Fuf-vE-MTP" firstAttribute="top" secondItem="Y9l-gp-T60" secondAttribute="bottom" constant="35" id="dAY-0V-8m6"/>
+                                            <constraint firstItem="Fuf-vE-MTP" firstAttribute="top" secondItem="Y9l-gp-T60" secondAttribute="bottom" constant="30" id="dAY-0V-8m6"/>
                                             <constraint firstAttribute="trailing" secondItem="RxO-RI-YTH" secondAttribute="trailing" constant="24" id="ddN-11-0z6"/>
                                             <constraint firstAttribute="trailing" secondItem="ljr-Se-cPG" secondAttribute="trailing" constant="24" id="duH-WT-VKw"/>
                                             <constraint firstItem="5so-KB-ti4" firstAttribute="bottom" secondItem="U0Y-xw-lo2" secondAttribute="bottom" id="eZT-g5-eMX"/>

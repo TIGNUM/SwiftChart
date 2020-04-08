@@ -14,7 +14,6 @@ struct RegistrationData {
     var code: String = ""
     var firstName: String = ""
     var lastName: String?
-    var birthYear: String = ""
 }
 
 final class RegistrationInteractor: RegistrationInteractorInterface {
@@ -75,6 +74,7 @@ final class RegistrationInteractor: RegistrationInteractorInterface {
 
 // MARK: - RegistrationDelegate
 extension RegistrationInteractor: RegistrationDelegate {
+
     func didTapBack() {
         guard presentedControllers.count > 1 else {
             router.popBack()
@@ -109,8 +109,7 @@ extension RegistrationInteractor: RegistrationDelegate {
         registrationData.lastName = lastName
     }
 
-    func didTapCreateAccount(with birthYear: String) {
-        registrationData.birthYear = birthYear
+    func didTapCreateAccount() {
         presenter.presentActivity(state: .inProgress)
         worker.createAccount(with: registrationData) { [weak self] (result, error) in
             guard let strongSelf = self else { return }

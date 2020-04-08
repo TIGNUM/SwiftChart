@@ -29,14 +29,6 @@ final class RegistrationNamesWorker: BaseSigningWorker {
         return AppTextService.get(.onboarding_sign_up_enter_name_section_body_label_mandatory)
     }()
 
-    lazy var agePlaceholder: String = {
-           return AppTextService.get(.dateOfBirth)
-    }()
-
-    lazy var ageRestrictionText: String = {
-        return AppTextService.get(.onboarding_sign_up_age_verification_section_body_create_account_label_restriction)
-    }()
-
     lazy var nextButtonTitle: String = {
         return AppTextService.get(.onboarding_sign_up_age_verification_section_footer_button_next)
     }()

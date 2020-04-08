@@ -50,10 +50,6 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
         return worker.emailText
     }
 
-    var dateOfBirthText: String {
-        return worker.dateOfBirthText
-    }
-
     var companyText: String {
         return worker.companyText
     }

@@ -47,7 +47,7 @@ final class RegistrationWorker: BaseSigningWorker {
         userObject.code = data.code
         userObject.firstName = data.firstName
         userObject.lastName = data.lastName
-        userObject.birthYear = data.birthYear
+        userObject.birthYear = "1000-01-01"
         sessionService.registUser(request: userObject) { [weak self] (response, error) in
             guard let strongSelf = self else { return }
             let result = (code: strongSelf.apiCodeFromResponse(response?.returnCode()), message: response?.message)

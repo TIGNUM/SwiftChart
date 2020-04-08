@@ -14,7 +14,6 @@ enum SettingsType: Int {
     case email
     case firstName
     case lastName
-    case dateOfBirth
     case strategies
     case dailyPrep
     case weeklyChoices
@@ -31,7 +30,6 @@ enum SettingsType: Int {
         case .email: return AppTextService.get(.my_qot_my_profile_account_settings_section_body_title_email)
         case .firstName: return AppTextService.get(.my_qot_my_profile_account_settings_new_user_title_first_name)
         case .lastName: return AppTextService.get(.my_qot_my_profile_account_settings_new_user_title_last_name)
-        case .dateOfBirth: return AppTextService.get(.dateOfBirth)
         case .strategies: return AppTextService.get(.notifications_view_title_strategies)
         case .dailyPrep: return AppTextService.get(.notifications_view_title_daily_prep)
         case .weeklyChoices: return AppTextService.get(.notifications_view_title_weekly_choices)
@@ -95,7 +93,6 @@ protocol SettingsSection {
 enum SettingsRow {
     case label(title: String, value: String?, settingsType: SettingsType)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Int, settingsType: SettingsType)
-    case datePicker(title: String, dateOfBirth: String, settingsType: SettingsType)
     case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?, source: String?)
     case button(title: String, value: String, settingsType: SettingsType)
     case textField(title: String, value: String, secure: Bool, settingsType: SettingsType)
@@ -104,7 +101,6 @@ enum SettingsRow {
         switch self {
         case .button: return R.reuseIdentifier.settingsTableViewCell_Button.identifier
         case .control: return R.reuseIdentifier.settingsTableViewCell_Control.identifier
-        case .datePicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .label: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .stringPicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .textField: return R.reuseIdentifier.settingsTableViewCell_TextField.identifier
