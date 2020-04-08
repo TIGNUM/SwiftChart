@@ -46,7 +46,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mandatory" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hW4-aj-Sew">
-                                                <rect key="frame" x="24" y="523" width="272" height="10"/>
+                                                <rect key="frame" x="24" y="378" width="272" height="17"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
@@ -63,7 +63,7 @@
                                             <constraint firstAttribute="trailing" secondItem="hW4-aj-Sew" secondAttribute="trailing" constant="24" id="VGE-59-CmP"/>
                                             <constraint firstAttribute="trailing" secondItem="3Ek-E0-5cV" secondAttribute="trailing" constant="24" id="agh-lJ-Wjo"/>
                                             <constraint firstAttribute="trailing" secondItem="IeX-ZI-QHv" secondAttribute="trailing" constant="24" id="gvD-kM-Mer"/>
-                                            <constraint firstItem="hW4-aj-Sew" firstAttribute="top" secondItem="3Ek-E0-5cV" secondAttribute="bottom" constant="165" id="hDQ-Ui-xU1"/>
+                                            <constraint firstItem="hW4-aj-Sew" firstAttribute="top" secondItem="3Ek-E0-5cV" secondAttribute="bottom" constant="20" id="hDQ-Ui-xU1"/>
                                             <constraint firstItem="3Ek-E0-5cV" firstAttribute="top" secondItem="IeX-ZI-QHv" secondAttribute="bottom" constant="32" id="omy-L8-lzt"/>
                                             <constraint firstItem="IeX-ZI-QHv" firstAttribute="leading" secondItem="4vL-CQ-Oa3" secondAttribute="leading" constant="24" id="sJf-ED-hp3"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hW4-aj-Sew" secondAttribute="bottom" constant="35" id="tmW-Er-xJH"/>
