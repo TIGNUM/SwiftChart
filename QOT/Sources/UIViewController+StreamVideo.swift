@@ -11,7 +11,6 @@ import AVFoundation
 import AVKit
 import qot_dal
 
-
 protocol MediaPlayerViewControllerInterface: class {
     func showDestinationAlert()
 }
@@ -108,7 +107,6 @@ extension MediaPlayerViewController: MediaPlayerViewControllerInterface {
         QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
     }
 }
-
 
 extension MediaPlayerViewController: StreamVideoInteractorDelegate {
 

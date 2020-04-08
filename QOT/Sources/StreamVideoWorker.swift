@@ -20,6 +20,7 @@ final class StreamVideoWorker {
     private var download: QDMUserStorage?
     var bookMarkedToggled: Bool = false
     var downloadStatus: QOTDownloadStatus = .NONE
+    var wasBookmarkedOnce: Bool = false
 
     weak var delegate: StreamVideoWorkerDelegate?
 
@@ -31,6 +32,7 @@ final class StreamVideoWorker {
         bookmark = content?.userStorages?.filter { $0.userStorageType == .BOOKMARK }.first
         download = downloadItem(for: content)
         downloadStatus = downloadStatus(for: download)
+        wasBookmarkedOnce = false
     }
 
     var isLoggedIn: Bool {

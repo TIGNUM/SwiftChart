@@ -23,6 +23,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     var contentItem: QDMContentItem?
     var bookmark: QDMUserStorage?
     var download: QDMUserStorage?
+    var wasBookmarked: Bool = false
     private var colorMode: ColorMode = .dark
 
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         setupButtons()
         updateLabel()
         setupFullScreenCircles(colorMode: self.colorMode)
+        wasBookmarked = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -114,7 +116,6 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         case .DONE:
             title = AppTextService.get(.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
-            showDestinationAlert()
             downloadButton.layer.borderWidth = 0
         }
 
@@ -166,6 +167,10 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapBookmarkButton() {
+        if bookmarkButton.isSelected == false, wasBookmarked == false {
+            wasBookmarked = true
+            showDestinationAlert()
+        }
         trackUserEvent(.BOOKMARK, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         if let currentBookmark = bookmark {
             UserStorageService.main.deleteUserStorage(currentBookmark) { [weak self] (error) in
@@ -186,9 +191,6 @@ extension AudioFullScreenViewController {
                 self?.bookmark = storage
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
                 self?.bookmarkButton.layer.borderWidth = (self?.bookmarkButton.isSelected == true) ? 0 : 1
-                if self?.bookmarkButton.isSelected == false {
-                    self?.showDestinationAlert()
-                }
             }
         }
     }
@@ -295,7 +297,14 @@ extension AudioFullScreenViewController {
         }
         if let donwloadKey = self.download?.qotId, let statusData = map[donwloadKey] {
             updateDownloadButtonState(convertDownloadStatus(statusData.status))
+            switch statusData.status {
+            case .DOWNLOADED:
+                showDestinationAlert()
+            default:
+                break
+            }
         }
+
     }
 }
 

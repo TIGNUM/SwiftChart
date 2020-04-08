@@ -123,8 +123,9 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
             guard let strongSelf = self else { return }
             strongSelf.delegate?.didUpdateData(interactor: strongSelf)
             NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
-            if strongSelf.isBookmarked {
+            if strongSelf.isBookmarked, strongSelf.worker.wasBookmarkedOnce == false {
                 strongSelf.presenter.showDestinationAlert()
+                strongSelf.worker.wasBookmarkedOnce = true
             }
         }
     }
