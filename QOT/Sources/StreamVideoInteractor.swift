@@ -23,6 +23,7 @@ protocol StreamVideoInteractorInterface {
     var yesContinueButtonTitle: String { get }
     var contentItemId: Int? { get }
     var contentFormat: ContentFormat? { get }
+    var bookMarkedToggled: Bool { get }
 
     var isBookmarked: Bool { get }
     var isDownloaded: Bool { get }
@@ -90,8 +91,8 @@ final class StreamVideoInteractor {
         return worker.contentFormat
     }
 
-    var isBookmarkedAndDownloaded: Bool? {
-        return worker.isBookmarked && worker.downloadStatus == .DOWNLOADED
+    var bookMarkedToggled: Bool {
+        return worker.bookMarkedToggled
     }
 }
 
@@ -151,7 +152,6 @@ private extension StreamVideoInteractor {
             worker.updateItemDownloadStatus { [weak self] in
                 guard let strongSelf = self else { return }
                 strongSelf.delegate?.didUpdateData(interactor: strongSelf)
-                strongSelf.isDownloaded == true ? strongSelf.presenter.showDestinationAlert() : nil
             }
         }
     }

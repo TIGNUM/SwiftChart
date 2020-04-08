@@ -116,6 +116,7 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
         overlayControls?.configure(downloadTitle: interactor.downloadButtonTitle,
                                    isBokmarked: interactor.isBookmarked,
                                    isDownloaded: interactor.isDownloaded)
+        interactor.isDownloaded && !interactor.bookMarkedToggled ? showDestinationAlert() : nil
     }
 
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface) {
