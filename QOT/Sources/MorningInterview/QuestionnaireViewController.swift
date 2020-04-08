@@ -81,8 +81,6 @@ enum ControllerType {
 
 final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet weak var customizeTargetTitle: UILabel!
-    @IBOutlet weak var labelCustomizeView: UILabel!
     @IBOutlet weak var questionToTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet weak var totalHoursLabel: UILabel!
@@ -214,7 +212,6 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize(let topConstraintMultiplier):
             questionToTopConstraint.constant = questionToTopConstraint.constant * topConstraintMultiplier
-            ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
         default: break
