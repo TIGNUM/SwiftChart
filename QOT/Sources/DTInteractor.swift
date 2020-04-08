@@ -60,7 +60,7 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func getSelectedIds() -> [Int] {
-        let lastQuestionId = selectedAnswers.last?.question?.remoteId
+        guard let lastQuestionId = selectedAnswers.last?.question?.remoteId else { return [] }
         let lastSelectedAnswer = selectedAnswers.filter { $0.question?.remoteId == lastQuestionId }
         let answers = lastSelectedAnswer.flatMap { $0.answers }
         return answers.compactMap { $0.remoteId }
