@@ -761,7 +761,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         interactor.saveTargetValue(value: value)
     }
 
-    func showAlert( message: String?) {
+    func showAlert(message: String?) {
         let closeButtonItem = createCloseButton(#selector(dismissAlert))
         QOTAlert.show(title: nil, message: message, bottomItems: [closeButtonItem])
     }

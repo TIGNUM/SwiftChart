@@ -135,8 +135,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         futureLoadLabel.textColor = viewModel?.futureLoadValue?.isLess(than: futureLoadReference ?? 0) == true ? .sand : .redOrange
         // Tracked days
         if let  numberOfDays = viewModel?.maxTrackingDays {
-            let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days", with: String(numberOfDays))
-            ThemeText.trackedDays.apply(trackedDays, to: trackedDaysLabel)
+        let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days", with: String(numberOfDays))
+        ThemeText.trackedDays.apply(trackedDays, to: trackedDaysLabel)
         }
 
         // Button
@@ -144,31 +144,27 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     }
 
     @IBAction func sleepQuantityTapped(_ sender: Any) {
-        let description = AppTextService.get(.daily_brief_section_impact_readiness_sleep_quantity_description)
-            delegate?.showAlert(message: description)
+        delegate?.showAlert(message: AppTextService.get(.daily_brief_section_impact_readiness_sleep_quantity_description))
     }
 
     @IBAction func sleepQualityTapped(_ sender: Any) {
-        let description = AppTextService.get(.daily_brief_section_impact_readiness_sleep_quality_description)
-        delegate?.showAlert(message: description)
+        delegate?.showAlert(message: AppTextService.get(.daily_brief_section_impact_readiness_sleep_quality_description))
     }
 
     @IBAction func loadButtonTapped(_ sender: Any) {
-        let description = AppTextService.get(.daily_brief_section_impact_readiness_load_description)
-        delegate?.showAlert(message: description)
+        delegate?.showAlert(message: AppTextService.get(.daily_brief_section_impact_readiness_load_description))
     }
 
     @IBAction func futureLoadTapped(_ sender: Any) {
-        let description = AppTextService.get(.daily_brief_section_impact_readiness_future_load_description)
-        delegate?.showAlert(message: description)
+        delegate?.showAlert(message: AppTextService.get(.daily_brief_section_impact_readiness_future_load_description))
     }
 
     @IBAction func targetReference(_ sender: Any) {
-            delegate?.showCustomizeTarget()
+        delegate?.showCustomizeTarget()
     }
 
     @IBAction func presentMyData(_ sender: Any) {
-            delegate?.presentMyDataScreen()
+        delegate?.presentMyDataScreen()
     }
 
     private func buildString(_ text1: String, _ theme1: ThemeText,
