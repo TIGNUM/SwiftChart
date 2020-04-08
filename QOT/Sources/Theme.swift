@@ -640,6 +640,7 @@ enum ThemeText {
     case accountDetail
     case accountUserName
     case accountHeaderTitle
+    case iRscore
     case quotation
     case quotationSmall
     case quotationLight
@@ -1010,6 +1011,8 @@ enum ThemeText {
             return Fonts.fontDisplayBold60
         case .quotation, .aboutMeContent:
             return Fonts.fontDisplayThin34
+        case .iRscore:
+            return Fonts.fontDisplayThin30
         // MARK: - fontDisplayRegular20
         case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
@@ -1037,7 +1040,7 @@ enum ThemeText {
         switch self {
 
         // MARK: - .sand
-        case .navigationBarHeader, .quotation, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
+        case .navigationBarHeader, .quotation, .iRscore, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .bucketTitle, .solveQuestions,
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
@@ -1241,9 +1244,8 @@ enum ThemeText {
               .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText:
              string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                          alignment: alignment ?? .left)
-
-         case .reference:
-             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
+        case .iRscore, .reference:
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                                     alignment: alignment ?? .right)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead,
              .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle,
