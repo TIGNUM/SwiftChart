@@ -69,6 +69,7 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
+    private var statusbBarIsHidden = false
     private weak var readButtonCell: MarkAsReadTableViewCell?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var articleTopNavBar: ArticleTopNavBar!
@@ -111,6 +112,14 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         pageTrack.associatedValueType = .CONTENT_COLLECTION
         pageTrack.associatedValueId = interactor.remoteID
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return statusbBarIsHidden
+    }
+
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+      return .slide
     }
 }
 
@@ -567,6 +576,8 @@ extension ArticleViewController {
                 let offset = scrollViewOffsetY - lastScrollViewActionOffsetY
                 if offset > pixelBuffer {
                     navigationBar(show: false)
+                    statusbBarIsHidden = true
+                    setNeedsStatusBarAppearanceUpdate()
                     lastScrollViewActionOffsetY = scrollViewOffsetY
                 }
             } else {
@@ -579,6 +590,8 @@ extension ArticleViewController {
                     let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
                     if offset > pixelBuffer || scrollViewOffsetY <= 0 {
                         navigationBar(show: true)
+                        statusbBarIsHidden = false
+                        setNeedsStatusBarAppearanceUpdate()
                         lastScrollViewActionOffsetY = scrollViewOffsetY <= 0.0 ? 0.0 : scrollViewOffsetY
                     }
                 }
