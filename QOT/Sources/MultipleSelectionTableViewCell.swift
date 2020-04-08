@@ -50,6 +50,17 @@ extension MultipleSelectionTableViewCell {
     }
 }
 
+// MARK: - MultipleSelectionCollectionViewCellDelegate
+extension MultipleSelectionTableViewCell: MultipleSelectionDelegate {
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didDeSelectAnswer(answer)
+    }
+
+    func didSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didSelectAnswer(answer)
+    }
+}
+
 // MARK: - UICollectionViewDataSource
 extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,17 +74,6 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
         cell.configure(for: answer, maxSelections: maxPossibleSelections, selectionCounter: selectionCounter)
         cell.delegate = self
         return cell
-    }
-}
-
-// MARK: - MultipleSelectionCollectionViewCellDelegate
-extension MultipleSelectionTableViewCell: MultipleSelectionDelegate {
-    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didDeSelectAnswer(answer)
-    }
-
-    func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didSelectAnswer(answer)
     }
 }
 

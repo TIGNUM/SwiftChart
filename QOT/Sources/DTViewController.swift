@@ -190,7 +190,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     private func setSelectedAnswersIfNeeded(viewModel: DTViewModel) {
         let selectedAnswers = viewModel.answers.filter { $0.selected == true }
         selectedAnswers.forEach { (answer) in
-            didSelectAnswer(answer)
+            viewModel.setSelectedAnswer(answer)
         }
     }
 

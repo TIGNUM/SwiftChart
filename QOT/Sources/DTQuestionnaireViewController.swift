@@ -79,6 +79,7 @@ class DTQuestionnaireViewController: BaseViewController {
     }
 }
 
+// MARK: - Private
 private extension DTQuestionnaireViewController {
     func setupView() {
         let theme: ThemeView = (interactor?.isDark ?? true) ? .chatbotDark : .chatbot
