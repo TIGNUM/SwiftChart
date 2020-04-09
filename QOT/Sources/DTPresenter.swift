@@ -108,7 +108,7 @@ class DTPresenter: DTPresenterInterface {
                                     htmlTitleString: htmlTitleString,
                                     key: question?.key ?? "",
                                     answerType: AnswerType(rawValue: question?.answerType ?? "") ?? .accept,
-                                    duration: question?.layout?.animation?.duration ?? 5.0,
+                                    duration: question?.layout?.animation?.duration ?? 3.0,
                                     maxSelections: question?.maxPossibleSelections ?? 0)
     }
 
