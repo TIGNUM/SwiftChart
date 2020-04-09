@@ -185,8 +185,10 @@ extension AudioFullScreenViewController {
                 NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.bookmark = storage
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
-                self?.bookmarkButton.isSelected ?? true ? (self?.bookmarkButton.layer.borderWidth = 0) : (self?.bookmarkButton.layer.borderWidth = 1)
-                self?.bookmarkButton.isSelected == false ? nil : self?.showDestinationAlert()
+                self?.bookmarkButton.layer.borderWidth = (self?.bookmarkButton.isSelected == true) ? 0 : 1
+                if self?.bookmarkButton.isSelected == false {
+                    self?.showDestinationAlert()
+                }
             }
         }
     }
