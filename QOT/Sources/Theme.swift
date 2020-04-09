@@ -1244,11 +1244,8 @@ enum ThemeText {
               .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText:
              string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                          alignment: alignment ?? .left)
-        case .iRscore:
+        case .iRscore, .reference:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
-                                                    alignment: alignment ?? .right)
-        case .reference:
-             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                                     alignment: alignment ?? .right)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead,
              .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle,
