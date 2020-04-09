@@ -24,6 +24,11 @@ final class ResultsPreparePresenter {
 // MARK: - Private
 private extension ResultsPreparePresenter {
     func getHeaderItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+        if let title = preparation?.updatedName {
+            return ResultsPrepare.Sections.header(title: title.uppercased())
+        } else if let name = preparation?.name, preparation?.event == nil {
+            return ResultsPrepare.Sections.header(title: name.uppercased())
+        }
         let appText = AppTextService.get(.results_prepare_header_title)
         let title = appText.replacingOccurrences(of: "[TYPE OF PREPARATION]", with: preparation?.eventType ?? "")
         return ResultsPrepare.Sections.header(title: title.uppercased())

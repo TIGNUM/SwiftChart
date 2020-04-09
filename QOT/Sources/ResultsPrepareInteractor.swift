@@ -91,6 +91,10 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         return title != AppTextService.get(.results_prepare_strategies)
     }
 
+    func hasEvent() -> Bool {
+        return preparation?.event != nil
+    }
+
     func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         editKey = key
         worker.getDTViewModel(key, preparation: preparation, completion)
@@ -104,6 +108,12 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
 
     func updateBenefits(_ benefits: String) {
         preparation?.benefits = benefits
+        presenter.createListItems(preparation: preparation)
+    }
+
+    func updateTitle(_ title: String) {
+        preparation?.updatedName = title
+        worker.updatePreparation(preparation, nil, { _ in })
         presenter.createListItems(preparation: preparation)
     }
 
