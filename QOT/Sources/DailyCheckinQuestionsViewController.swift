@@ -12,7 +12,6 @@ import qot_dal
 final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-
     @IBOutlet private weak var topNavigationView: UIView!
     @IBOutlet private weak var pageContainerView: UIView!
     @IBOutlet private weak var pageIndicatorView: UIView!
@@ -76,9 +75,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
 }
 
 // MARK: - Actions
-
 private extension DailyCheckinQuestionsViewController {
-
     func questionnaireViewController(with question: RatingQuestionViewModel.Question?) -> UIViewController? {
         guard let questionnaire = question else { return nil }
         return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .dailyCheckin)
@@ -155,13 +152,11 @@ private extension DailyCheckinQuestionsViewController {
         guard let nextVC = next(from: vc) else {
             return
         }
-        let nextIndex = currentIndex + 1
         self.pageController?.setViewControllers([nextVC], direction: .forward, animated: true, completion: nil)
     }
 }
 
 // MARK: - DailyCheckinQuestionsViewControllerInterface
-
 extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControllerInterface {
     func setupView() {
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,13 +28,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLZ-Ck-Uiv">
-                                <rect key="frame" x="179.66666666666666" y="64" width="16" height="1"/>
+                                <rect key="frame" x="179.66666666666666" y="195" width="16" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="1MG-9N-0aE"/>
                                     <constraint firstAttribute="width" constant="16" id="Hfy-SV-qAe"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Too little sleep can lead to brain fog. How many hours did you sleep last night?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZSG-Sa-kqJ" userLabel="Question Label">
+                                <rect key="frame" x="24" y="211" width="327" height="38.333333333333343"/>
+                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-KL-Z8H">
                                 <rect key="frame" x="178" y="297.33333333333331" width="19" height="30"/>
                                 <constraints>
@@ -204,12 +210,6 @@
                                     <outletCollection property="gestureRecognizers" destination="TUA-7x-wVu" appends="YES" id="7vf-gn-hns"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Too little sleep can lead to brain fog. How many hours did you sleep last night?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZSG-Sa-kqJ" userLabel="Question Label">
-                                <rect key="frame" x="24" y="80" width="327" height="38.333333333333343"/>
-                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -230,7 +230,7 @@
                             <constraint firstItem="viv-L5-UrG" firstAttribute="top" secondItem="QGs-RT-bhr" secondAttribute="bottom" constant="24" id="aeV-Ef-IO9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZSG-Sa-kqJ" secondAttribute="trailing" constant="24" id="bnv-wh-LgL"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="cbd-gl-cyY"/>
-                            <constraint firstItem="Prp-lO-wdT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZSG-Sa-kqJ" secondAttribute="bottom" priority="999" constant="10" id="gwc-s8-u3W"/>
+                            <constraint firstItem="rNb-KL-Z8H" firstAttribute="top" secondItem="ZSG-Sa-kqJ" secondAttribute="bottom" constant="48" id="dKh-Ez-do2"/>
                             <constraint firstItem="IvG-bf-DRU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="irR-BR-UiV"/>
                             <constraint firstItem="ZSG-Sa-kqJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="lqQ-LB-pNz"/>
                             <constraint firstItem="Prp-lO-wdT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="oXv-5Q-DBT"/>
@@ -238,7 +238,6 @@
                             <constraint firstItem="viv-L5-UrG" firstAttribute="top" secondItem="7th-Xx-vP4" secondAttribute="top" id="uUN-dL-Lnw"/>
                             <constraint firstItem="rNb-KL-Z8H" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uyl-rG-hd0"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="top" secondItem="IvG-bf-DRU" secondAttribute="bottom" constant="24" id="vtL-Tz-kaM"/>
-                            <constraint firstItem="eLZ-Ck-Uiv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="wUX-9P-w8m"/>
                             <constraint firstItem="eLZ-Ck-Uiv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yGx-JB-Knq"/>
                             <constraint firstItem="7th-Xx-vP4" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.35" id="zQ7-vA-kGf"/>
                         </constraints>
@@ -260,7 +259,6 @@
                         <outlet property="progressUpArrowImage" destination="WF2-iS-c2W" id="opM-ek-onS"/>
                         <outlet property="progressView" destination="VUb-uM-GZN" id="P3x-el-UFw"/>
                         <outlet property="questionLabel" destination="ZSG-Sa-kqJ" id="Kiv-7F-gmX"/>
-                        <outlet property="questionToTopConstraint" destination="wUX-9P-w8m" id="9qI-t9-360"/>
                         <outlet property="tableView" destination="7th-Xx-vP4" id="5zd-fM-ZQN"/>
                         <outlet property="topImageView" destination="QGs-RT-bhr" id="R1p-Qj-Ufq"/>
                         <outlet property="topIndex" destination="IvG-bf-DRU" id="LH8-fv-hdq"/>
