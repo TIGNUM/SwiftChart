@@ -23,6 +23,7 @@ protocol StreamVideoInteractorInterface {
     var yesContinueButtonTitle: String { get }
     var contentItemId: Int? { get }
     var contentFormat: ContentFormat? { get }
+    var bookMarkedToggled: Bool { get }
 
     var isBookmarked: Bool { get }
     var isDownloaded: Bool { get }
@@ -37,9 +38,12 @@ final class StreamVideoInteractor {
 
     weak var delegate: StreamVideoInteractorDelegate?
     private let worker: StreamVideoWorker
+    private let presenter: StreamVideoPresenter
 
-    init(content: QDMContentItem?) {
-        worker = StreamVideoWorker(content: content)
+    init(worker: StreamVideoWorker,
+         presenter: StreamVideoPresenter) {
+        self.worker = worker
+        self.presenter = presenter
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateDownloadStatus(_:)),
                                                name: .didUpdateDownloadStatus, object: nil)
     }
@@ -86,6 +90,10 @@ final class StreamVideoInteractor {
     var contentFormat: ContentFormat? {
         return worker.contentFormat
     }
+
+    var bookMarkedToggled: Bool {
+        return worker.bookMarkedToggled
+    }
 }
 
 extension StreamVideoInteractor: StreamVideoInteractorInterface {
@@ -115,6 +123,10 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
             guard let strongSelf = self else { return }
             strongSelf.delegate?.didUpdateData(interactor: strongSelf)
             NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
+            if strongSelf.isBookmarked, strongSelf.worker.wasBookmarkedOnce == false {
+                strongSelf.presenter.showDestinationAlert()
+                strongSelf.worker.wasBookmarkedOnce = true
+            }
         }
     }
 }
@@ -145,5 +157,9 @@ private extension StreamVideoInteractor {
                 strongSelf.delegate?.didUpdateData(interactor: strongSelf)
             }
         }
+    }
+
+    func showDestinationAlert() {
+        presenter.showDestinationAlert()
     }
 }

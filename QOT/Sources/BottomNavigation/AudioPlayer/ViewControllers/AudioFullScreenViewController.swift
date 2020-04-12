@@ -23,6 +23,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     var contentItem: QDMContentItem?
     var bookmark: QDMUserStorage?
     var download: QDMUserStorage?
+    var wasBookmarked: Bool = false
     private var colorMode: ColorMode = .dark
 
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         setupButtons()
         updateLabel()
         setupFullScreenCircles(colorMode: self.colorMode)
+        wasBookmarked = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -165,6 +167,10 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapBookmarkButton() {
+        if bookmarkButton.isSelected == false, wasBookmarked == false {
+            wasBookmarked = true
+            showDestinationAlert()
+        }
         trackUserEvent(.BOOKMARK, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         if let currentBookmark = bookmark {
             UserStorageService.main.deleteUserStorage(currentBookmark) { [weak self] (error) in
@@ -184,7 +190,7 @@ extension AudioFullScreenViewController {
                 NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.bookmark = storage
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
-                self?.bookmarkButton.isSelected ?? true ? (self?.bookmarkButton.layer.borderWidth = 0) : (self?.bookmarkButton.layer.borderWidth = 1)
+                self?.bookmarkButton.layer.borderWidth = (self?.bookmarkButton.isSelected == true) ? 0 : 1
             }
         }
     }
@@ -221,6 +227,15 @@ private extension AudioFullScreenViewController {
                       bottomItems: [cancel, buttonContinue])
     }
 
+    func showDestinationAlert() {
+        let closeButtonItem = createCloseButton(#selector(dismissAlert))
+        QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
+    }
+
+    @objc func dismissAlert() {
+        QOTAlert.dismiss()
+    }
+
     func continueDownload() {
         trackUserEvent(.DOWNLOAD, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         guard let item = contentItem else {
@@ -238,7 +253,8 @@ private extension AudioFullScreenViewController {
                 self?.updateDownloadButtonState(.NONE)
                 self?.download = nil
                 }
-            default: self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
+            default:
+                self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
             }
         } else {
             UserStorageService.main.addToDownload(contentItem: item) { [weak self] (storage, error) in
@@ -281,7 +297,14 @@ extension AudioFullScreenViewController {
         }
         if let donwloadKey = self.download?.qotId, let statusData = map[donwloadKey] {
             updateDownloadButtonState(convertDownloadStatus(statusData.status))
+            switch statusData.status {
+            case .DOWNLOADED:
+                showDestinationAlert()
+            default:
+                break
+            }
         }
+
     }
 }
 

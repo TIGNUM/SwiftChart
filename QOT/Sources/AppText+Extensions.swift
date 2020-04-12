@@ -33,6 +33,7 @@ public extension AppTextKey {
     static let generic_download_status_audio_button_downloading = AppTextKey("generic.download_status.audio.button_downloading")
     static let generic_content_audio_alert_use_mobile_data_body = AppTextKey("generic.content.audio.alert.use_mobile_data.body")
     static let generic_content_audio_alert_use_mobile_data_title = AppTextKey("generic.content.audio.alert.use_mobile_data.title")
+    static let video_player_alert_added_to_library_body = AppTextKey("video_player.alert.added_to_library.body")
 
     static let coach_section_tools_subtitle = AppTextKey("coach.section_tools.subtitle")
     static let coach_section_tools_title = AppTextKey("coach.section_tools.title")

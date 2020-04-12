@@ -1134,6 +1134,8 @@
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
 		F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */; };
 		F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */; };
+		F946D08D243CF24C001E2D23 /* StreamVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946D08C243CF24C001E2D23 /* StreamVideoPresenter.swift */; };
+		F946D08F243CFA71001E2D23 /* StreamVideoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946D08E243CFA71001E2D23 /* StreamVideoConfigurator.swift */; };
 		F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */; };
 		F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9231228EAE46000DEAEC /* ToolsWorker.swift */; };
 		F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */; };
@@ -2409,6 +2411,8 @@
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
 		F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRightBucketsViewController.swift; sourceTree = "<group>"; };
 		F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CopyRightBucketsViewController.xib; sourceTree = "<group>"; };
+		F946D08C243CF24C001E2D23 /* StreamVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoPresenter.swift; sourceTree = "<group>"; };
+		F946D08E243CFA71001E2D23 /* StreamVideoConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoConfigurator.swift; sourceTree = "<group>"; };
 		F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsPresenter.swift; sourceTree = "<group>"; };
 		F95B9231228EAE46000DEAEC /* ToolsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsWorker.swift; sourceTree = "<group>"; };
 		F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsRouter.swift; sourceTree = "<group>"; };
@@ -3816,6 +3820,8 @@
 				8DC2F7252313F4470002F29F /* StreamVideoWorker.swift */,
 				8DC2F7232313F2B70002F29F /* StreamVideoInteractor.swift */,
 				CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */,
+				F946D08C243CF24C001E2D23 /* StreamVideoPresenter.swift */,
+				F946D08E243CFA71001E2D23 /* StreamVideoConfigurator.swift */,
 			);
 			name = "UIViewController+StreamVideo";
 			sourceTree = "<group>";
@@ -6521,6 +6527,7 @@
 				B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */,
 				F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */,
 				B88A19E8241A41A000FC5019 /* OpenGraphMetaDataParser.swift in Sources */,
+				F946D08D243CF24C001E2D23 /* StreamVideoPresenter.swift in Sources */,
 				367A58552326A15D0089A082 /* DTSolveRouter.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				3666FD48232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift in Sources */,
@@ -7025,6 +7032,7 @@
 				E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */,
 				DB2969EE22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift in Sources */,
 				5FD890AB22807C6800B1CE7F /* MyQotProfileHeaderView.swift in Sources */,
+				F946D08F243CFA71001E2D23 /* StreamVideoConfigurator.swift in Sources */,
 				B4BCD0F823AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift in Sources */,
 				B4BCD0EB23AB7CD900B80747 /* MyQOTAdminEditSprintsInteractor.swift in Sources */,
 				9CBFF845234CCD0200833AC2 /* AppText+Extensions.swift in Sources */,
