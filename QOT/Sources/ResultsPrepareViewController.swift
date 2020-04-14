@@ -9,6 +9,10 @@
 import UIKit
 import qot_dal
 
+protocol ResultsPrepareViewControllerDelegate: class {
+    func didUpdateTitle(newTitle: String)
+}
+
 final class ResultsPrepareViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
@@ -156,6 +160,11 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         interactor.updateBenefits(benefits)
     }
 
+    func didUpdateTitle(_ title: String) {
+         refreshBottomNavigationItems()
+        interactor.updateTitle(title)
+    }
+
     func updateView(items: [Int: ResultsPrepare.Sections]) {
         self.sections = items
         tableView.delegate = self
@@ -216,7 +225,9 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             return cell
         case .header(let title):
             let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title)
+            cell.configure(title: title, hideEdit: interactor.hasEvent())
+            cell.delegate = self
+            cell.isUserInteractionEnabled = true
             cell.selectedBackgroundView = backgroundView
             return cell
         case .know(let title, let answers),
@@ -302,5 +313,14 @@ extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
         } else if contentItemId != 0 {
             router.didSelectStrategyItem(contentItemId)
         }
+    }
+}
+
+// MARK: - ResultsPrepareViewControllerDelegate
+
+extension ResultsPrepareViewController: ResultsPrepareViewControllerDelegate {
+
+    func didUpdateTitle(newTitle: String) {
+        didUpdateTitle(newTitle)
     }
 }

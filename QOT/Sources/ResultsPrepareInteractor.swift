@@ -91,6 +91,10 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         return title != AppTextService.get(.results_prepare_strategies)
     }
 
+    func hasEvent() -> Bool {
+        return preparation?.event != nil
+    }
+
     func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         editKey = key
         worker.getDTViewModel(key, preparation: preparation, completion)
@@ -104,6 +108,12 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
 
     func updateBenefits(_ benefits: String) {
         preparation?.benefits = benefits
+        presenter.createListItems(preparation: preparation)
+    }
+
+    func updateTitle(_ title: String) {
+        preparation?.updatedName = title
+        worker.updatePreparation(preparation, nil, { _ in })
         presenter.createListItems(preparation: preparation)
     }
 
@@ -156,7 +166,12 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     func removePreparationCalendarEvent() {
         worker.removePreparationCalendarEvent(preparation) { (preparation) in
             self.preparation = preparation
+            let appText = AppTextService.get(.results_prepare_header_title)
+            let title = appText.replacingOccurrences(of: "[TYPE OF PREPARATION]", with: preparation?.eventType ?? "")
+            self.preparation?.updatedName = title
+            self.worker.updatePreparation(preparation, nil, { _ in })
             self.presenter.createListItems(preparation: preparation)
+            self.presenter.updateHeader(preparation: preparation)
         }
     }
 

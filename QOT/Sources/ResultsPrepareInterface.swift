@@ -19,6 +19,7 @@ protocol ResultsPrepareViewControllerInterface: class {
 protocol ResultsPreparePresenterInterface {
     func setupView()
     func createListItems(preparation: QDMUserPreparation?)
+    func updateHeader(preparation: QDMUserPreparation?)
 }
 
 protocol ResultsPrepareInteractorInterface: Interactor {
@@ -26,10 +27,12 @@ protocol ResultsPrepareInteractorInterface: Interactor {
     var sectionCount: Int { get }
     func rowCount(in section: Int) -> Int
     func hideEditIcon(title: String) -> Bool
+    func hasEvent() -> Bool
 
     func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void)
     func getStrategyIds() -> (relatedId: Int, selectedIds: [Int], selectedItemIds: [Int])
 
+    func updateTitle(_ title: String)
     func updateBenefits(_ benefits: String)
     func updateIntentions(_ answerIds: [Int])
     func updateStrategies(_ selectedIds: [Int], selectedItemIds: [Int])
