@@ -10,9 +10,9 @@ import UIKit
 
 final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UITextFieldDelegate {
 
-    @IBOutlet weak var textfield: UITextField!
+    @IBOutlet private weak var textfield: UITextField!
     weak var delegate: ResultsPrepareViewControllerDelegate?
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet private weak var editButton: UIButton!
 
     func configure(title: String, hideEdit: Bool) {
         ThemeText.H01Light.apply(title, to: textfield)
