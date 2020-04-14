@@ -9,6 +9,10 @@
 import UIKit
 import qot_dal
 
+protocol ResultsPrepareViewControllerDelegate: class {
+    func didUpdateTitle(newTitle: String)
+}
+
 final class ResultsPrepareViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
@@ -156,6 +160,11 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         interactor.updateBenefits(benefits)
     }
 
+    func didUpdateTitle(_ title: String) {
+         refreshBottomNavigationItems()
+        interactor.updateTitle(title)
+    }
+
     func updateView(items: [Int: ResultsPrepare.Sections]) {
         self.sections = items
         tableView.delegate = self
@@ -174,6 +183,10 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         tableView.estimatedSectionHeaderHeight = 100
         setupBarButtonItems()
         view.layoutIfNeeded()
+    }
+
+    func didTapDeleteEvent() {
+        interactor.removePreparationCalendarEvent()
     }
 }
 
@@ -208,6 +221,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
             cell.selectedBackgroundView = backgroundView
+            cell.delegate = self
             return cell
         case .calendarConnect(let title, let subtitle):
             let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -216,7 +230,9 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             return cell
         case .header(let title):
             let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title)
+            cell.configure(title: title, hideEdit: interactor.hasEvent())
+            cell.delegate = self
+            cell.isUserInteractionEnabled = true
             cell.selectedBackgroundView = backgroundView
             return cell
         case .know(let title, let answers),
@@ -253,10 +269,8 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         guard let section = sections[indexPath.section] else { return }
 
         switch section {
-        case .calendar:
-            interactor.removePreparationCalendarEvent()
-            didDeselectRow(at: indexPath)
-        case .calendarConnect:
+        case .calendar,
+             .calendarConnect:
             router.didSelectConnectToCalendar()
         case .benefits:
             presentEditView(key: .benefits)
@@ -302,5 +316,14 @@ extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
         } else if contentItemId != 0 {
             router.didSelectStrategyItem(contentItemId)
         }
+    }
+}
+
+// MARK: - ResultsPrepareViewControllerDelegate
+
+extension ResultsPrepareViewController: ResultsPrepareViewControllerDelegate {
+
+    func didUpdateTitle(newTitle: String) {
+        didUpdateTitle(newTitle)
     }
 }
