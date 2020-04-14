@@ -19,6 +19,7 @@ protocol ResultsPrepareViewControllerInterface: class {
 protocol ResultsPreparePresenterInterface {
     func setupView()
     func createListItems(preparation: QDMUserPreparation?)
+    func updateHeader(preparation: QDMUserPreparation?)
 }
 
 protocol ResultsPrepareInteractorInterface: Interactor {

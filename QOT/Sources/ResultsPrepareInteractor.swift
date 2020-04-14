@@ -166,7 +166,12 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     func removePreparationCalendarEvent() {
         worker.removePreparationCalendarEvent(preparation) { (preparation) in
             self.preparation = preparation
+            let appText = AppTextService.get(.results_prepare_header_title)
+            let title = appText.replacingOccurrences(of: "[TYPE OF PREPARATION]", with: preparation?.eventType ?? "")
+            self.preparation?.updatedName = title
+            self.worker.updatePreparation(preparation, nil, { _ in })
             self.presenter.createListItems(preparation: preparation)
+            self.presenter.updateHeader(preparation: preparation)
         }
     }
 

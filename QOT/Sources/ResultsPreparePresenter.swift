@@ -29,6 +29,10 @@ private extension ResultsPreparePresenter {
         } else if let name = preparation?.name, preparation?.event == nil {
             return ResultsPrepare.Sections.header(title: name.uppercased())
         }
+        return getDefaultHeader(preparation)
+    }
+
+    func getDefaultHeader(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         let appText = AppTextService.get(.results_prepare_header_title)
         let title = appText.replacingOccurrences(of: "[TYPE OF PREPARATION]", with: preparation?.eventType ?? "")
         return ResultsPrepare.Sections.header(title: title.uppercased())
@@ -85,6 +89,7 @@ private extension ResultsPreparePresenter {
 
 // MARK: - ResultsPrepareInterface
 extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
+
     func createListItems(preparation: QDMUserPreparation?) {
         sections.removeAll()
         sections[0] = getHeaderItem(preparation)
@@ -104,6 +109,11 @@ extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
             sections[7] = getStrategies(preparation)
             sections[8] = getStrategyItems(preparation)
         }
+        viewController?.updateView(items: sections)
+    }
+
+    func updateHeader(preparation: QDMUserPreparation?) {
+        sections[0] = getDefaultHeader(preparation)
         viewController?.updateView(items: sections)
     }
 
