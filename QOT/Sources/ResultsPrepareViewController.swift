@@ -255,11 +255,13 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let strategy = strategies.at(index: indexPath.row)
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title.uppercased(), duration: strategy?.durationString)
+            cell.selectedBackgroundView = backgroundView
             return cell
         case .strategyItems(let strategyItems):
         let strategyItem = strategyItems.at(index: indexPath.row)
         let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: strategyItem?.valueText, duration: strategyItem?.durationString)
+        cell.selectedBackgroundView = backgroundView
         return cell
         }
     }
