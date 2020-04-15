@@ -31,7 +31,7 @@ final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UIT
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == textField {
             textfield.resignFirstResponder()
-            didUpdateTitle(title: textfield.text ?? "nothing")
+            didUpdateTitle(title: textfield.text ?? "")
             editButton.isEnabled = true
         }
         return false
