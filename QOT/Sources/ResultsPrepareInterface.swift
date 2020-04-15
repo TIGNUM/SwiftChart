@@ -14,6 +14,7 @@ protocol ResultsPrepareViewControllerInterface: class {
     func updateView(items: [Int: ResultsPrepare.Sections])
     func didUpdateIntentions(_ answerIds: [Int])
     func didUpdateBenefits(_ benefits: String)
+    func didTapDeleteEvent()
 }
 
 protocol ResultsPreparePresenterInterface {

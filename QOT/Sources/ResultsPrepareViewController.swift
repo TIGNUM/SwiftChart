@@ -184,6 +184,10 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         setupBarButtonItems()
         view.layoutIfNeeded()
     }
+
+    func didTapDeleteEvent() {
+        interactor.removePreparationCalendarEvent()
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -217,6 +221,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
             cell.selectedBackgroundView = backgroundView
+            cell.delegate = self
             return cell
         case .calendarConnect(let title, let subtitle):
             let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -264,10 +269,8 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         guard let section = sections[indexPath.section] else { return }
 
         switch section {
-        case .calendar:
-            interactor.removePreparationCalendarEvent()
-            didDeselectRow(at: indexPath)
-        case .calendarConnect:
+        case .calendar,
+             .calendarConnect:
             router.didSelectConnectToCalendar()
         case .benefits:
             presentEditView(key: .benefits)
