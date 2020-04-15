@@ -102,14 +102,14 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         let relatedItem = relatedItemsModels.at(index: indexPath.row)
         if let contentItemId = relatedItem?.contentItemId,
             let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
-                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
         } else if let contentCollectionId = relatedItem?.contentId {
             if relatedItem?.section == .LearnStrategies {
                 delegate?.presentStrategyList(strategyID: contentCollectionId)
             } else if relatedItem?.section == .QOTLibrary {
                 delegate?.openTools(toolID: contentCollectionId)
             } else if relatedItem?.link !=  nil {
-                           relatedItem?.link?.launch()
+                relatedItem?.link?.launch()
             } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionId)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             }

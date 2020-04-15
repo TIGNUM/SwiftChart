@@ -1082,15 +1082,15 @@ extension DailyBriefInteractor {
         var relatedItemsModels: [SprintChallengeViewModel.RelatedItemsModel] = []
         sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
             relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(content.title,
-                                                                                      content.durationString,
-                                                                                      content.remoteID ?? 0,
-                                                                                      nil,
-                                                                                      content.section,
-                                                                                      content.contentItems.first?.format,
-                                                                                      content.contentItems.count,
-                                                                                      nil))
+                                                                                 content.durationString,
+                                                                                 content.remoteID ?? 0,
+                                                                                 nil,
+                                                                                 content.section,
+                                                                                 content.contentItems.first?.format,
+                                                                                 content.contentItems.count,
+                                                                                 nil))
         }
-//        adding applinks
+        //        adding applinks
         sprintBucket.contentCollections?.filter { $0.searchTags.contains(sprintTag) && $0.searchTags.contains(searchTag)
         }.first?.links.forEach {(link) in
             relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(link.description,
@@ -1104,22 +1104,22 @@ extension DailyBriefInteractor {
         }
         sprintBucket.sprint?.dailyBriefRelatedContentItems.forEach { (contentItem) in
             relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(contentItem.valueText,
-                                                                                           contentItem.durationString,
-                                                                                           nil,
-                                                                                           contentItem.remoteID,
-                                                                                           .Unkown,
-                                                                                           contentItem.format,
-                                                                                           1,
-                                                                                           nil))
+                                                                                 contentItem.durationString,
+                                                                                 nil,
+                                                                                 contentItem.remoteID,
+                                                                                 .Unkown,
+                                                                                 contentItem.format,
+                                                                                 1,
+                                                                                 nil))
         }
 
         createSprintChallengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(.daily_brief_section_sprint_challenge_title),
-                                                                   sprintTitle: sprintBucket.sprint?.title,
-                                                                   sprintInfo: sprintInfo,
-                                                                   sprintStepNumber: sprintBucket.sprint?.currentDay,
-                                                                   relatedStrategiesModels: relatedItemsModels,
-                                                                   domainModel: sprintBucket,
-                                                                   sprint: sprintBucket.sprint!))
+                                                                  sprintTitle: sprintBucket.sprint?.title,
+                                                                  sprintInfo: sprintInfo,
+                                                                  sprintStepNumber: sprintBucket.sprint?.currentDay,
+                                                                  relatedStrategiesModels: relatedItemsModels,
+                                                                  domainModel: sprintBucket,
+                                                                  sprint: sprintBucket.sprint!))
         return createSprintChallengeList
     }
 }
