@@ -45,7 +45,7 @@ final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UIT
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        return updatedText.count <= 60
+        return updatedText.count <= 42
     }
 
     func didUpdateTitle(title: String) {
