@@ -81,7 +81,6 @@ enum ControllerType {
 
 final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet weak var questionToTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet weak var totalHoursLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
@@ -210,8 +209,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
 extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
-        case .customize(let topConstraintMultiplier):
-            questionToTopConstraint.constant = questionToTopConstraint.constant * topConstraintMultiplier
+        case .customize:
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
         default: break
