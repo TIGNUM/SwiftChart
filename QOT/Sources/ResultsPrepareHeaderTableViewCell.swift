@@ -31,13 +31,26 @@ final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UIT
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == textField {
             textfield.resignFirstResponder()
-            didUpdateTitle(title: textfield.text ?? "nothing")
+            didUpdateTitle(title: textfield.text ?? "")
             editButton.isEnabled = true
         }
         return false
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        ThemeText.H01Light.apply(textfield.text?.uppercased(), to: textfield)
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        return updatedText.count <= 42
     }
 
     func didUpdateTitle(title: String) {
         delegate?.didUpdateTitle(newTitle: title)
     }
 }
+
+
