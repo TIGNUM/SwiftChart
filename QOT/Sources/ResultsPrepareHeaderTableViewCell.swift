@@ -37,7 +37,20 @@ final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UIT
         return false
     }
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        ThemeText.H01Light.apply(textfield.text?.uppercased(), to: textfield)
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        return updatedText.count <= 60
+    }
+
     func didUpdateTitle(title: String) {
         delegate?.didUpdateTitle(newTitle: title)
     }
 }
+
+

@@ -51,7 +51,7 @@
                     <constraint firstAttribute="trailing" secondItem="Zyo-8u-eqz" secondAttribute="trailing" constant="9" id="JWP-Bz-t5w"/>
                     <constraint firstItem="Zyo-8u-eqz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="SeZ-ED-FAm"/>
                     <constraint firstItem="Zyo-8u-eqz" firstAttribute="centerY" secondItem="hJl-qb-9eg" secondAttribute="centerY" id="W3y-Il-t5D"/>
-                    <constraint firstAttribute="bottom" secondItem="hJl-qb-9eg" secondAttribute="bottom" constant="16" id="bBN-g6-Xiu"/>
+                    <constraint firstAttribute="bottom" secondItem="hJl-qb-9eg" secondAttribute="bottom" constant="14" id="bBN-g6-Xiu"/>
                     <constraint firstItem="hJl-qb-9eg" firstAttribute="top" secondItem="KWZ-Mi-MCt" secondAttribute="bottom" constant="16" id="dJK-4B-Sue"/>
                     <constraint firstItem="KWZ-Mi-MCt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fJB-Cd-ae1"/>
                 </constraints>
