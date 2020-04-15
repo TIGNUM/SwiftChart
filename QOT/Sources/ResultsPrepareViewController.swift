@@ -161,7 +161,7 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
     }
 
     func didUpdateTitle(_ title: String) {
-         refreshBottomNavigationItems()
+        refreshBottomNavigationItems()
         interactor.updateTitle(title)
     }
 

@@ -423,7 +423,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.configure(title: title, subtitle: subtitle)
             case PrepTypes.everyday.rawValue:
                 if item?.missingEvent == true {
-                    title = item?.eventType.uppercased() ?? ""
+                    title = item?.title.uppercased() ?? ""
                     cell.subtitleView.isHidden = true
                 }
                 cell.configure(title: title, subtitle: subtitle)
