@@ -23,7 +23,7 @@ final class MyPrepsWorker {
             var everydayItems = [MyPrepsModel.Item]()
             preparations?.forEach {
                 let dateString = DateFormatter.ddMMM.string(from: $0.eventDate ?? Date())
-                let prepItem = MyPrepsModel.Item(title: $0.name ?? "",
+                let prepItem = MyPrepsModel.Item(title: $0.name ?? $0.eventType ?? "",
                                                  date: dateString,
                                                  eventType: $0.eventType ?? "",
                                                  type: $0.type ?? "",
