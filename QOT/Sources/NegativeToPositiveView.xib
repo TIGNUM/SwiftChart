@@ -46,9 +46,9 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First low perfm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVv-eq-MY6">
-                                <rect key="frame" x="24" y="74.5" width="350" height="19.5"/>
+                                <rect key="frame" x="24" y="74.5" width="340" height="19.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="350" id="xBT-zU-WFq"/>
+                                    <constraint firstAttribute="width" constant="340" id="xBT-zU-WFq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,9 +63,9 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second low perfm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFo-1x-kYM">
-                                <rect key="frame" x="24" y="144.5" width="350" height="19.5"/>
+                                <rect key="frame" x="24" y="144.5" width="340" height="19.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="350" id="chE-dy-8XH"/>
+                                    <constraint firstAttribute="width" constant="340" id="chE-dy-8XH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
