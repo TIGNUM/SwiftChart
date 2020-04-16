@@ -77,7 +77,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return relatedItemsModels.count 
+        return relatedItemsModels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
