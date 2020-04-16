@@ -10,7 +10,7 @@ import UIKit
 
 final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UITextViewDelegate {
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet private weak var textView: UITextView!
     weak var delegate: ResultsPrepareViewControllerDelegate?
     @IBOutlet private weak var editButton: UIButton!
 
