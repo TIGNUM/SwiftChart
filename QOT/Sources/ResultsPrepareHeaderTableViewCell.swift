@@ -8,49 +8,55 @@
 
 import UIKit
 
-final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UITextFieldDelegate {
+final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UITextViewDelegate {
 
-    @IBOutlet private weak var textfield: UITextField!
+    @IBOutlet weak var textView: UITextView!
     weak var delegate: ResultsPrepareViewControllerDelegate?
     @IBOutlet private weak var editButton: UIButton!
 
     func configure(title: String, hideEdit: Bool) {
-        ThemeText.H01Light.apply(title, to: textfield)
-        textfield.isUserInteractionEnabled = false
+        ThemeText.H01Light.apply(title, to: textView)
+        textView.centerVertically()
+        textView.isUserInteractionEnabled = false
+        textView.textContainer.maximumNumberOfLines = 2
         editButton.isEnabled = true
-        textfield.borderStyle = .none
-        textfield.delegate = self
+        textView.delegate = self
         editButton.isHidden = hideEdit
     }
 
     @IBAction func editButton(_ sender: Any) {
-        textfield.isUserInteractionEnabled = true
-        textfield.becomeFirstResponder()
+        textView.isUserInteractionEnabled = true
+        textView.becomeFirstResponder()
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == textField {
-            textfield.resignFirstResponder()
-            didUpdateTitle(title: textfield.text ?? "")
+    private func textViewdDidBeginEditing(_ textField: UITextField) {
+        ThemeText.H01Light.apply(textView.text?.uppercased(), to: textView)
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            didUpdateTitle(title: textView.text ?? "")
             editButton.isEnabled = true
+            return false
         }
-        return false
-    }
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        ThemeText.H01Light.apply(textfield.text?.uppercased(), to: textfield)
-    }
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let currentText = textField.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else { return false }
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        return updatedText.count <= 42
+        return textView.text.count + (text.count - range.length) <= 42
     }
 
     func didUpdateTitle(title: String) {
         delegate?.didUpdateTitle(newTitle: title)
+        textView.centerVertically()
     }
 }
 
+extension UITextView {
+
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
+    }
+}
 
