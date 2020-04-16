@@ -26,29 +26,33 @@ enum DailyCheckInQuestionKey: String {
 enum ControllerType {
     case vision
     case dailyCheckin
-    case customize
+    case customize(_ topConstraintMultiplier: CGFloat)
 
     struct Config {
         let currentIndexColor: UIColor
         let aboveCurrentIndexColor: UIColor
         let belowCurrentIndexColor: UIColor
+        let topConstraintMultiplier: CGFloat
 
         static func myVision() -> Config {
             return Config(currentIndexColor: .redOrange,
                           aboveCurrentIndexColor: .redOrange40,
-                          belowCurrentIndexColor: .accent40)
+                          belowCurrentIndexColor: .accent40,
+                          topConstraintMultiplier: 1)
         }
 
-        static func customize() -> Config {
+        static func customize(topConstraintMultiplier: CGFloat) -> Config {
             return Config(currentIndexColor: .accent,
                           aboveCurrentIndexColor: .accent70,
-                          belowCurrentIndexColor: .accent70)
+                          belowCurrentIndexColor: .accent70,
+                          topConstraintMultiplier: topConstraintMultiplier)
         }
 
         static func dailyCheckin() -> Config {
             return Config(currentIndexColor: .accent,
                           aboveCurrentIndexColor: .accent70,
-                          belowCurrentIndexColor: .accent70)
+                          belowCurrentIndexColor: .accent70,
+                          topConstraintMultiplier: 1)
         }
     }
 
@@ -58,8 +62,8 @@ enum ControllerType {
             return Config.myVision()
         case .dailyCheckin:
             return Config.dailyCheckin()
-        case .customize:
-            return Config.customize()
+        case .customize(let topConstraintMultiplier):
+            return Config.customize(topConstraintMultiplier: topConstraintMultiplier)
         }
     }
 
@@ -77,10 +81,9 @@ enum ControllerType {
 
 final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
-    @IBOutlet weak var customizeTargetTitle: UILabel!
-    @IBOutlet weak var labelCustomizeView: UILabel!
+    @IBOutlet weak var questionToTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var questionLabel: UILabel!
+    @IBOutlet weak var totalHoursLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var ovalTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var progressHeightConstraint: NSLayoutConstraint!
@@ -207,9 +210,8 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
 extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
-        case .customize:
-        ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
-        ThemeText.tbvCustomizeBody.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_body), to: labelCustomizeView)
+        case .customize(let topConstraintMultiplier):
+            questionToTopConstraint.constant = questionToTopConstraint.constant * topConstraintMultiplier
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
         default: break
@@ -292,9 +294,7 @@ extension QuestionnaireViewController {
         var attributedQuestion: NSAttributedString = NSAttributedString.init()
         switch controllerType {
         case .customize:
-            ThemeText.tbvCustomizeBody.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_body),
-                                                                to: labelCustomizeView)
-            attributedQuestion = ThemeText.tbvBody.attributedString(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question))
+            attributedQuestion = ThemeText.customizeQuestion.attributedString(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question))
         case .dailyCheckin:
             if let question = questionHtml {
                 attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed,
@@ -414,6 +414,10 @@ extension QuestionnaireViewController {
                 switch controllerType {
                 case .customize:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
+                    let subtitle = AppTextService.get(.daily_brief_customize_sleep_amount_section_question_subtitle)
+//                    calculating 5 days * target amount of sleep relative to answerIndex
+                    let hoursLabelText = subtitle.replacingOccurrences(of: "$(amount)", with: String(((answerIndex / 2) + 1) * 5))
+                    ThemeText.asterixText.apply(hoursLabelText, to: totalHoursLabel)
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
                  }

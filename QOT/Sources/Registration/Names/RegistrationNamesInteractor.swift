@@ -54,14 +54,6 @@ final class RegistrationNamesInteractor {
         return worker.mandatoryText
     }
 
-    var agePlaceholder: String {
-        return worker.agePlaceholder
-    }
-
-    var ageRestrictionText: String {
-        return worker.ageRestrictionText
-    }
-
     var createButtonTitle: String {
         return worker.nextButtonTitle
     }
@@ -73,7 +65,7 @@ extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
         delegate?.didTapBack()
     }
 
-    func didTapNext(with firstName: String, lastName: String?, birthDate: String?) {
+    func didTapNext(with firstName: String, lastName: String?) {
         if !firstName.isValidName || firstName.isEmpty {
             hasFirstNameError = true
         }
@@ -85,9 +77,8 @@ extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
             return
         }
         delegate?.didSave(firstName: firstName, lastName: lastName)
-        if let birthDate = birthDate {
-            delegate?.didTapCreateAccount(with: birthDate)
-        }
+        delegate?.didTapCreateAccount()
+
     }
 
     func resetErrors() {

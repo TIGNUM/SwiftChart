@@ -33,6 +33,7 @@ public extension AppTextKey {
     static let generic_download_status_audio_button_downloading = AppTextKey("generic.download_status.audio.button_downloading")
     static let generic_content_audio_alert_use_mobile_data_body = AppTextKey("generic.content.audio.alert.use_mobile_data.body")
     static let generic_content_audio_alert_use_mobile_data_title = AppTextKey("generic.content.audio.alert.use_mobile_data.title")
+    static let video_player_alert_added_to_library_body = AppTextKey("video_player.alert.added_to_library.body")
 
     static let coach_section_tools_subtitle = AppTextKey("coach.section_tools.subtitle")
     static let coach_section_tools_title = AppTextKey("coach.section_tools.title")
@@ -173,7 +174,6 @@ public extension AppTextKey {
     static let onboarding_sign_up_age_verification_view_create_account_body_description = AppTextKey("onboarding.sign_up.age_verification.view.create_account_body_description")
     static let onboarding_sign_up_age_verification_section_footer_button_next = AppTextKey("onboarding.sign_up.age_verification.section_footer.button_next")
     static let onboarding_sign_up_age_verification_section_header_title  = AppTextKey("onboarding.sign_up.age_verification.section_header.title ")
-    static let onboarding_sign_up_age_verification_section_body_create_account_label_restriction = AppTextKey("onboarding.sign_up.age_verification.section_body.create_account_label_restriction")
 
     static let onboarding_sign_up_code_verification_alert_code_error_body = AppTextKey("onboarding.sign_up.code_verification.alert.code_error.body")
     static let onboarding_sign_up_code_verification_section_disclaimer_body_disclaimer = AppTextKey("onboarding.sign_up.code_verification.section_disclaimer.body_disclaimer")
@@ -208,7 +208,7 @@ public extension AppTextKey {
     static let daily_brief_section_header_title = AppTextKey("daily_brief.section_header.title")
     static let daily_brief_alert_copyright_title = AppTextKey("daily_brief.alert.copyright.title")
     static let daily_brief_customize_sleep_amount_section_question_question = AppTextKey("daily_brief.customize_sleep_amount.section_question.question")
-    static let daily_brief_customize_sleep_amount_section_question_body = AppTextKey("daily_brief.customize_sleep_amount.section_question.body")
+    static let daily_brief_customize_sleep_amount_section_question_subtitle = AppTextKey("daily_brief.customize_sleep_amount.section_question.subtitle")
     static let daily_brief_daily_check_in_questionnaire_section_footer_button_done = AppTextKey("daily_brief.daily_check_in.questionnaire.section_footer.button_done")
     static let daily_brief_daily_check_in_questionnaire_section_footer_button_next = AppTextKey("daily_brief.daily_check_in.questionnaire.section_footer.button_next")
     static let daily_brief_section_impact_readiness_button_explore_score = AppTextKey("daily_brief.section_impact_readiness.button_explore_score")
@@ -558,7 +558,6 @@ public extension AppTextKey {
     static let my_qot_my_profile_app_settings_section_general_settings_section_notifications_title = AppTextKey("my_qot.my_profile.app_settings.section_general_settings.section_notifications.title")
     static let my_qot_my_profile_app_settings_section_general_settings_section_permissions_title = AppTextKey("my_qot.my_profile.app_settings.section_general_settings.section_permissions.title")
     static let my_qot_my_profile_app_settings_my_qot_my_profile_app_settings_section_siri_shortcuts_subtitle = AppTextKey("my_qot.my_profile.app_settings.my_qot.my_profile.app_settings.section_siri_shortcuts.subtitle")
-    static let my_qot_my_profile_account_settings_edit_placeholder_date_picker = AppTextKey("my_qot.my_profile.account_settings.edit.placeholder_date_picker")
     static let my_qot_my_profile_app_settings_my_qot_my_profile_app_settings_section_siri_shortcuts_title = AppTextKey("my_qot.my_profile.app_settings.my_qot.my_profile.app_settings.section_siri_shortcuts.title")
     static let my_qot_my_profile_app_settings_synced_calendars_section_header_subtitle = AppTextKey("my_qot.my_profile.app_settings.synced_calendars.section_header.subtitle")
     static let my_qot_my_profile_app_settings_synced_calendars_section_header_title = AppTextKey("my_qot.my_profile.app_settings.synced_calendars.section_header.title")
@@ -669,7 +668,6 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_data_section_header_title = AppTextKey("my_qot.my_tbv.tbv_tracker_data.section_header.title")
     static let my_qot_my_tbv_section_navigation_bar_title = AppTextKey("my_qot.my_tbv.section_navigation_bar.title")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_always")
-    static let daily_brief_customize_sleep_amount_section_header_title = AppTextKey("daily_brief.customize_sleep_amount.section_header.title")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.body_rate_yourself")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_never")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_sometimes")
@@ -793,7 +791,6 @@ public extension AppTextKey {
     static let onboarding_register_intro_video_section_body = AppTextKey("onboarding.register_intro.video_section.body")
     static let onboarding_register_intro_note_section_title = AppTextKey("onboarding.register_intro.note_section.title")
     static let onboarding_register_intro_note_section_body = AppTextKey("onboarding.register_intro.note_section.body")
-    static let dateOfBirth = AppTextKey("onboarding.sign_up.age_verification.section_textfield_date_of_birth.placeholder")
 
     static let generic_payment_screen_expire_soon_view_title_header = AppTextKey("generic.payment_screen.expire_soon.view.title_header")
     static let generic_payment_screen_expire_soon_view_subtitle_header = AppTextKey("generic.payment_screen.expire_soon.view.subtitle_header")
@@ -930,8 +927,14 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_section_future_load_label_ref = AppTextKey("daily_brief.section_impact_readiness.section_future_load.label_ref")
 
     static let daily_brief_section_impact_readiness_section_sleep_quantity_label_target = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.label_target")
-
-
-
-
+    static let daily_brief_customize_sleep_amount_section_question_body = AppTextKey("daily_brief.customize_sleep_amount.section_question.body")
 }
+
+@available(*, unavailable, message: "Unavailable from QOT v3.1.6")
+public extension AppTextKey {
+    static let onboarding_sign_up_age_verification_section_body_create_account_label_restriction = AppTextKey("onboarding.sign_up.age_verification.section_body.create_account_label_restriction")
+    static let my_qot_my_profile_account_settings_edit_placeholder_date_picker = AppTextKey("my_qot.my_profile.account_settings.edit.placeholder_date_picker")
+    static let dateOfBirth = AppTextKey("onboarding.sign_up.age_verification.section_textfield_date_of_birth.placeholder")
+    static let daily_brief_customize_sleep_amount_section_header_title = AppTextKey("daily_brief.customize_sleep_amount.section_header.title")
+}
+

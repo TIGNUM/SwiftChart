@@ -11,7 +11,7 @@ import qot_dal
 
 protocol ChoiceViewControllerDelegate: class {
     func dismiss(_ viewController: UIViewController, selections: [Choice])
-    func didTapRow(_ viewController: UIViewController, contentId: Int)
+    func didTapRow(_ viewController: UIViewController, contentId: Int, contentItemId: Int)
 }
 
 final class ChoiceViewController: BaseViewController, ScreenZLevel3 {
@@ -20,7 +20,7 @@ final class ChoiceViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var tableHeaderView: UIView!
     @IBOutlet private weak var tableHeaderViewLabel: UILabel!
-    var interactor: ChoiceInteractorInterface?
+    var interactor: ChoiceInteractorInterface!
     weak var delegate: ChoiceViewControllerDelegate?
 
     // MARK: - Init
@@ -35,7 +35,7 @@ final class ChoiceViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,7 +60,7 @@ private extension ChoiceViewController {
 // MARK: - Actions
 private extension ChoiceViewController {
     @objc func didTapSave() {
-        delegate?.dismiss(self, selections: interactor?.selected ?? [])
+        delegate?.dismiss(self, selections: interactor.selected)
     }
 
     @objc func didTapCancel() {
@@ -71,16 +71,17 @@ private extension ChoiceViewController {
 // MARK: - UITableViewDelegate
 extension ChoiceViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return interactor?.isParentNode(atIndexPath: indexPath) == true ? .ParentNode : .ChildNode
+        return interactor.isParentNode(atIndexPath: indexPath) == true ? .ParentNode : .ChildNode
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if interactor?.isParentNode(atIndexPath: indexPath) == true {
-            guard let node = interactor?.node(in: indexPath.section) else { return }
-            interactor?.setIsOpen(!node.isOpen, in: indexPath.section)
+        if interactor.isParentNode(atIndexPath: indexPath) == true {
+            let node = interactor.node(in: indexPath.section)
+            interactor.setIsOpen(!node.isOpen, in: indexPath.section)
             tableView.reloadData()
-        } else if let readMoreId = interactor?.item(at: indexPath).contentId {
-            delegate?.didTapRow(self, contentId: readMoreId)
+        } else {
+            let item = interactor.item(at: indexPath)
+            delegate?.didTapRow(self, contentId: item.contentId, contentItemId: item.contentItemId)
         }
     }
 }
@@ -88,27 +89,27 @@ extension ChoiceViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension ChoiceViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return interactor?.sectionCount ?? 0
+        return interactor.sectionCount
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.numberOfRows(in: section) ?? 0
+        return interactor.numberOfRows(in: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if interactor?.isParentNode(atIndexPath: indexPath) == true {
+        if interactor.isParentNode(atIndexPath: indexPath) == true {
             let cell: CollapsableCell = tableView.dequeueCell(for: indexPath)
-            let node = interactor?.node(in: indexPath.section)
-            cell.setTitleText(node?.title,
-                              selectionCount: interactor?.selectedCount(in: indexPath.section) ?? 0,
-                              strategyCount: interactor?.numberOfItems(in: indexPath.section) ?? 0)
+            let node = interactor.node(in: indexPath.section)
+            cell.setTitleText(node.title,
+                              selectionCount: interactor.selectedCount(in: indexPath.section),
+                              strategyCount: interactor.numberOfItems(in: indexPath.section))
             cell.delegate = self
             cell.indexPath = indexPath
-            cell.isOpen = node?.isOpen
+            cell.isOpen = node.isOpen
             return cell
         }
         let cell: CollapsableContentCell = tableView.dequeueCell(for: indexPath)
-        guard let item = interactor?.item(at: indexPath) else { return cell }
+        let item = interactor.item(at: indexPath)
         cell.setTitleText(item.title, duration: item.readingTime, isSuggestion: item.isDefault)
         cell.delegate = self
         cell.indexPath = indexPath
@@ -132,14 +133,14 @@ extension ChoiceViewController: ChoiceViewControllerInterface {
 // MARK: - CollapsableContentCellDelegate
 extension ChoiceViewController: CollapsableContentCellDelegate {
     func collapsableContentCell(_ cell: CollapsableContentCell, didTapCheckAt indexPath: IndexPath) {
-        guard var item = interactor?.item(at: indexPath) else { return }
-        if item.selected == false && interactor?.choiceType == .CHOICE {
-            guard interactor?.selectedCount ?? 0 < interactor?.maxSelectionCount ?? 0 else {
+        var item = interactor.item(at: indexPath)
+        if item.selected == false && interactor.choiceType == .CHOICE {
+            guard interactor.selectedCount < interactor.maxSelectionCount else {
                 return
             }
         }
         item.selected = !item.selected
-        interactor?.replace(item, at: indexPath)
+        interactor.replace(item, at: indexPath)
         tableView.reloadData()
     }
 }
@@ -148,7 +149,7 @@ extension ChoiceViewController: CollapsableContentCellDelegate {
 extension ChoiceViewController: CollapsableCellDelegate {
     func collapsableCell(_ cell: CollapsableCell, didTapCollapseAt indexPath: IndexPath) {
         guard let isOpen = cell.isOpen else { return }
-        interactor?.setIsOpen(!isOpen, in: indexPath.section)
+        interactor.setIsOpen(!isOpen, in: indexPath.section)
         tableView.reloadData()
     }
 }

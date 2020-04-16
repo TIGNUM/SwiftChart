@@ -21,9 +21,10 @@ struct ResultsPrepare {
         case benefits(title: String, subtitle: String, benefits: String)
         case strategyTitle(title: String)
         case strategies(strategies: [QDMContentCollection])
+        case strategyItems(strategyItems: [QDMContentItem])
     }
 
     static func sectionCount(level: QDMUserPreparation.Level) -> Int {
-        return level == .LEVEL_CRITICAL ? 9 : 8
+        return level == .LEVEL_CRITICAL ? 10 : 9
     }
 }

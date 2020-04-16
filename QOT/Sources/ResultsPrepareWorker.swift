@@ -26,7 +26,11 @@ extension ResultsPrepareWorker {
             guard let qdmQuestion = qdmQuestion else { return }
             let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
             let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(preparation?.answerFilter ?? "") }
-            let answers = filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0, selectedIds: selectedIds) }
+            let answers = filteredAnswers.compactMap {
+                DTViewModel.Answer(qdmAnswer: $0,
+                                   selectedIds: selectedIds,
+                                   decisions: $0.getDTViewModelAnswerDecisions())
+            }
             completion(DTViewModel(question: question,
                                    answers: answers,
                                    events: [],
@@ -59,8 +63,14 @@ extension ResultsPrepareWorker {
         }
     }
 
-    func getStrategies(_ collectionIds: [Int], _ completion: @escaping ([QDMContentCollection]?) -> Void) {
-        ContentService.main.getContentCollectionsByIds(collectionIds, completion)
+    func getStrategies(_ collectionIds: [Int],
+                       _ contentItemIds: [Int],
+                       _ completion: @escaping ([QDMContentCollection]?, [QDMContentItem]?) -> Void) {
+        ContentService.main.getContentCollectionsByIds(collectionIds) { (contentCollection) in
+            ContentService.main.getContentItemsByIds(contentItemIds) { (contentItems) in
+                completion(contentCollection, contentItems)
+            }
+        }
     }
 }
 

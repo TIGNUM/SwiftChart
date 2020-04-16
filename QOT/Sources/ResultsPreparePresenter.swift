@@ -24,6 +24,15 @@ final class ResultsPreparePresenter {
 // MARK: - Private
 private extension ResultsPreparePresenter {
     func getHeaderItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+        if let title = preparation?.updatedName {
+            return ResultsPrepare.Sections.header(title: title.uppercased())
+        } else if let name = preparation?.name, preparation?.event == nil {
+            return ResultsPrepare.Sections.header(title: name.uppercased())
+        }
+        return getDefaultHeader(preparation)
+    }
+
+    func getDefaultHeader(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         let appText = AppTextService.get(.results_prepare_header_title)
         let title = appText.replacingOccurrences(of: "[TYPE OF PREPARATION]", with: preparation?.eventType ?? "")
         return ResultsPrepare.Sections.header(title: title.uppercased())
@@ -69,13 +78,18 @@ private extension ResultsPreparePresenter {
         return .strategyTitle(title: AppTextService.get(.results_prepare_strategies))
     }
 
-    func getStrategyItems(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+    func getStrategies(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .strategies(strategies: preparation?.strategies ?? [])
+    }
+
+    func getStrategyItems(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
+        return .strategyItems(strategyItems: preparation?.strategyItems ?? [])
     }
 }
 
 // MARK: - ResultsPrepareInterface
 extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
+
     func createListItems(preparation: QDMUserPreparation?) {
         sections.removeAll()
         sections[0] = getHeaderItem(preparation)
@@ -88,11 +102,18 @@ extension ResultsPreparePresenter: ResultsPreparePresenterInterface {
         if preparation?.type == .LEVEL_CRITICAL {
             sections[6] = getBenefitsItem(preparation)
             sections[7] = getStrategyTitleItem()
-            sections[8] = getStrategyItems(preparation)
+            sections[8] = getStrategies(preparation)
+            sections[9] = getStrategyItems(preparation)
         } else {
             sections[6] = getStrategyTitleItem()
-            sections[7] = getStrategyItems(preparation)
+            sections[7] = getStrategies(preparation)
+            sections[8] = getStrategyItems(preparation)
         }
+        viewController?.updateView(items: sections)
+    }
+
+    func updateHeader(preparation: QDMUserPreparation?) {
+        sections[0] = getDefaultHeader(preparation)
         viewController?.updateView(items: sections)
     }
 

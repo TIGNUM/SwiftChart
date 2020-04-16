@@ -93,6 +93,10 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
         presentContent(contentId)
     }
 
+    func didSelectStrategyItem(_ contentItemId: Int) {
+        presentContentItem(with: contentItemId)
+    }
+
     func presentCalendarEventSelection() {
         let configurator = CalendarEventSelectionConfigurator.make(delegate: delegate)
         let controller = CalendarEventSelectionViewController(configure: configurator)
@@ -110,8 +114,9 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
 
     func presentEditStrategyView(_ relatedStrategyId: Int,
                                  _ selectedIDs: [Int],
+                                 _ selectedItemIds: [Int],
                                  delegate: ChoiceViewControllerDelegate?) {
-        let configurator = ChoiceConfigurator.make(selectedIDs, relatedStrategyId)
+        let configurator = ChoiceConfigurator.make(selectedIDs, selectedItemIds, relatedStrategyId)
         let controller = ChoiceViewController(configure: configurator)
         controller.delegate = delegate
         viewController?.present(controller, animated: true)

@@ -15,7 +15,8 @@ extension QDMContentCollection {
     }
 
     var relatedContentIDsPrepareAll: [Int] {
-        return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" || $0.type == "PREPARE_OPTIONAL" }.compactMap { $0.contentID }
+        return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" || $0.type == "PREPARE_OPTIONAL" }
+        .compactMap { $0.contentID }
     }
 
     var exclusiveContentIds: [Int] {

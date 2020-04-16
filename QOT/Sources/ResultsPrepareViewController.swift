@@ -9,6 +9,10 @@
 import UIKit
 import qot_dal
 
+protocol ResultsPrepareViewControllerDelegate: class {
+    func didUpdateTitle(newTitle: String)
+}
+
 final class ResultsPrepareViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
@@ -156,6 +160,11 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         interactor.updateBenefits(benefits)
     }
 
+    func didUpdateTitle(_ title: String) {
+         refreshBottomNavigationItems()
+        interactor.updateTitle(title)
+    }
+
     func updateView(items: [Int: ResultsPrepare.Sections]) {
         self.sections = items
         tableView.delegate = self
@@ -216,7 +225,9 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             return cell
         case .header(let title):
             let cell: ResultsPrepareHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title)
+            cell.configure(title: title, hideEdit: interactor.hasEvent())
+            cell.delegate = self
+            cell.isUserInteractionEnabled = true
             cell.selectedBackgroundView = backgroundView
             return cell
         case .know(let title, let answers),
@@ -240,6 +251,11 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title.uppercased(), duration: strategy?.durationString)
             return cell
+        case .strategyItems(let strategyItems):
+        let strategyItem = strategyItems.at(index: indexPath.row)
+        let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: strategyItem?.valueText, duration: strategyItem?.durationString)
+        return cell
         }
     }
 
@@ -263,11 +279,15 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             presentEditView(key: .perceived)
         case .strategyTitle:
             let ids = interactor.getStrategyIds()
-            router.presentEditStrategyView(ids.relatedId, ids.selectedIds, delegate: self)
+            router.presentEditStrategyView(ids.relatedId, ids.selectedIds, ids.selectedItemIds, delegate: self)
         case .strategies(let strategies):
             if let contentId = strategies.at(index: indexPath.row)?.remoteID {
                 router.didSelectStrategy(contentId)
             }
+        case .strategyItems(let strategyItems):
+        if let contentItemId = strategyItems.at(index: indexPath.row)?.remoteID {
+            router.didSelectStrategyItem(contentItemId)
+        }
         default: return
         }
     }
@@ -281,12 +301,26 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
 extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
     func dismiss(_ viewController: UIViewController, selections: [Choice]) {
         let selectedIds = selections.compactMap { $0.contentId }
+        let selectedIemIds = selections.compactMap { $0.contentItemId }
         viewController.dismiss(animated: true) { [weak self] in
-            self?.interactor.updateStrategies(selectedIds)
+            self?.interactor.updateStrategies(selectedIds, selectedItemIds: selectedIemIds)
         }
     }
 
-    func didTapRow(_ viewController: UIViewController, contentId: Int) {
-        router.didSelectStrategy(contentId)
+    func didTapRow(_ viewController: UIViewController, contentId: Int, contentItemId: Int) {
+        if contentId != 0 {
+            router.didSelectStrategy(contentId)
+        } else if contentItemId != 0 {
+            router.didSelectStrategyItem(contentItemId)
+        }
+    }
+}
+
+// MARK: - ResultsPrepareViewControllerDelegate
+
+extension ResultsPrepareViewController: ResultsPrepareViewControllerDelegate {
+
+    func didUpdateTitle(newTitle: String) {
+        didUpdateTitle(newTitle)
     }
 }

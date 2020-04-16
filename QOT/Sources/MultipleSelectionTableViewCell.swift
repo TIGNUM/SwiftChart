@@ -25,6 +25,7 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
     private var maxPossibleSelections = 0
     private var selectionCounter = 0
     private var answers: [DTViewModel.Answer] = []
+    private var selectedAnswers: [DTViewModel.Answer] = []
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -43,9 +44,20 @@ extension MultipleSelectionTableViewCell {
         layoutIfNeeded()
         self.answers = answers
         self.maxPossibleSelections = maxPossibleSelections
-        let selectedAnswers = answers.filter { $0.selected == true }
+        self.selectedAnswers = answers.filter { $0.selected == true }
         selectionCounter = selectedAnswers.count
         collectionView.reloadData()
+    }
+}
+
+// MARK: - MultipleSelectionCollectionViewCellDelegate
+extension MultipleSelectionTableViewCell: MultipleSelectionDelegate {
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didDeSelectAnswer(answer)
+    }
+
+    func didSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didSelectAnswer(answer)
     }
 }
 
@@ -62,17 +74,6 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
         cell.configure(for: answer, maxSelections: maxPossibleSelections, selectionCounter: selectionCounter)
         cell.delegate = self
         return cell
-    }
-}
-
-// MARK: - MultipleSelectionCollectionViewCellDelegate
-extension MultipleSelectionTableViewCell: MultipleSelectionDelegate {
-    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didDeSelectAnswer(answer)
-    }
-
-    func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didSelectAnswer(answer)
     }
 }
 

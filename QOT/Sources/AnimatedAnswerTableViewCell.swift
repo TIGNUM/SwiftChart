@@ -30,7 +30,11 @@ final class AnimatedAnswerTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: Configuration
 extension AnimatedAnswerTableViewCell {
-    func configure(with question: String?, html: String?, questionUpdate: String?, textColor: UIColor, animateTextDuration: Double = 0.0) {
+    func configure(with question: String?,
+                   html: String?,
+                   questionUpdate: String?,
+                   textColor: UIColor,
+                   animateTextDuration: Double = 0.0) {
         var updatedTitle: String
         var attributedString = NSMutableAttributedString()
         if let html = html {
@@ -81,7 +85,7 @@ private extension AnimatedAnswerTableViewCell {
 extension AnimatedAnswerTableViewCell {
     func typingAnimationStart() {
         guard let typingAnimation = typingAnimation else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_1_5) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_04) { [weak self] in
             UIView.animate(withDuration: Animation.duration_06, animations: {
                 typingAnimation.alpha = 1.0
             })

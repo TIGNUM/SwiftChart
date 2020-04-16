@@ -27,7 +27,7 @@ class DTPresenter: DTPresenterInterface {
         viewController?.showNextQuestion(viewModel)
     }
 
-    func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
+    func showPreviousQuestion(_ presentationModel: DTPresentationModel, selectedIds: [Int], isDark: Bool) {
         let button = getNavigationButton(presentationModel, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
@@ -81,7 +81,9 @@ class DTPresenter: DTPresenterInterface {
 
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
-        let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
+        let answers = getAnswers(presentationModel.answerFilter,
+                                 question: presentationModel.question,
+                                 presentationModel: presentationModel)
         let events = getPreparations(presentationModel.preparations)
         return DTViewModel(question: question,
                            answers: answers,
@@ -106,12 +108,19 @@ class DTPresenter: DTPresenterInterface {
                                     htmlTitleString: htmlTitleString,
                                     key: question?.key ?? "",
                                     answerType: AnswerType(rawValue: question?.answerType ?? "") ?? .accept,
-                                    duration: question?.layout?.animation?.duration ?? 5.0,
+                                    duration: question?.layout?.animation?.duration ?? 3.0,
                                     maxSelections: question?.maxPossibleSelections ?? 0)
     }
 
-    func getAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [DTViewModel.Answer] {
+    func getAnswers(_ answerFilter: String?,
+                    question: QDMQuestion?,
+                    presentationModel: DTPresentationModel) -> [DTViewModel.Answer] {
         let filteredAnswers = getFilteredAnswers(answerFilter, question: question)
+        if !presentationModel.selectedIds.isEmpty {
+            return filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0,
+                                                                   selectedIds: presentationModel.selectedIds,
+                                                                   decisions: $0.getDTViewModelAnswerDecisions()) }
+        }
         return filteredAnswers.compactMap { (answer) -> DTViewModel.Answer in
             let selected = answer.subtitle?.isEmpty == true && question?.answerType == AnswerType.accept.rawValue
             return DTViewModel.Answer(remoteId: answer.remoteID ?? 0,
@@ -119,7 +128,7 @@ class DTPresenter: DTPresenterInterface {
                                       keys: answer.keys,
                                       selected: selected,
                                       backgroundColor: answerBackgroundColor(answer: answer),
-                                      decisions: getDecisions(answer: answer))
+                                      decisions: answer.getDTViewModelAnswerDecisions() )
         }
     }
 
@@ -138,16 +147,6 @@ class DTPresenter: DTPresenterInterface {
                                      title: preparation.name,
                                      dateString: Prepare.prepareDateString(preparation.createdAt),
                                      isCalendarEvent: false)
-        }
-    }
-
-    func getDecisions(answer: QDMAnswer) -> [DTViewModel.Answer.Decision] {
-        return answer.decisions.compactMap { (decision) -> DTViewModel.Answer.Decision in
-            return DTViewModel.Answer.Decision(targetType: TargetType(rawValue: decision.targetType) ?? .question,
-                                               targetTypeId: decision.targetTypeId,
-                                               questionGroupId: decision.questionGroupId,
-                                               targetGroupId: decision.targetGroupId,
-                                               targetGroupName: decision.targetGroupName)
         }
     }
 

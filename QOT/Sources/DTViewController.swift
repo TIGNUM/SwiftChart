@@ -14,7 +14,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     // MARK: - Properties
     var viewModel: DTViewModel?
     var router: DTRouterInterface?
-    var interactor: DTInteractorInterface?
+    var interactor: DTInteractorInterface!
     var triggeredByLaunchHandler = false
     private weak var navigationButton: NavigationButton?
     private weak var pageController: UIPageViewController?
@@ -33,7 +33,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     override func viewDidLoad() {
         super.viewDidLoad()
         addObservers()
-        let isDark = interactor?.isDark ?? true
+        let isDark = interactor.isDark
 
         let theme: ThemeView = isDark ? .chatbotDark : .chatbot
         theme.apply(view)
@@ -50,7 +50,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
 
         navigationController?.setNeedsStatusBarAppearanceUpdate()
         setupPageViewController(view.backgroundColor)
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
 
         setupSwipeGestureRecognizer()
     }
@@ -79,7 +79,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         constraintBottom.constant = 0
         self.view.layoutIfNeeded()
         trackQuestionInteraction(.PREVIOUS)
-        if interactor?.loadPreviousQuestion() == false {
+        if interactor.loadPreviousQuestion(selectedIds: interactor.getSelectedIds()) == false {
             router?.dismiss()
         }
     }
@@ -109,17 +109,18 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     }
 
     func loadNextQuestion() {
-        let selectedAnswers = viewModel?.selectedAnswers ?? []
-        let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel?.question.key)
-        let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
-        let event = getEvent(answerType: viewModel?.question.answerType)
+        guard let viewModel = viewModel else { return }
+        let selectedAnswers = viewModel.selectedAnswers
+        let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel.question.key)
+        let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel.question.key)
+        let event = getEvent(answerType: viewModel.question.answerType)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
-                                              question: viewModel?.question,
+                                              question: viewModel.question,
                                               event: event,
                                               trigger: trigger,
                                               answerFilter: filter,
                                               userInput: nil)
-        interactor?.loadNextQuestion(selection: selectionModel)
+        interactor.loadNextQuestion(selection: selectionModel)
     }
 
     func showQuestion(viewModel: DTViewModel,
@@ -183,6 +184,14 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         self.viewModel = viewModel
         previousButton.isHidden = viewModel.previousButtonIsHidden
         closeButton.isHidden = viewModel.dismissButtonIsHidden
+        setSelectedAnswersIfNeeded(viewModel: viewModel)
+    }
+
+    private func setSelectedAnswersIfNeeded(viewModel: DTViewModel) {
+        let selectedAnswers = viewModel.answers.filter { $0.selected == true }
+        selectedAnswers.forEach { (answer) in
+            viewModel.setSelectedAnswer(answer)
+        }
     }
 
     private func setupPageViewController(_ backgroundColor: UIColor?) {
