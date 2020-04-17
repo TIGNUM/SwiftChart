@@ -1093,7 +1093,7 @@ extension DailyBriefInteractor {
 //        adding applinks
         sprintBucket.contentCollections?.filter { $0.searchTags.contains(sprintTag) && $0.searchTags.contains(searchTag)
         }.first?.links.forEach {(link) in
-            relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel("action description goes here",
+            relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(link.description,
                                                                                  nil,
                                                                                  link.remoteID,
                                                                                  nil,
