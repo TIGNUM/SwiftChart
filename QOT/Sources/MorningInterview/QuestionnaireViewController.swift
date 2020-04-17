@@ -26,33 +26,23 @@ enum DailyCheckInQuestionKey: String {
 enum ControllerType {
     case vision
     case dailyCheckin
-    case customize(_ topConstraintMultiplier: CGFloat)
+    case customize
 
     struct Config {
         let currentIndexColor: UIColor
         let aboveCurrentIndexColor: UIColor
         let belowCurrentIndexColor: UIColor
-        let topConstraintMultiplier: CGFloat
 
         static func myVision() -> Config {
             return Config(currentIndexColor: .redOrange,
                           aboveCurrentIndexColor: .redOrange40,
-                          belowCurrentIndexColor: .accent40,
-                          topConstraintMultiplier: 1)
-        }
-
-        static func customize(topConstraintMultiplier: CGFloat) -> Config {
-            return Config(currentIndexColor: .accent,
-                          aboveCurrentIndexColor: .accent70,
-                          belowCurrentIndexColor: .accent70,
-                          topConstraintMultiplier: topConstraintMultiplier)
+                          belowCurrentIndexColor: .accent40)
         }
 
         static func dailyCheckin() -> Config {
             return Config(currentIndexColor: .accent,
                           aboveCurrentIndexColor: .accent70,
-                          belowCurrentIndexColor: .accent70,
-                          topConstraintMultiplier: 1)
+                          belowCurrentIndexColor: .accent70)
         }
     }
 
@@ -60,10 +50,8 @@ enum ControllerType {
         switch self {
         case .vision:
             return Config.myVision()
-        case .dailyCheckin:
+        case .dailyCheckin, .customize:
             return Config.dailyCheckin()
-        case .customize(let topConstraintMultiplier):
-            return Config.customize(topConstraintMultiplier: topConstraintMultiplier)
         }
     }
 
