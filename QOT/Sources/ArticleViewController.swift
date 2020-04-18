@@ -497,6 +497,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .video(let remoteID, _, _, _, _, _):
             if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteID)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+                trackUserEvent(.PLAY, value: remoteID, valueType: .VIDEO, action: .TAP)
             }
         case .pdf(let title, _, let pdfURL, let itemID):
             showPDFReader(withURL: pdfURL, title: title, itemID: itemID)

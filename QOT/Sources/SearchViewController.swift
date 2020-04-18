@@ -344,8 +344,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 private extension SearchViewController {
 
-    func handleMediaSelection(mediaURL: URL, contentItem: QDMContentItem?) {
+    func handleVideoSelection(mediaURL: URL, contentItem: QDMContentItem?) {
         let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem)
+        trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
         if let playerViewController = playerViewController, let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in
@@ -409,7 +410,7 @@ private extension SearchViewController {
         case .watch:
             if let url = selectedSearchResult.mediaURL {
                 interactor.contentItem(for: selectedSearchResult) { item in
-                    self.handleMediaSelection(mediaURL: url, contentItem: item)
+                    self.handleVideoSelection(mediaURL: url, contentItem: item)
                 }
             }
         case .listen:
