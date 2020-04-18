@@ -104,6 +104,7 @@ private extension MySprintDetailsViewController {
                     button.setImage(icon, for: .normal)
                     button.setTitle(" \($0.title)", for: .normal)
                 }
+                ThemeButton.carbonButton.apply(button)
                 return button.barButton
             }
         } else {
