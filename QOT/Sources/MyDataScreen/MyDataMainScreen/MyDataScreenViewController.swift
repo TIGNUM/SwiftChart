@@ -109,10 +109,7 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
         case MyDataRowType.dailyImpactInfo.rawValue:
             let dailyImpactInfoCell: MyDataInfoTableViewCell = tableView.dequeueCell(for: indexPath)
             dailyImpactInfoCell.configure(title: myDataScreenModel?.myDataItems[MyDataSection.dailyImpact.rawValue].title,
-                                          subtitle: myDataScreenModel?.myDataItems[MyDataSection.dailyImpact.rawValue].subtitle,
-                                          showInfoLink: true)
-            dailyImpactInfoCell.delegate = self
-
+                                          subtitle: myDataScreenModel?.myDataItems[MyDataSection.dailyImpact.rawValue].subtitle)
             return dailyImpactInfoCell
         case MyDataRowType.dailyImpactChart.rawValue:
             let dailyImpactChartCell: MyDataChartTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -132,7 +129,6 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
             let heatMapInfoCell: MyDataInfoTableViewCell = tableView.dequeueCell(for: indexPath)
             heatMapInfoCell.configure(title: myDataScreenModel?.myDataItems[MyDataSection.heatMap.rawValue].title,
                                       subtitle: myDataScreenModel?.myDataItems[MyDataSection.heatMap.rawValue].subtitle)
-            heatMapInfoCell.delegate = self
 
             return heatMapInfoCell
         case MyDataRowType.heatMapButtons.rawValue:
@@ -259,7 +255,7 @@ extension MyDataScreenViewController {
     }
 }
 
-extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataChartLegendTableViewCellDelegate, MyDataHeatMapButtonsTableViewCellDelegate {
+extension MyDataScreenViewController: MyDataChartLegendTableViewCellDelegate, MyDataHeatMapButtonsTableViewCellDelegate {
 
     // MARK: Custom Delegates
 
@@ -271,14 +267,6 @@ extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataCha
         interactor?.setDailySelected(toMode)
         guard let heatMapCell = getHeatMapCell() else { return }
         heatMapCell.reloadCalendarData()
-    }
-
-    func didTapInfoButton(sender: MyDataInfoTableViewCell) {
-        var type: MyDataSection = .heatMap
-        if tableView.cellForRow(at: IndexPath(row: MyDataRowType.dailyImpactInfo.rawValue, section: 0)) == sender {
-            type = .dailyImpact
-        }
-        router?.presentMyDataExplanation(withType: type)
     }
 }
 

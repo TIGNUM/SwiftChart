@@ -73,9 +73,9 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
             if let parameterValue = MyDataParameter(rawValue: rawValue) {
                 sectionModel.myDataSelectionItems.append(MyDataSelectionModel.SelectionItem(myDataExplanationSection: parameterValue,
                                                                                             title: self.myDataSelectionSectionTitles(for: parameterValue),
+                                                                                            subtitle: self.myDataExplanationSectionSubtitles(for: parameterValue),
                                                                                             selected: true))
             }
-
         }
         initialDataSelectionSections = sectionModel
         return sectionModel
@@ -99,6 +99,25 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
             return AppTextService.get(.my_qot_my_data_ir_explanation_section_ir_title)
         }
     }
+
+    func myDataExplanationSectionSubtitles(for myDataExplanationItem: MyDataParameter) -> String? {
+         switch myDataExplanationItem {
+         case .SQL:
+             return AppTextService.get(.my_qot_my_data_ir_explanation_section_sleep_quality_subtitle)
+         case .SQN:
+             return AppTextService.get(.my_qot_my_data_ir_explanation_section_sleep_quantity_subtitle)
+         case .tenDL:
+             return AppTextService.get(.my_qot_my_data_ir_explanation_section_ten_day_load_subtitle)
+         case .fiveDRR:
+             return AppTextService.get(.my_qot_my_data_ir_explanation_section_five_day_recovery_subtitle)
+         case .fiveDRL:
+             return AppTextService.get(.my_qot_my_data_ir_explanation_section_five_day_load_subtitle)
+         case .fiveDIR:
+             return AppTextService.get(.my_qot_my_data_ir_explanation_section_five_day_ir_subtitle)
+         case .IR:
+             return AppTextService.get(.my_qot_my_data_ir_explanation_section_ir_subtitle)
+         }
+     }
 
     func getDailyResults(around date: Date,
                          withMonthsBefore: Int,
