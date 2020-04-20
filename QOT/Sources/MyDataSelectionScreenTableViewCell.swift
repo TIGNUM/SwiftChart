@@ -12,6 +12,7 @@ final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
 
     // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var checkMarkImageView: UIImageView!
     var showSelected: Bool = false {
         didSet {
