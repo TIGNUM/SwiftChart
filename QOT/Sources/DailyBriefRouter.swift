@@ -27,7 +27,8 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
         if let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
-                                                                        delegate: dailyBriefViewController) {
+                                                                        delegate: dailyBriefViewController,
+                                                                        controllerType: .customize) {
             viewController?.present(controller, animated: true)
         }
     }
