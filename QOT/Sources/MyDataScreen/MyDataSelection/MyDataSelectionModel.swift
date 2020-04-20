@@ -33,4 +33,23 @@ struct MyDataSelectionModel {
     static var sectionValues: [MyDataParameter] {
         return [.SQL, .SQN, .tenDL, .fiveDRR, .fiveDRL, .fiveDIR]
     }
+
+    static func color(for parameter: MyDataParameter) -> UIColor {
+         switch parameter {
+         case .fiveDIR:
+             return .fiveDayImpactReadiness
+         case .fiveDRL:
+             return .fiveDayLoad
+         case .fiveDRR:
+             return .fiveDayRecovery
+         case .tenDL:
+             return .tenDayLoad
+         case .SQL:
+             return .sleepQuality
+         case .SQN:
+             return .sleepQuantity
+         case .IR:
+             return .sand
+         }
+     }
 }

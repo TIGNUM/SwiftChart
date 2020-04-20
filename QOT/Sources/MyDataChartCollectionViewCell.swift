@@ -232,7 +232,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
             if let existingPoints = forDataPoints[parameter] {
                 for point in existingPoints {
                     let pointView = UIView.init(frame: .zero)
-                    pointView.backgroundColor = MyDataExplanationModel.color(for: parameter)
+                    pointView.backgroundColor = MyDataSelectionModel.color(for: parameter)
                     addSubview(pointView)
                     bringSubview(toFront: pointView)
                     addedViews.append(pointView)
