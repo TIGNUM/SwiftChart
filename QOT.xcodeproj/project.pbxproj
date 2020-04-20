@@ -4072,12 +4072,12 @@
 				AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */,
 				F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */,
 				AC103E5C2289942100F426F0 /* NegativeToPositiveView.swift */,
+				389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */,
 				AC103E54228969EF00F426F0 /* ReactionsTableViewCell.swift */,
 				AC103E502289621900F426F0 /* TriggerTableViewCell.swift */,
 				AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */,
 				AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */,
 				F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */,
-				389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */,
 				AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */,
 				AC103E512289621900F426F0 /* TriggerTableViewCell.xib */,
 			);
