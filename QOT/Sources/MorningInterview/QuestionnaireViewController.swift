@@ -80,12 +80,10 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var downArrowTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var upArrowBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var fillView: UIView!
-    @IBOutlet private weak var topImageView: UIImageView!
     @IBOutlet private weak var bottomImageView: UIImageView!
     @IBOutlet private weak var topIndex: UILabel!
     @IBOutlet private weak var bottomIndex: UILabel!
     @IBOutlet private weak var lineView: UIView!
-    @IBOutlet private weak var hintLabel: UILabel!
     @IBOutlet private weak var indexLabel: UILabel!
     static var hasArrowsAnimated: Bool = false
     private var finishedLoadingInitialTableCells = false
@@ -199,7 +197,6 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             ThemeView.level3.apply(view)
-            hintLabel.isHidden = true
         default: break
         }
     }
@@ -249,6 +246,7 @@ extension QuestionnaireViewController {
 
     private func setupView() {
         let color = controllerType.color
+        totalHoursLabel.isHidden = true
         lineView.backgroundColor = color
         indexLabel.textColor = color
         bottomIndex.textColor = color
@@ -403,7 +401,10 @@ extension QuestionnaireViewController {
                     let subtitle = AppTextService.get(.daily_brief_customize_sleep_amount_section_question_subtitle)
 //                    calculating 5 days * target amount of sleep relative to answerIndex
                     let hoursLabelText = subtitle.replacingOccurrences(of: "$(amount)", with: String(((answerIndex / 2) + 1) * 5))
-                    ThemeText.asterixText.apply(hoursLabelText, to: totalHoursLabel)
+                    if !hoursLabelText.isEmpty {
+                        totalHoursLabel.isHidden = false
+                        ThemeText.asterixText.apply(hoursLabelText, to: totalHoursLabel)
+                    }
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
                  }
