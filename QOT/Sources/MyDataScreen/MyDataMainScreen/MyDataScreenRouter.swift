@@ -21,15 +21,9 @@ final class MyDataScreenRouter {
 
 // MARK: - MyDataScreenRouterInterface
 extension MyDataScreenRouter: MyDataScreenRouterInterface {
-    func presentMyDataExplanation(withType: MyDataSection) {
-        viewController?.performSegue(withIdentifier: R.segue.myDataScreenViewController.mydataExplanationSegueIdentifier, sender: withType)
-    }
 
     func passDataToScene(segue: UIStoryboardSegue, withType: MyDataSection) {
-        if let myDataExplanationViewController = segue.destination as? MyDataExplanationViewController {
-            let configurator = MyDataExplanationConfigurator.make()
-            configurator(myDataExplanationViewController, withType)
-        } else if let myDataSelectionViewController  = segue.destination as? MyDataSelectionViewController {
+        if let myDataSelectionViewController  = segue.destination as? MyDataSelectionViewController {
             myDataSelectionViewController.delegate = viewController
         }
     }

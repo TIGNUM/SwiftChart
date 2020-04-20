@@ -79,7 +79,6 @@ extension UIViewController {
         case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"
         case is MyDataScreenViewController: return "myqot.mydata"
         case is MyDataSelectionViewController: return "myqot.mydata.lineselection"
-        case is MyDataExplanationViewController: return myDataInfoViewControllerPageKey
         case is AskPermissionViewController: return askPermissionPageKey
         case is ChoiceViewController: return "prepare.result.add.remove.strategies"
         case is MediaPlayerViewController: return "fullscreen.videoPlayer"
@@ -118,17 +117,6 @@ private extension UIViewController {
         switch (self as? MyToBeVisionTrackerViewController)?.interactor?.getDisplayType {
         case .tracker?: return  "tobevision.tracker.results"
         case .data?: return "tobevision.tracker.tbvTracker"
-        default: preconditionFailure()
-        }
-    }
-}
-
-// MARK: - MyDataExplanationViewController
-private extension UIViewController {
-    var myDataInfoViewControllerPageKey: String {
-        switch (self as? MyDataExplanationViewController)?.interactor?.getPresentedFromSection() {
-        case .dailyImpact?: return "myqot.mydata.impact.info"
-        case .heatMap?: return "myqot.mydata.heatmap.info"
         default: preconditionFailure()
         }
     }

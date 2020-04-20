@@ -26,6 +26,7 @@ extension MyDataSelectionWorker: MyDataSelectionWorkerInterface {
         return MyDataSelectionModel(myDataSelectionItems: MyDataSelectionModel.sectionValues.map {
             return MyDataSelectionModel.SelectionItem(myDataExplanationSection: $0,
                                                       title: myDataSelectionSectionTitles(for: $0),
+                                                      subtitle: myDataSelectionSectionSubtitles(for: $0),
                                                       selected: selectedValues?.contains(obj: $0.rawValue) ?? false)
         })
     }
@@ -46,6 +47,25 @@ extension MyDataSelectionWorker: MyDataSelectionWorkerInterface {
             return AppTextService.get(.my_qot_my_data_ir_add_parameters_section_five_day_ir_title_five_dir)
         case .IR:
             return AppTextService.get(.my_qot_my_data_ir_add_parameters_section_ir_title_ir)
+        }
+    }
+
+    func myDataSelectionSectionSubtitles(for myDataSelectionItem: MyDataParameter) -> String? {
+        switch myDataSelectionItem {
+        case .SQL:
+            return AppTextService.get(.my_qot_my_data_ir_explanation_section_sleep_quality_subtitle)
+        case .SQN:
+            return AppTextService.get(.my_qot_my_data_ir_explanation_section_sleep_quantity_subtitle)
+        case .tenDL:
+            return AppTextService.get(.my_qot_my_data_ir_explanation_section_ten_day_load_subtitle)
+        case .fiveDRR:
+            return AppTextService.get(.my_qot_my_data_ir_explanation_section_five_day_recovery_subtitle)
+        case .fiveDRL:
+            return AppTextService.get(.my_qot_my_data_ir_explanation_section_five_day_load_subtitle)
+        case .fiveDIR:
+            return AppTextService.get(.my_qot_my_data_ir_explanation_section_five_day_ir_subtitle)
+        case .IR:
+            return AppTextService.get(.my_qot_my_data_ir_explanation_section_ir_subtitle)
         }
     }
 

@@ -35,8 +35,8 @@
                         <constraint firstAttribute="width" constant="32" id="mFf-zZ-Bsq"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7B-ZXp">
-                    <rect key="frame" x="88" y="67" width="363" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcW-7B-ZXp">
+                    <rect key="frame" x="88" y="60" width="363" height="23"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                 <constraint firstItem="ikd-4e-jYi" firstAttribute="leading" secondItem="lvs-FX-j6a" secondAttribute="trailing" constant="32" id="Ild-jE-fmk"/>
                 <constraint firstItem="lvs-FX-j6a" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="Qkw-0L-Jw2"/>
                 <constraint firstItem="lvs-FX-j6a" firstAttribute="centerY" secondItem="34z-T8-JFN" secondAttribute="centerY" id="XcA-vD-TGw"/>
-                <constraint firstItem="wcW-7B-ZXp" firstAttribute="top" secondItem="ikd-4e-jYi" secondAttribute="bottom" constant="15" id="ZQC-D7-MjF"/>
+                <constraint firstItem="wcW-7B-ZXp" firstAttribute="top" secondItem="ikd-4e-jYi" secondAttribute="bottom" constant="8" symbolic="YES" id="ZQC-D7-MjF"/>
                 <constraint firstItem="lvs-FX-j6a" firstAttribute="centerY" secondItem="34z-T8-JFN" secondAttribute="centerY" id="hk7-RG-rff"/>
                 <constraint firstItem="wcW-7B-ZXp" firstAttribute="leading" secondItem="lvs-FX-j6a" secondAttribute="trailing" constant="32" id="pr5-eZ-VXL"/>
                 <constraint firstItem="ikd-4e-jYi" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" constant="24" id="uqM-7e-zsr"/>

@@ -15,11 +15,13 @@ struct MyDataSelectionModel {
     struct SelectionItem: Equatable {
         let myDataExplanationSection: MyDataParameter
         let title: String?
+        let subtitle: String?
         var selected: Bool
 
         static func == (lhs: SelectionItem, rhs: SelectionItem) -> Bool {
             return lhs.myDataExplanationSection == rhs.myDataExplanationSection &&
                    lhs.title == rhs.title &&
+                   lhs.subtitle == rhs.subtitle &&
                    lhs.selected == rhs.selected
         }
     }

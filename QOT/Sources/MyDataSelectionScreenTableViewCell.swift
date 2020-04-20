@@ -25,18 +25,21 @@ final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         skeletonManager.addSubtitle(titleLabel)
+        skeletonManager.addSubtitle(subtitleLabel)
         skeletonManager.addOtherView(checkMarkImageView)
     }
 
     func configure(forSelectionItem: MyDataSelectionModel.SelectionItem?) {
         self.selectionStyle = .none
         guard let selectionItem = forSelectionItem,
-              let title = selectionItem.title else {
+            let subtitle = selectionItem.subtitle,
+            let title = selectionItem.title else {
             return
         }
         skeletonManager.hide()
         showSelected = selectionItem.selected
         ThemeText.myDataParameterSelectionTitle(selectionItem.myDataExplanationSection).apply(title, to: titleLabel)
+        ThemeText.myDataParameterSelectionSubtitle.apply(subtitle, to: subtitleLabel)
         self.setupForSelected(selected: showSelected)
     }
 
