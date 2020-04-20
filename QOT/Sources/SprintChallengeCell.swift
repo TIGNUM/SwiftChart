@@ -103,6 +103,17 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         if let contentItemId = relatedItem?.contentItemId,
             let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            switch relatedItem?.format {
+            case .video:
+                var userEventTrack = QDMUserEventTracking()
+                userEventTrack.name = .PLAY
+                userEventTrack.value = relatedItem?.contentItemId
+                userEventTrack.valueType = .VIDEO
+                userEventTrack.action = .TAP
+                NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+            default:
+                break
+            }
         } else if let contentCollectionId = relatedItem?.contentId {
             if relatedItem?.section == .LearnStrategies {
                 delegate?.presentStrategyList(strategyID: contentCollectionId)
