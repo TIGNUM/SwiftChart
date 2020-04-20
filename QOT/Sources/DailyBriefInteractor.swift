@@ -431,6 +431,10 @@ extension DailyBriefInteractor {
             dailyCheckInResultRequestCheckTimer?.invalidate()
             dailyCheckInResultRequestCheckTimer = nil
             feedback = impactReadiness.dailyCheckInResult?.feedback
+            let appLink = impactReadiness.dailyCheckInResult?.customizedFeedbackContentItem?.links.first
+            let cta = impactReadiness.dailyCheckInResult?.customizedFeedbackContentItem?.links.first?.description
+            print(appLink)
+            print(cta)
             readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_intro)
             expendImpactReadiness = true
         }
