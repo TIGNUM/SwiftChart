@@ -98,7 +98,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         let asteriskLoad = viewModel?.hasFiveDayLoadValue == true ? "" : "*"
 
         // Sleep Quantity
-        let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
+        let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_new_title)
         sleepQuantityButton.setTitle(quantityTitle, for: .normal)
         let hour = " " + AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h)
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
@@ -114,7 +114,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         // Sleep Quality
         let qualityReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_number_ref))
-        let qualityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_title)
+        let qualityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_new_title)
         sleepQualityButton.setTitle(qualityTitle, for: .normal)
         let qualityTextColor: UIColor = qualityReference?.isLess(than: viewModel?.sleepQualityValue ?? 0) == true ? .sand : .redOrange
         sleepQualityScoreButton.setTitleColor(qualityTextColor, for: .normal)
@@ -122,7 +122,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         // Load
         let loadReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_load_number_ref))
-        let loadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_title)
+        let loadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_new_title)
         loadButton.setTitle(loadTitle, for: .normal)
 
         let loadTextColor: UIColor = viewModel?.loadValue?.isLess(than: loadReference ?? 0) == true ? .sand : .redOrange
@@ -131,7 +131,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         // Future Load
         let futureLoadReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_number_ref))
-        let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_title)
+        let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_new_title)
         futureLoadButton.setTitle(futureLoadTitle, for: .normal)
 
         let futureLoadTextColor: UIColor = viewModel?.futureLoadValue?.isLess(than: futureLoadReference ?? 0) == true ? .sand : .redOrange
