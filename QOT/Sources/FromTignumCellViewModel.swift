@@ -15,12 +15,16 @@ final class FromTignumCellViewModel: BaseDailyBriefViewModel {
     var text: String?
     var title: String?
     var subtitle: String?
+    var cta: String?
+    var link: QDMAppLink?
 
     // MARK: - Init
-    init(title: String?, text: String?, subtitle: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, text: String?, subtitle: String?, cta: String?, link: QDMAppLink?, domainModel: QDMDailyBriefBucket?) {
         self.text = text
         self.title = title
         self.subtitle = subtitle
+        self.cta = cta
+        self.link = link
         super.init(domainModel)
     }
 
@@ -31,6 +35,7 @@ final class FromTignumCellViewModel: BaseDailyBriefViewModel {
         return super.isContentEqual(to: source) &&
             text == source.text &&
             title == source.title &&
+            cta == source.cta &&
             subtitle == source.subtitle
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class FromTignumCell: BaseDailyBriefCell {
 
@@ -14,6 +15,8 @@ final class FromTignumCell: BaseDailyBriefCell {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var fromTignumText: UILabel!
     private var detailsExpanded = false
+    private var link: QDMAppLink?
+    @IBOutlet private weak var ctaButton: AnimatedButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +37,18 @@ final class FromTignumCell: BaseDailyBriefCell {
         ThemeText.dailyBriefFromTignumTitle.apply((model.subtitle ?? ""), to: baseHeaderView?.subtitleTextView)
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.bespokeText.apply(model.text, to: fromTignumText)
+        if let ctaText = model.cta {
+            ctaButton.setTitle(ctaText, for: .normal)
+            ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+            ctaButton.setButtonContentInset(padding: 16)
+        } else {
+            ctaButton.isHidden = true
+        }
+        self.link = model.link
+    }
+
+    @IBAction func ctaButtonTapped(_ sender: Any) {
+         link?.launch()
     }
 
     override func updateConstraints() {
