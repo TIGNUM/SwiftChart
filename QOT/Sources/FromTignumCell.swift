@@ -22,6 +22,7 @@ final class FromTignumCell: BaseDailyBriefCell {
         super.awakeFromNib()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
+        skeletonManager.addOtherView(ctaButton)
         skeletonManager.addSubtitle(fromTignumText)
     }
 
