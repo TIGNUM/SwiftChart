@@ -49,7 +49,8 @@ final class FromTignumCell: BaseDailyBriefCell {
     }
 
     @IBAction func ctaButtonTapped(_ sender: Any) {
-         link?.launch()
+        link?.launch()
+        trackUserEvent(.OPEN, value: link?.appLinkId, stringValue: "FROM_TIGNUM", valueType: "APP_LINK", action: .TAP)
     }
 
     override func updateConstraints() {
