@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 class BaseDailyBriefCell: UITableViewCell, Dequeueable {
     private var markAsSeenTimer: Timer?
@@ -32,5 +33,19 @@ class BaseDailyBriefCell: UITableViewCell, Dequeueable {
     func stopTimer() {
         markAsSeenTimer?.invalidate()
         markAsSeenTimer = nil
+    }
+
+    func trackUserEvent(_ name: QDMUserEventTracking.Name,
+                        value: Int? = nil,
+                        stringValue: String? = nil,
+                        valueType: QDMUserEventTracking.ValueType? = nil,
+                        action: QDMUserEventTracking.Action) {
+        var userEventTrack = QDMUserEventTracking()
+        userEventTrack.name = name
+        userEventTrack.value = value
+        userEventTrack.stringValue = stringValue
+        userEventTrack.valueType = valueType
+        userEventTrack.action = action
+        NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
     }
 }
