@@ -17,7 +17,7 @@ final class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
     weak var delegate: MyDataInfoTableViewCellDelegate?
     private var baseHeaderView: QOTBaseHeaderView?
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
         baseHeaderView?.subtitleTextView.isSelectable = true

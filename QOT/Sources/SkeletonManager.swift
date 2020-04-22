@@ -90,7 +90,7 @@ class SkeletonManager {
         shimmerView.isUserInteractionEnabled = true
         UIView.transition(with: view, duration: dissolveAnimationDuration, options: [.transitionCrossDissolve], animations: {
             shimmerView.fillOverLayerBorder(for: shimmerView, superview: view)
-            view.bringSubview(toFront: shimmerView)
+            view.bringSubviewToFront(shimmerView)
         }, completion: nil)
     }
 

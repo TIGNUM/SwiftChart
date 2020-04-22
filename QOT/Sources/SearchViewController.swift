@@ -307,7 +307,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.tableView:
             return 80
         case self.suggestionsTableView:
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         default:
             return 0
         }

@@ -40,7 +40,7 @@ final class MediaPlayerOverlay: UIView {
     private func addOrientationObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didChangeOrientation),
-                                               name: NSNotification.Name.UIDeviceOrientationDidChange,
+                                               name: UIDevice.orientationDidChangeNotification,
                                                object: nil)
     }
 
@@ -53,7 +53,7 @@ final class MediaPlayerOverlay: UIView {
     func buttonsShowHide() {
         var hidden = UIDevice.current.orientation.isLandscape
         if let avPlayerViewController = delegate as? AVPlayerViewController,
-            avPlayerViewController.videoGravity == AVLayerVideoGravity.resizeAspectFill.rawValue {
+            avPlayerViewController.videoGravity.rawValue == AVLayerVideoGravity.resizeAspectFill.rawValue {
             hidden = true
         }
         let alpha: CGFloat = hidden ? 0.0 : 1.0

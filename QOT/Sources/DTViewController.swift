@@ -172,11 +172,11 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     private func addObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
-                                               name: Notification.Name.UIKeyboardWillShow,
+                                               name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide),
-                                               name: Notification.Name.UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
 
@@ -200,7 +200,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         if let scrollview = pageController.view as? UIScrollView {
             scrollview.contentInsetAdjustmentBehavior = .automatic
         }
-        addChildViewController(pageController)
+        addChild(pageController)
         view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
         self.pageController = pageController
     }
@@ -301,8 +301,8 @@ extension DTViewController {
 //Handle keyboard notifications
 extension DTViewController {
     @objc func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             constraintBottom.constant = keyboardSize.height
             UIView.animate(withDuration: duration) {
                 self.view.layoutIfNeeded()
@@ -311,7 +311,7 @@ extension DTViewController {
     }
 
     @objc func keyboardWillHide(notification: Notification) {
-        if let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+        if let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             constraintToZero(duration)
         }
     }

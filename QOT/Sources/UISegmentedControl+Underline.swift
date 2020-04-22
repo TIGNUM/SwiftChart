@@ -19,7 +19,7 @@ extension UISegmentedControl {
         let xCentre = CGFloat(currentIndex) * widthSegment + widthSegment / 2
 
         var width = widthSegment
-        if let font = titleTextAttributes(for: .normal)?[NSAttributedStringKey.font] as? UIFont {
+        if let font = titleTextAttributes(for: .normal)?[NSAttributedString.Key.font] as? UIFont {
             let text = titleForSegment(at: currentIndex)
             width = text?.size(with: font).width ?? widthSegment
         }

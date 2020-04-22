@@ -14,9 +14,9 @@ class CustomSegueModal: UIStoryboardSegue {
     override func perform() {
         let transition = CATransition()
         transition.duration = duration
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        transition.type = kCATransitionMoveIn
-        transition.subtype = kCATransitionFromTop
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = CATransitionSubtype.fromTop
 
         source.view.window!.layer.add(transition, forKey: kCATransition)
         source.present(destination, animated: false, completion: nil)

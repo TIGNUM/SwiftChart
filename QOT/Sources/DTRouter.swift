@@ -10,8 +10,8 @@ import Foundation
 
 class DTRouter: BaseRouter, DTRouterInterface {
     func goBackToSolveResult() {
-        if let pageViewController = viewController?.childViewControllers.first as? UIPageViewController {
-            pageViewController.childViewControllers.forEach { (viewController) in
+        if let pageViewController = viewController?.children.first as? UIPageViewController {
+            pageViewController.children.forEach { (viewController) in
                 viewController.dismiss(animated: false, completion: nil)
             }
         }

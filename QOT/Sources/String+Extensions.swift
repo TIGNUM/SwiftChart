@@ -12,7 +12,7 @@ import qot_dal
 extension String {
 
     func size(with font: UIFont) -> CGSize {
-        return (self as NSString).size(withAttributes: [NSAttributedStringKey.font: font])
+        return (self as NSString).size(withAttributes: [NSAttributedString.Key.font: font])
     }
 
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
@@ -23,7 +23,7 @@ extension String {
     }
 
     func height(withConstrainedWidth width: CGFloat, font: UIFont, characterSpacing: CGFloat? = nil) -> CGFloat {
-        var attributes: [NSAttributedStringKey: Any] = [:]
+        var attributes: [NSAttributedString.Key: Any] = [:]
         attributes[.kern] = characterSpacing
         attributes[.font] = font
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)

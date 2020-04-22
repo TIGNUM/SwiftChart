@@ -46,7 +46,7 @@ class ComponentCollectionViewCell: UICollectionViewCell, Dequeueable {
         if disabledHighlightedAnimation {
             return
         }
-        let animationOptions: UIViewAnimationOptions = [.allowUserInteraction]
+        let animationOptions: UIView.AnimationOptions = [.allowUserInteraction]
         if isHighlighted {
             UIView.animate(withDuration: 0.5,
                            delay: 0,

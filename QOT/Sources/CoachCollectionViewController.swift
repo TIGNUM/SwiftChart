@@ -91,7 +91,7 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
         coachButton.layer.zPosition = 10000
 
         if let searchViewController = searchViewController {
-            self.addChildViewController(searchViewController)
+            self.addChild(searchViewController)
             searchViewController.view.translatesAutoresizingMaskIntoConstraints = false
             setupSearchConstraints(searchViewController.view, parentView: view)
         }
@@ -247,12 +247,12 @@ extension CoachCollectionViewController {
 
     func display(contentController content: UIViewController, cell: UICollectionViewCell) {
         if content.parent != self {
-            self.addChildViewController(content)
+            self.addChild(content)
         }
         cell.contentView.removeSubViews()
         cell.contentView.addSubview(content.view)
         content.view.edges(to: cell.contentView)
-        content.didMove(toParentViewController: self)
+        content.didMove(toParent: self)
     }
 }
 

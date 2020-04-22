@@ -306,7 +306,7 @@ extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
             return
         }
         calendar.addSubview(detailView)
-        calendar.bringSubview(toFront: detailView)
+        calendar.bringSubviewToFront(detailView)
         createConstraintsForDetailsView(calendar: calendar, cellState: forCellState, cell: forCell)
         calendar.addGestureRecognizer(calendarPanGestureRecognizer)
         addGestureRecognizerOnDetailView()

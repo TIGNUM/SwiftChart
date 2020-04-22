@@ -90,7 +90,7 @@ private extension ToolsCollectionsViewController {
         tableView.registerDequeueable(ToolsTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.tableFooterView = UIView()
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 60
     }
 }
@@ -123,7 +123,7 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
             array.append(oldIndexPath)
         }
         lastAudioIndexPath = indexPath
-        tableView.reloadRows(at: array, with: UITableViewRowAnimation.none)
+        tableView.reloadRows(at: array, with: UITableView.RowAnimation.none)
     }
 }
 

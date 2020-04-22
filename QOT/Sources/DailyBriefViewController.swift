@@ -59,7 +59,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         super.viewDidLoad()
         ThemeView.level1.apply(view)
         navigationController?.navigationBar.isHidden = true
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         interactor.viewDidLoad()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateDailyBriefFromNotification(_:)),
@@ -111,7 +111,7 @@ extension DailyBriefViewController {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

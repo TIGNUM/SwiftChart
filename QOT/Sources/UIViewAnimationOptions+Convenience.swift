@@ -1,5 +1,5 @@
 //
-//  UIViewAnimationOptions+Convenience.swift
+//  UIView.AnimationOptions+Convenience.swift
 //  QOT
 //
 //  Created by Sam Wyndham on 07/03/2018.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-extension UIViewAnimationOptions {
-    init(curve: UIViewAnimationCurve) {
+extension UIView.AnimationOptions {
+    init(curve: UIView.AnimationCurve) {
         switch curve {
         case .easeIn:
             self = .curveEaseIn

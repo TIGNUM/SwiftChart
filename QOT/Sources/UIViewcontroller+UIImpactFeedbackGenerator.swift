@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
 
-    func generateFeedback(_ style: UIImpactFeedbackStyle = .heavy) {
+    func generateFeedback(_ style: UIImpactFeedbackGenerator.FeedbackStyle = .heavy) {
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.impactOccurred()
     }

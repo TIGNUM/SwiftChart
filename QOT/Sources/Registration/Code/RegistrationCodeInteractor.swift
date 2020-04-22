@@ -32,7 +32,7 @@ final class RegistrationCodeInteractor {
     private var termsAccepted: Bool = false
     private let email: String
 
-    private lazy var linkAttributes: [NSAttributedStringKey: Any] = {
+    private lazy var linkAttributes: [NSAttributedString.Key: Any] = {
         return [.font: UIFont.sfProtextSemibold(ofSize: 14), .foregroundColor: UIColor.accent]
     }()
 

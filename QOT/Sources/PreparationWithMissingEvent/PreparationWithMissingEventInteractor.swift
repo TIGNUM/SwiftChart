@@ -31,7 +31,7 @@ final class PreparationWithMissingEventInteractor {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applicationWillResignActive(_:)),
-                                               name: .UIApplicationWillResignActive, object: nil)
+                                               name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     // MARK: - Interactor

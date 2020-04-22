@@ -78,7 +78,7 @@ extension UIFont {
 extension NSAttributedString {
 
     internal class func create(for string: String, withColor color: UIColor, andFont font: UIFont, letterSpacing: CGFloat = 1) -> NSAttributedString {
-        let attributes: [NSAttributedStringKey: Any] = [.foregroundColor: color,
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: color,
                                                         .font: font,
                                                         .kern: letterSpacing]
 
