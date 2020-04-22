@@ -948,6 +948,8 @@ extension DailyBriefInteractor {
             createFromTignumList.append(FromTignumCellViewModel(title: bucketTitle,
                                                                 text: fromTignumModel.contentItems.first?.valueText ?? "",
                                                                 subtitle: fromTignumModel.title,
+                                                                cta: fromTignumModel.contentItems.first?.links.first?.description,
+                                                                link: fromTignumModel.contentItems.first?.links.first,
                                                                 domainModel: fromTignum))
         }
         return createFromTignumList
