@@ -887,8 +887,6 @@
 		B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACD0232902C3006BA566 /* WeatherViewModel.swift */; };
 		B4A075B0230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */; };
 		B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */; };
-		B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */; };
-		B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */; };
 		B4A075B8230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */; };
 		B4A075B9230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */; };
 		B4A075BB230EF13B00DDB922 /* MyDataHeatMapDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075BA230EF13B00DDB922 /* MyDataHeatMapDateCell.xib */; };
@@ -902,14 +900,6 @@
 		B4AB48BA230BF891003B3C1F /* MyDataSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48B2230BF890003B3C1F /* MyDataSelectionInteractor.swift */; };
 		B4AB48BB230BF891003B3C1F /* MyDataSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48B3230BF890003B3C1F /* MyDataSelectionModel.swift */; };
 		B4AB48BC230BF891003B3C1F /* MyDataSelectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48B4230BF890003B3C1F /* MyDataSelectionConfigurator.swift */; };
-		B4AB48C6230BF982003B3C1F /* MyDataExplanationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48BE230BF982003B3C1F /* MyDataExplanationPresenter.swift */; };
-		B4AB48C7230BF982003B3C1F /* MyDataExplanationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48BF230BF982003B3C1F /* MyDataExplanationWorker.swift */; };
-		B4AB48C8230BF982003B3C1F /* MyDataExplanationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C0230BF982003B3C1F /* MyDataExplanationRouter.swift */; };
-		B4AB48C9230BF982003B3C1F /* MyDataExplanationInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C1230BF982003B3C1F /* MyDataExplanationInterface.swift */; };
-		B4AB48CA230BF982003B3C1F /* MyDataExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C2230BF982003B3C1F /* MyDataExplanationViewController.swift */; };
-		B4AB48CB230BF982003B3C1F /* MyDataExplanationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C3230BF982003B3C1F /* MyDataExplanationInteractor.swift */; };
-		B4AB48CC230BF982003B3C1F /* MyDataExplanationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C4230BF982003B3C1F /* MyDataExplanationModel.swift */; };
-		B4AB48CD230BF982003B3C1F /* MyDataExplanationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C5230BF982003B3C1F /* MyDataExplanationConfigurator.swift */; };
 		B4AB48D0230C0002003B3C1F /* MyDataInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */; };
 		B4AB48D4230D3A9B003B3C1F /* MyDataChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48D2230D3A9B003B3C1F /* MyDataChartTableViewCell.xib */; };
 		B4AB48D5230D3A9B003B3C1F /* MyDataChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48D3230D3A9B003B3C1F /* MyDataChartTableViewCell.swift */; };
@@ -2157,8 +2147,6 @@
 		B49EACD0232902C3006BA566 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapButtonsTableViewCell.xib; sourceTree = "<group>"; };
-		B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataExplanationScreenTableViewCell.xib; sourceTree = "<group>"; };
-		B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataExplanationScreenTableViewCell.swift; sourceTree = "<group>"; };
 		B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataSelectionScreenTableViewCell.swift; sourceTree = "<group>"; };
 		B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataSelectionScreenTableViewCell.xib; sourceTree = "<group>"; };
 		B4A075BA230EF13B00DDB922 /* MyDataHeatMapDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDateCell.xib; sourceTree = "<group>"; };
@@ -2172,14 +2160,6 @@
 		B4AB48B2230BF890003B3C1F /* MyDataSelectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionInteractor.swift; sourceTree = "<group>"; };
 		B4AB48B3230BF890003B3C1F /* MyDataSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionModel.swift; sourceTree = "<group>"; };
 		B4AB48B4230BF890003B3C1F /* MyDataSelectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionConfigurator.swift; sourceTree = "<group>"; };
-		B4AB48BE230BF982003B3C1F /* MyDataExplanationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationPresenter.swift; sourceTree = "<group>"; };
-		B4AB48BF230BF982003B3C1F /* MyDataExplanationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationWorker.swift; sourceTree = "<group>"; };
-		B4AB48C0230BF982003B3C1F /* MyDataExplanationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationRouter.swift; sourceTree = "<group>"; };
-		B4AB48C1230BF982003B3C1F /* MyDataExplanationInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationInterface.swift; sourceTree = "<group>"; };
-		B4AB48C2230BF982003B3C1F /* MyDataExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationViewController.swift; sourceTree = "<group>"; };
-		B4AB48C3230BF982003B3C1F /* MyDataExplanationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationInteractor.swift; sourceTree = "<group>"; };
-		B4AB48C4230BF982003B3C1F /* MyDataExplanationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationModel.swift; sourceTree = "<group>"; };
-		B4AB48C5230BF982003B3C1F /* MyDataExplanationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationConfigurator.swift; sourceTree = "<group>"; };
 		B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataInfoTableViewCell.swift; sourceTree = "<group>"; };
 		B4AB48D2230D3A9B003B3C1F /* MyDataChartTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48D3230D3A9B003B3C1F /* MyDataChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartTableViewCell.swift; sourceTree = "<group>"; };
@@ -2726,8 +2706,6 @@
 				B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */,
 				B4AB48D3230D3A9B003B3C1F /* MyDataChartTableViewCell.swift */,
 				B4AB48D2230D3A9B003B3C1F /* MyDataChartTableViewCell.xib */,
-				B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */,
-				B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */,
 				B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */,
 				B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */,
 				B4A075BC230EF14900DDB922 /* MyDataHeatMapDateCell.swift */,
@@ -4072,12 +4050,12 @@
 				AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */,
 				F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */,
 				AC103E5C2289942100F426F0 /* NegativeToPositiveView.swift */,
+				389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */,
 				AC103E54228969EF00F426F0 /* ReactionsTableViewCell.swift */,
 				AC103E502289621900F426F0 /* TriggerTableViewCell.swift */,
 				AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */,
 				AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */,
 				F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */,
-				389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */,
 				AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */,
 				AC103E512289621900F426F0 /* TriggerTableViewCell.xib */,
 			);
@@ -4319,7 +4297,6 @@
 			isa = PBXGroup;
 			children = (
 				B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */,
-				B4AB48BD230BF928003B3C1F /* MyDataExplanation */,
 				B4AB48AB230BF83A003B3C1F /* MyDataMainScreen */,
 				B4AB48AC230BF859003B3C1F /* MyDataSelection */,
 			);
@@ -4394,21 +4371,6 @@
 				B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */,
 			);
 			path = MyDataSelection;
-			sourceTree = "<group>";
-		};
-		B4AB48BD230BF928003B3C1F /* MyDataExplanation */ = {
-			isa = PBXGroup;
-			children = (
-				B4AB48C5230BF982003B3C1F /* MyDataExplanationConfigurator.swift */,
-				B4AB48C3230BF982003B3C1F /* MyDataExplanationInteractor.swift */,
-				B4AB48C1230BF982003B3C1F /* MyDataExplanationInterface.swift */,
-				B4AB48C4230BF982003B3C1F /* MyDataExplanationModel.swift */,
-				B4AB48BE230BF982003B3C1F /* MyDataExplanationPresenter.swift */,
-				B4AB48C0230BF982003B3C1F /* MyDataExplanationRouter.swift */,
-				B4AB48C2230BF982003B3C1F /* MyDataExplanationViewController.swift */,
-				B4AB48BF230BF982003B3C1F /* MyDataExplanationWorker.swift */,
-			);
-			path = MyDataExplanation;
 			sourceTree = "<group>";
 		};
 		B4BCD0DD23AB7CCA00B80747 /* MyQOTAdminEditSprints */ = {
@@ -5678,7 +5640,6 @@
 				8D6E059122D7487400EC2AEF /* MyLibraryNotes.storyboard in Resources */,
 				F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */,
 				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
-				B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */,
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
 				366AFD1820BDAD3000109F29 /* FormView.xib in Resources */,
 				389BBC8E235EE8900009FA02 /* CoachMark.storyboard in Resources */,
@@ -6157,7 +6118,6 @@
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
 				36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */,
 				380B03CA241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift in Sources */,
-				B4AB48CD230BF982003B3C1F /* MyDataExplanationConfigurator.swift in Sources */,
 				F9A5C94A22B7D08500AB2E94 /* PaymentReminderPresenter.swift in Sources */,
 				F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */,
 				B86CFC9323DEF29F004EAA68 /* ImpactReadiness1.swift in Sources */,
@@ -6185,7 +6145,6 @@
 				367CD18622EF4EDE00AF2187 /* OnboardingLoginConfigurator.swift in Sources */,
 				B80FB0DD23E3200F0040D034 /* Date+EventDate.swift in Sources */,
 				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
-				B4AB48C6230BF982003B3C1F /* MyDataExplanationPresenter.swift in Sources */,
 				389BBC8A235EE68B0009FA02 /* CoachMarksInteractor.swift in Sources */,
 				36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */,
 				386C27A4241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift in Sources */,
@@ -6286,7 +6245,6 @@
 				F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */,
 				B4BCD0FE23AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift in Sources */,
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
-				B4AB48C9230BF982003B3C1F /* MyDataExplanationInterface.swift in Sources */,
 				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
 				B430D7FB23A916B600C75C9C /* MyQotAdminLocalNotificationsInteractor.swift in Sources */,
 				5F360728228BECD70074FEC4 /* MyQotSensorsRouter.swift in Sources */,
@@ -6406,7 +6364,6 @@
 				363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */,
 				36376600223A4BD200C2C429 /* KnowingInteractor.swift in Sources */,
 				367CD17F22EF4EDE00AF2187 /* OnboardingLoginPresenter.swift in Sources */,
-				B4AB48CC230BF982003B3C1F /* MyDataExplanationModel.swift in Sources */,
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
@@ -6471,7 +6428,6 @@
 				F9F70C1822F9A31E00E85BF3 /* SprintChallengeViewModel.swift in Sources */,
 				CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */,
 				5F8A899F2296DF520011A05C /* MyVisionRouter.swift in Sources */,
-				B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */,
 				5F7BE79422899EA100BA5DCF /* MyQotAboutUsInterface.swift in Sources */,
 				B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */,
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
@@ -6506,7 +6462,6 @@
 				DB5121622331945F009BFF22 /* PreparationWithMissingEventInteractor.swift in Sources */,
 				AC103E5E2289942100F426F0 /* NegativeToPositiveView.swift in Sources */,
 				8DC849B32326463900C4D4A3 /* Reachability.m in Sources */,
-				B4AB48C8230BF982003B3C1F /* MyDataExplanationRouter.swift in Sources */,
 				CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */,
 				B83B33EA22C21D6E002AFED7 /* BaseRootViewController.swift in Sources */,
 				5FA66642229C207B0027EE74 /* MyVisionEditDetailsWorker.swift in Sources */,
@@ -6565,7 +6520,6 @@
 				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
 				386C27BA241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift in Sources */,
 				38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */,
-				B4AB48CA230BF982003B3C1F /* MyDataExplanationViewController.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,
 				386C279E2418EBFF00184EC9 /* ResultsPrepareViewController.swift in Sources */,
 				8D8AA75E22FDCB6700B59A81 /* RegistrationInteractor.swift in Sources */,
@@ -6774,7 +6728,6 @@
 				CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrator.swift in Sources */,
 				5F360726228BECCC0074FEC4 /* MyQotSensorsWorker.swift in Sources */,
 				B430D7CA23A911DE00C75C9C /* MyQotAdminSettingsListPresenter.swift in Sources */,
-				B4AB48C7230BF982003B3C1F /* MyDataExplanationWorker.swift in Sources */,
 				9C24239022F487DA00B911E6 /* MyPeakPerformanceViewModel.swift in Sources */,
 				CBB98B04201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift in Sources */,
 				AC1A40DE22A54EB70022156C /* SolveResultsViewController.swift in Sources */,
@@ -6926,7 +6879,6 @@
 				75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */,
 				360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */,
 				B8BB413122C50B41002897E4 /* Notification+MediaPlayer.swift in Sources */,
-				B4AB48CB230BF982003B3C1F /* MyDataExplanationInteractor.swift in Sources */,
 				8DF7870A22FEB50800CDE0A9 /* RegistrationCodeViewController.swift in Sources */,
 				ACB99E7922687D2000A73709 /* MultipleSelectionCollectionViewCell.swift in Sources */,
 				BBB47C65232A387900B165F8 /* DTResultBaseTableViewCell.swift in Sources */,
@@ -7189,10 +7141,11 @@
 				PRODUCT_NAME = "TIGNUM X";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = DEVPPP_QOTmain;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Novartis;
 		};
@@ -7389,7 +7342,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Database;
 		};
@@ -8129,7 +8082,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AppStore;
 		};
@@ -8274,7 +8227,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -8302,7 +8255,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -8403,7 +8356,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = UnitTest;
 		};

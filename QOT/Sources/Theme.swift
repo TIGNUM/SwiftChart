@@ -392,7 +392,7 @@ enum ThemableButton {
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
         case .articleMarkAsRead(let selected):
-            return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: (selected ? nil : .accent30))
+            return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: (selected ? .clear : .accent30))
         }
     }
 
@@ -413,8 +413,8 @@ enum ThemableButton {
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
         case .articleMarkAsRead(let selected):
-            return ButtonTheme(foreground: .accent70, background: (selected ? .accent40 : nil), border: .accent10)
-        case .level5, .continueButton:
+            return ButtonTheme(foreground: .accent70, background: (selected ? .accent40 : nil), border: (selected ? .clear : .accent10)
+)        case .level5, .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         }
     }
@@ -759,6 +759,7 @@ enum ThemeText {
     case myDataChartIRAverageLabel
     case myDataParameterLegendText(MyDataParameter)
     case myDataParameterSelectionTitle(MyDataParameter)
+    case myDataParameterSelectionSubtitle
     case myDataParameterExplanationTitle(MyDataParameter)
     case myDataExplanationCellSubtitle
     case myDataHeatMapLegendText
@@ -991,7 +992,7 @@ enum ThemeText {
             return Fonts.fontLight72
         case .qotAlertTitle:
             return Fonts.fontLight20
-        case .qotAlertMessage, .myDataParameterSelectionTitle,
+        case .qotAlertMessage, .myDataParameterSelectionTitle, .myDataParameterSelectionSubtitle,
              .mySprintDetailsProgress,
              .mySensorsDescriptionBody:
             return Fonts.fontRegular14
@@ -1051,7 +1052,7 @@ enum ThemeText {
              .dailyBriefLevelTitle, .searchSuggestion,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
-             .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
+             .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle, .myDataParameterSelectionSubtitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle, .customizeQuestion,
              .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand:
@@ -1344,7 +1345,7 @@ enum ThemeText {
         case .myDataParameterLegendText, .myDataHeatMapLegendText:
             string = NSAttributedString(string: text, letterSpacing: 0.17, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
-        case .myDataParameterSelectionTitle :
+        case .myDataParameterSelectionTitle, .myDataParameterSelectionSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:

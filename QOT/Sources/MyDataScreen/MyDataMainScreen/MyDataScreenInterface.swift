@@ -46,7 +46,6 @@ protocol MyDataScreenInteractorInterface: Interactor, JTAppleCalendarViewDataSou
 }
 
 protocol MyDataScreenRouterInterface {
-    func presentMyDataExplanation(withType: MyDataSection)
     func presentMyDataSelection()
     func dismiss()
     func passDataToScene(segue: UIStoryboardSegue, withType: MyDataSection)

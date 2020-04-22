@@ -161,7 +161,7 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
     }
 
     func didUpdateTitle(_ title: String) {
-         refreshBottomNavigationItems()
+        refreshBottomNavigationItems()
         interactor.updateTitle(title)
     }
 
@@ -183,6 +183,10 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
         tableView.estimatedSectionHeaderHeight = 100
         setupBarButtonItems()
         view.layoutIfNeeded()
+    }
+
+    func didTapDeleteEvent() {
+        interactor.removePreparationCalendarEvent()
     }
 }
 
@@ -217,6 +221,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let cell: ResultsPrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, subtitle: subtitle)
             cell.selectedBackgroundView = backgroundView
+            cell.delegate = self
             return cell
         case .calendarConnect(let title, let subtitle):
             let cell: ResultsPrepareAddEventTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -250,11 +255,13 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let strategy = strategies.at(index: indexPath.row)
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title.uppercased(), duration: strategy?.durationString)
+            cell.selectedBackgroundView = backgroundView
             return cell
         case .strategyItems(let strategyItems):
         let strategyItem = strategyItems.at(index: indexPath.row)
         let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: strategyItem?.valueText, duration: strategyItem?.durationString)
+        cell.selectedBackgroundView = backgroundView
         return cell
         }
     }
@@ -264,10 +271,8 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         guard let section = sections[indexPath.section] else { return }
 
         switch section {
-        case .calendar:
-            interactor.removePreparationCalendarEvent()
-            didDeselectRow(at: indexPath)
-        case .calendarConnect:
+        case .calendar,
+             .calendarConnect:
             router.didSelectConnectToCalendar()
         case .benefits:
             presentEditView(key: .benefits)

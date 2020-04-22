@@ -28,7 +28,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         if let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
                                                                         delegate: dailyBriefViewController,
-                                                                        controllerType: .customize(5)) {
+                                                                        controllerType: .customize) {
             viewController?.present(controller, animated: true)
         }
     }

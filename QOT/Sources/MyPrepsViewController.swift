@@ -423,7 +423,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.configure(title: title, subtitle: subtitle)
             case PrepTypes.everyday.rawValue:
                 if item?.missingEvent == true {
-                    title = item?.eventType.uppercased() ?? ""
+                    title = item?.title.uppercased() ?? ""
                     cell.subtitleView.isHidden = true
                 }
                 cell.configure(title: title, subtitle: subtitle)
@@ -432,10 +432,10 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor.itemMind(at: indexPath)
-            cell.configure(title: item?.title, subtitle: item?.date)
+            cell.configure(title: item?.title.uppercased(), subtitle: item?.date)
         case SegmentView.recovery.rawValue:
             let item = interactor.itemRec(at: indexPath)
-            cell.configure(title: item?.title, subtitle: item?.date)
+            cell.configure(title: item?.title.uppercased(), subtitle: item?.date)
         default:
             break
         }

@@ -19,12 +19,11 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet weak var outOf5Label: UILabel!
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
 
     weak var delegate: DailyBriefViewControllerDelegate?
     private var currentSprint: QDMSprint?
     private var observers: [NSKeyValueObservation] = []
-    var relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel]()
+    var relatedItemsModels = [SprintChallengeViewModel.RelatedItemsModel]()
     var showMore = false
 
     @IBAction func showMoreButton(_ sender: Any) {
@@ -60,7 +59,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     func configure(with viewModel: SprintChallengeViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        self.relatedStrategiesModels = model.relatedStrategiesModels
+        self.relatedItemsModels = model.relatedStrategiesModels
         self.currentSprint = model.sprint
         if model.relatedStrategiesModels.isEmpty == true {
             constraintContainerHeight.constant = 0
@@ -78,20 +77,20 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return relatedStrategiesModels.count
+        return relatedItemsModels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let relatedStrategy = relatedStrategiesModels.at(index: indexPath.row)
+        let relatedItem = relatedItemsModels.at(index: indexPath.row)
         let cell: SprintChallengeTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.selectedBackgroundView = backgroundView
         cell.setSelectedColor(.accent, alphaComponent: 0.1)
-        cell.configure(title: relatedStrategy?.title,
-                       durationString: relatedStrategy?.durationString,
-                       remoteID: relatedStrategy?.contentId ?? relatedStrategiesModels[indexPath.row].contentItemId,
-                       section: relatedStrategy?.section,
-                       format: relatedStrategy?.format,
-                       numberOfItems: relatedStrategy?.numberOfItems ?? 0)
+        cell.configure(title: relatedItem?.title,
+                       durationString: relatedItem?.durationString,
+                       remoteID: relatedItem?.contentId ?? relatedItemsModels[indexPath.row].contentItemId,
+                       section: relatedItem?.section,
+                       format: relatedItem?.format,
+                       numberOfItems: relatedItem?.numberOfItems ?? 0)
         cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
         cell.delegate = self.delegate
         return cell
@@ -99,16 +98,29 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard relatedStrategiesModels.count > indexPath.row else { return }
-        let relatedStrategy = relatedStrategiesModels.at(index: indexPath.row)
-        if let contentItemId = relatedStrategy?.contentItemId,
+        guard relatedItemsModels.count > indexPath.row else { return }
+        let relatedItem = relatedItemsModels.at(index: indexPath.row)
+        if let contentItemId = relatedItem?.contentItemId,
             let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
-                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
-        } else if let contentCollectionId = relatedStrategy?.contentId {
-            if relatedStrategy?.section == .LearnStrategies {
+            UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            switch relatedItem?.format {
+            case .video:
+                var userEventTrack = QDMUserEventTracking()
+                userEventTrack.name = .PLAY
+                userEventTrack.value = relatedItem?.contentItemId
+                userEventTrack.valueType = .VIDEO
+                userEventTrack.action = .TAP
+                NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+            default:
+                break
+            }
+        } else if let contentCollectionId = relatedItem?.contentId {
+            if relatedItem?.section == .LearnStrategies {
                 delegate?.presentStrategyList(strategyID: contentCollectionId)
-            } else if relatedStrategy?.section == .QOTLibrary {
+            } else if relatedItem?.section == .QOTLibrary {
                 delegate?.openTools(toolID: contentCollectionId)
+            } else if relatedItem?.link !=  nil {
+                relatedItem?.link?.launch()
             } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionId)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             }

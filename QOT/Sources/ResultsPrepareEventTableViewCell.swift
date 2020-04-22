@@ -13,6 +13,7 @@ final class ResultsPrepareEventTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var dateIcon: UIImageView!
+    weak var delegate: ResultsPrepareViewControllerInterface?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +24,12 @@ final class ResultsPrepareEventTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String, subtitle: String) {
         ThemeText.H02Light.apply(title, to: titleLabel)
         ThemeText.Text03Light.apply(subtitle, to: subtitleLabel)
+    }
+}
+
+// MARK: - Actions
+extension ResultsPrepareEventTableViewCell {
+    @IBAction func didTapDelete() {
+        delegate?.didTapDeleteEvent()
     }
 }

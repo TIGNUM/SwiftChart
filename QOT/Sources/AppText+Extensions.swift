@@ -274,18 +274,17 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_loading_body = AppTextKey("daily_brief.section_impact_readiness.loading.body")
     static let daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer =  AppTextKey("daily_brief.section_impact_readiness.section_five_days_rolling.body_explainer")
     static let daily_brief_section_impact_readiness_body_tracking_days = AppTextKey("daily_brief.section_impact_readiness.body_tracking_days")
-    static let daily_brief_section_impact_readiness_section_future_load_title = AppTextKey("daily_brief.section_impact_readiness.section_future_load.title")
-    static let daily_brief_section_impact_readiness_section_load_title = AppTextKey("daily_brief.section_impact_readiness.section_load.title")
+    static let daily_brief_section_impact_readiness_section_future_load_new_title = AppTextKey("daily_brief.section_impact_readiness.section_future_load.new_title")
+    static let daily_brief_section_impact_readiness_section_load_new_title = AppTextKey("daily_brief.section_impact_readiness.section_load.new_title")
     static let daily_brief_section_impact_readiness_section_sleep_quality_label_target =    AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.label_target")
-    static let daily_brief_section_impact_readiness_section_sleep_quality_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.title")
+    static let daily_brief_section_impact_readiness_section_sleep_quality_new_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.new_title")
     static let daily_brief_section_impact_readiness_section_sleep_quantity_label_h = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.label_h")
     static let daily_brief_section_impact_readiness_customize_button = AppTextKey("daily_brief.section_impact_readiness.customize_button")
 
     static let daily_brief_section_impact_readiness_section_future_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_future_load.number_ref")
     static let daily_brief_section_impact_readiness_section_sleep_quality_number_ref =  AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.number_ref")
     static let daily_brief_section_impact_readiness_section_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_load.number_ref")
-
-    static let daily_brief_section_impact_readiness_section_sleep_quantity_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.title")
+    static let daily_brief_section_impact_readiness_section_sleep_quantity_new_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.new_title")
     static let daily_brief_section_impact_readiness_title = AppTextKey("daily_brief.section_impact_readiness.title")
     static let daily_brief_section_leader_wisdom_body = AppTextKey("daily_brief.section_leader_wisdom.body")
     static let daily_brief_section_leader_wisdom_title = AppTextKey("daily_brief.section_leader_wisdom.title")
@@ -936,5 +935,9 @@ public extension AppTextKey {
     static let my_qot_my_profile_account_settings_edit_placeholder_date_picker = AppTextKey("my_qot.my_profile.account_settings.edit.placeholder_date_picker")
     static let dateOfBirth = AppTextKey("onboarding.sign_up.age_verification.section_textfield_date_of_birth.placeholder")
     static let daily_brief_customize_sleep_amount_section_header_title = AppTextKey("daily_brief.customize_sleep_amount.section_header.title")
+    static let daily_brief_section_impact_readiness_section_future_load_title = AppTextKey("daily_brief.section_impact_readiness.section_future_load.title")
+    static let daily_brief_section_impact_readiness_section_load_title = AppTextKey("daily_brief.section_impact_readiness.section_load.title")
+    static let daily_brief_section_impact_readiness_section_sleep_quality_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.title")
+    static let daily_brief_section_impact_readiness_section_sleep_quantity_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.title")
 }
 

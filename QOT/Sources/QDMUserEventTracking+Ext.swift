@@ -52,4 +52,6 @@ public extension QDMUserEventTracking.ValueType {
 
 public extension QDMUserEventTracking.Action {
     static let ROTATE = "ROTATE"
+    static let NONE = "NONE"
+    static let AUTOMATIC = "AUTOMATIC"
 }
