@@ -48,6 +48,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     @IBAction func impactReadinessButton(_ sender: Any) {
         if let link = feedbackRelatedLink {
+            trackUserEvent(.OPEN, value: link.appLinkId, stringValue: "DAILY_CHECK_IN_1", valueType: "APP_LINK", action: .TAP)
             link.launch()
         } else if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
             AppDelegate.current.launchHandler.process(url: launchURL)
