@@ -15,6 +15,8 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
     var readinessIntro: String?
     var title: String?
     var feedback: String?
+    var feedbackRelatedLink: QDMAppLink?
+    var linkCTA: String?
     var dailyCheckImageURL: URL?
     var readinessScore: Int?
     var isExpanded: Bool
@@ -24,6 +26,8 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
     // MARK: - Init
     internal init(title: String?,
                   feedback: String?,
+                  feedbackRelatedLink: QDMAppLink?,
+                  linkCTA: String?,
                   dailyCheckImageURL: URL?,
                   readinessScore: Int?,
                   readinessIntro: String?,
@@ -32,6 +36,8 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
                   domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.feedback = feedback
+        self.feedbackRelatedLink = feedbackRelatedLink
+        self.linkCTA = linkCTA
         self.dailyCheckImageURL = dailyCheckImageURL
         self.readinessScore = readinessScore
         self.readinessIntro = readinessIntro

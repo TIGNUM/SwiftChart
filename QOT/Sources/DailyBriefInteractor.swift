@@ -437,6 +437,8 @@ extension DailyBriefInteractor {
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      feedback: feedback,
+                                                                     feedbackRelatedLink: impactReadiness.dailyCheckInResult?.feedbackContentItem?.links.first,
+                                                                     linkCTA: impactReadiness.dailyCheckInResult?.feedbackContentItem?.links.first?.description,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
                                                                      readinessScore: readinessscore,
                                                                      readinessIntro: readinessIntro,

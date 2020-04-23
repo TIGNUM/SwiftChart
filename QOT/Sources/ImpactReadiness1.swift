@@ -30,6 +30,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     private var actionLeft: actionClosure?
     private var actionRight: actionClosure?
     private var showDailyCheckInScreen = false
+    private var feedbackRelatedLink: QDMAppLink?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,7 +47,10 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
-        if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
+        if let link = feedbackRelatedLink {
+            trackUserEvent(.OPEN, value: link.appLinkId, stringValue: "DAILY_CHECK_IN_1", valueType: "APP_LINK", action: .TAP)
+            link.launch()
+        } else if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }
@@ -87,15 +91,18 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
         impactReadinessOutOf100Label.text = AppTextService.get(.daily_brief_section_impact_readiness_label_out_of_100)
-
+        ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
+        self.feedbackRelatedLink = model.feedbackRelatedLink
         if showDailyCheckInScreen {
             impactReadinessButton.isHidden = false
             impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
             impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
             impactReadinessButton.setButtonContentInset(padding: 16)
-            ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
-        } else {
-            impactReadinessButton.isHidden = true
+        } else if let linkCTA = model.linkCTA {
+            impactReadinessButton.isHidden = false
+            impactReadinessButton.setTitle(linkCTA, for: .normal)
+            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+            impactReadinessButton.setButtonContentInset(padding: 16)
         }
     }
 }
