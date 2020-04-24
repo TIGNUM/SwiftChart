@@ -11,14 +11,12 @@ import EventKitUI
 import EventKit
 import qot_dal
 
-final class CalendarEventSelectionViewController: UIViewController, ScreenZLevel3 {
+final class CalendarEventSelectionViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     weak var delegate: CalendarEventSelectionDelegate?
     var interactor: CalendarEventSelectionInteractorInterface!
     private lazy var router = CalendarEventSelectionRouter(viewController: self)
-
-    @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var emptyEventsLabel: UILabel!
 
     // MARK: - Init
@@ -69,6 +67,11 @@ extension CalendarEventSelectionViewController: CalendarEventSelectionViewContro
         tableView.contentInset.top = 64
         tableView.contentInset.bottom = 40
         tableView.estimatedSectionHeaderHeight = 100
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        view.fill(subview: tableView)
+        tableView.reloadData()
         view.layoutIfNeeded()
     }
 }
