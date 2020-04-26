@@ -940,4 +940,3 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_section_sleep_quality_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.title")
     static let daily_brief_section_impact_readiness_section_sleep_quantity_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.title")
 }
-

@@ -154,7 +154,7 @@ private extension DTPrepareViewController {
     }
 
     func resetSelectedAnswers() {
-        if var viewModel = viewModel {
+        if let viewModel = viewModel {
             viewModel.resetSelectedAnswers()
             showQuestion(viewModel: viewModel, direction: .forward, animated: false)
         }

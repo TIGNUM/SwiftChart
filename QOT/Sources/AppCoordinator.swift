@@ -395,11 +395,10 @@ extension AppCoordinator {
         guard CalendarService.main.isCalendarInitialized() else {
             return
         }
-        var preparations: [QDMUserPreparation]?
         UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
-            guard let preps = preparations, preps.count > 0 else { return }
-            log("preps with missing events : \(preps)", level: .debug)
-            let configurator = PreparationWithMissingEventConfigurator.make(preps)
+            guard let preparations = preps, preparations.count > 0 else { return }
+            log("preps with missing events : \(preparations)", level: .debug)
+            let configurator = PreparationWithMissingEventConfigurator.make(preparations)
             let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
             baseRootViewController?.present(viewController, animated: true, completion: nil)
         })

@@ -15,7 +15,7 @@ final class SigningInfoRouter {
 
     // MARK: - Init
     init(viewController: SigningInfoViewController) {
-        self.viewController = viewController        
+        self.viewController = viewController
     }
 }
 
