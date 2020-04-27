@@ -9,7 +9,6 @@
 import UIKit
 import qot_dal
 
-
 protocol StreamVideoPresenterInterface {
     func showDestinationAlert()
 }

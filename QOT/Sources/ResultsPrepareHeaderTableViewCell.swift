@@ -59,4 +59,3 @@ extension UITextView {
         contentOffset.y = -positiveTopOffset
     }
 }
-

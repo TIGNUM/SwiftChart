@@ -87,7 +87,6 @@ private extension ProfileSettingsViewController {
     }
 }
 
-
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ProfileSettingsViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {

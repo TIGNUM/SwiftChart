@@ -392,24 +392,13 @@ extension AppCoordinator {
     }
 
     func handlePreparationDownSync() {
-        let dispatchGroup = DispatchGroup()
-        var didDownCalendarEvents = false
-        dispatchGroup.enter()
-        CalendarService.main.getCalendarEvents(from: Date(), { (_, initialized, _) in
-            didDownCalendarEvents = initialized ?? false
-            dispatchGroup.leave()
-        })
-        var preparations: [QDMUserPreparation]?
-        dispatchGroup.enter()
-        UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
-            preparations = preps
-            dispatchGroup.leave()
-        })
-
-        dispatchGroup.notify(queue: .main, execute: {
-            guard let preps = preparations, preps.count > 0, didDownCalendarEvents else { return }
-            log("preps with missing events : \(preps)", level: .debug)
-            let configurator = PreparationWithMissingEventConfigurator.make(preps)
+        guard CalendarService.main.isCalendarInitialized() else {
+            return
+        }
+        UserService.main.getUserPreparationsWithMissingEvent(from: Date.beginingOfDay(), { (preps, initalized, error) in
+            guard let preparations = preps, preparations.count > 0 else { return }
+            log("preps with missing events : \(preparations)", level: .debug)
+            let configurator = PreparationWithMissingEventConfigurator.make(preparations)
             let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
             baseRootViewController?.present(viewController, animated: true, completion: nil)
         })
