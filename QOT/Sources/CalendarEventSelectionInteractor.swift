@@ -37,10 +37,6 @@ final class CalendarEventSelectionInteractor {
             self?.presenter.setupView()
         }
     }
-
-    func viewWillAppear() {
-        presenter.showLoadingDots()
-    }
 }
 
 // MARK: - CalendarEventSelectionInteractorInterface
