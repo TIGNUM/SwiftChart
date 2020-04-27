@@ -90,6 +90,10 @@ extension CalendarEventSelectionViewController: CalendarEventSelectionViewContro
         loadingDots = dots
         loadingDots?.animate()
     }
+
+    func hideLoadingDots() {
+        loadingDots?.stopAnimation()
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource

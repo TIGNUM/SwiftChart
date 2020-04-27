@@ -35,6 +35,7 @@ final class CalendarEventSelectionInteractor {
             self?.setUserCalendarEvents(events)
             self?.convertEvents(events)
             self?.presenter.setupView()
+            self?.presenter.hideLoadingDots()
         }
     }
 }
