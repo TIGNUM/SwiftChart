@@ -395,7 +395,7 @@ extension AppCoordinator {
         guard CalendarService.main.isCalendarInitialized() else {
             return
         }
-        UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
+        UserService.main.getUserPreparationsWithMissingEvent(from: Date.beginingOfDay(), { (preps, initalized, error) in
             guard let preparations = preps, preparations.count > 0 else { return }
             log("preps with missing events : \(preparations)", level: .debug)
             let configurator = PreparationWithMissingEventConfigurator.make(preparations)
