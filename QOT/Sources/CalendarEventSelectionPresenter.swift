@@ -24,4 +24,8 @@ extension CalendarEventSelectionPresenter: CalendarEventSelectionPresenterInterf
     func setupView() {
         viewController?.setupView()
     }
+
+    func showLoadingDots() {
+        viewController?.showLoadingDots()
+    }
 }

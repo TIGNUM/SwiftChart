@@ -18,6 +18,8 @@ final class CalendarEventSelectionViewController: BaseWithGroupedTableViewContro
     var interactor: CalendarEventSelectionInteractorInterface!
     private lazy var router = CalendarEventSelectionRouter(viewController: self)
     @IBOutlet private weak var emptyEventsLabel: UILabel!
+    @IBOutlet private weak var barView: UIView!
+    private var loadingDots: DotsLoadingView?
 
     // MARK: - Init
     init(configure: Configurator<CalendarEventSelectionViewController>) {
@@ -71,8 +73,22 @@ extension CalendarEventSelectionViewController: CalendarEventSelectionViewContro
         tableView.dataSource = self
         tableView.separatorStyle = .none
         view.fill(subview: tableView)
+        barView.isHidden = false
         tableView.reloadData()
         view.layoutIfNeeded()
+    }
+
+    func showLoadingDots() {
+        let dots = DotsLoadingView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+        dots.configure(dotsColor: .carbon60)
+        dots.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(dots)
+        dots.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        dots.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        dots.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        dots.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        loadingDots = dots
+        loadingDots?.animate()
     }
 }
 
