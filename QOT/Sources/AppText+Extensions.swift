@@ -288,6 +288,7 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_title = AppTextKey("daily_brief.section_impact_readiness.title")
     static let daily_brief_section_leader_wisdom_body = AppTextKey("daily_brief.section_leader_wisdom.body")
     static let daily_brief_section_leader_wisdom_title = AppTextKey("daily_brief.section_leader_wisdom.title")
+    static let daily_brief_section_expert_thoughts_title = AppTextKey("daily_brief.section_expert_thoughts.title")
     static let daily_brief_section_level_5_alert_body = AppTextKey("daily_brief.section_level_5.alert.body")
     static let daily_brief_section_level_5_alert_button_ok = AppTextKey("daily_brief.section_level_5.alert.button_ok")
     static let daily_brief_section_level_5_body = AppTextKey("daily_brief.section_level_5.body")
