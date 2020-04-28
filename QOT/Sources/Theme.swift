@@ -1120,7 +1120,7 @@ enum ThemeText {
              return Palette.light(Palette.carbon30, or: Palette.sand30)
         case .articleTitle, .articleTitleNotScaled, .articleBody:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .articleDatestamp, .articleRelatedDetailInStrategy:
+        case .articleDatestamp:
             return Palette.light(Palette.carbon30, or: Palette.sand30)
         case .articleNextTitle:
             return Palette.light(Palette.carbon40, or: Palette.sand40)
@@ -1139,7 +1139,7 @@ enum ThemeText {
             return Palette.light(Palette.carbon60, or: Palette.sand60)
         case .articleBullet:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
-        case .version, .weatherLastUpdate:
+        case .version, .weatherLastUpdate, .articleRelatedDetailInStrategy:
             return Palette.sand30
         case .articleHeadlineSmallRed:
             return Palette.cherryRed
