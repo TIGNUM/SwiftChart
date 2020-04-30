@@ -143,9 +143,9 @@ extension DailyBriefViewController {
             case 5:
                 return getExploreCell(tableView, indexPath, nil)
             case 6:
-                return getLeadersWisdom(tableView, indexPath, nil)
+                return getExpertThoughts(tableView, indexPath, nil)
             case 7:
-                 return getDepartureBespokeFeastCell(tableView, indexPath, nil)
+                return getDepartureBespokeFeastCell(tableView, indexPath, nil)
             case 8:
                 return getThoughtsCell(tableView, indexPath, nil)
             case 9:
@@ -162,6 +162,8 @@ extension DailyBriefViewController {
                 return getWeatherCell(tableView, indexPath, nil)
             case 15:
                 return getMindsetShifterCell(tableView, indexPath, nil)
+            case 16:
+                return getExpertThoughts(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -235,7 +237,9 @@ extension DailyBriefViewController {
         case .DEPARTURE_INFO?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .LEADERS_WISDOM?:
-            return getLeadersWisdom(tableView, indexPath, bucketItem as? LeaderWisdomCellViewModel)
+            return getExpertThoughts(tableView, indexPath, bucketItem as? ExpertThoughtsCellViewModel)
+        case .EXPERT_THOUGHTS?:
+            return getExpertThoughts(tableView, indexPath, bucketItem as? ExpertThoughtsCellViewModel)
         case .FEAST_OF_YOUR_EYES?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .MY_PEAK_PERFORMANCE?:
@@ -566,6 +570,20 @@ private extension DailyBriefViewController {
     }
 
     /**
+      * Method name: getLeadersWisdom.
+      * Description: Placeholder to display the leaders wisdom Information.
+      * Parameters: [tableView], [IndexPath]
+      */
+     func getExpertThoughts(_ tableView: UITableView,
+                           _ indexPath: IndexPath,
+                           _ expertThoughtsViewModel: ExpertThoughtsCellViewModel?) -> UITableViewCell {
+         let cell: ExpertThoughtsTableViewCell = tableView.dequeueCell(for: indexPath)
+         cell.configure(with: expertThoughtsViewModel)
+         cell.delegate = self
+         return cell
+     }
+
+    /**
      * Method name: getDailyCheckinInsightsSHPICell.
      * Description: Placeholder to display the getDailyCheckinInsightsSHPICell Information.
      * Parameters: [tableView], [IndexPath]
@@ -722,6 +740,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
         tableView.registerDequeueable(MindsetShifterCell.self)
+        tableView.registerDequeueable(ExpertThoughtsTableViewCell.self)
     }
 
     func scrollToSection(at: Int) {

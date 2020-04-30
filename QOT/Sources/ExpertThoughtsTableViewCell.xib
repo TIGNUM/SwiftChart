@@ -7,16 +7,90 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="700" height="295"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ExpertThoughtsTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="775" height="550"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7P-On-zws">
+                    <rect key="frame" x="0.0" y="0.0" width="775" height="550"/>
+                    <subviews>
+                        <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Vxy-qV-ySd">
+                            <rect key="frame" x="0.0" y="20" width="775" height="128"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="Apc-ej-iqD"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalCentering" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="ofw-Zd-Bgz">
+                            <rect key="frame" x="24" y="148" width="727" height="366"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qV0-sm-0cU">
+                                    <rect key="frame" x="0.0" y="0.0" width="727" height="286"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVJ-Jc-Bvd">
+                                    <rect key="frame" x="651" y="322" width="76" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="LVU-lY-8qW"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
+                                    <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="-9" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="2:35" image="ic_audio">
+                                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="audioAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="xyx-vl-3UY"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="qVJ-Jc-Bvd" firstAttribute="top" secondItem="qV0-sm-0cU" secondAttribute="bottom" constant="36" id="LnF-rq-Q0a"/>
+                                <constraint firstAttribute="trailing" secondItem="qV0-sm-0cU" secondAttribute="trailing" id="dzF-NW-PUw"/>
+                                <constraint firstItem="qV0-sm-0cU" firstAttribute="leading" secondItem="ofw-Zd-Bgz" secondAttribute="leading" id="g8Z-l2-wi8"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Vxy-qV-ySd" firstAttribute="top" secondItem="Z7P-On-zws" secondAttribute="top" constant="20" symbolic="YES" id="2Of-cR-Gao"/>
+                        <constraint firstAttribute="trailing" secondItem="ofw-Zd-Bgz" secondAttribute="trailing" constant="24" id="2uv-lg-s0c"/>
+                        <constraint firstAttribute="bottom" secondItem="ofw-Zd-Bgz" secondAttribute="bottom" constant="36" id="6Oo-5o-OpN"/>
+                        <constraint firstAttribute="trailing" secondItem="Vxy-qV-ySd" secondAttribute="trailing" id="9f8-UQ-ywr"/>
+                        <constraint firstItem="Vxy-qV-ySd" firstAttribute="leading" secondItem="Z7P-On-zws" secondAttribute="leading" id="JXN-G2-QTm"/>
+                        <constraint firstItem="ofw-Zd-Bgz" firstAttribute="top" secondItem="Vxy-qV-ySd" secondAttribute="bottom" id="q3G-B1-tRj"/>
+                        <constraint firstItem="ofw-Zd-Bgz" firstAttribute="leading" secondItem="Z7P-On-zws" secondAttribute="leading" constant="24" id="zH4-eg-RFf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Z7P-On-zws" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="5fT-k4-egy"/>
+                <constraint firstAttribute="bottom" secondItem="Z7P-On-zws" secondAttribute="bottom" id="IJm-zI-T9D"/>
+                <constraint firstItem="Z7P-On-zws" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="V9A-0s-yrd"/>
+                <constraint firstItem="Z7P-On-zws" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wo1-Dw-kHj"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="357.97101449275362" y="61.941964285714285"/>
+            <connections>
+                <outlet property="audioButton" destination="qVJ-Jc-Bvd" id="m3K-9e-gas"/>
+                <outlet property="descriptionLabel" destination="qV0-sm-0cU" id="4ay-8S-1XQ"/>
+                <outlet property="headerView" destination="Vxy-qV-ySd" id="x1z-uh-d7a"/>
+            </connections>
+            <point key="canvasLocation" x="410.86956521739131" y="146.65178571428569"/>
         </view>
     </objects>
+    <resources>
+        <image name="ic_audio" width="16" height="16"/>
+    </resources>
 </document>
