@@ -19,11 +19,13 @@ final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
     var audioLink: URL?
     var remoteID: Int?
     var durationString: String?
+    var audioTitle: String?
 
     // MARK: - Init
     init(title: String?,
                   subtitle: String?,
                   description: String?,
+                  audioTitle: String?,
                   audioDuration: Double?,
                   audioLink: URL?,
                   format: ContentFormat,
@@ -32,6 +34,7 @@ final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
                   domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.subtitle = subtitle
+        self.audioTitle = audioTitle
         self.description = description
         self.audioDuration = audioDuration
         self.audioLink = audioLink

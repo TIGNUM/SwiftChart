@@ -18,6 +18,7 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
     private var mediaURL: URL?
     private var duration: Double?
     private var remoteID: Int?
+    private var audioTitle: String?
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
@@ -36,27 +37,25 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
                                   subtitle: "")
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
-        ThemeText.dailyBriefSubtitle.apply("blablavlavlablablablab ablab hauhsaudhas hdufhaeu huidfh jhefuwe bcudhu bdhfej bhfjewfhuew cbhjewfjwefw hjefwhfewj", to: descriptionLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.description ?? "", to: descriptionLabel)
 
         descriptionLabel.isHidden = model.description == nil
         duration = model.audioDuration
         remoteID = model.remoteID
+        audioTitle = model.audioTitle
+        mediaURL = model.audioLink
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
     }
 
     @IBAction func audioAction(_ sender: Any) {
-        let media = MediaPlayerModel(title: "",
+        let media = MediaPlayerModel(title: audioTitle ?? "",
                                      subtitle: "",
                                      url: mediaURL,
                                      totalDuration: duration ?? 0, progress: 0,
                                      currentTime: 0,
                                      mediaRemoteId: remoteID ?? 0)
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
-    }
-
-    @IBAction func videoAction(_ sender: Any) {
-        delegate?.videoAction(sender, videoURL: mediaURL, contentItem: nil)
     }
 }
 

@@ -12,8 +12,6 @@ import qot_dal
 final class MyQOTAdminChooseBucketsWorker {
 
     var datasource: [(key: DailyBriefBucketName, value: Bool)] = [(key: .DAILY_CHECK_IN_1, value: false),
-                                                                  (key: .EXPERT_THOUGHTS, value: false),
-                                                                  (key: .MINDSET_SHIFTER, value: false),
                                                                   (key: .DAILY_CHECK_IN_2, value: false),
                                                                   (key: .MY_PEAK_PERFORMANCE, value: false),
                                                                   (key: .EXPLORE, value: false),
@@ -32,6 +30,8 @@ final class MyQOTAdminChooseBucketsWorker {
                                                                   (key: .DEPARTURE_INFO, value: false),
                                                                   (key: .LEADERS_WISDOM, value: false),
                                                                   (key: .FEAST_OF_YOUR_EYES, value: false),
+                                                                  (key: .EXPERT_THOUGHTS, value: false),
+                                                                  (key: .MINDSET_SHIFTER, value: false),
                                                                   (key: .WEATHER, value: false),
                                                                   (key: .GUIDE_TRACK, value: false)]
     // MARK: - Init

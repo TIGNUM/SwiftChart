@@ -991,10 +991,11 @@ extension DailyBriefInteractor {
             return expertThoughtsList
         }
         expertThoughtsList.append(ExpertThoughtsCellViewModel(title: AppTextService.get(.daily_brief_section_expert_thoughts_title),
-                                                              subtitle: "\(AppTextService.get(.daily_brief_section_leader_wisdom_body)) \(collection.contentItems.filter {$0.searchTags.contains("EXPERT_NAME")}.first?.valueText ?? "")",
+                                                              subtitle: "",
             description: collection.contentItems.filter {$0.searchTags.contains("EXPERT_TRANSCRIPT")}.first?.valueText ?? "",
+            audioTitle: collection.contentItems.filter {$0.searchTags.contains("EXPERT_FILE")}.first?.valueDescription ?? "",
             audioDuration: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.valueDuration,
-            audioLink: URL(string: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.link ?? ""),
+            audioLink: URL(string: collection.contentItems.filter {$0.searchTags.contains("EXPERT_FILE")}.first?.valueMediaURL ?? ""),
             format: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.format ?? .unknown,
             remoteID: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.remoteID ?? 0,
             durationString: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.durationString ?? "",
