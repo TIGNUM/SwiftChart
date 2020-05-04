@@ -143,7 +143,7 @@ extension DailyBriefViewController {
             case 5:
                 return getExploreCell(tableView, indexPath, nil)
             case 6:
-                return getExpertThoughts(tableView, indexPath, nil)
+                return getLeadersWisdom(tableView, indexPath, nil)
             case 7:
                 return getDepartureBespokeFeastCell(tableView, indexPath, nil)
             case 8:
