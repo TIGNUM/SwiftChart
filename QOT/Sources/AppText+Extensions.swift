@@ -583,6 +583,7 @@ public extension AppTextKey {
     static let my_qot_my_profile_support_faq_section_contact_support_title = AppTextKey("my_qot.my_profile.support.faq.section_contact_support.title")
     static let my_qot_my_profile_support_section_faq_title = AppTextKey("my_qot.my_profile.support.section_faq.title")
     static let my_qot_my_profile_support_section_feature_request_title = AppTextKey("my_qot.my_profile.support.section_feature_request.title")
+     static let my_qot_my_profile_support_section_introduction_request_title = AppTextKey("my_qot.my_profile.support.section_introduction_request.title")
     static let my_qot_my_profile_support_section_using_qot_subtitle = AppTextKey("my_qot.my_profile.support.section_using_qot.subtitle")
     static let my_qot_my_profile_support_section_using_qot_title = AppTextKey("my_qot.my_profile.support.section_using_qot.title")
     static let my_qot_my_profile_support_alert_email_try_again_body = AppTextKey("my_qot.my_profile.support.alert.email_try_again.body")

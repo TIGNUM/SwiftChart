@@ -23,6 +23,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
+    var showNextButton: Bool!
     var interactor: RegisterIntroInteractorInterface!
     private lazy var router = RegisterIntroRouter(viewController: self)
     private lazy var videoCell: RegisterIntroMediaTableViewCell = {
@@ -76,20 +77,36 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Overridden
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        let continueButton = RoundedButton.init(title: AppTextService.get(.onboarding_sign_up_email_verification_section_footer_button_next),
-                                        target: self,
-                                        action: #selector(didTapContinue))
-        ThemeButton.carbonButton.apply(continueButton)
-        let heightConstraint = NSLayoutConstraint.init(item: continueButton,
-                                                       attribute: .height,
-                                                       relatedBy: .equal,
-                                                       toItem: nil,
-                                                       attribute: .notAnAttribute,
-                                                       multiplier: 1,
-                                                       constant: 40)
-        continueButton.addConstraints([heightConstraint])
+        if showNextButton {
+            let continueButton = RoundedButton.init(title: AppTextService.get(.onboarding_sign_up_email_verification_section_footer_button_next),
+                                                    target: self,
+                                                    action: #selector(didTapContinue))
+            ThemeButton.carbonButton.apply(continueButton)
+            let heightConstraint = NSLayoutConstraint.init(item: continueButton,
+                                                           attribute: .height,
+                                                           relatedBy: .equal,
+                                                           toItem: nil,
+                                                           attribute: .notAnAttribute,
+                                                           multiplier: 1,
+                                                           constant: 40)
+            continueButton.addConstraints([heightConstraint])
 
-        return [UIBarButtonItem(customView: continueButton)]
+            return [UIBarButtonItem(customView: continueButton)]
+        }
+        return []
+    }
+
+    func configureForSupport() {
+        let leftItem = [createCloseButton(#selector(dismissOnboarding))]
+          NotificationCenter.default.post(name: .updateBottomNavigation,
+                                              object: BottomNavigationItem(leftBarButtonItems: leftItem,
+                                                                           rightBarButtonItems: [],
+                                                                           backgroundColor: .clear),
+                                              userInfo: nil)
+    }
+
+    @objc func dismissOnboarding() {
+        dismiss(animated: true)
     }
 
     // MARK: - Actions
@@ -97,6 +114,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         trackUserEvent(.CONTINUE, stringValue: "openRegistration", action: .TAP)
         router.openRegistration()
     }
+
 }
 
 // MARK: - Private
