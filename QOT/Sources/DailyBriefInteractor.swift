@@ -263,8 +263,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .departureInfo,
                                                         elements: strongSelf.createOnTheRoad(onTheRoadBucket: bucket)))
                 case .LEADERS_WISDOM?:
-                    sectionDataList.append(ArraySection(model: .expertthoughts,
-                                                        elements: strongSelf.createExpertThoughts(createExpertThoughts: bucket)))
+                    sectionDataList.append(ArraySection(model: .leaderswisdom,
+                                                        elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
                 case .EXPERT_THOUGHTS?:
                     sectionDataList.append(ArraySection(model: .expertthoughts,
                                                         elements: strongSelf.createExpertThoughts(createExpertThoughts: bucket)))

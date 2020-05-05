@@ -237,7 +237,7 @@ extension DailyBriefViewController {
         case .DEPARTURE_INFO?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .LEADERS_WISDOM?:
-            return getExpertThoughts(tableView, indexPath, bucketItem as? ExpertThoughtsCellViewModel)
+            return getLeadersWisdom(tableView, indexPath, bucketItem as? LeaderWisdomCellViewModel)
         case .EXPERT_THOUGHTS?:
             return getExpertThoughts(tableView, indexPath, bucketItem as? ExpertThoughtsCellViewModel)
         case .FEAST_OF_YOUR_EYES?:
