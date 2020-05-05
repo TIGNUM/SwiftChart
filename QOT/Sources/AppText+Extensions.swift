@@ -712,6 +712,7 @@ public extension AppTextKey {
     static let my_qot_my_profile_app_settings_synced_calendar_calendar_permission = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.calendar_permission")
     static let my_qot_my_profile_app_settings_synced_calendar_calendar_settings_permission = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.calendar_settings_permission")
     static let my_qot_my_profile_contact_support_novartis = AppTextKey("my_qot.my_profile.contact_support_novartis")
+    static let my_qot_my_profile_contact_support_introduction = AppTextKey("my_qot.my_profile.contact_support_introduction")
     static let my_qot_my_profile_support = AppTextKey("my_qot.my_profile.support")
     static let my_qot_my_profile_support_contact_support = AppTextKey("my_qot.my_profile.support.contact_support")
     static let my_qot_my_profile_support_faq = AppTextKey("my_qot.my_profile.support.faq")
