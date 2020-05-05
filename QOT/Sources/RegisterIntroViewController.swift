@@ -90,23 +90,9 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
                                                            multiplier: 1,
                                                            constant: 40)
             continueButton.addConstraints([heightConstraint])
-
             return [UIBarButtonItem(customView: continueButton)]
         }
         return []
-    }
-
-    func configureForSupport() {
-        let leftItem = [createCloseButton(#selector(dismissOnboarding))]
-          NotificationCenter.default.post(name: .updateBottomNavigation,
-                                              object: BottomNavigationItem(leftBarButtonItems: leftItem,
-                                                                           rightBarButtonItems: [],
-                                                                           backgroundColor: .clear),
-                                              userInfo: nil)
-    }
-
-    @objc func dismissOnboarding() {
-        dismiss(animated: true)
     }
 
     // MARK: - Actions
@@ -114,7 +100,6 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         trackUserEvent(.CONTINUE, stringValue: "openRegistration", action: .TAP)
         router.openRegistration()
     }
-
 }
 
 // MARK: - Private

@@ -44,7 +44,6 @@ private extension MyQotSupportRouter {
         if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
         let configurator = RegisterIntroConfigurator.make(false)
         configurator(controller)
-        controller.configureForSupport()
         viewController?.navigationController?.pushViewController(controller, animated: true)
         }
     }

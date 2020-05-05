@@ -21,12 +21,12 @@ struct MyQotSupportModel {
 
         static var supportValues: [MyQotSupportModelItem] {
             #if NOVARTIS
-            return [.usingQOT, .faq, .contactSupportNovartis, .featureRequest, .introduction]
+                return [.usingQOT, .faq, .contactSupportNovartis, .featureRequest, .introduction]
             #else
-            return [.usingQOT, .faq, .contactSupport, .featureRequest, .introduction]
+                return [.usingQOT, .faq, .contactSupport, .featureRequest, .introduction]
             #endif
         }
-// these are not tracking keys
+        
         func trackingKeys() -> String {
             switch self {
             case .usingQOT:
