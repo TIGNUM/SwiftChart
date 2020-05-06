@@ -135,6 +135,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func cancelButton(_ sender: Any) {
         editButton(sender)
+        updateButton()
     }
 
     @IBAction func editButton(_ sender: Any) {
