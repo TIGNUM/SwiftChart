@@ -80,7 +80,7 @@ private extension ResultsPrepareViewController {
         backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         if answers.isEmpty {
             let cell: ResultsPrepareQuestionDailyTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title)
+            cell.configure(title: title, canEdit: interactor.canEditIntentions)
             cell.selectedBackgroundView = backgroundView
             return cell
         }
@@ -94,6 +94,7 @@ private extension ResultsPrepareViewController {
     }
 
     func presentEditView(key: Prepare.Key) {
+        guard interactor.canEditIntentions else { return }
         interactor.getDTViewModel(key: key) { [weak self] (viewModel, question) in
             self?.removeBottomNavigation()
             self?.router.presentDTEditView(viewModel, question: question, delegate: self)

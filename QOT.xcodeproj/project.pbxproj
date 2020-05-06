@@ -211,8 +211,8 @@
 		36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */; };
 		36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */; };
 		36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */; };
-		36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */; };
-		36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */; };
+		36D2F2FC229E88FF004BA110 /* ExistingPreparationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2F2FA229E88FF004BA110 /* ExistingPreparationTableViewCell.swift */; };
+		36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2F2FB229E88FF004BA110 /* ExistingPreparationTableViewCell.xib */; };
 		36D58A562149727600D5E6D2 /* UIDevice+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */; };
 		36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */; };
 		36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */; };
@@ -1487,8 +1487,8 @@
 		36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Ext.swift"; sourceTree = "<group>"; };
 		36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTableViewCell.swift; sourceTree = "<group>"; };
 		36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInputTableViewCell.xib; sourceTree = "<group>"; };
-		36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsTableViewCell.swift; sourceTree = "<group>"; };
-		36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventsTableViewCell.xib; sourceTree = "<group>"; };
+		36D2F2FA229E88FF004BA110 /* ExistingPreparationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingPreparationTableViewCell.swift; sourceTree = "<group>"; };
+		36D2F2FB229E88FF004BA110 /* ExistingPreparationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExistingPreparationTableViewCell.xib; sourceTree = "<group>"; };
 		36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Convenience.swift"; sourceTree = "<group>"; };
 		36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewCell.swift; sourceTree = "<group>"; };
 		36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareEventTableViewCell.xib; sourceTree = "<group>"; };
@@ -3050,7 +3050,6 @@
 				386C27A6241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift */,
 				386C27B8241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift */,
 				38E84B7E241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift */,
-				38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */,
 				380B03C8241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift */,
 				386C27BC241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift */,
 				386C27A2241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift */,
@@ -3060,6 +3059,7 @@
 				38E84B7B241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib */,
 				386C27A7241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib */,
 				386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */,
+				38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */,
 				380B03C9241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib */,
 				386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */,
 				386C27A3241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib */,
@@ -4194,8 +4194,8 @@
 				ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */,
 				ACB99E7722687D1F00A73709 /* MultipleSelectionCollectionViewCell.swift */,
 				ACB99E7822687D1F00A73709 /* MultipleSelectionCollectionViewCell.xib */,
-				36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */,
-				36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */,
+				36D2F2FA229E88FF004BA110 /* ExistingPreparationTableViewCell.swift */,
+				36D2F2FB229E88FF004BA110 /* ExistingPreparationTableViewCell.xib */,
 				36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */,
 				36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */,
 				36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */,
@@ -5780,7 +5780,7 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
-				36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */,
+				36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				380B03CB241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
@@ -6866,7 +6866,7 @@
 				BBB47C67232A44EE00B165F8 /* QotUISwitch.swift in Sources */,
 				F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */,
 				36E4CF0C22BC51BD009A2DF7 /* ChoiceInterface.swift in Sources */,
-				36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */,
+				36D2F2FC229E88FF004BA110 /* ExistingPreparationTableViewCell.swift in Sources */,
 				F96B23AF23507FF900130EFF /* DepartureBespokeFeastModel.swift in Sources */,
 				DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */,
 				BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */,

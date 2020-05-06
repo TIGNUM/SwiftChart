@@ -23,4 +23,14 @@ class DTWorker: WorkerTBV {
             completion(content)
         }
     }
+
+    func getCriticalPreparations(_ completion: @escaping ([QDMUserPreparation]) -> Void) {
+        UserService.main.getUserPreparations { (preparations, _, error) in
+            if let error = error {
+                log("Error while getting preparations with error: \(error)", level: .error)
+            }
+            let criticalPreparations = preparations?.filter { $0.type == QDMUserPreparation.Level.LEVEL_CRITICAL }
+            completion(criticalPreparations ?? [])
+        }
+    }
 }

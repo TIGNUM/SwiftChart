@@ -1,5 +1,5 @@
 //
-//  CalendarEventsTableViewCell.swift
+//  ExistingPreparationTableViewCell.swift
 //  QOT
 //
 //  Created by karmic on 29.05.19.
@@ -9,11 +9,11 @@
 import UIKit
 import qot_dal
 
-final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable {
+final class ExistingPreparationTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
     weak var delegate: DTQuestionnaireViewControllerDelegate?
-    private var events: [DTViewModel.Event] = []
+    private var preparations: [QDMUserPreparation] = []
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var tableViewHeight: NSLayoutConstraint!
 
@@ -25,27 +25,29 @@ final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable {
     }
 
     // MARK: Configuration
-    func configure(tableViewHeight: CGFloat, events: [DTViewModel.Event]) {
+    func configure(tableViewHeight: CGFloat, preparations: [QDMUserPreparation]) {
         self.tableViewHeight.constant = tableViewHeight
-        self.events = events
+        self.preparations = preparations
+        tableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension CalendarEventsTableViewCell: UITableViewDelegate, UITableViewDataSource {
+extension ExistingPreparationTableViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        return preparations.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
-        let event = events.at(index: indexPath.row)
-        cell.configure(title: event?.title, dateString: event?.dateString)
+        let preparation = preparations.at(index: indexPath.row)
+        let title = preparation?.name ?? preparation?.eventType
+        cell.configure(title: title, dateString: Prepare.prepareDateString(preparation?.createdAt))
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.didSelectPreparationEvent(events.at(index: indexPath.row))
+        delegate?.didSelectExistingPreparation(preparations.at(index: indexPath.row))
     }
 }

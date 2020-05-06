@@ -15,9 +15,8 @@ final class DTPrepareViewController: DTViewController {
 
     // MARK: - Properties
     weak var delegate: ResultsPrepareViewControllerInterface?
-    var prepareInteractor: DTPrepareInteractor?
+    var prepareInteractor: DTPrepareInteractor!
     var prepareRouter: DTPrepareRouterInterface?
-    private var selectedEvent: DTViewModel.Event?
     private var answerFilter: String?
 
     // MARK: - Init
@@ -66,8 +65,8 @@ final class DTPrepareViewController: DTViewController {
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
         setSelectedAnswer(answer)
         if viewModel?.question.answerType == .singleSelection {
-            if let contentId = answer.targetId(.content) {
-                handleAnswerSelection(answer, contentId: contentId)
+            if answer.targetId(.content) != nil {
+                handleAnswerSelection(answer)
             } else {
                 switch viewModel?.question.key {
                 case Prepare.QuestionKey.BuildCritical?:
@@ -79,22 +78,11 @@ final class DTPrepareViewController: DTViewController {
         }
     }
 
-    override func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
-        super.didSelectPreparationEvent(event)
-        if event?.isCalendarEvent == false && viewModel?.question.key == Prepare.QuestionKey.SelectExisting {
-            prepareInteractor?.getUserPreparation(event: event,
-                                                  calendarEvent: selectedEvent) { [weak self] (preparation) in
-                                                    self?.prepareRouter?.presentPrepareResults(preparation)
-            }
-        } else {
-            self.selectedEvent = event
-            setAnswerNeedsSelection()
-            loadNextQuestion()
+    override func didSelectExistingPreparation(_ qdmPreparation: QDMUserPreparation?) {
+        super.didSelectExistingPreparation(qdmPreparation)
+        prepareInteractor.createUserPreparation(from: qdmPreparation) { [weak self] (createdQDMPreparation) in
+            self?.prepareRouter?.presentPrepareResults(createdQDMPreparation)
         }
-    }
-
-    override func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
-        return answerType == .openCalendarEvents ? selectedEvent : nil
     }
 
     override func getAnswerFilter(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
@@ -120,9 +108,9 @@ final class DTPrepareViewController: DTViewController {
 
 // MARK: - Private
 private extension DTPrepareViewController {
-    func handleAnswerSelection(_ answer: DTViewModel.Answer, contentId: Int) {
+    func handleAnswerSelection(_ answer: DTViewModel.Answer) {
         if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {
-            prepareInteractor?.getUserPreparation(answer: answer, event: selectedEvent) { [weak self] (preparation) in
+            prepareInteractor.getUserPreparationDaily(answer: answer) { [weak self] (preparation) in
                 self?.prepareRouter?.presentPrepareResults(preparation)
             }
         } else {
@@ -148,7 +136,7 @@ private extension DTPrepareViewController {
     }
 
     func createPreparationAndPresent() {
-        prepareInteractor?.getUserPreparation(event: selectedEvent) { [weak self] (preparation) in
+        prepareInteractor.getUserPreparationCritical(answerFilter: answerFilter ?? "") { [weak self] (preparation) in
             self?.prepareRouter?.presentPrepareResults(preparation)
         }
     }

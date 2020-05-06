@@ -10,14 +10,19 @@ import Foundation
 import qot_dal
 
 protocol EditResult {
-    var answerFilter: String? { get }
+    var canEditIntentions: Bool { get }
+    var answerFilterCritical: String { get }
 }
 
 extension QDMUserPreparation: EditResult {
-    var answerFilter: String? {
-        return feelAnswers?.first?.keys.filter { knowAnswers?.last?.keys.contains($0) == true }.first ?? ""
+    var canEditIntentions: Bool {
+        return answerFilter != nil ||
+            !(feelAnswers?.first?.keys.filter { knowAnswers?.last?.keys.contains($0) == true }.first?.isEmpty ?? true)
     }
 
+    var answerFilterCritical: String {
+        return feelAnswers?.first?.keys.filter { knowAnswers?.last?.keys.contains($0) == true }.first ?? ""
+    }
 }
 
 extension QDMUserPreparation.Level {

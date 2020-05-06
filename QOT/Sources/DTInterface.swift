@@ -34,6 +34,7 @@ protocol DTInteractorInterface: Interactor {
     func loadNextQuestion(selection: DTSelectionModel)
     func loadPreviousQuestion(selectedIds: [Int]) -> Bool
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
+    func getCriticalPreparations(_ completion: @escaping ([QDMUserPreparation]) -> Void)
     func didUpdateUserInput(_ text: String, questionKey: String)
     var isDark: Bool { get set }
     var getIntroKey: String { get }

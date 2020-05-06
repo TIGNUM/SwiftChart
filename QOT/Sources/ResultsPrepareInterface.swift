@@ -26,6 +26,7 @@ protocol ResultsPreparePresenterInterface {
 protocol ResultsPrepareInteractorInterface: Interactor {
     var getType: String { get }
     var sectionCount: Int { get }
+    var canEditIntentions: Bool { get }
     func rowCount(in section: Int) -> Int
     func hideEditIcon(title: String) -> Bool
     func hasEvent() -> Bool

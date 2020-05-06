@@ -119,7 +119,6 @@ class DTInteractor: DTInteractorInterface {
                                  questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
         let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
-        let events = getEvents(questionKey: question?.key)
         let preparations = getPreparations(answerKeys: selectedAnswers.last?.answers.first?.keys)
         let filter = getAnswerFilter(questionKey: question?.key,
                                      answerFilter: answerFilter)
@@ -129,8 +128,11 @@ class DTInteractor: DTInteractorInterface {
                                    userInputText: userInputText,
                                    tbv: tbv,
                                    selectedIds: selectedIds,
-                                   events: events,
                                    preparations: preparations)
+    }
+
+    func getCriticalPreparations(_ completion: @escaping ([QDMUserPreparation]) -> Void) {
+        worker?.getCriticalPreparations(completion)
     }
 
     func createPresentationModel(selection: DTSelectionModel,
@@ -141,7 +143,6 @@ class DTInteractor: DTInteractorInterface {
                                             questionKey: question?.key,
                                             content: content)
         let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
-        let events = getEvents(questionKey: question?.key)
         let preparations = getPreparations(answerKeys: selection.selectedAnswers.first?.keys)
         let answerFilter = getAnswerFilter(questionKey: question?.key,
                                            answerFilter: selection.answerFilter)
@@ -151,7 +152,6 @@ class DTInteractor: DTInteractorInterface {
                                    userInputText: selection.userInput,
                                    tbv: tbv,
                                    selectedIds: [],
-                                   events: events,
                                    preparations: preparations)
     }
 
