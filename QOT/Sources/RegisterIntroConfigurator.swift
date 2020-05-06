@@ -9,7 +9,7 @@
 import Foundation
 
 final class RegisterIntroConfigurator {
-    static func make(_ showNextButton: Bool? = true) -> (RegisterIntroViewController) -> Void {
+    static func make(showNextButton: Bool? = true) -> (RegisterIntroViewController) -> Void {
         return { (viewController) in
             let presenter = RegisterIntroPresenter(viewController: viewController)
             let interactor = RegisterIntroInteractor(presenter: presenter)

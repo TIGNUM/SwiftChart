@@ -42,7 +42,7 @@ private extension MyQotSupportRouter {
 
     func presentOnboarding() {
         if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
-        let configurator = RegisterIntroConfigurator.make(false)
+            let configurator = RegisterIntroConfigurator.make(showNextButton: false)
         configurator(controller)
         viewController?.navigationController?.pushViewController(controller, animated: true)
         }
