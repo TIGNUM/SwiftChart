@@ -57,7 +57,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-4U-u9M" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
-                                <rect key="frame" x="354" y="173" width="40" height="40"/>
+                                <rect key="frame" x="354" y="163" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="giH-rU-ibm"/>
                                     <constraint firstAttribute="width" constant="40" id="vU1-je-FKm"/>
@@ -235,7 +235,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YeH-Sn-OYn">
                                                     <rect key="frame" x="24" y="24" width="366" height="71"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SP9-dr-hid">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SP9-dr-hid">
                                                             <rect key="frame" x="0.0" y="0.0" width="366" height="39"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -245,7 +245,7 @@
                                                             <rect key="frame" x="0.0" y="39" width="366" height="32"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygw-ya-kK0">
-                                                                    <rect key="frame" x="37" y="9" width="329" height="20.5"/>
+                                                                    <rect key="frame" x="37" y="8.5" width="329" height="21"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -262,6 +262,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="ygw-ya-kK0" firstAttribute="centerY" secondItem="9SJ-QD-P3C" secondAttribute="centerY" id="CMx-3q-F1U"/>
                                                                 <constraint firstItem="9SJ-QD-P3C" firstAttribute="top" secondItem="R6X-GL-9iW" secondAttribute="top" constant="10" id="RPR-7t-b3d"/>
+                                                                <constraint firstAttribute="bottom" secondItem="ygw-ya-kK0" secondAttribute="bottom" constant="2.5" id="cRG-xK-XSL"/>
                                                                 <constraint firstItem="9SJ-QD-P3C" firstAttribute="leading" secondItem="R6X-GL-9iW" secondAttribute="leading" constant="4" id="fnS-TT-uHP"/>
                                                                 <constraint firstItem="ygw-ya-kK0" firstAttribute="leading" secondItem="9SJ-QD-P3C" secondAttribute="trailing" constant="15" id="gsi-xm-Sdd"/>
                                                                 <constraint firstAttribute="trailing" secondItem="ygw-ya-kK0" secondAttribute="trailing" id="uGv-oO-eBf"/>
