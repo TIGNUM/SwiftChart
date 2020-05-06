@@ -68,8 +68,9 @@ extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
+        let subtitle = interactor?.subtitle(at: indexPath)
         cell.configure(title: interactor?.title(at: indexPath) ?? "", themeCell: .level3)
-        cell.configure(subTitle: interactor?.subtitle(at: indexPath) ?? "")
+        cell.configure(subTitle: subtitle ?? "", isHidden: subtitle == "")
         return cell
     }
 
