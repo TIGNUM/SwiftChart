@@ -27,6 +27,7 @@ final class CalendarEventSelectionInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        presenter.showLoadingDots()
         calendarWorker.getCalendarSettings { [weak self] (settings) in
             self?.calendarSettings = settings
         }
@@ -34,6 +35,7 @@ final class CalendarEventSelectionInteractor {
             self?.setUserCalendarEvents(events)
             self?.convertEvents(events)
             self?.presenter.setupView()
+            self?.presenter.hideLoadingDots()
         }
     }
 }

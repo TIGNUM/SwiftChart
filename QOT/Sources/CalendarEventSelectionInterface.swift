@@ -11,10 +11,14 @@ import qot_dal
 
 protocol CalendarEventSelectionViewControllerInterface: class {
     func setupView()
+    func showLoadingDots()
+    func hideLoadingDots()
 }
 
 protocol CalendarEventSelectionPresenterInterface {
     func setupView()
+    func showLoadingDots()
+    func hideLoadingDots()
 }
 
 protocol CalendarEventSelectionInteractorInterface: Interactor {
