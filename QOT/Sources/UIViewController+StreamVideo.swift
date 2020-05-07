@@ -101,7 +101,6 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
 }
 
 extension MediaPlayerViewController: MediaPlayerViewControllerInterface {
-
     func showDestinationAlert() {
         let closeButtonItem = createCloseButton(#selector(dismissAlert))
         QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
@@ -202,19 +201,30 @@ extension UIViewController {
 
 class AVPlayerObserver: NSObject {
     private var updateHandler: ((AVPlayerItem) -> Void)?
-    let playerItem: AVPlayerItem
+    private var playerUpdateHandler: ((AVPlayer) -> Void)?
     var observation: NSKeyValueObservation?
+    var playerObservation: NSKeyValueObservation?
 
     init(playerItem: AVPlayerItem) {
-        self.playerItem = playerItem
         super.init()
         observation = playerItem.observe(\.status, options: [.initial]) { [weak self] (item, changes) in
             self?.updateHandler?(playerItem)
         }
     }
 
+    init(player: AVPlayer) {
+        super.init()
+        playerObservation = player.observe(\.timeControlStatus, options: [.new, .old]) { [weak self] (player, changes) in
+             self?.playerUpdateHandler?(player)
+         }
+    }
+
     deinit {
         observation?.invalidate()
+    }
+
+    func onChanges(_ closure: @escaping (AVPlayer) -> Void) {
+        playerUpdateHandler = closure
     }
 
     func onStatusUpdate(_ closure: @escaping (AVPlayerItem) -> Void) {

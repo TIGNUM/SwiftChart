@@ -27,12 +27,12 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
 
     var observers = [NSKeyValueObservation]()
     private let suggestionsHeader = SuggestionsHeaderView.instantiateFromNib()
-    private var avPlayerObserver: AVPlayerObserver?
     private var searchResults = [Search.Result]()
     private var searchSuggestions: SearchSuggestions?
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
     private var activateAnimateDuration: Double = 0.0
+    private var avPlayerObserver: AVPlayerObserver?
     public var showing = false
 
     init(configure: Configurator<SearchViewController>) {
@@ -347,11 +347,22 @@ private extension SearchViewController {
     func handleVideoSelection(mediaURL: URL, contentItem: QDMContentItem?) {
         let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem)
         trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
-        if let playerViewController = playerViewController, let playerItem = playerViewController.player?.currentItem {
-            avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
-            avPlayerObserver?.onStatusUpdate { (player) in
+        if let playerViewController = playerViewController,
+            let player = playerViewController.player,
+            let playerItem = playerViewController.player?.currentItem {
+
+            AVPlayerObserver(playerItem: playerItem).onStatusUpdate { (playerItem) in
                 if playerItem.error != nil {
                     playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
+                }
+            }
+            avPlayerObserver = AVPlayerObserver(player: player)
+            avPlayerObserver?.onChanges { [weak self] (player) in
+                if player.timeControlStatus == .paused {
+                    self?.trackUserEvent(.PAUSE, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
+                }
+                if player.timeControlStatus == .playing {
+                    self?.trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
                 }
             }
         }

@@ -15,6 +15,7 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
 
     var interactor: StrategyListInteractorInterface?
     private var lastAudioIndexPath: IndexPath?
+    private var avPlayerObserver: AVPlayerObserver?
 
     // MARK: - Life Cycle
 
@@ -156,8 +157,18 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             }
             trackUserEvent(.OPEN, value: foundation.remoteID, valueType: .CONTENT, action: .TAP)
             if let contentItem = foundation.contentItems?.filter({ $0.format == .video }).first,
-                stream(videoURL: videoURL, contentItem: contentItem) != nil {
+                let playerController = stream(videoURL: videoURL, contentItem: contentItem),
+                let player = playerController.player {
                 trackUserEvent(.PLAY, value: contentItem.remoteID, valueType: .VIDEO, action: .AUTOMATIC)
+                avPlayerObserver = AVPlayerObserver(player: player)
+                avPlayerObserver?.onChanges { [weak self] (player) in
+                    if player.timeControlStatus == .paused {
+                        self?.trackUserEvent(.PAUSE, value: contentItem.remoteID, valueType: .VIDEO, action: .TAP)
+                    }
+                    if player.timeControlStatus == .playing {
+                        self?.trackUserEvent(.PLAY, value: contentItem.remoteID, valueType: .VIDEO, action: .TAP)
+                    }
+                }
             } else {
                 tableView.isUserInteractionEnabled = true
                 if let selectedRow = tableView.indexPathForSelectedRow {

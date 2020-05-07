@@ -17,6 +17,8 @@ enum RegisterIntroCellTypes: Int, CaseIterable {
 protocol RegisterIntroUserEventTrackDelegate: class {
     func didMuteVideo()
     func didUnMuteVideo()
+    func didPlayVideo()
+    func didPauseVideo()
 }
 
 final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
@@ -31,6 +33,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         cell?.configure(title: AppTextService.get(.onboarding_register_intro_video_section_header_title),
                        body: AppTextService.get(.onboarding_register_intro_video_section_body),
                        videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/tignum_x_video.mp4")
+        cell?.delegate = self
         return cell ?? RegisterIntroMediaTableViewCell()
     }()
 
@@ -176,6 +179,14 @@ extension RegisterIntroViewController: RegisterIntroNoteTableViewCellDelegate {
 
 // MARK: - RegisterIntroUserEventTrackDelegate
 extension RegisterIntroViewController: RegisterIntroUserEventTrackDelegate {
+    func didPlayVideo() {
+        trackUserEvent(.PLAY, stringValue: "LoginVideo", valueType: .VIDEO, action: .TAP)
+    }
+
+    func didPauseVideo() {
+        trackUserEvent(.PAUSE, stringValue: "LoginVideo", valueType: .VIDEO, action: .TAP)
+    }
+
     func didMuteVideo() {
         trackUserEvent(.MUTE_VIDEO, action: .TAP)
     }
