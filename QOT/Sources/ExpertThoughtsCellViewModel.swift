@@ -23,15 +23,15 @@ final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Init
     init(title: String?,
-                  subtitle: String?,
-                  description: String?,
-                  audioTitle: String?,
-                  audioDuration: Double?,
-                  audioLink: URL?,
-                  format: ContentFormat,
-                  remoteID: Int?,
-                  durationString: String?,
-                  domainModel: QDMDailyBriefBucket?) {
+         subtitle: String?,
+         description: String?,
+         audioTitle: String?,
+         audioDuration: Double?,
+         audioLink: URL?,
+         format: ContentFormat,
+         remoteID: Int?,
+         durationString: String?,
+         domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.subtitle = subtitle
         self.audioTitle = audioTitle
