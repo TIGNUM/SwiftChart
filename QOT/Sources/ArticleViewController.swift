@@ -529,7 +529,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             ThemeView.articleSeparator(nil).apply(lineView)
             headerView.addSubview(lineView)
         }
-        let titleLabel = UILabel(frame: CGRect(x: 28, y: headerView.frame.size.height - 18.0, width: view.frame.width, height: 18))
+        let titleLabel = UILabel(frame: CGRect(x: 24, y: headerView.frame.size.height - 18.0, width: view.frame.width, height: 18))
         ThemeText.articleNextTitle.apply(headerTitle, to: titleLabel)
         headerView.addSubview(titleLabel)
         return headerView

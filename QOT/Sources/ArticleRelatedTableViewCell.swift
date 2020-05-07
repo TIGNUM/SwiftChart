@@ -22,7 +22,7 @@ class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String, durationString: String, icon: UIImage?) {
-        ThemeText.articleRelatedTitle(nil).apply(title, to: titleLabel)
+        ThemeText.articleRelatedTitle(nil).apply(title.uppercased(), to: titleLabel)
         ThemeText.articleRelatedDetail(nil).apply(durationString, to: detailLabel)
         iconImageView.image = icon
         contentView.backgroundColor = colorMode.background

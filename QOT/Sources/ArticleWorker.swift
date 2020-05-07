@@ -192,13 +192,8 @@ final class ArticleWorker {
 
         content?.relatedContentItems.filter { $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
-                let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
-                var timeToReadText = ""
-                if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
-                    timeToReadText = "PDF | \(timeString)  " + AppTextService.get(.generic_content_section_item_label_pdf)
-                }
                 itemsRelated.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
-                                                                            description: timeToReadText,
+                                                                            description: item.durationString,
                                                                             pdfURL: pdfURL,
                                                                             itemID: item.remoteID ?? 0)))
             }
@@ -302,8 +297,8 @@ final class ArticleWorker {
         var articles = [Article.Item]()
         relatedContent.forEach { content in
             articles.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
-                                                           description: content.durationString,
-                                                          itemID: content.remoteID ?? 0)))
+                                                                                       description: content.durationString,
+                                                                                       itemID: content.remoteID ?? 0)))
         }
         relatedArticlesStrategy = articles
     }
