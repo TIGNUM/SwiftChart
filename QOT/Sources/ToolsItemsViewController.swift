@@ -194,7 +194,6 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(tool.remoteID)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             }
-            trackUserEvent(.PLAY, value: tool.remoteID, valueType: .VIDEO, action: .TAP)
         default:
             if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(tool.remoteID)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)

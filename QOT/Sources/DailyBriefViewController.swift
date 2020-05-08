@@ -768,19 +768,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     // TODO Set correct pageName
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?) {
-        if let playerController = stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem),
-            let player = playerController.player {
-            trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
-            let observer = AVPlayerObserver(player: player)
-            observer.onChanges { [weak self] (player) in
-                if player.timeControlStatus == .paused {
-                    self?.trackUserEvent(.PAUSE, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
-                }
-                if player.timeControlStatus == .playing {
-                    self?.trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
-                }
-            }
-        }
+        stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem)
     }
 }
 

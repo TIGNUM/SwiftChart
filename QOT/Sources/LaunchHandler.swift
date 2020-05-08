@@ -17,8 +17,6 @@ enum LaunchOption: String {
 
 final class LaunchHandler {
 
-    private var avPlayerObserver: AVPlayerObserver?
-
     private var appDelegate: AppDelegate {
         return AppDelegate.current
     }
@@ -287,7 +285,7 @@ extension LaunchHandler {
     }
 
     func showContentItem(_ itemId: Int) {
-        ContentService.main.getContentItemById(itemId) { [weak self] (contentItem) in
+        ContentService.main.getContentItemById(itemId) { (contentItem) in
             guard let contentItem = contentItem else { return }
             switch contentItem.format {
             case .pdf:
@@ -307,24 +305,7 @@ extension LaunchHandler {
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
             case .video:
                 guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }
-                if let playerController = baseRootViewController?.stream(videoURL: mediaURL, contentItem: contentItem),
-                    let player = playerController.player {
-                    self?.avPlayerObserver = AVPlayerObserver(player: player)
-                    self?.avPlayerObserver?.onChanges { (player) in
-                        if player.timeControlStatus == .paused {
-                            baseRootViewController?.trackUserEvent(.PAUSE,
-                                                                   value: itemId,
-                                                                   valueType: .VIDEO,
-                                                                   action: .TAP)
-                        }
-                        if player.timeControlStatus == .playing {
-                            baseRootViewController?.trackUserEvent(.PLAY,
-                                                                   value: itemId,
-                                                                   valueType: .VIDEO,
-                                                                   action: .TAP)
-                        }
-                    }
-                }
+                baseRootViewController?.stream(videoURL: mediaURL, contentItem: contentItem)
             default: break
             }
         }

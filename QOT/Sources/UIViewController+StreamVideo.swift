@@ -19,6 +19,7 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
     var overlayControls: MediaPlayerOverlay?
     var videoGravityObserver: NSKeyValueObservation?
     var zoomed: Bool = false
+    var avPlayerObserver: AVPlayerObserver?
 
     var interactor: StreamVideoInteractorInterface? {
         didSet {
@@ -154,6 +155,7 @@ extension UIViewController {
             return nil
         }
         let player = AVPlayer(url: videoURL)
+        observe(controller: playerController, player: player, contentItem: contentItem)
         playerController.player = player
 
         do {
@@ -195,6 +197,18 @@ extension UIViewController {
             overlay.configure(downloadTitle: interactor.downloadButtonTitle,
                               isBokmarked: interactor.isBookmarked,
                               isDownloaded: interactor.isDownloaded)
+        }
+    }
+
+    private func observe(controller: MediaPlayerViewController, player: AVPlayer, contentItem: QDMContentItem?) {
+        controller.avPlayerObserver = AVPlayerObserver(player: player)
+        controller.avPlayerObserver?.onChanges { [weak self] (player) in
+            if player.timeControlStatus == .paused {
+                self?.trackUserEvent(.PAUSE, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
+            }
+            if player.timeControlStatus == .playing {
+                self?.trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
+            }
         }
     }
 }
