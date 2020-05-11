@@ -28,6 +28,7 @@ extension BaseRootViewController {
             notificationCenter.addObserver(self, selector: #selector(didStartAudio(_:)), name: .didStartAudio, object: nil)
             notificationCenter.addObserver(self, selector: #selector(didStopAudio(_:)), name: .didStopAudio, object: nil)
             notificationCenter.addObserver(self, selector: #selector(playPauseAudio(_:)), name: .playPauseAudio, object: nil)
+            notificationCenter.addObserver(self, selector: #selector(setRate(_:)), name: .setRateAudio, object: nil)
             notificationCenter.addObserver(self, selector: #selector(stopAudio(_:)), name: .stopAudio, object: nil)
             notificationCenter.addObserver(self, selector: #selector(showAudioFullScreen(_:)), name: .showAudioFullScreen, object: nil)
             notificationCenter.addObserver(self, selector: #selector(hideAudioFullScreen(_:)), name: .hideAudioFullScreen, object: nil)
@@ -157,6 +158,11 @@ extension BaseRootViewController {
         handleNavigationItems(leftItems: currentItem?.leftBarButtonItems,
                               rightItems: currentItem?.rightBarButtonItems,
                               backgroundColor: lastestBottomNavigationItem.backgroundColor)
+    }
+
+    @objc func setRate(_ notification: Notification) {
+        guard let rate = notification.object as? Float else { return }
+        audioPlayerBar.setRate(rate)
     }
 
     @objc func showAudioFullScreen(_ notification: Notification) {

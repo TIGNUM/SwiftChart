@@ -3,27 +3,32 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Audio Full Screen View Controller-->
         <scene sceneID="a5d-4p-sau">
             <objects>
-                <viewController id="dId-Vu-4Vl" customClass="AudioFullScreenViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dId-Vu-4Vl" customClass="AudioFullScreenViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dd7-bx-ju4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xa-v4-1Tm" customClass="FullScreenBackgroundCircleView" customModule="QOT" customModuleProvider="target">
+                            <view userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xa-v4-1Tm" customClass="FullScreenBackgroundCircleView" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="60" y="306" width="294" height="294"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondItem="2Xa-v4-1Tm" secondAttribute="width" id="Cdf-Kw-eFg"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tej-Ln-v5W" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tej-Ln-v5W" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="268" y="722" width="122" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -38,7 +43,7 @@
                                     <action selector="didTapDownloadButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="sHf-1I-WjR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbD-ob-szJ" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbD-ob-szJ" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="212" y="722" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -88,6 +93,21 @@
                                     <action selector="didTapPlayPauseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="e0m-Vp-IGW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIV-Ry-r3t">
+                                <rect key="frame" x="24" y="722" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="33L-lk-fXg"/>
+                                    <constraint firstAttribute="height" constant="40" id="eLA-So-qHk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                                <state key="normal" title="1X">
+                                    <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapVelocity" destination="dId-Vu-4Vl" eventType="touchUpInside" id="4tE-G1-L9b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -95,6 +115,8 @@
                             <constraint firstItem="Rtb-mS-eZN" firstAttribute="top" secondItem="MOp-Dk-Bbn" secondAttribute="bottom" constant="20" id="BlK-vw-6x1"/>
                             <constraint firstItem="Tej-Ln-v5W" firstAttribute="trailing" secondItem="CtA-66-Mx5" secondAttribute="trailing" constant="-24" id="EDw-h7-rBd"/>
                             <constraint firstItem="2Xa-v4-1Tm" firstAttribute="centerY" secondItem="Ai7-FY-RGD" secondAttribute="centerY" id="EyV-Be-6IK"/>
+                            <constraint firstItem="cIV-Ry-r3t" firstAttribute="leading" secondItem="CtA-66-Mx5" secondAttribute="leading" constant="24" id="IbN-8A-yZi"/>
+                            <constraint firstItem="IbD-ob-szJ" firstAttribute="centerY" secondItem="cIV-Ry-r3t" secondAttribute="centerY" id="S1R-UR-ayK"/>
                             <constraint firstItem="Ai7-FY-RGD" firstAttribute="centerX" secondItem="CtA-66-Mx5" secondAttribute="centerX" id="TwG-aA-Lxd"/>
                             <constraint firstItem="2Xa-v4-1Tm" firstAttribute="width" secondItem="Dd7-bx-ju4" secondAttribute="width" multiplier="266:375" id="Uhv-pf-9ZV"/>
                             <constraint firstItem="Ai7-FY-RGD" firstAttribute="centerY" secondItem="CtA-66-Mx5" secondAttribute="centerY" id="UlG-e2-Dze"/>
@@ -122,6 +144,7 @@
                         <outlet property="fullScreenCircles" destination="2Xa-v4-1Tm" id="Cxd-TI-n8y"/>
                         <outlet property="playPauseButton" destination="Ai7-FY-RGD" id="dLT-gJ-HAf"/>
                         <outlet property="titleLabel" destination="LHn-1J-XJa" id="LeL-qg-nYS"/>
+                        <outlet property="velocityButton" destination="cIV-Ry-r3t" id="Vp0-nq-dnF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARM-PJ-UEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

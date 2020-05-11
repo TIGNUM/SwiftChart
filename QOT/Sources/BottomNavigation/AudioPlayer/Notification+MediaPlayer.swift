@@ -12,6 +12,7 @@ import Foundation
 extension Notification.Name {
     static let playPauseAudio = Notification.Name("playAudio")
     static let stopAudio = Notification.Name("stopAudio")
+    static let setRateAudio = Notification.Name("setRateAudio")
 }
 
 // MARK: - Update current Audio Player Status
