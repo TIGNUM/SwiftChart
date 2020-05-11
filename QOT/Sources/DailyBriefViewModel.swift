@@ -25,6 +25,7 @@ struct DailyBriefViewModel {
         case impactReadiness
         case rollingData
         case leaderswisdom
+        case expertthoughts
         case fromMyCoach
         case sprint
         case aboutMe

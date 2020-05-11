@@ -1122,6 +1122,9 @@
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
+		F9371C4A2457329A00CC44F9 /* ExpertThoughtsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9371C492457329A00CC44F9 /* ExpertThoughtsTableViewCell.swift */; };
+		F9371C4C245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9371C4B245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift */; };
+		F9371C50245733D100CC44F9 /* ExpertThoughtsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9371C4F245733D100CC44F9 /* ExpertThoughtsTableViewCell.xib */; };
 		F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */; };
 		F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */; };
 		F946D08D243CF24C001E2D23 /* StreamVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946D08C243CF24C001E2D23 /* StreamVideoPresenter.swift */; };
@@ -2389,6 +2392,9 @@
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
+		F9371C492457329A00CC44F9 /* ExpertThoughtsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertThoughtsTableViewCell.swift; sourceTree = "<group>"; };
+		F9371C4B245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertThoughtsCellViewModel.swift; sourceTree = "<group>"; };
+		F9371C4F245733D100CC44F9 /* ExpertThoughtsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertThoughtsTableViewCell.xib; sourceTree = "<group>"; };
 		F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRightBucketsViewController.swift; sourceTree = "<group>"; };
 		F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CopyRightBucketsViewController.xib; sourceTree = "<group>"; };
 		F946D08C243CF24C001E2D23 /* StreamVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoPresenter.swift; sourceTree = "<group>"; };
@@ -2607,6 +2613,7 @@
 				F96B23A923507F6800130EFF /* Multiple Images Bucket */,
 				F92A76DF22F2E8C0000BB378 /* Level5 */,
 				75B9DCB422CB5FEC00692A60 /* LeaderWisdom */,
+				F9371C482457327400CC44F9 /* ExpertThoughts */,
 				9C9E33AF22DCA36300214ED6 /* ImpactReadiness */,
 				F9D2BC1E22D4966B00DBF2CC /* FromTignum */,
 				75423F0D22CF4876008EE726 /* FromMyCoach */,
@@ -5157,6 +5164,16 @@
 			name = Level5;
 			sourceTree = "<group>";
 		};
+		F9371C482457327400CC44F9 /* ExpertThoughts */ = {
+			isa = PBXGroup;
+			children = (
+				F9371C492457329A00CC44F9 /* ExpertThoughtsTableViewCell.swift */,
+				F9371C4B245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift */,
+				F9371C4F245733D100CC44F9 /* ExpertThoughtsTableViewCell.xib */,
+			);
+			name = ExpertThoughts;
+			sourceTree = "<group>";
+		};
 		F9462248230C2C21000A3B42 /* Copyright */ = {
 			isa = PBXGroup;
 			children = (
@@ -5695,6 +5712,7 @@
 				36B5BD3523142BB300439A64 /* AskPermission.storyboard in Resources */,
 				367EA0F121776921003025CE /* Assets.xcassets in Resources */,
 				5FD890AF22807CC900B1CE7F /* MyQotProfileHeaderView.xib in Resources */,
+				F9371C50245733D100CC44F9 /* ExpertThoughtsTableViewCell.xib in Resources */,
 				ACF0B9752260BAD2008CFAEC /* SingleSelectionTableViewCell.xib in Resources */,
 				360CC3C72268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib in Resources */,
 				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
@@ -6514,6 +6532,7 @@
 				7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */,
 				75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */,
 				ACF0B9742260BAD2008CFAEC /* SingleSelectionTableViewCell.swift in Sources */,
+				F9371C4C245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift in Sources */,
 				8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */,
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
 				38C23E5224235DCA0034571B /* DTPrepareStartWorker.swift in Sources */,
@@ -6893,6 +6912,7 @@
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
 				B4AB48B9230BF891003B3C1F /* MyDataSelectionViewController.swift in Sources */,
 				75DC686E22C11D4800FF183D /* MyToBeVisionRatePresenter.swift in Sources */,
+				F9371C4A2457329A00CC44F9 /* ExpertThoughtsTableViewCell.swift in Sources */,
 				5F360733228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift in Sources */,
 				F9D6381B22D745FA0092C482 /* ExploreCell.swift in Sources */,
 				B4AB48BC230BF891003B3C1F /* MyDataSelectionConfigurator.swift in Sources */,
