@@ -155,4 +155,8 @@ extension ArticleInteractor: ArticleInteractorInterface {
     func toggleBookmark() {
         presenter.updateBookmark(worker.toggleBookmark())
     }
+
+    func showDestinationAlert() {
+        presenter.showDestinationAlert()
+    }
 }
