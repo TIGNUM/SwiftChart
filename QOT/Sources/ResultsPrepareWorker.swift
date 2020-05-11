@@ -40,7 +40,7 @@ extension ResultsPrepareWorker {
             let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(answerFilter) }
             let answers = filteredAnswers.compactMap {
                 DTViewModel.Answer(qdmAnswer: $0,
-                                   selectedIds: selectedIds ,
+                                   selectedIds: selectedIds,
                                    decisions: $0.getDTViewModelAnswerDecisions())
             }
             completion(DTViewModel(question: question,
