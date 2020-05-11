@@ -157,7 +157,6 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             trackUserEvent(.OPEN, value: foundation.remoteID, valueType: .CONTENT, action: .TAP)
             if let contentItem = foundation.contentItems?.filter({ $0.format == .video }).first,
                 stream(videoURL: videoURL, contentItem: contentItem) != nil {
-                trackUserEvent(.PLAY, value: contentItem.remoteID, valueType: .VIDEO, action: .AUTOMATIC)
             } else {
                 tableView.isUserInteractionEnabled = true
                 if let selectedRow = tableView.indexPathForSelectedRow {

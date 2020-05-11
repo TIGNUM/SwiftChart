@@ -788,7 +788,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     // TODO Set correct pageName
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?) {
         stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem)
-        trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
     }
 }
 
