@@ -21,5 +21,4 @@ enum AnswerType: String {
     case noAnswerRequired = "NO_ANSWER_REQUIRED"
     case uploadImage = "UPLOAD_IMAGE"
     case lastQuestion = "LAST_QUESTION"
-    case openCalendarEvents = "OPEN_CALENDAR_EVENTS"
 }

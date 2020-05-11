@@ -15,14 +15,12 @@ protocol DTPrepareViewControllerInterface: class {}
 protocol DTPreparePresenterInterface {}
 
 protocol DTPrepareInteractorInterface: Interactor {
-    func getUserPreparation(answer: DTViewModel.Answer,
-                            event: DTViewModel.Event?,
-                            _ completion: @escaping (QDMUserPreparation?) -> Void)
-    func getUserPreparation(event: DTViewModel.Event?,
-                            calendarEvent: DTViewModel.Event?,
-                            _ completion: @escaping (QDMUserPreparation?) -> Void)
-    func getUserPreparation(event: DTViewModel.Event?,
-                            _ completion: @escaping (QDMUserPreparation?) -> Void)
+    func getUserPreparationDaily(answer: DTViewModel.Answer,
+                                 _ completion: @escaping (QDMUserPreparation?) -> Void)
+    func getUserPreparationCritical(answerFilter: String,
+                                    _ completion: @escaping (QDMUserPreparation?) -> Void)
+    func createUserPreparation(from existingPreparation: QDMUserPreparation?,
+                               _ completion: @escaping (QDMUserPreparation?) -> Void)
 }
 
 protocol DTPrepareRouterInterface {

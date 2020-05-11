@@ -10,7 +10,10 @@ import UIKit
 
 final class ResultsPrepareQuestionDailyTableViewCell: ResultsPrepareQuestionTableViewCell {
 
-    func configure(title: String) {
+    @IBOutlet private weak var editImageView: UIImageView!
+
+    func configure(title: String, canEdit: Bool) {
+        editImageView.isHidden = !canEdit
         super.configure(title: title, firstItem: nil, secondItem: nil, thirdItem: nil)
     }
 }

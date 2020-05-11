@@ -21,16 +21,16 @@ final class MyPrepsWorker {
         UserService.main.getUserPreparations { [weak self] (preparations, initialized, error) in
             var criticalItems = [MyPrepsModel.Item]()
             var everydayItems = [MyPrepsModel.Item]()
-            preparations?.forEach {
-                let dateString = DateFormatter.ddMMM.string(from: $0.eventDate ?? Date())
-                let prepItem = MyPrepsModel.Item(title: $0.name ?? $0.eventType ?? "",
+            preparations?.forEach { (preparation) in
+                let dateString = DateFormatter.ddMMM.string(from: preparation.eventDate ?? Date())
+                let prepItem = MyPrepsModel.Item(title: preparation.name ?? preparation.eventType ?? "",
                                                  date: dateString,
-                                                 eventType: $0.eventType ?? "",
-                                                 type: $0.type ?? "",
-                                                 missingEvent: $0.missingEvent,
-                                                 calendarEventTitle: $0.eventTitle ?? "",
-                                                 qdmPrep: $0)
-                if $0.type == "critical" {
+                                                 eventType: preparation.eventType ?? "",
+                                                 type: preparation.type ?? "",
+                                                 missingEvent: preparation.missingEvent,
+                                                 calendarEventTitle: preparation.eventTitle ?? "",
+                                                 qdmPrep: preparation)
+                if preparation.type == "critical" {
                     criticalItems.append(prepItem)
                 } else {
                     everydayItems.append(prepItem)

@@ -84,10 +84,8 @@ class DTPresenter: DTPresenterInterface {
         let answers = getAnswers(presentationModel.answerFilter,
                                  question: presentationModel.question,
                                  presentationModel: presentationModel)
-        let events = getPreparations(presentationModel.preparations)
         return DTViewModel(question: question,
                            answers: answers,
-                           events: events,
                            tbvText: presentationModel.tbv?.text,
                            userInputText: presentationModel.userInputText,
                            hasTypingAnimation: hasTypingAnimation(answerType: question.answerType, answers: answers),
@@ -129,24 +127,6 @@ class DTPresenter: DTPresenterInterface {
                                       selected: selected,
                                       backgroundColor: answerBackgroundColor(answer: answer),
                                       decisions: answer.getDTViewModelAnswerDecisions() )
-        }
-    }
-
-    func getEvents(_ calendarEvents: [QDMUserCalendarEvent]) -> [DTViewModel.Event] {
-        return calendarEvents.compactMap { (event) -> DTViewModel.Event in
-            return DTViewModel.Event(remoteId: event.remoteID,
-                                     title: event.title,
-                                     dateString: Prepare.dateString(for: event.startDate),
-                                     isCalendarEvent: true)
-        }
-    }
-
-    func getPreparations(_ preparations: [QDMUserPreparation]) ->  [DTViewModel.Event] {
-        return preparations.compactMap { (preparation) -> DTViewModel.Event in
-            return DTViewModel.Event(remoteId: preparation.remoteID,
-                                     title: preparation.name,
-                                     dateString: Prepare.prepareDateString(preparation.createdAt),
-                                     isCalendarEvent: false)
         }
     }
 

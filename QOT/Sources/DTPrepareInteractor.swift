@@ -14,13 +14,13 @@ import qot_dal
 final class DTPrepareInteractor: DTInteractor {
 
     // MARK: - Properties
-    private lazy var prepareWorker: DTPrepareWorker? = DTPrepareWorker()
+    private lazy var prepareWorker = DTPrepareWorker()
     private var preparations: [QDMUserPreparation] = []
 
     // MARK: - DTInteractor
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareWorker?.getPreparations { [weak self] (preparations, _) in
+        prepareWorker.getPreparations { [weak self] (preparations, _) in
             self?.preparations = preparations
         }
     }
@@ -70,76 +70,13 @@ final class DTPrepareInteractor: DTInteractor {
     }
 }
 
-// MARK: - DTPrepareInteractorInterface
-extension DTPrepareInteractor: DTPrepareInteractorInterface {
-    //TODO Unify to one single createPrep func with ServiceModel.
-    func getUserPreparation(event: DTViewModel.Event?,
-                            _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        let answers = selectedAnswers.flatMap { $0.answers }
-        let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
-        let perceivedIds = getAnswerIds(.perceived, selectedAnswers)
-        let knowIds = getAnswerIds(.know, selectedAnswers)
-        let feelIds = getAnswerIds(.feel, selectedAnswers)
-        let preparationNames = preparations.compactMap { $0.name }
-        let relatedStrategyId = eventAnswer?.targetId(.content) ?? 0
-        prepareWorker?.getRelatedStrategies(relatedStrategyId) { [weak self] (strategyIds) in
-            self?.prepareWorker?.getRelatedStrategyItems(relatedStrategyId) { (strategyItemIds) in
-                var model = CreateUserPreparationModel()
-                model.level = .LEVEL_CRITICAL
-                model.benefits = self?.inputText
-                model.answerFilter = Prepare.AnswerFilter
-                model.contentCollectionId = QDMUserPreparation.Level.LEVEL_CRITICAL.contentID
-                model.relatedStrategyId = eventAnswer?.targetId(.content) ?? 0
-                model.strategyIds = strategyIds
-                model.strategyItemIds = strategyItemIds
-                model.preceiveAnswerIds = perceivedIds
-                model.knowAnswerIds = knowIds
-                model.feelAnswerIds = feelIds
-                model.eventType = eventAnswer?.title ?? ""
-                model.name = self?.createUniqueName(eventAnswer?.title ?? "", in: preparationNames)
-                self?.prepareWorker?.createUserPreparation(from: model, completion)
-            }
-        }
-    }
-
-    private func getAnswerIds(_ key: Prepare.Key, _ answers: [SelectedAnswer]) -> [Int] {
-        return answers.filter { $0.question?.remoteId == key.questionID }.flatMap { $0.answers }.compactMap { $0.remoteId }
-    }
-
-    func getUserPreparation(event: DTViewModel.Event?,
-                            calendarEvent: DTViewModel.Event?,
-                            _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        let existingPrep = preparations.filter { $0.remoteID == event?.remoteId }.first
-        let answers = selectedAnswers.flatMap { $0.answers }
-        let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
-        var model = CreateUserPreparationModel()
-        let preparationNames = preparations.compactMap { $0.name }
-        model.level = existingPrep?.type ?? .LEVEL_CRITICAL
-        model.benefits = existingPrep?.benefits
-        model.answerFilter = existingPrep?.answerFilter
-        model.contentCollectionId = existingPrep?.contentCollectionId ?? 0
-        model.relatedStrategyId = existingPrep?.relatedStrategyId ?? 0
-        model.strategyIds = existingPrep?.strategyIds ?? []
-        model.strategyItemIds = existingPrep?.strategyItemIds ?? []
-        model.preceiveAnswerIds = existingPrep?.preceiveAnswerIds ?? []
-        model.knowAnswerIds = existingPrep?.knowAnswerIds ?? []
-        model.feelAnswerIds = existingPrep?.feelAnswerIds ?? []
-        model.eventType = eventAnswer?.title ?? ""
-        model.name = createUniqueName(existingPrep?.eventType ?? "", in: preparationNames)
-        self.prepareWorker?.createUserPreparation(from: model, completion)
-    }
-
-    func getUserPreparation(answer: DTViewModel.Answer,
-                            event: DTViewModel.Event?,
-                            _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
-        let relatedStrategyId = answer.targetId(.content) ?? 0
-        let preparationNames = preparations.compactMap { $0.name }
-        let eventType = createUniqueName(answer.title, in: preparationNames)
-        prepareWorker?.createPreparationDaily(answerFilter: answerFilter,
-                                              relatedStategyId: relatedStrategyId,
-                                              eventType: eventType,
-                                              completion)
+// MARK: - Private
+private extension DTPrepareInteractor {
+    func getAnswerIds(_ key: Prepare.Key, _ answers: [SelectedAnswer]) -> [Int] {
+        return answers
+            .filter { $0.question?.remoteId == key.questionID }
+            .flatMap { $0.answers }
+            .compactMap { $0.remoteId }
     }
 
     func createUniqueName(_ defaultName: String, in names: [String]) -> String {
@@ -166,6 +103,79 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
             }
         }
         return newName
+    }
+}
+
+// MARK: - DTPrepareInteractorInterface
+extension DTPrepareInteractor: DTPrepareInteractorInterface {
+    func createUserPreparation(from existingPreparation: QDMUserPreparation?,
+                               _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        let answers = selectedAnswers.flatMap { $0.answers }
+        let preparationTypeAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
+        var model = CreateUserPreparationModel()
+        let preparationNames = preparations.compactMap { $0.name }
+        model.level = .LEVEL_CRITICAL
+        model.benefits = existingPreparation?.benefits
+        model.answerFilter = existingPreparation?.answerFilter ?? ""
+        model.contentCollectionId = existingPreparation?.contentCollectionId ?? 0
+        model.relatedStrategyId = existingPreparation?.relatedStrategyId ?? 0
+        model.strategyIds = existingPreparation?.strategyIds ?? []
+        model.strategyItemIds = existingPreparation?.strategyItemIds ?? []
+        model.preceiveAnswerIds = existingPreparation?.preceiveAnswerIds ?? []
+        model.knowAnswerIds = existingPreparation?.knowAnswerIds ?? []
+        model.feelAnswerIds = existingPreparation?.feelAnswerIds ?? []
+        model.eventType = preparationTypeAnswer?.title ?? ""
+        model.name = createUniqueName(existingPreparation?.eventType ?? "", in: preparationNames)
+        self.prepareWorker.createUserPreparation(from: model, completion)
+    }
+
+    func getUserPreparationDaily(answer: DTViewModel.Answer, _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
+        let relatedStrategyId = answer.targetId(.content) ?? 0
+        let preparationNames = preparations.compactMap { $0.name }
+        let preparationName = createUniqueName(answer.title, in: preparationNames)
+        prepareWorker.getRelatedStrategies(relatedStrategyId) { [weak self] (strategyIds) in
+            self?.prepareWorker.getRelatedStrategyItems(relatedStrategyId) { (strategyItemIds) in
+                var model = CreateUserPreparationModel()
+                model.level = QDMUserPreparation.Level.LEVEL_DAILY
+                model.benefits = nil
+                model.answerFilter = answerFilter
+                model.contentCollectionId = QDMUserPreparation.Level.LEVEL_DAILY.contentID
+                model.relatedStrategyId = relatedStrategyId
+                model.strategyIds = strategyIds
+                model.strategyItemIds = strategyItemIds
+                model.eventType = preparationName
+                self?.prepareWorker.createUserPreparation(from: model, completion)
+            }
+        }
+    }
+
+    func getUserPreparationCritical(answerFilter: String, _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        let answers = selectedAnswers.flatMap { $0.answers }
+        let filteredAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
+        let perceivedIds = getAnswerIds(.perceived, selectedAnswers)
+        let knowIds = getAnswerIds(.know, selectedAnswers)
+        let feelIds = getAnswerIds(.feel, selectedAnswers)
+        let preparationNames = preparations.compactMap { $0.name }
+        let relatedStrategyId = filteredAnswer?.targetId(.content) ?? 0
+        prepareWorker.getRelatedStrategies(relatedStrategyId) { [weak self] (strategyIds) in
+            self?.prepareWorker.getRelatedStrategyItems(relatedStrategyId) { (strategyItemIds) in
+                var model = CreateUserPreparationModel()
+                model.level = .LEVEL_CRITICAL
+                model.benefits = self?.inputText
+                model.answerFilter = answerFilter
+                model.contentCollectionId = QDMUserPreparation.Level.LEVEL_CRITICAL.contentID
+                model.relatedStrategyId = filteredAnswer?.targetId(.content) ?? 0
+                model.strategyIds = strategyIds
+                model.strategyItemIds = strategyItemIds
+                model.preceiveAnswerIds = perceivedIds
+                model.knowAnswerIds = knowIds
+                model.feelAnswerIds = feelIds
+                model.eventType = filteredAnswer?.title ?? ""
+                model.name = self?.createUniqueName(filteredAnswer?.title ?? "", in: preparationNames)
+                self?.prepareWorker.createUserPreparation(from: model, completion)
+            }
+        }
     }
 }
 

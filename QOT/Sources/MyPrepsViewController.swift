@@ -410,7 +410,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            let prepItems = [interactor.criticalPrepItems, interactor?.everydayPrepItems]
+            let prepItems = [interactor.criticalPrepItems, interactor.everydayPrepItems]
             let item = prepItems[indexPath.section]?[indexPath.row]
             let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
             var title = ""
@@ -449,7 +449,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             switch segmentedControl.selectedSegmentIndex {
             case SegmentView.myPreps.rawValue:
-                let prepItems = [interactor.criticalPrepItems, interactor?.everydayPrepItems]
+                let prepItems = [interactor.criticalPrepItems, interactor.everydayPrepItems]
                 if let item = prepItems[indexPath.section]?[indexPath.row], tableView.isEditing == false {
                     tableView.deselectRow(at: indexPath, animated: true)
                     interactor.presentPreparation(item: item.qdmPrep, viewController: self)

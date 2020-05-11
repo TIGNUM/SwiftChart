@@ -74,6 +74,10 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
         return ResultsPrepare.sectionCount(level: level)
     }
 
+    var canEditIntentions: Bool {
+        return preparation?.canEditIntentions ?? false
+    }
+
     func rowCount(in section: Int) -> Int {
         guard let level = preparation?.type else { return 0 }
         let strategyCount = (preparation?.strategies.count ?? 0)

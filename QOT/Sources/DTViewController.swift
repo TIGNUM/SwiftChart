@@ -104,19 +104,13 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         return nil
     }
 
-    func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
-        return nil
-    }
-
     func loadNextQuestion() {
         guard let viewModel = viewModel else { return }
         let selectedAnswers = viewModel.selectedAnswers
         let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel.question.key)
         let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel.question.key)
-        let event = getEvent(answerType: viewModel.question.answerType)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
                                               question: viewModel.question,
-                                              event: event,
                                               trigger: trigger,
                                               answerFilter: filter,
                                               userInput: nil)
@@ -223,10 +217,10 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         setSelectedAnswer(answer)
     }
 
-    func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
+    func didSelectExistingPreparation(_ qdmPreparation: QDMUserPreparation?) {
         trackUserEvent(.SELECT,
-                       value: event?.remoteId,
-                       stringValue: event?.title,
+                       value: qdmPreparation?.remoteID,
+                       stringValue: qdmPreparation?.name,
                        valueType: .USER_PREPARATION,
                        action: .TAP)
     }

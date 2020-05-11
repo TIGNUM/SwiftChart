@@ -16,16 +16,28 @@ final class ResultsPrepareWorker {
 
 }
 
+private extension ResultsPrepareWorker {
+    func getAnswerFilter(preparation: QDMUserPreparation?) -> String? {
+        if preparation?.type == .LEVEL_CRITICAL {
+            if preparation?.answerFilter == Prepare.AnswerFilter {
+                return preparation?.answerFilterCritical
+            }
+        }
+        return preparation?.answerFilter
+    }
+}
+
 // MARK: - DTViewModel
 extension ResultsPrepareWorker {
     func getDTViewModel(_ key: Prepare.Key,
                         preparation: QDMUserPreparation?,
                         _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         let selectedIds: [Int] = getSelectedIntentionIds(key: key, preparation: preparation)
-        QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
+        QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { [weak self] (qdmQuestion) in
             guard let qdmQuestion = qdmQuestion else { return }
             let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
-            let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(preparation?.answerFilter ?? "") }
+            let answerFilter = self?.getAnswerFilter(preparation: preparation) ?? ""
+            let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(answerFilter) }
             let answers = filteredAnswers.compactMap {
                 DTViewModel.Answer(qdmAnswer: $0,
                                    selectedIds: selectedIds,
@@ -33,7 +45,6 @@ extension ResultsPrepareWorker {
             }
             completion(DTViewModel(question: question,
                                    answers: answers,
-                                   events: [],
                                    tbvText: nil,
                                    userInputText: preparation?.benefits,
                                    hasTypingAnimation: false,

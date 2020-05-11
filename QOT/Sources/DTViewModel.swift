@@ -12,7 +12,6 @@ import qot_dal
 class DTViewModel {
     let question: Question
     var answers: [Answer]
-    let events: [Event]
     let tbvText: String?
     let userInputText: String?
     let hasTypingAnimation: Bool
@@ -23,7 +22,6 @@ class DTViewModel {
 
     init(question: DTViewModel.Question,
                   answers: [DTViewModel.Answer],
-                  events: [DTViewModel.Event],
                   tbvText: String?,
                   userInputText: String?,
                   hasTypingAnimation: Bool,
@@ -33,7 +31,6 @@ class DTViewModel {
                   showNextQuestionAutomated: Bool) {
         self.question = question
         self.answers = answers
-        self.events = events
         self.tbvText = tbvText
         self.userInputText = userInputText
         self.hasTypingAnimation = hasTypingAnimation
@@ -46,13 +43,6 @@ class DTViewModel {
     // -ReadOnly
     var selectedAnswers: [DTViewModel.Answer] {
         return answers.filter { $0.selected }
-    }
-
-    struct Event {
-        let remoteId: Int?
-        let title: String?
-        let dateString: String?
-        let isCalendarEvent: Bool
     }
 
     struct Question {
