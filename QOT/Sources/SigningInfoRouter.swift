@@ -23,7 +23,7 @@ final class SigningInfoRouter {
 extension SigningInfoRouter: SigningInfoRouterInterface {
     func goToLogin() {
         if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
-            let configurator = RegisterIntroConfigurator.make()
+            let configurator = RegisterIntroConfigurator.make(showNextButton: true)
             configurator(controller)
             viewController?.navigationController?.pushViewController(controller, animated: true)
         }

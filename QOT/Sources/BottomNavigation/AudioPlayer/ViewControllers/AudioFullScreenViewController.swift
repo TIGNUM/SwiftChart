@@ -196,7 +196,6 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapDownloadButton() {
-        self.downloadButton.layer.borderWidth = 0
         if download != nil {
             continueDownload()
             return

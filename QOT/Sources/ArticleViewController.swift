@@ -497,7 +497,6 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .video(let remoteID, _, _, _, _, _):
             if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteID)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
-                trackUserEvent(.PLAY, value: remoteID, valueType: .VIDEO, action: .TAP)
             }
         case .pdf(let title, _, let pdfURL, let itemID):
             showPDFReader(withURL: pdfURL, title: title, itemID: itemID)
@@ -529,7 +528,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             ThemeView.articleSeparator(nil).apply(lineView)
             headerView.addSubview(lineView)
         }
-        let titleLabel = UILabel(frame: CGRect(x: 28, y: headerView.frame.size.height - 18.0, width: view.frame.width, height: 18))
+        let titleLabel = UILabel(frame: CGRect(x: 24, y: headerView.frame.size.height - 18.0, width: view.frame.width, height: 18))
         ThemeText.articleNextTitle.apply(headerTitle, to: titleLabel)
         headerView.addSubview(titleLabel)
         return headerView

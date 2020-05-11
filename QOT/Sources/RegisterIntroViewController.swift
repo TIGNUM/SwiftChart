@@ -17,12 +17,15 @@ enum RegisterIntroCellTypes: Int, CaseIterable {
 protocol RegisterIntroUserEventTrackDelegate: class {
     func didMuteVideo()
     func didUnMuteVideo()
+    func didPlayVideo()
+    func didPauseVideo()
 }
 
 final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
+    var showNextButton: Bool!
     var interactor: RegisterIntroInteractorInterface!
     private lazy var router = RegisterIntroRouter(viewController: self)
     private lazy var videoCell: RegisterIntroMediaTableViewCell = {
@@ -30,6 +33,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         cell?.configure(title: AppTextService.get(.onboarding_register_intro_video_section_header_title),
                        body: AppTextService.get(.onboarding_register_intro_video_section_body),
                        videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/tignum_x_video.mp4")
+        cell?.delegate = self
         return cell ?? RegisterIntroMediaTableViewCell()
     }()
 
@@ -76,20 +80,22 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Overridden
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        let continueButton = RoundedButton.init(title: AppTextService.get(.onboarding_sign_up_email_verification_section_footer_button_next),
-                                        target: self,
-                                        action: #selector(didTapContinue))
-        ThemeButton.carbonButton.apply(continueButton)
-        let heightConstraint = NSLayoutConstraint.init(item: continueButton,
-                                                       attribute: .height,
-                                                       relatedBy: .equal,
-                                                       toItem: nil,
-                                                       attribute: .notAnAttribute,
-                                                       multiplier: 1,
-                                                       constant: 40)
-        continueButton.addConstraints([heightConstraint])
-
-        return [UIBarButtonItem(customView: continueButton)]
+        if showNextButton {
+            let continueButton = RoundedButton.init(title: AppTextService.get(.onboarding_sign_up_email_verification_section_footer_button_next),
+                                                    target: self,
+                                                    action: #selector(didTapContinue))
+            ThemeButton.carbonButton.apply(continueButton)
+            let heightConstraint = NSLayoutConstraint.init(item: continueButton,
+                                                           attribute: .height,
+                                                           relatedBy: .equal,
+                                                           toItem: nil,
+                                                           attribute: .notAnAttribute,
+                                                           multiplier: 1,
+                                                           constant: 40)
+            continueButton.addConstraints([heightConstraint])
+            return [UIBarButtonItem(customView: continueButton)]
+        }
+        return []
     }
 
     // MARK: - Actions
@@ -173,6 +179,14 @@ extension RegisterIntroViewController: RegisterIntroNoteTableViewCellDelegate {
 
 // MARK: - RegisterIntroUserEventTrackDelegate
 extension RegisterIntroViewController: RegisterIntroUserEventTrackDelegate {
+    func didPlayVideo() {
+        trackUserEvent(.PLAY, stringValue: "LoginVideo", valueType: .VIDEO, action: .TAP)
+    }
+
+    func didPauseVideo() {
+        trackUserEvent(.PAUSE, stringValue: "LoginVideo", valueType: .VIDEO, action: .TAP)
+    }
+
     func didMuteVideo() {
         trackUserEvent(.MUTE_VIDEO, action: .TAP)
     }

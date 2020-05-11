@@ -19,6 +19,7 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
     var overlayControls: MediaPlayerOverlay?
     var videoGravityObserver: NSKeyValueObservation?
     var zoomed: Bool = false
+    var avPlayerObserver: AVPlayerObserver?
 
     var interactor: StreamVideoInteractorInterface? {
         didSet {
@@ -101,7 +102,6 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
 }
 
 extension MediaPlayerViewController: MediaPlayerViewControllerInterface {
-
     func showDestinationAlert() {
         let closeButtonItem = createCloseButton(#selector(dismissAlert))
         QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
@@ -155,6 +155,7 @@ extension UIViewController {
             return nil
         }
         let player = AVPlayer(url: videoURL)
+        observe(controller: playerController, player: player, contentItem: contentItem)
         playerController.player = player
 
         do {
@@ -198,23 +199,46 @@ extension UIViewController {
                               isDownloaded: interactor.isDownloaded)
         }
     }
+
+    private func observe(controller: MediaPlayerViewController, player: AVPlayer, contentItem: QDMContentItem?) {
+        controller.avPlayerObserver = AVPlayerObserver(player: player)
+        controller.avPlayerObserver?.onChanges { [weak self] (player) in
+            if player.timeControlStatus == .paused {
+                self?.trackUserEvent(.PAUSE, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
+            }
+            if player.timeControlStatus == .playing {
+                self?.trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
+            }
+        }
+    }
 }
 
 class AVPlayerObserver: NSObject {
     private var updateHandler: ((AVPlayerItem) -> Void)?
-    let playerItem: AVPlayerItem
+    private var playerUpdateHandler: ((AVPlayer) -> Void)?
     var observation: NSKeyValueObservation?
+    var playerObservation: NSKeyValueObservation?
 
     init(playerItem: AVPlayerItem) {
-        self.playerItem = playerItem
         super.init()
         observation = playerItem.observe(\.status, options: [.initial]) { [weak self] (item, changes) in
             self?.updateHandler?(playerItem)
         }
     }
 
+    init(player: AVPlayer) {
+        super.init()
+        playerObservation = player.observe(\.timeControlStatus, options: [.new, .old]) { [weak self] (player, changes) in
+             self?.playerUpdateHandler?(player)
+         }
+    }
+
     deinit {
         observation?.invalidate()
+    }
+
+    func onChanges(_ closure: @escaping (AVPlayer) -> Void) {
+        playerUpdateHandler = closure
     }
 
     func onStatusUpdate(_ closure: @escaping (AVPlayerItem) -> Void) {

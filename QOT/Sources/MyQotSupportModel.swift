@@ -17,27 +17,30 @@ struct MyQotSupportModel {
         case contactSupport
         case contactSupportNovartis
         case featureRequest
+        case introduction
 
         static var supportValues: [MyQotSupportModelItem] {
             #if NOVARTIS
-                return [.usingQOT, .faq, .contactSupportNovartis, .featureRequest]
+                return [.usingQOT, .faq, .contactSupportNovartis, .featureRequest, .introduction]
             #else
-                return [.usingQOT, .faq, .contactSupport, .featureRequest]
+                return [.usingQOT, .faq, .contactSupport, .featureRequest, .introduction]
             #endif
         }
-
+        
         func trackingKeys() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(.my_qot_my_profile_support_using_qot)
+                return ".my_qot_my_profile_support_using_qot"
             case .faq:
-                return AppTextService.get(.my_qot_my_profile_support_faq)
+                return ".my_qot_my_profile_support_faq"
             case .contactSupport:
-                return AppTextService.get(.my_qot_my_profile_support_contact_support)
+                return ".my_qot_my_profile_support_contact_support"
             case .contactSupportNovartis:
-                return AppTextService.get(.my_qot_my_profile_contact_support_novartis)
+                return ".my_qot_my_profile_contact_support_novartis"
             case .featureRequest:
-                return AppTextService.get(.my_qot_my_profile_support_feature_request)
+                return ".my_qot_my_profile_support_feature_request"
+            case .introduction:
+                return ".my_qot_my_profile_contact_support_introduction"
             }
         }
 
@@ -53,6 +56,8 @@ struct MyQotSupportModel {
                 return AppTextService.get(.my_qot_my_profile_support_section_contact_support_title_novartis)
             case .featureRequest:
                 return AppTextService.get(.my_qot_my_profile_support_section_feature_request_title)
+            case .introduction:
+                return AppTextService.get(.my_qot_my_profile_support_section_introduction_request_title)
             }
         }
 
@@ -66,6 +71,8 @@ struct MyQotSupportModel {
                 return AppTextService.get(.my_qot_my_profile_support_section_contact_support_subtitle)
             case .featureRequest:
                 return AppTextService.get(.my_qot_my_profile_support_section_feature_request_subtitle)
+            case .introduction:
+                return ""
             }
         }
     }

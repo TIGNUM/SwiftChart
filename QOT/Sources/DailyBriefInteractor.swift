@@ -193,7 +193,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         sectionDataList.append(ArraySection(model: .weather,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .mindsetShifter,
-                                                   elements: [BaseDailyBriefViewModel.init(nil)]))
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .expertthoughts,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -263,6 +265,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .LEADERS_WISDOM?:
                     sectionDataList.append(ArraySection(model: .leaderswisdom,
                                                         elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
+                case .EXPERT_THOUGHTS?:
+                    sectionDataList.append(ArraySection(model: .expertthoughts,
+                                                        elements: strongSelf.createExpertThoughts(createExpertThoughts: bucket)))
                 case .FEAST_OF_YOUR_EYES?:
                     sectionDataList.append(ArraySection(model: .feastForYourEyes,
                                                         elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
@@ -977,6 +982,25 @@ extension DailyBriefInteractor {
             domainModel: leadersWisdom))
 
         return leadersWisdomList
+    }
+
+    // MARK: - Expert Thoughts
+    func createExpertThoughts(createExpertThoughts expertThoughts: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var expertThoughtsList: [BaseDailyBriefViewModel] = []
+        guard let collection = expertThoughts.contentCollections?.first else {
+            return expertThoughtsList
+        }
+        expertThoughtsList.append(ExpertThoughtsCellViewModel(title: AppTextService.get(.daily_brief_section_expert_thoughts_title),
+                                                              subtitle: "",
+            description: collection.contentItems.filter {$0.searchTags.contains("EXPERT_TRANSCRIPT")}.first?.valueText ?? "",
+            audioTitle: collection.contentItems.filter {$0.searchTags.contains("EXPERT_FILE")}.first?.valueDescription ?? "",
+            audioDuration: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.valueDuration,
+            audioLink: URL(string: collection.contentItems.filter {$0.searchTags.contains("EXPERT_FILE")}.first?.valueMediaURL ?? ""),
+            format: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.format ?? .unknown,
+            remoteID: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.remoteID ?? 0,
+            durationString: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.durationString ?? "",
+            domainModel: expertThoughts))
+        return expertThoughtsList
     }
 
     // MARK: - Tobevision

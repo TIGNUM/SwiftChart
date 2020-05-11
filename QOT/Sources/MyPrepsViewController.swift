@@ -135,6 +135,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func cancelButton(_ sender: Any) {
         editButton(sender)
+        updateButton()
     }
 
     @IBAction func editButton(_ sender: Any) {
@@ -403,6 +404,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyPrepsTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.subtitleView.isHidden = false
         if editPressed == true {
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
         }
@@ -413,7 +415,6 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
             var title = ""
             title = item?.calendarEventTitle.uppercased() ?? ""
-            cell.subtitleView.isHidden = false
             switch indexPath.section {
             case PrepTypes.criticalEvents.rawValue:
                 if item?.missingEvent == true {
