@@ -432,6 +432,7 @@ final class ArticleWorker {
             hasBookmark = false
         } else if let content = self.content {
             // add
+            interactor?.showDestinationAlert()
             UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, error) in
                 self?.bookmark = bookmark
             }
