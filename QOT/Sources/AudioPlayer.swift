@@ -112,6 +112,10 @@ class AudioPlayer {
         }
     }
 
+    func setRate(_ rate: Float) {
+        player?.rate = rate
+    }
+
     func cancel() {
         resetPlayer()
         DispatchQueue.main.async {

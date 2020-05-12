@@ -132,6 +132,10 @@ extension AudioPlayerBar {
         }
     }
 
+    func setRate(_ rate: Float) {
+        audioPlayer.setRate(rate)
+    }
+
     func cancel() {
         audioPlayer.cancel()
         currentMedia = nil

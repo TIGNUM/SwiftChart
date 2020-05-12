@@ -18,6 +18,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var bookmarkButton: RoundedButton!
     @IBOutlet private weak var playPauseButton: UIButton!
     @IBOutlet private weak var fullScreenCircles: FullScreenBackgroundCircleView!
+    @IBOutlet private weak var velocityButton: UIButton!
 
     var media: MediaPlayerModel?
     var contentItem: QDMContentItem?
@@ -25,6 +26,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     var download: QDMUserStorage?
     var wasBookmarked: Bool = false
     private var colorMode: ColorMode = .dark
+    private var velocity = 1.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +63,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     }
 
     func setupButtons() {
+        velocityButton.circle()
         switch colorMode {
         case .dark:
             ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
@@ -209,6 +212,28 @@ extension AudioFullScreenViewController {
         case .notReachable:
             showNoInternetConnectionAlert()
         }
+    }
+
+    @IBAction func didTapVelocity() {
+        var title = ""
+        switch velocity {
+        case 0.5:
+            velocity = 1
+            title = "1 X"
+        case 1:
+            velocity = 1.5
+            title = "1.5 X"
+        case 1.5:
+            velocity = 2
+            title = "2 X"
+        case 2:
+            velocity = 0.5
+            title = "0.5 X"
+        default:
+            break
+        }
+        velocityButton.setTitle(title, for: .normal)
+        NotificationCenter.default.post(name: .setRateAudio, object: velocity)
     }
 }
 
