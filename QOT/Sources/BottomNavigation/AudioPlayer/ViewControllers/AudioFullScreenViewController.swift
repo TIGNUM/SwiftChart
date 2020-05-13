@@ -26,7 +26,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     var download: QDMUserStorage?
     var wasBookmarked: Bool = false
     private var colorMode: ColorMode = .dark
-    private var velocity = 1.0
+    private var velocity = Float(1.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,6 +165,9 @@ extension AudioFullScreenViewController {
 
     @IBAction func didTapPlayPauseButton() {
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
+        if !playPauseButton.isSelected {
+            NotificationCenter.default.post(name: .setRateAudio, object: velocity)
+        }
         trackUserEvent(playPauseButton.isSelected ? .PAUSE : .PLAY,
                        value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
     }
@@ -233,6 +236,7 @@ extension AudioFullScreenViewController {
             break
         }
         velocityButton.setTitle(title, for: .normal)
+        trackUserEvent(.AUDIO_PLAYBACK_SPEED, stringValue: title, valueType: .AUDIO, action: .TAP)
         NotificationCenter.default.post(name: .setRateAudio, object: velocity)
     }
 }

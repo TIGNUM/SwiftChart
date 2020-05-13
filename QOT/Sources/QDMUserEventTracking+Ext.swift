@@ -39,6 +39,7 @@ extension QDMUserEventTracking.Name {
     static let READ_MORE = "READ_MORE"
     static let ORIENTATION_CHANGE = "ORIENTATION_CHANGE"
     static let GET_STARTED = "GET_STARTED"
+    static let AUDIO_PLAYBACK_SPEED = "AUDIO_PLAYBACK_SPEED"
 }
 
 public extension QDMUserEventTracking.ValueType {
