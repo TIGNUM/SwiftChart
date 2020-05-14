@@ -87,6 +87,10 @@ private extension AskPermissionRouter {
                 self.delegate?.didFinishAskingForPermission(type: type, granted: granted)
                 self.viewController?.dismiss(animated: true)
             }
+            if let manager = AppCoordinator.permissionsManager {
+                AppDelegate.current.appCoordinator.permissionManager(manager,
+                                                                     didUpdatePermissions: manager.allPermissions)
+            }
         }
     }
 }

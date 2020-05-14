@@ -20,9 +20,7 @@ final class AppCoordinator {
     static var orientationManager: OrientationManager = OrientationManager()
 
     // MARK: - Properties
-
     private var isReadyToProcessURL = false
-
     private let remoteNotificationHandler: RemoteNotificationHandler
     private var onDismiss: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
@@ -31,10 +29,7 @@ final class AppCoordinator {
     lazy var userLogoutNotificationHandler = NotificationHandler(name: .userLogout)
     lazy var automaticLogoutNotificationHandler = NotificationHandler(name: .automaticLogout)
     lazy var apnsDeviceTokenRegistrator = APNSDeviceTokenRegistrator()
-    private lazy var permissionsManager: PermissionsManager = {
-        let manager = PermissionsManager(delegate: self)
-        return manager
-    }()
+    private lazy var permissionsManager = PermissionsManager(delegate: self)
 
     // MARK: - Life Cycle
 
@@ -88,6 +83,7 @@ final class AppCoordinator {
 
     func setupPermissionsManager() {
         AppCoordinator.permissionsManager = self.permissionsManager
+        permissionManager(permissionsManager, didUpdatePermissions: permissionsManager.allPermissions)
     }
 
     func restart() {

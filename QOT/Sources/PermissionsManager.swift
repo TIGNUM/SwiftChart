@@ -67,7 +67,7 @@ final class PermissionsManager {
 
     func reset() {
         data = [ // ensure every key is mapped to a permission
-            .calendar: Permission(interface: calendarNotificationPermission, askStatus: .canAsk, identifier: .notifications),
+            .calendar: Permission(interface: calendarNotificationPermission, askStatus: .canAsk, identifier: .calendar),
             .notifications: Permission(interface: remoteNotificationPermission, askStatus: .canAsk, identifier: .notifications),
             .location: Permission(interface: locationPermission, askStatus: .canAsk, identifier: .location),
             .photos: Permission(interface: photosPermission, askStatus: .canAsk, identifier: .photos),
