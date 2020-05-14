@@ -215,9 +215,9 @@ private extension UIViewController {
 private extension UIViewController {
     var resultsPareparePageKey: String {
         switch (self as? ResultsPrepareViewController)?.interactor.getType {
-        case .LEVEL_DAILY?: return "solve.results.daily"
-        case .LEVEL_CRITICAL?: return "solve.results.critical"
-        case .LEVEL_ON_THE_GO?: return "solve.results.onthego"
+        case .LEVEL_DAILY?: return "prepare.results.daily"
+        case .LEVEL_CRITICAL?: return "prepare.results.critical"
+        case .LEVEL_ON_THE_GO?: return "prepare.results.onthego"
         default: preconditionFailure()
         }
     }
