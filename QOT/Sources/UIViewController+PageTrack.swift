@@ -86,7 +86,15 @@ extension UIViewController {
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
         case is TBVRateHistoryNullStateViewController: return "tobevision.mytbvdata"
-        case is QuestionnaireViewController: return "sleep.quantity.customize.target"
+        case is QuestionnaireViewController:
+            if let controllerType = (self as? QuestionnaireViewController)?.controllerType {
+                switch controllerType {
+                case .vision: return "tobevision.tracker.questionaire"
+                case .dailyCheckin: return "daily.checkin.questions"
+                case .customize: return "sleep.quantity.customize.target"
+                }
+            }
+            return "daily.checkin.questions"
         case is OnboardingLoginViewController: return "onboarding.login"
         case is CoachMarksViewController: return walkThroughPageKey
         case is PaymentReminderViewController: return subscriptionReminderPageKey
@@ -94,6 +102,8 @@ extension UIViewController {
         case is ResultsPrepareViewController: return resultsPareparePageKey
         case is DTPrepareStartViewController: return "decisiontree.prepare.start"
         case is CalendarEventSelectionViewController: return "calendar.event.selection"
+        case is MyQotAdminSettingsListViewController: return "myqot.adminsettings"
+        case is MyQotAdminEnvironmentSettingsViewController: return "myqot.adminsettings.environment"
         default: preconditionFailure()
         }
     }
@@ -105,7 +115,7 @@ private extension UIViewController {
         switch (self as? MyQotSupportDetailsViewController)?.interactor?.category {
         case .FAQ?: return "myprofile.support.faq"
         case .FAQBeforeLogin?: return "myprofile.support.faqbeforelogin"
-        case .UsingQOT?: return "myprofile.support.using.qot"
+        case .UsingQOT?: return "myprofile.support.using.tignumx"
         default: preconditionFailure()
         }
     }
@@ -215,9 +225,9 @@ private extension UIViewController {
 private extension UIViewController {
     var resultsPareparePageKey: String {
         switch (self as? ResultsPrepareViewController)?.interactor.getType {
-        case .LEVEL_DAILY?: return "solve.results.daily"
-        case .LEVEL_CRITICAL?: return "solve.results.critical"
-        case .LEVEL_ON_THE_GO?: return "solve.results.onthego"
+        case .LEVEL_DAILY?: return "prepare.results.daily"
+        case .LEVEL_CRITICAL?: return "prepare.results.critical"
+        case .LEVEL_ON_THE_GO?: return "prepare.results.onthego"
         default: preconditionFailure()
         }
     }

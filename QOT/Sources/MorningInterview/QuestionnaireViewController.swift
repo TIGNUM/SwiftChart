@@ -105,7 +105,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     private var temporaryIndex: Int = -1
     private var questionkey: DailyCheckInQuestionKey?
     private var presentationType: QuestionnairePresentationType = .selection
-    private var controllerType: ControllerType = .vision
+    var controllerType: ControllerType = .vision
     private var showAnimated: Bool = false
     private var saveShouldShow: Bool = false
     weak var answerDelegate: QuestionnaireAnswer?
