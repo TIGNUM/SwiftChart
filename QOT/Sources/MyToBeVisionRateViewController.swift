@@ -40,7 +40,6 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackPage()
     }
 
     override func viewDidLayoutSubviews() {

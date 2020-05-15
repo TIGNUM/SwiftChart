@@ -86,7 +86,15 @@ extension UIViewController {
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
         case is TBVRateHistoryNullStateViewController: return "tobevision.mytbvdata"
-        case is QuestionnaireViewController: return "sleep.quantity.customize.target"
+        case is QuestionnaireViewController:
+            if let controllerType = (self as? QuestionnaireViewController)?.controllerType {
+                switch controllerType {
+                case .vision: return "tobevision.tracker.questionaire"
+                case .dailyCheckin: return "daily.checkin.questions"
+                case .customize: return "sleep.quantity.customize.target"
+                }
+            }
+            return "sleep.quantity.customize.target"
         case is OnboardingLoginViewController: return "onboarding.login"
         case is CoachMarksViewController: return walkThroughPageKey
         case is PaymentReminderViewController: return subscriptionReminderPageKey

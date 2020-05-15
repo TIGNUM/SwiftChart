@@ -37,7 +37,6 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         interactor?.viewDidAppear()
-        trackPage()
     }
 
     override func viewDidLayoutSubviews() {
