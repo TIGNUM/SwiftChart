@@ -46,6 +46,7 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackPage()
         interactor.load()
     }
 

@@ -48,6 +48,7 @@ final class MyQotAdminSettingsListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        trackPage()
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
         MyQotAdminDCSixthQuestionSettingsInteractor.getSixthQuestionPriority { [weak self] (setting) in
             self?.interactor.setCurrentSixthQuestionSetting(setting: setting)

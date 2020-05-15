@@ -94,7 +94,7 @@ extension UIViewController {
                 case .customize: return "sleep.quantity.customize.target"
                 }
             }
-            return "sleep.quantity.customize.target"
+            return "daily.checkin.questions"
         case is OnboardingLoginViewController: return "onboarding.login"
         case is CoachMarksViewController: return walkThroughPageKey
         case is PaymentReminderViewController: return subscriptionReminderPageKey
@@ -102,6 +102,8 @@ extension UIViewController {
         case is ResultsPrepareViewController: return resultsPareparePageKey
         case is DTPrepareStartViewController: return "decisiontree.prepare.start"
         case is CalendarEventSelectionViewController: return "calendar.event.selection"
+        case is MyQotAdminSettingsListViewController: return "myqot.adminsettings"
+        case is MyQotAdminEnvironmentSettingsViewController: return "myqot.adminsettings.environment"
         default: preconditionFailure()
         }
     }
@@ -113,7 +115,7 @@ private extension UIViewController {
         switch (self as? MyQotSupportDetailsViewController)?.interactor?.category {
         case .FAQ?: return "myprofile.support.faq"
         case .FAQBeforeLogin?: return "myprofile.support.faqbeforelogin"
-        case .UsingQOT?: return "myprofile.support.using.qot"
+        case .UsingQOT?: return "myprofile.support.using.tignumx"
         default: preconditionFailure()
         }
     }
