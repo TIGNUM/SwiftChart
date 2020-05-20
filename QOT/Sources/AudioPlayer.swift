@@ -95,7 +95,6 @@ class AudioPlayer {
         _isReset = false
         updater?.isPaused = true
         player?.pause()
-        setupNowPlaying()
         delegate?.updateControllButton(with: R.image.ic_play_sand())
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .didPauseAudio, object: self.media)
@@ -104,15 +103,16 @@ class AudioPlayer {
 
     func play() {
         if player?.currentItem != nil {
-            player?.play()
+            player?.automaticallyWaitsToMinimizeStalling = false
+            player?.playImmediately(atRate: 1.0)
             _isPlaying = true
             _isReset = false
             delegate?.updateControllButton(with: R.image.ic_pause_sand())
             updater?.isPaused = false
-            setupNowPlaying()
-            setupRemoteCommandCenter()
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .didStartAudio, object: self.media)
+                self.setupNowPlaying()
+                self.setupRemoteCommandCenter()
             }
         }
     }
@@ -155,7 +155,7 @@ class AudioPlayer {
     func setupNowPlaying() {
         var nowPlayingInfo = [String: Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = title
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = playerItem.currentTime().seconds
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = _currentTime
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playerItem.asset.duration.seconds
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? 1.0 : 0.0
@@ -175,6 +175,7 @@ class AudioPlayer {
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget {event in
             self.player.pause()
+            self.pause()
             return .success
         }
         commandCenter.togglePlayPauseCommand.isEnabled = true
@@ -196,7 +197,6 @@ class AudioPlayer {
             updater?.invalidate()
             delegate?.updateControllButton(with: R.image.ic_play_sand())
             markAudioItemAsComplete(remoteID: _remoteID)
-
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .didEndAudio, object: self.media)
             }
