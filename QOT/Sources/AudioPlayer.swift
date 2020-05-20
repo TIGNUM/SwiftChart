@@ -37,7 +37,7 @@ class AudioPlayer {
     private var _isPlaying = false
     private var _isReset = true
     private var player: AVPlayer?
-    private var playerItem: AVPlayerItem!
+    private var playerItem: AVPlayerItem?
     private var updater: CADisplayLink?
     weak var delegate: AudioPlayerDelegate?
 
@@ -156,7 +156,7 @@ class AudioPlayer {
         var nowPlayingInfo = [String: Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = title
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = _currentTime
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playerItem.asset.duration.seconds
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playerItem?.asset.duration.seconds
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player?.rate
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? 1.0 : 0.0
         if #available(iOS 13.0, *) {
