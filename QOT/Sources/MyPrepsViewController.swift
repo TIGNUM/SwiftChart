@@ -311,7 +311,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 90
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
@@ -350,11 +350,11 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     private func tableView(tableView: UITableView,
-                           editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+                           editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell.EditingStyle {
         guard let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row,
                                                             section: indexPath.section)) as? MyPrepsTableViewCell,
             cell.hasData else { return .none }
-        return UITableViewCellEditingStyle.init(rawValue: 3)!
+        return UITableViewCell.EditingStyle.init(rawValue: 3)!
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

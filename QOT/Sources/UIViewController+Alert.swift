@@ -84,7 +84,7 @@ enum AlertType {
         }
     }
 
-    var actionStyle: [UIAlertActionStyle] {
+    var actionStyle: [UIAlertAction.Style] {
         switch self {
         case .cameraPermissionNotAuthorized,
              .photosPermissionNotAuthorized,
@@ -93,7 +93,7 @@ enum AlertType {
         }
     }
 
-    var alertStyle: UIAlertControllerStyle {
+    var alertStyle: UIAlertController.Style {
         return .alert
     }
 }
@@ -135,7 +135,7 @@ extension UIViewController {
         }
     }
 
-    private class func addActionStyle(style: UIAlertActionStyle,
+    private class func addActionStyle(style: UIAlertAction.Style,
                                       alertController: UIAlertController,
                                       type: AlertType,
                                       handler: (() -> Void)?,

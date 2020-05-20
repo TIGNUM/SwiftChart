@@ -62,7 +62,7 @@ private extension ToolsViewController {
         tableView.registerDequeueable(ToolsTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.tableFooterView = UIView()
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 60
     }
 }

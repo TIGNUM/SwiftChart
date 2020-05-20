@@ -169,7 +169,7 @@ extension RegistrationEmailViewController {
         }
     }
 
-    private func animateOffset(_ offset: CGFloat, duration: TimeInterval, animationCurve: UIViewAnimationOptions) {
+    private func animateOffset(_ offset: CGFloat, duration: TimeInterval, animationCurve: UIView.AnimationOptions) {
         bottomConstraint.constant = offset
         UIView.animate(withDuration: duration,
                        delay: TimeInterval(0),

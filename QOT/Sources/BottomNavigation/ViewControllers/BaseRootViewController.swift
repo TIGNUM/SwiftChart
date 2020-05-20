@@ -55,11 +55,11 @@ final class BaseRootViewController: BaseViewController, ScreenZLevel1 {
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
-                                               name: Notification.Name.UIKeyboardWillShow,
+                                               name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide),
-                                               name: Notification.Name.UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         setupBottomNavigationContainer()
         setupAudioPlayerBar()
@@ -83,8 +83,8 @@ extension BaseRootViewController {
 extension BaseRootViewController {
     func setContent(viewController: UIViewController) {
         contentView?.removeFromSuperview()
-        childViewControllers.forEach({ $0.removeFromParentViewController() })
-        addChildViewController(viewController)
+        children.forEach({ $0.removeFromParent() })
+        addChild(viewController)
         contentContainer.fill(subview: viewController.view)
         contentView = viewController.view
         setupBottomNavigationContainer()
@@ -102,7 +102,7 @@ extension BaseRootViewController {
         notificationCenter.removeObserver(self, name: .showAudioFullScreen, object: nil)
         notificationCenter.removeObserver(self, name: .hideAudioFullScreen, object: nil)
         contentView?.removeFromSuperview()
-        childViewControllers.forEach({ $0.removeFromParentViewController() })
+        children.forEach({ $0.removeFromParent() })
         self.navigationController?.dismissAllPresentedViewControllers(self, false) {}
         navigationController?.popToRootViewController(animated: false)
     }
@@ -112,7 +112,7 @@ extension BaseRootViewController {
 extension BaseRootViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         guard self.navigationController?.presentedViewController == nil,
-            let contentViewController = self.childViewControllers.first else {
+            let contentViewController = self.children.first else {
                 return nil
         }
         return contentViewController.bottomNavigationLeftBarItems()
@@ -120,7 +120,7 @@ extension BaseRootViewController {
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         guard self.navigationController?.presentedViewController == nil,
-            let contentViewController = self.childViewControllers.first else {
+            let contentViewController = self.children.first else {
                 return nil
         }
         return contentViewController.bottomNavigationRightBarItems()
@@ -131,8 +131,8 @@ extension BaseRootViewController {
 extension BaseRootViewController {
     @objc func keyboardWillShow(notification: Notification) {
         if shouldMoveBottomBarWithKeyboard,
-            let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+            let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             UIView.animate(withDuration: duration) {
                 self.bottomNavigationBottomConstraint.constant = -keyboardSize.height
             }
@@ -141,7 +141,7 @@ extension BaseRootViewController {
     }
 
     @objc func keyboardWillHide(notification: Notification) {
-        if let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+        if let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             UIView.animate(withDuration: duration) {
                 self.bottomNavigationBottomConstraint.constant = 0
             }

@@ -32,9 +32,9 @@ extension UIImage {
         let data: Data?
         switch format {
         case .png:
-            data = UIImagePNGRepresentation(self)
+            data = self.pngData()
         case .jpg(let compressionQuality):
-            data = UIImageJPEGRepresentation(self, compressionQuality)
+            data = self.jpegData(compressionQuality: compressionQuality)
         }
         if let data = data {
             return data

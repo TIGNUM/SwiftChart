@@ -168,7 +168,7 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         pageController.delegate = self
         pageController.dataSource = self
         self.pageController = pageController
-        self.addChildViewController(pageController)
+        self.addChild(pageController)
         view.insertSubview(pageController.view, belowSubview: pageContainerView)
         pageController.view.clipsToBounds = false
     }

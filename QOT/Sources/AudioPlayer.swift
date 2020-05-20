@@ -78,14 +78,14 @@ class AudioPlayer {
 
     func seek(to seconds: Float) {
         let time = TimeInterval(seconds) * _totalTime
-        player?.seek(to: CMTimeMakeWithSeconds(time, 1))
+        player?.seek(to: CMTimeMakeWithSeconds(time, preferredTimescale: 1))
     }
 
     func resetPlayer() {
         _isReset = true
         _isPlaying = false
         player?.pause()
-        player?.seek(to: CMTimeMakeWithSeconds(0, 1))
+        player?.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1))
         delegate?.updateControllButton(with: R.image.ic_play_sand())
         updater?.invalidate()
     }
@@ -145,11 +145,13 @@ class AudioPlayer {
             player = AVPlayer(playerItem: playerItem)
             delegate?.updateControllButton(with: R.image.ic_pause_sand())
             _isReset = false
-            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault, options: .init(rawValue: 0))
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback,
+                                                             mode: AVAudioSessionModeDefault,
+                                                             options: .init(rawValue: 0))
             try? AVAudioSession.sharedInstance().setActive(true)
         }
         updater = CADisplayLink(target: self, selector: #selector(trackAudio))
-        updater?.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        updater?.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
     }
 
     func setupNowPlaying() {

@@ -101,7 +101,7 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
 private extension MyDataSelectionViewController {
     func setupTableView() {
         tableView.registerDequeueable(MyDataSelectionScreenTableViewCell.self)
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 150
         tableView.separatorInset = .zero
         tableView.separatorColor = .sand30

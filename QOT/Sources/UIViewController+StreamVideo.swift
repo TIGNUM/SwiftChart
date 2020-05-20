@@ -65,7 +65,7 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let controls = overlayControls {
-            self.view.bringSubview(toFront: controls)
+            self.view.bringSubviewToFront(controls)
         }
     }
 
@@ -159,7 +159,7 @@ extension UIViewController {
         playerController.player = player
 
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print(error.localizedDescription)

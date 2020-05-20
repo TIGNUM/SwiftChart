@@ -14,14 +14,14 @@ final class KeyboardListener {
 
         let startFrame: CGRect
         let endFrame: CGRect
-        let animationCurve: UIViewAnimationCurve?
+        let animationCurve: UIView.AnimationCurve?
         let animationDuration: TimeInterval?
     }
 
     enum State {
 
         case idle(height: CGFloat)
-        case willChange(startHeight: CGFloat, endHeight: CGFloat, duration: TimeInterval, curve: UIViewAnimationCurve)
+        case willChange(startHeight: CGFloat, endHeight: CGFloat, duration: TimeInterval, curve: UIView.AnimationCurve)
 
         var height: CGFloat {
             switch self {
@@ -83,15 +83,15 @@ private extension NSNotification {
 
     var keyboardInfo: KeyboardListener.KeyboardInfo? {
         guard let userInfo = userInfo,
-            let startFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return nil }
+            let startFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return nil }
 
-        let curve = (userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue
-        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
+        let curve = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue
+        let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
 
         return KeyboardListener.KeyboardInfo(startFrame: startFrame,
                                               endFrame: endFrame,
-                                              animationCurve: curve.flatMap { UIViewAnimationCurve(rawValue: $0) },
+                                              animationCurve: curve.flatMap { UIView.AnimationCurve(rawValue: $0) },
                                               animationDuration: duration.map { TimeInterval($0) })
     }
 }

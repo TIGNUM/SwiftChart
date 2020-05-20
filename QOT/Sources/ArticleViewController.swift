@@ -162,7 +162,7 @@ private extension ArticleViewController {
         ThemeView.articleBackground(nil).apply(view)
         setNeedsStatusBarAppearanceUpdate()
         audioButton.setColorMode()
-        view.bringSubview(toFront: audioButton)
+        view.bringSubviewToFront(audioButton)
         refreshBottomNavigationItems()
     }
 }
@@ -473,7 +473,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let item = interactor.articleItem(at: indexPath) else {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         switch item.type {
         case .articleRelatedWhatsHot: return 215
@@ -482,7 +482,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .articleNextUp: return 144
         case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
             return 95
-        default: return UITableViewAutomaticDimension
+        default: return UITableView.automaticDimension
         }
     }
 
