@@ -350,7 +350,7 @@ enum ThemableButton {
     case level5
     case continueButton
 
-    var titleAttributes: [NSAttributedStringKey: Any]? {
+    var titleAttributes: [NSAttributedString.Key: Any]? {
         switch self {
         case .myLibrary,
              .fullscreenAudioPlayerDownload,
@@ -478,10 +478,10 @@ enum ThemeSegment {
 
         switch self {
         case .accent:
-            normal = [NSAttributedStringKey.font: Fonts.fontRegular14,
-                      NSAttributedStringKey.foregroundColor: Palette.accent60]
-            selected = [NSAttributedStringKey.font: Fonts.fontRegular14,
-                        NSAttributedStringKey.foregroundColor: Palette.sand]
+            normal = [NSAttributedString.Key.font: Fonts.fontRegular14,
+                      NSAttributedString.Key.foregroundColor: Palette.accent60]
+            selected = [NSAttributedString.Key.font: Fonts.fontRegular14,
+                        NSAttributedString.Key.foregroundColor: Palette.sand]
             view.tintColor = .clear
             view.backgroundColor = .clear
             if #available(iOS 13, *) {
@@ -1820,7 +1820,7 @@ convenience init?(color: UIColor, size: CGSize) {
     guard let ctx = UIGraphicsGetCurrentContext() else { return nil }
     ctx.fill(CGRect(origin: .zero, size: size))
     guard let image = UIGraphicsGetImageFromCurrentImageContext(),
-        let imagePNGData = UIImagePNGRepresentation(image)
+        let imagePNGData = image.pngData()
     else { return nil }
     UIGraphicsEndImageContext()
 

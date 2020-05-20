@@ -81,16 +81,16 @@ final class MyVisionInteractor {
 
     private func share(plainText: String) {
         let activityVC = UIActivityViewController(activityItems: [plainText], applicationActivities: nil)
-        activityVC.excludedActivityTypes = [UIActivityType.openInIBooks,
-                                            UIActivityType.airDrop,
-                                            UIActivityType.postToTencentWeibo,
-                                            UIActivityType.postToVimeo,
-                                            UIActivityType.postToFlickr,
-                                            UIActivityType.addToReadingList,
-                                            UIActivityType.saveToCameraRoll,
-                                            UIActivityType.assignToContact,
-                                            UIActivityType.postToFacebook,
-                                            UIActivityType.postToTwitter]
+        activityVC.excludedActivityTypes = [UIActivity.ActivityType.openInIBooks,
+                                            UIActivity.ActivityType.airDrop,
+                                            UIActivity.ActivityType.postToTencentWeibo,
+                                            UIActivity.ActivityType.postToVimeo,
+                                            UIActivity.ActivityType.postToFlickr,
+                                            UIActivity.ActivityType.addToReadingList,
+                                            UIActivity.ActivityType.saveToCameraRoll,
+                                            UIActivity.ActivityType.assignToContact,
+                                            UIActivity.ActivityType.postToFacebook,
+                                            UIActivity.ActivityType.postToTwitter]
 
         activityVC.completionWithItemsHandler = { [weak self] (activity, success, items, error) in
             // swizzle back to original

@@ -141,7 +141,11 @@ final class AppCoordinator {
         }
     }
 
-    private func setRootViewController(_ viewController: UIViewController, transitionStyle: UIViewAnimationOptions, duration: TimeInterval, animated: Bool, completion: (() -> Void)?) {
+    private func setRootViewController(_ viewController: UIViewController,
+                                       transitionStyle: UIView.AnimationOptions,
+                                       duration: TimeInterval,
+                                       animated: Bool,
+                                       completion: (() -> Void)?) {
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window,
             let rootViewController = window.rootViewController else {
             assertionFailure("rootViewController should not be nil")
@@ -255,28 +259,29 @@ extension AppCoordinator {
     }
 
     func add3DTouchShortcuts() {
-        UIApplication.shared.shortcutItems = []
         let whatsHot = URLScheme.latestWhatsHotArticle
-        UIApplication.shared.shortcutItems?.append(
-            UIMutableApplicationShortcutItem(type: whatsHot.rawValue,
-                                             localizedTitle: AppTextService.get(.generic_long_press_shortcut_title_wh_article),
-                                             localizedSubtitle: nil,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
-                                             userInfo: ["link": whatsHot.launchPathWithParameterValue("")]))
         let tools = URLScheme.tools
-        UIApplication.shared.shortcutItems?.append(
-            UIMutableApplicationShortcutItem(type: tools.rawValue,
-                                             localizedTitle: AppTextService.get(.generic_long_press_shortcut_title_tools),
-                                             localizedSubtitle: nil,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
-                                             userInfo: ["link": tools.launchPathWithParameterValue("")]))
         let myData = URLScheme.myData
-        UIApplication.shared.shortcutItems?.append(
-            UIMutableApplicationShortcutItem(type: myData.rawValue,
-                                             localizedTitle: AppTextService.get(.generic_long_press_shortcut_title_review_my_data),
-                                             localizedSubtitle: nil,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
-                                             userInfo: ["link": myData.launchPathWithParameterValue("")]))
+        let whatsHotItem = UIMutableApplicationShortcutItem(type: whatsHot.rawValue,
+                                                            localizedTitle: AppTextService.get(.generic_long_press_shortcut_title_wh_article),
+                                                            localizedSubtitle: nil,
+                                                            icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
+                                                            userInfo: [:])
+        let toolsItem = UIMutableApplicationShortcutItem(type: tools.rawValue,
+                                                         localizedTitle: AppTextService.get(.generic_long_press_shortcut_title_tools),
+                                                         localizedSubtitle: nil,
+                                                         icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
+                                                         userInfo: [:])
+        let myDataItem = UIMutableApplicationShortcutItem(type: myData.rawValue,
+                                                          localizedTitle: AppTextService.get(.generic_long_press_shortcut_title_review_my_data),
+                                                          localizedSubtitle: nil,
+                                                          icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
+                                                          userInfo: [:])
+        whatsHotItem.targetContentIdentifier = whatsHot.launchPathWithParameterValue("")
+        toolsItem.targetContentIdentifier = tools.launchPathWithParameterValue("")
+        myDataItem.targetContentIdentifier = myData.launchPathWithParameterValue("")
+
+        UIApplication.shared.shortcutItems = [whatsHotItem, toolsItem, myDataItem]
     }
 }
 

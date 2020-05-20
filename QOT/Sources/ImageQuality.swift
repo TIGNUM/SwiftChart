@@ -43,7 +43,7 @@ enum ImageSize {
 extension UIImage {
     func withQuality(_ quality: ImageQuality, size: ImageSize) -> UIImage? {
         guard
-            let compressedImageData = UIImageJPEGRepresentation(self, quality.compressionRatio),
+            let compressedImageData = self.jpegData(compressionQuality: quality.compressionRatio),
             let compressedImage = UIImage(data: compressedImageData)?.scaledToSize(size.scaleSize(self.size)) else {
                 return nil
         }

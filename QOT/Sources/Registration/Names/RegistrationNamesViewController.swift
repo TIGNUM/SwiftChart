@@ -165,7 +165,7 @@ extension RegistrationNamesViewController {
         }
     }
 
-    private func animateOffset(_ offset: CGFloat, duration: TimeInterval, animationCurve: UIViewAnimationOptions) {
+    private func animateOffset(_ offset: CGFloat, duration: TimeInterval, animationCurve: UIView.AnimationOptions) {
         UIView.animate(withDuration: duration,
                        delay: TimeInterval(0),
                        options: animationCurve,

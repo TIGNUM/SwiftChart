@@ -28,7 +28,7 @@ final class MyLibraryCategoryListInteractor {
         self.router = router
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(load(_:)),
-                                               name: .UIApplicationDidBecomeActive, object: nil)
+                                               name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(load(_:)),
                                                name: .didUpdateMyLibraryData, object: nil)

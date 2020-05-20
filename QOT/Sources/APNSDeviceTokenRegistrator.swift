@@ -12,7 +12,7 @@ import qot_dal
 
 final class APNSDeviceTokenRegistrator {
     private var token: String?
-    private let becomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
+    private let becomeActiveHandler = NotificationHandler(name: UIApplication.didBecomeActiveNotification)
 
     init() {
         becomeActiveHandler.handler = { [unowned self] _ in

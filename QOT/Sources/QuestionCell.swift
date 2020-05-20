@@ -12,7 +12,7 @@ final class QuestionCell: BaseDailyBriefCell {
 
     private var baseHeaderView: QOTBaseHeaderView?
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)

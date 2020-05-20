@@ -56,7 +56,7 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
 private extension StrategyListViewController {
     func setupTableView() {
         tableView.backgroundColor = .clear
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 120
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
@@ -90,7 +90,7 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
             array.append(oldIndexPath)
         }
         lastAudioIndexPath = indexPath
-        tableView.reloadRows(at: array, with: UITableViewRowAnimation.none)
+        tableView.reloadRows(at: array, with: UITableView.RowAnimation.none)
     }
 }
 
