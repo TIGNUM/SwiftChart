@@ -36,7 +36,7 @@ class AudioPlayer {
     private var _progress = Float(0)
     private var _isPlaying = false
     private var _isReset = true
-    private var player: AVPlayer!
+    private var player: AVPlayer?
     private var playerItem: AVPlayerItem!
     private var updater: CADisplayLink?
     weak var delegate: AudioPlayerDelegate?
@@ -104,7 +104,7 @@ class AudioPlayer {
     func play() {
         if player?.currentItem != nil {
             player?.automaticallyWaitsToMinimizeStalling = false
-            player?.playImmediately(atRate: 1.0)
+            player?.play()
             _isPlaying = true
             _isReset = false
             delegate?.updateControllButton(with: R.image.ic_pause_sand())
@@ -157,7 +157,7 @@ class AudioPlayer {
         nowPlayingInfo[MPMediaItemPropertyTitle] = title
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = _currentTime
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playerItem.asset.duration.seconds
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player?.rate
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPlaying ? 1.0 : 0.0
         if #available(iOS 13.0, *) {
             MPNowPlayingInfoCenter.default().playbackState = .playing
@@ -169,12 +169,12 @@ class AudioPlayer {
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.isEnabled = true
         commandCenter.playCommand.addTarget {event in
-            self.player.play()
+            self.player?.play()
             return .success
         }
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget {event in
-            self.player.pause()
+            self.player?.pause()
             self.pause()
             return .success
         }
