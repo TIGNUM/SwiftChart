@@ -75,7 +75,7 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
         self.pageController = pageController
         pageContainerView.addSubview(pageController.view)
         pageContainerView.fill(subview: pageController.view)
-        self.addChildViewController(pageController)
+        self.addChild(pageController)
 
         if let controller = interactor.currentController {
             pageController.setViewControllers([controller], direction: .forward, animated: false, completion: nil)

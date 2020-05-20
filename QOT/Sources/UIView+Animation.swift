@@ -65,8 +65,8 @@ extension UIView {
 
     func fadeTransition(_ duration: CFTimeInterval) {
         let animation = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        animation.type = kCATransitionFade
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        animation.type = CATransitionType.fade
         animation.duration = duration
         layer.add(animation, forKey: kCATransition)
     }

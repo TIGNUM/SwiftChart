@@ -56,7 +56,7 @@ extension BaseRootViewController {
             self.bottomNavigationContainer.layer.zPosition = 1
         }, completion: { (_) in
             self.bottomNavigationContainer.alpha = 1
-            self.bottomNavigationContainer.superview?.bringSubview(toFront: self.bottomNavigationContainer)
+            self.bottomNavigationContainer.superview?.bringSubviewToFront(self.bottomNavigationContainer)
         })
     }
 
@@ -185,7 +185,7 @@ extension BaseRootViewController {
     @objc override public func QOTVisibleViewController() -> UIViewController? {
         if let naviVC = presentedViewController as? UINavigationController {
             return naviVC.QOTVisibleViewController()
-        } else if let child = childViewControllers.last {
+        } else if let child = children.last {
             return child.QOTVisibleViewController()
         }
 

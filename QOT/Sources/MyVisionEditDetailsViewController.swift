@@ -51,19 +51,19 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
     private func addKeyboardObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleKeyboard(notification:)),
-                                               name: .UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleKeyboard(notification:)),
-                                               name: .UIKeyboardWillShow,
+                                               name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
     }
 
     @objc private func handleKeyboard(notification: Notification) {
         guard
             let userInfo = notification.userInfo,
-            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        let isKeyboardShowing = notification.name == .UIKeyboardWillShow
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
         let height = isKeyboardShowing ? keyboardFrame.height : Layout.padding_100
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
         UIView.animate(withDuration: Animation.duration_06, animations: {

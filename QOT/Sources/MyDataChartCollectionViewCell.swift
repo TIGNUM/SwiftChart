@@ -234,7 +234,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                     let pointView = UIView.init(frame: .zero)
                     pointView.backgroundColor = MyDataSelectionModel.color(for: parameter)
                     addSubview(pointView)
-                    bringSubview(toFront: pointView)
+                    bringSubviewToFront(pointView)
                     addedViews.append(pointView)
                     var alignmentView: UIView = UIView()
                     for view in alignmentViewsCollection where view.tag == Int(point.x) {

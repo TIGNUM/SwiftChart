@@ -47,7 +47,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Life Cycle
 
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if SessionService.main.getCurrentSession() != nil {
             appCoordinator.importHealthKitDataIfAuthorized()
             appCoordinator.importCalendarEventsIfAuthorized()
@@ -134,7 +134,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication,
                      open url: URL,
-                     options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if launchHandler.canLaunch(url: url) == true && URLScheme.isLaunchableHost(host: url.host) == true {
             launchHandler.process(url: url)
         }
@@ -168,7 +168,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) {
         guard
-            let linkString = shortcutItem.userInfo?["link"] as? String,
+            let linkString = shortcutItem.targetContentIdentifier as? String,
             let link = URL(string: linkString) else { return }
         launchHandler.process(url: link)
     }
@@ -183,8 +183,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - private
 
 private extension AppDelegate {
-    func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-        guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
+    func incomingLocationEvent(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        guard let locationEvent = launchOptions?[UIApplication.LaunchOptionsKey.location] as? NSNumber else { return }
         if locationEvent.boolValue == true {
             // needs a restart at this point
             QOTService.main.reportDeviceInfo()

@@ -20,7 +20,7 @@ extension UNMutableNotificationContent {
         self.init()
         title.map { self.title = $0 }
         self.body = body
-        self.sound = soundName.map { UNNotificationSound(named: $0) }
+        self.sound = soundName.map { UNNotificationSound(named: UNNotificationSoundName(rawValue: $0)) }
         self.userInfo = ["link": link]
     }
 }

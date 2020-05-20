@@ -56,7 +56,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         setupView()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didChangeOrientation),
-                                               name: NSNotification.Name.UIDeviceOrientationDidChange,
+                                               name: UIDevice.orientationDidChangeNotification,
                                                object: nil)
     }
 
@@ -111,9 +111,9 @@ extension RegisterIntroViewController {
         DispatchQueue.main.async {
             if UIDevice.current.orientation.isLandscape {
                 self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .LANDSCAPE, action: .ROTATE)
-                self.videoCell.playerController.removeFromParentViewController()
+                self.videoCell.playerController.removeFromParent()
                 self.view.fill(subview: self.videoCell.playerController.view)
-                self.addChildViewController(self.videoCell.playerController)
+                self.addChild(self.videoCell.playerController)
                 self.videoCell.playerController.showsPlaybackControls = true
                 self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                 self.updateBottomNavigation([], [])
@@ -121,7 +121,7 @@ extension RegisterIntroViewController {
             } else {
                 self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .PORTRAIT, action: .ROTATE)
                 UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
-                self.videoCell.playerController.removeFromParentViewController()
+                self.videoCell.playerController.removeFromParent()
                 self.videoCell.mediaContentView.fill(subview: self.videoCell.playerController.view)
                 self.videoCell.playerController.showsPlaybackControls = false
                 self.videoCell.soundToggleButton.isSelected = !(self.videoCell.playerController.player?.isMuted ?? true)

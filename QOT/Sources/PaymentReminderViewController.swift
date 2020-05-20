@@ -42,12 +42,12 @@ final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Private
 
     private func setupTableView() {
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 150
         tableView.registerDequeueable(PaymentTableViewCell.self)
         tableView.registerDequeueable(PaymentSwitchAccountTableViewCell.self)
         tableView.registerDequeueable(PaymentFooterView.self)
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 150
     }
 

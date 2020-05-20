@@ -50,7 +50,7 @@ class ImagePicker: NSObject {
     // MARK: - private
 
     private func show(in viewController: UIViewController,
-                      for type: UIImagePickerControllerSourceType,
+                      for type: UIImagePickerController.SourceType,
                       completion: (() -> Void)?) throws {
         guard UIImagePickerController.isSourceTypeAvailable(type) else {
             throw ImagePickerError.sourceNotAvailable
@@ -62,7 +62,7 @@ class ImagePicker: NSObject {
         imagePickerController.navigationBar.barTintColor = .black
         imagePickerController.navigationBar.tintColor = .white
         imagePickerController.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.white
+            NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         viewController.present(imagePickerController, animated: true, completion: completion)
         self.viewController = viewController
@@ -81,8 +81,9 @@ extension ImagePicker: UIImagePickerControllerDelegate {
         delegte?.imagePickerDidPressCancel(self)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
         delegte?.imagePicker(self, didSelectImage: image)

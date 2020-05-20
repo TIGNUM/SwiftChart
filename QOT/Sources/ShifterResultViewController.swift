@@ -151,7 +151,7 @@ extension ShifterResultViewController: UITableViewDataSource {
         case .lowToHigh:
             return 380
         default:
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
     }
 }

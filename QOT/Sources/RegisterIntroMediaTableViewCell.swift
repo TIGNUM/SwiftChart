@@ -67,7 +67,7 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func startPlayingFromBeggining() {
-        playerController.player?.seek(to: kCMTimeZero)
+        playerController.player?.seek(to: CMTime.zero)
         playerController.player?.play()
     }
 }
@@ -77,7 +77,7 @@ private extension RegisterIntroMediaTableViewCell {
         playerController.player = AVPlayer(url: videoURL)
 
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print(error.localizedDescription)

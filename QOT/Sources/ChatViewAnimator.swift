@@ -47,7 +47,7 @@ private extension CAKeyframeAnimation {
             self.duration = duration
             self.keyTimes = times.map { NSNumber(value: $0 / duration) }
             self.values = values
-            self.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            self.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         }
     }
 }

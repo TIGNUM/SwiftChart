@@ -62,7 +62,7 @@ final class MyLibraryUserStorageInteractor {
 
         self.notificationCenter.addObserver(self,
                                             selector: #selector(load(_:)),
-                                            name: .UIApplicationDidBecomeActive, object: nil)
+                                            name: UIApplication.didBecomeActiveNotification, object: nil)
         self.notificationCenter.addObserver(self,
                                             selector: #selector(didUpdateDownloadStatus(_:)),
                                             name: .didUpdateDownloadStatus, object: nil)

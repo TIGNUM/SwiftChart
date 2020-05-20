@@ -12,18 +12,18 @@ import UIKit
 extension UITableView {
 
     convenience init(
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         contentInsets: UIEdgeInsets = Layout.TabBarView.insets,
         backgroundColor: UIColor = .clear,
         estimatedRowHeight: CGFloat = 44,
-        seperatorStyle: UITableViewCellSeparatorStyle = .none,
+        seperatorStyle: UITableViewCell.SeparatorStyle = .none,
         delegate: UITableViewDelegate,
         dataSource: UITableViewDataSource,
         dequeables: Dequeueable.Type...) {
             self.init(frame: .zero, style: style)
             self.backgroundColor = backgroundColor
             self.estimatedRowHeight = estimatedRowHeight
-            self.rowHeight = UITableViewAutomaticDimension
+            self.rowHeight = UITableView.automaticDimension
             self.separatorStyle = seperatorStyle
             self.contentInset = contentInsets
             self.delegate = delegate

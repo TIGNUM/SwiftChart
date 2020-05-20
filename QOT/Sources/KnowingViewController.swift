@@ -95,7 +95,7 @@ extension KnowingViewController: KnowingViewControllerInterface {
         collectionView.registerDequeueable(StrategyCategoryCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyFoundationCollectionViewCell.self)
         collectionView.register(UINib(resource: R.nib.componentHeaderView),
-                                forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: headerViewID)
     }
 
@@ -207,7 +207,9 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
         case Knowing.Section.header.rawValue:
             return CGSize(width: view.frame.width, height: 0)
         default:
-            if let componentHeader = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionElementKindSectionHeader, at: IndexPath(row: 0, section: section)) as? ComponentHeaderView,
+            if let componentHeader = self.collectionView(collectionView,
+                                                         viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader,
+                                                         at: IndexPath(row: 0, section: section)) as? ComponentHeaderView,
                 let sectionType = Knowing.Section(rawValue: section),
                 let header = interactor?.header(for: sectionType) {
                 componentHeader.configure(title: header.title, subtitle: header.subtitle, secondary: true)
@@ -227,7 +229,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             switch indexPath.section {
             case Knowing.Section.header.rawValue:
                 break

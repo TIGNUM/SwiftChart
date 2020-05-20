@@ -11,7 +11,7 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
 
     // MARK: - Properties
     // Default values are for backwards compatibility until all instances get "Themed"
-    var titleAttributes: [NSAttributedStringKey: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
+    var titleAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
     var normal: ButtonTheme? = ButtonTheme(foreground: .accent, background: nil, border: .accent40)
     var highlight: ButtonTheme? = ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
     var select: ButtonTheme?
@@ -86,7 +86,7 @@ extension RoundedButton {
         setTitle(title, for: .normal)
     }
 
-    override func setTitle(_ title: String?, for state: UIControlState) {
+    override func setTitle(_ title: String?, for state: UIControl.State) {
         setAttributedTitle(NSAttributedString(string: title ?? ""))
     }
 
@@ -135,7 +135,7 @@ extension RoundedButton {
 private extension RoundedButton {
 
     func setTheme(_ theme: ButtonTheme, for state: UIControl.State, with title: NSAttributedString?) {
-        var attributes: [NSAttributedStringKey: Any] = titleAttributes ?? [NSAttributedStringKey: Any]()
+        var attributes: [NSAttributedString.Key: Any] = titleAttributes ?? [NSAttributedString.Key: Any]()
         attributes[.foregroundColor] = theme.foregroundColor
         let attributedTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
         attributedTitle.addAttributes(attributes, range: NSRange(location: 0, length: attributedTitle.length))

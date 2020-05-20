@@ -21,7 +21,7 @@ struct ButtonTheme {
 }
 
 protocol ButtonThemeable {
-    var titleAttributes: [NSAttributedStringKey: Any]? { get set }
+    var titleAttributes: [NSAttributedString.Key: Any]? { get set }
     var normal: ButtonTheme? { get set }
     var highlight: ButtonTheme? { get set }
     var select: ButtonTheme? { get set }
