@@ -201,6 +201,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     }
 
     func getDailyBriefBucketsForViewModel() {
+        guard UIApplication.shared.applicationState == .active else {
+            needToLoadBuckets = false
+            isLoadingBuckets = false
+            return
+        }
+
         if isLoadingBuckets {
             needToLoadBuckets = true
         }
