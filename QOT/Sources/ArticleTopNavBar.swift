@@ -21,7 +21,7 @@ final class ArticleTopNavBar: UIView {
     private let bottomMargin: CGFloat = -10
     private let rightMargin: CGFloat = -10
     private let leftMargin: CGFloat = 10
-    private let titleMargin: CGFloat = -60
+    private let titleMargin: CGFloat = -50
 
     private var spacing: CGFloat = -30
     private let buttonSize: CGFloat = 40
