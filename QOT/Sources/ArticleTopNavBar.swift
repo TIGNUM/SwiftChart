@@ -20,6 +20,9 @@ final class ArticleTopNavBar: UIView {
 
     private let bottomMargin: CGFloat = -10
     private let rightMargin: CGFloat = -10
+    private let leftMargin: CGFloat = 10
+    private let titleMargin: CGFloat = -60
+
     private var spacing: CGFloat = -30
     private let buttonSize: CGFloat = 40
 
@@ -71,11 +74,8 @@ private extension ArticleTopNavBar {
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(labelTitle)
-
-//        labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-
-        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -60))
-        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 10))
+        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: titleMargin))
+        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: leftMargin))
         labelTitle.centerYAnchor.constraint(equalTo: lastContainer!.centerYAnchor).isActive = true
     }
 
