@@ -38,6 +38,8 @@ final class ArticleTopNavBar: UIView {
     var title: String? {
         didSet {
             ThemeText.articleNavigationTitle.apply(title, to: labelTitle)
+            labelTitle.adjustsFontSizeToFitWidth = false
+            labelTitle.lineBreakMode = .byTruncatingTail
         }
     }
 }
@@ -67,8 +69,13 @@ private extension ArticleTopNavBar {
         setNeedsLayout()
 
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
+
         addSubview(labelTitle)
-        labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+
+//        labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+
+        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -60))
+        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 10))
         labelTitle.centerYAnchor.constraint(equalTo: lastContainer!.centerYAnchor).isActive = true
     }
 
