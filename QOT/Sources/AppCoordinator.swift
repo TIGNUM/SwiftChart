@@ -277,9 +277,6 @@ extension AppCoordinator {
                                                           localizedSubtitle: nil,
                                                           icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
                                                           userInfo: [:])
-        whatsHotItem.targetContentIdentifier = whatsHot.launchPathWithParameterValue("")
-        toolsItem.targetContentIdentifier = tools.launchPathWithParameterValue("")
-        myDataItem.targetContentIdentifier = myData.launchPathWithParameterValue("")
 
         UIApplication.shared.shortcutItems = [whatsHotItem, toolsItem, myDataItem]
     }
