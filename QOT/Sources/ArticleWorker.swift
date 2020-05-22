@@ -79,7 +79,7 @@ final class ArticleWorker {
 
     var nextUp: Article.Item?
 
-    var nextWhatsHot: [Article.RelatedArticleWhatsHot]
+    var nextWhatsHot: Article.RelatedArticleWhatsHot?
 
     var isTopBarHidden: Bool = false
 
@@ -298,22 +298,23 @@ final class ArticleWorker {
         let nextUpContentIds = content?.relatedContentList.filter({$0.type.uppercased() == "NEXT_UP"}).compactMap({ $0.contentID }) ?? []
         relatedContent.forEach { content in
             if content.isWhatsHot == true {
-                guard let contentId = content.remoteID, nextUpContentIds.contains(obj: contentId) != true else { return }
-                let imageURL = URL(string: content.thumbnailURLString ?? "")
-                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? 0,
-                                                               title: content.title,
-                                                               publishDate: content.publishedDate,
-                                                               author: content.author,
-                                                               timeToRead: content.durationString,
-                                                               imageURL: imageURL,
-                                                               isNew: false))
+                if let contentId = content.remoteID, nextUpContentIds.contains(obj: contentId) != true {
+                    let imageURL = URL(string: content.thumbnailURLString ?? "")
+                    articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? 0,
+                                                                   title: content.title,
+                                                                   publishDate: content.publishedDate,
+                                                                   author: content.author,
+                                                                   timeToRead: content.durationString,
+                                                                   imageURL: imageURL,
+                                                                   isNew: false))
+                }
+                if let nextUp = self.nextWhatsHot {
+                    itemsNextUp.append(nextUp)
+                }
             }
         }
-        if let nextUp = self.nextWhatsHot {
-            itemsNextUp.append(nextUp)
-        }
         relatedArticlesWhatsHot = articles
-        nextWhatsHot = itemsNextUp
+        whatsHotArticleNextItems = itemsNextUp
     }
 
     private func setupRelatedArticlesStrtegy() {
