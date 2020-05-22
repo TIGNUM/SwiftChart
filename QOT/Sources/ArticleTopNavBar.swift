@@ -22,13 +22,10 @@ final class ArticleTopNavBar: UIView {
     private let rightMargin: CGFloat = -10
     private let leftMargin: CGFloat = 10
     private let titleMargin: CGFloat = -50
-
     private var spacing: CGFloat = -30
     private let buttonSize: CGFloat = 40
-
     private var arrayViews: [Weak<UIView>] = []
     private var arrayViewsCount = 0
-
     private var labelTitle = UILabel()
     private var buttonMore: AnimatedButton = AnimatedButton(type: .custom)
     private var buttonBookmark: AnimatedButton = AnimatedButton(type: .custom)
@@ -72,7 +69,6 @@ private extension ArticleTopNavBar {
         setNeedsLayout()
 
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
-
         addSubview(labelTitle)
         addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: titleMargin))
         addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: leftMargin))
