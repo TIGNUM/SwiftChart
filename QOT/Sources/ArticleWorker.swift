@@ -331,7 +331,7 @@ final class ArticleWorker {
         guard let content = content else { return 1 }
         switch content.section {
         case .WhatsHot:
-            return relatedArticlesWhatsHot.isEmpty ? 1 : 2
+            return 2
         case .About,
              .ExclusiveRecoveryContent:
             return 1
@@ -361,6 +361,7 @@ final class ArticleWorker {
         }
     }
 
+//    DO SOMETHING HERE TO GET NEXT UP
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
         if relatedArticlesWhatsHot.count > indexPath.item {
             return relatedArticlesWhatsHot[indexPath.item]

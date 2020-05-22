@@ -440,6 +440,16 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                            isNew: relatedArticle.isNew,
                            forcedColorMode: nil)
             return cell
+        case .nextWhatsHotArticle(let nextWhatsHot):
+            let cell: ArticleRelatedWhatsHotTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: nextWhatsHot.title,
+                           publishDate: nextWhatsHot.publishDate,
+                           author: nextWhatsHot.author,
+                           timeToRead: nextWhatsHot.timeToRead,
+                           imageURL: nextWhatsHot.imageURL,
+                           isNew: nextWhatsHot.isNew,
+                           forcedColorMode: nil)
+            return cell
         case .button:
             let cell: MarkAsReadTableViewCell = tableView.dequeueCell(for: indexPath)
             interactor.isRead { (isRead) in
@@ -477,6 +487,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         }
         switch item.type {
         case .articleRelatedWhatsHot: return 215
+        case .nextWhatsHotArticle: return 215
         case .pdf,
              .articleRelatedStrategy: return 95
         case .articleNextUp: return 144
