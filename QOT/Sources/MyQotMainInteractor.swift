@@ -43,8 +43,7 @@ final class MyQotMainInteractor {
             let section = MyQotSection.init(rawValue: index) ?? .profile
             elements.append(MyQotViewModel.Item(myQotSections: section,
                                                 title: worker.myQOTTitle(for: section),
-                                                subtitle: nil,
-                                                showSubtitleInRed: false))
+                                                subtitle: nil))
         }
 
         sectionDataList.append(ArraySection(model: .body,
@@ -69,7 +68,6 @@ final class MyQotMainInteractor {
             let timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
             var subtitleVision: String?
             if timeSinceMonth >= 3 {
-                item.showSubtitleInRed = true
                 subtitleVision = AppTextService.get(.my_qot_section_my_tbv_subtitle_more_than)
             } else {
                 subtitleVision = AppTextService.get(.my_qot_section_my_tbv_subtitle_less_than_3_months)

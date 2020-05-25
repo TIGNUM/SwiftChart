@@ -37,7 +37,6 @@ struct MyQotViewModel {
         let myQotSections: MyQotSection
         let title: String?
         var subtitle: String?
-        var showSubtitleInRed: Bool
     }
 
     // MARK: - Properties
