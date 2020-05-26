@@ -32,6 +32,8 @@ final class ArticleWorker {
 
     var relatedArticlesWhatsHot = [Article.RelatedArticleWhatsHot]()
 
+    private var whatsHotArticleNextItems = [Article.RelatedArticleWhatsHot]()
+
     var relatedArticlesStrategy = [Article.Item]()
 
     var audioArticleItem: Article.Item?
@@ -93,7 +95,7 @@ final class ArticleWorker {
     private var learnStrategyItems = [Article.Item]()
     private var learnStrategyRelatedItems = [Article.Item]()
     private var learnStrategyNextItems = [Article.Item]()
-    private var whatsHotArticleNextItems = [Article.RelatedArticleWhatsHot]()
+
     var contactSupportItems = [Article.Item]()
     // MARK: - Init
 
@@ -269,7 +271,7 @@ final class ArticleWorker {
             items.append(Article.Item(type: ContentItemValue.articleRelatedWhatsHot(relatedArticle: relatedArticle)))
         }
         whatsHotArticleNextItems.forEach { nextWhatsHot in
-            nextUpItems.append(Article.Item(type:ContentItemValue.nextWhatsHotArticle(nextWhatsHot: nextWhatsHot)))
+            items.append(Article.Item(type:ContentItemValue.nextWhatsHotArticle(nextWhatsHot: nextWhatsHot)))
         }
         whatsHotNextItems = nextUpItems
         whatsHotItems = items
@@ -363,8 +365,8 @@ final class ArticleWorker {
 
 //    DO SOMETHING HERE TO GET NEXT UP
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
-        if relatedArticlesWhatsHot.count > indexPath.item {
-            return relatedArticlesWhatsHot[indexPath.item]
+        if whatsHotArticleNextItems.count > indexPath.item {
+            return whatsHotArticleNextItems[indexPath.item]
         }
         return nil
     }

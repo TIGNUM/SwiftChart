@@ -325,19 +325,6 @@ extension ArticleViewController {
         return cell
     }
 
-    func relatedArticleCell(tableView: UITableView, indexPath: IndexPath) -> ArticleRelatedWhatsHotTableViewCell {
-        let relatedArticleCell: ArticleRelatedWhatsHotTableViewCell = tableView.dequeueCell(for: indexPath)
-        let relatedArticle = interactor.relatedArticle(at: indexPath)
-        relatedArticleCell.configure(title: relatedArticle?.title,
-                                     publishDate: relatedArticle?.publishDate,
-                                     author: relatedArticle?.author,
-                                     timeToRead: relatedArticle?.timeToRead,
-                                     imageURL: relatedArticle?.imageURL,
-                                     isNew: relatedArticle?.isNew ?? false,
-                                     forcedColorMode: nil)
-        return relatedArticleCell
-    }
-
     func emptyCell(tableView: UITableView, indexPath: IndexPath) -> ArticleEmptyTableViewCell {
         let cell: ArticleEmptyTableViewCell = tableView.dequeueCell(for: indexPath)
         return cell
