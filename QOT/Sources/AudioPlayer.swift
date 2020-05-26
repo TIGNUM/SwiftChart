@@ -145,8 +145,8 @@ class AudioPlayer {
             player = AVPlayer(playerItem: playerItem)
             delegate?.updateControllButton(with: R.image.ic_pause_sand())
             _isReset = false
-            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback,
-                                                             mode: AVAudioSessionModeDefault,
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback,
+                                                             mode: AVAudioSession.Mode.default,
                                                              options: .init(rawValue: 0))
             try? AVAudioSession.sharedInstance().setActive(true)
         }
