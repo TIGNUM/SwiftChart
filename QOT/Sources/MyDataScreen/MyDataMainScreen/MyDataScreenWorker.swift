@@ -144,13 +144,13 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
     }
 
     static func heatMapColor(forImpactReadiness ir: Double) -> UIColor {
-        if ir <= 50 {
+        if ir <= 61 {
             return .heatMapDarkBlue
-        } else if ir <= 64 {
+        } else if ir <= 71 {
             return .heatMapBlue
-        } else if ir <= 74 {
+        } else if ir <= 81 {
             return .heatMapDarkRed
-        } else if ir < 85 {
+        } else if ir < 91 {
             return .heatMapRed
         } else {
             return .heatMapBrightRed
