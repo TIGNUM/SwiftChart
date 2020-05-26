@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import AVKit
+import MediaPlayer
 
 protocol AudioPlayerDelegate: class {
     func updateProgress(currentTime: Double, totalTime: Double, progress: Float)
@@ -36,6 +37,7 @@ class AudioPlayer {
     private var _isPlaying = false
     private var _isReset = true
     private var player: AVPlayer?
+    private var playerItem: AVPlayerItem?
     private var updater: CADisplayLink?
     weak var delegate: AudioPlayerDelegate?
 
@@ -101,6 +103,7 @@ class AudioPlayer {
 
     func play() {
         if player?.currentItem != nil {
+            player?.automaticallyWaitsToMinimizeStalling = false
             player?.play()
             _isPlaying = true
             _isReset = false
@@ -108,6 +111,8 @@ class AudioPlayer {
             updater?.isPaused = false
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .didStartAudio, object: self.media)
+                self.setupNowPlaying()
+                self.setupRemoteCommandCenter()
             }
         }
     }
@@ -136,15 +141,45 @@ class AudioPlayer {
         } else {
             guard let audioURL = audioURL else { return }
             let playerItem = AVPlayerItem(url: audioURL)
+            self.playerItem = playerItem
             player = AVPlayer(playerItem: playerItem)
             delegate?.updateControllButton(with: R.image.ic_pause_sand())
             _isReset = false
             try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback,
                                                              mode: AVAudioSession.Mode.default,
-                                                             options: [.mixWithOthers, .allowAirPlay])
+                                                             options: .init(rawValue: 0))
+            try? AVAudioSession.sharedInstance().setActive(true)
         }
         updater = CADisplayLink(target: self, selector: #selector(trackAudio))
         updater?.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
+    }
+
+    func setupNowPlaying() {
+        var nowPlayingInfo = [String: Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = title
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = _currentTime
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playerItem?.asset.duration.seconds
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player?.rate
+        if #available(iOS 13.0, *) {
+            MPNowPlayingInfoCenter.default().playbackState = .playing
+        }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+
+    func setupRemoteCommandCenter() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget {event in
+            self.player?.play()
+            return .success
+        }
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget {event in
+            self.player?.pause()
+            self.pause()
+            return .success
+        }
+        commandCenter.togglePlayPauseCommand.isEnabled = true
     }
 
     @objc func trackAudio() {
@@ -163,7 +198,6 @@ class AudioPlayer {
             updater?.invalidate()
             delegate?.updateControllButton(with: R.image.ic_play_sand())
             markAudioItemAsComplete(remoteID: _remoteID)
-
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .didEndAudio, object: self.media)
             }
