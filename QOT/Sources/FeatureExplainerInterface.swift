@@ -7,16 +7,19 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol FeatureExplainerViewControllerInterface: class {
-    func setupView()
+    func setupView(_ viewModel: FeatureExplainer.ViewModel)
 }
 
 protocol FeatureExplainerPresenterInterface {
-    func setupView()
+    func setupView(_ content: QDMContentCollection?, type: FeatureExplainer.Kind?)
 }
 
-protocol FeatureExplainerInteractorInterface: Interactor {}
+protocol FeatureExplainerInteractorInterface: Interactor {
+    var getExplainerTyper: FeatureExplainer.Kind { get }
+}
 
 protocol FeatureExplainerRouterInterface {
     func dismiss()

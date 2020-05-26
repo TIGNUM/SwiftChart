@@ -42,7 +42,7 @@ private extension FeatureExplainerViewController {
 
 // MARK: - FeatureExplainerViewControllerInterface
 extension FeatureExplainerViewController: FeatureExplainerViewControllerInterface {
-    func setupView() {
-        // Do any additional setup after loading the view.
+    func setupView(_ viewModel: FeatureExplainer.ViewModel) {
+        
     }
 }

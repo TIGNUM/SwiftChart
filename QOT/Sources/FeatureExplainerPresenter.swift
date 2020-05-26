@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class FeatureExplainerPresenter {
 
@@ -21,7 +22,18 @@ final class FeatureExplainerPresenter {
 
 // MARK: - FeatureExplainerInterface
 extension FeatureExplainerPresenter: FeatureExplainerPresenterInterface {
-    func setupView() {
-        viewController?.setupView()
+    func setupView(_ content: QDMContentCollection?, type: FeatureExplainer.Kind?) {
+        let viewModel = createModel(content, type: type)
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.setupView(viewModel)
+        }
+    }
+}
+
+// MARK: - Private
+private extension FeatureExplainerPresenter {
+    func createModel(_ content: QDMContentCollection?,
+                     type: FeatureExplainer.Kind?) -> FeatureExplainer.ViewModel {
+        return FeatureExplainer.ViewModel(title: "", description: "")
     }
 }

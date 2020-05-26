@@ -11,22 +11,28 @@ import UIKit
 final class FeatureExplainerInteractor {
 
     // MARK: - Properties
-    private let worker: FeatureExplainerWorker
+    private let worker: FeatureExplainerWorker(contentService: ContentService.main)
     private let presenter: FeatureExplainerPresenterInterface
+    private let featureType: FeatureExplainer.Kind
 
     // MARK: - Init
-    init(worker: FeatureExplainerWorker, presenter: FeatureExplainerPresenterInterface) {
-        self.worker = worker
+    init(presenter: FeatureExplainerPresenterInterface, featureType: FeatureExplainer.Kind) {
+        self.featureType = featureType
         self.presenter = presenter        
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        worker.getExplainerContent(featureType: featureType) { [weak self] (contentCollection) in
+            self.presenter.setupView(contentCollection, type: self?.featureType)
+        }
     }
 }
 
 // MARK: - FeatureExplainerInteractorInterface
 extension FeatureExplainerInteractor: FeatureExplainerInteractorInterface {
 
+    var getFeatureType: FeatureExplainer.Kind {
+           return featureType
+    }
 }

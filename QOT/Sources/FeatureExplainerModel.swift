@@ -8,6 +8,25 @@
 
 import UIKit
 
-struct FeatureExplainerModel {
+struct FeatureExplainer {
 
+    enum Kind: String {
+        case sprint
+        case mindsetShifter
+
+        var contentId: Int {
+            switch self {
+            case .sprint:
+                return 103051
+            case .mindsetShifter:
+                return 103052
+            }
+        }
+    }
+
+
+    struct ViewModel {
+        let title: String?
+        let description: String?
+    }
 }
