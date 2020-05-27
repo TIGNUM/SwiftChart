@@ -22,6 +22,7 @@ final class FeatureExplainerPresenter {
 
 // MARK: - FeatureExplainerInterface
 extension FeatureExplainerPresenter: FeatureExplainerPresenterInterface {
+
     func setupView(_ content: QDMContentCollection?, type: FeatureExplainer.Kind?) {
         let viewModel = createModel(content, type: type)
         DispatchQueue.main.async { [weak self] in
@@ -34,6 +35,6 @@ extension FeatureExplainerPresenter: FeatureExplainerPresenterInterface {
 private extension FeatureExplainerPresenter {
     func createModel(_ content: QDMContentCollection?,
                      type: FeatureExplainer.Kind?) -> FeatureExplainer.ViewModel {
-        return FeatureExplainer.ViewModel(title: "", description: "")
+        return FeatureExplainer.ViewModel(title: content?.contentItems.first?.valueDescription, description: content?.contentItems.first?.valueText)
     }
 }

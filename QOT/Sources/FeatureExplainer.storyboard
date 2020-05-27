@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0vW-qw-9OX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Feature Explainer View Controller-->
         <scene sceneID="lvs-s3-6Tn">
             <objects>
-                <viewController id="0vW-qw-9OX" sceneMemberID="viewController">
+                <viewController id="0vW-qw-9OX" customClass="FeatureExplainerViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3F4-XC-RKf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,16 +37,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j47-tj-aVb">
-                                <rect key="frame" x="24" y="802" width="16" height="16"/>
-                                <color key="backgroundColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j47-tj-aVb">
+                                <rect key="frame" x="24" y="798" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="Y3z-A3-QcT"/>
-                                    <constraint firstAttribute="width" constant="16" id="dIb-S9-5Mn"/>
+                                    <constraint firstAttribute="height" constant="20" id="Y3z-A3-QcT"/>
+                                    <constraint firstAttribute="width" constant="20" id="dIb-S9-5Mn"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" image="registration_checkmark"/>
+                                <connections>
+                                    <action selector="buttonChecked:" destination="0vW-qw-9OX" eventType="touchUpInside" id="bpd-I2-KRt"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't show this step again" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpN-pX-cV8">
-                                <rect key="frame" x="48" y="802" width="132" height="40"/>
+                                <rect key="frame" x="52" y="788" width="132" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="132" id="1WB-id-dqA"/>
                                     <constraint firstAttribute="height" constant="40" id="dgD-ba-kzs"/>
@@ -60,21 +68,29 @@
                         <constraints>
                             <constraint firstItem="lAH-u8-ov5" firstAttribute="top" secondItem="ux1-dJ-ZPC" secondAttribute="top" constant="128" id="4xA-fM-IRZ"/>
                             <constraint firstItem="WpN-pX-cV8" firstAttribute="leading" secondItem="j47-tj-aVb" secondAttribute="trailing" constant="8" id="Fan-Dx-Pfi"/>
-                            <constraint firstItem="ux1-dJ-ZPC" firstAttribute="bottom" secondItem="WpN-pX-cV8" secondAttribute="bottom" constant="20" id="Git-hH-uQ4"/>
                             <constraint firstItem="j47-tj-aVb" firstAttribute="leading" secondItem="ux1-dJ-ZPC" secondAttribute="leading" constant="24" id="JGT-8c-U8R"/>
                             <constraint firstItem="sGb-Dy-mcC" firstAttribute="top" secondItem="lAH-u8-ov5" secondAttribute="bottom" constant="48" id="JRw-9x-k71"/>
                             <constraint firstItem="lAH-u8-ov5" firstAttribute="leading" secondItem="ux1-dJ-ZPC" secondAttribute="leading" constant="24" id="LKn-2l-B0S"/>
                             <constraint firstItem="ux1-dJ-ZPC" firstAttribute="trailing" secondItem="sGb-Dy-mcC" secondAttribute="trailing" constant="24" id="OT7-C7-Bnc"/>
+                            <constraint firstItem="j47-tj-aVb" firstAttribute="centerY" secondItem="WpN-pX-cV8" secondAttribute="centerY" id="QXC-Nf-LCc"/>
                             <constraint firstItem="ux1-dJ-ZPC" firstAttribute="trailing" secondItem="lAH-u8-ov5" secondAttribute="trailing" constant="24" id="dVL-xk-xTl"/>
                             <constraint firstItem="ux1-dJ-ZPC" firstAttribute="bottom" secondItem="j47-tj-aVb" secondAttribute="bottom" constant="44" id="oxl-iq-bn4"/>
                             <constraint firstItem="sGb-Dy-mcC" firstAttribute="leading" secondItem="ux1-dJ-ZPC" secondAttribute="leading" constant="24" id="xVj-xA-Os9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ux1-dJ-ZPC"/>
                     </view>
+                    <connections>
+                        <outlet property="bodyLabel" destination="sGb-Dy-mcC" id="RNy-GT-A6D"/>
+                        <outlet property="checkButton" destination="j47-tj-aVb" id="f74-Ka-kJo"/>
+                        <outlet property="titleLabel" destination="lAH-u8-ov5" id="cDW-Fb-KSU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hy1-d1-aQb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140.57971014492756" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="registration_checkmark" width="16" height="13"/>
+    </resources>
 </document>

@@ -7,24 +7,25 @@
 //
 
 import UIKit
+import qot_dal
 
 final class FeatureExplainerInteractor {
 
     // MARK: - Properties
-    private let worker: FeatureExplainerWorker(contentService: ContentService.main)
+    private lazy var worker = FeatureExplainerWorker(contentService: ContentService.main)
     private let presenter: FeatureExplainerPresenterInterface
     private let featureType: FeatureExplainer.Kind
 
     // MARK: - Init
     init(presenter: FeatureExplainerPresenterInterface, featureType: FeatureExplainer.Kind) {
         self.featureType = featureType
-        self.presenter = presenter        
+        self.presenter = presenter
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
         worker.getExplainerContent(featureType: featureType) { [weak self] (contentCollection) in
-            self.presenter.setupView(contentCollection, type: self?.featureType)
+            self?.presenter.setupView(contentCollection, type: self?.featureType)
         }
     }
 }
@@ -33,6 +34,6 @@ final class FeatureExplainerInteractor {
 extension FeatureExplainerInteractor: FeatureExplainerInteractorInterface {
 
     var getFeatureType: FeatureExplainer.Kind {
-           return featureType
+        return featureType
     }
 }

@@ -21,7 +21,15 @@ final class FeatureExplainerRouter {
 
 // MARK: - FeatureExplainerRouterInterface
 extension FeatureExplainerRouter: FeatureExplainerRouterInterface {
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
+
+    func didTapGetStarted(_ featureType: FeatureExplainer.Kind) {
+        switch featureType {
+        case .sprint:
+            let configurator = DTSprintConfigurator.make()
+            let controller = DTSprintViewController(configure: configurator)
+            viewController?.present(controller, animated: true)
+        case .mindsetShifter:
+            print("shift mindset")
+        }
     }
 }

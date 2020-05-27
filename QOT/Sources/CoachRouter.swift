@@ -42,9 +42,16 @@ extension CoachRouter: CoachRouterInterface {
                 viewController?.present(toolsViewController, animated: true, completion: nil)
             }
         case .sprint:
-            let configurator = DTSprintConfigurator.make()
-            let controller = DTSprintViewController(configure: configurator)
-            viewController?.present(controller, animated: true)
+            if UserDefault.sprintExplanation.boolValue {
+                let configurator = DTSprintConfigurator.make()
+                let controller = DTSprintViewController(configure: configurator)
+                viewController?.present(controller, animated: true)
+            } else {
+                guard let controller = R.storyboard.featureExplainer().instantiateInitialViewController() as?
+                    FeatureExplainerViewController else { return }
+                FeatureExplainerConfigurator.make(viewController: controller, type: .sprint)
+                viewController?.present(controller, animated: true, completion: nil)
+            }
         case .event:
             if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
                 AppDelegate.current.launchHandler.process(url: launchURL)

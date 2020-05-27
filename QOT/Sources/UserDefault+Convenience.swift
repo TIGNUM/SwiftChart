@@ -27,6 +27,7 @@ enum UserDefault: String {
     case myBestDate = "qot.userdefault.key.my.best.date"
     case myBestText = "qot.userdefault.key.my.best.text"
     case existingEmail = "qot.userdefault.key.existing.email"
+    case sprintExplanation = "qot.userdefault.key.sprint.explanation.seen"
 }
 
 extension UserDefault {

@@ -24,7 +24,6 @@ struct FeatureExplainer {
         }
     }
 
-
     struct ViewModel {
         let title: String?
         let description: String?

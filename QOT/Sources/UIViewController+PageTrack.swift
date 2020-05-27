@@ -86,6 +86,7 @@ extension UIViewController {
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
         case is TBVRateHistoryNullStateViewController: return "tobevision.mytbvdata"
+        case is FeatureExplainerViewController: return "feature.explainer.sprint"
         case is QuestionnaireViewController:
             if let controllerType = (self as? QuestionnaireViewController)?.controllerType {
                 switch controllerType {

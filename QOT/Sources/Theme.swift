@@ -625,6 +625,9 @@ enum ThemeText {
     case coachTitle
     case coachSubtitle
 
+    case featureTitle
+    case featureExplanation
+
     case settingsTitle
     case settingsTitleFade
     case myPlansHeader
@@ -882,7 +885,7 @@ enum ThemeText {
              .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherBody, .dailyBriefSubtitle, .dailyBriefSand, .paymentReminderCellTitle,
-             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle, .registerIntroBody:
+             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .featureExplanation, .coachMarkSubtitle, .registerIntroBody:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -1032,6 +1035,8 @@ enum ThemeText {
             return Fonts.fontDisplayBold30
         case .customizeQuestion:
             return Fonts.fontRegular16
+        case .featureTitle:
+            return Fonts.fontDisplayRegular34
         // MARK: - .fontRegular20
         default:
             return Fonts.fontRegular20
@@ -1079,7 +1084,7 @@ enum ThemeText {
             return Palette.carbon40
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
-             .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100:
+             .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation:
             return Palette.carbon
         case .resultTitleTheme(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
@@ -1233,7 +1238,7 @@ enum ThemeText {
                                         alignment: alignment ?? .left)
         case .strategySubHeader,
              .mySprintsTableHeader,
-             .shpiSubtitle:
+             .shpiSubtitle, .featureTitle:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1251,7 +1256,7 @@ enum ThemeText {
                                                     alignment: alignment ?? .right)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead,
              .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle,
-             .dailyBriefFromTignumTitle:
+             .dailyBriefFromTignumTitle, .featureExplanation:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1558,6 +1563,7 @@ private struct Fonts {
 
     static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
     static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
+    static let fontDisplayRegular34 = UIFont.sfProDisplayRegular(ofSize: 34.0)
     static let fontDisplayRegular40 = UIFont.sfProDisplayRegular(ofSize: 40.0)
     static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)

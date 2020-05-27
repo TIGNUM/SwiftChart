@@ -18,9 +18,9 @@ protocol FeatureExplainerPresenterInterface {
 }
 
 protocol FeatureExplainerInteractorInterface: Interactor {
-    var getExplainerTyper: FeatureExplainer.Kind { get }
+    var getFeatureType: FeatureExplainer.Kind { get }
 }
 
 protocol FeatureExplainerRouterInterface {
-    func dismiss()
+   func didTapGetStarted(_ featureType: FeatureExplainer.Kind) 
 }
