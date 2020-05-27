@@ -29,7 +29,9 @@ extension FeatureExplainerRouter: FeatureExplainerRouterInterface {
             let controller = DTSprintViewController(configure: configurator)
             viewController?.present(controller, animated: true)
         case .mindsetShifter:
-            print("shift mindset")
+            let configurator = DTMindsetConfigurator.make()
+            let controller = DTMindsetViewController(configure: configurator)
+            viewController?.present(controller, animated: true)
         }
     }
 }

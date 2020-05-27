@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class FeatureExplainerViewController: BaseViewController, ScreenZLevel1 {
 
@@ -17,6 +18,7 @@ final class FeatureExplainerViewController: BaseViewController, ScreenZLevel1 {
     @IBOutlet private weak var bodyLabel: UILabel!
     private var rightBarButtonItems = [UIBarButtonItem]()
     @IBOutlet private weak var checkButton: UIButton!
+    @IBOutlet private weak var checkboxLabel: UILabel!
 
     // MARK: - Init
     init() {
@@ -42,21 +44,21 @@ final class FeatureExplainerViewController: BaseViewController, ScreenZLevel1 {
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return rightBarButtonItems
     }
-
 }
 
-    // MARK: - Private
+// MARK: - Private
 private extension FeatureExplainerViewController {
 
     func setupBottomNavigation(_ viewModel: FeatureExplainer.ViewModel) {
-        let button = RoundedButton(title: "get Started", target: self, action: #selector(didTapGetStartedButton))
-        ThemableButton.askPermissions.apply(button, title: "Get Started")
+        let title = AppTextService.get(.generic_feature_explainer_button)
+        let button = RoundedButton(title: title, target: self, action: #selector(didTapGetStartedButton))
+        ThemableButton.askPermissions.apply(button, title: title)
         rightBarButtonItems = [button.barButton]
         updateBottomNavigation([], rightBarButtonItems)
     }
 }
 
-    // MARK: - Actions
+// MARK: - Actions
 private extension FeatureExplainerViewController {
 
     @objc func didTapGetStartedButton() {
@@ -71,12 +73,13 @@ private extension FeatureExplainerViewController {
     }
 }
 
-    // MARK: - FeatureExplainerViewControllerInterface
+// MARK: - FeatureExplainerViewControllerInterface
 extension FeatureExplainerViewController: FeatureExplainerViewControllerInterface {
 
     func setupView(_ viewModel: FeatureExplainer.ViewModel) {
-        ThemeText.featureTitle.apply(viewModel.title, to: titleLabel)
+        ThemeText.featureTitle.apply(viewModel.title?.uppercased(), to: titleLabel)
         ThemeText.featureExplanation.apply(viewModel.description, to: bodyLabel)
+        ThemeText.featureLabel.apply(AppTextService.get(.generic_feature_explainer_label), to: checkboxLabel)
         checkButton.corner(radius: 2, borderColor: .accent)
         checkButton.setImage(R.image.registration_checkmark(), for: .selected)
         setupBottomNavigation(viewModel)

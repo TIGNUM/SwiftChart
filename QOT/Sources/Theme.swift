@@ -627,6 +627,7 @@ enum ThemeText {
 
     case featureTitle
     case featureExplanation
+    case featureLabel
 
     case settingsTitle
     case settingsTitleFade
@@ -893,7 +894,7 @@ enum ThemeText {
              .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
              .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .articleContactSupportInfoTitle, .registrationNamesMandatory,
              .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark, .audioPlayerTitleLight,
-             .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays, .asterixText, .shpiSubtitle:
+             .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays, .asterixText, .shpiSubtitle, .featureLabel:
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .durationString,
              .resultDate, .resultFollowUp,
@@ -1084,7 +1085,7 @@ enum ThemeText {
             return Palette.carbon40
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
-             .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation:
+             .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation, .featureLabel:
             return Palette.carbon
         case .resultTitleTheme(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
@@ -1248,7 +1249,7 @@ enum ThemeText {
                                         alignment: alignment ?? .center)
         case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle,
               .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
-              .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText:
+              .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText, .featureLabel:
              string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                          alignment: alignment ?? .left)
         case .iRscore, .reference:
