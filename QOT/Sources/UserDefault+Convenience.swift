@@ -28,6 +28,11 @@ enum UserDefault: String {
     case myBestText = "qot.userdefault.key.my.best.text"
     case existingEmail = "qot.userdefault.key.existing.email"
     case sprintExplanation = "qot.userdefault.key.sprint.explanation.seen"
+    case toolsExplanation = "qot.userdefault.key.tools.explanation.seen"
+    case prepareExplanation = "qot.userdefault.key.prepare.explanation.seen"
+    case solveExplanation = "qot.userdefault.key.solve.explanation.seen"
+    case mindsetExplanation = "qot.userdefault.key.mindset.explanation.seen"
+    case recoveryExplanation = "qot.userdefault.key.recovery.explanation.seen"
 }
 
 extension UserDefault {

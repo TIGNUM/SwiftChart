@@ -33,6 +33,24 @@ extension FeatureExplainerRouter: FeatureExplainerRouterInterface {
                 let configurator = DTMindsetConfigurator.make()
                 let controller = DTMindsetViewController(configure: configurator)
                 self.viewController?.present(controller, animated: true)
+            case .prepare:
+                if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+                    AppDelegate.current.launchHandler.process(url: launchURL)
+                }
+            case .tools:
+                let toolsViewController = R.storyboard.tools.toolsViewControllerID()
+                if let toolsViewController = toolsViewController {
+                    ToolsConfigurator.make(viewController: toolsViewController)
+                    self.viewController?.present(toolsViewController, animated: true, completion: nil)
+                }
+            case .solve:
+                let configurator = DTSolveConfigurator.make()
+                let controller = DTSolveViewController(configure: configurator)
+                self.viewController?.present(controller, animated: true)
+            case .recovery:
+                let configurator = DTRecoveryConfigurator.make()
+                let controller = DTRecoveryViewController(configure: configurator)
+                self.viewController?.present(controller, animated: true)
             }
         })
     }

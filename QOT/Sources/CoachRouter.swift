@@ -36,10 +36,14 @@ extension CoachRouter: CoachRouterInterface {
             viewController?.pushToStart(childViewController: searchViewController)
             searchViewController.activate(0.0)
         case .tools:
-            let toolsViewController = R.storyboard.tools.toolsViewControllerID()
-            if let toolsViewController = toolsViewController {
-                ToolsConfigurator.make(viewController: toolsViewController)
-                viewController?.present(toolsViewController, animated: true, completion: nil)
+            if UserDefault.toolsExplanation.boolValue {
+                let toolsViewController = R.storyboard.tools.toolsViewControllerID()
+                if let toolsViewController = toolsViewController {
+                    ToolsConfigurator.make(viewController: toolsViewController)
+                    viewController?.present(toolsViewController, animated: true, completion: nil)
+                }
+            } else {
+                showFeatureExplanation(.tools)
             }
         case .sprint:
             if UserDefault.sprintExplanation.boolValue {
@@ -47,27 +51,47 @@ extension CoachRouter: CoachRouterInterface {
                 let controller = DTSprintViewController(configure: configurator)
                 viewController?.present(controller, animated: true)
             } else {
-                guard let controller = R.storyboard.featureExplainer().instantiateInitialViewController() as?
-                    FeatureExplainerViewController else { return }
-                FeatureExplainerConfigurator.make(viewController: controller, type: .sprint)
-                viewController?.present(controller, animated: true, completion: nil)
+                showFeatureExplanation(.sprint)
             }
         case .event:
-            if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
-                AppDelegate.current.launchHandler.process(url: launchURL)
+            if UserDefault.prepareExplanation.boolValue {
+                if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+                    AppDelegate.current.launchHandler.process(url: launchURL)
+                }
+            } else {
+               showFeatureExplanation(.solve)
             }
         case .challenge:
-            let configurator = DTSolveConfigurator.make()
-            let controller = DTSolveViewController(configure: configurator)
-            viewController?.present(controller, animated: true)
+            if UserDefault.solveExplanation.boolValue {
+                let configurator = DTSolveConfigurator.make()
+                let controller = DTSolveViewController(configure: configurator)
+                viewController?.present(controller, animated: true)
+            } else {
+                showFeatureExplanation(.solve)
+            }
         case .mindset:
-            let configurator = DTMindsetConfigurator.make()
-            let controller = DTMindsetViewController(configure: configurator)
-            viewController?.present(controller, animated: true)
+            if UserDefault.mindsetExplanation.boolValue {
+                let configurator = DTMindsetConfigurator.make()
+                let controller = DTMindsetViewController(configure: configurator)
+                viewController?.present(controller, animated: true)
+            } else {
+               showFeatureExplanation(.mindsetShifter)
+            }
         case .recovery:
-            let configurator = DTRecoveryConfigurator.make()
-            let controller = DTRecoveryViewController(configure: configurator)
-            viewController?.present(controller, animated: true)
+            if UserDefault.recoveryExplanation.boolValue {
+                let configurator = DTRecoveryConfigurator.make()
+                let controller = DTRecoveryViewController(configure: configurator)
+                viewController?.present(controller, animated: true)
+            } else {
+                showFeatureExplanation(.recovery)
+            }
         }
+    }
+
+    func showFeatureExplanation(_ type: FeatureExplainer.Kind) {
+        guard let controller = R.storyboard.featureExplainer().instantiateInitialViewController() as?
+            FeatureExplainerViewController else { return }
+        FeatureExplainerConfigurator.make(viewController: controller, type: type)
+        viewController?.present(controller, animated: true, completion: nil)
     }
 }
