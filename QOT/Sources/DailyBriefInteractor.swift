@@ -1005,6 +1005,7 @@ extension DailyBriefInteractor {
             format: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.format ?? .unknown,
             remoteID: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.remoteID ?? 0,
             durationString: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.durationString ?? "",
+            name: collection.contentItems.filter {$0.searchTags.contains("EXPERT_NAME")}.first?.valueText ?? "",
             domainModel: expertThoughts))
         return expertThoughtsList
     }
