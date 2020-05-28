@@ -22,5 +22,5 @@ protocol FeatureExplainerInteractorInterface: Interactor {
 }
 
 protocol FeatureExplainerRouterInterface {
-    func didTapGetStarted(_ featureType: FeatureExplainer.Kind) 
+    func didTapGetStarted(_ featureType: FeatureExplainer.Kind)
 }

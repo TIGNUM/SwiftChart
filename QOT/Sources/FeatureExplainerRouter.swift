@@ -23,15 +23,17 @@ final class FeatureExplainerRouter {
 extension FeatureExplainerRouter: FeatureExplainerRouterInterface {
 
     func didTapGetStarted(_ featureType: FeatureExplainer.Kind) {
-        switch featureType {
-        case .sprint:
-            let configurator = DTSprintConfigurator.make()
-            let controller = DTSprintViewController(configure: configurator)
-            viewController?.present(controller, animated: true)
-        case .mindsetShifter:
-            let configurator = DTMindsetConfigurator.make()
-            let controller = DTMindsetViewController(configure: configurator)
-            viewController?.present(controller, animated: true)
-        }
+        viewController?.dismiss(animated: true, completion: {
+            switch featureType {
+            case .sprint:
+                let configurator = DTSprintConfigurator.make()
+                let controller = DTSprintViewController(configure: configurator)
+                self.viewController?.present(controller, animated: true)
+            case .mindsetShifter:
+                let configurator = DTMindsetConfigurator.make()
+                let controller = DTMindsetViewController(configure: configurator)
+                self.viewController?.present(controller, animated: true)
+            }
+        })
     }
 }
