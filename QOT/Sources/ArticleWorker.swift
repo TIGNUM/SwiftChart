@@ -141,6 +141,14 @@ final class ArticleWorker {
             self?.interactor?.dataUpdated()
         }
 
+        ContentService.main.getLatestUnreadWhatsHotArticle { [weak self] (nextCollection) in
+            self?.nextWhatsHot = Article.RelatedArticleWhatsHot(remoteID: nextCollection?.remoteID ?? 0,
+                                                                title: nextCollection?.title ?? "",
+                                                                publishDate: nextCollection?.publishedDate,
+                                                                author: nextCollection?.author,
+                                                                timeToRead: nextCollection?.durationString ?? "",
+                                                                imageURL: URL(string: nextCollection?.thumbnailURLString ?? ""),
+                                                                isNew: nextCollection?.viewedAt != nil)
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
 
@@ -153,14 +161,6 @@ final class ArticleWorker {
                     self?.nextUp = Article.Item(type: ContentItemValue.articleNextUp(title: nextCollection.title,
                                                                                      description: nextCollection.durationString,
                                                                                      itemID: nextCollection.remoteID ?? 0))
-                    ContentService.main.getLatestUnreadWhatsHotArticle() { [weak self] (nextCollection) in
-                        self?.nextWhatsHot = Article.RelatedArticleWhatsHot(remoteID: nextCollection?.remoteID ?? 0,
-                                                                            title: nextCollection?.title ?? "",
-                                                                            publishDate: nextCollection?.publishedDate,
-                                                                            author: nextCollection?.author,
-                                                                            timeToRead: nextCollection?.durationString ?? "",
-                                                                            imageURL: URL(string: nextCollection?.thumbnailURLString ?? ""),
-                                                                            isNew: nextCollection?.viewedAt != nil)
                     }
 
                 }
