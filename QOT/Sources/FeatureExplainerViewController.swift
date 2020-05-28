@@ -32,7 +32,6 @@ final class FeatureExplainerViewController: BaseViewController, ScreenZLevel1 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
