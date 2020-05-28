@@ -14,6 +14,7 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
     @IBOutlet private weak var audioButton: UIButton!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var headerView: UIView!
+    @IBOutlet private weak var expertNameLabel: UILabel!
 
     private var mediaURL: URL?
     private var duration: Double?
@@ -38,6 +39,7 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.description ?? "", to: descriptionLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.name ?? "", to: expertNameLabel)
 
         descriptionLabel.isHidden = model.description == nil
         duration = model.audioDuration
