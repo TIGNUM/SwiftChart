@@ -79,7 +79,7 @@ final class ArticleWorker {
 
     var nextUp: Article.Item?
 
-    var nextWhatsHot: Article.RelatedArticleWhatsHot?
+    var nextWhatsHotContent: QDMContentCollection?
 
     var isTopBarHidden: Bool = false
 
@@ -139,6 +139,12 @@ final class ArticleWorker {
             self?.interactor?.dataUpdated()
         }
 
+        ContentService.main.getLatestUnreadWhatsHotArticle { [weak self] (nextWhatsHot) in
+            if let nextWhatsHot = nextWhatsHot {
+                self?.nextWhatsHotContent = nextWhatsHot
+            }
+        }
+
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
 
@@ -151,13 +157,6 @@ final class ArticleWorker {
                     self?.nextUp = Article.Item(type: ContentItemValue.articleNextUp(title: nextCollection.title,
                                                                                      description: nextCollection.durationString,
                                                                                      itemID: nextCollection.remoteID ?? 0))
-                    self?.nextWhatsHot = Article.RelatedArticleWhatsHot(remoteID: nextCollection.remoteID ?? 0,
-                                                                       title: nextCollection.title,
-                                                                       publishDate: nextCollection.publishedDate,
-                                                                       author: nextCollection.author,
-                                                                       timeToRead: nextCollection.durationString,
-                                                                       imageURL: URL(string: nextCollection.thumbnailURLString ?? ""),
-                                                                       isNew: nextCollection.viewedAt != nil)
                 }
             }
 
@@ -264,14 +263,9 @@ final class ArticleWorker {
 
     private func setupWhatsHotItems() {
         var items = [Article.Item]()
-        var nextUpItems = [Article.Item]()
         relatedArticlesWhatsHot.forEach { relatedArticle in
             items.append(Article.Item(type: ContentItemValue.articleRelatedWhatsHot(relatedArticle: relatedArticle)))
         }
-        whatsHotArticleNextItems.forEach { nextWhatsHot in
-            nextUpItems.append(Article.Item(type:ContentItemValue.nextWhatsHotArticle(nextWhatsHot: nextWhatsHot)))
-        }
-        whatsHotNextItems = nextUpItems
         whatsHotItems = items
     }
 
@@ -294,27 +288,31 @@ final class ArticleWorker {
 
     private func setupRelatedArticlesWhatsHot() {
         var articles = [Article.RelatedArticleWhatsHot]()
-        var itemsNextUp = [Article.RelatedArticleWhatsHot]()
-        let nextUpContentIds = content?.relatedContentList.filter({$0.type.uppercased() == "NEXT_UP"}).compactMap({ $0.contentID }) ?? []
         relatedContent.forEach { content in
             if content.isWhatsHot == true {
-                if let contentId = content.remoteID, nextUpContentIds.contains(obj: contentId) != true {
-                    let imageURL = URL(string: content.thumbnailURLString ?? "")
-                    articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? 0,
-                                                                   title: content.title,
-                                                                   publishDate: content.publishedDate,
-                                                                   author: content.author,
-                                                                   timeToRead: content.durationString,
-                                                                   imageURL: imageURL,
-                                                                   isNew: false))
-                }
-                if let nextUp = self.nextWhatsHot {
-                    itemsNextUp.append(nextUp)
-                }
+                let imageURL = URL(string: content.thumbnailURLString ?? "")
+                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? 0,
+                                                               title: content.title,
+                                                               publishDate: content.publishedDate,
+                                                               author: content.author,
+                                                               timeToRead: content.durationString,
+                                                               imageURL: imageURL,
+                                                               isNew: false))
+
             }
         }
+        if relatedContent.isEmpty {
+            let imageURL = URL(string: nextWhatsHotContent?.thumbnailURLString ?? "")
+            articles.append(Article.RelatedArticleWhatsHot(remoteID: nextWhatsHotContent?.remoteID ?? 0,
+                                                           title: nextWhatsHotContent?.title ?? "",
+                                                           publishDate: nextWhatsHotContent?.publishedDate,
+                                                           author: nextWhatsHotContent?.author,
+                                                           timeToRead: nextWhatsHotContent?.durationString ?? "",
+                                                           imageURL: imageURL,
+                                                           isNew: false))
+
+        }
         relatedArticlesWhatsHot = articles
-        whatsHotArticleNextItems = itemsNextUp
     }
 
     private func setupRelatedArticlesStrtegy() {
