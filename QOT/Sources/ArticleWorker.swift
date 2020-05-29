@@ -141,7 +141,6 @@ final class ArticleWorker {
                 self?.nextWhatsHotContent = nextWhatsHot
             }
         }
-
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
 
