@@ -32,8 +32,6 @@ final class ArticleWorker {
 
     var relatedArticlesWhatsHot = [Article.RelatedArticleWhatsHot]()
 
-    private var whatsHotArticleNextItems = [Article.RelatedArticleWhatsHot]()
-
     var relatedArticlesStrategy = [Article.Item]()
 
     var audioArticleItem: Article.Item?
@@ -90,8 +88,6 @@ final class ArticleWorker {
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
     private var whatsHotArticleItems = [Article.Item]()
     private var whatsHotItems = [Article.Item]()
-    private var whatsHotNextItems = [Article.Item]()
-
     private var learnStrategyItems = [Article.Item]()
     private var learnStrategyRelatedItems = [Article.Item]()
     private var learnStrategyNextItems = [Article.Item]()
@@ -140,15 +136,6 @@ final class ArticleWorker {
             self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
             self?.interactor?.dataUpdated()
         }
-
-        ContentService.main.getLatestUnreadWhatsHotArticle { [weak self] (nextCollection) in
-            self?.nextWhatsHot = Article.RelatedArticleWhatsHot(remoteID: nextCollection?.remoteID ?? 0,
-                                                                title: nextCollection?.title ?? "",
-                                                                publishDate: nextCollection?.publishedDate,
-                                                                author: nextCollection?.author,
-                                                                timeToRead: nextCollection?.durationString ?? "",
-                                                                imageURL: URL(string: nextCollection?.thumbnailURLString ?? ""),
-                                                                isNew: nextCollection?.viewedAt != nil)
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
 
@@ -167,7 +154,6 @@ final class ArticleWorker {
             }
 
             setupSynchronousSteps()
-        }
     }
 
     private func setupLearnStragyItems() {
@@ -269,13 +255,8 @@ final class ArticleWorker {
 
     private func setupWhatsHotItems() {
         var items = [Article.Item]()
-        if relatedArticlesWhatsHot.isEmpty {
-            guard let nextWhatsHot = nextWhatsHot else { return }
-            items.append(Article.Item(type: ContentItemValue.nextWhatsHotArticle(nextWhatsHot: nextWhatsHot)))
-        } else {
-            relatedArticlesWhatsHot.forEach { relatedArticle in
-                items.append(Article.Item(type: ContentItemValue.articleRelatedWhatsHot(relatedArticle: relatedArticle)))
-            }
+        relatedArticlesWhatsHot.forEach { relatedArticle in
+            items.append(Article.Item(type: ContentItemValue.articleRelatedWhatsHot(relatedArticle: relatedArticle)))
         }
         whatsHotItems = items
     }
