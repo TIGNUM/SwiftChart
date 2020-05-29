@@ -137,7 +137,9 @@ final class ArticleWorker {
         }
 
         ContentService.main.getLatestUnreadWhatsHotArticle { [weak self] (nextWhatsHot) in
-            self?.nextWhatsHotContent = nextWhatsHot ?? []
+            if let nextWhatsHot = nextWhatsHot {
+                self?.nextWhatsHotContent = nextWhatsHot
+            }
         }
 
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
@@ -354,7 +356,6 @@ final class ArticleWorker {
         }
     }
 
-//    DO SOMETHING HERE TO GET NEXT UP
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
         if relatedArticlesWhatsHot.count > indexPath.item {
             return relatedArticlesWhatsHot[indexPath.item]
