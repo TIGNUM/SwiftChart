@@ -136,11 +136,12 @@ final class ArticleWorker {
             self?.interactor?.dataUpdated()
         }
 
-        ContentService.main.getLatestUnreadWhatsHotArticle { [weak self] (nextWhatsHot) in
+        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? 0, { [weak self] (nextWhatsHot) in
             if let nextWhatsHot = nextWhatsHot {
                 self?.nextWhatsHotContent = nextWhatsHot
             }
-        }
+        })
+        
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
 
