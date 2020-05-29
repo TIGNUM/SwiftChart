@@ -138,7 +138,7 @@ final class ArticleWorker {
         }
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
-
+            
             if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
                 relation.type == "NEXT_UP"
             }).first, let nextUpId = nextUpContentRelation.contentID {
@@ -148,11 +148,10 @@ final class ArticleWorker {
                     self?.nextUp = Article.Item(type: ContentItemValue.articleNextUp(title: nextCollection.title,
                                                                                      description: nextCollection.durationString,
                                                                                      itemID: nextCollection.remoteID ?? 0))
-                    }
                 }
             }
-
-            setupSynchronousSteps()
+        }
+        setupSynchronousSteps()
     }
 
     private func setupLearnStragyItems() {
