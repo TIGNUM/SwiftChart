@@ -88,12 +88,9 @@ final class ArticleWorker {
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
     private var whatsHotArticleItems = [Article.Item]()
     private var whatsHotItems = [Article.Item]()
-    private var whatsHotNextItems = [Article.Item]()
-
     private var learnStrategyItems = [Article.Item]()
     private var learnStrategyRelatedItems = [Article.Item]()
     private var learnStrategyNextItems = [Article.Item]()
-    private var whatsHotArticleNextItems = [Article.RelatedArticleWhatsHot]()
     var contactSupportItems = [Article.Item]()
     // MARK: - Init
 
@@ -140,9 +137,7 @@ final class ArticleWorker {
         }
 
         ContentService.main.getLatestUnreadWhatsHotArticle { [weak self] (nextWhatsHot) in
-            if let nextWhatsHot = nextWhatsHot {
-                self?.nextWhatsHotContent = nextWhatsHot
-            }
+            self?.nextWhatsHotContent = nextWhatsHot ?? []
         }
 
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
