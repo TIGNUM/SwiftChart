@@ -149,7 +149,6 @@ final class ArticleWorker {
                                                                                      description: nextCollection.durationString,
                                                                                      itemID: nextCollection.remoteID ?? 0))
                     }
-
                 }
             }
 
