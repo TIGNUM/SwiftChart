@@ -20,12 +20,12 @@ final class ArticleTopNavBar: UIView {
 
     private let bottomMargin: CGFloat = -10
     private let rightMargin: CGFloat = -10
+    private let leftMargin: CGFloat = 24
+    private let titleMargin: CGFloat = -50
     private var spacing: CGFloat = -30
     private let buttonSize: CGFloat = 40
-
     private var arrayViews: [Weak<UIView>] = []
     private var arrayViewsCount = 0
-
     private var labelTitle = UILabel()
     private var buttonMore: AnimatedButton = AnimatedButton(type: .custom)
     private var buttonBookmark: AnimatedButton = AnimatedButton(type: .custom)
@@ -38,6 +38,8 @@ final class ArticleTopNavBar: UIView {
     var title: String? {
         didSet {
             ThemeText.articleNavigationTitle.apply(title, to: labelTitle)
+            labelTitle.adjustsFontSizeToFitWidth = false
+            labelTitle.lineBreakMode = .byTruncatingTail
         }
     }
 }
@@ -68,7 +70,8 @@ private extension ArticleTopNavBar {
 
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
         addSubview(labelTitle)
-        labelTitle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: titleMargin))
+        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: leftMargin))
         labelTitle.centerYAnchor.constraint(equalTo: lastContainer!.centerYAnchor).isActive = true
     }
 
