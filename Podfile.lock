@@ -19,10 +19,16 @@ PODS:
   - Kingfisher (5.7.1)
   - qot_dal (1.0):
     - KeychainAccess
+    - RealmSwift (~> 4.4.1)
     - SwiftyBeaver
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
+  - Realm (4.4.1):
+    - Realm/Headers (= 4.4.1)
+  - Realm/Headers (4.4.1)
+  - RealmSwift (4.4.1):
+    - Realm (= 4.4.1)
   - RSKImageCropper (2.2.3)
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
@@ -56,6 +62,8 @@ SPEC REPOS:
     - AppCenter
     - Buglife
     - KeychainAccess
+    - Realm
+    - RealmSwift
     - SwiftyBeaver
     - UrbanAirship-iOS-SDK
 
@@ -67,7 +75,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: cdaa822affb674dd91be5a00085652cf23ec6bc6
+    :commit: de8cc691e9b7e6e80640661f88e4807695f6d28c
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -80,9 +88,11 @@ SPEC CHECKSUMS:
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
-  qot_dal: 9311549cc4337ef385dae34ee8c3deebc28eacca
+  qot_dal: f90779cac14553f5e62c44cdb20dcba7f3fafc3c
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
+  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
+  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
