@@ -103,8 +103,8 @@
                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalCentering" alignment="bottom" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="g20-6W-mgh">
                         <rect key="frame" x="24" y="429.33333333333331" width="388" height="143.66666666666669"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lalalalalalalalala" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inf-AX-msp">
-                                <rect key="frame" x="0.0" y="0.0" width="388" height="20.333333333333332"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inf-AX-msp">
+                                <rect key="frame" x="0.0" y="0.0" width="388" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.83921568629999999" green="0.78823529410000004" blue="0.75294117650000003" alpha="0.69667245369999997" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
