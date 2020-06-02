@@ -167,10 +167,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) {
-        guard
-            let linkString = shortcutItem.targetContentIdentifier as? String,
-            let link = URL(string: linkString) else { return }
-        launchHandler.process(url: link)
+        guard let type = URLScheme(rawValue: shortcutItem.type) else { return }
+        switch type {
+        case .latestWhatsHotArticle, .tools, .myData:
+            guard let link = type.launchURLWithParameterValue("") else { return }
+            launchHandler.process(url: link)
+        default: return
+        }
     }
 
     //Interface Orientation
