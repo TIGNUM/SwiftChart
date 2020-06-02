@@ -237,7 +237,9 @@ extension AudioFullScreenViewController {
         }
         velocityButton.setTitle(title, for: .normal)
         trackUserEvent(.AUDIO_PLAYBACK_SPEED, stringValue: title, valueType: .AUDIO, action: .TAP)
-        NotificationCenter.default.post(name: .setRateAudio, object: velocity)
+        if playPauseButton.isSelected {
+            NotificationCenter.default.post(name: .setRateAudio, object: velocity)
+        }
     }
 }
 
