@@ -79,6 +79,8 @@ final class ArticleWorker {
 
     var nextUp: Article.Item?
 
+    var nextWhatsHotContent: QDMContentCollection?
+
     var isTopBarHidden: Bool = false
 
     var isBookmarkItemHidden: Bool = false
@@ -86,7 +88,6 @@ final class ArticleWorker {
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
     private var whatsHotArticleItems = [Article.Item]()
     private var whatsHotItems = [Article.Item]()
-
     private var learnStrategyItems = [Article.Item]()
     private var learnStrategyRelatedItems = [Article.Item]()
     private var learnStrategyNextItems = [Article.Item]()
@@ -133,6 +134,12 @@ final class ArticleWorker {
             self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
             self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
             self?.interactor?.dataUpdated()
+        }
+
+        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? 0) { [weak self] (next) in
+            if let nextWhatsHot = next {
+                self?.nextWhatsHotContent = nextWhatsHot
+            }
         }
 
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
@@ -288,7 +295,19 @@ final class ArticleWorker {
                                                                timeToRead: content.durationString,
                                                                imageURL: imageURL,
                                                                isNew: false))
+
             }
+        }
+        if relatedContent.isEmpty {
+            let imageURL = URL(string: nextWhatsHotContent?.thumbnailURLString ?? "")
+            articles.append(Article.RelatedArticleWhatsHot(remoteID: nextWhatsHotContent?.remoteID ?? 0,
+                                                           title: nextWhatsHotContent?.title ?? "",
+                                                           publishDate: nextWhatsHotContent?.publishedDate,
+                                                           author: nextWhatsHotContent?.author,
+                                                           timeToRead: nextWhatsHotContent?.durationString ?? "",
+                                                           imageURL: imageURL,
+                                                           isNew: false))
+
         }
         relatedArticlesWhatsHot = articles
     }
@@ -307,7 +326,7 @@ final class ArticleWorker {
         guard let content = content else { return 1 }
         switch content.section {
         case .WhatsHot:
-            return relatedArticlesWhatsHot.isEmpty ? 1 : 2
+            return 2
         case .About,
              .ExclusiveRecoveryContent:
             return 1
