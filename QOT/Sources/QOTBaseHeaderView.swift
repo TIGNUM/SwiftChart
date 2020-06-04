@@ -41,8 +41,8 @@ final class QOTBaseHeaderView: UIView {
     func configure(title: String?, subtitle: String?, darkMode: Bool? = true, animated: Bool = false) {
         self.title = title
         self.subtitle = subtitle
-        if subtitle == nil {
-            let heightConstraint = NSLayoutConstraint.init(item: subtitleTextView,
+        if subtitle == nil, subtitleTextView != nil {
+            let heightConstraint = NSLayoutConstraint.init(item: subtitleTextView!,
                                                            attribute: .height,
                                                            relatedBy: .equal,
                                                            toItem: nil,

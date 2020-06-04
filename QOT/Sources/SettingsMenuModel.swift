@@ -79,7 +79,7 @@ enum Gender: String {
     }
 
     var selectedIndex: Int? {
-        return Gender.allValuesAsStrings.map({ $0.lowercased() }).index(of: rawValue.lowercased())
+        return Gender.allValuesAsStrings.map({ $0.lowercased() }).firstIndex(of: rawValue.lowercased())
     }
 }
 

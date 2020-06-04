@@ -34,7 +34,7 @@ final class ChatViewAnimator {
 
 private extension CAKeyframeAnimation {
 
-    convenience init(keyPath: String, valuesAtTimes: DictionaryLiteral<CFTimeInterval, Any>) {
+    convenience init(keyPath: String, valuesAtTimes: KeyValuePairs<CFTimeInterval, Any>) {
         self.init(keyPath: keyPath)
 
         var times: [CFTimeInterval] = []

@@ -130,9 +130,6 @@ extension CalendarEventSelectionViewController: EKEventEditViewDelegate {
     func eventEditViewController(_ controller: EKEventEditViewController,
                                  didCompleteWith action: EKEventEditViewAction) {
         switch action {
-        case .canceled,
-             .deleted:
-            controller.dismiss(animated: true)
         case .saved:
             DispatchQueue.main.async { [weak self] in
                 let event = controller.event
@@ -141,6 +138,8 @@ extension CalendarEventSelectionViewController: EKEventEditViewDelegate {
                     self?.router.dismiss()
                 }
             }
+        default:
+            controller.dismiss(animated: true)
         }
     }
 }

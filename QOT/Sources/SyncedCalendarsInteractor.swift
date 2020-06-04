@@ -58,7 +58,7 @@ private extension SyncedCalendarsInteractor {
     }
 
     func updateCalendarSetting(_ setting: QDMUserCalendarSetting?) {
-        if let index = calendarSettings.index(where: { $0.calendarId == setting?.calendarId }) {
+        if let index = calendarSettings.firstIndex(where: { $0.calendarId == setting?.calendarId }) {
             var cached = calendarSettings[index]
             cached.syncEnabled = setting?.syncEnabled ?? false
             calendarSettings[index] = cached

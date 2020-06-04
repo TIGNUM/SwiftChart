@@ -352,7 +352,7 @@ private extension QOTAlertViewController {
     }
 
     private func handlePanEnd(offset: CGFloat) {
-        if offset > 0, fabs(offset) > 0.25 * contentView.frame.size.height {
+        if offset > 0, abs(offset) > 0.25 * contentView.frame.size.height {
             cancelHander?()
             didTapDismiss()
             return

@@ -179,7 +179,7 @@ extension NegativeToPositiveView {
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard let pan = gestureRecognizer as? UIPanGestureRecognizer else { return false }
         let velocity = pan.velocity(in: highPerformanceContainerView)
-        return fabs(velocity.x) > fabs(velocity.y)
+        return abs(velocity.x) > abs(velocity.y)
     }
 
     func calculateHeight(for width: CGFloat) -> CGFloat {
