@@ -13,6 +13,7 @@ import qot_dal
 enum ContentItemValue {
 
     case articleNextUp(title: String, description: String, itemID: Int)
+    case nextWhatsHot(title: String, description: String, itemID: Int)
     case articleRelatedWhatsHot(relatedArticle: Article.RelatedArticleWhatsHot)
     case articleRelatedStrategy(title: String, description: String, itemID: Int)
     case headerText(header: Article.Header)

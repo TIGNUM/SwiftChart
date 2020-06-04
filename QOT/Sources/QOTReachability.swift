@@ -70,9 +70,9 @@ private extension QOTReachability {
     func convert(_ status: NetworkStatus?) -> ReachabilityStatus {
         guard let status = status else { return .notReachable }
         switch status {
-        case .NotReachable: return .notReachable
         case .ReachableViaWiFi: return .ethernetOrWiFi
         case .ReachableViaWWAN: return .wwan
+        default:                return .notReachable
         }
     }
 }

@@ -79,7 +79,7 @@ final class ArticleWorker {
 
     var nextUp: Article.Item?
 
-    var nextWhatsHot: Article.RelatedArticleWhatsHot?
+    var nextWhatsHotContent: QDMContentCollection?
 
     var isTopBarHidden: Bool = false
 
@@ -91,8 +91,8 @@ final class ArticleWorker {
     private var learnStrategyItems = [Article.Item]()
     private var learnStrategyRelatedItems = [Article.Item]()
     private var learnStrategyNextItems = [Article.Item]()
-
     var contactSupportItems = [Article.Item]()
+
     // MARK: - Init
 
     init(selectedID: Int) {
@@ -136,6 +136,13 @@ final class ArticleWorker {
             self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
             self?.interactor?.dataUpdated()
         }
+
+        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? 0) { [weak self] (next) in
+            if let nextWhatsHot = next {
+                self?.nextWhatsHotContent = nextWhatsHot
+            }
+        }
+
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
             if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
@@ -288,6 +295,17 @@ final class ArticleWorker {
                                                                imageURL: imageURL,
                                                                isNew: false))
             }
+        }
+        if relatedContent.isEmpty {
+            let imageURL = URL(string: nextWhatsHotContent?.thumbnailURLString ?? "")
+            articles.append(Article.RelatedArticleWhatsHot(remoteID: nextWhatsHotContent?.remoteID ?? 0,
+                                                           title: nextWhatsHotContent?.title ?? "",
+                                                           publishDate: nextWhatsHotContent?.publishedDate,
+                                                           author: nextWhatsHotContent?.author,
+                                                           timeToRead: nextWhatsHotContent?.durationString ?? "",
+                                                           imageURL: imageURL,
+                                                           isNew: false))
+
         }
         relatedArticlesWhatsHot = articles
     }

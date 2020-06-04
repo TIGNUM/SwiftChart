@@ -264,7 +264,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         // On error make first field editable
         guard let field = textField as? TextField else { return true }
-        if interactor.viewModel.codeError != nil, let index = digitTextFields.index(of: field), index != 0 {
+        if interactor.viewModel.codeError != nil, let index = digitTextFields.firstIndex(of: field), index != 0 {
             digitTextFields.first?.becomeFirstResponder()
             return false
         }
@@ -279,7 +279,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
             return
         }
 
-        guard let textField = textField as? TextField, digitTextFields.index(of: textField) != nil else { return }
+        guard let textField = textField as? TextField, digitTextFields.firstIndex(of: textField) != nil else { return }
 
         if !didHideEmail {
             moveCodeInputToTop()
@@ -319,7 +319,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard
             let textField = textField as? TextField,
-            let index = digitTextFields.index(of: textField),
+            let index = digitTextFields.firstIndex(of: textField),
             textField.hasText == true else { return }
         if index + 1 < digitTextFields.count {
             let nextTextField = digitTextFields[index + 1]
@@ -333,7 +333,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
 // MARK: - TextFieldDelegate
 extension OnboardingLoginViewController: TextFieldDelegate {
     func textFieldDidDelete(_ textField: TextField) {
-        guard let index = digitTextFields.index(of: textField) else { return }
+        guard let index = digitTextFields.firstIndex(of: textField) else { return }
         if index - 1 >= 0 {
             let nextTextField = digitTextFields[index - 1]
             goToNextDigitField(textField, nextTextField: nextTextField)

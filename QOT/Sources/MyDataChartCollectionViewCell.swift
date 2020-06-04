@@ -215,7 +215,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                     parameterValue = model.sleepQuantity
                 }
                 if let value = parameterValue {
-                    pointsArray.append((x: Double(datesOfCurrentWeek.index(of: model.date) ?? model.date.dayOfWeek - 1), y: value))
+                    pointsArray.append((x: Double(datesOfCurrentWeek.firstIndex(of: model.date) ?? model.date.dayOfWeek - 1), y: value))
                 }
                 if resultsDictionary[parameter] == nil {
                     resultsDictionary[parameter] = pointsArray

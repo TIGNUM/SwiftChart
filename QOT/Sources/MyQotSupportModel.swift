@@ -26,7 +26,7 @@ struct MyQotSupportModel {
                 return [.usingQOT, .faq, .contactSupport, .featureRequest, .introduction]
             #endif
         }
-        
+
         func trackingKeys() -> String {
             switch self {
             case .usingQOT:

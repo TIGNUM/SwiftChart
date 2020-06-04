@@ -141,10 +141,10 @@ extension UIViewController {
                                       handler: (() -> Void)?,
                                       handlerDestructive: (() -> Void)?) {
         switch style {
-        case .cancel: alertController.addAction(UIViewController.cancelAction(type: type))
         case .default: alertController.addAction(UIViewController.defaultAction(type: type, handler: handler))
         case .destructive: alertController.addAction(UIViewController.destructiveAction(type: type,
                                                                                         handler: handlerDestructive))
+        default: alertController.addAction(UIViewController.cancelAction(type: type))
         }
     }
 

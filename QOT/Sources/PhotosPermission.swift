@@ -28,14 +28,14 @@ class PhotosPermission: PermissionInterface {
 private extension PHAuthorizationStatus {
     var authorizationStatus: PermissionsManager.AuthorizationStatus {
         switch self {
-        case .notDetermined:
-            return PermissionsManager.AuthorizationStatus.notDetermined
         case .denied:
             return PermissionsManager.AuthorizationStatus.denied
         case .restricted:
             return PermissionsManager.AuthorizationStatus.restricted
         case .authorized:
             return PermissionsManager.AuthorizationStatus.granted
+        default:
+            return PermissionsManager.AuthorizationStatus.notDetermined
         }
     }
 }

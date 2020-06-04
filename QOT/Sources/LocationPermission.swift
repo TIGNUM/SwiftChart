@@ -54,8 +54,6 @@ extension LocationPermission: CLLocationManagerDelegate {
 private extension CLAuthorizationStatus {
     var authorizationStatus: PermissionsManager.AuthorizationStatus {
         switch self {
-        case .notDetermined:
-            return PermissionsManager.AuthorizationStatus.notDetermined
         case .denied:
             return PermissionsManager.AuthorizationStatus.denied
         case .restricted:
@@ -64,6 +62,8 @@ private extension CLAuthorizationStatus {
             return PermissionsManager.AuthorizationStatus.grantedWhileInForeground
         case .authorizedAlways:
             return PermissionsManager.AuthorizationStatus.granted
+        default:
+            return PermissionsManager.AuthorizationStatus.notDetermined
         }
     }
 }

@@ -87,10 +87,10 @@ extension DTSprintWorker {
             switch status {
             case .denied:
                 completion(.settings)
-            case .notDetermined:
-                completion(.permission)
             case .authorized, .provisional:
                 completion(.none)
+            default:
+                completion(.permission)
             }
         }
     }

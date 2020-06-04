@@ -106,6 +106,7 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc override func trackPage() {
+        guard interactor.remoteID != 0 else { return }
         var pageTrack = QDMPageTracking()
         pageTrack.pageId = 0
         pageTrack.pageKey = pageKey
@@ -290,6 +291,7 @@ extension ArticleViewController {
                 imageViewShot.removeFromSuperview()
             })
         }
+        trackPage()
     }
 }
 
