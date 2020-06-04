@@ -1122,6 +1122,15 @@
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
+		F934801E247D464A00DD1C7D /* FeatureExplainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F934801D247D464A00DD1C7D /* FeatureExplainer.storyboard */; };
+		F9348027247D467000DD1C7D /* FeatureExplainerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F934801F247D467000DD1C7D /* FeatureExplainerPresenter.swift */; };
+		F9348028247D467000DD1C7D /* FeatureExplainerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9348020247D467000DD1C7D /* FeatureExplainerWorker.swift */; };
+		F9348029247D467000DD1C7D /* FeatureExplainerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9348021247D467000DD1C7D /* FeatureExplainerRouter.swift */; };
+		F934802A247D467000DD1C7D /* FeatureExplainerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9348022247D467000DD1C7D /* FeatureExplainerInterface.swift */; };
+		F934802B247D467000DD1C7D /* FeatureExplainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9348023247D467000DD1C7D /* FeatureExplainerViewController.swift */; };
+		F934802C247D467000DD1C7D /* FeatureExplainerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9348024247D467000DD1C7D /* FeatureExplainerInteractor.swift */; };
+		F934802D247D467000DD1C7D /* FeatureExplainerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9348025247D467000DD1C7D /* FeatureExplainerModel.swift */; };
+		F934802E247D467000DD1C7D /* FeatureExplainerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9348026247D467000DD1C7D /* FeatureExplainerConfigurator.swift */; };
 		F9371C4A2457329A00CC44F9 /* ExpertThoughtsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9371C492457329A00CC44F9 /* ExpertThoughtsTableViewCell.swift */; };
 		F9371C4C245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9371C4B245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift */; };
 		F9371C50245733D100CC44F9 /* ExpertThoughtsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9371C4F245733D100CC44F9 /* ExpertThoughtsTableViewCell.xib */; };
@@ -2392,6 +2401,15 @@
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
+		F934801D247D464A00DD1C7D /* FeatureExplainer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeatureExplainer.storyboard; sourceTree = "<group>"; };
+		F934801F247D467000DD1C7D /* FeatureExplainerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureExplainerPresenter.swift; sourceTree = "<group>"; };
+		F9348020247D467000DD1C7D /* FeatureExplainerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureExplainerWorker.swift; sourceTree = "<group>"; };
+		F9348021247D467000DD1C7D /* FeatureExplainerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureExplainerRouter.swift; sourceTree = "<group>"; };
+		F9348022247D467000DD1C7D /* FeatureExplainerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureExplainerInterface.swift; sourceTree = "<group>"; };
+		F9348023247D467000DD1C7D /* FeatureExplainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureExplainerViewController.swift; sourceTree = "<group>"; };
+		F9348024247D467000DD1C7D /* FeatureExplainerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureExplainerInteractor.swift; sourceTree = "<group>"; };
+		F9348025247D467000DD1C7D /* FeatureExplainerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureExplainerModel.swift; sourceTree = "<group>"; };
+		F9348026247D467000DD1C7D /* FeatureExplainerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureExplainerConfigurator.swift; sourceTree = "<group>"; };
 		F9371C492457329A00CC44F9 /* ExpertThoughtsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertThoughtsTableViewCell.swift; sourceTree = "<group>"; };
 		F9371C4B245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpertThoughtsCellViewModel.swift; sourceTree = "<group>"; };
 		F9371C4F245733D100CC44F9 /* ExpertThoughtsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpertThoughtsTableViewCell.xib; sourceTree = "<group>"; };
@@ -2964,6 +2982,7 @@
 				3876050F23A266D30034B451 /* BaseRouter.swift */,
 				BB157759233A0E0500202978 /* BaseViewController.swift */,
 				3608381D225F3E9E00664B9B /* Article */,
+				F934801C247D462100DD1C7D /* FeatureExplainer */,
 				36B5BD152314295E00439A64 /* AskPermission */,
 				B83B33DA22C21D6E002AFED7 /* BottomNavigation */,
 				36376625223A668F00C2C429 /* Coach */,
@@ -5164,6 +5183,22 @@
 			name = Level5;
 			sourceTree = "<group>";
 		};
+		F934801C247D462100DD1C7D /* FeatureExplainer */ = {
+			isa = PBXGroup;
+			children = (
+				F934801D247D464A00DD1C7D /* FeatureExplainer.storyboard */,
+				F934801F247D467000DD1C7D /* FeatureExplainerPresenter.swift */,
+				F9348020247D467000DD1C7D /* FeatureExplainerWorker.swift */,
+				F9348021247D467000DD1C7D /* FeatureExplainerRouter.swift */,
+				F9348022247D467000DD1C7D /* FeatureExplainerInterface.swift */,
+				F9348023247D467000DD1C7D /* FeatureExplainerViewController.swift */,
+				F9348024247D467000DD1C7D /* FeatureExplainerInteractor.swift */,
+				F9348025247D467000DD1C7D /* FeatureExplainerModel.swift */,
+				F9348026247D467000DD1C7D /* FeatureExplainerConfigurator.swift */,
+			);
+			name = FeatureExplainer;
+			sourceTree = "<group>";
+		};
 		F9371C482457327400CC44F9 /* ExpertThoughts */ = {
 			isa = PBXGroup;
 			children = (
@@ -5716,6 +5751,7 @@
 				ACF0B9752260BAD2008CFAEC /* SingleSelectionTableViewCell.xib in Resources */,
 				360CC3C72268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib in Resources */,
 				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
+				F934801E247D464A00DD1C7D /* FeatureExplainer.storyboard in Resources */,
 				5FD890A922807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib in Resources */,
 				8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */,
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
@@ -6106,6 +6142,7 @@
 				B856B47E22B0E29D0017A249 /* MyLibraryCellViewModel.swift in Sources */,
 				8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */,
 				36B5BD2E23142B4A00439A64 /* AskPermissionRouter.swift in Sources */,
+				F934802C247D467000DD1C7D /* FeatureExplainerInteractor.swift in Sources */,
 				F9638C492306A47D00B8E543 /* Notification+Ext.swift in Sources */,
 				F9A8A01522967FA300DE3A9C /* ToolsItemsViewController.swift in Sources */,
 				36B5BD3023142B4A00439A64 /* AskPermissionViewController.swift in Sources */,
@@ -6214,6 +6251,7 @@
 				8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */,
 				F9E330342424A73D00967C28 /* MyPlansHeaderView.swift in Sources */,
 				3666FD43232A4B7D00FC67D0 /* DTRecoveryRouter.swift in Sources */,
+				F934802D247D467000DD1C7D /* FeatureExplainerModel.swift in Sources */,
 				B4BCD0E723AB7CD900B80747 /* MyQOTAdminEditSprintsWorker.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
 				3658257A2327D19200AC3F4A /* DTShortTBVRouter.swift in Sources */,
@@ -6300,6 +6338,7 @@
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
 				8DF7870722FEB50800CDE0A9 /* RegistrationCodeWorker.swift in Sources */,
+				F9348027247D467000DD1C7D /* FeatureExplainerPresenter.swift in Sources */,
 				38E5A08D2412B06C008FCF8F /* CalendarEventSelectionInterface.swift in Sources */,
 				B474CA932398F85F00A829B5 /* RegisterIntroModel.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
@@ -6515,6 +6554,7 @@
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				F9A5C95022B7D0E000AB2E94 /* PaymentReminderWorker.swift in Sources */,
 				38C23E5724235DCA0034571B /* DTPrepareStartModel.swift in Sources */,
+				F9348028247D467000DD1C7D /* FeatureExplainerWorker.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
 				8D0B4D222301CC4000A1AC47 /* RegistrationNamesPresenter.swift in Sources */,
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
@@ -6670,6 +6710,7 @@
 				3655F2D42326EBD600334719 /* DTMindsetWorker.swift in Sources */,
 				9CC426202306A4DB00F8072E /* GuidedTrackRowViewModel.swift in Sources */,
 				36E86D532270651A00371C67 /* ArticleRelatedTableViewCell.swift in Sources */,
+				F934802A247D467000DD1C7D /* FeatureExplainerInterface.swift in Sources */,
 				759AB41B22C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift in Sources */,
 				9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */,
 				9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */,
@@ -6734,6 +6775,7 @@
 				8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */,
 				3658257D2327D19200AC3F4A /* DTShortTBVInteractor.swift in Sources */,
 				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
+				F9348029247D467000DD1C7D /* FeatureExplainerRouter.swift in Sources */,
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
 				F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */,
 				DB51215D2331945F009BFF22 /* PreparationWithMissingEventPresenter.swift in Sources */,
@@ -6862,6 +6904,7 @@
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
 				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
+				F934802E247D467000DD1C7D /* FeatureExplainerConfigurator.swift in Sources */,
 				7F9217B71FD01C1600CAE9E0 /* CalendarPermission.swift in Sources */,
 				F9B102A422D336D000F99E85 /* WhatsHotLatestCell.swift in Sources */,
 				386C27A8241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift in Sources */,
@@ -6950,6 +6993,7 @@
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,
 				367CD18122EF4EDE00AF2187 /* OnboardingLoginRouter.swift in Sources */,
 				B856B47B22B0E29D0017A249 /* MyLibraryUserStorageInterface.swift in Sources */,
+				F934802B247D467000DD1C7D /* FeatureExplainerViewController.swift in Sources */,
 				5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */,
 				DBFD7EEB230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,

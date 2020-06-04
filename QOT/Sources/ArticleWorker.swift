@@ -92,6 +92,7 @@ final class ArticleWorker {
     private var learnStrategyRelatedItems = [Article.Item]()
     private var learnStrategyNextItems = [Article.Item]()
     var contactSupportItems = [Article.Item]()
+
     // MARK: - Init
 
     init(selectedID: Int) {
@@ -144,7 +145,6 @@ final class ArticleWorker {
 
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
-
             if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
                 relation.type == "NEXT_UP"
             }).first, let nextUpId = nextUpContentRelation.contentID {
@@ -156,9 +156,8 @@ final class ArticleWorker {
                                                                                      itemID: nextCollection.remoteID ?? 0))
                 }
             }
-
-            setupSynchronousSteps()
         }
+        setupSynchronousSteps()
     }
 
     private func setupLearnStragyItems() {
@@ -295,7 +294,6 @@ final class ArticleWorker {
                                                                timeToRead: content.durationString,
                                                                imageURL: imageURL,
                                                                isNew: false))
-
             }
         }
         if relatedContent.isEmpty {
@@ -326,7 +324,7 @@ final class ArticleWorker {
         guard let content = content else { return 1 }
         switch content.section {
         case .WhatsHot:
-            return 2
+            return relatedArticlesWhatsHot.isEmpty ? 1 : 2
         case .About,
              .ExclusiveRecoveryContent:
             return 1

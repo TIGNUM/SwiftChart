@@ -15,7 +15,6 @@ enum ContentItemValue {
     case articleNextUp(title: String, description: String, itemID: Int)
     case nextWhatsHot(title: String, description: String, itemID: Int)
     case articleRelatedWhatsHot(relatedArticle: Article.RelatedArticleWhatsHot)
-    case nextWhatsHotArticle(nextWhatsHot: Article.RelatedArticleWhatsHot)
     case articleRelatedStrategy(title: String, description: String, itemID: Int)
     case headerText(header: Article.Header)
     case headerImage(imageURLString: String?)

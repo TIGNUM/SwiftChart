@@ -40,6 +40,7 @@ extension QDMUserEventTracking.Name {
     static let ORIENTATION_CHANGE = "ORIENTATION_CHANGE"
     static let GET_STARTED = "GET_STARTED"
     static let AUDIO_PLAYBACK_SPEED = "AUDIO_PLAYBACK_SPEED"
+    static let CHECK_DONT_SHOW_EXPLAINER = "CHECK_DONT_SHOW_EXPLAINER"
 }
 
 public extension QDMUserEventTracking.ValueType {
@@ -49,6 +50,7 @@ public extension QDMUserEventTracking.ValueType {
     static let USER_BIRTH_YEAR = "USER_BIRTH_YEAR"
     static let LANDSCAPE = "LANDSCAPE"
     static let PORTRAIT = "PORTRAIT"
+    static let FEATURE_EXPLAINER = "FEATURE_EXPLAINER"
 }
 
 public extension QDMUserEventTracking.Action {
