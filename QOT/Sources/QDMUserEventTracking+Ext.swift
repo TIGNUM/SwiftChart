@@ -50,6 +50,7 @@ public extension QDMUserEventTracking.ValueType {
     static let USER_BIRTH_YEAR = "USER_BIRTH_YEAR"
     static let LANDSCAPE = "LANDSCAPE"
     static let PORTRAIT = "PORTRAIT"
+    static let FEATURE_EXPLAINER = "FEATURE_EXPLAINER"
 }
 
 public extension QDMUserEventTracking.Action {
