@@ -86,7 +86,7 @@ extension UIViewController {
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
         case is TBVRateHistoryNullStateViewController: return "tobevision.mytbvdata"
-        case is FeatureExplainerViewController: return "feature.explainer.sprint"
+        case is FeatureExplainerViewController: return featureExplainerPageKey
         case is QuestionnaireViewController:
             if let controllerType = (self as? QuestionnaireViewController)?.controllerType {
                 switch controllerType {
@@ -207,6 +207,20 @@ private extension UIViewController {
         case .calendar?: return "askPermission.calendar"
         case .calendarOpenSettings?: return "askPermission.calendar.settings"
         case .notificationOpenSettings?: return "askPermission.notification.settings"
+        default: preconditionFailure()
+        }
+    }
+}
+
+private extension UIViewController {
+    var featureExplainerPageKey: String {
+        switch (self as? FeatureExplainerViewController)?.interactor.getFeatureType {
+        case .sprint?: return "feature.explainer.sprint"
+        case .prepare?: return "feature.explainer.prepare"
+        case .recovery?: return "feature.explainer.recovery"
+        case .solve?: return "feature.explainer.solve"
+        case .tools?: return "feature.explainer.tools"
+        case .mindsetShifter?: return "feature.explainer.mindsetShifter"
         default: preconditionFailure()
         }
     }

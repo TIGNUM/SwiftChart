@@ -32,7 +32,7 @@ final class FeatureExplainerInteractor {
 
 // MARK: - FeatureExplainerInteractorInterface
 extension FeatureExplainerInteractor: FeatureExplainerInteractorInterface {
-    
+
     var getFeatureType: FeatureExplainer.Kind {
         return featureType
     }

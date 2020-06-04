@@ -61,12 +61,13 @@ private extension FeatureExplainerViewController {
 private extension FeatureExplainerViewController {
 
     @objc func didTapGetStartedButton() {
-        trackUserEvent(.GET_STARTED, valueType: .GET_STARTED, action: .TAP)
+        trackUserEvent(.GET_STARTED, stringValue: interactor.getFeatureType.rawValue, valueType: .FEATURE_EXPLAINER, action: .TAP)
         router.didTapGetStarted(interactor.getFeatureType)
     }
 
     @IBAction func buttonChecked(_ sender: Any) {
         checkButton.isSelected.toggle()
+        trackUserEvent(.CHECK_DONT_SHOW_EXPLAINER, stringValue: interactor.getFeatureType.rawValue, valueType: .FEATURE_EXPLAINER, action: .TAP)
         checkButton.backgroundColor = checkButton.isSelected ? .accent : .clear
         UserDefault.sprintExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
     }
