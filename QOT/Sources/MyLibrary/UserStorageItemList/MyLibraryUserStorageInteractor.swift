@@ -308,7 +308,7 @@ extension MyLibraryUserStorageInteractor {
             }
 
         case .AUDIO:
-            guard let items = self.items, let index = items.index(of: item) else {
+            guard let items = self.items, let index = items.firstIndex(of: item) else {
                 return false
             }
             didTapPlayItem(at: index)

@@ -62,10 +62,10 @@ extension MyQotAppSettingsInteractor {
         switch worker.calendarAuthorizationStatus {
         case .authorized:
             router.openCalendarSettings()
-        case .notDetermined:
-            router.openCalendarPermission(.calendar, delegate: self)
         case .denied, .restricted:
             router.openCalendarPermission(.calendarOpenSettings, delegate: self)
+        default:
+            router.openCalendarPermission(.calendar, delegate: self)
         }
     }
 }

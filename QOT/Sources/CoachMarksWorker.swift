@@ -27,7 +27,7 @@ final class CoachMarksWorker {
                 switch status {
                 case .authorized, .provisional: completion(nil)
                 case .denied: completion(.notificationOpenSettings)
-                case .notDetermined: completion(.notificationOnboarding)
+                default: completion(.notificationOnboarding)
                 }
             }
         }

@@ -236,7 +236,7 @@ extension InfoAlertView {
     }
 
     private func handlePanEnd(offset: CGFloat) {
-        if fabs(offset) > 0.25*infoView.frame.size.height {
+        if abs(offset) > 0.25 * infoView.frame.size.height {
             internalDismiss()
             return
         }
