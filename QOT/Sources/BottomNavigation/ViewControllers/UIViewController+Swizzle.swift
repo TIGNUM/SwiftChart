@@ -14,9 +14,12 @@ protocol ScreenZLevel {}
 
 var viewWillAppearIsSwizzled = false
 var viewDidAppearIsSwizzled = false
+var viewDidDisappearIsSwizzled = false
 var presentViewControllerIsSwizzled = false
 var dismissViewControllerIsSwizzled = false
 var timer: Timer?
+
+let ExternalViewControllerNames = ["LIFEContainerViewController", "LIFEAlertController"]
 
 func swizzleUIViewController() {
     if viewWillAppearIsSwizzled == false {
@@ -25,6 +28,10 @@ func swizzleUIViewController() {
 
     if viewDidAppearIsSwizzled == false {
         swizzleUIViewControllerViewDidAppear()
+    }
+
+    if viewDidDisappearIsSwizzled == false {
+        swizzleUIViewControllerViewDidDisappear()
     }
 
     if presentViewControllerIsSwizzled == false {
@@ -61,6 +68,20 @@ func swizzleUIViewControllerViewDidAppear() {
         // switch implementation..
         method_exchangeImplementations(originalMethod, swizzledMethod)
         viewDidAppearIsSwizzled = !viewDidAppearIsSwizzled
+    }
+}
+
+func swizzleUIViewControllerViewDidDisappear() {
+    let originalSelector = #selector(UIViewController.viewDidDisappear(_:))
+    let swizzledSelector = #selector(UIViewController.viewDidDisappearSwizzled(animated:))
+
+    let originalMethod = class_getInstanceMethod(UIViewController.self, originalSelector)
+    let swizzledMethod = class_getInstanceMethod(UIViewController.self, swizzledSelector)
+
+    if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+        // switch implementation..
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+        viewDidDisappearIsSwizzled = !viewDidDisappearIsSwizzled
     }
 }
 
@@ -126,6 +147,10 @@ extension UIViewController {
         let viewControllerName = NSStringFromClass(type(of: self))
         log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .info)
 
+        if ExternalViewControllerNames.contains(obj: viewControllerName) {
+            cacheCurrentBottomNavigationItems()
+        }
+
         self.applyTheme()
         if animated || (!animated && isTopVisibleViewController()) {
             refreshBottomNavigationItems()
@@ -149,6 +174,14 @@ extension UIViewController {
             self.setNeedsStatusBarAppearanceUpdate()
         }
         self.viewDidAppearSwizzled(animated: animated)
+    }
+
+    @objc func viewDidDisappearSwizzled(animated: Bool) {
+        let viewControllerName = NSStringFromClass(type(of: self))
+        if ExternalViewControllerNames.contains(obj: viewControllerName) {
+            setBackCachedBottomNavigationItems()
+        }
+        self.viewDidDisappearSwizzled(animated: animated)
     }
 
     func setStatusBar(colorMode: ColorMode) {
