@@ -69,7 +69,21 @@ private extension FeatureExplainerViewController {
         checkButton.isSelected.toggle()
         trackUserEvent(.CHECK_DONT_SHOW_EXPLAINER, stringValue: interactor.getFeatureType.rawValue, valueType: .FEATURE_EXPLAINER, action: .TAP)
         checkButton.backgroundColor = checkButton.isSelected ? .accent : .clear
-        UserDefault.sprintExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+        switch interactor.getFeatureType {
+        case .sprint:
+            UserDefault.sprintExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+        case .tools:
+             UserDefault.toolsExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+        case .prepare:
+             UserDefault.prepareExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+        case .mindsetShifter:
+             UserDefault.mindsetExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+        case .recovery:
+             UserDefault.recoveryExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+        case .solve:
+             UserDefault.solveExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+        }
+
     }
 }
 
