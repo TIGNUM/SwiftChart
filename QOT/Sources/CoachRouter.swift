@@ -59,7 +59,7 @@ extension CoachRouter: CoachRouterInterface {
                     AppDelegate.current.launchHandler.process(url: launchURL)
                 }
             } else {
-               showFeatureExplanation(.solve)
+               showFeatureExplanation(.prepare)
             }
         case .challenge:
             if UserDefault.solveExplanation.boolValue {
