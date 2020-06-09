@@ -343,7 +343,7 @@ extension AppCoordinator: PermissionManagerDelegate {
             case .calendar:
                 devicePermission.feature = .calendar
             case .notifications:
-                devicePermission.feature = .notifcations
+                devicePermission.feature = .notifications
             case .location:
                 devicePermission.feature = .location
             case .photos:
