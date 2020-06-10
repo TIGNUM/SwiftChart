@@ -71,19 +71,18 @@ private extension FeatureExplainerViewController {
         checkButton.backgroundColor = checkButton.isSelected ? .accent : .clear
         switch interactor.getFeatureType {
         case .sprint:
-            UserDefault.sprintExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+            UserDefault.sprintExplanation.setBoolValue(value: checkButton.isSelected)
         case .tools:
-             UserDefault.toolsExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+             UserDefault.toolsExplanation.setBoolValue(value: checkButton.isSelected)
         case .prepare:
-             UserDefault.prepareExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+             UserDefault.prepareExplanation.setBoolValue(value: checkButton.isSelected)
         case .mindsetShifter:
-             UserDefault.mindsetExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+             UserDefault.mindsetExplanation.setBoolValue(value: checkButton.isSelected)
         case .recovery:
-             UserDefault.recoveryExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+             UserDefault.recoveryExplanation.setBoolValue(value: checkButton.isSelected)
         case .solve:
-             UserDefault.solveExplanation.setBoolValue(value: checkButton.isSelected ? true : false)
+             UserDefault.solveExplanation.setBoolValue(value: checkButton.isSelected)
         }
-
     }
 }
 
