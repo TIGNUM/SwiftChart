@@ -46,6 +46,7 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
         remoteID = model.remoteID
         audioTitle = model.audioTitle
         mediaURL = model.audioLink
+        audioButton.isHidden = model.format != .audio
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
     }
