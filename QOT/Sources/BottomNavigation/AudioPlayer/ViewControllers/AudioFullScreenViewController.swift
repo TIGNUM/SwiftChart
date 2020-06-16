@@ -67,8 +67,10 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         switch colorMode {
         case .dark:
             ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
+            ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: nil)
         case .darkNot:
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(bookmarkButton, title: nil)
+            ThemableButton.fullscreenAudioPlayerDownloadLight.apply(downloadButton, title: nil)
         }
     }
 
