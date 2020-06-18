@@ -421,7 +421,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .articleRelatedWhatsHot(let relatedArticle):
             let cell: ArticleRelatedWhatsHotTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: relatedArticle.title,
+            cell.configure(title: relatedArticle.title.uppercased(),
                            publishDate: relatedArticle.publishDate,
                            author: relatedArticle.author,
                            timeToRead: relatedArticle.timeToRead,

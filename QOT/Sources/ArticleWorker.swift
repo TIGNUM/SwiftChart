@@ -105,6 +105,7 @@ final class ArticleWorker {
     }
 
     private func setup() {
+
         guard let content = self.content else {
             return
         }
@@ -125,6 +126,15 @@ final class ArticleWorker {
                                        imageURL: content.thumbnailURLString)
         relatedContent = [QDMContentCollection]()
         nextUp = nil
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? 0) { [weak self] (next) in
+            if let nextWhatsHot = next {
+                self?.nextWhatsHotContent = nextWhatsHot
+            }
+            dispatchGroup.leave()
+        }
+
         let setupSynchronousSteps: () -> Void = { [weak self] in
             self?.setupRelatedArticlesWhatsHot()
             self?.setupWhatsHotArticleItems()
@@ -135,14 +145,10 @@ final class ArticleWorker {
             self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
             self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
             self?.interactor?.dataUpdated()
+            self?.setupWhatsHotArticleItems()
         }
 
-        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? 0) { [weak self] (next) in
-            if let nextWhatsHot = next {
-                self?.nextWhatsHotContent = nextWhatsHot
-            }
-        }
-
+        dispatchGroup.enter()
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
             if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
@@ -156,8 +162,11 @@ final class ArticleWorker {
                                                                                      itemID: nextCollection.remoteID ?? 0))
                 }
             }
+            dispatchGroup.leave()
         }
-        setupSynchronousSteps()
+        dispatchGroup.notify(queue: .main) {
+           setupSynchronousSteps()
+        }
     }
 
     private func setupLearnStragyItems() {
