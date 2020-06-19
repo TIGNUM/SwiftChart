@@ -46,6 +46,17 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
         actionRight = tapRight
     }
 
+    func setSettingsButton(_ title: String) {
+        buttonRight.setImage(nil, for: .normal)
+        buttonRight.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
+        buttonRight.setAttributedTitle(NSAttributedString(string: "M",
+                                                          attributes: [.foregroundColor: UIColor.carbon,
+                                                                       .font: UIFont.sfProtextSemibold(ofSize: 17)]),
+                                       for: .normal)
+        buttonRight.circle()
+        buttonRight.backgroundColor = .accent
+    }
+
     func updateAlpha(basedOn offsetY: CGFloat) {
         let offset = container.frame.maxY - offsetY
         if offset < 0 {
