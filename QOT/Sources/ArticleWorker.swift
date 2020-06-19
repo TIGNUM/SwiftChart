@@ -105,7 +105,6 @@ final class ArticleWorker {
     }
 
     private func setup() {
-
         guard let content = self.content else {
             return
         }
@@ -134,20 +133,6 @@ final class ArticleWorker {
             }
             dispatchGroup.leave()
         }
-
-        let setupSynchronousSteps: () -> Void = { [weak self] in
-            self?.setupRelatedArticlesWhatsHot()
-            self?.setupWhatsHotArticleItems()
-            self?.setupWhatsHotItems()
-            self?.setupLearnStragyItems()
-            self?.setupRelatedArticlesStrtegy()
-            self?.setupAudioArticleItem()
-            self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
-            self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
-            self?.interactor?.dataUpdated()
-            self?.setupWhatsHotArticleItems()
-        }
-
         dispatchGroup.enter()
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
@@ -164,8 +149,16 @@ final class ArticleWorker {
             }
             dispatchGroup.leave()
         }
-        dispatchGroup.notify(queue: .main) {
-           setupSynchronousSteps()
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.setupRelatedArticlesWhatsHot()
+            self?.setupWhatsHotArticleItems()
+            self?.setupWhatsHotItems()
+            self?.setupLearnStragyItems()
+            self?.setupRelatedArticlesStrtegy()
+            self?.setupAudioArticleItem()
+            self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
+            self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
+            self?.interactor?.dataUpdated()
         }
     }
 
