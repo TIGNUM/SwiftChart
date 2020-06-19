@@ -29,6 +29,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]?
     func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>])
     func refreshParams()
+    func getSettingsTitle(completion: @escaping (String?) -> Void)
 }
 
 protocol MyQotMainRouterInterface {
@@ -37,6 +38,7 @@ protocol MyQotMainRouterInterface {
     func presentMySprints()
     func presentMyLibrary()
     func presentMyDataScreen()
+    func presentCreateTeam()
 
     func showTBV()
 }

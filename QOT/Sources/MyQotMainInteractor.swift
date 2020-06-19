@@ -182,6 +182,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         viewModelOldListModels = list
     }
 
+    func getSettingsTitle(completion: @escaping (String?) -> Void) {
+        worker.getSettingsTitle(completion: completion)
+    }
+
     func refreshParams() {
         var sectionDataList: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = [ArraySection(model: .header,
                                                                                                          elements: [])]
@@ -200,32 +204,30 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                     guard let strongSelf = self else {
                         return
                     }
-                    strongSelf.getUserName(completion: {(name) in
-                        strongSelf.nextPrep(completion: { [weak self] (dateString) in
+                    strongSelf.nextPrep(completion: { [weak self] (dateString) in
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.nextPrepType(completion: { [weak self] (eventType) in
                             guard let strongSelf = self else {
                                 return
                             }
-                            strongSelf.nextPrepType(completion: { [weak self] (eventType) in
+                            strongSelf.getCurrentSprintName(completion: { [weak self] (sprintName) in
                                 guard let strongSelf = self else {
                                     return
                                 }
-                                strongSelf.getCurrentSprintName(completion: { [weak self] (sprintName) in
-                                    guard let strongSelf = self else {
-                                        return
-                                    }
-                                    elements.append(contentsOf: strongSelf.createProfile(userName: name))
-                                    elements.append(contentsOf: strongSelf.createLibrary())
-                                    elements.append(contentsOf: strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                                    elements.append(contentsOf: strongSelf.createSprints(sprintName: sprintName))
-                                    elements.append(contentsOf: strongSelf.createMyData(irScore: score))
-                                    elements.append(contentsOf: strongSelf.createToBeVision(date: date))
+                                elements.append(contentsOf: strongSelf.createProfile(userName: nil))
+                                elements.append(contentsOf: strongSelf.createLibrary())
+                                elements.append(contentsOf: strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                                elements.append(contentsOf: strongSelf.createSprints(sprintName: sprintName))
+                                elements.append(contentsOf: strongSelf.createMyData(irScore: score))
+                                elements.append(contentsOf: strongSelf.createToBeVision(date: date))
 
-                                    sectionDataList.append(ArraySection(model: .body,
-                                                                        elements: elements))
+                                sectionDataList.append(ArraySection(model: .body,
+                                                                    elements: elements))
 
-                                    let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
-                                    strongSelf.presenter.updateViewNew(changeSet)
-                                })
+                                let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
+                                strongSelf.presenter.updateViewNew(changeSet)
                             })
                         })
                     })
