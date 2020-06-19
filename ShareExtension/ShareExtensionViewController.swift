@@ -10,21 +10,24 @@ import UIKit
 import Social
 import MobileCoreServices
 
+// NOT USED ANYMORE
+
 class ShareExtensionViewController: SLComposeServiceViewController {
     private var shareExtensionData = ShareExtentionData()
-    @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
+//    @IBOutlet private weak var imageView: UIImageView!
+//    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
         return true
     }
 
     override func didSelectPost() {
-        DispatchQueue.main.async {
-            self.loadingIndicator.stopAnimating()
-            self.loadingIndicator.isHidden = true
-            self.imageView.isHidden = false
-        }
+//        DispatchQueue.main.async {
+//            self.loadingIndicator.stopAnimating()
+//            self.loadingIndicator.isHidden = true
+//            self.imageView.isHidden = false
+//        }
         self.shareExtensionData.date = Date()
         var dataArray = ExtensionUserDefaults.object(for: .share, key: .saveLink) ?? [ShareExtentionData]()
         dataArray.append(self.shareExtensionData)
@@ -45,12 +48,12 @@ class ShareExtensionViewController: SLComposeServiceViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.isHidden = true
-        view.subviews.forEach {
-            if $0.tag != 2020 {
-                $0.removeFromSuperview()
-            }
-        }
+//        imageView.isHidden = true
+//        view.subviews.forEach {
+//            if $0.tag != 2020 {
+//                $0.removeFromSuperview()
+//            }
+//        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -140,10 +143,10 @@ class ShareExtensionViewController: SLComposeServiceViewController {
     }
 
     func handleFailure() {
-        self.loadingIndicator.stopAnimating()
-        self.loadingIndicator.isHidden = true
-        self.imageView.image = UIImage(named: "CrossImage")
-        self.imageView.isHidden = false
+//        self.loadingIndicator.stopAnimating()
+//        self.loadingIndicator.isHidden = true
+//        self.imageView.image = UIImage(named: "CrossImage")
+//        self.imageView.isHidden = false
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             self.cancel()
         }

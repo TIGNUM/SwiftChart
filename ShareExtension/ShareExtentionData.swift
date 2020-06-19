@@ -16,3 +16,8 @@ struct ShareExtentionData: Codable {
     var thumbnail: String?
     var description: String?
 }
+
+struct TeamLibrary: Codable {
+    var TeamName: String?
+    var NumberOfParticipants: Int?
+}
