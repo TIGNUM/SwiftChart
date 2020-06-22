@@ -17,9 +17,10 @@ final class CreateTeamViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var teamTextField: UITextField!
     @IBOutlet private weak var textCounterLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-    var interactor: CreateTeamInteractorInterface!
-    private lazy var router: CreateTeamRouterInterface = CreateTeamRouter(viewController: self)
+    @IBOutlet private weak var keyboardInputView: KeyboardInputView!
     private var bottomConstraintInitialValue: CGFloat = 0
+    private lazy var router: CreateTeamRouterInterface = CreateTeamRouter(viewController: self)
+    var interactor: CreateTeamInteractorInterface!
 
     // MARK: - Init
     init(configure: Configurator<CreateTeamViewController>) {
@@ -38,13 +39,19 @@ final class CreateTeamViewController: BaseViewController, ScreenZLevel3 {
         super.viewDidLoad()
         interactor.viewDidLoad()
         startObservingKeyboard()
-        hideKeyboardWhenTappedAround()
+        teamTextField.becomeFirstResponder()
     }
 }
 
 // MARK: - Private
 private extension CreateTeamViewController {
+    func updateTextCounter(_ newValue: String) {
+        textCounterLabel.text = newValue
+    }
 
+    func updateKeyboardInputView(_ canCreate: Bool) {
+        keyboardInputView.updateCreateButton(canCreate)
+    }
 }
 
 // MARK: - Actions
@@ -55,7 +62,35 @@ private extension CreateTeamViewController {
 // MARK: - CreateTeamViewControllerInterface
 extension CreateTeamViewController: CreateTeamViewControllerInterface {
     func setupView() {
-        // Do any additional setup after loading the view.
+        teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
+        teamTextField.inputAccessoryView = keyboardInputView
+        keyboardInputView.delegate = self
+    }
+
+    func setupLabels(header: String?, description: String?, buttonTitle: String?) {
+        keyboardInputView.createButton.setTitle(buttonTitle, for: .normal)
+        titleLabel.text = description
+        headerLabel.text = header
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension CreateTeamViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        let maxLength = 20
+        let currentString = textField.text! as NSString
+        let newString = currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
+    }
+
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let numberOfCharacters = textField.text?.count {
+            updateKeyboardInputView(numberOfCharacters > 0)
+            updateTextCounter(String(numberOfCharacters))
+        }
     }
 }
 
@@ -76,7 +111,8 @@ extension CreateTeamViewController {
 
         if parameters.endFrameY >= UIScreen.main.bounds.size.height {
             // Keyboard is hiding
-            animateOffset(bottomConstraintInitialValue, duration: parameters.duration,
+            animateOffset(bottomConstraintInitialValue,
+                          duration: parameters.duration,
                           animationCurve: parameters.animationCurve)
         } else {
             // Keyboard is showing
@@ -92,5 +128,17 @@ extension CreateTeamViewController {
                        options: animationCurve,
                        animations: { self.view.layoutIfNeeded() },
                        completion: nil)
+    }
+}
+
+// MARK: - KeyboardInputViewProtocol
+extension CreateTeamViewController: KeyboardInputViewProtocol {
+    func didCancel() {
+        teamTextField.resignFirstResponder()
+        router.dismiss()
+    }
+
+    func didCreateTeam() {
+        // TODO
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 
 protocol CreateTeamViewControllerInterface: class {
     func setupView()
+    func setupLabels(header: String?, description: String?, buttonTitle: String?)
 }
 
 protocol CreateTeamPresenterInterface {

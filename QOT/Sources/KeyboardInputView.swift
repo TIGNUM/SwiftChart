@@ -8,24 +8,39 @@
 
 import UIKit
 
-class KeyboardInputView: UIView {
+protocol KeyboardInputViewProtocol: class {
+    func didCancel()
+    func didCreateTeam()
+}
 
-    // MARK: - Properties
-    @IBOutlet weak var leftButton: UIButton!
-    @IBOutlet weak var rightButton: UIButton!
+final class KeyboardInputView: UIView {
 
-    func configure(leftButtonTitle: String, rightButtonTitle: String) {
+    @IBOutlet weak var createButton: UIButton!
+    weak var delegate: KeyboardInputViewProtocol?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        createButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        updateCreateButton(false)
+    }
+
+    func updateCreateButton(_ isEnabled: Bool) {
+        createButton.isUserInteractionEnabled = isEnabled
+        UIView.animate(withDuration: Animation.duration_02) { [weak self] in
+            self?.createButton.setTitleColor(isEnabled ? .accent : .sand30, for: .normal)
+            self?.createButton.backgroundColor = isEnabled ? .carbon : .sand08
+            self?.createButton.layer.borderWidth = isEnabled ? 1 : 0
+        }
     }
 }
 
 // MARK: - Action
 extension KeyboardInputView {
-    @IBAction func didTabLeftButton(_ sender: UIButton) {
-
+    @IBAction func didTapCancel(_ sender: Any) {
+        delegate?.didCancel()
     }
 
-    @IBAction func didTabRightButton(_ sender: UIButton) {
-
+    @IBAction func didTapCreateTeam(_ sender: Any) {
+        delegate?.didCreateTeam()
     }
 }

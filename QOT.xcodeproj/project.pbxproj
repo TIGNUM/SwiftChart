@@ -286,8 +286,6 @@
 		38593DE1249D0CF900C2955D /* CreateTeamInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DD9249D0CF900C2955D /* CreateTeamInteractor.swift */; };
 		38593DE2249D0CF900C2955D /* CreateTeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DDA249D0CF900C2955D /* CreateTeamModel.swift */; };
 		38593DE3249D0CF900C2955D /* CreateTeamConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DDB249D0CF900C2955D /* CreateTeamConfigurator.swift */; };
-		38593DEB24A0F98800C2955D /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DEA24A0F98800C2955D /* KeyboardInputView.swift */; };
-		38593DED24A0F99C00C2955D /* KeyboardInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38593DEC24A0F99C00C2955D /* KeyboardInputView.xib */; };
 		38593DF124A1114C00C2955D /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38593DF024A1114C00C2955D /* Team.storyboard */; };
 		386C279A2418EBFF00184EC9 /* ResultsPreparePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */; };
 		386C279B2418EBFF00184EC9 /* ResultsPrepareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */; };
@@ -331,6 +329,7 @@
 		38C23E5E2423E70F0034571B /* CalendarEventSelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E5D2423E70F0034571B /* CalendarEventSelectionHeaderView.swift */; };
 		38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */; };
 		38C6516F24360188002CE496 /* WorkerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6516E24360188002CE496 /* WorkerContent.swift */; };
+		38C7CCE124A11CD600334EEB /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */; };
 		38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */; };
@@ -1585,8 +1584,6 @@
 		38593DD9249D0CF900C2955D /* CreateTeamInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamInteractor.swift; sourceTree = "<group>"; };
 		38593DDA249D0CF900C2955D /* CreateTeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamModel.swift; sourceTree = "<group>"; };
 		38593DDB249D0CF900C2955D /* CreateTeamConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamConfigurator.swift; sourceTree = "<group>"; };
-		38593DEA24A0F98800C2955D /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
-		38593DEC24A0F99C00C2955D /* KeyboardInputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardInputView.xib; sourceTree = "<group>"; };
 		38593DF024A1114C00C2955D /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
 		386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPreparePresenter.swift; sourceTree = "<group>"; };
 		386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareWorker.swift; sourceTree = "<group>"; };
@@ -1630,6 +1627,7 @@
 		38C23E5D2423E70F0034571B /* CalendarEventSelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionHeaderView.swift; sourceTree = "<group>"; };
 		38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionHeaderView.xib; sourceTree = "<group>"; };
 		38C6516E24360188002CE496 /* WorkerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerContent.swift; sourceTree = "<group>"; };
+		38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsAddToCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsAddToCalendarTableViewCell.xib; sourceTree = "<group>"; };
@@ -3223,7 +3221,7 @@
 			isa = PBXGroup;
 			children = (
 				38593DF024A1114C00C2955D /* Team.storyboard */,
-				38593DE924A0F95F00C2955D /* Components */,
+				38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */,
 				38593DE4249D0CFF00C2955D /* CreateTeam */,
 			);
 			name = Team;
@@ -3242,15 +3240,6 @@
 				38593DD5249D0CF900C2955D /* CreateTeamWorker.swift */,
 			);
 			name = CreateTeam;
-			sourceTree = "<group>";
-		};
-		38593DE924A0F95F00C2955D /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				38593DEA24A0F98800C2955D /* KeyboardInputView.swift */,
-				38593DEC24A0F99C00C2955D /* KeyboardInputView.xib */,
-			);
-			name = Components;
 			sourceTree = "<group>";
 		};
 		386C27912418EBD400184EC9 /* Core */ = {
@@ -5930,7 +5919,6 @@
 				F9F70C1622F9A2D300E85BF3 /* SprintChallengeCell.xib in Resources */,
 				AC103E532289621900F426F0 /* TriggerTableViewCell.xib in Resources */,
 				B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */,
-				38593DED24A0F99C00C2955D /* KeyboardInputView.xib in Resources */,
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
 				386C27A5241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib in Resources */,
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
@@ -6363,7 +6351,7 @@
 				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
 				B430D7FB23A916B600C75C9C /* MyQotAdminLocalNotificationsInteractor.swift in Sources */,
 				5F360728228BECD70074FEC4 /* MyQotSensorsRouter.swift in Sources */,
-				38593DEB24A0F98800C2955D /* KeyboardInputView.swift in Sources */,
+				38C7CCE124A11CD600334EEB /* KeyboardInputView.swift in Sources */,
 				8D0B4D262301CC4000A1AC47 /* RegistrationNamesViewController.swift in Sources */,
 				BB4061622302F3A600E5AB19 /* OrientationManager.swift in Sources */,
 				36E4CF0B22BC51BD009A2DF7 /* ChoiceRouter.swift in Sources */,
