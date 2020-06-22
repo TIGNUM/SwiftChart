@@ -76,6 +76,12 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
     }
 
     func presentCreateTeam() {
-
+        let storybaordId = R.storyboard.team.createTeamViewControllerID.identifier
+        let controller = R.storyboard.team().instantiateViewController(withIdentifier: storybaordId) as? CreateTeamViewController
+        if let controller = controller {
+            let configurator = CreateTeamConfigurator.make()
+            configurator(controller)
+            viewController?.present(controller, animated: true)
+        }
     }
 }

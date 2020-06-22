@@ -161,7 +161,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             let qotSection = MyQotSection.allCases[indexPath.row]
             switch qotSection {
             case .profile:
-                interactor?.presentMyProfile()
+                interactor?.presentCreateTeam()
             case .library:
                 interactor?.presentMyLibrary()
             case .preps:

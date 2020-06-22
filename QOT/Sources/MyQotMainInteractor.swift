@@ -174,6 +174,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         router.presentMyDataScreen()
     }
 
+    func presentCreateTeam() {
+        router.presentCreateTeam()
+    }
+
     func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]? {
         return viewModelOldListModels
     }

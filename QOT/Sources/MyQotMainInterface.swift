@@ -26,6 +26,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func presentMyToBeVision()
     func presentMyLibrary()
     func presentMyDataScreen()
+    func presentCreateTeam()
     func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]?
     func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>])
     func refreshParams()
