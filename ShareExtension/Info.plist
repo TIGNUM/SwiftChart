@@ -40,7 +40,7 @@
 ).@count != 0</string>
 		</dict>
         <key>NSExtensionPrincipalClass</key>
-        <string>NavigationShareViewController</string>
+        <string>ContainerShareViewController</string>
         <key>NSExtensionPointIdentifier</key>
         <string>com.apple.share-services</string>
 	</dict>

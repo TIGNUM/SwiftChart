@@ -14,7 +14,7 @@ import UIKit
 class NavigationShareViewController: UINavigationController {
 
     init() {
-        let viewController:UIViewController = UIStoryboard(name: "MainInterface", bundle: nil).instantiateViewController(withIdentifier: "CustomizedShareViewController") as UIViewController
+        let viewController: UIViewController = UIStoryboard(name: "MainInterface", bundle: nil).instantiateViewController(withIdentifier: "CustomizedShareViewController") as UIViewController
         super.init(rootViewController: viewController)
     }
 

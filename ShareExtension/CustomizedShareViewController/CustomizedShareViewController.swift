@@ -61,7 +61,8 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TeamTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamTableViewCell
-        cell.configure(teamName: teamCollection[indexPath.row].teamName, participants: teamCollection[indexPath.row].numberOfParticipants ?? 2)
+        cell.configure(teamName: teamCollection[indexPath.row].teamName,
+                       participants: teamCollection[indexPath.row].numberOfParticipants ?? 2)
         return cell
     }
 
@@ -86,7 +87,7 @@ private extension CustomizedShareViewController{
         navigationItem.leftBarButtonItem = backButton
         let navBar = navigationController?.navigationBar
         navBar?.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navBar?.topItem?.title = "ADD TO"
+        navBar?.topItem?.title = "ADD TO..."
         addButton.layer.borderColor = accent.withAlphaComponent(0.6).cgColor
         addButton.layer.cornerRadius = addButton.frame.size.height/2
         addButton.layer.borderWidth = 1

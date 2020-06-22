@@ -21,7 +21,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEy-Cv-SGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="941" y="-552"/>
+            <point key="canvasLocation" x="3064" y="-563"/>
+        </scene>
+        <!--Navigation Share View Controller-->
+        <scene sceneID="a0Z-yk-zbt">
+            <objects>
+                <navigationController id="iaJ-u7-Fdc" customClass="NavigationShareViewController" customModule="ShareExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SKO-jJ-T5F">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="yfg-Pb-uhD" kind="relationship" relationship="rootViewController" id="knV-9D-uMu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W8r-My-KFE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-75" y="-635"/>
         </scene>
         <!--Customized Share View Controller-->
         <scene sceneID="D50-cq-O5u">
@@ -32,7 +48,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ub3-Ni-sD8">
-                                <rect key="frame" x="0.0" y="44" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="672"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeamCell" id="aBg-u1-L05" customClass="TeamTableViewCell" customModule="ShareExtension" customModuleProvider="target">
@@ -103,6 +119,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4bH-06-o9a"/>
                     </view>
+                    <navigationItem key="navigationItem" id="E1x-w2-qCv"/>
                     <connections>
                         <outlet property="addButton" destination="aBq-KJ-BOY" id="XsI-xs-k6q"/>
                         <outlet property="tableView" destination="ub3-Ni-sD8" id="HaH-Tl-E7y"/>
@@ -110,22 +127,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gop-Mw-wgm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50.724637681159422" y="-563.16964285714278"/>
+            <point key="canvasLocation" x="1070" y="-576"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="UFN-Dh-dcv">
+        <!--Container Share View Controller-->
+        <scene sceneID="luo-qJ-SQR">
             <objects>
-                <viewController id="MsJ-In-D6E" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wGD-UI-eL4">
+                <viewController id="6VE-9U-LGO" customClass="ContainerShareViewController" customModule="ShareExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ISb-9r-8hP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="TkM-H9-fRr"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm4-JP-KId">
+                                <rect key="frame" x="0.0" y="452" width="414" height="444"/>
+                                <connections>
+                                    <segue destination="1R1-mk-ptj" kind="embed" id="Qio-gc-E4k"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="lm4-JP-KId" firstAttribute="top" secondItem="UPS-eE-DUZ" secondAttribute="top" constant="408" id="BKw-Zu-f7c"/>
+                            <constraint firstItem="lm4-JP-KId" firstAttribute="leading" secondItem="UPS-eE-DUZ" secondAttribute="leading" id="D52-NW-dd5"/>
+                            <constraint firstItem="lm4-JP-KId" firstAttribute="trailing" secondItem="UPS-eE-DUZ" secondAttribute="trailing" id="nc9-f7-asV"/>
+                            <constraint firstAttribute="bottom" secondItem="lm4-JP-KId" secondAttribute="bottom" id="vuu-1R-YDM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UPS-eE-DUZ"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hGH-YS-pqV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nba-z0-LY1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-725" y="-552"/>
+            <point key="canvasLocation" x="-959.4202898550725" y="-595.3125"/>
+        </scene>
+        <!--Navigation Share View Controller-->
+        <scene sceneID="e2P-J5-Cx4">
+            <objects>
+                <viewController id="1R1-mk-ptj" customClass="NavigationShareViewController" customModule="ShareExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5UX-gG-6Aq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="444"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wjk-ZB-XHx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-136" y="59"/>
         </scene>
     </scenes>
 </document>
