@@ -42,6 +42,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
      // MARK: - Action
 
     @IBAction func addTapped(_ sender: Any) {
+
         self.handleSharedFile()
     }
 
@@ -59,6 +60,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
         let cell: TeamTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamTableViewCell
         cell.configure(teamName: teamCollection[indexPath.row].teamName,
                        participants: teamCollection[indexPath.row].numberOfParticipants ?? 2)
+        cell.isUserInteractionEnabled = true
         return cell
     }
 
@@ -69,6 +71,10 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
 
 // MARK: - Private
 private extension CustomizedShareViewController{
+
+    func updateView() {
+
+    }
 
     func setupTableview() {
         tableView.tableFooterView = UIView()
@@ -103,6 +109,8 @@ private extension CustomizedShareViewController{
         navBar?.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBar?.topItem?.title = "ADD TO..."
     }
+
+// MARK: - Handling Links
 
     private func handleSharedFile() {
         let typeURL = String(kUTTypeURL)

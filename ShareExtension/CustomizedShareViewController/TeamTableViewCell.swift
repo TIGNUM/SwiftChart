@@ -25,5 +25,9 @@ class TeamTableViewCell: UITableViewCell {
     func configure(teamName: String?, participants: Int) {
         teamLibraryName.text = teamName ?? "" + " library"
         participantsLabel.text = String(participants) + " participants"
+
+    }
+    
+    @IBAction func checkButtonTapped(_ sender: Any) {
     }
 }

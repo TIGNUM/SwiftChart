@@ -30,16 +30,11 @@ final class ContainerShareViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-          super.viewWillAppear(animated)
-//          navigationBar.barTintColor = .black
-          self.view.transform = CGAffineTransform(translationX: 0, y: self.view.frame.size.height)
-          UIView.animate(withDuration: 0.25, animations: { () -> Void in
-              self.view.transform = CGAffineTransform.identity
-          })
-      }
-
-    override func awakeFromNib() {
-        performSegue(withIdentifier: "embedChildSegue", sender: nil)
+        super.viewWillAppear(animated)
+        self.view.transform = CGAffineTransform(translationX: 0, y: self.view.frame.size.height)
+        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+            self.view.transform = CGAffineTransform.identity
+        })
     }
 
     override func viewDidLoad() {
@@ -47,36 +42,20 @@ final class ContainerShareViewController: UIViewController {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
-
-
         let customizedViewController: UIViewController = UIStoryboard(name: "MainInterface", bundle: nil).instantiateViewController(withIdentifier: "CustomizedShareViewController") as UIViewController
         let navigationController = UINavigationController(rootViewController: customizedViewController)
         navigationController.navigationBar.barTintColor = .black
         addChild(navigationController)
-
-          NSLayoutConstraint.activate([
-                  containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-                  containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-                  containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 400),
-                  containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-              ])
+        NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/2),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
         navigationController.view.frame = containerView.bounds
         containerView.addSubview(navigationController.view)
         navigationController.didMove(toParent: self)
-
     }
 
-    override func loadViewIfNeeded() {
-        super.loadViewIfNeeded()
-        self.view.backgroundColor = .red
-
-        if let customizedViewController = storyboard?.instantiateViewController(withIdentifier: "CustomizedShareViewController") {
-            let navigationController = UINavigationController(rootViewController: customizedViewController)
-            addChild(navigationController)
-            navigationController.view.frame = self.view.bounds
-            self.view.addSubview(navigationController.view)
-            navigationController.didMove(toParent: self)
-        }
-    }
 
 }

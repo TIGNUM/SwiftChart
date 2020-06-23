@@ -20,8 +20,40 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="716"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DJ6-x0-1N4" userLabel="ConfirmationViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DJ6-x0-1N4" id="Tc9-rd-1z9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added to My library" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcT-kQ-Pgq">
+                                                    <rect key="frame" x="16" y="16" width="350" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radio_selected" translatesAutoresizingMaskIntoConstraints="NO" id="AE2-KH-wxb">
+                                                    <rect key="frame" x="374" y="16.5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="baJ-t5-7Um"/>
+                                                        <constraint firstAttribute="height" constant="20" id="d0R-Ql-uBA"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="AE2-KH-wxb" firstAttribute="centerY" secondItem="Tc9-rd-1z9" secondAttribute="centerY" id="C4Y-0R-Slm"/>
+                                                <constraint firstItem="LcT-kQ-Pgq" firstAttribute="leading" secondItem="Tc9-rd-1z9" secondAttribute="leading" constant="16" id="FDD-qs-I7e"/>
+                                                <constraint firstItem="LcT-kQ-Pgq" firstAttribute="top" secondItem="Tc9-rd-1z9" secondAttribute="top" constant="16" id="KHI-uf-gAs"/>
+                                                <constraint firstAttribute="bottom" secondItem="LcT-kQ-Pgq" secondAttribute="bottom" constant="16" id="VeJ-M2-cYy"/>
+                                                <constraint firstAttribute="trailing" secondItem="LcT-kQ-Pgq" secondAttribute="trailing" constant="48" id="b5T-yn-tL3"/>
+                                                <constraint firstItem="AE2-KH-wxb" firstAttribute="leading" secondItem="LcT-kQ-Pgq" secondAttribute="trailing" constant="8" id="w4N-uM-WCp"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeamCell" id="aBg-u1-L05" customClass="TeamTableViewCell" customModule="ShareExtension" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="76"/>
+                                        <rect key="frame" x="0.0" y="81" width="414" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aBg-u1-L05" id="bKB-m6-aPB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
@@ -47,6 +79,9 @@
                                                     </constraints>
                                                     <state key="normal" image="ic_radio_unselected"/>
                                                     <state key="selected" image="ic_radio_selected"/>
+                                                    <connections>
+                                                        <action selector="checkButtonTapped:" destination="aBg-u1-L05" eventType="touchUpInside" id="Les-JA-zTe"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -108,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gop-Mw-wgm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="714" y="-563"/>
+            <point key="canvasLocation" x="713.04347826086962" y="-563.16964285714278"/>
         </scene>
     </scenes>
     <resources>
