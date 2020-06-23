@@ -12,7 +12,8 @@ class TeamTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var teamLibraryName: UILabel!
     @IBOutlet private weak var participantsLabel: UILabel!
-    
+    @IBOutlet weak var checkButton: UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         let backgroundView = UIView()
@@ -20,6 +21,7 @@ class TeamTableViewCell: UITableViewCell {
         selectedBackgroundView = backgroundView
     }
 
+//     configure fonts and colours
     func configure(teamName: String?, participants: Int) {
         teamLibraryName.text = teamName ?? "" + " library"
         participantsLabel.text = String(participants) + " participants"

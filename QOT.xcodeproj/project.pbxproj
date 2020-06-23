@@ -1156,7 +1156,6 @@
 		F96B23AF23507FF900130EFF /* DepartureBespokeFeastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */; };
 		F96B23B12350BF1100130EFF /* DepartureBespokeFeastImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96B23B02350BF1100130EFF /* DepartureBespokeFeastImageCell.xib */; };
 		F96B23B32350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */; };
-		F96D75A5249CE72B00DFFB22 /* NavigationShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75A4249CE72B00DFFB22 /* NavigationShareViewController.swift */; };
 		F96D75B4249CE88A00DFFB22 /* CustomizedShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75AC249CE88A00DFFB22 /* CustomizedShareViewController.swift */; };
 		F96D75B9249CF9C100DFFB22 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */; };
 		F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */; };
@@ -2439,7 +2438,6 @@
 		F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastModel.swift; sourceTree = "<group>"; };
 		F96B23B02350BF1100130EFF /* DepartureBespokeFeastImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureBespokeFeastImageCell.xib; sourceTree = "<group>"; };
 		F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastImageCell.swift; sourceTree = "<group>"; };
-		F96D75A4249CE72B00DFFB22 /* NavigationShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationShareViewController.swift; sourceTree = "<group>"; };
 		F96D75AC249CE88A00DFFB22 /* CustomizedShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedShareViewController.swift; sourceTree = "<group>"; };
 		F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerShareViewController.swift; sourceTree = "<group>"; };
@@ -4601,7 +4599,6 @@
 				B8BCE58B22AAB5EF0012AAAC /* Info.plist */,
 				B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */,
 				B88A19E5241A3A0200FC5019 /* Media.xcassets */,
-				F96D75A4249CE72B00DFFB22 /* NavigationShareViewController.swift */,
 			);
 			path = ShareExtension;
 			sourceTree = "<group>";
@@ -6113,7 +6110,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F96D75A5249CE72B00DFFB22 /* NavigationShareViewController.swift in Sources */,
 				B8BCE58722AAB5EF0012AAAC /* ShareExtensionViewController.swift in Sources */,
 				F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */,
 				F96D75B4249CE88A00DFFB22 /* CustomizedShareViewController.swift in Sources */,

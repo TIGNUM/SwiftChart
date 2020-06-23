@@ -15,34 +15,68 @@ import Social
 
 final class ContainerShareViewController: UIViewController {
 
-    // MARK: - Init
-     init() {
-         super.init(nibName: nil, bundle: nil)
-     }
 
-     required init?(coder aDecoder: NSCoder) {
-         super.init(coder: aDecoder)
-     }
+    // MARK: - Init
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+          super.viewWillAppear(animated)
+//          navigationBar.barTintColor = .black
+          self.view.transform = CGAffineTransform(translationX: 0, y: self.view.frame.size.height)
+          UIView.animate(withDuration: 0.25, animations: { () -> Void in
+              self.view.transform = CGAffineTransform.identity
+          })
+      }
+
+    override func awakeFromNib() {
+        performSegue(withIdentifier: "embedChildSegue", sender: nil)
+    }
 
     override func viewDidLoad() {
-           super.viewDidLoad()
-       }
+        super.viewDidLoad()
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
 
-    override func loadView() {
-        super.loadView()
-        self.setUpView()
-     }
 
-   func setUpView() {
-       let viewFrame = CGRect(x: 0, y: 0, width: 150, height: 300)
-       self.view = UIView(frame: viewFrame)
-      self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        let customizedViewController: UIViewController = UIStoryboard(name: "MainInterface", bundle: nil).instantiateViewController(withIdentifier: "CustomizedShareViewController") as UIViewController
+        let navigationController = UINavigationController(rootViewController: customizedViewController)
+        navigationController.navigationBar.barTintColor = .black
+        addChild(navigationController)
 
-       let width: CGFloat = UIScreen.main.bounds.size.width
-       let height: CGFloat = UIScreen.main.bounds.size.height
-       let newView = UIView(frame: CGRect(x: (width * 0.10), y: (height * 0.25), width: (width * 0.75), height: (height / 2)))
-       newView.backgroundColor = UIColor.yellow
-       self.view.addSubview(newView)
-   }
+          NSLayoutConstraint.activate([
+                  containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+                  containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                  containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 400),
+                  containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+              ])
+        navigationController.view.frame = containerView.bounds
+        containerView.addSubview(navigationController.view)
+        navigationController.didMove(toParent: self)
+
+    }
+
+    override func loadViewIfNeeded() {
+        super.loadViewIfNeeded()
+        self.view.backgroundColor = .red
+
+        if let customizedViewController = storyboard?.instantiateViewController(withIdentifier: "CustomizedShareViewController") {
+            let navigationController = UINavigationController(rootViewController: customizedViewController)
+            addChild(navigationController)
+            navigationController.view.frame = self.view.bounds
+            self.view.addSubview(navigationController.view)
+            navigationController.didMove(toParent: self)
+        }
+    }
 
 }

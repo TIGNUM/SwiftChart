@@ -39,10 +39,6 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
         setupView()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-
-    }
-
      // MARK: - Action
 
     @IBAction func addTapped(_ sender: Any) {
@@ -77,20 +73,35 @@ private extension CustomizedShareViewController{
     func setupTableview() {
         tableView.tableFooterView = UIView()
         tableView.register(TeamTableViewCell.self, forCellReuseIdentifier: "teamCell")
-        tableView.allowsSelection = true
-        tableView.setEditing(true, animated: true)
     }
 
     func setupView() {
-        let backButton = UIBarButtonItem(title: "X", style: UIBarButtonItem.Style.plain, target: self, action: #selector(UIWebView.goBack))
+        setupNavBar()
+        setupBackButton()
+    }
+
+    func setupBackButton() {
+        let bundle = Bundle(for: CustomizedShareViewController.self)
+        guard let closeIcon = UIImage(named: "ic_close", in: bundle, compatibleWith: nil) else {
+            fatalError("Missing MyImage...")
+        }
+        let backButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 15, height: 15)))
+        backButton.setImage(closeIcon, for: .normal)
+        backButton.addTarget(self, action: #selector(UIWebView.goBack), for: .touchUpInside)
         backButton.tintColor = accent
-        navigationItem.leftBarButtonItem = backButton
-        let navBar = navigationController?.navigationBar
-        navBar?.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navBar?.topItem?.title = "ADD TO..."
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         addButton.layer.borderColor = accent.withAlphaComponent(0.6).cgColor
         addButton.layer.cornerRadius = addButton.frame.size.height/2
         addButton.layer.borderWidth = 1
+    }
+
+//    fonts to do + apptext
+    func setupNavBar() {
+        let navBar = navigationController?.navigationBar
+        navBar?.barTintColor = .black
+        navBar?.isTranslucent = false
+        navBar?.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBar?.topItem?.title = "ADD TO..."
     }
 
     private func handleSharedFile() {
