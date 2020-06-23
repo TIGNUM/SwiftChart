@@ -8,9 +8,4 @@
 
 import UIKit
 
-struct CreateTeam {
-    enum Status {
-        case success
-        case failrue
-    }
-}
+struct CreateTeam {}

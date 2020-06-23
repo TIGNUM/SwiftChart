@@ -37,7 +37,7 @@ final class MyQotMainWorker {
     func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
         switch myQotItem {
         case .profile:
-            return "Team Create AAA" // AppTextService.get(.my_x_team_create)
+            return AppTextService.get(.my_x_team_create_header)
         case .library:
             return AppTextService.get(.my_qot_section_my_library_title)
         case .preps:

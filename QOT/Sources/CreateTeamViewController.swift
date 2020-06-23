@@ -69,6 +69,10 @@ private extension CreateTeamViewController {
 
 // MARK: - CreateTeamViewControllerInterface
 extension CreateTeamViewController: CreateTeamViewControllerInterface {
+    func showErrorAlert(_ error: Error?) {
+        handleError(error)
+    }
+
     func presentInviteView() {
         router.presentInviteView()
     }

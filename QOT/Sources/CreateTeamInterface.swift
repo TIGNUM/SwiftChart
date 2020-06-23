@@ -12,12 +12,13 @@ import qot_dal
 protocol CreateTeamViewControllerInterface: class {
     func setupView()
     func setupLabels(header: String?, description: String?, buttonTitle: String?)
+    func showErrorAlert(_ error: Error?)
     func presentInviteView()
 }
 
 protocol CreateTeamPresenterInterface {
     func setupView()
-    func presentInviteView()
+    func handleResponse(_ team: QDMTeam?, error: Error?)
 }
 
 protocol CreateTeamInteractorInterface: Interactor {

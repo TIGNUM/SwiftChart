@@ -48,13 +48,13 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     func setSettingsButton(_ title: String) {
         buttonRight.setImage(nil, for: .normal)
-        buttonRight.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
-        buttonRight.setAttributedTitle(NSAttributedString(string: "M",
+        buttonRight.setAttributedTitle(NSAttributedString(string: title.uppercased(),
                                                           attributes: [.foregroundColor: UIColor.carbon,
                                                                        .font: UIFont.sfProtextSemibold(ofSize: 17)]),
                                        for: .normal)
         buttonRight.circle()
         buttonRight.backgroundColor = .accent
+        buttonRight.layoutIfNeeded()
     }
 
     func updateAlpha(basedOn offsetY: CGFloat) {
