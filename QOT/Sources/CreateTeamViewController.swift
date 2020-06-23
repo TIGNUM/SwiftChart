@@ -41,6 +41,14 @@ final class CreateTeamViewController: BaseViewController, ScreenZLevel3 {
         startObservingKeyboard()
         teamTextField.becomeFirstResponder()
     }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
 }
 
 // MARK: - Private
@@ -80,10 +88,8 @@ extension CreateTeamViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        let maxLength = 20
         let currentString = textField.text! as NSString
-        let newString = currentString.replacingCharacters(in: range, with: string) as NSString
-        return newString.length <= maxLength
+        return currentString.replacingCharacters(in: range, with: string).count <= 20
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
