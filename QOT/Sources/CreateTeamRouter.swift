@@ -24,4 +24,8 @@ extension CreateTeamRouter: CreateTeamRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
+
+    func presentInviteView() {
+        // TODO
+    }
 }

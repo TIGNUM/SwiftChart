@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import qot_dal
 
 final class CreateTeamWorker {
 
-    // MARK: - Init
-    init() { /**/ }
+    func createTeam(_ name: String, _ completion: @escaping (QDMTeam?, Bool?, Error?) -> Void) {
+        TeamService.main.createTeam(name: name, completion)
+    }
 }

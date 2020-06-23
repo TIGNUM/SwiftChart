@@ -69,6 +69,10 @@ private extension CreateTeamViewController {
 
 // MARK: - CreateTeamViewControllerInterface
 extension CreateTeamViewController: CreateTeamViewControllerInterface {
+    func presentInviteView() {
+        router.presentInviteView()
+    }
+
     func setupView() {
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
@@ -145,6 +149,8 @@ extension CreateTeamViewController: KeyboardInputViewProtocol {
     }
 
     func didCreateTeam() {
-        // TODO
+        if let name = teamTextField.text {
+            interactor.createTeam(name)
+        }
     }
 }

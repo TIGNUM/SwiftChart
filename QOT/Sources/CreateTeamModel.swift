@@ -8,6 +8,9 @@
 
 import UIKit
 
-struct CreateTeamModel {
-
+struct CreateTeam {
+    enum Status {
+        case success
+        case failrue
+    }
 }

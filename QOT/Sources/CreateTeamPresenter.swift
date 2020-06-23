@@ -34,4 +34,8 @@ extension CreateTeamPresenter: CreateTeamPresenterInterface {
 //                                    description: AppTextService.get(.my_x_team_create_description),
 //                                    buttonTitle: AppTextService.get(.my_x_team_create_cta))
     }
+
+    func presentInviteView() {
+        viewController?.presentInviteView()
+    }
 }
