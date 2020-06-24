@@ -12,9 +12,8 @@ import qot_dal
 protocol TeamEditViewControllerInterface: class {
     func setupView()
     func refreshView()
-    func hideCounterLabels(_ isHidden: Bool)
     func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool)
-    func setupTextCounter(maxChars: Int)
+    func updateTextCounter(maxChars: Int?)
     func showErrorAlert(_ error: Error?)
     func didSendInvite(email: String)
     func dismiss()

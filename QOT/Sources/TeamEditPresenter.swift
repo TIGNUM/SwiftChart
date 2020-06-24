@@ -45,7 +45,7 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
             viewController?.showErrorAlert(error)
         } else {
             updateView(.memberInvite, animated: true)
-            viewController?.hideCounterLabels(true)
+            viewController?.updateTextCounter(maxChars: nil)
             viewController?.refreshView()
         }
     }
@@ -74,6 +74,6 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
     }
 
     func setupTextCounter(maxChars: Int) {
-        viewController?.setupTextCounter(maxChars: maxChars)
+        viewController?.updateTextCounter(maxChars: maxChars)
     }
 }

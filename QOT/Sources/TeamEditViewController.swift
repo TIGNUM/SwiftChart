@@ -22,7 +22,7 @@ final class TeamEditViewController: UIViewController {
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var keyboardInputView: KeyboardInputView!
     private var bottomConstraintInitialValue: CGFloat = 0
-    private var maxChars: Int = 0
+    private var maxChars: Int?
     private lazy var router: TeamEditRouterInterface = TeamEditRouter(viewController: self)
     var interactor: TeamEditInteractorInterface!
 
@@ -81,9 +81,14 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         keyboardInputView.delegate = self
     }
 
-    func setupTextCounter(maxChars: Int) {
+    func updateTextCounter(maxChars: Int?) {
         self.maxChars = maxChars
-        self.textMaxCharsLabel.text = "/\(maxChars)"
+        if let maxChars = maxChars {
+            self.textMaxCharsLabel.text = "/\(maxChars)"
+        } else {
+            textCounterLabel.isHidden = true
+            textMaxCharsLabel.isHidden = true
+        }
     }
 
     func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool) {
@@ -95,18 +100,13 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         }
     }
 
-    func hideCounterLabels(_ isHidden: Bool) {
-        textCounterLabel.isHidden = isHidden
-        textMaxCharsLabel.isHidden = isHidden
+    func refreshView() {
+        teamTextField.text = nil
+        updateKeyboardInputView(false)
     }
 
     func didSendInvite(email: String) {
 
-    }
-
-    func refreshView() {
-        teamTextField.text = nil
-        updateKeyboardInputView(false)
     }
 
     func dismiss() {
@@ -119,8 +119,12 @@ extension TeamEditViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        let currentString = textField.text! as NSString
-        return currentString.replacingCharacters(in: range, with: string).count <= maxChars
+        if let maxChars = maxChars {
+            let currentString = textField.text! as NSString
+            return currentString.replacingCharacters(in: range, with: string).count <= maxChars
+        } else {
+            return true
+        }
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
