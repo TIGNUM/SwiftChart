@@ -17,9 +17,9 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     private var shareExtensionData = ShareExtentionData()
     @IBOutlet private weak var tableView: UITableView!
     private var rightBarButtonItems = [UIBarButtonItem]()
-    let teamCollection: [TeamLibrary] = [TeamLibrary(TeamName: "My Library", NumberOfParticipants: nil),
-                                         TeamLibrary(TeamName: "Web Team Library", NumberOfParticipants: 13),
-                                         TeamLibrary(TeamName: "Tignum Team Library", NumberOfParticipants: 40)]
+    let teamCollection: [TeamLibrary] = [TeamLibrary(teamName: "My Library", numberOfParticipants: nil),
+                                         TeamLibrary(teamName: "Web Team Library", numberOfParticipants: 13),
+                                         TeamLibrary(teamName: "Tignum Team Library", numberOfParticipants: 40)]
     @IBOutlet private weak var addButton: UIButton!
     let accent = UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
 
@@ -39,9 +39,21 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
         setupView()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+
+    }
+
+     // MARK: - Action
+
     @IBAction func addTapped(_ sender: Any) {
         self.handleSharedFile()
     }
+
+    func goBack(){
+        dismiss(animated: true, completion: nil)
+    }
+
+    // MARK: - TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return teamCollection.count
@@ -49,22 +61,17 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TeamTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamTableViewCell
+        cell.configure(teamName: teamCollection[indexPath.row].teamName, participants: teamCollection[indexPath.row].numberOfParticipants ?? 2)
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-
-    
 }
 
 // MARK: - Private
 private extension CustomizedShareViewController{
-    
-    func goBack(){
-        dismiss(animated: true, completion: nil)
-    }
 
     func setupTableview() {
         tableView.tableFooterView = UIView()
@@ -100,6 +107,7 @@ private extension CustomizedShareViewController{
         if itemProvider.hasItemConformingToTypeIdentifier(typeURL) {
             itemProvider.loadItem(forTypeIdentifier: typeURL, options: nil) { [weak self] (item, error) -> Void in
                 guard let strongSelf = self, let url = item as? URL else {
+                    self?.handleFailure()
                     return
                 }
                 strongSelf.handleURL(url)
@@ -111,6 +119,7 @@ private extension CustomizedShareViewController{
         for type in textTypes where itemProvider.hasItemConformingToTypeIdentifier(type) {
             itemProvider.loadItem(forTypeIdentifier: type, options: nil) { [weak self] (item, error) -> Void in
                 guard let strongSelf = self, let string = item as? String else {
+                    self?.handleFailure()
                     return
                 }
                 strongSelf.handleString(string)
@@ -118,14 +127,9 @@ private extension CustomizedShareViewController{
             handled = true
             break
         }
-        //        if !handled {
-        ////            handleFailure()
-        //        }
-    }
-
-    private func save(_ data: Data, key: String, value: Any) {
-        let userDefaults = UserDefaults()
-        userDefaults.set(data, forKey: key)
+        if !handled {
+            handleFailure()
+        }
     }
 
     func urls(from string: String) -> [URL]? {
@@ -158,20 +162,21 @@ private extension CustomizedShareViewController{
 
     func handleURL(_ url: URL) {
         guard url.isFileURL == false else {
+            handleFailure()
             return
         }
         shareExtensionData.type = "EXTERNAL_LINK"
         shareExtensionData.url = url.absoluteString
-        didSelectPost()
+        saveLink()
     }
 
     func addNote(_ string: String) {
         shareExtensionData.type = "NOTE"
         shareExtensionData.description = string
-        didSelectPost()
+        saveLink()
     }
 
-    func didSelectPost() {
+    func saveLink() {
         self.shareExtensionData.date = Date()
         var dataArray = ExtensionUserDefaults.object(for: .share, key: .saveLink) ?? [ShareExtentionData]()
         dataArray.append(self.shareExtensionData)
@@ -180,16 +185,15 @@ private extension CustomizedShareViewController{
             if let context = self.extensionContext {
                 context.completeRequest(returningItems: [], completionHandler: nil)
             } else {
-                //                       ???
+                //  replacement of super.didSelectPost() ??
             }
         }
     }
-    // There is no .cancel() function here
 
-    //    func handleFailure() {
-    //        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-    //            self.cancel()
-    //        }
-    //    }
+    func handleFailure() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.extensionContext?.cancelRequest(withError: NSError())
+        }
+    }
 }
 

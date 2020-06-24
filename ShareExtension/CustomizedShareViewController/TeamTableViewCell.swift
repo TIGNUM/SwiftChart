@@ -19,4 +19,9 @@ class TeamTableViewCell: UITableViewCell {
         backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         selectedBackgroundView = backgroundView
     }
+
+    func configure(teamName: String?, participants: Int) {
+        teamLibraryName.text = teamName ?? "" + " library"
+        participantsLabel.text = String(participants) + " participants"
+    }
 }

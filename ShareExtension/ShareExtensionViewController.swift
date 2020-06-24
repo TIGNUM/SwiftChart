@@ -31,7 +31,7 @@ class ShareExtensionViewController: SLComposeServiceViewController {
         self.shareExtensionData.date = Date()
         var dataArray = ExtensionUserDefaults.object(for: .share, key: .saveLink) ?? [ShareExtentionData]()
         dataArray.append(self.shareExtensionData)
-        ExtensionUserDefaults.set(dataArray, for: .saveLink, in: .share)
+    
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             if let context = self.extensionContext {
                 context.completeRequest(returningItems: [], completionHandler: nil)
