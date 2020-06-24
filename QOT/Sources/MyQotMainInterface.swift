@@ -8,6 +8,7 @@
 
 import Foundation
 import DifferenceKit
+import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
@@ -39,7 +40,6 @@ protocol MyQotMainRouterInterface {
     func presentMySprints()
     func presentMyLibrary()
     func presentMyDataScreen()
-    func presentCreateTeam()
-
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func showTBV()
 }

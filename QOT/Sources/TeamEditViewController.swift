@@ -1,37 +1,37 @@
 //
-//  CreateTeamViewController.swift
+//  TeamEditViewController.swift
 //  QOT
 //
-//  Created by karmic on 19.06.20.
+//  Created by karmic on 23.06.20.
 //  Copyright (c) 2020 Tignum. All rights reserved.
 //
 
 import UIKit
+import qot_dal
 
-final class CreateTeamViewController: BaseViewController, ScreenZLevel3 {
+class TeamEditViewController: UIViewController {
 
     // MARK: - Properties
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var textContainerView: UIView!
+    @IBOutlet private weak var subHeaderLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var teamTextField: UITextField!
     @IBOutlet private weak var textCounterLabel: UILabel!
+    @IBOutlet private weak var textContainerView: UIView!
+    @IBOutlet private weak var teamTextField: UITextField!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var keyboardInputView: KeyboardInputView!
     private var bottomConstraintInitialValue: CGFloat = 0
-    private lazy var router: CreateTeamRouterInterface = CreateTeamRouter(viewController: self)
-    var interactor: CreateTeamInteractorInterface!
+    private lazy var router: TeamEditRouterInterface = TeamEditRouter(viewController: self)
+    var interactor: TeamEditInteractorInterface!
 
     // MARK: - Init
-    init(configure: Configurator<CreateTeamViewController>) {
+    init(configure: Configurator<TeamEditViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let configurator = CreateTeamConfigurator.make()
-        configurator(self)
     }
 
     // MARK: - Life Cycle
@@ -52,7 +52,7 @@ final class CreateTeamViewController: BaseViewController, ScreenZLevel3 {
 }
 
 // MARK: - Private
-private extension CreateTeamViewController {
+private extension TeamEditViewController {
     func updateTextCounter(_ newValue: String) {
         textCounterLabel.text = newValue
     }
@@ -63,18 +63,18 @@ private extension CreateTeamViewController {
 }
 
 // MARK: - Actions
-private extension CreateTeamViewController {
+private extension TeamEditViewController {
 
 }
 
-// MARK: - CreateTeamViewControllerInterface
-extension CreateTeamViewController: CreateTeamViewControllerInterface {
+// MARK: - TeamEditViewControllerInterface
+extension TeamEditViewController: TeamEditViewControllerInterface {
     func showErrorAlert(_ error: Error?) {
         handleError(error)
     }
 
-    func presentInviteView() {
-        router.presentInviteView()
+    func presentInviteView(team: QDMTeam?) {
+        router.presentInviteView(team: team)
     }
 
     func setupView() {
@@ -84,15 +84,20 @@ extension CreateTeamViewController: CreateTeamViewControllerInterface {
         keyboardInputView.delegate = self
     }
 
-    func setupLabels(header: String?, description: String?, buttonTitle: String?) {
-        keyboardInputView.createButton.setTitle(buttonTitle, for: .normal)
-        titleLabel.text = description
+    func setupLabels(header: String, subHeader: String, description: String, cta: String) {
+        keyboardInputView.createButton.setTitle(cta, for: .normal)
         headerLabel.text = header
+        subHeaderLabel.text = subHeader
+        titleLabel.text = description
+    }
+
+    func dismiss() {
+        router.dismiss()
     }
 }
 
 // MARK: - UITextFieldDelegate
-extension CreateTeamViewController: UITextFieldDelegate {
+extension TeamEditViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
@@ -109,7 +114,7 @@ extension CreateTeamViewController: UITextFieldDelegate {
 }
 
 // MARK: - Keyboard
-extension CreateTeamViewController {
+extension TeamEditViewController {
     override func keyboardWillAppear(notification: NSNotification) {
         animateKeyboardNotification(notification)
     }
@@ -146,7 +151,7 @@ extension CreateTeamViewController {
 }
 
 // MARK: - KeyboardInputViewProtocol
-extension CreateTeamViewController: KeyboardInputViewProtocol {
+extension TeamEditViewController: KeyboardInputViewProtocol {
     func didCancel() {
         teamTextField.resignFirstResponder()
         router.dismiss()
@@ -155,6 +160,12 @@ extension CreateTeamViewController: KeyboardInputViewProtocol {
     func didCreateTeam() {
         if let name = teamTextField.text {
             interactor.createTeam(name)
+        }
+    }
+
+    func didSendInvite() {
+        if let email = teamTextField.text {
+            interactor.sendInvite(email, team: interactor.getTeam)
         }
     }
 }

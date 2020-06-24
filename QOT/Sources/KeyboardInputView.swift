@@ -11,6 +11,7 @@ import UIKit
 protocol KeyboardInputViewProtocol: class {
     func didCancel()
     func didCreateTeam()
+    func didSendInvite()
 }
 
 final class KeyboardInputView: UIView {

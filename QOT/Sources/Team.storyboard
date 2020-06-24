@@ -19,10 +19,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Create Team View Controller-->
+        <!--Team Edit View Controller-->
         <scene sceneID="5Pd-0g-Ool">
             <objects>
-                <viewController storyboardIdentifier="CreateTeamViewControllerID" id="Hrd-SB-CBb" customClass="CreateTeamViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamEditViewControllerID" id="Hrd-SB-CBb" customClass="TeamEditViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QRy-m0-vx1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -41,17 +41,23 @@
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQI-7J-CBx">
+                                <rect key="frame" x="24" y="129" width="366" height="17"/>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999464897260277" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ewj-h5-qQ7">
                                 <rect key="frame" x="24" y="638" width="366" height="110"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sC0-f4-jqN">
-                                        <rect key="frame" x="0.0" y="7" width="366" height="20"/>
+                                        <rect key="frame" x="0.0" y="7" width="366" height="19"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="EB3-Yj-KEx">
-                                        <rect key="frame" x="0.0" y="35" width="366" height="52"/>
+                                        <rect key="frame" x="0.0" y="34" width="366" height="52"/>
                                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
@@ -65,13 +71,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAA-fE-QPx">
-                                        <rect key="frame" x="347" y="95" width="19" height="14.5"/>
+                                        <rect key="frame" x="347" y="94" width="19" height="14"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40186215753424659" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gh-Hn-mV8">
-                                        <rect key="frame" x="339" y="95" width="8" height="14.5"/>
+                                        <rect key="frame" x="339" y="94" width="8" height="14"/>
                                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -103,7 +109,10 @@
                             <constraint firstItem="Ewj-h5-qQ7" firstAttribute="leading" secondItem="QRy-m0-vx1" secondAttribute="leading" constant="24" id="Gaz-oc-vzq"/>
                             <constraint firstItem="yyt-pf-29B" firstAttribute="leading" secondItem="QRy-m0-vx1" secondAttribute="leading" constant="24" id="HVA-zv-xme"/>
                             <constraint firstItem="Ewj-h5-qQ7" firstAttribute="centerX" secondItem="QRy-m0-vx1" secondAttribute="centerX" id="MJH-Tc-N1N"/>
+                            <constraint firstItem="BQI-7J-CBx" firstAttribute="leading" secondItem="37o-LE-65h" secondAttribute="leading" constant="24" id="WsN-EU-X0l"/>
+                            <constraint firstItem="37o-LE-65h" firstAttribute="trailing" secondItem="BQI-7J-CBx" secondAttribute="trailing" constant="24" id="YLh-I1-vmD"/>
                             <constraint firstAttribute="trailing" secondItem="Ewj-h5-qQ7" secondAttribute="trailing" constant="24" id="bWI-gN-7xZ"/>
+                            <constraint firstItem="BQI-7J-CBx" firstAttribute="top" secondItem="Rxz-3F-I14" secondAttribute="bottom" constant="8" id="dx4-h1-J7x"/>
                             <constraint firstItem="Rxz-3F-I14" firstAttribute="top" secondItem="yyt-pf-29B" secondAttribute="bottom" constant="16" id="vMz-XM-hMe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="37o-LE-65h"/>
@@ -112,6 +121,7 @@
                         <outlet property="bottomConstraint" destination="58T-oe-Kpk" id="w8n-aW-aGJ"/>
                         <outlet property="headerLabel" destination="Rxz-3F-I14" id="lNg-Gy-oql"/>
                         <outlet property="keyboardInputView" destination="qMK-PF-NhG" id="KBb-xB-hQS"/>
+                        <outlet property="subHeaderLabel" destination="BQI-7J-CBx" id="m3C-wz-AZg"/>
                         <outlet property="teamTextField" destination="EB3-Yj-KEx" id="PVa-3b-Ebi"/>
                         <outlet property="textContainerView" destination="Ewj-h5-qQ7" id="h8u-q6-jGi"/>
                         <outlet property="textCounterLabel" destination="7gh-Hn-mV8" id="abC-Cl-KAU"/>

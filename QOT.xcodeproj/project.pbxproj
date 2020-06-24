@@ -268,6 +268,14 @@
 		38290B8C2330F825004B5C14 /* DTSprintReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B842330F825004B5C14 /* DTSprintReflection.swift */; };
 		38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */; };
 		382C6C5623589FE000FAF497 /* MyQotSupportNovartisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382C6C5523589FE000FAF497 /* MyQotSupportNovartisViewController.swift */; };
+		382CDC5F24A2433300B34BCE /* TeamEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CDC5724A2433300B34BCE /* TeamEditPresenter.swift */; };
+		382CDC6024A2433300B34BCE /* TeamEditWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CDC5824A2433300B34BCE /* TeamEditWorker.swift */; };
+		382CDC6124A2433300B34BCE /* TeamEditRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CDC5924A2433300B34BCE /* TeamEditRouter.swift */; };
+		382CDC6224A2433300B34BCE /* TeamEditInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CDC5A24A2433300B34BCE /* TeamEditInterface.swift */; };
+		382CDC6324A2433300B34BCE /* TeamEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CDC5B24A2433300B34BCE /* TeamEditViewController.swift */; };
+		382CDC6424A2433300B34BCE /* TeamEditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CDC5C24A2433300B34BCE /* TeamEditInteractor.swift */; };
+		382CDC6524A2433300B34BCE /* TeamEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CDC5D24A2433300B34BCE /* TeamEditModel.swift */; };
+		382CDC6624A2433300B34BCE /* TeamEditConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CDC5E24A2433300B34BCE /* TeamEditConfigurator.swift */; };
 		383D5F1E24212C25007F8C2A /* walkThrough_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 383D5F1A24212C24007F8C2A /* walkThrough_know.mp4 */; };
 		383D5F1F24212C25007F8C2A /* walkThrough_search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 383D5F1B24212C24007F8C2A /* walkThrough_search.mp4 */; };
 		383D5F2024212C25007F8C2A /* walkThrough_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 383D5F1C24212C24007F8C2A /* walkThrough_coach.mp4 */; };
@@ -278,14 +286,6 @@
 		38532AB0236AFBB100155643 /* CoachMarkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */; };
 		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
 		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
-		38593DDC249D0CF900C2955D /* CreateTeamPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DD4249D0CF900C2955D /* CreateTeamPresenter.swift */; };
-		38593DDD249D0CF900C2955D /* CreateTeamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DD5249D0CF900C2955D /* CreateTeamWorker.swift */; };
-		38593DDE249D0CF900C2955D /* CreateTeamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DD6249D0CF900C2955D /* CreateTeamRouter.swift */; };
-		38593DDF249D0CF900C2955D /* CreateTeamInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DD7249D0CF900C2955D /* CreateTeamInterface.swift */; };
-		38593DE0249D0CF900C2955D /* CreateTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DD8249D0CF900C2955D /* CreateTeamViewController.swift */; };
-		38593DE1249D0CF900C2955D /* CreateTeamInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DD9249D0CF900C2955D /* CreateTeamInteractor.swift */; };
-		38593DE2249D0CF900C2955D /* CreateTeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DDA249D0CF900C2955D /* CreateTeamModel.swift */; };
-		38593DE3249D0CF900C2955D /* CreateTeamConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38593DDB249D0CF900C2955D /* CreateTeamConfigurator.swift */; };
 		38593DF124A1114C00C2955D /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38593DF024A1114C00C2955D /* Team.storyboard */; };
 		386C279A2418EBFF00184EC9 /* ResultsPreparePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */; };
 		386C279B2418EBFF00184EC9 /* ResultsPrepareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */; };
@@ -1566,6 +1566,14 @@
 		38290B842330F825004B5C14 /* DTSprintReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflection.swift; sourceTree = "<group>"; };
 		38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionConfigurator.swift; sourceTree = "<group>"; };
 		382C6C5523589FE000FAF497 /* MyQotSupportNovartisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportNovartisViewController.swift; sourceTree = "<group>"; };
+		382CDC5724A2433300B34BCE /* TeamEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEditPresenter.swift; sourceTree = "<group>"; };
+		382CDC5824A2433300B34BCE /* TeamEditWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEditWorker.swift; sourceTree = "<group>"; };
+		382CDC5924A2433300B34BCE /* TeamEditRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEditRouter.swift; sourceTree = "<group>"; };
+		382CDC5A24A2433300B34BCE /* TeamEditInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEditInterface.swift; sourceTree = "<group>"; };
+		382CDC5B24A2433300B34BCE /* TeamEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEditViewController.swift; sourceTree = "<group>"; };
+		382CDC5C24A2433300B34BCE /* TeamEditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEditInteractor.swift; sourceTree = "<group>"; };
+		382CDC5D24A2433300B34BCE /* TeamEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEditModel.swift; sourceTree = "<group>"; };
+		382CDC5E24A2433300B34BCE /* TeamEditConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEditConfigurator.swift; sourceTree = "<group>"; };
 		383D5F1A24212C24007F8C2A /* walkThrough_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_know.mp4; sourceTree = "<group>"; };
 		383D5F1B24212C24007F8C2A /* walkThrough_search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_search.mp4; sourceTree = "<group>"; };
 		383D5F1C24212C24007F8C2A /* walkThrough_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_coach.mp4; sourceTree = "<group>"; };
@@ -1576,14 +1584,6 @@
 		38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachMarkCollectionViewCell.xib; sourceTree = "<group>"; };
 		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
-		38593DD4249D0CF900C2955D /* CreateTeamPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamPresenter.swift; sourceTree = "<group>"; };
-		38593DD5249D0CF900C2955D /* CreateTeamWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamWorker.swift; sourceTree = "<group>"; };
-		38593DD6249D0CF900C2955D /* CreateTeamRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamRouter.swift; sourceTree = "<group>"; };
-		38593DD7249D0CF900C2955D /* CreateTeamInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamInterface.swift; sourceTree = "<group>"; };
-		38593DD8249D0CF900C2955D /* CreateTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamViewController.swift; sourceTree = "<group>"; };
-		38593DD9249D0CF900C2955D /* CreateTeamInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamInteractor.swift; sourceTree = "<group>"; };
-		38593DDA249D0CF900C2955D /* CreateTeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamModel.swift; sourceTree = "<group>"; };
-		38593DDB249D0CF900C2955D /* CreateTeamConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamConfigurator.swift; sourceTree = "<group>"; };
 		38593DF024A1114C00C2955D /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
 		386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPreparePresenter.swift; sourceTree = "<group>"; };
 		386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareWorker.swift; sourceTree = "<group>"; };
@@ -3207,6 +3207,21 @@
 			name = SprintReflection;
 			sourceTree = "<group>";
 		};
+		382CDC5624A2431000B34BCE /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				382CDC5E24A2433300B34BCE /* TeamEditConfigurator.swift */,
+				382CDC5C24A2433300B34BCE /* TeamEditInteractor.swift */,
+				382CDC5A24A2433300B34BCE /* TeamEditInterface.swift */,
+				382CDC5D24A2433300B34BCE /* TeamEditModel.swift */,
+				382CDC5724A2433300B34BCE /* TeamEditPresenter.swift */,
+				382CDC5924A2433300B34BCE /* TeamEditRouter.swift */,
+				382CDC5B24A2433300B34BCE /* TeamEditViewController.swift */,
+				382CDC5824A2433300B34BCE /* TeamEditWorker.swift */,
+			);
+			name = Editing;
+			sourceTree = "<group>";
+		};
 		385449A9234C59BF00A4BB3E /* Worker */ = {
 			isa = PBXGroup;
 			children = (
@@ -3222,24 +3237,9 @@
 			children = (
 				38593DF024A1114C00C2955D /* Team.storyboard */,
 				38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */,
-				38593DE4249D0CFF00C2955D /* CreateTeam */,
+				382CDC5624A2431000B34BCE /* Editing */,
 			);
 			name = Team;
-			sourceTree = "<group>";
-		};
-		38593DE4249D0CFF00C2955D /* CreateTeam */ = {
-			isa = PBXGroup;
-			children = (
-				38593DDB249D0CF900C2955D /* CreateTeamConfigurator.swift */,
-				38593DD9249D0CF900C2955D /* CreateTeamInteractor.swift */,
-				38593DD7249D0CF900C2955D /* CreateTeamInterface.swift */,
-				38593DDA249D0CF900C2955D /* CreateTeamModel.swift */,
-				38593DD4249D0CF900C2955D /* CreateTeamPresenter.swift */,
-				38593DD6249D0CF900C2955D /* CreateTeamRouter.swift */,
-				38593DD8249D0CF900C2955D /* CreateTeamViewController.swift */,
-				38593DD5249D0CF900C2955D /* CreateTeamWorker.swift */,
-			);
-			name = CreateTeam;
 			sourceTree = "<group>";
 		};
 		386C27912418EBD400184EC9 /* Core */ = {
@@ -6180,6 +6180,7 @@
 				9CFA10652314082D0023E11E /* ImpactReadinessScoreViewModel.swift in Sources */,
 				B430D7F223A915ED00C75C9C /* MyQotAdminEnvironmentSettingsRouter.swift in Sources */,
 				3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */,
+				382CDC6024A2433300B34BCE /* TeamEditWorker.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				5F6B38592284079800704676 /* UserProfileModel.swift in Sources */,
 				8D5668B922DCAD4800AA172F /* MySprintsListInterface.swift in Sources */,
@@ -6358,6 +6359,7 @@
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				36376679223BFF3800C2C429 /* StrategyListViewController.swift in Sources */,
 				3666FD44232A4B7D00FC67D0 /* DTRecoveryInterface.swift in Sources */,
+				382CDC6424A2433300B34BCE /* TeamEditInteractor.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
 				8D25778922F8748300D42B90 /* OnboardingLoginViewModel.swift in Sources */,
@@ -6452,7 +6454,6 @@
 				3655F2E023270B9500334719 /* DTRouter.swift in Sources */,
 				5F360735228C1EF10074FEC4 /* SyncedCalendarsInterface.swift in Sources */,
 				B430D7CB23A911DE00C75C9C /* MyQotAdminSettingsListConfigurator.swift in Sources */,
-				38593DDD249D0CF900C2955D /* CreateTeamWorker.swift in Sources */,
 				DB84AF1F231AAA1A005487BD /* UIImageView+Kingfisher.swift in Sources */,
 				8D32CFC322EB0AC900B2C4E8 /* MySprintStatus.swift in Sources */,
 				8D322B9422E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift in Sources */,
@@ -6471,7 +6472,6 @@
 				36376600223A4BD200C2C429 /* KnowingInteractor.swift in Sources */,
 				367CD17F22EF4EDE00AF2187 /* OnboardingLoginPresenter.swift in Sources */,
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
-				38593DE0249D0CF900C2955D /* CreateTeamViewController.swift in Sources */,
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
@@ -6539,6 +6539,7 @@
 				B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */,
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
 				386C279B2418EBFF00184EC9 /* ResultsPrepareWorker.swift in Sources */,
+				382CDC5F24A2433300B34BCE /* TeamEditPresenter.swift in Sources */,
 				36E12EC5232B57F0009E96EA /* DTPrepareInterface.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
 				75423EFF22CE242B008EE726 /* TBVRateHistoryConfigurator.swift in Sources */,
@@ -6622,7 +6623,6 @@
 				7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */,
 				75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */,
 				ACF0B9742260BAD2008CFAEC /* SingleSelectionTableViewCell.swift in Sources */,
-				38593DDE249D0CF900C2955D /* CreateTeamRouter.swift in Sources */,
 				F9371C4C245732C100CC44F9 /* ExpertThoughtsCellViewModel.swift in Sources */,
 				8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */,
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
@@ -6634,10 +6634,8 @@
 				386C279E2418EBFF00184EC9 /* ResultsPrepareViewController.swift in Sources */,
 				8D8AA75E22FDCB6700B59A81 /* RegistrationInteractor.swift in Sources */,
 				38C23E5424235DCA0034571B /* DTPrepareStartInterface.swift in Sources */,
-				38593DDC249D0CF900C2955D /* CreateTeamPresenter.swift in Sources */,
 				B4A075B8230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.swift in Sources */,
 				F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */,
-				38593DE3249D0CF900C2955D /* CreateTeamConfigurator.swift in Sources */,
 				7582618022DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift in Sources */,
 				B47953B3230AD512006EFE0F /* MyDataScreenInterface.swift in Sources */,
 				B4BCD0EA23AB7CD900B80747 /* MyQOTAdminEditSprintsViewController.swift in Sources */,
@@ -6744,6 +6742,7 @@
 				9CC426262306D39200F8072E /* GuidedTrackViewModel.swift in Sources */,
 				B856B47C22B0E29D0017A249 /* MyLibraryUserStorageViewController.swift in Sources */,
 				8D40769022E5A5AA0027864D /* MySprintDetailsViewModel.swift in Sources */,
+				382CDC6524A2433300B34BCE /* TeamEditModel.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
 				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
 				367CD18422EF4EDE00AF2187 /* OnboardingLoginInteractor.swift in Sources */,
@@ -6773,7 +6772,6 @@
 				5F36073B228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
-				38593DE2249D0CF900C2955D /* CreateTeamModel.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */,
 				DB2969F022C64B8C00B8A590 /* BaseRootViewController+BottomNavigation.swift in Sources */,
@@ -6866,6 +6864,7 @@
 				9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,
+				382CDC6324A2433300B34BCE /* TeamEditViewController.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
@@ -6903,7 +6902,6 @@
 				8D204C2122F06F1000DF6A76 /* MySprintNotesViewController.swift in Sources */,
 				B47953B6230AD512006EFE0F /* MyDataScreenConfigurator.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
-				38593DDF249D0CF900C2955D /* CreateTeamInterface.swift in Sources */,
 				38C6516F24360188002CE496 /* WorkerContent.swift in Sources */,
 				3658255C2327AC0D00AC3F4A /* DTShortTBV.swift in Sources */,
 				AC1A40DD22A54EB70022156C /* SolveResultsInterface.swift in Sources */,
@@ -6916,6 +6914,7 @@
 				36343F212306EF4500F1EC66 /* UIViewController+BottomNavigation.swift in Sources */,
 				B4AB48B7230BF891003B3C1F /* MyDataSelectionRouter.swift in Sources */,
 				382C6C5623589FE000FAF497 /* MyQotSupportNovartisViewController.swift in Sources */,
+				382CDC6124A2433300B34BCE /* TeamEditRouter.swift in Sources */,
 				5F7BE788228958BE00BA5DCF /* MyQotSupportViewController.swift in Sources */,
 				36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */,
 				F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */,
@@ -6997,7 +6996,6 @@
 				360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */,
 				B8BB413122C50B41002897E4 /* Notification+MediaPlayer.swift in Sources */,
 				8DF7870A22FEB50800CDE0A9 /* RegistrationCodeViewController.swift in Sources */,
-				38593DE1249D0CF900C2955D /* CreateTeamInteractor.swift in Sources */,
 				ACB99E7922687D2000A73709 /* MultipleSelectionCollectionViewCell.swift in Sources */,
 				BBB47C65232A387900B165F8 /* DTResultBaseTableViewCell.swift in Sources */,
 				363765FE223A4BD200C2C429 /* KnowingInterface.swift in Sources */,
@@ -7051,6 +7049,7 @@
 				B856B47B22B0E29D0017A249 /* MyLibraryUserStorageInterface.swift in Sources */,
 				F934802B247D467000DD1C7D /* FeatureExplainerViewController.swift in Sources */,
 				5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */,
+				382CDC6624A2433300B34BCE /* TeamEditConfigurator.swift in Sources */,
 				DBFD7EEB230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,
 				F90BD4292301669A00008702 /* SolveReminderCellViewModel.swift in Sources */,
@@ -7096,6 +7095,7 @@
 				B430D7D523A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInterface.swift in Sources */,
 				36CB720B22B8775B00C99AFC /* QDMContentItem+Ext.swift in Sources */,
 				36B5BD3123142B4A00439A64 /* AskPermissionInteractor.swift in Sources */,
+				382CDC6224A2433300B34BCE /* TeamEditInterface.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 				9171647F2101E7D000F42D8F /* R.generated.swift in Sources */,
 				B4AB48BA230BF891003B3C1F /* MyDataSelectionInteractor.swift in Sources */,

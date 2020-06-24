@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyQotMainRouter: BaseRouter {
 
@@ -75,11 +76,11 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         }
     }
 
-    func presentCreateTeam() {
-        let storybaordId = R.storyboard.team.createTeamViewControllerID.identifier
-        let controller = R.storyboard.team().instantiateViewController(withIdentifier: storybaordId) as? CreateTeamViewController
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?) {
+        let identifier = R.storyboard.team.teamEditViewControllerID.identifier
+        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
         if let controller = controller {
-            let configurator = CreateTeamConfigurator.make()
+            let configurator = TeamEditConfigurator.make(type: type, team: team)
             configurator(controller)
             viewController?.present(controller, animated: true)
         }

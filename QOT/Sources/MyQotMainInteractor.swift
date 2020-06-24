@@ -175,7 +175,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func presentCreateTeam() {
-        router.presentCreateTeam()
+        router.presentEditTeam(.create, team: nil)
     }
 
     func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]? {
