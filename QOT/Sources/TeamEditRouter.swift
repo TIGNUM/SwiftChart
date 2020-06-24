@@ -22,18 +22,6 @@ final class TeamEditRouter {
 
 // MARK: - TeamEditRouterInterface
 extension TeamEditRouter: TeamEditRouterInterface {
-    func presentInviteView(team: QDMTeam?) {
-        let identifier = R.storyboard.team.teamEditViewControllerID.identifier
-        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
-        if let controller = controller {
-            let configurator = TeamEditConfigurator.make(type: .memberInvite, team: team)
-            configurator(controller)
-            viewController?.present(controller, animated: false) { [weak self] in
-//                self?.dismiss()
-            }
-        }
-    }
-
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }

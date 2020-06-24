@@ -14,8 +14,8 @@ final class TeamEditInteractor {
     // MARK: - Properties
     private lazy var worker = TeamEditWorker()
     private let presenter: TeamEditPresenterInterface!
-    private let type: TeamEdit.View
-    private let team: QDMTeam?
+    private var type: TeamEdit.View
+    private var team: QDMTeam?
 
     // MARK: - Init
     init(presenter: TeamEditPresenterInterface, type: TeamEdit.View, team: QDMTeam?) {
@@ -27,6 +27,9 @@ final class TeamEditInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView(type)
+        worker.getMaxChars { [weak self] (max) in
+            self?.presenter.setupTextCounter(maxChars: max)
+        }
     }
 }
 
@@ -36,19 +39,23 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
         return type
     }
 
-    var getTeam: QDMTeam? {
-        return team
-    }
-
-    func createTeam(_ name: String) {
+    func createTeam(_ name: String?) {
         worker.teamCreate(name) { [weak self] (team, _, error) in
+            if error == nil, team != nil {
+                self?.type = .memberInvite
+            }
+            self?.team = team
             self?.presenter.handleResponseCreate(team, error: error)
         }
     }
 
-    func sendInvite(_ email: String?, team: QDMTeam?) {
+    func sendInvite(_ email: String?) {
         worker.sendInvite(email, team: team) { [weak self] (member, _, error) in
             self?.presenter.handleResponseMemberInvite(member, error: error)
         }
+    }
+
+    func getMaxChars(_ completion: @escaping (Int) -> Void) {
+        worker.getMaxChars(completion)
     }
 }

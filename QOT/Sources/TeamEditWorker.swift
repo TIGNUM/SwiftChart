@@ -11,8 +11,12 @@ import qot_dal
 
 final class TeamEditWorker {
 
-    func teamCreate(_ name: String, _ completion: @escaping (QDMTeam?, Bool?, Error?) -> Void) {
-        TeamService.main.createTeam(name: name, completion)
+    func teamCreate(_ name: String?, _ completion: @escaping (QDMTeam?, Bool?, Error?) -> Void) {
+        if let name = name {
+            TeamService.main.createTeam(name: name, completion)
+        } else {
+            completion(nil, false, nil)
+        }
     }
 
     func sendInvite(_ email: String?, team: QDMTeam?, _ completion: @escaping (QDMTeamMember?, Bool?, Error?) -> Void) {
@@ -20,6 +24,12 @@ final class TeamEditWorker {
             TeamService.main.inviteTeamMember(email: email, in: team, completion)
         } else {
             completion(nil, false, nil)
+        }
+    }
+
+    func getMaxChars(_ completion: @escaping (Int) -> Void) {
+        TeamService.main.getTeamConfiguration { (config, error) in
+            completion(config?.teamNameMaxLength ?? 0)
         }
     }
 }

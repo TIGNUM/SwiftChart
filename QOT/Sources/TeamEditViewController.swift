@@ -9,18 +9,20 @@
 import UIKit
 import qot_dal
 
-class TeamEditViewController: UIViewController {
+final class TeamEditViewController: UIViewController {
 
     // MARK: - Properties
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var subHeaderLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textCounterLabel: UILabel!
+    @IBOutlet private weak var textMaxCharsLabel: UILabel!
     @IBOutlet private weak var textContainerView: UIView!
     @IBOutlet private weak var teamTextField: UITextField!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var keyboardInputView: KeyboardInputView!
     private var bottomConstraintInitialValue: CGFloat = 0
+    private var maxChars: Int = 0
     private lazy var router: TeamEditRouterInterface = TeamEditRouter(viewController: self)
     var interactor: TeamEditInteractorInterface!
 
@@ -57,24 +59,19 @@ private extension TeamEditViewController {
         textCounterLabel.text = newValue
     }
 
-    func updateKeyboardInputView(_ canCreate: Bool) {
-        keyboardInputView.updateCreateButton(canCreate)
+    func updateKeyboardInputView(_ isEnabled: Bool) {
+        keyboardInputView.updateRightButton(isEnabled)
     }
 }
 
 // MARK: - Actions
 private extension TeamEditViewController {
-
 }
 
 // MARK: - TeamEditViewControllerInterface
 extension TeamEditViewController: TeamEditViewControllerInterface {
     func showErrorAlert(_ error: Error?) {
         handleError(error)
-    }
-
-    func presentInviteView(team: QDMTeam?) {
-        router.presentInviteView(team: team)
     }
 
     func setupView() {
@@ -84,11 +81,32 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         keyboardInputView.delegate = self
     }
 
-    func setupLabels(header: String, subHeader: String, description: String, cta: String) {
-        keyboardInputView.createButton.setTitle(cta, for: .normal)
-        headerLabel.text = header
-        subHeaderLabel.text = subHeader
-        titleLabel.text = description
+    func setupTextCounter(maxChars: Int) {
+        self.maxChars = maxChars
+        self.textMaxCharsLabel.text = "/\(maxChars)"
+    }
+
+    func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool) {
+        UIView.animate(withDuration: animated ? Animation.duration_06 : 0) { [weak self] in
+            self?.keyboardInputView.rightButton.setTitle(cta, for: .normal)
+            self?.headerLabel.text = header
+            self?.subHeaderLabel.text = subHeader
+            self?.titleLabel.text = description
+        }
+    }
+
+    func hideCounterLabels(_ isHidden: Bool) {
+        textCounterLabel.isHidden = isHidden
+        textMaxCharsLabel.isHidden = isHidden
+    }
+
+    func didSendInvite(email: String) {
+
+    }
+
+    func refreshView() {
+        teamTextField.text = nil
+        updateKeyboardInputView(false)
     }
 
     func dismiss() {
@@ -102,13 +120,31 @@ extension TeamEditViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
         let currentString = textField.text! as NSString
-        return currentString.replacingCharacters(in: range, with: string).count <= 20
+        return currentString.replacingCharacters(in: range, with: string).count <= maxChars
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
-        if let numberOfCharacters = textField.text?.count {
-            updateKeyboardInputView(numberOfCharacters > 0)
-            updateTextCounter(String(numberOfCharacters))
+        switch interactor.getType {
+        case .create:
+            updateKeyboardInputView(textField.text?.isEmpty == false)
+            updateTextCounter(String(textField.text?.count ?? 0))
+        case .memberInvite:
+            updateKeyboardInputView(textField.text?.isEmail == true)
+        }
+    }
+}
+
+// MARK: - KeyboardInputViewProtocol
+extension TeamEditViewController: KeyboardInputViewProtocol {
+    func didTapLeftButton() {
+        teamTextField.resignFirstResponder()
+        router.dismiss()
+    }
+
+    func didTapRightButton() {
+        switch interactor.getType {
+        case .create: interactor.createTeam(teamTextField.text)
+        case .memberInvite: interactor.sendInvite(teamTextField.text)
         }
     }
 }
@@ -147,25 +183,5 @@ extension TeamEditViewController {
                        options: animationCurve,
                        animations: { self.view.layoutIfNeeded() },
                        completion: nil)
-    }
-}
-
-// MARK: - KeyboardInputViewProtocol
-extension TeamEditViewController: KeyboardInputViewProtocol {
-    func didCancel() {
-        teamTextField.resignFirstResponder()
-        router.dismiss()
-    }
-
-    func didCreateTeam() {
-        if let name = teamTextField.text {
-            interactor.createTeam(name)
-        }
-    }
-
-    func didSendInvite() {
-        if let email = teamTextField.text {
-            interactor.sendInvite(email, team: interactor.getTeam)
-        }
     }
 }

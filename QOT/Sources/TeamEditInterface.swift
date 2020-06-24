@@ -11,26 +11,29 @@ import qot_dal
 
 protocol TeamEditViewControllerInterface: class {
     func setupView()
-    func setupLabels(header: String, subHeader: String, description: String, cta: String)
+    func refreshView()
+    func hideCounterLabels(_ isHidden: Bool)
+    func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool)
+    func setupTextCounter(maxChars: Int)
     func showErrorAlert(_ error: Error?)
-    func presentInviteView(team: QDMTeam?)
+    func didSendInvite(email: String)
     func dismiss()
 }
 
 protocol TeamEditPresenterInterface {
     func setupView(_ type: TeamEdit.View)
+    func setupTextCounter(maxChars: Int)
     func handleResponseCreate(_ team: QDMTeam?, error: Error?)
     func handleResponseMemberInvite(_ member: QDMTeamMember?, error: Error?)
 }
 
 protocol TeamEditInteractorInterface: Interactor {
     var getType: TeamEdit.View { get }
-    var getTeam: QDMTeam? { get }
-    func createTeam(_ name: String)
-    func sendInvite(_ email: String?, team: QDMTeam?)
+    func createTeam(_ name: String?)
+    func sendInvite(_ email: String?)
+    func getMaxChars(_ completion: @escaping (Int) -> Void)
 }
 
 protocol TeamEditRouterInterface {
     func dismiss()
-    func presentInviteView(team: QDMTeam?)
 }

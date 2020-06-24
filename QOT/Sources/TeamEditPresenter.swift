@@ -20,6 +20,17 @@ final class TeamEditPresenter {
     }
 }
 
+// MARK: - Private
+private extension TeamEditPresenter {
+    func updateView(_ type: TeamEdit.View, animated: Bool) {
+        viewController?.setupLabels(header: TeamEdit.header.label(type: type),
+                                    subHeader: TeamEdit.subHeader.label(type: type),
+                                    description: TeamEdit.description.label(type: type),
+                                    cta: TeamEdit.cta.label(type: type),
+                                    animated: animated)
+    }
+}
+
 // MARK: - TeamEditInterface
 extension TeamEditPresenter: TeamEditPresenterInterface {
     func handleResponseCreate(_ team: QDMTeam?, error: Error?) {
@@ -33,7 +44,9 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
                                 userInfo: nil)
             viewController?.showErrorAlert(error)
         } else {
-            viewController?.presentInviteView(team: team)
+            updateView(.memberInvite, animated: true)
+            viewController?.hideCounterLabels(true)
+            viewController?.refreshView()
         }
     }
 
@@ -48,17 +61,19 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
                                 userInfo: nil)
             viewController?.showErrorAlert(error)
         } else {
-            UIView.animate(withDuration: Animation.duration_04) { [weak self] in
-                self?.setupView(.memberInvite)
-            }
+            // TODO, empty textField, move email to list, update counter
+//            UIView.animate(withDuration: Animation.duration_04) { [weak self] in
+//                self?.setupView(.memberInvite)
+//            }
         }
     }
 
     func setupView(_ type: TeamEdit.View) {
         viewController?.setupView()
-        viewController?.setupLabels(header: TeamEdit.header.label(type: type),
-                                    subHeader: TeamEdit.subHeader.label(type: type),
-                                    description: TeamEdit.description.label(type: type),
-                                    cta: TeamEdit.cta.label(type: type))
+        updateView(type, animated: false)
+    }
+
+    func setupTextCounter(maxChars: Int) {
+        viewController?.setupTextCounter(maxChars: maxChars)
     }
 }
