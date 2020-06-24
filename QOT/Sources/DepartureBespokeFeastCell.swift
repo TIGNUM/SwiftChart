@@ -17,8 +17,8 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageIndicator: UIPageControl!
     @IBOutlet weak var copyrightButton: UIButton!
-    @IBOutlet private weak var bespokeTitleLabel: UILabel!
-    @IBOutlet private weak var departureBespokeText: UILabel!
+    @IBOutlet private weak var bespokeTitleLabel: ClickableLabel!
+    @IBOutlet private weak var departureBespokeText: ClickableLabel!
     @IBOutlet weak var titleToSubtitleVerticalSpacingConstraint: NSLayoutConstraint!
 
     weak var delegate: DailyBriefViewControllerDelegate?

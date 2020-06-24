@@ -9,7 +9,7 @@
 import UIKit
 
 final class GoodToKnowCell: BaseDailyBriefCell {
-    @IBOutlet private weak var goodToKnowFact: UILabel!
+    @IBOutlet private weak var goodToKnowFact: ClickableLabel!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     weak var delegate: DailyBriefViewControllerDelegate?
