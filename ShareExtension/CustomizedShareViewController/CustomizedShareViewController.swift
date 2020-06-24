@@ -22,6 +22,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
                                          TeamLibrary(teamName: "Tignum Team Library", numberOfParticipants: 40)]
     @IBOutlet private weak var addButton: UIButton!
     let accent = UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
+    var addPressed = false
 
     // MARK: - Init
     init() {
@@ -42,8 +43,14 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
      // MARK: - Action
 
     @IBAction func addTapped(_ sender: Any) {
-
-        self.handleSharedFile()
+        addPressed.toggle()
+        updateTableView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.hideExtensionWithCompletionHandler(completion: { (Bool) -> Void in
+                self.handleSharedFile()
+                self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
+            })
+        }
     }
 
     func goBack(){
@@ -53,15 +60,24 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     // MARK: - TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return teamCollection.count
+        if addPressed {
+            return 1
+        } else {
+            return teamCollection.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TeamTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamTableViewCell
-        cell.configure(teamName: teamCollection[indexPath.row].teamName,
-                       participants: teamCollection[indexPath.row].numberOfParticipants ?? 2)
-        cell.isUserInteractionEnabled = true
-        return cell
+        if addPressed {
+            let cell: ConfirmationViewCell = tableView.dequeueReusableCell(withIdentifier: "ConfirmationViewCell", for: indexPath) as! ConfirmationViewCell
+            return cell
+        } else {
+            let cell: TeamTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamTableViewCell
+            cell.configure(teamName: teamCollection[indexPath.row].teamName,
+                           participants: teamCollection[indexPath.row].numberOfParticipants ?? 2)
+            cell.isUserInteractionEnabled = true
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -72,18 +88,31 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
 // MARK: - Private
 private extension CustomizedShareViewController{
 
-    func updateView() {
-
+    func updateTableView() {
+        let navBar = navigationController?.navigationBar
+        navBar?.isHidden = true
+        addButton.isHidden = true
+        tableView.beginUpdates()
+        tableView.separatorStyle = .none
+        tableView.reloadSections(IndexSet(integer: 0), with: .bottom )
+        tableView.endUpdates()
     }
 
     func setupTableview() {
         tableView.tableFooterView = UIView()
         tableView.register(TeamTableViewCell.self, forCellReuseIdentifier: "teamCell")
+        tableView.register(ConfirmationViewCell.self, forCellReuseIdentifier: "confirmationViewCell")
     }
 
     func setupView() {
         setupNavBar()
         setupBackButton()
+    }
+
+    func hideExtensionWithCompletionHandler(completion:@escaping (Bool) -> Void) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.navigationController!.view.transform = CGAffineTransform(translationX: 0, y: self.navigationController!.view.frame.size.height)
+        }, completion: completion)
     }
 
     func setupBackButton() {
