@@ -12,6 +12,7 @@ import qot_dal
 enum ExtensionDataType {
     case toBeVision
     case upcomingEvent
+    case teams
     case all
 }
 
@@ -30,6 +31,8 @@ final class ExtensionsDataManager {
             updateToBeVision()
         case .upcomingEvent:
             updateUpcomingEvents()
+        case .teams:
+            updateTeams()
         case .all:
             updateAll()
         }
@@ -55,6 +58,18 @@ private extension ExtensionsDataManager {
                                                          text: vision?.text,
                                                          imageURL: vision?.profileImageResource?.url())
             ExtensionUserDefaults.set(sharedVision, for: .toBeVision)
+        }
+    }
+
+    func updateTeams() {
+        TeamService.main.getTeams {(teams, initiated, error) in
+            var teamList = [ExtensionModel.Team]()
+            teams?.forEach {(team) in
+                TeamService.main.getTeamMembers(in: team) {(teamMembers, initiated, error) in
+                    teamList.append(ExtensionModel.Team(teamName: team.name, numberOfMembers: teamMembers?.count))
+                    ExtensionUserDefaults.set(teamList, for: .teams)
+                }
+            }
         }
     }
 

@@ -37,4 +37,9 @@ struct ExtensionModel {
         let url: String
         let savedAt: Date
     }
+
+    struct Team: Codable {
+        let teamName: String?
+        let numberOfMembers: Int?
+    }
 }

@@ -115,6 +115,7 @@ final class AppCoordinator {
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
         ExtensionsDataManager.didUserLogIn(true)
         ExtensionsDataManager().update(.toBeVision)
+        ExtensionsDataManager().update(.teams)
         add3DTouchShortcuts()
 
         guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),

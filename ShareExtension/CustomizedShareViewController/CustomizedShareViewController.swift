@@ -17,9 +17,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     private var shareExtensionData = ShareExtentionData()
     @IBOutlet private weak var tableView: UITableView!
     private var rightBarButtonItems = [UIBarButtonItem]()
-    let teamCollection: [TeamLibrary] = [TeamLibrary(teamName: "My Library", numberOfParticipants: nil),
-                                         TeamLibrary(teamName: "Web Team Library", numberOfParticipants: 13),
-                                         TeamLibrary(teamName: "Tignum Team Library", numberOfParticipants: 40)]
+    var teamCollection: [ExtensionModel.Team] = []
     @IBOutlet private weak var addButton: UIButton!
     let accent = UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
     var addPressed = false
@@ -36,6 +34,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        fetchData()
         setupTableview()
         setupView()
     }
@@ -45,7 +44,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     @IBAction func addTapped(_ sender: Any) {
         addPressed.toggle()
         updateTableView()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.hideExtensionWithCompletionHandler(completion: { (Bool) -> Void in
                 self.handleSharedFile()
                 self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
@@ -73,9 +72,10 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
             return cell
         } else {
             let cell: TeamTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamTableViewCell
-            cell.configure(teamName: teamCollection[indexPath.row].teamName,
-                           participants: teamCollection[indexPath.row].numberOfParticipants ?? 2)
+            cell.configure(teamName: teamCollection[indexPath.row].teamName ?? "",
+                           participants: teamCollection[indexPath.row].numberOfMembers ?? 2)
             cell.isUserInteractionEnabled = true
+            cell.selectionStyle = .none
             return cell
         }
     }
@@ -89,19 +89,25 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
 private extension CustomizedShareViewController{
 
     func updateTableView() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.view.backgroundColor = .clear
+        }, completion: nil)
         let navBar = navigationController?.navigationBar
         navBar?.isHidden = true
         addButton.isHidden = true
+        UIView.setAnimationsEnabled(false)
         tableView.beginUpdates()
         tableView.separatorStyle = .none
-        tableView.reloadSections(IndexSet(integer: 0), with: .bottom )
+        tableView.reloadSections(IndexSet(integer: 0), with: .fade)
         tableView.endUpdates()
+        UIView.setAnimationsEnabled(true)
     }
 
     func setupTableview() {
         tableView.tableFooterView = UIView()
         tableView.register(TeamTableViewCell.self, forCellReuseIdentifier: "teamCell")
         tableView.register(ConfirmationViewCell.self, forCellReuseIdentifier: "confirmationViewCell")
+        tableView.allowsSelection = false
     }
 
     func setupView() {
@@ -110,8 +116,8 @@ private extension CustomizedShareViewController{
     }
 
     func hideExtensionWithCompletionHandler(completion:@escaping (Bool) -> Void) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.navigationController!.view.transform = CGAffineTransform(translationX: 0, y: self.navigationController!.view.frame.size.height)
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseIn, animations: {
+            self.tableView.alpha = 0.0
         }, completion: completion)
     }
 
@@ -128,6 +134,7 @@ private extension CustomizedShareViewController{
         addButton.layer.borderColor = accent.withAlphaComponent(0.6).cgColor
         addButton.layer.cornerRadius = addButton.frame.size.height/2
         addButton.layer.borderWidth = 1
+       
     }
 
 //    fonts to do + apptext
@@ -138,6 +145,15 @@ private extension CustomizedShareViewController{
         navBar?.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBar?.topItem?.title = "ADD TO..."
     }
+
+// MARK: - Fetch Data
+
+    func fetchData() {
+        let data: [ExtensionModel.Team]? = ExtensionUserDefaults.object(for: .share, key: .teams)
+        data?.forEach {(team) in
+            teamCollection.append(ExtensionModel.Team(teamName: team.teamName, numberOfMembers: team.numberOfMembers))            }
+    }
+
 
 // MARK: - Handling Links
 
