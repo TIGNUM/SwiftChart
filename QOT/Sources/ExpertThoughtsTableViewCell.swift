@@ -12,9 +12,9 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
 
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var audioButton: UIButton!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: ClickableLabel!
     @IBOutlet private weak var headerView: UIView!
-    @IBOutlet private weak var expertNameLabel: UILabel!
+    @IBOutlet private weak var expertNameLabel: ClickableLabel!
 
     private var mediaURL: URL?
     private var duration: Double?

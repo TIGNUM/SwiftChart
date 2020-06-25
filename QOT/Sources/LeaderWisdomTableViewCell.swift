@@ -15,7 +15,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     @IBOutlet var audioViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: ClickableLabel!
     @IBOutlet private weak var videoThumbnailImageView: UIImageView!
     @IBOutlet private weak var videoTitle: UILabel!
     @IBOutlet private weak var videoDurationButton: UIButton!

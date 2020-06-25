@@ -13,7 +13,7 @@ final class FromMyCoachMessageView: UIView {
 
     var isFirstView: Bool = false
 
-    @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet private weak var textLabel: ClickableLabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var topSeparatorView: UIView!
     @IBOutlet private weak var containerView: UIView!
