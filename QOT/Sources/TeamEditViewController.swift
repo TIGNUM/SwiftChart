@@ -21,6 +21,9 @@ final class TeamEditViewController: UIViewController {
     @IBOutlet private weak var teamTextField: UITextField!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var keyboardInputView: KeyboardInputView!
+    @IBOutlet private weak var memberCounterLabel: UILabel!
+    @IBOutlet private weak var memberMaxLabel: UILabel!
+    @IBOutlet private weak var tableView: UITableView!
     private var bottomConstraintInitialValue: CGFloat = 0
     private var maxChars: Int?
     private lazy var router: TeamEditRouterInterface = TeamEditRouter(viewController: self)
@@ -62,23 +65,31 @@ private extension TeamEditViewController {
     func updateKeyboardInputView(_ isEnabled: Bool) {
         keyboardInputView.updateRightButton(isEnabled)
     }
+
+    func hideOutlets(_ isHidden: Bool) {
+        tableView.isHidden = isHidden
+        memberMaxLabel.isHidden = isHidden
+        memberCounterLabel.isHidden = isHidden
+    }
+
+    func updateMemberCounter() {
+        memberCounterLabel.text = String(interactor.rowCount)
+    }
 }
 
 // MARK: - Actions
 private extension TeamEditViewController {
+
 }
 
 // MARK: - TeamEditViewControllerInterface
 extension TeamEditViewController: TeamEditViewControllerInterface {
-    func showErrorAlert(_ error: Error?) {
-        handleError(error)
-    }
-
     func setupView() {
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView
         keyboardInputView.delegate = self
+        hideOutlets(true)
     }
 
     func updateTextCounter(maxChars: Int?) {
@@ -105,8 +116,15 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         updateKeyboardInputView(false)
     }
 
-    func didSendInvite(email: String) {
+    func refreshMemberList() {
+        refreshView()
+        hideOutlets(false)
+        updateMemberCounter()
+        tableView.reloadData()
+    }
 
+    func presentErrorAlert(_ title: String, _ message: String) {
+        showAlert(type: .custom(title: title, message: message))
     }
 
     func dismiss() {
@@ -135,6 +153,21 @@ extension TeamEditViewController: UITextFieldDelegate {
         case .memberInvite:
             updateKeyboardInputView(textField.text?.isEmail == true)
         }
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension TeamEditViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return interactor.rowCount
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let email = interactor.item(at: indexPath)
+        let identifier = R.reuseIdentifier.teamMemberEmailTableViewCell_ID.identifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        cell.textLabel?.text = email ?? ""
+        return cell
     }
 }
 

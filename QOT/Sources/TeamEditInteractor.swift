@@ -16,6 +16,7 @@ final class TeamEditInteractor {
     private let presenter: TeamEditPresenterInterface!
     private var type: TeamEdit.View
     private var team: QDMTeam?
+    private var members = [QDMTeamMember]()
 
     // MARK: - Init
     init(presenter: TeamEditPresenterInterface, type: TeamEdit.View, team: QDMTeam?) {
@@ -39,19 +40,36 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
         return type
     }
 
+    var rowCount: Int {
+        return members.count
+    }
+
+    func item(at index: IndexPath) -> String? {
+        return members.at(index: index.row)?.email
+    }
+
     func createTeam(_ name: String?) {
         worker.teamCreate(name) { [weak self] (team, _, error) in
-            if error == nil, team != nil {
-                self?.type = .memberInvite
-            }
             self?.team = team
-            self?.presenter.handleResponseCreate(team, error: error)
+            if let team = team {
+                self?.type = .memberInvite
+                self?.presenter.prepareMemberInvite(team)
+            } else {
+                log("Error while try to create team: \(error?.localizedDescription ?? "")", level: .error)
+                self?.presenter.presentErrorAlert(error)
+            }
         }
     }
 
     func sendInvite(_ email: String?) {
         worker.sendInvite(email, team: team) { [weak self] (member, _, error) in
-            self?.presenter.handleResponseMemberInvite(member, error: error)
+            if let member = member {
+                self?.members.append(member)
+                self?.presenter.refreshMemberList()
+            } else {
+                log("Error while try to invite member: \(error?.localizedDescription ?? "")", level: .error)
+                self?.presenter.presentErrorAlert(error)
+            }
         }
     }
 
