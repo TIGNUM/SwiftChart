@@ -33,24 +33,6 @@ private extension TeamEditPresenter {
 
 // MARK: - TeamEditInterface
 extension TeamEditPresenter: TeamEditPresenterInterface {
-//    func handleResponseMemberInvite(_ member: QDMTeamMember?, error: Error?) {
-//        if let error = error {
-//            log("Error while member invite: \(error.localizedDescription)", level: .error)
-//            viewController?.showErrorAlert(error)
-//        } else if member == nil {
-//            log("Member could not be invited. Did not get a valid member as response.", level: .error)
-//            let error = NSError(domain: TeamServiceErrorDomain,
-//                                code: TeamServiceErrorCode.CannotFindTeamMember.rawValue,
-//                                userInfo: nil)
-//            viewController?.showErrorAlert(error)
-//        } else {
-            // TODO, empty textField, move email to list, update counter
-//            UIView.animate(withDuration: Animation.duration_04) { [weak self] in
-//                self?.setupView(.memberInvite)
-//            }
-//        }
-//    }
-
     func refreshMemberList() {
         viewController?.refreshMemberList()
     }
@@ -71,15 +53,9 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
     }
 
     func presentErrorAlert(_ error: Error?) {
-        var title = "Error"
-        var message = "Message"
-        if let error = error {
-            title = "Error"
-            message = "Message"
-        } else {
-            title = "Error"
-            message = "Message"
-        }
+        let title = AppTextService.get(.generic_alert_unknown_error_title)
+        var message = AppTextService.get(.generic_alert_unknown_error_body)
+        message = message.replacingOccurrences(of: "(%@) ", with: error?.localizedDescription ?? "")
         viewController?.presentErrorAlert(title, message)
     }
 }
