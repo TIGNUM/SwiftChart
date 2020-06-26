@@ -13,7 +13,7 @@ final class TeamEditWorker {
 
     func teamCreate(_ name: String?, _ completion: @escaping (QDMTeam?, Bool?, Error?) -> Void) {
         if let name = name {
-            TeamService.main.createTeam(name: name, completion)
+            TeamService.main.createTeam(name: name, teamColor: UIColor.random.toHexString, completion)
         } else {
             completion(nil, false, nil)
         }
