@@ -62,6 +62,7 @@ private extension ExtensionsDataManager {
     }
 
     func updateTeams() {
+        getShareExtensionStrings()
         TeamService.main.getTeams {(teams, initiated, error) in
             var teamList = [ExtensionModel.Team]()
             teams?.forEach {(team) in
@@ -71,6 +72,17 @@ private extension ExtensionsDataManager {
                 }
             }
         }
+    }
+
+    func getShareExtensionStrings() {
+        let shareExtensionStrings = ExtensionModel.ShareExtensionStrings(library: AppTextService.get(.share_libraries_libraryLabel),
+                                                                         myLibrary: AppTextService.get(.share_libraries_myLibraryLabel),
+                                                                         addTo: AppTextService.get(.share_libraries_navigationTitle),
+                                                                         participants: AppTextService.get(.share_libraries_participantsLabel),
+                                                                         addedTo: AppTextService.get(.share_libraries_addedToLabel),
+                                                                         and: AppTextService.get(.share_libraries_andLabel),
+                                                                         personal: AppTextService.get(.share_libraries_privateLabel))
+        ExtensionUserDefaults.set(shareExtensionStrings, for: .shareExtensionStrings)
     }
 
     func updateUpcomingEvents() {

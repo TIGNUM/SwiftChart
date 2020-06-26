@@ -42,4 +42,14 @@ struct ExtensionModel {
         let teamName: String?
         let numberOfMembers: Int?
     }
+
+    struct ShareExtensionStrings: Codable {
+        var library: String?
+        var myLibrary: String?
+        var addTo: String?
+        var participants: String?
+        var addedTo: String?
+        var and: String?
+        var personal: String?
+    }
 }

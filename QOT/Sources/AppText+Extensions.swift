@@ -37,6 +37,14 @@ public extension AppTextKey {
     static let generic_feature_explainer_button = AppTextKey("generic.feature_explainer.button")
     static let generic_feature_explainer_label = AppTextKey("generic.feature_explainer.label")
 
+    static let share_libraries_navigationTitle = AppTextKey("share.libraries.navigationTitle")
+    static let share_libraries_privateLabel = AppTextKey("share.libraries.privateLabel")
+    static let share_libraries_andLabel = AppTextKey("share.libraries.andLabel")
+    static let share_libraries_addedToLabel = AppTextKey("share.libraries.addedToLabel")
+    static let share_libraries_libraryLabel = AppTextKey("share.libraries.libraryLabel")
+    static let share_libraries_myLibraryLabel = AppTextKey("share.libraries.myLibraryLabel")
+    static let share_libraries_participantsLabel = AppTextKey("share.libraries.participantsLabel")
+
     static let coach_section_tools_subtitle = AppTextKey("coach.section_tools.subtitle")
     static let coach_section_tools_title = AppTextKey("coach.section_tools.title")
     static let coach_section_search_subtitle = AppTextKey("coach.section_search.subtitle")

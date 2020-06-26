@@ -17,14 +17,17 @@ class TeamTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         selectedBackgroundView = backgroundView
     }
 
 //     configure fonts and colours
-    func configure(teamName: String?, participants: Int) {
-        teamLibraryName.text = teamName ?? "" + " library"
-        participantsLabel.text = String(participants) + " participants"
+    func configure(teamName: String?, participants: Int, shareExtensionStrings: ExtensionModel.ShareExtensionStrings?) {
+        let libraryString = shareExtensionStrings?.library ?? ""
+        let privateString = shareExtensionStrings?.personal ?? ""
+        let participantsString = shareExtensionStrings?.participants ?? ""
+        teamLibraryName.text = teamName ?? "" + " " + libraryString
+        participantsLabel.text = participants == 0 ? privateString : " " + participantsString
+
     }
     
     @IBAction func checkButtonTapped(_ sender: Any) {

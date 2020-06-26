@@ -17,14 +17,11 @@ class ConfirmationViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         selectedBackgroundView = backgroundView
         messageView.layer.cornerRadius = 15
     }
 
-//     configure fonts and colours
     func configure(message: String?) {
         messageLabel.text = message
     }
-
 }
