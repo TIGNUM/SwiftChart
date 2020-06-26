@@ -64,7 +64,10 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
     func sendInvite(_ email: String?) {
         worker.sendInvite(email, team: team) { [weak self] (member, _, error) in
             if let member = member {
-                self?.members.append(member)
+                let emails = self?.members.compactMap { $0.email } ?? []
+                if emails.contains(obj: email) == false {
+                    self?.members.append(member)
+                }
                 self?.presenter.refreshMemberList()
             } else {
                 log("Error while try to invite member: \(error?.localizedDescription ?? "")", level: .error)
