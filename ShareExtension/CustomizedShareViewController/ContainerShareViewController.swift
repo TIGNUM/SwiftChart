@@ -44,7 +44,6 @@ final class ContainerShareViewController: UIViewController {
         view.addSubview(containerView)
         let customizedViewController: UIViewController = UIStoryboard(name: "MainInterface", bundle: nil).instantiateViewController(withIdentifier: "CustomizedShareViewController") as UIViewController
         let navigationController = UINavigationController(rootViewController: customizedViewController)
-        navigationController.navigationBar.barTintColor = .black
         addChild(navigationController)
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),

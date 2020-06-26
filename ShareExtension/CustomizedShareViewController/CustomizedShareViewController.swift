@@ -46,10 +46,15 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
 
     @IBAction func addTapped(_ sender: Any) {
         addPressed.toggle()
+        let selected_indexPaths = tableView.indexPathsForSelectedRows
+        var selectedTeams: [String] = []
+        for indexPath in selected_indexPaths! {
+            selectedTeams.append(teamCollection[indexPath.row].teamName ?? "")
+        }
         updateTableView()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.hideExtensionWithCompletionHandler(completion: { (Bool) -> Void in
-                self.handleSharedFile()
+                self.handleSharedFile(teamLibraries: selectedTeams)
                 self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
             })
         }
@@ -80,6 +85,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
                            shareExtensionStrings: shareExtensionStrings)
             cell.isUserInteractionEnabled = true
             cell.selectionStyle = .none
+            cell.isSelected = cell.checkButton.isSelected
             return cell
         }
     }
@@ -87,6 +93,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+
 }
 
 // MARK: - Private
@@ -165,7 +172,8 @@ private extension CustomizedShareViewController{
 
 // MARK: - Handling Links
 
-    private func handleSharedFile() {
+    private func handleSharedFile(teamLibraries: [String]) {
+//          TO DO, HANDLE SHARING TO DIFFERENT LIBRARIES
         let typeURL = String(kUTTypeURL)
         let textTypes = [String(kUTTypeText),
                          String(kUTTypePlainText),
