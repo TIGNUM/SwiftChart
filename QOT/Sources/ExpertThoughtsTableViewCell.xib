@@ -62,10 +62,11 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="QO8-bk-eq8" firstAttribute="top" secondItem="qV0-sm-0cU" secondAttribute="bottom" constant="20" id="6o1-23-fkP"/>
+                                <constraint firstItem="qVJ-Jc-Bvd" firstAttribute="top" secondItem="QO8-bk-eq8" secondAttribute="bottom" constant="36" id="Cz4-oc-fNx"/>
                                 <constraint firstItem="QO8-bk-eq8" firstAttribute="leading" secondItem="ofw-Zd-Bgz" secondAttribute="leading" id="HdV-wO-NFL"/>
                                 <constraint firstAttribute="trailing" secondItem="qV0-sm-0cU" secondAttribute="trailing" id="dzF-NW-PUw"/>
                                 <constraint firstItem="qV0-sm-0cU" firstAttribute="leading" secondItem="ofw-Zd-Bgz" secondAttribute="leading" id="g8Z-l2-wi8"/>
-                                <constraint firstItem="qVJ-Jc-Bvd" firstAttribute="top" secondItem="QO8-bk-eq8" secondAttribute="bottom" constant="36" id="xbL-V3-vJM"/>
+                                <constraint firstAttribute="trailing" secondItem="qVJ-Jc-Bvd" secondAttribute="trailing" id="oEp-Dq-VZj"/>
                             </constraints>
                         </stackView>
                     </subviews>
@@ -92,6 +93,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="audioButton" destination="qVJ-Jc-Bvd" id="m3K-9e-gas"/>
+                <outlet property="audioButtonHeightConstraint" destination="LVU-lY-8qW" id="aXi-HT-myk"/>
                 <outlet property="descriptionLabel" destination="qV0-sm-0cU" id="4ay-8S-1XQ"/>
                 <outlet property="expertNameLabel" destination="QO8-bk-eq8" id="Ujl-zq-ceu"/>
                 <outlet property="headerView" destination="Vxy-qV-ySd" id="x1z-uh-d7a"/>
