@@ -470,6 +470,19 @@ public extension AppTextKey {
     static let my_qot_section_my_plans_title = AppTextKey("my_qot.section_my_plans.title")
     static let my_qot_section_my_profile_title = AppTextKey("my_qot.section_my_profile.title")
     static let my_qot_section_my_tbv_title = AppTextKey("my_qot.section_my_tbv.title")
+
+    // MARK: - Team Create
+    static let my_x_team_create_header = AppTextKey("my_x.team.create")
+    static let my_x_team_create_description = AppTextKey("my_x.team.create_description")
+    static let my_x_team_create_cta = AppTextKey("my_x.team.create_cta")
+
+    // MARK: - Team Member Invite
+    static let my_x_team_member_invite_header = AppTextKey("my_x.team_member_invite.header")
+    static let my_x_team_member_invite_subHeader = AppTextKey("my_x.team_member_invite.subHeader")
+    static let my_x_team_member_invite_description = AppTextKey("my_x.team_member_invite.description")
+    static let my_x_team_member_invite_cta = AppTextKey("my_x.team_member_invite.cta")
+
+    // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")
     static let my_qot_my_library_downloads_alert_use_mobile_data_title = AppTextKey("my_qot.my_library.downloads.alert.use_mobile_data.title")
     static let my_qot_my_library_all_null_state_body = AppTextKey("my_qot.my_library.all.null_state.body")

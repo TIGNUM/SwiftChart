@@ -174,12 +174,20 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         router.presentMyDataScreen()
     }
 
+    func presentCreateTeam() {
+        router.presentEditTeam(.create, team: nil)
+    }
+
     func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]? {
         return viewModelOldListModels
     }
 
     func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]) {
         viewModelOldListModels = list
+    }
+
+    func getSettingsTitle(completion: @escaping (String?) -> Void) {
+        worker.getSettingsTitle(completion: completion)
     }
 
     func refreshParams() {
@@ -200,32 +208,30 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                     guard let strongSelf = self else {
                         return
                     }
-                    strongSelf.getUserName(completion: {(name) in
-                        strongSelf.nextPrep(completion: { [weak self] (dateString) in
+                    strongSelf.nextPrep(completion: { [weak self] (dateString) in
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.nextPrepType(completion: { [weak self] (eventType) in
                             guard let strongSelf = self else {
                                 return
                             }
-                            strongSelf.nextPrepType(completion: { [weak self] (eventType) in
+                            strongSelf.getCurrentSprintName(completion: { [weak self] (sprintName) in
                                 guard let strongSelf = self else {
                                     return
                                 }
-                                strongSelf.getCurrentSprintName(completion: { [weak self] (sprintName) in
-                                    guard let strongSelf = self else {
-                                        return
-                                    }
-                                    elements.append(contentsOf: strongSelf.createProfile(userName: name))
-                                    elements.append(contentsOf: strongSelf.createLibrary())
-                                    elements.append(contentsOf: strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                                    elements.append(contentsOf: strongSelf.createSprints(sprintName: sprintName))
-                                    elements.append(contentsOf: strongSelf.createMyData(irScore: score))
-                                    elements.append(contentsOf: strongSelf.createToBeVision(date: date))
+                                elements.append(contentsOf: strongSelf.createProfile(userName: nil))
+                                elements.append(contentsOf: strongSelf.createLibrary())
+                                elements.append(contentsOf: strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                                elements.append(contentsOf: strongSelf.createSprints(sprintName: sprintName))
+                                elements.append(contentsOf: strongSelf.createMyData(irScore: score))
+                                elements.append(contentsOf: strongSelf.createToBeVision(date: date))
 
-                                    sectionDataList.append(ArraySection(model: .body,
-                                                                        elements: elements))
+                                sectionDataList.append(ArraySection(model: .body,
+                                                                    elements: elements))
 
-                                    let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
-                                    strongSelf.presenter.updateViewNew(changeSet)
-                                })
+                                let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
+                                strongSelf.presenter.updateViewNew(changeSet)
                             })
                         })
                     })

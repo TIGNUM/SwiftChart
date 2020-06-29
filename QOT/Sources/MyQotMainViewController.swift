@@ -96,9 +96,15 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
             case MyQotViewModel.Section.header.rawValue:
                 let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 let title = AppTextService.get(.my_qot_section_header_title)
+                interactor?.getSettingsTitle() { (title) in
+                    cell.setSettingsButton(title ?? "")
+                }
+
                 cell.configure(title: title, tapLeft: { [weak self] in
                     self?.delegate?.moveToCell(item: 1)
-                })
+                }) {
+                    self.interactor?.presentMyProfile()
+                }
                 return cell
             default:
                 let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
@@ -155,7 +161,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             let qotSection = MyQotSection.allCases[indexPath.row]
             switch qotSection {
             case .profile:
-                interactor?.presentMyProfile()
+                interactor?.presentCreateTeam()
             case .library:
                 interactor?.presentMyLibrary()
             case .preps:

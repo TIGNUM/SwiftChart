@@ -37,7 +37,7 @@ final class MyQotMainWorker {
     func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
         switch myQotItem {
         case .profile:
-            return AppTextService.get(.my_qot_section_my_profile_title)
+            return AppTextService.get(.my_x_team_create_header)
         case .library:
             return AppTextService.get(.my_qot_section_my_library_title)
         case .preps:
@@ -68,6 +68,16 @@ final class MyQotMainWorker {
     func getUserName(completion: @escaping (String?) -> Void) {
           UserService.main.getUserData { (user) in
             completion(user?.givenName)
+        }
+    }
+
+    func getSettingsTitle(completion: @escaping (String?) -> Void) {
+        getUserName { (userName) in
+            if let firstLetter = userName?.first {
+                completion(String(firstLetter))
+            } else {
+                completion("X")
+            }
         }
     }
 
