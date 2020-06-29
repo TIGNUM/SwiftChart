@@ -13,7 +13,7 @@ final class FromTignumCell: BaseDailyBriefCell {
 
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet private weak var fromTignumText: UILabel!
+    @IBOutlet private weak var fromTignumText: ClickableLabel!
     private var detailsExpanded = false
     private var link: QDMAppLink?
     @IBOutlet private weak var ctaButton: AnimatedButton!
