@@ -17,12 +17,11 @@ final class MyQotNavigationController: UINavigationController {
 final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 
     // MARK: - Properties
-
     var interactor: MyQotMainInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet private weak var collectionView: UICollectionView!
     private var indexPathDeselect: IndexPath?
-
+    private var teamHeaderItems = [TeamHeader]()
     private var qotBoxSize: CGSize {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return .zero
@@ -31,8 +30,8 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         let widthAvailbleForAllItems =  (collectionView.frame.width - layout.minimumInteritemSpacing - layout.sectionInset.left - layout.sectionInset.right)
         let widthForOneItem = widthAvailbleForAllItems / 2
         let heightAvailableForAllItems = (collectionView.frame.height -
-                                            (layout.minimumLineSpacing + layout.sectionInset.top + layout.sectionInset.bottom) * 2 -
-                                            ThemeView.level1.headerBarHeight)
+            (layout.minimumLineSpacing + layout.sectionInset.top + layout.sectionInset.bottom) * 2 -
+            ThemeView.level1.headerBarHeight)
         let heightForOneItem = heightAvailableForAllItems / 3
 
         return CGSize(width: widthForOneItem, height: heightForOneItem)
@@ -41,7 +40,6 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     private var isDragging = false
 
     // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
@@ -52,6 +50,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
+        collectionView.reloadData()
         interactor?.refreshParams()
     }
 
@@ -66,8 +65,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     }
 }
 
-    // MARK: - MyQotMainViewControllerInterface
-
+// MARK: - MyQotMainViewControllerInterface
 extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func setupView() {
         ThemeView.level1.apply(self.view)
@@ -89,29 +87,33 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         }
     }
 
-    func getCell(_ collectionView: UICollectionView,
-                _ indexPath: IndexPath,
-                _ myQotViewModelItem: MyQotViewModel.Item?) -> UICollectionViewCell {
-            switch indexPath.section {
-            case MyQotViewModel.Section.header.rawValue:
-                let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-                let title = AppTextService.get(.my_qot_section_header_title)
-                interactor?.getSettingsTitle() { (title) in
-                    cell.setSettingsButton(title ?? "")
-                }
+    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+        self.teamHeaderItems = teamHeaderItems
+        collectionView.reloadData()
+    }
 
-                cell.configure(title: title, tapLeft: { [weak self] in
-                    self?.delegate?.moveToCell(item: 1)
-                }) {
-                    self.interactor?.presentMyProfile()
-                }
-                return cell
-            default:
-                let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-                cell.configure(title: myQotViewModelItem?.title,
-                               subtitle: myQotViewModelItem?.subtitle)
-                return cell
+    func getCell(_ collectionView: UICollectionView,
+                 _ indexPath: IndexPath,
+                 _ myQotViewModelItem: MyQotViewModel.Item?) -> UICollectionViewCell {
+        switch indexPath.section {
+        case MyQotViewModel.Section.header.rawValue:
+            let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            let title = AppTextService.get(.my_qot_section_header_title)
+            interactor?.getSettingsTitle(completion: { (title) in
+                cell.setSettingsButton(title ?? "")
+            })
+            cell.configure(title: title, tapLeft: { [weak self] in
+                self?.delegate?.moveToCell(item: 1)
+            }) {
+                self.interactor?.presentMyProfile()
             }
+            return cell
+        default:
+            let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(title: myQotViewModelItem?.title,
+                           subtitle: myQotViewModelItem?.subtitle)
+            return cell
+        }
     }
 }
 
@@ -173,6 +175,31 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             case .toBeVision:
                 interactor?.presentMyToBeVision()
             }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        switch section {
+        case 0: return .zero
+        default: return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch indexPath.section {
+        case MyQotViewModel.Section.header.rawValue:
+            return UICollectionReusableView()
+        default:
+            let identifier = R.reuseIdentifier.reusableHeaderView_ID.identifier
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                         withReuseIdentifier: identifier,
+                                                                         for: indexPath) as? ReusableHeaderView
+            header?.configure(headerItems: teamHeaderItems)
+            return header ?? UICollectionReusableView()
         }
     }
 
