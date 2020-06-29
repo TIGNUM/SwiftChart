@@ -46,15 +46,15 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
 
     @IBAction func addTapped(_ sender: Any) {
         addPressed.toggle()
-        let selected_indexPaths = tableView.indexPathsForSelectedRows
-        var selectedTeams: [String] = []
-        for indexPath in selected_indexPaths! {
-            selectedTeams.append(teamCollection[indexPath.row].teamName ?? "")
-        }
+//        let selected_indexPaths = tableView.indexPathsForSelectedRows
+//        var selectedTeams: [String] = []
+//        for indexPath in selected_indexPaths! {
+//            selectedTeams.append(teamCollection[indexPath.row].teamName ?? "")
+//        }
         updateTableView()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.hideExtensionWithCompletionHandler(completion: { (Bool) -> Void in
-                self.handleSharedFile(teamLibraries: selectedTeams)
+                self.handleSharedFile(teamLibraries: nil)
                 self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
             })
         }
@@ -83,9 +83,8 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
             cell.configure(teamName: teamCollection[indexPath.row].teamName ?? "",
                            participants: teamCollection[indexPath.row].numberOfMembers ?? 0,
                            shareExtensionStrings: shareExtensionStrings)
-            cell.isUserInteractionEnabled = true
+//            cell.isUserInteractionEnabled = true
             cell.selectionStyle = .none
-            cell.isSelected = cell.checkButton.isSelected
             return cell
         }
     }
@@ -172,7 +171,7 @@ private extension CustomizedShareViewController{
 
 // MARK: - Handling Links
 
-    private func handleSharedFile(teamLibraries: [String]) {
+    private func handleSharedFile(teamLibraries: [String]?) {
 //          TO DO, HANDLE SHARING TO DIFFERENT LIBRARIES
         let typeURL = String(kUTTypeURL)
         let textTypes = [String(kUTTypeText),

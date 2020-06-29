@@ -32,5 +32,6 @@ class TeamTableViewCell: UITableViewCell {
     
     @IBAction func checkButtonTapped(_ sender: Any) {
         checkButton.isSelected.toggle()
+        self.isSelected = checkButton.isSelected
     }
 }
