@@ -34,6 +34,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>])
     func refreshParams()
     func getSettingsTitle(completion: @escaping (String?) -> Void)
+    func updateSelectedTeam(teamId: String)
 }
 
 protocol MyQotMainRouterInterface {

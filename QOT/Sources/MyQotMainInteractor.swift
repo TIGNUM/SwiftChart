@@ -19,6 +19,7 @@ final class MyQotMainInteractor {
     private var viewModelOldListModels: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = []
     private var subtitles: [String?] = []
     private var eventType: String?
+    private var teamHeaderItems = [TeamHeader]()
 
     // MARK: - Init
     init(worker: MyQotMainWorker,
@@ -32,6 +33,7 @@ final class MyQotMainInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
         }
         presenter.setupView()
@@ -152,6 +154,12 @@ final class MyQotMainInteractor {
 
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
+    func updateSelectedTeam(teamId: String) {
+        for item in teamHeaderItems {
+            item.selected = (teamId == item.teamId)
+        }
+        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+    }
 
     func presentMyPreps() {
         router.presentMyPreps()

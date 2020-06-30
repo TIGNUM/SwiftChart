@@ -11,9 +11,11 @@ import UIKit
 final class ReusableHeaderView: UICollectionReusableView {
 
     @IBOutlet private weak var containerView: HorizontalHeaderView!
+    weak var delegate: TeamHeaderCellDelegate?
 
     func configure(headerItems: [TeamHeader]) {
         containerView.configure(headerItems: headerItems)
+        containerView.delegate = delegate
     }
 }
 
@@ -21,6 +23,7 @@ final class HorizontalHeaderView: UIView {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     private var headerItems = [TeamHeader]()
+    weak var delegate: TeamHeaderCellDelegate?
 
     func configure(headerItems: [TeamHeader]) {
         self.headerItems = headerItems
@@ -41,7 +44,9 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
             cell?.configure(title: item.title,
                             hexColorString: item.hexColorString,
                             batchCount: item.batchCount,
-                            selected: false)
+                            selected: item.selected,
+                            teamId: item.teamId)
+            cell?.delegate = delegate
         }
         return cell ?? UICollectionViewCell()
     }

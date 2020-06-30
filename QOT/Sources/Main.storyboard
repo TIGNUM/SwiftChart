@@ -398,10 +398,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DyO-ea-qoM" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="0.0" width="398" height="50"/>
+                                            <rect key="frame" x="24" y="0.0" width="390" height="50"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t3v-8W-wvQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="398" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="4" minimumInteritemSpacing="4" id="M5n-x7-IEa">
                                                         <size key="itemSize" width="110" height="50"/>
@@ -418,17 +418,20 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKh-qK-mBL">
-                                                                        <rect key="frame" x="16" y="0.0" width="78" height="20"/>
+                                                                        <rect key="frame" x="4" y="0.0" width="102" height="20"/>
                                                                         <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                                                                         <state key="normal" title="Button"/>
+                                                                        <connections>
+                                                                            <action selector="didSelectTeam" destination="zWd-bB-5wP" eventType="touchUpInside" id="MpB-gS-5Yy"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="TKh-qK-mBL" firstAttribute="leading" secondItem="qDW-vz-Uov" secondAttribute="leading" constant="16" id="En9-KD-s1b"/>
+                                                                    <constraint firstItem="TKh-qK-mBL" firstAttribute="leading" secondItem="qDW-vz-Uov" secondAttribute="leading" constant="4" id="En9-KD-s1b"/>
                                                                     <constraint firstAttribute="bottom" secondItem="TKh-qK-mBL" secondAttribute="bottom" constant="20" id="JQL-1t-Vbe"/>
                                                                     <constraint firstItem="TKh-qK-mBL" firstAttribute="top" secondItem="qDW-vz-Uov" secondAttribute="top" id="dsf-k0-hXi"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="TKh-qK-mBL" secondAttribute="trailing" constant="16" id="dvL-Cz-xQ9"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="TKh-qK-mBL" secondAttribute="trailing" constant="4" id="dvL-Cz-xQ9"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -459,7 +462,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="DyO-ea-qoM" secondAttribute="trailing" id="0DV-7u-ot3"/>
-                                        <constraint firstItem="DyO-ea-qoM" firstAttribute="leading" secondItem="hFA-HB-eP1" secondAttribute="leading" constant="16" id="1bx-Ck-LOd"/>
+                                        <constraint firstItem="DyO-ea-qoM" firstAttribute="leading" secondItem="hFA-HB-eP1" secondAttribute="leading" constant="24" id="1bx-Ck-LOd"/>
                                         <constraint firstAttribute="bottom" secondItem="DyO-ea-qoM" secondAttribute="bottom" id="K32-iy-Fgs"/>
                                         <constraint firstItem="DyO-ea-qoM" firstAttribute="top" secondItem="hFA-HB-eP1" secondAttribute="top" id="SVr-SL-L0v"/>
                                     </constraints>

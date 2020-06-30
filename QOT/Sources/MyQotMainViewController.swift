@@ -199,6 +199,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
                                                                          withReuseIdentifier: identifier,
                                                                          for: indexPath) as? ReusableHeaderView
             header?.configure(headerItems: teamHeaderItems)
+            header?.delegate = self
             return header ?? UICollectionReusableView()
         }
     }
@@ -223,5 +224,11 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         scrollViewDidScroll(scrollView)
+    }
+}
+
+extension MyQotMainViewController: TeamHeaderCellDelegate {
+    func didSelectTeam(teamId: String) {
+        interactor?.updateSelectedTeam(teamId: teamId)
     }
 }
