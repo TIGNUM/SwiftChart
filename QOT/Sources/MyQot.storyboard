@@ -269,6 +269,11 @@
                         <viewLayoutGuide key="safeArea" id="P4L-d4-E25"/>
                     </view>
                     <navigationItem key="navigationItem" id="aI7-da-IlH"/>
+                    <connections>
+                        <outlet property="headerHeightConstraint" destination="AxI-o6-sx7" id="Csg-A1-8jd"/>
+                        <outlet property="headerView" destination="Fbz-7Z-v9W" id="HpI-mm-kMz"/>
+                        <outlet property="tableView" destination="HTS-fj-Ieu" id="OXV-gs-tid"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5On-Bh-YBE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

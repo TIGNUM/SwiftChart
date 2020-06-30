@@ -22,7 +22,11 @@ final class MyXTeamSettingsInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        presenter.present(worker.settings())
+    }
+
+    var teamSettingsText: String {
+        return worker.teamSettingsText
     }
 }
 

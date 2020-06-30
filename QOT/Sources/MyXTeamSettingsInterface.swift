@@ -9,11 +9,11 @@
 import Foundation
 
 protocol MyXTeamSettingsViewControllerInterface: class {
-    func setupView()
+    func setup(_ settings: MyXTeamSettingsModel)
 }
 
 protocol MyXTeamSettingsPresenterInterface {
-    func setupView()
+    func present(_ settings: MyQotAppSettingsModel)
 }
 
 protocol MyXTeamSettingsInteractorInterface: Interactor {}

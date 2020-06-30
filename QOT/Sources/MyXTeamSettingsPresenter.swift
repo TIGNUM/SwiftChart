@@ -21,7 +21,7 @@ final class MyXTeamSettingsPresenter {
 
 // MARK: - MyXTeamSettingsInterface
 extension MyXTeamSettingsPresenter: MyXTeamSettingsPresenterInterface {
-    func setupView() {
-        viewController?.setupView()
+    func present(_ settings: MyXTeamSettingsModel) {
+        viewController?.setup(settings)
     }
 }

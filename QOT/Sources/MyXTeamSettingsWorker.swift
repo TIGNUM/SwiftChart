@@ -18,4 +18,15 @@ final class MyXTeamSettingsWorker {
     init(contentService: qot_dal.ContentService) {
         self.contentService = contentService
     }
+
+    func settings() -> MyXTeamSettingsModel {
+        return MyXTeamSettingsModel(contentService: contentService)
+    }
+}
+
+extension MyXTeamSettingsWorker {
+
+    var teamSettingsText: String {
+        return AppTextService.get(.)
+    }
 }
