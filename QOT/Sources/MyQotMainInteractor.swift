@@ -158,6 +158,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         for item in teamHeaderItems {
             item.selected = (teamId == item.teamId)
         }
+        teamHeaderItems.forEach { (item) in
+            item.selected = (teamId == item.teamId)
+        }
         presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
     }
 
