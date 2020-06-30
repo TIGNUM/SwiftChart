@@ -16,7 +16,9 @@ final class MyQotProfileInteractor {
         case appSettings
         case support
         case aboutTignum
+        case teamSettings
         case adminSettings
+
     }
 
     // MARK: - Properties
@@ -84,6 +86,8 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
             router.presentAboutTignum()
         case .adminSettings:
             router.presentAdminSettings()
+        case .teamSettings:
+            router.presentTeamSettings()
         }
     }
 }
