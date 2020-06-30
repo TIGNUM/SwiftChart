@@ -125,24 +125,15 @@ final class ArticleWorker {
                                        imageURL: content.thumbnailURLString)
         relatedContent = [QDMContentCollection]()
         nextUp = nil
-        let setupSynchronousSteps: () -> Void = { [weak self] in
-            self?.setupRelatedArticlesWhatsHot()
-            self?.setupWhatsHotArticleItems()
-            self?.setupWhatsHotItems()
-            self?.setupLearnStragyItems()
-            self?.setupRelatedArticlesStrtegy()
-            self?.setupAudioArticleItem()
-            self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
-            self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
-            self?.interactor?.dataUpdated()
-        }
-
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? 0) { [weak self] (next) in
             if let nextWhatsHot = next {
                 self?.nextWhatsHotContent = nextWhatsHot
             }
+            dispatchGroup.leave()
         }
-
+        dispatchGroup.enter()
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
             if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
@@ -156,8 +147,19 @@ final class ArticleWorker {
                                                                                      itemID: nextCollection.remoteID ?? 0))
                 }
             }
+            dispatchGroup.leave()
         }
-        setupSynchronousSteps()
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.setupRelatedArticlesWhatsHot()
+            self?.setupWhatsHotArticleItems()
+            self?.setupWhatsHotItems()
+            self?.setupLearnStragyItems()
+            self?.setupRelatedArticlesStrtegy()
+            self?.setupAudioArticleItem()
+            self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
+            self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
+            self?.interactor?.dataUpdated()
+        }
     }
 
     private func setupLearnStragyItems() {

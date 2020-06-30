@@ -21,6 +21,7 @@ final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
     var durationString: String?
     var audioTitle: String?
     var name: String?
+    var format: ContentFormat
 
     // MARK: - Init
     init(title: String?,
@@ -43,6 +44,7 @@ final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
         self.remoteID = remoteID
         self.durationString = durationString
         self.name = name
+        self.format = format
         super.init(domainModel)
     }
 }
