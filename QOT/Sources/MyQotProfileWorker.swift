@@ -15,17 +15,19 @@ final class MyQotProfileWorker {
     private let userService: UserService
     private let contentService: ContentService
     private let dispatchGroup = DispatchGroup()
-
     private var accountSettingsText = ""
+    private var teamSettingsText = ""
     private var manageYourProfileDetailsText = ""
     private var appSettingsText = ""
     private var enableNotificationsText = ""
     private var supportText = ""
     private var walkthroughOurFeaturesText = ""
     private var aboutTignumText = ""
+    private var manageTeamSettingsText = ""
     private var learnMoreAboutUsText = ""
     var myProfileText = ""
     var memberSinceText = ""
+    var hasTeam = false
     var userProfile: UserProfileModel?
     var developmentMode = false
 
@@ -39,14 +41,19 @@ final class MyQotProfileWorker {
     func menuItems() -> [MyQotProfileModel.TableViewPresentationData] {
         var items = [MyQotProfileModel.TableViewPresentationData]()
         let accountSettings = MyQotProfileModel.TableViewPresentationData(heading: accountSettingsText, subHeading: manageYourProfileDetailsText)
+        let teamSettings = MyQotProfileModel.TableViewPresentationData(heading: teamSettingsText, subHeading: manageTeamSettingsText )
         let appSettings = MyQotProfileModel.TableViewPresentationData(heading: appSettingsText, subHeading: enableNotificationsText)
         let support = MyQotProfileModel.TableViewPresentationData(heading: supportText, subHeading: walkthroughOurFeaturesText)
         let aboutTignum = MyQotProfileModel.TableViewPresentationData(heading: aboutTignumText, subHeading: learnMoreAboutUsText)
         let adminSettings = MyQotProfileModel.TableViewPresentationData(heading: "ADMIN SETTINGS", subHeading: "Settings for debug and testing")
         items = [accountSettings, appSettings, support, aboutTignum]
+        if hasTeam {
+            items.append(teamSettings)
+        }
         if developmentMode {
             items.append(adminSettings)
         }
+
         return items
     }
 
@@ -62,6 +69,9 @@ final class MyQotProfileWorker {
         setupWalkthroughOurFeaturesText()
         setupAboutTignumText()
         setupLearnMoreAboutUsText()
+        setupTeamSettingsText()
+        setupManageTeamSettingsText()
+        userHasTeam()
         dispatchGroup.notify(queue: .main) {
             completion(self.userProfile)
         }
@@ -73,6 +83,16 @@ private extension MyQotProfileWorker {
 
     func setupMyProfileText() {
         myProfileText = AppTextService.get(.my_qot_my_profile_section_header_title)
+    }
+
+    func setupTeamSettingsText() {
+//        teamSettingsText = AppTextService.get(.settings_team_settings_title)
+        teamSettingsText = " TEAM SETTINGS"
+    }
+
+    func setupManageTeamSettingsText() {
+//        manageTeamSettingsText = AppTextService.get(.settings_team_settings_subtitle)
+        manageTeamSettingsText = "Manage your team details"
     }
 
     func setupMemberSinceText() {
@@ -117,6 +137,18 @@ private extension MyQotProfileWorker {
             let profile = self?.formProfile(for: user)
             self?.userProfile = profile
             self?.dispatchGroup.leave()
+        }
+    }
+
+    func getMaxChars(_ completion: @escaping (Int) -> Void) {
+        TeamService.main.getTeamConfiguration { (config, error) in
+            completion(config?.teamNameMaxLength ?? 0)
+        }
+    }
+
+    func userHasTeam() {
+        TeamService.main.getTeams {(teams, initiated, error) in
+            self.hasTeam = teams != nil
         }
     }
 

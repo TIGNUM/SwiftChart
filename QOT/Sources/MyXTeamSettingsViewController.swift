@@ -33,7 +33,9 @@ final class MyXTeamSettingsViewController: UIViewController {
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
+        ThemeView.level3.apply(tableView)
         interactor?.viewDidLoad()
+        tableView.registerDequeueable(TeamSettingsTableViewCell.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,10 +71,28 @@ private extension MyXTeamSettingsViewController {
 
 // MARK: - MyXTeamSettingsViewControllerInterface
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
+
     func setup(_ settings: MyXTeamSettingsModel) {
-         ThemeView.level3.apply(view)
+        ThemeView.level3.apply(view)
         settingsModel = settings
         baseHeaderView?.configure(title: interactor?.teamSettingsText, subtitle: nil)
-        // Do any additional setup after loading the view.
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return settingsModel.teamSettingsCount
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+        let subtitle = settingsModel.subtitleForItem(at: indexPath)
+        cell.configure(subTitle: subtitle, isHidden: subtitle == "")
+        return cell
     }
 }

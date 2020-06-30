@@ -1227,6 +1227,8 @@
 		F9B102A422D336D000F99E85 /* WhatsHotLatestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B102A322D336D000F99E85 /* WhatsHotLatestCell.swift */; };
 		F9B102A622D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B102A522D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift */; };
 		F9B102A822D3370A00F99E85 /* WhatsHotLatestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B102A722D3370A00F99E85 /* WhatsHotLatestCell.xib */; };
+		F9B3860A24AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */; };
+		F9B3860C24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */; };
 		F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8BB220DD9E100B40DD2 /* SiriShortcutsModel.swift */; };
 		F9D2380C23D5A3F600B68E0D /* PreparationWithMissingEventConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51215C2331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift */; };
 		F9D2BC1922D48DBB00DBF2CC /* GoodToKnowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D2BC1822D48DBB00DBF2CC /* GoodToKnowCell.swift */; };
@@ -2524,6 +2526,8 @@
 		F9B102A322D336D000F99E85 /* WhatsHotLatestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotLatestCell.swift; sourceTree = "<group>"; };
 		F9B102A522D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotLatestCellViewModel.swift; sourceTree = "<group>"; };
 		F9B102A722D3370A00F99E85 /* WhatsHotLatestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotLatestCell.xib; sourceTree = "<group>"; };
+		F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSettingsTableViewCell.xib; sourceTree = "<group>"; };
 		F9C1D8BB220DD9E100B40DD2 /* SiriShortcutsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsModel.swift; sourceTree = "<group>"; };
 		F9D2BC1822D48DBB00DBF2CC /* GoodToKnowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowCell.swift; sourceTree = "<group>"; };
 		F9D2BC1A22D48DCF00DBF2CC /* GoodToKnowCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowCellViewModel.swift; sourceTree = "<group>"; };
@@ -3515,6 +3519,8 @@
 				5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */,
 				5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */,
 				382C6C5523589FE000FAF497 /* MyQotSupportNovartisViewController.swift */,
+				F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */,
+				F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -5916,6 +5922,7 @@
 				36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				380B03CB241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib in Resources */,
+				F9B3860C24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				9C7F4197232BB993007E4B5D /* MyPeakPerformanceCell.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
@@ -6285,6 +6292,7 @@
 				386C27A4241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.swift in Sources */,
 				B430D7D623A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsConfigurator.swift in Sources */,
 				36735C7B22C60C8A0041678D /* QDMAnswer+Ext.swift in Sources */,
+				F9B3860A24AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift in Sources */,
 				367CD18322EF4EDE00AF2187 /* OnboardingLoginViewController.swift in Sources */,
 				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
 				36E12EC4232B57F0009E96EA /* DTPrepareRouter.swift in Sources */,

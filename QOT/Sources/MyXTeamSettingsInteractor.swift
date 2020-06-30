@@ -33,4 +33,18 @@ final class MyXTeamSettingsInteractor {
 // MARK: - MyXTeamSettingsInteractorInterface
 extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
 
+    func handleTap(setting: MyXTeamSettingsModel.Setting) {
+//          switch setting {
+//          case .notifications:
+//              router.askNotificationPermission()
+//          case .permissions:
+//              router.openAppSettings()
+//          case .calendars:
+//              handleCalendarTap()
+//          case .sensors:
+//              router.openActivityTrackerSettings()
+//          case .siriShortcuts:
+//              router.openSiriSettings()
+//          }
+      }
 }

@@ -13,10 +13,13 @@ protocol MyXTeamSettingsViewControllerInterface: class {
 }
 
 protocol MyXTeamSettingsPresenterInterface {
-    func present(_ settings: MyQotAppSettingsModel)
+    func present(_ settings: MyXTeamSettingsModel)
 }
 
-protocol MyXTeamSettingsInteractorInterface: Interactor {}
+protocol MyXTeamSettingsInteractorInterface: Interactor {
+    func handleTap(setting:MyXTeamSettingsModel.Setting)
+    var teamSettingsText: String { get }
+}
 
 protocol MyXTeamSettingsRouterInterface {
     func dismiss()

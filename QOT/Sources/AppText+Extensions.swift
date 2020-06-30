@@ -753,6 +753,13 @@ public extension AppTextKey {
     static let my_qot_my_plans_event_preps_null_state_body = AppTextKey("my_qot.my_plans.event_preps.null_state.body")
     static let my_qot_my_plans_section_header_critical = AppTextKey("my_qot.my_plans_section.header_critical")
     static let my_qot_my_plans_section_header_everyday = AppTextKey("my_qot.my_plans_section.header_everyday")
+    static let settings_team_settings_team_members = AppTextKey("settings.team_settings.team_members")
+    static let settings_team_settings_title = AppTextKey("settings.team_settings.title")
+    static let settings_team_settings_leave_team = AppTextKey("settings.team_settings.leave_team")
+    static let settings_team_settings_leave_team_subtitle = AppTextKey("settings.team_settings.leave_team_subtitle")
+    static let settings_team_settings_delete_team  = AppTextKey("settings.team_settings.delete_team")
+    static let settings_team_settings_delete_team_subtitle  = AppTextKey("settings.team_settings.delete_team_subtitle")
+    static let settings_team_settings_subtitle = AppTextKey("settings.team_settings.subtitle")
 
     static let my_qot_my_plans_mindset_shifts_null_state_cta = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.cta")
     static let my_qot_my_plans_event_preps_null_state_cta = AppTextKey("my_qot.my_plans.event_preps.null_state.cta")

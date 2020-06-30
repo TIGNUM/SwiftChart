@@ -27,6 +27,6 @@ final class MyXTeamSettingsWorker {
 extension MyXTeamSettingsWorker {
 
     var teamSettingsText: String {
-        return AppTextService.get(.)
+        return AppTextService.get(.settings_team_settings_title)
     }
 }
