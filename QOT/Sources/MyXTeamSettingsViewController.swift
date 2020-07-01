@@ -36,6 +36,7 @@ final class MyXTeamSettingsViewController: UIViewController {
         ThemeView.level3.apply(tableView)
         interactor?.viewDidLoad()
         tableView.registerDequeueable(TeamSettingsTableViewCell.self)
+        tableView.registerDequeueable(TeamNameTableViewCell.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -89,10 +90,32 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
-        let subtitle = settingsModel.subtitleForItem(at: indexPath)
-        cell.configure(subTitle: subtitle, isHidden: subtitle == "")
-        return cell
+        guard let item = MyXTeamSettingsModel.Setting.teamSettings.at(index: indexPath.item) else {
+            return UITableViewCell()
+        }
+        switch item {
+        case .teamName:
+            let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
+//            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+            cell.configure(title: "Design Team", themeCell: .level3, teamColor: .blue)
+            return cell
+        case .teamMembers:
+            let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
+//            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+//            let subtitle = settingsModel.subtitleForItem(at: indexPath)
+            cell.configure(title: "Team Members", themeCell: .level3)
+            let subtitle = ""
+            cell.configure(subTitle: subtitle, isHidden: subtitle == "")
+            cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+            return cell
+        default:
+            let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
+//            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+//            let subtitle = settingsModel.subtitleForItem(at: indexPath)
+            cell.configure(title: "Leave team", themeCell: .level3)
+            let subtitle = "You will no longer have access"
+            cell.configure(subTitle: subtitle, isHidden: subtitle == "")
+            return cell
+        }
     }
 }

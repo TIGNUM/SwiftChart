@@ -1111,6 +1111,8 @@
 		F902CF5722DE10B800FFC836 /* DailyCheckinSHPICell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5622DE10B800FFC836 /* DailyCheckinSHPICell.xib */; };
 		F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */; };
 		F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */; };
+		F906A02224AC8263007B6E1E /* TeamNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */; };
+		F906A02424AC8279007B6E1E /* TeamNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */; };
 		F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */; };
 		F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */; };
 		F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */; };
@@ -2410,6 +2412,8 @@
 		F902CF5622DE10B800FFC836 /* DailyCheckinSHPICell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinSHPICell.xib; sourceTree = "<group>"; };
 		F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsTBVCell.xib; sourceTree = "<group>"; };
 		F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsPeakPerformanceCell.xib; sourceTree = "<group>"; };
+		F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNameTableViewCell.swift; sourceTree = "<group>"; };
+		F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamNameTableViewCell.xib; sourceTree = "<group>"; };
 		F906A4DD2316B0F500351CAC /* SolveReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
 		F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeTableViewCell.xib; sourceTree = "<group>"; };
 		F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeTableViewCell.swift; sourceTree = "<group>"; };
@@ -3521,6 +3525,8 @@
 				382C6C5523589FE000FAF497 /* MyQotSupportNovartisViewController.swift */,
 				F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */,
 				F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */,
+				F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */,
+				F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -5812,6 +5818,7 @@
 				AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */,
 				F916AAF524192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
+				F906A02424AC8279007B6E1E /* TeamNameTableViewCell.xib in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */,
@@ -6711,6 +6718,7 @@
 				DBA3921923247B2D0017E7F6 /* QuestionnaireViewController.swift in Sources */,
 				F9A5C94222B7CD8100AB2E94 /* PaymentReminderConfigurator.swift in Sources */,
 				7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */,
+				F906A02224AC8263007B6E1E /* TeamNameTableViewCell.swift in Sources */,
 				B49AD8A1233D0624000C5DCF /* CustomAlertSheetContentViewController.swift in Sources */,
 				8DF717E4232A48C700BB0E18 /* SyncedCalendarsRouter.swift in Sources */,
 				9CC426242306B01100F8072E /* GuidedTrackItemType.swift in Sources */,

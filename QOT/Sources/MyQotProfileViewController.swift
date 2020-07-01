@@ -50,6 +50,8 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
             MyQotAboutUsConfigurator.configure(viewController: aboutTignum)
         } else if let adminSettings = segue.destination as? MyQotAdminSettingsListViewController {
             MyQotAdminSettingsListConfigurator.configure(viewController: adminSettings)
+        } else if let teamSettings = segue.destination as? MyXTeamSettingsViewController {
+            MyXTeamSettingsConfigurator.configure(viewController: teamSettings)
         }
     }
 }

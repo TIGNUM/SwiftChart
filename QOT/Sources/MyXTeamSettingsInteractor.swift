@@ -17,7 +17,7 @@ final class MyXTeamSettingsInteractor {
     // MARK: - Init
     init(worker: MyXTeamSettingsWorker, presenter: MyXTeamSettingsPresenterInterface) {
         self.worker = worker
-        self.presenter = presenter        
+        self.presenter = presenter
     }
 
     // MARK: - Interactor
