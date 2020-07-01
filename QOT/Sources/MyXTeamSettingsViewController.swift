@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol MyXTeamSettingsViewControllerDelegate: class {
     func presentEditTeam()
@@ -71,6 +72,13 @@ private extension MyXTeamSettingsViewController {
 
 // MARK: - Actions
 private extension MyXTeamSettingsViewController {
+     @objc func confirmDeleteTapped(_ sender: Any) {
+//        to do
+    }
+
+    @objc func cancelDeleteTapped(_ sender: Any) {
+    }
+//     to do
 
 }
 
@@ -116,6 +124,38 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
             let subtitle = settingsModel.subtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let item = MyXTeamSettingsModel.Setting.teamSettings.at(index: indexPath.item) {
+            let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel),
+                                        target: self,
+                                        action: #selector(cancelDeleteTapped(_:)),
+                                        handler: nil)
+            let deleteTeam = QOTAlertAction(title: AppTextService.get(.settings_team_settings_delete_team),
+                                            target: self,
+                                            action: #selector(confirmDeleteTapped(_:)),
+                                            handler: nil)
+            let leaveTeam = QOTAlertAction(title: AppTextService.get(.settings_team_settings_leave_team),
+                                           target: self,
+                                           action: #selector(confirmDeleteTapped(_:)),
+                                           handler: nil)
+            let deleteTitle = AppTextService.get(.settings_team_settings_delete_team).uppercased()
+            let leaveTitle = AppTextService.get(.settings_team_settings_leave_team).uppercased()
+            let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete)
+            let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave)
+            switch item {
+            case .deleteTeam:
+                QOTAlert.show(title: deleteTitle, message: deleteMessage, bottomItems: [cancel, deleteTeam])
+            case .leaveTeam:
+                QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
+            case .teamMembers:
+//                to do
+                print("go to team members")
+            default:
+                break
+            }
         }
     }
 }

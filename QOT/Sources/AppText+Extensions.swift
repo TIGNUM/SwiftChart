@@ -765,6 +765,8 @@ public extension AppTextKey {
     static let settings_team_settings_delete_team  = AppTextKey("settings.team_settings.delete_team")
     static let settings_team_settings_delete_team_subtitle  = AppTextKey("settings.team_settings.delete_team_subtitle")
     static let settings_team_settings_subtitle = AppTextKey("settings.team_settings.subtitle")
+    static let settings_team_settings_confirmation_delete = AppTextKey("settings.team_settings.confirmation_delete")
+    static let settings_team_settings_confirmation_leave = AppTextKey("settings.team_settings.confirmation_leave")
 
     static let my_qot_my_plans_mindset_shifts_null_state_cta = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.cta")
     static let my_qot_my_plans_event_preps_null_state_cta = AppTextKey("my_qot.my_plans.event_preps.null_state.cta")
