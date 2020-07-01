@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MyXTeamSettingsViewControllerDelegate: class {
+    func presentEditTeam()
+}
+
 final class MyXTeamSettingsViewController: UIViewController {
 
     // MARK: - Properties
@@ -96,26 +100,29 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
-//            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
-            cell.configure(title: "Design Team", themeCell: .level3, teamColor: .blue)
+            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+            cell.delegate = self
             return cell
         case .teamMembers:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-//            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
-//            let subtitle = settingsModel.subtitleForItem(at: indexPath)
-            cell.configure(title: "Team Members", themeCell: .level3)
-            let subtitle = ""
+            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+            let subtitle = settingsModel.subtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
             return cell
         default:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-//            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
-//            let subtitle = settingsModel.subtitleForItem(at: indexPath)
-            cell.configure(title: "Leave team", themeCell: .level3)
-            let subtitle = "You will no longer have access"
+            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+            let subtitle = settingsModel.subtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             return cell
         }
+    }
+}
+// MARK: - MyXTeamSettingsViewControllerDelegate
+extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerDelegate {
+
+    func presentEditTeam() {
+        router?.presentEditTeam(.edit, team: nil)
     }
 }

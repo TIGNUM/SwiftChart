@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol MyXTeamSettingsViewControllerInterface: class {
     func setup(_ settings: MyXTeamSettingsModel)
@@ -17,10 +18,11 @@ protocol MyXTeamSettingsPresenterInterface {
 }
 
 protocol MyXTeamSettingsInteractorInterface: Interactor {
-    func handleTap(setting:MyXTeamSettingsModel.Setting)
+    func handleTap(setting: MyXTeamSettingsModel.Setting)
     var teamSettingsText: String { get }
 }
 
 protocol MyXTeamSettingsRouterInterface {
     func dismiss()
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
 }

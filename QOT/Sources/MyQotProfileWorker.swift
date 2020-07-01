@@ -48,7 +48,7 @@ final class MyQotProfileWorker {
         let adminSettings = MyQotProfileModel.TableViewPresentationData(heading: "ADMIN SETTINGS", subHeading: "Settings for debug and testing")
         items = [accountSettings, appSettings, support, aboutTignum]
         if hasTeam {
-            items.append(teamSettings)
+            items.insert(teamSettings, at: 2)
         }
         if developmentMode {
             items.append(adminSettings)
@@ -86,13 +86,11 @@ private extension MyQotProfileWorker {
     }
 
     func setupTeamSettingsText() {
-//        teamSettingsText = AppTextService.get(.settings_team_settings_title)
-        teamSettingsText = " TEAM SETTINGS"
+        teamSettingsText = AppTextService.get(.settings_team_settings_title)
     }
 
     func setupManageTeamSettingsText() {
-//        manageTeamSettingsText = AppTextService.get(.settings_team_settings_subtitle)
-        manageTeamSettingsText = "Manage your team details"
+        manageTeamSettingsText = AppTextService.get(.settings_team_settings_subtitle)
     }
 
     func setupMemberSinceText() {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyXTeamSettingsRouter {
 
@@ -23,5 +24,15 @@ final class MyXTeamSettingsRouter {
 extension MyXTeamSettingsRouter: MyXTeamSettingsRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?) {
+        let identifier = R.storyboard.team.teamEditViewControllerID.identifier
+        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
+        if let controller = controller {
+            let configurator = TeamEditConfigurator.make(type: type, team: team)
+            configurator(controller)
+            viewController?.present(controller, animated: true)
+        }
     }
 }

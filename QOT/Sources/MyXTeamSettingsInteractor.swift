@@ -15,7 +15,8 @@ final class MyXTeamSettingsInteractor {
     private let presenter: MyXTeamSettingsPresenterInterface
 
     // MARK: - Init
-    init(worker: MyXTeamSettingsWorker, presenter: MyXTeamSettingsPresenterInterface) {
+    init(worker: MyXTeamSettingsWorker,
+         presenter: MyXTeamSettingsPresenterInterface) {
         self.worker = worker
         self.presenter = presenter
     }

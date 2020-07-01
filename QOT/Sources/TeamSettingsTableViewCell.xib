@@ -26,12 +26,25 @@
                     <color key="textColor" red="0.93333333330000001" green="0.36862745099999999" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tj7-09-y4J">
+                    <rect key="frame" x="24" y="132" width="390" height="1"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="EDB-w6-Ib0"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="mQe-DE-Rlc"/>
+                        <constraint firstAttribute="height" constant="1" id="uYs-2o-QGJ"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="UWh-ec-wS1"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Tj7-09-y4J" secondAttribute="bottom" id="3JB-G6-kIf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZbA-0B-nGQ" secondAttribute="trailing" constant="24" id="9NW-yC-24E"/>
+                <constraint firstAttribute="trailing" secondItem="Tj7-09-y4J" secondAttribute="trailing" id="KCE-X0-SrL"/>
                 <constraint firstItem="ZbA-0B-nGQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="VNS-sD-YmP"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="y3x-v0-jvM" secondAttribute="trailing" constant="24" id="Vf8-jQ-Nym"/>
+                <constraint firstItem="Tj7-09-y4J" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="cxY-8v-bAc"/>
                 <constraint firstItem="y3x-v0-jvM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="ekz-gy-h10"/>
                 <constraint firstItem="y3x-v0-jvM" firstAttribute="top" secondItem="ZbA-0B-nGQ" secondAttribute="bottom" constant="8" id="vH4-ps-HZI"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="y3x-v0-jvM" secondAttribute="bottom" constant="24" id="w0s-ag-xGB"/>
