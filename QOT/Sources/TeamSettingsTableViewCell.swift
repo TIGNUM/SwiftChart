@@ -26,7 +26,7 @@ class TeamSettingsTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(subTitle: String, isHidden: Bool = false) {
-        ThemeText.linkMenuComment.apply(subTitle, to: subTitleLabel)
+        ThemeText.linkMenuCommentRed.apply(subTitle, to: subTitleLabel)
         subTitleLabel.isHidden = isHidden
     }
 
