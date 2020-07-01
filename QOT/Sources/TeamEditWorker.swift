@@ -12,8 +12,8 @@ import qot_dal
 final class TeamEditWorker {
 
     func teamCreate(_ name: String?, _ completion: @escaping (QDMTeam?, Bool?, Error?) -> Void) {
-        if let name = name {
-            TeamService.main.createTeam(name: name, teamColor: UIColor.random.toHexString, completion)
+        if let name = name {            
+            TeamService.main.createTeam(name: name, teamColor: UIColor.randomTeamColor.toHexString, completion)
         } else {
             completion(nil, false, nil)
         }

@@ -12,16 +12,13 @@ import qot_dal
 final class MyQotMainWorker {
 
     // MARK: - Properties
-
     private let userService = UserService.main
 
     // MARK: - Init
-
     init() {
     }
 
-// MARK: - functions
-
+    // MARK: - functions
     func myQotSections() -> MyQotViewModel {
         let myQotItems =  MyQotSection.allCases.map {
             return MyQotViewModel.Item(myQotSections: $0,
@@ -111,5 +108,28 @@ final class MyQotMainWorker {
             }
             completion(subtitles)
         })
+    }
+}
+
+// MARK: - Team
+extension MyQotMainWorker {
+    func getTeams(_ completion: @escaping ([QDMTeam]) -> Void) {
+        TeamService.main.getTeams { (teams, _, _) in
+            completion(teams ?? [])
+        }
+    }
+
+    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
+        getTeams { (teams) in
+            let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
+                return TeamHeader(teamId: team.qotId ?? "",
+                                  title: team.name ?? "",
+                                  hexColorString: team.teamColor ?? "",
+                                  sortOrder: 0,
+                                  batchCount: 0,
+                                  selected: false)
+            }
+            completion(teamHeaderItems)
+        }
     }
 }

@@ -32,12 +32,16 @@ extension UIColor {
     }
 }
 
+// MARK: - Hex
 extension UIColor {
     convenience init(hex: String) {
         let r, g, b, a: CGFloat
         if hex.hasPrefix("#") {
             let start = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
+            var hexColor = String(hex[start...])
+            if hexColor.count == 6 {
+                hexColor = hexColor + "ff"
+            }
             if hexColor.count == 8 {
                 let scanner = Scanner(string: hexColor)
                 var hexNumber: UInt64 = 0
@@ -53,6 +57,39 @@ extension UIColor {
         }
         self.init(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1)
         return
+    }
+}
+
+// MARK: - Team
+extension UIColor {
+    public class var teamBlue: UIColor {
+        return UIColor(hex: "#5790DD")
+    }
+
+    public class var teamYellow: UIColor {
+        return UIColor(hex: "#C7AF1F")
+    }
+
+    public class var teamGreen: UIColor {
+        return UIColor(hex: "#46AF89")
+    }
+
+    public class var teamPurple: UIColor {
+        return UIColor(hex: "#9848A5")
+    }
+
+    public class var teamPink: UIColor {
+        return UIColor(hex: "#E49A9E")
+    }
+
+    public class var randomTeamColor: UIColor {
+        let possibleColors: [UIColor] = [.teamBlue,
+                                         .teamPink,
+                                         .teamGreen,
+                                         .teamPurple,
+                                         .teamYellow]
+        let index = Int.random(in: 0..<possibleColors.count) //?? possibleColors.randomIndex should work ??
+        return possibleColors[index]
     }
 }
 

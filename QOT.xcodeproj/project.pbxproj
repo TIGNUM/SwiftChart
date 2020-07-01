@@ -330,6 +330,9 @@
 		38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */; };
 		38C6516F24360188002CE496 /* WorkerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6516E24360188002CE496 /* WorkerContent.swift */; };
 		38C7CCE124A11CD600334EEB /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */; };
+		38D218E424A634C500B6FA26 /* HorizontalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */; };
+		38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */; };
+		38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E724A64C3000B6FA26 /* TeamHeader.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */; };
 		38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */; };
@@ -1640,6 +1643,9 @@
 		38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionHeaderView.xib; sourceTree = "<group>"; };
 		38C6516E24360188002CE496 /* WorkerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerContent.swift; sourceTree = "<group>"; };
 		38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
+		38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderView.swift; sourceTree = "<group>"; };
+		38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeaderCell.swift; sourceTree = "<group>"; };
+		38D218E724A64C3000B6FA26 /* TeamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeader.swift; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsAddToCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsAddToCalendarTableViewCell.xib; sourceTree = "<group>"; };
@@ -3314,6 +3320,16 @@
 				38C23E5924235E000034571B /* DTPrepareStartViewController.xib */,
 			);
 			name = Start;
+			sourceTree = "<group>";
+		};
+		38D218E224A6344600B6FA26 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */,
+				38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */,
+				38D218E724A64C3000B6FA26 /* TeamHeader.swift */,
+			);
+			name = Header;
 			sourceTree = "<group>";
 		};
 		38E5A0812412B011008FCF8F /* CalendarEventSelection */ = {
@@ -5357,6 +5373,7 @@
 		F9838F3922AFFE93003F9394 /* MyQotMain */ = {
 			isa = PBXGroup;
 			children = (
+				38D218E224A6344600B6FA26 /* Header */,
 				F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */,
 				F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */,
 				F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */,
@@ -6212,6 +6229,7 @@
 				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
+				38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */,
 				36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */,
 				F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */,
 				9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */,
@@ -6375,6 +6393,7 @@
 				AC103E412285B27200F426F0 /* ShifterResultWorker.swift in Sources */,
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
 				389BBC8B235EE68B0009FA02 /* CoachMarksModel.swift in Sources */,
+				38D218E424A634C500B6FA26 /* HorizontalHeaderView.swift in Sources */,
 				36C8F174230896C300CD718F /* QDMUserCalendarSetting+Ext.swift in Sources */,
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
 				DBFD7EE9230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift in Sources */,
@@ -6821,6 +6840,7 @@
 				8DC59B6322FD75D700587EA4 /* BaseSigningWorker.swift in Sources */,
 				366D04F522C65EE30081258E /* FatigueTableViewCell.swift in Sources */,
 				5F36073B228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift in Sources */,
+				38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,

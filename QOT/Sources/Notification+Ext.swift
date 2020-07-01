@@ -12,4 +12,5 @@ extension Notification.Name {
 
     static let didFinishDailyCheckin = Notification.Name("didFinishDailyCheckin")
     static let didPickTarget = Notification.Name("didPickTarget")
+    static let didSelectTeam = Notification.Name("didSelectTeam")
 }
