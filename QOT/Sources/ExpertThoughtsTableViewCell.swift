@@ -16,6 +16,7 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var expertNameLabel: ClickableLabel!
 
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     private var mediaURL: URL?
     private var duration: Double?
     private var remoteID: Int?
@@ -54,6 +55,11 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
         }
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width, 0) ?? 0
     }
 
     @IBAction func audioAction(_ sender: Any) {
