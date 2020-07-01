@@ -29,6 +29,10 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
         viewController?.setupView()
     }
 
+    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+        viewController?.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+    }
+
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
         viewController?.updateViewNew(differenceList)
     }
