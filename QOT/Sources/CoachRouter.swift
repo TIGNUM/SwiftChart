@@ -29,67 +29,58 @@ extension CoachRouter: CoachRouterInterface {
                                                                      rightBarButtonItems: [],
                                                                      backgroundColor: .clear),
                                         userInfo: nil)
+        var tempViewControllerToPresent: UIViewController?
         switch coachSection {
         case .search:
             let configurator = SearchConfigurator.make(delegate: delegate)
             let searchViewController = SearchViewController(configure: configurator)
             viewController?.pushToStart(childViewController: searchViewController)
             searchViewController.activate(0.0)
-        case .tools:
-            if UserDefault.toolsExplanation.boolValue {
-                let toolsViewController = R.storyboard.tools.toolsViewControllerID()
-                if let toolsViewController = toolsViewController {
-                    ToolsConfigurator.make(viewController: toolsViewController)
-                    viewController?.present(toolsViewController, animated: true, completion: nil)
-                }
-            } else {
-                showFeatureExplanation(.tools)
-            }
-        case .sprint:
-            if UserDefault.sprintExplanation.boolValue {
-                let configurator = DTSprintConfigurator.make()
-                let controller = DTSprintViewController(configure: configurator)
-                viewController?.present(controller, animated: true)
-            } else {
-                showFeatureExplanation(.sprint)
-            }
-        case .event:
-            if UserDefault.prepareExplanation.boolValue {
-                if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
-                    AppDelegate.current.launchHandler.process(url: launchURL)
-                }
-            } else {
-               showFeatureExplanation(.prepare)
-            }
-        case .challenge:
-            if UserDefault.solveExplanation.boolValue {
-                let configurator = DTSolveConfigurator.make()
-                let controller = DTSolveViewController(configure: configurator)
-                viewController?.present(controller, animated: true)
-            } else {
-                showFeatureExplanation(.solve)
-            }
-        case .mindset:
-            if UserDefault.mindsetExplanation.boolValue {
-                let configurator = DTMindsetConfigurator.make()
-                let controller = DTMindsetViewController(configure: configurator)
-                viewController?.present(controller, animated: true)
-            } else {
-               showFeatureExplanation(.mindsetShifter)
-            }
-        case .recovery:
-            if UserDefault.recoveryExplanation.boolValue {
-                let configurator = DTRecoveryConfigurator.make()
-                let controller = DTRecoveryViewController(configure: configurator)
-                viewController?.present(controller, animated: true)
-            } else {
-                showFeatureExplanation(.recovery)
-            }
+        case .tools where UserDefault.toolsExplanation.boolValue:
+            guard let toolsViewController = R.storyboard.tools.toolsViewControllerID() else { break }
+            ToolsConfigurator.make(viewController: toolsViewController)
+            tempViewControllerToPresent = toolsViewController
+        case .sprint where UserDefault.sprintExplanation.boolValue:
+            let configurator = DTSprintConfigurator.make()
+            let controller = DTSprintViewController(configure: configurator)
+            tempViewControllerToPresent = controller
+        case .event where UserDefault.prepareExplanation.boolValue:
+            guard let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") else { break }
+            AppDelegate.current.launchHandler.process(url: launchURL)
+        case .challenge where UserDefault.solveExplanation.boolValue:
+            let configurator = DTSolveConfigurator.make()
+            let controller = DTSolveViewController(configure: configurator)
+            tempViewControllerToPresent = controller
+        case .mindset where UserDefault.mindsetExplanation.boolValue:
+            let configurator = DTMindsetConfigurator.make()
+            let controller = DTMindsetViewController(configure: configurator)
+            tempViewControllerToPresent = controller
+        case .recovery where UserDefault.recoveryExplanation.boolValue:
+            let configurator = DTRecoveryConfigurator.make()
+            let controller = DTRecoveryViewController(configure: configurator)
+            tempViewControllerToPresent = controller
+        default: break
         }
+
+        if let viewControllerToPresent = tempViewControllerToPresent {
+            viewController?.present(viewControllerToPresent, animated: true)
+        }
+        //showFeatureExplanation(coachSection)
     }
 
-    func showFeatureExplanation(_ type: FeatureExplainer.Kind) {
-        guard let controller = R.storyboard.featureExplainer().instantiateInitialViewController() as?
+    func showFeatureExplanation(_ coachSection: CoachSection) {
+        var tempType: FeatureExplainer.Kind?
+        switch coachSection {
+        case .tools: tempType = UserDefault.toolsExplanation.boolValue ? nil : .tools
+        case .sprint: tempType = UserDefault.sprintExplanation.boolValue ? nil: .sprint
+        case .event: tempType = UserDefault.prepareExplanation.boolValue ? nil : .prepare
+        case .challenge: tempType = UserDefault.solveExplanation.boolValue ? nil : .solve
+        case .mindset: tempType = UserDefault.mindsetExplanation.boolValue ? nil : .mindsetShifter
+        case .recovery: tempType = UserDefault.recoveryExplanation.boolValue ? nil : .recovery
+        default: return
+        }
+        guard let type = tempType,
+            let controller = R.storyboard.featureExplainer().instantiateInitialViewController() as?
             FeatureExplainerViewController else { return }
         FeatureExplainerConfigurator.make(viewController: controller, type: type)
         viewController?.present(controller, animated: true, completion: nil)
