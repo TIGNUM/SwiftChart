@@ -37,8 +37,8 @@ final class ColorPicker: UIView {
     private var isOpen = false
     private var selectedColor = UIColor.teamPink
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func awakeFromNib() {
+        super.awakeFromNib()
         colorBlue.circle()
         colorPurple.circle()
         colorGreen.circle()
@@ -60,7 +60,7 @@ final class ColorPicker: UIView {
 }
 
 // MARK: - Action
-private extension ViewController {
+private extension ColorPicker {
     @IBAction func didSelectColorPink() {
         selectedColor = .teamPink
         hideSelectors()
@@ -97,7 +97,7 @@ private extension ViewController {
     }
 }
 
-private extension ViewController {
+private extension ColorPicker {
     func showColors() {
         if isOpen {
             UIView.animate(withDuration: 0.3) {
@@ -107,7 +107,7 @@ private extension ViewController {
                 self.trailingConstraintYellow.constant = 0
                 self.trailingConstraintBlue.constant = 0
                 self.label.alpha = 1
-                self.view.layoutIfNeeded()
+                self.layoutIfNeeded()
             }
         } else {
             UIView.animate(withDuration: 0.3) {
@@ -116,7 +116,7 @@ private extension ViewController {
                 self.trailingConstraintGreen.constant = 76 * 2
                 self.trailingConstraintYellow.constant = 76 * 3
                 self.trailingConstraintBlue.constant = 76 * 4
-                self.view.layoutIfNeeded()
+                self.layoutIfNeeded()
             }
         }
         isOpen = !isOpen
@@ -148,4 +148,3 @@ private extension ViewController {
         colorSelectorBlue.isHidden = true
     }
 }
-
