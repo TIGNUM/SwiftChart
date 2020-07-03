@@ -28,7 +28,7 @@ final class ColorPicker: UIView {
     @IBOutlet private weak var colorSelectorPurple: UIView!
     @IBOutlet private weak var colorSelectorPink: UIView!
 
-    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var labelContainer: UIView!
     @IBOutlet private weak var trailingConstraintPurple: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintGreen: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintYellow: NSLayoutConstraint!
@@ -106,12 +106,12 @@ private extension ColorPicker {
                 self.trailingConstraintGreen.constant = 0
                 self.trailingConstraintYellow.constant = 0
                 self.trailingConstraintBlue.constant = 0
-                self.label.alpha = 1
+                self.labelContainer.alpha = 1
                 self.layoutIfNeeded()
             }
         } else {
             UIView.animate(withDuration: 0.3) {
-                self.label.alpha = 0
+                self.labelContainer.alpha = 0
                 self.trailingConstraintPurple.constant = 76
                 self.trailingConstraintGreen.constant = 76 * 2
                 self.trailingConstraintYellow.constant = 76 * 3
@@ -146,5 +146,11 @@ private extension ColorPicker {
         colorSelectorGreen.isHidden = true
         colorSelectorYellow.isHidden = true
         colorSelectorBlue.isHidden = true
+    }
+
+    func postTeamColor(_ color: UIColor) {
+        NotificationCenter.default.post(name: .didSelectTeamColor,
+                                        object: color.toHexString,
+                                        userInfo: [TeamHeader.Selector.teamColor.rawValue: color.toHexString])
     }
 }

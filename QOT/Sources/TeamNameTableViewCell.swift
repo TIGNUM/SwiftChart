@@ -12,13 +12,6 @@ class TeamNameTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var blueButton: UIButton!
-    @IBOutlet weak var yellowButton: UIButton!
-    @IBOutlet weak var greenButton: UIButton!
-    @IBOutlet weak var purpleButton: UIButton!
-    @IBOutlet weak var pinkButton: UIButton!
-    @IBOutlet weak var colourView: UIStackView!
-    @IBOutlet weak var selectorLine: UIView!
     weak var delegate: MyXTeamSettingsViewController?
 
     override func awakeFromNib() {
@@ -26,8 +19,6 @@ class TeamNameTableViewCell: UITableViewCell, Dequeueable {
         self.backgroundView = UIView(frame: self.bounds)
         self.selectedBackgroundView = UIView(frame: self.bounds)
         ThemeView.level2Selected.apply(selectedBackgroundView!)
-        colourView.isHidden = true
-        selectorLine.isHidden = true
     }
 
     @IBAction func editTapped(_ sender: Any) {
