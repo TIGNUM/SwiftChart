@@ -85,6 +85,7 @@ private extension TeamEditViewController {
 // MARK: - TeamEditViewControllerInterface
 extension TeamEditViewController: TeamEditViewControllerInterface {
     func setupView() {
+        teamTextField.text = interactor.teamName
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView

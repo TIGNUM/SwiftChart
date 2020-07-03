@@ -169,6 +169,6 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerDelegate {
 
     func presentEditTeam() {
-        router?.presentEditTeam(.edit, team: nil)
+        router?.presentEditTeam(.edit, team: interactor.selectedTeam)
     }
 }

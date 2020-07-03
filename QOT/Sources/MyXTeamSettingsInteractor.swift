@@ -15,7 +15,7 @@ final class MyXTeamSettingsInteractor {
     private let worker: MyXTeamSettingsWorker
     private let presenter: MyXTeamSettingsPresenterInterface
     private var teamHeaderItems = [TeamHeader]()
-//    private var currentTeam: QDMTeam?
+    private var currentTeam: QDMTeam?
 
     // MARK: - Init
     init(worker: MyXTeamSettingsWorker,
@@ -30,6 +30,9 @@ final class MyXTeamSettingsInteractor {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             teamHeaderItems.first?.selected = true
             self?.teamHeaderItems = teamHeaderItems
+            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "", { [weak self] (selectedTeam) in
+                self?.currentTeam = selectedTeam
+            })
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
             self?.presenter.updateView()
         }
@@ -55,10 +58,10 @@ private extension MyXTeamSettingsInteractor {
 
 // MARK: - MyXTeamSettingsInteractorInterface
 extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
-//
-//    var selectedTeam: QDMTeam? {
-//        return self.currentTeam
-//    }
+
+    var selectedTeam: QDMTeam? {
+        return self.currentTeam
+    }
 
     func handleTap(setting: MyXTeamSettingsModel.Setting) {
 //          switch setting {
@@ -77,10 +80,13 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
 
     func updateSelectedTeam(teamId: String) {
         teamHeaderItems.forEach { (item) in
-            item.selected = (teamId == item.teamId)
+           item.selected = (teamId == item.teamId)
         }
         presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
         presenter.updateView()
+        worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
+            self?.currentTeam = selectedTeam
+        })
     }
 
     func getTeamName() -> String {

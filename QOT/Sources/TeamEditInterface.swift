@@ -30,6 +30,7 @@ protocol TeamEditPresenterInterface {
 protocol TeamEditInteractorInterface: Interactor {
     var getType: TeamEdit.View { get }
     var rowCount: Int { get }
+    var teamName: String? { get }
     func item(at index: IndexPath) -> String?
     func createTeam(_ name: String?)
     func sendInvite(_ email: String?)

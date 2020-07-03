@@ -44,6 +44,10 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
         return members.count
     }
 
+    var teamName: String? {
+        return team?.name
+    }
+
     func item(at index: IndexPath) -> String? {
         return members.at(index: index.row)?.email
     }

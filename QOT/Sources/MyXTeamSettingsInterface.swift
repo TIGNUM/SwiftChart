@@ -24,7 +24,7 @@ protocol MyXTeamSettingsPresenterInterface {
 protocol MyXTeamSettingsInteractorInterface: Interactor {
     func handleTap(setting: MyXTeamSettingsModel.Setting)
     var teamSettingsText: String { get }
-//    var selectedTeam: QDMTeam? { get }
+    var selectedTeam: QDMTeam? { get }
     func updateSelectedTeam(teamId: String)
     func getTeamName() -> String
 }

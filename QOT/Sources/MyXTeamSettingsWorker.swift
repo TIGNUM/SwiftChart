@@ -37,6 +37,13 @@ extension MyXTeamSettingsWorker {
           }
       }
 
+    func setSelectedTeam(teamId: String,_ completion: @escaping (QDMTeam?) -> Void) {
+        TeamService.main.getTeams { (teams, _, _) in
+            let selectedTeam = teams?.filter { teamId == $0.qotId }.first
+            completion(selectedTeam)
+        }
+    }
+
     func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
         getTeams { (teams) in
             let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in

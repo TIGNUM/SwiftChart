@@ -43,7 +43,7 @@ struct MyXTeamSettingsModel {
     private func title(for item: Setting) -> String? {
            switch item {
            case .teamName:
-               return "abcdefghijklmnopqrst"
+               return ""
            case .teamMembers:
             return AppTextService.get(.settings_team_settings_team_members)
            case .leaveTeam:
