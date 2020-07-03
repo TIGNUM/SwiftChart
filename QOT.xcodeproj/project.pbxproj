@@ -348,6 +348,8 @@
 		38E84B7D241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E84B7B241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib */; };
 		38E84B80241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E84B7E241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift */; };
 		38E84B81241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */; };
+		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
+		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
 		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
@@ -1649,6 +1651,8 @@
 		38E84B7B241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareBenefitsTableViewCell.xib; sourceTree = "<group>"; };
 		38E84B7E241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
+		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		3D5D38914F9360DAF8EBC4DD /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		5D2F517F0A68C796F3C9C214 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
@@ -2816,6 +2820,8 @@
 				B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */,
 				F9E330352424A75800967C28 /* MyPlansHeaderView.xib */,
 				F9E330332424A73D00967C28 /* MyPlansHeaderView.swift */,
+				38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */,
+				38EF3D4224ADC4740097F28E /* ColorPicker.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -5749,6 +5755,7 @@
 				367A585F2326A4350089A082 /* DTViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
+				38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
 				8DF7870F22FEB53D00CDE0A9 /* RegistrationCode.storyboard in Resources */,
@@ -6973,6 +6980,7 @@
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,
 				36B5BD2C23142B4A00439A64 /* AskPermissionPresenter.swift in Sources */,
+				38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */,
 				38C23E5524235DCA0034571B /* DTPrepareStartViewController.swift in Sources */,
 				5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
