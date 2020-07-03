@@ -105,6 +105,7 @@ extension UIViewController {
         case is CalendarEventSelectionViewController: return "calendar.event.selection"
         case is MyQotAdminSettingsListViewController: return "myqot.adminsettings"
         case is MyQotAdminEnvironmentSettingsViewController: return "myqot.adminsettings.environment"
+        case is MyXTeamSettingsViewController: return "myX.settings.teamsettings"
         default: preconditionFailure()
         }
     }

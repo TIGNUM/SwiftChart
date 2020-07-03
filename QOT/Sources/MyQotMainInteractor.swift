@@ -155,9 +155,6 @@ final class MyQotMainInteractor {
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func updateSelectedTeam(teamId: String) {
-        for item in teamHeaderItems {
-            item.selected = (teamId == item.teamId)
-        }
         teamHeaderItems.forEach { (item) in
             item.selected = (teamId == item.teamId)
         }
