@@ -22,11 +22,32 @@ final class MyXTeamSettingsWorker {
     func settings() -> MyXTeamSettingsModel {
         return MyXTeamSettingsModel(contentService: contentService)
     }
+
 }
 
 extension MyXTeamSettingsWorker {
 
     var teamSettingsText: String {
-        return AppTextService.get(.settings_team_settings_title)
+        return AppTextService.get(.settings_team_settings_title).uppercased()
+    }
+
+    func getTeams(_ completion: @escaping ([QDMTeam]) -> Void) {
+          TeamService.main.getTeams { (teams, _, _) in
+              completion(teams ?? [])
+          }
+      }
+
+    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
+        getTeams { (teams) in
+            let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
+                return TeamHeader(teamId: team.qotId ?? "",
+                                  title: team.name ?? "",
+                                  hexColorString: team.teamColor ?? "",
+                                  sortOrder: 0,
+                                  batchCount: 0,
+                                  selected: false)
+            }
+            completion(teamHeaderItems)
+        }
     }
 }

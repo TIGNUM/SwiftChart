@@ -98,7 +98,7 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
         if indexPath.row < interactor.getMenuItems().count {
             let data = interactor.getMenuItems()[indexPath.row]
-            cell.configure(title: data.heading, subtitle: data.subHeading)
+            cell.configure(title: data.heading.uppercased(), subtitle: data.subHeading)
         } else {
             cell.configure(title: nil, subtitle: nil)
         }

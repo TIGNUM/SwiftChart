@@ -23,6 +23,9 @@ final class MyXTeamSettingsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var settingsModel: MyXTeamSettingsModel!
     @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
+    private var teamHeaderItems = [TeamHeader]()
+    @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
+    @IBOutlet weak var horizontalHeaderHeight: NSLayoutConstraint!
 
     // MARK: - Init
     init(configure: Configurator<MyXTeamSettingsViewController>) {
@@ -65,11 +68,6 @@ final class MyXTeamSettingsViewController: UIViewController {
        }
 }
 
-// MARK: - Private
-private extension MyXTeamSettingsViewController {
-
-}
-
 // MARK: - Actions
 private extension MyXTeamSettingsViewController {
      @objc func confirmDeleteTapped(_ sender: Any) {
@@ -79,7 +77,6 @@ private extension MyXTeamSettingsViewController {
     @objc func cancelDeleteTapped(_ sender: Any) {
     }
 //     to do
-
 }
 
 // MARK: - MyXTeamSettingsViewControllerInterface
@@ -90,6 +87,11 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
         settingsModel = settings
         baseHeaderView?.configure(title: interactor?.teamSettingsText, subtitle: nil)
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+    }
+
+    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+        self.teamHeaderItems = teamHeaderItems
+        teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems)
     }
 }
 
@@ -108,7 +110,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+            cell.configure(title: "jdkjdaskdka", themeCell: .level3)
             cell.delegate = self
             return cell
         case .teamMembers:

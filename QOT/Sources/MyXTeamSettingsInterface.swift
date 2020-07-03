@@ -11,15 +11,19 @@ import qot_dal
 
 protocol MyXTeamSettingsViewControllerInterface: class {
     func setup(_ settings: MyXTeamSettingsModel)
+    func updateTeamHeader(teamHeaderItems: [TeamHeader])
 }
 
 protocol MyXTeamSettingsPresenterInterface {
     func present(_ settings: MyXTeamSettingsModel)
+    func updateTeamHeader(teamHeaderItems: [TeamHeader])
 }
 
 protocol MyXTeamSettingsInteractorInterface: Interactor {
     func handleTap(setting: MyXTeamSettingsModel.Setting)
     var teamSettingsText: String { get }
+//    var selectedTeam: QDMTeam? { get }
+    func updateSelectedTeam(teamId: String)
 }
 
 protocol MyXTeamSettingsRouterInterface {

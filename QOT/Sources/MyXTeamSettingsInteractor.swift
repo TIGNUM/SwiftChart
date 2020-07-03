@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyXTeamSettingsInteractor {
 
     // MARK: - Properties
     private let worker: MyXTeamSettingsWorker
     private let presenter: MyXTeamSettingsPresenterInterface
+    private var teamHeaderItems = [TeamHeader]()
+//    private var currentTeam: QDMTeam?
 
     // MARK: - Init
     init(worker: MyXTeamSettingsWorker,
@@ -24,6 +27,11 @@ final class MyXTeamSettingsInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.present(worker.settings())
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            teamHeaderItems.first?.selected = true
+            self?.teamHeaderItems = teamHeaderItems
+            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+        }
     }
 
     var teamSettingsText: String {
@@ -33,6 +41,10 @@ final class MyXTeamSettingsInteractor {
 
 // MARK: - MyXTeamSettingsInteractorInterface
 extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
+//
+//    var selectedTeam: QDMTeam? {
+//        return self.currentTeam
+//    }
 
     func handleTap(setting: MyXTeamSettingsModel.Setting) {
 //          switch setting {
@@ -48,4 +60,11 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
 //              router.openSiriSettings()
 //          }
       }
+
+    func updateSelectedTeam(teamId: String) {
+        teamHeaderItems.forEach { (item) in
+            item.selected = (teamId == item.teamId)
+        }
+        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+    }
 }
