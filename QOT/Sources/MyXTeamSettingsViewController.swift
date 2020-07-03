@@ -16,7 +16,7 @@ protocol MyXTeamSettingsViewControllerDelegate: class {
 final class MyXTeamSettingsViewController: UIViewController {
 
     // MARK: - Properties
-    var interactor: MyXTeamSettingsInteractorInterface?
+    var interactor: MyXTeamSettingsInteractorInterface!
     var router: MyXTeamSettingsRouterInterface?
     @IBOutlet private weak var headerView: UIView!
     private var baseHeaderView: QOTBaseHeaderView?
@@ -42,7 +42,7 @@ final class MyXTeamSettingsViewController: UIViewController {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
-        interactor?.viewDidLoad()
+        interactor!.viewDidLoad()
         tableView.registerDequeueable(TeamSettingsTableViewCell.self)
         tableView.registerDequeueable(TeamNameTableViewCell.self)
     }
@@ -93,6 +93,10 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
         self.teamHeaderItems = teamHeaderItems
         teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems)
     }
+
+    func updateView() {
+        tableView.reloadData()
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -110,7 +114,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: "jdkjdaskdka", themeCell: .level3)
+            cell.configure(title: interactor!.getTeamName(), themeCell: .level3)
             cell.delegate = self
             return cell
         case .teamMembers:

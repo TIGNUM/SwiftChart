@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -253,21 +253,11 @@
                                     <constraint firstAttribute="height" constant="98" id="AxI-o6-sx7"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HTS-fj-Ieu">
-                                <rect key="frame" x="0.0" y="178" width="375" height="469"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="2gz-w2-K3t" id="MQN-00-OPD"/>
-                                    <outlet property="delegate" destination="2gz-w2-K3t" id="MaA-DO-WRn"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghS-jG-5zB" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="98" width="375" height="80"/>
+                                <rect key="frame" x="24" y="98" width="351" height="80"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fuU-AA-R9P">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="4" minimumInteritemSpacing="4" id="ApO-pf-Geu">
                                             <size key="itemSize" width="110" height="50"/>
@@ -325,6 +315,16 @@
                                     <outlet property="collectionView" destination="fuU-AA-R9P" id="ppC-HE-AvC"/>
                                 </connections>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HTS-fj-Ieu">
+                                <rect key="frame" x="0.0" y="178" width="375" height="469"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2gz-w2-K3t" id="MQN-00-OPD"/>
+                                    <outlet property="delegate" destination="2gz-w2-K3t" id="MaA-DO-WRn"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -332,7 +332,7 @@
                             <constraint firstItem="P4L-d4-E25" firstAttribute="bottom" secondItem="HTS-fj-Ieu" secondAttribute="bottom" id="7pK-q1-gWD"/>
                             <constraint firstItem="ghS-jG-5zB" firstAttribute="top" secondItem="Fbz-7Z-v9W" secondAttribute="bottom" id="8It-bM-ghX"/>
                             <constraint firstItem="P4L-d4-E25" firstAttribute="trailing" secondItem="Fbz-7Z-v9W" secondAttribute="trailing" id="LFV-1W-LvZ"/>
-                            <constraint firstItem="ghS-jG-5zB" firstAttribute="leading" secondItem="cJ0-Zn-i4c" secondAttribute="leading" id="Ovz-IZ-4Be"/>
+                            <constraint firstItem="ghS-jG-5zB" firstAttribute="leading" secondItem="cJ0-Zn-i4c" secondAttribute="leading" constant="24" id="Ovz-IZ-4Be"/>
                             <constraint firstItem="Fbz-7Z-v9W" firstAttribute="top" secondItem="P4L-d4-E25" secondAttribute="top" id="WFr-hV-2wi"/>
                             <constraint firstItem="P4L-d4-E25" firstAttribute="trailing" secondItem="HTS-fj-Ieu" secondAttribute="trailing" id="anU-mE-Hbw"/>
                             <constraint firstItem="HTS-fj-Ieu" firstAttribute="top" secondItem="ghS-jG-5zB" secondAttribute="bottom" id="cYV-nB-7oS"/>

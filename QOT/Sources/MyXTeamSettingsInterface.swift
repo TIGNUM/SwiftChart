@@ -12,11 +12,13 @@ import qot_dal
 protocol MyXTeamSettingsViewControllerInterface: class {
     func setup(_ settings: MyXTeamSettingsModel)
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
+    func updateView()
 }
 
 protocol MyXTeamSettingsPresenterInterface {
     func present(_ settings: MyXTeamSettingsModel)
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
+    func updateView()
 }
 
 protocol MyXTeamSettingsInteractorInterface: Interactor {
@@ -24,6 +26,7 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
     var teamSettingsText: String { get }
 //    var selectedTeam: QDMTeam? { get }
     func updateSelectedTeam(teamId: String)
+    func getTeamName() -> String
 }
 
 protocol MyXTeamSettingsRouterInterface {

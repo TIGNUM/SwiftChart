@@ -28,4 +28,8 @@ extension MyXTeamSettingsPresenter: MyXTeamSettingsPresenterInterface {
     func present(_ settings: MyXTeamSettingsModel) {
         viewController?.setup(settings)
     }
+
+    func updateView() {
+        viewController?.updateView()
+    }
 }

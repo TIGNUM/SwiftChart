@@ -5303,14 +5303,14 @@
 		F9458C5824AA3769004E2383 /* MyXTeamSettings */ = {
 			isa = PBXGroup;
 			children = (
-				F9458C5924AA379C004E2383 /* MyXTeamSettingsPresenter.swift */,
-				F9458C5A24AA379C004E2383 /* MyXTeamSettingsWorker.swift */,
-				F9458C5B24AA379C004E2383 /* MyXTeamSettingsRouter.swift */,
-				F9458C5C24AA379C004E2383 /* MyXTeamSettingsInterface.swift */,
-				F9458C5D24AA379C004E2383 /* MyXTeamSettingsViewController.swift */,
-				F9458C5E24AA379C004E2383 /* MyXTeamSettingsInteractor.swift */,
-				F9458C5F24AA379C004E2383 /* MyXTeamSettingsModel.swift */,
 				F9458C6024AA379C004E2383 /* MyXTeamSettingsConfigurator.swift */,
+				F9458C5E24AA379C004E2383 /* MyXTeamSettingsInteractor.swift */,
+				F9458C5C24AA379C004E2383 /* MyXTeamSettingsInterface.swift */,
+				F9458C5F24AA379C004E2383 /* MyXTeamSettingsModel.swift */,
+				F9458C5924AA379C004E2383 /* MyXTeamSettingsPresenter.swift */,
+				F9458C5B24AA379C004E2383 /* MyXTeamSettingsRouter.swift */,
+				F9458C5D24AA379C004E2383 /* MyXTeamSettingsViewController.swift */,
+				F9458C5A24AA379C004E2383 /* MyXTeamSettingsWorker.swift */,
 			);
 			name = MyXTeamSettings;
 			sourceTree = "<group>";

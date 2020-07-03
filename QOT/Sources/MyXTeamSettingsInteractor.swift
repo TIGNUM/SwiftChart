@@ -31,12 +31,26 @@ final class MyXTeamSettingsInteractor {
             teamHeaderItems.first?.selected = true
             self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+            self?.presenter.updateView()
         }
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
     }
 
     var teamSettingsText: String {
         return worker.teamSettingsText
     }
+}
+
+// MARK: - Private
+private extension MyXTeamSettingsInteractor {
+    @objc func checkSelection(_ notification: Notification) {
+         guard let teamId = notification.object as? String else { return }
+         updateSelectedTeam(teamId: teamId)
+     }
 }
 
 // MARK: - MyXTeamSettingsInteractorInterface
@@ -66,5 +80,10 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
             item.selected = (teamId == item.teamId)
         }
         presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+        presenter.updateView()
+    }
+
+    func getTeamName() -> String {
+        return teamHeaderItems.filter { $0.selected }.first?.title ?? ""
     }
 }
