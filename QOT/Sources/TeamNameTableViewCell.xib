@@ -273,6 +273,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="colorPicker" destination="2pZ-u8-Amb" id="C8L-6k-zlm"/>
                 <outlet property="editButton" destination="wio-60-bZF" id="Uwf-ss-w04"/>
                 <outlet property="nameLabel" destination="bAe-Bh-3sG" id="HPo-wB-BWL"/>
             </connections>

@@ -27,6 +27,8 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
 //    var selectedTeam: QDMTeam? { get }
     func updateSelectedTeam(teamId: String)
     func getTeamName() -> String
+    func getTeamId() -> String
+    func getTeamColor() -> String
 }
 
 protocol MyXTeamSettingsRouterInterface {

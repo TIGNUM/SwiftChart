@@ -48,7 +48,7 @@ private extension TeamHeaderCell {
             setSelected(self.teamId == teamId)
         }
         if let teamColor = userInfo[TeamHeader.Selector.teamColor.rawValue] {
-            setSelected(self.hexColorString == teamId)
+            hexColorString = teamColor
         }
     }
 

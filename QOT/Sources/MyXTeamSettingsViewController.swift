@@ -114,7 +114,10 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: interactor!.getTeamName(), themeCell: .level3)
+            cell.configure(teamId: interactor.getTeamId(),
+                           teamColor: interactor.getTeamColor(),
+                           title: interactor.getTeamName(),
+                           themeCell: .level3)
             cell.delegate = self
             return cell
         case .teamMembers:

@@ -36,6 +36,7 @@ final class ColorPicker: UIView {
 
     private var isOpen = false
     private var selectedColor = UIColor.teamPink
+    private var teamId = ""
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,6 +57,12 @@ final class ColorPicker: UIView {
         colorSelectorGreen.backgroundColor = .teamGreen
         colorSelectorYellow.backgroundColor = .teamYellow
         colorSelectorBlue.backgroundColor = .teamBlue
+    }
+
+    func configure(teamId: String, teamColor: UIColor) {
+        self.teamId = teamId
+        selectedColor = teamColor
+        updateOrder()
     }
 }
 
@@ -100,7 +107,7 @@ private extension ColorPicker {
 private extension ColorPicker {
     func showColors() {
         if isOpen {
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: Animation.duration_03, animations: {
                 self.updateOrder()
                 self.trailingConstraintPurple.constant = 0
                 self.trailingConstraintGreen.constant = 0
@@ -108,9 +115,11 @@ private extension ColorPicker {
                 self.trailingConstraintBlue.constant = 0
                 self.labelContainer.alpha = 1
                 self.layoutIfNeeded()
+            }) { (_) in
+                self.postTeamColor(self.selectedColor)
             }
         } else {
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: Animation.duration_03) {
                 self.labelContainer.alpha = 0
                 self.trailingConstraintPurple.constant = 76
                 self.trailingConstraintGreen.constant = 76 * 2
