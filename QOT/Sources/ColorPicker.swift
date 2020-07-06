@@ -10,6 +10,8 @@ import UIKit
 
 final class ColorPicker: UIView {
 
+    private var skeletonManager = SkeletonManager()
+
     @IBOutlet private weak var colorPink: UIButton!
     @IBOutlet private weak var colorPurple: UIButton!
     @IBOutlet private weak var colorGreen: UIButton!
@@ -28,11 +30,14 @@ final class ColorPicker: UIView {
     @IBOutlet private weak var colorSelectorPurple: UIView!
     @IBOutlet private weak var colorSelectorPink: UIView!
 
-    @IBOutlet private weak var label: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var trailingConstraintPurple: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintGreen: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintYellow: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintBlue: NSLayoutConstraint!
+
+    weak var delegate: MyXTeamSettingsViewController?
 
     private var isOpen = false
     private var selectedColor = UIColor.teamPink
@@ -56,6 +61,18 @@ final class ColorPicker: UIView {
         colorSelectorGreen.backgroundColor = .teamGreen
         colorSelectorYellow.backgroundColor = .teamYellow
         colorSelectorBlue.backgroundColor = .teamBlue
+    }
+
+    func addTo(superview: UIView) {
+         superview.fill(subview: self)
+     }
+
+    @IBAction func editTapped(_ sender: Any) {
+        delegate?.presentEditTeam()
+    }
+
+    func configure(name: String) {
+        ThemeText.linkMenuItem.apply(name, to: nameLabel)
     }
 }
 
@@ -106,12 +123,14 @@ private extension ColorPicker {
                 self.trailingConstraintGreen.constant = 0
                 self.trailingConstraintYellow.constant = 0
                 self.trailingConstraintBlue.constant = 0
-                self.label.alpha = 1
+                self.nameLabel.alpha = 1
+
                 self.layoutIfNeeded()
             }
         } else {
             UIView.animate(withDuration: 0.3) {
-                self.label.alpha = 0
+                self.nameLabel.alpha = 0
+                self.editButton.alpha = 0
                 self.trailingConstraintPurple.constant = 76
                 self.trailingConstraintGreen.constant = 76 * 2
                 self.trailingConstraintYellow.constant = 76 * 3

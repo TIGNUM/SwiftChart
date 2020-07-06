@@ -119,6 +119,8 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         }
         switch item {
         case .teamName:
+//            let identifier = R.reuseIdentifier.colorPicker_ID.identifier
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "identifier") 7? ColorPicker else { return UITableViewCell() }
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: interactor.getTeamName(), themeCell: .level3)
             cell.delegate = self

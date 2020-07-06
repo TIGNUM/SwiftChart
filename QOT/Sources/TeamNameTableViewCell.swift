@@ -10,15 +10,9 @@ import UIKit
 
 class TeamNameTableViewCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var blueButton: UIButton!
-    @IBOutlet weak var yellowButton: UIButton!
-    @IBOutlet weak var greenButton: UIButton!
-    @IBOutlet weak var purpleButton: UIButton!
-    @IBOutlet weak var pinkButton: UIButton!
-    @IBOutlet weak var colourView: UIStackView!
     @IBOutlet weak var selectorLine: UIView!
+    @IBOutlet weak var colorPickerView: UIView!
+    var colorPicker: ColorPicker?
     weak var delegate: MyXTeamSettingsViewController?
 
     override func awakeFromNib() {
@@ -26,8 +20,8 @@ class TeamNameTableViewCell: UITableViewCell, Dequeueable {
         self.backgroundView = UIView(frame: self.bounds)
         self.selectedBackgroundView = UIView(frame: self.bounds)
         ThemeView.level2Selected.apply(selectedBackgroundView!)
-        colourView.isHidden = true
         selectorLine.isHidden = true
+
     }
 
     @IBAction func editTapped(_ sender: Any) {
@@ -36,7 +30,9 @@ class TeamNameTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String, themeCell: ThemeView = .level2) {
         themeCell.apply(backgroundView!)
-        ThemeText.linkMenuItem.apply(title, to: nameLabel)
-        nameLabel.text = title
+        colorPicker = R.nib.colorPicker.firstView(owner: self)
+        colorPicker?.addTo(superview: colorPickerView)
+        colorPicker?.delegate = delegate
+        colorPicker?.configure(name: title)
     }
 }
