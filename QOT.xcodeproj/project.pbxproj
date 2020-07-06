@@ -1189,6 +1189,7 @@
 		F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */; };
 		F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */; };
 		F98D8ECE22D3742F0072FC73 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */; };
+		F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9999DDB24B3315500DB05CA /* Notification+Team.swift */; };
 		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
 		F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */; };
 		F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */; };
@@ -2493,6 +2494,7 @@
 		F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		F9999DDB24B3315500DB05CA /* Notification+Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Team.swift"; sourceTree = "<group>"; };
 		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
 		F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsPresenter.swift; sourceTree = "<group>"; };
 		F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsWorker.swift; sourceTree = "<group>"; };
@@ -5311,6 +5313,7 @@
 				F9458C5B24AA379C004E2383 /* MyXTeamSettingsRouter.swift */,
 				F9458C5D24AA379C004E2383 /* MyXTeamSettingsViewController.swift */,
 				F9458C5A24AA379C004E2383 /* MyXTeamSettingsWorker.swift */,
+				F9999DDB24B3315500DB05CA /* Notification+Team.swift */,
 			);
 			name = MyXTeamSettings;
 			sourceTree = "<group>";
@@ -7029,6 +7032,7 @@
 				36B5BD2C23142B4A00439A64 /* AskPermissionPresenter.swift in Sources */,
 				38C23E5524235DCA0034571B /* DTPrepareStartViewController.swift in Sources */,
 				5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */,
+				F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
 				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,

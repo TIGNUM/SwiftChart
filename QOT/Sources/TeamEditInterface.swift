@@ -35,6 +35,7 @@ protocol TeamEditInteractorInterface: Interactor {
     func createTeam(_ name: String?)
     func sendInvite(_ email: String?)
     func getMaxChars(_ completion: @escaping (Int) -> Void)
+    func updateTeamName(_ name: String?)
 }
 
 protocol TeamEditRouterInterface {

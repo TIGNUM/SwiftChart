@@ -43,6 +43,7 @@ final class MyXTeamSettingsViewController: UIViewController {
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
         interactor!.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateViewData), name: .didEditTeam, object: nil)
         tableView.registerDequeueable(TeamSettingsTableViewCell.self)
         tableView.registerDequeueable(TeamNameTableViewCell.self)
     }
@@ -66,6 +67,11 @@ final class MyXTeamSettingsViewController: UIViewController {
 //               SyncedCalendarsConfigurator.configure(viewController: syncedCalendarVC)
 //           }
        }
+
+    @objc func updateViewData(_ notification: Notification) {
+        guard let teamId = notification.object as? String else { return }
+        interactor.updateTeams(teamId: teamId)
+    }
 }
 
 // MARK: - Actions
@@ -114,7 +120,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: interactor!.getTeamName(), themeCell: .level3)
+            cell.configure(title: interactor.getTeamName(), themeCell: .level3)
             cell.delegate = self
             return cell
         case .teamMembers:
@@ -153,9 +159,9 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
             let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave)
             switch item {
             case .deleteTeam:
-                QOTAlert.show(title: deleteTitle, message: deleteMessage, bottomItems: [cancel, deleteTeam])
+                QOTAlert.show(title: deleteTitle + " " + (interactor.selectedTeam?.name ?? ""), message: deleteMessage, bottomItems: [cancel, deleteTeam])
             case .leaveTeam:
-                QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
+                QOTAlert.show(title: leaveTitle + " " + (interactor.selectedTeam?.name ?? ""), message: leaveMessage, bottomItems: [cancel, leaveTeam])
             case .teamMembers:
 //                to do
                 print("go to team members")

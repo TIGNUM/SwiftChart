@@ -82,11 +82,19 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         teamHeaderItems.forEach { (item) in
            item.selected = (teamId == item.teamId)
         }
-        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-        presenter.updateView()
+
         worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
             self?.currentTeam = selectedTeam
         })
+        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+        presenter.updateView()
+    }
+
+    func updateTeams(teamId: String) {
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.teamHeaderItems = teamHeaderItems
+            self?.updateSelectedTeam(teamId: teamId)
+        }
     }
 
     func getTeamName() -> String {

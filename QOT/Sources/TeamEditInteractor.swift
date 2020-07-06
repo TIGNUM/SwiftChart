@@ -65,6 +65,11 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
         }
     }
 
+    func updateTeamName(_ name: String?) {
+        team?.name = name
+        worker.updateTeamName(team, { _, _, _  in })
+    }
+
     func sendInvite(_ email: String?) {
         worker.sendInvite(email, team: team) { [weak self] (member, _, error) in
             if let member = member {
