@@ -64,40 +64,39 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func handleTap(setting: MyXTeamSettingsModel.Setting) {
-//          switch setting {
-//          case .notifications:
-//              router.askNotificationPermission()
-//          case .permissions:
-//              router.openAppSettings()
-//          case .calendars:
-//              handleCalendarTap()
-//          case .sensors:
-//              router.openActivityTrackerSettings()
-//          case .siriShortcuts:
-//              router.openSiriSettings()
-//          }
+
       }
 
     func updateSelectedTeam(teamId: String) {
-        teamHeaderItems.forEach { (item) in
-           item.selected = (teamId == item.teamId)
-        }
-
-        worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
-            self?.currentTeam = selectedTeam
-        })
-        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-        presenter.updateView()
-    }
-
-    func updateTeams(teamId: String) {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.teamHeaderItems = teamHeaderItems
-            self?.updateSelectedTeam(teamId: teamId)
+            teamHeaderItems.forEach { (item) in
+                item.selected = (teamId == item.teamId)
+            }
+
+            self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
+                self?.currentTeam = selectedTeam
+            })
+            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+            self?.presenter.updateView()
+        }
+    }
+
+    func updateTeams() {
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            teamHeaderItems.first?.selected = true
+            self?.teamHeaderItems = teamHeaderItems
+            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+            self?.presenter.updateView()
         }
     }
 
     func getTeamName() -> String {
         return teamHeaderItems.filter { $0.selected }.first?.title ?? ""
+    }
+
+    func deleteTeam(team: QDMTeam) {
+        worker.deleteTeam(team, { _, _, _ in })
+        updateTeams()
     }
 }

@@ -50,7 +50,8 @@ final class MyXTeamSettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(color: .carbon)
+        setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(color: ThemeView.level1.color)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -59,30 +60,29 @@ final class MyXTeamSettingsViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//           if let siriShortcutsVC  = segue.destination as? MyQotSiriShortcutsViewController {
-//               MyQotSiriShortcutsConfigurator.configure(viewController: siriShortcutsVC)
-//           } else if let activityTrackerVC = segue.destination as? MyQotSensorsViewController {
-//               MyQotSensorsConfigurator.configure(viewController: activityTrackerVC)
-//           } else if let syncedCalendarVC = segue.destination as? SyncedCalendarsViewController {
-//               SyncedCalendarsConfigurator.configure(viewController: syncedCalendarVC)
-//           }
+
        }
 
     @objc func updateViewData(_ notification: Notification) {
         guard let teamId = notification.object as? String else { return }
-        interactor.updateTeams(teamId: teamId)
+        interactor.updateSelectedTeam(teamId: teamId)
     }
 }
 
 // MARK: - Actions
 private extension MyXTeamSettingsViewController {
      @objc func confirmDeleteTapped(_ sender: Any) {
-//        to do
+        guard let selectedTeam = interactor.selectedTeam else { return }
+        interactor.deleteTeam(team: selectedTeam)
     }
+
+    @objc func confirmLeaveTapped(_ sender: Any) {
+//          guard let selectedTeam = interactor.selectedTeam else { return }
+//          interactor.leaveTeam( )
+      }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
     }
-//     to do
 }
 
 // MARK: - MyXTeamSettingsViewControllerInterface
@@ -119,8 +119,6 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         }
         switch item {
         case .teamName:
-//            let identifier = R.reuseIdentifier.colorPicker_ID.identifier
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "identifier") 7? ColorPicker else { return UITableViewCell() }
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: interactor.getTeamName(), themeCell: .level3)
             cell.delegate = self
@@ -153,17 +151,17 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
                                             handler: nil)
             let leaveTeam = QOTAlertAction(title: AppTextService.get(.settings_team_settings_leave_team),
                                            target: self,
-                                           action: #selector(confirmDeleteTapped(_:)),
+                                           action: #selector(confirmLeaveTapped(_:)),
                                            handler: nil)
             let deleteTitle = AppTextService.get(.settings_team_settings_delete_team).uppercased()
             let leaveTitle = AppTextService.get(.settings_team_settings_leave_team).uppercased()
-            let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete)
-            let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave)
+            let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete) + " " + (interactor.selectedTeam?.name ?? "")
+            let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave) + " " + (interactor.selectedTeam?.name ?? "")
             switch item {
             case .deleteTeam:
-                QOTAlert.show(title: deleteTitle + " " + (interactor.selectedTeam?.name ?? ""), message: deleteMessage, bottomItems: [cancel, deleteTeam])
+                QOTAlert.show(title: deleteTitle, message: deleteMessage, bottomItems: [cancel, deleteTeam])
             case .leaveTeam:
-                QOTAlert.show(title: leaveTitle + " " + (interactor.selectedTeam?.name ?? ""), message: leaveMessage, bottomItems: [cancel, leaveTeam])
+                QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
             case .teamMembers:
 //                to do
                 print("go to team members")

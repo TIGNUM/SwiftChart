@@ -37,7 +37,15 @@ extension MyXTeamSettingsWorker {
           }
       }
 
-    func setSelectedTeam(teamId: String,_ completion: @escaping (QDMTeam?) -> Void) {
+    func deleteTeam(_ team: QDMTeam, _ completion: @escaping ([QDMTeam]?, Bool, Error?) -> Void) {
+        TeamService.main.removeTeam(team, completion)
+    }
+
+    func leaveTeam(teamMember: QDMTeamMember, _ completion: @escaping (Error?) -> Void) {
+        TeamService.main.leaveTeam(teamMember: teamMember, completion)
+    }
+
+    func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void) {
         TeamService.main.getTeams { (teams, _, _) in
             let selectedTeam = teams?.filter { teamId == $0.qotId }.first
             completion(selectedTeam)

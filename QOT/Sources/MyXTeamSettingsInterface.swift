@@ -13,6 +13,7 @@ protocol MyXTeamSettingsViewControllerInterface: class {
     func setup(_ settings: MyXTeamSettingsModel)
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateView()
+
 }
 
 protocol MyXTeamSettingsPresenterInterface {
@@ -27,7 +28,8 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
     var selectedTeam: QDMTeam? { get }
     func updateSelectedTeam(teamId: String)
     func getTeamName() -> String
-    func updateTeams(teamId: String) 
+    func updateTeams()
+    func deleteTeam(team: QDMTeam)
 }
 
 protocol MyXTeamSettingsRouterInterface {
