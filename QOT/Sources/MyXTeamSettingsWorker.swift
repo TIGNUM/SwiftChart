@@ -11,14 +11,6 @@ import qot_dal
 
 final class MyXTeamSettingsWorker {
 
-    // MARK: - Properties
-    private let contentService: qot_dal.ContentService
-
-    // MARK: - Init
-    init(contentService: qot_dal.ContentService) {
-        self.contentService = contentService
-    }
-
     func settings() -> MyXTeamSettingsModel {
         return MyXTeamSettingsModel()
     }

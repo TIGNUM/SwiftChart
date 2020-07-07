@@ -12,9 +12,8 @@ import qot_dal
 final class MyXTeamSettingsConfigurator {
     static func configure(viewController: MyXTeamSettingsViewController) {
         let router = MyXTeamSettingsRouter(viewController: viewController)
-        let worker = MyXTeamSettingsWorker(contentService: qot_dal.ContentService.main)
         let presenter = MyXTeamSettingsPresenter(viewController: viewController)
-        let interactor = MyXTeamSettingsInteractor(worker: worker, presenter: presenter)
+        let interactor = MyXTeamSettingsInteractor(presenter: presenter)
         viewController.interactor = interactor
         viewController.router = router
     }

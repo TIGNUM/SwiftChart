@@ -12,15 +12,13 @@ import qot_dal
 final class MyXTeamSettingsInteractor {
 
     // MARK: - Properties
-    private let worker: MyXTeamSettingsWorker
+    private let worker = MyXTeamSettingsWorker()
     private let presenter: MyXTeamSettingsPresenterInterface
     private var teamHeaderItems = [TeamHeader]()
     private var currentTeam: QDMTeam?
 
     // MARK: - Init
-    init(worker: MyXTeamSettingsWorker,
-         presenter: MyXTeamSettingsPresenterInterface) {
-        self.worker = worker
+    init(presenter: MyXTeamSettingsPresenterInterface) {
         self.presenter = presenter
     }
 
