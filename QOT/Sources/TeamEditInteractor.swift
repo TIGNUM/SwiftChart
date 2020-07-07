@@ -53,34 +53,28 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
     }
 
     func createTeam(_ name: String?) {
-        worker.teamCreate(name) { [weak self] (team, _, error) in
+        worker.teamCreate(name) { [weak self] (team, error) in
             self?.team = team
             if let team = team {
                 self?.type = .memberInvite
                 self?.presenter.prepareMemberInvite(team)
-            } else {
-                log("Error while try to create team: \(error?.localizedDescription ?? "")", level: .error)
-                self?.presenter.presentErrorAlert(error)
             }
         }
     }
 
     func updateTeamName(_ name: String?) {
         team?.name = name
-        worker.updateTeamName(team, { _, _, _  in })
+        worker.updateTeamName(team, { _, _  in })
     }
 
     func sendInvite(_ email: String?) {
-        worker.sendInvite(email, team: team) { [weak self] (member, _, error) in
+        worker.sendInvite(email, team: team) { [weak self] (member, error) in
             if let member = member {
                 let emails = self?.members.compactMap { $0.email } ?? []
                 if emails.contains(obj: email) == false {
                     self?.members.append(member)
                 }
                 self?.presenter.refreshMemberList()
-            } else {
-                log("Error while try to invite member: \(error?.localizedDescription ?? "")", level: .error)
-                self?.presenter.presentErrorAlert(error)
             }
         }
     }
