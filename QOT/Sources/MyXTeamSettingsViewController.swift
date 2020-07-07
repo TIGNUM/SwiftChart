@@ -24,8 +24,8 @@ final class MyXTeamSettingsViewController: UIViewController {
     private var settingsModel: MyXTeamSettingsModel!
     @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
     private var teamHeaderItems = [TeamHeader]()
-    @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
-    @IBOutlet weak var horizontalHeaderHeight: NSLayoutConstraint!
+    @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
+    @IBOutlet private weak var horizontalHeaderHeight: NSLayoutConstraint!
 
     // MARK: - Init
     init(configure: Configurator<MyXTeamSettingsViewController>) {
@@ -43,7 +43,6 @@ final class MyXTeamSettingsViewController: UIViewController {
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
         interactor!.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateViewData), name: .didEditTeam, object: nil)
         tableView.registerDequeueable(TeamSettingsTableViewCell.self)
         tableView.registerDequeueable(TeamNameTableViewCell.self)
     }
@@ -57,15 +56,6 @@ final class MyXTeamSettingsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-       }
-
-    @objc func updateViewData(_ notification: Notification) {
-        guard let teamId = notification.object as? String else { return }
-        interactor.updateSelectedTeam(teamId: teamId)
     }
 }
 
@@ -114,8 +104,8 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = MyXTeamSettingsModel.Setting.teamSettings.at(index: indexPath.item) else {
-            return UITableViewCell()
+        guard let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) else {
+            fatalError("MyXTeamSettings Item does not exist at indexPath: \(indexPath.item)")
         }
         switch item {
         case .teamName:
@@ -140,7 +130,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let item = MyXTeamSettingsModel.Setting.teamSettings.at(index: indexPath.item) {
+        if let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) {
             let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel),
                                         target: self,
                                         action: #selector(cancelDeleteTapped(_:)),

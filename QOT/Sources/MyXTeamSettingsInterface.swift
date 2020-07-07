@@ -30,6 +30,7 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
     func getTeamName() -> String
     func updateTeams()
     func deleteTeam(team: QDMTeam)
+    func leaveTeam(team: QDMTeam)
 }
 
 protocol MyXTeamSettingsRouterInterface {

@@ -11,33 +11,23 @@ import qot_dal
 
 struct MyXTeamSettingsModel {
 
-    let contentService: ContentService
-
-    init(contentService: ContentService) {
-        self.contentService = contentService
-    }
-
-    enum Setting: Int {
+    enum Setting: Int, CaseIterable {
         case teamName = 0
         case teamMembers
         case leaveTeam
         case deleteTeam
-
-        static var teamSettings: [Setting] {
-            return [.teamName, .teamMembers, .leaveTeam, .deleteTeam]
-        }
     }
 
     var teamSettingsCount: Int {
-        return Setting.teamSettings.count
+        return Setting.allCases.count
     }
 
     func titleForItem(at indexPath: IndexPath) -> String {
-        return title(for: Setting.teamSettings.at(index: indexPath.row) ?? .teamName) ?? ""
+        return title(for: Setting.allCases.at(index: indexPath.row) ?? .teamName) ?? ""
     }
 
     func subtitleForItem(at indexPath: IndexPath) -> String {
-        return subtitle(for: Setting.teamSettings.at(index: indexPath.row) ?? .teamName) ?? ""
+        return subtitle(for: Setting.allCases.at(index: indexPath.row) ?? .teamName) ?? ""
        }
 
     private func title(for item: Setting) -> String? {

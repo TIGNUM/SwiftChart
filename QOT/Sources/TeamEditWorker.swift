@@ -29,10 +29,8 @@ final class TeamEditWorker {
 
     func updateTeamName(_ team: QDMTeam?, _ completion: @escaping (QDMTeam?, Bool?, Error?) -> Void) {
         guard let team = team else { return }
-
-        TeamService.main.updateTeam(team, completion)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            NotificationCenter.default.post(name: .didEditTeam, object: team.qotId)
+        TeamService.main.updateTeam(team) { (team, _, error) in
+            NotificationCenter.default.post(name: .didEditTeam, object: team?.qotId)
         }
     }
 

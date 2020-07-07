@@ -30,7 +30,7 @@ final class ColorPicker: UIView {
     @IBOutlet private weak var colorSelectorPurple: UIView!
     @IBOutlet private weak var colorSelectorPink: UIView!
 
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var trailingConstraintPurple: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintGreen: NSLayoutConstraint!

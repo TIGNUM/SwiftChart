@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeamNameTableViewCell: UITableViewCell, Dequeueable {
+final class TeamNameTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var selectorLine: UIView!
     @IBOutlet weak var colorPickerView: UIView!
@@ -21,7 +21,6 @@ class TeamNameTableViewCell: UITableViewCell, Dequeueable {
         self.selectedBackgroundView = UIView(frame: self.bounds)
         ThemeView.level2Selected.apply(selectedBackgroundView!)
         selectorLine.isHidden = true
-
     }
 
     @IBAction func editTapped(_ sender: Any) {
