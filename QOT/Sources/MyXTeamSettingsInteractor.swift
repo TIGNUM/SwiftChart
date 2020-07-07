@@ -42,6 +42,10 @@ final class MyXTeamSettingsInteractor {
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeamColor,
+                                               object: nil)
     }
 
     var teamSettingsText: String {
@@ -52,8 +56,13 @@ final class MyXTeamSettingsInteractor {
 // MARK: - Private
 private extension MyXTeamSettingsInteractor {
     @objc func checkSelection(_ notification: Notification) {
-         guard let teamId = notification.object as? String else { return }
-         updateSelectedTeam(teamId: teamId)
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
+            updateSelectedTeam(teamId: teamId)
+        }
+        if let teamColor = userInfo[TeamHeader.Selector.teamColor.rawValue] {
+            updateSelectedTeam(teamColor: teamColor)
+        }
      }
 
     @objc func updateViewData(_ notification: Notification) {
@@ -97,8 +106,23 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         }
     }
 
+    func updateSelectedTeam(teamColor: String) {
+        teamHeaderItems.filter { $0.selected }.first?.hexColorString = teamColor
+        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+        presenter.updateView()
+        worker.updateTeamColor(teamId: getTeamId(), teamColor: teamColor)
+    }
+
     func getTeamName() -> String {
         return teamHeaderItems.filter { $0.selected }.first?.title ?? ""
+    }
+
+   func getTeamId() -> String {
+        return teamHeaderItems.filter { $0.selected }.first?.teamId ?? ""
+    }
+
+    func getTeamColor() -> String {
+        return teamHeaderItems.filter { $0.selected }.first?.hexColorString ?? ""
     }
 
     func deleteTeam(team: QDMTeam) {

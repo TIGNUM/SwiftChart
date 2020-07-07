@@ -28,6 +28,8 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
     var selectedTeam: QDMTeam? { get }
     func updateSelectedTeam(teamId: String)
     func getTeamName() -> String
+    func getTeamId() -> String
+    func getTeamColor() -> String
     func updateTeams()
     func deleteTeam(team: QDMTeam)
     func leaveTeam(team: QDMTeam)

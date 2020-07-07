@@ -19,7 +19,12 @@ final class TeamHeaderCell: UICollectionViewCell {
         titleButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
-                                               name: .didSelectTeam, object: nil)
+                                               name: .didSelectTeam,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeamColor,
+                                               object: nil)
     }
 
     func configure(title: String, hexColorString: String, batchCount: Int, selected: Bool, teamId: String) {
@@ -32,12 +37,19 @@ final class TeamHeaderCell: UICollectionViewCell {
 
 private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
-        NotificationCenter.default.post(name: .didSelectTeam, object: teamId)
+        NotificationCenter.default.post(name: .didSelectTeam,
+                                        object: nil,
+                                        userInfo: [TeamHeader.Selector.teamId.rawValue: teamId])
     }
 
     @objc func checkSelection(_ notification: Notification) {
-        guard let teamId = notification.object as? String else { return }
-        setSelected(self.teamId == teamId)
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
+            setSelected(self.teamId == teamId)
+        }
+        if let teamColor = userInfo[TeamHeader.Selector.teamColor.rawValue] {
+            hexColorString = teamColor
+        }
     }
 
     func setSelected(_ selected: Bool) {
