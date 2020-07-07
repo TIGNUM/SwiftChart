@@ -103,6 +103,10 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
          return settingsModel.teamSettingsCount
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNonzeroMagnitude
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) else {
             fatalError("MyXTeamSettings Item does not exist at indexPath: \(indexPath.item)")
