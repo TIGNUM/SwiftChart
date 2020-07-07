@@ -208,12 +208,12 @@
                 <constraint firstAttribute="bottom" secondItem="xqR-D9-7V1" secondAttribute="bottom" id="Scx-GU-d1A"/>
                 <constraint firstAttribute="trailing" secondItem="roY-rp-cS7" secondAttribute="trailing" id="TJt-uA-XRh"/>
                 <constraint firstItem="B0l-hg-mxd" firstAttribute="top" secondItem="zem-Jl-is3" secondAttribute="top" id="U6X-MW-TlC"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WRn-hw-1DP" secondAttribute="trailing" constant="213.5" id="ZTp-0L-rUz"/>
                 <constraint firstAttribute="trailing" secondItem="xqR-D9-7V1" secondAttribute="trailing" id="ZXa-6G-7iM"/>
                 <constraint firstAttribute="trailing" secondItem="3Os-pg-hbH" secondAttribute="trailing" id="bfl-qc-c7c"/>
                 <constraint firstItem="46A-LK-BkW" firstAttribute="top" secondItem="zem-Jl-is3" secondAttribute="top" id="fcw-q1-FMe"/>
                 <constraint firstAttribute="height" constant="76" id="fyU-J2-yi9"/>
                 <constraint firstAttribute="bottom" secondItem="roY-rp-cS7" secondAttribute="bottom" id="kVN-XE-573"/>
-                <constraint firstItem="46A-LK-BkW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WRn-hw-1DP" secondAttribute="trailing" id="lUS-SI-0iR"/>
                 <constraint firstItem="9BP-fd-K0m" firstAttribute="leading" secondItem="zem-Jl-is3" secondAttribute="leading" constant="24" id="m3j-Ny-XUs"/>
                 <constraint firstItem="WRn-hw-1DP" firstAttribute="leading" secondItem="9BP-fd-K0m" secondAttribute="trailing" constant="16" id="p04-mp-NDp"/>
                 <constraint firstItem="WRn-hw-1DP" firstAttribute="centerY" secondItem="9BP-fd-K0m" secondAttribute="centerY" id="pVp-Ia-vAh"/>
