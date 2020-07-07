@@ -124,7 +124,7 @@ private extension ColorPicker {
                 self.trailingConstraintYellow.constant = 0
                 self.trailingConstraintBlue.constant = 0
                 self.nameLabel.alpha = 1
-
+                self.editButton.alpha = 1
                 self.layoutIfNeeded()
             }
         } else {
