@@ -14,9 +14,11 @@ final class MyQotProfileInteractor {
     private enum controllerType: Int, CaseIterable {
         case accountSettings
         case appSettings
+        case teamSettings
         case support
         case aboutTignum
         case adminSettings
+
     }
 
     // MARK: - Properties
@@ -78,6 +80,8 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
             router.presentAccountSettings()
         case .appSettings:
             router.presentAppSettings()
+        case .teamSettings:
+            router.presentTeamSettings()
         case .support:
             router.presentSupport()
         case .aboutTignum:

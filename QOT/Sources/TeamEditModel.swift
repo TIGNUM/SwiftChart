@@ -24,20 +24,22 @@ enum TeamEdit {
 
     func key(_ type: TeamEdit.View) -> AppTextKey? {
         let isCreate = type == .create
+        let isEdit = type == .edit
         switch self {
         case .header:
-            return isCreate ? .my_x_team_create_header : .my_x_team_member_invite_header
+            return isCreate ? .my_x_team_create_header : isEdit ? .my_x_team_edit_header : .my_x_team_member_invite_header
         case .subHeader:
-            return  isCreate ? nil : .my_x_team_member_invite_subHeader
+            return isCreate || isEdit ? nil : .my_x_team_member_invite_subHeader
         case .description:
-            return isCreate ? .my_x_team_create_description : .my_x_team_member_invite_description
+            return isCreate ? .my_x_team_create_description : isEdit ? nil : .my_x_team_member_invite_description
         case .cta:
-            return isCreate ? .my_x_team_create_cta : .my_x_team_member_invite_cta
+            return isCreate ? .my_x_team_create_cta : isEdit ? .my_x_team_edit_save_cta : .my_x_team_member_invite_cta
         }
     }
 
     enum View {
         case create
         case memberInvite
+        case edit
     }
 }

@@ -77,14 +77,10 @@ private extension TeamEditViewController {
     }
 }
 
-// MARK: - Actions
-private extension TeamEditViewController {
-
-}
-
 // MARK: - TeamEditViewControllerInterface
 extension TeamEditViewController: TeamEditViewControllerInterface {
     func setupView() {
+        teamTextField.text = interactor.teamName
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView
@@ -152,6 +148,9 @@ extension TeamEditViewController: UITextFieldDelegate {
             updateTextCounter(String(textField.text?.count ?? 0))
         case .memberInvite:
             updateKeyboardInputView(textField.text?.isEmail == true)
+        case .edit:
+            updateKeyboardInputView(textField.text?.isEmpty == false)
+            updateTextCounter(String(textField.text?.count ?? 0))
         }
     }
 }
@@ -182,6 +181,9 @@ extension TeamEditViewController: KeyboardInputViewProtocol {
         switch interactor.getType {
         case .create: interactor.createTeam(teamTextField.text)
         case .memberInvite: interactor.sendInvite(teamTextField.text)
+        case .edit:
+            interactor.updateTeamName(teamTextField.text)
+            dismiss()
         }
     }
 }

@@ -198,7 +198,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                          withReuseIdentifier: identifier,
                                                                          for: indexPath) as? ReusableHeaderView
-            header?.configure(headerItems: teamHeaderItems)            
+            header?.configure(headerItems: teamHeaderItems)
             return header ?? UICollectionReusableView()
         }
     }
