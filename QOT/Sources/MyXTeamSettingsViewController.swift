@@ -67,9 +67,9 @@ private extension MyXTeamSettingsViewController {
     }
 
     @objc func confirmLeaveTapped(_ sender: Any) {
-//          guard let selectedTeam = interactor.selectedTeam else { return }
-//          interactor.leaveTeam( )
-      }
+        guard let selectedTeam = interactor.selectedTeam else { return }
+        interactor.leaveTeam(team: selectedTeam)
+    }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
     }
