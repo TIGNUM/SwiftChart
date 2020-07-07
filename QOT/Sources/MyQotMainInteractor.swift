@@ -246,7 +246,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void) {
         switch section {
-        case .teamCreate: worker.isCellEnabled(completion)
+        case .teamCreate: worker.canCreateTeam(completion)
         default: completion(true)
         }
     }
