@@ -13,6 +13,7 @@ protocol MyXTeamSettingsViewControllerInterface: class {
     func setup(_ settings: MyXTeamSettingsModel)
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateView()
+
 }
 
 protocol MyXTeamSettingsPresenterInterface {
@@ -24,11 +25,14 @@ protocol MyXTeamSettingsPresenterInterface {
 protocol MyXTeamSettingsInteractorInterface: Interactor {
     func handleTap(setting: MyXTeamSettingsModel.Setting)
     var teamSettingsText: String { get }
-//    var selectedTeam: QDMTeam? { get }
+    var selectedTeam: QDMTeam? { get }
     func updateSelectedTeam(teamId: String)
     func getTeamName() -> String
     func getTeamId() -> String
     func getTeamColor() -> String
+    func updateTeams()
+    func deleteTeam(team: QDMTeam)
+    func leaveTeam(team: QDMTeam)
 }
 
 protocol MyXTeamSettingsRouterInterface {

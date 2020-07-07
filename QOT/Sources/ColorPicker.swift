@@ -10,30 +10,28 @@ import UIKit
 
 final class ColorPicker: UIView {
 
+    private var skeletonManager = SkeletonManager()
     @IBOutlet private weak var colorPink: UIButton!
     @IBOutlet private weak var colorPurple: UIButton!
     @IBOutlet private weak var colorGreen: UIButton!
     @IBOutlet private weak var colorYellow: UIButton!
     @IBOutlet private weak var colorBlue: UIButton!
-
     @IBOutlet private weak var colorContainerBlue: UIView!
     @IBOutlet private weak var colorContainerYellow: UIView!
     @IBOutlet private weak var colorContainerGreen: UIView!
     @IBOutlet private weak var colorContainerPurple: UIView!
     @IBOutlet private weak var colorContainerPink: UIView!
-
     @IBOutlet private weak var colorSelectorBlue: UIView!
     @IBOutlet private weak var colorSelectorYellow: UIView!
     @IBOutlet private weak var colorSelectorGreen: UIView!
     @IBOutlet private weak var colorSelectorPurple: UIView!
     @IBOutlet private weak var colorSelectorPink: UIView!
-
     @IBOutlet private weak var labelContainer: UIView!
     @IBOutlet private weak var trailingConstraintPurple: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintGreen: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintYellow: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraintBlue: NSLayoutConstraint!
-
+    weak var delegate: MyXTeamSettingsViewController?
     private var isOpen = false
     private var selectedColor = UIColor.teamPink
     private var teamId = ""

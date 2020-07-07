@@ -24,8 +24,8 @@ final class MyXTeamSettingsViewController: UIViewController {
     private var settingsModel: MyXTeamSettingsModel!
     @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
     private var teamHeaderItems = [TeamHeader]()
-    @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
-    @IBOutlet weak var horizontalHeaderHeight: NSLayoutConstraint!
+    @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
+    @IBOutlet private weak var horizontalHeaderHeight: NSLayoutConstraint!
 
     // MARK: - Init
     init(configure: Configurator<MyXTeamSettingsViewController>) {
@@ -42,41 +42,37 @@ final class MyXTeamSettingsViewController: UIViewController {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
-        interactor!.viewDidLoad()
+        interactor.viewDidLoad()
         tableView.registerDequeueable(TeamSettingsTableViewCell.self)
         tableView.registerDequeueable(TeamNameTableViewCell.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(color: .carbon)
+        setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(color: ThemeView.level1.color)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//           if let siriShortcutsVC  = segue.destination as? MyQotSiriShortcutsViewController {
-//               MyQotSiriShortcutsConfigurator.configure(viewController: siriShortcutsVC)
-//           } else if let activityTrackerVC = segue.destination as? MyQotSensorsViewController {
-//               MyQotSensorsConfigurator.configure(viewController: activityTrackerVC)
-//           } else if let syncedCalendarVC = segue.destination as? SyncedCalendarsViewController {
-//               SyncedCalendarsConfigurator.configure(viewController: syncedCalendarVC)
-//           }
-       }
 }
 
 // MARK: - Actions
 private extension MyXTeamSettingsViewController {
      @objc func confirmDeleteTapped(_ sender: Any) {
-//        to do
+        guard let selectedTeam = interactor.selectedTeam else { return }
+        interactor.deleteTeam(team: selectedTeam)
+    }
+
+    @objc func confirmLeaveTapped(_ sender: Any) {
+        guard let selectedTeam = interactor.selectedTeam else { return }
+        interactor.leaveTeam(team: selectedTeam)
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
     }
-//     to do
 }
 
 // MARK: - MyXTeamSettingsViewControllerInterface
@@ -107,9 +103,13 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
          return settingsModel.teamSettingsCount
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNonzeroMagnitude
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = MyXTeamSettingsModel.Setting.teamSettings.at(index: indexPath.item) else {
-            return UITableViewCell()
+        guard let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) else {
+            fatalError("MyXTeamSettings Item does not exist at indexPath: \(indexPath.item)")
         }
         switch item {
         case .teamName:
@@ -137,7 +137,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let item = MyXTeamSettingsModel.Setting.teamSettings.at(index: indexPath.item) {
+        if let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) {
             let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel),
                                         target: self,
                                         action: #selector(cancelDeleteTapped(_:)),
@@ -148,12 +148,12 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
                                             handler: nil)
             let leaveTeam = QOTAlertAction(title: AppTextService.get(.settings_team_settings_leave_team),
                                            target: self,
-                                           action: #selector(confirmDeleteTapped(_:)),
+                                           action: #selector(confirmLeaveTapped(_:)),
                                            handler: nil)
             let deleteTitle = AppTextService.get(.settings_team_settings_delete_team).uppercased()
             let leaveTitle = AppTextService.get(.settings_team_settings_leave_team).uppercased()
-            let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete)
-            let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave)
+            let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete) + " " + (interactor.selectedTeam?.name ?? "")
+            let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave) + " " + (interactor.selectedTeam?.name ?? "")
             switch item {
             case .deleteTeam:
                 QOTAlert.show(title: deleteTitle, message: deleteMessage, bottomItems: [cancel, deleteTeam])
@@ -172,6 +172,6 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerDelegate {
 
     func presentEditTeam() {
-        router?.presentEditTeam(.edit, team: nil)
+        router?.presentEditTeam(.edit, team: interactor.selectedTeam)
     }
 }

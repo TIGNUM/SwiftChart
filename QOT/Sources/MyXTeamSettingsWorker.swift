@@ -11,18 +11,9 @@ import qot_dal
 
 final class MyXTeamSettingsWorker {
 
-    // MARK: - Properties
-    private let contentService: qot_dal.ContentService
-
-    // MARK: - Init
-    init(contentService: qot_dal.ContentService) {
-        self.contentService = contentService
-    }
-
     func settings() -> MyXTeamSettingsModel {
-        return MyXTeamSettingsModel(contentService: contentService)
+        return MyXTeamSettingsModel()
     }
-
 }
 
 extension MyXTeamSettingsWorker {
@@ -32,10 +23,31 @@ extension MyXTeamSettingsWorker {
     }
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void) {
-          TeamService.main.getTeams { (teams, _, _) in
-              completion(teams ?? [])
-          }
-      }
+        TeamService.main.getTeams { (teams, _, error) in
+            completion(teams ?? [])
+        }
+    }
+
+    func deleteTeam(_ team: QDMTeam, _ completion: @escaping ([QDMTeam]?, Bool, Error?) -> Void) {
+        TeamService.main.removeTeam(team, completion)
+    }
+
+    func leaveTeam(team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
+        TeamService.main.getTeamMembers(in: team, { (members, _, error)  in
+            guard let user = members?.filter({$0.me == true}).first else {
+                completion(error)
+                return
+            }
+            TeamService.main.leaveTeam(teamMember: user, completion)
+        })
+    }
+
+    func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void) {
+        TeamService.main.getTeams { (teams, _, _) in
+            let selectedTeam = teams?.filter { teamId == $0.qotId }.first
+            completion(selectedTeam)
+        }
+    }
 
     func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
         getTeams { (teams) in

@@ -44,6 +44,10 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
         return members.count
     }
 
+    var teamName: String? {
+        return team?.name
+    }
+
     func item(at index: IndexPath) -> String? {
         return members.at(index: index.row)?.email
     }
@@ -59,6 +63,11 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
                 self?.presenter.presentErrorAlert(error)
             }
         }
+    }
+
+    func updateTeamName(_ name: String?) {
+        team?.name = name
+        worker.updateTeamName(team, { _, _, _  in })
     }
 
     func sendInvite(_ email: String?) {

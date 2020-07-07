@@ -140,13 +140,18 @@ private extension MyQotProfileWorker {
 
     func getMaxChars(_ completion: @escaping (Int) -> Void) {
         TeamService.main.getTeamConfiguration { (config, error) in
+            if let error = error {
+             log("Error getTeamConfiguration: \(error.localizedDescription)", level: .error)
+            }
             completion(config?.teamNameMaxLength ?? 0)
         }
     }
 
     func userHasTeam() {
         TeamService.main.getTeams {(teams, initiated, error) in
-            self.hasTeam = teams != nil
+            if let teams = teams {
+                self.hasTeam = !teams.isEmpty
+            }
         }
     }
 

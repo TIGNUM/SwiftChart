@@ -484,8 +484,7 @@ public extension AppTextKey {
 
     // MARK: - Team Member Edit
     static let my_x_team_edit_header = AppTextKey("my_x.team_edit.header")
-    static let my_x_team_edit_save_cta = AppTextKey("my_x.team_edit_save_cta")
-
+    static let my_x_team_edit_save_cta = AppTextKey("my_x.team_edit.save_cta")
 
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")

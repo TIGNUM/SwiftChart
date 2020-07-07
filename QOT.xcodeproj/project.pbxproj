@@ -1137,6 +1137,7 @@
 		F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */; };
 		F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
+		F92A214824B4C243005EE605 /* Scene.xctemplate in Resources */ = {isa = PBXBuildFile; fileRef = F92A213F24B4C243005EE605 /* Scene.xctemplate */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
 		F934801E247D464A00DD1C7D /* FeatureExplainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F934801D247D464A00DD1C7D /* FeatureExplainer.storyboard */; };
@@ -1191,6 +1192,7 @@
 		F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */; };
 		F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */; };
 		F98D8ECE22D3742F0072FC73 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */; };
+		F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9999DDB24B3315500DB05CA /* Notification+Team.swift */; };
 		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
 		F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */; };
 		F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */; };
@@ -2443,6 +2445,7 @@
 		F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCell.swift; sourceTree = "<group>"; };
 		F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtsCell.xib; sourceTree = "<group>"; };
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
+		F92A213F24B4C243005EE605 /* Scene.xctemplate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scene.xctemplate; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
 		F934801D247D464A00DD1C7D /* FeatureExplainer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeatureExplainer.storyboard; sourceTree = "<group>"; };
@@ -2497,6 +2500,7 @@
 		F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		F9999DDB24B3315500DB05CA /* Notification+Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Team.swift"; sourceTree = "<group>"; };
 		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
 		F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsPresenter.swift; sourceTree = "<group>"; };
 		F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsWorker.swift; sourceTree = "<group>"; };
@@ -2735,6 +2739,7 @@
 				36376626223A66AF00C2C429 /* CoachPresenter.swift */,
 				36376628223A66AF00C2C429 /* CoachRouter.swift */,
 				3637662A223A66AF00C2C429 /* CoachViewController.swift */,
+				F92A213F24B4C243005EE605 /* Scene.xctemplate */,
 				36376627223A66AF00C2C429 /* CoachWorker.swift */,
 			);
 			name = Coach;
@@ -5317,6 +5322,7 @@
 				F9458C5B24AA379C004E2383 /* MyXTeamSettingsRouter.swift */,
 				F9458C5D24AA379C004E2383 /* MyXTeamSettingsViewController.swift */,
 				F9458C5A24AA379C004E2383 /* MyXTeamSettingsWorker.swift */,
+				F9999DDB24B3315500DB05CA /* Notification+Team.swift */,
 			);
 			name = MyXTeamSettings;
 			sourceTree = "<group>";
@@ -5844,6 +5850,7 @@
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				F906A02424AC8279007B6E1E /* TeamNameTableViewCell.xib in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
+				F92A214824B4C243005EE605 /* Scene.xctemplate in Resources */,
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
@@ -7037,6 +7044,7 @@
 				38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */,
 				38C23E5524235DCA0034571B /* DTPrepareStartViewController.swift in Sources */,
 				5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */,
+				F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
 				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
