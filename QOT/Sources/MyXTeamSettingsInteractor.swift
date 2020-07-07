@@ -96,7 +96,9 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func deleteTeam(team: QDMTeam) {
-        worker.deleteTeam(team, { _, _, _ in })
-        updateTeams()
+        worker.deleteTeam(team, { _, _, _ in
+            self.updateTeams()
+        })
+
     }
 }
