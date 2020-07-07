@@ -48,4 +48,8 @@ extension MyQotProfileRouter: MyQotProfileRouterInterface {
     func presentAdminSettings() {
         viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAdminSettingsSegueIdentifier, sender: nil)
     }
+
+    func presentTeamSettings() {
+        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myXTeamSettingsSegueIdentifier, sender: nil)
+    }
 }

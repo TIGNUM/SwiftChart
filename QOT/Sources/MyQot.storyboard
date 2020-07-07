@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -33,7 +34,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ExM-7X-Lt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1812" y="300"/>
+            <point key="canvasLocation" x="1930" y="-389"/>
         </scene>
         <!--My Qot Profile View Controller-->
         <scene sceneID="Wdr-OO-R0H">
@@ -43,7 +44,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vYv-fI-E11">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vYv-fI-E11">
                                 <rect key="frame" x="0.0" y="98" width="375" height="489"/>
                                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,11 +80,12 @@
                         <segue destination="6Hh-bM-OFn" kind="show" identifier="myQot.aboutTignum.segue.identifier" id="Klj-WE-CB8"/>
                         <segue destination="bUa-0I-I46" kind="show" identifier="myQot.myLibrary.segue.identifier" id="nLz-oJ-HxZ"/>
                         <segue destination="3ZV-BA-t3g" kind="show" identifier="myQot.adminSettings.segue.identifier" id="kVG-3l-IG5"/>
+                        <segue destination="2gz-w2-K3t" kind="show" identifier="myX.teamSettings.segue.identifier" id="2JH-lT-VyY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iN9-WJ-cdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="1376"/>
+            <point key="canvasLocation" x="1054" y="1390"/>
         </scene>
         <!--My Qot App Settings View Controller-->
         <scene sceneID="y48-53-cQf">
@@ -96,6 +98,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="HaD-Tj-e87">
                                 <rect key="frame" x="0.0" y="98" width="375" height="549"/>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Hoi-oQ-X68" id="AbJ-xR-cTv"/>
                                     <outlet property="delegate" destination="Hoi-oQ-X68" id="KZo-Wt-g0V"/>
@@ -132,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HP0-kI-zbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="1658.3208395802101"/>
+            <point key="canvasLocation" x="1982" y="1389"/>
         </scene>
         <!--My Qot Siri Shortcuts View Controller-->
         <scene sceneID="9vm-qE-LUk">
@@ -234,6 +237,122 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVr-os-iz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3876" y="1505"/>
+        </scene>
+        <!--MyX Team Settings View Controller-->
+        <scene sceneID="7mB-lJ-9RK">
+            <objects>
+                <viewController id="2gz-w2-K3t" customClass="MyXTeamSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cJ0-Zn-i4c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbz-7Z-v9W">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="98" id="AxI-o6-sx7"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghS-jG-5zB" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
+                                <rect key="frame" x="24" y="98" width="351" height="80"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fuU-AA-R9P">
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="80"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="4" minimumInteritemSpacing="4" id="ApO-pf-Geu">
+                                            <size key="itemSize" width="110" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamHeaderCell_ID" id="kCX-nV-RfE" customClass="TeamHeaderCell" customModule="TIGNUM_X" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="20" width="110" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LAI-Su-vSX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-q4-DaV">
+                                                            <rect key="frame" x="4" y="0.0" width="102" height="20"/>
+                                                            <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="didSelectTeam" destination="kCX-nV-RfE" eventType="touchUpInside" id="Gaj-fc-v3c"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="FiY-q4-DaV" firstAttribute="leading" secondItem="LAI-Su-vSX" secondAttribute="leading" constant="4" id="4Ye-RQ-QTY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="FiY-q4-DaV" secondAttribute="trailing" constant="4" id="Ozy-Hb-jRp"/>
+                                                        <constraint firstItem="FiY-q4-DaV" firstAttribute="top" secondItem="LAI-Su-vSX" secondAttribute="top" id="brA-v3-Boc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="FiY-q4-DaV" secondAttribute="bottom" constant="20" id="neT-jo-7LT"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <size key="customSize" width="110" height="40"/>
+                                                <connections>
+                                                    <outlet property="titleButton" destination="FiY-q4-DaV" id="9Ho-si-xQ0"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="ghS-jG-5zB" id="E6H-6C-w24"/>
+                                            <outlet property="delegate" destination="ghS-jG-5zB" id="fVZ-ec-ufb"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="IGn-IA-kg5"/>
+                                    <constraint firstItem="fuU-AA-R9P" firstAttribute="leading" secondItem="ghS-jG-5zB" secondAttribute="leading" id="W76-E4-Rk4"/>
+                                    <constraint firstAttribute="bottom" secondItem="fuU-AA-R9P" secondAttribute="bottom" id="WJU-2J-kdF"/>
+                                    <constraint firstAttribute="trailing" secondItem="fuU-AA-R9P" secondAttribute="trailing" id="ZDE-1J-jDL"/>
+                                    <constraint firstItem="fuU-AA-R9P" firstAttribute="top" secondItem="ghS-jG-5zB" secondAttribute="top" id="r9N-Lm-0kF"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="collectionView" destination="fuU-AA-R9P" id="ppC-HE-AvC"/>
+                                </connections>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HTS-fj-Ieu">
+                                <rect key="frame" x="0.0" y="178" width="375" height="469"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2gz-w2-K3t" id="MQN-00-OPD"/>
+                                    <outlet property="delegate" destination="2gz-w2-K3t" id="MaA-DO-WRn"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="HTS-fj-Ieu" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="00o-S2-Wub"/>
+                            <constraint firstItem="P4L-d4-E25" firstAttribute="bottom" secondItem="HTS-fj-Ieu" secondAttribute="bottom" id="7pK-q1-gWD"/>
+                            <constraint firstItem="ghS-jG-5zB" firstAttribute="top" secondItem="Fbz-7Z-v9W" secondAttribute="bottom" id="8It-bM-ghX"/>
+                            <constraint firstItem="P4L-d4-E25" firstAttribute="trailing" secondItem="Fbz-7Z-v9W" secondAttribute="trailing" id="LFV-1W-LvZ"/>
+                            <constraint firstItem="ghS-jG-5zB" firstAttribute="leading" secondItem="cJ0-Zn-i4c" secondAttribute="leading" constant="24" id="Ovz-IZ-4Be"/>
+                            <constraint firstItem="Fbz-7Z-v9W" firstAttribute="top" secondItem="P4L-d4-E25" secondAttribute="top" id="WFr-hV-2wi"/>
+                            <constraint firstItem="P4L-d4-E25" firstAttribute="trailing" secondItem="HTS-fj-Ieu" secondAttribute="trailing" id="anU-mE-Hbw"/>
+                            <constraint firstItem="HTS-fj-Ieu" firstAttribute="top" secondItem="ghS-jG-5zB" secondAttribute="bottom" id="cYV-nB-7oS"/>
+                            <constraint firstAttribute="trailing" secondItem="ghS-jG-5zB" secondAttribute="trailing" id="rHf-nT-65v"/>
+                            <constraint firstItem="Fbz-7Z-v9W" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="uHO-Q4-0w1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="P4L-d4-E25"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aI7-da-IlH"/>
+                    <connections>
+                        <outlet property="headerHeightConstraint" destination="AxI-o6-sx7" id="Csg-A1-8jd"/>
+                        <outlet property="headerView" destination="Fbz-7Z-v9W" id="HpI-mm-kMz"/>
+                        <outlet property="horizontalHeaderHeight" destination="IGn-IA-kg5" id="T7a-Zk-BC7"/>
+                        <outlet property="horizontalHeaderView" destination="ghS-jG-5zB" id="jgB-No-Aa4"/>
+                        <outlet property="tableView" destination="HTS-fj-Ieu" id="OXV-gs-tid"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5On-Bh-YBE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2020" y="2336.5817091454273"/>
         </scene>
         <!--My Qot Sensors View Controller-->
         <scene sceneID="gKo-9v-I0L">
@@ -511,7 +630,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yu2-Q9-VDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="2543"/>
+            <point key="canvasLocation" x="1929" y="3588"/>
         </scene>
         <!--My Qot Support Novartis View Controller-->
         <scene sceneID="mdu-yv-9s4">
@@ -541,7 +660,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NLv-Hl-atK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="3332.3838080959522"/>
+            <point key="canvasLocation" x="1930" y="4408"/>
         </scene>
         <!--My Qot Support Details View Controller-->
         <scene sceneID="Avc-89-hCl">
@@ -583,7 +702,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytU-qb-Qto" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2980" y="2542.5787106446778"/>
+            <point key="canvasLocation" x="2980" y="3588"/>
         </scene>
         <!--My Qot About Us View Controller-->
         <scene sceneID="Oey-y4-XLs">
@@ -897,7 +1016,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ru-AE-SYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="904.94752623688169"/>
+            <point key="canvasLocation" x="1958" y="147"/>
         </scene>
         <!--Profile Settings View Controller-->
         <scene sceneID="WKv-jD-fQ2">
