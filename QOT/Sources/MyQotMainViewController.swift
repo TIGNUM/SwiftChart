@@ -17,7 +17,7 @@ final class MyQotNavigationController: UINavigationController {
 final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 
     // MARK: - Properties
-    var interactor: MyQotMainInteractorInterface?
+    var interactor: MyQotMainInteractorInterface!
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet private weak var collectionView: UICollectionView!
     private var indexPathDeselect: IndexPath?
@@ -42,7 +42,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
     }
 
@@ -51,7 +51,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
         collectionView.reloadData()
-        interactor?.refreshParams()
+        interactor.refreshParams()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -83,7 +83,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
         collectionView.reload(using: differenceList) { [weak self] (data) in
-            self?.interactor?.updateViewModelListNew(data)
+            self?.interactor.updateViewModelListNew(data)
         }
     }
 
@@ -95,23 +95,26 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func getCell(_ collectionView: UICollectionView,
                  _ indexPath: IndexPath,
                  _ myQotViewModelItem: MyQotViewModel.Item?) -> UICollectionViewCell {
-        switch indexPath.section {
-        case MyQotViewModel.Section.header.rawValue:
+        switch MyQotViewModel.Section.allCases.at(index: indexPath.section) {
+        case .header?:
             let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             let title = AppTextService.get(.my_qot_section_header_title)
-            interactor?.getSettingsTitle(completion: { (title) in
+            interactor.getSettingsTitle(completion: { (title) in
                 cell.setSettingsButton(title ?? "")
             })
             cell.configure(title: title, tapLeft: { [weak self] in
                 self?.delegate?.moveToCell(item: 1)
             }) {
-                self.interactor?.presentMyProfile()
+                self.interactor.presentMyProfile()
             }
             return cell
         default:
             let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(title: myQotViewModelItem?.title,
-                           subtitle: myQotViewModelItem?.subtitle)
+            interactor.isCellEnabled(for: myQotViewModelItem?.myQotSections) { (enabled) in
+                cell.configure(title: myQotViewModelItem?.title,
+                               subtitle: myQotViewModelItem?.subtitle,
+                               enabled: enabled)
+            }
             return cell
         }
     }
@@ -120,34 +123,29 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return interactor?.qotViewModelNew()?.count ?? 0
+        return interactor.qotViewModelNew()?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case MyQotViewModel.Section.header.rawValue:
+        switch MyQotViewModel.Section.allCases.at(index: section) {
+        case .header?:
             return 1
         default:
-            return interactor?.qotViewModelNew()?[section].elements.count ?? 0
+            return interactor.qotViewModelNew()?[section].elements.count ?? 0
         }
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model: MyQotViewModel.Item?
-        if let dataSource = interactor?.qotViewModelNew()?.at(index: indexPath.section)?.elements,
-            dataSource.count > 0 {
-            model = dataSource[indexPath.item]
-            return getCell(collectionView, indexPath, model)
-        }
-        return getCell(collectionView, indexPath, nil)
+        let model = interactor.qotViewModelNew()?.at(index: indexPath.section)?.elements.at(index: indexPath.item)
+        return getCell(collectionView, indexPath, model)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.section {
-        case MyQotViewModel.Section.header.rawValue:
+        switch MyQotViewModel.Section.allCases.at(index: indexPath.section) {
+        case .header?:
             return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
         default:
             return qotBoxSize
@@ -156,24 +154,24 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         indexPathDeselect = indexPath
-        switch indexPath.section {
-        case MyQotViewModel.Section.header.rawValue:
+        switch MyQotViewModel.Section.allCases.at(index: indexPath.section) {
+        case .header?:
             return
         default:
-            let qotSection = MyQotSection.allCases[indexPath.row]
-            switch qotSection {
-            case .profile:
-                interactor?.presentCreateTeam()
-            case .library:
-                interactor?.presentMyLibrary()
-            case .preps:
-                interactor?.presentMyPreps()
-            case .sprints:
-                interactor?.presentMySprints()
-            case .data:
-                interactor?.presentMyDataScreen()
-            case .toBeVision:
-                interactor?.presentMyToBeVision()
+            switch MyQotSection.allCases.at(index: indexPath.row) {
+            case .teamCreate?:
+                interactor.presentCreateTeam()
+            case .library?:
+                interactor.presentMyLibrary()
+            case .preps?:
+                interactor.presentMyPreps()
+            case .sprints?:
+                interactor.presentMySprints()
+            case .data?:
+                interactor.presentMyDataScreen()
+            case .toBeVision?:
+                interactor.presentMyToBeVision()
+            default: return
             }
         }
     }
@@ -181,8 +179,8 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        switch section {
-        case 0: return .zero
+        switch MyQotViewModel.Section.allCases.at(index: section) {
+        case .header?: return .zero
         default: return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
         }
     }
@@ -190,15 +188,15 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        switch indexPath.section {
-        case MyQotViewModel.Section.header.rawValue:
+        switch MyQotViewModel.Section.allCases.at(index: indexPath.section) {
+        case .header?:
             return UICollectionReusableView()
         default:
             let identifier = R.reuseIdentifier.reusableHeaderView_ID.identifier
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                          withReuseIdentifier: identifier,
                                                                          for: indexPath) as? ReusableHeaderView
-            header?.configure(headerItems: teamHeaderItems)            
+            header?.configure(headerItems: teamHeaderItems)
             return header ?? UICollectionReusableView()
         }
     }

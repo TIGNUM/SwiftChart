@@ -29,11 +29,12 @@ final class MyQotMainWorker {
 
     func myQOTTitle(for section: MyQotSection) -> String {
         return myQotSectionTitles(for: section)
+
     }
 
     func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
         switch myQotItem {
-        case .profile:
+        case .teamCreate:
             return AppTextService.get(.my_x_team_create_header)
         case .library:
             return AppTextService.get(.my_qot_section_my_library_title)
@@ -130,6 +131,16 @@ extension MyQotMainWorker {
                                   selected: false)
             }
             completion(teamHeaderItems)
+        }
+    }
+
+    func isCellEnabled(_ completion: @escaping (Bool) -> Void) {
+        TeamService.main.getTeamConfiguration { [weak self] (config, _) in
+            if let config = config {
+                self?.getTeams { (teams) in
+                    completion(teams.count <= config.teamMaxCount)
+                }
+            }
         }
     }
 }
