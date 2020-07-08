@@ -44,19 +44,15 @@ final class MyQotMainInteractor {
         var sectionDataList: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = [ArraySection(model: .header,
                                                                                                          elements: [])]
         var elements: [MyQotViewModel.Item] = []
-        for index in 0...5 {
-            let section = MyQotSection.init(rawValue: index) ?? .profile
+        MyQotSection.allCases.forEach { (section) in
             elements.append(MyQotViewModel.Item(myQotSections: section,
                                                 title: worker.myQOTTitle(for: section),
                                                 subtitle: nil))
         }
-
         sectionDataList.append(ArraySection(model: .body,
                                             elements: elements))
-
         let changeSet = StagedChangeset(source: self.viewModelOldListModels, target: sectionDataList)
         self.presenter.updateViewNew(changeSet)
-
     }
 
     private func createMyData(irScore: Int?) -> [MyQotViewModel.Item] {
@@ -80,14 +76,6 @@ final class MyQotMainInteractor {
             item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
             return [item]
         }
-    }
-
-    private func createProfile(userName: String?) -> [MyQotViewModel.Item] {
-        var item = worker.myQotSections().myQotItems[MyQotSection.profile.rawValue]
-        if userName != nil, subtitles.count > MyQotSection.profile.rawValue {
-            item.subtitle = "Hello " + (userName ?? "") + ",\n" + (subtitles[MyQotSection.profile.rawValue]?.lowercased() ?? "")
-        }
-        return [item]
     }
 
     private func createLibrary() -> [MyQotViewModel.Item] {
@@ -231,9 +219,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                                 guard let strongSelf = self else {
                                     return
                                 }
-                                elements.append(contentsOf: strongSelf.createProfile(userName: nil))
+                                elements.append(strongSelf.worker.myQotSections().myQotItems[MyQotSection.teamCreate.rawValue])
                                 elements.append(contentsOf: strongSelf.createLibrary())
-                                elements.append(contentsOf: strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                                elements.append(contentsOf: strongSelf.createPreps(dateString: dateString,
+                                                                                   eventType: eventType))
                                 elements.append(contentsOf: strongSelf.createSprints(sprintName: sprintName))
                                 elements.append(contentsOf: strongSelf.createMyData(irScore: score))
                                 elements.append(contentsOf: strongSelf.createToBeVision(date: date))
@@ -241,7 +230,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                                 sectionDataList.append(ArraySection(model: .body,
                                                                     elements: elements))
 
-                                let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
+                                let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels,
+                                                                target: sectionDataList)
                                 strongSelf.presenter.updateViewNew(changeSet)
                             })
                         })
@@ -249,5 +239,12 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                 })
             })
         })
+    }
+
+    func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void) {
+        switch section {
+        case .teamCreate: worker.canCreateTeam(completion)
+        default: completion(true)
+        }
     }
 }

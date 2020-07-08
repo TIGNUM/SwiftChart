@@ -42,7 +42,7 @@ final class MyXTeamSettingsViewController: UIViewController {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
-        interactor!.viewDidLoad()
+        interactor.viewDidLoad()
         tableView.registerDequeueable(TeamSettingsTableViewCell.self)
         tableView.registerDequeueable(TeamNameTableViewCell.self)
     }
@@ -114,7 +114,13 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: interactor.getTeamName(), themeCell: .level3)
+            interactor.getAvailableColors { [weak self] (teamColors) in
+                guard let strongSelf = self else { return }
+                cell.configure(teamId: strongSelf.interactor.getTeamId(),
+                               teamColors: teamColors,
+                               selectedColor: strongSelf.interactor.getTeamColor(),
+                               title: strongSelf.interactor.getTeamName())
+            }
             cell.delegate = self
             return cell
         case .teamMembers:

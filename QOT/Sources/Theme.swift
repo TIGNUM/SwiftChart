@@ -635,6 +635,7 @@ enum ThemeText {
     case strategyHeader
     case strategySubHeader
     case myQOTBoxTitle
+    case myQOTBoxTitleDisabled
     case myQOTTitle
     case myQOTProfileName
     case myQOTPrepCellTitle
@@ -902,7 +903,7 @@ enum ThemeText {
              .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus, .Text03Light, .myPlansHeader:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle,
-             .myLibraryGroupName:
+             .myLibraryGroupName, .myQOTBoxTitleDisabled:
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
@@ -1071,7 +1072,7 @@ enum ThemeText {
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
-             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader:
+             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -1201,7 +1202,8 @@ enum ThemeText {
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader, .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
-             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader:
+             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
+             .myQOTBoxTitleDisabled:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)

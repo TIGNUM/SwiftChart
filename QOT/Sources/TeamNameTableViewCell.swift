@@ -10,28 +10,35 @@ import UIKit
 
 final class TeamNameTableViewCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet weak var selectorLine: UIView!
-    @IBOutlet weak var colorPickerView: UIView!
-    var colorPicker: ColorPicker?
+    // MARK: - Properties
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var colorPicker: ColorPicker!
     weak var delegate: MyXTeamSettingsViewController?
 
+    // MARK: - Liefe cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundView = UIView(frame: self.bounds)
         self.selectedBackgroundView = UIView(frame: self.bounds)
         ThemeView.level2Selected.apply(selectedBackgroundView!)
-        selectorLine.isHidden = true
     }
 
+    func configure(teamId: String,
+                   teamColors: [UIColor],
+                   selectedColor: String,
+                   title: String,
+                   themeCell: ThemeView = .level2) {
+        themeCell.apply(backgroundView!)
+        ThemeText.linkMenuItem.apply(title, to: nameLabel)
+        nameLabel.text = title
+        colorPicker.configure(teamId: teamId, teamColors: teamColors, selectedColor: UIColor(hex: selectedColor))
+    }
+}
+
+// MARK: - Actions
+private extension TeamNameTableViewCell {
     @IBAction func editTapped(_ sender: Any) {
         delegate?.presentEditTeam()
-    }
-
-    func configure(title: String, themeCell: ThemeView = .level2) {
-        themeCell.apply(backgroundView!)
-        colorPicker = R.nib.colorPicker.firstView(owner: self)
-        colorPicker?.addTo(superview: colorPickerView)
-        colorPicker?.delegate = delegate
-        colorPicker?.configure(name: title)
     }
 }

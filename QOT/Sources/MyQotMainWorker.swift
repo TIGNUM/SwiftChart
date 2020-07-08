@@ -9,14 +9,10 @@
 import UIKit
 import qot_dal
 
-final class MyQotMainWorker {
+final class MyQotMainWorker: WorkerTeam {
 
     // MARK: - Properties
     private let userService = UserService.main
-
-    // MARK: - Init
-    init() {
-    }
 
     // MARK: - functions
     func myQotSections() -> MyQotViewModel {
@@ -29,11 +25,12 @@ final class MyQotMainWorker {
 
     func myQOTTitle(for section: MyQotSection) -> String {
         return myQotSectionTitles(for: section)
+
     }
 
     func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
         switch myQotItem {
-        case .profile:
+        case .teamCreate:
             return AppTextService.get(.my_x_team_create_header)
         case .library:
             return AppTextService.get(.my_qot_section_my_library_title)
@@ -108,28 +105,5 @@ final class MyQotMainWorker {
             }
             completion(subtitles)
         })
-    }
-}
-
-// MARK: - Team
-extension MyQotMainWorker {
-    func getTeams(_ completion: @escaping ([QDMTeam]) -> Void) {
-        TeamService.main.getTeams { (teams, _, _) in
-            completion(teams ?? [])
-        }
-    }
-
-    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
-        getTeams { (teams) in
-            let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
-                return TeamHeader(teamId: team.qotId ?? "",
-                                  title: team.name ?? "",
-                                  hexColorString: team.teamColor ?? "",
-                                  sortOrder: 0,
-                                  batchCount: 0,
-                                  selected: false)
-            }
-            completion(teamHeaderItems)
-        }
     }
 }

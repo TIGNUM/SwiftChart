@@ -35,6 +35,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func refreshParams()
     func getSettingsTitle(completion: @escaping (String?) -> Void)
     func updateSelectedTeam(teamId: String)
+    func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void)
 }
 
 protocol MyQotMainRouterInterface {

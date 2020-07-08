@@ -16,7 +16,7 @@ final class MyXTeamSettingsWorker {
     }
 }
 
-extension MyXTeamSettingsWorker {
+extension MyXTeamSettingsWorker: WorkerTeam {
 
     var teamSettingsText: String {
         return AppTextService.get(.settings_team_settings_title).uppercased()
@@ -60,6 +60,20 @@ extension MyXTeamSettingsWorker {
                                   selected: false)
             }
             completion(teamHeaderItems)
+        }
+    }
+
+    func updateTeamColor(teamId: String, teamColor: String) {
+        getTeams { (teams) in
+            var team = teams.filter { $0.qotId == teamId }.first
+            team?.teamColor = teamColor
+            if let team = team {
+                TeamService.main.updateTeam(team) { (_, _, error) in
+                    if let error = error {
+                        log("error update team: \(error.localizedDescription)", level: .error)
+                    }
+                }
+            }
         }
     }
 }
