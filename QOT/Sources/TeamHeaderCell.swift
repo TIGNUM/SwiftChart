@@ -27,11 +27,19 @@ final class TeamHeaderCell: UICollectionViewCell {
                                                object: nil)
     }
 
+    /// Configure Team
     func configure(title: String, hexColorString: String, batchCount: Int, selected: Bool, teamId: String) {
         self.teamId = teamId
         self.hexColorString = hexColorString
         titleButton.setTitle(title, for: .normal)
         setSelected(selected)
+    }
+
+    /// Configure Team Invitations
+    func configure(title: String, batchCount: Int, hexColorString: String) {
+        self.hexColorString = hexColorString
+        titleButton.setTitle(title, for: .normal)
+        setSelected(false)
     }
 }
 

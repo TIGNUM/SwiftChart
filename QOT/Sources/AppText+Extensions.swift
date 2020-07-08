@@ -486,6 +486,17 @@ public extension AppTextKey {
     static let my_x_team_edit_header = AppTextKey("my_x.team_edit.header")
     static let my_x_team_edit_save_cta = AppTextKey("my_x.team_edit.save_cta")
 
+    // MARK: - Team Invitations
+    static let team_invite_header_plural = AppTextKey("team_invite.header_title.plural")
+    static let team_invite_header_singular = AppTextKey("team_invite.header_title.singular")
+    static let team_invite_content_info = AppTextKey("team_invite.content.info")
+    static let team_invite_content_count = AppTextKey("team_invite.content.count")
+    static let team_invite_content_note = AppTextKey("team_invite.content.note")
+    static let team_invite_cta_decline = AppTextKey("team_invite.cta.decline")
+    static let team_invite_cta_join = AppTextKey("team_invite.cta.join")
+    static let team_invite_details = AppTextKey("team_invite.details.text")
+    static let team_invite_max_capacity = AppTextKey(" team_invite.max.capacity")
+
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")
     static let my_qot_my_library_downloads_alert_use_mobile_data_title = AppTextKey("my_qot.my_library.downloads.alert.use_mobile_data.title")

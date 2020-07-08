@@ -30,18 +30,12 @@ final class MyQotMainWorker: WorkerTeam {
 
     func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
         switch myQotItem {
-        case .teamCreate:
-            return AppTextService.get(.my_x_team_create_header)
-        case .library:
-            return AppTextService.get(.my_qot_section_my_library_title)
-        case .preps:
-            return AppTextService.get(.my_qot_section_my_plans_title)
-        case .sprints:
-            return AppTextService.get(.my_qot_section_my_sprints_title)
-        case .data:
-            return AppTextService.get(.my_qot_section_my_data_title)
-        case .toBeVision:
-            return AppTextService.get(.my_qot_section_my_tbv_title)
+        case .teamCreate: return AppTextService.get(.my_x_team_create_header)
+        case .library: return AppTextService.get(.my_qot_section_my_library_title)
+        case .preps: return AppTextService.get(.my_qot_section_my_plans_title)
+        case .sprints: return AppTextService.get(.my_qot_section_my_sprints_title)
+        case .data: return AppTextService.get(.my_qot_section_my_data_title)
+        case .toBeVision: return AppTextService.get(.my_qot_section_my_tbv_title)
         }
     }
 
@@ -97,13 +91,13 @@ final class MyQotMainWorker: WorkerTeam {
 
     func getSubtitles(completion: @escaping ([String?]) -> Void) {
         var subtitles: [String?] = []
-        ContentService.main.getContentCategory(.myQOT, {(category) in
+        ContentService.main.getContentCategory(.myQOT) {(category) in
             if category?.contentCollections.count ?? 0 > 1 {
                 category?.contentCollections[1].contentItems.forEach {(items) in
                     subtitles.append(items.valueText)
                 }
             }
             completion(subtitles)
-        })
+        }
     }
 }
