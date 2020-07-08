@@ -77,6 +77,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if addPressed {
             let cell: ConfirmationViewCell = tableView.dequeueReusableCell(withIdentifier: "ConfirmationViewCell", for: indexPath) as! ConfirmationViewCell
+            cell.configure(message: shareExtensionStrings?.addedTo)
             return cell
         } else {
             let cell: TeamTableViewCell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamTableViewCell
@@ -84,6 +85,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
                            participants: teamCollection[indexPath.row].numberOfMembers ?? 0,
                            shareExtensionStrings: shareExtensionStrings)
 //            cell.isUserInteractionEnabled = true
+            cell.backgroundColor = carbon
             cell.selectionStyle = .none
             return cell
         }
@@ -146,7 +148,6 @@ private extension CustomizedShareViewController{
         addButton.layer.borderWidth = 1
     }
 
-//    apptext
     func setupNavBar() {
         let navBar = navigationController?.navigationBar
         navBar?.barTintColor = carbon
@@ -265,7 +266,7 @@ private extension CustomizedShareViewController{
             if let context = self.extensionContext {
                 context.completeRequest(returningItems: [], completionHandler: nil)
             } else {
-                //  replacement of super.didSelectPost() ??
+                //  replace super.didSelectPost() ??
             }
         }
     }

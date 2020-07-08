@@ -55,6 +55,4 @@ final class ContainerShareViewController: UIViewController {
         containerView.addSubview(navigationController.view)
         navigationController.didMove(toParent: self)
     }
-
-
 }
