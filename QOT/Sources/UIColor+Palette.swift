@@ -60,39 +60,6 @@ extension UIColor {
     }
 }
 
-// MARK: - Team
-extension UIColor {
-    public class var teamBlue: UIColor {
-        return UIColor(hex: "#5790DD")
-    }
-
-    public class var teamYellow: UIColor {
-        return UIColor(hex: "#C7AF1F")
-    }
-
-    public class var teamGreen: UIColor {
-        return UIColor(hex: "#46AF89")
-    }
-
-    public class var teamPurple: UIColor {
-        return UIColor(hex: "#9848A5")
-    }
-
-    public class var teamPink: UIColor {
-        return UIColor(hex: "#E49A9E")
-    }
-
-    public class var randomTeamColor: UIColor {
-        let possibleColors: [UIColor] = [.teamBlue,
-                                         .teamPink,
-                                         .teamGreen,
-                                         .teamPurple,
-                                         .teamYellow]
-        let index = Int.random(in: 0..<possibleColors.count) //?? possibleColors.randomIndex should work ??
-        return possibleColors[index]
-    }
-}
-
 extension UIColor {
     public class var redOrange40: UIColor {
         return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 0.4)

@@ -42,7 +42,7 @@ final class MyXTeamSettingsViewController: UIViewController {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
-        interactor!.viewDidLoad()
+        interactor.viewDidLoad()
         tableView.registerDequeueable(TeamSettingsTableViewCell.self)
         tableView.registerDequeueable(TeamNameTableViewCell.self)
     }
@@ -93,6 +93,10 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
     func updateView() {
         tableView.reloadData()
     }
+
+    func updateSettingsModel(_ settings: MyXTeamSettingsModel) {
+        settingsModel = settings
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -100,7 +104,7 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
 extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return settingsModel.teamSettingsCount
+        return interactor.settingItems().count
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -108,26 +112,33 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) else {
-            fatalError("MyXTeamSettings Item does not exist at indexPath: \(indexPath.item)")
+//        guard let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) else {
+             guard let item = interactor.settingItems().at(index: indexPath.item) else {
+            fatalError("settingItems Item does not exist at indexPath: \(indexPath.item)")
         }
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: interactor.getTeamName(), themeCell: .level3)
+            interactor.getAvailableColors { [weak self] (teamColors) in
+                guard let strongSelf = self else { return }
+                cell.configure(teamId: strongSelf.interactor.getTeamId(),
+                               teamColors: teamColors,
+                               selectedColor: strongSelf.interactor.getTeamColor(),
+                               title: strongSelf.interactor.getTeamName())
+            }
             cell.delegate = self
             return cell
         case .teamMembers:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
-            let subtitle = settingsModel.subtitleForItem(at: indexPath)
+            cell.configure(title: interactor.titleForItem(at: indexPath), themeCell: .level3)
+            let subtitle = interactor.subtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
             return cell
         default:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
-            let subtitle = settingsModel.subtitleForItem(at: indexPath)
+            cell.configure(title: interactor.titleForItem(at: indexPath), themeCell: .level3)
+            let subtitle = interactor.subtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             return cell
         }

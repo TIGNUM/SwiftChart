@@ -16,6 +16,11 @@ class TeamHeader {
     var batchCount: Int
     var selected: Bool
 
+    enum Selector: String {
+        case teamId
+        case teamColor
+    }
+
     internal init(teamId: String,
                   title: String,
                   hexColorString: String,
