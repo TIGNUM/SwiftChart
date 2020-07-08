@@ -12,14 +12,17 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
 
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var audioButton: UIButton!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: ClickableLabel!
     @IBOutlet private weak var headerView: UIView!
-    @IBOutlet private weak var expertNameLabel: UILabel!
+    @IBOutlet private weak var expertNameLabel: ClickableLabel!
 
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     private var mediaURL: URL?
     private var duration: Double?
     private var remoteID: Int?
     private var audioTitle: String?
+    @IBOutlet weak var audioButtonHeightConstraint: NSLayoutConstraint!
+
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
@@ -34,20 +37,29 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
     func configure(with viewModel: ExpertThoughtsCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
+        audioButton.isHidden = model.format != .audio
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(),
                                   subtitle: "")
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.description ?? "", to: descriptionLabel)
         ThemeText.dailyBriefSubtitle.apply(model.name ?? "", to: expertNameLabel)
-
         descriptionLabel.isHidden = model.description == nil
         duration = model.audioDuration
         remoteID = model.remoteID
         audioTitle = model.audioTitle
         mediaURL = model.audioLink
+        if audioButton.isHidden == true {
+             audioButtonHeightConstraint.constant = 0
+        } else {
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
+        }
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width, 0) ?? 0
     }
 
     @IBAction func audioAction(_ sender: Any) {

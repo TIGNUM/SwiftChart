@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="PNf-LZ-pSF" customClass="NavBarTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <view contentMode="scaleToFill" id="PNf-LZ-pSF" customClass="NavBarTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="542" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdL-Gs-dv2">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="542" height="44"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8m4-Gr-hNY">
-                            <rect key="frame" x="10" y="10" width="24" height="24"/>
+                            <rect key="frame" x="24" y="10" width="24" height="24"/>
                             <state key="normal" image="ic_navbar_arrow_left"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpy-Ss-MOI">
-                            <rect key="frame" x="143.5" y="7" width="33.5" height="30"/>
+                            <rect key="frame" x="254.5" y="7" width="33.5" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="xMC-NK-kqv"/>
                             </constraints>
@@ -33,28 +31,28 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvU-ie-qHc">
-                            <rect key="frame" x="286" y="10" width="24" height="24"/>
+                            <rect key="frame" x="494" y="10" width="24" height="24"/>
                             <state key="normal" image="ic_navbar_arrow_right"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="dpy-Ss-MOI" firstAttribute="centerY" secondItem="AdL-Gs-dv2" secondAttribute="centerY" id="8fF-Sw-CM5"/>
+                        <constraint firstItem="mdO-iU-wtU" firstAttribute="trailing" secondItem="YvU-ie-qHc" secondAttribute="trailing" constant="24" id="Ct8-RA-V4p"/>
                         <constraint firstAttribute="height" constant="44" id="FVE-Ma-FZp"/>
                         <constraint firstItem="dpy-Ss-MOI" firstAttribute="centerX" secondItem="AdL-Gs-dv2" secondAttribute="centerX" id="KD7-q0-07v"/>
                         <constraint firstItem="YvU-ie-qHc" firstAttribute="centerY" secondItem="dpy-Ss-MOI" secondAttribute="centerY" id="dZo-uF-4Yb"/>
-                        <constraint firstAttribute="trailing" secondItem="YvU-ie-qHc" secondAttribute="trailing" constant="10" id="drQ-9u-tGZ"/>
                         <constraint firstItem="8m4-Gr-hNY" firstAttribute="centerY" secondItem="dpy-Ss-MOI" secondAttribute="centerY" id="ezW-7U-Qcz"/>
-                        <constraint firstItem="8m4-Gr-hNY" firstAttribute="leading" secondItem="AdL-Gs-dv2" secondAttribute="leading" constant="10" id="pAX-JD-3dN"/>
+                        <constraint firstItem="8m4-Gr-hNY" firstAttribute="leading" secondItem="mdO-iU-wtU" secondAttribute="leading" constant="24" id="uni-dH-D7H"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="mdO-iU-wtU"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="AdL-Gs-dv2" firstAttribute="leading" secondItem="iVd-3Z-Mqq" secondAttribute="leading" id="0Wg-96-bNK"/>
                 <constraint firstItem="AdL-Gs-dv2" firstAttribute="top" secondItem="PNf-LZ-pSF" secondAttribute="top" id="9F3-s9-en1"/>
-                <constraint firstItem="AdL-Gs-dv2" firstAttribute="leading" secondItem="iVd-3Z-Mqq" secondAttribute="leading" id="Kgf-Aa-WdY"/>
-                <constraint firstItem="AdL-Gs-dv2" firstAttribute="trailing" secondItem="iVd-3Z-Mqq" secondAttribute="trailing" id="m94-s2-zjT"/>
+                <constraint firstItem="iVd-3Z-Mqq" firstAttribute="trailing" secondItem="AdL-Gs-dv2" secondAttribute="trailing" id="kJG-bf-aJ4"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -66,7 +64,7 @@
                 <outlet property="container" destination="AdL-Gs-dv2" id="cFY-WK-GER"/>
                 <outlet property="titleLabel" destination="dpy-Ss-MOI" id="guM-hl-mHU"/>
             </connections>
-            <point key="canvasLocation" x="146.37681159420291" y="-237.72321428571428"/>
+            <point key="canvasLocation" x="343" y="-252"/>
         </view>
     </objects>
     <resources>

@@ -173,7 +173,6 @@ private extension CustomizedShareViewController{
 // MARK: - Handling Links
 
     private func handleSharedFile(teamLibraries: [String]?) {
-//          TO DO, HANDLE SHARING TO DIFFERENT LIBRARIES
         let typeURL = String(kUTTypeURL)
         let textTypes = [String(kUTTypeText),
                          String(kUTTypePlainText),
@@ -263,11 +262,8 @@ private extension CustomizedShareViewController{
         dataArray.append(self.shareExtensionData)
         ExtensionUserDefaults.set(dataArray, for: .saveLink, in: .share)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            if let context = self.extensionContext {
-                context.completeRequest(returningItems: [], completionHandler: nil)
-            } else {
-                //  replace super.didSelectPost() ??
-            }
+            let context = self.extensionContext
+            context?.completeRequest(returningItems: [], completionHandler: nil)
         }
     }
 

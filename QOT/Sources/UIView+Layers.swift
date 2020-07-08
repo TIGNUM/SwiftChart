@@ -31,7 +31,7 @@ extension UIView {
     }
 
     func circle() {
-        corner(radius: frame.height * 0.5)
+        corner(radius: max(frame.height, frame.width) * 0.5)
     }
 
     func cornerDefault() {

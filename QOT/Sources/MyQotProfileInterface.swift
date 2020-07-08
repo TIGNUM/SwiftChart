@@ -32,4 +32,5 @@ protocol MyQotProfileRouterInterface {
     func presentSupport()
     func presentAboutTignum()
     func presentAdminSettings()
+    func presentTeamSettings()
 }

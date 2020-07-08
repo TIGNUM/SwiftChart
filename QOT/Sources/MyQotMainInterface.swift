@@ -8,14 +8,17 @@
 
 import Foundation
 import DifferenceKit
+import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
+    func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>)
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
+    func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>)
 }
 
@@ -26,9 +29,13 @@ protocol MyQotMainInteractorInterface: Interactor {
     func presentMyToBeVision()
     func presentMyLibrary()
     func presentMyDataScreen()
+    func presentCreateTeam()
     func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]?
     func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>])
     func refreshParams()
+    func getSettingsTitle(completion: @escaping (String?) -> Void)
+    func updateSelectedTeam(teamId: String)
+    func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void)
 }
 
 protocol MyQotMainRouterInterface {
@@ -37,6 +44,6 @@ protocol MyQotMainRouterInterface {
     func presentMySprints()
     func presentMyLibrary()
     func presentMyDataScreen()
-
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func showTBV()
 }

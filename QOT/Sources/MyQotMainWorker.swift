@@ -9,19 +9,12 @@
 import UIKit
 import qot_dal
 
-final class MyQotMainWorker {
+final class MyQotMainWorker: WorkerTeam {
 
     // MARK: - Properties
-
     private let userService = UserService.main
 
-    // MARK: - Init
-
-    init() {
-    }
-
-// MARK: - functions
-
+    // MARK: - functions
     func myQotSections() -> MyQotViewModel {
         let myQotItems =  MyQotSection.allCases.map {
             return MyQotViewModel.Item(myQotSections: $0,
@@ -32,12 +25,13 @@ final class MyQotMainWorker {
 
     func myQOTTitle(for section: MyQotSection) -> String {
         return myQotSectionTitles(for: section)
+
     }
 
     func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
         switch myQotItem {
-        case .profile:
-            return AppTextService.get(.my_qot_section_my_profile_title)
+        case .teamCreate:
+            return AppTextService.get(.my_x_team_create_header)
         case .library:
             return AppTextService.get(.my_qot_section_my_library_title)
         case .preps:
@@ -68,6 +62,16 @@ final class MyQotMainWorker {
     func getUserName(completion: @escaping (String?) -> Void) {
           UserService.main.getUserData { (user) in
             completion(user?.givenName)
+        }
+    }
+
+    func getSettingsTitle(completion: @escaping (String?) -> Void) {
+        getUserName { (userName) in
+            if let firstLetter = userName?.first {
+                completion(String(firstLetter))
+            } else {
+                completion("X")
+            }
         }
     }
 

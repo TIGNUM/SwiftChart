@@ -10,7 +10,7 @@ import UIKit
 import DifferenceKit
 
 enum MyQotSection: Int, CaseIterable, Differentiable {
-    case profile = 0
+    case teamCreate = 0
     case library
     case preps
     case sprints
@@ -42,7 +42,7 @@ struct MyQotViewModel {
     // MARK: - Properties
 
     func sectionItem(at indexPath: IndexPath) -> MyQotSection {
-        return MyQotSection.allCases.at(index: indexPath.row) ?? .profile
+        return MyQotSection.allCases.at(index: indexPath.row) ?? .teamCreate
     }
 
     enum Section: Int, CaseIterable, Differentiable {
