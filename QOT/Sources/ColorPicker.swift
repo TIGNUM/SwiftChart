@@ -10,6 +10,14 @@ import UIKit
 
 final class ColorPicker: UIView {
 
+    enum Color: Int, CaseIterable {
+        case pink = 0
+        case purple
+        case green
+        case yellow
+        case blue
+    }
+
     private var skeletonManager = SkeletonManager()
     @IBOutlet private weak var colorPink: UIButton!
     @IBOutlet private weak var colorPurple: UIButton!
@@ -33,8 +41,14 @@ final class ColorPicker: UIView {
     @IBOutlet private weak var trailingConstraintBlue: NSLayoutConstraint!
     weak var delegate: MyXTeamSettingsViewController?
     private var isOpen = false
-    private var selectedColor = UIColor.teamPink
+    private var selectedColor = UIColor.clear
+    private var teamColors = [UIColor]()
     private var teamId = ""
+    private lazy var teamPink: UIColor = teamColors[Color.pink.rawValue]
+    private lazy var teamPurple: UIColor = teamColors[Color.purple.rawValue]
+    private lazy var teamGreen: UIColor = teamColors[Color.green.rawValue]
+    private lazy var teamYellow: UIColor = teamColors[Color.yellow.rawValue]
+    private lazy var teamBlue: UIColor = teamColors[Color.blue.rawValue]
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,23 +57,13 @@ final class ColorPicker: UIView {
         colorGreen.circle()
         colorYellow.circle()
         colorPink.circle()
-
-        colorBlue.backgroundColor = .teamBlue
-        colorYellow.backgroundColor = .teamYellow
-        colorGreen.backgroundColor = .teamGreen
-        colorPurple.backgroundColor = .teamPurple
-        colorPink.backgroundColor = .teamPink
-
-        colorSelectorPink.backgroundColor = .teamPink
-        colorSelectorPurple.backgroundColor = .teamPurple
-        colorSelectorGreen.backgroundColor = .teamGreen
-        colorSelectorYellow.backgroundColor = .teamYellow
-        colorSelectorBlue.backgroundColor = .teamBlue
     }
 
-    func configure(teamId: String, teamColor: UIColor) {
+    func configure(teamId: String, teamColors: [UIColor], selectedColor: UIColor) {
         self.teamId = teamId
-        selectedColor = teamColor
+        self.teamColors = teamColors
+        self.selectedColor = selectedColor
+        setupColors()
         updateOrder()
     }
 }
@@ -67,42 +71,57 @@ final class ColorPicker: UIView {
 // MARK: - Action
 private extension ColorPicker {
     @IBAction func didSelectColorPink() {
-        selectedColor = .teamPink
+        selectedColor = teamPink
         hideSelectors()
         colorSelectorPink.isHidden = false
         showColors()
     }
 
     @IBAction func didSelectColorPurple() {
-        selectedColor = .teamPurple
+        selectedColor = teamPurple
         hideSelectors()
         colorSelectorPurple.isHidden = false
         showColors()
     }
 
     @IBAction func didSelectColorGreen() {
-        selectedColor = .teamGreen
+        selectedColor = teamGreen
         hideSelectors()
         colorSelectorGreen.isHidden = false
         showColors()
     }
 
     @IBAction func didSelectColorYellow() {
-        selectedColor = .teamYellow
+        selectedColor = teamYellow
         hideSelectors()
         colorSelectorYellow.isHidden = false
         showColors()
     }
 
     @IBAction func didSelectColorBlue() {
-        selectedColor = .teamBlue
+        selectedColor = teamBlue
         hideSelectors()
         colorSelectorBlue.isHidden = false
         showColors()
     }
 }
 
+// MARK: - Private
 private extension ColorPicker {
+    func setupColors() {
+        colorBlue.backgroundColor = teamBlue
+        colorYellow.backgroundColor = teamYellow
+        colorGreen.backgroundColor = teamGreen
+        colorPurple.backgroundColor = teamPurple
+        colorPink.backgroundColor = teamPink
+
+        colorSelectorPink.backgroundColor = teamPink
+        colorSelectorPurple.backgroundColor = teamPurple
+        colorSelectorGreen.backgroundColor = teamGreen
+        colorSelectorYellow.backgroundColor = teamYellow
+        colorSelectorBlue.backgroundColor = teamBlue
+    }
+
     func showColors() {
         if isOpen {
             UIView.animate(withDuration: Animation.duration_03, animations: {
@@ -130,19 +149,19 @@ private extension ColorPicker {
     }
 
     func updateOrder() {
-        if selectedColor == .teamBlue {
+        if selectedColor == teamBlue {
             colorContainerBlue.superview?.bringSubviewToFront(colorContainerBlue)
         }
-        if selectedColor == .teamYellow {
+        if selectedColor == teamYellow {
             colorContainerYellow.superview?.bringSubviewToFront(colorContainerYellow)
         }
-        if selectedColor == .teamGreen {
+        if selectedColor == teamGreen {
             colorContainerGreen.superview?.bringSubviewToFront(colorContainerGreen)
         }
-        if selectedColor == .teamPurple {
+        if selectedColor == teamPurple {
             colorContainerPurple.superview?.bringSubviewToFront(colorContainerPurple)
         }
-        if selectedColor == .teamPink {
+        if selectedColor == teamPink {
             colorContainerPink.superview?.bringSubviewToFront(colorContainerPink)
         }
     }

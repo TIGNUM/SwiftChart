@@ -30,6 +30,7 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
     func getTeamName() -> String
     func getTeamId() -> String
     func getTeamColor() -> String
+    func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void)
     func updateTeams()
     func deleteTeam(team: QDMTeam)
     func leaveTeam(team: QDMTeam)

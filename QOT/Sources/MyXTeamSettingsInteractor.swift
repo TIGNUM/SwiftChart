@@ -125,6 +125,10 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         return teamHeaderItems.filter { $0.selected }.first?.hexColorString ?? ""
     }
 
+    func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void) {
+        worker.getTeamColors(completion)
+    }
+
     func deleteTeam(team: QDMTeam) {
         worker.deleteTeam(team, { teams, _, error in
             self.updateTeams()

@@ -16,6 +16,10 @@ protocol WorkerTeam {
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
+    func getTeamColors(_ completion: @escaping ([UIColor]) -> Void)
+
+    func getRandomTeamColor(_ completion: @escaping (String) -> Void)
+
     func canCreateTeam(_ completion: @escaping (Bool) -> Void)
 
     func teamCreate(_ name: String?, _ completion: @escaping (QDMTeam?, Error?) -> Void)
@@ -64,12 +68,14 @@ extension WorkerTeam {
 
     func teamCreate(_ name: String?, _ completion: @escaping (QDMTeam?, Error?) -> Void) {
         if let name = name {
-            TeamService.main.createTeam(name: name, teamColor: UIColor.randomTeamColor.toHexString) { (team, _, error) in
-                if let error = error {
-                    log("Error createTeam: \(error.localizedDescription)", level: .error)
-                    // TODO handle error
+            getRandomTeamColor { (teamColor) in
+                TeamService.main.createTeam(name: name, teamColor: teamColor) { (team, _, error) in
+                    if let error = error {
+                        log("Error createTeam: \(error.localizedDescription)", level: .error)
+                        // TODO handle error
+                    }
+                    completion(team, error)
                 }
-                completion(team, error)
             }
         } else {
             completion(nil, nil)
@@ -105,6 +111,24 @@ extension WorkerTeam {
     func getMaxChars(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
             completion(config?.teamNameMaxLength ?? 0)
+        }
+    }
+
+    func getRandomTeamColor(_ completion: @escaping (String) -> Void) {
+        getConfig { (config) in
+            guard let colors = config?.availableTeamColors, let random = colors.at(index: colors.randomIndex) else {
+                fatalError("Random team color is not available")
+            }
+            completion(random)
+        }
+    }
+
+    func getTeamColors(_ completion: @escaping ([UIColor]) -> Void) {
+        getConfig { (config) in
+            let colors = config?.availableTeamColors.compactMap { (hexColor) -> UIColor in
+                return UIColor(hex: hexColor)
+            }
+            completion(colors ?? [])
         }
     }
 

@@ -24,11 +24,15 @@ final class TeamNameTableViewCell: UITableViewCell, Dequeueable {
         ThemeView.level2Selected.apply(selectedBackgroundView!)
     }
 
-    func configure(teamId: String, teamColor: String, title: String, themeCell: ThemeView = .level2) {
+    func configure(teamId: String,
+                   teamColors: [UIColor],
+                   selectedColor: String,
+                   title: String,
+                   themeCell: ThemeView = .level2) {
         themeCell.apply(backgroundView!)
         ThemeText.linkMenuItem.apply(title, to: nameLabel)
         nameLabel.text = title
-        colorPicker.configure(teamId: teamId, teamColor: UIColor(hex: teamColor))
+        colorPicker.configure(teamId: teamId, teamColors: teamColors, selectedColor: UIColor(hex: selectedColor))
     }
 }
 
