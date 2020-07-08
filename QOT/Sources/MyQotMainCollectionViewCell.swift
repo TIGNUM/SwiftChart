@@ -16,6 +16,7 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     let skeletonManager = SkeletonManager()
 
     func configure(title: String?, subtitle: String?, enabled: Bool) {
+        isUserInteractionEnabled = enabled
         if enabled {
             ThemeText.myQOTBoxTitle.apply((title ?? ""), to: titleLabel)
         } else {

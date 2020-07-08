@@ -136,7 +136,7 @@ extension WorkerTeam {
          getConfig { (config) in
              if let config = config {
                  self.getTeams { (teams) in
-                     completion(teams.count <= config.teamMaxCount)
+                     completion(teams.count < config.teamMaxCount)
                  }
              } else {
                  completion(false)
