@@ -18,7 +18,6 @@ final class MyQotMainInteractor {
     private let router: MyQotMainRouterInterface
     private var teamHeaderItems = [TeamHeader]()
     private var viewModel: IndexPathArray = []
-    private var subtitles: [String?] = []
     private var eventType: String?
 
     // MARK: - Init
@@ -68,10 +67,6 @@ private extension MyQotMainInteractor {
         let since = Int(timeElapsed(date: date).rounded())
         let key: AppTextKey = since >= 3 ? .my_qot_section_my_tbv_subtitle_more_than : .my_qot_section_my_tbv_subtitle_less_than_3_months
         return worker.getMyQotItem(in: .toBeVision, subTitle: AppTextService.get(key))
-    }
-
-    func createLibrary() -> MyQot.Item {
-        return worker.getMyQotItem(in: .library)
     }
 
     func createPreps(dateString: String?, eventType: String?) -> MyQot.Item {
@@ -144,28 +139,26 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func refreshParams() {
-        var sectionDataList: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
-        var elements: [MyQot.Item] = []
+        worker.getImpactReadinessScore { [weak self] (score) in
+            self?.worker.toBeVisionDate { (date) in
+                self?.worker.nextPrep { (dateString) in
+                    self?.worker.nextPrepType { (eventType) in
+                        self?.worker.getCurrentSprintName { (sprintName) in
+                            guard let strongSelf = self else { return }
+                            var items: [MyQot.Item] = []
+                            items.append(strongSelf.worker.getMyQotItem(in: .teamCreate))
+                            items.append(strongSelf.worker.getMyQotItem(in: .library))
+                            items.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                            items.append(strongSelf.worker.getMyQotItem(in: .sprints, subTitle: sprintName ?? ""))
+                            items.append(strongSelf.createMyData(irScore: score))
+                            items.append(strongSelf.createToBeVision(date: date))
 
-        worker.getSubtitles { [weak self] (subtitles) in
-            self?.subtitles = subtitles
-            self?.worker.getImpactReadinessScore { (score) in
-                self?.worker.toBeVisionDate { (date) in
-                    self?.worker.nextPrep { (dateString) in
-                        self?.worker.nextPrepType { (eventType) in
-                            self?.worker.getCurrentSprintName { (sprintName) in
-                                guard let strongSelf = self else { return }
-                                elements.append(strongSelf.worker.getMyQotItem(in: .teamCreate))
-                                elements.append(strongSelf.createLibrary())
-                                elements.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                                elements.append(strongSelf.createSprints(sprintName: sprintName))
-                                elements.append(strongSelf.createMyData(irScore: score))
-                                elements.append(strongSelf.createToBeVision(date: date))
+                            var sections: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
+                            sections.append(ArraySection(model: .teamHeader, elements: []))
+                            sections.append(ArraySection(model: .body, elements: items))
 
-                                sectionDataList.append(ArraySection(model: .body, elements: elements))
-                                let changeSet = StagedChangeset(source: strongSelf.viewModel, target: sectionDataList)
-                                strongSelf.presenter.updateViewNew(changeSet)
-                            }
+                            let changeSet = StagedChangeset(source: strongSelf.viewModel, target: sections)
+                            strongSelf.presenter.updateViewNew(changeSet)
                         }
                     }
                 }
