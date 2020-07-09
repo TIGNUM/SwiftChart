@@ -989,7 +989,6 @@
 		B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412C22C4C0FE002897E4 /* BottomNavigationItem.swift */; };
 		B8BB413122C50B41002897E4 /* Notification+MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB413022C50B41002897E4 /* Notification+MediaPlayer.swift */; };
 		B8BB413322C555BF002897E4 /* MediaPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB413222C555BF002897E4 /* MediaPlayerModel.swift */; };
-		B8BCE58722AAB5EF0012AAAC /* ShareExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE58622AAB5EF0012AAAC /* ShareExtensionViewController.swift */; };
 		B8BCE58A22AAB5EF0012AAAC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */; };
 		B8BCE58E22AAB5EF0012AAAC /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B8BCE59822AAC2710012AAAC /* ExtensionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91842AE220F63CAD007605FD /* ExtensionModel.swift */; };
@@ -2295,7 +2294,6 @@
 		B8BB413022C50B41002897E4 /* Notification+MediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+MediaPlayer.swift"; sourceTree = "<group>"; };
 		B8BB413222C555BF002897E4 /* MediaPlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerModel.swift; sourceTree = "<group>"; };
 		B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8BCE58622AAB5EF0012AAAC /* ShareExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionViewController.swift; sourceTree = "<group>"; };
 		B8BCE58922AAB5EF0012AAAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B8BCE58B22AAB5EF0012AAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8BCE59522AAB5FA0012AAAC /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
@@ -4701,7 +4699,6 @@
 			children = (
 				F96D75A6249CE86700DFFB22 /* CustomizedShareViewController */,
 				B8BCE59522AAB5FA0012AAAC /* ShareExtension.entitlements */,
-				B8BCE58622AAB5EF0012AAAC /* ShareExtensionViewController.swift */,
 				B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */,
 				B8BCE58B22AAB5EF0012AAAC /* Info.plist */,
 				B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */,
@@ -6240,7 +6237,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8BCE58722AAB5EF0012AAAC /* ShareExtensionViewController.swift in Sources */,
 				F96D75BF24A3671F00DFFB22 /* ConfirmationViewCell.swift in Sources */,
 				F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */,
 				F96D75B4249CE88A00DFFB22 /* CustomizedShareViewController.swift in Sources */,

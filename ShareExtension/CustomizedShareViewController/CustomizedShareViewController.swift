@@ -82,11 +82,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     // MARK: - TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if addPressed {
-            return 1
-        } else {
-            return teamCollection.count
-        }
+        return addPressed ? 1 : teamCollection.count 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
