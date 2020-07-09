@@ -33,11 +33,11 @@ final class MyQotMainInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         worker.getTeamHeaderItems(.myX) { [weak self] (teamHeaderItems) in
+            self?.presenter.setupView()
+            self?.createInitialData()
             self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
         }
-        presenter.setupView()
-        createInitialData()
     }
 
     private func createInitialData() {
