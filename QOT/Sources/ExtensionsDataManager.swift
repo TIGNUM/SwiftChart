@@ -64,10 +64,10 @@ private extension ExtensionsDataManager {
     func updateTeams() {
         getShareExtensionStrings()
         TeamService.main.getTeams {(teams, initiated, error) in
-            var teamList = [ExtensionModel.Team]()
+            var teamList = [ExtensionModel.TeamLibrary]()
             teams?.forEach {(team) in
                 TeamService.main.getTeamMembers(in: team) {(teamMembers, initiated, error) in
-                    teamList.append(ExtensionModel.Team(teamName: team.name, numberOfMembers: teamMembers?.count))
+                    teamList.append(ExtensionModel.TeamLibrary(teamName: team.name, teamQotId: team.qotId, numberOfMembers: teamMembers?.count))
                     ExtensionUserDefaults.set(teamList, for: .teams)
                 }
             }

@@ -15,7 +15,6 @@ import Social
 
 final class ContainerShareViewController: UIViewController {
 
-
     // MARK: - Init
     init() {
         super.init(nibName: nil, bundle: nil)

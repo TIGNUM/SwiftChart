@@ -13,6 +13,7 @@ class TeamTableViewCell: UITableViewCell {
     @IBOutlet private weak var teamLibraryName: UILabel!
     @IBOutlet private weak var participantsLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
+    var delegate: CustomizedShareViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,8 +31,9 @@ class TeamTableViewCell: UITableViewCell {
 
     }
     
-    @IBAction func checkButtonTapped(_ sender: Any) {
+    @IBAction func checkButtonTapped(_ sender: UIButton) {
         checkButton.isSelected.toggle()
         self.isSelected = checkButton.isSelected
+        delegate?.didSelectTeam(sender.tag)
     }
 }

@@ -10,6 +10,10 @@ import UIKit
 import MobileCoreServices
 import Social
 
+protocol CustomizedShareViewControllerDelegate: class {
+    func didSelectTeam(_ tag: Int)
+}
+
 final class CustomizedShareViewController: UIViewController,  UITableViewDataSource, UITableViewDelegate {
 
     // MARK: - Properties
@@ -17,8 +21,10 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     private var shareExtensionData = ShareExtentionData()
     @IBOutlet private weak var tableView: UITableView!
     private var rightBarButtonItems = [UIBarButtonItem]()
-    var teamCollection = [ExtensionModel.Team]()
+    var teamCollection = [ExtensionModel.TeamLibrary]()
     var shareExtensionStrings : ExtensionModel.ShareExtensionStrings?
+    var rowsForSelected: [Int]? = []
+
 
     @IBOutlet private weak var addButton: UIButton!
     let accent = UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
@@ -40,23 +46,34 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
         fetchData()
         setupTableview()
         setupView()
+        self.tableView.allowsSelection = true
     }
 
      // MARK: - Action
 
     @IBAction func addTapped(_ sender: Any) {
         addPressed.toggle()
-//        let selected_indexPaths = tableView.indexPathsForSelectedRows
-//        var selectedTeams: [String] = []
-//        for indexPath in selected_indexPaths! {
-//            selectedTeams.append(teamCollection[indexPath.row].teamName ?? "")
-//        }
+        let selected_rows = rowsForSelected
+        var selectedTeamIds: [String?] = []
+        for row in selected_rows! {
+            selectedTeamIds.append(teamCollection[row].teamQotId ?? nil)
+        }
         updateTableView()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.hideExtensionWithCompletionHandler(completion: { (Bool) -> Void in
-                self.handleSharedFile(teamLibraries: nil)
+                self.handleSharedFile(teamQotIds: selectedTeamIds)
                 self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
             })
+        }
+    }
+
+    func addSelectedRows(row: Int) {
+        if rowsForSelected?.contains(row) == true {
+            if let index = rowsForSelected?.firstIndex(where: { $0 == row }) {
+                rowsForSelected?.remove(at: index)
+            }
+        } else {
+            rowsForSelected?.append(row)
         }
     }
 
@@ -84,9 +101,11 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
             cell.configure(teamName: teamCollection[indexPath.row].teamName ?? "",
                            participants: teamCollection[indexPath.row].numberOfMembers ?? 0,
                            shareExtensionStrings: shareExtensionStrings)
-//            cell.isUserInteractionEnabled = true
-            cell.backgroundColor = carbon
+            cell.isUserInteractionEnabled = true
+            cell.isSelected ? tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none) : nil
             cell.selectionStyle = .none
+            cell.delegate = self
+            cell.checkButton.tag = indexPath.row
             return cell
         }
     }
@@ -161,10 +180,10 @@ private extension CustomizedShareViewController{
     func fetchData() {
         let shareExtensionStrings: ExtensionModel.ShareExtensionStrings? = ExtensionUserDefaults.object(for: .share, key: .shareExtensionStrings)
         self.shareExtensionStrings = shareExtensionStrings
-        var teamCollection: [ExtensionModel.Team] = [ExtensionModel.Team(teamName: shareExtensionStrings?.myLibrary, numberOfMembers: nil)]
-        let data: [ExtensionModel.Team]? = ExtensionUserDefaults.object(for: .share, key: .teams)
+        var teamCollection: [ExtensionModel.TeamLibrary] = [ExtensionModel.TeamLibrary(teamName: shareExtensionStrings?.myLibrary, teamQotId: nil, numberOfMembers: nil)]
+        let data: [ExtensionModel.TeamLibrary]? = ExtensionUserDefaults.object(for: .share, key: .teams)
         data?.forEach {(team) in
-            teamCollection.append(ExtensionModel.Team(teamName: team.teamName, numberOfMembers: team.numberOfMembers))
+            teamCollection.append(ExtensionModel.TeamLibrary(teamName: team.teamName, teamQotId: team.teamQotId, numberOfMembers: team.numberOfMembers))
         }
         self.teamCollection = teamCollection
     }
@@ -172,7 +191,7 @@ private extension CustomizedShareViewController{
 
 // MARK: - Handling Links
 
-    private func handleSharedFile(teamLibraries: [String]?) {
+    private func handleSharedFile(teamQotIds: [String?]) {
         let typeURL = String(kUTTypeURL)
         let textTypes = [String(kUTTypeText),
                          String(kUTTypePlainText),
@@ -190,7 +209,7 @@ private extension CustomizedShareViewController{
                     self?.handleFailure()
                     return
                 }
-                strongSelf.handleURL(url)
+                strongSelf.handleURL(teamQotIds, url)
             }
             return
         }
@@ -202,7 +221,7 @@ private extension CustomizedShareViewController{
                     self?.handleFailure()
                     return
                 }
-                strongSelf.handleString(string)
+                strongSelf.handleString(teamQotIds, string)
             }
             handled = true
             break
@@ -226,40 +245,43 @@ private extension CustomizedShareViewController{
         }
     }
 
-    func handleString(_ string: String) {
+    func handleString(_ teamQotIds: [String?], _ string: String) {
         if let url = URL(string: string) {
-            handleURL(url)
+            handleURL(teamQotIds, url)
         } else if let urls = urls(from: string), urls.count > 0 {
             let sorted = urls.filter { $0.absoluteString.contains("@") == false }
                 .sorted { $0.absoluteString.count >  $1.absoluteString.count }
             if let url = sorted.first {
-                handleURL(url)
+                handleURL(teamQotIds, url)
             }
         } else {
-            addNote(string)
+            addNote(teamQotIds, string)
         }
     }
 
-    func handleURL(_ url: URL) {
+    func handleURL(_ teamQotIds: [String?],_ url: URL) {
         guard url.isFileURL == false else {
             handleFailure()
             return
         }
         shareExtensionData.type = "EXTERNAL_LINK"
         shareExtensionData.url = url.absoluteString
-        saveLink()
+        saveLink(teamQotIds)
     }
 
-    func addNote(_ string: String) {
+    func addNote(_ teamQotIds: [String?], _ string: String) {
         shareExtensionData.type = "NOTE"
         shareExtensionData.description = string
-        saveLink()
+        saveLink(teamQotIds)
     }
 
-    func saveLink() {
+    func saveLink(_ teamQotIds: [String?] ) {
         self.shareExtensionData.date = Date()
         var dataArray = ExtensionUserDefaults.object(for: .share, key: .saveLink) ?? [ShareExtentionData]()
-        dataArray.append(self.shareExtensionData)
+        teamQotIds.forEach { (teamQotId) in
+            shareExtensionData.teamQotId = teamQotId
+            dataArray.append(self.shareExtensionData)
+        }
         ExtensionUserDefaults.set(dataArray, for: .saveLink, in: .share)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             let context = self.extensionContext
@@ -271,6 +293,13 @@ private extension CustomizedShareViewController{
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             self.extensionContext?.cancelRequest(withError: NSError())
         }
+    }
+}
+
+extension CustomizedShareViewController: CustomizedShareViewControllerDelegate {
+
+    func didSelectTeam(_ tag: Int) {
+        addSelectedRows(row: tag)
     }
 }
 

@@ -38,8 +38,9 @@ struct ExtensionModel {
         let savedAt: Date
     }
 
-    struct Team: Codable {
+    struct TeamLibrary: Codable {
         let teamName: String?
+        let teamQotId: String?
         let numberOfMembers: Int?
     }
 
