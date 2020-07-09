@@ -35,7 +35,6 @@ protocol MyQotMainInteractorInterface: Interactor {
     func itemCount(in section: Int) -> Int
     func getItem(at indexPath: IndexPath) -> MyQot.Item?
     func handleSelection(at indexPath: IndexPath)
-
 }
 
 protocol MyQotMainRouterInterface {

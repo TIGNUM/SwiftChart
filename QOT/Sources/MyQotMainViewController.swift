@@ -107,9 +107,8 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
                  _ indexPath: IndexPath,
                  _ myQotItem: MyQot.Item?) -> UICollectionViewCell {
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        interactor.isCellEnabled(for: myQotItem?.sections) { (enabled) in
-            cell.configure(title: myQotItem?.title, subtitle: myQotItem?.subtitle, enabled: enabled)
-        }
+        cell.configure(title: myQotItem?.title, subtitle: myQotItem?.subtitle)
+        interactor.isCellEnabled(for: myQotItem?.sections) { cell.setEnabled($0) }
         return cell
     }
 }
