@@ -21,15 +21,13 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     private var shareExtensionData = ShareExtentionData()
     @IBOutlet private weak var tableView: UITableView!
     private var rightBarButtonItems = [UIBarButtonItem]()
-    var teamCollection = [ExtensionModel.TeamLibrary]()
-    var shareExtensionStrings : ExtensionModel.ShareExtensionStrings?
-    var rowsForSelected: [Int]? = []
-
-
+    private var teamCollection = [ExtensionModel.TeamLibrary]()
+    private var shareExtensionStrings : ExtensionModel.ShareExtensionStrings?
+    private var rowsForSelected: [Int]? = []
     @IBOutlet private weak var addButton: UIButton!
-    let accent = UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
-    let carbon = UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 1)
-    var addPressed = false
+    private let accent = UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
+    private let carbon = UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 1)
+    private var addPressed = false
 
     // MARK: - Init
     init() {
@@ -46,17 +44,17 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
         fetchData()
         setupTableview()
         setupView()
-        self.tableView.allowsSelection = true
     }
 
      // MARK: - Action
 
     @IBAction func addTapped(_ sender: Any) {
         addPressed.toggle()
-        let selected_rows = rowsForSelected
         var selectedTeamIds: [String?] = []
-        for row in selected_rows! {
-            selectedTeamIds.append(teamCollection[row].teamQotId ?? nil)
+        if let selected_rows = rowsForSelected {
+            for row in selected_rows {
+                selectedTeamIds.append(teamCollection[row].teamQotId ?? nil)
+            }
         }
         updateTableView()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -202,7 +200,6 @@ private extension CustomizedShareViewController{
         guard let itemProvider = urlItemProvider ?? extensionItem.attachments?.first else {
             return
         }
-
         if itemProvider.hasItemConformingToTypeIdentifier(typeURL) {
             itemProvider.loadItem(forTypeIdentifier: typeURL, options: nil) { [weak self] (item, error) -> Void in
                 guard let strongSelf = self, let url = item as? URL else {

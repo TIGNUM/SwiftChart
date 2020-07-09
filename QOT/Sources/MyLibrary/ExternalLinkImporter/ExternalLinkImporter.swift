@@ -48,7 +48,6 @@ final class ExternalLinkImporter {
         ExtensionUserDefaults.removeObject(for: .share, key: .saveLink)
         let dispatchGroup = DispatchGroup()
         for externalLink in externalLinks {
-            print(externalLink)
             if let teamQotId = externalLink.teamQotId {
                 TeamService.main.getTeams {(teams, _, error) in
                     guard let team = teams?.filter ({$0.qotId == teamQotId}).first else { return }

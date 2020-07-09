@@ -11,8 +11,8 @@ import UIKit
 
 class ConfirmationViewCell: UITableViewCell {
 
-    @IBOutlet weak var messageView: UIView!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet private weak var messageView: UIView!
+    @IBOutlet private weak var messageLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
