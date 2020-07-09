@@ -8,14 +8,18 @@
 
 import UIKit
 
-final class ReusableHeaderView: UICollectionReusableView {
-
-    @IBOutlet private weak var containerView: HorizontalHeaderView!
-
-    func configure(headerItems: [TeamHeader]) {
-        containerView.configure(headerItems: headerItems)
-    }
-}
+//final class ReusableHeaderView: UICollectionReusableView {
+//
+//    @IBOutlet private weak var containerView: HorizontalHeaderView!
+//
+//    func configure(headerItems: [TeamHeader]) {
+//        containerView.configure(headerItems: headerItems)
+//    }
+//
+//    func reloadHorizontalSlider() {
+//        containerView.reload()
+//    }
+//}
 
 final class HorizontalHeaderView: UIView {
 
@@ -24,6 +28,10 @@ final class HorizontalHeaderView: UIView {
 
     func configure(headerItems: [TeamHeader]) {
         self.headerItems = headerItems
+        reload()
+    }
+
+    func reload() {
         collectionView.reloadData()
     }
 }
@@ -35,15 +43,17 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = R.reuseIdentifier.teamHeaderCell_ID.identifier
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,
-                                                      for: indexPath) as? TeamHeaderCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,
+                                                            for: indexPath) as? TeamHeaderCell else {
+                                                                fatalError("TeamHeaderCell not valid")
+        }
         if let item = headerItems.at(index: indexPath.row) {
-            cell?.configure(title: item.title,
+            cell.configure(title: item.title,
                             hexColorString: item.hexColorString,
                             batchCount: item.batchCount,
                             selected: item.selected,
                             teamId: item.teamId)
         }
-        return cell ?? UICollectionViewCell()
+        return cell
     }
 }

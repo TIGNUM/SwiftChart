@@ -11,92 +11,60 @@ import qot_dal
 
 final class MyQotMainWorker: WorkerTeam {
 
-    // MARK: - Properties
-    private let userService = UserService.main
+    private lazy var myQot: MyQot = {
+        let myQotItems = MyQotSection.allCases.map {
+            return MyQot.Item(sections: $0, title: $0.title)}
+        return MyQot(items: myQotItems)
+    }()
 
-    // MARK: - functions
-    func myQotSections() -> MyQotViewModel {
-        let myQotItems =  MyQotSection.allCases.map {
-            return MyQotViewModel.Item(myQotSections: $0,
-                                       title: myQOTTitle(for: $0),
-                                       subtitle: "")}
-        return MyQotViewModel(myQotItems: myQotItems)
-    }
-
-    func myQOTTitle(for section: MyQotSection) -> String {
-        return myQotSectionTitles(for: section)
-
-    }
-
-    func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
-        switch myQotItem {
-        case .teamCreate: return AppTextService.get(.my_x_team_create_header)
-        case .library: return AppTextService.get(.my_qot_section_my_library_title)
-        case .preps: return AppTextService.get(.my_qot_section_my_plans_title)
-        case .sprints: return AppTextService.get(.my_qot_section_my_sprints_title)
-        case .data: return AppTextService.get(.my_qot_section_my_data_title)
-        case .toBeVision: return AppTextService.get(.my_qot_section_my_tbv_title)
-        }
+    func getMyQotItem(in section: MyQotSection, subTitle: String = "") -> MyQot.Item {
+        var item = myQot.items[section.rawValue]
+        item.subtitle = subTitle
+        return myQot.items[section.rawValue]
     }
 
     func nextPrep(completion: @escaping (String?) -> Void) {
-        userService.getUserPreparations {(preparations, initialized, error) in
+        UserService.main.getUserPreparations { (preparations, _, _) in
             let dateString = preparations?.last?.eventDate?.eventDateString
             completion(dateString)
         }
     }
 
     func nextPrepType(completion: @escaping (String?) -> Void) {
-         userService.getUserPreparations {(preparations, initialized, error) in
-            let eventType = preparations?.last?.eventType ?? ""
-            completion(eventType)
-        }
-    }
-
-    func getUserName(completion: @escaping (String?) -> Void) {
-          UserService.main.getUserData { (user) in
-            completion(user?.givenName)
+         UserService.main.getUserPreparations { (preparations, _, _) in
+            completion(preparations?.last?.eventType)
         }
     }
 
     func getSettingsTitle(completion: @escaping (String?) -> Void) {
-        getUserName { (userName) in
-            if let firstLetter = userName?.first {
-                completion(String(firstLetter))
-            } else {
-                completion("X")
-            }
+        UserService.main.getUserData { (user) in
+            completion(String(user?.givenName.first ?? "X"))
         }
     }
 
     func getCurrentSprintName(completion: @escaping (String?) -> Void) {
-        UserService.main.getSprints {(sprints, initialized, error) in
-            let sprint = sprints?.filter { $0.isInProgress == true }.first
-            completion(sprint?.title)
+        UserService.main.getSprints { (sprints, _, _) in
+            completion(sprints?.filter { $0.isInProgress == true }.first?.title)
         }
     }
 
-    func getImpactReadinessScore(completion: @escaping(Int?) -> Void) {
-        MyDataService.main.getDailyCheckInResults(from: nil, to: nil, {(result, initialized, error) in
-            let score = Int(result?.last?.impactReadiness ?? 0.0)
-            completion(score)
-        })
+    func getImpactReadinessScore(completion: @escaping (Int?) -> Void) {
+        MyDataService.main.getDailyCheckInResults(from: nil, to: nil) { (result, _, _) in
+            completion(Int(result?.last?.impactReadiness ?? 0.0))
+        }
     }
 
     func toBeVisionDate(completion: @escaping (Date?) -> Void) {
-        userService.getMyToBeVision {(toBeVision, initialized, error) in
+        UserService.main.getMyToBeVision {(toBeVision, _, _) in
             completion(toBeVision?.modifiedAt ?? toBeVision?.createdAt)
         }
     }
 
-    func getSubtitles(completion: @escaping ([String?]) -> Void) {
-        var subtitles: [String?] = []
-        ContentService.main.getContentCategory(.myQOT) {(category) in
-            if category?.contentCollections.count ?? 0 > 1 {
-                category?.contentCollections[1].contentItems.forEach {(items) in
-                    subtitles.append(items.valueText)
-                }
-            }
+    func getSubtitles(completion: @escaping ([String]) -> Void) {
+        ContentService.main.getContentCategory(.myQOT) { (category) in
+            let subtitles = category?.contentCollections.at(index: 1)?.contentItems.compactMap { (item) -> String in
+                return item.valueText
+            } ?? []
             completion(subtitles)
         }
     }

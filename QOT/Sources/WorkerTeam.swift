@@ -69,20 +69,21 @@ extension WorkerTeam {
     }
 
     func getTeamHeaderItems(_ view: TeamHeader.View, _ completion: @escaping ([TeamHeader]) -> Void) {
-        if case TeamHeader.View.myX = view {
-            var items = [TeamHeader]()
-            createTeamInvites { (headerInviteItem) in
-                if !headerInviteItem.teamInvites.isEmpty {
-                    items.append(headerInviteItem)
-                }
-                self.createTeamHeaderItems { (headerItems) in
-                    items.append(contentsOf: headerItems)
-                    completion(items)
-                }
+        getTeams { (teams) in
+            self.createTeamHeaderItems(teams: teams) { (headerItems) in
+                completion(headerItems)
             }
-        } else {
-            createTeamHeaderItems(completion)
         }
+//        var items = [TeamHeader]()
+//        createTeamInvites { (headerInviteItem, teams)  in
+//            if case TeamHeader.View.myX = view, !headerInviteItem.teamInvites.isEmpty {
+//                items.append(headerInviteItem)
+//            }
+//            self.createTeamHeaderItems(teams: teams) { (headerItems) in
+//                items.append(contentsOf: headerItems)
+//                completion(items)
+//            }
+//        }
     }
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void) {
@@ -171,7 +172,7 @@ extension WorkerTeam {
 
     func leaveTeam(team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
         getTeamMembers(in: team) { (members) in
-          guard let user = members.filter({$0.me == true}).first else {
+          guard let user = members.filter( {$0.me == true} ).first else {
 //                completion(error)
                 return
             }
@@ -206,28 +207,26 @@ private extension WorkerTeam {
         }
     }
 
-    func createTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
-        getTeams { (teams) in
-            let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
-                return TeamHeader(teamId: team.qotId ?? "",
-                                  title: team.name ?? "",
-                                  hexColorString: team.teamColor ?? "",
-                                  sortOrder: 0,
-                                  batchCount: 0,
-                                  selected: false)
-            }
-            completion(teamHeaderItems)
+    func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([TeamHeader]) -> Void) {
+        let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
+            return TeamHeader(teamId: team.qotId ?? "",
+                              title: team.name ?? "",
+                              hexColorString: team.teamColor ?? "",
+                              sortOrder: 0,
+                              batchCount: 0,
+                              selected: false)
         }
+        completion(teamHeaderItems)
     }
 
-    func createTeamInvites(_ completion: @escaping (TeamHeader) -> Void) {
+    func createTeamInvites(_ completion: @escaping (TeamHeader, [QDMTeam]) -> Void) {
         var invites = [TeamInvitation]()
 
         UserService.main.getUserData { (user) in
             self.getTeams { (teams) in
                 teams.forEach { (team) in
                     self.getTeamMembers(in: team) { (members) in
-                        let member = members.filter { $0.email == user?.email }.first
+                        let member = members.filter { $0.me == true }.first
                         switch member?.status {
                         case .INVITED?:
                             invites.append(TeamInvitation(teamId: team.qotId,
@@ -240,7 +239,7 @@ private extension WorkerTeam {
                         } // switch
                     } // getMembers
                 } // teams.forEach
-                completion(TeamHeader(teamInvites: invites))
+                completion(TeamHeader(teamInvites: invites), teams)
             } // getTeams
         } // getUserData
     }

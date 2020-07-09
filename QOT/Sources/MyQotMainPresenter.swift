@@ -33,7 +33,7 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
         viewController?.updateTeamHeader(teamHeaderItems: teamHeaderItems)
     }
 
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
+    func updateViewNew(_ differenceList: StagedChangeset<IndexPathArray>) {
         viewController?.updateViewNew(differenceList)
     }
 }
