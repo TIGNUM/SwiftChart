@@ -58,11 +58,10 @@ final class ExternalLinkImporter {
                             dispatchGroup.leave()
                         }
                     } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
-//                        Adding note to team storage
-//                        dispatchGroup.enter()
-//                        UserStorageService.main.addNote(note) { (_, _) in
-//                            dispatchGroup.leave()
-//                        }
+                        dispatchGroup.enter()
+                        UserStorageService.main.addNote(note, in: team) { (_, _) in
+                            dispatchGroup.leave()
+                        }
                     }
                 }
             } else {
