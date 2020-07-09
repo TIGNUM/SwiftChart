@@ -112,8 +112,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) else {
-             guard let item = interactor.settingItems().at(index: indexPath.item) else {
+        guard let item = interactor.settingItems().at(index: indexPath.item) else {
             fatalError("settingItems Item does not exist at indexPath: \(indexPath.item)")
         }
         switch item {
