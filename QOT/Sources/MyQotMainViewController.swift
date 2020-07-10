@@ -24,21 +24,21 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     private var isDragging = false
     private var teamHeaderItems = [TeamHeader.Item]()
 
+    private lazy var headerSize: CGSize = {
+        return CGSize(width: collectionView.updatedCollectionViewHeaderWidth(),
+                      height: ThemeView.level1.headerBarHeight)
+    }()
+
+    private lazy var teamHeaderSize: CGSize = {
+        return CGSize(width: collectionView.updatedCollectionViewHeaderWidth(),
+                      height: .TeamHeader)
+    }()
+
     private lazy var qotBoxSize: CGSize = {
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
-
-        let widthAvailbleForAllItems = (
-            collectionView.frame.width
-            - layout.minimumInteritemSpacing
-            - layout.sectionInset.left
-            - layout.sectionInset.right)
+        let widthAvailbleForAllItems = collectionView.updatedCollectionViewItemWidth()
         let widthForOneItem = widthAvailbleForAllItems / 2
-        let heightAvailableForAllItems = (
-            collectionView.frame.height
-                - (layout.minimumLineSpacing + layout.sectionInset.top + layout.sectionInset.bottom) * 2
-                - ThemeView.level1.headerBarHeight)
+        let heightAvailableForAllItems = collectionView.updatedCollectionViewHeight()
         let heightForOneItem = heightAvailableForAllItems / 3
-
         return CGSize(width: widthForOneItem, height: heightForOneItem)
     }()
 
@@ -52,7 +52,6 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
-        collectionView.reloadData()
         interactor.refreshParams()
     }
 
@@ -76,6 +75,12 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         collectionView.registerDequeueable(MyQotMainCollectionViewCell.self)
         collectionView.registerDequeueable(NavBarCollectionViewCell.self)
         collectionView.registerDequeueable(HorizontalHeaderCollectionViewCell.self)
+
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 16
+        layout.sectionInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        layout.sectionHeadersPinToVisibleBounds = true
     }
 
     func updateView(_ differenceList: StagedChangeset<IndexPathArray>) {
@@ -91,12 +96,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 
     func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        interactor.getSettingsTitle {
-            cell.setSettingsButton($0 ?? "")
-            cell.configure(title: AppTextService.get(.my_qot_section_header_title),
-                           tapLeft: { self.delegate?.moveToCell(item: 1) },
-                           tapRight: { self.interactor.presentMyProfile() })
-        }
+        cell.configure(title: AppTextService.get(.my_qot_section_header_title),
+                       tapLeft: { self.delegate?.moveToCell(item: 1) },
+                       tapRight: { self.interactor.presentMyProfile() })
+        cell.setSettingsButton(interactor.getSettingsButtonTitle())
         return cell
     }
 
@@ -109,6 +112,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func getCell(_ collectionView: UICollectionView,
                  _ indexPath: IndexPath,
                  _ myQotItem: MyQot.Item?) -> UICollectionViewCell {
+        print("-------------------- subtitle: myQotItem?.subtitle ----------------")
+        print(myQotItem?.subtitle)
+
+
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(title: myQotItem?.title, subtitle: myQotItem?.subtitle)
         interactor.isCellEnabled(for: myQotItem?.sections) { cell.setEnabled($0) }
@@ -142,11 +149,10 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch MyQot.Section(rawValue: indexPath.section) {
-        case .navigationHeader,
-             .teamHeader:
-            return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
-        default:
-            return qotBoxSize
+        case .navigationHeader: return headerSize
+        case .teamHeader: return teamHeaderSize
+        case .body: return qotBoxSize
+        default: return .zero
         }
     }
 

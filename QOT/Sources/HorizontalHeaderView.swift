@@ -13,9 +13,15 @@ final class HorizontalHeaderView: UIView {
     @IBOutlet private weak var collectionView: UICollectionView!
     private var headerItems = [TeamHeader.Item]()
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        collectionView.registerDequeueable(TeamHeaderCell.self)
+    }
+
     func configure(headerItems: [TeamHeader.Item]) {
         self.headerItems = headerItems
         collectionView.reloadData()
+        collectionView.setContentOffset(CGPoint(x: 24, y: 0), animated: true)
     }
 }
 
@@ -27,24 +33,13 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let offset = collectionView.bounds.width * 0.1
-        let answerText = headerItems.at(index: indexPath.row)?.title
-        let label = UILabel(frame: CGRect(center: .zero,
-                                          size: CGSize(width: collectionView.bounds.width - offset,
-                                                       height: .TeamHeader)))
-        label.numberOfLines = 1
-        label.attributedText = ThemeText.chatbotButton.attributedString(answerText)
-        label.sizeToFit()
-        let width: CGFloat = label.bounds.width
-        return CGSize(width: width + 32, height: .TeamHeader)
+        let item = headerItems[indexPath.row].title
+        let itemSize = item.size(withAttributes: [NSAttributedString.Key.font: UIFont.sfProtextSemibold(ofSize: 14)])
+        return CGSize(width: itemSize.width + .TeamHeaderOffset, height: .TeamHeader)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = R.reuseIdentifier.teamHeaderCell_ID.identifier
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,
-                                                            for: indexPath) as? TeamHeaderCell else {
-                                                                fatalError("TeamHeaderCell not valid")
-        }
+        let cell: TeamHeaderCell = collectionView.dequeueCell(for: indexPath)
         if let item = headerItems.at(index: indexPath.row) {
             if let invite = item.inviteButton {
                 cell.configure(title: invite.title, counter: invite.counter)

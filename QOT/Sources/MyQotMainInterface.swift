@@ -23,13 +23,12 @@ protocol MyQotMainPresenterInterface {
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
-    var getViewModel: IndexPathArray { get }
     var sectionCount: Int { get }
 
+    func getSettingsButtonTitle() -> String
     func presentMyProfile()
     func updateViewModelListNew(_ list: IndexPathArray)
     func refreshParams()
-    func getSettingsTitle(completion: @escaping (String?) -> Void)
     func updateSelectedTeam(teamId: String)
     func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void)
     func itemCount(in section: Int) -> Int

@@ -12,6 +12,7 @@ import qot_dal
 enum ExtensionDataType {
     case toBeVision
     case upcomingEvent
+    case teams
     case all
 }
 
@@ -30,6 +31,8 @@ final class ExtensionsDataManager {
             updateToBeVision()
         case .upcomingEvent:
             updateUpcomingEvents()
+        case .teams:
+            updateTeams()
         case .all:
             updateAll()
         }
@@ -56,6 +59,30 @@ private extension ExtensionsDataManager {
                                                          imageURL: vision?.profileImageResource?.url())
             ExtensionUserDefaults.set(sharedVision, for: .toBeVision)
         }
+    }
+
+    func updateTeams() {
+        getShareExtensionStrings()
+        TeamService.main.getTeams {(teams, initiated, error) in
+            var teamList = [ExtensionModel.TeamLibrary]()
+            teams?.forEach {(team) in
+                TeamService.main.getTeamMembers(in: team) {(teamMembers, initiated, error) in
+                    teamList.append(ExtensionModel.TeamLibrary(teamName: team.name, teamQotId: team.qotId, numberOfMembers: teamMembers?.count))
+                    ExtensionUserDefaults.set(teamList, for: .teams)
+                }
+            }
+        }
+    }
+
+    func getShareExtensionStrings() {
+        let shareExtensionStrings = ExtensionModel.ShareExtensionStrings(library: AppTextService.get(.share_libraries_libraryLabel),
+                                                                         myLibrary: AppTextService.get(.share_libraries_myLibraryLabel),
+                                                                         addTo: AppTextService.get(.share_libraries_navigationTitle),
+                                                                         participants: AppTextService.get(.share_libraries_participantsLabel),
+                                                                         addedTo: AppTextService.get(.share_libraries_addedToLabel),
+                                                                         and: AppTextService.get(.share_libraries_andLabel),
+                                                                         personal: AppTextService.get(.share_libraries_privateLabel))
+        ExtensionUserDefaults.set(shareExtensionStrings, for: .shareExtensionStrings)
     }
 
     func updateUpcomingEvents() {

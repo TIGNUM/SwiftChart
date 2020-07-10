@@ -15,4 +15,6 @@ struct ShareExtentionData: Codable {
     var type: String?
     var thumbnail: String?
     var description: String?
+    var teamQotId: String? // if it's nil, private library item
 }
+

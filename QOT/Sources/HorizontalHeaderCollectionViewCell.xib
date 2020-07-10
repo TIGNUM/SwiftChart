@@ -11,84 +11,63 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wi3-kd-5c9" customClass="HorizontalHeaderCollectionViewCell" customModule="TIGNUM_X" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="409" height="80"/>
+            <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="i8a-sh-XZN">
-                <rect key="frame" x="0.0" y="0.0" width="409" height="80"/>
+                <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ek3-OQ-XxW" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
-                        <rect key="frame" x="29" y="0.0" width="351" height="80"/>
+                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Ek3-OQ-XxW" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bg8-gu-1Og">
-                                <rect key="frame" x="0.0" y="0.0" width="351" height="80"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bg8-gu-1Og">
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="4" minimumInteritemSpacing="4" id="NdJ-H4-j5h">
-                                    <size key="itemSize" width="110" height="50"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="NdJ-H4-j5h">
+                                    <size key="itemSize" width="300" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamHeaderCell_ID" id="obA-LY-Wwy" customClass="TeamHeaderCell" customModule="TIGNUM_X" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kB5-XD-lbr">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gy-0c-sXe">
-                                                    <rect key="frame" x="4" y="0.0" width="102" height="20"/>
-                                                    <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <action selector="didSelectTeam" destination="obA-LY-Wwy" eventType="touchUpInside" id="HfL-Rz-eHV"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="7gy-0c-sXe" secondAttribute="bottom" constant="20" id="1rU-Fc-gpZ"/>
-                                                <constraint firstItem="7gy-0c-sXe" firstAttribute="top" secondItem="kB5-XD-lbr" secondAttribute="top" id="3J9-Oi-X0G"/>
-                                                <constraint firstItem="7gy-0c-sXe" firstAttribute="leading" secondItem="kB5-XD-lbr" secondAttribute="leading" constant="4" id="gvN-rE-JM1"/>
-                                                <constraint firstAttribute="trailing" secondItem="7gy-0c-sXe" secondAttribute="trailing" constant="4" id="uTr-Ek-0ZC"/>
-                                            </constraints>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ARr-pV-snF">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OEn-Vb-kDZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <size key="customSize" width="110" height="40"/>
-                                        <connections>
-                                            <outlet property="titleButton" destination="7gy-0c-sXe" id="ree-05-Drd"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="Ek3-OQ-XxW" id="pGw-EE-3r3"/>
-                                    <outlet property="delegate" destination="Ek3-OQ-XxW" id="jaO-cs-dfo"/>
+                                    <outlet property="dataSource" destination="Ek3-OQ-XxW" id="iP5-SY-cg7"/>
+                                    <outlet property="delegate" destination="Ek3-OQ-XxW" id="Aw7-6W-fDx"/>
                                 </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="80" id="8WQ-iG-ljr"/>
                             <constraint firstItem="bg8-gu-1Og" firstAttribute="leading" secondItem="Ek3-OQ-XxW" secondAttribute="leading" id="CUO-vU-xo6"/>
                             <constraint firstAttribute="trailing" secondItem="bg8-gu-1Og" secondAttribute="trailing" id="KRD-lC-rz6"/>
                             <constraint firstAttribute="bottom" secondItem="bg8-gu-1Og" secondAttribute="bottom" id="bN7-YQ-sR3"/>
                             <constraint firstItem="bg8-gu-1Og" firstAttribute="top" secondItem="Ek3-OQ-XxW" secondAttribute="top" id="zdy-no-tul"/>
                         </constraints>
                         <connections>
-                            <outlet property="collectionView" destination="bg8-gu-1Og" id="Ies-Cc-bWr"/>
+                            <outlet property="collectionView" destination="bg8-gu-1Og" id="M3I-nk-taQ"/>
                         </connections>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Ek3-OQ-XxW" firstAttribute="centerX" secondItem="i8a-sh-XZN" secondAttribute="centerX" id="7Zr-El-NRj"/>
-                    <constraint firstItem="Ek3-OQ-XxW" firstAttribute="leading" secondItem="i8a-sh-XZN" secondAttribute="leading" constant="29" id="F7A-Mq-h3t"/>
+                    <constraint firstAttribute="bottom" secondItem="Ek3-OQ-XxW" secondAttribute="bottom" id="8dR-9F-eAe"/>
+                    <constraint firstItem="Ek3-OQ-XxW" firstAttribute="leading" secondItem="i8a-sh-XZN" secondAttribute="leading" id="F7A-Mq-h3t"/>
+                    <constraint firstItem="Ek3-OQ-XxW" firstAttribute="top" secondItem="i8a-sh-XZN" secondAttribute="top" id="uMZ-Kb-iEh"/>
                     <constraint firstItem="Ek3-OQ-XxW" firstAttribute="centerY" secondItem="i8a-sh-XZN" secondAttribute="centerY" id="wxe-Ml-34B"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="409" height="50"/>
             <connections>
-                <outlet property="horizontalHeaderView" destination="Ek3-OQ-XxW" id="BPf-G9-1i3"/>
+                <outlet property="horizontalHeaderView" destination="Ek3-OQ-XxW" id="6WZ-04-iF8"/>
             </connections>
             <point key="canvasLocation" x="163.04347826086959" y="150.66964285714286"/>
         </collectionViewCell>

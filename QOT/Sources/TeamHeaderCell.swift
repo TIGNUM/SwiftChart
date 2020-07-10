@@ -9,16 +9,16 @@
 import UIKit
 import qot_dal
 
-final class TeamHeaderCell: UICollectionViewCell {
+final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
-    @IBOutlet weak var titleButton: UIButton!
+    @IBOutlet private weak var itemButton: UIButton!
     private var teamId = ""
     private var hexColorString = ""
     private var inviteCounter = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        titleButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
+        itemButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
@@ -33,13 +33,13 @@ final class TeamHeaderCell: UICollectionViewCell {
     func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
         self.teamId = teamId
         self.hexColorString = hexColorString
-        titleButton.setTitle(title, for: .normal)
+        itemButton.setTitle(title, for: .normal)
         setSelected(selected)
     }
 
     /// Configure Team Invitates
     func configure(title: String, counter: Int) {
-        titleButton.setTitle(title, for: .normal)
+        itemButton.setTitle(title, for: .normal)
         inviteCounter = counter
         setSelected(false)
     }
@@ -64,13 +64,13 @@ private extension TeamHeaderCell {
 
     func setSelected(_ selected: Bool) {
         if selected {
-            titleButton.backgroundColor = UIColor(hex: hexColorString)
-            titleButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
-            titleButton.setTitleColor(.sand, for: .normal)
+            itemButton.backgroundColor = UIColor(hex: hexColorString)
+            itemButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
+            itemButton.setTitleColor(.sand, for: .normal)
         } else {
-            titleButton.backgroundColor = .clear
-            titleButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
-            titleButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
+            itemButton.backgroundColor = .clear
+            itemButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
+            itemButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
         }
     }
 }

@@ -37,7 +37,7 @@ struct MyQot {
         typealias DifferenceIdentifier = String
 
         let sections: MyQotSection
-        let title: String?
+        let title: String
         var subtitle: String?
 
         var differenceIdentifier: DifferenceIdentifier {

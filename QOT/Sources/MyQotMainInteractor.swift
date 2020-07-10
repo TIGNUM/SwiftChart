@@ -20,6 +20,7 @@ final class MyQotMainInteractor {
     private var viewModel: IndexPathArray = []
     private var subtitles: [String?] = []
     private var eventType: String?
+    private var settingsButtonTitle = ""
 
     // MARK: - Init
     init(worker: MyQotMainWorker,
@@ -43,23 +44,6 @@ final class MyQotMainInteractor {
 
 // MARK: - Private
 private extension MyQotMainInteractor {
-    func createInitialData() {
-        worker.getSubtitles { [weak self] (subtitles) in
-            guard let strongSelf = self else { return }
-            strongSelf.subtitles = subtitles
-
-            let items = MyQotSection.allCases.compactMap { (section) -> MyQot.Item in
-                return MyQot.Item(sections: section, title: section.title, subtitle: subtitles.at(index: section.rawValue))
-            }
-
-            var sectionDataList: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
-            sectionDataList.append(ArraySection(model: .teamHeader, elements: []))
-            sectionDataList.append(ArraySection(model: .body, elements: items))
-            let changeSet = StagedChangeset(source: strongSelf.viewModel, target: sectionDataList)
-            strongSelf.presenter.updateView(changeSet)
-        }
-    }
-
     func createMyData(irScore: Int?) -> MyQot.Item {
         let subtitle = String(irScore ?? 0) + AppTextService.get(.my_qot_section_my_data_subtitle)
         return worker.getMyQotItem(in: .data, subTitle: subtitle)
@@ -80,10 +64,6 @@ private extension MyQotMainInteractor {
             subtitle = dateString + " " + eventType
         }
         return worker.getMyQotItem(in: .preps, subTitle: subtitle)
-    }
-
-    func createSprints(sprintName: String?) -> MyQot.Item {
-        return worker.getMyQotItem(in: .sprints, subTitle: sprintName ?? "")
     }
 
     func timeElapsed(date: Date?) -> Double {
@@ -120,10 +100,6 @@ private extension MyQotMainInteractor {
 
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
-    var getViewModel: IndexPathArray {
-        return viewModel
-    }
-
     func updateSelectedTeam(teamId: String) {
         teamHeaderItems.forEach { $0.selected = (teamId == $0.teamId) }
         presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
@@ -137,36 +113,54 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         viewModel = list
     }
 
-    func getSettingsTitle(completion: @escaping (String?) -> Void) {
-        worker.getSettingsTitle(completion: completion)
+    func getSettingsButtonTitle() -> String {
+        return settingsButtonTitle
+    }
+
+    func createInitialData() {
+        worker.getSubtitles { [weak self] (subtitles) in
+            self?.worker.getSettingsTitle { (settingsTitle) in
+                guard let strongSelf = self else { return }
+                strongSelf.subtitles = subtitles
+                strongSelf.settingsButtonTitle = settingsTitle
+
+                let items = MyQotSection.allCases.compactMap { (section) -> MyQot.Item in
+                    return MyQot.Item(sections: section,
+                                      title: section.title,
+                                      subtitle: subtitles.at(index: section.rawValue))
+                }
+
+                var sectionDataList: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
+                sectionDataList.append(ArraySection(model: .teamHeader, elements: []))
+                sectionDataList.append(ArraySection(model: .body, elements: items))
+                let changeSet = StagedChangeset(source: strongSelf.viewModel, target: sectionDataList)
+                strongSelf.presenter.updateView(changeSet)
+            }
+        }
     }
 
     func refreshParams() {
-        worker.getSubtitles { [weak self] (subtitles) in
-            self?.subtitles = subtitles
-            self?.worker.getImpactReadinessScore { (score) in
-                self?.worker.toBeVisionDate { (date) in
-                    self?.worker.nextPrep { (dateString) in
-                        self?.worker.nextPrepType { (eventType) in
-                            self?.worker.getCurrentSprintName { (sprintName) in
-                                guard let strongSelf = self else { return }
-                                var bodyItems: [MyQot.Item] = []
-                                bodyItems.append(strongSelf.worker.getMyQotItem(in: .teamCreate))
-                                bodyItems.append(strongSelf.worker.getMyQotItem(in: .library))
-                                bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                                bodyItems.append(strongSelf.worker.getMyQotItem(in: .sprints, subTitle: sprintName ?? ""))
-                                bodyItems.append(strongSelf.createMyData(irScore: score))
-                                bodyItems.append(strongSelf.createToBeVision(date: date))
+        worker.getImpactReadinessScore { [weak self] (score) in
+            self?.worker.toBeVisionDate { (date) in
+                self?.worker.nextPrep { (dateString) in
+                    self?.worker.nextPrepType { (eventType) in
+                        self?.worker.getCurrentSprintName { (sprintName) in
+                            guard let strongSelf = self else { return }
+                            var bodyItems: [MyQot.Item] = []
+                            let teamCreateSubtitle = AppTextService.get(.my_x_team_create_description)
+                            bodyItems.append(strongSelf.worker.getMyQotItem(in: .teamCreate,
+                                                                            subTitle: teamCreateSubtitle))
+                            bodyItems.append(strongSelf.worker.getMyQotItem(in: .library))
+                            bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                            bodyItems.append(strongSelf.worker.getMyQotItem(in: .sprints, subTitle: sprintName ?? ""))
+                            bodyItems.append(strongSelf.createMyData(irScore: score))
+                            bodyItems.append(strongSelf.createToBeVision(date: date))
 
-                                var headerItems: [TeamHeader.Item] = []
-
-                                var sections: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
-                                sections.append(ArraySection(model: .teamHeader, elements: []))
-                                sections.append(ArraySection(model: .body, elements: bodyItems))
-
-                                let changeSet = StagedChangeset(source: strongSelf.viewModel, target: sections)
-                                strongSelf.presenter.updateView(changeSet)
-                            }
+                            var sections: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
+                            sections.append(ArraySection(model: .teamHeader, elements: []))
+                            sections.append(ArraySection(model: .body, elements: bodyItems))
+                            let changeSet = StagedChangeset(source: strongSelf.viewModel, target: sections)
+                            strongSelf.presenter.updateView(changeSet)
                         }
                     }
                 }
@@ -189,7 +183,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         switch MyQot.Section(rawValue: section) {
         case .navigationHeader,
              .teamHeader: return 1
-//        case .body: return viewModel.at(index: section)?.elements.count ?? 0
+        case .body: return viewModel.at(index: section)?.elements.count ?? 0
         default: return 0
         }
     }

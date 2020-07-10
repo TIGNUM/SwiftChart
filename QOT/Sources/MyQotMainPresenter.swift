@@ -12,11 +12,9 @@ import DifferenceKit
 final class MyQotMainPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: MyQotMainViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: MyQotMainViewControllerInterface) {
         self.viewController = viewController
     }

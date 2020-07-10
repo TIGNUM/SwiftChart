@@ -55,6 +55,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
         buttonRight.circle()
         buttonRight.backgroundColor = .accent
         buttonRight.layoutIfNeeded()
+        layoutIfNeeded()
     }
 
     func updateAlpha(basedOn offsetY: CGFloat) {

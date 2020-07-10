@@ -36,7 +36,7 @@ final class MyQotMainWorker: WorkerTeam {
         }
     }
 
-    func getSettingsTitle(completion: @escaping (String?) -> Void) {
+    func getSettingsTitle(completion: @escaping (String) -> Void) {
         UserService.main.getUserData { (user) in
             completion(String(user?.givenName.first ?? "X"))
         }

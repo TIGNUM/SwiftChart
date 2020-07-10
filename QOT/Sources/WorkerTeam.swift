@@ -208,7 +208,8 @@ private extension WorkerTeam {
     }
 
     func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([TeamHeader.Item]) -> Void) {
-        let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader.Item in
+        let teamHeaderItems = teams.filter { $0.teamColor != nil }
+            .compactMap { (team) -> TeamHeader.Item in
             return TeamHeader.Item(teamId: team.qotId ?? "",
                                    title: team.name ?? "",
                                    hexColorString: team.teamColor ?? "",
