@@ -14,6 +14,7 @@ protocol MyXTeamSettingsViewControllerInterface: class {
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateView()
     func updateSettingsModel(_ settings: MyXTeamSettingsModel)
+    func openProfile()
 
 }
 
@@ -21,6 +22,7 @@ protocol MyXTeamSettingsPresenterInterface {
     func present(_ settings: MyXTeamSettingsModel)
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateView()
+    func openProfile()
 }
 
 protocol MyXTeamSettingsInteractorInterface: Interactor {

@@ -18,7 +18,7 @@ final class MyXTeamMembersWorker {
 extension MyXTeamMembersWorker: WorkerTeam {
 
     var teamMembersText: String {
-        return AppTextService.get(.settings_team_settings_team_members)
+        return AppTextService.get(.settings_team_settings_team_members).uppercased()
     }
 
     func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void) {

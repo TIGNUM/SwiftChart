@@ -23,7 +23,7 @@ final class MyXTeamSettingsRouter {
 // MARK: - MyXTeamSettingsRouterInterface
 extension MyXTeamSettingsRouter: MyXTeamSettingsRouterInterface {
     func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.navigationController?.popViewController(animated: true)
     }
 
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?) {

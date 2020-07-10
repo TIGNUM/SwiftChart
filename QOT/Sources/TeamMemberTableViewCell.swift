@@ -6,7 +6,7 @@
 //  Copyright © 2020 Tignum. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
 
@@ -15,14 +15,16 @@ class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var emailLabel: UILabel!
 
     override func awakeFromNib() {
-           super.awakeFromNib()
-           self.backgroundView = UIView(frame: self.bounds)
-           self.selectedBackgroundView = UIView(frame: self.bounds)
-           ThemeView.level2Selected.apply(selectedBackgroundView!)
-       }
+        super.awakeFromNib()
+        self.backgroundView = UIView(frame: self.bounds)
+        self.selectedBackgroundView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(selectedBackgroundView!)
+    }
 
     func configure(memberEmail: String?, memberStatus: MemberStatus) {
         ThemeText.memberEmail.apply(memberEmail, to: emailLabel)
-        pendingIcon.isHidden =  memberStatus == .joined 
+        ThemeView.level2.apply(backgroundView!)
+        pendingIcon.isHidden = memberStatus == .joined
+        joinedIcon.isHidden = memberStatus == .pending
     }
 }

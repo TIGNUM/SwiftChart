@@ -80,6 +80,10 @@ private extension MyXTeamSettingsViewController {
 // MARK: - MyXTeamSettingsViewControllerInterface
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
 
+    func openProfile() {
+        router?.dismiss()
+    }
+
     func setup(_ settings: MyXTeamSettingsModel) {
         ThemeView.level3.apply(view)
         settingsModel = settings
