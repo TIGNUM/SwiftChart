@@ -48,16 +48,33 @@ final class ExternalLinkImporter {
         ExtensionUserDefaults.removeObject(for: .share, key: .saveLink)
         let dispatchGroup = DispatchGroup()
         for externalLink in externalLinks {
-            if let url = externalLink.url {
-                dispatchGroup.enter()
-                UserStorageService.main.addLink(title: "", url: url) { (_, _) in
-                    dispatchGroup.leave()
+            if let teamQotId = externalLink.teamQotId {
+                TeamService.main.getTeams {(teams, _, error) in
+                    guard let team = teams?.filter ({$0.qotId == teamQotId}).first else { return }
+                    if let url = externalLink.url {
+                        dispatchGroup.enter()
+                        UserStorageService.main.addLink(title: "", url: url, in: team) { (_, _) in
+                            dispatchGroup.leave()
+                        }
+                    } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
+                        dispatchGroup.enter()
+                        UserStorageService.main.addNote(note, in: team) { (_, _) in
+                            dispatchGroup.leave()
+                        }
+                    }
                 }
+            } else {
+                if let url = externalLink.url {
+                    dispatchGroup.enter()
+                    UserStorageService.main.addLink(title: "", url: url) { (_, _) in
+                        dispatchGroup.leave()
+                    }
 
-            } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
-                dispatchGroup.enter()
-                UserStorageService.main.addNote(note) { (_, _) in
-                    dispatchGroup.leave()
+                } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
+                    dispatchGroup.enter()
+                    UserStorageService.main.addNote(note) { (_, _) in
+                        dispatchGroup.leave()
+                    }
                 }
             }
         }
