@@ -83,7 +83,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func settingItems() -> [MyXTeamSettingsModel.Setting] {
-        guard let currentTeam = currentTeam else {
+       guard let currentTeam = currentTeam else {
             return [MyXTeamSettingsModel.Setting]()
         }
         return worker.settingItems(team: currentTeam)

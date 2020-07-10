@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TeamMemberTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gdg-aW-wem">
+                    <rect key="frame" x="60" y="21" width="42" height="62"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_grey" translatesAutoresizingMaskIntoConstraints="NO" id="foL-MV-gdp">
+                    <rect key="frame" x="24" y="42" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="8rs-X2-VGW"/>
+                        <constraint firstAttribute="width" constant="20" id="cbb-ra-vzp"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="explainer_ico" translatesAutoresizingMaskIntoConstraints="NO" id="OyY-8G-7bF">
+                    <rect key="frame" x="24" y="39" width="26" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="NgI-te-EXs"/>
+                        <constraint firstAttribute="width" constant="26" id="XNX-pk-SYa"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="OyY-8G-7bF" firstAttribute="centerY" secondItem="Gdg-aW-wem" secondAttribute="centerY" id="2YA-RD-WOS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="foL-MV-gdp" secondAttribute="bottom" constant="21" id="9y1-MP-hZp"/>
+                <constraint firstItem="Gdg-aW-wem" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="21" id="KS8-g2-tkN"/>
+                <constraint firstItem="Gdg-aW-wem" firstAttribute="leading" secondItem="foL-MV-gdp" secondAttribute="trailing" constant="16" id="SQu-HN-Nnm"/>
+                <constraint firstItem="OyY-8G-7bF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="ahU-Vc-eoE"/>
+                <constraint firstItem="foL-MV-gdp" firstAttribute="centerY" secondItem="Gdg-aW-wem" secondAttribute="centerY" id="fog-6X-4O5"/>
+                <constraint firstItem="foL-MV-gdp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="zPP-2N-3zW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="emailLabel" destination="Gdg-aW-wem" id="f1J-em-pMh"/>
+                <outlet property="joinedIcon" destination="foL-MV-gdp" id="vT2-YP-ghX"/>
+                <outlet property="pendingIcon" destination="OyY-8G-7bF" id="Daz-Rh-2bo"/>
+            </connections>
+            <point key="canvasLocation" x="211.59420289855075" y="3.683035714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="check_grey" width="5" height="4.5"/>
+        <image name="explainer_ico" width="24" height="24"/>
+    </resources>
+</document>

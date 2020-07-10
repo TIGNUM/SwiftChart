@@ -22,12 +22,6 @@ extension MyXTeamSettingsWorker: WorkerTeam {
         return AppTextService.get(.settings_team_settings_title).uppercased()
     }
 
-    func getTeams(_ completion: @escaping ([QDMTeam]) -> Void) {
-        TeamService.main.getTeams { (teams, _, error) in
-            completion(teams ?? [])
-        }
-    }
-
     func deleteTeam(_ team: QDMTeam, _ completion: @escaping ([QDMTeam]?, Bool, Error?) -> Void) {
         TeamService.main.removeTeam(team, completion)
     }
@@ -54,20 +48,6 @@ extension MyXTeamSettingsWorker: WorkerTeam {
         TeamService.main.getTeams { (teams, _, _) in
             let selectedTeam = teams?.filter { teamId == $0.qotId }.first
             completion(selectedTeam)
-        }
-    }
-
-    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
-        getTeams { (teams) in
-            let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
-                return TeamHeader(teamId: team.qotId ?? "",
-                                  title: team.name ?? "",
-                                  hexColorString: team.teamColor ?? "",
-                                  sortOrder: 0,
-                                  batchCount: 0,
-                                  selected: false)
-            }
-            completion(teamHeaderItems)
         }
     }
 

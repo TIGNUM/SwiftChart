@@ -24,4 +24,12 @@ extension MyXTeamMembersPresenter: MyXTeamMembersPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+        viewController?.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+    }
+
+    func updateView() {
+        viewController?.updateView()
+    }
 }

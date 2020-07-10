@@ -8,6 +8,14 @@
 
 import UIKit
 
-struct MyXTeamMembersModel {
+enum MemberStatus: String {
+    case pending
+    case joined
+}
 
+struct MyXTeamMemberModel {
+    var email: String?
+    var status: MemberStatus = .pending
+    var qotId: String? = UUID().uuidString
+    var isTeamOwner: Bool = false
 }

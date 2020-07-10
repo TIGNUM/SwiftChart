@@ -72,7 +72,9 @@ private extension MyXTeamSettingsViewController {
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
+
     }
+
 }
 
 // MARK: - MyXTeamSettingsViewControllerInterface
@@ -167,8 +169,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
             case .leaveTeam:
                 QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
             case .teamMembers:
-//                to do
-                print("go to team members")
+                router?.presentTeamMembers()
             default:
                 break
             }

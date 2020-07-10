@@ -348,7 +348,7 @@
                         <outlet property="horizontalHeaderHeight" destination="IGn-IA-kg5" id="T7a-Zk-BC7"/>
                         <outlet property="horizontalHeaderView" destination="ghS-jG-5zB" id="jgB-No-Aa4"/>
                         <outlet property="tableView" destination="HTS-fj-Ieu" id="OXV-gs-tid"/>
-                        <segue destination="CTF-ig-qwc" kind="show" id="c3J-PK-9oX"/>
+                        <segue destination="CTF-ig-qwc" kind="show" identifier="myX.teamMembers.segue.identifier" id="c3J-PK-9oX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5On-Bh-YBE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -358,7 +358,7 @@
         <!--MyX Team Members View Controller-->
         <scene sceneID="bpS-go-p3B">
             <objects>
-                <viewController id="CTF-ig-qwc" customClass="MyXTeamMembersViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyXTeamMembersViewController_ID" id="CTF-ig-qwc" customClass="MyXTeamMembersViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y4t-ZH-Ehd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -435,6 +435,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zK5-mh-Ff5">
                                 <rect key="frame" x="0.0" y="178" width="375" height="469"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="CTF-ig-qwc" id="6r6-1T-YWc"/>
+                                    <outlet property="delegate" destination="CTF-ig-qwc" id="hVe-Gq-XCw"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -454,8 +458,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="fhy-dW-brz"/>
                     <connections>
-                        <outlet property="headerView" destination="6Ds-K0-zKL" id="VgD-6O-A7w"/>
+                        <outlet property="headerView" destination="6Ds-K0-zKL" id="m0R-sK-7T5"/>
                         <outlet property="headerViewHeightConstraint" destination="Jxf-lE-dM7" id="wC1-gc-YgU"/>
+                        <outlet property="horizontalHeaderHeight" destination="9VE-EB-9Bg" id="Lob-Kp-wAl"/>
+                        <outlet property="horizontalHeaderView" destination="X1m-Y1-enc" id="f0O-2Q-8MH"/>
                         <outlet property="tableView" destination="zK5-mh-Ff5" id="dX1-uH-rjG"/>
                     </connections>
                 </viewController>

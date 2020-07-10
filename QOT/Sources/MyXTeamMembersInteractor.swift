@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyXTeamMembersInteractor {
 
     // MARK: - Properties
     private lazy var worker = MyXTeamMembersWorker()
     private let presenter: MyXTeamMembersPresenterInterface!
+    private var teamHeaderItems = [TeamHeader]()
+    private var currentTeam: QDMTeam?
 
     // MARK: - Init
     init(presenter: MyXTeamMembersPresenterInterface) {
@@ -22,10 +25,50 @@ final class MyXTeamMembersInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            teamHeaderItems.first?.selected = true
+            self?.teamHeaderItems = teamHeaderItems
+            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "", { [weak self] (selectedTeam) in
+                self?.currentTeam = selectedTeam
+                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+                self?.presenter.updateView()
+            })
+        }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
     }
+
+    var teamMembersText: String {
+        return worker.teamMembersText
+    }
+}
+// MARK: - Private
+private extension MyXTeamMembersInteractor {
+    @objc func checkSelection(_ notification: Notification) {
+           guard let userInfo = notification.userInfo as? [String: String] else { return }
+           if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
+               updateSelectedTeam(teamId: teamId)
+           }
+        }
 }
 
 // MARK: - MyXTeamMembersInteractorInterface
 extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
+    func updateSelectedTeam(teamId: String) {
+          worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+              self?.teamHeaderItems = teamHeaderItems
+              teamHeaderItems.forEach { (item) in
+                  item.selected = (teamId == item.teamId)
+              }
+              self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
+                  self?.currentTeam = selectedTeam
+                  self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+                  self?.presenter.updateView()
+              })
+
+          }
+      }
 }

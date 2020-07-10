@@ -10,13 +10,19 @@ import Foundation
 
 protocol MyXTeamMembersViewControllerInterface: class {
     func setupView()
+     func updateTeamHeader(teamHeaderItems: [TeamHeader])
+     func updateView()
 }
 
 protocol MyXTeamMembersPresenterInterface {
     func setupView()
+    func updateTeamHeader(teamHeaderItems: [TeamHeader])
+    func updateView() 
 }
 
-protocol MyXTeamMembersInteractorInterface: Interactor {}
+protocol MyXTeamMembersInteractorInterface: Interactor {
+     var teamMembersText: String { get }
+}
 
 protocol MyXTeamMembersRouterInterface {
     func dismiss()

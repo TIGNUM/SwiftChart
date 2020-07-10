@@ -1146,7 +1146,6 @@
 		F9207CEC24B77BEB007B1AB6 /* MyXTeamMembersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9207CE424B77BEB007B1AB6 /* MyXTeamMembersModel.swift */; };
 		F9207CED24B77BEB007B1AB6 /* MyXTeamMembersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9207CE524B77BEB007B1AB6 /* MyXTeamMembersConfigurator.swift */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
-		F92A214824B4C243005EE605 /* Scene.xctemplate in Resources */ = {isa = PBXBuildFile; fileRef = F92A213F24B4C243005EE605 /* Scene.xctemplate */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
 		F934801E247D464A00DD1C7D /* FeatureExplainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F934801D247D464A00DD1C7D /* FeatureExplainer.storyboard */; };
@@ -1248,6 +1247,8 @@
 		F9B3860A24AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */; };
 		F9B3860C24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */; };
 		F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8BB220DD9E100B40DD2 /* SiriShortcutsModel.swift */; };
+		F9D15B3324B88DB4006476FD /* TeamMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D15B3224B88DB4006476FD /* TeamMemberTableViewCell.swift */; };
+		F9D15B3524B88DC7006476FD /* TeamMemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D15B3424B88DC7006476FD /* TeamMemberTableViewCell.xib */; };
 		F9D2380C23D5A3F600B68E0D /* PreparationWithMissingEventConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51215C2331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift */; };
 		F9D2BC1922D48DBB00DBF2CC /* GoodToKnowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D2BC1822D48DBB00DBF2CC /* GoodToKnowCell.swift */; };
 		F9D2BC1B22D48DCF00DBF2CC /* GoodToKnowCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D2BC1A22D48DCF00DBF2CC /* GoodToKnowCellViewModel.swift */; };
@@ -2463,7 +2464,6 @@
 		F9207CE324B77BEB007B1AB6 /* MyXTeamMembersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyXTeamMembersInteractor.swift; sourceTree = "<group>"; };
 		F9207CE424B77BEB007B1AB6 /* MyXTeamMembersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyXTeamMembersModel.swift; sourceTree = "<group>"; };
 		F9207CE524B77BEB007B1AB6 /* MyXTeamMembersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyXTeamMembersConfigurator.swift; sourceTree = "<group>"; };
-		F92A213F24B4C243005EE605 /* Scene.xctemplate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scene.xctemplate; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
 		F934801D247D464A00DD1C7D /* FeatureExplainer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FeatureExplainer.storyboard; sourceTree = "<group>"; };
@@ -2565,6 +2565,8 @@
 		F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSettingsTableViewCell.xib; sourceTree = "<group>"; };
 		F9C1D8BB220DD9E100B40DD2 /* SiriShortcutsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsModel.swift; sourceTree = "<group>"; };
+		F9D15B3224B88DB4006476FD /* TeamMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberTableViewCell.swift; sourceTree = "<group>"; };
+		F9D15B3424B88DC7006476FD /* TeamMemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamMemberTableViewCell.xib; sourceTree = "<group>"; };
 		F9D2BC1822D48DBB00DBF2CC /* GoodToKnowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowCell.swift; sourceTree = "<group>"; };
 		F9D2BC1A22D48DCF00DBF2CC /* GoodToKnowCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowCellViewModel.swift; sourceTree = "<group>"; };
 		F9D2BC1C22D48DE600DBF2CC /* GoodToKnowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodToKnowCell.xib; sourceTree = "<group>"; };
@@ -2758,7 +2760,6 @@
 				36376626223A66AF00C2C429 /* CoachPresenter.swift */,
 				36376628223A66AF00C2C429 /* CoachRouter.swift */,
 				3637662A223A66AF00C2C429 /* CoachViewController.swift */,
-				F92A213F24B4C243005EE605 /* Scene.xctemplate */,
 				36376627223A66AF00C2C429 /* CoachWorker.swift */,
 			);
 			name = Coach;
@@ -3574,6 +3575,8 @@
 				F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */,
 				F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */,
 				F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */,
+				F9D15B3224B88DB4006476FD /* TeamMemberTableViewCell.swift */,
+				F9D15B3424B88DC7006476FD /* TeamMemberTableViewCell.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -5885,7 +5888,6 @@
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				F906A02424AC8279007B6E1E /* TeamNameTableViewCell.xib in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
-				F92A214824B4C243005EE605 /* Scene.xctemplate in Resources */,
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
@@ -5926,6 +5928,7 @@
 				8D13B8E122FB1F5B00B776E8 /* CreateAccountInfo.storyboard in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
+				F9D15B3524B88DC7006476FD /* TeamMemberTableViewCell.xib in Resources */,
 				AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				DBA3921A23247B2D0017E7F6 /* QuestionnaireViewController.storyboard in Resources */,
@@ -6854,6 +6857,7 @@
 				B430D7EE23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInterface.swift in Sources */,
 				5FF1A0F422857B2C00D76D55 /* MyQotAppSettingsViewController.swift in Sources */,
 				B4F9763A2359EB090071F7EC /* QOTBaseHeaderView.swift in Sources */,
+				F9D15B3324B88DB4006476FD /* TeamMemberTableViewCell.swift in Sources */,
 				9CC4261A2306A48A00F8072E /* GuidedTrackSectionViewModel.swift in Sources */,
 				754EBEF022C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift in Sources */,
 				8D0B4D252301CC4000A1AC47 /* RegistrationNamesInterface.swift in Sources */,
