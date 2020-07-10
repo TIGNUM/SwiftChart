@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TeamHeaderCell: UICollectionViewCell {
 
     @IBOutlet weak var titleButton: UIButton!
     private var teamId = ""
     private var hexColorString = ""
+    private var inviteCounter = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,17 +30,17 @@ final class TeamHeaderCell: UICollectionViewCell {
     }
 
     /// Configure Team
-    func configure(title: String, hexColorString: String, batchCount: Int, selected: Bool, teamId: String) {
+    func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
         self.teamId = teamId
         self.hexColorString = hexColorString
         titleButton.setTitle(title, for: .normal)
         setSelected(selected)
     }
 
-    /// Configure Team Invitations
-    func configure(title: String, batchCount: Int, hexColorString: String) {
-        self.hexColorString = hexColorString
+    /// Configure Team Invitates
+    func configure(title: String, counter: Int) {
         titleButton.setTitle(title, for: .normal)
+        inviteCounter = counter
         setSelected(false)
     }
 }

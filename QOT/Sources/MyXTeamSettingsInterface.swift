@@ -11,14 +11,14 @@ import qot_dal
 
 protocol MyXTeamSettingsViewControllerInterface: class {
     func setup(_ settings: MyXTeamSettingsModel)
-    func updateTeamHeader(teamHeaderItems: [TeamHeader])
+    func updateTeamHeader(teamHeaderItems: [TeamHeader.Item])
     func updateView()
 
 }
 
 protocol MyXTeamSettingsPresenterInterface {
     func present(_ settings: MyXTeamSettingsModel)
-    func updateTeamHeader(teamHeaderItems: [TeamHeader])
+    func updateTeamHeader(teamHeaderItems: [TeamHeader.Item])
     func updateView()
 }
 

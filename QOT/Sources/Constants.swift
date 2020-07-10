@@ -84,6 +84,7 @@ extension CGFloat.View.Height {
 extension CGFloat.Button.Height {
     static let BottomNavBar: CGFloat = 100
     static let AnswerButtonBig: CGFloat = 56
+    static let TeamHeader: CGFloat = 40
 }
 
 extension CGFloat.Button.Width {

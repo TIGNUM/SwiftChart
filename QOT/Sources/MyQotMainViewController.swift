@@ -22,7 +22,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     @IBOutlet private weak var collectionView: UICollectionView!
     private var indexPathDeselect: IndexPath?
     private var isDragging = false
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [TeamHeader.Item]()
 
     private lazy var qotBoxSize: CGSize = {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
@@ -52,8 +52,8 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
-        interactor.refreshParams()
         collectionView.reloadData()
+        interactor.refreshParams()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -75,15 +75,16 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         navigationController?.navigationBar.isHidden = true
         collectionView.registerDequeueable(MyQotMainCollectionViewCell.self)
         collectionView.registerDequeueable(NavBarCollectionViewCell.self)
+        collectionView.registerDequeueable(HorizontalHeaderCollectionViewCell.self)
     }
 
-    func updateViewNew(_ differenceList: StagedChangeset<IndexPathArray>) {
+    func updateView(_ differenceList: StagedChangeset<IndexPathArray>) {
         collectionView.reload(using: differenceList) { [weak self] (data) in
             self?.interactor.updateViewModelListNew(data)
         }
     }
 
-    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+    func updateTeamHeader(teamHeaderItems: [TeamHeader.Item]) {
         self.teamHeaderItems = teamHeaderItems
         collectionView.reloadData()
     }
@@ -100,7 +101,9 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func getTeamHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
-        return getNavigationHeaderCell(collectionView, indexPath)
+        let cell: HorizontalHeaderCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        cell.configure(headerItems: teamHeaderItems)
+        return cell
     }
 
     func getCell(_ collectionView: UICollectionView,

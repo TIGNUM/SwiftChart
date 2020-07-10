@@ -401,9 +401,9 @@
                         <color key="backgroundColor" red="0.031372549020000001" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2oW-W3-A3h" firstAttribute="top" secondItem="BkI-D9-JaR" secondAttribute="top" id="Ear-6N-hv0"/>
-                            <constraint firstItem="CJv-VQ-YrZ" firstAttribute="trailing" secondItem="2oW-W3-A3h" secondAttribute="trailing" id="JbM-A4-X4h"/>
                             <constraint firstItem="CJv-VQ-YrZ" firstAttribute="bottom" secondItem="2oW-W3-A3h" secondAttribute="bottom" constant="120" id="YYe-c3-oAr"/>
-                            <constraint firstItem="2oW-W3-A3h" firstAttribute="leading" secondItem="CJv-VQ-YrZ" secondAttribute="leading" id="d8n-a1-pMX"/>
+                            <constraint firstItem="2oW-W3-A3h" firstAttribute="trailing" secondItem="CJv-VQ-YrZ" secondAttribute="trailing" id="gAN-nt-l09"/>
+                            <constraint firstItem="2oW-W3-A3h" firstAttribute="leading" secondItem="CJv-VQ-YrZ" secondAttribute="leading" id="wYK-dq-0Su"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CJv-VQ-YrZ"/>
                     </view>

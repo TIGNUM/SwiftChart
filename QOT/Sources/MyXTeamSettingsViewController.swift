@@ -23,7 +23,7 @@ final class MyXTeamSettingsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var settingsModel: MyXTeamSettingsModel!
     @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [TeamHeader.Item]()
     @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
     @IBOutlet private weak var horizontalHeaderHeight: NSLayoutConstraint!
 
@@ -85,7 +85,7 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 
-    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+    func updateTeamHeader(teamHeaderItems: [TeamHeader.Item]) {
         self.teamHeaderItems = teamHeaderItems
         teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems)
     }

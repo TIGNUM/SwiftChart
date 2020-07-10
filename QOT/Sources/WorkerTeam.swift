@@ -16,7 +16,7 @@ protocol WorkerTeam {
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
-    func getTeamHeaderItems(_ view: TeamHeader.View, _ completion: @escaping ([TeamHeader]) -> Void)
+    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader.Item]) -> Void)
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
@@ -68,13 +68,13 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamHeaderItems(_ view: TeamHeader.View, _ completion: @escaping ([TeamHeader]) -> Void) {
+    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader.Item]) -> Void) {
         getTeams { (teams) in
             self.createTeamHeaderItems(teams: teams) { (headerItems) in
                 completion(headerItems)
             }
         }
-//        var items = [TeamHeader]()
+//        var items = [TeamHeader.Item]()
 //        createTeamInvites { (headerInviteItem, teams)  in
 //            if case TeamHeader.View.myX = view, !headerInviteItem.teamInvites.isEmpty {
 //                items.append(headerInviteItem)
@@ -172,7 +172,7 @@ extension WorkerTeam {
 
     func leaveTeam(team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
         getTeamMembers(in: team) { (members) in
-          guard let user = members.filter( {$0.me == true} ).first else {
+          guard let user = members.filter( { $0.me == true } ).first else {
 //                completion(error)
                 return
             }
@@ -207,40 +207,38 @@ private extension WorkerTeam {
         }
     }
 
-    func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([TeamHeader]) -> Void) {
-        let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
-            return TeamHeader(teamId: team.qotId ?? "",
-                              title: team.name ?? "",
-                              hexColorString: team.teamColor ?? "",
-                              sortOrder: 0,
-                              batchCount: 0,
-                              selected: false)
+    func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([TeamHeader.Item]) -> Void) {
+        let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader.Item in
+            return TeamHeader.Item(teamId: team.qotId ?? "",
+                                   title: team.name ?? "",
+                                   hexColorString: team.teamColor ?? "",
+                                   selected: false)
         }
         completion(teamHeaderItems)
     }
 
-    func createTeamInvites(_ completion: @escaping (TeamHeader, [QDMTeam]) -> Void) {
-        var invites = [TeamInvitation]()
-
-        UserService.main.getUserData { (user) in
-            self.getTeams { (teams) in
-                teams.forEach { (team) in
-                    self.getTeamMembers(in: team) { (members) in
-                        let member = members.filter { $0.me == true }.first
-                        switch member?.status {
-                        case .INVITED?:
-                            invites.append(TeamInvitation(teamId: team.qotId,
-                                                          teamName: team.name,
-                                                          teamColor: team.teamColor,
-                                                          sender: "",
-                                                          date: "",
-                                                          memberCount: 0))
-                        default: break
-                        } // switch
-                    } // getMembers
-                } // teams.forEach
-                completion(TeamHeader(teamInvites: invites), teams)
-            } // getTeams
-        } // getUserData
-    }
+//    func createTeamInvites(_ completion: @escaping (TeamHeader, [QDMTeam]) -> Void) {
+//        var invites = [TeamInvitation]()
+//
+//        UserService.main.getUserData { (user) in
+//            self.getTeams { (teams) in
+//                teams.forEach { (team) in
+//                    self.getTeamMembers(in: team) { (members) in
+//                        let member = members.filter { $0.me == true }.first
+//                        switch member?.status {
+//                        case .INVITED?:
+//                            invites.append(TeamInvitation(teamId: team.qotId,
+//                                                          teamName: team.name,
+//                                                          teamColor: team.teamColor,
+//                                                          sender: "",
+//                                                          date: "",
+//                                                          memberCount: 0))
+//                        default: break
+//                        } // switch
+//                    } // getMembers
+//                } // teams.forEach
+//                completion(TeamHeader(teamInvites: invites), teams)
+//            } // getTeams
+//        } // getUserData
+//    }
 }

@@ -12,14 +12,14 @@ import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
-    func updateTeamHeader(teamHeaderItems: [TeamHeader])
-    func updateViewNew(_ differenceList: StagedChangeset<IndexPathArray>)
+    func updateTeamHeader(teamHeaderItems: [TeamHeader.Item])
+    func updateView(_ differenceList: StagedChangeset<IndexPathArray>)
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func updateTeamHeader(teamHeaderItems: [TeamHeader])
-    func updateViewNew(_ differenceList: StagedChangeset<IndexPathArray>)
+    func updateTeamHeader(teamHeaderItems: [TeamHeader.Item])
+    func updateView(_ differenceList: StagedChangeset<IndexPathArray>)
 }
 
 protocol MyQotMainInteractorInterface: Interactor {

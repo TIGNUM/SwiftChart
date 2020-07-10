@@ -14,7 +14,7 @@ final class MyXTeamSettingsInteractor {
     // MARK: - Properties
     private let worker = MyXTeamSettingsWorker()
     private let presenter: MyXTeamSettingsPresenterInterface
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [TeamHeader.Item]()
     private var currentTeam: QDMTeam?
 
     var teamSettingsText: String {
@@ -30,7 +30,7 @@ final class MyXTeamSettingsInteractor {
     func viewDidLoad() {
         presenter.present(worker.settings)
 
-        worker.getTeamHeaderItems(.settings) { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
             self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "") { [weak self] (selectedTeam) in
@@ -78,7 +78,7 @@ private extension MyXTeamSettingsInteractor {
         presenter.updateView()
     }
 
-    func setFirstTeamSelected(_ teamHeaderItems: [TeamHeader]) {
+    func setFirstTeamSelected(_ teamHeaderItems: [TeamHeader.Item]) {
         for header in teamHeaderItems {
             if !header.teamId.isEmpty {
                 header.selected = true
@@ -95,7 +95,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems(.settings) { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems() { [weak self] (teamHeaderItems) in
             self?.teamHeaderItems = teamHeaderItems
             teamHeaderItems.forEach { (item) in
                 item.selected = (teamId == item.teamId)
@@ -116,7 +116,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
      }
 
     func updateTeams() {
-        worker.getTeamHeaderItems(.settings) { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems() { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)

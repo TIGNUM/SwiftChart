@@ -16,7 +16,7 @@ final class MyQotMainInteractor {
     private let worker: MyQotMainWorker
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [TeamHeader.Item]()
     private var viewModel: IndexPathArray = []
     private var subtitles: [String?] = []
     private var eventType: String?
@@ -32,7 +32,7 @@ final class MyQotMainInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        worker.getTeamHeaderItems(.myX) { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
         }
@@ -44,15 +44,20 @@ final class MyQotMainInteractor {
 // MARK: - Private
 private extension MyQotMainInteractor {
     func createInitialData() {
-        let items = MyQotSection.allCases.compactMap { (section) -> MyQot.Item in
-            return MyQot.Item(sections: section, title: section.title, subtitle: subtitles[section.rawValue])
-        }
+        worker.getSubtitles { [weak self] (subtitles) in
+            guard let strongSelf = self else { return }
+            strongSelf.subtitles = subtitles
 
-        var sectionDataList: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
-        sectionDataList.append(ArraySection(model: .teamHeader, elements: []))
-        sectionDataList.append(ArraySection(model: .body, elements: items))
-        let changeSet = StagedChangeset(source: viewModel, target: sectionDataList)
-        presenter.updateViewNew(changeSet)
+            let items = MyQotSection.allCases.compactMap { (section) -> MyQot.Item in
+                return MyQot.Item(sections: section, title: section.title, subtitle: subtitles.at(index: section.rawValue))
+            }
+
+            var sectionDataList: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
+            sectionDataList.append(ArraySection(model: .teamHeader, elements: []))
+            sectionDataList.append(ArraySection(model: .body, elements: items))
+            let changeSet = StagedChangeset(source: strongSelf.viewModel, target: sectionDataList)
+            strongSelf.presenter.updateView(changeSet)
+        }
     }
 
     func createMyData(irScore: Int?) -> MyQot.Item {
@@ -145,20 +150,22 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                         self?.worker.nextPrepType { (eventType) in
                             self?.worker.getCurrentSprintName { (sprintName) in
                                 guard let strongSelf = self else { return }
-                                var items: [MyQot.Item] = []
-                                items.append(strongSelf.worker.getMyQotItem(in: .teamCreate))
-                                items.append(strongSelf.worker.getMyQotItem(in: .library))
-                                items.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                                items.append(strongSelf.worker.getMyQotItem(in: .sprints, subTitle: sprintName ?? ""))
-                                items.append(strongSelf.createMyData(irScore: score))
-                                items.append(strongSelf.createToBeVision(date: date))
+                                var bodyItems: [MyQot.Item] = []
+                                bodyItems.append(strongSelf.worker.getMyQotItem(in: .teamCreate))
+                                bodyItems.append(strongSelf.worker.getMyQotItem(in: .library))
+                                bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                                bodyItems.append(strongSelf.worker.getMyQotItem(in: .sprints, subTitle: sprintName ?? ""))
+                                bodyItems.append(strongSelf.createMyData(irScore: score))
+                                bodyItems.append(strongSelf.createToBeVision(date: date))
+
+                                var headerItems: [TeamHeader.Item] = []
 
                                 var sections: IndexPathArray = [ArraySection(model: .navigationHeader, elements: [])]
                                 sections.append(ArraySection(model: .teamHeader, elements: []))
-                                sections.append(ArraySection(model: .body, elements: items))
+                                sections.append(ArraySection(model: .body, elements: bodyItems))
 
                                 let changeSet = StagedChangeset(source: strongSelf.viewModel, target: sections)
-                                strongSelf.presenter.updateViewNew(changeSet)
+                                strongSelf.presenter.updateView(changeSet)
                             }
                         }
                     }
@@ -182,7 +189,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         switch MyQot.Section(rawValue: section) {
         case .navigationHeader,
              .teamHeader: return 1
-        case .body: return viewModel.at(index: section)?.elements.count ?? 0
+//        case .body: return viewModel.at(index: section)?.elements.count ?? 0
         default: return 0
         }
     }
