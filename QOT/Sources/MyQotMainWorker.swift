@@ -11,16 +11,27 @@ import qot_dal
 
 final class MyQotMainWorker: WorkerTeam {
 
-    private lazy var myQot: MyQot = {
-        let myQotItems = MyQotSection.allCases.map {
-            return MyQot.Item(sections: $0, title: $0.title)}
-        return MyQot(items: myQotItems)
-    }()
+    private var bodyElements = MyX()
+    private var teamItems = MyX()
 
-    func getMyQotItem(in section: MyQotSection, subTitle: String = "") -> MyQot.Item {
-        var item = myQot.items[section.rawValue]
+    // MARK: - Init
+    init() {
+        setBodyElements { self.bodyElements = $0 }
+        setTeamItems { self.teamItems = $0 }
+    }
+
+    var getBodyElements: MyX {
+        return bodyElements
+    }
+
+    var getTeamItems: MyX {
+        return teamItems
+    }
+
+    func getItem(in element: MyX.Element, subTitle: String = "") -> MyX.Item {
+        var item = bodyElements.items[element.rawValue]
         item.subtitle = subTitle
-        return myQot.items[section.rawValue]
+        return bodyElements.items[element.rawValue]
     }
 
     func nextPrep(completion: @escaping (String?) -> Void) {
@@ -66,6 +77,33 @@ final class MyQotMainWorker: WorkerTeam {
                 return item.valueText
             } ?? []
             completion(subtitles)
+        }
+    }
+}
+
+// MARK: - Private
+extension MyQotMainWorker {
+    func setBodyElements(_ completion: @escaping (MyX) -> Void) {
+        let items = MyX.Element.allCases.compactMap { (element) -> MyX.Item in
+            return MyX.Item(element: element, title: element.title, subtitle: "")
+        }
+        completion(MyX(items: items))
+    }
+
+    func setTeamItems(_ completion: @escaping (MyX) -> Void) {
+        getTeams { [weak self] (teams) in
+            self?.getNumberOfInvites { (invites) in
+                var items = [Team.Item]()
+                if invites > 0 {
+                    items.append(Team.Item(batchCount: invites))
+                }
+                items.append(contentsOf: teams.compactMap { (team) -> Team.Item in
+                    return Team.Item(title: team.name ?? "",
+                                     teamId: team.qotId ?? "",
+                                     color: team.teamColor ?? "")
+                })
+                completion(MyX(teamHeaderItems: items))
+            }
         }
     }
 }

@@ -49,15 +49,15 @@ private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
         NotificationCenter.default.post(name: .didSelectTeam,
                                         object: nil,
-                                        userInfo: [TeamHeader.Selector.teamId.rawValue: teamId])
+                                        userInfo: [Team.KeyTeamId: teamId])
     }
 
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
+        if let teamId = userInfo[Team.KeyTeamId] {
             setSelected(self.teamId == teamId)
         }
-        if let teamColor = userInfo[TeamHeader.Selector.teamColor.rawValue] {
+        if let teamColor = userInfo[Team.KeyColor] {
             hexColorString = teamColor
         }
     }

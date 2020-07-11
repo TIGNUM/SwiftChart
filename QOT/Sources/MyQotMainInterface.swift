@@ -12,27 +12,30 @@ import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
-    func updateTeamHeader(teamHeaderItems: [TeamHeader.Item])
-    func updateView(_ differenceList: StagedChangeset<IndexPathArray>)
+    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func updateTeamHeader(teamHeaderItems: [TeamHeader.Item])
-    func updateView(_ differenceList: StagedChangeset<IndexPathArray>)
+    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
     var sectionCount: Int { get }
 
     func getSettingsButtonTitle() -> String
-    func presentMyProfile()
-    func updateViewModelListNew(_ list: IndexPathArray)
+    func getTeamItems() -> [Team.Item]
+
     func refreshParams()
+    func updateArraySection(_ list: ArraySectionMyX)
+    
     func updateSelectedTeam(teamId: String)
-    func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void)
+
+    func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void)
     func itemCount(in section: Int) -> Int
-    func getItem(at indexPath: IndexPath) -> MyQot.Item?
+    func getItem(at indexPath: IndexPath) -> MyX.Item?
+
+    func presentMyProfile()
     func handleSelection(at indexPath: IndexPath)
 }
 

@@ -11,14 +11,14 @@ import UIKit
 final class HorizontalHeaderView: UIView {
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    private var headerItems = [TeamHeader.Item]()
+    private var headerItems = [Team.Item]()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.registerDequeueable(TeamHeaderCell.self)
     }
 
-    func configure(headerItems: [TeamHeader.Item]) {
+    func configure(headerItems: [Team.Item]) {
         self.headerItems = headerItems
         collectionView.reloadData()
         collectionView.setContentOffset(CGPoint(x: 24, y: 0), animated: true)
@@ -41,14 +41,11 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TeamHeaderCell = collectionView.dequeueCell(for: indexPath)
         if let item = headerItems.at(index: indexPath.row) {
-            if let invite = item.inviteButton {
-                cell.configure(title: invite.title, counter: invite.counter)
-            } else {
-                cell.configure(teamId: item.teamId,
-                               title: item.title,
-                               hexColorString: item.hexColorString,
-                               selected: item.selected)
-
+            switch item.header {
+            case .invite:
+                cell.configure(title: item.title, counter: item.batchCount)
+            case .team:
+                cell.configure(teamId: item.teamId, title: item.title, hexColorString: item.color, selected: item.selected)
             }
         }
         return cell

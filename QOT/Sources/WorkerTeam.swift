@@ -16,7 +16,7 @@ protocol WorkerTeam {
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
-    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader.Item]) -> Void)
+    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
@@ -37,6 +37,8 @@ protocol WorkerTeam {
     func deleteTeam(_ team: QDMTeam, _ completion: @escaping ([QDMTeam]?, Bool, Error?) -> Void)
 
     func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void)
+
+    func getNumberOfInvites(_ completion: @escaping (Int) -> Void)
 }
 
 extension WorkerTeam {
@@ -68,15 +70,15 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader.Item]) -> Void) {
-        getTeams { (teams) in
-            self.createTeamHeaderItems(teams: teams) { (headerItems) in
-                completion(headerItems)
-            }
-        }
-//        var items = [TeamHeader.Item]()
+    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
+//        getTeams { (teams) in
+//            self.createTeamHeaderItems(teams: teams) { (headerItems) in
+//                completion(headerItems)
+//            }
+//        }
+//        var items = [Team.Item]()
 //        createTeamInvites { (headerInviteItem, teams)  in
-//            if case TeamHeader.View.myX = view, !headerInviteItem.teamInvites.isEmpty {
+//            if case Team.View.myX = view, !headerInviteItem.teamInvites.isEmpty {
 //                items.append(headerInviteItem)
 //            }
 //            self.createTeamHeaderItems(teams: teams) { (headerItems) in
@@ -193,6 +195,9 @@ extension WorkerTeam {
 
     func getSelectedTeam() {}
 
+    func getNumberOfInvites(_ completion: @escaping (Int) -> Void) {
+        completion(3)
+    }
 }
 
 // MARK: - Private
@@ -207,16 +212,16 @@ private extension WorkerTeam {
         }
     }
 
-    func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([TeamHeader.Item]) -> Void) {
-        let teamHeaderItems = teams.filter { $0.teamColor != nil }
-            .compactMap { (team) -> TeamHeader.Item in
-            return TeamHeader.Item(teamId: team.qotId ?? "",
-                                   title: team.name ?? "",
-                                   hexColorString: team.teamColor ?? "",
-                                   selected: false)
-        }
-        completion(teamHeaderItems)
-    }
+//    func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([Team.Item]) -> Void) {
+//        let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> Team.Item in
+//            return Team.Item(title: team.name ?? "",
+//                             teamId: team.qotId ?? "",
+//                             color: team.teamColor ?? "",
+//                             selected: false,
+//                             batchCount: 0)
+//        }
+//        completion(teamHeaderItems)
+//    }
 
 //    func createTeamInvites(_ completion: @escaping (TeamHeader, [QDMTeam]) -> Void) {
 //        var invites = [TeamInvitation]()

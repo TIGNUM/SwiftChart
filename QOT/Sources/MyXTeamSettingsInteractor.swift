@@ -14,7 +14,7 @@ final class MyXTeamSettingsInteractor {
     // MARK: - Properties
     private let worker = MyXTeamSettingsWorker()
     private let presenter: MyXTeamSettingsPresenterInterface
-    private var teamHeaderItems = [TeamHeader.Item]()
+    private var teamHeaderItems = [Team.Item]()
     private var currentTeam: QDMTeam?
 
     var teamSettingsText: String {
@@ -45,10 +45,10 @@ final class MyXTeamSettingsInteractor {
 private extension MyXTeamSettingsInteractor {
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
+        if let teamId = userInfo[Team.KeyTeamId] {
             updateSelectedTeam(teamId: teamId)
         }
-        if let teamColor = userInfo[TeamHeader.Selector.teamColor.rawValue] {
+        if let teamColor = userInfo[Team.KeyColor] {
             updateSelectedTeam(teamColor: teamColor)
         }
      }
@@ -78,10 +78,10 @@ private extension MyXTeamSettingsInteractor {
         presenter.updateView()
     }
 
-    func setFirstTeamSelected(_ teamHeaderItems: [TeamHeader.Item]) {
+    func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {
         for header in teamHeaderItems {
             if !header.teamId.isEmpty {
-                header.selected = true
+//                header.selected = true
                 return
             }
         }
@@ -95,10 +95,10 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems() { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.teamHeaderItems = teamHeaderItems
             teamHeaderItems.forEach { (item) in
-                item.selected = (teamId == item.teamId)
+//                item.selected = (teamId == item.teamId)
             }
             self?.worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
                 self?.currentTeam = selectedTeam
@@ -109,14 +109,14 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func updateSelectedTeam(teamColor: String) {
-         teamHeaderItems.filter { $0.selected }.first?.hexColorString = teamColor
+//         teamHeaderItems.filter { $0.selected }.first?.color = teamColor
          presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
          presenter.updateView()
          worker.updateTeamColor(teamId: getTeamId(), teamColor: teamColor)
      }
 
     func updateTeams() {
-        worker.getTeamHeaderItems() { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
@@ -133,7 +133,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func getTeamColor() -> String {
-        return teamHeaderItems.filter { $0.selected }.first?.hexColorString ?? ""
+        return teamHeaderItems.filter { $0.selected }.first?.color ?? ""
     }
 
     func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void) {
