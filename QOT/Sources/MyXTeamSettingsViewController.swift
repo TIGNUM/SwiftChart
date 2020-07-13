@@ -81,6 +81,7 @@ private extension MyXTeamSettingsViewController {
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
 
     func openProfile() {
+//         TO FIX
         router?.dismiss()
     }
 
