@@ -54,7 +54,7 @@ final class MyXTeamMembersViewController: UIViewController {
 // MARK: - Private
 private extension MyXTeamMembersViewController {
 
-    func backToTeamSettings()-> UIBarButtonItem {
+    func backToTeamSettings() -> UIBarButtonItem {
          return backNavigationItem()
     }
 
@@ -155,6 +155,6 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
                 }
 //            } else {
 //                return .none
-        }
+//        }
     }
 }
