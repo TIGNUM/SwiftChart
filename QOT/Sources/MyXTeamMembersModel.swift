@@ -18,4 +18,5 @@ struct MyXTeamMemberModel {
     var status: MemberStatus = .pending
     var qotId: String? = UUID().uuidString
     var isTeamOwner: Bool = false
+    var wasReinvited: Bool = false
 }

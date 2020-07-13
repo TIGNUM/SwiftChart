@@ -38,4 +38,15 @@ extension MyXTeamMembersWorker: WorkerTeam {
         }
         return membersList
     }
+
+    func removeMember(memberId: String?, team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
+           TeamService.main.getTeamMembers(in: team, { (members, _, error)  in
+               guard let user = members?.filter({$0.qotId == memberId}).first else {
+                   completion(error)
+                   return
+               }
+               TeamService.main.leaveTeam(teamMember: user, completion)
+           })
+       }
+
 }

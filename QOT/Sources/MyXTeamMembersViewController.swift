@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyXTeamMembersViewController: UIViewController {
 
@@ -46,6 +47,26 @@ final class MyXTeamMembersViewController: UIViewController {
 // MARK: - Private
 private extension MyXTeamMembersViewController {
 
+    func reinviteMember(indexPath: IndexPath) {
+        if let email = membersList.at(index: indexPath.row)?.email, let team = interactor.selectedTeam {
+            interactor.reinviteMember(email: email, team: team)
+            //           TODO  update member model
+        }
+        //        TEMP
+        membersList[indexPath.row].wasReinvited.toggle()
+        tableView.reloadData()
+
+    }
+
+    func removeMember(indexPath: IndexPath) {
+        if let memberId = membersList.at(index: indexPath.row)?.qotId, let team = interactor.selectedTeam {
+            interactor.removeMember(memberId: memberId, team: team)
+            //          TO DO
+        }
+        //         TEMP
+        membersList.remove(at: indexPath.row)
+        tableView.reloadData()
+    }
 }
 
 // MARK: - Actions
@@ -58,7 +79,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func setupView() {
         ThemeView.level3.apply(view)
-        membersList = [MyXTeamMemberModel(email: "a.plancoulaine@tignum.com", status: .joined, qotId: "2ER5", isTeamOwner: true), MyXTeamMemberModel(email: "b.hallo@gmail.com", status: .joined, qotId: "AB3C", isTeamOwner: false), MyXTeamMemberModel(email: "pattismith@vam.com", status: .pending, qotId: "9J78", isTeamOwner: false)]
+        membersList = [MyXTeamMemberModel(email: "a.plancoulaine@tignum.com", status: .joined, qotId: "2ER5", isTeamOwner: true, wasReinvited: false), MyXTeamMemberModel(email: "b.hallo@gmail.com", status: .joined, qotId: "AB3C", isTeamOwner: false, wasReinvited: false), MyXTeamMemberModel(email: "pattismith@vam.com", status: .pending, qotId: "9J78", isTeamOwner: false, wasReinvited: false)]
         baseHeaderView?.configure(title: interactor?.teamMembersText, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
@@ -87,8 +108,36 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
         guard let member = membersList.at(index: indexPath.row) else {
             fatalError("member does not exist at indexPath: \(indexPath.item)")
         }
-        let cell: TeamMemberTableViewCell = tableView.dequeueCell(for:indexPath)
-        cell.configure(memberEmail: member.email , memberStatus: member.status)
+        let cell: TeamMemberTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(memberEmail: member.email, memberStatus: member.status)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let inviteAgain = AppTextService.get(.settings_team_settings_team_members_invite_again)
+        let inviteAgainAction = UITableViewRowAction(style: .normal, title: inviteAgain) {(action, indexPath) in
+            self.reinviteMember(indexPath: indexPath)
+        }
+        inviteAgainAction.backgroundColor = .accent10
+        let invited = AppTextService.get(.settings_team_settings_team_members_invited)
+        let invitedAction = UITableViewRowAction(style: .normal, title: invited) {(action, indexPath) in
+
+        }
+        invitedAction.backgroundColor = .accent10
+        let remove = AppTextService.get(.settings_team_settings_team_members_remove)
+
+        let removeAction = UITableViewRowAction(style: .normal, title: remove) { (action, indexPath) in
+            self.removeMember(indexPath: indexPath)
+        }
+        removeAction.backgroundColor = .redOrange
+        guard let member = membersList.at(index: indexPath.row) else {
+            fatalError("member does not exist at indexPath: \(indexPath.item)")
+        }
+        switch member.status {
+        case .joined:
+            return [removeAction]
+        case .pending:
+            return member.wasReinvited ? [removeAction, invitedAction] : [removeAction, inviteAgainAction]
+        }
     }
 }

@@ -57,6 +57,10 @@ private extension MyXTeamMembersInteractor {
 // MARK: - MyXTeamMembersInteractorInterface
 extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
+    var selectedTeam: QDMTeam? {
+        return self.currentTeam
+    }
+
     func updateSelectedTeam(teamId: String) {
           worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
               self?.teamHeaderItems = teamHeaderItems
@@ -71,4 +75,18 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
           }
       }
+
+    func removeMember(memberId: String?, team: QDMTeam) {
+        worker.removeMember(memberId: memberId, team: team, { _ in
+            //            if it was the last member,
+            //            if there are other teams --> team settings
+            //            if no other teams --> My profile
+        })
+    }
+
+    func reinviteMember(email: String?, team: QDMTeam?) {
+        worker.sendInvite(email, team: team) { (member, Error) in
+             
+        }
+    }
 }

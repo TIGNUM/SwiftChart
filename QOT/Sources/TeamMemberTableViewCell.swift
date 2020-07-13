@@ -19,6 +19,7 @@ class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
         self.backgroundView = UIView(frame: self.bounds)
         self.selectedBackgroundView = UIView(frame: self.bounds)
         ThemeView.level2Selected.apply(selectedBackgroundView!)
+        UIButton.appearance().setTitleColor(.sand70, for: .normal)
     }
 
     func configure(memberEmail: String?, memberStatus: MemberStatus) {
@@ -27,4 +28,5 @@ class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
         pendingIcon.isHidden = memberStatus == .joined
         joinedIcon.isHidden = memberStatus == .pending
     }
+
 }
