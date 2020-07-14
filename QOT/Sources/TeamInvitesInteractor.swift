@@ -23,6 +23,7 @@ final class TeamInvitesInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        addObservers()
         presenter.setupView()
         worker.getInviteHeader { (header) in
             self.worker.getInviteItems { (items) in
@@ -30,6 +31,32 @@ final class TeamInvitesInteractor {
                 self.inviteItems = items
                 self.presenter.reload()
             }
+        }
+    }
+}
+
+// MARK: - Private
+private extension TeamInvitesInteractor {
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didSelectJoinTeam(_:)),
+                                               name: .didSelectTeamInviteJoin,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didSelectDeclineTeamInvite(_:)),
+                                               name: .didSelectTeamInviteDecline,
+                                               object: nil)
+    }
+
+    @objc func didSelectJoinTeam(_ notification: Notification) {
+        if let teamId = notification.object as? String {
+
+        }
+    }
+
+    @objc func didSelectDeclineTeamInvite(_ notification: Notification) {
+        if let teamId = notification.object as? String {
+
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 struct TeamInvite {
     enum Section: Int, CaseIterable {
@@ -20,13 +21,25 @@ struct TeamInvite {
     }
 
     struct Invitation {
-        let teamId: String
+        let invite: QDMTeamInvitation
+        let teamQotId: String
         let teamName: String
         let teamColor: String
         let sender: String
         let dateOfInvite: String
         let memberCount: Int
         let warningMessage: String
+
+        init(invite: QDMTeamInvitation) {
+            self.invite = invite
+            self.teamQotId = invite.team?.qotId ?? ""
+            self.teamName = invite.team?.name ?? ""
+            self.teamColor = invite.team?.teamColor ?? ""
+            self.sender = invite.sender ?? ""
+            self.dateOfInvite = "invite.invitedDate."
+            self.memberCount = 23
+            self.warningMessage = ""
+        }
 
         func canJoin(maxTeams: Int, partOfTeams: Int) -> Bool {
             return partOfTeams < maxTeams

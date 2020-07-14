@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TeamInvitesWorker {
+final class TeamInvitesWorker: WorkerTeam {
 
     // MARK: - Init
     init() { /**/ }
@@ -20,24 +20,11 @@ final class TeamInvitesWorker {
     }
 
     func getInviteItems(_ completion: @escaping ([TeamInvite.Invitation]) -> Void) {
-        var items = [TeamInvite.Invitation]()
-
-        items.append(TeamInvite.Invitation(teamId: "123456",
-                                           teamName: "Web Team",
-                                           teamColor: "#5790DD",
-                                           sender: "j.schultz@tignum.com",
-                                           dateOfInvite: "05. March",
-                                           memberCount: 25,
-                                           warningMessage: "You already belong to 3 teams."))
-
-        items.append(TeamInvite.Invitation(teamId: "123457",
-                                           teamName: "Design Team",
-                                           teamColor: "#E49A9E",
-                                           sender: "j.schultz@tignum.com",
-                                           dateOfInvite: "27. February",
-                                           memberCount: 5,
-                                           warningMessage: "You already belong to 3 teams."))
-
-        completion(items)
+        getTeamInvitations { (invitations) in
+            let items = invitations.compactMap { (invite) -> TeamInvite.Invitation in
+                return TeamInvite.Invitation(invite: invite)
+            }
+            completion(items)
+        }
     }
 }

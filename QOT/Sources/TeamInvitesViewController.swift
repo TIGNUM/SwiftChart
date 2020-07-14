@@ -76,7 +76,7 @@ extension TeamInvitesViewController: UITableViewDelegate, UITableViewDataSource 
             let inviteCell: TeamInvitePendingTableViewCell = tableView.dequeueCell(for: indexPath)
             inviteCell.configure(teamName: item.teamName,
                                  teamColor: item.teamColor,
-                                 teamId: item.teamId,
+                                 teamId: item.teamQotId,
                                  sender: item.sender,
                                  dateOfInvite: item.dateOfInvite,
                                  memberCount: item.memberCount)
