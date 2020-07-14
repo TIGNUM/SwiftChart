@@ -13,7 +13,7 @@ protocol MyXTeamSettingsViewControllerDelegate: class {
     func presentEditTeam()
 }
 
-final class MyXTeamSettingsViewController: UIViewController {
+final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3  {
 
     // MARK: - Properties
     var interactor: MyXTeamSettingsInteractorInterface!
@@ -50,8 +50,7 @@ final class MyXTeamSettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(colorMode: ColorMode.darkNot)
-        setStatusBar(color: ThemeView.level1.color)
+        setStatusBar(color: .carbon)
         leftBarButtonItems = [backNavigationItem()]
         updateBottomNavigation(leftBarButtonItems, [])
 

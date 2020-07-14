@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class MyXTeamMembersViewController: UIViewController {
+final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyXTeamMembersInteractorInterface!
@@ -53,6 +53,7 @@ final class MyXTeamMembersViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         updateBottomNavigation([backNavigationItem()], [addMembersButton])
+        setStatusBar(color: .carbon)
     }
 }
 
