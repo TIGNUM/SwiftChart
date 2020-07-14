@@ -10,7 +10,6 @@ import UIKit
 import qot_dal
 
 final class MyQotMainWorker: WorkerTeam {
-
     private var bodyElements = MyX()
     private var teamItems = MyX()
 
@@ -92,10 +91,10 @@ extension MyQotMainWorker {
 
     func setTeamItems(_ completion: @escaping (MyX) -> Void) {
         getTeams { [weak self] (teams) in
-            self?.getNumberOfInvites { (invites) in
+            self?.getTeamInvitations { (invites) in
                 var items = [Team.Item]()
-                if invites > 0 {
-                    items.append(Team.Item(batchCount: invites))
+                if !invites.isEmpty {
+                    items.append(Team.Item(batchCount: invites.count))
                 }
                 items.append(contentsOf: teams.compactMap { (team) -> Team.Item in
                     return Team.Item(title: team.name ?? "",

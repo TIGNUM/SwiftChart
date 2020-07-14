@@ -8,4 +8,6 @@
 
 import UIKit
 
-final class TeamEditWorker: WorkerTeam {}
+final class TeamEditWorker: WorkerTeam {
+
+}
