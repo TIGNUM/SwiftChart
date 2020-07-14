@@ -44,7 +44,8 @@ extension WorkerTeam {
 
     func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
         getTeams { (teams) in
-            let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
+//            .filter { $0.teamColor != nil }
+            let teamHeaderItems = teams.compactMap { (team) -> TeamHeader? in
                 return TeamHeader(teamId: team.qotId ?? "",
                                   title: team.name ?? "",
                                   hexColorString: team.teamColor ?? "",
