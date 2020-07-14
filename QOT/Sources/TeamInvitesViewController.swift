@@ -29,6 +29,15 @@ final class TeamInvitesViewController: UIViewController {
         super.viewDidLoad()
         interactor.viewDidLoad()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [backNavigationItemLight()]
+    }
 }
 
 // MARK: - Private
@@ -79,7 +88,8 @@ extension TeamInvitesViewController: UITableViewDelegate, UITableViewDataSource 
                                  teamId: item.teamQotId,
                                  sender: item.sender,
                                  dateOfInvite: item.dateOfInvite,
-                                 memberCount: item.memberCount)
+                                 memberCount: item.memberCount,
+                                 invite: item.invite)
             return inviteCell
         default:
             fatalError("Invalid section")

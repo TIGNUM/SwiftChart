@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TeamInvitesInteractor {
 
@@ -49,14 +50,18 @@ private extension TeamInvitesInteractor {
     }
 
     @objc func didSelectJoinTeam(_ notification: Notification) {
-        if let teamId = notification.object as? String {
-
+        if let teamInvite = notification.object as? QDMTeamInvitation {
+            worker.joinTeamInvite(teamInvite) { (teams) in
+                // TODO update view
+            }
         }
     }
 
     @objc func didSelectDeclineTeamInvite(_ notification: Notification) {
-        if let teamId = notification.object as? String {
-
+        if let teamInvite = notification.object as? QDMTeamInvitation {
+            worker.declineTeamInvite(teamInvite) { (teams) in
+                // TODO update view
+            }
         }
     }
 }

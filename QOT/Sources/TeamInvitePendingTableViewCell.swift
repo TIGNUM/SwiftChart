@@ -16,6 +16,7 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var declineButton: UIButton!
     @IBOutlet private weak var joinButton: UIButton!
     private var teamId: String = ""
+    private var invite: QDMTeamInvitation?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +31,9 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
                    teamId: String,
                    sender: String,
                    dateOfInvite: String,
-                   memberCount: Int) {
+                   memberCount: Int,
+                   invite: QDMTeamInvitation) {
+        self.invite = invite
         self.teamId = teamId
         teamNameLabel.text = teamName
         teamNameLabel.textColor = UIColor(hex: teamColor)
@@ -40,10 +43,10 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
 
 extension TeamInvitePendingTableViewCell {
     @IBAction func didTabDecline() {
-        NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: teamId)
+        NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: invite)
     }
 
     @IBAction func didTabJoin() {
-        NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: teamId)
+        NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: invite)
     }
 }
