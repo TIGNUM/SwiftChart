@@ -252,35 +252,35 @@
                                     <constraint firstAttribute="height" constant="98" id="AxI-o6-sx7"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghS-jG-5zB" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="che-KX-sGX" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="98" width="375" height="60"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fuU-AA-R9P">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mtu-b4-v0C">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="4" minimumInteritemSpacing="4" id="ApO-pf-Geu">
-                                            <size key="itemSize" width="110" height="50"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mDP-Lv-Q8S">
+                                            <size key="itemSize" width="300" height="60"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells/>
                                         <connections>
-                                            <outlet property="dataSource" destination="ghS-jG-5zB" id="E6H-6C-w24"/>
-                                            <outlet property="delegate" destination="ghS-jG-5zB" id="fVZ-ec-ufb"/>
+                                            <outlet property="dataSource" destination="che-KX-sGX" id="njp-ij-hYv"/>
+                                            <outlet property="delegate" destination="che-KX-sGX" id="hTL-JE-C0n"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="IGn-IA-kg5"/>
-                                    <constraint firstItem="fuU-AA-R9P" firstAttribute="leading" secondItem="ghS-jG-5zB" secondAttribute="leading" id="W76-E4-Rk4"/>
-                                    <constraint firstAttribute="bottom" secondItem="fuU-AA-R9P" secondAttribute="bottom" id="WJU-2J-kdF"/>
-                                    <constraint firstAttribute="trailing" secondItem="fuU-AA-R9P" secondAttribute="trailing" id="ZDE-1J-jDL"/>
-                                    <constraint firstItem="fuU-AA-R9P" firstAttribute="top" secondItem="ghS-jG-5zB" secondAttribute="top" id="r9N-Lm-0kF"/>
+                                    <constraint firstItem="Mtu-b4-v0C" firstAttribute="leading" secondItem="che-KX-sGX" secondAttribute="leading" id="79h-mG-QoO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mtu-b4-v0C" secondAttribute="trailing" id="M8K-s1-Pdt"/>
+                                    <constraint firstItem="Mtu-b4-v0C" firstAttribute="top" secondItem="che-KX-sGX" secondAttribute="top" id="NRd-rj-kHt"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mtu-b4-v0C" secondAttribute="bottom" id="ak3-bg-P6z"/>
+                                    <constraint firstAttribute="height" constant="60" id="goi-Z4-0hj"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="collectionView" destination="fuU-AA-R9P" id="ppC-HE-AvC"/>
+                                    <outlet property="collectionView" destination="Mtu-b4-v0C" id="QL6-d9-U14"/>
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HTS-fj-Ieu">
@@ -297,15 +297,15 @@
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="HTS-fj-Ieu" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="00o-S2-Wub"/>
+                            <constraint firstItem="HTS-fj-Ieu" firstAttribute="top" secondItem="che-KX-sGX" secondAttribute="bottom" id="5vY-MY-NAB"/>
                             <constraint firstItem="P4L-d4-E25" firstAttribute="bottom" secondItem="HTS-fj-Ieu" secondAttribute="bottom" id="7pK-q1-gWD"/>
-                            <constraint firstItem="ghS-jG-5zB" firstAttribute="top" secondItem="Fbz-7Z-v9W" secondAttribute="bottom" id="8It-bM-ghX"/>
                             <constraint firstItem="P4L-d4-E25" firstAttribute="trailing" secondItem="Fbz-7Z-v9W" secondAttribute="trailing" id="LFV-1W-LvZ"/>
-                            <constraint firstItem="ghS-jG-5zB" firstAttribute="leading" secondItem="cJ0-Zn-i4c" secondAttribute="leading" id="Ovz-IZ-4Be"/>
                             <constraint firstItem="Fbz-7Z-v9W" firstAttribute="top" secondItem="P4L-d4-E25" secondAttribute="top" id="WFr-hV-2wi"/>
                             <constraint firstItem="P4L-d4-E25" firstAttribute="trailing" secondItem="HTS-fj-Ieu" secondAttribute="trailing" id="anU-mE-Hbw"/>
-                            <constraint firstItem="HTS-fj-Ieu" firstAttribute="top" secondItem="ghS-jG-5zB" secondAttribute="bottom" id="cYV-nB-7oS"/>
-                            <constraint firstAttribute="trailing" secondItem="ghS-jG-5zB" secondAttribute="trailing" id="rHf-nT-65v"/>
+                            <constraint firstItem="che-KX-sGX" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="dw0-Wq-96P"/>
+                            <constraint firstItem="che-KX-sGX" firstAttribute="trailing" secondItem="P4L-d4-E25" secondAttribute="trailing" id="qtW-l1-rV4"/>
                             <constraint firstItem="Fbz-7Z-v9W" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="uHO-Q4-0w1"/>
+                            <constraint firstItem="che-KX-sGX" firstAttribute="top" secondItem="Fbz-7Z-v9W" secondAttribute="bottom" id="uOw-K4-Fuh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P4L-d4-E25"/>
                     </view>
@@ -313,8 +313,8 @@
                     <connections>
                         <outlet property="headerHeightConstraint" destination="AxI-o6-sx7" id="Csg-A1-8jd"/>
                         <outlet property="headerView" destination="Fbz-7Z-v9W" id="HpI-mm-kMz"/>
-                        <outlet property="horizontalHeaderHeight" destination="IGn-IA-kg5" id="T7a-Zk-BC7"/>
-                        <outlet property="horizontalHeaderView" destination="ghS-jG-5zB" id="jgB-No-Aa4"/>
+                        <outlet property="horizontalHeaderHeight" destination="goi-Z4-0hj" id="7Xr-wB-pR2"/>
+                        <outlet property="horizontalHeaderView" destination="che-KX-sGX" id="ias-d0-wwl"/>
                         <outlet property="tableView" destination="HTS-fj-Ieu" id="OXV-gs-tid"/>
                     </connections>
                 </viewController>

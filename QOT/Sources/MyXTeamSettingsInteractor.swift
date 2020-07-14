@@ -81,7 +81,7 @@ private extension MyXTeamSettingsInteractor {
     func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {
         for header in teamHeaderItems {
             if !header.teamId.isEmpty {
-//                header.selected = true
+                header.selected = true
                 return
             }
         }
@@ -95,25 +95,25 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.teamHeaderItems = teamHeaderItems
+//        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+//            self.teamHeaderItems = teamHeaderItems
             teamHeaderItems.forEach { (item) in
-//                item.selected = (teamId == item.teamId)
+                item.selected = (teamId == item.teamId)
             }
-            self?.worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
+            worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
                 self?.currentTeam = selectedTeam
-                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+                self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
                 self?.presenter.updateView()
             }
-        }
+//        }
     }
 
     func updateSelectedTeam(teamColor: String) {
-//         teamHeaderItems.filter { $0.selected }.first?.color = teamColor
-         presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-         presenter.updateView()
-         worker.updateTeamColor(teamId: getTeamId(), teamColor: teamColor)
-     }
+        teamHeaderItems.filter { $0.selected }.first?.color = teamColor
+        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+        presenter.updateView()
+        worker.updateTeamColor(teamId: getTeamId(), teamColor: teamColor)
+    }
 
     func updateTeams() {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in

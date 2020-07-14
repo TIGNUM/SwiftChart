@@ -87,7 +87,13 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
 
     func updateTeamHeader(teamHeaderItems: [Team.Item]) {
         self.teamHeaderItems = teamHeaderItems
-        teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        if teamHeaderItems.isEmpty {
+            horizontalHeaderHeight.constant = 0
+        } else {
+            horizontalHeaderHeight.constant = 60
+            horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        }
+//        teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems, height: 80)
     }
 
     func updateView() {
