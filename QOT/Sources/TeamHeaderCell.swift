@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TeamHeaderCell: UICollectionViewCell {
 
     @IBOutlet weak var titleButton: UIButton!
     private var teamId = ""
     private var hexColorString = ""
+    private var teamInvite: QDMTeamInvitation?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +34,14 @@ final class TeamHeaderCell: UICollectionViewCell {
         self.hexColorString = hexColorString
         titleButton.setTitle(title, for: .normal)
         setSelected(selected)
+    }
+
+    func configure(teamInvite: QDMTeamInvitation?) {
+        self.teamInvite = teamInvite
+        titleButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
+        titleButton.backgroundColor = .carbon
+        titleButton.layer.borderColor = UIColor.accent.cgColor
+        titleButton.setTitleColor(.accent, for: .normal)
     }
 }
 

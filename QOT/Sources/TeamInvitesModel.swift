@@ -26,9 +26,9 @@ struct TeamInvite {
         let teamName: String
         let teamColor: String
         let sender: String
-        let dateOfInvite: String
+        let dateOfInvite: Date
         let memberCount: Int
-        let warningMessage: String
+        let warningMessage: String = AppTextService.get(.team_invite_max_capacity)
 
         init(invite: QDMTeamInvitation) {
             self.invite = invite
@@ -36,9 +36,8 @@ struct TeamInvite {
             self.teamName = invite.team?.name ?? ""
             self.teamColor = invite.team?.teamColor ?? ""
             self.sender = invite.sender ?? ""
-            self.dateOfInvite = "invite.invitedDate."
+            self.dateOfInvite = invite.invitedDate ?? Date()
             self.memberCount = 23
-            self.warningMessage = ""
         }
 
         func canJoin(maxTeams: Int, partOfTeams: Int) -> Bool {

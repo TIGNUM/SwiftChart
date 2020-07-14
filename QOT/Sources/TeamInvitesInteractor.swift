@@ -50,6 +50,7 @@ private extension TeamInvitesInteractor {
     }
 
     @objc func didSelectJoinTeam(_ notification: Notification) {
+        
         if let teamInvite = notification.object as? QDMTeamInvitation {
             worker.joinTeamInvite(teamInvite) { (teams) in
                 // TODO update view

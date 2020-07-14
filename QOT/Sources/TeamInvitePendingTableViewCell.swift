@@ -30,14 +30,16 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
                    teamColor: String,
                    teamId: String,
                    sender: String,
-                   dateOfInvite: String,
+                   dateOfInvite: Date,
                    memberCount: Int,
                    invite: QDMTeamInvitation) {
         self.invite = invite
         self.teamId = teamId
         teamNameLabel.text = teamName
         teamNameLabel.textColor = UIColor(hex: teamColor)
-        inviteInfoLabel.text = "Invited by " + sender + " at " + dateOfInvite + " | \(memberCount)"
+        //Invited by %@ %@ | %d participants
+        let date = DateFormatter.ddMM.string(from: dateOfInvite)
+        inviteInfoLabel.text = String(format: "Invited by %@ %@ | %d participants", sender, date, 23)
     }
 }
 
