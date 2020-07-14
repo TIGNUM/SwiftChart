@@ -42,6 +42,7 @@ final class MyVisionWorker {
     private lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
+    private var teamToBeVision: QDMTeamToBeVision?
     private var isMyVisionInitialized: Bool = false
     var toBeVisionDidChange: ((QDMToBeVision?) -> Void)?
     static var toBeSharedVisionHTML: String?
@@ -66,6 +67,14 @@ final class MyVisionWorker {
             self?.toBeVision = vision
             self?.isMyVisionInitialized = initialized
             completion(initialized, vision)
+        }
+    }
+
+    func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (_ initialized: Bool, _ toBeVision: QDMTeamToBeVision?) -> Void) {
+        TeamService.main.getTeamToBevision(for: team) { (teamVision, initialized, _) in
+            self.teamToBeVision = teamVision
+            self.isMyVisionInitialized = initialized
+            completion(initialized, teamVision)
         }
     }
 

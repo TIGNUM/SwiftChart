@@ -10,10 +10,10 @@ import Foundation
 import qot_dal
 
 final class MyVisionConfigurator {
-    static func configure(viewController: MyVisionViewController) {
+    static func configure(viewController: MyVisionViewController, _ team: QDMTeam?) {
         let router = MyVisionRouter(viewController: viewController)
         let presenter = MyVisionPresenter(viewController: viewController)
-        let interactor = MyVisionInteractor(presenter: presenter, router: router)
+        let interactor = MyVisionInteractor(presenter: presenter, router: router, team: team)
         viewController.interactor = interactor
     }
 }

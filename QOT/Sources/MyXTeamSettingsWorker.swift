@@ -33,7 +33,7 @@ extension MyXTeamSettingsWorker: WorkerTeam {
 //            return [.teamMembers, .leaveTeam]
 //        }
 //        TEMP: ALL OPTIONS
-        return [.teamName, .teamMembers, .deleteTeam]
+        return [.teamName, .teamMembers, .leaveTeam, .deleteTeam]
     }
 
     func leaveTeam(team: QDMTeam, _ completion: @escaping (Error?) -> Void) {

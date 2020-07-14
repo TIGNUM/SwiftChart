@@ -14,13 +14,15 @@ final class MyVisionInteractor {
 
     let presenter: MyVisionPresenterInterface
     let router: MyVisionRouter
+    let team: QDMTeam?
     private lazy var worker = MyVisionWorker()
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
-    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter) {
+    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter, team: QDMTeam?) {
         self.presenter = presenter
         self.router = router
+        self.team = team
     }
 
     deinit {
@@ -107,6 +109,12 @@ final class MyVisionInteractor {
 extension MyVisionInteractor: MyVisionInteractorInterface {
     func getToBeVision(_ completion: @escaping (QDMToBeVision?) -> Void) {
         worker.getToBeVision { (_, toBeVision) in
+            completion(toBeVision)
+        }
+    }
+
+    func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
+        worker.getTeamToBeVision(for: team) { (_, toBeVision) in
             completion(toBeVision)
         }
     }

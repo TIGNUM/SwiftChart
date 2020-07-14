@@ -13,7 +13,7 @@ protocol MyXTeamSettingsViewControllerDelegate: class {
     func presentEditTeam()
 }
 
-final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3  {
+final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyXTeamSettingsInteractorInterface!
