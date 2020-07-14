@@ -22,7 +22,13 @@ final class MyXTeamMembersViewController: UIViewController {
     @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
     @IBOutlet weak var horizontalHeaderHeight: NSLayoutConstraint!
     var membersList: [MyXTeamMemberModel] = []
-    private var leftBarButtonItems = [UIBarButtonItem]()
+    private var rightBarButtonItems = [UIBarButtonItem]()
+
+    private lazy var addMembersButton: UIBarButtonItem = {
+          let button = RoundedButton(title: nil, target: self, action: #selector(addMembers))
+          ThemableButton.myTbvDataRate.apply(button, title: "Add Members")
+          return button.barButton
+      }()
 
     // MARK: - Init
     init(configure: Configurator<MyXTeamMembersViewController>) {
@@ -44,19 +50,26 @@ final class MyXTeamMembersViewController: UIViewController {
         interactor.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        updateBottomNavigation([backNavigationItem()],  [addMembersButton])
+    }
+//
+//    // MARK: Bottom Navigation
+//    override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+//        return [addMembersButton]
+//    }
+//
+//    override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+//        return [backNavigationItem()]
+//    }
 
-    // MARK: Bottom Navigation
-    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return leftBarButtonItems
+    func backToTeamSettings() -> UIBarButtonItem {
+         return backNavigationItem()
     }
 }
 
 // MARK: - Private
 private extension MyXTeamMembersViewController {
-
-    func backToTeamSettings() -> UIBarButtonItem {
-         return backNavigationItem()
-    }
 
     func reinviteMember(indexPath: IndexPath) {
         if let email = membersList.at(index: indexPath.row)?.email, let team = interactor.selectedTeam {
@@ -78,6 +91,10 @@ private extension MyXTeamMembersViewController {
         membersList.remove(at: indexPath.row)
         tableView.reloadData()
     }
+
+    @objc func addMembers() {
+        router.addMembers(team: interactor.selectedTeam)
+    }
 }
 
 // MARK: - Actions
@@ -93,7 +110,8 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
         membersList = [MyXTeamMemberModel(email: "a.plancoulaine@tignum.com", status: .joined, qotId: "2ER5", isTeamOwner: true, wasReinvited: false), MyXTeamMemberModel(email: "b.hallo@gmail.com", status: .joined, qotId: "AB3C", isTeamOwner: false, wasReinvited: false), MyXTeamMemberModel(email: "pattismith@vam.com", status: .pending, qotId: "9J78", isTeamOwner: false, wasReinvited: false)]
         baseHeaderView?.configure(title: interactor?.teamMembersText, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
-        updateBottomNavigation([backNavigationItem()],[])
+//        guard let isOwner = interactor.selectedTeam?.thisUserIsOwner else { return }
+//        isOwner ? updateBottomNavigation([backNavigationItem()], [addMembersButton]) : updateBottomNavigation([backNavigationItem()], [])
     }
 
     func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
@@ -126,8 +144,7 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        guard let isOwner = interactor?.selectedTeam?.thisUserIsOwner else { return [UITableViewRowAction()]}
-//            if isOwner == true {
+
                 let inviteAgain = AppTextService.get(.settings_team_settings_team_members_invite_again)
                 let inviteAgainAction = UITableViewRowAction(style: .normal, title: inviteAgain) {(action, indexPath) in
                     self.reinviteMember(indexPath: indexPath)
@@ -152,9 +169,14 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
                     return [removeAction]
                 case .pending:
                     return member.wasReinvited ? [removeAction, invitedAction] : [removeAction, inviteAgainAction]
-                }
-//            } else {
-//                return .none
-//        }
+        }
     }
+// CHECK IF OWNER
+
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        guard let isOwner = interactor?.selectedTeam?.thisUserIsOwner else { return false}
+//        return isOwner
+//
+//    }
+
 }

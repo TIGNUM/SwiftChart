@@ -38,6 +38,16 @@ final class MyQotMainInteractor {
         }
         presenter.setupView()
         createInitialData()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateViewData),
+                                               name: .didEditTeam, object: nil)
+    }
+
+
+    @objc func updateViewData(_ notification: Notification) {
+        guard let teamId = notification.object as? String else { return }
+        updateSelectedTeam(teamId: teamId)
     }
 
     private func createInitialData() {

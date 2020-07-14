@@ -42,7 +42,7 @@ extension MyXTeamSettingsRouter: MyXTeamSettingsRouterInterface {
         if let controller = controller {
             let configurator = MyXTeamMembersConfigurator.make()
             configurator(controller)
-            viewController?.present(controller, animated: true)
+            viewController?.show(controller, sender: nil)
         }
     }
 }

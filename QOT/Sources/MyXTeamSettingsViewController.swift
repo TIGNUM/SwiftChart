@@ -26,6 +26,7 @@ final class MyXTeamSettingsViewController: UIViewController {
     private var teamHeaderItems = [TeamHeader]()
     @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
     @IBOutlet private weak var horizontalHeaderHeight: NSLayoutConstraint!
+    private var leftBarButtonItems = [UIBarButtonItem]()
 
     // MARK: - Init
     init(configure: Configurator<MyXTeamSettingsViewController>) {
@@ -49,8 +50,11 @@ final class MyXTeamSettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(colorMode: ColorMode.darkNot)
         setStatusBar(color: ThemeView.level1.color)
+        leftBarButtonItems = [backNavigationItem()]
+        updateBottomNavigation(leftBarButtonItems, [])
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +77,10 @@ private extension MyXTeamSettingsViewController {
 
     @objc func cancelDeleteTapped(_ sender: Any) {
 
+    }
+
+    func backToTeamSettings() -> UIBarButtonItem {
+         return backNavigationItem()
     }
 
 }
