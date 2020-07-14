@@ -37,4 +37,20 @@ struct ExtensionModel {
         let url: String
         let savedAt: Date
     }
+
+    struct TeamLibrary: Codable {
+        let teamName: String?
+        let teamQotId: String?
+        let numberOfMembers: Int?
+    }
+
+    struct ShareExtensionStrings: Codable {
+        var library: String?
+        var myLibrary: String?
+        var addTo: String?
+        var participants: String?
+        var addedTo: String?
+        var and: String?
+        var personal: String?
+    }
 }

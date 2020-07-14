@@ -25,10 +25,11 @@ final class MyXTeamMembersViewController: UIViewController {
     private var rightBarButtonItems = [UIBarButtonItem]()
 
     private lazy var addMembersButton: UIBarButtonItem = {
-          let button = RoundedButton(title: nil, target: self, action: #selector(addMembers))
-          ThemableButton.myTbvDataRate.apply(button, title: "Add Members")
-          return button.barButton
-      }()
+        let button = RoundedButton(title: nil, target: self, action: #selector(addMembers))
+        let title = AppTextService.get(.settings_team_settings_team_members_add_members)
+        ThemableButton.myTbvDataRate.apply(button, title: title)
+        return button.barButton
+    }()
 
     // MARK: - Init
     init(configure: Configurator<MyXTeamMembersViewController>) {
@@ -96,7 +97,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func setupView() {
         ThemeView.level3.apply(view)
-        membersList = [MyXTeamMemberModel(email: "a.plancoulaine@tignum.com", status: .joined, qotId: "2ER5", isTeamOwner: true, wasReinvited: false), MyXTeamMemberModel(email: "b.hallo@gmail.com", status: .joined, qotId: "AB3C", isTeamOwner: false, wasReinvited: false), MyXTeamMemberModel(email: "pattismith@vam.com", status: .pending, qotId: "9J78", isTeamOwner: false, wasReinvited: false)]
+        membersList = [MyXTeamMemberModel(email: "a.plancoulaine@tignum.com", status: .joined, qotId: "2ER5", isTeamOwner: true, wasReinvited: false), MyXTeamMemberModel(email: "b.hallo@gmail.com", status: .joined, qotId: "AB3C", isTeamOwner: true, wasReinvited: false), MyXTeamMemberModel(email: "pattismith@vam.com", status: .pending, qotId: "9J78", isTeamOwner: false, wasReinvited: false)]
         baseHeaderView?.configure(title: interactor?.teamMembersText, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 //        guard let isOwner = interactor.selectedTeam?.thisUserIsOwner else { return }
@@ -127,37 +128,37 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
         guard let member = membersList.at(index: indexPath.row) else {
             fatalError("member does not exist at indexPath: \(indexPath.item)")
         }
+        let adminText = AppTextService.get(.settings_team_settings_team_members_admin_label)
         let cell: TeamMemberTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(memberEmail: member.email, memberStatus: member.status)
+        cell.configure(memberEmail: member.isTeamOwner ? (member.email ?? "") + " " + adminText : member.email, memberStatus: member.status)
         return cell
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let inviteAgain = AppTextService.get(.settings_team_settings_team_members_invite_again)
+        let inviteAgainAction = UITableViewRowAction(style: .normal, title: inviteAgain) {(action, indexPath) in
+            self.reinviteMember(indexPath: indexPath)
+        }
+        inviteAgainAction.backgroundColor = .accent10
+        let invited = AppTextService.get(.settings_team_settings_team_members_invited)
+        let invitedAction = UITableViewRowAction(style: .normal, title: invited) {(action, indexPath) in
 
-                let inviteAgain = AppTextService.get(.settings_team_settings_team_members_invite_again)
-                let inviteAgainAction = UITableViewRowAction(style: .normal, title: inviteAgain) {(action, indexPath) in
-                    self.reinviteMember(indexPath: indexPath)
-                }
-                inviteAgainAction.backgroundColor = .accent10
-                let invited = AppTextService.get(.settings_team_settings_team_members_invited)
-                let invitedAction = UITableViewRowAction(style: .normal, title: invited) {(action, indexPath) in
+        }
+        invitedAction.backgroundColor = .accent10
+        let remove = AppTextService.get(.settings_team_settings_team_members_remove)
 
-                }
-                invitedAction.backgroundColor = .accent10
-                let remove = AppTextService.get(.settings_team_settings_team_members_remove)
-
-                let removeAction = UITableViewRowAction(style: .normal, title: remove) { (action, indexPath) in
-                    self.removeMember(indexPath: indexPath)
-                }
-                removeAction.backgroundColor = .redOrange
-                guard let member = membersList.at(index: indexPath.row) else {
-                    fatalError("member does not exist at indexPath: \(indexPath.item)")
-                }
-                switch member.status {
-                case .joined:
-                    return [removeAction]
-                case .pending:
-                    return member.wasReinvited ? [removeAction, invitedAction] : [removeAction, inviteAgainAction]
+        let removeAction = UITableViewRowAction(style: .normal, title: remove) { (action, indexPath) in
+            self.removeMember(indexPath: indexPath)
+        }
+        removeAction.backgroundColor = .redOrange
+        guard let member = membersList.at(index: indexPath.row) else {
+            fatalError("member does not exist at indexPath: \(indexPath.item)")
+        }
+        switch member.status {
+        case .joined:
+            return [removeAction]
+        case .pending:
+            return member.wasReinvited ? [removeAction, invitedAction] : [removeAction, inviteAgainAction]
         }
     }
 // CHECK IF OWNER

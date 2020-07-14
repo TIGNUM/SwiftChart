@@ -989,7 +989,6 @@
 		B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412C22C4C0FE002897E4 /* BottomNavigationItem.swift */; };
 		B8BB413122C50B41002897E4 /* Notification+MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB413022C50B41002897E4 /* Notification+MediaPlayer.swift */; };
 		B8BB413322C555BF002897E4 /* MediaPlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB413222C555BF002897E4 /* MediaPlayerModel.swift */; };
-		B8BCE58722AAB5EF0012AAAC /* ShareExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE58622AAB5EF0012AAAC /* ShareExtensionViewController.swift */; };
 		B8BCE58A22AAB5EF0012AAAC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */; };
 		B8BCE58E22AAB5EF0012AAAC /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B8BCE59822AAC2710012AAAC /* ExtensionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91842AE220F63CAD007605FD /* ExtensionModel.swift */; };
@@ -1190,6 +1189,10 @@
 		F96B23AF23507FF900130EFF /* DepartureBespokeFeastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */; };
 		F96B23B12350BF1100130EFF /* DepartureBespokeFeastImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96B23B02350BF1100130EFF /* DepartureBespokeFeastImageCell.xib */; };
 		F96B23B32350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */; };
+		F96D75B4249CE88A00DFFB22 /* CustomizedShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75AC249CE88A00DFFB22 /* CustomizedShareViewController.swift */; };
+		F96D75B9249CF9C100DFFB22 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */; };
+		F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */; };
+		F96D75BF24A3671F00DFFB22 /* ConfirmationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */; };
 		F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */; };
 		F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */; };
 		F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */; };
@@ -2300,7 +2303,6 @@
 		B8BB413022C50B41002897E4 /* Notification+MediaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+MediaPlayer.swift"; sourceTree = "<group>"; };
 		B8BB413222C555BF002897E4 /* MediaPlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerModel.swift; sourceTree = "<group>"; };
 		B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8BCE58622AAB5EF0012AAAC /* ShareExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionViewController.swift; sourceTree = "<group>"; };
 		B8BCE58922AAB5EF0012AAAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B8BCE58B22AAB5EF0012AAAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8BCE59522AAB5FA0012AAAC /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
@@ -2508,6 +2510,10 @@
 		F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastModel.swift; sourceTree = "<group>"; };
 		F96B23B02350BF1100130EFF /* DepartureBespokeFeastImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureBespokeFeastImageCell.xib; sourceTree = "<group>"; };
 		F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastImageCell.swift; sourceTree = "<group>"; };
+		F96D75AC249CE88A00DFFB22 /* CustomizedShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedShareViewController.swift; sourceTree = "<group>"; };
+		F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
+		F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerShareViewController.swift; sourceTree = "<group>"; };
+		F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewCell.swift; sourceTree = "<group>"; };
 		F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainConfigurator.swift; sourceTree = "<group>"; };
 		F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInteractor.swift; sourceTree = "<group>"; };
 		F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInterface.swift; sourceTree = "<group>"; };
@@ -4711,8 +4717,8 @@
 		B8BCE58522AAB5EF0012AAAC /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				F96D75A6249CE86700DFFB22 /* CustomizedShareViewController */,
 				B8BCE59522AAB5FA0012AAAC /* ShareExtension.entitlements */,
-				B8BCE58622AAB5EF0012AAAC /* ShareExtensionViewController.swift */,
 				B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */,
 				B8BCE58B22AAB5EF0012AAAC /* Info.plist */,
 				B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */,
@@ -5418,6 +5424,17 @@
 				F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */,
 			);
 			name = "Multiple Images Bucket";
+			sourceTree = "<group>";
+		};
+		F96D75A6249CE86700DFFB22 /* CustomizedShareViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F96D75AC249CE88A00DFFB22 /* CustomizedShareViewController.swift */,
+				F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */,
+				F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */,
+				F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */,
+			);
+			path = CustomizedShareViewController;
 			sourceTree = "<group>";
 		};
 		F9838F3922AFFE93003F9394 /* MyQotMain */ = {
@@ -6255,7 +6272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8BCE58722AAB5EF0012AAAC /* ShareExtensionViewController.swift in Sources */,
+				F96D75BF24A3671F00DFFB22 /* ConfirmationViewCell.swift in Sources */,
+				F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */,
+				F96D75B4249CE88A00DFFB22 /* CustomizedShareViewController.swift in Sources */,
+				F96D75B9249CF9C100DFFB22 /* TeamTableViewCell.swift in Sources */,
 				B8BCE59822AAC2710012AAAC /* ExtensionModel.swift in Sources */,
 				B8BCE59B22AF8FEA0012AAAC /* ShareExtentionData.swift in Sources */,
 				B8BCE59922AAC2770012AAAC /* ExtensionUserDefaults.swift in Sources */,

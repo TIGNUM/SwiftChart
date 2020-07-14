@@ -28,10 +28,12 @@ extension MyXTeamSettingsWorker: WorkerTeam {
 
     func settingItems(team: QDMTeam) -> [MyXTeamSettingsModel.Setting] {
 //        if team.thisUserIsOwner {
-            return [.teamName, .teamMembers, .leaveTeam, .deleteTeam]
+//            return [.teamName, .teamMembers, .deleteTeam]
 //        } else {
 //            return [.teamMembers, .leaveTeam]
 //        }
+//        TEMP: ALL OPTIONS
+        return [.teamName, .teamMembers, .deleteTeam]
     }
 
     func leaveTeam(team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
