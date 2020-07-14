@@ -13,6 +13,7 @@ final class TeamInvitesViewController: UIViewController {
     // MARK: - Properties
     var interactor: TeamInvitesInteractorInterface!
     private lazy var router: TeamInvitesRouterInterface = TeamInvitesRouter(viewController: self)
+    @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Init
     init(configure: Configurator<TeamInvitesViewController>) {
@@ -21,7 +22,7 @@ final class TeamInvitesViewController: UIViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
@@ -43,6 +44,45 @@ private extension TeamInvitesViewController {
 // MARK: - TeamInvitesViewControllerInterface
 extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
     func setupView() {
-        // Do any additional setup after loading the view.
+        tableView.registerDequeueable(TeamInviteHeaderTableViewCell.self)
+        tableView.registerDequeueable(TeamInvitePendingTableViewCell.self)
+    }
+
+    func reload() {
+        tableView.reloadData()
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension TeamInvitesViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return interactor.sectionCount
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return interactor.rowCount(in: section)
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let headerItem = interactor.headerItem()
+            let headerCell: TeamInviteHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
+            headerCell.configure(header: headerItem?.title ?? "", content: headerItem?.content ?? "")
+            return headerCell
+
+        case 1:
+            let item = interactor.inviteItem(at: indexPath.row)
+            let inviteCell: TeamInvitePendingTableViewCell = tableView.dequeueCell(for: indexPath)
+            inviteCell.configure(teamName: item.teamName,
+                                 teamColor: item.teamColor,
+                                 teamId: item.teamId,
+                                 sender: item.sender,
+                                 dateOfInvite: item.dateOfInvite,
+                                 memberCount: item.memberCount)
+            return inviteCell
+        default:
+            fatalError("Invalid section")
+        }
     }
 }

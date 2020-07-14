@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TeamInviteHeaderTableViewCell: UITableViewCell {
+final class TeamInviteHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var contentLabel: UILabel!

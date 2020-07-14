@@ -242,10 +242,10 @@
             </objects>
             <point key="canvasLocation" x="5.7971014492753632" y="-247.09821428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Team Invites View Controller-->
         <scene sceneID="zfH-8C-hbv">
             <objects>
-                <viewController id="5bU-gW-lpf" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamInviteViewControllerID" id="5bU-gW-lpf" customClass="TeamInvitesViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qt6-Z3-pXT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -253,128 +253,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4M0-NC-HQz">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="171" id="h4z-b9-gBV" customClass="TeamInviteHeaderTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="171"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h4z-b9-gBV" id="DXq-BM-TgU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="171"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gb6-Du-eio">
-                                                    <rect key="frame" x="24" y="16" width="16" height="2"/>
-                                                    <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="2" id="RCm-YS-gZz"/>
-                                                        <constraint firstAttribute="width" constant="16" id="XJq-5h-XZg"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEAM INVITATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnl-ro-ALH">
-                                                    <rect key="frame" x="24" y="34" width="366" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="2cA-Ov-X93"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                                                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7T-Ic-blf">
-                                                    <rect key="frame" x="24" y="70" width="366" height="77"/>
-                                                    <string key="text">TIGNUM X TEAM edition will allow you to stay connected to your team members and support you all to achieve Sustainable High Impact. You are part of 1 team. Note: max 3 teams. </string>
-                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
-                                                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="jnl-ro-ALH" secondAttribute="trailing" constant="24" id="9wn-Z6-R3u"/>
-                                                <constraint firstAttribute="trailing" secondItem="g7T-Ic-blf" secondAttribute="trailing" constant="24" id="Ckf-7D-FfA"/>
-                                                <constraint firstItem="g7T-Ic-blf" firstAttribute="leading" secondItem="DXq-BM-TgU" secondAttribute="leading" constant="24" id="FY5-Mb-6sn"/>
-                                                <constraint firstAttribute="bottom" secondItem="g7T-Ic-blf" secondAttribute="bottom" constant="24" id="IBh-GC-36e"/>
-                                                <constraint firstItem="jnl-ro-ALH" firstAttribute="top" secondItem="Gb6-Du-eio" secondAttribute="bottom" constant="16" id="L9q-Vg-gGe"/>
-                                                <constraint firstItem="g7T-Ic-blf" firstAttribute="top" secondItem="jnl-ro-ALH" secondAttribute="bottom" constant="12" id="RDT-iG-5Fd"/>
-                                                <constraint firstItem="jnl-ro-ALH" firstAttribute="leading" secondItem="DXq-BM-TgU" secondAttribute="leading" constant="24" id="bqR-S7-xxa"/>
-                                                <constraint firstItem="Gb6-Du-eio" firstAttribute="leading" secondItem="DXq-BM-TgU" secondAttribute="leading" constant="24" id="hwI-rw-G4v"/>
-                                                <constraint firstItem="Gb6-Du-eio" firstAttribute="top" secondItem="DXq-BM-TgU" secondAttribute="top" constant="16" id="ur2-f3-6Pd"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <outlet property="contentLabel" destination="g7T-Ic-blf" id="9Bd-kV-Pii"/>
-                                            <outlet property="headerLabel" destination="jnl-ro-ALH" id="faO-de-arm"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="192" id="IHo-qU-Ttd" customClass="TeamInvitePendingTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="199" width="414" height="192"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IHo-qU-Ttd" id="yDY-Yp-sVE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="192"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RJ-Cp-wFD">
-                                                    <rect key="frame" x="24" y="32" width="366" height="24"/>
-                                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                                                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Invited by some@one.com 05. March | 23 Members Invited by some@one.com 05. March | 23 Members" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs7-cS-hiT">
-                                                    <rect key="frame" x="24" y="64" width="366" height="33.5"/>
-                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40370826201369864" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETy-vi-jxd">
-                                                    <rect key="frame" x="314" y="120" width="76" height="40"/>
-                                                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="lOh-hU-KkX"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                                    <inset key="contentEdgeInsets" minX="16" minY="16" maxX="16" maxY="10"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="didTabJoin" destination="IHo-qU-Ttd" eventType="touchUpInside" id="BhJ-hz-kG0"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5Y-Z9-i3o">
-                                                    <rect key="frame" x="222" y="120" width="76" height="40"/>
-                                                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                                    <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="didTabDecline" destination="IHo-qU-Ttd" eventType="touchUpInside" id="jKb-lC-Lxc"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="9RJ-Cp-wFD" firstAttribute="top" secondItem="yDY-Yp-sVE" secondAttribute="top" constant="32" id="26h-9T-m1F"/>
-                                                <constraint firstItem="9RJ-Cp-wFD" firstAttribute="leading" secondItem="yDY-Yp-sVE" secondAttribute="leading" constant="24" id="2px-As-g8M"/>
-                                                <constraint firstItem="ETy-vi-jxd" firstAttribute="centerY" secondItem="T5Y-Z9-i3o" secondAttribute="centerY" id="7QC-gs-1xd"/>
-                                                <constraint firstItem="Vs7-cS-hiT" firstAttribute="top" secondItem="9RJ-Cp-wFD" secondAttribute="bottom" constant="8" id="9ve-2B-fWe"/>
-                                                <constraint firstAttribute="bottom" secondItem="ETy-vi-jxd" secondAttribute="bottom" constant="32" id="BcR-qc-EZJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="9RJ-Cp-wFD" secondAttribute="trailing" constant="24" id="EOS-qg-yfC"/>
-                                                <constraint firstAttribute="trailing" secondItem="Vs7-cS-hiT" secondAttribute="trailing" constant="24" id="GLE-Qv-DWB"/>
-                                                <constraint firstAttribute="trailing" secondItem="ETy-vi-jxd" secondAttribute="trailing" constant="24" id="LRI-31-KEX"/>
-                                                <constraint firstItem="Vs7-cS-hiT" firstAttribute="leading" secondItem="yDY-Yp-sVE" secondAttribute="leading" constant="24" id="YO2-5A-itQ"/>
-                                                <constraint firstItem="ETy-vi-jxd" firstAttribute="top" secondItem="Vs7-cS-hiT" secondAttribute="bottom" constant="24" id="c24-Cm-QAc"/>
-                                                <constraint firstItem="ETy-vi-jxd" firstAttribute="leading" secondItem="T5Y-Z9-i3o" secondAttribute="trailing" constant="16" id="l3i-I7-nuZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="T5Y-Z9-i3o" secondAttribute="bottom" constant="32" id="pcM-mz-tUT"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <outlet property="declineButton" destination="T5Y-Z9-i3o" id="kKS-P9-lG7"/>
-                                            <outlet property="inviteInfoLabel" destination="Vs7-cS-hiT" id="s1r-gb-Y2X"/>
-                                            <outlet property="joinButton" destination="ETy-vi-jxd" id="spM-gv-SEi"/>
-                                            <outlet property="teamNameLabel" destination="9RJ-Cp-wFD" id="qRv-rZ-dw0"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="5bU-gW-lpf" id="CKH-Go-e1b"/>
+                                    <outlet property="delegate" destination="5bU-gW-lpf" id="xAE-sH-j8W"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -386,6 +268,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UET-f3-jjO"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="4M0-NC-HQz" id="hix-zs-Guc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dN-iC-ixT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

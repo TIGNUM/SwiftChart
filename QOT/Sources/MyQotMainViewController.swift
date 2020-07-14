@@ -44,6 +44,12 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewDidLoad()
         interactor.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showPendingInvites),
+                                               name: .didSelectTeam,
+                                               object: nil)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +68,10 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
             collectionView.deselectItem(at: indexPath, animated: true)
             indexPathDeselect = nil
         }
+    }
+
+    @objc func showPendingInvites() {
+        interactor.presentTeamPendingInvites()
     }
 }
 

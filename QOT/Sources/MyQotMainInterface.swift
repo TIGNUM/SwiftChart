@@ -36,6 +36,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func getSettingsTitle(completion: @escaping (String?) -> Void)
     func updateSelectedTeam(teamId: String)
     func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void)
+    func presentTeamPendingInvites()
 }
 
 protocol MyQotMainRouterInterface {
@@ -45,5 +46,6 @@ protocol MyQotMainRouterInterface {
     func presentMyLibrary()
     func presentMyDataScreen()
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
+    func presentTeamPendingInvites()
     func showTBV()
 }

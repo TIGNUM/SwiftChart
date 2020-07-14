@@ -177,6 +177,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         router.presentEditTeam(.create, team: nil)
     }
 
+    func presentTeamPendingInvites() {
+        router.presentTeamPendingInvites()
+    }
+
     func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]? {
         return viewModelOldListModels
     }

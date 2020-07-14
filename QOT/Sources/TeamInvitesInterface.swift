@@ -10,13 +10,20 @@ import Foundation
 
 protocol TeamInvitesViewControllerInterface: class {
     func setupView()
+    func reload()
 }
 
 protocol TeamInvitesPresenterInterface {
     func setupView()
+    func reload()
 }
 
-protocol TeamInvitesInteractorInterface: Interactor {}
+protocol TeamInvitesInteractorInterface: Interactor {
+    var sectionCount: Int { get }
+    func rowCount(in section: Int) -> Int
+    func inviteItem(at row: Int) -> TeamInvite.Invitation
+    func headerItem() -> TeamInvite.Header?
+}
 
 protocol TeamInvitesRouterInterface {
     func dismiss()
