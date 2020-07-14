@@ -489,6 +489,8 @@ public extension AppTextKey {
     static let my_x_team_member_invite_subHeader = AppTextKey("my_x.team_member_invite.subHeader")
     static let my_x_team_member_invite_description = AppTextKey("my_x.team_member_invite.description")
     static let my_x_team_member_invite_cta = AppTextKey("my_x.team_member_invite.cta")
+    static let team_invite_cta_decline = AppTextKey("")
+    static let team_invite_cta_join = AppTextKey("")
 
     // MARK: - Team Member Edit
     static let my_x_team_edit_header = AppTextKey("my_x.team_edit.header")

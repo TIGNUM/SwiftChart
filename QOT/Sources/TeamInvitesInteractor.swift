@@ -42,7 +42,11 @@ extension TeamInvitesInteractor: TeamInvitesInteractorInterface {
     }
 
     func rowCount(in section: Int) -> Int {
-        return inviteItems.count
+        switch section {
+        case 0: return 1
+        case 1: return inviteItems.count
+        default: return 0
+        }
     }
 
     func inviteItem(at row: Int) -> TeamInvite.Invitation {
