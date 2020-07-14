@@ -29,9 +29,45 @@ protocol WorkerTeam {
     func updateTeamName(_ team: QDMTeam?, _ completion: @escaping (QDMTeam?, Error?) -> Void)
 
     func getMaxChars(_ completion: @escaping (Int) -> Void)
+
+    func joinTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
+
+    func declineTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
+
+    func getTeamInvitations(_ completion: @escaping ([QDMTeamInvitation]) -> Void)
 }
 
 extension WorkerTeam {
+    func getTeamInvitations(_ completion: @escaping ([QDMTeamInvitation]) -> Void) {
+        TeamService.main.getTeamInvitations { (invitations, error) in
+            if let error = error {
+                log("Error getTeamInvitations: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(invitations ?? [])
+        }
+    }
+
+    func joinTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void) {
+        TeamService.main.acceptTeamInvitation(invitation) { (teams, error) in
+            if let error = error {
+                log("Error acceptTeamInvitation: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(teams ?? [])
+        }
+    }
+
+    func declineTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void) {
+        TeamService.main.rejectTeamInvitation(invitation) { (teams, error) in
+            if let error = error {
+                log("Error rejectTeamInvitation: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(teams ?? [])
+        }
+    }
+
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void) {
         TeamService.main.getTeams { (teams, _, error) in
             if let error = error {
@@ -44,7 +80,8 @@ extension WorkerTeam {
 
     func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
         getTeams { (teams) in
-            let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
+//            .filter { $0.teamColor != nil }
+            let teamHeaderItems = teams.compactMap { (team) -> TeamHeader? in
                 return TeamHeader(teamId: team.qotId ?? "",
                                   title: team.name ?? "",
                                   hexColorString: team.teamColor ?? "",
