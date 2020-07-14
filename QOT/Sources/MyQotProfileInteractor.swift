@@ -39,6 +39,13 @@ final class MyQotProfileInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
+        updateViewData()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateViewData),
+                                               name: .updatedTeams, object: nil)
+    }
+
+    @objc func updateViewData() {
         getData({ [weak self] (profile) in
             SettingService.main.getSettingFor(key: SettingKey.SystemDevelopmentMode) { [weak self] (setting, _, _) in
                 self?.worker.developmentMode = setting?.booleanValue ?? false

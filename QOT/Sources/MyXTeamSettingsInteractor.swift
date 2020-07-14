@@ -107,7 +107,8 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     func updateTeams() {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             if teamHeaderItems.isEmpty {
-                self?.presenter.openProfile()
+                self?.presenter.dismiss()
+                 NotificationCenter.default.post(name: .updatedTeams, object: nil)
             }
             teamHeaderItems.first?.selected = true
             self?.teamHeaderItems = teamHeaderItems

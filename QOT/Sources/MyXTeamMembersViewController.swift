@@ -51,20 +51,7 @@ final class MyXTeamMembersViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        updateBottomNavigation([backNavigationItem()],  [addMembersButton])
-    }
-//
-//    // MARK: Bottom Navigation
-//    override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-//        return [addMembersButton]
-//    }
-//
-//    override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-//        return [backNavigationItem()]
-//    }
-
-    func backToTeamSettings() -> UIBarButtonItem {
-         return backNavigationItem()
+        updateBottomNavigation([backNavigationItem()], [addMembersButton])
     }
 }
 
@@ -72,6 +59,7 @@ final class MyXTeamMembersViewController: UIViewController {
 private extension MyXTeamMembersViewController {
 
     func reinviteMember(indexPath: IndexPath) {
+//        trackUserEvent(.INVITE_MEMBER_AGAIN, value: membersList.at(index: indexPath.row)?.remoteID, action: .TAP)
         if let email = membersList.at(index: indexPath.row)?.email, let team = interactor.selectedTeam {
             interactor.reinviteMember(email: email, team: team)
             //           TODO  update member model
@@ -83,6 +71,7 @@ private extension MyXTeamMembersViewController {
     }
 
     func removeMember(indexPath: IndexPath) {
+        //        trackUserEvent(.REMOVE_MEMBER, value: membersList.at(index: indexPath.row)?.remoteID, action: .TAP)
         if let memberId = membersList.at(index: indexPath.row)?.qotId, let team = interactor.selectedTeam {
             interactor.removeMember(memberId: memberId, team: team)
             //          TO DO

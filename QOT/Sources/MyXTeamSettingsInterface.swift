@@ -14,15 +14,14 @@ protocol MyXTeamSettingsViewControllerInterface: class {
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateView()
     func updateSettingsModel(_ settings: MyXTeamSettingsModel)
-    func openProfile()
-
+    func dismiss()
 }
 
 protocol MyXTeamSettingsPresenterInterface {
     func present(_ settings: MyXTeamSettingsModel)
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateView()
-    func openProfile()
+    func dismiss()
 }
 
 protocol MyXTeamSettingsInteractorInterface: Interactor {

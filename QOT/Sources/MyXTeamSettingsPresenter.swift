@@ -38,7 +38,7 @@ extension MyXTeamSettingsPresenter: MyXTeamSettingsPresenterInterface {
         viewController?.updateSettingsModel(settings)
     }
 
-    func openProfile() {
-        viewController?.openProfile()
+    func dismiss() {
+        viewController?.dismiss()
     }
 }

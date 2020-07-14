@@ -44,7 +44,6 @@ final class MyQotMainInteractor {
                                                name: .didEditTeam, object: nil)
     }
 
-
     @objc func updateViewData(_ notification: Notification) {
         guard let teamId = notification.object as? String else { return }
         updateSelectedTeam(teamId: teamId)

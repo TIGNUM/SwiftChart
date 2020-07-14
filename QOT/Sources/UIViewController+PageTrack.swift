@@ -107,6 +107,7 @@ extension UIViewController {
         case is MyQotAdminEnvironmentSettingsViewController: return "myqot.adminsettings.environment"
         case is MyXTeamSettingsViewController: return "myX.settings.teamsettings"
         case is MyXTeamMembersViewController: return "myX.settings.teamMembers"
+        case is TeamEditViewController: return teamEditViewControllerPageKey
         default: preconditionFailure()
         }
     }
@@ -130,6 +131,18 @@ private extension UIViewController {
         switch (self as? MyToBeVisionTrackerViewController)?.interactor?.getDisplayType {
         case .tracker?: return  "tobevision.tracker.results"
         case .data?: return "tobevision.tracker.tbvTracker"
+        default: preconditionFailure()
+        }
+    }
+}
+
+// MARK: - TeamEditViewController
+private extension UIViewController {
+    var teamEditViewControllerPageKey: String {
+        switch (self as? TeamEditViewController)?.interactor?.getType {
+        case .edit?: return "myX.settings.editTeam"
+        case .create?: return "myX.createTeam"
+        case .memberInvite?: return "myX.inviteMembers"
         default: preconditionFailure()
         }
     }

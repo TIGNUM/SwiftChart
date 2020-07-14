@@ -68,13 +68,13 @@ private extension MyXTeamSettingsViewController {
      @objc func confirmDeleteTapped(_ sender: Any) {
         guard let selectedTeam = interactor.selectedTeam else { return }
         interactor.deleteTeam(team: selectedTeam)
-//        trackUserEvent(.DELETE, action: <#T##QDMUserEventTracking.Action#>)
+        trackUserEvent(.DELETE_TEAM, value: selectedTeam.remoteID, valueType: .TEAM, action: .TAP)
     }
 
     @objc func confirmLeaveTapped(_ sender: Any) {
         guard let selectedTeam = interactor.selectedTeam else { return }
         interactor.leaveTeam(team: selectedTeam)
-//        trackUserEvent(.YES_LEAVE, value: selectedTeam.remoteID, valueType:  ,action: .TAP)
+        trackUserEvent(.LEAVE_TEAM, value: selectedTeam.remoteID, valueType: .TEAM, action: .TAP)
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
@@ -90,8 +90,7 @@ private extension MyXTeamSettingsViewController {
 // MARK: - MyXTeamSettingsViewControllerInterface
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
 
-    func openProfile() {
-//         TO FIX
+    func dismiss() {
         router?.dismiss()
     }
 
