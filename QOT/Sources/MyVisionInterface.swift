@@ -13,7 +13,7 @@ protocol MyVisionViewControllerInterface: class {
     func showNullState(with title: String, message: String)
     func hideNullState()
     func setupView()
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
+    func load(_ myVision: QDMToBeVision?, teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String)
 }
 
@@ -25,15 +25,20 @@ protocol MyVisionPresenterInterface {
     func showNullState(with title: String, message: String)
     func hideNullState()
     func setupView()
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
+    func load(_ myVision: QDMToBeVision?, teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String)
 }
 
 protocol MyVisionInteractorInterface: Interactor {
     var emptyTBVTextPlaceholder: String { get }
     var emptyTBVTitlePlaceholder: String { get }
+    var emptyTeamTBVTextPlaceholder: String { get }
+    var emptyTeamTBVTitlePlaceholder: String { get }
     var nullStateSubtitle: String? { get }
     var nullStateTitle: String? { get }
+    var teamNullStateSubtitle: String? { get }
+    var teamNullStateTitle: String? { get }
+    var team: QDMTeam? { get }
 
     func showTracker()
     func showUpdateConfirmationScreen()

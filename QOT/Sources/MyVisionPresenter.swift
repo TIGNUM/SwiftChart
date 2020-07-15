@@ -34,8 +34,9 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
         viewController?.setupView()
     }
 
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
+    func load(_ myVision: QDMToBeVision?, teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
         viewController?.load(myVision,
+                             teamVision: teamVision,
                              rateText: rateText,
                              isRateEnabled: isRateEnabled,
                              shouldShowSingleMessageRating: shouldShowSingleMessageRating)

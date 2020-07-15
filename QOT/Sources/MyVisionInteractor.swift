@@ -14,13 +14,15 @@ final class MyVisionInteractor {
 
     let presenter: MyVisionPresenterInterface
     let router: MyVisionRouter
+    var team: QDMTeam?
     private lazy var worker = MyVisionWorker()
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
-    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter) {
+    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter, team: QDMTeam?) {
         self.presenter = presenter
         self.router = router
+        self.team = team
     }
 
     deinit {
@@ -68,13 +70,27 @@ final class MyVisionInteractor {
     }
 
     private func didUpdateTBVRelatedData() {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
-            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                self?.presenter.load(toBeVision,
-                                     rateText: text,
-                                     isRateEnabled: status,
-                                     shouldShowSingleMessageRating: shouldShowSingleMessage)
-                self?.worker.updateWidget()
+        if let team = team {
+            worker.getTeamToBeVision(for: team) { [weak self] (_, teamVision) in
+                self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
+                    self?.presenter.load(nil,
+                                         teamVision: teamVision,
+                                         rateText: text,
+                                         isRateEnabled: status,
+                                         shouldShowSingleMessageRating: shouldShowSingleMessage)
+                    self?.worker.updateWidget()
+                }
+            }
+        } else {
+            worker.getToBeVision { [weak self] (_, toBeVision) in
+                self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
+                    self?.presenter.load(toBeVision,
+                                         teamVision: nil,
+                                         rateText: text,
+                                         isRateEnabled: status,
+                                         shouldShowSingleMessageRating: shouldShowSingleMessage)
+                    self?.worker.updateWidget()
+                }
             }
         }
     }
@@ -136,6 +152,14 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         return worker.nullStateSubtitle
     }
 
+    var teamNullStateSubtitle: String? {
+        return worker.teamNullStateSubtitle
+    }
+
+    var teamNullStateTitle: String? {
+        return worker.teamNullStateTitle
+    }
+
     var nullStateTitle: String? {
         return worker.nullStateTitle
     }
@@ -144,13 +168,25 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         return worker.emptyTBVTitlePlaceholder
     }
 
+    var emptyTeamTBVTitlePlaceholder: String {
+        return worker.emptyTeamTBVTitlePlaceholder
+    }
+
     var emptyTBVTextPlaceholder: String {
         return worker.emptyTBVTextPlaceholder
     }
 
+    var emptyTeamTBVTextPlaceholder: String {
+        return worker.emptyTeamTBVTextPlaceholder
+    }
+
     func lastUpdatedVision() -> String? {
+        if team != nil {
+            return worker.lastUpdatedTeamVision()
+        }
         return worker.lastUpdatedVision()
     }
+
 
     func saveToBeVision(image: UIImage?) {
         worker.getToBeVision { [weak self] (_, toBeVision) in

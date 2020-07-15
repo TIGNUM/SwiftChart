@@ -155,6 +155,14 @@ private extension MyVisionViewController {
             userImageView.gradientBackground(top: false)
         }
     }
+
+    func addGradients(for teamVision: QDMTeamToBeVision?) {
+        let userImage = teamVision?.profileImageResource?.url()
+        if userImage != nil {
+            userImageView.gradientBackground(top: true)
+            userImageView.gradientBackground(top: false)
+        }
+    }
 }
 
 // MARK: - Observer
@@ -216,11 +224,64 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func load(_ myVision: QDMToBeVision?,
+              teamVision: QDMTeamToBeVision?,
               rateText: String?,
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
-        if myVision == nil {
-            interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "")
+        guard (interactor.team) != nil else {
+            if myVision == nil {
+                interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "")
+                return
+            }
+            if scrollView.alpha == 0 {
+                UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
+            }
+            skeletonManager.hide()
+            interactor.hideNullState()
+
+            interactor.isShareBlocked { [weak self] (hidden) in
+                self?.shareButton.isHidden = hidden
+            }
+
+            var headline = myVision?.headline
+            if headline?.isEmpty != false {
+                headline = interactor.emptyTBVTitlePlaceholder
+            }
+            ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
+            let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor.emptyTBVTextPlaceholder
+            detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
+
+            tempImageURL = myVision?.profileImageResource?.url()
+            userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
+            userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
+
+            removeGradients()
+            addGradients(for: myVision)
+
+            ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
+            ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
+
+            ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_track_subtiitle),
+                                      to: lastRatedComment)
+
+            rateButton.isEnabled = isRateEnabled
+            singleMessageRateButton.isEnabled = isRateEnabled
+            if let shouldShowSingleMessage = shouldShowSingleMessageRating {
+                singleMessageRatingView.isHidden = !shouldShowSingleMessage
+                doubleMessageRatingView.isHidden = shouldShowSingleMessage
+            } else {
+                singleMessageRatingView.isHidden = true
+                doubleMessageRatingView.isHidden = true
+            }
+
+            interactor.shouldShowWarningIcon { [weak self] (show) in
+                self?.warningImageView.isHidden = !show
+            }
+            return
+        }
+
+        if teamVision == nil {
+            interactor.showNullState(with: interactor.teamNullStateTitle ?? "", message: interactor.teamNullStateSubtitle ?? "")
             return
         }
         if scrollView.alpha == 0 {
@@ -232,43 +293,34 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         interactor.isShareBlocked { [weak self] (hidden) in
             self?.shareButton.isHidden = hidden
         }
-
-        var headline = myVision?.headline
+        var headline = teamVision?.headline
         if headline?.isEmpty != false {
-            headline = interactor.emptyTBVTitlePlaceholder
+            headline = interactor.emptyTeamTBVTitlePlaceholder
         }
         ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
-        let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor.emptyTBVTextPlaceholder
+        let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.emptyTeamTBVTextPlaceholder
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
-
-        tempImageURL = myVision?.profileImageResource?.url()
+        tempImageURL = teamVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
         userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
 
         removeGradients()
-        addGradients(for: myVision)
+        addGradients(for: teamVision)
 
-        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
-        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
+//        TO DO: Get rate text for team
+//        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
+//        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
+
+//        Temp disabling Rating button items
+        rateButton.isEnabled = false
+        singleMessageRateButton.isEnabled = false
+        singleMessageRatingView.isHidden = true
+        doubleMessageRatingView.isHidden = true
+        warningImageView.isHidden = true
+
         ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
         ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle),
                                   to: lastUpdatedComment)
-        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_track_subtiitle),
-                                  to: lastRatedComment)
-
-        rateButton.isEnabled = isRateEnabled
-        singleMessageRateButton.isEnabled = isRateEnabled
-        if let shouldShowSingleMessage = shouldShowSingleMessageRating {
-            singleMessageRatingView.isHidden = !shouldShowSingleMessage
-            doubleMessageRatingView.isHidden = shouldShowSingleMessage
-        } else {
-            singleMessageRatingView.isHidden = true
-            doubleMessageRatingView.isHidden = true
-        }
-
-        interactor.shouldShowWarningIcon { [weak self] (show) in
-            self?.warningImageView.isHidden = !show
-        }
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {

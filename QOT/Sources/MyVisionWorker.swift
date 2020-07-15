@@ -32,6 +32,10 @@ final class MyVisionWorker {
 
     lazy var nullStateSubtitle = AppTextService.get(.my_qot_my_tbv_null_state_body)
     lazy var nullStateTitle = AppTextService.get(.my_qot_my_tbv_null_state_title)
+    lazy var teamNullStateSubtitle = "No one can outperforme their  ncbdshfjbbsdjfbdsnfnds"
+    lazy var teamNullStateTitle = "TEAM AT OUR BEST"
+    lazy var emptyTeamTBVTitlePlaceholder = "Team headline"
+    lazy var emptyTeamTBVTextPlaceholder = "CREATE YOUR TEAM TOBEVISION"
     lazy var updateAlertTitle = AppTextService.get(.my_qot_my_tbv_alert_update_title)
     lazy var updateAlertMessage = AppTextService.get(.my_qot_my_tbv_alert_update_body)
     lazy var updateAlertEditTitle = AppTextService.get(.my_qot_my_tbv_alert_update_edit)
@@ -42,6 +46,7 @@ final class MyVisionWorker {
     private lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
+    private var teamVision: QDMTeamToBeVision?
     private var isMyVisionInitialized: Bool = false
     var toBeVisionDidChange: ((QDMToBeVision?) -> Void)?
     static var toBeSharedVisionHTML: String?
@@ -67,6 +72,14 @@ final class MyVisionWorker {
             self?.isMyVisionInitialized = initialized
             completion(initialized, vision)
         }
+    }
+
+    func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (_ initialized: Bool, _ toBeVision: QDMTeamToBeVision?) -> Void) {
+        TeamService.main.getTeamToBevision(for: team, { [weak self] (teamVision, initialized, _) in
+            self?.teamVision = teamVision
+            self?.isMyVisionInitialized = initialized
+            completion(initialized, teamVision)
+        })
     }
 
     func getVisionTracks(_ completion: @escaping ([QDMToBeVisionTrack]) -> Void) {
@@ -106,6 +119,12 @@ final class MyVisionWorker {
 
     func lastUpdatedVision() -> String? {
         guard let date = toBeVision?.date?.beginingOfDate() else { return nil }
+        let days = DateComponentsFormatter.numberOfDays(date)
+        return dateString(for: days)
+    }
+
+    func lastUpdatedTeamVision() -> String? {
+        guard let date = teamVision?.date?.beginingOfDate() else { return nil }
         let days = DateComponentsFormatter.numberOfDays(date)
         return dateString(for: days)
     }
@@ -159,6 +178,8 @@ final class MyVisionWorker {
             }
         }
     }
+// TO DO: Get Rate text for teamTBV
+//      func getRateButtonValues(_ completion: @escaping (String?, Bool?, Bool) -> Void)
 
     private func dateString(for day: Int) -> String {
         if day == 0 {

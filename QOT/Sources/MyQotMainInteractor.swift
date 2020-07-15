@@ -20,6 +20,7 @@ final class MyQotMainInteractor {
     private var subtitles: [String?] = []
     private var eventType: String?
     private var teamHeaderItems = [TeamHeader]()
+    private var selectedTeam: QDMTeam?
 
     // MARK: - Init
     init(worker: MyQotMainWorker,
@@ -162,7 +163,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func presentMyToBeVision() {
-        router.showTBV()
+        router.showTBV(team: selectedTeam)
     }
 
     func presentMyLibrary() {
