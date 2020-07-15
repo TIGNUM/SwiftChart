@@ -26,5 +26,5 @@ protocol MyLibraryCategoryListInteractorInterface: Interactor {
 }
 
 protocol MyLibraryCategoryListRouterInterface {
-    func presentLibraryItems(for item: MyLibraryCategoryListModel)
+    func presentLibraryItems(for item: MyLibraryCategoryListModel, in team: QDMTeam?)
 }

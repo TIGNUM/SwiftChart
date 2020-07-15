@@ -17,11 +17,25 @@ final class MyLibraryCategoryListWorker {
         return AppTextService.get(.my_qot_my_library_section_header_title)
     }()
 
-    func loadData(_ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {
-        service.getUserStorages { [weak self] (storages, initiated, error) in
-            guard let strongSelf = self else {
-                return
+    func loadData(in team: QDMTeam?, _ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var storages: [QDMUserStorage]?
+        var initiated = false
+        dispatchGroup.enter()
+        if let team = team {
+            service.getTeamStorages (in: team) { (teamStorages, initialized, error) in
+                storages = teamStorages
+                initiated = initialized
+                dispatchGroup.leave()
             }
+        } else {
+            service.getUserStorages { (userStorages, initialized, error) in
+                initiated = initialized
+                storages = userStorages
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
             var userStorages = [MyLibraryCategoryListModel]()
             let sorted = storages?.sorted(by: { (first, second) -> Bool in
                 first.modifiedAt?.timeIntervalSince1970 ?? 0 > second.modifiedAt?.timeIntervalSince1970 ?? 0
@@ -43,26 +57,26 @@ final class MyLibraryCategoryListWorker {
                 storage.userStorageType == .EXTERNAL_LINK ? storage : nil
             })
 
-            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_all_title),
-                                                         items: strongSelf.removeDuplicates(from: sorted ?? []),
-                                                         icon: R.image.my_library_group(),
-                                                         type: .ALL))
-            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_bookmarks_title),
-                                                         items: bookmarks,
-                                                         icon: R.image.my_library_bookmark(),
-                                                         type: .BOOKMARKS))
-            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_downloads_title),
-                                                         items: downloads,
-                                                         icon: R.image.my_library_download(),
-                                                         type: .DOWNLOADS))
-            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_links_title),
-                                                         items: links,
-                                                         icon: R.image.my_library_link(),
-                                                         type: .LINKS))
-            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_notes_title),
-                                                         items: notes,
-                                                         icon: R.image.my_library_note_light(),
-                                                         type: .NOTES))
+            userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_all_title),
+                                                   items: self.removeDuplicates(from: sorted ?? []),
+                                                   icon: R.image.my_library_group(),
+                                                   type: .ALL))
+            userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_bookmarks_title),
+                                                   items: bookmarks,
+                                                   icon: R.image.my_library_bookmark(),
+                                                   type: .BOOKMARKS))
+            userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_downloads_title),
+                                                   items: downloads,
+                                                   icon: R.image.my_library_download(),
+                                                   type: .DOWNLOADS))
+            userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_links_title),
+                                                   items: links,
+                                                   icon: R.image.my_library_link(),
+                                                   type: .LINKS))
+            userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_notes_title),
+                                                   items: notes,
+                                                   icon: R.image.my_library_note_light(),
+                                                   type: .NOTES))
             completion(initiated, userStorages)
         }
     }

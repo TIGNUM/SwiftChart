@@ -49,5 +49,5 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
 protocol MyLibraryUserStorageRouterInterface: BaseRouterInterface {
     func presentVideo(url: URL, item: QDMContentItem?)
     func presentExternalUrl(_ url: URL)
-    func presentCreateNote(noteId: String?)
+    func presentCreateNote(noteId: String?, in team: QDMTeam?)
 }

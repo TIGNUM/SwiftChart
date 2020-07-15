@@ -45,13 +45,13 @@ final class LaunchHandler {
 
         var queries: [String: String?] = [:]
         for queryItem in url.queryItems() {
-            queries[scheme.queryName] = queryItem.value
+            queries[queryItem.name] = queryItem.value
         }
 
         switch scheme {
         case .dailyBrief,
              .guide:
-            showFirstLevelScreen(page: .dailyBrief, queries[scheme.queryName] ?? nil)
+            showFirstLevelScreen(page: .dailyBrief, queries[scheme.queryNames.first ?? ""] ?? nil)
 
         case .dailyCheckIn,
              .dailyPrep:
@@ -67,7 +67,7 @@ final class LaunchHandler {
         case .ouraring: NotificationCenter.default.post(name: .requestOpenUrl, object: url)
         case .content_item,
              .contentItem:
-            guard let itemIdString = queries[scheme.queryName] ?? nil, let itemId = Int(itemIdString) else { break }
+            guard let itemIdString = queries[scheme.queryNames.first ?? ""] ?? nil, let itemId = Int(itemIdString) else { break }
             showContentItem(itemId)
         case .knowFeed,
              .strategies: showFirstLevelScreen(page: .know)
@@ -98,7 +98,7 @@ final class LaunchHandler {
             controller.triggeredByLaunchHandler = true
             baseRootViewController?.presentRightToLeft(controller: controller)
         case .preparation:
-            showPreparationWith(identifier: (queries[scheme.queryName] as? String) ?? "" )
+            showPreparationWith(identifier: (queries[scheme.queryNames.first ?? ""] as? String) ?? "" )
         case .myPreparations,
              .myPreps,
              .comingEvent,
@@ -132,9 +132,23 @@ final class LaunchHandler {
             push(viewController: controller)
         case .myLibrary:
             guard let controller = R.storyboard.myLibrary.myLibraryCategoryListViewController() else { return }
-            let configurator = MyLibraryCategoryListConfigurator.make()
-            configurator(controller)
-            push(viewController: controller)
+            let dispatchGroup = DispatchGroup()
+            let category = queries["category"] ?? nil
+            var team: QDMTeam?
+            dispatchGroup.enter()
+            if let teamIdString = queries["teamId"], let teamId = Int(teamIdString ?? "") {
+                dispatchGroup.enter()
+                TeamService.main.getTeams { (teams, _, _) in
+                    team = teams?.filter({ $0.remoteID == teamId }).first
+                    dispatchGroup.leave()
+                }
+            }
+            dispatchGroup.leave()
+            dispatchGroup.notify(queue: .main) {
+                let configurator = MyLibraryCategoryListConfigurator.make(with: team, category)
+                configurator(controller)
+                self.push(viewController: controller)
+            }
         case .myProfile:
             guard let controller = R.storyboard.myQot.myQotProfileID() else { return }
             MyQotProfileConfigurator.configure(delegate: nil, viewController: controller)
@@ -199,7 +213,8 @@ final class LaunchHandler {
             showCategory(categoryId)
         case .randomContent,
              .featureExplainer:
-            guard let contentIdString = queries[scheme.queryName] ?? nil, let contentId = Int(contentIdString) else { break }
+            guard let contentIdString = queries[scheme.queryNames.first ?? ""] ?? nil,
+                let contentId = Int(contentIdString) else { break }
             showContentCollection(contentId)
         case .qrcode0001, .qrcode0002, .qrcode0003, .qrcode0004, .qrcode0005, .qrcode0006, .qrcode0007, .qrcode0008,
              .qrcode0009, .qrcode0010:

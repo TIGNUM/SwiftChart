@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyLibraryCategoryListInteractor {
 
@@ -15,17 +16,23 @@ final class MyLibraryCategoryListInteractor {
     private let worker: MyLibraryCategoryListWorker
     private let presenter: MyLibraryCategoryListPresenterInterface
     private let router: MyLibraryCategoryListRouterInterface
+    private let team: QDMTeam?
+    private var targetCategory: String?
 
     var categoryItems = [MyLibraryCategoryListModel]()
 
     // MARK: - Init
 
-    init(worker: MyLibraryCategoryListWorker,
-        presenter: MyLibraryCategoryListPresenterInterface,
-        router: MyLibraryCategoryListRouterInterface) {
+    init(team: QDMTeam?,
+         category: String?,
+         worker: MyLibraryCategoryListWorker,
+         presenter: MyLibraryCategoryListPresenterInterface,
+         router: MyLibraryCategoryListRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        self.team = team
+        self.targetCategory = category
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(load(_:)),
                                                name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -48,13 +55,20 @@ final class MyLibraryCategoryListInteractor {
     }
 
     @objc func load(_ notification: Notification? = nil) {
-        worker.loadData { [weak self] (initiated, items) in
+        worker.loadData (in: team) { [weak self] (initiated, items) in
             if !initiated {
                 // shows loading
             } else {
                 self?.categoryItems.removeAll()
                 self?.categoryItems.append(contentsOf: items ?? [])
                 self?.presenter.presentStorages()
+                if let categoryString = self?.targetCategory?.uppercased() {
+                    self?.targetCategory = nil
+                    guard let type = MyLibraryCategoryType(rawValue: categoryString) else { return }
+                    if let item = self?.categoryItems.filter({ $0.type == type }).first {
+                        self?.router.presentLibraryItems(for: item, in: self?.team)
+                    }
+                }
             }
         }
     }
@@ -67,7 +81,7 @@ extension MyLibraryCategoryListInteractor: MyLibraryCategoryListInteractorInterf
     func handleSelectedItem(at index: Int) {
         if categoryItems.count > index {
             let item = categoryItems[index]
-            router.presentLibraryItems(for: item)
+            router.presentLibraryItems(for: item, in: team)
         }
     }
 }

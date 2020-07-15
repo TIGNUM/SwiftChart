@@ -13,6 +13,7 @@ final class MyLibraryNotesInteractor {
 
     // MARK: - Properties
 
+    private let team: QDMTeam?
     private let worker: MyLibraryNotesWorker
     private let presenter: MyLibraryNotesPresenterInterface
     private let router: MyLibraryNotesRouterInterface
@@ -33,10 +34,12 @@ final class MyLibraryNotesInteractor {
 
     // MARK: - Init
 
-    init(worker: MyLibraryNotesWorker,
-        presenter: MyLibraryNotesPresenterInterface,
-        router: MyLibraryNotesRouterInterface,
-        notificationCenter: NotificationCenter = NotificationCenter.default) {
+    init(team: QDMTeam?,
+         worker: MyLibraryNotesWorker,
+         presenter: MyLibraryNotesPresenterInterface,
+         router: MyLibraryNotesRouterInterface,
+         notificationCenter: NotificationCenter = NotificationCenter.default) {
+        self.team = team
         self.worker = worker
         self.presenter = presenter
         self.router = router

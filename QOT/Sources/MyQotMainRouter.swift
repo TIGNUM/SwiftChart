@@ -59,7 +59,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         let myLibraryController = R.storyboard.myLibrary()
             .instantiateViewController(withIdentifier: storyboardId) as? MyLibraryCategoryListViewController
         if let myLibraryController = myLibraryController {
-            let configurator = MyLibraryCategoryListConfigurator.make()
+            let configurator = MyLibraryCategoryListConfigurator.make(with: nil)
             configurator(myLibraryController)
             viewController?.pushToStart(childViewController: myLibraryController)
         }

@@ -11,7 +11,7 @@ import qot_dal
 
 final class MyLibraryNotesConfigurator {
 
-    static func make() -> (MyLibraryNotesViewController, String?) -> Void {
+    static func make(with team: QDMTeam?) -> (MyLibraryNotesViewController, String?) -> Void {
         return { (viewController, note) in
             let router = MyLibraryNotesRouter(viewController: viewController)
             let worker = MyLibraryNotesWorker(noteId: note)

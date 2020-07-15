@@ -27,7 +27,7 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let configurator = MyLibraryCategoryListConfigurator.make()
+        let configurator = MyLibraryCategoryListConfigurator.make(with: nil)
         configurator(self)
     }
 
