@@ -93,7 +93,6 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
                 self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
                 self?.presenter.updateView()
             })
-
         }
     }
 

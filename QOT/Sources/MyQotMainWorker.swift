@@ -106,4 +106,11 @@ final class MyQotMainWorker: WorkerTeam {
             completion(subtitles)
         })
     }
+
+    func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void) {
+          TeamService.main.getTeams { (teams, _, _) in
+              let selectedTeam = teams?.filter { teamId == $0.qotId }.first
+              completion(selectedTeam)
+          }
+      }
 }

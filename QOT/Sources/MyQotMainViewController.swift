@@ -87,6 +87,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         }
     }
 
+    func updateView() {
+        collectionView.reloadData()
+    }
+
     func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
         self.teamHeaderItems = teamHeaderItems
         collectionView.reloadData()

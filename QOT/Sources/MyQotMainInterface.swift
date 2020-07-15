@@ -11,12 +11,14 @@ import DifferenceKit
 import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
+    func updateView()
     func setupView()
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>)
 }
 
 protocol MyQotMainPresenterInterface {
+    func updateView()
     func setupView()
     func updateTeamHeader(teamHeaderItems: [TeamHeader])
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>)

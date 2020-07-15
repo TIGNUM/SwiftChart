@@ -20,7 +20,7 @@ final class MyQotMainInteractor {
     private var subtitles: [String?] = []
     private var eventType: String?
     private var teamHeaderItems = [TeamHeader]()
-    private var selectedTeam: QDMTeam?
+    private var currentTeam: QDMTeam?
 
     // MARK: - Init
     init(worker: MyQotMainWorker,
@@ -39,6 +39,17 @@ final class MyQotMainInteractor {
         }
         presenter.setupView()
         createInitialData()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
+    }
+
+    @objc func checkSelection(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
+            updateSelectedTeam(teamId: teamId)
+        }
     }
 
     private func createInitialData() {
@@ -143,11 +154,19 @@ final class MyQotMainInteractor {
 
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
+
     func updateSelectedTeam(teamId: String) {
-        teamHeaderItems.forEach { (item) in
-            item.selected = (teamId == item.teamId)
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.teamHeaderItems = teamHeaderItems
+            teamHeaderItems.forEach { (item) in
+                item.selected = (teamId == item.teamId)
+            }
+            self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
+                self?.currentTeam = selectedTeam
+                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+                self?.presenter.updateView()
+            })
         }
-        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
     }
 
     func presentMyPreps() {
@@ -163,7 +182,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func presentMyToBeVision() {
-        router.showTBV(team: selectedTeam)
+        router.showTBV(team: currentTeam)
     }
 
     func presentMyLibrary() {

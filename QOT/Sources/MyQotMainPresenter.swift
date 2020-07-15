@@ -36,4 +36,8 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
         viewController?.updateViewNew(differenceList)
     }
+
+   func updateView() {
+         viewController?.updateView()
+     }
 }
