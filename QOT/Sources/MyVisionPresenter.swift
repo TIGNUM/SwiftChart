@@ -22,8 +22,8 @@ final class MyVisionPresenter {
 
 extension MyVisionPresenter: MyVisionPresenterInterface {
 
-    func showNullState(with title: String, message: String) {
-        viewController?.showNullState(with: title, message: message)
+    func showNullState(with title: String, message: String, writeMessage: String) {
+        viewController?.showNullState(with: title, message: message, writeMessage: writeMessage)
     }
 
     func hideNullState() {

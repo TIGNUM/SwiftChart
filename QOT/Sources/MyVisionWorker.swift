@@ -36,6 +36,8 @@ final class MyVisionWorker {
     lazy var teamNullStateTitle = "TEAM AT OUR BEST"
     lazy var emptyTeamTBVTitlePlaceholder = "Team headline"
     lazy var emptyTeamTBVTextPlaceholder = "CREATE YOUR TEAM TOBEVISION"
+    lazy var nullStateCTA = AppTextService.get(.my_qot_my_tbv_null_state_button_write)
+    lazy var nullStateTeamCTA = " Write your team ToBeVision"
     lazy var updateAlertTitle = AppTextService.get(.my_qot_my_tbv_alert_update_title)
     lazy var updateAlertMessage = AppTextService.get(.my_qot_my_tbv_alert_update_body)
     lazy var updateAlertEditTitle = AppTextService.get(.my_qot_my_tbv_alert_update_edit)

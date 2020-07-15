@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 protocol MyVisionViewControllerInterface: class {
-    func showNullState(with title: String, message: String)
+    func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
     func load(_ myVision: QDMToBeVision?, teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
@@ -22,7 +22,7 @@ protocol MyVisionViewControllerScrollViewDelegate: class {
 }
 
 protocol MyVisionPresenterInterface {
-    func showNullState(with title: String, message: String)
+    func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
     func load(_ myVision: QDMToBeVision?, teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
@@ -36,13 +36,14 @@ protocol MyVisionInteractorInterface: Interactor {
     var emptyTeamTBVTitlePlaceholder: String { get }
     var nullStateSubtitle: String? { get }
     var nullStateTitle: String? { get }
+    var nullStateCTA: String? { get }
     var teamNullStateSubtitle: String? { get }
     var teamNullStateTitle: String? { get }
     var team: QDMTeam? { get }
 
     func showTracker()
     func showUpdateConfirmationScreen()
-    func showNullState(with title: String, message: String)
+    func showNullState(with title: String, message: String, writeMessage: String)
     func showTBVData()
     func showEditVision(isFromNullState: Bool)
     func showRateScreen()

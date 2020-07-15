@@ -140,8 +140,8 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
                                         crateNewTitle: worker.updateAlertCreateTitle)
     }
 
-    func showNullState(with title: String, message: String) {
-        presenter.showNullState(with: title, message: message)
+    func showNullState(with title: String, message: String, writeMessage: String) {
+        presenter.showNullState(with: title, message: message, writeMessage: writeMessage)
     }
 
     func hideNullState() {
@@ -162,6 +162,10 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
 
     var nullStateTitle: String? {
         return worker.nullStateTitle
+    }
+
+    var nullStateCTA: String? {
+        return team == nil ? worker.nullStateCTA : worker.nullStateTeamCTA
     }
 
     var emptyTBVTitlePlaceholder: String {
@@ -252,9 +256,6 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         }
         //       TO DO later: share team TBV
     }
-
-
-
 
     func swizzleMFMailComposeViewControllerMessageBody() {
         let originalMethod = class_getInstanceMethod(MFMailComposeViewController.self,

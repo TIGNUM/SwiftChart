@@ -55,7 +55,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
         interactor.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-        showNullState(with: " ", message: " ")
+        showNullState(with: " ", message: " ", writeMessage: "")
         showSkeleton()
     }
 
@@ -124,7 +124,7 @@ private extension MyVisionViewController {
 
     @IBAction func shareButtonAction(_ sender: UIButton) {
         trackUserEvent(.SHARE, action: .TAP)
-        interactor.shareMyToBeVision()
+        interactor.shareToBeVision()
     }
 
     @IBAction func updateButtonAction(_ sender: UIButton) {
@@ -193,10 +193,10 @@ private extension MyVisionViewController {
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
 
-    func showNullState(with title: String, message: String) {
+    func showNullState(with title: String, message: String, writeMessage: String) {
         didShowNullStateView = true
         nullStateView.isHidden = false
-        nullStateView.setupView(with: title, message: message, delegate: self)
+        nullStateView.setupView(with: title, message: message, writeMessage: writeMessage, delegate: self)
         refreshBottomNavigationItems()
         skeletonManager.hide()
     }
@@ -239,9 +239,9 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
               rateText: String?,
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
-        guard (interactor.team) != nil else {
+        guard interactor.team != nil else {
             if myVision == nil {
-                interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "")
+                interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "", writeMessage: interactor.nullStateCTA ?? "")
                 return
             }
             if scrollView.alpha == 0 {
@@ -292,7 +292,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         }
 
         if teamVision == nil {
-            interactor.showNullState(with: interactor.teamNullStateTitle ?? "", message: interactor.teamNullStateSubtitle ?? "")
+            interactor.showNullState(with: interactor.teamNullStateTitle ?? "", message: interactor.teamNullStateSubtitle ?? "", writeMessage: interactor.nullStateCTA ?? "")
             return
         }
         if scrollView.alpha == 0 {
@@ -420,6 +420,7 @@ extension MyVisionViewController: MyVisionNavigationBarViewProtocol {
     func didShare() {
         trackUserEvent(.SHARE, action: .TAP)
         interactor.shareToBeVision()
+//         do for team
     }
 }
 
@@ -427,6 +428,7 @@ extension MyVisionViewController: MyVisionNullStateViewProtocol {
     func editMyVisionAction() {
         trackUserEvent(.OPEN, valueType: "CreateNewToBeVisionFromNullState", action: .TAP)
         interactor.showEditVision(isFromNullState: true)
+//         do for team
     }
 }
 
@@ -439,6 +441,7 @@ extension MyVisionViewController {
 
     @objc func editTBV() {
         trackUserEvent(.OPEN, valueType: "EditToBeVision", action: .TAP)
+//         do for team
         interactor.showEditVision(isFromNullState: false)
     }
 }
@@ -446,11 +449,13 @@ extension MyVisionViewController {
 extension MyVisionViewController: MyToBeVisionRateViewControllerProtocol {
     func doneAction() {
         interactor.showTracker()
+//        do for teams
     }
 }
 
 extension MyVisionViewController: MyToBeVisionDataNullStateViewControllerProtocol {
     func didRateTBV() {
         showRateScreen()
+//        do for teams
     }
 }
