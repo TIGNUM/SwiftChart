@@ -94,7 +94,7 @@ extension MyQotMainWorker {
             self?.getTeamInvitations { (invites) in
                 var items = [Team.Item]()
                 if !invites.isEmpty {
-                    items.append(Team.Item(batchCount: invites.count))
+                    items.append(Team.Item(invites: invites))
                 }
                 items.append(contentsOf: teams.compactMap { (team) -> Team.Item in
                     return Team.Item(title: team.name ?? "",

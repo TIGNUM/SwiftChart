@@ -37,6 +37,7 @@ struct Team {
     final class Item: Differentiable {
         typealias DifferenceIdentifier = String
 
+        var invites: [QDMTeamInvitation] = []
         var header: Team.Header
         var title: String
         var teamId: String
@@ -53,11 +54,11 @@ struct Team {
         }
 
         /// Team.Item
-        init(batchCount: Int) {
+        init(invites: [QDMTeamInvitation]) {
             self.header = .invite
             self.title = Team.Header.invite.title
             self.teamId = Team.Header.invite.inviteId
-            self.batchCount = batchCount
+            self.invites = invites
         }
 
         /// Invite.Item
@@ -73,104 +74,3 @@ struct Team {
         }
     }
 }
-
-//struct Team {
-//    enum Selector: String {
-//        case teamId
-//        case teamColor
-//        case teamInvites
-//    }
-//
-//    struct Invite: Differentiable {
-//        typealias DifferenceIdentifier = String
-//
-//        var title: String
-//        var counter: Int
-//
-//        var differenceIdentifier: DifferenceIdentifier {
-//            return title
-//        }
-//
-//        func isContentEqual(to source: Team.Invite) -> Bool {
-//            return counter == source.counter
-//        }
-//    }
-//}
-
-//
-//struct TeamHeader {
-//    enum Selector: String {
-//        case teamId
-//        case teamColor
-//        case teamInvites
-//    }
-//
-//    class InviteButton {
-//        var title: String
-//        var counter: Int
-//
-//        init(title: String, counter: Int) {
-//            self.title = title
-//            self.counter = counter
-//        }
-//    }
-//
-//    class Item: Differentiable {
-//        typealias DifferenceIdentifier = String
-//
-//        var inviteButton: InviteButton?
-//        var teamId: String = ""
-//        var title: String = ""
-//        var hexColorString: String = ""
-//        var selected: Bool = false
-//
-//        var differenceIdentifier: DifferenceIdentifier {
-//            return teamId
-//        }
-//
-//        init(inviteButton: InviteButton) {
-//            self.inviteButton = inviteButton
-//        }
-//
-//        init(teamId: String,
-//             title: String,
-//             hexColorString: String,
-//             selected: Bool) {
-//            self.teamId = teamId
-//            self.title = title
-//            self.hexColorString = hexColorString
-//            self.selected = selected
-//        }
-//
-//        func isContentEqual(to source: Team.Item) -> Bool {
-//            return teamId == source.teamId &&
-//                title == source.title &&
-//                hexColorString == source.hexColorString &&
-//                selected == source.selected
-//        }
-//    }
-//}
-
-    //    struct Invitation: Differentiable {
-    //        typealias DifferenceIdentifier = String
-    //
-    //        let teamId: String
-    //        let teamName: String
-    //        let teamColor: String
-    //        let sender: String
-    //        let date: String
-    //        let memberCount: Int
-    //
-    //        var differenceIdentifier: DifferenceIdentifier {
-    //            return teamId
-    //        }
-    //
-    //        func isContentEqual(to source: Team.Invitation) -> Bool {
-    //            return teamId == source.teamId &&
-    //                teamName == source.teamName &&
-    //                teamColor == source.teamName &&
-    //                sender == source.sender &&
-    //                date == source.date &&
-    //                memberCount == source.memberCount
-    //        }
-    //    }

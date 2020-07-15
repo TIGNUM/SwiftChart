@@ -15,6 +15,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     private var teamId = ""
     private var hexColorString = ""
     private var inviteCounter = 0
+    private var teamInvites: [QDMTeamInvitation] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +30,6 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
                                                object: nil)
     }
 
-    /// Configure Team
     func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
         self.teamId = teamId
         self.hexColorString = hexColorString
@@ -37,11 +37,12 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         setSelected(selected)
     }
 
-    /// Configure Team Invitates
-    func configure(title: String, counter: Int) {
-        itemButton.setTitle(title, for: .normal)
-        inviteCounter = counter
-        setSelected(false)
+    func configure(teamInvites: [QDMTeamInvitation]) {
+        self.teamInvites = teamInvites
+        itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
+        itemButton.backgroundColor = .carbon
+        itemButton.layer.borderColor = UIColor.accent.cgColor
+        itemButton.setTitleColor(.accent, for: .normal)
     }
 }
 

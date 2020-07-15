@@ -38,6 +38,10 @@ protocol WorkerTeam {
 
     func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void)
 
+    func joinTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
+
+    func declineTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
+
     func getTeamInvitations(_ completion: @escaping ([QDMTeamInvitation]) -> Void)
 }
 
@@ -76,16 +80,6 @@ extension WorkerTeam {
                 completion(headerItems)
             }
         }
-//        var items = [Team.Item]()
-//        createTeamInvites { (headerInviteItem, teams)  in
-//            if case Team.View.myX = view, !headerInviteItem.teamInvites.isEmpty {
-//                items.append(headerInviteItem)
-//            }
-//            self.createTeamHeaderItems(teams: teams) { (headerItems) in
-//                items.append(contentsOf: headerItems)
-//                completion(items)
-//            }
-//        }
     }
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void) {
@@ -174,8 +168,8 @@ extension WorkerTeam {
 
     func leaveTeam(team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
         getTeamMembers(in: team) { (members) in
-          guard let user = members.filter( { $0.me == true } ).first else {
-//                completion(error)
+            guard let user = members.filter({$0.me == true}).first else {
+                //                completion(error)
                 return
             }
             TeamService.main.leaveTeam(teamMember: user, completion)
@@ -204,6 +198,26 @@ extension WorkerTeam {
             completion(invitations ?? [])
         }
     }
+
+    func joinTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void) {
+        TeamService.main.acceptTeamInvitation(invitation) { (teams, error) in
+            if let error = error {
+                log("Error acceptTeamInvitation: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(teams ?? [])
+        }
+    }
+
+    func declineTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void) {
+        TeamService.main.rejectTeamInvitation(invitation) { (teams, error) in
+            if let error = error {
+                log("Error rejectTeamInvitation: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(teams ?? [])
+        }
+    }
 }
 
 // MARK: - Private
@@ -219,36 +233,11 @@ private extension WorkerTeam {
     }
 
     func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([Team.Item]) -> Void) {
-        let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> Team.Item in
+        let teamHeaderItems = teams.compactMap { (team) -> Team.Item in
             return Team.Item(title: team.name ?? "",
                              teamId: team.qotId ?? "",
                              color: team.teamColor ?? "")
         }
         completion(teamHeaderItems)
     }
-
-//    func createTeamInvites(_ completion: @escaping (TeamHeader, [QDMTeam]) -> Void) {
-//        var invites = [TeamInvitation]()
-//
-//        UserService.main.getUserData { (user) in
-//            self.getTeams { (teams) in
-//                teams.forEach { (team) in
-//                    self.getTeamMembers(in: team) { (members) in
-//                        let member = members.filter { $0.me == true }.first
-//                        switch member?.status {
-//                        case .INVITED?:
-//                            invites.append(TeamInvitation(teamId: team.qotId,
-//                                                          teamName: team.name,
-//                                                          teamColor: team.teamColor,
-//                                                          sender: "",
-//                                                          date: "",
-//                                                          memberCount: 0))
-//                        default: break
-//                        } // switch
-//                    } // getMembers
-//                } // teams.forEach
-//                completion(TeamHeader(teamInvites: invites), teams)
-//            } // getTeams
-//        } // getUserData
-//    }
 }

@@ -130,6 +130,14 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         return arraySectionMyX.at(index: indexPath.section)?.elements.at(index: indexPath.item)
     }
 
+    func presentTeamPendingInvites() {
+        router.presentTeamPendingInvites()
+    }
+
+    func qotViewModelNew() -> [ArraySection<MyX.Section, MyX.Item>]? {
+        return arraySectionMyX
+    }
+
     func getTeamItems() -> [Team.Item] {
         return worker.getTeamItems.teamHeaderItems
     }

@@ -43,7 +43,7 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
         if let item = headerItems.at(index: indexPath.row) {
             switch item.header {
             case .invite:
-                cell.configure(title: item.title, counter: item.batchCount)
+                cell.configure(teamInvites: item.invites)
             case .team:
                 cell.configure(teamId: item.teamId, title: item.title, hexColorString: item.color, selected: item.selected)
             }

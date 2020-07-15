@@ -106,6 +106,7 @@ extension UIViewController {
         case is MyQotAdminSettingsListViewController: return "myqot.adminsettings"
         case is MyQotAdminEnvironmentSettingsViewController: return "myqot.adminsettings.environment"
         case is MyXTeamSettingsViewController: return "myX.settings.teamsettings"
+        case is TeamInvitesViewController: return "team.pending.invitations"
         default: preconditionFailure()
         }
     }

@@ -37,6 +37,8 @@ protocol MyQotMainInteractorInterface: Interactor {
 
     func presentMyProfile()
     func handleSelection(at indexPath: IndexPath)
+
+    func presentTeamPendingInvites()
 }
 
 protocol MyQotMainRouterInterface {
@@ -46,5 +48,6 @@ protocol MyQotMainRouterInterface {
     func presentMyLibrary()
     func presentMyDataScreen()
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
+    func presentTeamPendingInvites()
     func showTBV()
 }
