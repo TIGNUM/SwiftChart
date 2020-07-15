@@ -50,7 +50,7 @@ protocol MyVisionInteractorInterface: Interactor {
     func hideNullState()
     func saveToBeVision(image: UIImage?)
     func lastUpdatedVision() -> String?
-    func shareMyToBeVision()
+    func shareToBeVision()
 
     func openToBeVisionGenerator()
     func viewWillAppear()

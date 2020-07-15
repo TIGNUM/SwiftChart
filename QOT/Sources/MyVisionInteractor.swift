@@ -187,28 +187,52 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         return worker.lastUpdatedVision()
     }
 
-
     func saveToBeVision(image: UIImage?) {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
-            if var vision = toBeVision {
-                vision.modifiedAt = Date()
-                if let visionImage = image {
-                    do {
-                        let imageUrl = try self?.worker.saveImage(visionImage).absoluteString
-                        vision.profileImageResource = QDMMediaResource()
-                        vision.profileImageResource?.localURLString = imageUrl
-                    } catch {
-                        log(error.localizedDescription)
+        guard let team = team else {
+            worker.getToBeVision { [weak self] (_, toBeVision) in
+                if var vision = toBeVision {
+                    vision.modifiedAt = Date()
+                    if let visionImage = image {
+                        do {
+                            let imageUrl = try self?.worker.saveImage(visionImage).absoluteString
+                            vision.profileImageResource = QDMMediaResource()
+                            vision.profileImageResource?.localURLString = imageUrl
+                        } catch {
+                            log(error.localizedDescription)
+                        }
+                    } else {
+                        vision.profileImageResource = nil
                     }
-                } else {
-                    vision.profileImageResource = nil
-                }
 
-                self?.worker.updateMyToBeVision(vision) { [weak self] (reponseVision) in
-                    self?.didUpdateTBVRelatedData()
+                    self?.worker.updateMyToBeVision(vision) { [weak self] (reponseVision) in
+                        self?.didUpdateTBVRelatedData()
+                    }
                 }
             }
+            return
         }
+
+        worker.getTeamToBeVision(for: team) { [weak self] (_, teamVision) in
+                     if var teamVision = teamVision {
+                         teamVision.modifiedAt = Date()
+                        if let teamVisionImage = image {
+                            do {
+                                let imageUrl = try self?.worker.saveImage(teamVisionImage).absoluteString
+                                teamVision.profileImageResource = QDMMediaResource()
+                                teamVision.profileImageResource?.localURLString = imageUrl
+                            } catch {
+                                log(error.localizedDescription)
+                            }
+                        } else {
+                            teamVision.profileImageResource = nil
+                        }
+
+                        self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
+                            self?.didUpdateTBVRelatedData()
+                        }
+                     }
+                 }
+
     }
 
     func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void) {
@@ -217,12 +241,20 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         }
     }
 
-    func shareMyToBeVision() {
-        worker.visionToShare { [weak self] (visionToShare) in
-            guard let vision = visionToShare else { return }
-            self?.share(plainText: vision.plainBody ?? "")
+    func shareToBeVision() {
+        guard team == nil else {
+            worker.visionToShare { [weak self] (visionToShare) in
+                guard let vision = visionToShare else { return }
+                self?.share(plainText: vision.plainBody ?? "")
+
+            }
+            return
         }
+        //       TO DO later: share team TBV
     }
+
+
+
 
     func swizzleMFMailComposeViewControllerMessageBody() {
         let originalMethod = class_getInstanceMethod(MFMailComposeViewController.self,

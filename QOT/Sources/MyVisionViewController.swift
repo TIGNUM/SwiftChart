@@ -43,7 +43,9 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     private let upperBoundAlpha: CGFloat = 1.1
     private var lastContentOffset: CGFloat = 0
     private var tempImage: UIImage?
+    private var tempTeamImage: UIImage?
     private var tempImageURL: URL?
+    private var tempTeamImageURL: URL?
     private var imagePickerController: ImagePickerController!
     let skeletonManager = SkeletonManager()
     var interactor: MyVisionInteractorInterface!
@@ -132,6 +134,11 @@ private extension MyVisionViewController {
 
     @IBAction func cameraButtonAction(_ sender: UIButton) {
         trackUserEvent(.OPEN, valueType: "CameraOptions", action: .TAP)
+        if interactor.team != nil {
+            imagePickerController.show(in: self, deletable: (tempTeamImageURL != nil || tempTeamImage != nil))
+            imagePickerController.delegate = self
+            RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
+        }
         imagePickerController.show(in: self, deletable: (tempImageURL != nil || tempImage != nil))
         imagePickerController.delegate = self
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
@@ -142,6 +149,10 @@ private extension MyVisionViewController {
 private extension MyVisionViewController {
     func saveToBeVisionImageAndData() {
         interactor.saveToBeVision(image: tempImage)
+    }
+
+    func saveTeamToBeVisionImageAndData() {
+        interactor.saveToBeVision(image: tempTeamImage)
     }
 
     func removeGradients() {
@@ -300,9 +311,9 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
         let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.emptyTeamTBVTextPlaceholder
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
-        tempImageURL = teamVision?.profileImageResource?.url()
-        userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
-        userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
+        tempTeamImageURL = teamVision?.profileImageResource?.url()
+        userImageView.contentMode = tempTeamImageURL == nil ? .center : .scaleAspectFill
+        userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
 
         removeGradients()
         addGradients(for: teamVision)
@@ -366,6 +377,16 @@ extension MyVisionViewController: ImagePickerControllerAdapterProtocol {
 
 extension MyVisionViewController: ImagePickerControllerDelegate {
     func deleteImage() {
+        guard interactor.team == nil else {
+            tempTeamImage = nil
+            tempTeamImageURL = nil
+            saveTeamToBeVisionImageAndData()
+            skeletonManager.addOtherView(userImageView)
+            userImageView.setImage(url: tempTeamImageURL,
+                                   placeholder: R.image.circlesWarning(),
+                                   skeletonManager: self.skeletonManager) { (_) in /* */}
+            return
+        }
         tempImage = nil
         tempImageURL = nil
         saveToBeVisionImageAndData()
@@ -383,8 +404,13 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
     }
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        tempImage = image
-        saveToBeVisionImageAndData()
+        guard interactor.team == nil else {
+            tempImage = image
+            saveToBeVisionImageAndData()
+            return
+        }
+        tempTeamImage = image
+        saveTeamToBeVisionImageAndData()
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
     }
@@ -393,7 +419,7 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
 extension MyVisionViewController: MyVisionNavigationBarViewProtocol {
     func didShare() {
         trackUserEvent(.SHARE, action: .TAP)
-        interactor.shareMyToBeVision()
+        interactor.shareToBeVision()
     }
 }
 
