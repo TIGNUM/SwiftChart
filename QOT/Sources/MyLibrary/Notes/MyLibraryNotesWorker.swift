@@ -92,10 +92,12 @@ final class MyLibraryNotesWorker {
         }
     }
 
-    func saveText(_ text: String?, completion: @escaping (QDMUserStorage?, Error?) -> Void) {
+    func saveText(_ text: String?, in team: QDMTeam?, completion: @escaping (QDMUserStorage?, Error?) -> Void) {
         if var note = note {
             note.note = text
             service.updateUserStorage(note, completion)
+        } else if let team = team {
+            service.addNote(text, in: team, completion)
         } else {
             service.addNote(text, completion)
         }

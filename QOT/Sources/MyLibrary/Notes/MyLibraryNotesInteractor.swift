@@ -88,7 +88,7 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
     }
 
     func saveNoteText(_ text: String?) {
-        worker.saveText(text) { [weak self] (_, error) in
+        worker.saveText(text, in: team) { [weak self] (_, error) in
             if error != nil {
                 log("Failed to save note. Error: \(String(describing: error))", level: .error)
             } else {

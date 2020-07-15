@@ -16,7 +16,7 @@ final class MyLibraryNotesConfigurator {
             let router = MyLibraryNotesRouter(viewController: viewController)
             let worker = MyLibraryNotesWorker(noteId: note)
             let presenter = MyLibraryNotesPresenter(viewController: viewController)
-            let interactor = MyLibraryNotesInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = MyLibraryNotesInteractor(team: team, worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
         }
     }

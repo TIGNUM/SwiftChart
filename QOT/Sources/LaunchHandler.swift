@@ -131,24 +131,7 @@ final class LaunchHandler {
             configurator(controller)
             push(viewController: controller)
         case .myLibrary:
-            guard let controller = R.storyboard.myLibrary.myLibraryCategoryListViewController() else { return }
-            let dispatchGroup = DispatchGroup()
-            let category = queries["category"] ?? nil
-            var team: QDMTeam?
-            dispatchGroup.enter()
-            if let teamIdString = queries["teamId"], let teamId = Int(teamIdString ?? "") {
-                dispatchGroup.enter()
-                TeamService.main.getTeams { (teams, _, _) in
-                    team = teams?.filter({ $0.remoteID == teamId }).first
-                    dispatchGroup.leave()
-                }
-            }
-            dispatchGroup.leave()
-            dispatchGroup.notify(queue: .main) {
-                let configurator = MyLibraryCategoryListConfigurator.make(with: team, category)
-                configurator(controller)
-                self.push(viewController: controller)
-            }
+            showMyLibrary(queries)
         case .myProfile:
             guard let controller = R.storyboard.myQot.myQotProfileID() else { return }
             MyQotProfileConfigurator.configure(delegate: nil, viewController: controller)
@@ -400,6 +383,27 @@ extension LaunchHandler {
             controller.triggeredByLaunchHandler = true
             self.present(viewController: controller)
             baseRootViewController?.removeBottomNavigation()
+        }
+    }
+
+    func showMyLibrary(_ queries: [String: String?]) {
+        guard let controller = R.storyboard.myLibrary.myLibraryCategoryListViewController() else { return }
+        let dispatchGroup = DispatchGroup()
+        let category = queries["category"] ?? nil
+        var team: QDMTeam?
+        dispatchGroup.enter()
+        if let teamIdString = queries["teamId"] as? String, let teamId = Int(teamIdString) {
+            dispatchGroup.enter()
+            TeamService.main.getTeams { (teams, _, _) in
+                team = teams?.filter({ $0.remoteID == teamId }).first
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.leave()
+        dispatchGroup.notify(queue: .main) {
+            let configurator = MyLibraryCategoryListConfigurator.make(with: team, category)
+            configurator(controller)
+            self.push(viewController: controller)
         }
     }
 
