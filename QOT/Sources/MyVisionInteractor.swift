@@ -213,25 +213,25 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         }
 
         worker.getTeamToBeVision(for: team) { [weak self] (_, teamVision) in
-                     if var teamVision = teamVision {
-                         teamVision.modifiedAt = Date()
-                        if let teamVisionImage = image {
-                            do {
-                                let imageUrl = try self?.worker.saveImage(teamVisionImage).absoluteString
-                                teamVision.profileImageResource = QDMMediaResource()
-                                teamVision.profileImageResource?.localURLString = imageUrl
-                            } catch {
-                                log(error.localizedDescription)
-                            }
-                        } else {
-                            teamVision.profileImageResource = nil
-                        }
+            if var teamVision = teamVision {
+                teamVision.modifiedAt = Date()
+                if let teamVisionImage = image {
+                    do {
+                        let imageUrl = try self?.worker.saveImage(teamVisionImage).absoluteString
+                        teamVision.profileImageResource = QDMMediaResource()
+                        teamVision.profileImageResource?.localURLString = imageUrl
+                    } catch {
+                        log(error.localizedDescription)
+                    }
+                } else {
+                    teamVision.profileImageResource = nil
+                }
 
-                        self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
-                            self?.didUpdateTBVRelatedData()
-                        }
-                     }
-                 }
+                self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
+                    self?.didUpdateTBVRelatedData()
+                }
+            }
+        }
 
     }
 
@@ -268,36 +268,63 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func showTBVData() {
-        worker.getRatingReport { [weak self] (report) in
-            self?.worker.getToBeVision { [weak self] (_, toBeVision) in
-                self?.router.showTBVData(shouldShowNullState: report?.days.isEmpty == true,
-                                         visionId: toBeVision?.remoteID)
+        guard team != nil else {
+            worker.getRatingReport { [weak self] (report) in
+                self?.worker.getToBeVision { [weak self] (_, toBeVision) in
+                    self?.router.showTBVData(shouldShowNullState: report?.days.isEmpty == true,
+                                             visionId: toBeVision?.remoteID)
+                }
             }
+            return
         }
+        //        TO DO: Get Team tbv rating report
     }
 
     func showTracker() {
-        router.showTracker()
+        guard team != nil else {
+            router.showTracker()
+            return
+        }
+        //      TODO:  Show Team TBV Tracker
     }
 
     func showRateScreen() {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
-            if let remoteId = toBeVision?.remoteID {
-                self?.router.showRateScreen(with: remoteId)
+        guard let team = team else {
+            worker.getToBeVision { [weak self] (_, toBeVision) in
+                if let remoteId = toBeVision?.remoteID {
+                    self?.router.showRateScreen(with: remoteId)
+                }
             }
+            return
+        }
+        worker.getTeamToBeVision(for: team) { (_, teamVision) in
+            //      TO DO: Rate Screen for Teams
         }
     }
 
     func showEditVision(isFromNullState: Bool) {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
-            self?.router.showEditVision(title: toBeVision?.headline ?? "",
-                                        vision: toBeVision?.text ?? "",
-                                        isFromNullState: isFromNullState)
+        guard let team = team else {
+            worker.getToBeVision { [weak self] (_, toBeVision) in
+                self?.router.showEditVision(title: toBeVision?.headline ?? "",
+                                            vision: toBeVision?.text ?? "",
+                                            isFromNullState: isFromNullState)
+            }
+            return
+        }
+        worker.getTeamToBeVision(for: team) { (_, teamVision) in
+//            TO DO: Show edit team TBV
+//            self?.router.showEditVision(title: teamVision?.headline ?? "",
+//                                        vision: teamVision?.text ?? "",
+//                                        isFromNullState: isFromNullState)
         }
     }
 
     func openToBeVisionGenerator() {
-        router.showTBVGenerator()
+        guard team != nil  else {
+            router.showTBVGenerator()
+            return
+        }
+//        open team TBV generator
     }
 }
 
