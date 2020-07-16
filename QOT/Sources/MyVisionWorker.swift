@@ -32,18 +32,18 @@ final class MyVisionWorker {
 
     lazy var nullStateSubtitle = AppTextService.get(.my_qot_my_tbv_null_state_body)
     lazy var nullStateTitle = AppTextService.get(.my_qot_my_tbv_null_state_title)
-    lazy var teamNullStateSubtitle = "No one can outperforme their  ncbdshfjbbsdjfbdsnfnds"
-    lazy var teamNullStateTitle = "TEAM AT OUR BEST"
-    lazy var emptyTeamTBVTitlePlaceholder = "Team headline"
-    lazy var emptyTeamTBVTextPlaceholder = "CREATE YOUR TEAM TOBEVISION"
+    lazy var teamNullStateSubtitle = AppTextService.get(.myx_team_tbv_null_state_subtitle)
+    lazy var teamNullStateTitle = AppTextService.get(.myx_team_tbv_null_state_title)
     lazy var nullStateCTA = AppTextService.get(.my_qot_my_tbv_null_state_button_write)
-    lazy var nullStateTeamCTA = " Write your team ToBeVision"
+    lazy var nullStateTeamCTA = AppTextService.get(.myx_team_tbv_null_state_cta)
     lazy var updateAlertTitle = AppTextService.get(.my_qot_my_tbv_alert_update_title)
     lazy var updateAlertMessage = AppTextService.get(.my_qot_my_tbv_alert_update_body)
     lazy var updateAlertEditTitle = AppTextService.get(.my_qot_my_tbv_alert_update_edit)
     lazy var updateAlertCreateTitle = AppTextService.get(.my_qot_my_tbv_alert_update_create)
     lazy var emptyTBVTextPlaceholder = AppTextService.get(.my_qot_my_tbv_empty_subtitle_vision)
     lazy var emptyTBVTitlePlaceholder = AppTextService.get(.my_qot_my_tbv_section_header_title_headline)
+    lazy var emptyTeamTBVTitlePlaceholder = AppTextService.get(.myx_team_tbv_header_title_headline)
+    lazy var emptyTeamTBVTextPlaceholder = AppTextService.get(.myx_team_tbv_empty_subtitle_vision )
     private lazy var notRatedText = AppTextService.get(.my_qot_my_tbv_section_track_null_state_title)
     private lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()
