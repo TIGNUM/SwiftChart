@@ -53,7 +53,7 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
     }
 
     func createTeam(_ name: String?) {
-        worker.teamCreate(name) { [weak self] (team, error) in
+        worker.createTeam(name) { [weak self] (team, error) in
             self?.team = team
             if let team = team {
                 self?.type = .memberInvite

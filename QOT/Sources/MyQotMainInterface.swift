@@ -12,30 +12,32 @@ import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
-    func updateTeamHeader(teamHeaderItems: [TeamHeader])
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>)
+    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func updateTeamHeader(teamHeaderItems: [TeamHeader])
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>)
+    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
-    func presentMyPreps()
-    func presentMyProfile()
-    func presentMySprints()
-    func presentMyToBeVision()
-    func presentMyLibrary()
-    func presentMyDataScreen()
-    func presentCreateTeam()
-    func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]?
-    func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>])
+    var sectionCount: Int { get }
+
+    func getSettingsButtonTitle() -> String
+    func getTeamItems() -> [Team.Item]
+
     func refreshParams()
-    func getSettingsTitle(completion: @escaping (String?) -> Void)
+    func updateArraySection(_ list: ArraySectionMyX)
+    
     func updateSelectedTeam(teamId: String)
-    func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void)
+
+    func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void)
+    func itemCount(in section: Int) -> Int
+    func getItem(at indexPath: IndexPath) -> MyX.Item?
+
+    func presentMyProfile()
+    func handleSelection(at indexPath: IndexPath)
+
     func presentTeamPendingInvites()
 }
 

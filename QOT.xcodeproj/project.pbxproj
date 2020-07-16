@@ -317,6 +317,7 @@
 		386C27BB241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */; };
 		386C27BE241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27BC241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift */; };
 		386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */; };
+		3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
 		389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
@@ -342,6 +343,8 @@
 		38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */; };
 		38C6516F24360188002CE496 /* WorkerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6516E24360188002CE496 /* WorkerContent.swift */; };
 		38C7CCE124A11CD600334EEB /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */; };
+		38CA8C4624B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C4424B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift */; };
+		38CA8C4924B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CA8C4824B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib */; };
 		38D218E424A634C500B6FA26 /* HorizontalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */; };
 		38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */; };
 		38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E724A64C3000B6FA26 /* TeamHeader.swift */; };
@@ -1650,6 +1653,7 @@
 		386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareEventTableViewCell.xib; sourceTree = "<group>"; };
 		386C27BC241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareQuestionTableViewCell.xib; sourceTree = "<group>"; };
+		3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamHeaderCell.xib; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveView.xib; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
@@ -1675,6 +1679,8 @@
 		38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionHeaderView.xib; sourceTree = "<group>"; };
 		38C6516E24360188002CE496 /* WorkerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerContent.swift; sourceTree = "<group>"; };
 		38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
+		38CA8C4424B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		38CA8C4824B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderView.swift; sourceTree = "<group>"; };
 		38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeaderCell.swift; sourceTree = "<group>"; };
 		38D218E724A64C3000B6FA26 /* TeamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeader.swift; sourceTree = "<group>"; };
@@ -3389,9 +3395,12 @@
 		38D218E224A6344600B6FA26 /* Header */ = {
 			isa = PBXGroup;
 			children = (
+				38CA8C4424B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift */,
 				38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */,
-				38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */,
 				38D218E724A64C3000B6FA26 /* TeamHeader.swift */,
+				38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */,
+				38CA8C4824B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib */,
+				3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */,
 			);
 			name = Header;
 			sourceTree = "<group>";
@@ -6023,6 +6032,7 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
+				38CA8C4924B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib in Resources */,
 				36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				380B03CB241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib in Resources */,
@@ -6061,6 +6071,7 @@
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
 				F9F70C1622F9A2D300E85BF3 /* SprintChallengeCell.xib in Resources */,
 				AC103E532289621900F426F0 /* TriggerTableViewCell.xib in Resources */,
+				3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */,
 				B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */,
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
 				386C27A5241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib in Resources */,
@@ -6437,6 +6448,7 @@
 				B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */,
 				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
 				B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */,
+				38CA8C4624B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift in Sources */,
 				B4A075B0230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.swift in Sources */,
 				36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */,
 				5F8A89992296DEF70011A05C /* MyVisionPresenter.swift in Sources */,
@@ -7416,6 +7428,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = K82G24324U;
@@ -7622,6 +7635,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
@@ -8366,6 +8380,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
@@ -8512,6 +8527,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
@@ -8543,6 +8559,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
@@ -8638,6 +8655,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
