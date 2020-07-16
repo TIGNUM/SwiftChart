@@ -93,7 +93,6 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
             horizontalHeaderHeight.constant = 60
             horizontalHeaderView.configure(headerItems: teamHeaderItems)
         }
-//        teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems, height: 80)
     }
 
     func updateView() {

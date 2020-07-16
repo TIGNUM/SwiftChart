@@ -48,7 +48,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         navigationController?.navigationBar.isHidden = true
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(showPendingInvites),
-                                               name: .didSelectTeam,
+                                               name: .didSelectTeamInvite,
                                                object: nil)
     }
 

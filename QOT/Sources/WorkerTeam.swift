@@ -187,8 +187,6 @@ extension WorkerTeam {
         }
     }
 
-    func getSelectedTeam() {}
-
     func getTeamInvitations(_ completion: @escaping ([QDMTeamInvitation]) -> Void) {
         TeamService.main.getTeamInvitations { (invitations, error) in
             if let error = error {

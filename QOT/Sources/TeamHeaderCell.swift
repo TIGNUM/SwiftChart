@@ -48,9 +48,15 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
 private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
-        NotificationCenter.default.post(name: .didSelectTeam,
-                                        object: nil,
-                                        userInfo: [Team.KeyTeamId: teamId])
+        if teamInvites.isEmpty {
+            NotificationCenter.default.post(name: .didSelectTeam,
+                                            object: nil,
+                                            userInfo: [Team.KeyTeamId: teamId])
+        } else {
+            NotificationCenter.default.post(name: .didSelectTeamInvite,
+                                            object: nil,
+                                            userInfo: nil)
+        }
     }
 
     @objc func checkSelection(_ notification: Notification) {
