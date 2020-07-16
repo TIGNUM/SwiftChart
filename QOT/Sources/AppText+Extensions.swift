@@ -496,6 +496,24 @@ public extension AppTextKey {
     static let my_x_team_edit_header = AppTextKey("my_x.team_edit.header")
     static let my_x_team_edit_save_cta = AppTextKey("my_x.team_edit.save_cta")
 
+
+ // MARK: - Team Settings
+     static let settings_team_settings_team_members = AppTextKey("settings.team_settings.team_members")
+     static let settings_team_settings_title = AppTextKey("settings.team_settings.title")
+     static let settings_team_settings_leave_team = AppTextKey("settings.team_settings.leave_team")
+     static let settings_team_settings_leave_team_subtitle = AppTextKey("settings.team_settings.leave_team_subtitle")
+     static let settings_team_settings_delete_team  = AppTextKey("settings.team_settings.delete_team")
+     static let settings_team_settings_delete_team_subtitle  = AppTextKey("settings.team_settings.delete_team_subtitle")
+     static let settings_team_settings_subtitle = AppTextKey("settings.team_settings.subtitle")
+     static let settings_team_settings_confirmation_delete = AppTextKey("settings.team_settings.confirmation_delete")
+     static let settings_team_settings_confirmation_leave = AppTextKey("settings.team_settings.confirmation_leave")
+     static let settings_team_settings_team_members_title = AppTextKey("settings.teams_settings.team_members.title")
+     static let settings_team_settings_team_members_invite_again = AppTextKey("settings.team_settings.team_members.invite_again")
+     static let settings_team_settings_team_members_invited = AppTextKey("settings.team_settings.team_members.invited")
+     static let settings_team_settings_team_members_remove = AppTextKey("settings.team_settings.team_members.remove")
+     static let settings_team_settings_team_members_add_members = AppTextKey("settings.team_settings.team_members.add_members")
+     static let settings_team_settings_team_members_admin_label = AppTextKey("settings.team_settings.team_members.admin_label")
+
     // MARK: - Team Invitations
     static let team_invite_header_plural = AppTextKey("team_invite.header_title.plural")
     static let team_invite_header_singular = AppTextKey("team_invite.header_title.singular")
@@ -778,15 +796,6 @@ public extension AppTextKey {
     static let my_qot_my_plans_event_preps_null_state_body = AppTextKey("my_qot.my_plans.event_preps.null_state.body")
     static let my_qot_my_plans_section_header_critical = AppTextKey("my_qot.my_plans_section.header_critical")
     static let my_qot_my_plans_section_header_everyday = AppTextKey("my_qot.my_plans_section.header_everyday")
-    static let settings_team_settings_team_members = AppTextKey("settings.team_settings.team_members")
-    static let settings_team_settings_title = AppTextKey("settings.team_settings.title")
-    static let settings_team_settings_leave_team = AppTextKey("settings.team_settings.leave_team")
-    static let settings_team_settings_leave_team_subtitle = AppTextKey("settings.team_settings.leave_team_subtitle")
-    static let settings_team_settings_delete_team  = AppTextKey("settings.team_settings.delete_team")
-    static let settings_team_settings_delete_team_subtitle  = AppTextKey("settings.team_settings.delete_team_subtitle")
-    static let settings_team_settings_subtitle = AppTextKey("settings.team_settings.subtitle")
-    static let settings_team_settings_confirmation_delete = AppTextKey("settings.team_settings.confirmation_delete")
-    static let settings_team_settings_confirmation_leave = AppTextKey("settings.team_settings.confirmation_leave")
 
     static let my_qot_my_plans_mindset_shifts_null_state_cta = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.cta")
     static let my_qot_my_plans_event_preps_null_state_cta = AppTextKey("my_qot.my_plans.event_preps.null_state.cta")

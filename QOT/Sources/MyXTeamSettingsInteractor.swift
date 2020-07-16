@@ -90,8 +90,14 @@ private extension MyXTeamSettingsInteractor {
 
 // MARK: - MyXTeamSettingsInteractorInterface
 extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
+
     var selectedTeam: QDMTeam? {
         return self.currentTeam
+    }
+
+    func settingItems()-> [MyXTeamSettingsModel.Setting] {
+        guard let team = currentTeam else { return [MyXTeamSettingsModel.Setting]()}
+        return worker.settingItems(team: team)
     }
 
     func updateSelectedTeam(teamId: String) {
@@ -149,5 +155,37 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         }
     }
 
+    func titleForItem(at indexPath: IndexPath) -> String {
+        return title(for: settingItems().at(index: indexPath.row) ?? .teamName) ?? ""
+    }
+
+    func subtitleForItem(at indexPath: IndexPath) -> String {
+        return subtitle(for: settingItems().at(index: indexPath.row) ?? .teamName) ?? ""
+    }
+
+    private func title(for item: MyXTeamSettingsModel.Setting) -> String? {
+        switch item {
+        case .teamName:
+            return ""
+        case .teamMembers:
+            return AppTextService.get(.settings_team_settings_team_members)
+        case .leaveTeam:
+            return AppTextService.get(.settings_team_settings_leave_team)
+        case .deleteTeam:
+            return AppTextService.get(.settings_team_settings_delete_team)
+        }
+    }
+
+    private func subtitle(for item: MyXTeamSettingsModel.Setting) -> String? {
+        switch item {
+        case .leaveTeam:
+            return AppTextService.get(.settings_team_settings_leave_team_subtitle)
+        case .deleteTeam:
+            return AppTextService.get(.settings_team_settings_delete_team_subtitle)
+        default: return nil
+        }
+    }
+
     func handleTap(setting: MyXTeamSettingsModel.Setting) {}
+
 }

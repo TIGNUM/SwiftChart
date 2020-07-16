@@ -14,4 +14,14 @@ final class MyXTeamSettingsWorker: WorkerTeam {
     lazy var teamSettingsText = AppTextService.get(.settings_team_settings_title).uppercased()
 
     lazy var settings = MyXTeamSettingsModel()
+
+    func settingItems(team: QDMTeam) -> [MyXTeamSettingsModel.Setting] {
+        //        if team.thisUserIsOwner {
+        //            return [.teamName, .teamMembers, .deleteTeam]
+        //        } else {
+        //            return [.teamMembers, .leaveTeam]
+        //        }
+        //        TEMP: ALL OPTIONS
+        return [.teamName, .teamMembers, .leaveTeam, .deleteTeam]
+    }
 }

@@ -28,7 +28,6 @@ protocol MyQotMainInteractorInterface: Interactor {
 
     func refreshParams()
     func updateArraySection(_ list: ArraySectionMyX)
-    
     func updateSelectedTeam(teamId: String)
 
     func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void)
