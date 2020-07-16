@@ -23,7 +23,7 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     private var settingsModel: MyXTeamSettingsModel!
     @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
     @IBOutlet private weak var horizontalHeaderHeight: NSLayoutConstraint!
     private var leftBarButtonItems = [UIBarButtonItem]()
@@ -100,9 +100,14 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 
-    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
         self.teamHeaderItems = teamHeaderItems
-        teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        if teamHeaderItems.isEmpty {
+            horizontalHeaderHeight.constant = 0
+        } else {
+            horizontalHeaderHeight.constant = 60
+            horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        }
     }
 
     func updateView() {
@@ -127,9 +132,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = interactor.settingItems().at(index: indexPath.item) else {
-            fatalError("settingItems Item does not exist at indexPath: \(indexPath.item)")
-        }
+        let item = interactor.settingItems().at(index: indexPath.row)
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)

@@ -14,7 +14,7 @@ final class MyXTeamMembersInteractor {
     // MARK: - Properties
     private lazy var worker = MyXTeamMembersWorker()
     private let presenter: MyXTeamMembersPresenterInterface!
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [Team.Item]()
     private var currentTeam: QDMTeam?
 
     // MARK: - Init
@@ -47,11 +47,11 @@ final class MyXTeamMembersInteractor {
 // MARK: - Private
 private extension MyXTeamMembersInteractor {
     @objc func checkSelection(_ notification: Notification) {
-           guard let userInfo = notification.userInfo as? [String: String] else { return }
-           if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
-               updateSelectedTeam(teamId: teamId)
-           }
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[Team.KeyTeamId] {
+            updateSelectedTeam(teamId: teamId)
         }
+    }
 }
 
 // MARK: - MyXTeamMembersInteractorInterface
@@ -86,7 +86,6 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
     func reinviteMember(email: String?, team: QDMTeam?) {
         worker.sendInvite(email, team: team) { (member, Error) in
-             
         }
     }
 }

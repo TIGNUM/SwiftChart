@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import qot_dal
 
-final class TeamHeaderCell: UICollectionViewCell {
+final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
-    @IBOutlet weak var titleButton: UIButton!
+    @IBOutlet private weak var itemButton: UIButton!
     private var teamId = ""
     private var hexColorString = ""
+    private var inviteCounter = 0
+    private var teamInvites: [QDMTeamInvitation] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        titleButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
+        itemButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
@@ -27,40 +30,54 @@ final class TeamHeaderCell: UICollectionViewCell {
                                                object: nil)
     }
 
-    func configure(title: String, hexColorString: String, batchCount: Int, selected: Bool, teamId: String) {
+    func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
         self.teamId = teamId
         self.hexColorString = hexColorString
-        titleButton.setTitle(title, for: .normal)
+        itemButton.setTitle(title, for: .normal)
         setSelected(selected)
+    }
+
+    func configure(teamInvites: [QDMTeamInvitation]) {
+        self.teamInvites = teamInvites
+        itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
+        itemButton.backgroundColor = .carbon
+        itemButton.layer.borderColor = UIColor.accent.cgColor
+        itemButton.setTitleColor(.accent, for: .normal)
     }
 }
 
 private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
-        NotificationCenter.default.post(name: .didSelectTeam,
-                                        object: nil,
-                                        userInfo: [TeamHeader.Selector.teamId.rawValue: teamId])
+        if teamInvites.isEmpty {
+            NotificationCenter.default.post(name: .didSelectTeam,
+                                            object: nil,
+                                            userInfo: [Team.KeyTeamId: teamId])
+        } else {
+            NotificationCenter.default.post(name: .didSelectTeamInvite,
+                                            object: nil,
+                                            userInfo: nil)
+        }
     }
 
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
+        if let teamId = userInfo[Team.KeyTeamId] {
             setSelected(self.teamId == teamId)
         }
-        if let teamColor = userInfo[TeamHeader.Selector.teamColor.rawValue] {
+        if let teamColor = userInfo[Team.KeyColor] {
             hexColorString = teamColor
         }
     }
 
     func setSelected(_ selected: Bool) {
         if selected {
-            titleButton.backgroundColor = UIColor(hex: hexColorString)
-            titleButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
-            titleButton.setTitleColor(.sand, for: .normal)
+            itemButton.backgroundColor = UIColor(hex: hexColorString)
+            itemButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
+            itemButton.setTitleColor(.sand, for: .normal)
         } else {
-            titleButton.backgroundColor = .clear
-            titleButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
-            titleButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
+            itemButton.backgroundColor = .clear
+            itemButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
+            itemButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
         }
     }
 }

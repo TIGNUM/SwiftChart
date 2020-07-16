@@ -14,8 +14,12 @@ final class MyXTeamSettingsInteractor {
     // MARK: - Properties
     private let worker = MyXTeamSettingsWorker()
     private let presenter: MyXTeamSettingsPresenterInterface
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [Team.Item]()
     private var currentTeam: QDMTeam?
+
+    var teamSettingsText: String {
+        return worker.teamSettingsText
+    }
 
     // MARK: - Init
     init(presenter: MyXTeamSettingsPresenterInterface) {
@@ -24,17 +28,37 @@ final class MyXTeamSettingsInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.present(worker.settings())
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            teamHeaderItems.first?.selected = true
-            self?.teamHeaderItems = teamHeaderItems
-            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "", { [weak self] (selectedTeam) in
-                self?.currentTeam = selectedTeam
-                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                self?.presenter.updateView()
-            })
-        }
+        presenter.present(worker.settings)
 
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.setFirstTeamSelected(teamHeaderItems)
+            self?.teamHeaderItems = teamHeaderItems
+            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "") { [weak self] (selectedTeam) in
+                self?.updateTeam(selectedTeam)
+            }
+        }
+        addObservers()
+    }
+}
+
+// MARK: - Private
+private extension MyXTeamSettingsInteractor {
+    @objc func checkSelection(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[Team.KeyTeamId] {
+            updateSelectedTeam(teamId: teamId)
+        }
+        if let teamColor = userInfo[Team.KeyColor] {
+            updateSelectedTeam(teamColor: teamColor)
+        }
+     }
+
+    @objc func updateViewData(_ notification: Notification) {
+        guard let teamId = notification.object as? String else { return }
+        updateSelectedTeam(teamId: teamId)
+    }
+
+    func addObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateViewData),
                                                name: .didEditTeam, object: nil)
@@ -48,26 +72,19 @@ final class MyXTeamSettingsInteractor {
                                                object: nil)
     }
 
-    var teamSettingsText: String {
-        return worker.teamSettingsText
+    func updateTeam(_ selectedTeam: QDMTeam?) {
+        currentTeam = selectedTeam
+        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+        presenter.updateView()
     }
-}
 
-// MARK: - Private
-private extension MyXTeamSettingsInteractor {
-    @objc func checkSelection(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
-            updateSelectedTeam(teamId: teamId)
+    func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {
+        for header in teamHeaderItems {
+            if !header.teamId.isEmpty {
+                header.selected = true
+                return
+            }
         }
-        if let teamColor = userInfo[TeamHeader.Selector.teamColor.rawValue] {
-            updateSelectedTeam(teamColor: teamColor)
-        }
-     }
-
-    @objc func updateViewData(_ notification: Notification) {
-        guard let teamId = notification.object as? String else { return }
-        updateSelectedTeam(teamId: teamId)
     }
 }
 
@@ -78,50 +95,36 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         return self.currentTeam
     }
 
-    func handleTap(setting: MyXTeamSettingsModel.Setting) {
-
-    }
-
-    func settingItems() -> [MyXTeamSettingsModel.Setting] {
-       guard let currentTeam = currentTeam else {
-            return [MyXTeamSettingsModel.Setting]()
-        }
-        return worker.settingItems(team: currentTeam)
+    func settingItems()-> [MyXTeamSettingsModel.Setting] {
+        guard let team = currentTeam else { return [MyXTeamSettingsModel.Setting]()}
+        return worker.settingItems(team: team)
     }
 
     func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.teamHeaderItems = teamHeaderItems
-            teamHeaderItems.forEach { (item) in
-                item.selected = (teamId == item.teamId)
-            }
-            self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
-                self?.currentTeam = selectedTeam
-                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                self?.presenter.updateView()
-            })
-
+        teamHeaderItems.forEach { (item) in
+            item.selected = (teamId == item.teamId)
         }
-    }
-
-    func updateTeams() {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            if teamHeaderItems.isEmpty {
-                self?.presenter.dismiss()
-                 NotificationCenter.default.post(name: .updatedTeams, object: nil)
-            }
-            teamHeaderItems.first?.selected = true
-            self?.teamHeaderItems = teamHeaderItems
-            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+        worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
+            self?.currentTeam = selectedTeam
+            self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
             self?.presenter.updateView()
         }
     }
 
     func updateSelectedTeam(teamColor: String) {
-        teamHeaderItems.filter { $0.selected }.first?.hexColorString = teamColor
+        teamHeaderItems.filter { $0.selected }.first?.color = teamColor
         presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
         presenter.updateView()
         worker.updateTeamColor(teamId: getTeamId(), teamColor: teamColor)
+    }
+
+    func updateTeams() {
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.setFirstTeamSelected(teamHeaderItems)
+            self?.teamHeaderItems = teamHeaderItems
+            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+            self?.presenter.updateView()
+        }
     }
 
     func getTeamName() -> String {
@@ -133,7 +136,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func getTeamColor() -> String {
-        return teamHeaderItems.filter { $0.selected }.first?.hexColorString ?? ""
+        return teamHeaderItems.filter { $0.selected }.first?.color ?? ""
     }
 
     func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void) {
@@ -141,15 +144,15 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func deleteTeam(team: QDMTeam) {
-        worker.deleteTeam(team, { teams, _, error in
+        worker.deleteTeam(team) { teams, _, error in
             self.updateTeams()
-        })
+        }
     }
 
     func leaveTeam(team: QDMTeam) {
-        worker.leaveTeam(team: team, { _ in
+        worker.leaveTeam(team: team) { _ in
             self.updateTeams()
-        })
+        }
     }
 
     func titleForItem(at indexPath: IndexPath) -> String {
@@ -182,4 +185,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         default: return nil
         }
     }
+
+    func handleTap(setting: MyXTeamSettingsModel.Setting) {}
+
 }

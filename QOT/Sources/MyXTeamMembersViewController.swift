@@ -17,7 +17,7 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerView: UIView!
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
     @IBOutlet weak var horizontalHeaderHeight: NSLayoutConstraint!
@@ -105,9 +105,14 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 //        isOwner ? updateBottomNavigation([backNavigationItem()], [addMembersButton]) : updateBottomNavigation([backNavigationItem()], [])
     }
 
-    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
         self.teamHeaderItems = teamHeaderItems
-        teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        if teamHeaderItems.isEmpty {
+            horizontalHeaderHeight.constant = 0
+        } else {
+            horizontalHeaderHeight.constant = 60
+            horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        }
     }
 
     func updateView() {

@@ -177,6 +177,6 @@ private extension ColorPicker {
     func postTeamColor(_ color: UIColor) {
         NotificationCenter.default.post(name: .didSelectTeamColor,
                                         object: color.toHexString,
-                                        userInfo: [TeamHeader.Selector.teamColor.rawValue: color.toHexString])
+                                        userInfo: [Team.KeyColor: color.toHexString])
     }
 }
