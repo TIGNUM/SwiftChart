@@ -21,6 +21,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     weak var delegate: CoachCollectionViewControllerDelegate?
     private var indexPathDeselect: IndexPath?
     private var isDragging = false
+    private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var collectionView: UICollectionView!
 
     private lazy var headerSize: CGSize = {
@@ -72,6 +73,11 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 
     @objc func showPendingInvites() {
         interactor.presentTeamPendingInvites()
+    }
+
+    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
+        self.teamHeaderItems = teamHeaderItems
+        reload()
     }
 }
 

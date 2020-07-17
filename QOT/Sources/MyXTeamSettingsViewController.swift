@@ -88,6 +88,9 @@ private extension MyXTeamSettingsViewController {
 
 // MARK: - MyXTeamSettingsViewControllerInterface
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
+    func updateView() {
+        tableView.reloadData()
+    }
 
     func dismiss() {
         router?.dismiss()
@@ -108,10 +111,6 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
             horizontalHeaderHeight.constant = 60
             horizontalHeaderView.configure(headerItems: teamHeaderItems)
         }
-    }
-
-    func updateView() {
-        tableView.reloadData()
     }
 
     func updateSettingsModel(_ settings: MyXTeamSettingsModel) {

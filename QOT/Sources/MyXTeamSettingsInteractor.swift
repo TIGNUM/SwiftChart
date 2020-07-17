@@ -29,7 +29,6 @@ final class MyXTeamSettingsInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.present(worker.settings)
-
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
