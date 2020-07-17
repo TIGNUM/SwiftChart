@@ -121,7 +121,6 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         let cell: HorizontalHeaderCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(headerItems: interactor.getTeamItems())
         return cell
-
     }
 
     func getCell(_ collectionView: UICollectionView,

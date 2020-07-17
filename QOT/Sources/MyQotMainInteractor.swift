@@ -167,10 +167,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     func handleSelection(at indexPath: IndexPath) {
         switch MyX.Section(rawValue: indexPath.section) {
-        case .navigationHeader:
+        case .navigationHeader,
+             .teamHeader:
             return
-        case .teamHeader:
-            print("header selected")
         default:
             switch MyX.Element(rawValue: indexPath.row) {
             case .teamCreate: router.presentEditTeam(.create, team: nil)
