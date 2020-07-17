@@ -16,12 +16,12 @@ final class HorizontalHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.registerDequeueable(TeamHeaderCell.self)
+        collectionView.setContentOffset(CGPoint(x: 24, y: 0), animated: true)
     }
 
     func configure(headerItems: [Team.Item]) {
         self.headerItems = headerItems
         collectionView.reloadData()
-        collectionView.setContentOffset(CGPoint(x: 24, y: 0), animated: true)
     }
 }
 

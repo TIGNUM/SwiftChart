@@ -20,7 +20,6 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
     private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
-    @IBOutlet weak var horizontalHeaderHeight: NSLayoutConstraint!
     var membersList: [MyXTeamMemberModel] = []
     private var rightBarButtonItems = [UIBarButtonItem]()
 
@@ -107,12 +106,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func updateTeamHeader(teamHeaderItems: [Team.Item]) {
         self.teamHeaderItems = teamHeaderItems
-        if teamHeaderItems.isEmpty {
-            horizontalHeaderHeight.constant = 0
-        } else {
-            horizontalHeaderHeight.constant = 60
-            horizontalHeaderView.configure(headerItems: teamHeaderItems)
-        }
+        horizontalHeaderView.configure(headerItems: teamHeaderItems)
     }
 
     func updateView() {
