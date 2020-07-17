@@ -14,13 +14,15 @@ final class MyVisionInteractor {
 
     let presenter: MyVisionPresenterInterface
     let router: MyVisionRouter
+    var team: QDMTeam?
     private lazy var worker = MyVisionWorker()
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
-    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter) {
+    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter, team: QDMTeam?) {
         self.presenter = presenter
         self.router = router
+        self.team = team
     }
 
     deinit {
@@ -68,13 +70,27 @@ final class MyVisionInteractor {
     }
 
     private func didUpdateTBVRelatedData() {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
-            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                self?.presenter.load(toBeVision,
-                                     rateText: text,
-                                     isRateEnabled: status,
-                                     shouldShowSingleMessageRating: shouldShowSingleMessage)
-                self?.worker.updateWidget()
+        if let team = team {
+            worker.getTeamToBeVision(for: team) { [weak self] (_, teamVision) in
+                self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
+                    self?.presenter.load(nil,
+                                         teamVision: teamVision,
+                                         rateText: text,
+                                         isRateEnabled: status,
+                                         shouldShowSingleMessageRating: shouldShowSingleMessage)
+                    self?.worker.updateWidget()
+                }
+            }
+        } else {
+            worker.getToBeVision { [weak self] (_, toBeVision) in
+                self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
+                    self?.presenter.load(toBeVision,
+                                         teamVision: nil,
+                                         rateText: text,
+                                         isRateEnabled: status,
+                                         shouldShowSingleMessageRating: shouldShowSingleMessage)
+                    self?.worker.updateWidget()
+                }
             }
         }
     }
@@ -124,8 +140,8 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
                                         crateNewTitle: worker.updateAlertCreateTitle)
     }
 
-    func showNullState(with title: String, message: String) {
-        presenter.showNullState(with: title, message: message)
+    func showNullState(with title: String, message: String, writeMessage: String) {
+        presenter.showNullState(with: title, message: message, writeMessage: writeMessage)
     }
 
     func hideNullState() {
@@ -136,43 +152,91 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         return worker.nullStateSubtitle
     }
 
+    var teamNullStateSubtitle: String? {
+        return worker.teamNullStateSubtitle
+    }
+
+    var teamNullStateTitle: String? {
+        return worker.teamNullStateTitle
+    }
+
     var nullStateTitle: String? {
         return worker.nullStateTitle
+    }
+
+    var nullStateCTA: String? {
+        return team == nil ? worker.nullStateCTA : worker.nullStateTeamCTA
     }
 
     var emptyTBVTitlePlaceholder: String {
         return worker.emptyTBVTitlePlaceholder
     }
 
+    var emptyTeamTBVTitlePlaceholder: String {
+        return worker.emptyTeamTBVTitlePlaceholder
+    }
+
     var emptyTBVTextPlaceholder: String {
         return worker.emptyTBVTextPlaceholder
     }
 
+    var emptyTeamTBVTextPlaceholder: String {
+        return worker.emptyTeamTBVTextPlaceholder
+    }
+
     func lastUpdatedVision() -> String? {
+        if team != nil {
+            return worker.lastUpdatedTeamVision()
+        }
         return worker.lastUpdatedVision()
     }
 
     func saveToBeVision(image: UIImage?) {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
-            if var vision = toBeVision {
-                vision.modifiedAt = Date()
-                if let visionImage = image {
+        guard let team = team else {
+            worker.getToBeVision { [weak self] (_, toBeVision) in
+                if var vision = toBeVision {
+                    vision.modifiedAt = Date()
+                    if let visionImage = image {
+                        do {
+                            let imageUrl = try self?.worker.saveImage(visionImage).absoluteString
+                            vision.profileImageResource = QDMMediaResource()
+                            vision.profileImageResource?.localURLString = imageUrl
+                        } catch {
+                            log(error.localizedDescription)
+                        }
+                    } else {
+                        vision.profileImageResource = nil
+                    }
+
+                    self?.worker.updateMyToBeVision(vision) { [weak self] (reponseVision) in
+                        self?.didUpdateTBVRelatedData()
+                    }
+                }
+            }
+            return
+        }
+
+        worker.getTeamToBeVision(for: team) { [weak self] (_, teamVision) in
+            if var teamVision = teamVision {
+                teamVision.modifiedAt = Date()
+                if let teamVisionImage = image {
                     do {
-                        let imageUrl = try self?.worker.saveImage(visionImage).absoluteString
-                        vision.profileImageResource = QDMMediaResource()
-                        vision.profileImageResource?.localURLString = imageUrl
+                        let imageUrl = try self?.worker.saveImage(teamVisionImage).absoluteString
+                        teamVision.profileImageResource = QDMMediaResource()
+                        teamVision.profileImageResource?.localURLString = imageUrl
                     } catch {
                         log(error.localizedDescription)
                     }
                 } else {
-                    vision.profileImageResource = nil
+                    teamVision.profileImageResource = nil
                 }
 
-                self?.worker.updateMyToBeVision(vision) { [weak self] (reponseVision) in
+                self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
                     self?.didUpdateTBVRelatedData()
                 }
             }
         }
+
     }
 
     func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void) {
@@ -181,11 +245,16 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         }
     }
 
-    func shareMyToBeVision() {
-        worker.visionToShare { [weak self] (visionToShare) in
-            guard let vision = visionToShare else { return }
-            self?.share(plainText: vision.plainBody ?? "")
+    func shareToBeVision() {
+        guard team == nil else {
+            worker.visionToShare { [weak self] (visionToShare) in
+                guard let vision = visionToShare else { return }
+                self?.share(plainText: vision.plainBody ?? "")
+
+            }
+            return
         }
+        //       TO DO later: share team TBV
     }
 
     func swizzleMFMailComposeViewControllerMessageBody() {
@@ -200,36 +269,63 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func showTBVData() {
-        worker.getRatingReport { [weak self] (report) in
-            self?.worker.getToBeVision { [weak self] (_, toBeVision) in
-                self?.router.showTBVData(shouldShowNullState: report?.days.isEmpty == true,
-                                         visionId: toBeVision?.remoteID)
+        guard team != nil else {
+            worker.getRatingReport { [weak self] (report) in
+                self?.worker.getToBeVision { [weak self] (_, toBeVision) in
+                    self?.router.showTBVData(shouldShowNullState: report?.days.isEmpty == true,
+                                             visionId: toBeVision?.remoteID)
+                }
             }
+            return
         }
+        //        TO DO: Get Team tbv rating report
     }
 
     func showTracker() {
-        router.showTracker()
+        guard team != nil else {
+            router.showTracker()
+            return
+        }
+        //      TODO:  Show Team TBV Tracker
     }
 
     func showRateScreen() {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
-            if let remoteId = toBeVision?.remoteID {
-                self?.router.showRateScreen(with: remoteId)
+        guard let team = team else {
+            worker.getToBeVision { [weak self] (_, toBeVision) in
+                if let remoteId = toBeVision?.remoteID {
+                    self?.router.showRateScreen(with: remoteId)
+                }
             }
+            return
+        }
+        worker.getTeamToBeVision(for: team) { (_, teamVision) in
+            //      TO DO: Rate Screen for Teams
         }
     }
 
     func showEditVision(isFromNullState: Bool) {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
-            self?.router.showEditVision(title: toBeVision?.headline ?? "",
-                                        vision: toBeVision?.text ?? "",
-                                        isFromNullState: isFromNullState)
+        guard let team = team else {
+            worker.getToBeVision { [weak self] (_, toBeVision) in
+                self?.router.showEditVision(title: toBeVision?.headline ?? "",
+                                            vision: toBeVision?.text ?? "",
+                                            isFromNullState: isFromNullState)
+            }
+            return
+        }
+        worker.getTeamToBeVision(for: team) { (_, teamVision) in
+//            TO DO: Show edit team TBV
+//            self?.router.showEditVision(title: teamVision?.headline ?? "",
+//                                        vision: teamVision?.text ?? "",
+//                                        isFromNullState: isFromNullState)
         }
     }
 
     func openToBeVisionGenerator() {
-        router.showTBVGenerator()
+        guard team != nil  else {
+            router.showTBVGenerator()
+            return
+        }
+//        open team TBV generator
     }
 }
 

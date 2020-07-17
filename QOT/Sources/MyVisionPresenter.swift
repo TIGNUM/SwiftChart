@@ -22,8 +22,8 @@ final class MyVisionPresenter {
 
 extension MyVisionPresenter: MyVisionPresenterInterface {
 
-    func showNullState(with title: String, message: String) {
-        viewController?.showNullState(with: title, message: message)
+    func showNullState(with title: String, message: String, writeMessage: String) {
+        viewController?.showNullState(with: title, message: message, writeMessage: writeMessage)
     }
 
     func hideNullState() {
@@ -34,8 +34,9 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
         viewController?.setupView()
     }
 
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
+    func load(_ myVision: QDMToBeVision?, teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
         viewController?.load(myVision,
+                             teamVision: teamVision,
                              rateText: rateText,
                              isRateEnabled: isRateEnabled,
                              shouldShowSingleMessageRating: shouldShowSingleMessageRating)

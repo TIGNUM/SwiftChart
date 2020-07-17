@@ -835,7 +835,7 @@ extension DailyBriefViewController {
     }
 
     func presentMyToBeVision() {
-        router.showTBV()
+        router.showTBV(team: nil)
     }
 
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?) {

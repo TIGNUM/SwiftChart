@@ -16,10 +16,11 @@ final class MyQotMainInteractor {
     private lazy var worker = MyQotMainWorker()
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
-//    private var teamHeaderItems = [Team.Item]()
+    private var teamHeaderItems = [Team.Item]()
     private var arraySectionMyX: ArraySectionMyX = []
     private var subtitles: [String?] = []
     private var eventType: String?
+    private var currentTeam: QDMTeam?
     private var settingsButtonTitle = ""
     private var bodyElements = MyX()
     private var teamItems = MyX()
@@ -35,11 +36,23 @@ final class MyQotMainInteractor {
     func viewDidLoad() {
         updateMyX()
         presenter.setupView()
+        addObservers()
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.teamHeaderItems = teamHeaderItems
+        }
     }
 }
 
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
+
+    @objc func checkSelection(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[Team.KeyTeamId] {
+            updateSelectedTeam(teamId: teamId)
+        }
+    }
+
     func createMyData(irScore: Int?) -> MyX.Item {
         let subtitle = String(irScore ?? 0) + AppTextService.get(.my_qot_section_my_data_subtitle)
         return getItem(in: .data, subTitle: subtitle)
@@ -92,9 +105,15 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             completion(toBeVisionDate)
         }
     }
+
     func updateSelectedTeam(teamId: String) {
-//        teamHeaderItems.forEach { $0.selected = (teamId == $0.teamId) }
-//        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+       teamHeaderItems.forEach { (item) in
+            item.selected = (teamId == item.teamId)
+        }
+        worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
+            self?.currentTeam = selectedTeam
+            self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
+       }
     }
 
     func presentMyProfile() {
@@ -148,7 +167,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func handleSelection(at indexPath: IndexPath) {
         switch MyX.Section(rawValue: indexPath.section) {
         case .navigationHeader,
-             .teamHeader: return
+             .teamHeader:
+            return
         default:
             switch MyX.Element(rawValue: indexPath.row) {
             case .teamCreate: router.presentEditTeam(.create, team: nil)
@@ -156,7 +176,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             case .preps: router.presentMyPreps()
             case .sprints: router.presentMySprints()
             case .data: router.presentMyDataScreen()
-            case .toBeVision: router.showTBV()
+            case .toBeVision: router.showTBV(team: currentTeam)
             default: return
             }
         }
@@ -164,6 +184,14 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 }
 
 extension MyQotMainInteractor {
+
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
+    }
+
     func getItem(in element: MyX.Element, subTitle: String = "") -> MyX.Item {
         var item = bodyElements.items[element.rawValue]
         item.subtitle = subTitle
