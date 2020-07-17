@@ -13,15 +13,19 @@ import qot_dal
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
     func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
+    func reload()
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
     func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
+    func reload()
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
     var sectionCount: Int { get }
+
+    func updateMyX()
 
     func getSettingsButtonTitle() -> String
     func getTeamItems() -> [Team.Item]

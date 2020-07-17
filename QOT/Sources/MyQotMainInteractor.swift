@@ -21,6 +21,8 @@ final class MyQotMainInteractor {
     private var subtitles: [String?] = []
     private var eventType: String?
     private var settingsButtonTitle = ""
+    private var bodyElements = MyX()
+    private var teamItems = MyX()
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -31,6 +33,7 @@ final class MyQotMainInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        updateMyX()
         presenter.setupView()
     }
 }
@@ -39,16 +42,16 @@ final class MyQotMainInteractor {
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func createMyData(irScore: Int?) -> MyX.Item {
         let subtitle = String(irScore ?? 0) + AppTextService.get(.my_qot_section_my_data_subtitle)
-        return worker.getItem(in: .data, subTitle: subtitle)
+        return getItem(in: .data, subTitle: subtitle)
     }
 
     func createToBeVision(date: Date?) -> MyX.Item {
         guard date != nil else {
-            return worker.getItem(in: .toBeVision)
+            return getItem(in: .toBeVision)
         }
         let since = Int(timeElapsed(date: date).rounded())
         let key: AppTextKey = since >= 3 ? .my_qot_section_my_tbv_subtitle_more_than : .my_qot_section_my_tbv_subtitle_less_than_3_months
-        return worker.getItem(in: .toBeVision, subTitle: AppTextService.get(key))
+        return getItem(in: .toBeVision, subTitle: AppTextService.get(key))
     }
 
     func createPreps(dateString: String?, eventType: String?) -> MyX.Item {
@@ -56,7 +59,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         if let dateString = dateString, let eventType = eventType {
             subtitle = dateString + " " + eventType
         }
-        return worker.getItem(in: .preps, subTitle: subtitle)
+        return getItem(in: .preps, subTitle: subtitle)
     }
 
     func timeElapsed(date: Date?) -> Double {
@@ -139,7 +142,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func getTeamItems() -> [Team.Item] {
-        return worker.getTeamItems.teamHeaderItems
+        return teamItems.teamHeaderItems
     }
 
     func handleSelection(at indexPath: IndexPath) {
@@ -161,6 +164,22 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 }
 
 extension MyQotMainInteractor {
+    func getItem(in element: MyX.Element, subTitle: String = "") -> MyX.Item {
+        var item = bodyElements.items[element.rawValue]
+        item.subtitle = subTitle
+        return bodyElements.items[element.rawValue]
+    }
+
+    func updateMyX() {
+        worker.getTeamItems { (teamItems) in
+            self.worker.getBodyElements { (bodyElements) in
+                self.bodyElements = bodyElements
+                self.teamItems = teamItems
+                self.presenter.reload()
+            }
+        }
+    }
+
     func createInitialData() {
         worker.getSubtitles { [weak self] (subtitles) in
             self?.worker.getSettingsTitle { (settingsTitle) in
@@ -169,8 +188,8 @@ extension MyQotMainInteractor {
                 strongSelf.settingsButtonTitle = settingsTitle
 
                 var dataList: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
-                dataList.append(ArraySection(model: .teamHeader, elements: strongSelf.worker.getTeamItems.items))
-                dataList.append(ArraySection(model: .body, elements: strongSelf.worker.getBodyElements.items))
+                dataList.append(ArraySection(model: .teamHeader, elements: strongSelf.teamItems.items))
+                dataList.append(ArraySection(model: .body, elements: strongSelf.bodyElements.items))
                 let changeSet = StagedChangeset(source: strongSelf.arraySectionMyX, target: dataList)
                 strongSelf.presenter.updateView(changeSet)
             }
@@ -186,16 +205,16 @@ extension MyQotMainInteractor {
                             guard let strongSelf = self else { return }
                             var bodyItems: [MyX.Item] = []
                             let teamCreateSubtitle = AppTextService.get(.my_x_team_create_description)
-                            bodyItems.append(strongSelf.worker.getItem(in: .teamCreate,
+                            bodyItems.append(strongSelf.getItem(in: .teamCreate,
                                                                             subTitle: teamCreateSubtitle))
-                            bodyItems.append(strongSelf.worker.getItem(in: .library))
+                            bodyItems.append(strongSelf.getItem(in: .library))
                             bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                            bodyItems.append(strongSelf.worker.getItem(in: .sprints, subTitle: sprintName ?? ""))
+                            bodyItems.append(strongSelf.getItem(in: .sprints, subTitle: sprintName ?? ""))
                             bodyItems.append(strongSelf.createMyData(irScore: score))
                             bodyItems.append(strongSelf.createToBeVision(date: date))
 
                             var sections: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
-                            sections.append(ArraySection(model: .teamHeader, elements: strongSelf.worker.getTeamItems.items))
+                            sections.append(ArraySection(model: .teamHeader, elements: strongSelf.teamItems.items))
                             sections.append(ArraySection(model: .body, elements: bodyItems))
                             let changeSet = StagedChangeset(source: strongSelf.arraySectionMyX, target: sections)
                             strongSelf.presenter.updateView(changeSet)

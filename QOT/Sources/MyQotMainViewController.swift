@@ -57,6 +57,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
         interactor.refreshParams()
+        interactor.updateMyX()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -95,6 +96,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         collectionView.reload(using: differenceList) { [weak self] (data) in
             self?.interactor.updateArraySection(data)
         }
+    }
+
+    func reload() {
+        collectionView.reloadData()
     }
 
     func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
