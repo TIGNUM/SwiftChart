@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -253,70 +252,39 @@
                                     <constraint firstAttribute="height" constant="98" id="AxI-o6-sx7"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghS-jG-5zB" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
-                                <rect key="frame" x="24" y="98" width="351" height="80"/>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="che-KX-sGX" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="98" width="375" height="60"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fuU-AA-R9P">
-                                        <rect key="frame" x="0.0" y="0.0" width="351" height="80"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mtu-b4-v0C">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="4" minimumInteritemSpacing="4" id="ApO-pf-Geu">
-                                            <size key="itemSize" width="110" height="50"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mDP-Lv-Q8S">
+                                            <size key="itemSize" width="300" height="60"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamHeaderCell_ID" id="kCX-nV-RfE" customClass="TeamHeaderCell" customModule="TIGNUM_X" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="20" width="110" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LAI-Su-vSX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiY-q4-DaV">
-                                                            <rect key="frame" x="4" y="0.0" width="102" height="20"/>
-                                                            <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <connections>
-                                                                <action selector="didSelectTeam" destination="kCX-nV-RfE" eventType="touchUpInside" id="Gaj-fc-v3c"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="FiY-q4-DaV" firstAttribute="leading" secondItem="LAI-Su-vSX" secondAttribute="leading" constant="4" id="4Ye-RQ-QTY"/>
-                                                        <constraint firstAttribute="trailing" secondItem="FiY-q4-DaV" secondAttribute="trailing" constant="4" id="Ozy-Hb-jRp"/>
-                                                        <constraint firstItem="FiY-q4-DaV" firstAttribute="top" secondItem="LAI-Su-vSX" secondAttribute="top" id="brA-v3-Boc"/>
-                                                        <constraint firstAttribute="bottom" secondItem="FiY-q4-DaV" secondAttribute="bottom" constant="20" id="neT-jo-7LT"/>
-                                                    </constraints>
-                                                </collectionViewCellContentView>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <size key="customSize" width="110" height="40"/>
-                                                <connections>
-                                                    <outlet property="titleButton" destination="FiY-q4-DaV" id="9Ho-si-xQ0"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
+                                        <cells/>
                                         <connections>
-                                            <outlet property="dataSource" destination="ghS-jG-5zB" id="E6H-6C-w24"/>
-                                            <outlet property="delegate" destination="ghS-jG-5zB" id="fVZ-ec-ufb"/>
+                                            <outlet property="dataSource" destination="che-KX-sGX" id="njp-ij-hYv"/>
+                                            <outlet property="delegate" destination="che-KX-sGX" id="hTL-JE-C0n"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="IGn-IA-kg5"/>
-                                    <constraint firstItem="fuU-AA-R9P" firstAttribute="leading" secondItem="ghS-jG-5zB" secondAttribute="leading" id="W76-E4-Rk4"/>
-                                    <constraint firstAttribute="bottom" secondItem="fuU-AA-R9P" secondAttribute="bottom" id="WJU-2J-kdF"/>
-                                    <constraint firstAttribute="trailing" secondItem="fuU-AA-R9P" secondAttribute="trailing" id="ZDE-1J-jDL"/>
-                                    <constraint firstItem="fuU-AA-R9P" firstAttribute="top" secondItem="ghS-jG-5zB" secondAttribute="top" id="r9N-Lm-0kF"/>
+                                    <constraint firstItem="Mtu-b4-v0C" firstAttribute="leading" secondItem="che-KX-sGX" secondAttribute="leading" id="79h-mG-QoO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mtu-b4-v0C" secondAttribute="trailing" id="M8K-s1-Pdt"/>
+                                    <constraint firstItem="Mtu-b4-v0C" firstAttribute="top" secondItem="che-KX-sGX" secondAttribute="top" id="NRd-rj-kHt"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mtu-b4-v0C" secondAttribute="bottom" id="ak3-bg-P6z"/>
+                                    <constraint firstAttribute="height" constant="60" id="goi-Z4-0hj"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="collectionView" destination="fuU-AA-R9P" id="ppC-HE-AvC"/>
+                                    <outlet property="collectionView" destination="Mtu-b4-v0C" id="QL6-d9-U14"/>
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HTS-fj-Ieu">
-                                <rect key="frame" x="0.0" y="178" width="375" height="469"/>
+                                <rect key="frame" x="0.0" y="158" width="375" height="489"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -329,15 +297,15 @@
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="HTS-fj-Ieu" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="00o-S2-Wub"/>
+                            <constraint firstItem="HTS-fj-Ieu" firstAttribute="top" secondItem="che-KX-sGX" secondAttribute="bottom" id="5vY-MY-NAB"/>
                             <constraint firstItem="P4L-d4-E25" firstAttribute="bottom" secondItem="HTS-fj-Ieu" secondAttribute="bottom" id="7pK-q1-gWD"/>
-                            <constraint firstItem="ghS-jG-5zB" firstAttribute="top" secondItem="Fbz-7Z-v9W" secondAttribute="bottom" id="8It-bM-ghX"/>
                             <constraint firstItem="P4L-d4-E25" firstAttribute="trailing" secondItem="Fbz-7Z-v9W" secondAttribute="trailing" id="LFV-1W-LvZ"/>
-                            <constraint firstItem="ghS-jG-5zB" firstAttribute="leading" secondItem="cJ0-Zn-i4c" secondAttribute="leading" constant="24" id="Ovz-IZ-4Be"/>
                             <constraint firstItem="Fbz-7Z-v9W" firstAttribute="top" secondItem="P4L-d4-E25" secondAttribute="top" id="WFr-hV-2wi"/>
                             <constraint firstItem="P4L-d4-E25" firstAttribute="trailing" secondItem="HTS-fj-Ieu" secondAttribute="trailing" id="anU-mE-Hbw"/>
-                            <constraint firstItem="HTS-fj-Ieu" firstAttribute="top" secondItem="ghS-jG-5zB" secondAttribute="bottom" id="cYV-nB-7oS"/>
-                            <constraint firstAttribute="trailing" secondItem="ghS-jG-5zB" secondAttribute="trailing" id="rHf-nT-65v"/>
+                            <constraint firstItem="che-KX-sGX" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="dw0-Wq-96P"/>
+                            <constraint firstItem="che-KX-sGX" firstAttribute="trailing" secondItem="P4L-d4-E25" secondAttribute="trailing" id="qtW-l1-rV4"/>
                             <constraint firstItem="Fbz-7Z-v9W" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="uHO-Q4-0w1"/>
+                            <constraint firstItem="che-KX-sGX" firstAttribute="top" secondItem="Fbz-7Z-v9W" secondAttribute="bottom" id="uOw-K4-Fuh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P4L-d4-E25"/>
                     </view>
@@ -345,14 +313,129 @@
                     <connections>
                         <outlet property="headerHeightConstraint" destination="AxI-o6-sx7" id="Csg-A1-8jd"/>
                         <outlet property="headerView" destination="Fbz-7Z-v9W" id="HpI-mm-kMz"/>
-                        <outlet property="horizontalHeaderHeight" destination="IGn-IA-kg5" id="T7a-Zk-BC7"/>
-                        <outlet property="horizontalHeaderView" destination="ghS-jG-5zB" id="jgB-No-Aa4"/>
+                        <outlet property="horizontalHeaderHeight" destination="goi-Z4-0hj" id="7Xr-wB-pR2"/>
+                        <outlet property="horizontalHeaderView" destination="che-KX-sGX" id="ias-d0-wwl"/>
                         <outlet property="tableView" destination="HTS-fj-Ieu" id="OXV-gs-tid"/>
+                        <segue destination="CTF-ig-qwc" kind="show" identifier="myX.teamMembers.segue.identifier" id="c3J-PK-9oX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5On-Bh-YBE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2020" y="2336.5817091454273"/>
+        </scene>
+        <!--MyX Team Members View Controller-->
+        <scene sceneID="bpS-go-p3B">
+            <objects>
+                <viewController storyboardIdentifier="MyXTeamMembersViewController_ID" id="CTF-ig-qwc" customClass="MyXTeamMembersViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y4t-ZH-Ehd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ds-K0-zKL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="98" id="Jxf-lE-dM7"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1m-Y1-enc" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="98" width="375" height="80"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DIP-m9-C45">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="4" minimumInteritemSpacing="4" id="o7A-R4-0KK">
+                                            <size key="itemSize" width="110" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamHeaderCell_ID" id="Key-Ux-zsh" customClass="TeamHeaderCell" customModule="TIGNUM_X" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="20" width="110" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MHe-Cu-fq2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9M-wE-vOj">
+                                                            <rect key="frame" x="4" y="0.0" width="102" height="20"/>
+                                                            <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="didSelectTeam" destination="Key-Ux-zsh" eventType="touchUpInside" id="RdT-zn-Hf2"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="X9M-wE-vOj" firstAttribute="top" secondItem="MHe-Cu-fq2" secondAttribute="top" id="2hb-Vb-miP"/>
+                                                        <constraint firstAttribute="bottom" secondItem="X9M-wE-vOj" secondAttribute="bottom" constant="20" id="CRi-tu-jy2"/>
+                                                        <constraint firstItem="X9M-wE-vOj" firstAttribute="leading" secondItem="MHe-Cu-fq2" secondAttribute="leading" constant="4" id="PYy-LR-2H3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="X9M-wE-vOj" secondAttribute="trailing" constant="4" id="Zbj-LZ-fIE"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <size key="customSize" width="110" height="40"/>
+                                                <connections>
+                                                    <outlet property="titleButton" destination="X9M-wE-vOj" id="Axw-b3-cQt"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="X1m-Y1-enc" id="maE-ak-7mz"/>
+                                            <outlet property="delegate" destination="X1m-Y1-enc" id="6tH-FK-Kur"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="DIP-m9-C45" secondAttribute="trailing" id="6Sd-DB-4xy"/>
+                                    <constraint firstAttribute="height" constant="80" id="9VE-EB-9Bg"/>
+                                    <constraint firstItem="DIP-m9-C45" firstAttribute="top" secondItem="X1m-Y1-enc" secondAttribute="top" id="MRi-dM-JbP"/>
+                                    <constraint firstItem="DIP-m9-C45" firstAttribute="leading" secondItem="X1m-Y1-enc" secondAttribute="leading" id="cjF-cW-b6X"/>
+                                    <constraint firstAttribute="bottom" secondItem="DIP-m9-C45" secondAttribute="bottom" id="eso-Ot-ti8"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="collectionView" destination="DIP-m9-C45" id="E9a-wP-jB1"/>
+                                </connections>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zK5-mh-Ff5">
+                                <rect key="frame" x="0.0" y="178" width="375" height="469"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="CTF-ig-qwc" id="6r6-1T-YWc"/>
+                                    <outlet property="delegate" destination="CTF-ig-qwc" id="hVe-Gq-XCw"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Ds-K0-zKL" firstAttribute="top" secondItem="2gd-3H-ucj" secondAttribute="top" id="6gm-gx-TGy"/>
+                            <constraint firstItem="2gd-3H-ucj" firstAttribute="bottom" secondItem="zK5-mh-Ff5" secondAttribute="bottom" id="81Q-Lc-8a5"/>
+                            <constraint firstItem="X1m-Y1-enc" firstAttribute="top" secondItem="6Ds-K0-zKL" secondAttribute="bottom" id="8NF-o0-Jtz"/>
+                            <constraint firstItem="2gd-3H-ucj" firstAttribute="trailing" secondItem="zK5-mh-Ff5" secondAttribute="trailing" id="QrS-td-Vku"/>
+                            <constraint firstItem="2gd-3H-ucj" firstAttribute="trailing" secondItem="X1m-Y1-enc" secondAttribute="trailing" id="T8r-Ko-ehy"/>
+                            <constraint firstItem="zK5-mh-Ff5" firstAttribute="leading" secondItem="2gd-3H-ucj" secondAttribute="leading" id="TKm-aX-naX"/>
+                            <constraint firstItem="6Ds-K0-zKL" firstAttribute="leading" secondItem="2gd-3H-ucj" secondAttribute="leading" id="ZJG-yO-O29"/>
+                            <constraint firstItem="2gd-3H-ucj" firstAttribute="trailing" secondItem="6Ds-K0-zKL" secondAttribute="trailing" id="lIE-cf-biR"/>
+                            <constraint firstItem="X1m-Y1-enc" firstAttribute="leading" secondItem="2gd-3H-ucj" secondAttribute="leading" id="prT-Qe-lgu"/>
+                            <constraint firstItem="zK5-mh-Ff5" firstAttribute="top" secondItem="X1m-Y1-enc" secondAttribute="bottom" id="wXn-mr-B2h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2gd-3H-ucj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fhy-dW-brz"/>
+                    <connections>
+                        <outlet property="headerView" destination="6Ds-K0-zKL" id="m0R-sK-7T5"/>
+                        <outlet property="headerViewHeightConstraint" destination="Jxf-lE-dM7" id="wC1-gc-YgU"/>
+                        <outlet property="horizontalHeaderHeight" destination="9VE-EB-9Bg" id="Lob-Kp-wAl"/>
+                        <outlet property="horizontalHeaderView" destination="X1m-Y1-enc" id="f0O-2Q-8MH"/>
+                        <outlet property="tableView" destination="zK5-mh-Ff5" id="dX1-uH-rjG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jZd-ZZ-IQN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2956" y="2598.3508245877065"/>
         </scene>
         <!--My Qot Sensors View Controller-->
         <scene sceneID="gKo-9v-I0L">

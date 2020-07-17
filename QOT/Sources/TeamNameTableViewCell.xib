@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -49,6 +49,16 @@
                                     <constraint firstItem="bAe-Bh-3sG" firstAttribute="centerY" secondItem="jpm-A5-Q0M" secondAttribute="centerY" id="hGX-Kl-3UV"/>
                                     <constraint firstItem="bAe-Bh-3sG" firstAttribute="leading" secondItem="jpm-A5-Q0M" secondAttribute="leading" constant="24" id="sts-jY-70h"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-Sl-njt">
+                                <rect key="frame" x="24" y="75" width="390" height="1"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="GbR-ia-LS8"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="UJE-hM-jgg"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="lM0-kW-0i6"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="2DU-Bp-LRY"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAe-ts-He0" userLabel="ColorContainerBlue">
                                 <rect key="frame" x="338" y="0.0" width="76" height="76"/>
@@ -266,9 +276,12 @@
                 </subviews>
                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="bYL-Sl-njt" secondAttribute="bottom" id="4mJ-vy-bNF"/>
                     <constraint firstItem="2pZ-u8-Amb" firstAttribute="top" secondItem="AmR-D8-CYi" secondAttribute="top" id="5fc-es-ijo"/>
                     <constraint firstAttribute="bottom" secondItem="2pZ-u8-Amb" secondAttribute="bottom" id="Dke-WR-mtW"/>
                     <constraint firstAttribute="trailing" secondItem="2pZ-u8-Amb" secondAttribute="trailing" id="E6H-4M-Uoa"/>
+                    <constraint firstAttribute="trailing" secondItem="bYL-Sl-njt" secondAttribute="trailing" id="GDL-dh-8vb"/>
+                    <constraint firstItem="bYL-Sl-njt" firstAttribute="leading" secondItem="AmR-D8-CYi" secondAttribute="leading" constant="24" id="nbP-yf-4q3"/>
                     <constraint firstItem="2pZ-u8-Amb" firstAttribute="leading" secondItem="AmR-D8-CYi" secondAttribute="leading" id="zan-uf-Imf"/>
                 </constraints>
             </tableViewCellContentView>

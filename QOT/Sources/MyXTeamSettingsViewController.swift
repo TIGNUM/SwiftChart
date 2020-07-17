@@ -13,7 +13,7 @@ protocol MyXTeamSettingsViewControllerDelegate: class {
     func presentEditTeam()
 }
 
-final class MyXTeamSettingsViewController: UIViewController {
+final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyXTeamSettingsInteractorInterface!
@@ -23,9 +23,10 @@ final class MyXTeamSettingsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var settingsModel: MyXTeamSettingsModel!
     @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
-    private var teamHeaderItems = [TeamHeader]()
+    private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
     @IBOutlet private weak var horizontalHeaderHeight: NSLayoutConstraint!
+    private var leftBarButtonItems = [UIBarButtonItem]()
 
     // MARK: - Init
     init(configure: Configurator<MyXTeamSettingsViewController>) {
@@ -49,8 +50,10 @@ final class MyXTeamSettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(colorMode: ColorMode.dark)
-        setStatusBar(color: ThemeView.level1.color)
+        setStatusBar(color: .carbon)
+        leftBarButtonItems = [backNavigationItem()]
+        updateBottomNavigation(leftBarButtonItems, [])
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -64,19 +67,34 @@ private extension MyXTeamSettingsViewController {
      @objc func confirmDeleteTapped(_ sender: Any) {
         guard let selectedTeam = interactor.selectedTeam else { return }
         interactor.deleteTeam(team: selectedTeam)
+        trackUserEvent(.DELETE_TEAM, value: selectedTeam.remoteID, valueType: .TEAM, action: .TAP)
     }
 
     @objc func confirmLeaveTapped(_ sender: Any) {
         guard let selectedTeam = interactor.selectedTeam else { return }
         interactor.leaveTeam(team: selectedTeam)
+        trackUserEvent(.LEAVE_TEAM, value: selectedTeam.remoteID, valueType: .TEAM, action: .TAP)
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
+        trackUserEvent(.CANCEL, action: .TAP)
     }
+
+    func backToTeamSettings() -> UIBarButtonItem {
+         return backNavigationItem()
+    }
+
 }
 
 // MARK: - MyXTeamSettingsViewControllerInterface
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
+    func updateView() {
+        tableView.reloadData()
+    }
+
+    func dismiss() {
+        router?.dismiss()
+    }
 
     func setup(_ settings: MyXTeamSettingsModel) {
         ThemeView.level3.apply(view)
@@ -85,13 +103,18 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 
-    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
         self.teamHeaderItems = teamHeaderItems
-        teamHeaderItems.isEmpty ? horizontalHeaderHeight.constant = 0 : horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        if teamHeaderItems.isEmpty {
+            horizontalHeaderHeight.constant = 0
+        } else {
+            horizontalHeaderHeight.constant = 60
+            horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        }
     }
 
-    func updateView() {
-        tableView.reloadData()
+    func updateSettingsModel(_ settings: MyXTeamSettingsModel) {
+        settingsModel = settings
     }
 }
 
@@ -100,7 +123,7 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
 extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return settingsModel.teamSettingsCount
+        return interactor.settingItems().count
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -108,9 +131,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) else {
-            fatalError("MyXTeamSettings Item does not exist at indexPath: \(indexPath.item)")
-        }
+        let item = interactor.settingItems().at(index: indexPath.row)
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -125,15 +146,15 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
             return cell
         case .teamMembers:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
-            let subtitle = settingsModel.subtitleForItem(at: indexPath)
+            cell.configure(title: interactor.titleForItem(at: indexPath), themeCell: .level3)
+            let subtitle = interactor.subtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
             return cell
         default:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
-            let subtitle = settingsModel.subtitleForItem(at: indexPath)
+            cell.configure(title: interactor.titleForItem(at: indexPath), themeCell: .level3)
+            let subtitle = interactor.subtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             return cell
         }
@@ -163,8 +184,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
             case .leaveTeam:
                 QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
             case .teamMembers:
-//                to do
-                print("go to team members")
+                router?.presentTeamMembers()
             default:
                 break
             }

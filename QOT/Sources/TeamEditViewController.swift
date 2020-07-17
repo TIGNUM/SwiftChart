@@ -45,6 +45,7 @@ final class TeamEditViewController: UIViewController {
         interactor.viewDidLoad()
         startObservingKeyboard()
         teamTextField.becomeFirstResponder()
+        trackPage()
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {

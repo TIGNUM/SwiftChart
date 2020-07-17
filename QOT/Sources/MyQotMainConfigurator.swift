@@ -12,9 +12,8 @@ final class MyQotMainConfigurator {
     static func configure(delegate: CoachCollectionViewControllerDelegate,
                           viewController: MyQotMainViewController) {
         let router = MyQotMainRouter(viewController: viewController, delegate: delegate)
-        let worker = MyQotMainWorker()
         let presenter = MyQotMainPresenter(viewController: viewController)
-        let interactor = MyQotMainInteractor(worker: worker, presenter: presenter, router: router)
+        let interactor = MyQotMainInteractor(presenter: presenter, router: router)
         viewController.interactor = interactor
         viewController.delegate = delegate
     }

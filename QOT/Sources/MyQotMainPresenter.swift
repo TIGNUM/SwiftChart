@@ -12,11 +12,9 @@ import DifferenceKit
 final class MyQotMainPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: MyQotMainViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: MyQotMainViewControllerInterface) {
         self.viewController = viewController
     }
@@ -29,15 +27,11 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
         viewController?.setupView()
     }
 
-    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
-        viewController?.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>) {
+        viewController?.updateView(differenceList)
     }
 
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
-        viewController?.updateViewNew(differenceList)
+    func updateView() {
+//        viewController?.updateView()
     }
-
-   func updateView() {
-         viewController?.updateView()
-     }
 }

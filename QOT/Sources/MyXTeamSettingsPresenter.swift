@@ -21,7 +21,8 @@ final class MyXTeamSettingsPresenter {
 
 // MARK: - MyXTeamSettingsInterface
 extension MyXTeamSettingsPresenter: MyXTeamSettingsPresenterInterface {
-    func updateTeamHeader(teamHeaderItems: [TeamHeader]) {
+
+    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
          viewController?.updateTeamHeader(teamHeaderItems: teamHeaderItems)
     }
 
@@ -31,5 +32,13 @@ extension MyXTeamSettingsPresenter: MyXTeamSettingsPresenterInterface {
 
     func updateView() {
         viewController?.updateView()
+    }
+
+    func updateSettingsModel(_ settings: MyXTeamSettingsModel) {
+        viewController?.updateSettingsModel(settings)
+    }
+
+    func dismiss() {
+        viewController?.dismiss()
     }
 }

@@ -86,4 +86,14 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
             viewController?.present(controller, animated: true)
         }
     }
+
+    func presentTeamPendingInvites() {
+        let identifier = R.storyboard.team.teamInviteViewControllerID.identifier
+        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamInvitesViewController
+        if let controller = controller {
+            let configurator = TeamInvitesConfigurator.make()
+            configurator(controller)
+            viewController?.pushToStart(childViewController: controller)
+        }
+    }
 }

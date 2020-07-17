@@ -13,258 +13,215 @@ import qot_dal
 final class MyQotMainInteractor {
 
     // MARK: - Properties
-    private let worker: MyQotMainWorker
+    private lazy var worker = MyQotMainWorker()
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
-    private var viewModelOldListModels: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = []
+    private var teamHeaderItems = [Team.Item]()
+    private var arraySectionMyX: ArraySectionMyX = []
     private var subtitles: [String?] = []
     private var eventType: String?
-    private var teamHeaderItems = [TeamHeader]()
     private var currentTeam: QDMTeam?
+    private var settingsButtonTitle = ""
 
     // MARK: - Init
-    init(worker: MyQotMainWorker,
-         presenter: MyQotMainPresenterInterface,
-         router: MyQotMainRouterInterface) {
-        self.worker = worker
+    init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
         self.presenter = presenter
         self.router = router
+        createInitialData()
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.teamHeaderItems = teamHeaderItems
-            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-        }
         presenter.setupView()
-        createInitialData()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
+    }
+}
+
+// MARK: - MyQotMainInteractorInterface
+extension MyQotMainInteractor: MyQotMainInteractorInterface {
+    func createMyData(irScore: Int?) -> MyX.Item {
+        let subtitle = String(irScore ?? 0) + AppTextService.get(.my_qot_section_my_data_subtitle)
+        return worker.getItem(in: .data, subTitle: subtitle)
     }
 
-    @objc func checkSelection(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[TeamHeader.Selector.teamId.rawValue] {
-            updateSelectedTeam(teamId: teamId)
+    func createToBeVision(date: Date?) -> MyX.Item {
+        guard date != nil else {
+            return worker.getItem(in: .toBeVision)
         }
+        let since = Int(timeElapsed(date: date).rounded())
+        let key: AppTextKey = since >= 3 ? .my_qot_section_my_tbv_subtitle_more_than : .my_qot_section_my_tbv_subtitle_less_than_3_months
+        return worker.getItem(in: .toBeVision, subTitle: AppTextService.get(key))
     }
 
-    private func createInitialData() {
-        var sectionDataList: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = [ArraySection(model: .header,
-                                                                                                         elements: [])]
-        var elements: [MyQotViewModel.Item] = []
-        MyQotSection.allCases.forEach { (section) in
-            elements.append(MyQotViewModel.Item(myQotSections: section,
-                                                title: worker.myQOTTitle(for: section),
-                                                subtitle: nil))
+    func createPreps(dateString: String?, eventType: String?) -> MyX.Item {
+        var subtitle = ""
+        if let dateString = dateString, let eventType = eventType {
+            subtitle = dateString + " " + eventType
         }
-        sectionDataList.append(ArraySection(model: .body,
-                                            elements: elements))
-        let changeSet = StagedChangeset(source: self.viewModelOldListModels, target: sectionDataList)
-        self.presenter.updateViewNew(changeSet)
+        return worker.getItem(in: .preps, subTitle: subtitle)
     }
 
-    private func createMyData(irScore: Int?) -> [MyQotViewModel.Item] {
-        var item = worker.myQotSections().myQotItems[MyQotSection.data.rawValue]
-        item.subtitle = String(irScore ?? 0) + AppTextService.get(.my_qot_section_my_data_subtitle)
-        return [item]
-    }
-
-    private func createToBeVision(date: Date?) -> [MyQotViewModel.Item] {
-        var item = worker.myQotSections().myQotItems[MyQotSection.toBeVision.rawValue]
-        if date == nil {
-            return [item]
-        } else {
-            let timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
-            var subtitleVision: String?
-            if timeSinceMonth >= 3 {
-                subtitleVision = AppTextService.get(.my_qot_section_my_tbv_subtitle_more_than)
-            } else {
-                subtitleVision = AppTextService.get(.my_qot_section_my_tbv_subtitle_less_than_3_months)
-            }
-            item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
-            return [item]
-        }
-    }
-
-    private func createLibrary() -> [MyQotViewModel.Item] {
-        let item = worker.myQotSections().myQotItems[MyQotSection.library.rawValue]
-        return [item]
-    }
-
-    private func createPreps(dateString: String?, eventType: String?) -> [MyQotViewModel.Item] {
-        var item = worker.myQotSections().myQotItems[MyQotSection.preps.rawValue]
-        if dateString != nil && eventType != nil {
-            item.subtitle = (dateString ?? "") + " " + (eventType ?? "")
-        }
-        return [item]
-    }
-
-    private func createSprints(sprintName: String?) -> [MyQotViewModel.Item] {
-        var item = worker.myQotSections().myQotItems[MyQotSection.sprints.rawValue]
-        item.subtitle = sprintName ?? ""
-        return [item]
-    }
-
-    private func timeElapsed(date: Date?) -> Double {
+    func timeElapsed(date: Date?) -> Double {
         if let monthSince = date?.months(to: Date()), monthSince > 1 {
             return Double(monthSince)
         }
         return 0
     }
 
-    private func nextPrep(completion: @escaping (String?) -> Void) {
+    func nextPrep(completion: @escaping (String?) -> Void) {
         worker.nextPrep { (preparation) in
             completion(preparation)
         }
     }
 
-    private func getCurrentSprintName(completion: @escaping (String?) -> Void) {
+    func getCurrentSprintName(completion: @escaping (String?) -> Void) {
         worker.getCurrentSprintName { (sprint) in
             completion(sprint)
         }
     }
 
-    private func nextPrepType(completion: @escaping (String?) -> Void) {
+    func nextPrepType(completion: @escaping (String?) -> Void) {
         worker.nextPrepType { ( preparation) in
             completion(preparation)
         }
     }
 
-    private func toBeVisionDate(completion: @escaping (Date?) -> Void) {
+    func toBeVisionDate(completion: @escaping (Date?) -> Void) {
         worker.toBeVisionDate { (toBeVisionDate) in
             completion(toBeVisionDate)
         }
     }
-    private func getImpactReadinessScore(completion: @escaping(Int?) -> Void) {
-        worker.getImpactReadinessScore(completion: completion)
-    }
-
-    private func getSubtitles(completion: @escaping ([String?]) -> Void) {
-        worker.getSubtitles(completion: completion)
-    }
-
-    private func getUserName(completion: @escaping (String?) -> Void) {
-        worker.getUserName(completion: completion)
-    }
-}
-
-// MARK: - MyQotMainInteractorInterface
-extension MyQotMainInteractor: MyQotMainInteractorInterface {
-
     func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.teamHeaderItems = teamHeaderItems
-            teamHeaderItems.forEach { (item) in
-                item.selected = (teamId == item.teamId)
-            }
-            self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
-                self?.currentTeam = selectedTeam
-                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                self?.presenter.updateView()
-            })
-        }
-    }
-
-    func presentMyPreps() {
-        router.presentMyPreps()
+//       teamHeaderItems.forEach { (item) in
+//            item.selected = (teamId == item.teamId)
+//        }
+//        worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
+//            self?.currentTeam = selectedTeam
+//            self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
+//            self?.presenter.updateView()
+//       }
     }
 
     func presentMyProfile() {
         router.presentMyProfile()
     }
 
-    func presentMySprints() {
-        router.presentMySprints()
+    func updateArraySection(_ list: ArraySectionMyX) {
+        arraySectionMyX = list
     }
 
-    func presentMyToBeVision() {
-        router.showTBV(team: currentTeam)
+    func getSettingsButtonTitle() -> String {
+        return settingsButtonTitle
     }
 
-    func presentMyLibrary() {
-        router.presentMyLibrary()
-    }
-
-    func presentMyDataScreen() {
-        router.presentMyDataScreen()
-    }
-
-    func presentCreateTeam() {
-        router.presentEditTeam(.create, team: nil)
-    }
-
-    func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]? {
-        return viewModelOldListModels
-    }
-
-    func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]) {
-        viewModelOldListModels = list
-    }
-
-    func getSettingsTitle(completion: @escaping (String?) -> Void) {
-        worker.getSettingsTitle(completion: completion)
-    }
-
-    func refreshParams() {
-        var sectionDataList: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = [ArraySection(model: .header,
-                                                                                                         elements: [])]
-        var elements: [MyQotViewModel.Item] = []
-
-        getSubtitles(completion: { [weak self] (subtitles) in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.subtitles = subtitles
-            strongSelf.getImpactReadinessScore(completion: { [weak self] (score) in
-                guard let strongSelf = self else {
-                    return
-                }
-                strongSelf.toBeVisionDate(completion: { [weak self] (date) in
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    strongSelf.nextPrep(completion: { [weak self] (dateString) in
-                        guard let strongSelf = self else {
-                            return
-                        }
-                        strongSelf.nextPrepType(completion: { [weak self] (eventType) in
-                            guard let strongSelf = self else {
-                                return
-                            }
-                            strongSelf.getCurrentSprintName(completion: { [weak self] (sprintName) in
-                                guard let strongSelf = self else {
-                                    return
-                                }
-                                elements.append(strongSelf.worker.myQotSections().myQotItems[MyQotSection.teamCreate.rawValue])
-                                elements.append(contentsOf: strongSelf.createLibrary())
-                                elements.append(contentsOf: strongSelf.createPreps(dateString: dateString,
-                                                                                   eventType: eventType))
-                                elements.append(contentsOf: strongSelf.createSprints(sprintName: sprintName))
-                                elements.append(contentsOf: strongSelf.createMyData(irScore: score))
-                                elements.append(contentsOf: strongSelf.createToBeVision(date: date))
-
-                                sectionDataList.append(ArraySection(model: .body,
-                                                                    elements: elements))
-
-                                let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels,
-                                                                target: sectionDataList)
-                                strongSelf.presenter.updateViewNew(changeSet)
-                            })
-                        })
-                    })
-                })
-            })
-        })
-    }
-
-    func isCellEnabled(for section: MyQotSection?, _ completion: @escaping (Bool) -> Void) {
+    func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void) {
         switch section {
         case .teamCreate: worker.canCreateTeam(completion)
         default: completion(true)
+        }
+    }
+
+    var sectionCount: Int {
+        arraySectionMyX.count
+    }
+
+    func itemCount(in section: Int) -> Int {
+        switch MyX.Section(rawValue: section) {
+        case .navigationHeader,
+             .teamHeader: return 1
+        case .body: return arraySectionMyX.at(index: section)?.elements.count ?? 0
+        default: return 0
+        }
+    }
+
+    func getItem(at indexPath: IndexPath) -> MyX.Item? {
+        return arraySectionMyX.at(index: indexPath.section)?.elements.at(index: indexPath.item)
+    }
+
+    func presentTeamPendingInvites() {
+        router.presentTeamPendingInvites()
+    }
+
+    func qotViewModelNew() -> [ArraySection<MyX.Section, MyX.Item>]? {
+        return arraySectionMyX
+    }
+
+    func getTeamItems() -> [Team.Item] {
+        return worker.getTeamItems.teamHeaderItems
+    }
+
+    func handleSelection(at indexPath: IndexPath) {
+        switch MyX.Section(rawValue: indexPath.section) {
+        case .navigationHeader,
+             .teamHeader: return
+        default:
+            switch MyX.Element(rawValue: indexPath.row) {
+            case .teamCreate: router.presentEditTeam(.create, team: nil)
+            case .library: router.presentMyLibrary()
+            case .preps: router.presentMyPreps()
+            case .sprints: router.presentMySprints()
+            case .data: router.presentMyDataScreen()
+            case .toBeVision: router.showTBV(team: currentTeam)
+            default: return
+            }
+        }
+    }
+}
+
+extension MyQotMainInteractor {
+
+    @objc func checkSelection(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[Team.KeyTeamId] {
+            updateSelectedTeam(teamId: teamId)
+        }
+    }
+
+    func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkSelection), name: .didSelectTeam, object: nil)
+    }
+
+    func createInitialData() {
+        worker.getSubtitles { [weak self] (subtitles) in
+            self?.worker.getSettingsTitle { (settingsTitle) in
+                guard let strongSelf = self else { return }
+                strongSelf.subtitles = subtitles
+                strongSelf.settingsButtonTitle = settingsTitle
+
+                var dataList: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
+                dataList.append(ArraySection(model: .teamHeader, elements: strongSelf.worker.getTeamItems.items))
+                dataList.append(ArraySection(model: .body, elements: strongSelf.worker.getBodyElements.items))
+                let changeSet = StagedChangeset(source: strongSelf.arraySectionMyX, target: dataList)
+                strongSelf.presenter.updateView(changeSet)
+            }
+        }
+    }
+
+    func refreshParams() {
+        worker.getImpactReadinessScore { [weak self] (score) in
+            self?.worker.toBeVisionDate { (date) in
+                self?.worker.nextPrep { (dateString) in
+                    self?.worker.nextPrepType { (eventType) in
+                        self?.worker.getCurrentSprintName { (sprintName) in
+                            guard let strongSelf = self else { return }
+                            var bodyItems: [MyX.Item] = []
+                            let teamCreateSubtitle = AppTextService.get(.my_x_team_create_description)
+                            bodyItems.append(strongSelf.worker.getItem(in: .teamCreate,
+                                                                            subTitle: teamCreateSubtitle))
+                            bodyItems.append(strongSelf.worker.getItem(in: .library))
+                            bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                            bodyItems.append(strongSelf.worker.getItem(in: .sprints, subTitle: sprintName ?? ""))
+                            bodyItems.append(strongSelf.createMyData(irScore: score))
+                            bodyItems.append(strongSelf.createToBeVision(date: date))
+
+                            var sections: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
+                            sections.append(ArraySection(model: .teamHeader, elements: strongSelf.worker.getTeamItems.items))
+                            sections.append(ArraySection(model: .body, elements: bodyItems))
+                            let changeSet = StagedChangeset(source: strongSelf.arraySectionMyX, target: sections)
+                            strongSelf.presenter.updateView(changeSet)
+                        }
+                    }
+                }
+            }
         }
     }
 }
