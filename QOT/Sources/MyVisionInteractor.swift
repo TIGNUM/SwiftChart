@@ -308,15 +308,16 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
             worker.getToBeVision { [weak self] (_, toBeVision) in
                 self?.router.showEditVision(title: toBeVision?.headline ?? "",
                                             vision: toBeVision?.text ?? "",
-                                            isFromNullState: isFromNullState)
+                                            isFromNullState: isFromNullState,
+                                            team: nil)
             }
             return
         }
         worker.getTeamToBeVision(for: team) { (_, teamVision) in
-//            TO DO: Show edit team TBV
-//            self?.router.showEditVision(title: teamVision?.headline ?? "",
-//                                        vision: teamVision?.text ?? "",
-//                                        isFromNullState: isFromNullState)
+            self.router.showEditVision(title: teamVision?.headline ?? "",
+                                        vision: teamVision?.text ?? "",
+                                        isFromNullState: isFromNullState,
+                                        team: team)
         }
     }
 

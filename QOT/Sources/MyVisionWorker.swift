@@ -102,6 +102,7 @@ final class MyVisionWorker {
     func updateTeamToBeVision(_ new: QDMTeamToBeVision, team: QDMTeam, completion: @escaping (_ toBeVision: QDMTeamToBeVision?) -> Void) {
         TeamService.main.updateTeamToBevision(vision: new) { [weak self] vision, error  in
             self?.getTeamToBeVision(for: team, { (_, qdmTeamVision) in
+//                 self.updateWidget() ?
                 completion(qdmTeamVision)
             })
         }

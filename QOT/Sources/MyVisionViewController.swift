@@ -36,6 +36,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nullStateImageView: UIImageView!
     var didShowNullStateView = false
     private let containerViewSize: CGFloat = 232.0
     private let containerViewRatio: CGFloat = 1.2
@@ -157,6 +158,7 @@ private extension MyVisionViewController {
 
     func removeGradients() {
         userImageView.removeSubViews()
+        nullStateView.removeSubViews()
     }
 
     func addGradients(for myVision: QDMToBeVision?) {
@@ -265,7 +267,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
             tempImageURL = myVision?.profileImageResource?.url()
             userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
             userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
-
             removeGradients()
             addGradients(for: myVision)
 
@@ -293,6 +294,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         if teamVision == nil {
             interactor.showNullState(with: interactor.teamNullStateTitle ?? "", message: interactor.teamNullStateSubtitle ?? "", writeMessage: interactor.nullStateCTA ?? "")
+            nullStateImageView.gradientBackground(top: true)
+            nullStateImageView.gradientBackground(top: false)
             return
         }
         if scrollView.alpha == 0 {

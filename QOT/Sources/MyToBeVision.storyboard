@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D5c-1q-rLE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D5c-1q-rLE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
         <!--My Vision Edit Details View Controller-->
         <scene sceneID="t3j-Cb-Afg">
             <objects>
-                <viewController storyboardIdentifier="MyVisionEditDetailsViewController" id="Jkg-VD-NUQ" customClass="MyVisionEditDetailsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyVisionEditDetailsViewController" id="Jkg-VD-NUQ" customClass="MyVisionEditDetailsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cki-fN-tPi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,7 +123,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPc-Zu-gVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="j9X-T7-xHb" customClass="MyVisionEditDetailsKeyboardInputView" customModule="QOT" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="j9X-T7-xHb" customClass="MyVisionEditDetailsKeyboardInputView" customModule="TIGNUM_X" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -182,7 +182,7 @@
         <!--My Vision View Controller-->
         <scene sceneID="bQD-fW-fhg">
             <objects>
-                <viewController storyboardIdentifier="MyVisionViewController" id="D5c-1q-rLE" customClass="MyVisionViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyVisionViewController" id="D5c-1q-rLE" customClass="MyVisionViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DfM-O5-NAp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -441,7 +441,7 @@
                                     <outlet property="delegate" destination="D5c-1q-rLE" id="puv-4k-Prm"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4J-Tv-pmm" customClass="MyVisionNavigationBarView" customModule="QOT" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4J-Tv-pmm" customClass="MyVisionNavigationBarView" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-106" width="414" height="96"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euO-vw-cx8">
@@ -484,13 +484,13 @@
                                     <outlet property="title" destination="euO-vw-cx8" id="WJd-pA-op1"/>
                                 </connections>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XZ-BD-gts" customClass="MyVisionNullStateView" customModule="QOT" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XZ-BD-gts" customClass="MyVisionNullStateView" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8l2-rf-TGh">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="810"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circlesWarning" translatesAutoresizingMaskIntoConstraints="NO" id="o5p-nS-BZh">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_warning_circles" translatesAutoresizingMaskIntoConstraints="NO" id="o5p-nS-BZh">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="332"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="o5p-nS-BZh" secondAttribute="height" multiplier="207:166" id="79c-BO-4bI"/>
@@ -582,7 +582,7 @@
                                     <outlet property="detailLabel" destination="4Wd-P1-5T6" id="xFH-Ys-vjx"/>
                                     <outlet property="headerLabel" destination="fh7-Bn-hhS" id="LDr-1I-100"/>
                                     <outlet property="toBeVisionLabel" destination="3yI-wH-6dC" id="Izo-oZ-06b"/>
-                                    <outlet property="writeButton" destination="15x-13-ZZ3" id="QEg-dk-seJ"/>
+                                    <outlet property="writeButton" destination="15x-13-ZZ3" id="r3d-w2-2QJ"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -622,6 +622,7 @@
                         <outlet property="lastUpdatedLabel" destination="YA4-YQ-U3h" id="lnk-xE-AdP"/>
                         <outlet property="navigationBarView" destination="M4J-Tv-pmm" id="6Od-3S-JqF"/>
                         <outlet property="navigationBarViewTopMarginConstraint" destination="nzx-P9-D66" id="5hH-cT-8aV"/>
+                        <outlet property="nullStateImageView" destination="o5p-nS-BZh" id="ufw-ta-KkF"/>
                         <outlet property="nullStateView" destination="2XZ-BD-gts" id="A48-VM-9ss"/>
                         <outlet property="rateButton" destination="mPg-CX-jiH" id="Vt1-xW-nUe"/>
                         <outlet property="scrollView" destination="qAA-fz-qZu" id="i3g-vf-aO6"/>
@@ -644,6 +645,7 @@
         <image name="circlesWarning" width="232" height="232"/>
         <image name="close" width="16" height="16"/>
         <image name="ic_warning_circle" width="16" height="16"/>
+        <image name="ic_warning_circles" width="136" height="136"/>
         <image name="photo" width="16" height="16"/>
         <image name="share" width="16" height="16"/>
         <image name="tbv_edit_toolbar_gradient" width="375" height="100"/>

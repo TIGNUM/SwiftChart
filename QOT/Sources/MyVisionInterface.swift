@@ -63,7 +63,7 @@ protocol MyVisionInteractorInterface: Interactor {
 protocol MyVisionRouterInterface {
     func showTracker()
     func showTBVData(shouldShowNullState: Bool, visionId: Int?)
-    func showEditVision(title: String, vision: String, isFromNullState: Bool)
+    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
     func showRateScreen(with id: Int)
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
     func showTBVGenerator()
