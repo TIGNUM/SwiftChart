@@ -57,10 +57,29 @@ private extension MyXTeamSettingsInteractor {
         updateSelectedTeam(teamId: teamId)
     }
 
+    @objc func updateTeamName(_ notification: Notification) {
+        if let userInfo = notification.userInfo as? [String: String],
+            let qotTeamId = currentTeam?.qotId,
+            let newName = userInfo[qotTeamId] {
+            currentTeam?.name = newName
+            teamHeaderItems.forEach { (item) in
+                if item.teamId == qotTeamId {
+                    item.title = newName
+                }
+            }
+            presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+            presenter.updateView()
+        }
+    }
+
     func addObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateViewData),
                                                name: .didEditTeam, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateTeamName),
+                                               name: .didEditTeamName,
+                                               object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,

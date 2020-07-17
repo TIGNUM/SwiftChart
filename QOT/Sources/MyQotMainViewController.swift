@@ -21,6 +21,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     weak var delegate: CoachCollectionViewControllerDelegate?
     private var indexPathDeselect: IndexPath?
     private var isDragging = false
+    private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var collectionView: UICollectionView!
 
     private lazy var headerSize: CGSize = {
@@ -57,6 +58,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
         interactor.refreshParams()
+        interactor.updateMyX()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +73,11 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 
     @objc func showPendingInvites() {
         interactor.presentTeamPendingInvites()
+    }
+
+    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
+        self.teamHeaderItems = teamHeaderItems
+        reload()
     }
 }
 
@@ -97,7 +104,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         }
     }
 
-    func updateView() {
+    func reload() {
         collectionView.reloadData()
     }
 

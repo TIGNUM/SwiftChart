@@ -12,23 +12,22 @@ import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
+    func reload()
     func setupView()
-    func updateView()
-    func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell
-    func getTeamHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell
-    func getCell(_ collectionView: UICollectionView,
-                 _ indexPath: IndexPath,
-                 _ myQotItem: MyX.Item?) -> UICollectionViewCell
+    func updateTeamHeader(teamHeaderItems: [Team.Item]) 
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
     func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
-    func updateView()
+    func updateTeamHeader(teamHeaderItems: [Team.Item])
+    func reload()
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
     var sectionCount: Int { get }
+    func updateMyX()
+
     func getSettingsButtonTitle() -> String
     func getTeamItems() -> [Team.Item]
     func refreshParams()
