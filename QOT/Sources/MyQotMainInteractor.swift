@@ -33,8 +33,8 @@ final class MyQotMainInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        updateMyX()
         presenter.setupView()
+        updateMyX()
     }
 }
 
@@ -173,9 +173,12 @@ extension MyQotMainInteractor {
     func updateMyX() {
         worker.getTeamItems { (teamItems) in
             self.worker.getBodyElements { (bodyElements) in
-                self.bodyElements = bodyElements
-                self.teamItems = teamItems
-                self.presenter.reload()
+                self.worker.getTeamHeaderItems { (teamHeaderItems) in
+                    self.bodyElements = bodyElements
+                    self.teamItems = teamItems
+                    self.teamItems.teamHeaderItems = teamHeaderItems
+                    self.presenter.reload()
+                }
             }
         }
     }

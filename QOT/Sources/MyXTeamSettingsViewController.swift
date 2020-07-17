@@ -162,6 +162,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) {
             let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel),
                                         target: self,
