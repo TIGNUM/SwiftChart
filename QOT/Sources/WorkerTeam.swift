@@ -162,7 +162,7 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(team, error)
-            NotificationCenter.default.post(name: .didEditTeam, object: team?.qotId)
+            NotificationCenter.default.post(name: .didEditTeamName, object: nil, userInfo: [team?.qotId: team?.name])            
         }
     }
 

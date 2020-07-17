@@ -30,4 +30,8 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
     func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>) {
         viewController?.updateView(differenceList)
     }
+
+    func reload() {
+        viewController?.reload()
+    }
 }

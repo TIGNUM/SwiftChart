@@ -11,4 +11,5 @@ import Foundation
 extension Notification.Name {
     // MyLibrary data was updated and the list needs to be reloaded
     static let didEditTeam = Notification.Name("didEditTeam")
+    static let didEditTeamName = Notification.Name("didEditTeamName")
 }
