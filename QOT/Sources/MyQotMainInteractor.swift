@@ -37,9 +37,9 @@ final class MyQotMainInteractor {
         updateMyX()
         presenter.setupView()
         addObservers()
-//        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-//            self?.teamHeaderItems = teamHeaderItems
-//        }
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.teamHeaderItems = teamHeaderItems
+        }
     }
 }
 
@@ -113,7 +113,6 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
             self?.currentTeam = selectedTeam
             self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
-            self?.presenter.reload()
        }
     }
 
