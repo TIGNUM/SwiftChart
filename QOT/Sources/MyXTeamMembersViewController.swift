@@ -20,7 +20,6 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
     private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
-    var membersList: [MyXTeamMemberModel] = []
     private var rightBarButtonItems = [UIBarButtonItem]()
 
     private lazy var addMembersButton: UIBarButtonItem = {
@@ -59,28 +58,28 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - Private
 private extension MyXTeamMembersViewController {
 
-    func reinviteMember(indexPath: IndexPath) {
-//        trackUserEvent(.INVITE_MEMBER_AGAIN, value: membersList.at(index: indexPath.row)?.remoteID, action: .TAP)
-        if let email = membersList.at(index: indexPath.row)?.email, let team = interactor.selectedTeam {
-            interactor.reinviteMember(email: email, team: team)
-            //           TODO  update member model
-        }
-        //        TEMP
-        membersList[indexPath.row].wasReinvited.toggle()
-        tableView.reloadData()
+//    func reinviteMember(indexPath: IndexPath) {
+////        trackUserEvent(.INVITE_MEMBER_AGAIN, value: membersList.at(index: indexPath.row)?.remoteID, action: .TAP)
+//        if let email = membersList.at(index: indexPath.row)?.email, let team = interactor.selectedTeam {
+//            interactor.reinviteMember(email: email, team: team)
+//            //           TODO  update member model
+//        }
+//        //        TEMP
+//        membersList[indexPath.row].wasReinvited.toggle()
+//        tableView.reloadData()
+//
+//    }
 
-    }
-
-    func removeMember(indexPath: IndexPath) {
-        //        trackUserEvent(.REMOVE_MEMBER, value: membersList.at(index: indexPath.row)?.remoteID, action: .TAP)
-        if let memberId = membersList.at(index: indexPath.row)?.qotId, let team = interactor.selectedTeam {
-            interactor.removeMember(memberId: memberId, team: team)
-            //          TO DO
-        }
-        //         TEMP
-        membersList.remove(at: indexPath.row)
-        tableView.reloadData()
-    }
+//    func removeMember(indexPath: IndexPath) {
+//        //        trackUserEvent(.REMOVE_MEMBER, value: membersList.at(index: indexPath.row)?.remoteID, action: .TAP)
+//        if let memberId = membersList.at(index: indexPath.row)?.qotId, let team = interactor.selectedTeam {
+//            interactor.removeMember(memberId: memberId, team: team)
+//            //          TO DO
+//        }
+//        //         TEMP
+//        membersList.remove(at: indexPath.row)
+//        tableView.reloadData()
+//    }
 
     @objc func addMembers() {
         router.addMembers(team: interactor.selectedTeam)
@@ -97,7 +96,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func setupView() {
         ThemeView.level3.apply(view)
-        membersList = [MyXTeamMemberModel(email: "a.plancoulaine@tignum.com", status: .joined, qotId: "2ER5", isTeamOwner: true, wasReinvited: false), MyXTeamMemberModel(email: "b.hallo@gmail.com", status: .joined, qotId: "AB3C", isTeamOwner: true, wasReinvited: false), MyXTeamMemberModel(email: "pattismith@vam.com", status: .pending, qotId: "9J78", isTeamOwner: false, wasReinvited: false)]
+//        membersList = [TeamMember(email: "a.plancoulaine@tignum.com", status: .joined, qotId: "2ER5", isTeamOwner: true, wasReinvited: false), TeamMember(email: "b.hallo@gmail.com", status: .joined, qotId: "AB3C", isTeamOwner: true, wasReinvited: false), TeamMember(email: "pattismith@vam.com", status: .pending, qotId: "9J78", isTeamOwner: false, wasReinvited: false)]
         baseHeaderView?.configure(title: interactor?.teamMembersText, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 //        guard let isOwner = interactor.selectedTeam?.thisUserIsOwner else { return }
@@ -117,7 +116,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return membersList.count
+        return interactor.rowCount
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -125,9 +124,10 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let member = membersList.at(index: indexPath.row) else {
+        guard let member = interactor.getMember(at: indexPath) else {
             fatalError("member does not exist at indexPath: \(indexPath.item)")
         }
+
         let adminText = AppTextService.get(.settings_team_settings_team_members_admin_label)
         let cell: TeamMemberTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(memberEmail: member.isTeamOwner ? (member.email ?? "") + " " + adminText : member.email, memberStatus: member.status)
@@ -136,8 +136,9 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let inviteAgain = AppTextService.get(.settings_team_settings_team_members_invite_again)
+
         let inviteAgainAction = UITableViewRowAction(style: .normal, title: inviteAgain) {(action, indexPath) in
-            self.reinviteMember(indexPath: indexPath)
+            self.interactor.reinviteMember(at: indexPath)
         }
         inviteAgainAction.backgroundColor = .accent10
         let invited = AppTextService.get(.settings_team_settings_team_members_invited)
@@ -148,10 +149,10 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
         let remove = AppTextService.get(.settings_team_settings_team_members_remove)
 
         let removeAction = UITableViewRowAction(style: .normal, title: remove) { (action, indexPath) in
-            self.removeMember(indexPath: indexPath)
+            self.interactor.removeMember(at: indexPath)
         }
         removeAction.backgroundColor = .redOrange
-        guard let member = membersList.at(index: indexPath.row) else {
+        guard let member = interactor.getMember(at: indexPath) else {
             fatalError("member does not exist at indexPath: \(indexPath.item)")
         }
         switch member.status {

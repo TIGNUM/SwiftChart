@@ -16,6 +16,7 @@ final class MyXTeamMembersInteractor {
     private let presenter: MyXTeamMembersPresenterInterface!
     private var teamHeaderItems = [Team.Item]()
     private var currentTeam: QDMTeam?
+    private var membersList: [TeamMember] = []
 
     // MARK: - Init
     init(presenter: MyXTeamMembersPresenterInterface) {
@@ -56,36 +57,48 @@ private extension MyXTeamMembersInteractor {
 
 // MARK: - MyXTeamMembersInteractorInterface
 extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
+    var rowCount: Int {
+        return membersList.count
+    }
 
     var selectedTeam: QDMTeam? {
         return self.currentTeam
     }
 
-    func updateSelectedTeam(teamId: String) {
-          worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-              self?.teamHeaderItems = teamHeaderItems
-              teamHeaderItems.forEach { (item) in
-                  item.selected = (teamId == item.teamId)
-              }
-              self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
-                  self?.currentTeam = selectedTeam
-                  self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                  self?.presenter.updateView()
-              })
-
-          }
-      }
-
-    func removeMember(memberId: String?, team: QDMTeam) {
-        worker.removeMember(memberId: memberId, team: team, { _ in
-            //            if it was the last member,
-            //            if there are other teams --> team settings
-            //            if no other teams --> My profile
-        })
+    func getMember(at indexPath: IndexPath) -> TeamMember? {
+        return membersList.at(index: indexPath.row)
     }
 
-    func reinviteMember(email: String?, team: QDMTeam?) {
-        worker.sendInvite(email, team: team) { (member, Error) in
+    func updateSelectedTeam(teamId: String) {
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.teamHeaderItems = teamHeaderItems
+            teamHeaderItems.forEach { (item) in
+                item.selected = (teamId == item.teamId)
+            }
+            self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
+                self?.currentTeam = selectedTeam
+                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+                self?.presenter.updateView()
+            })
+
+        }
+    }
+
+    func removeMember(at indexPath: IndexPath) {
+        if let member = getMember(at: indexPath) {
+            worker.sendInvite(member.email, team: currentTeam) { (member, error) in
+                //            if it was the last member,
+                 //            if there are other teams --> team settings
+                 //            if no other teams --> My profile
+            }
+        }
+    }
+
+    func reinviteMember(at indexPath: IndexPath) {
+        if let member = getMember(at: indexPath) {
+            worker.sendInvite(member.email, team: currentTeam) { (member, error) in
+
+            }
         }
     }
 }
