@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLevel2 {
 
@@ -42,6 +43,17 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
         baseHeaderView?.addTo(superview: headerView)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         interactor?.viewDidLoad()
+    }
+
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        if let teamId = interactor?.teamId {
+            pageTrack.associatedValueId = teamId
+            pageTrack.associatedValueType = .TEAM
+        }
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 }
 

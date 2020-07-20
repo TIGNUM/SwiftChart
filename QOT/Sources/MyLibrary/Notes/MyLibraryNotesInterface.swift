@@ -26,6 +26,7 @@ protocol MyLibraryNotesInteractorInterface: Interactor {
     var noteText: String? { get }
     var isSaveButtonEnabled: Bool { get }
     var showDeleteButton: Bool { get }
+    var teamId: Int? { get }
     var isCreatingNewNote: Bool { get }
     var isMyNote: Bool { get }
 

@@ -144,6 +144,10 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         return worker.item.type
     }
 
+    var teamId: Int? {
+        return team?.remoteID == 0 ? nil : team?.remoteID
+    }
+
     func didTapEdit(isEditing: Bool) {
         notificationCenter.post(name: .stopAudio, object: nil)
         self.isEditing = isEditing

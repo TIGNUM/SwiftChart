@@ -21,6 +21,7 @@ protocol MyLibraryCategoryListPresenterInterface {
 
 protocol MyLibraryCategoryListInteractorInterface: Interactor {
     var titleText: String { get }
+    var teamId: Int? { get }
     var categoryItems: [MyLibraryCategoryListModel] { get }
     func handleSelectedItem(at index: Int)
 }

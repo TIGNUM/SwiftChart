@@ -80,6 +80,10 @@ final class MyLibraryCategoryListInteractor {
 
 extension MyLibraryCategoryListInteractor: MyLibraryCategoryListInteractorInterface {
 
+    var teamId: Int? {
+        return team?.remoteID == 0 ? nil : team?.remoteID
+    }
+
     func handleSelectedItem(at index: Int) {
         if categoryItems.count > index {
             let item = categoryItems[index]

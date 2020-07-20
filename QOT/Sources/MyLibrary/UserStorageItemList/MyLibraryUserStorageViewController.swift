@@ -56,6 +56,17 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
         interactor.viewDidLoad()
     }
 
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        if let teamId = interactor?.teamId {
+            pageTrack.associatedValueId = teamId
+            pageTrack.associatedValueType = .TEAM
+        }
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
+    }
+
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return bottomNavigationItems.leftBarButtonItems
     }

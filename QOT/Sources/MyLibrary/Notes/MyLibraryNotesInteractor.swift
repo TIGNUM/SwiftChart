@@ -87,6 +87,10 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
         return !worker.isExistingNote
     }
 
+    var teamId: Int? {
+        return team?.remoteID == 0 ? nil : team?.remoteID
+    }
+
     var isMyNote: Bool {
         return worker.isMyNote
     }
