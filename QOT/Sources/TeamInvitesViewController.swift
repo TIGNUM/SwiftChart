@@ -84,13 +84,13 @@ extension TeamInvitesViewController: UITableViewDelegate, UITableViewDataSource 
         case 1:
             let item = interactor.inviteItem(at: indexPath.row)
             let inviteCell: TeamInvitePendingTableViewCell = tableView.dequeueCell(for: indexPath)
-            inviteCell.configure(teamName: item.teamName,
-                                 teamColor: item.teamColor,
-                                 teamId: item.teamQotId,
-                                 sender: item.sender,
-                                 dateOfInvite: item.dateOfInvite,
-                                 memberCount: item.memberCount,
-                                 invite: item.invite)
+            inviteCell.configure(teamName: item.team?.name ?? "",
+                                 teamColor: item.team?.teamColor ?? "",
+                                 teamId: item.team?.qotId ?? "",
+                                 sender: item.sender ?? "",
+                                 dateOfInvite: item.invitedDate ?? Date(),
+                                 memberCount: 0,
+                                 invite: item)
             return inviteCell
         default:
             fatalError("Invalid section")

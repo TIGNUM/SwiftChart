@@ -15,11 +15,12 @@ final class TeamInvitesInteractor {
     private lazy var worker = TeamInvitesWorker()
     private let presenter: TeamInvitesPresenterInterface!
     private var inviteHeader: TeamInvite.Header?
-    private var inviteItems: [TeamInvite.Invitation] = []
+    private var invitations = [QDMTeamInvitation]()
 
     // MARK: - Init
-    init(presenter: TeamInvitesPresenterInterface) {
+    init(presenter: TeamInvitesPresenterInterface, invitations: [QDMTeamInvitation]) {
         self.presenter = presenter
+        self.invitations = invitations
     }
 
     // MARK: - Interactor
@@ -27,11 +28,8 @@ final class TeamInvitesInteractor {
         addObservers()
         presenter.setupView()
         worker.getInviteHeader { (header) in
-            self.worker.getInviteItems { (items) in
-                self.inviteHeader = header
-                self.inviteItems = items
-                self.presenter.reload()
-            }
+            self.inviteHeader = header
+            self.presenter.reload()
         }
     }
 }
@@ -50,7 +48,6 @@ private extension TeamInvitesInteractor {
     }
 
     @objc func didSelectJoinTeam(_ notification: Notification) {
-        
         if let teamInvite = notification.object as? QDMTeamInvitation {
             worker.joinTeamInvite(teamInvite) { (teams) in
                 // TODO update view
@@ -71,19 +68,19 @@ private extension TeamInvitesInteractor {
 extension TeamInvitesInteractor: TeamInvitesInteractorInterface {
 
     var sectionCount: Int {
-        return inviteItems.isEmpty ? 0 : 2
+        return invitations.isEmpty ? 0 : 2
     }
 
     func rowCount(in section: Int) -> Int {
         switch section {
         case 0: return 1
-        case 1: return inviteItems.count
+        case 1: return invitations.count
         default: return 0
         }
     }
 
-    func inviteItem(at row: Int) -> TeamInvite.Invitation {
-        return inviteItems[row]
+    func inviteItem(at row: Int) -> QDMTeamInvitation {
+        return invitations[row]
     }
 
     func headerItem() -> TeamInvite.Header? {

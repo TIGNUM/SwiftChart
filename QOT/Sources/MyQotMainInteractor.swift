@@ -150,7 +150,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func presentTeamPendingInvites() {
-        router.presentTeamPendingInvites()
+        if let invites = teamItems.first?.invites, !invites.isEmpty {
+            router.presentTeamPendingInvites(invitations: invites)
+        }
     }
 
     func qotViewModelNew() -> [ArraySection<MyX.Section, MyX.Item>]? {
