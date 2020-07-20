@@ -242,6 +242,40 @@
             </objects>
             <point key="canvasLocation" x="5.7971014492753632" y="-247.09821428571428"/>
         </scene>
+        <!--Team Invites View Controller-->
+        <scene sceneID="zfH-8C-hbv">
+            <objects>
+                <viewController storyboardIdentifier="TeamInviteViewControllerID" id="5bU-gW-lpf" customClass="TeamInvitesViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qt6-Z3-pXT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4M0-NC-HQz">
+                                <rect key="frame" x="0.0" y="44" width="414" height="718"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="5bU-gW-lpf" id="CKH-Go-e1b"/>
+                                    <outlet property="delegate" destination="5bU-gW-lpf" id="xAE-sH-j8W"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="UET-f3-jjO" firstAttribute="bottom" secondItem="4M0-NC-HQz" secondAttribute="bottom" constant="100" id="3l7-rg-qRY"/>
+                            <constraint firstItem="4M0-NC-HQz" firstAttribute="leading" secondItem="UET-f3-jjO" secondAttribute="leading" id="6Nw-q1-mNw"/>
+                            <constraint firstItem="4M0-NC-HQz" firstAttribute="top" secondItem="UET-f3-jjO" secondAttribute="top" id="bm4-Dk-fT2"/>
+                            <constraint firstItem="UET-f3-jjO" firstAttribute="trailing" secondItem="4M0-NC-HQz" secondAttribute="trailing" id="lRf-aR-Ceg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UET-f3-jjO"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="4M0-NC-HQz" id="hix-zs-Guc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9dN-iC-ixT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986.95652173913049" y="-247.09821428571428"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_close_sand" width="40" height="40"/>

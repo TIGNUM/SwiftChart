@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 extension UICollectionView {
-
     convenience init(
         layout: UICollectionViewLayout,
         contentInsets: UIEdgeInsets = .zero,
@@ -37,5 +36,28 @@ extension UICollectionView {
                 register(type, forCellWithReuseIdentifier: type.reuseID)
             }
         }
+    }
+}
+
+extension UICollectionView {
+    func updatedCollectionViewHeaderWidth() -> CGFloat {
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return 0 }
+            return (frame.width - layout.minimumInteritemSpacing)
+    }
+
+    func updatedCollectionViewItemWidth() -> CGFloat {
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return 0 }
+            return (frame.width
+                - layout.minimumInteritemSpacing
+                - layout.sectionInset.left
+                - layout.sectionInset.right)
+    }
+
+    func updatedCollectionViewHeight() -> CGFloat {
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return 0 }
+            return (
+                frame.height
+                - (layout.minimumLineSpacing + layout.sectionInset.top + layout.sectionInset.bottom) * 2
+                - ThemeView.level1.headerBarHeight)
     }
 }

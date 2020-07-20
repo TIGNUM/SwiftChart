@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wi3-kd-5c9" customClass="HorizontalHeaderCollectionViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="i8a-sh-XZN">
+                <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Ek3-OQ-XxW" customClass="HorizontalHeaderView" customModule="TIGNUM_X" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bg8-gu-1Og">
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="NdJ-H4-j5h">
+                                    <size key="itemSize" width="300" height="60"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ARr-pV-snF">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OEn-Vb-kDZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ek3-OQ-XxW" id="iP5-SY-cg7"/>
+                                    <outlet property="delegate" destination="Ek3-OQ-XxW" id="Aw7-6W-fDx"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bg8-gu-1Og" firstAttribute="leading" secondItem="Ek3-OQ-XxW" secondAttribute="leading" id="CUO-vU-xo6"/>
+                            <constraint firstAttribute="trailing" secondItem="bg8-gu-1Og" secondAttribute="trailing" id="KRD-lC-rz6"/>
+                            <constraint firstAttribute="bottom" secondItem="bg8-gu-1Og" secondAttribute="bottom" id="bN7-YQ-sR3"/>
+                            <constraint firstItem="bg8-gu-1Og" firstAttribute="top" secondItem="Ek3-OQ-XxW" secondAttribute="top" id="zdy-no-tul"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="collectionView" destination="bg8-gu-1Og" id="M3I-nk-taQ"/>
+                        </connections>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ek3-OQ-XxW" firstAttribute="centerX" secondItem="i8a-sh-XZN" secondAttribute="centerX" id="7Zr-El-NRj"/>
+                    <constraint firstAttribute="bottom" secondItem="Ek3-OQ-XxW" secondAttribute="bottom" id="8dR-9F-eAe"/>
+                    <constraint firstItem="Ek3-OQ-XxW" firstAttribute="leading" secondItem="i8a-sh-XZN" secondAttribute="leading" id="F7A-Mq-h3t"/>
+                    <constraint firstItem="Ek3-OQ-XxW" firstAttribute="top" secondItem="i8a-sh-XZN" secondAttribute="top" id="uMZ-Kb-iEh"/>
+                    <constraint firstItem="Ek3-OQ-XxW" firstAttribute="centerY" secondItem="i8a-sh-XZN" secondAttribute="centerY" id="wxe-Ml-34B"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="409" height="50"/>
+            <connections>
+                <outlet property="horizontalHeaderView" destination="Ek3-OQ-XxW" id="6WZ-04-iF8"/>
+            </connections>
+            <point key="canvasLocation" x="163.04347826086959" y="150.66964285714286"/>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -122,7 +122,7 @@ final class LaunchHandler {
             push(viewController: controller)
         case .toBeVision:
             if let controller = R.storyboard.myToBeVision.myVisionViewController() {
-                MyVisionConfigurator.configure(viewController: controller)
+                MyVisionConfigurator.configure(viewController: controller, team: nil)
                 push(viewController: controller)
             }
         case .mySprints:

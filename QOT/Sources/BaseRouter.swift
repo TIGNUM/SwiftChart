@@ -90,9 +90,9 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showTBV() {
+    func showTBV(team: QDMTeam?) {
         if let controller = R.storyboard.myToBeVision.myVisionViewController() {
-            MyVisionConfigurator.configure(viewController: controller)
+            MyVisionConfigurator.configure(viewController: controller, team: team)
             viewController?.pushToStart(childViewController: controller)
         }
     }

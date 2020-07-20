@@ -50,11 +50,11 @@ final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
     }
 
     // MARK: Bottom Navigation
-    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return leftBarButtonItems
     }
 
-    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return rightBarButtonItems
     }
 }

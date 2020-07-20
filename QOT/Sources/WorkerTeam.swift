@@ -10,9 +10,13 @@ import Foundation
 import qot_dal
 
 protocol WorkerTeam {
+    func canCreateTeam(_ completion: @escaping (Bool) -> Void)
+
+    func getMaxChars(_ completion: @escaping (Int) -> Void)
+
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
-    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void)
+    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
@@ -20,18 +24,46 @@ protocol WorkerTeam {
 
     func getRandomTeamColor(_ completion: @escaping (String) -> Void)
 
-    func canCreateTeam(_ completion: @escaping (Bool) -> Void)
-
-    func teamCreate(_ name: String?, _ completion: @escaping (QDMTeam?, Error?) -> Void)
+    func createTeam(_ name: String?, _ completion: @escaping (QDMTeam?, Error?) -> Void)
 
     func sendInvite(_ email: String?, team: QDMTeam?, _ completion: @escaping (QDMTeamMember?, Error?) -> Void)
 
     func updateTeamName(_ team: QDMTeam?, _ completion: @escaping (QDMTeam?, Error?) -> Void)
 
-    func getMaxChars(_ completion: @escaping (Int) -> Void)
+    func updateTeamColor(teamId: String, teamColor: String)
+
+    func leaveTeam(team: QDMTeam, _ completion: @escaping (Error?) -> Void)
+
+    func deleteTeam(_ team: QDMTeam, _ completion: @escaping ([QDMTeam]?, Bool, Error?) -> Void)
+
+    func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void)
+
+    func joinTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
+
+    func declineTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
+
+    func getTeamInvitations(_ completion: @escaping ([QDMTeamInvitation]) -> Void)
 }
 
 extension WorkerTeam {
+    func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
+         getConfig { (config) in
+             if let config = config {
+                 self.getTeams { (teams) in
+                     completion(teams.count < config.teamMaxCount)
+                 }
+             } else {
+                 completion(false)
+             }
+         }
+     }
+
+    func getMaxChars(_ completion: @escaping (Int) -> Void) {
+        getConfig { (config) in
+            completion(config?.teamNameMaxLength ?? 0)
+        }
+    }
+
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void) {
         TeamService.main.getTeams { (teams, _, error) in
             if let error = error {
@@ -42,17 +74,11 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamHeaderItems(_ completion: @escaping ([TeamHeader]) -> Void) {
+    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
         getTeams { (teams) in
-            let teamHeaderItems = teams.filter { $0.teamColor != nil }.compactMap { (team) -> TeamHeader? in
-                return TeamHeader(teamId: team.qotId ?? "",
-                                  title: team.name ?? "",
-                                  hexColorString: team.teamColor ?? "",
-                                  sortOrder: 0,
-                                  batchCount: 0,
-                                  selected: false)
+            self.createTeamHeaderItems(teams: teams) { (headerItems) in
+                completion(headerItems)
             }
-            completion(teamHeaderItems)
         }
     }
 
@@ -66,7 +92,7 @@ extension WorkerTeam {
         }
     }
 
-    func teamCreate(_ name: String?, _ completion: @escaping (QDMTeam?, Error?) -> Void) {
+    func createTeam(_ name: String?, _ completion: @escaping (QDMTeam?, Error?) -> Void) {
         if let name = name {
             getRandomTeamColor { (teamColor) in
                 TeamService.main.createTeam(name: name, teamColor: teamColor) { (team, _, error) in
@@ -96,24 +122,6 @@ extension WorkerTeam {
         }
     }
 
-    func updateTeamName(_ team: QDMTeam?, _ completion: @escaping (QDMTeam?, Error?) -> Void) {
-        guard let team = team else { return }
-        TeamService.main.updateTeam(team) { (team, _, error) in
-            if let error = error {
-                log("Error updateTeam: \(error.localizedDescription)", level: .error)
-                // TODO handle error
-            }
-            completion(team, error)
-            NotificationCenter.default.post(name: .didEditTeam, object: team?.qotId)
-        }
-    }
-
-    func getMaxChars(_ completion: @escaping (Int) -> Void) {
-        getConfig { (config) in
-            completion(config?.teamNameMaxLength ?? 0)
-        }
-    }
-
     func getRandomTeamColor(_ completion: @escaping (String) -> Void) {
         getConfig { (config) in
             guard let colors = config?.availableTeamColors, let random = colors.at(index: colors.randomIndex) else {
@@ -132,17 +140,82 @@ extension WorkerTeam {
         }
     }
 
-    func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
-         getConfig { (config) in
-             if let config = config {
-                 self.getTeams { (teams) in
-                     completion(teams.count < config.teamMaxCount)
-                 }
-             } else {
-                 completion(false)
-             }
-         }
-     }
+    func updateTeamColor(teamId: String, teamColor: String) {
+        getTeams { (teams) in
+            var team = teams.filter { $0.qotId == teamId }.first
+            team?.teamColor = teamColor
+            if let team = team {
+                TeamService.main.updateTeam(team) { (_, _, error) in
+                    if let error = error {
+                        log("error update team: \(error.localizedDescription)", level: .error)
+                    }
+                }
+            }
+        }
+    }
+
+    func updateTeamName(_ team: QDMTeam?, _ completion: @escaping (QDMTeam?, Error?) -> Void) {
+        guard let team = team else { return }
+        TeamService.main.updateTeam(team) { (team, _, error) in
+            if let error = error {
+                log("Error updateTeam: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(team, error)
+            NotificationCenter.default.post(name: .didEditTeamName, object: nil, userInfo: [team?.qotId: team?.name])            
+        }
+    }
+
+    func leaveTeam(team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
+        getTeamMembers(in: team) { (members) in
+            guard let user = members.filter({$0.me == true}).first else {
+                //                completion(error)
+                return
+            }
+            TeamService.main.leaveTeam(teamMember: user, completion)
+        }
+    }
+
+    func deleteTeam(_ team: QDMTeam, _ completion: @escaping ([QDMTeam]?, Bool, Error?) -> Void) {
+        TeamService.main.removeTeam(team, completion)
+    }
+
+    func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void) {
+        getTeams { (teams) in
+            let selectedTeam = teams.filter { teamId == $0.qotId }.first
+            completion(selectedTeam)
+        }
+    }
+
+    func getTeamInvitations(_ completion: @escaping ([QDMTeamInvitation]) -> Void) {
+        TeamService.main.getTeamInvitations { (invitations, error) in
+            if let error = error {
+                log("Error getTeamInvitations: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(invitations ?? [])
+        }
+    }
+
+    func joinTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void) {
+        TeamService.main.acceptTeamInvitation(invitation) { (teams, error) in
+            if let error = error {
+                log("Error acceptTeamInvitation: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(teams ?? [])
+        }
+    }
+
+    func declineTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void) {
+        TeamService.main.rejectTeamInvitation(invitation) { (teams, error) in
+            if let error = error {
+                log("Error rejectTeamInvitation: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(teams ?? [])
+        }
+    }
 }
 
 // MARK: - Private
@@ -155,5 +228,14 @@ private extension WorkerTeam {
             }
             completion(config)
         }
+    }
+
+    func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([Team.Item]) -> Void) {
+        let teamHeaderItems = teams.compactMap { (team) -> Team.Item in
+            return Team.Item(title: team.name ?? "",
+                             teamId: team.qotId ?? "",
+                             color: team.teamColor ?? "")
+        }
+        completion(teamHeaderItems)
     }
 }
