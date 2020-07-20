@@ -30,13 +30,19 @@ final class TeamInvitesViewController: UIViewController {
         interactor.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateBottomNavigation([backNavigationItem()], [])
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
     }
 
-    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [backNavigationItemLight()]
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateBottomNavigation([], [])
     }
 }
 
