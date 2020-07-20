@@ -45,6 +45,8 @@ protocol WorkerTeam {
     func getTeamInvitations(_ completion: @escaping ([QDMTeamInvitation]) -> Void)
 
     func removeMember(member: QDMTeamMember, _ completion: @escaping () -> Void)
+
+    func reInviteMember(member: QDMTeamMember, _ completion: @escaping (QDMTeamMember?) -> Void)
 }
 
 extension WorkerTeam {
@@ -226,6 +228,16 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion()
+        }
+    }
+
+    func reInviteMember(member: QDMTeamMember, _ completion: @escaping (QDMTeamMember?) -> Void) {
+        TeamService.main.reinviteTeamMember(member) { (member, _, error) in
+            if let error = error {
+                log("Error removeTeamMember: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(member)
         }
     }
 }

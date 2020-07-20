@@ -84,9 +84,11 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
     }
 
     func reinviteMember(at indexPath: IndexPath) {
-        if let member = getMember(at: indexPath) {
-            worker.sendInvite(member.email, team: currentTeam) { [weak self] (member, error) in
-                self?.refreshView()
+        if let member = getMember(at: indexPath)?.member {
+            worker.reInviteMember(member: member) { [weak self] (updatedMember) in
+                print("member.status: \(member.status)")
+                print("updatedMember?.status: \(updatedMember?.status)")
+                self?.presenter.updateView()
             }
         }
     }
