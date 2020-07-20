@@ -55,6 +55,7 @@ extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
     func setupView() {
         tableView.registerDequeueable(TeamInviteHeaderTableViewCell.self)
         tableView.registerDequeueable(TeamInvitePendingTableViewCell.self)
+        tableView.tableFooterView = UIView()
     }
 
     func reload() {

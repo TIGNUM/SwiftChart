@@ -47,16 +47,16 @@ protocol WorkerTeam {
 
 extension WorkerTeam {
     func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
-         getConfig { (config) in
-             if let config = config {
-                 self.getTeams { (teams) in
-                     completion(teams.count < config.teamMaxCount)
-                 }
-             } else {
-                 completion(false)
-             }
-         }
-     }
+        getConfig { (config) in
+            if let config = config {
+                self.getTeams { (teams) in
+                    completion(teams.count < config.teamMaxCount)
+                }
+            } else {
+                completion(false)
+            }
+        }
+    }
 
     func getMaxChars(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
