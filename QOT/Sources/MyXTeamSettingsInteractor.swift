@@ -28,6 +28,7 @@ final class MyXTeamSettingsInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        addObservers()
         presenter.present(worker.settings)
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
@@ -36,7 +37,6 @@ final class MyXTeamSettingsInteractor {
                 self?.updateTeam(selectedTeam)
             }
         }
-        addObservers()
     }
 }
 
@@ -138,7 +138,9 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
 
     func updateTeams() {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.setFirstTeamSelected(teamHeaderItems)
+            if let teamId = self?.currentTeam?.qotId {
+                self?.updateSelectedTeam(teamId: teamId)
+            }
             self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
             self?.presenter.updateView()

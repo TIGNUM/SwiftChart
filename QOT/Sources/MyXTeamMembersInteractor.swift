@@ -19,8 +19,12 @@ final class MyXTeamMembersInteractor {
     private var membersList: [TeamMember] = []
 
     // MARK: - Init
-    init(presenter: MyXTeamMembersPresenterInterface) {
+    init(presenter: MyXTeamMembersPresenterInterface, team: QDMTeam?) {
         self.presenter = presenter
+        self.currentTeam = team
+        if let teamId = team?.qotId {
+            updateSelectedTeam(teamId: teamId)
+        }
     }
 
     // MARK: - Interactor
@@ -97,19 +101,16 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             teamHeaderItems.first?.selected = true
             self?.teamHeaderItems = teamHeaderItems
-            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "", { [weak self] (selectedTeam) in
-                self?.currentTeam = selectedTeam
-                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                if let team = selectedTeam {
-                    self?.worker.getTeamMemberItems(team: team, { (membersList) in
-                        self?.membersList.removeAll()
-                        self?.membersList = membersList
-                        self?.presenter.updateView()
-                    })
-                } else {
+            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+            if let team = self?.currentTeam {
+                self?.worker.getTeamMemberItems(team: team, { (membersList) in
+                    self?.membersList.removeAll()
+                    self?.membersList = membersList
                     self?.presenter.updateView()
-                }
-            })
+                })
+            } else {
+                self?.presenter.updateView()
+            }
         }
     }
 }

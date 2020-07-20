@@ -40,12 +40,7 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderView?.addTo(superview: headerView)
-        ThemeView.level3.apply(tableView)
-        interactor.viewDidLoad()
-        tableView.registerDequeueable(TeamSettingsTableViewCell.self)
-        tableView.registerDequeueable(TeamNameTableViewCell.self)
+        interactor.viewDidLoad()        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +92,11 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
     }
 
     func setup(_ settings: MyXTeamSettingsModel) {
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
+        ThemeView.level3.apply(tableView)
+        tableView.registerDequeueable(TeamSettingsTableViewCell.self)
+        tableView.registerDequeueable(TeamNameTableViewCell.self)
         ThemeView.level3.apply(view)
         settingsModel = settings
         baseHeaderView?.configure(title: interactor?.teamSettingsText, subtitle: nil)
@@ -121,7 +121,6 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor.settingItems().count
     }
@@ -185,7 +184,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
             case .leaveTeam:
                 QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
             case .teamMembers:
-                router?.presentTeamMembers()
+                router?.presentTeamMembers(team: interactor.selectedTeam)
             default:
                 break
             }

@@ -44,6 +44,6 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
 
 protocol MyXTeamSettingsRouterInterface {
     func dismiss()
-    func presentTeamMembers()
+    func presentTeamMembers(team: QDMTeam?)
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
 }
