@@ -53,6 +53,10 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
         updateBottomNavigation([backNavigationItem()], [addMembersButton])
         setStatusBar(color: .carbon)
     }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return [addMembersButton]
+    }
 }
 
 // MARK: - Private

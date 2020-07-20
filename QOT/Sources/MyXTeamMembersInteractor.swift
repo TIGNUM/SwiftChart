@@ -32,11 +32,13 @@ final class MyXTeamMembersInteractor {
             self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "", { [weak self] (selectedTeam) in
                 self?.currentTeam = selectedTeam
                 self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                self?.presenter.updateView()
                 if let team = selectedTeam {
                     self?.worker.getTeamMemberItems(team: team, { (membersList) in
                         self?.membersList = membersList
+                        self?.presenter.updateView()
                     })
+                } else {
+                    self?.presenter.updateView()
                 }
             })
         }
