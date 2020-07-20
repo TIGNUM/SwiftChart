@@ -29,6 +29,7 @@ protocol MyXTeamMembersInteractorInterface: Interactor {
     func removeMember(at indexPath: IndexPath)
     func reinviteMember(at indexPath: IndexPath)
     func getMember(at indexPath: IndexPath) -> TeamMember?
+    func refreshView()
 }
 
 protocol MyXTeamMembersRouterInterface {

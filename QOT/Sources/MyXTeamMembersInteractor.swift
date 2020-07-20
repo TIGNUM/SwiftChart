@@ -26,22 +26,7 @@ final class MyXTeamMembersInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            teamHeaderItems.first?.selected = true
-            self?.teamHeaderItems = teamHeaderItems
-            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "", { [weak self] (selectedTeam) in
-                self?.currentTeam = selectedTeam
-                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                if let team = selectedTeam {
-                    self?.worker.getTeamMemberItems(team: team, { (membersList) in
-                        self?.membersList = membersList
-                        self?.presenter.updateView()
-                    })
-                } else {
-                    self?.presenter.updateView()
-                }
-            })
-        }
+        refreshView()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
@@ -105,6 +90,25 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
             worker.sendInvite(member.email, team: currentTeam) { (member, error) in
 
             }
+        }
+    }
+
+    func refreshView() {
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            teamHeaderItems.first?.selected = true
+            self?.teamHeaderItems = teamHeaderItems
+            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "", { [weak self] (selectedTeam) in
+                self?.currentTeam = selectedTeam
+                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+                if let team = selectedTeam {
+                    self?.worker.getTeamMemberItems(team: team, { (membersList) in
+                        self?.membersList = membersList
+                        self?.presenter.updateView()
+                    })
+                } else {
+                    self?.presenter.updateView()
+                }
+            })
         }
     }
 }

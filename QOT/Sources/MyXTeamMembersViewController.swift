@@ -41,17 +41,13 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderView?.addTo(superview: headerView)
-        ThemeView.level3.apply(tableView)
-        tableView.registerDequeueable(TeamMemberTableViewCell.self)
-        tableView.tableFooterView = UIView()
         interactor.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         updateBottomNavigation([backNavigationItem()], [addMembersButton])
         setStatusBar(color: .carbon)
+        interactor.refreshView()
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
@@ -61,30 +57,6 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
 
 // MARK: - Private
 private extension MyXTeamMembersViewController {
-
-//    func reinviteMember(indexPath: IndexPath) {
-////        trackUserEvent(.INVITE_MEMBER_AGAIN, value: membersList.at(index: indexPath.row)?.remoteID, action: .TAP)
-//        if let email = membersList.at(index: indexPath.row)?.email, let team = interactor.selectedTeam {
-//            interactor.reinviteMember(email: email, team: team)
-//            //           TODO  update member model
-//        }
-//        //        TEMP
-//        membersList[indexPath.row].wasReinvited.toggle()
-//        tableView.reloadData()
-//
-//    }
-
-//    func removeMember(indexPath: IndexPath) {
-//        //        trackUserEvent(.REMOVE_MEMBER, value: membersList.at(index: indexPath.row)?.remoteID, action: .TAP)
-//        if let memberId = membersList.at(index: indexPath.row)?.qotId, let team = interactor.selectedTeam {
-//            interactor.removeMember(memberId: memberId, team: team)
-//            //          TO DO
-//        }
-//        //         TEMP
-//        membersList.remove(at: indexPath.row)
-//        tableView.reloadData()
-//    }
-
     @objc func addMembers() {
         router.addMembers(team: interactor.selectedTeam)
     }
@@ -99,12 +71,14 @@ private extension MyXTeamMembersViewController {
 extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func setupView() {
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
+        ThemeView.level3.apply(tableView)
+        tableView.registerDequeueable(TeamMemberTableViewCell.self)
+        tableView.tableFooterView = UIView()
         ThemeView.level3.apply(view)
-//        membersList = [TeamMember(email: "a.plancoulaine@tignum.com", status: .joined, qotId: "2ER5", isTeamOwner: true, wasReinvited: false), TeamMember(email: "b.hallo@gmail.com", status: .joined, qotId: "AB3C", isTeamOwner: true, wasReinvited: false), TeamMember(email: "pattismith@vam.com", status: .pending, qotId: "9J78", isTeamOwner: false, wasReinvited: false)]
         baseHeaderView?.configure(title: interactor?.teamMembersText, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
-//        guard let isOwner = interactor.selectedTeam?.thisUserIsOwner else { return }
-//        isOwner ? updateBottomNavigation([backNavigationItem()], [addMembersButton]) : updateBottomNavigation([backNavigationItem()], [])
     }
 
     func updateTeamHeader(teamHeaderItems: [Team.Item]) {
