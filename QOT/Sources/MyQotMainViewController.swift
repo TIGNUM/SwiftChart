@@ -57,8 +57,8 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
-        interactor.refreshParams()
         interactor.updateMyX()
+        interactor.refreshParams()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -146,12 +146,9 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch MyX.Section(rawValue: indexPath.section) {
-        case .navigationHeader:
-            return getNavigationHeaderCell(collectionView, indexPath)
-        case .teamHeader:
-            return getTeamHeaderCell(collectionView, indexPath)
-        default:
-            return getCell(collectionView, indexPath, interactor.getItem(at: indexPath))
+        case .navigationHeader: return getNavigationHeaderCell(collectionView, indexPath)
+        case .teamHeader: return getTeamHeaderCell(collectionView, indexPath)
+        default: return getCell(collectionView, indexPath, interactor.getItem(at: indexPath))
         }
     }
 

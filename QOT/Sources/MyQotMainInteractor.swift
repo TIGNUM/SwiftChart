@@ -29,17 +29,13 @@ final class MyQotMainInteractor {
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
         self.presenter = presenter
         self.router = router
+        updateMyX()
         createInitialData()
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        updateMyX()
         presenter.setupView()
-        addObservers()
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.teamHeaderItems = teamHeaderItems
-        }
     }
 }
 
@@ -201,9 +197,12 @@ extension MyQotMainInteractor {
     func updateMyX() {
         worker.getTeamItems { (teamItems) in
             self.worker.getBodyElements { (bodyElements) in
-                self.bodyElements = bodyElements
-                self.teamItems = teamItems
-                self.presenter.reload()
+                self.worker.getTeamHeaderItems { (teamHeaderItems) in
+                    self.bodyElements = bodyElements
+                    self.teamItems = teamItems
+                    self.teamItems.teamHeaderItems = teamHeaderItems
+                    self.presenter.reload()
+                }
             }
         }
     }
