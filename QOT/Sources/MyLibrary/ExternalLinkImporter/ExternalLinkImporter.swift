@@ -47,39 +47,54 @@ final class ExternalLinkImporter {
         }
         ExtensionUserDefaults.removeObject(for: .share, key: .saveLink)
         let dispatchGroup = DispatchGroup()
-        for externalLink in externalLinks {
-            var team: QDMTeam?
-            if let teamQotId = externalLink.teamQotId {
-                dispatchGroup.enter()
-                TeamService.main.getTeams { (teams, _, error) in
+        dispatchGroup.enter()
+        TeamService.main.getTeams { (teams, _, error) in
+            for externalLink in externalLinks {
+                var team: QDMTeam?
+                if let teamQotId = externalLink.teamQotId {
                     team = teams?.filter ({$0.qotId == teamQotId}).first
-                    dispatchGroup.leave()
                 }
-            }
 
-            if let url = externalLink.url {
-                dispatchGroup.enter()
-                if let team = team {
-                    UserStorageService.main.addLink(title: "", url: url, in: team) { (_, _) in dispatchGroup.leave() }
-                } else {
-                    UserStorageService.main.addLink(title: "", url: url) { (_, _) in dispatchGroup.leave() }
-                }
-            } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
-                dispatchGroup.enter()
-                if let team = team {
-                    UserStorageService.main.addNote(note, in: team) { (_, _) in dispatchGroup.leave() }
-                } else {
-                    UserStorageService.main.addNote(note) { (_, _) in dispatchGroup.leave() }
+                if let url = externalLink.url {
+                    dispatchGroup.enter()
+                    if let team = team {
+                        UserStorageService.main.addLink(title: "", url: url, in: team) { (_, _) in dispatchGroup.leave() }
+                    } else {
+                        UserStorageService.main.addLink(title: "", url: url) { (_, _) in dispatchGroup.leave() }
+                    }
+                } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
+                    dispatchGroup.enter()
+                    if let team = team {
+                        UserStorageService.main.addNote(note, in: team) { (_, _) in dispatchGroup.leave() }
+                    } else {
+                        UserStorageService.main.addNote(note) { (_, _) in dispatchGroup.leave() }
+                    }
                 }
             }
+            dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) { self.updateLinkTitleAndThumbnail() }
     }
 
     func updateLinkTitleAndThumbnail() {
         let dispatchGroup = DispatchGroup()
-        UserStorageService.main.getUserStorages(for: .EXTERNAL_LINK) { (links, _, error) in
-            for link in links ?? [] where (link.previewImageUrl ?? "").isEmpty == true {
+        var storages = [QDMUserStorage]()
+        dispatchGroup.enter()
+        UserStorageService.main.getUserStorages(for: .EXTERNAL_LINK) { (links, _, _) in
+            storages.append(contentsOf: links ?? [])
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        UserStorageService.main.getTeamStorages { (teamStorages, _, _) in
+            storages.append(contentsOf: (teamStorages ?? []).filter({
+                $0.userStorageType == .EXTERNAL_LINK && $0.isMine == true
+            }))
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            let dispatchGroup = DispatchGroup()
+            dispatchGroup.enter()
+            for link in storages where (link.previewImageUrl ?? "").isEmpty == true {
                 var link = link
                 let parser = OpenGraphMetaDataParser(with: URL(string: link.url ?? ""))
                 dispatchGroup.enter()
@@ -98,9 +113,10 @@ final class ExternalLinkImporter {
                     dispatchGroup.leave()
                 }
             }
-        }
-        dispatchGroup.notify(queue: .main) {
-            NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
+            dispatchGroup.leave()
+            dispatchGroup.notify(queue: .main) {
+                NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
+            }
         }
     }
 }
