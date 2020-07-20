@@ -77,18 +77,16 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
     func removeMember(at indexPath: IndexPath) {
         if let member = getMember(at: indexPath) {
-            worker.sendInvite(member.email, team: currentTeam) { (member, error) in
-                //            if it was the last member,
-                 //            if there are other teams --> team settings
-                 //            if no other teams --> My profile
+            worker.removeMember(member: member.member) { [weak self] in
+                self?.refreshView()
             }
         }
     }
 
     func reinviteMember(at indexPath: IndexPath) {
         if let member = getMember(at: indexPath) {
-            worker.sendInvite(member.email, team: currentTeam) { (member, error) in
-
+            worker.sendInvite(member.email, team: currentTeam) { [weak self] (member, error) in
+                self?.refreshView()
             }
         }
     }
@@ -102,6 +100,7 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
                 self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
                 if let team = selectedTeam {
                     self?.worker.getTeamMemberItems(team: team, { (membersList) in
+                        self?.membersList.removeAll()
                         self?.membersList = membersList
                         self?.presenter.updateView()
                     })

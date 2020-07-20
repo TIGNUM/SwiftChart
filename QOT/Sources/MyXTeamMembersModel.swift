@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 struct TeamMember {
     enum Status: String {
@@ -14,6 +15,7 @@ struct TeamMember {
         case joined
     }
 
+    let member: QDMTeamMember
     let email: String?
     var status: TeamMember.Status = .pending
     let qotId: String?

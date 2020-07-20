@@ -30,25 +30,18 @@ extension MyXTeamMembersWorker: WorkerTeam {
     func getTeamMemberItems(team: QDMTeam, _ completion: @escaping ([TeamMember]) -> Void) {
         var membersList: [TeamMember] = []
         getTeamMembers(in: team) { (members) in
-            members.forEach {(member) in
-                let status: TeamMember.Status = member.status == .JOINED ? .joined : .pending
-                membersList.append(TeamMember(email: member.email,
-                                              status: status,
-                                              qotId: member.qotId,
-                                              isTeamOwner: member.isTeamOwner,
-                                              wasReinvited: false))
+            members.forEach { (member) in
+                if member.status != .REMOVED {
+                    let status: TeamMember.Status = member.status == .JOINED ? .joined : .pending
+                    membersList.append(TeamMember(member: member,
+                                                  email: member.email,
+                                                  status: status,
+                                                  qotId: member.qotId,
+                                                  isTeamOwner: member.isTeamOwner,
+                                                  wasReinvited: false))
+                }
             }
             completion(membersList)
         }
-    }
-
-    func removeMember(memberId: String?, team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
-        TeamService.main.getTeamMembers(in: team, { (members, _, error)  in
-            guard let user = members?.filter({$0.qotId == memberId}).first else {
-                completion(error)
-                return
-            }
-            TeamService.main.leaveTeam(teamMember: user, completion)
-        })
     }
 }
