@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
 
@@ -28,5 +29,4 @@ class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
         pendingIcon.isHidden = memberStatus == .joined
         joinedIcon.isHidden = memberStatus == .pending
     }
-
 }

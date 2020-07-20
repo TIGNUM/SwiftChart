@@ -33,6 +33,11 @@ final class MyXTeamMembersInteractor {
                 self?.currentTeam = selectedTeam
                 self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
                 self?.presenter.updateView()
+                if let team = selectedTeam {
+                    self?.worker.getTeamMemberItems(team: team, { (membersList) in
+                        self?.membersList = membersList
+                    })
+                }
             })
         }
         NotificationCenter.default.addObserver(self,
@@ -80,7 +85,6 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
                 self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
                 self?.presenter.updateView()
             })
-
         }
     }
 

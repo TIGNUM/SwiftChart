@@ -27,7 +27,7 @@ extension MyXTeamMembersWorker: WorkerTeam {
         }
     }
 
-    func teamMemberItems(team: QDMTeam) -> [TeamMember] {
+    func getTeamMemberItems(team: QDMTeam, _ completion: @escaping ([TeamMember]) -> Void) {
         var membersList: [TeamMember] = []
         getTeamMembers(in: team) { (members) in
             members.forEach {(member) in
@@ -38,8 +38,8 @@ extension MyXTeamMembersWorker: WorkerTeam {
                                               isTeamOwner: member.isTeamOwner,
                                               wasReinvited: false))
             }
+            completion(membersList)
         }
-        return membersList
     }
 
     func removeMember(memberId: String?, team: QDMTeam, _ completion: @escaping (Error?) -> Void) {
