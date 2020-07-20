@@ -113,9 +113,14 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        guard let member = interactor.getMember(at: indexPath) else {
+            fatalError("member does not exist at indexPath: \(indexPath.item)")
+        }
+
         let inviteAgain = AppTextService.get(.settings_team_settings_team_members_invite_again)
 
         let inviteAgainAction = UITableViewRowAction(style: .normal, title: inviteAgain) {(action, indexPath) in
+            self.trackUserEvent(.INVITE_MEMBER_AGAIN, value: member.member.remoteID ?? 0, action: .TAP)
             self.interactor.reinviteMember(at: indexPath)
         }
         inviteAgainAction.backgroundColor = .accent10
@@ -127,12 +132,10 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
         let remove = AppTextService.get(.settings_team_settings_team_members_remove)
 
         let removeAction = UITableViewRowAction(style: .normal, title: remove) { (action, indexPath) in
+            self.trackUserEvent(.REMOVE_MEMBER, value: member.member.remoteID ?? 0, action: .TAP)
             self.interactor.removeMember(at: indexPath)
         }
         removeAction.backgroundColor = .redOrange
-        guard let member = interactor.getMember(at: indexPath) else {
-            fatalError("member does not exist at indexPath: \(indexPath.item)")
-        }
         switch member.status {
         case .joined:
             return [removeAction]
