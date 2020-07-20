@@ -17,6 +17,10 @@ final class MyLibraryCategoryListWorker {
         return AppTextService.get(.my_qot_my_library_section_header_title)
     }()
 
+    lazy var titleTemplateForTeam: String = {
+        return AppTextService.get(.my_qot_my_library_section_header_team_title_template)
+    }()
+
     func loadData(in team: QDMTeam?, _ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {
         let dispatchGroup = DispatchGroup()
         var storages: [QDMUserStorage]?
@@ -65,10 +69,11 @@ final class MyLibraryCategoryListWorker {
                                                    items: bookmarks,
                                                    icon: R.image.my_library_bookmark(),
                                                    type: .BOOKMARKS))
-            userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_downloads_title),
-                                                   items: downloads,
-                                                   icon: R.image.my_library_download(),
-                                                   type: .DOWNLOADS))
+            if team == nil {
+                let title = AppTextService.get(.my_qot_my_library_section_downloads_title)
+                userStorages.append(self.viewModelWith(title: title, items: downloads,
+                                                       icon: R.image.my_library_download(), type: .DOWNLOADS))
+            }
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_links_title),
                                                    items: links,
                                                    icon: R.image.my_library_link(),

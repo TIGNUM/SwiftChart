@@ -42,6 +42,10 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
         trackPage()
         if interactor?.isCreatingNewNote ?? true {
             beginEditing()
+        } else if interactor?.isMyNote == false {
+            textView.isUserInteractionEnabled = false
+        } else {
+            textView.isUserInteractionEnabled = true
         }
     }
 

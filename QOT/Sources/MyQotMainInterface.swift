@@ -45,7 +45,7 @@ protocol MyQotMainRouterInterface {
     func presentMyPreps()
     func presentMyProfile()
     func presentMySprints()
-    func presentMyLibrary()
+    func presentMyLibrary(with team: QDMTeam?)
     func presentMyDataScreen()
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func showTBV(team: QDMTeam?)

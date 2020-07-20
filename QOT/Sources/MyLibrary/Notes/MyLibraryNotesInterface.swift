@@ -27,6 +27,7 @@ protocol MyLibraryNotesInteractorInterface: Interactor {
     var isSaveButtonEnabled: Bool { get }
     var showDeleteButton: Bool { get }
     var isCreatingNewNote: Bool { get }
+    var isMyNote: Bool { get }
 
     func didUpdateText(_ text: String?)
     func saveNoteText(_ text: String?)

@@ -422,6 +422,7 @@ public extension AppTextKey {
     static let my_qot_section_my_tbv_subtitle_months_since = AppTextKey("my_qot.section_my_tbv.subtitle_months_since")
     static let my_qot_section_my_tbv_subtitle_more_than = AppTextKey("my_qot.section_my_tbv.subtitle_more_than")
     static let my_qot_my_library_section_header_title = AppTextKey("my_qot.my_library.section_header.title")
+    static let my_qot_my_library_section_header_team_title_template = AppTextKey("my_qot.my_library.section_header.team_title_template")
     static let my_qot_my_plans_section_header_title = AppTextKey("my_qot.my_plans.section_header.title")
     static let my_qot_my_plans_section_header_title_edit = AppTextKey("my_qot.my_plans.section_header.title_edit")
     static let my_qot_section_header_title = AppTextKey("my_qot.section_header.title")

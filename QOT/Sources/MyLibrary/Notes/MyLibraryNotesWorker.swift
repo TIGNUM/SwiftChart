@@ -82,6 +82,10 @@ final class MyLibraryNotesWorker {
         return noteId != nil
     }()
 
+    lazy var isMyNote: Bool = {
+        return isExistingNote ? (note?.isMine ?? false) : true
+    }()
+
     func getText(_ completion: @escaping ((String?) -> Void)) {
         if noteId == nil {
             completion(nil)

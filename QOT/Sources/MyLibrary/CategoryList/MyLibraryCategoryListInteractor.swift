@@ -44,9 +44,11 @@ final class MyLibraryCategoryListInteractor {
     // MARK: - Texts
 
     var titleText: String {
+        if let team = team {
+            return String(format: worker.titleTemplateForTeam, team.name ?? "")
+        }
         return worker.titleText
     }
-
     // MARK: - Interactor
 
     func viewDidLoad() {

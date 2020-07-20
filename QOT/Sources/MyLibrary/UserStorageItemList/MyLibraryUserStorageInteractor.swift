@@ -86,7 +86,7 @@ final class MyLibraryUserStorageInteractor {
     }
 
     @objc private func load(_ notification: Notification? = nil) {
-        worker.loadData { [weak self] (initiated, items) in
+        worker.loadData(in: team) { [weak self] (initiated, items) in
             guard let strongSelf = self else { return }
             if strongSelf.items == nil {
                 strongSelf.items = [MyLibraryCellViewModel]()

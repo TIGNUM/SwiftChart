@@ -80,11 +80,15 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
     }
 
     var showDeleteButton: Bool {
-        return worker.isExistingNote
+        return worker.isMyNote
     }
 
     var isCreatingNewNote: Bool {
         return !worker.isExistingNote
+    }
+
+    var isMyNote: Bool {
+        return worker.isMyNote
     }
 
     func saveNoteText(_ text: String?) {
