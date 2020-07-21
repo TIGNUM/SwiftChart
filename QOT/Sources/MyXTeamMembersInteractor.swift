@@ -96,7 +96,7 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
     func reinviteMember(at indexPath: IndexPath) {
         if let member = getMember(at: indexPath)?.member {
             worker.reInviteMember(member: member) { [weak self] (updatedMember) in
-                self?.presenter.updateView()
+                self?.presenter.updateView(hasMembers: self?.membersList.isEmpty == false)
             }
         }
     }
@@ -107,10 +107,10 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
             self.worker.getTeamMemberItems(team: team, { [weak self] (membersList) in
                 self?.membersList = membersList
                 self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
-                self?.presenter.updateView()
+                self?.presenter.updateView(hasMembers: self?.membersList.isEmpty == false)
             })
         } else {
-            self.presenter.updateView()
+            self.presenter.updateView(hasMembers: self.membersList.isEmpty == false)
         }
     }
 }

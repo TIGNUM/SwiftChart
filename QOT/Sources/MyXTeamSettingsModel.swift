@@ -19,7 +19,7 @@ struct MyXTeamSettingsModel {
 
         static func items(is owner: Bool) -> [MyXTeamSettingsModel.Setting] {
             if owner {
-                return [.teamName, .teamMembers, .deleteTeam]
+                return [.teamName, .teamMembers, .deleteTeam, .leaveTeam]
             }
             return [.teamMembers, .leaveTeam]
         }

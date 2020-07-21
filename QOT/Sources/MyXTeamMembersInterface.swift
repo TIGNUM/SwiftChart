@@ -12,13 +12,13 @@ import qot_dal
 protocol MyXTeamMembersViewControllerInterface: class {
     func setupView()
     func updateTeamHeader(teamHeaderItems: [Team.Item])
-    func updateView()
+    func updateView(hasMembers: Bool)
 }
 
 protocol MyXTeamMembersPresenterInterface {
     func setupView()
     func updateTeamHeader(teamHeaderItems: [Team.Item])
-    func updateView()
+    func updateView(hasMembers: Bool)
 }
 
 protocol MyXTeamMembersInteractorInterface: Interactor {

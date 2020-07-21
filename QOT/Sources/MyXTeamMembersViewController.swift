@@ -90,9 +90,13 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
         horizontalHeaderView.configure(headerItems: teamHeaderItems)
     }
 
-    func updateView() {
-        updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
-        tableView.reloadData()
+    func updateView(hasMembers: Bool) {
+        if hasMembers {
+            updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
+            tableView.reloadData()
+        } else {
+            router.dismiss()
+        }
     }
 }
 
