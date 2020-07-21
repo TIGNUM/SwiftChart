@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
 
@@ -22,11 +23,10 @@ class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
         UIButton.appearance().setTitleColor(.sand70, for: .normal)
     }
 
-    func configure(memberEmail: String?, memberStatus: MemberStatus) {
+    func configure(memberEmail: String?, memberStatus: TeamMember.Status) {
         ThemeText.memberEmail.apply(memberEmail, to: emailLabel)
         ThemeView.level2.apply(backgroundView!)
         pendingIcon.isHidden = memberStatus == .joined
         joinedIcon.isHidden = memberStatus == .pending
     }
-
 }

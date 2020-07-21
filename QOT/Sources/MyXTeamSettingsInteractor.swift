@@ -28,15 +28,20 @@ final class MyXTeamSettingsInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        addObservers()
         presenter.present(worker.settings)
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
             self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "") { [weak self] (selectedTeam) in
-                self?.updateTeam(selectedTeam)
+                self?.teamHeaderItems.forEach { (item) in
+                    item.selected = (selectedTeam?.qotId == item.teamId)
+                }
+                self?.currentTeam = selectedTeam
+                self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
+                self?.presenter.updateView()
             }
         }
-        addObservers()
     }
 }
 
@@ -90,32 +95,33 @@ private extension MyXTeamSettingsInteractor {
                                                object: nil)
     }
 
-    func updateTeam(_ selectedTeam: QDMTeam?) {
-        currentTeam = selectedTeam
-        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-        presenter.updateView()
-    }
-
     func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {
-        for header in teamHeaderItems {
-            if !header.teamId.isEmpty {
-                header.selected = true
-                return
-            }
+        for header in teamHeaderItems where !header.teamId.isEmpty {
+            header.selected = true
         }
     }
 }
 
 // MARK: - MyXTeamSettingsInteractorInterface
 extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
-
-    var selectedTeam: QDMTeam? {
-        return self.currentTeam
+    var rowCount: Int {
+        return MyXTeamSettingsModel.Setting.items(is: canEdit).count
     }
 
-    func settingItems()-> [MyXTeamSettingsModel.Setting] {
-        guard let team = currentTeam else { return [MyXTeamSettingsModel.Setting]()}
-        return worker.settingItems(team: team)
+    var canEdit: Bool {
+        currentTeam?.thisUserIsOwner == true
+    }
+
+    var selectedTeam: QDMTeam? {
+        return currentTeam
+    }
+
+    func settingItems() -> [MyXTeamSettingsModel.Setting] {
+        return MyXTeamSettingsModel.Setting.items(is: canEdit)
+    }
+
+    func settingItem(at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting {
+        return MyXTeamSettingsModel.Setting.item(is: canEdit, at: indexPath)
     }
 
     func updateSelectedTeam(teamId: String) {
@@ -138,7 +144,9 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
 
     func updateTeams() {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.setFirstTeamSelected(teamHeaderItems)
+            if let teamId = self?.currentTeam?.qotId {
+                self?.updateSelectedTeam(teamId: teamId)
+            }
             self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
             self?.presenter.updateView()

@@ -16,23 +16,19 @@ final class MyXTeamMembersInteractor {
     private let presenter: MyXTeamMembersPresenterInterface!
     private var teamHeaderItems = [Team.Item]()
     private var currentTeam: QDMTeam?
+    private var membersList: [TeamMember] = []
 
     // MARK: - Init
-    init(presenter: MyXTeamMembersPresenterInterface) {
+    init(presenter: MyXTeamMembersPresenterInterface, team: QDMTeam?) {
         self.presenter = presenter
+        self.currentTeam = team
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            teamHeaderItems.first?.selected = true
-            self?.teamHeaderItems = teamHeaderItems
-            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "", { [weak self] (selectedTeam) in
-                self?.currentTeam = selectedTeam
-                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                self?.presenter.updateView()
-            })
+        if let teamId = currentTeam?.qotId {
+            updateSelectedTeam(teamId: teamId)
         }
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
@@ -52,40 +48,69 @@ private extension MyXTeamMembersInteractor {
             updateSelectedTeam(teamId: teamId)
         }
     }
+
+    func setHeaderItemSelected(teamHeaderItems: [Team.Item], teamId: String) {
+        self.teamHeaderItems = teamHeaderItems
+        teamHeaderItems.forEach { (item) in
+            item.selected = (teamId == item.teamId)
+        }
+    }
 }
 
 // MARK: - MyXTeamMembersInteractorInterface
 extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
+    var canEdit: Bool {
+        return currentTeam?.thisUserIsOwner == true
+    }
+
+    var rowCount: Int {
+        return membersList.count
+    }
 
     var selectedTeam: QDMTeam? {
-        return self.currentTeam
+        return currentTeam
+    }
+
+    func getMember(at indexPath: IndexPath) -> TeamMember? {
+        return membersList.at(index: indexPath.row)
     }
 
     func updateSelectedTeam(teamId: String) {
-          worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-              self?.teamHeaderItems = teamHeaderItems
-              teamHeaderItems.forEach { (item) in
-                  item.selected = (teamId == item.teamId)
-              }
-              self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
-                  self?.currentTeam = selectedTeam
-                  self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-                  self?.presenter.updateView()
-              })
-
-          }
-      }
-
-    func removeMember(memberId: String?, team: QDMTeam) {
-        worker.removeMember(memberId: memberId, team: team, { _ in
-            //            if it was the last member,
-            //            if there are other teams --> team settings
-            //            if no other teams --> My profile
-        })
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.setHeaderItemSelected(teamHeaderItems: teamHeaderItems, teamId: teamId)
+            self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
+                self?.currentTeam = selectedTeam
+                self?.refreshView()
+            })
+        }
     }
 
-    func reinviteMember(email: String?, team: QDMTeam?) {
-        worker.sendInvite(email, team: team) { (member, Error) in
+    func removeMember(at indexPath: IndexPath) {
+        if let member = getMember(at: indexPath) {
+            worker.removeMember(member: member.member) { [weak self] in
+                self?.refreshView()
+            }
+        }
+    }
+
+    func reinviteMember(at indexPath: IndexPath) {
+        if let member = getMember(at: indexPath)?.member {
+            worker.reInviteMember(member: member) { [weak self] (updatedMember) in
+                self?.presenter.updateView(hasMembers: self?.membersList.isEmpty == false)
+            }
+        }
+    }
+
+    func refreshView() {
+        if let team = currentTeam, let teamId = team.qotId {
+            self.setHeaderItemSelected(teamHeaderItems: teamHeaderItems, teamId: teamId)
+            self.worker.getTeamMemberItems(team: team, { [weak self] (membersList) in
+                self?.membersList = membersList
+                self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
+                self?.presenter.updateView(hasMembers: self?.membersList.isEmpty == false)
+            })
+        } else {
+            self.presenter.updateView(hasMembers: self.membersList.isEmpty == false)
         }
     }
 }

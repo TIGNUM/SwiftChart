@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyXTeamMembersConfigurator {
-    static func make() -> (MyXTeamMembersViewController) -> Void {
+    static func make(team: QDMTeam?) -> (MyXTeamMembersViewController) -> Void {
         return { (viewController) in
             let presenter = MyXTeamMembersPresenter(viewController: viewController)
-            let interactor = MyXTeamMembersInteractor(presenter: presenter)
+            let interactor = MyXTeamMembersInteractor(presenter: presenter, team: team)
             viewController.interactor = interactor
         }
     }
