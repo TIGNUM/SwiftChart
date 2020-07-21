@@ -143,12 +143,9 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
             return member.wasReinvited ? [removeAction, invitedAction] : [removeAction, inviteAgainAction]
         }
     }
-// CHECK IF OWNER
 
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        guard let isOwner = interactor?.selectedTeam?.thisUserIsOwner else { return false}
-//        return isOwner
-//
-//    }
-
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard let isOwner = interactor?.selectedTeam?.thisUserIsOwner else { return false }
+        return isOwner
+    }
 }

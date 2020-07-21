@@ -97,25 +97,32 @@ private extension MyXTeamSettingsInteractor {
     }
 
     func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {
-        for header in teamHeaderItems {
-            if !header.teamId.isEmpty {
-                header.selected = true
-                return
-            }
+        for header in teamHeaderItems where !header.teamId.isEmpty {
+            header.selected = true
         }
     }
 }
 
 // MARK: - MyXTeamSettingsInteractorInterface
 extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
-
-    var selectedTeam: QDMTeam? {
-        return self.currentTeam
+    var rowCount: Int {
+        return MyXTeamSettingsModel.Setting.items(is: canEdit).count
     }
 
-    func settingItems()-> [MyXTeamSettingsModel.Setting] {
-        guard let team = currentTeam else { return [MyXTeamSettingsModel.Setting]()}
-        return worker.settingItems(team: team)
+    var canEdit: Bool {
+        currentTeam?.thisUserIsOwner == true
+    }
+
+    var selectedTeam: QDMTeam? {
+        return currentTeam
+    }
+
+    func settingItems() -> [MyXTeamSettingsModel.Setting] {
+        return MyXTeamSettingsModel.Setting.items(is: canEdit)
+    }
+
+    func settingItem(at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting {
+        return MyXTeamSettingsModel.Setting.item(is: canEdit, at: indexPath)
     }
 
     func updateSelectedTeam(teamId: String) {

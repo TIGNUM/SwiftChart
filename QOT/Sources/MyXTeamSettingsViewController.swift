@@ -122,7 +122,7 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
 
 extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor.settingItems().count
+        return interactor.rowCount
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -161,33 +161,32 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let item = MyXTeamSettingsModel.Setting.allCases.at(index: indexPath.item) {
-            let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel),
+        let item = interactor.settingItem(at: indexPath)
+        let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel),
+                                    target: self,
+                                    action: #selector(cancelDeleteTapped(_:)),
+                                    handler: nil)
+        let deleteTeam = QOTAlertAction(title: AppTextService.get(.settings_team_settings_delete_team),
                                         target: self,
-                                        action: #selector(cancelDeleteTapped(_:)),
+                                        action: #selector(confirmDeleteTapped(_:)),
                                         handler: nil)
-            let deleteTeam = QOTAlertAction(title: AppTextService.get(.settings_team_settings_delete_team),
-                                            target: self,
-                                            action: #selector(confirmDeleteTapped(_:)),
-                                            handler: nil)
-            let leaveTeam = QOTAlertAction(title: AppTextService.get(.settings_team_settings_leave_team),
-                                           target: self,
-                                           action: #selector(confirmLeaveTapped(_:)),
-                                           handler: nil)
-            let deleteTitle = AppTextService.get(.settings_team_settings_delete_team).uppercased()
-            let leaveTitle = AppTextService.get(.settings_team_settings_leave_team).uppercased()
-            let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete) + " " + (interactor.selectedTeam?.name ?? "")
-            let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave) + " " + (interactor.selectedTeam?.name ?? "")
-            switch item {
-            case .deleteTeam:
-                QOTAlert.show(title: deleteTitle, message: deleteMessage, bottomItems: [cancel, deleteTeam])
-            case .leaveTeam:
-                QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
-            case .teamMembers:
-                router?.presentTeamMembers(team: interactor.selectedTeam)
-            default:
-                break
-            }
+        let leaveTeam = QOTAlertAction(title: AppTextService.get(.settings_team_settings_leave_team),
+                                       target: self,
+                                       action: #selector(confirmLeaveTapped(_:)),
+                                       handler: nil)
+        let deleteTitle = AppTextService.get(.settings_team_settings_delete_team).uppercased()
+        let leaveTitle = AppTextService.get(.settings_team_settings_leave_team).uppercased()
+        let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete) + " " + (interactor.selectedTeam?.name ?? "")
+        let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave) + " " + (interactor.selectedTeam?.name ?? "")
+        switch item {
+        case .deleteTeam:
+            QOTAlert.show(title: deleteTitle, message: deleteMessage, bottomItems: [cancel, deleteTeam])
+        case .leaveTeam:
+            QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
+        case .teamMembers:
+            router?.presentTeamMembers(team: interactor.selectedTeam)
+        default:
+            break
         }
     }
 }
