@@ -26,7 +26,7 @@ protocol TeamToBeVisionPresenterInterface {
     func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
 }
 
-protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
+protocol TeamToBeVisionViewControllerScrollViewDelegate : class {
     func scrollToTop(_ animated: Bool)
 }
 

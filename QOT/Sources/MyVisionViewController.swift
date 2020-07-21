@@ -147,7 +147,6 @@ private extension MyVisionViewController {
         interactor.saveToBeVision(image: tempImage)
     }
 
-
     func removeGradients() {
         userImageView.removeSubViews()
         nullStateView.removeSubViews()

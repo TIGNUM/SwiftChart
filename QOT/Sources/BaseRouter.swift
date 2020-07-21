@@ -93,8 +93,8 @@ class BaseRouter: BaseRouterInterface {
     func showTBV(team: QDMTeam?) {
         guard let team = team else {
             if let controller = R.storyboard.myToBeVision.myVisionViewController() {
-                     MyVisionConfigurator.configure(viewController: controller, team: nil)
-                     viewController?.pushToStart(childViewController: controller)
+                MyVisionConfigurator.configure(viewController: controller)
+                viewController?.pushToStart(childViewController: controller)
             }
             return
         }
@@ -106,12 +106,6 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-//    func showTBV() {
-//           if let controller = R.storyboard.myToBeVision.myVisionViewController() {
-//               MyVisionConfigurator.configure(viewController: controller)
-//               viewController?.pushToStart(childViewController: controller)
-//           }
-//    }
 
     func presentMailComposer(recipients: [String], subject: String) {
         if MFMailComposeViewController.canSendMail() == true {

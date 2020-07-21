@@ -20,7 +20,7 @@ protocol MyVisionEditDetailsPresenterInterface {
 protocol MyVisionEditDetailsInteractorInterface: Interactor {
     var firstTimeUser: Bool { get }
     var myVision: QDMToBeVision? { get }
-    var team: QDMTeam?  { get }
+    var team: QDMTeam? { get }
     var teamVision: QDMTeamToBeVision? { get }
     var originalTitle: String { get }
     var originalVision: String { get }
