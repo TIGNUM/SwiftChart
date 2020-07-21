@@ -111,7 +111,6 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
         settingsModel = settings
     }
 
-
     func dismiss() {
         router?.dismiss()
     }
@@ -139,6 +138,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
                                teamColors: teamColors,
                                selectedColor: strongSelf.interactor.getTeamColor(),
                                title: strongSelf.interactor.getTeamName())
+                cell.selectionStyle = .none
             }
             cell.delegate = self
             return cell
