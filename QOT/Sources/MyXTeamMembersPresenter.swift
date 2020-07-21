@@ -29,7 +29,7 @@ extension MyXTeamMembersPresenter: MyXTeamMembersPresenterInterface {
         viewController?.updateTeamHeader(teamHeaderItems: teamHeaderItems)
     }
 
-    func updateView() {
-        viewController?.updateView()
+    func updateView(hasMembers: Bool) {
+        viewController?.updateView(hasMembers: hasMembers)
     }
 }

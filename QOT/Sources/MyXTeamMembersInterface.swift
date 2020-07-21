@@ -12,20 +12,25 @@ import qot_dal
 protocol MyXTeamMembersViewControllerInterface: class {
     func setupView()
     func updateTeamHeader(teamHeaderItems: [Team.Item])
-    func updateView()
+    func updateView(hasMembers: Bool)
 }
 
 protocol MyXTeamMembersPresenterInterface {
     func setupView()
     func updateTeamHeader(teamHeaderItems: [Team.Item])
-    func updateView() 
+    func updateView(hasMembers: Bool)
 }
 
 protocol MyXTeamMembersInteractorInterface: Interactor {
+    var rowCount: Int { get }
     var teamMembersText: String { get }
-    func removeMember(memberId: String?, team: QDMTeam)
     var selectedTeam: QDMTeam? { get }
-    func reinviteMember(email: String?, team: QDMTeam?)
+    var canEdit: Bool { get }
+
+    func removeMember(at indexPath: IndexPath)
+    func reinviteMember(at indexPath: IndexPath)
+    func getMember(at indexPath: IndexPath) -> TeamMember?
+    func refreshView()
 }
 
 protocol MyXTeamMembersRouterInterface {

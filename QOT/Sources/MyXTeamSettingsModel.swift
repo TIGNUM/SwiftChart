@@ -16,6 +16,17 @@ struct MyXTeamSettingsModel {
         case teamMembers
         case leaveTeam
         case deleteTeam
+
+        static func items(is owner: Bool) -> [MyXTeamSettingsModel.Setting] {
+            if owner {
+                return [.teamName, .teamMembers, .deleteTeam, .leaveTeam]
+            }
+            return [.teamMembers, .leaveTeam]
+        }
+
+        static func item(is owner: Bool, at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting {
+            return items(is: owner).at(index: indexPath.row) ?? .teamMembers
+        }
     }
 
     var teamSettingsCount: Int {

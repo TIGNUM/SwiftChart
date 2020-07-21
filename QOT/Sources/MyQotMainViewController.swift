@@ -55,8 +55,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(colorMode: ColorMode.dark)
-        setStatusBar(color: ThemeView.level1.color)
+        setStatusBar(color: .carbon)
         interactor.updateMyX()
         interactor.refreshParams()
     }
