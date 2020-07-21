@@ -176,7 +176,13 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             case .preps: router.presentMyPreps()
             case .sprints: router.presentMySprints()
             case .data: router.presentMyDataScreen()
-            case .toBeVision: router.showTBV(team: currentTeam)
+            case .toBeVision:
+                guard let team = currentTeam else {
+                    //                    TO ADAPT
+                    router.showTBV(team: nil)
+                    return
+                }
+                router.showTBV(team: team)
             default: return
             }
         }

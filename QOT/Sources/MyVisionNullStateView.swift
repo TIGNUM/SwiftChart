@@ -21,6 +21,7 @@ final class MyVisionNullStateView: UIView {
     @IBOutlet weak var toBeVisionLabel: UILabel!
     @IBOutlet weak var writeButton: UIButton!
     @IBOutlet weak var autoGenerateButton: UIButton!
+    @IBOutlet weak var nullStateImageView: UIImageView!
 
     weak var delegate: MyVisionNullStateViewProtocol?
 
@@ -28,7 +29,6 @@ final class MyVisionNullStateView: UIView {
         self.delegate = delegate
         ThemeView.level2.apply(self)
         ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_qot_my_tbv_section_header_title), to: toBeVisionLabel)
-
         writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(writeMessage), for: .normal)
         autoGenerateButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(.my_qot_my_tbv_null_state_button_auto_generate)), for: .normal)
         ThemeBorder.accent40.apply(writeButton)

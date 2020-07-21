@@ -70,27 +70,14 @@ final class MyVisionInteractor {
     }
 
     private func didUpdateTBVRelatedData() {
-        if let team = team {
-            worker.getTeamToBeVision(for: team) { [weak self] (_, teamVision) in
-                self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                    self?.presenter.load(nil,
-                                         teamVision: teamVision,
-                                         rateText: text,
-                                         isRateEnabled: status,
-                                         shouldShowSingleMessageRating: shouldShowSingleMessage)
-                    self?.worker.updateWidget()
-                }
-            }
-        } else {
-            worker.getToBeVision { [weak self] (_, toBeVision) in
-                self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                    self?.presenter.load(toBeVision,
-                                         teamVision: nil,
-                                         rateText: text,
-                                         isRateEnabled: status,
-                                         shouldShowSingleMessageRating: shouldShowSingleMessage)
-                    self?.worker.updateWidget()
-                }
+        worker.getToBeVision { [weak self] (_, toBeVision) in
+            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
+                self?.presenter.load(toBeVision,
+                                     teamVision: nil,
+                                     rateText: text,
+                                     isRateEnabled: status,
+                                     shouldShowSingleMessageRating: shouldShowSingleMessage)
+                self?.worker.updateWidget()
             }
         }
     }

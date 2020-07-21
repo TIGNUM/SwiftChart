@@ -171,7 +171,7 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
             TeamService.main.createTeamToBeVision(headline: "",
                                                   subHeadline: "",
                                                   text: "",
-                                                  for: team, { [weak self] (teamVision, _, error)  in
+                                                  for: team, { [weak self] (teamVision, _, error) in
                                                     guard let newTeamVision = teamVision, let finalTeamVision = self?.getTeamVision(for: newTeamVision) else { return }
                                                     self?.interactor?.updateTeamToBeVision(finalTeamVision, { [weak self] (error) in
                                                         self?.dismissController()

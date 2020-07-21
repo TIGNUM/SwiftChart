@@ -1,0 +1,51 @@
+//
+//  TeamToBeVisionInterface.swift
+//  QOT
+//
+//  Created by Anais Plancoulaine on 20.07.20.
+//  Copyright (c) 2020 Tignum. All rights reserved.
+//
+
+import Foundation
+import qot_dal
+
+protocol TeamToBeVisionViewControllerInterface: class {
+    func setupView()
+    func showNullState(with title: String, message: String, writeMessage: String)
+    func hideNullState()
+    func load(_ teamVision: QDMTeamToBeVision?,
+              rateText: String?,
+              isRateEnabled: Bool,
+              shouldShowSingleMessageRating: Bool?)
+}
+
+protocol TeamToBeVisionPresenterInterface {
+    func setupView()
+    func showNullState(with title: String, message: String, writeMessage: String)
+    func hideNullState()
+    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
+}
+
+protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
+    func scrollToTop(_ animated: Bool)
+}
+
+protocol TeamToBeVisionInteractorInterface: Interactor {
+    func showEditVision(isFromNullState: Bool)
+    func showNullState(with title: String, message: String, writeMessage: String)
+    func hideNullState()
+    func viewWillAppear()
+    func saveToBeVision(image: UIImage?)
+    var teamNullStateSubtitle: String? { get }
+    var teamNullStateTitle: String? { get }
+    var emptyTeamTBVTitlePlaceholder: String { get }
+    var emptyTeamTBVTextPlaceholder: String { get }
+    var team: QDMTeam? { get }
+    var nullStateCTA: String? { get }
+    func lastUpdatedVision() -> String?
+}
+
+protocol TeamToBeVisionRouterInterface {
+    func dismiss()
+    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
+}

@@ -91,11 +91,27 @@ class BaseRouter: BaseRouterInterface {
     }
 
     func showTBV(team: QDMTeam?) {
-        if let controller = R.storyboard.myToBeVision.myVisionViewController() {
-            MyVisionConfigurator.configure(viewController: controller, team: team)
-            viewController?.pushToStart(childViewController: controller)
+        guard let team = team else {
+            if let controller = R.storyboard.myToBeVision.myVisionViewController() {
+                     MyVisionConfigurator.configure(viewController: controller, team: nil)
+                     viewController?.pushToStart(childViewController: controller)
+            }
+            return
+        }
+        let controller = R.storyboard.myToBeVision.teamToBeVisionViewController()
+        if let controller = controller {
+            let configurator = TeamToBeVisionConfigurator.make(team: team)
+            configurator(controller)
+            viewController?.show(controller, sender: nil)
         }
     }
+
+//    func showTBV() {
+//           if let controller = R.storyboard.myToBeVision.myVisionViewController() {
+//               MyVisionConfigurator.configure(viewController: controller)
+//               viewController?.pushToStart(childViewController: controller)
+//           }
+//    }
 
     func presentMailComposer(recipients: [String], subject: String) {
         if MFMailComposeViewController.canSendMail() == true {
