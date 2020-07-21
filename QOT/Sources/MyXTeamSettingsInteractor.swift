@@ -34,7 +34,12 @@ final class MyXTeamSettingsInteractor {
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
             self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "") { [weak self] (selectedTeam) in
-                self?.updateTeam(selectedTeam)
+                self?.teamHeaderItems.forEach { (item) in
+                    item.selected = (selectedTeam?.qotId == item.teamId)
+                }
+                self?.currentTeam = selectedTeam
+                self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
+                self?.presenter.updateView()
             }
         }
     }
@@ -88,12 +93,6 @@ private extension MyXTeamSettingsInteractor {
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeamColor,
                                                object: nil)
-    }
-
-    func updateTeam(_ selectedTeam: QDMTeam?) {
-        currentTeam = selectedTeam
-        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-        presenter.updateView()
     }
 
     func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {

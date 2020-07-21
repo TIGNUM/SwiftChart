@@ -40,7 +40,7 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor.viewDidLoad()        
+        interactor.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +48,6 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
         setStatusBar(color: .carbon)
         leftBarButtonItems = [backNavigationItem()]
         updateBottomNavigation(leftBarButtonItems, [])
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,7 +77,6 @@ private extension MyXTeamSettingsViewController {
     func backToTeamSettings() -> UIBarButtonItem {
          return backNavigationItem()
     }
-
 }
 
 // MARK: - MyXTeamSettingsViewControllerInterface
