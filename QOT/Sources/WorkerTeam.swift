@@ -14,6 +14,8 @@ protocol WorkerTeam {
 
     func getMaxChars(_ completion: @escaping (Int) -> Void)
 
+    func getMaxTeamCount(_ completion: @escaping (Int) -> Void)
+
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
     func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
@@ -51,14 +53,16 @@ protocol WorkerTeam {
 
 extension WorkerTeam {
     func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
-        getConfig { (config) in
-            if let config = config {
-                self.getTeams { (teams) in
-                    completion(teams.count < config.teamMaxCount)
-                }
-            } else {
-                completion(false)
+        getMaxTeamCount { (max) in
+            self.getTeams { (teams) in
+                completion(teams.count < max)
             }
+        }
+    }
+
+    func getMaxTeamCount(_ completion: @escaping (Int) -> Void) {
+        getConfig { (config) in
+            completion(config?.teamMaxCount ?? 0)
         }
     }
 

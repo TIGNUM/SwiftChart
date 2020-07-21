@@ -1579,6 +1579,7 @@ private struct Fonts {
     static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 90)
 }
 
+// MARK: - Color Palette
 private struct Palette {
     static var accent: UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)

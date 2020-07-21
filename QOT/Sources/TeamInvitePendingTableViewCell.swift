@@ -20,8 +20,8 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        declineButton.corner(radius: 20, borderColor: .accent, borderWidth: 1)
-        joinButton.corner(radius: 20, borderColor: .accent, borderWidth: 1)
+        declineButton.corner(radius: 20, borderColor: .accent40, borderWidth: 1)
+        joinButton.corner(radius: 20, borderColor: .accent40, borderWidth: 1)
         declineButton.setTitle(AppTextService.get(.team_invite_cta_decline), for: .normal)
         joinButton.setTitle(AppTextService.get(.team_invite_cta_join), for: .normal)
     }
@@ -43,6 +43,7 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
     }
 }
 
+// MARK: - Actions
 extension TeamInvitePendingTableViewCell {
     @IBAction func didTabDecline() {
         NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: invite)

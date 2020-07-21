@@ -7,16 +7,16 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TeamInvitesWorker: WorkerTeam {
-
-    // MARK: - Init
-    init() { /**/ }
-
     func getInviteHeader(_ completion: @escaping (TeamInvite.Header) -> Void) {
-         let header = TeamInvite.Header(title: "TEAM IVITATION",
-                                 content: "TIGNUM X TEAM edition will allow you to stay connected to your team members and support you all to achieve Sustainable High Impact. You are part of 3 team. Note: max 3 teams.")
-        completion(header)
+        getMaxTeamCount { (max) in
+            let header = TeamInvite.Header(title: AppTextService.get(.team_invite_header_singular),
+                                           content: AppTextService.get(.team_invite_content_info),
+                                           maxTeams: max)
+            completion(header)
+        }
     }
 
     func getInviteItems(_ completion: @escaping ([TeamInvite.Invitation]) -> Void) {

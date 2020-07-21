@@ -16,6 +16,7 @@ final class TeamInvitesInteractor {
     private let presenter: TeamInvitesPresenterInterface!
     private var inviteHeader: TeamInvite.Header?
     private var invitations = [QDMTeamInvitation]()
+    private var teamCount = 0
 
     // MARK: - Init
     init(presenter: TeamInvitesPresenterInterface, invitations: [QDMTeamInvitation]) {
@@ -27,9 +28,11 @@ final class TeamInvitesInteractor {
     func viewDidLoad() {
         addObservers()
         presenter.setupView()
-        worker.getInviteHeader { (header) in
-            self.inviteHeader = header
-            self.presenter.reload()
+        worker.getInviteHeader { [weak self] (header) in
+            self?.setTeamCount {
+                self?.inviteHeader = header
+                self?.presenter.reload()
+            }
         }
     }
 }
@@ -58,24 +61,30 @@ private extension TeamInvitesInteractor {
     @objc func didSelectDeclineTeamInvite(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
             worker.declineTeamInvite(teamInvite) { (teams) in
-                
+
             }
+        }
+    }
+
+    func setTeamCount(_ completion: @escaping () -> Void) {
+        worker.getTeams { [weak self] (teams) in
+            self?.teamCount = teams.count
+            completion()
         }
     }
 }
 
 // MARK: - TeamInvitesInteractorInterface
 extension TeamInvitesInteractor: TeamInvitesInteractorInterface {
-
     var sectionCount: Int {
-        return invitations.isEmpty ? 0 : 2
+        return TeamInvite.Section.allCases.count
     }
 
     func rowCount(in section: Int) -> Int {
-        switch section {
-        case 0: return 1
-        case 1: return invitations.count
-        default: return 0
+        switch TeamInvite.Section(rawValue: section) {
+        case .header: return 1
+        case .invite: return invitations.count
+        case .none: return 0
         }
     }
 
@@ -83,7 +92,7 @@ extension TeamInvitesInteractor: TeamInvitesInteractorInterface {
         return invitations[row]
     }
 
-    func headerItem() -> TeamInvite.Header? {
-        return inviteHeader
+    func headerItem() -> (header: TeamInvite.Header?, teamCount: Int) {
+        return (header: inviteHeader, teamCount: teamCount)
     }
 }

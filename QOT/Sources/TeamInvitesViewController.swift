@@ -80,14 +80,17 @@ extension TeamInvitesViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let headerItem = interactor.headerItem()
+        switch TeamInvite.Section(rawValue: indexPath.section) {
+        case .header?:
             let headerCell: TeamInviteHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            headerCell.configure(header: headerItem?.title ?? "", content: headerItem?.content ?? "")
+            let item = interactor.headerItem()
+            headerCell.configure(header: item.header?.title,
+                                 content: item.header?.content,
+                                 teamCount: item.header?.teamCounter(partOfTeams: item.teamCount),
+                                 note: item.header?.noteText)
             return headerCell
 
-        case 1:
+        case .invite?:
             let item = interactor.inviteItem(at: indexPath.row)
             let inviteCell: TeamInvitePendingTableViewCell = tableView.dequeueCell(for: indexPath)
             inviteCell.configure(teamName: item.team?.name ?? "",
@@ -98,8 +101,8 @@ extension TeamInvitesViewController: UITableViewDelegate, UITableViewDataSource 
                                  memberCount: 0,
                                  invite: item)
             return inviteCell
-        default:
-            fatalError("Invalid section")
+        case .none:
+            fatalError("Invalid section for TeamInvite.Section at indexPath: \(indexPath)")
         }
     }
 }

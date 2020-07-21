@@ -18,6 +18,21 @@ struct TeamInvite {
     struct Header {
         let title: String
         let content: String
+        let maxTeams: Int
+
+        var noteText: String {
+            let note = AppTextService.get(.team_invite_content_note)
+            return note.replacingOccurrences(of: "%d", with: String(maxTeams))
+        }
+
+        func teamCounter(partOfTeams: Int) -> String {
+            var text = AppTextService.get(.team_invite_content_count)
+            text = text.replacingOccurrences(of: "%d", with: String(partOfTeams))
+            if partOfTeams > 1 {
+                text = text.replacingOccurrences(of: ".", with: "s.")
+            }
+            return text
+        }
     }
 
     struct Invitation {
