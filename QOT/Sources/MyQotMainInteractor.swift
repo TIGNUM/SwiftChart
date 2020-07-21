@@ -37,6 +37,10 @@ final class MyQotMainInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
     }
 }
 
