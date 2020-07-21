@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol TeamInvitesViewControllerInterface: class {
     func setupView()
@@ -21,7 +22,7 @@ protocol TeamInvitesPresenterInterface {
 protocol TeamInvitesInteractorInterface: Interactor {
     var sectionCount: Int { get }
     func rowCount(in section: Int) -> Int
-    func inviteItem(at row: Int) -> TeamInvite.Invitation
+    func inviteItem(at row: Int) -> QDMTeamInvitation
     func headerItem() -> TeamInvite.Header?
 }
 

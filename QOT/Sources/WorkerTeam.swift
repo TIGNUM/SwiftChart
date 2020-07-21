@@ -43,20 +43,24 @@ protocol WorkerTeam {
     func declineTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
 
     func getTeamInvitations(_ completion: @escaping ([QDMTeamInvitation]) -> Void)
+
+    func removeMember(member: QDMTeamMember, _ completion: @escaping () -> Void)
+
+    func reInviteMember(member: QDMTeamMember, _ completion: @escaping (QDMTeamMember?) -> Void)
 }
 
 extension WorkerTeam {
     func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
-         getConfig { (config) in
-             if let config = config {
-                 self.getTeams { (teams) in
-                     completion(teams.count < config.teamMaxCount)
-                 }
-             } else {
-                 completion(false)
-             }
-         }
-     }
+        getConfig { (config) in
+            if let config = config {
+                self.getTeams { (teams) in
+                    completion(teams.count < config.teamMaxCount)
+                }
+            } else {
+                completion(false)
+            }
+        }
+    }
 
     func getMaxChars(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
@@ -162,7 +166,7 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(team, error)
-            NotificationCenter.default.post(name: .didEditTeamName, object: nil, userInfo: [team?.qotId: team?.name])            
+            NotificationCenter.default.post(name: .didEditTeamName, object: nil, userInfo: [team?.qotId: team?.name])
         }
     }
 
@@ -214,6 +218,26 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(teams ?? [])
+        }
+    }
+
+    func removeMember(member: QDMTeamMember, _ completion: @escaping () -> Void) {
+        TeamService.main.removeTeamMember(member) { (error) in
+            if let error = error {
+                log("Error removeTeamMember: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion()
+        }
+    }
+
+    func reInviteMember(member: QDMTeamMember, _ completion: @escaping (QDMTeamMember?) -> Void) {
+        TeamService.main.reinviteTeamMember(member) { (member, _, error) in
+            if let error = error {
+                log("Error removeTeamMember: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(member)
         }
     }
 }

@@ -59,6 +59,10 @@ final class TeamEditViewController: UIViewController {
 
 // MARK: - Private
 private extension TeamEditViewController {
+    var isMemberInvite: Bool {
+        return TeamEdit.View.memberInvite == interactor.getType
+    }
+
     func updateTextCounter(_ newValue: String) {
         textCounterLabel.text = newValue
     }
@@ -81,12 +85,14 @@ private extension TeamEditViewController {
 // MARK: - TeamEditViewControllerInterface
 extension TeamEditViewController: TeamEditViewControllerInterface {
     func setupView() {
-        teamTextField.text = interactor.teamName
+        teamTextField.text = isMemberInvite ? "" : interactor.teamName
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView
         keyboardInputView.delegate = self
-        hideOutlets(true)
+        hideOutlets(isMemberInvite)
+        textCounterLabel.isHidden = isMemberInvite
+        textMaxCharsLabel.isHidden = isMemberInvite
     }
 
     func updateTextCounter(maxChars: Int?) {
@@ -97,6 +103,8 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
             textCounterLabel.isHidden = true
             textMaxCharsLabel.isHidden = true
         }
+        textCounterLabel.isHidden = isMemberInvite
+        textMaxCharsLabel.isHidden = isMemberInvite
     }
 
     func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool) {
@@ -115,7 +123,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
 
     func refreshMemberList() {
         refreshView()
-        hideOutlets(false)
+        hideOutlets(isMemberInvite)
         updateMemberCounter()
         tableView.reloadData()
     }
@@ -134,11 +142,15 @@ extension TeamEditViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        if let maxChars = maxChars {
-            let currentString = textField.text! as NSString
-            return currentString.replacingCharacters(in: range, with: string).count <= maxChars
-        } else {
+        if isMemberInvite {
             return true
+        } else {
+            if let maxChars = maxChars {
+                let currentString = textField.text! as NSString
+                return currentString.replacingCharacters(in: range, with: string).count <= maxChars
+            } else {
+                return true
+            }
         }
     }
 

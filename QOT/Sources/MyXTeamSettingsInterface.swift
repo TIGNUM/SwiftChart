@@ -25,25 +25,31 @@ protocol MyXTeamSettingsPresenterInterface {
 }
 
 protocol MyXTeamSettingsInteractorInterface: Interactor {
-    func handleTap(setting: MyXTeamSettingsModel.Setting)
     var teamSettingsText: String { get }
     var selectedTeam: QDMTeam? { get }
+    var canEdit: Bool { get }
+    var rowCount: Int { get }
+
     func updateSelectedTeam(teamId: String)
     func updateSelectedTeam(teamColor: String)
+    func updateTeams()
+
     func getTeamName() -> String
     func getTeamId() -> String
     func getTeamColor() -> String
     func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void)
-    func updateTeams()
+    func getTitleForItem(at indexPath: IndexPath) -> String
+    func getSubtitleForItem(at indexPath: IndexPath) -> String
+    func getSettingItems() -> [MyXTeamSettingsModel.Setting]
+    func getSettingItem(at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting
+
     func deleteTeam(team: QDMTeam)
     func leaveTeam(team: QDMTeam)
-    func titleForItem(at indexPath: IndexPath) -> String
-    func subtitleForItem(at indexPath: IndexPath) -> String
-    func settingItems() -> [MyXTeamSettingsModel.Setting]
+    func handleTap(setting: MyXTeamSettingsModel.Setting)
 }
 
 protocol MyXTeamSettingsRouterInterface {
     func dismiss()
-    func presentTeamMembers()
+    func presentTeamMembers(team: QDMTeam?)
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
 }

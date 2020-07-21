@@ -14,7 +14,7 @@ protocol MyQotMainViewControllerInterface: class {
     func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
     func reload()
     func setupView()
-    func updateTeamHeader(teamHeaderItems: [Team.Item]) 
+    func updateTeamHeader(teamHeaderItems: [Team.Item])
 }
 
 protocol MyQotMainPresenterInterface {
@@ -49,5 +49,5 @@ protocol MyQotMainRouterInterface {
     func presentMyDataScreen()
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func showTBV(team: QDMTeam?)
-    func presentTeamPendingInvites()
+    func presentTeamPendingInvites(invitations: [QDMTeamInvitation])
 }

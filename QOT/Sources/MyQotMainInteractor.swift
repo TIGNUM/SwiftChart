@@ -23,23 +23,20 @@ final class MyQotMainInteractor {
     private var currentTeam: QDMTeam?
     private var settingsButtonTitle = ""
     private var bodyElements = MyX()
-    private var teamItems = MyX()
+    private var teamElements = MyX()
+    private var teamItems = [Team.Item]()
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
         self.presenter = presenter
         self.router = router
+        updateMyX()
         createInitialData()
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        updateMyX()
         presenter.setupView()
-        addObservers()
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.teamHeaderItems = teamHeaderItems
-        }
     }
 }
 
@@ -153,7 +150,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func presentTeamPendingInvites() {
-        router.presentTeamPendingInvites()
+        if let invites = teamItems.first?.invites, !invites.isEmpty {
+            router.presentTeamPendingInvites(invitations: invites)
+        }
     }
 
     func qotViewModelNew() -> [ArraySection<MyX.Section, MyX.Item>]? {
@@ -161,7 +160,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func getTeamItems() -> [Team.Item] {
-        return teamItems.teamHeaderItems
+        return teamItems
     }
 
     func handleSelection(at indexPath: IndexPath) {
@@ -201,9 +200,11 @@ extension MyQotMainInteractor {
     func updateMyX() {
         worker.getTeamItems { (teamItems) in
             self.worker.getBodyElements { (bodyElements) in
-                self.bodyElements = bodyElements
-                self.teamItems = teamItems
-                self.presenter.reload()
+                self.worker.getTeamHeaderItems { (teamHeaderItems) in
+                    self.bodyElements = bodyElements
+                    self.teamItems = teamItems.teamHeaderItems
+                    self.presenter.reload()
+                }
             }
         }
     }
@@ -216,7 +217,7 @@ extension MyQotMainInteractor {
                 strongSelf.settingsButtonTitle = settingsTitle
 
                 var dataList: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
-                dataList.append(ArraySection(model: .teamHeader, elements: strongSelf.teamItems.items))
+                dataList.append(ArraySection(model: .teamHeader, elements: strongSelf.teamElements.items))
                 dataList.append(ArraySection(model: .body, elements: strongSelf.bodyElements.items))
                 let changeSet = StagedChangeset(source: strongSelf.arraySectionMyX, target: dataList)
                 strongSelf.presenter.updateView(changeSet)
@@ -242,7 +243,7 @@ extension MyQotMainInteractor {
                             bodyItems.append(strongSelf.createToBeVision(date: date))
 
                             var sections: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
-                            sections.append(ArraySection(model: .teamHeader, elements: strongSelf.teamItems.items))
+                            sections.append(ArraySection(model: .teamHeader, elements: []))
                             sections.append(ArraySection(model: .body, elements: bodyItems))
                             let changeSet = StagedChangeset(source: strongSelf.arraySectionMyX, target: sections)
                             strongSelf.presenter.updateView(changeSet)

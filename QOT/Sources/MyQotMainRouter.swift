@@ -25,7 +25,6 @@ final class MyQotMainRouter: BaseRouter {
 
 // MARK: - MyQotMainRouterInterface
 extension MyQotMainRouter: MyQotMainRouterInterface {
-
     func presentMyPreps() {
         let storyboardID = R.storyboard.myPreps.myPrepsViewControllerID.identifier
         let myPrepsViewController = R.storyboard
@@ -87,11 +86,11 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         }
     }
 
-    func presentTeamPendingInvites() {
+    func presentTeamPendingInvites(invitations: [QDMTeamInvitation]) {
         let identifier = R.storyboard.team.teamInviteViewControllerID.identifier
         let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamInvitesViewController
         if let controller = controller {
-            let configurator = TeamInvitesConfigurator.make()
+            let configurator = TeamInvitesConfigurator.make(invitations: invitations)
             configurator(controller)
             viewController?.pushToStart(childViewController: controller)
         }

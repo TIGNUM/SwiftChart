@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import qot_dal
 
-enum MemberStatus: String {
-    case pending
-    case joined
-}
+struct TeamMember {
+    enum Status: String {
+        case pending
+        case joined
+    }
 
-struct MyXTeamMemberModel {
-    var email: String?
-    var status: MemberStatus = .pending
-    var qotId: String? = UUID().uuidString
+    let member: QDMTeamMember
+    let email: String?
+    var status: TeamMember.Status = .pending
+    let qotId: String?
     var isTeamOwner: Bool = false
     var wasReinvited: Bool = false
 }
