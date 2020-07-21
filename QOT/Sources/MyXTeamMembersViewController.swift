@@ -91,9 +91,9 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
     }
 
     func updateView(hasMembers: Bool) {
+        tableView.reloadData()
         if hasMembers {
             updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
-            tableView.reloadData()
         } else {
             router.dismiss()
         }
@@ -154,7 +154,12 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        guard let isOwner = interactor?.selectedTeam?.thisUserIsOwner else { return false }
-        return isOwner
+        if let member = interactor.getMember(at: indexPath), let isOwner = interactor?.selectedTeam?.thisUserIsOwner {
+            if isOwner {
+                return !member.member.me
+            }
+            return false
+        }
+        return false
     }
 }

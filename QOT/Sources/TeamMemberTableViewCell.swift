@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import qot_dal
 
-class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
+final class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var joinedIcon: UIImageView!
     @IBOutlet private weak var pendingIcon: UIImageView!
@@ -17,10 +16,9 @@ class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView = UIView(frame: self.bounds)
+        self.backgroundView = UIView(frame: bounds)
+        self.selectedBackgroundView = UIView(frame: bounds)
         ThemeView.level2Selected.apply(selectedBackgroundView!)
-        UIButton.appearance().setTitleColor(.sand70, for: .normal)
     }
 
     func configure(memberEmail: String?, memberStatus: TeamMember.Status) {
