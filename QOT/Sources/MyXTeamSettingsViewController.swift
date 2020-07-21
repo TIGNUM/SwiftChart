@@ -81,14 +81,6 @@ private extension MyXTeamSettingsViewController {
 
 // MARK: - MyXTeamSettingsViewControllerInterface
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
-    func updateView() {
-        tableView.reloadData()
-    }
-
-    func dismiss() {
-        router?.dismiss()
-    }
-
     func setup(_ settings: MyXTeamSettingsModel) {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
@@ -99,6 +91,10 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
         settingsModel = settings
         baseHeaderView?.configure(title: interactor?.teamSettingsText, subtitle: nil)
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+    }
+
+    func updateView() {
+        tableView.reloadData()
     }
 
     func updateTeamHeader(teamHeaderItems: [Team.Item]) {
@@ -114,6 +110,11 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
     func updateSettingsModel(_ settings: MyXTeamSettingsModel) {
         settingsModel = settings
     }
+
+
+    func dismiss() {
+        router?.dismiss()
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -128,7 +129,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = interactor.settingItems().at(index: indexPath.row)
+        let item = interactor.getSettingItems().at(index: indexPath.row)
         switch item {
         case .teamName:
             let cell: TeamNameTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -143,15 +144,15 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
             return cell
         case .teamMembers:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: interactor.titleForItem(at: indexPath), themeCell: .level3)
-            let subtitle = interactor.subtitleForItem(at: indexPath)
+            cell.configure(title: interactor.getTitleForItem(at: indexPath), themeCell: .level3)
+            let subtitle = interactor.getSubtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
             return cell
         default:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: interactor.titleForItem(at: indexPath), themeCell: .level3)
-            let subtitle = interactor.subtitleForItem(at: indexPath)
+            cell.configure(title: interactor.getTitleForItem(at: indexPath), themeCell: .level3)
+            let subtitle = interactor.getSubtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
             return cell
         }
@@ -159,7 +160,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let item = interactor.settingItem(at: indexPath)
+        let item = interactor.getSettingItem(at: indexPath)
         let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel),
                                     target: self,
                                     action: #selector(cancelDeleteTapped(_:)),
