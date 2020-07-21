@@ -91,11 +91,10 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
     }
 
     func updateView(hasMembers: Bool) {
+        tableView.reloadData()
         if hasMembers {
             updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
-            tableView.reloadData()
         } else {
-            tableView.reloadData()
             router.dismiss()
         }
     }
