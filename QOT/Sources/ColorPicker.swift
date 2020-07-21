@@ -41,14 +41,14 @@ final class ColorPicker: UIView {
     @IBOutlet private weak var trailingConstraintBlue: NSLayoutConstraint!
     weak var delegate: MyXTeamSettingsViewController?
     private var isOpen = false
-    private var selectedColor = UIColor.clear
+    private var selectedColor: UIColor?
     private var teamColors = [UIColor]()
     private var teamId = ""
-    private lazy var teamPink: UIColor = teamColors[Color.pink.rawValue]
-    private lazy var teamPurple: UIColor = teamColors[Color.purple.rawValue]
-    private lazy var teamGreen: UIColor = teamColors[Color.green.rawValue]
-    private lazy var teamYellow: UIColor = teamColors[Color.yellow.rawValue]
-    private lazy var teamBlue: UIColor = teamColors[Color.blue.rawValue]
+    private lazy var teamPink: UIColor? = teamColors.at(index: Color.pink.rawValue)
+    private lazy var teamPurple: UIColor? = teamColors.at(index: Color.purple.rawValue)
+    private lazy var teamGreen: UIColor? = teamColors.at(index: Color.green.rawValue)
+    private lazy var teamYellow: UIColor? = teamColors.at(index: Color.yellow.rawValue)
+    private lazy var teamBlue: UIColor? = teamColors.at(index: Color.blue.rawValue)
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -133,7 +133,7 @@ private extension ColorPicker {
                 self.labelContainer.alpha = 1
                 self.layoutIfNeeded()
             }, completion: { _ in
-                self.postTeamColor(self.selectedColor)
+                self.postTeamColor(self.selectedColor ?? .clear)
             })
         } else {
             UIView.animate(withDuration: Animation.duration_03) {
