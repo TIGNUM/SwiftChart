@@ -30,6 +30,7 @@ final class MyXTeamSettingsInteractor {
     func viewDidLoad() {
         addObservers()
         presenter.present(worker.settings)
+
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
@@ -38,8 +39,7 @@ final class MyXTeamSettingsInteractor {
                     item.selected = (selectedTeam?.qotId == item.teamId)
                 }
                 self?.currentTeam = selectedTeam
-                self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
-                self?.presenter.updateView()
+                self?.updateView()
             }
         }
     }
@@ -66,14 +66,14 @@ private extension MyXTeamSettingsInteractor {
         if let userInfo = notification.userInfo as? [String: String],
             let qotTeamId = currentTeam?.qotId,
             let newName = userInfo[qotTeamId] {
+
             currentTeam?.name = newName
             teamHeaderItems.forEach { (item) in
                 if item.teamId == qotTeamId {
                     item.title = newName
                 }
             }
-            presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-            presenter.updateView()
+            updateView()
         }
     }
 
@@ -98,6 +98,47 @@ private extension MyXTeamSettingsInteractor {
     func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {
         for header in teamHeaderItems where !header.teamId.isEmpty {
             header.selected = true
+            return
+        }
+    }
+
+    func handleRemoveOrLeaveTeam() {
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.teamHeaderItems = teamHeaderItems
+            if teamHeaderItems.isEmpty {
+                self?.presenter.dismiss()
+            } else {
+                self?.setFirstTeamSelected(teamHeaderItems)
+                self?.updateView()
+            }
+        }
+    }
+
+    func updateView() {
+        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+        presenter.updateView()
+    }
+
+    func getTitle(for item: MyXTeamSettingsModel.Setting) -> String? {
+        switch item {
+        case .teamName:
+            return ""
+        case .teamMembers:
+            return AppTextService.get(.settings_team_settings_team_members)
+        case .leaveTeam:
+            return AppTextService.get(.settings_team_settings_leave_team)
+        case .deleteTeam:
+            return AppTextService.get(.settings_team_settings_delete_team)
+        }
+    }
+
+    func getSubtitle(for item: MyXTeamSettingsModel.Setting) -> String? {
+        switch item {
+        case .leaveTeam:
+            return AppTextService.get(.settings_team_settings_leave_team_subtitle)
+        case .deleteTeam:
+            return AppTextService.get(.settings_team_settings_delete_team_subtitle)
+        default: return nil
         }
     }
 }
@@ -116,12 +157,36 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         return currentTeam
     }
 
-    func settingItems() -> [MyXTeamSettingsModel.Setting] {
+    func getSettingItems() -> [MyXTeamSettingsModel.Setting] {
         return MyXTeamSettingsModel.Setting.items(is: canEdit)
     }
 
-    func settingItem(at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting {
+    func getSettingItem(at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting {
         return MyXTeamSettingsModel.Setting.item(is: canEdit, at: indexPath)
+    }
+
+     func getTeamName() -> String {
+         return teamHeaderItems.filter { $0.selected }.first?.title ?? ""
+     }
+
+    func getTeamId() -> String {
+         return teamHeaderItems.filter { $0.selected }.first?.teamId ?? ""
+     }
+
+     func getTeamColor() -> String {
+         return teamHeaderItems.filter { $0.selected }.first?.color ?? ""
+     }
+
+     func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void) {
+         worker.getTeamColors(completion)
+     }
+
+    func getTitleForItem(at indexPath: IndexPath) -> String {
+        return getTitle(for: getSettingItems().at(index: indexPath.row) ?? .teamName) ?? ""
+    }
+
+    func getSubtitleForItem(at indexPath: IndexPath) -> String {
+        return getSubtitle(for: getSettingItems().at(index: indexPath.row) ?? .teamName) ?? ""
     }
 
     func updateSelectedTeam(teamId: String) {
@@ -130,16 +195,14 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         }
         worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
             self?.currentTeam = selectedTeam
-            self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
-            self?.presenter.updateView()
+            self?.updateView()
         }
     }
 
     func updateSelectedTeam(teamColor: String) {
         teamHeaderItems.filter { $0.selected }.first?.color = teamColor
-        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-        presenter.updateView()
         worker.updateTeamColor(teamId: getTeamId(), teamColor: teamColor)
+        updateView()
     }
 
     func updateTeams() {
@@ -148,67 +211,23 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
                 self?.updateSelectedTeam(teamId: teamId)
             }
             self?.teamHeaderItems = teamHeaderItems
-            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-            self?.presenter.updateView()
+            self?.updateView()
         }
     }
 
-    func getTeamName() -> String {
-        return teamHeaderItems.filter { $0.selected }.first?.title ?? ""
-    }
-
-   func getTeamId() -> String {
-        return teamHeaderItems.filter { $0.selected }.first?.teamId ?? ""
-    }
-
-    func getTeamColor() -> String {
-        return teamHeaderItems.filter { $0.selected }.first?.color ?? ""
-    }
-
-    func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void) {
-        worker.getTeamColors(completion)
-    }
-
     func deleteTeam(team: QDMTeam) {
-        worker.deleteTeam(team) { teams, _, error in
-            self.updateTeams()
+        worker.deleteTeam(team) { [weak self] (teams, _, _) in
+            if teams?.isEmpty == true {
+                self?.presenter.dismiss()
+            } else {
+                self?.handleRemoveOrLeaveTeam()
+            }
         }
     }
 
     func leaveTeam(team: QDMTeam) {
-        worker.leaveTeam(team: team) { _ in
-            self.updateTeams()
-        }
-    }
-
-    func titleForItem(at indexPath: IndexPath) -> String {
-        return title(for: settingItems().at(index: indexPath.row) ?? .teamName) ?? ""
-    }
-
-    func subtitleForItem(at indexPath: IndexPath) -> String {
-        return subtitle(for: settingItems().at(index: indexPath.row) ?? .teamName) ?? ""
-    }
-
-    private func title(for item: MyXTeamSettingsModel.Setting) -> String? {
-        switch item {
-        case .teamName:
-            return ""
-        case .teamMembers:
-            return AppTextService.get(.settings_team_settings_team_members)
-        case .leaveTeam:
-            return AppTextService.get(.settings_team_settings_leave_team)
-        case .deleteTeam:
-            return AppTextService.get(.settings_team_settings_delete_team)
-        }
-    }
-
-    private func subtitle(for item: MyXTeamSettingsModel.Setting) -> String? {
-        switch item {
-        case .leaveTeam:
-            return AppTextService.get(.settings_team_settings_leave_team_subtitle)
-        case .deleteTeam:
-            return AppTextService.get(.settings_team_settings_delete_team_subtitle)
-        default: return nil
+        worker.leaveTeam(team: team) { [weak self] _ in
+            self?.handleRemoveOrLeaveTeam()
         }
     }
 
