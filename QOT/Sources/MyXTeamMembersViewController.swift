@@ -22,6 +22,10 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
     private var rightBarButtonItems = [UIBarButtonItem]()
 
+    var rightBarButtonItem: [UIBarButtonItem] {
+        return interactor.canEdit ? [addMembersButton] : []
+    }
+
     private lazy var addMembersButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(addMembers))
         let title = AppTextService.get(.settings_team_settings_team_members_add_members)
@@ -45,13 +49,13 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        updateBottomNavigation([backNavigationItem()], [addMembersButton])
+        updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
         setStatusBar(color: .carbon)
         interactor.refreshView()
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [addMembersButton]
+        return rightBarButtonItem
     }
 }
 
@@ -87,6 +91,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
     }
 
     func updateView() {
+        updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
         tableView.reloadData()
     }
 }

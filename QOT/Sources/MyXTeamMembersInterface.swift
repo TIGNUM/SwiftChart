@@ -25,6 +25,7 @@ protocol MyXTeamMembersInteractorInterface: Interactor {
     var rowCount: Int { get }
     var teamMembersText: String { get }
     var selectedTeam: QDMTeam? { get }
+    var canEdit: Bool { get }
 
     func removeMember(at indexPath: IndexPath)
     func reinviteMember(at indexPath: IndexPath)

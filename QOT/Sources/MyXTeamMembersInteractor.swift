@@ -59,12 +59,16 @@ private extension MyXTeamMembersInteractor {
 
 // MARK: - MyXTeamMembersInteractorInterface
 extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
+    var canEdit: Bool {
+        return currentTeam?.thisUserIsOwner == true
+    }
+
     var rowCount: Int {
         return membersList.count
     }
 
     var selectedTeam: QDMTeam? {
-        return self.currentTeam
+        return currentTeam
     }
 
     func getMember(at indexPath: IndexPath) -> TeamMember? {
