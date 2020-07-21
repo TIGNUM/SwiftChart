@@ -32,17 +32,19 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
 
     func updateSelectedTeam(teamId: String)
     func updateSelectedTeam(teamColor: String)
+    func updateTeams()
+
     func getTeamName() -> String
     func getTeamId() -> String
     func getTeamColor() -> String
     func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void)
-    func updateTeams()
+    func getTitleForItem(at indexPath: IndexPath) -> String
+    func getSubtitleForItem(at indexPath: IndexPath) -> String
+    func getSettingItems() -> [MyXTeamSettingsModel.Setting]
+    func getSettingItem(at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting
+
     func deleteTeam(team: QDMTeam)
     func leaveTeam(team: QDMTeam)
-    func titleForItem(at indexPath: IndexPath) -> String
-    func subtitleForItem(at indexPath: IndexPath) -> String
-    func settingItems() -> [MyXTeamSettingsModel.Setting]
-    func settingItem(at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting
     func handleTap(setting: MyXTeamSettingsModel.Setting)
 }
 
