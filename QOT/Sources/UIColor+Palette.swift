@@ -24,7 +24,7 @@ extension UIColor {
         var b: CGFloat = 0
         var a: CGFloat = 0
         getRed(&r, green: &g, blue: &b, alpha: &a)
-        return String(format: "#%02X%02X%02X",
+        return String(format: "#%02X%02X%02X%02X",
                       Int(round(r * 255)),
                       Int(round(g * 255)),
                       Int(round(b * 255)),

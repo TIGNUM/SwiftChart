@@ -12,10 +12,10 @@ final class ColorPicker: UIView {
 
     enum Color: Int, CaseIterable {
         case pink = 0
-        case purple
-        case green
-        case yellow
-        case blue
+        case purple = 1
+        case green = 2
+        case yellow = 3
+        case blue = 4
     }
 
     private var skeletonManager = SkeletonManager()
@@ -132,9 +132,9 @@ private extension ColorPicker {
                 self.trailingConstraintBlue.constant = 0
                 self.labelContainer.alpha = 1
                 self.layoutIfNeeded()
-            }) { (_) in
+            }, completion: { _ in
                 self.postTeamColor(self.selectedColor)
-            }
+            })
         } else {
             UIView.animate(withDuration: Animation.duration_03) {
                 self.labelContainer.alpha = 0
