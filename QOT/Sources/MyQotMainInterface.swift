@@ -14,13 +14,13 @@ protocol MyQotMainViewControllerInterface: class {
     func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
     func reload()
     func setupView()
-    func updateTeamHeader(teamHeaderItems: [Team.Item])
+//    func updateTeamHeader(teamHeaderItems: [Team.Item])
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
     func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
-    func updateTeamHeader(teamHeaderItems: [Team.Item])
+//    func updateTeamHeader(teamHeaderItems: [Team.Item])
     func reload()
 }
 

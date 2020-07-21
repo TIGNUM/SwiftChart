@@ -11,6 +11,7 @@ import qot_dal
 
 protocol MyVisionEditDetailsControllerInterface: class {
     func setupView(title: String, vision: String)
+
 }
 
 protocol MyVisionEditDetailsPresenterInterface {

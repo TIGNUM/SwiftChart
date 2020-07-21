@@ -74,10 +74,10 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         interactor.presentTeamPendingInvites()
     }
 
-    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
-        self.teamHeaderItems = teamHeaderItems
-        reload()
-    }
+//    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
+//        self.teamHeaderItems = teamHeaderItems
+//        reload()
+//    }
 }
 
 // MARK: - MyQotMainViewControllerInterface

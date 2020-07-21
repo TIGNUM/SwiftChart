@@ -71,6 +71,7 @@ final class MyVisionEditDetailsWorker {
         TeamService.main.updateTeamToBevision(vision: newVision) { [weak self] vision, error  in
 //             self.updateWidget() ?
             self?.getTeamToBeVision(for: self?.team)
+            completion(error)
         }
     }
 

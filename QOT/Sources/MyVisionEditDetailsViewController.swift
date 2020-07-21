@@ -40,10 +40,6 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
         trackPage()
     }
 
-    private func dismissController() {
-        dismiss(animated: true, completion: nil)
-    }
-
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self)
     }
@@ -69,6 +65,10 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
         UIView.animate(withDuration: Animation.duration_06, animations: {
             self.view.layoutIfNeeded()
         })
+    }
+
+    func dismissController() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

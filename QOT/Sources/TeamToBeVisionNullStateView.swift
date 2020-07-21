@@ -27,7 +27,7 @@ final class TeamToBeVisionNullStateView: UIView {
     func setupView(with header: String, message: String, writeMessage: String, delegate: TeamToBeVisionNullStateViewProtocol?) {
         self.delegate = delegate
         ThemeView.level2.apply(self)
-        ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_qot_my_tbv_section_header_title), to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_x_team_tbv_section_header_title), to: toBeVisionLabel)
         writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(writeMessage), for: .normal)
         ThemeBorder.accent40.apply(writeButton)
         ThemeText.tbvHeader.apply(header, to: headerLabel)
