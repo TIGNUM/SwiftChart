@@ -20,7 +20,7 @@ protocol WorkerTeam {
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
-    func getTeamColors(_ completion: @escaping ([UIColor]) -> Void)
+    func getTeamColors(_ completion: @escaping ([String]) -> Void)
 
     func getRandomTeamColor(_ completion: @escaping (String) -> Void)
 
@@ -135,12 +135,9 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamColors(_ completion: @escaping ([UIColor]) -> Void) {
+    func getTeamColors(_ completion: @escaping ([String]) -> Void) {
         getConfig { (config) in
-            let colors = config?.availableTeamColors.compactMap { (hexColor) -> UIColor in
-                return UIColor(hex: hexColor)
-            }
-            completion(colors ?? [])
+            completion(config?.availableTeamColors ?? [])
         }
     }
 
@@ -166,7 +163,9 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(team, error)
-            NotificationCenter.default.post(name: .didEditTeamName, object: nil, userInfo: [team?.qotId: team?.name])
+            NotificationCenter.default.post(name: .didEditTeamName,
+                                            object: nil,
+                                            userInfo: [team?.qotId: team?.name ?? ""])
         }
     }
 
