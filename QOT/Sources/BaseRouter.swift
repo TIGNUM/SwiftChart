@@ -106,7 +106,6 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-
     func presentMailComposer(recipients: [String], subject: String) {
         if MFMailComposeViewController.canSendMail() == true {
             let composer = MFMailComposeViewController()
