@@ -81,8 +81,12 @@ extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
         tableView.tableFooterView = UIView()
     }
 
-    func reload() {
-        tableView.reloadData()
+    func reload(shouldDismiss: Bool) {
+        if shouldDismiss {
+            didTapBackButton()
+        } else {
+            tableView.reloadData()
+        }
     }
 }
 

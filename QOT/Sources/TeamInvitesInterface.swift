@@ -11,12 +11,12 @@ import qot_dal
 
 protocol TeamInvitesViewControllerInterface: class {
     func setupView()
-    func reload()
+    func reload(shouldDismiss: Bool)
 }
 
 protocol TeamInvitesPresenterInterface {
     func setupView()
-    func reload()
+    func reload(shouldDismiss: Bool)
 }
 
 protocol TeamInvitesInteractorInterface: Interactor {
