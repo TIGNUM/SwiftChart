@@ -82,9 +82,10 @@ extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
     }
 
     func reload(shouldDismiss: Bool) {
-        tableView.reloadData()
         if shouldDismiss {
-            router.dismiss()
+            didTapBackButton()
+        }  else {
+            tableView.reloadData()
         }
     }
 }

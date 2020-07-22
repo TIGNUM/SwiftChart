@@ -40,10 +40,6 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
         trackPage()
     }
 
-    private func dismissController() {
-        dismiss(animated: true, completion: nil)
-    }
-
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self)
     }
@@ -69,6 +65,10 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
         UIView.animate(withDuration: Animation.duration_06, animations: {
             self.view.layoutIfNeeded()
         })
+    }
+
+    func dismissController() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -150,7 +150,34 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
     func didSave() {
         view.endEditing(true)
         trackUserEvent(.CONFIRM, valueType: "EditMyToBeVision", action: .TAP)
-        guard let toBeVision = interactor?.myVision else {
+        guard let team = interactor?.team else {
+            guard let toBeVision = interactor?.myVision else {
+                UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
+                    guard let newVision = vision, let finalVision = self?.getVision(for: newVision) else { return }
+                    self?.interactor?.updateMyToBeVision(finalVision, {[weak self] (error) in
+                        self?.dismissController()
+                    })
+                }
+                return
+            }
+
+            let myVision = getVision(for: toBeVision)
+            interactor?.updateMyToBeVision(myVision, {[weak self] (error) in
+                self?.dismissController()
+            })
+            return
+        }
+        guard let teamVision = interactor?.teamVision else {
+            TeamService.main.createTeamToBeVision(headline: "",
+                                                  subHeadline: "",
+                                                  text: "",
+                                                  for: team, { [weak self] (teamVision, _, error) in
+                                                    guard let newTeamVision = teamVision, let finalTeamVision = self?.getTeamVision(for: newTeamVision) else { return }
+                                                    self?.interactor?.updateTeamToBeVision(finalTeamVision, { [weak self] (error) in
+                                                        self?.dismissController()
+                                                    })
+
+            })
             UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
                 guard let newVision = vision, let finalVision = self?.getVision(for: newVision) else { return }
                 self?.interactor?.updateMyToBeVision(finalVision, {[weak self] (error) in
@@ -159,8 +186,8 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
             }
             return
         }
-        let myVision = getVision(for: toBeVision)
-        interactor?.updateMyToBeVision(myVision, {[weak self] (error) in
+        let teamToBeVision = getTeamVision(for: teamVision)
+        interactor?.updateTeamToBeVision(teamToBeVision, {[weak self] (error) in
             self?.dismissController()
         })
     }
@@ -171,5 +198,13 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
         myVision.text = descriptionTextView.text.trimmingCharacters(in: .whitespaces)
         myVision.modifiedAt = Date()
         return myVision
+    }
+
+    private func getTeamVision(for teamToBeVision: QDMTeamToBeVision) -> QDMTeamToBeVision {
+        var teamVision = teamToBeVision
+        teamVision.headline = titleTextView.text.trimmingCharacters(in: .whitespaces)
+        teamVision.text = descriptionTextView.text.trimmingCharacters(in: .whitespaces)
+        teamVision.modifiedAt = Date()
+        return teamVision
     }
 }
