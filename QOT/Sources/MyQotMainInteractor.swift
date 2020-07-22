@@ -217,7 +217,7 @@ extension MyQotMainInteractor {
 
     func updateMyX() {
         worker.getTeamItems { (teamItems) in
-            self.worker.getBodyElements(team: self.currentTeam) { (bodyElements) in
+            self.worker.getBodyElements { (bodyElements) in
                 self.worker.getTeamHeaderItems { (teamHeaderItems) in
                     self.bodyElements = bodyElements
                     self.teamItems = teamItems.teamHeaderItems

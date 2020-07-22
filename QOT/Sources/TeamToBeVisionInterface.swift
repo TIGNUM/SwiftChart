@@ -26,7 +26,7 @@ protocol TeamToBeVisionPresenterInterface {
     func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
 }
 
-protocol TeamToBeVisionViewControllerScrollViewDelegate : class {
+protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
     func scrollToTop(_ animated: Bool)
 }
 
@@ -42,7 +42,8 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     var emptyTeamTBVTextPlaceholder: String { get }
     var team: QDMTeam? { get }
     var nullStateCTA: String? { get }
-    func lastUpdatedVision() -> String?
+    func lastUpdatedTeamVision() -> String?
+
 }
 
 protocol TeamToBeVisionRouterInterface {

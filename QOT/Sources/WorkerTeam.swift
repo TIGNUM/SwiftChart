@@ -10,6 +10,7 @@ import Foundation
 import qot_dal
 
 protocol WorkerTeam {
+
     func canCreateTeam(_ completion: @escaping (Bool) -> Void)
 
     func getMaxChars(_ completion: @escaping (Int) -> Void)
@@ -47,9 +48,14 @@ protocol WorkerTeam {
     func removeMember(member: QDMTeamMember, _ completion: @escaping () -> Void)
 
     func reInviteMember(member: QDMTeamMember, _ completion: @escaping (QDMTeamMember?) -> Void)
+
+    func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void)
+
+    func updateTeamToBeVision(_ new: QDMTeamToBeVision, team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void)
 }
 
 extension WorkerTeam {
+
     func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
         getConfig { (config) in
             if let config = config {
@@ -238,6 +244,26 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(member)
+        }
+    }
+
+    func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
+        TeamService.main.getTeamToBevision(for: team) { (teamVision, _, error) in
+            if let error = error {
+                log("Error getTeamToBevision: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(teamVision)
+        }
+    }
+
+    func updateTeamToBeVision(_ new: QDMTeamToBeVision, team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
+        TeamService.main.updateTeamToBevision(vision: new) { (vision, error)  in
+            if let error = error {
+                log("Error updateTeamToBevision: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(vision)
         }
     }
 }

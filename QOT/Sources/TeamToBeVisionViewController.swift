@@ -223,7 +223,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         doubleMessageRatingView.isHidden = true
         warningImageView.isHidden = true
 
-        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
+        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedTeamVision(), to: lastUpdatedLabel)
         ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle),
                                   to: lastUpdatedComment)
     }

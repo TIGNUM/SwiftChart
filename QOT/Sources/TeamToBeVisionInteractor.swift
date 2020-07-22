@@ -35,13 +35,12 @@ final class TeamToBeVisionInteractor {
 
     private func didUpdateTBVRelatedData() {
         guard let team = team else { return }
-        worker.getTeamToBeVision(for: team) { [weak self] (_, teamVision) in
+        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
 //            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
                 self?.presenter.load(teamVision,
                                      rateText: "",
                                      isRateEnabled: false,
                                      shouldShowSingleMessageRating: true)
-//                self?.worker.updateWidget()
             }
 //        }
     }
@@ -52,7 +51,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
 
     func showEditVision(isFromNullState: Bool) {
         guard let team = team else { return }
-        worker.getTeamToBeVision(for: team) { (_, teamVision) in
+        worker.getTeamToBeVision(for: team) { (teamVision) in
             self.router.showEditVision(title: teamVision?.headline ?? "",
                                        vision: teamVision?.text ?? "",
                                        isFromNullState: isFromNullState,
@@ -70,7 +69,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
 
     func saveToBeVision(image: UIImage?) {
         guard let team = team else { return }
-        worker.getTeamToBeVision(for: team) { [weak self] (_, teamVision) in
+        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
             if var teamVision = teamVision {
                 teamVision.modifiedAt = Date()
                 if let teamVisionImage = image {
@@ -112,7 +111,24 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         return worker.emptyTeamTBVTextPlaceholder
     }
 
-    func lastUpdatedVision() -> String? {
-        return worker.lastUpdatedTeamVision()
+    func lastUpdatedTeamVision() -> String? {
+        var lastUpdatedVision = ""
+        guard let team = team else { return nil }
+        worker.getTeamToBeVision(for: team) { (teamVision) in
+            guard let date = teamVision?.date?.beginingOfDate() else { return }
+            let days = DateComponentsFormatter.numberOfDays(date)
+            lastUpdatedVision = self.dateString(for: days)
+        }
+        return lastUpdatedVision
+    }
+
+    private func dateString(for day: Int) -> String {
+        if day == 0 {
+            return "Today"
+        } else if day == 1 {
+            return "Yesterday"
+        } else {
+            return String(day) + " Days"
+        }
     }
 }
