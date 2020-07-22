@@ -68,6 +68,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         userImageView.gradientBackground(top: false)
         shareButton.isHidden = true
         showNullState(with: " ", message: " ", writeMessage: "")
+        showSkeleton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
