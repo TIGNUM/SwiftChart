@@ -32,11 +32,10 @@ final class TeamInvitesInteractor {
         addObservers()
         presenter.setupView()
         worker.getInviteHeader { [weak self] (header) in
+            self?.maxTeamCount = header.maxTeams
+            self?.inviteHeader = header
             self?.setTeamAttributes {
-                self?.maxTeamCount = header.maxTeams
-                self?.inviteHeader = header
-                self?.setPendingInvites()
-                self?.presenter.reload()
+                self?.reload()
             }
         }
     }
@@ -59,7 +58,7 @@ private extension TeamInvitesInteractor {
         if let teamInvite = notification.object as? QDMTeamInvitation {
             worker.joinTeamInvite(teamInvite) { [weak self] (teams) in
                 self?.setTeamAttributes {
-                    //TODO update view
+                    self?.reload()
                 }
             }
         }
@@ -69,7 +68,7 @@ private extension TeamInvitesInteractor {
         if let teamInvite = notification.object as? QDMTeamInvitation {
             worker.declineTeamInvite(teamInvite) { [weak self] (teams) in
                 self?.setTeamAttributes {
-                    //TODO update view
+                    self?.reload()
                 }
             }
         }
@@ -83,6 +82,11 @@ private extension TeamInvitesInteractor {
                 completion()
             }
         }
+    }
+
+    func reload() {
+        setPendingInvites()
+        presenter.reload()
     }
 
     func setPendingInvites() {
