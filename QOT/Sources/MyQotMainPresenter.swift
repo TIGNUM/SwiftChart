@@ -34,8 +34,4 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
     func reload() {
         viewController?.reload()
     }
-
-//    func updateTeamHeader(teamHeaderItems: [Team.Item]) {
-//        viewController?.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-//    }
 }

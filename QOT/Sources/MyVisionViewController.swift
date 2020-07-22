@@ -223,54 +223,53 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
               rateText: String?,
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
+        if myVision == nil {
+            interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "", writeMessage: interactor.nullStateCTA ?? "")
+            return
+        }
+        if scrollView.alpha == 0 {
+            UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
+        }
+        skeletonManager.hide()
+        interactor.hideNullState()
 
-            if myVision == nil {
-                interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "", writeMessage: interactor.nullStateCTA ?? "")
-                return
-            }
-            if scrollView.alpha == 0 {
-                UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
-            }
-            skeletonManager.hide()
-            interactor.hideNullState()
+        interactor.isShareBlocked { [weak self] (hidden) in
+            self?.shareButton.isHidden = hidden
+        }
 
-            interactor.isShareBlocked { [weak self] (hidden) in
-                self?.shareButton.isHidden = hidden
-            }
+        var headline = myVision?.headline
+        if headline?.isEmpty != false {
+            headline = interactor.emptyTBVTitlePlaceholder
+        }
+        ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
+        let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor.emptyTBVTextPlaceholder
+        detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
 
-            var headline = myVision?.headline
-            if headline?.isEmpty != false {
-                headline = interactor.emptyTBVTitlePlaceholder
-            }
-            ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
-            let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor.emptyTBVTextPlaceholder
-            detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
+        tempImageURL = myVision?.profileImageResource?.url()
+        userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
+        userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
+        removeGradients()
+        addGradients(for: myVision)
 
-            tempImageURL = myVision?.profileImageResource?.url()
-            userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
-            userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
-            removeGradients()
-            addGradients(for: myVision)
+        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
+        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
 
-            ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
-            ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
+        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_track_subtiitle),
+                                  to: lastRatedComment)
 
-            ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_track_subtiitle),
-                                      to: lastRatedComment)
+        rateButton.isEnabled = isRateEnabled
+        singleMessageRateButton.isEnabled = isRateEnabled
+        if let shouldShowSingleMessage = shouldShowSingleMessageRating {
+            singleMessageRatingView.isHidden = !shouldShowSingleMessage
+            doubleMessageRatingView.isHidden = shouldShowSingleMessage
+        } else {
+            singleMessageRatingView.isHidden = true
+            doubleMessageRatingView.isHidden = true
+        }
 
-            rateButton.isEnabled = isRateEnabled
-            singleMessageRateButton.isEnabled = isRateEnabled
-            if let shouldShowSingleMessage = shouldShowSingleMessageRating {
-                singleMessageRatingView.isHidden = !shouldShowSingleMessage
-                doubleMessageRatingView.isHidden = shouldShowSingleMessage
-            } else {
-                singleMessageRatingView.isHidden = true
-                doubleMessageRatingView.isHidden = true
-            }
-
-            interactor.shouldShowWarningIcon { [weak self] (show) in
-                self?.warningImageView.isHidden = !show
-            }
+        interactor.shouldShowWarningIcon { [weak self] (show) in
+            self?.warningImageView.isHidden = !show
+        }
         ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
         ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle),
                                   to: lastUpdatedComment)

@@ -115,5 +115,4 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     func lastUpdatedVision() -> String? {
         return worker.lastUpdatedTeamVision()
     }
-
 }

@@ -11,7 +11,7 @@ import qot_dal
 
 final class MyQotMainWorker: WorkerTeam {
 
-    func getBodyElements(team: QDMTeam?, _ completion: @escaping (MyX) -> Void) {
+    func getBodyElements( _ completion: @escaping (MyX) -> Void) {
         let items = MyX.Element.allCases.compactMap { (element) -> MyX.Item in
             return MyX.Item(element: element, title: element.title, subtitle: "")
         }

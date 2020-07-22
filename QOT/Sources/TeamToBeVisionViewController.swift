@@ -14,29 +14,29 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     // MARK: - Properties
     var interactor: TeamToBeVisionInteractorInterface!
     private lazy var router: TeamToBeVisionRouterInterface = TeamToBeVisionRouter(viewController: self)
-    @IBOutlet weak var teamNullStateView: TeamToBeVisionNullStateView!
-    @IBOutlet weak var navigationBarView: TeamToBeVisionNavigationBarView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var imageContainerView: UIView!
-    @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var warningImageView: UIImageView!
-    @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var cameraButton: UIButton!
-    @IBOutlet weak var toBeVisionLabel: UILabel!
-    @IBOutlet weak var singleMessageRatingView: UIView!
-    @IBOutlet weak var doubleMessageRatingView: UIView!
-    @IBOutlet weak var rateButton: UIButton!
-    @IBOutlet weak var singleMessageRateButton: UIButton!
-    @IBOutlet weak var updateButton: UIButton!
-    @IBOutlet weak var lastUpdatedLabel: UILabel!
-    @IBOutlet weak var lastUpdatedComment: UILabel!
-    @IBOutlet weak var lastRatedLabel: UILabel!
-    @IBOutlet weak var lastRatedComment: UILabel!
-    @IBOutlet weak var singleMessageRatingLabel: UILabel!
-    @IBOutlet weak var detailTextView: UITextView!
-    @IBOutlet weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
-    @IBOutlet weak var teamNullStateImageView: UIImageView!
+    @IBOutlet private weak var teamNullStateView: TeamToBeVisionNullStateView!
+    @IBOutlet private weak var navigationBarView: TeamToBeVisionNavigationBarView!
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var imageContainerView: UIView!
+    @IBOutlet private weak var userImageView: UIImageView!
+    @IBOutlet private weak var warningImageView: UIImageView!
+    @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var cameraButton: UIButton!
+    @IBOutlet private weak var toBeVisionLabel: UILabel!
+    @IBOutlet private weak var singleMessageRatingView: UIView!
+    @IBOutlet private weak var doubleMessageRatingView: UIView!
+    @IBOutlet private weak var rateButton: UIButton!
+    @IBOutlet private weak var singleMessageRateButton: UIButton!
+    @IBOutlet private weak var updateButton: UIButton!
+    @IBOutlet private weak var lastUpdatedLabel: UILabel!
+    @IBOutlet private weak var lastUpdatedComment: UILabel!
+    @IBOutlet private weak var lastRatedLabel: UILabel!
+    @IBOutlet private weak var lastRatedComment: UILabel!
+    @IBOutlet private weak var singleMessageRatingLabel: UILabel!
+    @IBOutlet private weak var detailTextView: UITextView!
+    @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var teamNullStateImageView: UIImageView!
 
     var didShowNullStateView = false
     private let containerViewSize: CGFloat = 232.0
@@ -105,7 +105,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @IBAction func writeButtonAction(_ sender: Any) {
-        trackUserEvent(.OPEN, valueType: "WritwTeamBeVision", action: .TAP)
+        trackUserEvent(.OPEN, valueType: "WriteTeamBeVision", action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
 }
@@ -310,7 +310,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionNullStateViewProtocol {
         trackUserEvent(.OPEN, valueType: "CreateNewToBeVisionFromNullState", action: .TAP)
         interactor.showEditVision(isFromNullState: true)
     }
-
 }
 
 extension TeamToBeVisionViewController: TeamToBeVisionNavigationBarViewProtocol {
