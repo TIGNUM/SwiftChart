@@ -14,6 +14,8 @@ final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelOve
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var saveButton: RoundedButton!
+    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
+
     var interactor: BookMarkSelectionInteractorInterface?
 
     override func viewDidLoad() {
@@ -29,6 +31,17 @@ final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelOve
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        // if table view is too long
+        let tableViewCellHeight: CGFloat = 75
+        let maxTableViewHeight = view.frame.size.height * 0.5
+        var expectedTableViewHeight = CGFloat(interactor?.viewModels.count ?? 0) * tableViewCellHeight
+        if expectedTableViewHeight > maxTableViewHeight {
+            expectedTableViewHeight = maxTableViewHeight
+        }
+        if tableViewHeightConstraint.constant != expectedTableViewHeight {
+            tableViewHeightConstraint.constant = expectedTableViewHeight
+            tableView.needsUpdateConstraints()
+        }
     }
 }
 
@@ -38,10 +51,8 @@ private extension BookMarkSelectionViewController {
 
     func setupView() {
         tableView?.registerDequeueable(BookMarkSelectionCell.self)
-        titleLabel.text = "CHOOSE A LIBRARY" // FIXME: use appText
-        ThemableButton.fullscreenVideoPlayerDownload.apply(saveButton, title: "Save") // FIXME: use appText
-
-        // FIXME: set styles
+        ThemeText.myLibraryGroupName.apply(interactor?.headerTitle ?? "CHOOSE A LIBRARY", to: titleLabel)
+        ThemableButton.myLibrary.apply(saveButton, title: interactor?.saveButtonTitle ?? "Save")
     }
 }
 
@@ -68,6 +79,7 @@ private extension BookMarkSelectionViewController {
 extension BookMarkSelectionViewController: BookMarkSelectionViewControllerInterface {
     func loadData() {
         tableView?.reloadData()
+        view.setNeedsLayout()
     }
 }
 
@@ -89,11 +101,13 @@ extension BookMarkSelectionViewController: UITableViewDelegate, UITableViewDataS
             let model = viewModels.at(index: indexPath.row) else { return cell }
         // FIXME: set styles
         if let team = model.team {
-            cell.teamLibraryName.text = team.name
-            cell.participantsLabel.text = "\(team.memberCount)" // FIXME: use appText
+            ThemeText.myLibraryItemsTitle.apply(team.name, to: cell.teamLibraryName)
+            let membersString = String(format: interactor?.memberCountTemplateString ?? "%@", "\(team.memberCount)")
+            ThemeText.asterixText.apply(membersString, to: cell.participantsLabel)
+
         } else {
-            cell.teamLibraryName.text = "My Library" // FIXME: use appText
-            cell.participantsLabel.text = "Private" // FIXME: use appText
+            ThemeText.myLibraryItemsTitle.apply(interactor?.myLibraryCellTitle ?? "", to: cell.teamLibraryName)
+            ThemeText.asterixText.apply(interactor?.myLibraryCellSubtitle ?? "", to: cell.participantsLabel)
         }
         if model.isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)

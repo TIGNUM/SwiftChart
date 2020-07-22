@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3F-ZP-cHY">
+                            <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3F-ZP-cHY" userLabel="Container">
                                 <rect key="frame" x="0.0" y="484" width="414" height="412"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYY-Sp-hUv">
@@ -104,22 +104,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d8T-vh-jZG"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="QvN-t2-ETB" appends="YES" id="BZd-Gg-OPS"/>
                             <outletCollection property="gestureRecognizers" destination="q9o-wj-yKF" appends="YES" id="ALE-ta-k4h"/>
                         </connections>
                     </view>
                     <connections>
                         <outlet property="saveButton" destination="xW2-C6-2mT" id="rDX-Qr-BGm"/>
                         <outlet property="tableView" destination="W13-sz-lbR" id="htB-VQ-jp3"/>
+                        <outlet property="tableViewHeightConstraint" destination="T2V-jN-Hl6" id="6IA-9F-GeT"/>
                         <outlet property="titleLabel" destination="L8S-Hr-QiJ" id="phv-vv-lCC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeU-LW-mp5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="QvN-t2-ETB">
-                    <connections>
-                        <action selector="dismiss:" destination="AJS-5B-nb3" id="Ppz-Zy-8xC"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="down" id="q9o-wj-yKF">
                     <connections>
                         <action selector="dismiss:" destination="AJS-5B-nb3" id="68d-Lw-T50"/>

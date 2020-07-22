@@ -18,6 +18,12 @@ protocol BookMarkSelectionPresenterInterface {
 
 protocol BookMarkSelectionInteractorInterface: Interactor {
     var viewModels: [BookMarkSelectionModel] { get set }
+    var headerTitle: String { get }
+    var myLibraryCellTitle: String { get }
+    var myLibraryCellSubtitle: String { get }
+    var memberCountTemplateString: String { get }
+    var saveButtonTitle: String { get }
+
     func save()
     func dismiss()
     func didTapItem(index: Int)

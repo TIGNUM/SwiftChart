@@ -20,6 +20,26 @@ final class BookMarkSelectionInteractor {
     private let contentType: UserStorageContentType
     var viewModels = [BookMarkSelectionModel]()
 
+    lazy var headerTitle = {
+        AppTextService.get(.bookmark_library_selection_normal_header_title)
+    }()
+
+    lazy var myLibraryCellTitle = {
+        AppTextService.get(.bookmark_library_selection_normal_cell_my_library_title)
+    }()
+
+    lazy var myLibraryCellSubtitle = {
+        AppTextService.get(.bookmark_library_selection_normal_cell_my_library_subtitle)
+    }()
+
+    lazy var memberCountTemplateString = {
+        AppTextService.get(.bookmark_library_selection_normal_cell_participiant_count_template)
+    }()
+
+    lazy var saveButtonTitle = {
+        AppTextService.get(.bookmark_library_selection_normal_save_button_title)
+    }()
+
     // MARK: - Init
 
     init(contentId: Int,
@@ -51,6 +71,7 @@ extension BookMarkSelectionInteractor: BookMarkSelectionInteractorInterface {
         guard index < viewModels.count else { return }
         viewModels[index].isSelected = !viewModels[index].isSelected
     }
+
     func save() {
         worker.update(viewModels: viewModels) { [weak self] (isChanged) in
             self?.router.dismiss(isChanged)
