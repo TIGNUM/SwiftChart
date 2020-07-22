@@ -16,6 +16,7 @@ final class TeamToBeVisionInteractor {
     let router: TeamToBeVisionRouter
     private let presenter: TeamToBeVisionPresenterInterface!
     var team: QDMTeam?
+    var teamVision: QDMTeamToBeVision?
 
     // MARK: - Init
     init(presenter: TeamToBeVisionPresenterInterface, router: TeamToBeVisionRouter, team: QDMTeam?) {
@@ -36,6 +37,7 @@ final class TeamToBeVisionInteractor {
     private func didUpdateTBVRelatedData() {
         guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
+            self?.teamVision = teamVision
 //            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
                 self?.presenter.load(teamVision,
                                      rateText: "",
@@ -113,12 +115,9 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
 
     func lastUpdatedTeamVision() -> String? {
         var lastUpdatedVision = ""
-        guard let team = team else { return nil }
-        worker.getTeamToBeVision(for: team) { (teamVision) in
-            guard let date = teamVision?.date?.beginingOfDate() else { return }
-            let days = DateComponentsFormatter.numberOfDays(date)
-            lastUpdatedVision = self.dateString(for: days)
-        }
+        guard let date = teamVision?.date?.beginingOfDate() else { return ""}
+        let days = DateComponentsFormatter.numberOfDays(date)
+        lastUpdatedVision = self.dateString(for: days)
         return lastUpdatedVision
     }
 
