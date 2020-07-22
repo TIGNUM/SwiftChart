@@ -84,7 +84,7 @@ extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
     func reload(shouldDismiss: Bool) {
         if shouldDismiss {
             didTapBackButton()
-        }  else {
+        } else {
             tableView.reloadData()
         }
     }
