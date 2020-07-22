@@ -188,12 +188,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             case .preps: router.presentMyPreps()
             case .sprints: router.presentMySprints()
             case .data: router.presentMyDataScreen()
-            case .toBeVision:
-                if currentTeam == nil {
-                    router.showTBV(team: nil)
-                } else {
-                    router.showTBV(team: currentTeam)
-                }
+            case .toBeVision: router.showTBV(team: currentTeam)
             default: return
             }
         }
