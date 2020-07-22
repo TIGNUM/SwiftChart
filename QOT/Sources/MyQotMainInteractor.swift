@@ -108,12 +108,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func updateSelectedTeam(teamId: String) {
-        teamItems.forEach {(item) in
-            if item.selected && teamId == item.teamId {
-                item.selected = false
-            } else {
-                item.selected = teamId == item.teamId
-            }
+        teamItems.forEach { (item) in
+            item.selected = teamId == item.teamId && !item.selected
         }
         worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
             //            Deselecting if the item was already selected, goes back to Personal
