@@ -22,6 +22,6 @@ final class TeamInvitesRouter {
 // MARK: - TeamInvitesRouterInterface
 extension TeamInvitesRouter: TeamInvitesRouterInterface {
     func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.QOTVisibleViewController()?.dismiss(animated: true)
     }
 }

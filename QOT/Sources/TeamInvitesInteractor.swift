@@ -31,11 +31,9 @@ final class TeamInvitesInteractor {
     func viewDidLoad() {
         addObservers()
         presenter.setupView()
-        worker.getInviteHeader { [weak self] (header) in
-            self?.maxTeamCount = header.maxTeams
-            self?.inviteHeader = header
+        updateHeader { [weak self] in
             self?.setTeamAttributes {
-                self?.reload()
+                self?.updateItemsAndReload()
             }
         }
     }
@@ -57,8 +55,10 @@ private extension TeamInvitesInteractor {
     @objc func didSelectJoinTeam(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
             worker.joinTeamInvite(teamInvite) { [weak self] (teams) in
-                self?.setTeamAttributes {
-                    self?.reload()
+                self?.updateHeader { [weak self] in
+                    self?.setTeamAttributes {
+                        self?.updateItemsAndReload()
+                    }
                 }
             }
         }
@@ -67,8 +67,10 @@ private extension TeamInvitesInteractor {
     @objc func didSelectDeclineTeamInvite(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
             worker.declineTeamInvite(teamInvite) { [weak self] (teams) in
-                self?.setTeamAttributes {
-                    self?.reload()
+                self?.updateHeader { [weak self] in
+                    self?.setTeamAttributes {
+                        self?.updateItemsAndReload()
+                    }
                 }
             }
         }
@@ -84,14 +86,24 @@ private extension TeamInvitesInteractor {
         }
     }
 
-    func reload() {
-        setPendingInvites()
-        presenter.reload()
+    func updateItemsAndReload() {
+        worker.getTeamInvitations { [weak self] (qdmInvitations) in
+            self?.pendingInvites = qdmInvitations
+                .filter { $0.me?.status == .INVITED }
+                .compactMap { (invite) -> TeamInvite.Pending in
+                return TeamInvite.Pending(invite: invite,
+                                          canJoin: self?.canJoinTeam == true,
+                                          maxTeamCount: self?.maxTeamCount ?? 0)
+            }
+            self?.presenter.reload(shouldDismiss: self?.pendingInvites.isEmpty == true)
+        }
     }
 
-    func setPendingInvites() {
-        pendingInvites = qdmInvitations.compactMap { (invite) -> TeamInvite.Pending in
-            return TeamInvite.Pending(invite: invite, canJoin: canJoinTeam, maxTeamCount: maxTeamCount)
+    func updateHeader(_ completion: @escaping () -> Void) {
+        worker.getInviteHeader { [weak self] (header) in
+            self?.maxTeamCount = header.maxTeams
+            self?.inviteHeader = header
+            completion()
         }
     }
 }

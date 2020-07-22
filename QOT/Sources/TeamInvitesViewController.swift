@@ -81,8 +81,11 @@ extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
         tableView.tableFooterView = UIView()
     }
 
-    func reload() {
+    func reload(shouldDismiss: Bool) {
         tableView.reloadData()
+        if shouldDismiss {
+            router.dismiss()
+        }
     }
 }
 
