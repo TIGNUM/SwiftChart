@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TeamInvitesViewController: UIViewController {
+final class TeamInvitesViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
     var interactor: TeamInvitesInteractorInterface!

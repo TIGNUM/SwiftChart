@@ -47,12 +47,10 @@ private extension TeamInvitePendingTableViewCell {
     }
 
     func setupInfoLabel(_ date: Date, _ sender: String, _ memberCount: Int) {
-        let dateString = DateFormatter.teamInvite.string(from: date)
+        let dateString = "\n" + DateFormatter.teamInvite.string(from: date)
         let suffix = memberCount > 1 ? "s" : ""
-        inviteInfoLabel.text = String(format: AppTextService.get(.team_invite_details_text),
-                                      sender + "\n",
-                                      dateString,
-                                      memberCount) + suffix
+        let info = String(format: AppTextService.get(.team_invite_details_text), sender, dateString, memberCount)
+        ThemeText.MediumBodySand.apply(info + suffix, to: inviteInfoLabel)
     }
 
     func setupTeamLabel(_ name: String, _ color: String) {
@@ -71,10 +69,10 @@ private extension TeamInvitePendingTableViewCell {
 // MARK: - Actions
 extension TeamInvitePendingTableViewCell {
     @IBAction func didTabDecline() {
-        NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: pendingInvite)
+        NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: pendingInvite?.qdmInvite)
     }
 
     @IBAction func didTabJoin() {
-        NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: pendingInvite)
+        NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: pendingInvite?.qdmInvite)
     }
 }

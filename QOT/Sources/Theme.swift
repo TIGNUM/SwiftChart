@@ -871,6 +871,7 @@ enum ThemeText {
     case Text01LightCarbon100
     case Text02Light
     case Text03Light
+    case MediumBodySand
 
     private var font: UIFont {
         switch self {
@@ -963,7 +964,8 @@ enum ThemeText {
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
              .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .onboardingInfoBody, .paymentReminderHeaderSubtitle,
-             .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader, .mySensorsTitle, .H03Light:
+             .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader, .mySensorsTitle, .H03Light,
+             .MediumBodySand:
             return Fonts.fontMedium14
         case .articlePostTitle, .articlePostTitleNight:
             return Fonts.fontLight36
@@ -1073,7 +1075,8 @@ enum ThemeText {
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
-             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled:
+             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled,
+             .MediumBodySand:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -1242,7 +1245,7 @@ enum ThemeText {
                                         alignment: alignment ?? .left)
         case .strategySubHeader,
              .mySprintsTableHeader,
-             .shpiSubtitle, .featureTitle:
+             .shpiSubtitle, .featureTitle, .MediumBodySand:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color,
                                         alignment: alignment ?? .left)
