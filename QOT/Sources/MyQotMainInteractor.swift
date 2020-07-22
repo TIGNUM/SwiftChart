@@ -37,6 +37,10 @@ final class MyQotMainInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
     }
 }
 
@@ -104,13 +108,18 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func updateSelectedTeam(teamId: String) {
-       teamHeaderItems.forEach { (item) in
-            item.selected = (teamId == item.teamId)
+        teamItems.forEach { (item) in
+            item.selected = teamId == item.teamId && !item.selected
         }
         worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
-            self?.currentTeam = selectedTeam
-            self?.presenter.updateTeamHeader(teamHeaderItems: self?.teamHeaderItems ?? [])
-       }
+            //            Deselecting if the item was already selected, goes back to Personal
+            if teamId == self?.currentTeam?.qotId {
+                self?.currentTeam = nil
+                self?.updateMyX()
+            } else {
+                self?.currentTeam = selectedTeam
+            }
+        }
     }
 
     func presentMyProfile() {
@@ -235,13 +244,12 @@ extension MyQotMainInteractor {
                             var bodyItems: [MyX.Item] = []
                             let teamCreateSubtitle = AppTextService.get(.my_x_team_create_description)
                             bodyItems.append(strongSelf.getItem(in: .teamCreate,
-                                                                            subTitle: teamCreateSubtitle))
+                                                                    subTitle: teamCreateSubtitle))
                             bodyItems.append(strongSelf.getItem(in: .library))
                             bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
                             bodyItems.append(strongSelf.getItem(in: .sprints, subTitle: sprintName ?? ""))
                             bodyItems.append(strongSelf.createMyData(irScore: score))
                             bodyItems.append(strongSelf.createToBeVision(date: date))
-
                             var sections: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
                             sections.append(ArraySection(model: .teamHeader, elements: []))
                             sections.append(ArraySection(model: .body, elements: bodyItems))
