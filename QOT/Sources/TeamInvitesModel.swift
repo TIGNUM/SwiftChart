@@ -26,7 +26,7 @@ struct TeamInvite {
 
         func teamCounter(partOfTeams: Int) -> String {
             var text = String(format: AppTextService.get(.team_invite_content_count), partOfTeams)
-            if partOfTeams > 1 {
+            if partOfTeams != 1 {
                 text = text.replacingOccurrences(of: ".", with: "s.")
             }
             return text
