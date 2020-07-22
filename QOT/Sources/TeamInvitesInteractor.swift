@@ -15,13 +15,16 @@ final class TeamInvitesInteractor {
     private lazy var worker = TeamInvitesWorker()
     private let presenter: TeamInvitesPresenterInterface!
     private var inviteHeader: TeamInvite.Header?
-    private var invitations = [QDMTeamInvitation]()
-    private var teamCount = 0
+    private var qdmInvitations = [QDMTeamInvitation]()
+    private var pendingInvites = [TeamInvite.Pending]()
+    private var partOfTeams = 0
+    private var maxTeamCount = 0
+    private var canJoinTeam = true
 
     // MARK: - Init
     init(presenter: TeamInvitesPresenterInterface, invitations: [QDMTeamInvitation]) {
         self.presenter = presenter
-        self.invitations = invitations
+        self.qdmInvitations = invitations
     }
 
     // MARK: - Interactor
@@ -29,8 +32,10 @@ final class TeamInvitesInteractor {
         addObservers()
         presenter.setupView()
         worker.getInviteHeader { [weak self] (header) in
-            self?.setTeamCount {
+            self?.setTeamAttributes {
+                self?.maxTeamCount = header.maxTeams
                 self?.inviteHeader = header
+                self?.setPendingInvites()
                 self?.presenter.reload()
             }
         }
@@ -52,24 +57,37 @@ private extension TeamInvitesInteractor {
 
     @objc func didSelectJoinTeam(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
-            worker.joinTeamInvite(teamInvite) { (teams) in
-
+            worker.joinTeamInvite(teamInvite) { [weak self] (teams) in
+                self?.setTeamAttributes {
+                    //TODO update view
+                }
             }
         }
     }
 
     @objc func didSelectDeclineTeamInvite(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
-            worker.declineTeamInvite(teamInvite) { (teams) in
-
+            worker.declineTeamInvite(teamInvite) { [weak self] (teams) in
+                self?.setTeamAttributes {
+                    //TODO update view
+                }
             }
         }
     }
 
-    func setTeamCount(_ completion: @escaping () -> Void) {
+    func setTeamAttributes(_ completion: @escaping () -> Void) {
         worker.getTeams { [weak self] (teams) in
-            self?.teamCount = teams.count
-            completion()
+            self?.worker.canJoinTeam { (canJoinTeam) in
+                self?.canJoinTeam = canJoinTeam
+                self?.partOfTeams = teams.count
+                completion()
+            }
+        }
+    }
+
+    func setPendingInvites() {
+        pendingInvites = qdmInvitations.compactMap { (invite) -> TeamInvite.Pending in
+            return TeamInvite.Pending(invite: invite, canJoin: canJoinTeam, maxTeamCount: maxTeamCount)
         }
     }
 }
@@ -81,18 +99,21 @@ extension TeamInvitesInteractor: TeamInvitesInteractorInterface {
     }
 
     func rowCount(in section: Int) -> Int {
-        switch TeamInvite.Section(rawValue: section) {
+        switch TeamInvite.Section.allCases[section] {
         case .header: return 1
-        case .invite: return invitations.count
-        case .none: return 0
+        case .pendingInvite: return pendingInvites.count
         }
     }
 
-    func inviteItem(at row: Int) -> QDMTeamInvitation {
-        return invitations[row]
+    func section(at indexPath: IndexPath) -> TeamInvite.Section {
+        return TeamInvite.Section.allCases[indexPath.section]
+    }
+
+    func pendingInvites(at indexPath: IndexPath) -> TeamInvite.Pending? {
+        return pendingInvites.at(index: indexPath.row)
     }
 
     func headerItem() -> (header: TeamInvite.Header?, teamCount: Int) {
-        return (header: inviteHeader, teamCount: teamCount)
+        return (header: inviteHeader, teamCount: partOfTeams)
     }
 }

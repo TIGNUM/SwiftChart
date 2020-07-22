@@ -18,13 +18,4 @@ final class TeamInvitesWorker: WorkerTeam {
             completion(header)
         }
     }
-
-    func getInviteItems(_ completion: @escaping ([TeamInvite.Invitation]) -> Void) {
-        getTeamInvitations { (invitations) in
-            let items = invitations.compactMap { (invite) -> TeamInvite.Invitation in
-                return TeamInvite.Invitation(invite: invite)
-            }
-            completion(items)
-        }
-    }
 }

@@ -20,11 +20,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="219" id="7dw-Ng-80q" customClass="TeamInvitePendingTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="194"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="216" id="7dw-Ng-80q" customClass="TeamInvitePendingTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7dw-Ng-80q" id="nA4-bh-Gt3">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="194"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlb-4w-nIJ">
@@ -33,13 +33,13 @@
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invited by some@one.com 05. March | 23 Members Invited by some@one.com 05. March | 23 Members" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OT-RS-1Tr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Invited by some@one.com 05. March | 23 Members Invited by some@one.com 05. March | 23 Members" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OT-RS-1Tr">
                         <rect key="frame" x="24" y="64" width="366" height="34"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40370826199999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5t-js-Ocz">
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5t-js-Ocz">
                         <rect key="frame" x="311" y="122" width="79" height="40"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -57,6 +57,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kJ-qp-KOC">
                         <rect key="frame" x="216" y="122" width="79" height="40"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="R9w-Ey-lly"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                         <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                         <state key="normal" title="Button">
@@ -66,8 +69,17 @@
                             <action selector="didTabDecline" destination="7dw-Ng-80q" eventType="touchUpInside" id="qhN-TL-GUK"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You already belong to 3 teams." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMy-PQ-gev">
+                        <rect key="frame" x="24" y="170" width="366" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="IbH-1u-vQo"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1C-Q1-9WI">
-                        <rect key="frame" x="24" y="193" width="390" height="1"/>
+                        <rect key="frame" x="24" y="215" width="390" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="j6x-Z1-Nma"/>
@@ -77,11 +89,16 @@
                 <constraints>
                     <constraint firstItem="Z5t-js-Ocz" firstAttribute="top" secondItem="5OT-RS-1Tr" secondAttribute="bottom" constant="24" id="09v-s0-apz"/>
                     <constraint firstItem="Z5t-js-Ocz" firstAttribute="leading" secondItem="1kJ-qp-KOC" secondAttribute="trailing" constant="16" id="2OX-f5-S17"/>
-                    <constraint firstAttribute="bottom" secondItem="Z5t-js-Ocz" secondAttribute="bottom" constant="32" id="G84-Fh-9OW"/>
+                    <constraint firstItem="Z5t-js-Ocz" firstAttribute="bottom" secondItem="1kJ-qp-KOC" secondAttribute="bottom" id="GBC-OA-U85"/>
+                    <constraint firstItem="x1C-Q1-9WI" firstAttribute="top" secondItem="Z5t-js-Ocz" secondAttribute="bottom" priority="750" constant="32" id="GOF-v2-zNe"/>
                     <constraint firstAttribute="bottom" secondItem="x1C-Q1-9WI" secondAttribute="bottom" id="Kyt-ZZ-3mn"/>
                     <constraint firstAttribute="trailing" secondItem="nlb-4w-nIJ" secondAttribute="trailing" constant="24" id="SbN-ZF-ssH"/>
-                    <constraint firstAttribute="bottom" secondItem="1kJ-qp-KOC" secondAttribute="bottom" constant="32" id="T4C-EN-NZh"/>
+                    <constraint firstItem="FMy-PQ-gev" firstAttribute="top" secondItem="Z5t-js-Ocz" secondAttribute="bottom" constant="8" id="TqZ-Be-iZH"/>
+                    <constraint firstItem="x1C-Q1-9WI" firstAttribute="top" secondItem="FMy-PQ-gev" secondAttribute="bottom" constant="24" id="Z39-hl-xEB"/>
                     <constraint firstItem="x1C-Q1-9WI" firstAttribute="leading" secondItem="nA4-bh-Gt3" secondAttribute="leading" constant="24" id="auz-aS-PKh"/>
+                    <constraint firstAttribute="trailing" secondItem="FMy-PQ-gev" secondAttribute="trailing" constant="24" id="cKf-WY-eYl"/>
+                    <constraint firstItem="FMy-PQ-gev" firstAttribute="leading" secondItem="nA4-bh-Gt3" secondAttribute="leading" constant="24" id="e30-nb-7jY"/>
+                    <constraint firstItem="Z5t-js-Ocz" firstAttribute="top" secondItem="1kJ-qp-KOC" secondAttribute="top" id="fVl-wC-Y4d"/>
                     <constraint firstItem="Z5t-js-Ocz" firstAttribute="centerY" secondItem="1kJ-qp-KOC" secondAttribute="centerY" id="gMo-rP-7F1"/>
                     <constraint firstAttribute="trailing" secondItem="5OT-RS-1Tr" secondAttribute="trailing" constant="24" id="hqT-q0-UcT"/>
                     <constraint firstItem="nlb-4w-nIJ" firstAttribute="top" secondItem="nA4-bh-Gt3" secondAttribute="top" constant="32" id="iXv-KE-typ"/>
@@ -95,11 +112,13 @@
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="declineButton" destination="1kJ-qp-KOC" id="P0F-oH-SmC"/>
+                <outlet property="infoLabelHeightConstriant" destination="IbH-1u-vQo" id="qKY-7l-3tF"/>
                 <outlet property="inviteInfoLabel" destination="5OT-RS-1Tr" id="lRg-VV-sxL"/>
                 <outlet property="joinButton" destination="Z5t-js-Ocz" id="eM8-tt-Ff2"/>
+                <outlet property="maxTeamCountInfoLabel" destination="FMy-PQ-gev" id="kHY-Rd-DFf"/>
                 <outlet property="teamNameLabel" destination="nlb-4w-nIJ" id="v4U-ek-b73"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="566.85267857142856"/>
+            <point key="canvasLocation" x="137.68115942028987" y="572.87946428571422"/>
         </tableViewCell>
     </objects>
 </document>

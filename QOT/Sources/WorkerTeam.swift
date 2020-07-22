@@ -12,6 +12,8 @@ import qot_dal
 protocol WorkerTeam {
     func canCreateTeam(_ completion: @escaping (Bool) -> Void)
 
+    func canJoinTeam(_ completion: @escaping (Bool) -> Void)
+
     func getMaxChars(_ completion: @escaping (Int) -> Void)
 
     func getMaxTeamCount(_ completion: @escaping (Int) -> Void)
@@ -52,6 +54,10 @@ protocol WorkerTeam {
 }
 
 extension WorkerTeam {
+    func canJoinTeam(_ completion: @escaping (Bool) -> Void) {
+        canCreateTeam(completion)
+    }
+
     func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
         getMaxTeamCount { (max) in
             self.getTeams { (teams) in

@@ -23,7 +23,8 @@ protocol TeamInvitesInteractorInterface: Interactor {
     var sectionCount: Int { get }
 
     func rowCount(in section: Int) -> Int
-    func inviteItem(at row: Int) -> QDMTeamInvitation
+    func section(at indexPath: IndexPath) -> TeamInvite.Section
+    func pendingInvites(at indexPath: IndexPath) -> TeamInvite.Pending?
     func headerItem() -> (header: TeamInvite.Header?, teamCount: Int)
 }
 

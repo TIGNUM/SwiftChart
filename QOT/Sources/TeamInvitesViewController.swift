@@ -48,7 +48,24 @@ final class TeamInvitesViewController: UIViewController {
 
 // MARK: - Private
 private extension TeamInvitesViewController {
+    func headerCell(at indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
+        let cell: TeamInviteHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
+        let item = interactor.headerItem()
+        cell.configure(header: item.header?.title,
+                       content: item.header?.content,
+                       teamCount: item.header?.teamCounter(partOfTeams: item.teamCount),
+                       note: item.header?.noteText)
+        return cell
+    }
 
+    func inviteCell(at indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
+        guard let item = interactor.pendingInvites(at: indexPath) else {
+            fatalError("Invalid item: TeamInvite.Invitation at indexPath: \(indexPath)")
+        }
+        let cell: TeamInvitePendingTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(pendingInvite: item)
+        return cell
+    }
 }
 
 // MARK: - Actions
@@ -80,29 +97,9 @@ extension TeamInvitesViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch TeamInvite.Section(rawValue: indexPath.section) {
-        case .header?:
-            let headerCell: TeamInviteHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            let item = interactor.headerItem()
-            headerCell.configure(header: item.header?.title,
-                                 content: item.header?.content,
-                                 teamCount: item.header?.teamCounter(partOfTeams: item.teamCount),
-                                 note: item.header?.noteText)
-            return headerCell
-
-        case .invite?:
-            let item = interactor.inviteItem(at: indexPath.row)
-            let inviteCell: TeamInvitePendingTableViewCell = tableView.dequeueCell(for: indexPath)
-            inviteCell.configure(teamName: item.team?.name ?? "",
-                                 teamColor: item.team?.teamColor ?? "",
-                                 teamId: item.team?.qotId ?? "",
-                                 sender: item.sender ?? "",
-                                 dateOfInvite: item.invitedDate ?? Date(),
-                                 memberCount: 0,
-                                 invite: item)
-            return inviteCell
-        case .none:
-            fatalError("Invalid section for TeamInvite.Section at indexPath: \(indexPath)")
+        switch interactor.section(at: indexPath) {
+        case .header: return headerCell(at: indexPath, tableView: tableView)
+        case .pendingInvite: return inviteCell(at: indexPath, tableView: tableView)
         }
     }
 }
