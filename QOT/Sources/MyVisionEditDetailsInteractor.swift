@@ -34,8 +34,20 @@ extension MyVisionEditDetailsInteractor: MyVisionEditDetailsInteractorInterface 
         return worker.myVision
     }
 
+    var teamVision: QDMTeamToBeVision? {
+        return worker.teamVision
+    }
+
+    var team: QDMTeam? {
+        return worker.team
+    }
+
     var visionPlaceholderDescription: String? {
         return worker.visionPlaceholderDescription
+    }
+
+    var teamVisionPlaceholderDescription: String? {
+        return worker.teamVisionPlaceHolderDescription
     }
 
     var originalTitle: String {
@@ -48,6 +60,12 @@ extension MyVisionEditDetailsInteractor: MyVisionEditDetailsInteractorInterface 
 
     func updateMyToBeVision(_ toBeVision: QDMToBeVision, _ completion: @escaping (Error?) -> Void) {
         worker.updateMyToBeVision(toBeVision) { (error) in
+            completion(error)
+        }
+    }
+
+    func updateTeamToBeVision(_ teamVision: QDMTeamToBeVision, _ completion: @escaping (Error?) -> Void) {
+        worker.updateTeamToBeVision(teamVision) { (error) in
             completion(error)
         }
     }
