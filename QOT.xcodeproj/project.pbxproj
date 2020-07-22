@@ -3605,8 +3605,8 @@
 				36376619223A4C0400C2C429 /* MyQotProfileModel.swift */,
 				36376613223A4C0400C2C429 /* MyQotProfilePresenter.swift */,
 				36376615223A4C0400C2C429 /* MyQotProfileRouter.swift */,
-				36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */,
 				36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */,
+				36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */,
 			);
 			name = MyQotProfile;
 			sourceTree = "<group>";

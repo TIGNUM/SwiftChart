@@ -92,7 +92,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         if let controller = controller {
             let configurator = TeamInvitesConfigurator.make(invitations: invitations)
             configurator(controller)
-            viewController?.pushToStart(childViewController: controller)
+            viewController?.show(controller, sender: nil)
         }
     }
 }
