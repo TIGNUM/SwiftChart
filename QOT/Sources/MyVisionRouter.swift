@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyVisionRouter {
 
@@ -34,14 +35,15 @@ extension MyVisionRouter: MyVisionRouterInterface {
         presentRateHistory(.tracker)
     }
 
-    func showEditVision(title: String, vision: String, isFromNullState: Bool) {
+    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?) {
         guard
             let controller = R.storyboard.myToBeVision.myVisionEditDetailsViewController(),
             let visionController = self.viewController else { return }
         MyVisionEditDetailsConfigurator.configure(viewController: controller,
                                                   title: title,
                                                   vision: vision,
-                                                  isFromNullState: isFromNullState)
+                                                  isFromNullState: isFromNullState,
+                                                  team: team)
         visionController.present(controller, animated: true, completion: nil)
     }
 

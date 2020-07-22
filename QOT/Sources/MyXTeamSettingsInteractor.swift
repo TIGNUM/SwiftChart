@@ -177,7 +177,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
          return teamHeaderItems.filter { $0.selected }.first?.color ?? ""
      }
 
-     func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void) {
+     func getAvailableColors(_ completion: @escaping ([String]) -> Void) {
          worker.getTeamColors(completion)
      }
 

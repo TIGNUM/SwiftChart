@@ -37,7 +37,7 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
     func getTeamName() -> String
     func getTeamId() -> String
     func getTeamColor() -> String
-    func getAvailableColors(_ completion: @escaping ([UIColor]) -> Void)
+    func getAvailableColors(_ completion: @escaping ([String]) -> Void)
     func getTitleForItem(at indexPath: IndexPath) -> String
     func getSubtitleForItem(at indexPath: IndexPath) -> String
     func getSettingItems() -> [MyXTeamSettingsModel.Setting]

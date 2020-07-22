@@ -12,14 +12,18 @@ import qot_dal
 final class MyVisionEditDetailsWorker {
 
     var visionPlaceholderDescription: String?
+    var teamVisionPlaceHolderDescription: String?
     let isFromNullState: Bool
     let contentService: qot_dal.ContentService
     let originalTitle: String
     let originalVision: String
+    let team: QDMTeam?
     private var myToBeVision: QDMToBeVision?
+    private var teamToBeVision: QDMTeamToBeVision?
     private let widgetDataManager: ExtensionsDataManager
 
-    init(title: String, vision: String, widgetManager: ExtensionsDataManager, contentService: qot_dal.ContentService, isFromNullState: Bool = false) {
+    init(title: String, vision: String, widgetManager: ExtensionsDataManager, contentService: qot_dal.ContentService, isFromNullState: Bool = false, team: QDMTeam?) {
+        self.team = team
         originalTitle = title
         self.contentService = contentService
         originalVision = vision
@@ -27,6 +31,8 @@ final class MyVisionEditDetailsWorker {
         self.isFromNullState = isFromNullState
         getMyToBeVision()
         getVisionDescription()
+        getTeamToBeVision(for: team)
+        getTeamVisionDescription()
     }
 
     var firstTimeUser: Bool {
@@ -37,15 +43,34 @@ final class MyVisionEditDetailsWorker {
         return myToBeVision
     }
 
+    var teamVision: QDMTeamToBeVision? {
+        return teamToBeVision
+    }
+
     func getMyToBeVision() {
         UserService.main.getMyToBeVision({ [weak self] (vision, initilized, error) in
             self?.myToBeVision = vision
         })
     }
 
+    func getTeamToBeVision(for team: QDMTeam?) {
+        guard let team = team else { return }
+        TeamService.main.getTeamToBevision(for: team, {[weak self] (teamVision, initialized, error) in
+            self?.teamToBeVision = teamVision
+        })
+    }
+
     func updateMyToBeVision(_ toBeVision: QDMToBeVision, _ completion: @escaping (Error?) -> Void) {
         qot_dal.UserService.main.updateMyToBeVision(toBeVision) { error in
             self.updateWidget()
+            completion(error)
+        }
+    }
+
+    func updateTeamToBeVision(_ newVision: QDMTeamToBeVision, completion: @escaping ( Error?) -> Void) {
+        TeamService.main.updateTeamToBevision(vision: newVision) { [weak self] vision, error  in
+//             self.updateWidget() ?
+            self?.getTeamToBeVision(for: self?.team)
             completion(error)
         }
     }
@@ -88,5 +113,9 @@ final class MyVisionEditDetailsWorker {
 
     private func getVisionDescription() {
         visionPlaceholderDescription = AppTextService.get(.my_qot_my_tbv_empty_subtitle_vision)
+    }
+
+    private func getTeamVisionDescription() {
+        teamVisionPlaceHolderDescription = AppTextService.get(.myx_team_tbv_empty_subtitle_vision)
     }
 }

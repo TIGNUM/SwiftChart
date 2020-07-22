@@ -51,6 +51,13 @@ private let mySolvesFormatter: DateFormatter = {
     return formatter
 }()
 
+private let teamInvitationFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd. MMM yyyy"
+    formatter.timeZone = TimeZone.current
+    return formatter
+}()
+
 private let whatsHotFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "dd. MMM" // 18. JUL    ..:: "dd. LLLL" 18. JULY ..::
@@ -135,6 +142,10 @@ extension DateFormatter {
 
     static var whatsHotBucket: DateFormatter {
         return whatsHotBucketFormatter
+    }
+
+    static var teamInvite: DateFormatter {
+        return teamInvitationFormatter
     }
 }
 

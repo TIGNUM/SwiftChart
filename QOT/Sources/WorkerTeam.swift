@@ -10,9 +10,14 @@ import Foundation
 import qot_dal
 
 protocol WorkerTeam {
+
     func canCreateTeam(_ completion: @escaping (Bool) -> Void)
 
+    func canJoinTeam(_ completion: @escaping (Bool) -> Void)
+
     func getMaxChars(_ completion: @escaping (Int) -> Void)
+
+    func getMaxTeamCount(_ completion: @escaping (Int) -> Void)
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
@@ -20,7 +25,7 @@ protocol WorkerTeam {
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
-    func getTeamColors(_ completion: @escaping ([UIColor]) -> Void)
+    func getTeamColors(_ completion: @escaping ([String]) -> Void)
 
     func getRandomTeamColor(_ completion: @escaping (String) -> Void)
 
@@ -47,18 +52,28 @@ protocol WorkerTeam {
     func removeMember(member: QDMTeamMember, _ completion: @escaping () -> Void)
 
     func reInviteMember(member: QDMTeamMember, _ completion: @escaping (QDMTeamMember?) -> Void)
+
+    func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void)
+
+    func updateTeamToBeVision(_ new: QDMTeamToBeVision, team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void)
 }
 
 extension WorkerTeam {
+    func canJoinTeam(_ completion: @escaping (Bool) -> Void) {
+        canCreateTeam(completion)
+    }
+
     func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
-        getConfig { (config) in
-            if let config = config {
-                self.getTeams { (teams) in
-                    completion(teams.count < config.teamMaxCount)
-                }
-            } else {
-                completion(false)
+        getMaxTeamCount { (max) in
+            self.getTeams { (teams) in
+                completion(teams.count < max)
             }
+        }
+    }
+
+    func getMaxTeamCount(_ completion: @escaping (Int) -> Void) {
+        getConfig { (config) in
+            completion(config?.teamMaxCount ?? 0)
         }
     }
 
@@ -135,12 +150,9 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamColors(_ completion: @escaping ([UIColor]) -> Void) {
+    func getTeamColors(_ completion: @escaping ([String]) -> Void) {
         getConfig { (config) in
-            let colors = config?.availableTeamColors.compactMap { (hexColor) -> UIColor in
-                return UIColor(hex: hexColor)
-            }
-            completion(colors ?? [])
+            completion(config?.availableTeamColors ?? [])
         }
     }
 
@@ -166,7 +178,9 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(team, error)
-            NotificationCenter.default.post(name: .didEditTeamName, object: nil, userInfo: [team?.qotId: team?.name])
+            NotificationCenter.default.post(name: .didEditTeamName,
+                                            object: nil,
+                                            userInfo: [team?.qotId: team?.name ?? ""])
         }
     }
 
@@ -238,6 +252,26 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(member)
+        }
+    }
+
+    func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
+        TeamService.main.getTeamToBevision(for: team) { (teamVision, _, error) in
+            if let error = error {
+                log("Error getTeamToBevision: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(teamVision)
+        }
+    }
+
+    func updateTeamToBeVision(_ new: QDMTeamToBeVision, team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
+        TeamService.main.updateTeamToBevision(vision: new) { (vision, error)  in
+            if let error = error {
+                log("Error updateTeamToBevision: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(vision)
         }
     }
 }
