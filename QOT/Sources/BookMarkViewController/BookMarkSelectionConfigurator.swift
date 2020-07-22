@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class BookMarkSelectConfigurator {
+final class BookMarkSelectionConfigurator {
     static func make(contentId: Int,
                      contentType: UserStorageContentType)
         -> (BookMarkSelectionViewController, @escaping (Bool) -> Void) -> Void {

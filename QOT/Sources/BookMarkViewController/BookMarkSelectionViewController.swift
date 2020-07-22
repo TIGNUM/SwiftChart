@@ -8,8 +8,8 @@
 
 import UIKit
 
-final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelOverlay {
-
+final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelIgnore {
+    let tableViewCellHeight: CGFloat = 75
     // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
@@ -24,6 +24,10 @@ final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelOve
         interactor?.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.post(name: .hideBottomNavigation, object: nil)
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
@@ -32,7 +36,6 @@ final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelOve
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // if table view is too long
-        let tableViewCellHeight: CGFloat = 75
         let maxTableViewHeight = view.frame.size.height * 0.5
         var expectedTableViewHeight = CGFloat(interactor?.viewModels.count ?? 0) * tableViewCellHeight
         if expectedTableViewHeight > maxTableViewHeight {
@@ -99,7 +102,6 @@ extension BookMarkSelectionViewController: UITableViewDelegate, UITableViewDataS
         cell.separator.isHidden = indexPath.row == 0
         guard let viewModels = interactor?.viewModels, viewModels.count > indexPath.row,
             let model = viewModels.at(index: indexPath.row) else { return cell }
-        // FIXME: set styles
         if let team = model.team {
             ThemeText.myLibraryItemsTitle.apply(team.name, to: cell.teamLibraryName)
             let membersString = String(format: interactor?.memberCountTemplateString ?? "%@", "\(team.memberCount)")
@@ -117,6 +119,10 @@ extension BookMarkSelectionViewController: UITableViewDelegate, UITableViewDataS
         cell.isUserInteractionEnabled = model.canEdit
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableViewCellHeight
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -269,6 +269,10 @@ extension ArticleViewController: ArticleViewControllerInterface {
     func hasBookmark(_ hasBookmark: Bool) {
         articleTopNavBar.updateBookmark(hasBookmark)
     }
+
+    func present(_ viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Transition

@@ -16,6 +16,7 @@ extension Notification.Name {
      NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
      */
     static let updateBottomNavigation = Notification.Name("updateBottomNavigation")
+    static let hideBottomNavigation = Notification.Name("hideBottomNavigation")
     static let didTapDismissBottomNavigation = Notification.Name("didTapDismissBottomNavigation")
     static let didDismissMindsetResultView = Notification.Name("didDismissMindsetResultView")
     //  Notification to hide/display the GuidedTrack Bucket

@@ -22,7 +22,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
 
     var media: MediaPlayerModel?
     var contentItem: QDMContentItem?
-    var bookmark: QDMUserStorage?
+    var bookmarks: [QDMUserStorage]?
     var download: QDMUserStorage?
     var wasBookmarked: Bool = false
     private var colorMode: ColorMode = .dark
@@ -101,10 +101,10 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         }
         ContentService.main.getContentItemById(media.mediaRemoteId) { [weak self] (item) in
             self?.contentItem = item
-            self?.bookmark = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
+            self?.bookmarks = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
                 storage.userStorageType == .BOOKMARK
-            }).first
-            self?.bookmarkButton.isSelected = self?.bookmark != nil
+            })
+            self?.bookmarkButton.isSelected = self?.bookmarks?.first != nil
             self?.download = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
                 storage.userStorageType == .DOWNLOAD
             }).first
@@ -175,30 +175,67 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapBookmarkButton() {
-        if bookmarkButton.isSelected == false, wasBookmarked == false {
-            wasBookmarked = true
-            showDestinationAlert()
-        }
         trackUserEvent(.BOOKMARK, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
-        if let currentBookmark = bookmark {
-            UserStorageService.main.deleteUserStorage(currentBookmark) { [weak self] (error) in
+        guard let itemId = contentItem?.remoteID, itemId != 0 else { return }
+        TeamService.main.getTeams { [weak self] (teams, _, _) in
+            if let teams = teams, teams.isEmpty == false {
+                self?.showBookmarkSelectionViewController(with: itemId, { (isChanged) in
+                    self?.updateBookmarkButtonState()
+                })
+            } else {
+                self?.toggleSingleBookmark()
+            }
+        }
+    }
+
+    private func showBookmarkSelectionViewController(with contentItemId: Int, _ completion: @escaping (Bool) -> Void) {
+        guard let viewController = R.storyboard.bookMarkSelection.bookMarkSelectionViewController() else { return }
+        let config = BookMarkSelectionConfigurator.make(contentId: contentItemId, contentType: .CONTENT_ITEM)
+        config(viewController) { [weak self] (isChanged) in
+            self?.trackPage()
+            completion(isChanged)
+            self?.refreshBottomNavigationItems()
+        }
+        present(viewController, animated: true, completion: nil)
+    }
+
+    private func toggleSingleBookmark() {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        if let currentBookmark = bookmarks?.first {
+            dispatchGroup.enter()
+            UserStorageService.main.deleteUserStorage(currentBookmark) { (error) in
                 if let error = error {
                     log("failed to remove bookmark: \(error)", level: .info)
                 }
-                NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
-                self?.bookmark = nil
-                self?.bookmarkButton.isSelected = self?.bookmark != nil
-                self?.bookmarkButton.isSelected ?? true ? (self?.bookmarkButton.layer.borderWidth = 0) : (self?.bookmarkButton.layer.borderWidth = 1)
+                dispatchGroup.leave()
             }
         } else if let item = contentItem {
-            UserStorageService.main.addBookmarkContentItem(item) { [weak self] (storage, error) in
+            dispatchGroup.enter()
+            UserStorageService.main.addBookmarkContentItem(item) {(storage, error) in
                 if let error = error {
                     log("failed to add bookmark: \(error)", level: .info)
                 }
-                NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
-                self?.bookmark = storage
-                self?.bookmarkButton.isSelected = self?.bookmark != nil
-                self?.bookmarkButton.layer.borderWidth = (self?.bookmarkButton.isSelected == true) ? 0 : 1
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.leave()
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.updateBookmarkButtonState()
+        }
+    }
+
+    private func updateBookmarkButtonState() {
+        guard let mediaId = media?.mediaRemoteId else { return }
+        ContentService.main.getContentItemById(mediaId) { [weak self] (item) in
+            self?.contentItem = item
+            self?.bookmarks = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
+                storage.userStorageType == .BOOKMARK
+            })
+            self?.bookmarkButton.isSelected = self?.bookmarks?.first != nil
+            if self?.bookmarkButton.isSelected == true, self?.wasBookmarked == false {
+                self?.wasBookmarked = true
+                self?.showDestinationAlert()
             }
         }
     }
