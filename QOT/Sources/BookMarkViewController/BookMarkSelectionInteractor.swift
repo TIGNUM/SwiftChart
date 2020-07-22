@@ -16,26 +16,30 @@ final class BookMarkSelectionInteractor {
     private let worker: BookMarkSelectionWorker
     private let presenter: BookMarkSelectionPresenterInterface
     private let router: BookMarkSelectionRouterInterface
-
-    private let existingBookMarks: [QDMUserStorage]
+    private let contentId: Int
+    private let contentType: UserStorageContentType
+    var viewModels = [BookMarkSelectionModel]()
 
     // MARK: - Init
 
-    init(storages: [QDMUserStorage],
-        worker: BookMarkSelectionWorker,
-        presenter: BookMarkSelectionPresenterInterface,
-        router: BookMarkSelectionRouterInterface) {
+    init(contentId: Int,
+         contentType: UserStorageContentType,
+         worker: BookMarkSelectionWorker,
+         presenter: BookMarkSelectionPresenterInterface,
+         router: BookMarkSelectionRouterInterface) {
+        self.contentId = contentId
+        self.contentType = contentType
         self.worker = worker
         self.presenter = presenter
         self.router = router
-        self.existingBookMarks = storages.filter({ $0.userStorageType == .BOOKMARK })
     }
 
     // MARK: - Interactor
 
     func viewDidLoad() {
-        worker.viewModels(from: existingBookMarks) { (viewModels) in
-            // UPDATE LIST
+        worker.viewModels(for: contentType, contentId: contentId) { [weak self] (viewModels) in
+            self?.viewModels = viewModels
+            self?.presenter.loadData()
         }
     }
 }
@@ -43,5 +47,17 @@ final class BookMarkSelectionInteractor {
 // MARK: - BookMarkSelectionInteractorInterface
 
 extension BookMarkSelectionInteractor: BookMarkSelectionInteractorInterface {
+    func didTapItem(index: Int) {
+        guard index < viewModels.count else { return }
+        viewModels[index].isSelected = !viewModels[index].isSelected
+    }
+    func save() {
+        worker.update(viewModels: viewModels) { [weak self] (isChanged) in
+            self?.router.dismiss(isChanged)
+        }
+    }
 
+    func dismiss() {
+        router.dismiss(false)
+    }
 }

@@ -24,5 +24,7 @@ final class BookMarkSelectionPresenter {
 // MARK: - BookMarkSelectionPresenterInterface
 
 extension BookMarkSelectionPresenter: BookMarkSelectionPresenterInterface {
-
+    func loadData() {
+        viewController?.loadData()
+    }
 }

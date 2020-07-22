@@ -13,16 +13,22 @@ final class BookMarkSelectionRouter {
     // MARK: - Properties
 
     private let viewController: BookMarkSelectionViewController
+    private let completion: ((Bool) -> Void)
 
     // MARK: - Init
 
-    init(viewController: BookMarkSelectionViewController) {
+    init(viewController: BookMarkSelectionViewController, _ completion: @escaping (Bool) -> Void) {
         self.viewController = viewController
+        self.completion = completion
     }
 }
 
 // MARK: - BookMarkSelectionRouterInterface
 
 extension BookMarkSelectionRouter: BookMarkSelectionRouterInterface {
-
+    func dismiss(_ isChanged: Bool?) {
+        viewController.dismiss(animated: true) {
+            self.completion(isChanged ?? false)
+        }
+    }
 }

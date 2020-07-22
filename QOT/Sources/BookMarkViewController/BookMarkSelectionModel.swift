@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-struct BookMarkSelectionModel {
+class BookMarkSelectionModel {
     let team: QDMTeam?
     let storage: QDMUserStorage?
     var isSelected: Bool = false
@@ -17,8 +17,11 @@ struct BookMarkSelectionModel {
         return team != nil
     }()
 
-    lazy var canRemove = {
-        return isTeamBookMark == false || (storage?.isMine ?? false)
+    lazy var canEdit = { () -> Bool in
+        if let storage = self.storage {
+            return storage.isMine ?? false
+        }
+        return true
     }()
 
     init(_ team: QDMTeam?, _ storage: QDMUserStorage?) {

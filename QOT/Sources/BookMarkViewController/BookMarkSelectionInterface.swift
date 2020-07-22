@@ -8,10 +8,21 @@
 
 import Foundation
 
-protocol BookMarkSelectionViewControllerInterface: class {}
+protocol BookMarkSelectionViewControllerInterface: UIViewController {
+    func loadData()
+}
 
-protocol BookMarkSelectionPresenterInterface {}
+protocol BookMarkSelectionPresenterInterface {
+    func loadData()
+}
 
-protocol BookMarkSelectionInteractorInterface: Interactor {}
+protocol BookMarkSelectionInteractorInterface: Interactor {
+    var viewModels: [BookMarkSelectionModel] { get set }
+    func save()
+    func dismiss()
+    func didTapItem(index: Int)
+}
 
-protocol BookMarkSelectionRouterInterface {}
+protocol BookMarkSelectionRouterInterface {
+    func dismiss(_ isChanged: Bool?)
+}
