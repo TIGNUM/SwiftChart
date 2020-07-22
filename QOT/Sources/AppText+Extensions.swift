@@ -522,7 +522,7 @@ public extension AppTextKey {
     static let team_invite_cta_decline = AppTextKey("team_invite.cta.decline")
     static let team_invite_cta_join = AppTextKey("team_invite.cta.join")
     static let team_invite_details = AppTextKey("team_invite.details.text")
-    static let team_invite_max_capacity = AppTextKey(" team_invite.max.capacity")
+    static let team_invite_max_capacity = AppTextKey("team_invite.max.capacity")
 
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")

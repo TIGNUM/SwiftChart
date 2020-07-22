@@ -11,19 +11,21 @@ import qot_dal
 
 protocol TeamInvitesViewControllerInterface: class {
     func setupView()
-    func reload()
+    func reload(shouldDismiss: Bool)
 }
 
 protocol TeamInvitesPresenterInterface {
     func setupView()
-    func reload()
+    func reload(shouldDismiss: Bool)
 }
 
 protocol TeamInvitesInteractorInterface: Interactor {
     var sectionCount: Int { get }
+
     func rowCount(in section: Int) -> Int
-    func inviteItem(at row: Int) -> QDMTeamInvitation
-    func headerItem() -> TeamInvite.Header?
+    func section(at indexPath: IndexPath) -> TeamInvite.Section
+    func pendingInvites(at indexPath: IndexPath) -> TeamInvite.Pending?
+    func headerItem() -> (header: TeamInvite.Header?, teamCount: Int)
 }
 
 protocol TeamInvitesRouterInterface {
