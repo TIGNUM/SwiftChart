@@ -124,13 +124,10 @@ private extension TeamToBeVisionViewController {
         teamNullStateView.removeSubViews()
     }
 
-    func addGradients(for teamVision: QDMTeamToBeVision?) {
-           let userImage = teamVision?.profileImageResource?.url()
-           if userImage != nil {
-               userImageView.gradientBackground(top: true)
-               userImageView.gradientBackground(top: false)
-           }
-       }
+    func addGradients() {
+        userImageView.gradientBackground(top: true)
+        userImageView.gradientBackground(top: false)
+    }
 }
 
 // MARK: - Observer
@@ -162,7 +159,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         navigationBarView.delegate = self
         ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_x_team_tbv_section_header_title),
                                          to: toBeVisionLabel)
-        userImageView.image = R.image.circlesWarning()
+        userImageView.image = R.image.teamTBVPlaceholder()
+
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         guard (interactor?.team?.thisUserIsOwner) == true else {
@@ -198,7 +196,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         }
         skeletonManager.hide()
         interactor.hideNullState()
-
 //        interactor.isShareBlocked { [weak self] (hidden) in
 //            self?.shareButton.isHidden = hidden
 //        }
@@ -212,10 +209,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         tempTeamImageURL = teamVision?.profileImageResource?.url()
         userImageView.contentMode = tempTeamImageURL == nil ? .center : .scaleAspectFill
         userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
-
         removeGradients()
         addGradients(for: teamVision)
-
         //        TO DO: Get rate text for team
         //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
         //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
