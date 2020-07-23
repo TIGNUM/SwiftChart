@@ -118,6 +118,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                 self?.updateMyX()
             } else {
                 self?.currentTeam = selectedTeam
+                self?.updateMyXElements()
             }
         }
     }
@@ -137,6 +138,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void) {
         switch section {
         case .teamCreate: worker.canCreateTeam(completion)
+        case .toBeVision: isTbvEmpty(completion)
         default: completion(true)
         }
     }
@@ -189,6 +191,19 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             }
         }
     }
+
+    func isTbvEmpty(_ completion: @escaping (Bool) -> Void) {
+        guard let team = currentTeam else {
+            completion(true)
+            return
+        }
+        if !team.thisUserIsOwner {
+            worker.getTeamToBeVision(for: team, { (teamVision) in
+                completion (teamVision != nil)
+            })
+        }
+        completion(true)
+    }
 }
 
 extension MyQotMainInteractor {
@@ -217,6 +232,16 @@ extension MyQotMainInteractor {
             }
         }
     }
+
+    func updateMyXElements() {
+        worker.getTeamItems { (teamItems) in
+            self.worker.getBodyElements { (bodyElements) in
+                self.bodyElements = bodyElements
+                self.presenter.reload()
+            }
+        }
+    }
+
 
     func createInitialData() {
         worker.getSubtitles { [weak self] (subtitles) in

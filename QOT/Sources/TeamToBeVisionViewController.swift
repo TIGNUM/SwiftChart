@@ -37,6 +37,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet private weak var teamNullStateImageView: UIImageView!
+    @IBOutlet weak var infoStackView: UIStackView!
 
     var didShowNullStateView = false
     private let containerViewSize: CGFloat = 232.0
@@ -156,27 +157,30 @@ private extension TeamToBeVisionViewController {
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func setupView() {
         scrollView.alpha = 0
-
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
         ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_x_team_tbv_section_header_title),
                                          to: toBeVisionLabel)
+        userImageView.image = R.image.circlesWarning()
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
+        guard (interactor?.team?.thisUserIsOwner) == true else {
+            infoStackView.isHidden = true
+            cameraButton.isHidden = true
+            return
+        }
         ThemeBorder.accent40.apply(cameraButton)
         ThemeBorder.accent40.apply(shareButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
         ThemeBorder.accent40.apply(updateButton)
-
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-        userImageView.image = R.image.circlesWarning()
     }
 
     func load(_ teamVision: QDMTeamToBeVision?,
