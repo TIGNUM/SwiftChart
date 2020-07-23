@@ -16,6 +16,8 @@ final class MyLibraryUserStorageInteractor {
     private let worker: MyLibraryUserStorageWorker
     private let presenter: MyLibraryUserStoragePresenterInterface
     private let router: MyLibraryUserStorageRouterInterface
+    private let team: QDMTeam?
+    private let targetCategory: String?
     private let notificationCenter: NotificationCenter
 
     private (set) var isEditing: Bool = false
@@ -51,10 +53,14 @@ final class MyLibraryUserStorageInteractor {
 
     // MARK: - Init
 
-    init(worker: MyLibraryUserStorageWorker,
+    init(team: QDMTeam?,
+         category: String?,
+         worker: MyLibraryUserStorageWorker,
          presenter: MyLibraryUserStoragePresenterInterface,
          router: MyLibraryUserStorageRouterInterface,
          notificationCenter: NotificationCenter = NotificationCenter.default) {
+        self.team = team
+        self.targetCategory = category
         self.worker = worker
         self.presenter = presenter
         self.router = router
@@ -80,7 +86,7 @@ final class MyLibraryUserStorageInteractor {
     }
 
     @objc private func load(_ notification: Notification? = nil) {
-        worker.loadData { [weak self] (initiated, items) in
+        worker.loadData(in: team) { [weak self] (initiated, items) in
             guard let strongSelf = self else { return }
             if strongSelf.items == nil {
                 strongSelf.items = [MyLibraryCellViewModel]()
@@ -138,6 +144,10 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         return worker.item.type
     }
 
+    var teamId: Int? {
+        return team?.remoteID == 0 ? nil : team?.remoteID
+    }
+
     func didTapEdit(isEditing: Bool) {
         notificationCenter.post(name: .stopAudio, object: nil)
         self.isEditing = isEditing
@@ -162,7 +172,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     func didTapAddNote() {
-        router.presentCreateNote(noteId: nil)
+        router.presentCreateNote(noteId: nil, in: team)
     }
 
     func handleSelectedItem(at index: Int) {
@@ -285,7 +295,7 @@ extension MyLibraryUserStorageInteractor {
             router.presentExternalUrl(url)
             return true
         case .NOTE:
-            router.presentCreateNote(noteId: item.identifier)
+            router.presentCreateNote(noteId: item.identifier, in: team)
             return true
         case .DOWNLOAD:
             return handleDownload(item: item)
@@ -408,18 +418,23 @@ extension MyLibraryUserStorageInteractor {
 
 extension MyLibraryUserStorageInteractor {
     private func viewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel? {
+        var viewModel: MyLibraryCellViewModel?
         switch item.userStorageType {
         case .DOWNLOAD:
-            return downloadViewModel(from: item)
+            viewModel = downloadViewModel(from: item)
         case .BOOKMARK:
-            return bookmarkViewModel(from: item)
+            viewModel = bookmarkViewModel(from: item)
         case .NOTE:
-            return noteViewModel(from: item)
+            viewModel = noteViewModel(from: item)
         case .EXTERNAL_LINK:
-            return linkViewModel(from: item)
+            viewModel = linkViewModel(from: item)
         case .UNKOWN:
             return nil
         }
+        if let team = self.team {
+            viewModel?.removable = (item.isMine ?? false || team.thisUserIsOwner)
+        }
+        return viewModel
     }
 
     private func downloadViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {

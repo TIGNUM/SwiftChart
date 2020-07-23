@@ -24,11 +24,11 @@ extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
         UIApplication.shared.open(url)
     }
 
-    func presentCreateNote(noteId: String?) {
+    func presentCreateNote(noteId: String?, in team: QDMTeam?) {
         guard let noteController = R.storyboard.myLibraryNotes.myLibraryNotesViewController() else {
             return
         }
-        let configurator = MyLibraryNotesConfigurator.make()
+        let configurator = MyLibraryNotesConfigurator.make(with: team)
         configurator(noteController, noteId)
         viewController?.present(noteController, animated: true, completion: nil)
     }

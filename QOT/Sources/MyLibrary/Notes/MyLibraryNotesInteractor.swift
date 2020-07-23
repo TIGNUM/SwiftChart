@@ -13,6 +13,7 @@ final class MyLibraryNotesInteractor {
 
     // MARK: - Properties
 
+    private let team: QDMTeam?
     private let worker: MyLibraryNotesWorker
     private let presenter: MyLibraryNotesPresenterInterface
     private let router: MyLibraryNotesRouterInterface
@@ -33,10 +34,12 @@ final class MyLibraryNotesInteractor {
 
     // MARK: - Init
 
-    init(worker: MyLibraryNotesWorker,
-        presenter: MyLibraryNotesPresenterInterface,
-        router: MyLibraryNotesRouterInterface,
-        notificationCenter: NotificationCenter = NotificationCenter.default) {
+    init(team: QDMTeam?,
+         worker: MyLibraryNotesWorker,
+         presenter: MyLibraryNotesPresenterInterface,
+         router: MyLibraryNotesRouterInterface,
+         notificationCenter: NotificationCenter = NotificationCenter.default) {
+        self.team = team
         self.worker = worker
         self.presenter = presenter
         self.router = router
@@ -77,15 +80,23 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
     }
 
     var showDeleteButton: Bool {
-        return worker.isExistingNote
+        return worker.isMyNote
     }
 
     var isCreatingNewNote: Bool {
         return !worker.isExistingNote
     }
 
+    var teamId: Int? {
+        return team?.remoteID == 0 ? nil : team?.remoteID
+    }
+
+    var isMyNote: Bool {
+        return worker.isMyNote
+    }
+
     func saveNoteText(_ text: String?) {
-        worker.saveText(text) { [weak self] (_, error) in
+        worker.saveText(text, in: team) { [weak self] (_, error) in
             if error != nil {
                 log("Failed to save note. Error: \(String(describing: error))", level: .error)
             } else {

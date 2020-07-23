@@ -36,7 +36,7 @@ final class ArticleWorker {
 
     var audioArticleItem: Article.Item?
 
-    var bookmark: QDMUserStorage?
+    var bookmarks: [QDMUserStorage]?
 
     var section: ContentSection {
         return content?.section ?? .Unkown
@@ -108,9 +108,9 @@ final class ArticleWorker {
         guard let content = self.content else {
             return
         }
-        bookmark = content.userStorages?.filter({ (storage) -> Bool in
+        bookmarks = content.userStorages?.filter({ (storage) -> Bool in
             storage.userStorageType == .BOOKMARK
-        }).first
+        })
         let audioAvailableSections: [ContentSection] = [.WhatsHot, .LearnStrategies, .QOTLibrary, .Tools]
         if audioAvailableSections.contains(obj: content.section) {
             articleAudioItem = content.contentItems.filter({ (item) -> Bool in
@@ -441,26 +441,30 @@ final class ArticleWorker {
         }
     }
 
-    func toggleBookmark() -> Bool {
-        var hasBookmark = (self.bookmark != nil)
-        if hasBookmark {
+    func toggleBookmark(_ completion: @escaping (Bool) -> Void) {
+        if let bookmark = bookmarks?.first {
             // remove
-            UserStorageService.main.deleteUserStorage(self.bookmark!) { [weak self] (error) in
-                self?.bookmark = nil
+            UserStorageService.main.deleteUserStorage(bookmark) { [weak self] (error) in
+                self?.bookmarks = nil
+                completion(self?.bookmarks?.first != nil)
             }
-            hasBookmark = false
         } else if let content = self.content {
             // add
-            interactor?.showDestinationAlert()
             UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, error) in
-                self?.bookmark = bookmark
+                self?.bookmarks = bookmark != nil ? [bookmark!] : nil
+                completion(self?.bookmarks?.first != nil)
             }
-            hasBookmark = true
         } else {
-            bookmark = nil
-            hasBookmark = false
+            bookmarks = nil
+            DispatchQueue.main.async { completion(false) }
         }
-        return hasBookmark
+    }
+
+    func updateBookmarkStatus(_ completion: @escaping (Bool) -> Void) {
+        ContentService.main.getContentCollectionById(remoteID) { [weak self] (collection) in
+            self?.bookmarks = collection?.userStorages?.filter({ $0.userStorageType == .BOOKMARK })
+            completion(self?.bookmarks?.first != nil)
+        }
     }
 }
 

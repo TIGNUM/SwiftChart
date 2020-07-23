@@ -115,6 +115,7 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
                                    isBokmarked: interactor.isBookmarked,
                                    isDownloaded: interactor.isDownloaded)
         interactor.isDownloaded && !interactor.bookMarkedToggled ? showDestinationAlert() : nil
+        refreshBottomNavigationItems()
     }
 
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface) {
@@ -127,6 +128,16 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
 
     func showNoInternetConnectionAlert(interactor: StreamVideoInteractorInterface) {
         self.showNoInternetConnectionAlert()
+    }
+
+    func showBookmarkSelectionViewController(with contentItemId: Int, _ completion: @escaping (Bool) -> Void) {
+        guard let viewController = R.storyboard.bookMarkSelection.bookMarkSelectionViewController() else { return }
+        let config = BookMarkSelectionConfigurator.make(contentId: contentItemId, contentType: .CONTENT_ITEM)
+        config(viewController) { [weak self] (isChanged) in
+            self?.trackPage()
+            completion(isChanged)
+        }
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 

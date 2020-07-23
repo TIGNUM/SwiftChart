@@ -99,14 +99,14 @@ enum URLScheme: String {
     case profile = "profile" // accountSetting
     case siriSettings = "siri-settings" // siriShortcuts
 
-    var queryName: String {
+    var queryNames: [String] {
         switch self {
         case .dailyBrief,
-             .guide: return "bucketName"
+             .guide: return ["bucketName"]
         case .ouraring: break
-        case .fitbit: return "code"
-        case .content_item: return "contentItemId"
-        case .contentItem: return "contentID"
+        case .fitbit: return ["code"]
+        case .content_item: return ["contentItemId"]
+        case .contentItem: return ["contentID"]
         case .knowFeed,
              .strategies: break
         case .myQOT,
@@ -136,10 +136,10 @@ enum URLScheme: String {
              .prepare: break
         case .prepareEvent,
              .prepareDay: break
-        case .preparation: return "identifier"
+        case .preparation: return ["identifier"]
         case .toBeVision: break
         case .mySprints: break
-        case .myLibrary: break
+        case .myLibrary: return ["teamId", "category"]
         case .myProfile: break
         case .accountSetting,
              .profile: break
@@ -168,25 +168,41 @@ enum URLScheme: String {
         case .performanceNutrition: break
         case .performanceMovement: break
         case .performanceMindset: break
-        case .contentCategory: return "collectionID"
-        case .randomContent: return "contentId"
-        case .featureExplainer:  return "contentID"
+        case .contentCategory: return ["collectionID"]
+        case .randomContent: return ["contentId"]
+        case .featureExplainer:  return ["contentID"]
         default: break
         }
-        return ""
+        return [""]
     }
 
     func launchPathWithParameterValue(_ value: String) -> String {
         guard let urlSchemes = URLScheme.urlSchemes() else { return "tignumx://" }
         var urlString = "\(urlSchemes[0])://\(self.rawValue)"
-        if !queryName.isEmpty {
-            urlString = "\(urlSchemes[0])://\(self.rawValue)?\(queryName)=\(value)"
+        if !queryNames.isEmpty {
+            urlString = "\(urlSchemes[0])://\(self.rawValue)?\(queryNames)=\(value)"
         }
         return urlString
     }
 
     func launchURLWithParameterValue(_ value: String) -> URL? {
         return URL(string: launchPathWithParameterValue(value))
+    }
+
+    func launchPathWith(_ value: [String: String]) -> String {
+        guard let urlSchemes = URLScheme.urlSchemes() else { return "tignumx://" }
+        var urlString = "\(urlSchemes[0])://\(self.rawValue)"
+        if !queryNames.isEmpty {
+            urlString = "\(urlSchemes[0])://\(self.rawValue)?"
+            for name in queryNames where value[name] != nil {
+                urlString += "\(name)=\(value[name]!)"
+            }
+        }
+        return urlString
+    }
+
+    func launchURLWith(_ value: [String: String]) -> URL? {
+        return URL(string: launchPathWith(value))
     }
 
     static func isSupportedURL(_ url: URL) -> Bool {
@@ -210,13 +226,13 @@ enum URLScheme: String {
     static func dailyBriefURL(for bucket: DailyBriefBucketName) -> URL? {
         guard let urlSchemes = urlSchemes() else { return nil }
         let dailyBrief = URLScheme.dailyBrief
-        return URL(string: "\(urlSchemes[0])://\(dailyBrief.rawValue)?\(dailyBrief.queryName)=\(bucket)")
+        return URL(string: "\(urlSchemes[0])://\(dailyBrief.rawValue)?\(dailyBrief.queryNames)=\(bucket)")
     }
 
     static func preparationURL(withID localID: String) -> String? {
         guard let urlSchemes = urlSchemes() else { return nil }
         let preparation = URLScheme.preparation
-        return "\(urlSchemes[0])://\(preparation.rawValue)?\(preparation.queryName)=\(localID)"
+        return "\(urlSchemes[0])://\(preparation.rawValue)?\(preparation.queryNames)=\(localID)"
     }
 
     static func isLaunchableHost(host: String?) -> Bool {

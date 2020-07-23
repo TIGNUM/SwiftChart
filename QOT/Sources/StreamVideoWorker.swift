@@ -16,7 +16,7 @@ protocol StreamVideoWorkerDelegate: class {
 final class StreamVideoWorker {
 
     private var content: QDMContentItem?
-    private var bookmark: QDMUserStorage?
+    private var bookmarks = [QDMUserStorage]()
     private var download: QDMUserStorage?
     var bookMarkedToggled: Bool = false
     var downloadStatus: QOTDownloadStatus = .NONE
@@ -29,7 +29,7 @@ final class StreamVideoWorker {
     init(content: QDMContentItem?) {
         self.content = content
 
-        bookmark = content?.userStorages?.filter { $0.userStorageType == .BOOKMARK }.first
+        bookmarks = content?.userStorages?.filter { $0.userStorageType == .BOOKMARK } ?? []
         download = downloadItem(for: content)
         downloadStatus = downloadStatus(for: download)
         wasBookmarkedOnce = false
@@ -78,30 +78,39 @@ final class StreamVideoWorker {
     lazy var contentFormat: ContentFormat? = {
         return content?.format
     }()
+
+    func updateBookmarks(_ completion: @escaping () -> Void) {
+        ContentService.main.getContentItemById(content?.remoteID ?? 0) { [weak self] (item) in
+            self?.bookmarks = item?.userStorages?.filter { $0.userStorageType == .BOOKMARK } ?? []
+            completion()
+        }
+    }
 }
 
 extension StreamVideoWorker {
     var isBookmarked: Bool {
-        return bookmark != nil
+        return bookmarks.isEmpty == false
     }
 
     func toggleBookmark(_ completion: @escaping () -> Void) {
         bookMarkedToggled = true
-        if let bookmark = bookmark {
+        if let bookmark = bookmarks.filter({ $0.teamQotId == nil }).first {
             // remove
             service.deleteUserStorage(bookmark) { [weak self] (error) in
-                self?.bookmark = nil
-                completion()
+                self?.bookmarks.remove(object: bookmark)
+                self?.updateBookmarks(completion)
             }
         } else if let content = self.content {
             // add
             service.addBookmarkContentItem(content) { [weak self] (bookmark, error) in
-                self?.bookmark = bookmark
-                completion()
+                if let bookmark = bookmark {
+                    self?.bookmarks.append(bookmark)
+                }
+                self?.updateBookmarks(completion)
             }
         } else {
-            bookmark = nil
-            completion()
+            bookmarks.removeAll()
+            updateBookmarks(completion)
         }
     }
 

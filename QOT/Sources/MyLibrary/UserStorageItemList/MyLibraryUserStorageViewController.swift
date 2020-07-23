@@ -56,6 +56,17 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
         interactor.viewDidLoad()
     }
 
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        if let teamId = interactor?.teamId {
+            pageTrack.associatedValueId = teamId
+            pageTrack.associatedValueType = .TEAM
+        }
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
+    }
+
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return bottomNavigationItems.leftBarButtonItems
     }
@@ -242,6 +253,14 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
 
         return returnCell ?? UITableViewCell()
     }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if let items = interactor.items, items.count > 0,
+            let item = interactor.items?[indexPath.row] {
+            return item.removable
+        }
+        return false
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -258,10 +277,6 @@ extension MyLibraryUserStorageViewController: UITableViewDelegate {
             return
         }
         interactor.handleSelectedItem(at: indexPath.row)
-    }
-
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
     }
 }
 

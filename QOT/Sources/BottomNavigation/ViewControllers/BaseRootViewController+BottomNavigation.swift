@@ -50,6 +50,11 @@ extension BaseRootViewController {
         checkBottomNavigationItemAfterPeriod(2.0, for: notification)
     }
 
+    @objc func hideBottomNavigationBar(_ notification: Notification) {
+        self.bottomNavigationContainer.alpha = 0
+        bottomNavigationUpdateTimer?.invalidate()
+        bottomNavigationUpdateTimer = nil
+    }
     func bringBottomNavigationBarToFront(_ completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: 0.05, animations: {
             self.bottomNavigationContainer.alpha = 1

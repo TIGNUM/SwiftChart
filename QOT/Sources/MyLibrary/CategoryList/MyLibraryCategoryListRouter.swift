@@ -25,12 +25,12 @@ final class MyLibraryCategoryListRouter {
 // MARK: - MyLibraryCategoryListRouterInterface
 
 extension MyLibraryCategoryListRouter: MyLibraryCategoryListRouterInterface {
-    func presentLibraryItems(for item: MyLibraryCategoryListModel) {
+    func presentLibraryItems(for item: MyLibraryCategoryListModel, in team: QDMTeam?) {
         guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
             assertionFailure()
             return
         }
-        let configurator = MyLibraryUserStorageConfigurator.make()
+        let configurator = MyLibraryUserStorageConfigurator.make(with: team)
         configurator(controller, item)
         viewController?.navigationController?.pushViewController(controller, animated: true)
     }

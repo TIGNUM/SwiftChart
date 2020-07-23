@@ -21,10 +21,11 @@ protocol MyLibraryCategoryListPresenterInterface {
 
 protocol MyLibraryCategoryListInteractorInterface: Interactor {
     var titleText: String { get }
+    var teamId: Int? { get }
     var categoryItems: [MyLibraryCategoryListModel] { get }
     func handleSelectedItem(at index: Int)
 }
 
 protocol MyLibraryCategoryListRouterInterface {
-    func presentLibraryItems(for item: MyLibraryCategoryListModel)
+    func presentLibraryItems(for item: MyLibraryCategoryListModel, in team: QDMTeam?)
 }
