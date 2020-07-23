@@ -180,7 +180,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         default:
             switch MyX.Element(rawValue: indexPath.row) {
             case .teamCreate: router.presentEditTeam(.create, team: nil)
-            case .library: router.presentMyLibrary()
+            case .library: router.presentMyLibrary(with: currentTeam)
             case .preps: router.presentMyPreps()
             case .sprints: router.presentMySprints()
             case .data: router.presentMyDataScreen()

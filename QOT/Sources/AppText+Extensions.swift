@@ -422,6 +422,7 @@ public extension AppTextKey {
     static let my_qot_section_my_tbv_subtitle_months_since = AppTextKey("my_qot.section_my_tbv.subtitle_months_since")
     static let my_qot_section_my_tbv_subtitle_more_than = AppTextKey("my_qot.section_my_tbv.subtitle_more_than")
     static let my_qot_my_library_section_header_title = AppTextKey("my_qot.my_library.section_header.title")
+    static let my_qot_my_library_section_header_team_title_template = AppTextKey("my_qot.my_library.section_header.team_title_template")
     static let my_qot_my_plans_section_header_title = AppTextKey("my_qot.my_plans.section_header.title")
     static let my_qot_my_plans_section_header_title_edit = AppTextKey("my_qot.my_plans.section_header.title_edit")
     static let my_qot_section_header_title = AppTextKey("my_qot.section_header.title")
@@ -959,6 +960,13 @@ public extension AppTextKey {
     // MARK: - Event Selection
     static let event_selection_empty = AppTextKey("event_selection.empty.title")
     static let event_selection_header = AppTextKey("event_selection.header.title")
+
+    // MARK: - Bookmark Library Selection
+    static let bookmark_library_selection_normal_header_title = AppTextKey("bookmark_library_selection.normal.header_title")
+    static let bookmark_library_selection_normal_cell_my_library_title = AppTextKey("bookmark_library_selection.normal.cell_my_library_title")
+    static let bookmark_library_selection_normal_cell_my_library_subtitle = AppTextKey("bookmark_library_selection.normal.cell_my_library_subtitle")
+    static let bookmark_library_selection_normal_cell_participiant_count_template = AppTextKey("bookmark_library_selection.normal.cell_participiant_count_template")
+    static let bookmark_library_selection_normal_save_button_title = AppTextKey("bookmark_library_selection.normal.save_button_title")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")

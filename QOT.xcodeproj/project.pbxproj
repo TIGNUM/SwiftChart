@@ -1084,6 +1084,18 @@
 		D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */; };
 		D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F211ED57AE200A08D1A /* SearchViewController.swift */; };
 		D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreenX.storyboard */; };
+		DB086F2F24C5E56100D4F64E /* BookMarkSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F2724C5E56100D4F64E /* BookMarkSelectionPresenter.swift */; };
+		DB086F3024C5E56100D4F64E /* BookMarkSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F2824C5E56100D4F64E /* BookMarkSelectionWorker.swift */; };
+		DB086F3124C5E56100D4F64E /* BookMarkSelectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F2924C5E56100D4F64E /* BookMarkSelectionRouter.swift */; };
+		DB086F3224C5E56100D4F64E /* BookMarkSelectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F2A24C5E56100D4F64E /* BookMarkSelectionInterface.swift */; };
+		DB086F3324C5E56100D4F64E /* BookMarkSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F2B24C5E56100D4F64E /* BookMarkSelectionViewController.swift */; };
+		DB086F3424C5E56100D4F64E /* BookMarkSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F2C24C5E56100D4F64E /* BookMarkSelectionInteractor.swift */; };
+		DB086F3524C5E56100D4F64E /* BookMarkSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F2D24C5E56100D4F64E /* BookMarkSelectionModel.swift */; };
+		DB086F3624C5E56100D4F64E /* BookMarkSelectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F2E24C5E56100D4F64E /* BookMarkSelectionConfigurator.swift */; };
+		DB086F3B24C7466900D4F64E /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
+		DB086F3F24C74EA900D4F64E /* BookMarkSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB086F3E24C74EA900D4F64E /* BookMarkSelectionCell.swift */; };
+		DB086F4124C83A5300D4F64E /* BookMarkSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB086F4024C83A5300D4F64E /* BookMarkSelection.storyboard */; };
+		DB086F4324C8544A00D4F64E /* BookMarkSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB086F4224C8544A00D4F64E /* BookMarkSelectionCell.xib */; };
 		DB2969EA22C6105300B8A590 /* AudioFullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969E922C6105300B8A590 /* AudioFullScreenViewController.swift */; };
 		DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB2969EB22C611B500B8A590 /* AudioFullScreenViewController.storyboard */; };
 		DB2969EE22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969ED22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift */; };
@@ -2429,6 +2441,17 @@
 		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		D5485F211ED57AE200A08D1A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		DB086F2724C5E56100D4F64E /* BookMarkSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionPresenter.swift; sourceTree = "<group>"; };
+		DB086F2824C5E56100D4F64E /* BookMarkSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionWorker.swift; sourceTree = "<group>"; };
+		DB086F2924C5E56100D4F64E /* BookMarkSelectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionRouter.swift; sourceTree = "<group>"; };
+		DB086F2A24C5E56100D4F64E /* BookMarkSelectionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionInterface.swift; sourceTree = "<group>"; };
+		DB086F2B24C5E56100D4F64E /* BookMarkSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionViewController.swift; sourceTree = "<group>"; };
+		DB086F2C24C5E56100D4F64E /* BookMarkSelectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionInteractor.swift; sourceTree = "<group>"; };
+		DB086F2D24C5E56100D4F64E /* BookMarkSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionModel.swift; sourceTree = "<group>"; };
+		DB086F2E24C5E56100D4F64E /* BookMarkSelectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionConfigurator.swift; sourceTree = "<group>"; };
+		DB086F3E24C74EA900D4F64E /* BookMarkSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionCell.swift; sourceTree = "<group>"; };
+		DB086F4024C83A5300D4F64E /* BookMarkSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookMarkSelection.storyboard; sourceTree = "<group>"; };
+		DB086F4224C8544A00D4F64E /* BookMarkSelectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookMarkSelectionCell.xib; sourceTree = "<group>"; };
 		DB2969E922C6105300B8A590 /* AudioFullScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFullScreenViewController.swift; sourceTree = "<group>"; };
 		DB2969EB22C611B500B8A590 /* AudioFullScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioFullScreenViewController.storyboard; sourceTree = "<group>"; };
 		DB2969ED22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayerViewController+BottomNavigation.swift"; sourceTree = "<group>"; };
@@ -2824,6 +2847,7 @@
 		36376638223A6F0E00C2C429 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DB086F2624C5E52A00D4F64E /* BookMarkViewController */,
 				36E86D492270511100371C67 /* ArticleBulletPointTableViewCell.swift */,
 				36E86D4A2270511100371C67 /* ArticleBulletPointTableViewCell.xib */,
 				360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */,
@@ -5247,6 +5271,32 @@
 			name = Animation;
 			sourceTree = "<group>";
 		};
+		DB086F2624C5E52A00D4F64E /* BookMarkViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DB086F3D24C74E5700D4F64E /* View */,
+				DB086F2724C5E56100D4F64E /* BookMarkSelectionPresenter.swift */,
+				DB086F2824C5E56100D4F64E /* BookMarkSelectionWorker.swift */,
+				DB086F2924C5E56100D4F64E /* BookMarkSelectionRouter.swift */,
+				DB086F2A24C5E56100D4F64E /* BookMarkSelectionInterface.swift */,
+				DB086F2B24C5E56100D4F64E /* BookMarkSelectionViewController.swift */,
+				DB086F2C24C5E56100D4F64E /* BookMarkSelectionInteractor.swift */,
+				DB086F2D24C5E56100D4F64E /* BookMarkSelectionModel.swift */,
+				DB086F2E24C5E56100D4F64E /* BookMarkSelectionConfigurator.swift */,
+				DB086F4024C83A5300D4F64E /* BookMarkSelection.storyboard */,
+			);
+			path = BookMarkViewController;
+			sourceTree = "<group>";
+		};
+		DB086F3D24C74E5700D4F64E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DB086F3E24C74EA900D4F64E /* BookMarkSelectionCell.swift */,
+				DB086F4224C8544A00D4F64E /* BookMarkSelectionCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DB2969F122C64C5200B8A590 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -6100,6 +6150,7 @@
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
+				DB086F4324C8544A00D4F64E /* BookMarkSelectionCell.xib in Resources */,
 				38C23E5C2423D9B70034571B /* CalendarEventSelectionViewController.xib in Resources */,
 				F9D2BC2422D496AF00DBF2CC /* FromTignumCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
@@ -6115,6 +6166,7 @@
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
 				9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */,
 				36AEA4DF2271AC8F00EC9C55 /* AudioPlayerBar.xib in Resources */,
+				DB086F4124C83A5300D4F64E /* BookMarkSelection.storyboard in Resources */,
 				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
@@ -6373,6 +6425,7 @@
 				F96D75B9249CF9C100DFFB22 /* TeamTableViewCell.swift in Sources */,
 				B8BCE59822AAC2710012AAAC /* ExtensionModel.swift in Sources */,
 				B8BCE59B22AF8FEA0012AAAC /* ShareExtentionData.swift in Sources */,
+				DB086F3B24C7466900D4F64E /* Dequeueable.swift in Sources */,
 				B8BCE59922AAC2770012AAAC /* ExtensionUserDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6393,6 +6446,7 @@
 				365825792327D19200AC3F4A /* DTShortTBVWorker.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */,
+				DB086F3524C5E56100D4F64E /* BookMarkSelectionModel.swift in Sources */,
 				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
@@ -6466,6 +6520,7 @@
 				3655F2D52326EBD600334719 /* DTMindsetRouter.swift in Sources */,
 				5F62BEA6228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift in Sources */,
 				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
+				DB086F3224C5E56100D4F64E /* BookMarkSelectionInterface.swift in Sources */,
 				ACF0B9782260BC80008CFAEC /* TextTableViewCell.swift in Sources */,
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
 				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
@@ -6506,6 +6561,7 @@
 				36B5BD2D23142B4A00439A64 /* AskPermissionWorker.swift in Sources */,
 				B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */,
 				F916AAEB2418E943002C1EFE /* MindsetShifterCell.swift in Sources */,
+				DB086F2F24C5E56100D4F64E /* BookMarkSelectionPresenter.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				8D0B4D242301CC4000A1AC47 /* RegistrationNamesRouter.swift in Sources */,
@@ -6604,6 +6660,7 @@
 				8D25778922F8748300D42B90 /* OnboardingLoginViewModel.swift in Sources */,
 				F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */,
 				8D25327722EA0FF300FE4205 /* CtaItemDetailsItemCell.swift in Sources */,
+				DB086F3124C5E56100D4F64E /* BookMarkSelectionRouter.swift in Sources */,
 				F96B23AB23507FB900130EFF /* DepartureBespokeFeastCell.swift in Sources */,
 				8D13B8DF22FB1F4C00B776E8 /* CreateAccountInfoViewController.swift in Sources */,
 				B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */,
@@ -6927,6 +6984,7 @@
 				B86E744B22A9519900B0AE75 /* MyLibraryCategoryListRouter.swift in Sources */,
 				3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */,
 				38290B8A2330F825004B5C14 /* DTSprintReflectionViewController.swift in Sources */,
+				DB086F3324C5E56100D4F64E /* BookMarkSelectionViewController.swift in Sources */,
 				F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */,
 				38E84B7C241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.swift in Sources */,
 				DB51215F2331945F009BFF22 /* PreparationWithMissingEventRouter.swift in Sources */,
@@ -7002,6 +7060,7 @@
 				367CD18422EF4EDE00AF2187 /* OnboardingLoginInteractor.swift in Sources */,
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,
 				8D322B9822E89C13000141E1 /* MySprintDetailsHeaderView.swift in Sources */,
+				DB086F3624C5E56100D4F64E /* BookMarkSelectionConfigurator.swift in Sources */,
 				36376632223A66AF00C2C429 /* CoachViewController.swift in Sources */,
 				B856B47822B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift in Sources */,
 				AC103E422285B27200F426F0 /* ShifterResultRouter.swift in Sources */,
@@ -7205,6 +7264,7 @@
 				F9A5C94422B7D02C00AB2E94 /* PaymentReminderInteractor.swift in Sources */,
 				36376602223A4BD200C2C429 /* KnowingConfigurator.swift in Sources */,
 				36E12EC6232B57F0009E96EA /* DTPrepareViewController.swift in Sources */,
+				DB086F3424C5E56100D4F64E /* BookMarkSelectionInteractor.swift in Sources */,
 				8D25326F22E9B8F700FE4205 /* MySprintDetailsItem.swift in Sources */,
 				F9458C6724AA379C004E2383 /* MyXTeamSettingsModel.swift in Sources */,
 				CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */,
@@ -7243,6 +7303,7 @@
 				AC103E402285B27200F426F0 /* ShifterResultPresenter.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
 				5FA66640229C206D0027EE74 /* MyVisionEditDetailsInteractor.swift in Sources */,
+				DB086F3024C5E56100D4F64E /* BookMarkSelectionWorker.swift in Sources */,
 				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,
 				5F62BEAA228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift in Sources */,
 				36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */,
@@ -7357,6 +7418,7 @@
 				75DC687222C11D7200FF183D /* MyToBeVisionRateConfigurator.swift in Sources */,
 				F9A5C93122B2401000AB2E94 /* MyPrepsViewController.swift in Sources */,
 				36796A5920D3C4B800B55429 /* SigningInfoInterface.swift in Sources */,
+				DB086F3F24C74EA900D4F64E /* BookMarkSelectionCell.swift in Sources */,
 				ACE6A3CB22B11F96000470B1 /* SolveTriggerTableViewCell.swift in Sources */,
 				3637667B223BFF3800C2C429 /* StrategyListModel.swift in Sources */,
 				B4F3950B232FF1930007AC51 /* UIStackView+RemoveAll.swift in Sources */,

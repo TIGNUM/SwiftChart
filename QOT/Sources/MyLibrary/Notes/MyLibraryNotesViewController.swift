@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
 
@@ -42,6 +43,10 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
         trackPage()
         if interactor?.isCreatingNewNote ?? true {
             beginEditing()
+        } else if interactor?.isMyNote == false {
+            textView.isUserInteractionEnabled = false
+        } else {
+            textView.isUserInteractionEnabled = true
         }
     }
 
@@ -54,6 +59,17 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
         textView.tintColor = .sand
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
+    }
+
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        if let teamId = interactor?.teamId {
+            pageTrack.associatedValueId = teamId
+            pageTrack.associatedValueType = .TEAM
+        }
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 
     override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

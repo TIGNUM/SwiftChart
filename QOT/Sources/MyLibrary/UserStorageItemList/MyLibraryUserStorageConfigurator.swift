@@ -11,12 +11,13 @@ import qot_dal
 
 final class MyLibraryUserStorageConfigurator {
 
-    static func make() -> (MyLibraryUserStorageViewController, MyLibraryCategoryListModel) -> Void {
+    static func make(with team: QDMTeam?, _ category: String? = nil) -> (MyLibraryUserStorageViewController, MyLibraryCategoryListModel) -> Void {
         return { (viewController, item) in
             let router = MyLibraryUserStorageRouter(viewController: viewController)
             let worker = MyLibraryUserStorageWorker(item: item)
             let presenter = MyLibraryUserStoragePresenter(viewController: viewController)
-            let interactor = MyLibraryUserStorageInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = MyLibraryUserStorageInteractor(team: team, category: category,
+                                                            worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
         }
     }

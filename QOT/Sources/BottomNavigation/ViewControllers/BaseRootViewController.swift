@@ -45,6 +45,9 @@ final class BaseRootViewController: BaseViewController, ScreenZLevel1 {
                                                selector: #selector(handleBottomNavigationBar(_:)),
                                                name: .updateBottomNavigation,
                                                object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideBottomNavigationBar),
+                                               name: .hideBottomNavigation, object: nil)
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(userLogout(_:)),
                                                name: .userLogout,

@@ -49,4 +49,18 @@ extension ArticlePresenter: ArticlePresenterInterface {
     func showDestinationAlert() {
         viewController?.showDestinationAlert()
     }
+
+    func showBookmarkSelectionViewController(with contentId: Int, _ completion: @escaping (Bool) -> Void) {
+        guard let viewController = R.storyboard.bookMarkSelection.bookMarkSelectionViewController() else { return }
+        let config = BookMarkSelectionConfigurator.make(contentId: contentId, contentType: .CONTENT)
+        config(viewController, completion)
+        self.viewController?.present(viewController)
+    }
+
+    func refreshBottomNavigationItems() {
+        viewController?.refreshBottomNavigationItems()
+    }
+    func trackPage() {
+        viewController?.trackPage()
+    }
 }

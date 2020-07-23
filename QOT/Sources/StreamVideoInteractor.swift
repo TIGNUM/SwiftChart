@@ -13,6 +13,7 @@ protocol StreamVideoInteractorDelegate: class {
     func didUpdateData(interactor: StreamVideoInteractorInterface)
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface)
     func showNoInternetConnectionAlert(interactor: StreamVideoInteractorInterface)
+    func showBookmarkSelectionViewController(with contentItemId: Int, _ completion: @escaping (Bool) -> Void)
 }
 
 protocol StreamVideoInteractorInterface {
@@ -119,13 +120,26 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
     }
 
     func didTapBookmark() {
-        worker.toggleBookmark { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.didUpdateData(interactor: strongSelf)
-            NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
-            if strongSelf.isBookmarked, strongSelf.worker.wasBookmarkedOnce == false {
-                strongSelf.presenter.showDestinationAlert()
-                strongSelf.worker.wasBookmarkedOnce = true
+        guard let contentItemId = contentItemId, contentItemId != 0 else { return }
+        // FIXME: shows book mark selection
+        TeamService.main.getTeams { [weak self] (teams, _, _) in
+            let completion: (Bool) -> Void = { [weak self] (isChanged) in
+                guard let strongSelf = self else { return }
+                NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
+                if strongSelf.isBookmarked, isChanged, strongSelf.worker.wasBookmarkedOnce == false {
+                    strongSelf.presenter.showDestinationAlert()
+                    strongSelf.worker.wasBookmarkedOnce = true
+                }
+                strongSelf.delegate?.didUpdateData(interactor: strongSelf)
+            }
+            if teams?.isEmpty ?? true {
+                self?.worker.toggleBookmark { completion(true) }
+            } else {
+                self?.delegate?.showBookmarkSelectionViewController(with: contentItemId) { [weak self] isChanged in
+                    self?.worker.updateBookmarks {
+                        completion(isChanged)
+                    }
+                }
             }
         }
     }

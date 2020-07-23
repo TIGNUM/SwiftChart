@@ -109,6 +109,7 @@ extension UIViewController {
         case is MyXTeamMembersViewController: return "myX.settings.teamMembers"
         case is TeamEditViewController: return teamEditViewControllerPageKey
         case is TeamInvitesViewController: return "team.pending.invitations"
+        case is BookMarkSelectionViewController: return "bookmark_library_selection"
         default: preconditionFailure()
         }
     }

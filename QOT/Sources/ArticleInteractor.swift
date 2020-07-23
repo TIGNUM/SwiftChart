@@ -15,6 +15,7 @@ final class ArticleInteractor {
     private var worker: ArticleWorker
     private let presenter: ArticlePresenterInterface
     private let router: ArticleRouterInterface
+    private var needToShowDestinationAlert: Bool = true
 
     // MARK: - Init
     init(worker: ArticleWorker,
@@ -149,14 +150,36 @@ extension ArticleInteractor: ArticleInteractorInterface {
         presenter.reloadData()
         presenter.dataUpdated()
         presenter.setTopBarButtonItems(isShareable: worker.isShareable, hasBookMarkItem: !worker.isBookmarkItemHidden)
-        presenter.updateBookmark(worker.bookmark != nil)
+        presenter.updateBookmark(worker.bookmarks?.first != nil)
     }
 
     func toggleBookmark() {
-        presenter.updateBookmark(worker.toggleBookmark())
+        let contentId = worker.remoteID
+        TeamService.main.getTeams { [weak self] (teams, _, _) in
+            if let teams = teams, teams.isEmpty == false {
+                self?.presenter.showBookmarkSelectionViewController(with: contentId) { [weak self] (isChanged) in
+                    self?.worker.updateBookmarkStatus({ [weak self] (hasBookmark) in
+                        self?.presenter.updateBookmark(hasBookmark)
+                        if self?.needToShowDestinationAlert == true, hasBookmark {
+                            self?.showDestinationAlert()
+                        }
+                    })
+                    self?.presenter.trackPage()
+                    self?.presenter.refreshBottomNavigationItems()
+                }
+            } else {
+                self?.worker.toggleBookmark { [weak self] hasBookmark in
+                    if self?.needToShowDestinationAlert == true, hasBookmark {
+                        self?.showDestinationAlert()
+                    }
+                    self?.presenter.updateBookmark(hasBookmark)
+                }
+            }
+        }
     }
 
     func showDestinationAlert() {
+        needToShowDestinationAlert = false
         presenter.showDestinationAlert()
     }
 }

@@ -217,7 +217,7 @@ final class MyLibraryUserStorageWorker {
 // MARK: Data loading
 extension MyLibraryUserStorageWorker {
 
-    func loadData(_ completion: @escaping (_ initiated: Bool, _ items: [QDMUserStorage]) -> Void) {
+    func loadData(in team: QDMTeam?, _ completion: @escaping (_ initiated: Bool, _ items: [QDMUserStorage]) -> Void) {
         var storageType: UserStorageType = .UNKOWN
         switch item.type {
         case .BOOKMARKS: storageType = .BOOKMARK
@@ -226,13 +226,26 @@ extension MyLibraryUserStorageWorker {
         case .NOTES: storageType = .NOTE
         case .ALL: storageType = .UNKOWN
         }
+
         if item.type != .ALL {
-            service.getUserStorages(for: storageType) { [weak self] (storages, initiated, error) in
-                self?.handleStorages(storages, initiated: initiated, completion: completion)
+            if let team = team {
+                service.getTeamStorages(for: storageType, in: team) { [weak self] (storages, initiated, error) in
+                    self?.handleStorages(storages, initiated: initiated, completion: completion)
+                }
+            } else {
+                service.getUserStorages(for: storageType) { [weak self] (storages, initiated, error) in
+                    self?.handleStorages(storages, initiated: initiated, completion: completion)
+                }
             }
         } else {
-            service.getUserStorages { [weak self] (storages, initiated, error) in
-                self?.handleStorages(storages, initiated: initiated, completion: completion)
+            if let team = team {
+                service.getTeamStorages (in: team) { [weak self] (teamStorages, initiated, error) in
+                    self?.handleStorages(teamStorages, initiated: initiated, completion: completion)
+                }
+            } else {
+                service.getUserStorages { [weak self] (storages, initiated, error) in
+                    self?.handleStorages(storages, initiated: initiated, completion: completion)
+                }
             }
         }
     }

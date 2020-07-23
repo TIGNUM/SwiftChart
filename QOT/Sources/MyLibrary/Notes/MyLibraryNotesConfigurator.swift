@@ -11,12 +11,12 @@ import qot_dal
 
 final class MyLibraryNotesConfigurator {
 
-    static func make() -> (MyLibraryNotesViewController, String?) -> Void {
+    static func make(with team: QDMTeam?) -> (MyLibraryNotesViewController, String?) -> Void {
         return { (viewController, note) in
             let router = MyLibraryNotesRouter(viewController: viewController)
             let worker = MyLibraryNotesWorker(noteId: note)
             let presenter = MyLibraryNotesPresenter(viewController: viewController)
-            let interactor = MyLibraryNotesInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = MyLibraryNotesInteractor(team: team, worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
         }
     }

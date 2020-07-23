@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookMarkSelectionCell" rowHeight="75" id="flJ-NJ-cfM" customClass="BookMarkSelectionCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="flJ-NJ-cfM" id="Bms-Zg-tXx">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RxT-DW-Lsk" userLabel="Separator">
+                        <rect key="frame" x="26" y="0.0" width="388" height="1"/>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="fOm-Ee-lBT"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Team name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gE3-CL-kVy">
+                        <rect key="frame" x="26" y="16" width="330" height="24.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24.5" id="sUV-vD-6l2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="20"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRb-8F-IeV">
+                        <rect key="frame" x="366" y="25.5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="oT4-yR-pZg"/>
+                            <constraint firstAttribute="height" constant="24" id="okS-Po-2TO"/>
+                        </constraints>
+                        <state key="normal" image="ic_radio_unselected"/>
+                        <state key="selected" image="ic_radio_selected"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="participants" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hom-tS-dUm">
+                        <rect key="frame" x="26" y="40.5" width="330" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="DH1-oa-HAp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69670376710000004" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="Hom-tS-dUm" firstAttribute="leading" secondItem="gE3-CL-kVy" secondAttribute="leading" id="1FF-iy-iOD"/>
+                    <constraint firstItem="gE3-CL-kVy" firstAttribute="leading" secondItem="Bms-Zg-tXx" secondAttribute="leading" constant="26" id="Djg-2q-bwT"/>
+                    <constraint firstItem="RxT-DW-Lsk" firstAttribute="top" secondItem="Bms-Zg-tXx" secondAttribute="top" id="JQv-OT-1TI"/>
+                    <constraint firstItem="RxT-DW-Lsk" firstAttribute="leading" secondItem="gE3-CL-kVy" secondAttribute="leading" id="KnN-rN-pWJ"/>
+                    <constraint firstItem="HRb-8F-IeV" firstAttribute="leading" secondItem="gE3-CL-kVy" secondAttribute="trailing" constant="10" id="NMY-Mb-hzR"/>
+                    <constraint firstItem="Hom-tS-dUm" firstAttribute="top" secondItem="gE3-CL-kVy" secondAttribute="bottom" id="f8J-xe-D02"/>
+                    <constraint firstAttribute="trailing" secondItem="HRb-8F-IeV" secondAttribute="trailing" constant="24" id="h7k-Hi-9M5"/>
+                    <constraint firstItem="gE3-CL-kVy" firstAttribute="top" secondItem="Bms-Zg-tXx" secondAttribute="top" constant="16" id="mgS-Fo-IZP"/>
+                    <constraint firstAttribute="trailing" secondItem="RxT-DW-Lsk" secondAttribute="trailing" id="tTZ-Bh-ACU"/>
+                    <constraint firstItem="Hom-tS-dUm" firstAttribute="trailing" secondItem="gE3-CL-kVy" secondAttribute="trailing" id="u3v-xq-GTF"/>
+                    <constraint firstItem="HRb-8F-IeV" firstAttribute="centerY" secondItem="Bms-Zg-tXx" secondAttribute="centerY" id="wuy-Ju-VAL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="checkButton" destination="HRb-8F-IeV" id="4bQ-ZD-Nlf"/>
+                <outlet property="participantsLabel" destination="Hom-tS-dUm" id="Oqd-7d-0ov"/>
+                <outlet property="separator" destination="RxT-DW-Lsk" id="HL2-y4-hag"/>
+                <outlet property="teamLibraryName" destination="gE3-CL-kVy" id="pxC-M9-uHN"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="81"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_radio_selected" width="32" height="32"/>
+        <image name="ic_radio_unselected" width="32" height="32"/>
+    </resources>
+</document>

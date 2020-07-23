@@ -7,15 +7,17 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyLibraryCategoryListConfigurator {
 
-    static func make() -> (MyLibraryCategoryListViewController) -> Void {
+    static func make(with team: QDMTeam?, _ category: String? = nil) -> (MyLibraryCategoryListViewController) -> Void {
         return { (viewController) in
             let router = MyLibraryCategoryListRouter(viewController: viewController)
             let worker = MyLibraryCategoryListWorker()
             let presenter = MyLibraryCategoryListPresenter(viewController: viewController)
-            let interactor = MyLibraryCategoryListInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = MyLibraryCategoryListInteractor(team: team, category: category,
+                                                             worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
         }
     }

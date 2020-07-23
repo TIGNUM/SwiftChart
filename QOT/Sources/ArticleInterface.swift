@@ -16,7 +16,10 @@ protocol ArticleViewControllerInterface: class {
     func hasBookmark(_ hasBookmark: Bool)
     func dataUpdated()
     func showDestinationAlert()
+    func refreshBottomNavigationItems()
+    func trackPage()
     func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool)
+    func present(_ viewController: UIViewController)
 }
 
 protocol ArticlePresenterInterface {
@@ -27,6 +30,9 @@ protocol ArticlePresenterInterface {
     func dataUpdated()
     func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool)
     func showDestinationAlert()
+    func showBookmarkSelectionViewController(with contentId: Int, _ completion: @escaping (Bool) -> Void)
+    func refreshBottomNavigationItems()
+    func trackPage()
 }
 
 protocol ArticleInteractorInterface: class, Interactor {

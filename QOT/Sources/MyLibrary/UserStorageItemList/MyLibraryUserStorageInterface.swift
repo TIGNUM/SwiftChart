@@ -29,6 +29,7 @@ protocol MyLibraryUserStoragePresenterInterface {
 protocol MyLibraryUserStorageInteractorInterface: Interactor {
     var title: String { get }
     var addTitle: String { get }
+    var teamId: Int? { get }
     var showAddButton: Bool { get }
     var showEditButton: Bool { get }
     var canEdit: Bool { get }
@@ -49,5 +50,5 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
 protocol MyLibraryUserStorageRouterInterface: BaseRouterInterface {
     func presentVideo(url: URL, item: QDMContentItem?)
     func presentExternalUrl(_ url: URL)
-    func presentCreateNote(noteId: String?)
+    func presentCreateNote(noteId: String?, in team: QDMTeam?)
 }
