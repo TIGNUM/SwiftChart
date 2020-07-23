@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "isaiah-rustad-8q5rl4rdK_0-unsplash 2.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

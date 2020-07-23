@@ -25,7 +25,7 @@ final class TeamNameTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(teamId: String,
-                   teamColors: [UIColor],
+                   teamColors: [String],
                    selectedColor: String,
                    title: String,
                    themeCell: ThemeView = .level2) {

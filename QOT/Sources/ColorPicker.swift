@@ -12,10 +12,15 @@ final class ColorPicker: UIView {
 
     enum Color: Int, CaseIterable {
         case pink = 0
-        case purple
-        case green
-        case yellow
-        case blue
+        case purple = 1
+        case green = 2
+        case yellow = 3
+        case blue = 4
+
+        func get(_ hexColors: [String]) -> UIColor {
+            guard let hex = hexColors.at(index: rawValue) else { return .clear }
+            return UIColor(hex: hex)
+        }
     }
 
     private var skeletonManager = SkeletonManager()
@@ -42,13 +47,13 @@ final class ColorPicker: UIView {
     weak var delegate: MyXTeamSettingsViewController?
     private var isOpen = false
     private var selectedColor = UIColor.clear
-    private var teamColors = [UIColor]()
+    private var teamColors = [String]()
     private var teamId = ""
-    private lazy var teamPink: UIColor = teamColors[Color.pink.rawValue]
-    private lazy var teamPurple: UIColor = teamColors[Color.purple.rawValue]
-    private lazy var teamGreen: UIColor = teamColors[Color.green.rawValue]
-    private lazy var teamYellow: UIColor = teamColors[Color.yellow.rawValue]
-    private lazy var teamBlue: UIColor = teamColors[Color.blue.rawValue]
+    private lazy var teamPink: UIColor = Color.pink.get(teamColors)
+    private lazy var teamPurple: UIColor = Color.purple.get(teamColors)
+    private lazy var teamGreen: UIColor = Color.green.get(teamColors)
+    private lazy var teamYellow: UIColor = Color.yellow.get(teamColors)
+    private lazy var teamBlue: UIColor = Color.blue.get(teamColors)
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,7 +64,7 @@ final class ColorPicker: UIView {
         colorPink.circle()
     }
 
-    func configure(teamId: String, teamColors: [UIColor], selectedColor: UIColor) {
+    func configure(teamId: String, teamColors: [String], selectedColor: UIColor) {
         self.teamId = teamId
         self.teamColors = teamColors
         self.selectedColor = selectedColor
@@ -132,9 +137,9 @@ private extension ColorPicker {
                 self.trailingConstraintBlue.constant = 0
                 self.labelContainer.alpha = 1
                 self.layoutIfNeeded()
-            }) { (_) in
+            }, completion: { _ in
                 self.postTeamColor(self.selectedColor)
-            }
+            })
         } else {
             UIView.animate(withDuration: Animation.duration_03) {
                 self.labelContainer.alpha = 0
@@ -175,8 +180,9 @@ private extension ColorPicker {
     }
 
     func postTeamColor(_ color: UIColor) {
+        let colorHexString = color.toHexString
         NotificationCenter.default.post(name: .didSelectTeamColor,
-                                        object: color.toHexString,
-                                        userInfo: [Team.KeyColor: color.toHexString])
+                                        object: colorHexString,
+                                        userInfo: [Team.KeyColor: colorHexString])
     }
 }

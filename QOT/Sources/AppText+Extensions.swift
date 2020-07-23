@@ -523,7 +523,7 @@ public extension AppTextKey {
     static let team_invite_cta_decline = AppTextKey("team_invite.cta.decline")
     static let team_invite_cta_join = AppTextKey("team_invite.cta.join")
     static let team_invite_details = AppTextKey("team_invite.details.text")
-    static let team_invite_max_capacity = AppTextKey(" team_invite.max.capacity")
+    static let team_invite_max_capacity = AppTextKey("team_invite.max.capacity")
 
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")
@@ -694,8 +694,9 @@ public extension AppTextKey {
     static let my_qot_my_tbv_empty_subtitle_vision = AppTextKey("my_qot.my_tbv.empty.subtitle_vision")
     static let myx_team_tbv_empty_subtitle_vision = AppTextKey("myx.team_tbv.empty_subtitle_vision")
     static let my_qot_my_tbv_null_state_title = AppTextKey("my_qot.my_tbv.null_state.title")
-    static let myx_team_tbv_null_state_title = AppTextKey("my_x.team_tbv.null_state.title")
-    static let myx_team_tbv_null_state_subtitle = AppTextKey("my_x.team_tbv.null_state.subtitle")
+    static let myx_team_tbv_null_state_title = AppTextKey("my_x.team_tbv_null_state.title")
+    static let myx_team_tbv_null_state_subtitle = AppTextKey("my_x.team_tbv_null_state.subtitle")
+    static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
     static let my_qot_my_tbv_alert_edit_photo_button_delete_photo = AppTextKey("my_qot.my_tbv.alert.edit_photo.button_delete_photo")
     static let my_qot_my_tbv_alert_update_body = AppTextKey("my_qot.my_tbv.alert.update.body")
     static let my_qot_my_tbv_tbv_tracker_data_section_footer_button_done = AppTextKey("my_qot.my_tbv.tbv_tracker_data.section_footer.button_done")

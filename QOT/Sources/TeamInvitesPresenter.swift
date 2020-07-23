@@ -21,8 +21,8 @@ final class TeamInvitesPresenter {
 
 // MARK: - TeamInvitesInterface
 extension TeamInvitesPresenter: TeamInvitesPresenterInterface {
-    func reload() {
-        viewController?.reload()
+    func reload(shouldDismiss: Bool) {
+        viewController?.reload(shouldDismiss: shouldDismiss)
     }
 
     func setupView() {

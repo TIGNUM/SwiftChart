@@ -1155,6 +1155,16 @@
 		F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F90BD422230164B100008702 /* SolveTableViewCell.xib */; };
 		F90BD425230164CA00008702 /* SolveTableViewCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD424230164CA00008702 /* SolveTableViewCelll.swift */; };
 		F90BD4292301669A00008702 /* SolveReminderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */; };
+		F91087A024C5A6BD00CA343A /* TeamToBeVisionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */; };
+		F91087A124C5A6BD00CA343A /* TeamToBeVisionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879924C5A6BC00CA343A /* TeamToBeVisionWorker.swift */; };
+		F91087A224C5A6BD00CA343A /* TeamToBeVisionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879A24C5A6BC00CA343A /* TeamToBeVisionRouter.swift */; };
+		F91087A324C5A6BD00CA343A /* TeamToBeVisionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */; };
+		F91087A424C5A6BD00CA343A /* TeamToBeVisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */; };
+		F91087A524C5A6BD00CA343A /* TeamToBeVisionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */; };
+		F91087A624C5A6BD00CA343A /* TeamToBeVisionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879E24C5A6BC00CA343A /* TeamToBeVisionModel.swift */; };
+		F91087A724C5A6BD00CA343A /* TeamToBeVisionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */; };
+		F91087A924C5C7D500CA343A /* TeamToBeVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */; };
+		F91087AB24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */; };
 		F916AAEB2418E943002C1EFE /* MindsetShifterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F916AAEA2418E943002C1EFE /* MindsetShifterCell.swift */; };
 		F916AAED2418E958002C1EFE /* MindsetShifterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F916AAEC2418E958002C1EFE /* MindsetShifterCell.xib */; };
 		F916AAF12418E9D6002C1EFE /* MindsetShifterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F916AAF02418E9D6002C1EFE /* MindsetShifterViewModel.swift */; };
@@ -2503,6 +2513,16 @@
 		F90BD422230164B100008702 /* SolveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveTableViewCell.xib; sourceTree = "<group>"; };
 		F90BD424230164CA00008702 /* SolveTableViewCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveTableViewCelll.swift; sourceTree = "<group>"; };
 		F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCellViewModel.swift; sourceTree = "<group>"; };
+		F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionPresenter.swift; sourceTree = "<group>"; };
+		F910879924C5A6BC00CA343A /* TeamToBeVisionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionWorker.swift; sourceTree = "<group>"; };
+		F910879A24C5A6BC00CA343A /* TeamToBeVisionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionRouter.swift; sourceTree = "<group>"; };
+		F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionInterface.swift; sourceTree = "<group>"; };
+		F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionViewController.swift; sourceTree = "<group>"; };
+		F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionInteractor.swift; sourceTree = "<group>"; };
+		F910879E24C5A6BC00CA343A /* TeamToBeVisionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionModel.swift; sourceTree = "<group>"; };
+		F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionConfigurator.swift; sourceTree = "<group>"; };
+		F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNullStateView.swift; sourceTree = "<group>"; };
+		F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		F916AAEA2418E943002C1EFE /* MindsetShifterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterCell.swift; sourceTree = "<group>"; };
 		F916AAEC2418E958002C1EFE /* MindsetShifterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetShifterCell.xib; sourceTree = "<group>"; };
 		F916AAF02418E9D6002C1EFE /* MindsetShifterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterViewModel.swift; sourceTree = "<group>"; };
@@ -3579,6 +3599,7 @@
 		5F8A89882296CA530011A05C /* MyToBeVision */ = {
 			isa = PBXGroup;
 			children = (
+				F910879724C5A69100CA343A /* TeamToBeVision */,
 				5F8A89902296DC270011A05C /* MyToBeVision.storyboard */,
 				75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */,
 				75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */,
@@ -3629,8 +3650,8 @@
 				36376619223A4C0400C2C429 /* MyQotProfileModel.swift */,
 				36376613223A4C0400C2C429 /* MyQotProfilePresenter.swift */,
 				36376615223A4C0400C2C429 /* MyQotProfileRouter.swift */,
-				36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */,
 				36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */,
+				36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */,
 			);
 			name = MyQotProfile;
 			sourceTree = "<group>";
@@ -5397,6 +5418,23 @@
 			name = MyPreps;
 			sourceTree = "<group>";
 		};
+		F910879724C5A69100CA343A /* TeamToBeVision */ = {
+			isa = PBXGroup;
+			children = (
+				F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */,
+				F910879924C5A6BC00CA343A /* TeamToBeVisionWorker.swift */,
+				F910879A24C5A6BC00CA343A /* TeamToBeVisionRouter.swift */,
+				F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */,
+				F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */,
+				F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */,
+				F910879E24C5A6BC00CA343A /* TeamToBeVisionModel.swift */,
+				F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */,
+				F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */,
+				F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */,
+			);
+			name = TeamToBeVision;
+			sourceTree = "<group>";
+		};
 		F916AAE92418E915002C1EFE /* MindsetShifter */ = {
 			isa = PBXGroup;
 			children = (
@@ -6487,6 +6525,7 @@
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
 				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
+				F91087A624C5A6BD00CA343A /* TeamToBeVisionModel.swift in Sources */,
 				38095D2324BDC4EA0077EE86 /* TeamInvitesPresenter.swift in Sources */,
 				B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */,
 				B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */,
@@ -6615,6 +6654,7 @@
 				36376679223BFF3800C2C429 /* StrategyListViewController.swift in Sources */,
 				3666FD44232A4B7D00FC67D0 /* DTRecoveryInterface.swift in Sources */,
 				382CDC6424A2433300B34BCE /* TeamEditInteractor.swift in Sources */,
+				F91087A124C5A6BD00CA343A /* TeamToBeVisionWorker.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
 				8D25778922F8748300D42B90 /* OnboardingLoginViewModel.swift in Sources */,
@@ -6724,6 +6764,7 @@
 				75DC687022C11D5D00FF183D /* MyToBeVisionRateWorker.swift in Sources */,
 				365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */,
 				8D8AA76522FDCB6700B59A81 /* RegistrationEmailPresenter.swift in Sources */,
+				F91087A924C5C7D500CA343A /* TeamToBeVisionNullStateView.swift in Sources */,
 				38E5A0912412B06C008FCF8F /* CalendarEventSelectionConfigurator.swift in Sources */,
 				38E5A08A2412B06C008FCF8F /* CalendarEventSelectionPresenter.swift in Sources */,
 				363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */,
@@ -6776,6 +6817,7 @@
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
 				B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */,
 				8D0B4D232301CC4000A1AC47 /* RegistrationNamesWorker.swift in Sources */,
+				F91087A224C5A6BD00CA343A /* TeamToBeVisionRouter.swift in Sources */,
 				F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */,
 				B474CA922398F85F00A829B5 /* RegisterIntroInteractor.swift in Sources */,
 				B4A075BD230EF14900DDB922 /* MyDataHeatMapDateCell.swift in Sources */,
@@ -7026,6 +7068,7 @@
 				7582617F22DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift in Sources */,
 				36E4CF0A22BC51BD009A2DF7 /* ChoiceWorker.swift in Sources */,
 				B45DA6BD23AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift in Sources */,
+				F91087A324C5A6BD00CA343A /* TeamToBeVisionInterface.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
@@ -7034,6 +7077,7 @@
 				9CC426202306A4DB00F8072E /* GuidedTrackRowViewModel.swift in Sources */,
 				36E86D532270651A00371C67 /* ArticleRelatedTableViewCell.swift in Sources */,
 				F934802A247D467000DD1C7D /* FeatureExplainerInterface.swift in Sources */,
+				F91087AB24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift in Sources */,
 				759AB41B22C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift in Sources */,
 				9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */,
 				9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */,
@@ -7067,6 +7111,7 @@
 				B499A7062395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift in Sources */,
 				F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */,
 				8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */,
+				F91087A024C5A6BD00CA343A /* TeamToBeVisionPresenter.swift in Sources */,
 				B430D7C823A911DE00C75C9C /* MyQotAdminSettingsListRouter.swift in Sources */,
 				8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */,
 				F9207CEA24B77BEB007B1AB6 /* MyXTeamMembersViewController.swift in Sources */,
@@ -7139,6 +7184,7 @@
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				F9207CE724B77BEB007B1AB6 /* MyXTeamMembersWorker.swift in Sources */,
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
+				F91087A524C5A6BD00CA343A /* TeamToBeVisionInteractor.swift in Sources */,
 				8D40768E22E5A5AA0027864D /* MySprintDetailsViewController.swift in Sources */,
 				9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
@@ -7162,6 +7208,7 @@
 				38C23E5324235DCA0034571B /* DTPrepareStartRouter.swift in Sources */,
 				8D6E058C22D7466E00EC2AEF /* MyLibraryNotesViewController.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
+				F91087A724C5A6BD00CA343A /* TeamToBeVisionConfigurator.swift in Sources */,
 				363B9CC6232BF34A00C1A29E /* DTTBVConfigurator.swift in Sources */,
 				AC1A40F422A573F80022156C /* SolveDayPlanTableViewCell.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
@@ -7175,6 +7222,7 @@
 				38E5A08F2412B06C008FCF8F /* CalendarEventSelectionInteractor.swift in Sources */,
 				F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */,
 				3655F2D62326EBD600334719 /* DTMindsetInterface.swift in Sources */,
+				F91087A424C5A6BD00CA343A /* TeamToBeVisionViewController.swift in Sources */,
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,
 				366B6D2E23018980003FA63E /* QDMTermData+Ext.swift in Sources */,
 				AC1A40DA22A54EB70022156C /* SolveResultsPresenter.swift in Sources */,

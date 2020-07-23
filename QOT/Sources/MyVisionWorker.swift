@@ -32,8 +32,6 @@ final class MyVisionWorker {
 
     lazy var nullStateSubtitle = AppTextService.get(.my_qot_my_tbv_null_state_body)
     lazy var nullStateTitle = AppTextService.get(.my_qot_my_tbv_null_state_title)
-    lazy var teamNullStateSubtitle = AppTextService.get(.myx_team_tbv_null_state_subtitle)
-    lazy var teamNullStateTitle = AppTextService.get(.myx_team_tbv_null_state_title)
     lazy var nullStateCTA = AppTextService.get(.my_qot_my_tbv_null_state_button_write)
     lazy var nullStateTeamCTA = AppTextService.get(.myx_team_tbv_null_state_cta)
     lazy var updateAlertTitle = AppTextService.get(.my_qot_my_tbv_alert_update_title)
@@ -42,13 +40,10 @@ final class MyVisionWorker {
     lazy var updateAlertCreateTitle = AppTextService.get(.my_qot_my_tbv_alert_update_create)
     lazy var emptyTBVTextPlaceholder = AppTextService.get(.my_qot_my_tbv_empty_subtitle_vision)
     lazy var emptyTBVTitlePlaceholder = AppTextService.get(.my_qot_my_tbv_section_header_title_headline)
-    lazy var emptyTeamTBVTitlePlaceholder = AppTextService.get(.myx_team_tbv_header_title_headline)
-    lazy var emptyTeamTBVTextPlaceholder = AppTextService.get(.myx_team_tbv_empty_subtitle_vision )
     private lazy var notRatedText = AppTextService.get(.my_qot_my_tbv_section_track_null_state_title)
     private lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
-    private var teamVision: QDMTeamToBeVision?
     private var isMyVisionInitialized: Bool = false
     var toBeVisionDidChange: ((QDMToBeVision?) -> Void)?
     static var toBeSharedVisionHTML: String?
@@ -76,14 +71,6 @@ final class MyVisionWorker {
         }
     }
 
-    func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (_ initialized: Bool, _ toBeVision: QDMTeamToBeVision?) -> Void) {
-        TeamService.main.getTeamToBevision(for: team, { [weak self] (teamVision, initialized, _) in
-            self?.teamVision = teamVision
-            self?.isMyVisionInitialized = initialized
-            completion(initialized, teamVision)
-        })
-    }
-
     func getVisionTracks(_ completion: @escaping ([QDMToBeVisionTrack]) -> Void) {
         UserService.main.getToBeVisionTracksForRating { (tracks) in
             completion(tracks)
@@ -96,14 +83,6 @@ final class MyVisionWorker {
                 self?.updateWidget()
                 completion(qdmVision)
             }
-        }
-    }
-
-    func updateTeamToBeVision(_ new: QDMTeamToBeVision, team: QDMTeam, completion: @escaping (_ toBeVision: QDMTeamToBeVision?) -> Void) {
-        TeamService.main.updateTeamToBevision(vision: new) { [weak self] vision, error  in
-            self?.getTeamToBeVision(for: team, { (_, qdmTeamVision) in
-                completion(qdmTeamVision)
-            })
         }
     }
 
@@ -132,23 +111,13 @@ final class MyVisionWorker {
         let days = DateComponentsFormatter.numberOfDays(date)
         return dateString(for: days)
     }
-
-    func lastUpdatedTeamVision() -> String? {
-        guard let date = teamVision?.date?.beginingOfDate() else { return nil }
-        let days = DateComponentsFormatter.numberOfDays(date)
-        return dateString(for: days)
-    }
-
+    
     func visionToShare(_ completion: @escaping (QDMToBeVisionShare?) -> Void) {
         UserService.main.getMyToBeVisionShareData { (visionShare, _, _) in
             MyVisionWorker.toBeSharedVisionHTML = visionShare?.body
             completion(visionShare)
         }
     }
-
-//    func teamVisionToShare(for team: QDMTeam,_ completion: @escaping (QDMToBeVisionShare?) -> Void) {
-//
-//    }
 
     func updateWidget() {
         widgetDataManager.update(.toBeVision)
@@ -192,8 +161,6 @@ final class MyVisionWorker {
             }
         }
     }
-// TO DO: Get Rate text for teamTBV
-//      func getRateButtonValues(_ completion: @escaping (String?, Bool?, Bool) -> Void)
 
     private func dateString(for day: Int) -> String {
         if day == 0 {
