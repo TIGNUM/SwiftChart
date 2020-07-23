@@ -96,19 +96,19 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @IBAction func editButtonAction(_ sender: Any) {
-        trackUserEvent(.OPEN, valueType: "EditTeamBeVision", action: .TAP)
+        trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: "EditTeamBeVision", action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
 
     @IBAction func cameraButtonAction(_ sender: Any) {
-        trackUserEvent(.OPEN, valueType: "CameraOptions", action: .TAP)
+        trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: "CameraOptions", action: .TAP)
         imagePickerController.show(in: self, deletable: (tempTeamImageURL != nil || tempTeamImage != nil))
         imagePickerController.delegate = self
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
 
     @IBAction func writeButtonAction(_ sender: Any) {
-        trackUserEvent(.OPEN, valueType: "WriteTeamBeVision", action: .TAP)
+        trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: "WriteTeamBeVision", action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
 }
