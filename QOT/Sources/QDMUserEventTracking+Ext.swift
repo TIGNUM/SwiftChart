@@ -41,8 +41,6 @@ extension QDMUserEventTracking.Name {
     static let GET_STARTED = "GET_STARTED"
     static let AUDIO_PLAYBACK_SPEED = "AUDIO_PLAYBACK_SPEED"
     static let CHECK_DONT_SHOW_EXPLAINER = "CHECK_DONT_SHOW_EXPLAINER"
-    static let PICK_TEAM_TBV_IMAGE = "PICK_TEAM_TBV_IMAGE"
-    static let EDIT_TEAM_TBV = "EDIT_TEAM_TBV"
 }
 
 public extension QDMUserEventTracking.ValueType {
@@ -54,6 +52,8 @@ public extension QDMUserEventTracking.ValueType {
     static let PORTRAIT = "PORTRAIT"
     static let FEATURE_EXPLAINER = "FEATURE_EXPLAINER"
     static let WRITE_TEAM_TBV = "WRITE_TEAM_TBV"
+    static let PICK_TEAM_TBV_IMAGE = "PICK_TEAM_TBV_IMAGE"
+    static let EDIT_TEAM_TBV = "EDIT_TEAM_TBV"
 }
 
 public extension QDMUserEventTracking.Action {
