@@ -87,6 +87,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         skeletonManager.addTitle(headerLabel)
         skeletonManager.addSubtitle(toBeVisionLabel)
         skeletonManager.addOtherView(cameraButton)
+        skeletonManager.addOtherView(teamNullStateImageView)
         skeletonManager.addOtherView(userImageView)
         skeletonManager.addTitle(teamNullStateView.headerLabel)
         skeletonManager.addSubtitle(teamNullStateView.detailLabel)
@@ -210,7 +211,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         userImageView.contentMode = tempTeamImageURL == nil ? .center : .scaleAspectFill
         userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
         removeGradients()
-        addGradients(for: teamVision)
+        addGradients()
         //        TO DO: Get rate text for team
         //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
         //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
