@@ -110,6 +110,7 @@ extension UIViewController {
         case is TeamEditViewController: return teamEditViewControllerPageKey
         case is TeamInvitesViewController: return "team.pending.invitations"
         case is BookMarkSelectionViewController: return "bookmark_library_selection"
+        case is TeamToBeVisionViewController: return "teamTBV"
         default: preconditionFailure()
         }
     }

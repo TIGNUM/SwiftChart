@@ -1059,6 +1059,7 @@
                         <outlet property="doubleMessageRatingView" destination="ttJ-z4-yih" id="VR1-KH-Iqk"/>
                         <outlet property="headerLabel" destination="P5d-oL-yAf" id="okE-FP-hq7"/>
                         <outlet property="imageContainerView" destination="R5W-Tl-jin" id="iPF-kA-Ngg"/>
+                        <outlet property="infoStackView" destination="scI-5F-0ye" id="eUG-ab-euk"/>
                         <outlet property="lastRatedComment" destination="iEx-0Y-si6" id="Pkb-7v-Hg3"/>
                         <outlet property="lastRatedLabel" destination="xlA-OY-vqc" id="cqg-Bs-E7v"/>
                         <outlet property="lastUpdatedComment" destination="CMJ-p6-CGj" id="kfP-np-tFU"/>
