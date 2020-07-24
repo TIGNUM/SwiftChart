@@ -29,19 +29,19 @@ final class BookMarkSelectionWorker {
         case .CONTENT_ITEM:
             ContentService.main.getContentItemById(contentId) { [weak self] (contentItem) in
                 self?.contentItem = contentItem
-                bookMarks = contentItem?.userStorages ?? []
+                bookMarks = contentItem?.userStorages?.filter({ $0.userStorageType == .BOOKMARK }) ?? []
                 dispatchGroup.leave()
             }
         case .CONTENT:
             ContentService.main.getContentCollectionById(contentId) { [weak self] (contentCollection) in
                 self?.content = contentCollection
-                bookMarks = contentCollection?.userStorages ?? []
+                bookMarks = contentCollection?.userStorages?.filter({ $0.userStorageType == .BOOKMARK }) ?? []
                 dispatchGroup.leave()
             }
         case .CONTENT_CATEGORY:
             ContentService.main.getContentCategoryById(contentId) { [weak self] (contentCategory) in
                 self?.contentCategory = contentCategory
-                bookMarks = contentCategory?.userStorages ?? []
+                bookMarks = contentCategory?.userStorages?.filter({ $0.userStorageType == .BOOKMARK }) ?? []
                 dispatchGroup.leave()
             }
         default:
