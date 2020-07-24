@@ -37,6 +37,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet private weak var teamNullStateImageView: UIImageView!
+    @IBOutlet weak var infoStackView: UIStackView!
 
     var didShowNullStateView = false
     private let containerViewSize: CGFloat = 232.0
@@ -86,6 +87,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         skeletonManager.addTitle(headerLabel)
         skeletonManager.addSubtitle(toBeVisionLabel)
         skeletonManager.addOtherView(cameraButton)
+        skeletonManager.addOtherView(teamNullStateImageView)
         skeletonManager.addOtherView(userImageView)
         skeletonManager.addTitle(teamNullStateView.headerLabel)
         skeletonManager.addSubtitle(teamNullStateView.detailLabel)
@@ -94,19 +96,19 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @IBAction func editButtonAction(_ sender: Any) {
-        trackUserEvent(.OPEN, valueType: "EditTeamBeVision", action: .TAP)
+        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .EDIT_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
 
     @IBAction func cameraButtonAction(_ sender: Any) {
-        trackUserEvent(.OPEN, valueType: "CameraOptions", action: .TAP)
+        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .PICK_TEAM_TBV_IMAGE, action: .TAP)
         imagePickerController.show(in: self, deletable: (tempTeamImageURL != nil || tempTeamImage != nil))
         imagePickerController.delegate = self
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
 
     @IBAction func writeButtonAction(_ sender: Any) {
-        trackUserEvent(.OPEN, valueType: "WriteTeamBeVision", action: .TAP)
+        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
 }
@@ -123,13 +125,10 @@ private extension TeamToBeVisionViewController {
         teamNullStateView.removeSubViews()
     }
 
-    func addGradients(for teamVision: QDMTeamToBeVision?) {
-           let userImage = teamVision?.profileImageResource?.url()
-           if userImage != nil {
-               userImageView.gradientBackground(top: true)
-               userImageView.gradientBackground(top: false)
-           }
-       }
+    func addGradients() {
+        userImageView.gradientBackground(top: true)
+        userImageView.gradientBackground(top: false)
+    }
 }
 
 // MARK: - Observer
@@ -156,27 +155,31 @@ private extension TeamToBeVisionViewController {
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func setupView() {
         scrollView.alpha = 0
-
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
         ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_x_team_tbv_section_header_title),
                                          to: toBeVisionLabel)
+        userImageView.image = R.image.teamTBVPlaceholder()
+
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
+        guard (interactor?.team?.thisUserIsOwner) == true else {
+            infoStackView.isHidden = true
+            cameraButton.isHidden = true
+            return
+        }
         ThemeBorder.accent40.apply(cameraButton)
         ThemeBorder.accent40.apply(shareButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
         ThemeBorder.accent40.apply(updateButton)
-
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-        userImageView.image = R.image.circlesWarning()
     }
 
     func load(_ teamVision: QDMTeamToBeVision?,
@@ -194,7 +197,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         }
         skeletonManager.hide()
         interactor.hideNullState()
-
 //        interactor.isShareBlocked { [weak self] (hidden) in
 //            self?.shareButton.isHidden = hidden
 //        }
@@ -208,10 +210,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         tempTeamImageURL = teamVision?.profileImageResource?.url()
         userImageView.contentMode = tempTeamImageURL == nil ? .center : .scaleAspectFill
         userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
-
         removeGradients()
-        addGradients(for: teamVision)
-
+        addGradients()
         //        TO DO: Get rate text for team
         //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
         //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)

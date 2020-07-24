@@ -160,11 +160,11 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
                 }
                 return
             }
-
             let myVision = getVision(for: toBeVision)
             interactor?.updateMyToBeVision(myVision, {[weak self] (error) in
                 self?.dismissController()
             })
+
             return
         }
         guard let teamVision = interactor?.teamVision else {
@@ -176,14 +176,7 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
                                                     self?.interactor?.updateTeamToBeVision(finalTeamVision, { [weak self] (error) in
                                                         self?.dismissController()
                                                     })
-
             })
-            UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
-                guard let newVision = vision, let finalVision = self?.getVision(for: newVision) else { return }
-                self?.interactor?.updateMyToBeVision(finalVision, {[weak self] (error) in
-                    self?.dismissController()
-                })
-            }
             return
         }
         let teamToBeVision = getTeamVision(for: teamVision)
