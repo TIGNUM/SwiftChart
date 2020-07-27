@@ -11,27 +11,35 @@ import qot_dal
 
 final class MyQotMainWorker: WorkerTeam {
 
-    func getBodyElements( _ completion: @escaping (MyX) -> Void) {
+    func getBodyElements() -> MyX {
         let items = MyX.Element.allCases.compactMap { (element) -> MyX.Item in
             return MyX.Item(element: element, title: element.title, subtitle: "")
         }
-        completion(MyX(items: items))
+        return MyX(items: items)
     }
 
     func getTeamItems(_ completion: @escaping (MyX) -> Void) {
-        getTeams { [weak self] (teams) in
-            self?.getTeamInvitations { (invites) in
-                var items = [Team.Item]()
-                if !invites.isEmpty {
-                    items.append(Team.Item(invites: invites))
-                }
-                items.append(contentsOf: teams.compactMap { (team) -> Team.Item in
-                    return Team.Item(title: team.name ?? "",
-                                     teamId: team.qotId ?? "",
-                                     color: team.teamColor ?? "")
-                })
-                completion(MyX(teamHeaderItems: items))
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        var items = [Team.Item]()
+        getTeams { (teams) in
+            items.append(contentsOf: teams.compactMap { (team) -> Team.Item in
+                return Team.Item(title: team.name ?? "",
+                                 teamId: team.qotId ?? "",
+                                 color: team.teamColor ?? "")
+            })
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        getTeamInvitations { (invites) in
+            if !invites.isEmpty {
+                items.insert(Team.Item(invites: invites), at: 0)
             }
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            completion(MyX(teamHeaderItems: items))
         }
     }
 

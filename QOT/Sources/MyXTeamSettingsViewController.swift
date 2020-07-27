@@ -52,6 +52,7 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        interactor.viewDidAppear()
         trackPage()
     }
 }

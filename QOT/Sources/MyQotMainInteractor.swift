@@ -30,23 +30,19 @@ final class MyQotMainInteractor {
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
         self.presenter = presenter
         self.router = router
-        updateMyX()
-        createInitialData()
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
+        addObservers()
+        createInitialData()
+        updateMyX()
     }
 }
 
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
-
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
@@ -107,19 +103,14 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         }
     }
 
-    func updateSelectedTeam(teamId: String) {
-        teamItems.forEach { (item) in
-            item.selected = teamId == item.teamId && !item.selected
-        }
-        worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
-            //            Deselecting if the item was already selected, goes back to Personal
+    func updateSelectedTeam(teamId: String?) {
+        worker.setSelectedTeam(teamId: teamId ?? "") { [weak self] (selectedTeam) in
             if teamId == self?.currentTeam?.qotId {
                 self?.currentTeam = nil
-                self?.updateMyX()
             } else {
                 self?.currentTeam = selectedTeam
-                self?.updateMyXElements()
             }
+            self?.updateMyX()
         }
     }
 
@@ -209,10 +200,19 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 extension MyQotMainInteractor {
 
     func addObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(checkSelection), name: .didSelectTeam, object: nil)
+        nc.addObserver(self, selector: #selector(didUpdateTeamRelatedData(_:)),
+                       name: .didFinishSynchronization, object: nil)
+
+    }
+
+    @objc func didUpdateTeamRelatedData(_ notification: Notification) {
+        guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent else { return }
+        switch result.dataType {
+        case .TEAM, .TEAM_MEMBER: break
+        default: break
+        }
     }
 
     func getItem(in element: MyX.Element, subTitle: String = "") -> MyX.Item {
@@ -222,26 +222,15 @@ extension MyQotMainInteractor {
     }
 
     func updateMyX() {
-        worker.getTeamItems { (teamItems) in
-            self.worker.getBodyElements { (bodyElements) in
-                self.worker.getTeamHeaderItems { (teamHeaderItems) in
-                    self.bodyElements = bodyElements
-                    self.teamItems = teamItems.teamHeaderItems
-                    self.presenter.reload()
-                }
+        self.bodyElements = worker.getBodyElements()
+        worker.getTeamItems { [weak self] (teamItems) in
+            self?.teamItems = teamItems.teamHeaderItems.compactMap {
+                $0.selected = self?.currentTeam != nil ? self?.currentTeam?.qotId == $0.teamId : false
+                return $0
             }
+            self?.presenter.reload()
         }
     }
-
-    func updateMyXElements() {
-        worker.getTeamItems { (teamItems) in
-            self.worker.getBodyElements { (bodyElements) in
-                self.bodyElements = bodyElements
-                self.presenter.reload()
-            }
-        }
-    }
-
 
     func createInitialData() {
         worker.getSubtitles { [weak self] (subtitles) in

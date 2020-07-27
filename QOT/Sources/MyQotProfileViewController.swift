@@ -36,6 +36,7 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        interactor.viewDidAppear()
         trackPage()
     }
 

@@ -30,6 +30,7 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
     var canEdit: Bool { get }
     var rowCount: Int { get }
 
+    func viewDidAppear()
     func updateSelectedTeam(teamId: String)
     func updateSelectedTeam(teamColor: String)
     func updateTeams()

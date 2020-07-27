@@ -31,6 +31,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     }
 
     func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
+        teamInvites = []
         self.teamId = teamId
         self.hexColorString = hexColorString
         itemButton.setTitle(title, for: .normal)
@@ -39,10 +40,12 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
     func configure(teamInvites: [QDMTeamInvitation]) {
         self.teamInvites = teamInvites
+        self.teamId = ""
         itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
         itemButton.backgroundColor = .carbon
         itemButton.layer.borderColor = UIColor.accent.cgColor
         itemButton.setTitleColor(.accent, for: .normal)
+        setSelected(false)
     }
 }
 

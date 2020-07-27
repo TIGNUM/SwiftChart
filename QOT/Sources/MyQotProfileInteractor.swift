@@ -53,6 +53,10 @@ final class MyQotProfileInteractor {
             }
         })
     }
+
+    func viewDidAppear() {
+        updateViewData()
+    }
 }
 
 // MARK: - MyQotInteractorInterface

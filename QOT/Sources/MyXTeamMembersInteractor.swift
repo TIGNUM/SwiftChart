@@ -39,6 +39,16 @@ final class MyXTeamMembersInteractor {
     var teamMembersText: String {
         return worker.teamMembersText
     }
+
+    func updateSelectedTeam(teamId: String) {
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            self?.setHeaderItemSelected(teamHeaderItems: teamHeaderItems, teamId: teamId)
+            self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
+                self?.currentTeam = selectedTeam
+                self?.refreshView()
+            })
+        }
+    }
 }
 // MARK: - Private
 private extension MyXTeamMembersInteractor {
@@ -73,16 +83,6 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
     func getMember(at indexPath: IndexPath) -> TeamMember? {
         return membersList.at(index: indexPath.row)
-    }
-
-    func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
-            self?.setHeaderItemSelected(teamHeaderItems: teamHeaderItems, teamId: teamId)
-            self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
-                self?.currentTeam = selectedTeam
-                self?.refreshView()
-            })
-        }
     }
 
     func removeMember(at indexPath: IndexPath) {
