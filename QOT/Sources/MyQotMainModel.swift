@@ -22,8 +22,13 @@ struct MyX {
     var items: [MyX.Item] = []
     var teamHeaderItems: [Team.Item] = []
 
-    func element(at indexPath: IndexPath) -> MyX.Element {
-        return MyX.Element.allCases.at(index: indexPath.row) ?? .teamCreate
+    func element(_ isTeam: Bool, at indexPath: IndexPath) -> MyX.Element {
+        return MyX.Element.items(isTeam).at(index: indexPath.row) ?? .teamCreate
+    }
+
+    func item(for element: Element, _ isTeam: Bool) -> MyX.Item {
+        let index = MyX.Element.index(isTeam, element: element)
+        return items[index]
     }
 
     struct Item: Differentiable {
@@ -50,8 +55,8 @@ struct MyX {
         let cta: String
     }
 
-    enum Element: Int, CaseIterable, Differentiable {
-        case teamCreate = 0
+    enum Element: CaseIterable, Differentiable {
+        case teamCreate
         case library
         case preps
         case sprints
@@ -67,6 +72,30 @@ struct MyX {
             case .data: return AppTextService.get(.my_qot_section_my_data_title)
             case .toBeVision: return AppTextService.get(.my_qot_section_my_tbv_title)
             }
+        }
+
+        static func index(_ isTeam: Bool, element: Element) -> Int {
+            let items = MyX.Element.items(isTeam)
+            if items.count == MyX.Element.allCases.count {
+                switch element {
+                case .teamCreate: return 0
+                case .library: return 1
+                case .preps: return 2
+                case .sprints: return 3
+                case .data: return 4
+                case .toBeVision: return 5
+                }
+            } else {
+                switch element {
+                case .library: return 0
+                case .toBeVision: return 1
+                default: return 0
+                }
+            }
+        }
+
+        static func items(_ isTeam: Bool) -> [MyX.Element] {
+            return isTeam ? [.library, .toBeVision] : MyX.Element.allCases
         }
     }
 }

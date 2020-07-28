@@ -120,6 +120,14 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                 self?.currentTeam = selectedTeam
                 self?.updateMyXElements()
             }
+
+            self?.worker.getTeamItems { (teamItems) in
+                self?.worker.getBodyElements(isTeam: self?.currentTeam != nil) { (bodyElements) in
+                    self?.worker.getTeamHeaderItems { (teamHeaderItems) in
+                        self?.refreshParams()
+                    }
+                }
+            }
         }
     }
 
@@ -180,7 +188,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
              .teamHeader:
             return
         default:
-            switch MyX.Element(rawValue: indexPath.row) {
+            switch MyX.Element.items(currentTeam != nil).at(index: indexPath.row) {
             case .teamCreate: router.presentEditTeam(.create, team: nil)
             case .library: router.presentMyLibrary(with: currentTeam)
             case .preps: router.presentMyPreps()
@@ -216,14 +224,14 @@ extension MyQotMainInteractor {
     }
 
     func getItem(in element: MyX.Element, subTitle: String = "") -> MyX.Item {
-        var item = bodyElements.items[element.rawValue]
+        var item = bodyElements.item(for: element, currentTeam != nil)
         item.subtitle = subTitle
-        return bodyElements.items[element.rawValue]
+        return bodyElements.item(for: element, currentTeam != nil)
     }
 
     func updateMyX() {
         worker.getTeamItems { (teamItems) in
-            self.worker.getBodyElements { (bodyElements) in
+            self.worker.getBodyElements(isTeam: self.currentTeam != nil) { (bodyElements) in
                 self.worker.getTeamHeaderItems { (teamHeaderItems) in
                     self.bodyElements = bodyElements
                     self.teamItems = teamItems.teamHeaderItems
@@ -235,13 +243,12 @@ extension MyQotMainInteractor {
 
     func updateMyXElements() {
         worker.getTeamItems { (teamItems) in
-            self.worker.getBodyElements { (bodyElements) in
+            self.worker.getBodyElements(isTeam: self.currentTeam != nil) { (bodyElements) in
                 self.bodyElements = bodyElements
                 self.presenter.reload()
             }
         }
     }
-
 
     func createInitialData() {
         worker.getSubtitles { [weak self] (subtitles) in
@@ -268,13 +275,20 @@ extension MyQotMainInteractor {
                             guard let strongSelf = self else { return }
                             var bodyItems: [MyX.Item] = []
                             let teamCreateSubtitle = AppTextService.get(.my_x_team_create_description)
-                            bodyItems.append(strongSelf.getItem(in: .teamCreate,
+
+                            if self?.currentTeam == nil {
+                                bodyItems.append(strongSelf.getItem(in: .teamCreate,
                                                                     subTitle: teamCreateSubtitle))
-                            bodyItems.append(strongSelf.getItem(in: .library))
-                            bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                            bodyItems.append(strongSelf.getItem(in: .sprints, subTitle: sprintName ?? ""))
-                            bodyItems.append(strongSelf.createMyData(irScore: score))
-                            bodyItems.append(strongSelf.createToBeVision(date: date))
+                                bodyItems.append(strongSelf.getItem(in: .library))
+                                bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                                bodyItems.append(strongSelf.getItem(in: .sprints, subTitle: sprintName ?? ""))
+                                bodyItems.append(strongSelf.createMyData(irScore: score))
+                                bodyItems.append(strongSelf.createToBeVision(date: date))
+                            } else {
+                                bodyItems.append(strongSelf.getItem(in: .library))
+                                bodyItems.append(strongSelf.createToBeVision(date: date))
+                            }
+
                             var sections: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
                             sections.append(ArraySection(model: .teamHeader, elements: []))
                             sections.append(ArraySection(model: .body, elements: bodyItems))
