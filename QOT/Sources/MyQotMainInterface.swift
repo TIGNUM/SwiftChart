@@ -24,6 +24,7 @@ protocol MyQotMainPresenterInterface {
 
 protocol MyQotMainInteractorInterface: Interactor {
     var sectionCount: Int { get }
+    func viewWillAppear()
     func updateMyX()
 
     func getSettingsButtonTitle() -> String
