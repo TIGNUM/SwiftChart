@@ -109,7 +109,6 @@ private extension MyXTeamSettingsInteractor {
             updateSelectedTeam(teamId: header.teamId)
             return
         }
-
     }
 
     func handleRemoveOrLeaveTeam() {
