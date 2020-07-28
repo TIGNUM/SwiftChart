@@ -13,13 +13,13 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     // MARK: - Properties
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
-    private var title = ""
     private lazy var skeletonManager = SkeletonManager()
 
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeView.level1.apply(self)
+        isUserInteractionEnabled = false
         contentView.backgroundColor = .clear
         selectedBackgroundView = nil
         layer.borderColor = UIColor.sand40.cgColor
@@ -32,19 +32,20 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         super.prepareForReuse()
         titleLabel.text = nil
         subtitleLabel.text = nil
+        isUserInteractionEnabled = false
     }
 
-    func configure(title: String?, subtitle: String?) {
-        self.title = title ?? ""
+    func configure(title: String?, subtitle: String?, enabled: Bool) {
         guard let subtitle = subtitle else { return }
         let bkView = UIView()
         ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView
         skeletonManager.hide()
         ThemeText.linkMenuComment.apply(subtitle, to: subtitleLabel)
+        setEnabled(enabled, title: title)
     }
 
-    func setEnabled(_ enabled: Bool) {
+    private func setEnabled(_ enabled: Bool, title: String?) {
         isUserInteractionEnabled = enabled
         if enabled {
             ThemeText.myQOTBoxTitle.apply((title), to: titleLabel)

@@ -49,6 +49,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func clearTeamItems() {
+        NotificationCenter.default.post(name: .didSelectTeam,
+                                        object: nil,
+                                        userInfo: [Team.KeyTeamId: selectdTeamId ?? ""])
         teamHeaderItems.removeAll()
         selectdTeamId = nil
     }
@@ -84,6 +87,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func presentMyProfile() {
+        clearTeamItems()
         router.presentMyProfile()
     }
 
@@ -105,6 +109,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     func presentTeamPendingInvites() {
         if let invites = teamHeaderItems.first?.invites, !invites.isEmpty {
+            clearTeamItems()
             router.presentTeamPendingInvites(invitations: invites)
         }
     }
@@ -112,6 +117,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func handleSelection(at indexPath: IndexPath) {
         switch MyX.Item.items(selectdTeamId != nil).at(index: indexPath.row) {
         case .teamCreate:
+            clearTeamItems()
             router.presentEditTeam(.create, team: nil)
         case .library:
             getSelectedTeam(teamId: selectdTeamId) { [weak self] (team) in

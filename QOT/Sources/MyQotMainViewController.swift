@@ -68,11 +68,6 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        interactor.clearTeamItems()
-    }
-
     @objc func showPendingInvites() {
         interactor.presentTeamPendingInvites()
     }
@@ -121,11 +116,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let item = interactor.getItem(at: indexPath)
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        item?.subtitle { (subtitle) in
-            cell.configure(title: item?.title, subtitle: subtitle)
-        }
-        interactor.isCellEnabled(for: item) { (enabled) in
-            cell.setEnabled(enabled)
+        item?.subtitle { [weak self] (subtitle) in
+            self?.interactor.isCellEnabled(for: item) { (enabled) in
+                cell.configure(title: item?.title, subtitle: subtitle, enabled: enabled)
+            }
         }
         return cell
     }
