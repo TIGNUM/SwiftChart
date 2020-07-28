@@ -36,7 +36,6 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     }
 
     func configure(title: String?, subtitle: String?, enabled: Bool) {
-        guard let subtitle = subtitle else { return }
         let bkView = UIView()
         ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView

@@ -84,7 +84,6 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             presenter.inserItems(at: MyX.Item.indexPathUpdate())
         } else {
             selectdTeamId = teamId
-//            presenter.reloadTeamItems()
         }
     }
 

@@ -15,7 +15,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     private var teamId = ""
     private var hexColorString = ""
     private var inviteCounter = 0
-    private var alreadySelected = false
+    private var itemSelected = false
     private var teamInvites: [QDMTeamInvitation] = []
 
     override func awakeFromNib() {
@@ -39,6 +39,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
         self.teamId = teamId
         self.hexColorString = hexColorString
+        self.itemSelected = selected
         itemButton.setTitle(title, for: .normal)
         setSelected(selected)
     }
@@ -68,7 +69,8 @@ private extension TeamHeaderCell {
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
-            setSelected(self.teamId == teamId)
+            itemSelected = self.teamId == teamId && !itemSelected
+            setSelected(itemSelected)
         }
         if let teamColor = userInfo[Team.KeyColor] {
             hexColorString = teamColor
