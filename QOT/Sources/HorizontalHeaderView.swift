@@ -17,11 +17,29 @@ final class HorizontalHeaderView: UIView {
         super.awakeFromNib()
         collectionView.registerDequeueable(TeamHeaderCell.self)
         collectionView.setContentOffset(CGPoint(x: 24, y: 0), animated: true)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
     }
 
     func configure(headerItems: [Team.Item]) {
         self.headerItems = headerItems
         collectionView.reloadData()
+    }
+}
+
+private extension HorizontalHeaderView {
+    @objc func checkSelection(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[Team.KeyTeamId] {
+            for (index, item) in headerItems.enumerated() where item.teamId == teamId {
+                collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
+                                            at: .centeredHorizontally,
+                                            animated: true)
+                return
+            }
+        }
     }
 }
 
