@@ -12,11 +12,17 @@ import qot_dal
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
     func reload()
+    func reloadTeamItems()
+    func deleteItems(at indexPath: [IndexPath])
+    func inserItems(at indexPath: [IndexPath])
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
     func reload()
+    func reloadTeamItems()
+    func deleteItems(at indexPath: [IndexPath])
+    func inserItems(at indexPath: [IndexPath])
 }
 
 protocol MyQotMainInteractorInterface: Interactor {

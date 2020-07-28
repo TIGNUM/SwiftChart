@@ -38,14 +38,11 @@ final class MyQotMainInteractor: MyQotMainWorker {
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
     var sectionCount: Int {
-        return 3
+        return MyX.Section.allCases.count
     }
 
     func itemCount(in section: Int) -> Int {
-        switch section {
-        case 0, 1: return 1
-        default: return MyX.Item.items(selectdTeamId != nil).count
-        }
+        return MyX.Section.allCases[section].itemCount(selectdTeamId != nil)
     }
 
     func clearTeamItems() {
@@ -78,12 +75,17 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         teamHeaderItems.forEach { (item) in
             item.selected = teamId == item.teamId && !item.selected
         }
-        if teamId == selectdTeamId {
+
+        if selectdTeamId == nil {
+            selectdTeamId = teamId
+            presenter.deleteItems(at: MyX.Item.indexPathUpdate())
+        } else if selectdTeamId == teamId {
             selectdTeamId = nil
+            presenter.inserItems(at: MyX.Item.indexPathUpdate())
         } else {
             selectdTeamId = teamId
+//            presenter.reloadTeamItems()
         }
-        presenter.reload()
     }
 
     func presentMyProfile() {

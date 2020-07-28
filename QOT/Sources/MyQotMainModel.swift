@@ -10,6 +10,20 @@ import UIKit
 import qot_dal
 
 enum MyX {
+    enum Section: Int, CaseIterable {
+        case navigationHeder = 0
+        case teamHeader
+        case items
+
+        func itemCount(_ isTeam: Bool) -> Int {
+            switch self {
+            case .navigationHeder,
+                 .teamHeader: return 1
+            case .items: return MyX.Item.items(isTeam).count
+            }
+        }
+    }
+
     enum Item: CaseIterable, MyQotMainWorker {
         case teamCreate
         case library
@@ -116,6 +130,13 @@ enum MyX {
 
         static func items(_ isTeam: Bool) -> [MyX.Item] {
             return isTeam ? [.library, .toBeVision] : MyX.Item.allCases
+        }
+
+        static func indexPathUpdate() -> [IndexPath] {
+            return [IndexPath(item: 0, section: 2),
+                    IndexPath(item: 2, section: 2),
+                    IndexPath(item: 3, section: 2),
+                    IndexPath(item: 4, section: 2)]
         }
     }
 }

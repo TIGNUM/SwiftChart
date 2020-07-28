@@ -45,7 +45,7 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         setEnabled(enabled, title: title)
     }
 
-    private func setEnabled(_ enabled: Bool, title: String?) {
+    func setEnabled(_ enabled: Bool, title: String?) {
         isUserInteractionEnabled = enabled
         if enabled {
             ThemeText.myQOTBoxTitle.apply((title), to: titleLabel)

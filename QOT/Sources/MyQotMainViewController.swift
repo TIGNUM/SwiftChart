@@ -94,6 +94,24 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         collectionView.reloadData()
     }
 
+    func deleteItems(at indexPath: [IndexPath]) {
+        collectionView.performBatchUpdates({
+            collectionView.deleteItems(at: indexPath)
+        }, completion: nil)
+    }
+
+    func inserItems(at indexPath: [IndexPath]) {
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: indexPath)
+        }, completion: nil)
+    }
+
+    func reloadTeamItems() {
+        collectionView.performBatchUpdates({
+            collectionView.reloadSections(IndexSet(integer: 1))
+        }, completion: nil)
+    }
+
     func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(title: AppTextService.get(.my_qot_section_header_title),
@@ -116,6 +134,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let item = interactor.getItem(at: indexPath)
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        cell.setEnabled(false, title: item?.title)
         item?.subtitle { [weak self] (subtitle) in
             self?.interactor.isCellEnabled(for: item) { (enabled) in
                 cell.configure(title: item?.title, subtitle: subtitle, enabled: enabled)
@@ -137,9 +156,9 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case 0: return getNavigationHeaderCell(collectionView, indexPath)
-        case 1: return getTeamHeaderCell(collectionView, indexPath)
+        switch MyX.Section.allCases[indexPath.section] {
+        case .navigationHeder: return getNavigationHeaderCell(collectionView, indexPath)
+        case .teamHeader: return getTeamHeaderCell(collectionView, indexPath)
         default: return getCell(collectionView, indexPath)
         }
     }
@@ -147,9 +166,9 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.section {
-        case 0: return headerSize
-        case 1: return teamHeaderSize
+        switch MyX.Section.allCases[indexPath.section] {
+        case .navigationHeder: return headerSize
+        case .teamHeader: return teamHeaderSize
         default: return qotBoxSize
         }
     }
