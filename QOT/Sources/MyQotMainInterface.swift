@@ -30,7 +30,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func getTeamItems() -> [Team.Item]
     func refreshParams()
     func updateArraySection(_ list: ArraySectionMyX)
-    func updateSelectedTeam(teamId: String)
+    func updateSelectedTeam(teamId: String?)
     func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void)
     func itemCount(in section: Int) -> Int
     func getItem(at indexPath: IndexPath) -> MyX.Item?

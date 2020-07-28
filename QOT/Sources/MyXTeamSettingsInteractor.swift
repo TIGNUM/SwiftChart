@@ -43,6 +43,14 @@ final class MyXTeamSettingsInteractor {
             }
         }
     }
+
+    func viewDidAppear() {
+        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+            if self?.teamHeaderItems.count ?? 0 > 0, teamHeaderItems.count == 0 {
+                self?.presenter.dismiss()
+            }
+        }
+    }
 }
 
 // MARK: - Private

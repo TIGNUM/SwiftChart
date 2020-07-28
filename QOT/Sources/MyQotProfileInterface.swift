@@ -17,6 +17,7 @@ protocol MyQotProfilePresenterInterface {
 }
 
 protocol MyQotProfileInteractorInterface: Interactor {
+    func viewDidAppear()
     func getProfile() -> UserProfileModel?
     func getMenuItems() -> [MyQotProfileModel.TableViewPresentationData]
     func memberSinceText() -> String
