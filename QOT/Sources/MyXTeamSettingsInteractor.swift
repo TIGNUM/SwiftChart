@@ -106,8 +106,10 @@ private extension MyXTeamSettingsInteractor {
     func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {
         for header in teamHeaderItems where !header.teamId.isEmpty {
             header.selected = true
+            updateSelectedTeam(teamId: header.teamId)
             return
         }
+
     }
 
     func handleRemoveOrLeaveTeam() {
@@ -225,7 +227,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
 
     func deleteTeam(team: QDMTeam) {
         worker.deleteTeam(team) { [weak self] (teams, _, _) in
-            if teams?.isEmpty == true {
+            if teams == nil || teams?.isEmpty == true {
                 self?.presenter.dismiss()
             } else {
                 self?.handleRemoveOrLeaveTeam()
