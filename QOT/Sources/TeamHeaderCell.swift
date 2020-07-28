@@ -31,6 +31,11 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
                                                object: nil)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        itemButton.setTitle(nil, for: .normal)
+    }
+
     func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
         self.teamId = teamId
         self.hexColorString = hexColorString

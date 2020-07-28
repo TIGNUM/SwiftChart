@@ -55,6 +55,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(color: .carbon)
+        collectionView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +66,11 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
             collectionView.deselectItem(at: indexPath, animated: true)
             indexPathDeselect = nil
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        interactor.clearTeamItems()
     }
 
     @objc func showPendingInvites() {

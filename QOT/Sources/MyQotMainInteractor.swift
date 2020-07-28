@@ -15,10 +15,9 @@ final class MyQotMainInteractor: MyQotMainWorker {
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
     private var teamHeaderItems = [Team.Item]()
-    private var myX: MyX?
     private var subtitles: [String?] = []
     private var eventType: String?
-    private var currentTeam: QDMTeam?
+    private var selectdTeamId: String?
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -45,16 +44,13 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func itemCount(in section: Int) -> Int {
         switch section {
         case 0, 1: return 1
-        default: return MyX.Item.items(currentTeam != nil).count
+        default: return MyX.Item.items(selectdTeamId != nil).count
         }
     }
 
-    func updateMyX() {
-
-    }
-
-    func refreshParams() {
-
+    func clearTeamItems() {
+        teamHeaderItems.removeAll()
+        selectdTeamId = nil
     }
 
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
@@ -79,14 +75,12 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         teamHeaderItems.forEach { (item) in
             item.selected = teamId == item.teamId && !item.selected
         }
-        getSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
-            if teamId == self?.currentTeam?.qotId {
-                self?.currentTeam = nil
-            } else {
-                self?.currentTeam = selectedTeam
-            }
-            self?.presenter.reload()
+        if teamId == selectdTeamId {
+            selectdTeamId = nil
+        } else {
+            selectdTeamId = teamId
         }
+        presenter.reload()
     }
 
     func presentMyProfile() {
@@ -106,7 +100,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func getItem(at indexPath: IndexPath) -> MyX.Item? {
-        return MyX.Item.items(currentTeam != nil).at(index: indexPath.row)
+        return MyX.Item.items(selectdTeamId != nil).at(index: indexPath.row)
     }
 
     func presentTeamPendingInvites() {
@@ -116,28 +110,42 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func handleSelection(at indexPath: IndexPath) {
-        switch MyX.Item.items(currentTeam != nil).at(index: indexPath.row) {
-        case .teamCreate: router.presentEditTeam(.create, team: nil)
-        case .library: router.presentMyLibrary(with: currentTeam)
-        case .preps: router.presentMyPreps()
-        case .sprints: router.presentMySprints()
-        case .data: router.presentMyDataScreen()
-        case .toBeVision: router.showTBV(team: currentTeam)
+        switch MyX.Item.items(selectdTeamId != nil).at(index: indexPath.row) {
+        case .teamCreate:
+            router.presentEditTeam(.create, team: nil)
+        case .library:
+            getSelectedTeam(teamId: selectdTeamId) { [weak self] (team) in
+                self?.router.presentMyLibrary(with: team)
+            }
+        case .preps:
+            router.presentMyPreps()
+        case .sprints:
+            router.presentMySprints()
+        case .data:
+            router.presentMyDataScreen()
+        case .toBeVision:
+            getSelectedTeam(teamId: selectdTeamId) { [weak self] (team) in
+                self?.router.showTBV(team: team)
+            }
         default: return
         }
     }
 
     func isTbvEmpty(_ completion: @escaping (Bool) -> Void) {
-        guard let team = currentTeam else {
+        guard let teamId = selectdTeamId else {
             completion(true)
             return
         }
-        if !team.thisUserIsOwner {
-            getTeamToBeVision(for: team, { (teamVision) in
-                completion(teamVision != nil)
-            })
+
+        getSelectedTeam(teamId: teamId) { [weak self] (team) in
+            if let team = team, !team.thisUserIsOwner {
+                self?.getTeamToBeVision(for: team) { (teamVision) in
+                    completion(teamVision != nil)
+                }
+            } else {
+                completion(true)
+            }
         }
-        completion(true)
     }
 }
 

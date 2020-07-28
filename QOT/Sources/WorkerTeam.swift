@@ -41,7 +41,7 @@ protocol WorkerTeam {
 
     func deleteTeam(_ team: QDMTeam, _ completion: @escaping ([QDMTeam]?, Bool, Error?) -> Void)
 
-    func getSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void)
+    func getSelectedTeam(teamId: String?, _ completion: @escaping (QDMTeam?) -> Void)
 
     func joinTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
 
@@ -198,10 +198,14 @@ extension WorkerTeam {
         TeamService.main.removeTeam(team, completion)
     }
 
-    func getSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void) {
-        getTeams { (teams) in
-            let selectedTeam = teams.filter { teamId == $0.qotId }.first
-            completion(selectedTeam)
+    func getSelectedTeam(teamId: String?, _ completion: @escaping (QDMTeam?) -> Void) {
+        if let teamId = teamId {
+            getTeams { (teams) in
+                let selectedTeam = teams.filter { teamId == $0.qotId }.first
+                completion(selectedTeam)
+            }
+        } else {
+            completion(nil)
         }
     }
 

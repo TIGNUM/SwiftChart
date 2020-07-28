@@ -22,10 +22,9 @@ protocol MyQotMainPresenterInterface {
 protocol MyQotMainInteractorInterface: Interactor {
     var sectionCount: Int { get }
     func itemCount(in section: Int) -> Int
-    func updateMyX()
 
     func getSettingsButtonTitle(_ completion: @escaping (String) -> Void)
-    func refreshParams()
+    func clearTeamItems()
     func updateSelectedTeam(teamId: String)
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
     func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void)

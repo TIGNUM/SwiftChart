@@ -28,6 +28,12 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         skeletonManager.addSubtitle(subtitleLabel)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        subtitleLabel.text = nil
+    }
+
     func configure(title: String?, subtitle: String?) {
         self.title = title ?? ""
         guard let subtitle = subtitle else { return }
