@@ -37,7 +37,6 @@ final class MyQotMainInteractor {
         presenter.setupView()
         addObservers()
         createInitialData()
-        updateMyX()
         ExtensionsDataManager().update(.teams)
     }
 }
@@ -49,6 +48,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         if let teamId = userInfo[Team.KeyTeamId] {
             updateSelectedTeam(teamId: teamId)
         }
+    }
+
+    func viewWillAppear() {
+        updateMyX()
     }
 
     func createMyData(irScore: Int?) -> MyX.Item {
@@ -232,6 +235,9 @@ extension MyQotMainInteractor {
             self?.teamItems = teamItems.teamHeaderItems.compactMap {
                 $0.selected = self?.currentTeam != nil ? self?.currentTeam?.qotId == $0.teamId : false
                 return $0
+            }
+            if teamItems.teamHeaderItems.filter({ $0.selected }).count == 0 {
+                self?.currentTeam = nil
             }
             self?.presenter.reload()
         }
