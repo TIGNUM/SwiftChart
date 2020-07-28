@@ -8,9 +8,9 @@
 
 import UIKit
 
-final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
+typealias actionClosure = (() -> Void)
 
-    typealias actionClosure = (() -> Void)
+final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var buttonLeft: UIButton!

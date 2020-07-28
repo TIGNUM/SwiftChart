@@ -10,7 +10,7 @@ import UIKit
 
 final class NavBarTableViewCell: UIView {
 
-    typealias actionClosure = (() -> Void)
+    typealias actionClosure = (() -> Void)?
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var buttonLeft: UIButton!
     @IBOutlet weak var buttonRight: UIButton!
@@ -52,10 +52,14 @@ final class NavBarTableViewCell: UIView {
     }
 
     @objc func didTapLeft() {
-        actionLeft?()
+        if let actionLeft = actionLeft {
+            actionLeft?()
+        }
     }
 
     @objc func didTapRight() {
-        actionRight?()
+        if let actionRight = actionRight {
+            actionRight?()
+        }
     }
 }

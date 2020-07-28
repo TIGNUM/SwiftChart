@@ -7,32 +7,28 @@
 //
 
 import Foundation
-import DifferenceKit
 import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
-    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
-    func reload()
     func setupView()
+    func reload()
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
     func reload()
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
     var sectionCount: Int { get }
+    func itemCount(in section: Int) -> Int
     func updateMyX()
 
-    func getSettingsButtonTitle() -> String
-    func getTeamItems() -> [Team.Item]
+    func getSettingsButtonTitle(_ completion: @escaping (String) -> Void)
     func refreshParams()
-    func updateArraySection(_ list: ArraySectionMyX)
     func updateSelectedTeam(teamId: String)
-    func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void)
-    func itemCount(in section: Int) -> Int
+    func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
+    func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void)
     func getItem(at indexPath: IndexPath) -> MyX.Item?
     func presentMyProfile()
     func handleSelection(at indexPath: IndexPath)

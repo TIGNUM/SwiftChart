@@ -15,6 +15,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     private var teamId = ""
     private var hexColorString = ""
     private var inviteCounter = 0
+    private var alreadySelected = false
     private var teamInvites: [QDMTeamInvitation] = []
 
     override func awakeFromNib() {

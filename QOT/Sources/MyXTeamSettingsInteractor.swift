@@ -34,7 +34,7 @@ final class MyXTeamSettingsInteractor {
         worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
-            self?.worker.setSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "") { [weak self] (selectedTeam) in
+            self?.worker.getSelectedTeam(teamId: teamHeaderItems.first?.teamId ?? "") { [weak self] (selectedTeam) in
                 self?.teamHeaderItems.forEach { (item) in
                     item.selected = (selectedTeam?.qotId == item.teamId)
                 }
@@ -193,7 +193,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         teamHeaderItems.forEach { (item) in
             item.selected = (teamId == item.teamId)
         }
-        worker.setSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
+        worker.getSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
             self?.currentTeam = selectedTeam
             self?.updateView()
         }
