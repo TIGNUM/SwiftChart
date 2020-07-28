@@ -38,6 +38,7 @@ final class MyQotMainInteractor {
         addObservers()
         createInitialData()
         updateMyX()
+        ExtensionsDataManager().update(.teams)
     }
 }
 
@@ -210,7 +211,11 @@ extension MyQotMainInteractor {
     @objc func didUpdateTeamRelatedData(_ notification: Notification) {
         guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent else { return }
         switch result.dataType {
-        case .TEAM, .TEAM_MEMBER: break
+        case .TEAM:
+            updateMyX()
+            ExtensionsDataManager().update(.teams)
+        case .TEAM_MEMBER:
+            updateMyX()
         default: break
         }
     }

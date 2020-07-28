@@ -66,11 +66,11 @@ private extension ExtensionsDataManager {
         TeamService.main.getTeams {(teams, initiated, error) in
             var teamList = [ExtensionModel.TeamLibrary]()
             teams?.forEach {(team) in
-                TeamService.main.getTeamMembers(in: team) {(teamMembers, initiated, error) in
-                    teamList.append(ExtensionModel.TeamLibrary(teamName: team.name, teamQotId: team.qotId, numberOfMembers: teamMembers?.count))
-                    ExtensionUserDefaults.set(teamList, for: .teams)
-                }
+                teamList.append(ExtensionModel.TeamLibrary(teamName: team.name,
+                                                           teamQotId: team.qotId,
+                                                           numberOfMembers: team.memberCount))
             }
+            ExtensionUserDefaults.set(teamList, for: .teams)
         }
     }
 
