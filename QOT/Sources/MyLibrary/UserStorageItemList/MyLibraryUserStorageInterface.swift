@@ -28,6 +28,7 @@ protocol MyLibraryUserStoragePresenterInterface {
 
 protocol MyLibraryUserStorageInteractorInterface: Interactor {
     var title: String { get }
+    var subtitle: String { get }
     var addTitle: String { get }
     var teamId: Int? { get }
     var showAddButton: Bool { get }

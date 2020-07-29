@@ -68,6 +68,7 @@ final class Level5Cell: BaseDailyBriefCell {
     func configure(with model: Level5ViewModel?) {
         skeletonManager.hide()
         baseHeaderView?.configure(title: model?.title, subtitle: model?.intro)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         knowledgeLabel.text = AppTextService.get(.daily_brief_section_level_5_label_knowledge)
         awarenessLabel.text = AppTextService.get(.daily_brief_section_level_5_label_awareness)
         readinessLabel.text = AppTextService.get(.daily_brief_section_level_5_label_readiness)

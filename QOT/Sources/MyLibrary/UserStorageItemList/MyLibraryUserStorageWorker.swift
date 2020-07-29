@@ -43,6 +43,10 @@ final class MyLibraryUserStorageWorker {
         }
     }()
 
+    lazy var editingSubtitle: String = {
+           return AppTextService.get(.my_x_my_library_remove_items_subtitle)
+       }()
+
     lazy var cancelTitle: String = {
         return AppTextService.get(.generic_view_button_cancel)
     }()
