@@ -54,16 +54,16 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
 
 // MARK: - Actions
 private extension MyXTeamSettingsViewController {
-     @objc func confirmDeleteTapped(_ sender: Any) {
+    @objc func confirmDeleteTapped(_ sender: Any) {
         guard let selectedTeam = interactor.getSelectedItem else { return }
-        interactor.deleteTeam(teamItem: selectedTeam)
         trackUserEvent(.DELETE_TEAM, stringValue: selectedTeam.teamId, valueType: .TEAM, action: .TAP)
+        interactor.deleteTeam(teamItem: selectedTeam)
     }
 
     @objc func confirmLeaveTapped(_ sender: Any) {
         guard let selectedTeam = interactor.getSelectedItem else { return }
-        interactor.leaveTeam(teamItem: selectedTeam)
         trackUserEvent(.LEAVE_TEAM, stringValue: selectedTeam.teamId, valueType: .TEAM, action: .TAP)
+        interactor.leaveTeam(teamItem: selectedTeam)
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {

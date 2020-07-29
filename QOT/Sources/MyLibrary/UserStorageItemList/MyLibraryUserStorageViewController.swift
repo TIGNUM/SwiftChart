@@ -159,10 +159,11 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     }
 
     func update() {
-        baseHeaderView?.configure(title: interactor.title, subtitle: nil)
-        ThemeText.myLibraryItemsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
-
         let isEditing = interactor.isEditing
+        ThemeText.myLibraryItemsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
+        baseHeaderView?.configure(title: interactor.title, subtitle: interactor.subtitle)
+        headerViewHeightConstraint.constant = (baseHeaderView?.calculateHeight(for: view.frame.size.width) ?? 0) + 10
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         editButtonWidthConstraint.constant = interactor.showEditButton ? 40.0 : 0.0
         setEditButton(enabled: interactor.canEdit)
         addButton.isEnabled = !isEditing
