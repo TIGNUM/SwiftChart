@@ -12,6 +12,7 @@ final class HorizontalHeaderView: UIView {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     private var headerItems = [Team.Item]()
+    private var canDeselect = true
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,8 +23,9 @@ final class HorizontalHeaderView: UIView {
                                                object: nil)
     }
 
-    func configure(headerItems: [Team.Item]) {
+    func configure(headerItems: [Team.Item], canDeselect: Bool = true) {
         self.headerItems = headerItems
+        self.canDeselect = canDeselect
         collectionView.reloadData()
         centerSelectedItem()
     }
@@ -80,7 +82,8 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
                 cell.configure(teamId: item.teamId,
                                title: item.title,
                                hexColorString: item.color,
-                               selected: item.selected)
+                               selected: item.selected,
+                               canDeselect: canDeselect)
             }
         }
         return cell

@@ -17,6 +17,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     private var hexColorString = ""
     private var inviteCounter = 0
     private var itemSelected = false
+    private var canDeselect = true
     private var teamInvites: [QDMTeamInvitation] = []
 
     override func awakeFromNib() {
@@ -40,12 +41,13 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         teamInvites.removeAll()
     }
 
-    func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
+    func configure(teamId: String, title: String, hexColorString: String, selected: Bool, canDeselect: Bool) {
         self.teamInvites.removeAll()
         self.counterLabel.isHidden = true
         self.teamId = teamId
         self.hexColorString = hexColorString
         self.itemSelected = selected
+        self.canDeselect = canDeselect
         itemButton.setTitle(title, for: .normal)
         setSelected(selected)
     }
@@ -54,6 +56,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         self.counterLabel.isHidden = false
         self.counterLabel.text = String(teamInvites.count)
         self.teamInvites = teamInvites
+        self.canDeselect = false
         itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
         itemButton.backgroundColor = .carbon
         itemButton.layer.borderColor = UIColor.accent.cgColor
@@ -64,9 +67,11 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
         if teamInvites.isEmpty {
-            NotificationCenter.default.post(name: .didSelectTeam,
-                                            object: nil,
-                                            userInfo: [Team.KeyTeamId: teamId])
+            if !itemSelected || itemSelected && canDeselect {
+                NotificationCenter.default.post(name: .didSelectTeam,
+                                                object: nil,
+                                                userInfo: [Team.KeyTeamId: teamId])
+            }
         } else {
             NotificationCenter.default.post(name: .didSelectTeamInvite,
                                             object: nil,
@@ -80,8 +85,9 @@ private extension TeamHeaderCell {
             itemSelected = self.teamId == teamId && !itemSelected
             setSelected(itemSelected)
         }
-        if userInfo.keys.contains(Team.KeyColor), let teamColor = userInfo[Team.KeyColor] {
+        if itemSelected && userInfo.keys.contains(Team.KeyColor), let teamColor = userInfo[Team.KeyColor] {
             hexColorString = teamColor
+            setSelected(itemSelected)
         }
     }
 

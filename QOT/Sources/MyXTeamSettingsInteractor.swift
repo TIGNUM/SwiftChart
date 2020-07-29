@@ -15,7 +15,7 @@ final class MyXTeamSettingsInteractor {
     private let worker = MyXTeamSettingsWorker()
     private let presenter: MyXTeamSettingsPresenterInterface
     private var teamHeaderItems = [Team.Item]()
-    private var currentTeam: QDMTeam?
+    private var selectedTeamItem: Team.Item?
 
     var teamSettingsText: String {
         return worker.teamSettingsText
@@ -29,18 +29,12 @@ final class MyXTeamSettingsInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         addObservers()
-        presenter.present(worker.settings)
-
+        presenter.present()
         worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
-            self?.worker.getSelectedTeam(teamId: teamHeaderItems.first?.teamId) { [weak self] (selectedTeam) in
-                self?.teamHeaderItems.forEach { (item) in
-                    item.selected = (selectedTeam?.qotId == item.teamId)
-                }
-                self?.currentTeam = selectedTeam
-                self?.updateView()
-            }
+            self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+            self?.presenter.updateView()
         }
     }
 }
@@ -64,16 +58,17 @@ private extension MyXTeamSettingsInteractor {
 
     @objc func updateTeamName(_ notification: Notification) {
         if let userInfo = notification.userInfo as? [String: String],
-            let qotTeamId = currentTeam?.qotId,
+            let qotTeamId = selectedTeamItem?.teamId,
             let newName = userInfo[qotTeamId] {
 
-            currentTeam?.name = newName
+            selectedTeamItem?.title = newName
             teamHeaderItems.forEach { (item) in
                 if item.teamId == qotTeamId {
                     item.title = newName
                 }
             }
-            updateView()
+            presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+            presenter.updateView()
         }
     }
 
@@ -98,6 +93,7 @@ private extension MyXTeamSettingsInteractor {
     func setFirstTeamSelected(_ teamHeaderItems: [Team.Item]) {
         for header in teamHeaderItems where !header.teamId.isEmpty {
             header.selected = true
+            selectedTeamItem = header
             return
         }
     }
@@ -109,14 +105,10 @@ private extension MyXTeamSettingsInteractor {
                 self?.presenter.dismiss()
             } else {
                 self?.setFirstTeamSelected(teamHeaderItems)
-                self?.updateView()
+                self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
+                self?.presenter.updateView()
             }
         }
-    }
-
-    func updateView() {
-        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-        presenter.updateView()
     }
 
     func getTitle(for item: MyXTeamSettingsModel.Setting) -> String? {
@@ -150,11 +142,19 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     var canEdit: Bool {
-        currentTeam?.thisUserIsOwner == true
+        selectedTeamItem?.thisUserIsOwner == true
     }
 
-    var selectedTeam: QDMTeam? {
-        return currentTeam
+    var getSelectedItem: Team.Item? {
+        return selectedTeamItem
+    }
+
+    var getTeamItems: [Team.Item] {
+        return teamHeaderItems
+    }
+
+    func getSelectedTeam() -> QDMTeam? {
+        return selectedTeamItem?.qdmTeam
     }
 
     func getSettingItems() -> [MyXTeamSettingsModel.Setting] {
@@ -192,31 +192,20 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     func updateSelectedTeam(teamId: String) {
         teamHeaderItems.forEach { (item) in
             item.selected = (teamId == item.teamId)
+            if item.selected {
+                selectedTeamItem = item
+            }
         }
-        worker.getSelectedTeam(teamId: teamId) { [weak self] (selectedTeam) in
-            self?.currentTeam = selectedTeam
-            self?.updateView()
-        }
+        presenter.updateView()
     }
 
     func updateSelectedTeam(teamColor: String) {
         teamHeaderItems.filter { $0.selected }.first?.color = teamColor
         worker.updateTeamColor(teamId: getTeamId(), teamColor: teamColor)
-        updateView()
     }
 
-    func updateTeams() {
-        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
-            if let teamId = self?.currentTeam?.qotId {
-                self?.updateSelectedTeam(teamId: teamId)
-            }
-            self?.teamHeaderItems = teamHeaderItems
-            self?.updateView()
-        }
-    }
-
-    func deleteTeam(team: QDMTeam) {
-        worker.deleteTeam(team) { [weak self] (teams, _, _) in
+    func deleteTeam(teamItem: Team.Item) {
+        worker.deleteTeam(teamItem.qdmTeam) { [weak self] (teams, _, _) in
             if teams?.isEmpty == true {
                 self?.presenter.dismiss()
             } else {
@@ -225,12 +214,9 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
         }
     }
 
-    func leaveTeam(team: QDMTeam) {
-        worker.leaveTeam(team: team) { [weak self] _ in
+    func leaveTeam(teamItem: Team.Item) {
+        worker.leaveTeam(team: teamItem.qdmTeam) { [weak self] _ in
             self?.handleRemoveOrLeaveTeam()
         }
     }
-
-    func handleTap(setting: MyXTeamSettingsModel.Setting) {}
-
 }

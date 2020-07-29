@@ -15,9 +15,9 @@ final class MyQotMainInteractor: MyQotMainWorker {
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
     private var teamHeaderItems = [Team.Item]()
+    private var selectdTeamItem: Team.Item?
     private var subtitles: [String?] = []
     private var eventType: String?
-    private var selectdTeamId: String?
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -38,15 +38,15 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func itemCount(in section: Int) -> Int {
-        return MyX.Section.allCases[section].itemCount(selectdTeamId != nil)
+        return MyX.Section.allCases[section].itemCount(selectdTeamItem != nil)
     }
 
     func getItem(at indexPath: IndexPath) -> MyX.Item? {
-        return MyX.Item.items(selectdTeamId != nil).at(index: indexPath.row)
+        return MyX.Item.items(selectdTeamItem != nil).at(index: indexPath.row)
     }
 
     func getTitle(for item: MyX.Item?) -> String? {
-        return item?.title(isTeam: selectdTeamId != nil)
+        return item?.title(isTeam: selectdTeamItem != nil)
     }
 
     func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void) {
@@ -62,7 +62,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .data:
             getMyDataSubtitle(completion)
         case .toBeVision:
-            getToBeVisionSubtitle(teamId: selectdTeamId, completion)
+            getToBeVisionSubtitle(teamId: selectdTeamItem?.teamId, completion)
         default:
             return
         }
@@ -92,14 +92,12 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func handleSelection(at indexPath: IndexPath) {
-        switch MyX.Item.items(selectdTeamId != nil).at(index: indexPath.row) {
+        switch MyX.Item.items(selectdTeamItem != nil).at(index: indexPath.row) {
         case .teamCreate:
             clearTeamItems()
             router.presentEditTeam(.create, team: nil)
         case .library:
-            getSelectedTeam(teamId: selectdTeamId) { [weak self] (team) in
-                self?.router.presentMyLibrary(with: team)
-            }
+            router.presentMyLibrary(with: selectdTeamItem?.qdmTeam)
         case .preps:
             router.presentMyPreps()
         case .sprints:
@@ -107,9 +105,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .data:
             router.presentMyDataScreen()
         case .toBeVision:
-            getSelectedTeam(teamId: selectdTeamId) { [weak self] (team) in
-                self?.router.showTBV(team: team)
-            }
+            router.showTBV(team: selectdTeamItem?.qdmTeam)
         default: return
         }
     }
@@ -145,19 +141,17 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 // MARK: - Private
 private extension MyQotMainInteractor {
     func isTbvEmpty(_ completion: @escaping (Bool) -> Void) {
-        guard let teamId = selectdTeamId else {
+        guard let team = selectdTeamItem?.qdmTeam else {
             completion(true)
             return
         }
 
-        getSelectedTeam(teamId: teamId) { [weak self] (team) in
-            if let team = team, !team.thisUserIsOwner {
-                self?.getTeamToBeVision(for: team) { (teamVision) in
-                    completion(teamVision != nil)
-                }
-            } else {
-                completion(true)
+        if !team.thisUserIsOwner {
+            getTeamToBeVision(for: team) { (teamVision) in
+                completion(teamVision != nil)
             }
+        } else {
+            completion(true)
         }
     }
 
@@ -173,16 +167,17 @@ private extension MyQotMainInteractor {
             item.selected = teamId == item.teamId && !item.selected
         }
 
-        if selectdTeamId == nil {
-            selectdTeamId = teamId
+        let teamItem = teamHeaderItems.filter { $0.teamId == teamId }.first
+        if selectdTeamItem == nil {
+            selectdTeamItem = teamItem
             presenter.deleteItems(at: MyX.Item.indexPathArrayUpdate(),
                                   updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
-        } else if selectdTeamId == teamId {
-            selectdTeamId = nil
+        } else if selectdTeamItem?.teamId == teamId {
+            selectdTeamItem = nil
             presenter.inserItems(at: MyX.Item.indexPathArrayUpdate(),
                                  updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert())
         } else {
-            selectdTeamId = teamId
+            selectdTeamItem = teamItem
             presenter.reloadMainItems(updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
         }
     }
@@ -190,8 +185,8 @@ private extension MyQotMainInteractor {
     func clearTeamItems() {
         NotificationCenter.default.post(name: .didSelectTeam,
                                         object: nil,
-                                        userInfo: [Team.KeyTeamId: selectdTeamId ?? ""])
+                                        userInfo: [Team.KeyTeamId: selectdTeamItem?.teamId ?? ""])
         teamHeaderItems.removeAll()
-        selectdTeamId = nil
+        selectdTeamItem = nil
     }
 }

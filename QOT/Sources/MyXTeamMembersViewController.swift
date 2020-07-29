@@ -14,13 +14,10 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Properties
     var interactor: MyXTeamMembersInteractorInterface!
     private lazy var router = MyXTeamMembersRouter(viewController: self)
-    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerView: UIView!
-    private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
-    private var rightBarButtonItems = [UIBarButtonItem]()
 
     var rightBarButtonItem: [UIBarButtonItem] {
         return interactor.canEdit ? [addMembersButton] : []
@@ -62,7 +59,9 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - Private
 private extension MyXTeamMembersViewController {
     @objc func addMembers() {
-        router.addMembers(team: interactor.selectedTeam)
+        if let team = interactor.getSelectedTeamItem?.qdmTeam {
+            router.addMembers(team: team)
+        }
     }
 }
 
@@ -75,7 +74,7 @@ private extension MyXTeamMembersViewController {
 extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func setupView() {
-        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        let baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TeamMemberTableViewCell.self)
@@ -86,8 +85,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
     }
 
     func updateTeamHeader(teamHeaderItems: [Team.Item]) {
-        self.teamHeaderItems = teamHeaderItems
-        horizontalHeaderView.configure(headerItems: teamHeaderItems)
+        horizontalHeaderView.configure(headerItems: teamHeaderItems, canDeselect: false)
     }
 
     func updateView(hasMembers: Bool) {
@@ -154,7 +152,7 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if let member = interactor.getMember(at: indexPath), let isOwner = interactor?.selectedTeam?.thisUserIsOwner {
+        if let member = interactor.getMember(at: indexPath), let isOwner = interactor?.canEdit {
             if isOwner {
                 return !member.member.me
             }

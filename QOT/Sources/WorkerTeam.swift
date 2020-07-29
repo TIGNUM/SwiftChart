@@ -302,9 +302,7 @@ private extension WorkerTeam {
             teamHeaderItems.append(Team.Item(invites: invites))
         }
         teamHeaderItems.append(contentsOf: teams.compactMap { (team) -> Team.Item in
-            return Team.Item(title: team.name ?? "",
-                             teamId: team.qotId ?? "",
-                             color: team.teamColor ?? "")
+            return Team.Item(qdmTeam: team)
         })
         completion(teamHeaderItems)
     }

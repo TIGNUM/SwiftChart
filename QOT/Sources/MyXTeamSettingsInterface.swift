@@ -10,15 +10,14 @@ import Foundation
 import qot_dal
 
 protocol MyXTeamSettingsViewControllerInterface: class {
-    func setup(_ settings: MyXTeamSettingsModel)
+    func setup()
     func updateTeamHeader(teamHeaderItems: [Team.Item])
     func updateView()
-    func updateSettingsModel(_ settings: MyXTeamSettingsModel)
     func dismiss()
 }
 
 protocol MyXTeamSettingsPresenterInterface {
-    func present(_ settings: MyXTeamSettingsModel)
+    func present()
     func updateTeamHeader(teamHeaderItems: [Team.Item])
     func updateView()
     func dismiss()
@@ -26,13 +25,14 @@ protocol MyXTeamSettingsPresenterInterface {
 
 protocol MyXTeamSettingsInteractorInterface: Interactor {
     var teamSettingsText: String { get }
-    var selectedTeam: QDMTeam? { get }
+    var getSelectedItem: Team.Item? { get }
+    var getTeamItems: [Team.Item] { get }
+    func getSelectedTeam() -> QDMTeam?
     var canEdit: Bool { get }
     var rowCount: Int { get }
 
     func updateSelectedTeam(teamId: String)
     func updateSelectedTeam(teamColor: String)
-    func updateTeams()
 
     func getTeamName() -> String
     func getTeamId() -> String
@@ -43,13 +43,12 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
     func getSettingItems() -> [MyXTeamSettingsModel.Setting]
     func getSettingItem(at indexPath: IndexPath) -> MyXTeamSettingsModel.Setting
 
-    func deleteTeam(team: QDMTeam)
-    func leaveTeam(team: QDMTeam)
-    func handleTap(setting: MyXTeamSettingsModel.Setting)
+    func deleteTeam(teamItem: Team.Item)
+    func leaveTeam(teamItem: Team.Item)
 }
 
 protocol MyXTeamSettingsRouterInterface {
     func dismiss()
-    func presentTeamMembers(team: QDMTeam?)
+    func presentTeamMembers(selectedTeamItem: Team.Item?, teamItems: [Team.Item])
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
 }
