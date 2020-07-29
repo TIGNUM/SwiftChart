@@ -99,6 +99,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
     func updateTextCounter(maxChars: Int?) {
         self.maxChars = maxChars
         if let maxChars = maxChars {
+            self.memberMaxLabel.text = String(maxChars)
             self.textMaxCharsLabel.text = "/\(maxChars)"
         } else {
             textCounterLabel.isHidden = true

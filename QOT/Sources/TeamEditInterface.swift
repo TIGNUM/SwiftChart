@@ -31,6 +31,7 @@ protocol TeamEditInteractorInterface: Interactor {
     var getType: TeamEdit.View { get }
     var rowCount: Int { get }
     var teamName: String? { get }
+    var maxMemberCount: Int { get }
     var canSendInvite: Bool { get }
     func item(at index: IndexPath) -> String?
     func createTeam(_ name: String?)

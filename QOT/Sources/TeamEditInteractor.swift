@@ -16,7 +16,7 @@ final class TeamEditInteractor: TeamEditWorker {
     private var type: TeamEdit.View
     private var team: QDMTeam?
     private var members = [QDMTeamMember]()
-    private var maxTeamCount = 0
+    private var maxTeamMemberCount = 0
     private var maxChars = 0
 
     // MARK: - Init
@@ -43,10 +43,9 @@ private extension TeamEditInteractor {
              }
         }
         if type == .memberInvite {
-            getMaxTeamCount { [weak self] (maxTeamCount) in
-                self?.maxTeamCount = maxTeamCount
-                self?.presenter.setupTextCounter(maxChars: maxTeamCount)
-                _ = self?.showAlertIfNeeded(email: nil)
+            getMaxTeamMemberCount { (max) in
+                self.maxTeamMemberCount = max
+                self.presenter.setupTextCounter(maxChars: max)
             }
         } else {
             getMaxChars { [weak self] (max) in
@@ -94,7 +93,11 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
     }
 
     var canSendInvite: Bool {
-        return members.count <= maxTeamCount
+        return members.count <= maxTeamMemberCount
+    }
+
+    var maxMemberCount: Int {
+        return maxTeamMemberCount
     }
 
     func item(at index: IndexPath) -> String? {
