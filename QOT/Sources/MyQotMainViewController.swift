@@ -131,6 +131,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         }, completion: nil)
     }
 
+    func reload() {
+        collectionView.reloadData()
+    }
+
     func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(title: AppTextService.get(.my_qot_section_header_title),

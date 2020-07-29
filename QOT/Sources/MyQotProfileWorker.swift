@@ -38,20 +38,31 @@ final class MyQotProfileWorker {
         self.contentService = contentService
     }
 
-    func menuItems() -> [MyQotProfileModel.TableViewPresentationData] {
+    func menuItems(for types: [ProfileItemControllerType]) -> [MyQotProfileModel.TableViewPresentationData] {
         var items = [MyQotProfileModel.TableViewPresentationData]()
-        let accountSettings = MyQotProfileModel.TableViewPresentationData(heading: accountSettingsText, subHeading: manageYourProfileDetailsText)
-        let teamSettings = MyQotProfileModel.TableViewPresentationData(heading: teamSettingsText, subHeading: manageTeamSettingsText )
-        let appSettings = MyQotProfileModel.TableViewPresentationData(heading: appSettingsText, subHeading: enableNotificationsText)
-        let support = MyQotProfileModel.TableViewPresentationData(heading: supportText, subHeading: walkthroughOurFeaturesText)
-        let aboutTignum = MyQotProfileModel.TableViewPresentationData(heading: aboutTignumText, subHeading: learnMoreAboutUsText)
-        let adminSettings = MyQotProfileModel.TableViewPresentationData(heading: "ADMIN SETTINGS", subHeading: "Settings for debug and testing")
-        items = [accountSettings, appSettings, support, aboutTignum]
-        if hasTeam {
-            items.insert(teamSettings, at: 2)
-        }
-        if developmentMode {
-            items.append(adminSettings)
+        types.forEach { (type) in
+            var item: MyQotProfileModel.TableViewPresentationData?
+            switch type {
+            case .accountSettings:
+                item = MyQotProfileModel.TableViewPresentationData(heading: accountSettingsText,
+                                                                   subHeading: manageYourProfileDetailsText)
+            case .teamSettings:
+                item = MyQotProfileModel.TableViewPresentationData(heading: teamSettingsText,
+                                                                   subHeading: manageTeamSettingsText)
+            case .appSettings:
+                item = MyQotProfileModel.TableViewPresentationData(heading: appSettingsText,
+                                                                   subHeading: enableNotificationsText)
+            case .support:
+                item = MyQotProfileModel.TableViewPresentationData(heading: supportText,
+                                                                   subHeading: walkthroughOurFeaturesText)
+            case .aboutTignum:
+                item = MyQotProfileModel.TableViewPresentationData(heading: aboutTignumText,
+                                                                   subHeading: learnMoreAboutUsText)
+            case .adminSettings:
+                item = MyQotProfileModel.TableViewPresentationData(heading: "ADMIN SETTINGS",
+                                                                   subHeading: "Settings for debug and testing")
+            }
+            if let menuItem = item { items.append(menuItem) }
         }
 
         return items

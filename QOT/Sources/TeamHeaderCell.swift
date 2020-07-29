@@ -57,10 +57,12 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         self.counterLabel.text = String(teamInvites.count)
         self.teamInvites = teamInvites
         self.canDeselect = false
+        self.teamId = ""
         itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
         itemButton.backgroundColor = .carbon
         itemButton.layer.borderColor = UIColor.accent.cgColor
         itemButton.setTitleColor(.accent, for: .normal)
+        setSelected(false)
     }
 }
 

@@ -10,22 +10,13 @@ import UIKit
 import qot_dal
 
 final class MyQotProfileInteractor {
-
-    private enum controllerType: Int, CaseIterable {
-        case accountSettings
-        case appSettings
-        case teamSettings
-        case support
-        case aboutTignum
-        case adminSettings
-
-    }
-
     // MARK: - Properties
 
     private let worker: MyQotProfileWorker
     private let presenter: MyQotProfilePresenterInterface
     private let router: MyQotProfileRouterInterface
+    private var controllerTypes: [ProfileItemControllerType] = [.accountSettings, .appSettings, .support, .aboutTignum]
+    private var menuItems = [MyQotProfileModel.TableViewPresentationData]()
     // MARK: - Init
 
     init(worker: MyQotProfileWorker,
@@ -39,6 +30,7 @@ final class MyQotProfileInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
+        updateMenuItems()
         updateViewData()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateViewData),
@@ -49,9 +41,31 @@ final class MyQotProfileInteractor {
         getData({ [weak self] (profile) in
             SettingService.main.getSettingFor(key: SettingKey.SystemDevelopmentMode) { [weak self] (setting, _, _) in
                 self?.worker.developmentMode = setting?.booleanValue ?? false
+                var controllerTypes: [ProfileItemControllerType] = [.accountSettings, .appSettings]
+                if self?.worker.hasTeam == true {
+                    controllerTypes.append(.teamSettings)
+                }
+                controllerTypes.append(contentsOf: [.support, .aboutTignum])
+                if self?.worker.developmentMode == true {
+                    controllerTypes.append(.adminSettings)
+                }
+                self?.updateControllerTypes(controllerTypes)
                 self?.presenter.updateView()
             }
         })
+    }
+
+    func viewDidAppear() {
+        updateViewData()
+    }
+
+    func updateControllerTypes(_ types: [ProfileItemControllerType]) {
+        controllerTypes = types
+        updateMenuItems()
+    }
+
+    func updateMenuItems() {
+        menuItems = worker.menuItems(for: self.controllerTypes)
     }
 }
 
@@ -63,7 +77,7 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
     }
 
     func getMenuItems() -> [MyQotProfileModel.TableViewPresentationData] {
-        return worker.menuItems()
+        return menuItems
     }
 
     func memberSinceText() -> String {
@@ -81,7 +95,8 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
     }
 
     func presentController(for index: Int) {
-        let type = controllerType.allCases[index]
+        guard index < controllerTypes.count else { return }
+        let type = controllerTypes[index]
         switch type {
         case .accountSettings:
             router.presentAccountSettings()

@@ -28,6 +28,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        ExtensionsDataManager().update(.teams)
     }
 }
 
@@ -130,6 +131,19 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                                                selector: #selector(presentTeamPendingInvites),
                                                name: .didSelectTeamInvite,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didUpdateTeamRelatedData(_:)),
+                                               name: .didFinishSynchronization, object: nil)
+    }
+
+    @objc func didUpdateTeamRelatedData(_ notification: Notification) {
+        guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent else { return }
+        switch result.dataType {
+        case .TEAM:
+            presenter.reload()
+            ExtensionsDataManager().update(.teams)
+        default: break
+        }
     }
 
     func removeObserver() {

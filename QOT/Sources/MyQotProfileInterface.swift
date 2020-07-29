@@ -8,6 +8,16 @@
 
 import Foundation
 
+enum ProfileItemControllerType: Int, CaseIterable {
+    case accountSettings
+    case appSettings
+    case teamSettings
+    case support
+    case aboutTignum
+    case adminSettings
+
+}
+
 protocol MyQotProfileViewControllerInterface: class {
     func updateView()
 }
@@ -17,6 +27,7 @@ protocol MyQotProfilePresenterInterface {
 }
 
 protocol MyQotProfileInteractorInterface: Interactor {
+    func viewDidAppear()
     func getProfile() -> UserProfileModel?
     func getMenuItems() -> [MyQotProfileModel.TableViewPresentationData]
     func memberSinceText() -> String

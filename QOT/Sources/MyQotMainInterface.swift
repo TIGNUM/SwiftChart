@@ -14,6 +14,7 @@ protocol MyQotMainViewControllerInterface: class {
     func reloadMainItems(updateIndexPath: [IndexPath])
     func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func reload()
 }
 
 protocol MyQotMainPresenterInterface {
@@ -21,6 +22,7 @@ protocol MyQotMainPresenterInterface {
     func reloadMainItems(updateIndexPath: [IndexPath])
     func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func reload()
 }
 
 protocol MyQotMainInteractorInterface: Interactor {

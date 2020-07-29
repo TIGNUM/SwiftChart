@@ -38,4 +38,8 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
         viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath)
     }
+
+    func reload() {
+        viewController?.reload()
+    }
 }
