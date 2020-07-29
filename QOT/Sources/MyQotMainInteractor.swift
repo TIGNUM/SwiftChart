@@ -53,7 +53,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void) {
         switch item {
         case .teamCreate:
-            completion(AppTextService.get(.my_x_team_create_subheader))
+            isCellEnabled(for: item) {(enabled) in
+                enabled ?  completion(AppTextService.get(.my_x_team_create_subheader)) : completion(AppTextService.get(.my_x_team_create_max_team_sutitle))
+            }
         case .library:
             completion("")
         case .preps:
