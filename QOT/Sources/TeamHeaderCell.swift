@@ -12,13 +12,18 @@ import qot_dal
 final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
     @IBOutlet private weak var itemButton: UIButton!
+    @IBOutlet private weak var counterLabel: UILabel!
     private var teamId = ""
     private var hexColorString = ""
     private var inviteCounter = 0
+    private var itemSelected = false
+    private var canDeselect = true
     private var teamInvites: [QDMTeamInvitation] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        counterLabel.circle()
+        counterLabel.isHidden = true
         itemButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
@@ -30,16 +35,28 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
                                                object: nil)
     }
 
-    func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
-        teamInvites = []
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        itemButton.setTitle(nil, for: .normal)
+        teamInvites.removeAll()
+    }
+
+    func configure(teamId: String, title: String, hexColorString: String, selected: Bool, canDeselect: Bool) {
+        self.teamInvites.removeAll()
+        self.counterLabel.isHidden = true
         self.teamId = teamId
         self.hexColorString = hexColorString
+        self.itemSelected = selected
+        self.canDeselect = canDeselect
         itemButton.setTitle(title, for: .normal)
         setSelected(selected)
     }
 
     func configure(teamInvites: [QDMTeamInvitation]) {
+        self.counterLabel.isHidden = false
+        self.counterLabel.text = String(teamInvites.count)
         self.teamInvites = teamInvites
+        self.canDeselect = false
         self.teamId = ""
         itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
         itemButton.backgroundColor = .carbon
@@ -52,9 +69,11 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
         if teamInvites.isEmpty {
-            NotificationCenter.default.post(name: .didSelectTeam,
-                                            object: nil,
-                                            userInfo: [Team.KeyTeamId: teamId])
+            if !itemSelected || itemSelected && canDeselect {
+                NotificationCenter.default.post(name: .didSelectTeam,
+                                                object: nil,
+                                                userInfo: [Team.KeyTeamId: teamId])
+            }
         } else {
             NotificationCenter.default.post(name: .didSelectTeamInvite,
                                             object: nil,
@@ -64,15 +83,18 @@ private extension TeamHeaderCell {
 
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[Team.KeyTeamId] {
-            setSelected(self.teamId == teamId)
+        if userInfo.keys.contains(Team.KeyTeamId), let teamId = userInfo[Team.KeyTeamId] {
+            itemSelected = self.teamId == teamId && !itemSelected
+            setSelected(itemSelected)
         }
-        if let teamColor = userInfo[Team.KeyColor] {
+        if itemSelected && userInfo.keys.contains(Team.KeyColor), let teamColor = userInfo[Team.KeyColor] {
             hexColorString = teamColor
+            setSelected(itemSelected)
         }
     }
 
     func setSelected(_ selected: Bool) {
+        guard teamInvites.isEmpty else { return }
         if selected {
             itemButton.backgroundColor = UIColor(hex: hexColorString)
             itemButton.layer.borderColor = UIColor(hex: hexColorString).cgColor

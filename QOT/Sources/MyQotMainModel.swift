@@ -7,66 +7,71 @@
 //
 
 import UIKit
-import DifferenceKit
 import qot_dal
 
-typealias ArraySectionMyX = [ArraySection<MyX.Section, MyX.Item>]
-
-struct MyX {
-    enum Section: Int, CaseIterable, Differentiable {
-        case navigationHeader = 0
+enum MyX {
+    enum Section: Int, CaseIterable {
+        case navigationHeder = 0
         case teamHeader
-        case body
-    }
+        case items
 
-    var items: [MyX.Item] = []
-    var teamHeaderItems: [Team.Item] = []
-
-    func element(at indexPath: IndexPath) -> MyX.Element {
-        return MyX.Element.allCases.at(index: indexPath.row) ?? .teamCreate
-    }
-
-    struct Item: Differentiable {
-        typealias DifferenceIdentifier = String
-
-        var teamHeaderitem: Team.Item?
-        var element: MyX.Element?
-        var title: String
-        var subtitle: String?
-
-        var differenceIdentifier: DifferenceIdentifier {
-            return "\(element)"
-        }
-
-        func isContentEqual(to source: MyX.Item) -> Bool {
-            return element == source.element &&
-                title == source.title &&
-                subtitle == source.subtitle
+        func itemCount(_ isTeam: Bool) -> Int {
+            switch self {
+            case .navigationHeder,
+                 .teamHeader: return 1
+            case .items: return MyX.Item.items(isTeam).count
+            }
         }
     }
 
-    struct NavigationHeader {
-        let title: String
-        let cta: String
-    }
-
-    enum Element: Int, CaseIterable, Differentiable {
-        case teamCreate = 0
+    enum Item: CaseIterable {
+        case teamCreate
         case library
         case preps
         case sprints
         case data
         case toBeVision
 
-        var title: String {
+        func title(isTeam: Bool) -> String {
             switch self {
-            case .teamCreate: return AppTextService.get(.my_x_team_create_header)
-            case .library: return AppTextService.get(.my_qot_section_my_library_title)
-            case .preps: return AppTextService.get(.my_qot_section_my_plans_title)
-            case .sprints: return AppTextService.get(.my_qot_section_my_sprints_title)
-            case .data: return AppTextService.get(.my_qot_section_my_data_title)
-            case .toBeVision: return AppTextService.get(.my_qot_section_my_tbv_title)
+            case .teamCreate:
+                return AppTextService.get(.my_x_team_create_header)
+            case .library:
+                let title = AppTextService.get(.my_qot_section_my_library_title)
+                return isTeam ? removePrefix(title) : title
+            case .preps:
+                return AppTextService.get(.my_qot_section_my_plans_title)
+            case .sprints:
+                return AppTextService.get(.my_qot_section_my_sprints_title)
+            case .data:
+                return AppTextService.get(.my_qot_section_my_data_title)
+            case .toBeVision:
+                let title = AppTextService.get(.my_qot_section_my_tbv_title)
+                return isTeam ? removePrefix(title) : title
             }
+        }
+
+        private func removePrefix(_ title: String) -> String {
+            return title.replacingOccurrences(of: "MY", with: "")
+        }
+
+        static func items(_ isTeam: Bool) -> [MyX.Item] {
+            return isTeam ? [.library, .toBeVision] : MyX.Item.allCases
+        }
+
+        static func indexPathArrayUpdate() -> [IndexPath] {
+            return [IndexPath(item: 0, section: 2),
+                    IndexPath(item: 2, section: 2),
+                    IndexPath(item: 3, section: 2),
+                    IndexPath(item: 4, section: 2)]
+        }
+
+        static func indexPathToUpdateAfterDelete() -> [IndexPath] {
+            return [IndexPath(item: 0, section: 2), IndexPath(item: 1, section: 2)]
+        }
+
+        static func indexPathToUpdateAfterInsert() -> [IndexPath] {
+            return [IndexPath(item: 1, section: 2), IndexPath(item: 5, section: 2)]
         }
     }
 }

@@ -27,7 +27,7 @@ final class MyLibraryCategoryListWorker {
         var initiated = false
         dispatchGroup.enter()
         if let team = team {
-            service.getTeamStorages (in: team) { (teamStorages, initialized, error) in
+            service.getTeamStorages(in: team) { (teamStorages, initialized, error) in
                 storages = teamStorages
                 initiated = initialized
                 dispatchGroup.leave()

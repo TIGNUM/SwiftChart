@@ -7,37 +7,40 @@
 //
 
 import Foundation
-import DifferenceKit
 import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
-    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
-    func reload()
     func setupView()
+    func reloadMainItems(updateIndexPath: [IndexPath])
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func reload()
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>)
+    func reloadMainItems(updateIndexPath: [IndexPath])
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
     func reload()
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
     var sectionCount: Int { get }
-    func viewWillAppear()
-    func updateMyX()
-
-    func getSettingsButtonTitle() -> String
-    func getTeamItems() -> [Team.Item]
-    func refreshParams()
-    func updateArraySection(_ list: ArraySectionMyX)
-    func updateSelectedTeam(teamId: String?)
-    func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void)
     func itemCount(in section: Int) -> Int
+
+    func getSettingsButtonTitle(_ completion: @escaping (String) -> Void)
+    func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void)
+    func getTitle(for item: MyX.Item?) -> String?
     func getItem(at indexPath: IndexPath) -> MyX.Item?
-    func presentMyProfile()
+
+    func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
+    func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void)
     func handleSelection(at indexPath: IndexPath)
-    func presentTeamPendingInvites()
+
+    func presentMyProfile()
+    func addObserver()
+    func removeObserver()
 }
 
 protocol MyQotMainRouterInterface {
@@ -48,5 +51,5 @@ protocol MyQotMainRouterInterface {
     func presentMyDataScreen()
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func showTBV(team: QDMTeam?)
-    func presentTeamPendingInvites(invitations: [QDMTeamInvitation])
+    func presentTeamPendingInvites(teamItems: [Team.Item])
 }

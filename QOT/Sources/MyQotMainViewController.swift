@@ -8,7 +8,6 @@
 
 import UIKit
 import qot_dal
-import DifferenceKit
 
 final class MyQotNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(MyQotNavigationController.classForCoder())
@@ -21,7 +20,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     weak var delegate: CoachCollectionViewControllerDelegate?
     private var indexPathDeselect: IndexPath?
     private var isDragging = false
-    private var teamHeaderItems = [Team.Item]()
+    private var teamHeader: HorizontalHeaderView?
     @IBOutlet private weak var collectionView: UICollectionView!
 
     private lazy var headerSize: CGSize = {
@@ -47,17 +46,13 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewDidLoad()
         interactor.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(showPendingInvites),
-                                               name: .didSelectTeamInvite,
-                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(color: .carbon)
-        interactor.viewWillAppear()
-        interactor.refreshParams()
+        interactor.addObserver()
+        collectionView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,8 +65,24 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         }
     }
 
-    @objc func showPendingInvites() {
-        interactor.presentTeamPendingInvites()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor.removeObserver()
+    }
+}
+
+// MARK: - Private
+private extension MyQotMainViewController {
+    func updadateCell(for indexPath: IndexPath) {
+        let item = interactor.getItem(at: indexPath)
+        let title = interactor.getTitle(for: item)
+        let cell = collectionView.cellForItem(at: indexPath) as? MyQotMainCollectionViewCell
+        cell?.setEnabled(false, title: title)
+        interactor.getSubtitle(for: item) { [weak self] (subtitle) in
+            self?.interactor.isCellEnabled(for: item) { (enabled) in
+                cell?.configure(title: title, subtitle: subtitle, enabled: enabled)
+            }
+        }
     }
 }
 
@@ -92,10 +103,32 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         layout.sectionHeadersPinToVisibleBounds = true
     }
 
-    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>) {
-        collectionView.reload(using: differenceList) { [weak self] (data) in
-            self?.interactor.updateArraySection(data)
-        }
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        collectionView.performBatchUpdates({
+            collectionView.deleteItems(at: indexPath)
+        }, completion: { (done) in
+            updateIndexPath.forEach { (indexPath) in
+                self.updadateCell(for: indexPath)
+            }
+        })
+    }
+
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: indexPath)
+        }, completion: { (done) in
+            updateIndexPath.forEach { (indexPath) in
+                self.updadateCell(for: indexPath)
+            }
+        })
+    }
+
+    func reloadMainItems(updateIndexPath: [IndexPath]) {
+        collectionView.performBatchUpdates({
+            updateIndexPath.forEach { (indexPath) in
+                self.updadateCell(for: indexPath)
+            }
+        }, completion: nil)
     }
 
     func reload() {
@@ -107,22 +140,30 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         cell.configure(title: AppTextService.get(.my_qot_section_header_title),
                        tapLeft: { self.delegate?.moveToCell(item: 1) },
                        tapRight: { self.interactor.presentMyProfile() })
-        cell.setSettingsButton(interactor.getSettingsButtonTitle())
+        interactor.getSettingsButtonTitle { (title) in
+            cell.setSettingsButton(title)
+        }
         return cell
     }
 
     func getTeamHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell: HorizontalHeaderCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(headerItems: interactor.getTeamItems())
+        interactor.updateTeamHeaderItems { (items) in
+            cell.configure(headerItems: items)
+        }
         return cell
     }
 
-    func getCell(_ collectionView: UICollectionView,
-                 _ indexPath: IndexPath,
-                 _ myQotItem: MyX.Item?) -> UICollectionViewCell {
+    func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
+        let item = interactor.getItem(at: indexPath)
+        let title = interactor.getTitle(for: item)
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(title: myQotItem?.title, subtitle: myQotItem?.subtitle)
-        interactor.isCellEnabled(for: myQotItem?.element) { cell.setEnabled($0) }
+        cell.setEnabled(false, title: title)
+        interactor.getSubtitle(for: item) { [weak self] (subtitle) in
+            self?.interactor.isCellEnabled(for: item) { (enabled) in
+                cell.configure(title: title, subtitle: subtitle, enabled: enabled)
+            }
+        }
         return cell
     }
 }
@@ -139,21 +180,20 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch MyX.Section(rawValue: indexPath.section) {
-        case .navigationHeader: return getNavigationHeaderCell(collectionView, indexPath)
+        switch MyX.Section.allCases[indexPath.section] {
+        case .navigationHeder: return getNavigationHeaderCell(collectionView, indexPath)
         case .teamHeader: return getTeamHeaderCell(collectionView, indexPath)
-        default: return getCell(collectionView, indexPath, interactor.getItem(at: indexPath))
+        default: return getCell(collectionView, indexPath)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch MyX.Section(rawValue: indexPath.section) {
-        case .navigationHeader: return headerSize
+        switch MyX.Section.allCases[indexPath.section] {
+        case .navigationHeder: return headerSize
         case .teamHeader: return teamHeaderSize
-        case .body: return qotBoxSize
-        default: return .zero
+        default: return qotBoxSize
         }
     }
 

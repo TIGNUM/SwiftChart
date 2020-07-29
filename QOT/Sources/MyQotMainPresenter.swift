@@ -27,8 +27,16 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
         viewController?.setupView()
     }
 
-    func updateView(_ differenceList: StagedChangeset<ArraySectionMyX>) {
-        viewController?.updateView(differenceList)
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath)
+    }
+
+    func reloadMainItems(updateIndexPath: [IndexPath]) {
+        viewController?.reloadMainItems(updateIndexPath: updateIndexPath)
+    }
+
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath)
     }
 
     func reload() {

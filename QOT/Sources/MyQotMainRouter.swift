@@ -86,11 +86,11 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         }
     }
 
-    func presentTeamPendingInvites(invitations: [QDMTeamInvitation]) {
+    func presentTeamPendingInvites(teamItems: [Team.Item]) {
         let identifier = R.storyboard.team.teamInviteViewControllerID.identifier
         let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamInvitesViewController
         if let controller = controller {
-            let configurator = TeamInvitesConfigurator.make(invitations: invitations)
+            let configurator = TeamInvitesConfigurator.make(teamItems: teamItems)
             configurator(controller)
             viewController?.pushToStart(childViewController: controller)
         }

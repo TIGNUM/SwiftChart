@@ -15,6 +15,7 @@ final class TeamInvitesInteractor {
     private lazy var worker = TeamInvitesWorker()
     private let presenter: TeamInvitesPresenterInterface!
     private var inviteHeader: TeamInvite.Header?
+    private var teamItems = [Team.Item]()
     private var qdmInvitations = [QDMTeamInvitation]()
     private var pendingInvites = [TeamInvite.Pending]()
     private var partOfTeams = 0
@@ -22,19 +23,26 @@ final class TeamInvitesInteractor {
     private var canJoinTeam = true
 
     // MARK: - Init
-    init(presenter: TeamInvitesPresenterInterface, invitations: [QDMTeamInvitation]) {
+    init(presenter: TeamInvitesPresenterInterface, teamItems: [Team.Item]) {
         self.presenter = presenter
-        self.qdmInvitations = invitations
+        self.teamItems = teamItems
+        if let invites = teamItems.filter({ $0.invites.isEmpty == false }).first?.invites {
+            qdmInvitations = invites
+        }
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
         addObservers()
         presenter.setupView()
+
+        let teams = teamItems.filter { $0.invites.isEmpty }
+        partOfTeams = teams.count
         updateHeader { [weak self] in
-            self?.setTeamAttributes {
-                self?.updateItemsAndReload()
-            }
+            guard let strongSelf = self else { return }
+            strongSelf.canJoinTeam = teams.count < strongSelf.maxTeamCount
+            strongSelf.makePendingInvites(qdmInvitations: strongSelf.qdmInvitations)
+            strongSelf.presenter.reload(shouldDismiss: strongSelf.pendingInvites.isEmpty)
         }
     }
 }
@@ -76,26 +84,20 @@ private extension TeamInvitesInteractor {
         }
     }
 
-    func setTeamAttributes(_ completion: @escaping () -> Void) {
-        worker.getTeams { [weak self] (teams) in
-            self?.worker.canJoinTeam { (canJoinTeam) in
-                self?.canJoinTeam = canJoinTeam
-                self?.partOfTeams = teams.count
-                completion()
-            }
+    func updateItemsAndReload() {
+        worker.getTeamInvitations { [weak self] (qdmInvitations) in
+            self?.makePendingInvites(qdmInvitations: qdmInvitations)
+            self?.presenter.reload(shouldDismiss: self?.pendingInvites.isEmpty == true)
         }
     }
 
-    func updateItemsAndReload() {
-        worker.getTeamInvitations { [weak self] (qdmInvitations) in
-            self?.pendingInvites = qdmInvitations
-                .filter { $0.me?.status == .INVITED }
-                .compactMap { (invite) -> TeamInvite.Pending in
-                return TeamInvite.Pending(invite: invite,
-                                          canJoin: self?.canJoinTeam == true,
-                                          maxTeamCount: self?.maxTeamCount ?? 0)
-            }
-            self?.presenter.reload(shouldDismiss: self?.pendingInvites.isEmpty == true)
+    func makePendingInvites(qdmInvitations: [QDMTeamInvitation]) {
+        pendingInvites = qdmInvitations
+            .filter { $0.me?.status == .INVITED }
+            .compactMap { (invite) -> TeamInvite.Pending in
+            return TeamInvite.Pending(invite: invite,
+                                      canJoin: canJoinTeam,
+                                      maxTeamCount: maxTeamCount)
         }
     }
 
@@ -103,6 +105,14 @@ private extension TeamInvitesInteractor {
         worker.getInviteHeader { [weak self] (header) in
             self?.maxTeamCount = header.maxTeams
             self?.inviteHeader = header
+            completion()
+        }
+    }
+
+    func setTeamAttributes(_ completion: @escaping () -> Void) {
+        worker.getTeams { [weak self] (teams) in
+            self?.canJoinTeam = teams.count < self?.maxTeamCount ?? 3
+            self?.partOfTeams = teams.count
             completion()
         }
     }
