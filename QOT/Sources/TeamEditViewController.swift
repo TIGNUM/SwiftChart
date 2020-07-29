@@ -89,6 +89,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView
+        teamTextField.keyboardType = interactor.getType == TeamEdit.View.memberInvite ? .emailAddress : .default
         keyboardInputView.delegate = self
         hideOutlets(isMemberInvite)
         textCounterLabel.isHidden = isMemberInvite
@@ -118,6 +119,8 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
 
     func refreshView() {
         teamTextField.text = nil
+        teamTextField.keyboardType = interactor.getType == TeamEdit.View.memberInvite ? .emailAddress : .default
+        hideOutlets(interactor.getType == TeamEdit.View.memberInvite)
         updateKeyboardInputView(false)
     }
 

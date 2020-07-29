@@ -53,7 +53,7 @@
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQI-7J-CBx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQI-7J-CBx">
                                 <rect key="frame" x="24" y="129" width="366" height="17"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999464897260277" colorSpace="custom" customColorSpace="calibratedRGB"/>
