@@ -55,7 +55,11 @@ extension MyQotMainWorker {
         getSelectedTeam(teamId: teamId) { (team) in
             if let team = team {
                 self.getTeamToBeVision(for: team) { (teamToBeVision) in
-                    completion(self.makeToBeVisionSubtitle(teamToBeVision: teamToBeVision))
+                    if teamToBeVision == nil && !team.thisUserIsOwner {
+                        completion(AppTextService.get(.my_x_team_tbv_not_created))
+                    } else {
+                        completion(self.makeToBeVisionSubtitle(teamToBeVision: teamToBeVision))
+                    }
                 }
             } else {
                 UserService.main.getMyToBeVision { (toBeVision, _, _) in

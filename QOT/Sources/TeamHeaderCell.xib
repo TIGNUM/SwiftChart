@@ -33,8 +33,21 @@
                             <action selector="didSelectTeam" destination="3q8-a9-szT" eventType="touchUpInside" id="IAa-0X-fRH"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZH-A8-VFN">
+                        <rect key="frame" x="168" y="2" width="24" height="24"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.36862745098039218" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="LDz-wC-oqY"/>
+                            <constraint firstAttribute="height" constant="24" id="WlU-zc-WPB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="UZH-A8-VFN" firstAttribute="trailing" secondItem="a6S-Wg-aDT" secondAttribute="trailing" constant="8" id="A2E-bh-vV1"/>
+                    <constraint firstItem="UZH-A8-VFN" firstAttribute="top" secondItem="a6S-Wg-aDT" secondAttribute="top" constant="-8" id="O1H-dN-byu"/>
                     <constraint firstItem="a6S-Wg-aDT" firstAttribute="top" secondItem="CW3-3m-WKF" secondAttribute="top" constant="10" id="WBO-tt-xPZ"/>
                     <constraint firstItem="a6S-Wg-aDT" firstAttribute="leading" secondItem="CW3-3m-WKF" secondAttribute="leading" id="ntY-w3-VuQ"/>
                     <constraint firstAttribute="trailing" secondItem="a6S-Wg-aDT" secondAttribute="trailing" constant="16" id="uyS-ea-u0O"/>
@@ -43,6 +56,7 @@
             </collectionViewCellContentView>
             <size key="customSize" width="155" height="58"/>
             <connections>
+                <outlet property="counterLabel" destination="UZH-A8-VFN" id="Uvy-3S-rEl"/>
                 <outlet property="itemButton" destination="a6S-Wg-aDT" id="vkg-Eh-1YA"/>
             </connections>
             <point key="canvasLocation" x="-38.405797101449281" y="141.29464285714286"/>

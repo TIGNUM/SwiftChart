@@ -479,6 +479,7 @@ public extension AppTextKey {
     static let my_qot_section_my_plans_title = AppTextKey("my_qot.section_my_plans.title")
     static let my_qot_section_my_profile_title = AppTextKey("my_qot.section_my_profile.title")
     static let my_qot_section_my_tbv_title = AppTextKey("my_qot.section_my_tbv.title")
+    static let my_x_team_tbv_not_created = AppTextKey("myX.teamTBV.not.created.title")
 
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")

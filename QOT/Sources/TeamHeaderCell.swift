@@ -12,6 +12,7 @@ import qot_dal
 final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
     @IBOutlet private weak var itemButton: UIButton!
+    @IBOutlet private weak var counterLabel: UILabel!
     private var teamId = ""
     private var hexColorString = ""
     private var inviteCounter = 0
@@ -20,6 +21,8 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        counterLabel.circle()
+        counterLabel.isHidden = true
         itemButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
@@ -39,6 +42,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
     func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
         self.teamInvites.removeAll()
+        self.counterLabel.isHidden = true
         self.teamId = teamId
         self.hexColorString = hexColorString
         self.itemSelected = selected
@@ -47,6 +51,8 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     }
 
     func configure(teamInvites: [QDMTeamInvitation]) {
+        self.counterLabel.isHidden = false
+        self.counterLabel.text = String(teamInvites.count)
         self.teamInvites = teamInvites
         itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
         itemButton.backgroundColor = .carbon
