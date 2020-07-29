@@ -16,7 +16,6 @@ final class HorizontalHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.registerDequeueable(TeamHeaderCell.self)
-        collectionView.setContentOffset(CGPoint(x: 24, y: 0), animated: true)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
@@ -35,9 +34,7 @@ private extension HorizontalHeaderView {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
             for (index, item) in headerItems.enumerated() where item.teamId == teamId {
-                collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
-                                            at: .centeredHorizontally,
-                                            animated: true)
+                scrollToItem(index: index)
                 return
             }
         }
@@ -45,10 +42,20 @@ private extension HorizontalHeaderView {
 
     func centerSelectedItem() {
         for (index, item) in headerItems.enumerated() where item.selected {
-            collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
-                                        at: .centeredHorizontally,
-                                        animated: true)
+            scrollToItem(index: index)
             return
+        }
+    }
+
+    func scrollToItem(index: Int) {
+        collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
+                                    at: .centeredHorizontally,
+                                    animated: true)
+        if index == 0 {
+            collectionView.setContentOffset(CGPoint(x: -24, y: 0), animated: true)
+        }
+        if index == headerItems.count - 1 {
+            collectionView.setContentOffset(CGPoint(x: 24, y: 0), animated: true)
         }
     }
 }
@@ -61,8 +68,8 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let item = headerItems[indexPath.row].title
-        let itemSize = item.size(withAttributes: [NSAttributedString.Key.font: UIFont.sfProtextSemibold(ofSize: 14)])
+        let title = headerItems[indexPath.row].title
+        let itemSize = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.sfProtextSemibold(ofSize: 14)])
         return CGSize(width: itemSize.width + .TeamHeaderOffset, height: .TeamHeader)
     }
 
