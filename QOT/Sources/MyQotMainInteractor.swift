@@ -183,9 +183,11 @@ private extension MyQotMainInteractor {
     }
 
     func clearTeamItems() {
-        NotificationCenter.default.post(name: .didSelectTeam,
-                                        object: nil,
-                                        userInfo: [Team.KeyTeamId: selectdTeamItem?.teamId ?? ""])
+        if selectdTeamItem != nil && selectdTeamItem?.header == .team {
+            NotificationCenter.default.post(name: .didSelectTeam,
+                                            object: nil,
+                                            userInfo: [Team.KeyTeamId: selectdTeamItem?.teamId ?? ""])
+        }
         teamHeaderItems.removeAll()
         selectdTeamItem = nil
     }
