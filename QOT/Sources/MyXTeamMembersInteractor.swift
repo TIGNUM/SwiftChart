@@ -17,6 +17,7 @@ final class MyXTeamMembersInteractor {
     private var teamHeaderItems = [Team.Item]()
     private var selectedTeamItem: Team.Item?
     private var membersList: [TeamMember] = []
+    private var maxTeamMemberCount: Int = 0
 
     // MARK: - Init
     init(presenter: MyXTeamMembersPresenterInterface, selectedTeamItem: Team.Item?, teamItems: [Team.Item]) {
@@ -31,6 +32,10 @@ final class MyXTeamMembersInteractor {
         presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
         if let teamId = selectedTeamItem?.teamId {
             setHeaderItemSelected(teamId: teamId)
+        }
+
+        worker.getMaxTeamMemberCount { (max) in
+            self.maxTeamMemberCount = max
         }
 
         NotificationCenter.default.addObserver(self,
@@ -66,7 +71,7 @@ private extension MyXTeamMembersInteractor {
 // MARK: - MyXTeamMembersInteractorInterface
 extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
     var canEdit: Bool {
-        return selectedTeamItem?.thisUserIsOwner == true
+        return selectedTeamItem?.thisUserIsOwner == true && maxTeamMemberCount > membersList.count
     }
 
     var rowCount: Int {

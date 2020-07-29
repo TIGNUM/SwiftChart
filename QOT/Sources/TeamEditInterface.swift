@@ -15,7 +15,7 @@ protocol TeamEditViewControllerInterface: class {
     func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool)
     func updateTextCounter(maxChars: Int?)
     func presentErrorAlert(_ title: String, _ message: String)
-    func refreshMemberList()
+    func refreshMemberList(at indexPath: [IndexPath])
     func dismiss()
 }
 
@@ -23,14 +23,16 @@ protocol TeamEditPresenterInterface {
     func setupView(_ type: TeamEdit.View)
     func setupTextCounter(maxChars: Int)
     func prepareMemberInvite(_ team: QDMTeam?)
-    func refreshMemberList()
-    func presentErrorAlert(_ error: Error?)
+    func refreshMemberList(at indexPath: [IndexPath])
+    func presentErrorAlert(_ title: String, _ message: String)
 }
 
 protocol TeamEditInteractorInterface: Interactor {
     var getType: TeamEdit.View { get }
     var rowCount: Int { get }
     var teamName: String? { get }
+    var maxMemberCount: Int { get }
+    var canSendInvite: Bool { get }
     func item(at index: IndexPath) -> String?
     func createTeam(_ name: String?)
     func sendInvite(_ email: String?)

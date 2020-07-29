@@ -484,6 +484,7 @@ public extension AppTextKey {
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")
     static let my_x_team_create_description = AppTextKey("my_x.team.create_description")
+    static let my_x_team_create_subheader = AppTextKey("my_x.team_create.subtitle")
     static let my_x_team_create_cta = AppTextKey("my_x.team.create_cta")
 
     // MARK: - Team Member Invite
@@ -492,6 +493,7 @@ public extension AppTextKey {
     static let my_x_team_member_invite_description = AppTextKey("my_x.team_member_invite.description")
     static let my_x_team_member_invite_cta = AppTextKey("my_x.team_member_invite.cta")
     static let my_x_team_invite_cta = AppTextKey("team_invite.header_title.plural")
+    static let my_x_team_invite_max_members = AppTextKey("my_x.team.member.invite.max_members")
     static let team_invite_details_text = AppTextKey("team_invite.details.text")
 
     // MARK: - Team Member Edit
@@ -525,6 +527,8 @@ public extension AppTextKey {
     static let team_invite_cta_join = AppTextKey("team_invite.cta.join")
     static let team_invite_details = AppTextKey("team_invite.details.text")
     static let team_invite_max_capacity = AppTextKey("team_invite.max.capacity")
+    static let team_invite_error_add_myself = AppTextKey("team_edit.member_add.error_myself")
+    static let team_invite_error_add_exisiting = AppTextKey("team_invite.error_add.exisiting")
 
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")

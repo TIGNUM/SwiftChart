@@ -33,8 +33,8 @@ private extension TeamEditPresenter {
 
 // MARK: - TeamEditInterface
 extension TeamEditPresenter: TeamEditPresenterInterface {
-    func refreshMemberList() {
-        viewController?.refreshMemberList()
+    func refreshMemberList(at indexPath: [IndexPath]) {
+        viewController?.refreshMemberList(at: indexPath)
     }
 
     func prepareMemberInvite(_ team: QDMTeam?) {
@@ -52,10 +52,7 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
         viewController?.updateTextCounter(maxChars: maxChars)
     }
 
-    func presentErrorAlert(_ error: Error?) {
-        let title = AppTextService.get(.generic_alert_unknown_error_title)
-        var message = AppTextService.get(.generic_alert_unknown_error_body)
-        message = message.replacingOccurrences(of: "(%@) ", with: error?.localizedDescription ?? "")
+    func presentErrorAlert(_ title: String, _ message: String) {
         viewController?.presentErrorAlert(title, message)
     }
 }
