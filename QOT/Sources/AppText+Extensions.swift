@@ -533,20 +533,16 @@ public extension AppTextKey {
     static let my_x_my_library_remove_items_title = AppTextKey("my_x.my_library.remove_items.title")
     static let my_x_my_library_remove_items_subtitle = AppTextKey("my_x.my_library.remove_items.subtitle")
 
-    static let my_qot_my_library_all_edit_title = AppTextKey("my_qot.my_library.all.edit.title")
 
     static let my_qot_my_library_bookmarks_section_header_title = AppTextKey("my_qot.my_library.bookmarks.section_header.title")
-    static let my_qot_my_library_bookmarks_edit_title = AppTextKey("my_qot.my_library.bookmarks.edit.title")
     static let my_qot_my_library_bookmarks_null_state_body = AppTextKey("my_qot.my_library.bookmarks.null_state.body")
     static let my_qot_my_library_downloads_section_header_title = AppTextKey("my_qot.my_library.downloads.section_header.title")
-    static let my_qot_my_library_downloads_edit_title = AppTextKey("my_qot.my_library.downloads.edit.title")
     static let my_qot_my_library_downloads_null_state_body = AppTextKey("my_qot.my_library.downloads.null_state.body")
     static let my_qot_my_library_alert_delete_title = AppTextKey("my_qot.my_library.alert.delete.title")
     static let my_qot_my_library_alert_delete_body = AppTextKey("my_qot.my_library.alert.delete.body")
     static let my_qot_my_library_labels_title_listen = AppTextKey("my_qot.my_library.labels.title_listen")
     static let my_qot_my_library_labels_title_read = AppTextKey("my_qot.my_library.labels.title_read")
     static let my_qot_my_library_labels_title_watch = AppTextKey("my_qot.my_library.labels.title_watch")
-    static let my_qot_my_library_links_edit_title = AppTextKey("my_qot.my_library.links.edit.title")
     static let my_qot_my_library_links_section_header_title = AppTextKey("my_qot.my_library.links.section_header.title")
     static let my_qot_my_library_links_null_state_body = AppTextKey("my_qot.my_library.links.null_state.body")
     static let my_qot_my_library_downloads_section_item_label_downloading = AppTextKey("my_qot.my_library.downloads.section_item.label_downloading")
@@ -1017,4 +1013,12 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_section_load_title = AppTextKey("daily_brief.section_impact_readiness.section_load.title")
     static let daily_brief_section_impact_readiness_section_sleep_quality_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quality.title")
     static let daily_brief_section_impact_readiness_section_sleep_quantity_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.title")
+}
+
+@available(*, unavailable, message: "Unavailable from QOT v3.1.7")
+public extension AppTextKey {
+    static let my_qot_my_library_all_edit_title = AppTextKey("my_qot.my_library.all.edit.title")
+    static let my_qot_my_library_bookmarks_edit_title = AppTextKey("my_qot.my_library.bookmarks.edit.title")
+    static let my_qot_my_library_downloads_edit_title = AppTextKey("my_qot.my_library.downloads.edit.title")
+    static let my_qot_my_library_links_edit_title = AppTextKey("my_qot.my_library.links.edit.title")
 }
