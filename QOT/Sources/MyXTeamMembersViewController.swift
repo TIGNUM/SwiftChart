@@ -74,14 +74,15 @@ private extension MyXTeamMembersViewController {
 extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func setupView() {
+        ThemeView.level3.apply(tableView)
+        ThemeView.level3.apply(view)
+
         let baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        ThemeView.level3.apply(tableView)
+        baseHeaderView?.configure(title: interactor?.teamMembersText, subtitle: nil)
+
         tableView.registerDequeueable(TeamMemberTableViewCell.self)
         tableView.tableFooterView = UIView()
-        ThemeView.level3.apply(view)
-        baseHeaderView?.configure(title: interactor?.teamMembersText, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 
     func updateTeamHeader(teamHeaderItems: [Team.Item]) {
@@ -89,7 +90,10 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
     }
 
     func updateView(hasMembers: Bool) {
-        tableView.reloadData()
+        tableView.beginUpdates()
+        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .fade)
+        tableView.endUpdates()
+
         if hasMembers {
             updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
         } else {
@@ -102,10 +106,6 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor.rowCount
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat.leastNonzeroMagnitude
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
