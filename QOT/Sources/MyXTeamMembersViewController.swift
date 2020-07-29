@@ -53,6 +53,11 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
         setStatusBar(color: .carbon)
         interactor.refreshView()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return rightBarButtonItem
