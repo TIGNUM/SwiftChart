@@ -17,6 +17,8 @@ final class TeamToBeVisionInteractor {
     private let presenter: TeamToBeVisionPresenterInterface!
     var team: QDMTeam?
     var teamVision: QDMTeamToBeVision?
+    private var downSyncObserver: NSObjectProtocol?
+    private var upSyncObserver: NSObjectProtocol?
 
     // MARK: - Init
     init(presenter: TeamToBeVisionPresenterInterface, router: TeamToBeVisionRouter, team: QDMTeam?) {
@@ -28,6 +30,32 @@ final class TeamToBeVisionInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        didUpdateTBVRelatedData()
+        let notificationCenter = NotificationCenter.default
+        downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+            guard let strongSelf = self else {
+                return
+            }
+            guard let syncResult = notification.object as? SyncResultContext,
+                syncResult.syncRequestType == .DOWN_SYNC,
+                syncResult.hasUpdatedContent else { return }
+            switch syncResult.dataType {
+            case .TEAM_TO_BE_VISION:
+                strongSelf.didUpdateTBVRelatedData()
+            default:
+                break
+            }
+        }
+        upSyncObserver = notificationCenter.addObserver(forName: .requestSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+            guard let strongSelf = self else {
+                return
+            }
+            guard let syncResult = notification.object as? SyncRequestContext else { return }
+            if syncResult.dataType == .TEAM_TO_BE_VISION,
+                syncResult.syncRequestType == .UP_SYNC {
+                strongSelf.didUpdateTBVRelatedData()
+            }
+        }
     }
 
     func viewWillAppear() {
