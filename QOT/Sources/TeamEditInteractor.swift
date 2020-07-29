@@ -9,10 +9,9 @@
 import UIKit
 import qot_dal
 
-final class TeamEditInteractor {
+final class TeamEditInteractor: TeamEditWorker {
 
     // MARK: - Properties
-    private lazy var worker = TeamEditWorker()
     private let presenter: TeamEditPresenterInterface!
     private var type: TeamEdit.View
     private var team: QDMTeam?
@@ -28,9 +27,38 @@ final class TeamEditInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView(type)
-        worker.getMaxChars { [weak self] (max) in
+        setInitialData()
+    }
+}
+
+// MARK: - Private
+private extension TeamEditInteractor {
+    func setInitialData() {
+        if let team = team {
+            getTeamMembers(in: team) { (qdmMembers) in
+                self.members = qdmMembers
+                self.presenter.refreshMemberList()
+             }
+        }
+        getMaxChars { [weak self] (max) in
             self?.presenter.setupTextCounter(maxChars: max)
         }
+    }
+
+    func showMemberInviteAlertIfNeeded(email: String?) -> Bool {
+        if (members.filter { $0.me == true && $0.email == email }.first != nil) {
+            let title = AppTextService.get(.generic_alert_unknown_error_title)
+            let message = AppTextService.get(.team_invite_error_add_myself)
+            presenter.presentErrorAlert(title, message)
+            return true
+        }
+        if (members.filter { $0.email == email && $0.me == false }.first != nil) {
+            let title = AppTextService.get(.generic_alert_unknown_error_title)
+            let message = AppTextService.get(.team_invite_error_add_exisiting)
+            presenter.presentErrorAlert(title, message)
+            return true
+        }
+        return false
     }
 }
 
@@ -53,7 +81,7 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
     }
 
     func createTeam(_ name: String?) {
-        worker.createTeam(name) { [weak self] (team, error) in
+        createTeam(name) { [weak self] (team, error) in
             self?.team = team
             if let team = team {
                 self?.type = .memberInvite
@@ -64,22 +92,22 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
 
     func updateTeamName(_ name: String?) {
         team?.name = name
-        worker.updateTeamName(team, { _, _  in })
+        updateTeamName(team, { _, _  in })
     }
 
     func sendInvite(_ email: String?) {
-        worker.sendInvite(email, team: team) { [weak self] (member, error) in
-            if let member = member {
-                let emails = self?.members.compactMap { $0.email } ?? []
-                if emails.contains(obj: email) == false {
-                    self?.members.append(member)
+        if !showMemberInviteAlertIfNeeded(email: email) {
+            sendInvite(email, team: team) { [weak self] (member, error) in
+                if let member = member {
+                    let emails = self?.members.compactMap { $0.email } ?? []
+                    if emails.contains(obj: email) == false {
+                        self?.members.append(member)
+                    }
+                    self?.presenter.refreshMemberList()
                 }
-                self?.presenter.refreshMemberList()
             }
+        } else {
+            presenter.refreshMemberList()
         }
-    }
-
-    func getMaxChars(_ completion: @escaping (Int) -> Void) {
-        worker.getMaxChars(completion)
     }
 }

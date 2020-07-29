@@ -186,15 +186,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYG-l9-QOU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="qMK-PF-NhG" customClass="KeyboardInputView" customModule="TIGNUM_X" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Zg-ud-Tk2">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7A-6y-VVr">
-                            <rect key="frame" x="312" y="24" width="78" height="40"/>
+                            <rect key="frame" x="312" y="8" width="78" height="40"/>
                             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="W31-5t-gmd"/>
@@ -209,7 +209,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-Bw-tH3">
-                            <rect key="frame" x="24" y="24" width="40" height="40"/>
+                            <rect key="frame" x="24" y="8" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="29C-AV-dt2"/>
                                 <constraint firstAttribute="width" constant="40" id="av3-lh-WHT"/>
@@ -226,13 +226,13 @@
                     <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="Af5-Bw-tH3" firstAttribute="leading" secondItem="MZZ-Tc-4th" secondAttribute="leading" constant="24" id="DU2-de-fhg"/>
-                        <constraint firstItem="X7A-6y-VVr" firstAttribute="top" secondItem="qMK-PF-NhG" secondAttribute="top" constant="24" id="Jvb-lq-9rl"/>
                         <constraint firstItem="MZZ-Tc-4th" firstAttribute="trailing" secondItem="3Zg-ud-Tk2" secondAttribute="trailing" id="SxH-e5-NAK"/>
                         <constraint firstItem="3Zg-ud-Tk2" firstAttribute="leading" secondItem="MZZ-Tc-4th" secondAttribute="leading" id="bZV-dO-7CA"/>
                         <constraint firstAttribute="bottom" secondItem="3Zg-ud-Tk2" secondAttribute="bottom" id="eMC-dZ-gnb"/>
                         <constraint firstItem="3Zg-ud-Tk2" firstAttribute="top" secondItem="qMK-PF-NhG" secondAttribute="top" id="mb8-PQ-g3Q"/>
+                        <constraint firstItem="MZZ-Tc-4th" firstAttribute="bottom" secondItem="X7A-6y-VVr" secondAttribute="bottom" constant="12" id="who-cv-pNi"/>
                         <constraint firstAttribute="trailing" secondItem="X7A-6y-VVr" secondAttribute="trailing" constant="24" id="xVN-YM-Ax8"/>
-                        <constraint firstItem="Af5-Bw-tH3" firstAttribute="top" secondItem="X7A-6y-VVr" secondAttribute="top" id="z7F-Ip-iR2"/>
+                        <constraint firstItem="X7A-6y-VVr" firstAttribute="centerY" secondItem="Af5-Bw-tH3" secondAttribute="centerY" id="zDu-HJ-E8E"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="MZZ-Tc-4th"/>
                     <connections>

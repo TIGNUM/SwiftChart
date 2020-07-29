@@ -24,7 +24,7 @@ protocol TeamEditPresenterInterface {
     func setupTextCounter(maxChars: Int)
     func prepareMemberInvite(_ team: QDMTeam?)
     func refreshMemberList()
-    func presentErrorAlert(_ error: Error?)
+    func presentErrorAlert(_ title: String, _ message: String)
 }
 
 protocol TeamEditInteractorInterface: Interactor {

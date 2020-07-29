@@ -71,10 +71,10 @@ private extension TeamEditViewController {
         keyboardInputView.updateRightButton(isEnabled)
     }
 
-    func hideOutlets(_ isHidden: Bool) {
-        tableView.isHidden = isHidden
-        memberMaxLabel.isHidden = isHidden
-        memberCounterLabel.isHidden = isHidden
+    func hideOutlets(_ viewType: TeamEdit.View) {
+        tableView.isHidden = viewType != .memberInvite
+        memberMaxLabel.isHidden = viewType != .memberInvite
+        memberCounterLabel.isHidden = viewType != .memberInvite
     }
 
     func updateMemberCounter() {
@@ -91,7 +91,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         teamTextField.inputAccessoryView = keyboardInputView
         teamTextField.keyboardType = interactor.getType == TeamEdit.View.memberInvite ? .emailAddress : .default
         keyboardInputView.delegate = self
-        hideOutlets(isMemberInvite)
+        hideOutlets(interactor.getType)
         textCounterLabel.isHidden = isMemberInvite
         textMaxCharsLabel.isHidden = isMemberInvite
     }
@@ -112,7 +112,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         UIView.animate(withDuration: animated ? Animation.duration_06 : 0) { [weak self] in
             self?.keyboardInputView.rightButton.setTitle(cta, for: .normal)
             self?.headerLabel.text = header
-            self?.subHeaderLabel.text = subHeader
+            self?.subHeaderLabel.text = subHeader.replacingOccurrences(of: "%@", with: self?.interactor.teamName ?? "")
             self?.titleLabel.text = description
         }
     }
@@ -120,19 +120,25 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
     func refreshView() {
         teamTextField.text = nil
         teamTextField.keyboardType = interactor.getType == TeamEdit.View.memberInvite ? .emailAddress : .default
-        hideOutlets(interactor.getType == TeamEdit.View.memberInvite)
+        hideOutlets(interactor.getType)
         updateKeyboardInputView(false)
     }
 
     func refreshMemberList() {
-        refreshView()
-        hideOutlets(isMemberInvite)
+        teamTextField.text = nil
+        updateKeyboardInputView(false)
+        subHeaderLabel.isHidden = interactor.rowCount > 0
         updateMemberCounter()
-        tableView.reloadData()
+
+        tableView.beginUpdates()
+        tableView.scrollToBottom(animated: true)
+        tableView.reloadSections(IndexSet(integer: 0), with: .bottom)
+        tableView.endUpdates()
     }
 
     func presentErrorAlert(_ title: String, _ message: String) {
-        showAlert(type: .custom(title: title, message: message))
+        let OK = QOTAlertAction(title: AppTextService.get(.generic_view_button_done))
+        QOTAlert.show(title: title, message: message, bottomItems: [OK])
     }
 
     func dismiss() {
@@ -195,8 +201,10 @@ extension TeamEditViewController: KeyboardInputViewProtocol {
 
     func didTapRightButton() {
         switch interactor.getType {
-        case .create: interactor.createTeam(teamTextField.text)
-        case .memberInvite: interactor.sendInvite(teamTextField.text)
+        case .create:
+            interactor.createTeam(teamTextField.text)
+        case .memberInvite:
+            interactor.sendInvite(teamTextField.text)
         case .edit:
             interactor.updateTeamName(teamTextField.text)
             dismiss()

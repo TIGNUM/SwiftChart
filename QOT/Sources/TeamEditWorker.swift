@@ -8,6 +8,6 @@
 
 import UIKit
 
-final class TeamEditWorker: WorkerTeam {
+protocol TeamEditWorker: WorkerTeam {
 
 }
