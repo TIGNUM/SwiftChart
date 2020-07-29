@@ -530,7 +530,11 @@ public extension AppTextKey {
     static let my_qot_my_library_downloads_alert_use_mobile_data_title = AppTextKey("my_qot.my_library.downloads.alert.use_mobile_data.title")
     static let my_qot_my_library_all_null_state_body = AppTextKey("my_qot.my_library.all.null_state.body")
     static let my_qot_my_library_all_section_header_title = AppTextKey("my_qot.my_library.all.section_header.title")
+    static let my_x_my_library_remove_items_title = AppTextKey("my_x.my_library.remove_items.title")
+    static let my_x_my_library_remove_items_subtitle = AppTextKey("my_x.my_library.remove_items.subtitle")
+
     static let my_qot_my_library_all_edit_title = AppTextKey("my_qot.my_library.all.edit.title")
+
     static let my_qot_my_library_bookmarks_section_header_title = AppTextKey("my_qot.my_library.bookmarks.section_header.title")
     static let my_qot_my_library_bookmarks_edit_title = AppTextKey("my_qot.my_library.bookmarks.edit.title")
     static let my_qot_my_library_bookmarks_null_state_body = AppTextKey("my_qot.my_library.bookmarks.null_state.body")

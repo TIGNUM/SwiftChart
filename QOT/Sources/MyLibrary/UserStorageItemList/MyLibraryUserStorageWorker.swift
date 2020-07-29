@@ -36,16 +36,10 @@ final class MyLibraryUserStorageWorker {
 
     lazy var editingTitle: String = {
         switch item.type {
-        case .ALL:
-            return AppTextService.get(.my_qot_my_library_all_edit_title)
-        case .BOOKMARKS:
-            return AppTextService.get(.my_qot_my_library_bookmarks_edit_title)
-        case .DOWNLOADS:
-            return AppTextService.get(.my_qot_my_library_downloads_edit_title)
-        case .LINKS:
-            return AppTextService.get(.my_qot_my_library_links_edit_title)
         case .NOTES:
             return AppTextService.get(.my_qot_my_library_notes_edit_title)
+        default:
+            return AppTextService.get(.my_x_my_library_remove_items_title)
         }
     }()
 
