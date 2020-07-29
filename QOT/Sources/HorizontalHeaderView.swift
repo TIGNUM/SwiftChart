@@ -51,11 +51,8 @@ private extension HorizontalHeaderView {
         collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
                                     at: .centeredHorizontally,
                                     animated: true)
-        if index == 0 {
-            collectionView.setContentOffset(CGPoint(x: -24, y: 0), animated: true)
-        }
-        if index == headerItems.count - 1 {
-            collectionView.setContentOffset(CGPoint(x: 24, y: 0), animated: true)
+        if index == 0 || headerItems.endIndex == index {
+            collectionView.setContentOffset(CGPoint(x: -16, y: 0), animated: true)
         }
     }
 }
