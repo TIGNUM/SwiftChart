@@ -101,7 +101,7 @@ extension CGFloat.Button.Width {
     static let Save: CGFloat = 80
     static let AddNewEvent: CGFloat = 158
     static let TeamHeader: CGFloat = 60
-    static let TeamHeaderOffset: CGFloat = 80
+    static let TeamHeaderOffset: CGFloat = 56
 }
 
 extension CGRect {

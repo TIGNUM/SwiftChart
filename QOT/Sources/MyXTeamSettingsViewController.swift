@@ -16,17 +16,13 @@ protocol MyXTeamSettingsViewControllerDelegate: class {
 final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    var interactor: MyXTeamSettingsInteractorInterface!
-    var router: MyXTeamSettingsRouterInterface?
     @IBOutlet private weak var headerView: UIView!
-    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
-    private var settingsModel: MyXTeamSettingsModel!
     @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
-    private var teamHeaderItems = [Team.Item]()
     @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
     @IBOutlet private weak var horizontalHeaderHeight: NSLayoutConstraint!
-    private var leftBarButtonItems = [UIBarButtonItem]()
+    var interactor: MyXTeamSettingsInteractorInterface!
+    var router: MyXTeamSettingsRouterInterface?
 
     // MARK: - Init
     init(configure: Configurator<MyXTeamSettingsViewController>) {
@@ -46,8 +42,7 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(color: .carbon)
-        leftBarButtonItems = [backNavigationItem()]
-        updateBottomNavigation(leftBarButtonItems, [])
+        updateBottomNavigation([backNavigationItem()], [])
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,15 +55,15 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - Actions
 private extension MyXTeamSettingsViewController {
      @objc func confirmDeleteTapped(_ sender: Any) {
-        guard let selectedTeam = interactor.selectedTeam else { return }
-        interactor.deleteTeam(team: selectedTeam)
-        trackUserEvent(.DELETE_TEAM, value: selectedTeam.remoteID, valueType: .TEAM, action: .TAP)
+        guard let selectedTeam = interactor.getSelectedItem else { return }
+        interactor.deleteTeam(teamItem: selectedTeam)
+        trackUserEvent(.DELETE_TEAM, stringValue: selectedTeam.teamId, valueType: .TEAM, action: .TAP)
     }
 
     @objc func confirmLeaveTapped(_ sender: Any) {
-        guard let selectedTeam = interactor.selectedTeam else { return }
-        interactor.leaveTeam(team: selectedTeam)
-        trackUserEvent(.LEAVE_TEAM, value: selectedTeam.remoteID, valueType: .TEAM, action: .TAP)
+        guard let selectedTeam = interactor.getSelectedItem else { return }
+        interactor.leaveTeam(teamItem: selectedTeam)
+        trackUserEvent(.LEAVE_TEAM, stringValue: selectedTeam.teamId, valueType: .TEAM, action: .TAP)
     }
 
     @objc func cancelDeleteTapped(_ sender: Any) {
@@ -82,34 +77,30 @@ private extension MyXTeamSettingsViewController {
 
 // MARK: - MyXTeamSettingsViewControllerInterface
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
-    func setup(_ settings: MyXTeamSettingsModel) {
-        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+    func setup() {
+        let baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TeamSettingsTableViewCell.self)
         tableView.registerDequeueable(TeamNameTableViewCell.self)
         ThemeView.level3.apply(view)
-        settingsModel = settings
         baseHeaderView?.configure(title: interactor?.teamSettingsText, subtitle: nil)
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 
     func updateView() {
-        tableView.reloadData()
+        tableView.beginUpdates()
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        tableView.endUpdates()
     }
 
     func updateTeamHeader(teamHeaderItems: [Team.Item]) {
-        self.teamHeaderItems = teamHeaderItems
         if teamHeaderItems.isEmpty {
             horizontalHeaderHeight.constant = 0
         } else {
             horizontalHeaderHeight.constant = 60
-            horizontalHeaderView.configure(headerItems: teamHeaderItems)
+            horizontalHeaderView.configure(headerItems: teamHeaderItems, canDeselect: false)
         }
-    }
-
-    func updateSettingsModel(_ settings: MyXTeamSettingsModel) {
-        settingsModel = settings
     }
 
     func dismiss() {
@@ -176,15 +167,15 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
                                        handler: nil)
         let deleteTitle = AppTextService.get(.settings_team_settings_delete_team).uppercased()
         let leaveTitle = AppTextService.get(.settings_team_settings_leave_team).uppercased()
-        let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete) + " " + (interactor.selectedTeam?.name ?? "")
-        let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave) + " " + (interactor.selectedTeam?.name ?? "")
+        let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete) + " " + (interactor.getSelectedItem?.title ?? "")
+        let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave) + " " + (interactor.getSelectedItem?.title ?? "")
         switch item {
         case .deleteTeam:
             QOTAlert.show(title: deleteTitle, message: deleteMessage, bottomItems: [cancel, deleteTeam])
         case .leaveTeam:
             QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
         case .teamMembers:
-            router?.presentTeamMembers(team: interactor.selectedTeam)
+            router?.presentTeamMembers(selectedTeamItem: interactor.getSelectedItem, teamItems: interactor.getTeamItems)
         default:
             break
         }
@@ -192,8 +183,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
 }
 // MARK: - MyXTeamSettingsViewControllerDelegate
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerDelegate {
-
     func presentEditTeam() {
-        router?.presentEditTeam(.edit, team: interactor.selectedTeam)
+        router?.presentEditTeam(.edit, team: interactor.getSelectedItem?.qdmTeam)
     }
 }

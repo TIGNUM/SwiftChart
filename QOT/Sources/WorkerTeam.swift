@@ -13,15 +13,13 @@ protocol WorkerTeam {
 
     func canCreateTeam(_ completion: @escaping (Bool) -> Void)
 
-    func canJoinTeam(_ completion: @escaping (Bool) -> Void)
-
     func getMaxChars(_ completion: @escaping (Int) -> Void)
 
     func getMaxTeamCount(_ completion: @escaping (Int) -> Void)
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
-    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
+    func getTeamHeaderItems(showInvites: Bool, _ completion: @escaping ([Team.Item]) -> Void)
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
@@ -41,7 +39,7 @@ protocol WorkerTeam {
 
     func deleteTeam(_ team: QDMTeam, _ completion: @escaping ([QDMTeam]?, Bool, Error?) -> Void)
 
-    func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void)
+    func getSelectedTeam(teamId: String?, _ completion: @escaping (QDMTeam?) -> Void)
 
     func joinTeamInvite(_ invitation: QDMTeamInvitation, _ completion: @escaping ([QDMTeam]) -> Void)
 
@@ -59,10 +57,6 @@ protocol WorkerTeam {
 }
 
 extension WorkerTeam {
-    func canJoinTeam(_ completion: @escaping (Bool) -> Void) {
-        canCreateTeam(completion)
-    }
-
     func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
         getMaxTeamCount { (max) in
             self.getTeams { (teams) in
@@ -93,10 +87,18 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
+    func getTeamHeaderItems(showInvites: Bool, _ completion: @escaping ([Team.Item]) -> Void) {
         getTeams { (teams) in
-            self.createTeamHeaderItems(teams: teams) { (headerItems) in
-                completion(headerItems)
+            if showInvites {
+                self.getTeamInvitations { (invites) in
+                    self.createTeamHeaderItems(invites: invites, teams: teams) { (headerItems) in
+                        completion(headerItems)
+                    }
+                }
+            } else {
+                self.createTeamHeaderItems(invites: [], teams: teams) { (headerItems) in
+                    completion(headerItems)
+                }
             }
         }
     }
@@ -198,10 +200,14 @@ extension WorkerTeam {
         TeamService.main.removeTeam(team, completion)
     }
 
-    func setSelectedTeam(teamId: String, _ completion: @escaping (QDMTeam?) -> Void) {
-        getTeams { (teams) in
-            let selectedTeam = teams.filter { teamId == $0.qotId }.first
-            completion(selectedTeam)
+    func getSelectedTeam(teamId: String?, _ completion: @escaping (QDMTeam?) -> Void) {
+        if let teamId = teamId {
+            getTeams { (teams) in
+                let selectedTeam = teams.filter { teamId == $0.qotId }.first
+                completion(selectedTeam)
+            }
+        } else {
+            completion(nil)
         }
     }
 
@@ -288,12 +294,16 @@ private extension WorkerTeam {
         }
     }
 
-    func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([Team.Item]) -> Void) {
-        let teamHeaderItems = teams.compactMap { (team) -> Team.Item in
-            return Team.Item(title: team.name ?? "",
-                             teamId: team.qotId ?? "",
-                             color: team.teamColor ?? "")
+    func createTeamHeaderItems(invites: [QDMTeamInvitation],
+                               teams: [QDMTeam],
+                               _ completion: @escaping ([Team.Item]) -> Void) {
+        var teamHeaderItems = [Team.Item]()
+        if !invites.isEmpty {
+            teamHeaderItems.append(Team.Item(invites: invites))
         }
+        teamHeaderItems.append(contentsOf: teams.compactMap { (team) -> Team.Item in
+            return Team.Item(qdmTeam: team)
+        })
         completion(teamHeaderItems)
     }
 }

@@ -10,10 +10,10 @@ import Foundation
 import qot_dal
 
 final class TeamInvitesConfigurator {
-    static func make(invitations: [QDMTeamInvitation]) -> (TeamInvitesViewController) -> Void {
+    static func make(teamItems: [Team.Item]) -> (TeamInvitesViewController) -> Void {
         return { (viewController) in
             let presenter = TeamInvitesPresenter(viewController: viewController)
-            let interactor = TeamInvitesInteractor(presenter: presenter, invitations: invitations)
+            let interactor = TeamInvitesInteractor(presenter: presenter, teamItems: teamItems)
             viewController.interactor = interactor
         }
     }

@@ -319,6 +319,8 @@
 		386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */; };
 		3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
+		38966EA224D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */; };
+		38966EA324D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */; };
 		389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
 		389BBC86235EE68B0009FA02 /* CoachMarksWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */; };
@@ -343,8 +345,7 @@
 		38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */; };
 		38C6516F24360188002CE496 /* WorkerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6516E24360188002CE496 /* WorkerContent.swift */; };
 		38C7CCE124A11CD600334EEB /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */; };
-		38CA8C4624B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA8C4424B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift */; };
-		38CA8C4924B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CA8C4824B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib */; };
+		38CA8C4924B7D48B00830054 /* HorizontalHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CA8C4824B7D48B00830054 /* HorizontalHeaderView.xib */; };
 		38D218E424A634C500B6FA26 /* HorizontalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */; };
 		38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */; };
 		38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E724A64C3000B6FA26 /* TeamHeader.swift */; };
@@ -1686,6 +1687,8 @@
 		386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareQuestionTableViewCell.xib; sourceTree = "<group>"; };
 		3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamHeaderCell.xib; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
+		38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveView.xib; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
 		389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksWorker.swift; sourceTree = "<group>"; };
@@ -1710,8 +1713,7 @@
 		38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionHeaderView.xib; sourceTree = "<group>"; };
 		38C6516E24360188002CE496 /* WorkerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerContent.swift; sourceTree = "<group>"; };
 		38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
-		38CA8C4424B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
-		38CA8C4824B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
+		38CA8C4824B7D48B00830054 /* HorizontalHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalHeaderView.xib; sourceTree = "<group>"; };
 		38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderView.swift; sourceTree = "<group>"; };
 		38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeaderCell.swift; sourceTree = "<group>"; };
 		38D218E724A64C3000B6FA26 /* TeamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeader.swift; sourceTree = "<group>"; };
@@ -3457,11 +3459,12 @@
 		38D218E224A6344600B6FA26 /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				38CA8C4424B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift */,
+				38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */,
+				38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */,
 				38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */,
 				38D218E724A64C3000B6FA26 /* TeamHeader.swift */,
 				38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */,
-				38CA8C4824B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib */,
+				38CA8C4824B7D48B00830054 /* HorizontalHeaderView.xib */,
 				3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */,
 			);
 			name = Header;
@@ -6156,7 +6159,7 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
-				38CA8C4924B7D48B00830054 /* HorizontalHeaderCollectionViewCell.xib in Resources */,
+				38CA8C4924B7D48B00830054 /* HorizontalHeaderView.xib in Resources */,
 				36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				380B03CB241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib in Resources */,
@@ -6189,6 +6192,7 @@
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
 				B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */,
 				754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */,
+				38966EA224D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib in Resources */,
 				383D5F1F24212C25007F8C2A /* walkThrough_search.mp4 in Resources */,
 				75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */,
 				DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */,
@@ -6579,7 +6583,6 @@
 				B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */,
 				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
 				B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */,
-				38CA8C4624B7D1B000830054 /* HorizontalHeaderCollectionViewCell.swift in Sources */,
 				B4A075B0230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.swift in Sources */,
 				36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */,
 				5F8A89992296DEF70011A05C /* MyVisionPresenter.swift in Sources */,
@@ -6617,6 +6620,7 @@
 				AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */,
 				367A58562326A15D0089A082 /* DTSolveInterface.swift in Sources */,
 				9115F706208DE01E00EE5D1D /* ProfileSettingsInteractor.swift in Sources */,
+				38966EA324D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift in Sources */,
 				AC103E412285B27200F426F0 /* ShifterResultWorker.swift in Sources */,
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
 				389BBC8B235EE68B0009FA02 /* CoachMarksModel.swift in Sources */,

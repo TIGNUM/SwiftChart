@@ -7,24 +7,17 @@
 //
 
 import UIKit
-import DifferenceKit
 import qot_dal
 
-final class MyQotMainInteractor {
+final class MyQotMainInteractor: MyQotMainWorker {
 
     // MARK: - Properties
-    private lazy var worker = MyQotMainWorker()
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
     private var teamHeaderItems = [Team.Item]()
-    private var arraySectionMyX: ArraySectionMyX = []
+    private var selectdTeamItem: Team.Item?
     private var subtitles: [String?] = []
     private var eventType: String?
-    private var currentTeam: QDMTeam?
-    private var settingsButtonTitle = ""
-    private var bodyElements = MyX()
-    private var teamElements = MyX()
-    private var teamItems = [Team.Item]()
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -35,14 +28,147 @@ final class MyQotMainInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        addObservers()
-        createInitialData()
         ExtensionsDataManager().update(.teams)
     }
 }
 
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
+    var sectionCount: Int {
+        return MyX.Section.allCases.count
+    }
+
+    func itemCount(in section: Int) -> Int {
+        return MyX.Section.allCases[section].itemCount(selectdTeamItem != nil)
+    }
+
+    func getItem(at indexPath: IndexPath) -> MyX.Item? {
+        return MyX.Item.items(selectdTeamItem != nil).at(index: indexPath.row)
+    }
+
+    func getTitle(for item: MyX.Item?) -> String? {
+        return item?.title(isTeam: selectdTeamItem != nil)
+    }
+
+    func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void) {
+        switch item {
+        case .teamCreate:
+            completion(AppTextService.get(.my_x_team_create_header))
+        case .library:
+            completion("")
+        case .preps:
+           getPreparationSubtitle(completion)
+        case .sprints:
+            getCurrentSprintName(completion)
+        case .data:
+            getMyDataSubtitle(completion)
+        case .toBeVision:
+            getToBeVisionSubtitle(team: selectdTeamItem?.qdmTeam, completion)
+        default:
+            return
+        }
+    }
+
+    func getSettingsButtonTitle(_ completion: @escaping (String) -> Void) {
+        getSettingsTitle(completion)
+    }
+
+    func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
+        if teamHeaderItems.isEmpty {
+            getTeamHeaderItems(showInvites: true) { (items) in
+                self.teamHeaderItems = items
+                completion(items)
+            }
+        } else {
+            completion(teamHeaderItems)
+        }
+    }
+
+    func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void) {
+        switch section {
+        case .teamCreate: canCreateTeam(completion)
+        case .toBeVision: isTbvEmpty(completion)
+        default: completion(true)
+        }
+    }
+
+    func handleSelection(at indexPath: IndexPath) {
+        switch MyX.Item.items(selectdTeamItem != nil).at(index: indexPath.row) {
+        case .teamCreate:
+            clearTeamItems()
+            router.presentEditTeam(.create, team: nil)
+        case .library:
+            router.presentMyLibrary(with: selectdTeamItem?.qdmTeam)
+        case .preps:
+            router.presentMyPreps()
+        case .sprints:
+            router.presentMySprints()
+        case .data:
+            router.presentMyDataScreen()
+        case .toBeVision:
+            router.showTBV(team: selectdTeamItem?.qdmTeam)
+        default: return
+        }
+    }
+
+    @objc func presentTeamPendingInvites() {
+        let teamItems = teamHeaderItems
+        clearTeamItems()
+        router.presentTeamPendingInvites(teamItems: teamItems)
+    }
+
+    func presentMyProfile() {
+        clearTeamItems()
+        router.presentMyProfile()
+    }
+
+    func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(presentTeamPendingInvites),
+                                               name: .didSelectTeamInvite,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didUpdateTeamRelatedData(_:)),
+                                               name: .didFinishSynchronization, object: nil)
+    }
+
+    @objc func didUpdateTeamRelatedData(_ notification: Notification) {
+        guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent else { return }
+        switch result.dataType {
+        case .TEAM:
+            presenter.reload()
+            ExtensionsDataManager().update(.teams)
+        default: break
+        }
+    }
+
+    func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: .didSelectTeam, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSelectTeamInvite, object: nil)
+    }
+}
+
+// MARK: - Private
+private extension MyQotMainInteractor {
+    func isTbvEmpty(_ completion: @escaping (Bool) -> Void) {
+        guard let team = selectdTeamItem?.qdmTeam else {
+            completion(true)
+            return
+        }
+
+        if !team.thisUserIsOwner {
+            getTeamToBeVision(for: team) { (teamVision) in
+                completion(teamVision != nil)
+            }
+        } else {
+            completion(true)
+        }
+    }
+
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
@@ -50,240 +176,33 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         }
     }
 
-    func viewWillAppear() {
-        updateMyX()
-    }
-
-    func createMyData(irScore: Int?) -> MyX.Item {
-        let subtitle = String(irScore ?? 0) + AppTextService.get(.my_qot_section_my_data_subtitle)
-        return getItem(in: .data, subTitle: subtitle)
-    }
-
-    func createToBeVision(date: Date?) -> MyX.Item {
-        guard date != nil else {
-            return getItem(in: .toBeVision)
+    func updateSelectedTeam(teamId: String) {
+        teamHeaderItems.forEach { (item) in
+            item.selected = teamId == item.teamId && !item.selected
         }
-        let since = Int(timeElapsed(date: date).rounded())
-        let key: AppTextKey = since >= 3 ? .my_qot_section_my_tbv_subtitle_more_than : .my_qot_section_my_tbv_subtitle_less_than_3_months
-        return getItem(in: .toBeVision, subTitle: AppTextService.get(key))
-    }
 
-    func createPreps(dateString: String?, eventType: String?) -> MyX.Item {
-        var subtitle = ""
-        if let dateString = dateString, let eventType = eventType {
-            subtitle = dateString + " " + eventType
-        }
-        return getItem(in: .preps, subTitle: subtitle)
-    }
-
-    func timeElapsed(date: Date?) -> Double {
-        if let monthSince = date?.months(to: Date()), monthSince > 1 {
-            return Double(monthSince)
-        }
-        return 0
-    }
-
-    func nextPrep(completion: @escaping (String?) -> Void) {
-        worker.nextPrep { (preparation) in
-            completion(preparation)
+        let teamItem = teamHeaderItems.filter { $0.teamId == teamId }.first
+        if selectdTeamItem == nil {
+            selectdTeamItem = teamItem
+            presenter.deleteItems(at: MyX.Item.indexPathArrayUpdate(),
+                                  updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
+        } else if selectdTeamItem?.teamId == teamId {
+            selectdTeamItem = nil
+            presenter.inserItems(at: MyX.Item.indexPathArrayUpdate(),
+                                 updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert())
+        } else {
+            selectdTeamItem = teamItem
+            presenter.reloadMainItems(updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
         }
     }
 
-    func getCurrentSprintName(completion: @escaping (String?) -> Void) {
-        worker.getCurrentSprintName { (sprint) in
-            completion(sprint)
+    func clearTeamItems() {
+        if selectdTeamItem != nil && selectdTeamItem?.header == .team {
+            NotificationCenter.default.post(name: .didSelectTeam,
+                                            object: nil,
+                                            userInfo: [Team.KeyTeamId: selectdTeamItem?.teamId ?? ""])
         }
-    }
-
-    func nextPrepType(completion: @escaping (String?) -> Void) {
-        worker.nextPrepType { ( preparation) in
-            completion(preparation)
-        }
-    }
-
-    func toBeVisionDate(completion: @escaping (Date?) -> Void) {
-        worker.toBeVisionDate { (toBeVisionDate) in
-            completion(toBeVisionDate)
-        }
-    }
-
-    func updateSelectedTeam(teamId: String?) {
-        worker.setSelectedTeam(teamId: teamId ?? "") { [weak self] (selectedTeam) in
-            if teamId == self?.currentTeam?.qotId {
-                self?.currentTeam = nil
-            } else {
-                self?.currentTeam = selectedTeam
-            }
-            self?.updateMyX()
-        }
-    }
-
-    func presentMyProfile() {
-        router.presentMyProfile()
-    }
-
-    func updateArraySection(_ list: ArraySectionMyX) {
-        arraySectionMyX = list
-    }
-
-    func getSettingsButtonTitle() -> String {
-        return settingsButtonTitle
-    }
-
-    func isCellEnabled(for section: MyX.Element?, _ completion: @escaping (Bool) -> Void) {
-        switch section {
-        case .teamCreate: worker.canCreateTeam(completion)
-        case .toBeVision: isTbvEmpty(completion)
-        default: completion(true)
-        }
-    }
-
-    var sectionCount: Int {
-        arraySectionMyX.count
-    }
-
-    func itemCount(in section: Int) -> Int {
-        switch MyX.Section(rawValue: section) {
-        case .navigationHeader,
-             .teamHeader: return 1
-        case .body: return arraySectionMyX.at(index: section)?.elements.count ?? 0
-        default: return 0
-        }
-    }
-
-    func getItem(at indexPath: IndexPath) -> MyX.Item? {
-        return arraySectionMyX.at(index: indexPath.section)?.elements.at(index: indexPath.item)
-    }
-
-    func presentTeamPendingInvites() {
-        if let invites = teamItems.first?.invites, !invites.isEmpty {
-            router.presentTeamPendingInvites(invitations: invites)
-        }
-    }
-
-    func qotViewModelNew() -> [ArraySection<MyX.Section, MyX.Item>]? {
-        return arraySectionMyX
-    }
-
-    func getTeamItems() -> [Team.Item] {
-        return teamItems
-    }
-
-    func handleSelection(at indexPath: IndexPath) {
-        switch MyX.Section(rawValue: indexPath.section) {
-        case .navigationHeader,
-             .teamHeader:
-            return
-        default:
-            switch MyX.Element(rawValue: indexPath.row) {
-            case .teamCreate: router.presentEditTeam(.create, team: nil)
-            case .library: router.presentMyLibrary(with: currentTeam)
-            case .preps: router.presentMyPreps()
-            case .sprints: router.presentMySprints()
-            case .data: router.presentMyDataScreen()
-            case .toBeVision: router.showTBV(team: currentTeam)
-            default: return
-            }
-        }
-    }
-
-    func isTbvEmpty(_ completion: @escaping (Bool) -> Void) {
-        guard let team = currentTeam else {
-            completion(true)
-            return
-        }
-        if !team.thisUserIsOwner {
-            worker.getTeamToBeVision(for: team, { (teamVision) in
-                completion (teamVision != nil)
-            })
-        }
-        completion(true)
-    }
-}
-
-extension MyQotMainInteractor {
-
-    func addObservers() {
-        let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(checkSelection), name: .didSelectTeam, object: nil)
-        nc.addObserver(self, selector: #selector(didUpdateTeamRelatedData(_:)),
-                       name: .didFinishSynchronization, object: nil)
-
-    }
-
-    @objc func didUpdateTeamRelatedData(_ notification: Notification) {
-        guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent else { return }
-        switch result.dataType {
-        case .TEAM:
-            updateMyX()
-            ExtensionsDataManager().update(.teams)
-        case .TEAM_MEMBER:
-            updateMyX()
-        default: break
-        }
-    }
-
-    func getItem(in element: MyX.Element, subTitle: String = "") -> MyX.Item {
-        var item = bodyElements.items[element.rawValue]
-        item.subtitle = subTitle
-        return bodyElements.items[element.rawValue]
-    }
-
-    func updateMyX() {
-        self.bodyElements = worker.getBodyElements()
-        worker.getTeamItems { [weak self] (teamItems) in
-            self?.teamItems = teamItems.teamHeaderItems.compactMap {
-                $0.selected = self?.currentTeam != nil ? self?.currentTeam?.qotId == $0.teamId : false
-                return $0
-            }
-            if teamItems.teamHeaderItems.filter({ $0.selected }).count == 0 {
-                self?.currentTeam = nil
-            }
-            self?.presenter.reload()
-        }
-    }
-
-    func createInitialData() {
-        worker.getSubtitles { [weak self] (subtitles) in
-            self?.worker.getSettingsTitle { (settingsTitle) in
-                guard let strongSelf = self else { return }
-                strongSelf.subtitles = subtitles
-                strongSelf.settingsButtonTitle = settingsTitle
-
-                var dataList: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
-                dataList.append(ArraySection(model: .teamHeader, elements: strongSelf.teamElements.items))
-                dataList.append(ArraySection(model: .body, elements: strongSelf.bodyElements.items))
-                let changeSet = StagedChangeset(source: strongSelf.arraySectionMyX, target: dataList)
-                strongSelf.presenter.updateView(changeSet)
-            }
-        }
-    }
-
-    func refreshParams() {
-        worker.getImpactReadinessScore { [weak self] (score) in
-            self?.worker.toBeVisionDate { (date) in
-                self?.worker.nextPrep { (dateString) in
-                    self?.worker.nextPrepType { (eventType) in
-                        self?.worker.getCurrentSprintName { (sprintName) in
-                            guard let strongSelf = self else { return }
-                            var bodyItems: [MyX.Item] = []
-                            let teamCreateSubtitle = AppTextService.get(.my_x_team_create_description)
-                            bodyItems.append(strongSelf.getItem(in: .teamCreate,
-                                                                    subTitle: teamCreateSubtitle))
-                            bodyItems.append(strongSelf.getItem(in: .library))
-                            bodyItems.append(strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                            bodyItems.append(strongSelf.getItem(in: .sprints, subTitle: sprintName ?? ""))
-                            bodyItems.append(strongSelf.createMyData(irScore: score))
-                            bodyItems.append(strongSelf.createToBeVision(date: date))
-                            var sections: ArraySectionMyX = [ArraySection(model: .navigationHeader, elements: [])]
-                            sections.append(ArraySection(model: .teamHeader, elements: []))
-                            sections.append(ArraySection(model: .body, elements: bodyItems))
-                            let changeSet = StagedChangeset(source: strongSelf.arraySectionMyX, target: sections)
-                            strongSelf.presenter.updateView(changeSet)
-                        }
-                    }
-                }
-            }
-        }
+        teamHeaderItems.removeAll()
+        selectdTeamItem = nil
     }
 }

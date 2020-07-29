@@ -7,15 +7,14 @@
 //
 
 import UIKit
-import DifferenceKit
 import qot_dal
 
 struct Team {
     static let KeyTeamId = "team.key.team.id"
     static let KeyColor = "team.key.team.colot"
-    static let keyInvite = "team.key.invite"
+    static let KeyInvite = "team.key.invite"
 
-    enum Header: Int, CaseIterable, Differentiable {
+    enum Header: Int, CaseIterable {
         case invite = 0
         case team
 
@@ -34,23 +33,25 @@ struct Team {
         }
     }
 
-    final class Item: Differentiable {
-        typealias DifferenceIdentifier = String
-
+    final class Item {
         var invites: [QDMTeamInvitation] = []
+        var qdmTeam: QDMTeam = QDMTeam()
         var header: Team.Header
         var title: String
         var teamId: String
         var color: String = ""
         var selected: Bool = false
+        var thisUserIsOwner = false
         var batchCount: Int = 0
 
         /// Init here Team.Item
-        init(title: String, teamId: String, color: String) {
+        init(qdmTeam: QDMTeam) {
             self.header = .team
-            self.title = title
-            self.teamId = teamId
-            self.color = color
+            self.title = qdmTeam.name ?? ""
+            self.teamId = qdmTeam.qotId ?? ""
+            self.color = qdmTeam.teamColor ?? ""
+            self.thisUserIsOwner = qdmTeam.thisUserIsOwner
+            self.qdmTeam = qdmTeam
         }
 
         /// Team.Item
@@ -59,18 +60,7 @@ struct Team {
             self.title = Team.Header.invite.title
             self.teamId = Team.Header.invite.inviteId
             self.invites = invites
-        }
-
-        /// Invite.Item
-        var differenceIdentifier: DifferenceIdentifier {
-            return teamId
-        }
-
-        func isContentEqual(to source: Item) -> Bool {
-            return title == source.title &&
-                color == source.color &&
-                selected == source.selected &&
-                batchCount == source.batchCount
+            self.batchCount = invites.count
         }
     }
 }

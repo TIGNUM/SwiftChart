@@ -373,8 +373,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2oW-W3-A3h">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="742"/>
+                            <collectionView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2oW-W3-A3h">
+                                <rect key="frame" x="0.0" y="44" width="414" height="698"/>
                                 <color key="backgroundColor" red="0.031372549020000001" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="c5t-Ic-3zu">
                                     <size key="itemSize" width="50" height="50"/>
@@ -400,7 +400,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.031372549020000001" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="2oW-W3-A3h" firstAttribute="top" secondItem="BkI-D9-JaR" secondAttribute="top" id="Ear-6N-hv0"/>
+                            <constraint firstItem="2oW-W3-A3h" firstAttribute="top" secondItem="CJv-VQ-YrZ" secondAttribute="top" id="4dm-D7-lAs"/>
                             <constraint firstItem="CJv-VQ-YrZ" firstAttribute="bottom" secondItem="2oW-W3-A3h" secondAttribute="bottom" constant="120" id="YYe-c3-oAr"/>
                             <constraint firstItem="2oW-W3-A3h" firstAttribute="trailing" secondItem="CJv-VQ-YrZ" secondAttribute="trailing" id="gAN-nt-l09"/>
                             <constraint firstItem="2oW-W3-A3h" firstAttribute="leading" secondItem="CJv-VQ-YrZ" secondAttribute="leading" id="wYK-dq-0Su"/>
@@ -417,7 +417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9gT-mQ-T7m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1086.9565217391305" y="1437.7232142857142"/>
+            <point key="canvasLocation" x="1088" y="1406"/>
         </scene>
         <!--Strategy List View Controller-->
         <scene sceneID="9jK-Z7-fbX">
@@ -545,16 +545,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zn2-1n-uev" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1089" y="620"/>
-        </scene>
-        <!--MyQot-->
-        <scene sceneID="UXA-Qp-C1j">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MyQot" id="8hH-8Q-sIf" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="51k-v2-3sK"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Xc-nN-cwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="687" y="1039"/>
         </scene>
         <!--Coach Navigation Controller-->
         <scene sceneID="A1H-Om-kRV">
