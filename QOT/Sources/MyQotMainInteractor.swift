@@ -28,10 +28,6 @@ final class MyQotMainInteractor: MyQotMainWorker {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
     }
 }
 
@@ -87,13 +83,6 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         }
     }
 
-    @objc func checkSelection(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[Team.KeyTeamId] {
-            updateSelectedTeam(teamId: teamId)
-        }
-    }
-
     func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void) {
         switch section {
         case .teamCreate: canCreateTeam(completion)
@@ -136,6 +125,17 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         clearTeamItems()
         router.presentMyProfile()
     }
+
+    func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkSelection),
+                                               name: .didSelectTeam,
+                                               object: nil)
+    }
+
+    func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: .didSelectTeam, object: nil)
+    }
 }
 
 // MARK: - Private
@@ -154,6 +154,13 @@ private extension MyQotMainInteractor {
             } else {
                 completion(true)
             }
+        }
+    }
+
+    @objc func checkSelection(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String] else { return }
+        if let teamId = userInfo[Team.KeyTeamId] {
+            updateSelectedTeam(teamId: teamId)
         }
     }
 

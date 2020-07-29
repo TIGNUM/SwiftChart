@@ -38,6 +38,8 @@ protocol MyQotMainInteractorInterface: Interactor {
 
     func presentTeamPendingInvites()
     func presentMyProfile()
+    func addObserver()
+    func removeObserver()
 }
 
 protocol MyQotMainRouterInterface {
