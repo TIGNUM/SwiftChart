@@ -21,7 +21,7 @@ protocol WorkerTeam {
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
-    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
+    func getTeamHeaderItems(showInvites: Bool, _ completion: @escaping ([Team.Item]) -> Void)
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
@@ -93,10 +93,18 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
+    func getTeamHeaderItems(showInvites: Bool, _ completion: @escaping ([Team.Item]) -> Void) {
         getTeams { (teams) in
-            self.createTeamHeaderItems(teams: teams) { (headerItems) in
-                completion(headerItems)
+            if showInvites {
+                self.getTeamInvitations { (invites) in
+                    self.createTeamHeaderItems(invites: invites, teams: teams) { (headerItems) in
+                        completion(headerItems)
+                    }
+                }
+            } else {
+                self.createTeamHeaderItems(invites: [], teams: teams) { (headerItems) in
+                    completion(headerItems)
+                }
             }
         }
     }
@@ -292,12 +300,16 @@ private extension WorkerTeam {
         }
     }
 
-    func createTeamHeaderItems(teams: [QDMTeam], _ completion: @escaping ([Team.Item]) -> Void) {
-        let teamHeaderItems = teams.compactMap { (team) -> Team.Item in
+    func createTeamHeaderItems(invites: [QDMTeamInvitation],
+                               teams: [QDMTeam],
+                               _ completion: @escaping ([Team.Item]) -> Void) {
+        var teamHeaderItems = [Team.Item]()
+        teamHeaderItems.append(Team.Item(invites: invites))
+        teamHeaderItems.append(contentsOf: teams.compactMap { (team) -> Team.Item in
             return Team.Item(title: team.name ?? "",
                              teamId: team.qotId ?? "",
                              color: team.teamColor ?? "")
-        }
+        })
         completion(teamHeaderItems)
     }
 }

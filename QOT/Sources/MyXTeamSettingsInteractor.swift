@@ -31,7 +31,7 @@ final class MyXTeamSettingsInteractor {
         addObservers()
         presenter.present(worker.settings)
 
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
             self?.worker.getSelectedTeam(teamId: teamHeaderItems.first?.teamId) { [weak self] (selectedTeam) in
@@ -103,7 +103,7 @@ private extension MyXTeamSettingsInteractor {
     }
 
     func handleRemoveOrLeaveTeam() {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
             self?.teamHeaderItems = teamHeaderItems
             if teamHeaderItems.isEmpty {
                 self?.presenter.dismiss()
@@ -206,7 +206,7 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func updateTeams() {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
             if let teamId = self?.currentTeam?.qotId {
                 self?.updateSelectedTeam(teamId: teamId)
             }

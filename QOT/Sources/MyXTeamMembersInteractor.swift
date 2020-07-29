@@ -76,7 +76,7 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
     }
 
     func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
             self?.setHeaderItemSelected(teamHeaderItems: teamHeaderItems, teamId: teamId)
             self?.worker.setSelectedTeam(teamId: teamId, { [weak self] (selectedTeam) in
                 self?.currentTeam = selectedTeam

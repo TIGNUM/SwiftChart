@@ -34,9 +34,11 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     override func prepareForReuse() {
         super.prepareForReuse()
         itemButton.setTitle(nil, for: .normal)
+        teamInvites.removeAll()
     }
 
     func configure(teamId: String, title: String, hexColorString: String, selected: Bool) {
+        self.teamInvites.removeAll()
         self.teamId = teamId
         self.hexColorString = hexColorString
         self.itemSelected = selected
@@ -68,16 +70,17 @@ private extension TeamHeaderCell {
 
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[Team.KeyTeamId] {
+        if userInfo.keys.contains(Team.KeyTeamId), let teamId = userInfo[Team.KeyTeamId] {
             itemSelected = self.teamId == teamId && !itemSelected
             setSelected(itemSelected)
         }
-        if let teamColor = userInfo[Team.KeyColor] {
+        if userInfo.keys.contains(Team.KeyColor), let teamColor = userInfo[Team.KeyColor] {
             hexColorString = teamColor
         }
     }
 
     func setSelected(_ selected: Bool) {
+        guard teamInvites.isEmpty else { return }
         if selected {
             itemButton.backgroundColor = UIColor(hex: hexColorString)
             itemButton.layer.borderColor = UIColor(hex: hexColorString).cgColor

@@ -74,7 +74,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
         if teamHeaderItems.isEmpty {
-            getTeamHeaderItems { (items) in
+            getTeamHeaderItems(showInvites: true) { (items) in
                 self.teamHeaderItems = items
                 completion(items)
             }
