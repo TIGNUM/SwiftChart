@@ -62,7 +62,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .data:
             getMyDataSubtitle(completion)
         case .toBeVision:
-            getToBeVisionSubtitle(teamId: selectdTeamItem?.teamId, completion)
+            getToBeVisionSubtitle(team: selectdTeamItem?.qdmTeam, completion)
         default:
             return
         }

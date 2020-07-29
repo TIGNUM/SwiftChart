@@ -18,7 +18,7 @@ protocol MyQotMainWorker: WorkerTeam {
 
     func getMyDataSubtitle(_ completion: @escaping (String?) -> Void)
 
-    func getToBeVisionSubtitle(teamId: String?, _ completion: @escaping (String?) -> Void)
+    func getToBeVisionSubtitle(team: QDMTeam?, _ completion: @escaping (String?) -> Void)
 }
 
 extension MyQotMainWorker {
@@ -51,20 +51,18 @@ extension MyQotMainWorker {
         }
     }
 
-    func getToBeVisionSubtitle(teamId: String?, _ completion: @escaping (String?) -> Void) {
-        getSelectedTeam(teamId: teamId) { (team) in
-            if let team = team {
-                self.getTeamToBeVision(for: team) { (teamToBeVision) in
-                    if teamToBeVision == nil && !team.thisUserIsOwner {
-                        completion(AppTextService.get(.my_x_team_tbv_not_created))
-                    } else {
-                        completion(self.makeToBeVisionSubtitle(teamToBeVision: teamToBeVision))
-                    }
+    func getToBeVisionSubtitle(team: QDMTeam?, _ completion: @escaping (String?) -> Void) {
+        if let team = team {
+            self.getTeamToBeVision(for: team) { (teamToBeVision) in
+                if teamToBeVision == nil && !team.thisUserIsOwner {
+                    completion(AppTextService.get(.my_x_team_tbv_not_created))
+                } else {
+                    completion(self.makeToBeVisionSubtitle(teamToBeVision: teamToBeVision))
                 }
-            } else {
-                UserService.main.getMyToBeVision { (toBeVision, _, _) in
-                    completion(self.makeToBeVisionSubtitle(toBeVision: toBeVision))
-                }
+            }
+        } else {
+            UserService.main.getMyToBeVision { (toBeVision, _, _) in
+                completion(self.makeToBeVisionSubtitle(toBeVision: toBeVision))
             }
         }
     }
