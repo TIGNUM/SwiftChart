@@ -9,10 +9,9 @@
 import UIKit
 import qot_dal
 
-final class TeamInvitesInteractor {
+final class TeamInvitesInteractor: TeamInvitesWorker {
 
     // MARK: - Properties
-    private lazy var worker = TeamInvitesWorker()
     private let presenter: TeamInvitesPresenterInterface!
     private var inviteHeader: TeamInvite.Header?
     private var teamItems = [Team.Item]()
@@ -35,12 +34,14 @@ final class TeamInvitesInteractor {
     func viewDidLoad() {
         addObservers()
         presenter.setupView()
+        getMaxTeamCount { (max) in
+            self.maxTeamCount = max
+        }
 
-        let teams = teamItems.filter { $0.invites.isEmpty }
+        let teams = teamItems.filter { $0.header == .team }
         partOfTeams = teams.count
-        updateHeader { [weak self] in
+        setTeamAttributes { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.canJoinTeam = teams.count < strongSelf.maxTeamCount
             strongSelf.makePendingInvites(qdmInvitations: strongSelf.qdmInvitations)
             strongSelf.presenter.reload(shouldDismiss: strongSelf.pendingInvites.isEmpty)
         }
@@ -62,11 +63,9 @@ private extension TeamInvitesInteractor {
 
     @objc func didSelectJoinTeam(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
-            worker.joinTeamInvite(teamInvite) { [weak self] (teams) in
-                self?.updateHeader { [weak self] in
-                    self?.setTeamAttributes {
-                        self?.updateItemsAndReload()
-                    }
+            joinTeamInvite(teamInvite) { [weak self] (teams) in
+                self?.setTeamAttributes {
+                    self?.updateItemsAndReload()
                 }
             }
         }
@@ -74,18 +73,16 @@ private extension TeamInvitesInteractor {
 
     @objc func didSelectDeclineTeamInvite(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
-            worker.declineTeamInvite(teamInvite) { [weak self] (teams) in
-                self?.updateHeader { [weak self] in
-                    self?.setTeamAttributes {
-                        self?.updateItemsAndReload()
-                    }
+            declineTeamInvite(teamInvite) { [weak self] (teams) in
+                self?.setTeamAttributes {
+                    self?.updateItemsAndReload()
                 }
             }
         }
     }
 
     func updateItemsAndReload() {
-        worker.getTeamInvitations { [weak self] (qdmInvitations) in
+        getTeamInvitations { [weak self] (qdmInvitations) in
             self?.makePendingInvites(qdmInvitations: qdmInvitations)
             self?.presenter.reload(shouldDismiss: self?.pendingInvites.isEmpty == true)
         }
@@ -101,18 +98,12 @@ private extension TeamInvitesInteractor {
         }
     }
 
-    func updateHeader(_ completion: @escaping () -> Void) {
-        worker.getInviteHeader { [weak self] (header) in
-            self?.maxTeamCount = header.maxTeams
-            self?.inviteHeader = header
-            completion()
-        }
-    }
-
     func setTeamAttributes(_ completion: @escaping () -> Void) {
-        worker.getTeams { [weak self] (teams) in
-            self?.canJoinTeam = teams.count < self?.maxTeamCount ?? 3
+        let maxTeams = maxTeamCount
+        getTeams { [weak self] (teams) in
+            self?.canJoinTeam = teams.count < maxTeams
             self?.partOfTeams = teams.count
+            self?.inviteHeader = TeamInvite.Header(maxTeams: maxTeams, partOfTeams: teams.count)
             completion()
         }
     }
@@ -141,5 +132,5 @@ extension TeamInvitesInteractor: TeamInvitesInteractorInterface {
 
     func headerItem() -> (header: TeamInvite.Header?, teamCount: Int) {
         return (header: inviteHeader, teamCount: partOfTeams)
-    }
+    }    
 }

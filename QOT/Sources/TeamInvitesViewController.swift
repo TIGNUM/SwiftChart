@@ -53,7 +53,7 @@ private extension TeamInvitesViewController {
         let item = interactor.headerItem()
         cell.configure(header: item.header?.title,
                        content: item.header?.content,
-                       teamCount: item.header?.teamCounter(partOfTeams: item.teamCount),
+                       teamCount: item.header?.teamCounter,
                        note: item.header?.noteText)
         return cell
     }

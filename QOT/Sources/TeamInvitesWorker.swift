@@ -9,13 +9,4 @@
 import UIKit
 import qot_dal
 
-final class TeamInvitesWorker: WorkerTeam {
-    func getInviteHeader(_ completion: @escaping (TeamInvite.Header) -> Void) {
-        getMaxTeamCount { (max) in
-            let header = TeamInvite.Header(title: AppTextService.get(.team_invite_header_singular),
-                                           content: AppTextService.get(.team_invite_content_info),
-                                           maxTeams: max)
-            completion(header)
-        }
-    }
-}
+protocol TeamInvitesWorker: WorkerTeam {}
