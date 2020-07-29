@@ -104,6 +104,16 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
         }
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if !addPressed {
+            if let cell = tableView.cellForRow(at: indexPath) as? TeamTableViewCell {
+                cell.checkButton.isSelected.toggle()
+                cell.checkButton.isSelected ? didSelectTeam(indexPath.row) : nil
+            }
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -132,7 +142,6 @@ private extension CustomizedShareViewController{
         tableView.tableFooterView = UIView()
         tableView.register(TeamTableViewCell.self, forCellReuseIdentifier: "teamCell")
         tableView.register(ConfirmationViewCell.self, forCellReuseIdentifier: "confirmationViewCell")
-        tableView.allowsSelection = false
     }
 
     func setupView() {
