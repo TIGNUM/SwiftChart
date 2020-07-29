@@ -34,16 +34,15 @@ final class TeamInvitesInteractor: TeamInvitesWorker {
     func viewDidLoad() {
         addObservers()
         presenter.setupView()
-        getMaxTeamCount { (max) in
-            self.maxTeamCount = max
-        }
-
         let teams = teamItems.filter { $0.header == .team }
         partOfTeams = teams.count
-        setTeamAttributes { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.makePendingInvites(qdmInvitations: strongSelf.qdmInvitations)
-            strongSelf.presenter.reload(shouldDismiss: strongSelf.pendingInvites.isEmpty)
+        getMaxTeamCount { (max) in
+            self.maxTeamCount = max
+            self.setTeamAttributes { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.makePendingInvites(qdmInvitations: strongSelf.qdmInvitations)
+                strongSelf.presenter.reload(shouldDismiss: strongSelf.pendingInvites.isEmpty)
+            }
         }
     }
 }

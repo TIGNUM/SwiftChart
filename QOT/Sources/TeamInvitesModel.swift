@@ -17,14 +17,14 @@ struct TeamInvite {
 
     class Header {
         let title: String = AppTextService.get(.team_invite_header_singular) + "S"
-        var maxTeams: Int
-        var partOfTeams: Int
-        var showOnlyContent: Bool
+        private var maxTeams: Int
+        private var partOfTeams: Int
+        private var showOnlyContent: Bool
 
         init(maxTeams: Int, partOfTeams: Int) {
             self.maxTeams = maxTeams
             self.partOfTeams = partOfTeams
-            self.showOnlyContent =  partOfTeams < maxTeams && partOfTeams > 0
+            self.showOnlyContent = partOfTeams == maxTeams || partOfTeams == 0
         }
 
         var noteText: String? {
@@ -44,7 +44,6 @@ struct TeamInvite {
             }
             return text
         }
-
 
         var content: String {
             if partOfTeams < maxTeams {
