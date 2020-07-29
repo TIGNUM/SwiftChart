@@ -131,5 +131,5 @@ extension TeamInvitesInteractor: TeamInvitesInteractorInterface {
 
     func headerItem() -> (header: TeamInvite.Header?, teamCount: Int) {
         return (header: inviteHeader, teamCount: partOfTeams)
-    }    
+    }
 }

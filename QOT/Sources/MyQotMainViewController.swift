@@ -75,12 +75,12 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 private extension MyQotMainViewController {
     func updadateCell(for indexPath: IndexPath) {
         let item = interactor.getItem(at: indexPath)
-        let title = interactor.getTitle(for: item)
         let cell = collectionView.cellForItem(at: indexPath) as? MyQotMainCollectionViewCell
-        cell?.setEnabled(false, title: title)
         interactor.getSubtitle(for: item) { [weak self] (subtitle) in
             self?.interactor.isCellEnabled(for: item) { (enabled) in
-                cell?.configure(title: title, subtitle: subtitle, enabled: enabled)
+                self?.interactor.getTitle(for: item) { title in
+                    cell?.configure(title: title, subtitle: subtitle, enabled: enabled)
+                }
             }
         }
     }
@@ -156,12 +156,12 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let item = interactor.getItem(at: indexPath)
-        let title = interactor.getTitle(for: item)
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.setEnabled(false, title: title)
         interactor.getSubtitle(for: item) { [weak self] (subtitle) in
             self?.interactor.isCellEnabled(for: item) { (enabled) in
-                cell.configure(title: title, subtitle: subtitle, enabled: enabled)
+                self?.interactor.getTitle(for: item) { title in
+                    cell.configure(title: title, subtitle: subtitle, enabled: enabled)
+                }
             }
         }
         return cell

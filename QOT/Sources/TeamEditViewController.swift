@@ -113,7 +113,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         UIView.animate(withDuration: animated ? Animation.duration_06 : 0) { [weak self] in
             self?.keyboardInputView.rightButton.setTitle(cta, for: .normal)
             self?.headerLabel.text = header
-            self?.subHeaderLabel.text = subHeader.replacingOccurrences(of: "%@", with: self?.interactor.teamName ?? "")
+            self?.subHeaderLabel.text = String(format: subHeader, self?.interactor.teamName ?? "")
             self?.titleLabel.text = description
         }
     }
