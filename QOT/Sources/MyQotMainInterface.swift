@@ -36,7 +36,6 @@ protocol MyQotMainInteractorInterface: Interactor {
     func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void)
     func handleSelection(at indexPath: IndexPath)
 
-    func presentTeamPendingInvites()
     func presentMyProfile()
     func addObserver()
     func removeObserver()
@@ -50,5 +49,5 @@ protocol MyQotMainRouterInterface {
     func presentMyDataScreen()
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func showTBV(team: QDMTeam?)
-    func presentTeamPendingInvites(invitations: [QDMTeamInvitation])
+    func presentTeamPendingInvites(teamItems: [Team.Item])
 }

@@ -114,11 +114,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         }
     }
 
-    func presentTeamPendingInvites() {
-        if let invites = teamHeaderItems.first?.invites, !invites.isEmpty {
-            clearTeamItems()
-            router.presentTeamPendingInvites(invitations: invites)
-        }
+    @objc func presentTeamPendingInvites() {
+        let teamItems = teamHeaderItems
+        clearTeamItems()
+        router.presentTeamPendingInvites(teamItems: teamItems)
     }
 
     func presentMyProfile() {
@@ -131,10 +130,15 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(presentTeamPendingInvites),
+                                               name: .didSelectTeamInvite,
+                                               object: nil)
     }
 
     func removeObserver() {
         NotificationCenter.default.removeObserver(self, name: .didSelectTeam, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSelectTeamInvite, object: nil)
     }
 }
 

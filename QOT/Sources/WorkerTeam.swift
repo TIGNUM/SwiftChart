@@ -13,8 +13,6 @@ protocol WorkerTeam {
 
     func canCreateTeam(_ completion: @escaping (Bool) -> Void)
 
-    func canJoinTeam(_ completion: @escaping (Bool) -> Void)
-
     func getMaxChars(_ completion: @escaping (Int) -> Void)
 
     func getMaxTeamCount(_ completion: @escaping (Int) -> Void)
@@ -59,10 +57,6 @@ protocol WorkerTeam {
 }
 
 extension WorkerTeam {
-    func canJoinTeam(_ completion: @escaping (Bool) -> Void) {
-        canCreateTeam(completion)
-    }
-
     func canCreateTeam(_ completion: @escaping (Bool) -> Void) {
         getMaxTeamCount { (max) in
             self.getTeams { (teams) in
@@ -304,7 +298,9 @@ private extension WorkerTeam {
                                teams: [QDMTeam],
                                _ completion: @escaping ([Team.Item]) -> Void) {
         var teamHeaderItems = [Team.Item]()
-        teamHeaderItems.append(Team.Item(invites: invites))
+        if !invites.isEmpty {
+            teamHeaderItems.append(Team.Item(invites: invites))
+        }
         teamHeaderItems.append(contentsOf: teams.compactMap { (team) -> Team.Item in
             return Team.Item(title: team.name ?? "",
                              teamId: team.qotId ?? "",

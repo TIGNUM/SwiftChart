@@ -26,6 +26,7 @@ final class HorizontalHeaderView: UIView {
     func configure(headerItems: [Team.Item]) {
         self.headerItems = headerItems
         collectionView.reloadData()
+        centerSelectedItem()
     }
 }
 
@@ -39,6 +40,15 @@ private extension HorizontalHeaderView {
                                             animated: true)
                 return
             }
+        }
+    }
+
+    func centerSelectedItem() {
+        for (index, item) in headerItems.enumerated() where item.selected {
+            collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
+                                        at: .centeredHorizontally,
+                                        animated: true)
+            return
         }
     }
 }
@@ -63,7 +73,10 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
             case .invite:
                 cell.configure(teamInvites: item.invites)
             case .team:
-                cell.configure(teamId: item.teamId, title: item.title, hexColorString: item.color, selected: item.selected)
+                cell.configure(teamId: item.teamId,
+                               title: item.title,
+                               hexColorString: item.color,
+                               selected: item.selected)
             }
         }
         return cell
