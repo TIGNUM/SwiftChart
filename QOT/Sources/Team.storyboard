@@ -36,7 +36,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxz-3F-I14">
-                                <rect key="frame" x="24" y="97" width="311" height="24"/>
+                                <rect key="frame" x="24" y="97" width="46" height="24"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0e-yO-gd5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0e-yO-gd5">
                                 <rect key="frame" x="347" y="97" width="13" height="24"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -155,13 +155,12 @@
                             <constraint firstItem="Ewj-h5-qQ7" firstAttribute="centerX" secondItem="QRy-m0-vx1" secondAttribute="centerX" id="MJH-Tc-N1N"/>
                             <constraint firstItem="BQI-7J-CBx" firstAttribute="leading" secondItem="37o-LE-65h" secondAttribute="leading" constant="24" id="WsN-EU-X0l"/>
                             <constraint firstItem="37o-LE-65h" firstAttribute="trailing" secondItem="BQI-7J-CBx" secondAttribute="trailing" constant="24" id="YLh-I1-vmD"/>
-                            <constraint firstItem="b0e-yO-gd5" firstAttribute="leading" secondItem="Rxz-3F-I14" secondAttribute="trailing" constant="12" id="ah9-Hk-h2V"/>
+                            <constraint firstItem="b0e-yO-gd5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rxz-3F-I14" secondAttribute="trailing" constant="12" id="ah9-Hk-h2V"/>
                             <constraint firstAttribute="trailing" secondItem="Ewj-h5-qQ7" secondAttribute="trailing" constant="24" id="bWI-gN-7xZ"/>
                             <constraint firstItem="BQI-7J-CBx" firstAttribute="top" secondItem="Rxz-3F-I14" secondAttribute="bottom" constant="8" id="dx4-h1-J7x"/>
                             <constraint firstItem="LSk-So-LNw" firstAttribute="bottom" secondItem="b0e-yO-gd5" secondAttribute="bottom" id="hCY-kE-5He"/>
                             <constraint firstItem="b0e-yO-gd5" firstAttribute="top" secondItem="Rxz-3F-I14" secondAttribute="top" id="hyq-7q-yhq"/>
                             <constraint firstItem="LSk-So-LNw" firstAttribute="leading" secondItem="b0e-yO-gd5" secondAttribute="trailing" id="oVO-IJ-JYg"/>
-                            <constraint firstItem="37o-LE-65h" firstAttribute="trailing" secondItem="Rxz-3F-I14" secondAttribute="trailing" constant="79" id="swN-u6-ps7"/>
                             <constraint firstItem="b0e-yO-gd5" firstAttribute="bottom" secondItem="Rxz-3F-I14" secondAttribute="bottom" id="uzh-1H-IzX"/>
                             <constraint firstItem="Rxz-3F-I14" firstAttribute="top" secondItem="yyt-pf-29B" secondAttribute="bottom" constant="16" id="vMz-XM-hMe"/>
                             <constraint firstItem="LSk-So-LNw" firstAttribute="top" secondItem="b0e-yO-gd5" secondAttribute="top" id="wdq-1v-XA2"/>

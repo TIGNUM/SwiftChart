@@ -53,7 +53,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void) {
         switch item {
         case .teamCreate:
-            completion(AppTextService.get(.my_x_team_create_header))
+            completion(AppTextService.get(.my_x_team_create_subheader))
         case .library:
             completion("")
         case .preps:

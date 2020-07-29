@@ -124,16 +124,23 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         updateKeyboardInputView(false)
     }
 
-    func refreshMemberList() {
+    func refreshMemberList(at indexPath: [IndexPath]) {
         teamTextField.text = nil
         updateKeyboardInputView(false)
         subHeaderLabel.isHidden = interactor.rowCount > 0
         updateMemberCounter()
 
         tableView.beginUpdates()
-        tableView.scrollToBottom(animated: true)
-        tableView.reloadSections(IndexSet(integer: 0), with: .bottom)
+        tableView.insertRows(at: indexPath, with: .automatic)
         tableView.endUpdates()
+
+        if let at = indexPath.first {
+            tableView.scrollToRow(at: at, at: .bottom, animated: true)
+        }
+
+        if interactor.canSendInvite == false {
+            view.endEditing(true)
+        }
     }
 
     func presentErrorAlert(_ title: String, _ message: String) {

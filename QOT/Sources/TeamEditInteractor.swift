@@ -16,6 +16,8 @@ final class TeamEditInteractor: TeamEditWorker {
     private var type: TeamEdit.View
     private var team: QDMTeam?
     private var members = [QDMTeamMember]()
+    private var maxTeamCount = 0
+    private var maxChars = 0
 
     // MARK: - Init
     init(presenter: TeamEditPresenterInterface, type: TeamEdit.View, team: QDMTeam?) {
@@ -37,15 +39,24 @@ private extension TeamEditInteractor {
         if let team = team {
             getTeamMembers(in: team) { (qdmMembers) in
                 self.members = qdmMembers
-                self.presenter.refreshMemberList()
+                self.presenter.refreshMemberList(at: [])
              }
         }
-        getMaxChars { [weak self] (max) in
-            self?.presenter.setupTextCounter(maxChars: max)
+        if type == .memberInvite {
+            getMaxTeamCount { [weak self] (maxTeamCount) in
+                self?.maxTeamCount = maxTeamCount
+                self?.presenter.setupTextCounter(maxChars: maxTeamCount)
+                _ = self?.showAlertIfNeeded(email: nil)
+            }
+        } else {
+            getMaxChars { [weak self] (max) in
+                self?.maxChars = max
+                self?.presenter.setupTextCounter(maxChars: max)
+            }
         }
     }
 
-    func showMemberInviteAlertIfNeeded(email: String?) -> Bool {
+    func showAlertIfNeeded(email: String?) -> Bool {
         if (members.filter { $0.me == true && $0.email == email }.first != nil) {
             let title = AppTextService.get(.generic_alert_unknown_error_title)
             let message = AppTextService.get(.team_invite_error_add_myself)
@@ -55,6 +66,12 @@ private extension TeamEditInteractor {
         if (members.filter { $0.email == email && $0.me == false }.first != nil) {
             let title = AppTextService.get(.generic_alert_unknown_error_title)
             let message = AppTextService.get(.team_invite_error_add_exisiting)
+            presenter.presentErrorAlert(title, message)
+            return true
+        }
+        if canSendInvite == false {
+            let title = AppTextService.get(.generic_alert_unknown_error_title)
+            let message = AppTextService.get(.my_x_team_invite_max_members)
             presenter.presentErrorAlert(title, message)
             return true
         }
@@ -74,6 +91,10 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
 
     var teamName: String? {
         return team?.name
+    }
+
+    var canSendInvite: Bool {
+        return members.count <= maxTeamCount
     }
 
     func item(at index: IndexPath) -> String? {
@@ -96,18 +117,19 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
     }
 
     func sendInvite(_ email: String?) {
-        if !showMemberInviteAlertIfNeeded(email: email) {
+        if !showAlertIfNeeded(email: email) {
+            let row = rowCount
             sendInvite(email, team: team) { [weak self] (member, error) in
                 if let member = member {
                     let emails = self?.members.compactMap { $0.email } ?? []
                     if emails.contains(obj: email) == false {
                         self?.members.append(member)
                     }
-                    self?.presenter.refreshMemberList()
+                    self?.presenter.refreshMemberList(at: [IndexPath(row: row, section: 0)])
                 }
             }
         } else {
-            presenter.refreshMemberList()
+            presenter.refreshMemberList(at: [])
         }
     }
 }

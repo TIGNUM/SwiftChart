@@ -33,8 +33,8 @@ private extension TeamEditPresenter {
 
 // MARK: - TeamEditInterface
 extension TeamEditPresenter: TeamEditPresenterInterface {
-    func refreshMemberList() {
-        viewController?.refreshMemberList()
+    func refreshMemberList(at indexPath: [IndexPath]) {
+        viewController?.refreshMemberList(at: indexPath)
     }
 
     func prepareMemberInvite(_ team: QDMTeam?) {
