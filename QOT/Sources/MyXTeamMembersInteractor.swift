@@ -30,8 +30,9 @@ final class MyXTeamMembersInteractor {
         presenter.setupView()
         presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
         if let teamId = selectedTeamItem?.teamId {
-            updateSelectedTeam(teamId: teamId)
+            setHeaderItemSelected(teamId: teamId)
         }
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
@@ -41,20 +42,13 @@ final class MyXTeamMembersInteractor {
     var teamMembersText: String {
         return worker.teamMembersText
     }
-
-    func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
-            self?.setHeaderItemSelected(teamId: teamId)
-            self?.refreshView()
-        }
-    }
 }
 // MARK: - Private
 private extension MyXTeamMembersInteractor {
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
-            updateSelectedTeam(teamId: teamId)
+            setHeaderItemSelected(teamId: teamId)
         }
     }
 
@@ -65,6 +59,7 @@ private extension MyXTeamMembersInteractor {
                 selectedTeamItem = item
             }
         }
+        refreshView()
     }
 }
 
