@@ -120,14 +120,16 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
             collectionView.insertItems(at: indexPath)
         }, completion: { (done) in
             updateIndexPath.forEach { (indexPath) in
-                self.updadateCell(for: indexPath) 
+                self.updadateCell(for: indexPath)
             }
         })
     }
 
-    func reloadTeamItems() {
+    func reloadMainItems(updateIndexPath: [IndexPath]) {
         collectionView.performBatchUpdates({
-            collectionView.reloadSections(IndexSet(integer: 1))
+            updateIndexPath.forEach { (indexPath) in
+                self.updadateCell(for: indexPath)
+            }
         }, completion: nil)
     }
 

@@ -31,8 +31,8 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
         viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath)
     }
 
-    func reloadTeamItems() {
-        viewController?.reloadTeamItems()
+    func reloadMainItems(updateIndexPath: [IndexPath]) {
+        viewController?.reloadMainItems(updateIndexPath: updateIndexPath)
     }
 
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {

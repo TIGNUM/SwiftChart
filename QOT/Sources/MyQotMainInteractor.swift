@@ -172,6 +172,7 @@ private extension MyQotMainInteractor {
                                  updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert())
         } else {
             selectdTeamId = teamId
+            presenter.reloadMainItems(updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
         }
     }
 
