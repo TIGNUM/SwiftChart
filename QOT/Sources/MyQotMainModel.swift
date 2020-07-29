@@ -24,7 +24,7 @@ enum MyX {
         }
     }
 
-    enum Item: CaseIterable, MyQotMainWorker {
+    enum Item: CaseIterable {
         case teamCreate
         case library
         case preps
@@ -32,41 +32,46 @@ enum MyX {
         case data
         case toBeVision
 
-        var title: String {
+        func title(isTeam: Bool) -> String {
             switch self {
-            case .teamCreate: return AppTextService.get(.my_x_team_create_header)
-            case .library: return AppTextService.get(.my_qot_section_my_library_title)
-            case .preps: return AppTextService.get(.my_qot_section_my_plans_title)
-            case .sprints: return AppTextService.get(.my_qot_section_my_sprints_title)
-            case .data: return AppTextService.get(.my_qot_section_my_data_title)
-            case .toBeVision: return AppTextService.get(.my_qot_section_my_tbv_title)
+            case .teamCreate:
+                return AppTextService.get(.my_x_team_create_header)
+            case .library:
+                let title = AppTextService.get(.my_qot_section_my_library_title)
+                return isTeam ? removePrefix(title) : title
+            case .preps:
+                return AppTextService.get(.my_qot_section_my_plans_title)
+            case .sprints:
+                return AppTextService.get(.my_qot_section_my_sprints_title)
+            case .data:
+                return AppTextService.get(.my_qot_section_my_data_title)
+            case .toBeVision:
+                let title = AppTextService.get(.my_qot_section_my_tbv_title)
+                return isTeam ? removePrefix(title) : title
             }
         }
 
-        func subtitle(_ completion: @escaping (String?) -> Void) {
-            switch self {
-            case .teamCreate: completion(AppTextService.get(.my_x_team_create_header))
-            case .library: completion("")
-            case .preps:
-               getPreparationSubtitle(completion)
-            case .sprints:
-                getCurrentSprintName(completion)
-            case .data:
-                getMyDataSubtitle(completion)
-            case .toBeVision:
-                getToBeVisionSubtitle(completion)
-            }
+        private func removePrefix(_ title: String) -> String {
+            return title.replacingOccurrences(of: "MY", with: "")
         }
 
         static func items(_ isTeam: Bool) -> [MyX.Item] {
             return isTeam ? [.library, .toBeVision] : MyX.Item.allCases
         }
 
-        static func indexPathUpdate() -> [IndexPath] {
+        static func indexPathArrayUpdate() -> [IndexPath] {
             return [IndexPath(item: 0, section: 2),
                     IndexPath(item: 2, section: 2),
                     IndexPath(item: 3, section: 2),
                     IndexPath(item: 4, section: 2)]
+        }
+
+        static func indexPathToUpdateAfterDelete() -> [IndexPath] {
+            return [IndexPath(item: 0, section: 2), IndexPath(item: 1, section: 2)]
+        }
+
+        static func indexPathToUpdateAfterInsert() -> [IndexPath] {
+            return [IndexPath(item: 1, section: 2), IndexPath(item: 5, section: 2)]
         }
     }
 }

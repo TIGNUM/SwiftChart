@@ -73,6 +73,21 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     }
 }
 
+// MARK: - Private
+private extension MyQotMainViewController {
+    func updadateCell(for indexPath: IndexPath) {
+        let item = interactor.getItem(at: indexPath)
+        let title = interactor.getTitle(for: item)
+        let cell = collectionView.cellForItem(at: indexPath) as? MyQotMainCollectionViewCell
+        cell?.setEnabled(false, title: title)
+        interactor.getSubtitle(for: item) { [weak self] (subtitle) in
+            self?.interactor.isCellEnabled(for: item) { (enabled) in
+                cell?.configure(title: title, subtitle: subtitle, enabled: enabled)
+            }
+        }
+    }
+}
+
 // MARK: - MyQotMainViewControllerInterface
 extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func setupView() {
@@ -90,20 +105,24 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         layout.sectionHeadersPinToVisibleBounds = true
     }
 
-    func reload() {
-        collectionView.reloadData()
-    }
-
-    func deleteItems(at indexPath: [IndexPath]) {
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
         collectionView.performBatchUpdates({
             collectionView.deleteItems(at: indexPath)
-        }, completion: nil)
+        }, completion: { (done) in
+            updateIndexPath.forEach { (indexPath) in
+                self.updadateCell(for: indexPath)
+            }
+        })
     }
 
-    func inserItems(at indexPath: [IndexPath]) {
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: indexPath)
-        }, completion: nil)
+        }, completion: { (done) in
+            updateIndexPath.forEach { (indexPath) in
+                self.updadateCell(for: indexPath) 
+            }
+        })
     }
 
     func reloadTeamItems() {
@@ -133,11 +152,12 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let item = interactor.getItem(at: indexPath)
+        let title = interactor.getTitle(for: item)
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.setEnabled(false, title: item?.title)
-        item?.subtitle { [weak self] (subtitle) in
+        cell.setEnabled(false, title: title)
+        interactor.getSubtitle(for: item) { [weak self] (subtitle) in
             self?.interactor.isCellEnabled(for: item) { (enabled) in
-                cell.configure(title: item?.title, subtitle: subtitle, enabled: enabled)
+                cell.configure(title: title, subtitle: subtitle, enabled: enabled)
             }
         }
         return cell

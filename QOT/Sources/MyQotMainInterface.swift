@@ -11,32 +11,33 @@ import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
-    func reload()
     func reloadTeamItems()
-    func deleteItems(at indexPath: [IndexPath])
-    func inserItems(at indexPath: [IndexPath])
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func reload()
     func reloadTeamItems()
-    func deleteItems(at indexPath: [IndexPath])
-    func inserItems(at indexPath: [IndexPath])
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
     var sectionCount: Int { get }
     func itemCount(in section: Int) -> Int
 
-    func getSettingsButtonTitle(_ completion: @escaping (String) -> Void)    
-    func updateSelectedTeam(teamId: String)
+    func getSettingsButtonTitle(_ completion: @escaping (String) -> Void)
+    func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void)
+    func getTitle(for item: MyX.Item?) -> String?
+    func getItem(at indexPath: IndexPath) -> MyX.Item?
+
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
     func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void)
-    func getItem(at indexPath: IndexPath) -> MyX.Item?
-    func presentMyProfile()
     func handleSelection(at indexPath: IndexPath)
+
     func presentTeamPendingInvites()
+    func presentMyProfile()
 }
 
 protocol MyQotMainRouterInterface {

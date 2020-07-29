@@ -44,6 +44,10 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         setEnabled(enabled, title: title)
     }
 
+    func setSubtitle(subtitle: String?) {
+        ThemeText.linkMenuComment.apply(subtitle, to: subtitleLabel)
+    }
+
     func setEnabled(_ enabled: Bool, title: String?) {
         isUserInteractionEnabled = enabled
         if enabled {
