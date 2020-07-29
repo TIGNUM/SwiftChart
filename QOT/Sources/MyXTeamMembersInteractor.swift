@@ -61,6 +61,9 @@ private extension MyXTeamMembersInteractor {
     func setHeaderItemSelected(teamId: String) {
         teamHeaderItems.forEach { (item) in
             item.selected = (teamId == item.teamId)
+            if item.selected {
+                selectedTeamItem = item
+            }
         }
     }
 }
@@ -103,7 +106,7 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
         if let team = selectedTeamItem?.qdmTeam {
             self.worker.getTeamMemberItems(team: team, { [weak self] (membersList) in
                 self?.membersList = membersList
-                self?.presenter.updateView(hasMembers: self?.membersList.isEmpty == false)
+                self?.presenter.updateView(hasMembers: membersList.isEmpty == false)
             })
         } else {
             self.presenter.updateView(hasMembers: self.membersList.isEmpty == false)
