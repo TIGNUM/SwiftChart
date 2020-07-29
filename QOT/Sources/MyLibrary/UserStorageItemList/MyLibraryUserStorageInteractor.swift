@@ -124,6 +124,10 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         return isEditing ? worker.editingTitle : worker.title
     }
 
+    var subtitle: String {
+        return isEditing && teamId != nil ? worker.editingSubtitle : ""
+    }
+
     var addTitle: String {
         return worker.addTitle
     }

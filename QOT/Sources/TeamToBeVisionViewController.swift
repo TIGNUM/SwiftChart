@@ -308,7 +308,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
 extension TeamToBeVisionViewController: TeamToBeVisionNullStateViewProtocol {
 
     func editTeamVisionAction() {
-        trackUserEvent(.OPEN, valueType: "CreateNewToBeVisionFromNullState", action: .TAP)
+        trackUserEvent(.OPEN, valueType: .WRITE_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: true)
     }
 }

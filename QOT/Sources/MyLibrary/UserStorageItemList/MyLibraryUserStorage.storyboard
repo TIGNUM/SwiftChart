@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hQZ-Se-pf1">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hQZ-Se-pf1">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,12 +19,12 @@
         <!--My Library User Storage View Controller-->
         <scene sceneID="65b-j0-q90">
             <objects>
-                <viewController storyboardIdentifier="MyLibraryBookmarksViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hQZ-Se-pf1" customClass="MyLibraryUserStorageViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyLibraryBookmarksViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hQZ-Se-pf1" customClass="MyLibraryUserStorageViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="REE-o1-22V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsV-cT-rre" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsV-cT-rre" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="350" y="105" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="32d-1n-7OU"/>
@@ -37,7 +35,7 @@
                                     <action selector="didTapEditButtonWithSender:" destination="hQZ-Se-pf1" eventType="touchUpInside" id="zlo-zL-suJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-ks-QwL" userLabel="Add Button" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-ks-QwL" userLabel="Add Button" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="330" y="108" width="0.0" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" id="YE1-QN-VVq"/>
@@ -60,7 +58,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleBookmarkTableViewCell" rowHeight="120" id="Au7-uz-mm6" customClass="ArticleBookmarkTableViewCell" customModule="QOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleBookmarkTableViewCell" rowHeight="120" id="Au7-uz-mm6" customClass="ArticleBookmarkTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Au7-uz-mm6" id="M5g-NJ-Kcs">
@@ -134,7 +132,7 @@
                                             <outlet property="selectedBackgroundView" destination="LnL-2C-jPZ" id="LHa-8g-ffO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoBookmarkTableViewCell" rowHeight="120" id="sH3-WO-3H0" customClass="VideoBookmarkTableViewCell" customModule="QOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoBookmarkTableViewCell" rowHeight="120" id="sH3-WO-3H0" customClass="VideoBookmarkTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="148" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sH3-WO-3H0" id="iPh-pC-GtB">
@@ -219,7 +217,7 @@
                                             <outlet property="selectedBackgroundView" destination="LnL-2C-jPZ" id="PnK-YV-EiC"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AudioBookmarkTableViewCell" rowHeight="90" id="kVK-HK-9Tn" customClass="AudioBookmarkTableViewCell" customModule="QOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AudioBookmarkTableViewCell" rowHeight="90" id="kVK-HK-9Tn" customClass="AudioBookmarkTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="268" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kVK-HK-9Tn" id="gQ9-d3-CBI">
@@ -303,7 +301,7 @@
                                             <outlet property="selectedBackgroundView" destination="LnL-2C-jPZ" id="Yaj-jL-Gbu"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteTableViewCell" rowHeight="90" id="nNR-uM-iRy" userLabel="NoteTableViewCell" customClass="NoteTableViewCell" customModule="QOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteTableViewCell" rowHeight="90" id="nNR-uM-iRy" userLabel="NoteTableViewCell" customClass="NoteTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="358" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nNR-uM-iRy" id="BEw-Vo-d6x">
@@ -364,7 +362,7 @@
                                             <outlet property="selectedBackgroundView" destination="LnL-2C-jPZ" id="dQd-9Z-uOW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DownloadTableViewCell" rowHeight="110" id="06h-aP-hyl" userLabel="DownloadTableViewCell" customClass="DownloadTableViewCell" customModule="QOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DownloadTableViewCell" rowHeight="110" id="06h-aP-hyl" userLabel="DownloadTableViewCell" customClass="DownloadTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="448" width="414" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="06h-aP-hyl" id="f8F-6l-5W3">
@@ -399,7 +397,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzN-Rk-Pj5" userLabel="Activity View" customClass="GradientArcView" customModule="QOT" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzN-Rk-Pj5" userLabel="Activity View" customClass="GradientArcView" customModule="TIGNUM_X" customModuleProvider="target">
                                                     <rect key="frame" x="330" y="35" width="40" height="40"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
@@ -494,6 +492,6 @@
         <image name="ic_play_video" width="64" height="64"/>
         <image name="my_library_bookmark" width="16" height="16"/>
         <image name="my_library_download" width="16" height="16"/>
-        <image name="preloading" width="283" height="189"/>
+        <image name="preloading" width="343" height="229"/>
     </resources>
 </document>
