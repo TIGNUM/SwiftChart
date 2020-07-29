@@ -37,7 +37,6 @@ final class MyXTeamMembersInteractor {
         worker.getMaxTeamMemberCount { (max) in
             self.maxTeamMemberCount = max
         }
-        
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
