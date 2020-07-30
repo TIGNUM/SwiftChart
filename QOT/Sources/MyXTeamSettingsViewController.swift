@@ -167,8 +167,8 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
                                        handler: nil)
         let deleteTitle = AppTextService.get(.settings_team_settings_delete_team).uppercased()
         let leaveTitle = AppTextService.get(.settings_team_settings_leave_team).uppercased()
-        let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete) + " " + (interactor.getSelectedItem?.title ?? "")
-        let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave) + " " + (interactor.getSelectedItem?.title ?? "")
+        let deleteMessage = AppTextService.get(.settings_team_settings_confirmation_delete)
+        let leaveMessage = AppTextService.get(.settings_team_settings_confirmation_leave)
         switch item {
         case .deleteTeam:
             QOTAlert.show(title: deleteTitle, message: deleteMessage, bottomItems: [cancel, deleteTeam])
