@@ -369,6 +369,9 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_load_description = AppTextKey("daily_brief.section_impact_readiness.load_description")
     static let daily_brief_section_impact_readiness_future_load_description = AppTextKey("daily_brief.section_impact_readiness.future_load_description")
 
+    static let daily_brief_team_to_be_vision_cta = AppTextKey("daily_brief.team_to_be_vision.cta")
+    static let daily_brief_team_to_be_vision_subtitle = AppTextKey("daily_brief.team_to_be_vision.subtitle")
+
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
     static let generic_event_removed_alert_event_removed_body = AppTextKey("generic.event_removed.alert.event_removed.body")

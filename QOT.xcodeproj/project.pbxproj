@@ -1231,6 +1231,9 @@
 		F96D75B9249CF9C100DFFB22 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */; };
 		F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */; };
 		F96D75BF24A3671F00DFFB22 /* ConfirmationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */; };
+		F96D9F2A24D2DC3200188482 /* TeamToBeVisionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D9F2924D2DC3200188482 /* TeamToBeVisionCell.swift */; };
+		F96D9F2C24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */; };
+		F96D9F2E24D2DC6900188482 /* TeamToBeVisionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D9F2D24D2DC6900188482 /* TeamToBeVisionCell.xib */; };
 		F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */; };
 		F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */; };
 		F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */; };
@@ -2589,6 +2592,9 @@
 		F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerShareViewController.swift; sourceTree = "<group>"; };
 		F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewCell.swift; sourceTree = "<group>"; };
+		F96D9F2924D2DC3200188482 /* TeamToBeVisionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionCell.swift; sourceTree = "<group>"; };
+		F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionCellViewModel.swift; sourceTree = "<group>"; };
+		F96D9F2D24D2DC6900188482 /* TeamToBeVisionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamToBeVisionCell.xib; sourceTree = "<group>"; };
 		F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainConfigurator.swift; sourceTree = "<group>"; };
 		F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInteractor.swift; sourceTree = "<group>"; };
 		F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInterface.swift; sourceTree = "<group>"; };
@@ -2778,6 +2784,8 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F96D9F2824D2DAB600188482 /* TeamToBeVision */,
+				F9D2BC1E22D4966B00DBF2CC /* FromTignum */,
 				F916AAE92418E915002C1EFE /* MindsetShifter */,
 				9C24237022F0817F00B911E6 /* AboutMe */,
 				F9462248230C2C21000A3B42 /* Copyright */,
@@ -2792,7 +2800,6 @@
 				75B9DCB422CB5FEC00692A60 /* LeaderWisdom */,
 				F9371C482457327400CC44F9 /* ExpertThoughts */,
 				9C9E33AF22DCA36300214ED6 /* ImpactReadiness */,
-				F9D2BC1E22D4966B00DBF2CC /* FromTignum */,
 				75423F0D22CF4876008EE726 /* FromMyCoach */,
 				F967269922BCD91A00B63FD7 /* RandomQuestion */,
 				9C24237A22F093E700B911E6 /* SolveReminder  */,
@@ -5581,6 +5588,16 @@
 			path = CustomizedShareViewController;
 			sourceTree = "<group>";
 		};
+		F96D9F2824D2DAB600188482 /* TeamToBeVision */ = {
+			isa = PBXGroup;
+			children = (
+				F96D9F2924D2DC3200188482 /* TeamToBeVisionCell.swift */,
+				F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */,
+				F96D9F2D24D2DC6900188482 /* TeamToBeVisionCell.xib */,
+			);
+			name = TeamToBeVision;
+			sourceTree = "<group>";
+		};
 		F9838F3922AFFE93003F9394 /* MyQotMain */ = {
 			isa = PBXGroup;
 			children = (
@@ -6027,6 +6044,7 @@
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
 				38593DF124A1114C00C2955D /* Team.storyboard in Resources */,
 				38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */,
+				F96D9F2E24D2DC6900188482 /* TeamToBeVisionCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
 				B86E742822A94D0700B0AE75 /* MyLibrary.storyboard in Resources */,
 				F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */,
@@ -6743,6 +6761,7 @@
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
 				5F360743228C20120074FEC4 /* SyncedCalendarsConfigurator.swift in Sources */,
+				F96D9F2C24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift in Sources */,
 				367A58582326A15D0089A082 /* DTSolveInteractor.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				AC103E462285B27200F426F0 /* MindsetResult.swift in Sources */,
@@ -7282,6 +7301,7 @@
 				8D8AA75D22FDCB6700B59A81 /* RegistrationWorker.swift in Sources */,
 				75B9DCB722CB605C00692A60 /* LeaderWisdomTableViewCell.swift in Sources */,
 				8D8AA76722FDCB6700B59A81 /* RegistrationEmailInteractor.swift in Sources */,
+				F96D9F2A24D2DC3200188482 /* TeamToBeVisionCell.swift in Sources */,
 				36E12EC3232B57F0009E96EA /* DTPrepareWorker.swift in Sources */,
 				5F7BE786228958AE00BA5DCF /* MyQotSupportConfigurator.swift in Sources */,
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
