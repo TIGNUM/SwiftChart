@@ -31,7 +31,7 @@ protocol MyQotMainInteractorInterface: Interactor {
 
     func getSettingsButtonTitle(_ completion: @escaping (String) -> Void)
     func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void)
-    func getTitle(for item: MyX.Item?) -> String?
+    func getTitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void)
     func getItem(at indexPath: IndexPath) -> MyX.Item?
 
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)

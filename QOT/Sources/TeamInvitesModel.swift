@@ -15,21 +15,41 @@ struct TeamInvite {
         case pendingInvite
     }
 
-    struct Header {
-        let title: String
-        let content: String
-        let maxTeams: Int
+    class Header {
+        let title: String = AppTextService.get(.team_invite_header_singular) + "S"
+        private var maxTeams: Int
+        private var partOfTeams: Int
+        private var showOnlyContent: Bool
 
-        var noteText: String {
+        init(maxTeams: Int, partOfTeams: Int) {
+            self.maxTeams = maxTeams
+            self.partOfTeams = partOfTeams
+            self.showOnlyContent = partOfTeams == maxTeams || partOfTeams == 0
+        }
+
+        var noteText: String? {
+            if showOnlyContent {
+                return nil
+            }
             return String(format: AppTextService.get(.team_invite_content_note), maxTeams)
         }
 
-        func teamCounter(partOfTeams: Int) -> String {
+        var teamCounter: String? {
+            if showOnlyContent {
+                return nil
+            }
             var text = String(format: AppTextService.get(.team_invite_content_count), partOfTeams)
             if partOfTeams != 1 {
                 text = text.replacingOccurrences(of: ".", with: "s.")
             }
             return text
+        }
+
+        var content: String {
+            if partOfTeams < maxTeams {
+                return AppTextService.get(.team_invite_content_info)
+            }
+            return String(format: AppTextService.get(.team_invite_content_info_reached_max), maxTeams)
         }
     }
 

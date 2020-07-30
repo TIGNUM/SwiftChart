@@ -46,15 +46,26 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         return MyX.Item.items(selectdTeamItem != nil).at(index: indexPath.row)
     }
 
-    func getTitle(for item: MyX.Item?) -> String? {
-        return item?.title(isTeam: selectdTeamItem != nil)
+    func getTitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void) {
+        let isTeam = selectdTeamItem != nil
+        if item == .toBeVision && isTeam {
+            hasOwnerEmptyTeamTBV { (isEmpty) in
+                if isEmpty {
+                    completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision))
+                } else {
+                    completion(item?.title(isTeam: isTeam))
+                }
+            }
+        } else {
+            completion(item?.title(isTeam: isTeam))
+        }
     }
 
     func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void) {
         switch item {
         case .teamCreate:
-            isCellEnabled(for: item) {(enabled) in
-                enabled ?  completion(AppTextService.get(.my_x_team_create_subheader)) : completion(AppTextService.get(.my_x_team_create_max_team_sutitle))
+            isCellEnabled(for: item) { (enabled) in
+                enabled ? completion(AppTextService.get(.my_x_team_create_subheader)) : completion(AppTextService.get(.my_x_team_create_max_team_sutitle))
             }
         case .library:
             completion("")
@@ -89,7 +100,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void) {
         switch section {
         case .teamCreate: canCreateTeam(completion)
-        case .toBeVision: isTbvEmpty(completion)
+        case .toBeVision: canSelectTBV(completion)
         default: completion(true)
         }
     }
@@ -156,7 +167,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
 // MARK: - Private
 private extension MyQotMainInteractor {
-    func isTbvEmpty(_ completion: @escaping (Bool) -> Void) {
+    func canSelectTBV(_ completion: @escaping (Bool) -> Void) {
         guard let team = selectdTeamItem?.qdmTeam else {
             completion(true)
             return
@@ -168,6 +179,16 @@ private extension MyQotMainInteractor {
             }
         } else {
             completion(true)
+        }
+    }
+
+    func hasOwnerEmptyTeamTBV(_ completion: @escaping (Bool) -> Void) {
+        if selectdTeamItem?.thisUserIsOwner == true, let team = selectdTeamItem?.qdmTeam {
+            getTeamToBeVision(for: team) { (teamVision) in
+                completion(teamVision == nil)
+            }
+        } else {
+            completion(false)
         }
     }
 
