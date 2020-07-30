@@ -72,7 +72,15 @@ private extension MyXTeamMembersViewController {
 
 // MARK: - Actions
 private extension MyXTeamMembersViewController {
+    func showDemoIfNeeded() {
+        let indexPath = IndexPath(row: 0, section: 0)
 
+        if let cell = tableView.cellForRow(at: indexPath) as? TeamMemberTableViewCell,
+            let member = interactor.getMember(at: indexPath),
+            let isOwner = interactor?.canEdit, isOwner, !member.member.me {
+            cell.showDemo()
+        }
+    }
 }
 
 // MARK: - MyXTeamMembersViewControllerInterface
@@ -98,6 +106,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
         tableView.beginUpdates()
         tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .fade)
         tableView.endUpdates()
+        showDemoIfNeeded()
 
         if hasMembers {
             updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
@@ -120,7 +129,8 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
 
         let adminText = AppTextService.get(.settings_team_settings_team_members_admin_label)
         let cell: TeamMemberTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(memberEmail: member.isTeamOwner ? (member.email ?? "") + " " + adminText : member.email, memberStatus: member.status)
+        cell.configure(memberEmail: member.isTeamOwner ? (member.email ?? "") + " " + adminText : member.email,
+                       memberStatus: member.status)
         return cell
     }
 
