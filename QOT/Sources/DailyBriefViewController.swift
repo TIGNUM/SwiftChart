@@ -164,6 +164,8 @@ extension DailyBriefViewController {
                 return getMindsetShifterCell(tableView, indexPath, nil)
             case 16:
                 return getExpertThoughts(tableView, indexPath, nil)
+            case 17:
+                return getTeamToBeVisionCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -231,7 +233,8 @@ extension DailyBriefViewController {
         case .FROM_MY_COACH?:
             return getCoachMessageCell(tableView, indexPath, bucketItem as? FromMyCoachCellViewModel)
         case .FROM_TIGNUM?:
-            return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
+            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
+//            return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
         case .BESPOKE?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .DEPARTURE_INFO?:
@@ -251,6 +254,9 @@ extension DailyBriefViewController {
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         case .MINDSET_SHIFTER?:
             return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
+//        case .TEAM_TO_BE_VISION?:
+//            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
+
         default:
            return UITableViewCell()
         }
@@ -700,6 +706,15 @@ private extension DailyBriefViewController {
         cell.delegate = self
         return cell
     }
+
+    func getTeamToBeVisionCell(_ tableView: UITableView,
+                               _ indexPath: IndexPath,
+                               _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
+        let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: teamVisionModel)
+        cell.delegate = self
+        return cell
+    }
 }
 
 // MARK: - DailyBriefViewControllerInterface
@@ -741,6 +756,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
         tableView.registerDequeueable(MindsetShifterCell.self)
         tableView.registerDequeueable(ExpertThoughtsTableViewCell.self)
+        tableView.registerDequeueable(TeamToBeVisionCell.self)
     }
 
     func scrollToSection(at: Int) {

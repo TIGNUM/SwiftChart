@@ -196,6 +196,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .expertthoughts,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamToBeVision,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -260,8 +262,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .goodToKnow,
                                                         elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
                 case .FROM_TIGNUM?:
-                    sectionDataList.append(ArraySection(model: .fromTignum,
-                                                        elements: strongSelf.createFromTignum(fromTignum: bucket)))
+                    sectionDataList.append(ArraySection(model: .teamToBeVision,
+                                                        elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
+//                    sectionDataList.append(ArraySection(model: .fromTignum,
+//                                                        elements: strongSelf.createFromTignum(fromTignum: bucket)))
                 case .BESPOKE?:
                     sectionDataList.append(ArraySection(model: .bespoke,
                                                          elements: strongSelf.createProductsWeLove(productsBucket: bucket)))
@@ -312,6 +316,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .MINDSET_SHIFTER?:
                     sectionDataList.append(ArraySection(model: .mindsetShifter,
                                                         elements: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket)))
+                case .TEAM_TO_BE_VISION?:
+                    sectionDataList.append(ArraySection(model: .teamToBeVision,
+                                                        elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -636,6 +643,19 @@ extension DailyBriefInteractor {
                                             domainModel: mindsetBucket)
         mindsetList.append(model)
         return mindsetList
+    }
+
+    // MARK: - TeamToBeVision
+    func createTeamToBeVisionViewModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var visionList: [BaseDailyBriefViewModel] = []
+        guard let collection = teamVisionBucket.contentCollections?.first else {
+            return visionList
+        }
+        let teamVisionText = "We are an inspired, energized, dynamic and agile group of people who maximize the impact and performance of everyone we touch - both inside and outside of TIGNUM"
+        let teamName = "WEB TEAM"
+        let model = TeamToBeVisionCellViewModel(title: teamName, teamVision: teamVisionText, domainModel: teamVisionBucket)
+        visionList.append(model)
+        return visionList
     }
 
     // MARK: - Products we love

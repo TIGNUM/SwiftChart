@@ -12,10 +12,11 @@ import qot_dal
 final class TeamToBeVisionCell: BaseDailyBriefCell {
 
     private var baseHeaderView: QOTBaseHeaderView?
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var ctaButton: AnimatedButton!
-    @IBOutlet weak var toBeVisionLabel: ClickableLabel!
-    
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet private weak var ctaButton: AnimatedButton!
+    weak var delegate: DailyBriefViewController?
+    @IBOutlet private weak var toBeVisionLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
@@ -37,6 +38,8 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
         ctaButton.setTitle(ctaText, for: .normal)
         ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         ctaButton.setButtonContentInset(padding: 16)
+        toBeVisionLabel.adjustsFontSizeToFitWidth = false
+        toBeVisionLabel.lineBreakMode = .byTruncatingTail
     }
 
     @IBAction func ctaButtonTapped(_ sender: Any) {
