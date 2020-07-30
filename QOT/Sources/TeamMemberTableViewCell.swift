@@ -19,11 +19,6 @@ final class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var demoRemoveView: UIView!
     @IBOutlet private weak var demoInviteView: UIView!
 
-    @IBOutlet private weak var demoViewLeadingContraint: NSLayoutConstraint!
-    @IBOutlet private weak var demoViewTrailingContraint: NSLayoutConstraint!
-    @IBOutlet private weak var demoRemoveViewTrailingContraint: NSLayoutConstraint!
-    @IBOutlet private weak var demoInviteViewTrailingContraint: NSLayoutConstraint!
-
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundView = UIView(frame: bounds)
@@ -55,52 +50,35 @@ extension TeamMemberTableViewCell {
     func showDemo() {
         guard UserDefault.showTableViewSwipeDemo.boolValue == false else { return }
         setDemoHidden(false)
-        let demoFrame = demoView.frame
-        let demoRemoveFrame = demoRemoveView.frame
-        let demoInviteFrame = demoInviteView.frame
+        let demoOrigin = demoView.frame.origin
+        let demoRemoveOrigin = demoRemoveView.frame.origin
+        let demoInviteOrigin = demoInviteView.frame.origin
+
         UIView.animate(withDuration: 1.3,
                        delay: 0.4,
-                       usingSpringWithDamping: 1,
+                       usingSpringWithDamping: 0.8,
                        initialSpringVelocity: 0.5,
                        options: .allowAnimatedContent,
                        animations: {
-                        self.demoView.frame = CGRect(x: demoFrame.origin.x - 180,
-                                                     y: 0,
-                                                     width: demoFrame.width,
-                                                     height: demoFrame.height)
-                        self.demoRemoveView.frame = CGRect(x: demoRemoveFrame.origin.x - 80,
-                                                           y: 0,
-                                                           width: demoRemoveFrame.width,
-                                                           height: demoRemoveFrame.height)
-                        self.demoInviteView.frame = CGRect(x: demoInviteFrame.origin.x - 180,
-                                                           y: 0,
-                                                           width: demoInviteFrame.width,
-                                                           height: demoInviteFrame.height)
-        }) { (done) in
-            UIView.animate(withDuration: 1.3,
-                           delay: 3.0,
-                           usingSpringWithDamping: 1,
-                           initialSpringVelocity: 0.5,
-                           options: .allowAnimatedContent,
-                           animations: {
-                            self.demoView.frame = CGRect(x: demoFrame.origin.x,
-                                                         y: 0,
-                                                         width: demoFrame.width,
-                                                         height: demoFrame.height)
-                            self.demoRemoveView.frame = CGRect(x: demoRemoveFrame.origin.x,
-                                                               y: 0,
-                                                               width: demoRemoveFrame.width,
-                                                               height: demoRemoveFrame.height)
-                            self.demoInviteView.frame = CGRect(x: demoInviteFrame.origin.x,
-                                                               y: 0,
-                                                               width: demoInviteFrame.width,
-                                                               height: demoInviteFrame.height)
-            }) { (done) in
-                self.demoView.removeFromSuperview()
-                self.demoInviteView.removeFromSuperview()
-                self.demoRemoveView.removeFromSuperview()
-                UserDefault.showTableViewSwipeDemo.setBoolValue(value: true)
-            }
+                        self.demoView.frame.origin = CGPoint(x: demoOrigin.x - 180, y: 0)
+                        self.demoRemoveView.frame.origin = CGPoint(x: demoRemoveOrigin.x - 80, y: 0)
+                        self.demoInviteView.frame.origin = CGPoint(x: demoInviteOrigin.x - 180, y: 0)
+        }) { _ in }
+
+        UIView.animate(withDuration: 0.8,
+                       delay: 3.0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0.8,
+                       options: .allowAnimatedContent,
+                       animations: {
+                        self.demoView.frame.origin = CGPoint(x: demoOrigin.x, y: 0)
+                        self.demoRemoveView.frame.origin = CGPoint(x: demoRemoveOrigin.x, y: 0)
+                        self.demoInviteView.frame.origin = CGPoint(x: demoInviteOrigin.x, y: 0)
+        }) { _ in
+            self.demoView.removeFromSuperview()
+            self.demoInviteView.removeFromSuperview()
+            self.demoRemoveView.removeFromSuperview()
+            UserDefault.showTableViewSwipeDemo.setBoolValue(value: true)
         }
     }
 }

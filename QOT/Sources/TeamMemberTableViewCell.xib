@@ -162,13 +162,9 @@
             <connections>
                 <outlet property="demoEmailLabel" destination="HTy-VN-eDU" id="LXt-Iy-4ib"/>
                 <outlet property="demoInviteView" destination="Xi9-Dh-Doj" id="I4X-nb-1jL"/>
-                <outlet property="demoInviteViewTrailingContraint" destination="0le-4H-Rqa" id="fYV-0M-LIl"/>
                 <outlet property="demoJoinedIcon" destination="oTe-EA-PJg" id="T23-hR-ohM"/>
                 <outlet property="demoRemoveView" destination="zWr-UA-74y" id="NNB-03-BYC"/>
-                <outlet property="demoRemoveViewTrailingContraint" destination="Qce-M8-xku" id="GL8-9W-o9t"/>
                 <outlet property="demoView" destination="QY3-Q9-pWI" id="RZi-tE-fYG"/>
-                <outlet property="demoViewLeadingContraint" destination="bic-Yk-wMr" id="ley-yQ-59Z"/>
-                <outlet property="demoViewTrailingContraint" destination="9Mm-Uu-2Rv" id="vNW-Eh-Bgw"/>
                 <outlet property="emailLabel" destination="9ZP-Sd-Oqh" id="CFn-qr-S0J"/>
                 <outlet property="joinedIcon" destination="bvt-Lt-GDD" id="JxM-6h-ezx"/>
                 <outlet property="pendingIcon" destination="py4-0a-swi" id="T88-KA-77x"/>
