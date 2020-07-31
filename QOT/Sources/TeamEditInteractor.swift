@@ -15,7 +15,7 @@ final class TeamEditInteractor: TeamEditWorker {
     private let presenter: TeamEditPresenterInterface!
     private var type: TeamEdit.View
     private var team: QDMTeam?
-    private var members = [QDMTeamMember]()
+    private var members = [TeamEdit.Member]()
     private var maxTeamMemberCount = 0
     private var maxChars = 0
 
@@ -28,29 +28,40 @@ final class TeamEditInteractor: TeamEditWorker {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView(type)
+        presenter.setupView(type, teamName: team?.name)
         setInitialData()
     }
 }
 
 // MARK: - Private
 private extension TeamEditInteractor {
+    func setupMemberList(team: QDMTeam) {
+        getTeamMembers(in: team) { (qdmMembers) in
+           self.members = qdmMembers.compactMap { (qdmMember) -> TeamEdit.Member in
+               return TeamEdit.Member(email: qdmMember.email ?? "",
+                                      me: qdmMember.me,
+                                      isOwner: qdmMember.isTeamOwner)
+           }
+           self.presenter.refreshMemberList(at: [])
+        }
+    }
+
     func setInitialData() {
         if let team = team {
-            getTeamMembers(in: team) { (qdmMembers) in
-                self.members = qdmMembers
-                self.presenter.refreshMemberList(at: [])
-             }
+            setupMemberList(team: team)
         }
         if type == .memberInvite {
             getMaxTeamMemberCount { (max) in
                 self.maxTeamMemberCount = max
-                self.presenter.setupTextCounter(maxChars: max)
+                self.presenter.setupTextCounter(type: .memberInvite, max: max)
             }
         } else {
             getMaxChars { [weak self] (max) in
                 self?.maxChars = max
-                self?.presenter.setupTextCounter(maxChars: max)
+                self?.presenter.setupTextCounter(type: self?.type ?? .edit, max: max)
+            }
+            getMaxTeamMemberCount { (max) in
+                self.maxTeamMemberCount = max
             }
         }
     }
@@ -84,12 +95,8 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
         return type
     }
 
-    var rowCount: Int {
-        return members.count
-    }
-
-    var teamName: String? {
-        return team?.name
+    var sectionCount: Int {
+        return TeamEdit.Section.allCases.count
     }
 
     var canSendInvite: Bool {
@@ -100,17 +107,35 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
         return maxTeamMemberCount
     }
 
+    func rowCount(in section: Int) -> Int {
+        switch TeamEdit.Section.allCases[section] {
+        case .info: return 1
+        case .members: return members.count
+        }
+    }
+
     func item(at index: IndexPath) -> String? {
         return members.at(index: index.row)?.email
     }
 
     func createTeam(_ name: String?) {
-        createTeam(name) { [weak self] (team, error) in
+        let max = maxMemberCount
+        type = .memberInvite
+        createTeam(name) { [weak self] (team, _) in
             self?.team = team
-            if let team = team {
-                self?.type = .memberInvite
-                self?.presenter.prepareMemberInvite(team)
+            if let team = team, team.remoteID != 0 {
+                self?.setupMemberList(team: team)
+            } else {
+                ///oh man, maybe owner email can be part of team?
+                let email = SessionService.main.getCurrentSession()?.useremail ?? ""
+                let member = TeamEdit.Member(email: email,
+                                             me: true,
+                                             isOwner: true)
+                self?.members.append(member)
+                self?.presenter.refreshMemberList(at: [])
+
             }
+            self?.presenter.prepareMemberInvite(name, maxMemberCount: max)
         }
     }
 
@@ -121,14 +146,17 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
 
     func sendInvite(_ email: String?) {
         if !showAlertIfNeeded(email: email) {
-            let row = rowCount
+            let row = members.count
             sendInvite(email, team: team) { [weak self] (member, error) in
                 if let member = member {
                     let emails = self?.members.compactMap { $0.email } ?? []
                     if emails.contains(obj: email) == false {
-                        self?.members.append(member)
+                        self?.members.append(TeamEdit.Member(email: member.email ?? "",
+                                                             me: member.me,
+                                                             isOwner: member.isTeamOwner))
                     }
-                    self?.presenter.refreshMemberList(at: [IndexPath(row: row, section: 0)])
+                    self?.presenter.refreshMemberList(at: [IndexPath(row: row,
+                                                                     section: TeamEdit.Section.members.rawValue)])
                 }
             }
         } else {

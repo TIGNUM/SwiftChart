@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -48,15 +48,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0e-yO-gd5">
-                                <rect key="frame" x="347" y="97" width="13" height="24"/>
+                                <rect key="frame" x="347.5" y="97" width="12.5" height="24"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQI-7J-CBx">
-                                <rect key="frame" x="24" y="129" width="366" height="17"/>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999464897260277" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ewj-h5-qQ7">
@@ -111,12 +105,31 @@
                                     <constraint firstItem="sC0-f4-jqN" firstAttribute="top" secondItem="Ewj-h5-qQ7" secondAttribute="top" constant="7" id="xe7-2L-MUZ"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TLa-m9-xLX">
-                                <rect key="frame" x="4" y="146" width="406" height="492"/>
-                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TLa-m9-xLX">
+                                <rect key="frame" x="4" y="137" width="406" height="501"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeamMemberEmailHeaderTableViewCell_ID" textLabel="MRd-Bj-bmF" rowHeight="30" style="IBUITableViewCellStyleDefault" id="4cD-Gn-98Z">
+                                        <rect key="frame" x="0.0" y="55.5" width="406" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4cD-Gn-98Z" id="3OO-eK-xIg">
+                                            <rect key="frame" x="0.0" y="0.0" width="406" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MRd-Bj-bmF">
+                                                    <rect key="frame" x="20" y="0.0" width="366" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999464897260277" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeamMemberEmailTableViewCell_ID" textLabel="Eh8-DW-FsP" rowHeight="30" style="IBUITableViewCellStyleDefault" id="kwi-39-kMK">
-                                        <rect key="frame" x="0.0" y="28" width="406" height="30"/>
+                                        <rect key="frame" x="0.0" y="85.5" width="406" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kwi-39-kMK" id="ba4-f2-RyL">
                                             <rect key="frame" x="0.0" y="0.0" width="406" height="30"/>
@@ -153,18 +166,15 @@
                             <constraint firstItem="yyt-pf-29B" firstAttribute="leading" secondItem="QRy-m0-vx1" secondAttribute="leading" constant="24" id="HVA-zv-xme"/>
                             <constraint firstItem="37o-LE-65h" firstAttribute="trailing" secondItem="LSk-So-LNw" secondAttribute="trailing" constant="24" id="IhG-g3-RXP"/>
                             <constraint firstItem="Ewj-h5-qQ7" firstAttribute="centerX" secondItem="QRy-m0-vx1" secondAttribute="centerX" id="MJH-Tc-N1N"/>
-                            <constraint firstItem="BQI-7J-CBx" firstAttribute="leading" secondItem="37o-LE-65h" secondAttribute="leading" constant="24" id="WsN-EU-X0l"/>
-                            <constraint firstItem="37o-LE-65h" firstAttribute="trailing" secondItem="BQI-7J-CBx" secondAttribute="trailing" constant="24" id="YLh-I1-vmD"/>
+                            <constraint firstItem="TLa-m9-xLX" firstAttribute="top" secondItem="Rxz-3F-I14" secondAttribute="bottom" constant="16" id="aOQ-vd-afW"/>
                             <constraint firstItem="b0e-yO-gd5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rxz-3F-I14" secondAttribute="trailing" constant="12" id="ah9-Hk-h2V"/>
                             <constraint firstAttribute="trailing" secondItem="Ewj-h5-qQ7" secondAttribute="trailing" constant="24" id="bWI-gN-7xZ"/>
-                            <constraint firstItem="BQI-7J-CBx" firstAttribute="top" secondItem="Rxz-3F-I14" secondAttribute="bottom" constant="8" id="dx4-h1-J7x"/>
                             <constraint firstItem="LSk-So-LNw" firstAttribute="bottom" secondItem="b0e-yO-gd5" secondAttribute="bottom" id="hCY-kE-5He"/>
                             <constraint firstItem="b0e-yO-gd5" firstAttribute="top" secondItem="Rxz-3F-I14" secondAttribute="top" id="hyq-7q-yhq"/>
                             <constraint firstItem="LSk-So-LNw" firstAttribute="leading" secondItem="b0e-yO-gd5" secondAttribute="trailing" id="oVO-IJ-JYg"/>
                             <constraint firstItem="b0e-yO-gd5" firstAttribute="bottom" secondItem="Rxz-3F-I14" secondAttribute="bottom" id="uzh-1H-IzX"/>
                             <constraint firstItem="Rxz-3F-I14" firstAttribute="top" secondItem="yyt-pf-29B" secondAttribute="bottom" constant="16" id="vMz-XM-hMe"/>
                             <constraint firstItem="LSk-So-LNw" firstAttribute="top" secondItem="b0e-yO-gd5" secondAttribute="top" id="wdq-1v-XA2"/>
-                            <constraint firstItem="TLa-m9-xLX" firstAttribute="top" secondItem="BQI-7J-CBx" secondAttribute="bottom" id="xZr-zH-8v8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="37o-LE-65h"/>
                     </view>
@@ -174,7 +184,6 @@
                         <outlet property="keyboardInputView" destination="qMK-PF-NhG" id="KBb-xB-hQS"/>
                         <outlet property="memberCounterLabel" destination="b0e-yO-gd5" id="YAx-pG-WPQ"/>
                         <outlet property="memberMaxLabel" destination="LSk-So-LNw" id="YME-Kc-wqF"/>
-                        <outlet property="subHeaderLabel" destination="BQI-7J-CBx" id="m3C-wz-AZg"/>
                         <outlet property="tableView" destination="TLa-m9-xLX" id="Izh-oe-20A"/>
                         <outlet property="teamTextField" destination="EB3-Yj-KEx" id="PVa-3b-Ebi"/>
                         <outlet property="textContainerView" destination="Ewj-h5-qQ7" id="h8u-q6-jGi"/>

@@ -13,7 +13,6 @@ final class TeamEditViewController: UIViewController {
 
     // MARK: - Properties
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var subHeaderLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textCounterLabel: UILabel!
     @IBOutlet private weak var textMaxCharsLabel: UILabel!
@@ -25,7 +24,8 @@ final class TeamEditViewController: UIViewController {
     @IBOutlet private weak var memberMaxLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     private var bottomConstraintInitialValue: CGFloat = 0
-    private var maxChars: Int?
+    private var max = 0
+    private var subHeader = ""
     private lazy var router: TeamEditRouterInterface = TeamEditRouter(viewController: self)
     var interactor: TeamEditInteractorInterface!
 
@@ -59,10 +59,6 @@ final class TeamEditViewController: UIViewController {
 
 // MARK: - Private
 private extension TeamEditViewController {
-    var isMemberInvite: Bool {
-        return TeamEdit.View.memberInvite == interactor.getType
-    }
-
     func updateTextCounter(_ newValue: String) {
         textCounterLabel.text = newValue
     }
@@ -71,76 +67,79 @@ private extension TeamEditViewController {
         keyboardInputView.updateRightButton(isEnabled)
     }
 
-    func hideOutlets(_ viewType: TeamEdit.View) {
-        tableView.isHidden = viewType != .memberInvite
-        memberMaxLabel.isHidden = viewType != .memberInvite
-        memberCounterLabel.isHidden = viewType != .memberInvite
-    }
-
-    func updateMemberCounter() {
-        memberCounterLabel.text = String(interactor.rowCount)
+    func hideOutlets(_ type: TeamEdit.View) {
+        tableView.isHidden = type != .memberInvite
+        memberMaxLabel.isHidden = type != .memberInvite
+        memberCounterLabel.isHidden = type != .memberInvite
     }
 }
 
 // MARK: - TeamEditViewControllerInterface
 extension TeamEditViewController: TeamEditViewControllerInterface {
-    func setupView() {
-        teamTextField.text = isMemberInvite ? "" : interactor.teamName
-        teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+    func setupView(_ type: TeamEdit.View, _ teamName: String?) {
+        teamTextField.text = teamName
+        teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView
-        teamTextField.keyboardType = interactor.getType == TeamEdit.View.memberInvite ? .emailAddress : .default
+        teamTextField.keyboardType = type == .memberInvite ? .emailAddress : .default
         keyboardInputView.delegate = self
-        hideOutlets(interactor.getType)
-        textCounterLabel.isHidden = isMemberInvite
-        textMaxCharsLabel.isHidden = isMemberInvite
+        hideOutlets(type)
+        textCounterLabel.isHidden = type == .memberInvite
+        textMaxCharsLabel.isHidden = type == .memberInvite
     }
 
-    func updateTextCounter(maxChars: Int?) {
-        self.maxChars = maxChars
-        if let maxChars = maxChars {
-            self.memberMaxLabel.text = "/\(maxChars)"
-            self.textMaxCharsLabel.text = "/\(maxChars)"
-        } else {
-            textCounterLabel.isHidden = true
-            textMaxCharsLabel.isHidden = true
-        }
-        textCounterLabel.isHidden = isMemberInvite
-        textMaxCharsLabel.isHidden = isMemberInvite
+    func updateTextCounter(type: TeamEdit.View, max: Int) {
+        self.max = max
+        memberMaxLabel.text = "/\(max)"
+        textMaxCharsLabel.text = "/\(max)"
+        textCounterLabel.isHidden = type == .memberInvite
+        textMaxCharsLabel.isHidden = type == .memberInvite
     }
 
     func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool) {
-        UIView.animate(withDuration: animated ? Animation.duration_06 : 0) { [weak self] in
-            self?.keyboardInputView.rightButton.setTitle(cta, for: .normal)
-            self?.headerLabel.text = header
-            self?.subHeaderLabel.text = String(format: subHeader, self?.interactor.teamName ?? "")
-            self?.titleLabel.text = description
+        self.subHeader = subHeader
+        if animated {
+            UIView.animate(withDuration: Animation.duration_04) {
+                self.keyboardInputView.rightButton.setTitle(cta, for: .normal)
+                self.headerLabel.text = header
+                self.titleLabel.text = description
+            }
+        } else {
+            keyboardInputView.rightButton.setTitle(cta, for: .normal)
+            headerLabel.text = header
+            titleLabel.text = description
         }
     }
 
-    func refreshView() {
+    func refreshView(_ type: TeamEdit.View) {
+        teamTextField.resignFirstResponder()
         teamTextField.text = nil
-        teamTextField.keyboardType = interactor.getType == TeamEdit.View.memberInvite ? .emailAddress : .default
+        teamTextField.keyboardType = type == .memberInvite ? .emailAddress : .default
         hideOutlets(interactor.getType)
         updateKeyboardInputView(false)
+        teamTextField.becomeFirstResponder()
     }
 
     func refreshMemberList(at indexPath: [IndexPath]) {
+        let memberCount = interactor.rowCount(in: TeamEdit.Section.members.rawValue)
         teamTextField.text = nil
         updateKeyboardInputView(false)
-        subHeaderLabel.isHidden = interactor.rowCount > 0
-        updateMemberCounter()
+        memberCounterLabel.text = String(memberCount)
 
-        tableView.beginUpdates()
-        tableView.insertRows(at: indexPath, with: .automatic)
-        tableView.endUpdates()
+        if memberCount > 0 {
+            tableView.performBatchUpdates({
+                self.tableView.insertRows(at: indexPath, with: .automatic)
+            }, completion: { _ in
+                if let at = indexPath.first {
+                    self.tableView.scrollToRow(at: at, at: .bottom, animated: true)
+                }
+            })
 
-        if let at = indexPath.first {
-            tableView.scrollToRow(at: at, at: .bottom, animated: true)
-        }
-
-        if interactor.canSendInvite == false {
-            view.endEditing(true)
+            if interactor.canSendInvite == false {
+                view.endEditing(true)
+            }
+        } else {
+            tableView.reloadData()
         }
     }
 
@@ -159,16 +158,11 @@ extension TeamEditViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        if isMemberInvite {
+        if interactor.getType == .memberInvite {
             return true
-        } else {
-            if let maxChars = maxChars {
-                let currentString = textField.text! as NSString
-                return currentString.replacingCharacters(in: range, with: string).count <= maxChars
-            } else {
-                return true
-            }
         }
+        let currentString = textField.text! as NSString
+        return currentString.replacingCharacters(in: range, with: string).count <= max
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -187,16 +181,26 @@ extension TeamEditViewController: UITextFieldDelegate {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension TeamEditViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return interactor.sectionCount
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor.rowCount
+        return interactor.rowCount(in: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let email = interactor.item(at: indexPath)
-        let identifier = R.reuseIdentifier.teamMemberEmailTableViewCell_ID.identifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = email ?? ""
-        return cell
+        switch TeamEdit.Section.allCases[indexPath.section] {
+        case .info:
+            let identifier = R.reuseIdentifier.teamMemberEmailHeaderTableViewCell_ID.identifier
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+            cell.textLabel?.text = subHeader
+            return cell
+        case .members:
+            let identifier = R.reuseIdentifier.teamMemberEmailTableViewCell_ID.identifier
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+            cell.textLabel?.text = interactor.item(at: indexPath)
+            return cell
+        }
     }
 }
 
