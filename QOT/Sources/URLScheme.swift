@@ -173,14 +173,21 @@ enum URLScheme: String {
         case .featureExplainer:  return ["contentID"]
         default: break
         }
-        return [""]
+        return []
     }
 
     func launchPathWithParameterValue(_ value: String) -> String {
         guard let urlSchemes = URLScheme.urlSchemes() else { return "tignumx://" }
         var urlString = "\(urlSchemes[0])://\(self.rawValue)"
-        if !queryNames.isEmpty {
-            urlString = "\(urlSchemes[0])://\(self.rawValue)?\(queryNames)=\(value)"
+        let queryNamesCount = queryNames.count
+        if queryNamesCount > 0 {
+            urlString = "\(urlSchemes[0])://\(self.rawValue)?"
+            for (index, queryName) in queryNames.enumerated() {
+                urlString.append("\(queryName)=\(value)")
+                if index + 1 < queryNamesCount {
+                    urlString.append("&")
+                }
+            }
         }
         return urlString
     }
