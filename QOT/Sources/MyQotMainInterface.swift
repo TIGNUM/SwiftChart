@@ -35,6 +35,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func getItem(at indexPath: IndexPath) -> MyX.Item?
 
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
+    func updateMainCell(cell: MyQotMainCollectionViewCell, at indexPath: IndexPath)
     func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void)
     func handleSelection(at indexPath: IndexPath)
 

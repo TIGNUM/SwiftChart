@@ -9,6 +9,11 @@
 import Foundation
 
 class SkeletonManager {
+    enum SubView {
+        case title
+        case subtitle
+        case otherView
+    }
     /*
      In order to use this manager to apply skeleton loading feature to different views all you have to do is call the addTitle, addSubtitle or addOtherView methods.
      This will automatically setup the skeleton according to the type of view and start animating it
@@ -64,18 +69,32 @@ class SkeletonManager {
 
     func hide() {
         for view in self.skeletonableTitles {
-            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
+            self.removeShimmerView(from: view, duration: dissolveAnimationDuration)
         }
         for view in self.skeletonableSubtitles {
-            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
+            self.removeShimmerView(from: view, duration: dissolveAnimationDuration)
         }
 
         for view in self.skeletonableOtherViews {
-            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
+            self.removeShimmerView(from: view, duration: dissolveAnimationDuration)
         }
         self.skeletonableTitles.removeAll()
         self.skeletonableSubtitles.removeAll()
         self.skeletonableOtherViews.removeAll()
+    }
+
+    func hide(_ subView: SkeletonManager.SubView) {
+        switch subView {
+        case .title:
+            skeletonableTitles.forEach { removeShimmerView(from: $0, duration: dissolveAnimationDuration) }
+            skeletonableTitles.removeAll()
+        case .subtitle:
+            skeletonableSubtitles.forEach { removeShimmerView(from: $0, duration: dissolveAnimationDuration) }
+            skeletonableSubtitles.removeAll()
+        case .otherView:
+            skeletonableOtherViews.forEach { removeShimmerView(from: $0, duration: dissolveAnimationDuration) }
+            skeletonableOtherViews.removeAll()
+        }
     }
 
     // MARK: Private
@@ -86,7 +105,10 @@ class SkeletonManager {
             button.titleLabel?.isHidden = true
             button.layer.borderWidth = 0
         }
-        let shimmerView = ShimmerAnimatedView.init(frame: view.frame, color: withBackgroundColor, animationDuration: shimmerAnimationDuration, lighterShimmer: lighterShimmer)
+        let shimmerView = ShimmerAnimatedView.init(frame: view.frame,
+                                                   color: withBackgroundColor,
+                                                   animationDuration: shimmerAnimationDuration,
+                                                   lighterShimmer: lighterShimmer)
         shimmerView.isUserInteractionEnabled = true
         UIView.transition(with: view, duration: dissolveAnimationDuration, options: [.transitionCrossDissolve], animations: {
             shimmerView.fillOverLayerBorder(for: shimmerView, superview: view)
@@ -94,13 +116,13 @@ class SkeletonManager {
         }, completion: nil)
     }
 
-    private func removeShimmerView(from view: UIView, withAnimationDuration: Double) {
+    private func removeShimmerView(from view: UIView, duration: Double) {
         for shimmerView in view.subviews where shimmerView as? ShimmerAnimatedView != nil {
             if let button = view as? UIButton {
                 button.titleLabel?.isHidden = false
                 restoreLayerBorderWidth(for: button)
             }
-            UIView.transition(with: view, duration: withAnimationDuration, options: [.transitionCrossDissolve], animations: {
+            UIView.transition(with: view, duration: duration, options: [.transitionCrossDissolve], animations: {
                 shimmerView.removeFromSuperview()
             }, completion: nil)
         }
@@ -110,14 +132,6 @@ class SkeletonManager {
 private class ShimmerAnimatedView: UIView {
     private var gradientLayer = CAGradientLayer()
     private var softEdgesImageView = UIImageView()
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
 
     convenience init(frame: CGRect = .zero, color: UIColor, animationDuration: CFTimeInterval, lighterShimmer: Bool) {
         self.init(frame: frame)
