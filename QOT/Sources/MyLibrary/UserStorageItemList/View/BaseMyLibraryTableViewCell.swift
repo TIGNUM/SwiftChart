@@ -23,7 +23,7 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure() {
-        skeletonManager.hide()
+        skeletonManager.hide(.otherView)
         let selectedView = UIView()
         ThemeView.level2Selected.apply(selectedView)
         selectedBackgroundView = selectedView
@@ -33,11 +33,13 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
 
 extension BaseMyLibraryTableViewCell {
     func setTitle(_ title: String?) {
+        skeletonManager.hide(.title)
         guard let titleText = title else { return }
         ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
     }
 
     func setInfoText(_ text: String?) {
+        skeletonManager.hide(.subtitle)
         guard let info = text else { return }
         ThemeText.myLibraryItemsItemDescription.apply(info, to: infoText)
     }

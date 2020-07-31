@@ -98,25 +98,33 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
             collectionView.deleteItems(at: indexPath)
         }, completion: { (done) in
             updateIndexPath.forEach { self.updadateCell(for: $0) }
+            self.teamHeader?.setUserInteraction(true)
         })
+
     }
 
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: indexPath)
         }, completion: { (done) in
             updateIndexPath.forEach { self.updadateCell(for: $0) }
+            self.teamHeader?.setUserInteraction(true)
         })
     }
 
     func reloadMainItems(updateIndexPath: [IndexPath]) {
+        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
             collectionView.reloadItems(at: updateIndexPath)
-        }, completion: nil)
+        }, completion: { _ in
+            self.teamHeader?.setUserInteraction(true)
+        })
     }
 
     func reload() {
@@ -136,6 +144,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 
     func getTeamHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell: HorizontalHeaderCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        teamHeader = cell.horizontalHeaderView
         interactor.updateTeamHeaderItems { (items) in
             cell.configure(headerItems: items)
         }
