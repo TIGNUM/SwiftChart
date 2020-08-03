@@ -669,7 +669,7 @@ extension DailyBriefInteractor {
         let visionSentence = "We are an inspired, enerfized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
         let title = "WEB TEAM TOBEVISION"
         let suggestion = "Practice recovery after stressful times to balance your autonomic nervous system."
-        let model = TeamVisionSuggestionModel(title: title, tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        let model = TeamVisionSuggestionModel(title: title, teamColor: "#5790DD", tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
     }
