@@ -371,6 +371,9 @@ public extension AppTextKey {
 
     static let daily_brief_team_to_be_vision_cta = AppTextKey("daily_brief.team_to_be_vision.cta")
     static let daily_brief_team_to_be_vision_subtitle = AppTextKey("daily_brief.team_to_be_vision.subtitle")
+    static let daily_brief_team_vision_suggestion_subtitle = AppTextKey("daily_brief.team_vision_suggestion.subtitle")
+    static let daily_brief_team_vision_suggestion_cta = AppTextKey("daily_brief.team_vision_suggestion.cta")
+    static let daily_brief_team_vision_suggestion_suggestion_title = AppTextKey("daily_brief.team_vision_suggestion.suggestion_title")
 
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")

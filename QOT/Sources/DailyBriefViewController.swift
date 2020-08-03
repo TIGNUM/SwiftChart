@@ -166,6 +166,8 @@ extension DailyBriefViewController {
                 return getExpertThoughts(tableView, indexPath, nil)
             case 17:
                 return getTeamToBeVisionCell(tableView, indexPath, nil)
+            case 18:
+                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -233,7 +235,7 @@ extension DailyBriefViewController {
         case .FROM_MY_COACH?:
             return getCoachMessageCell(tableView, indexPath, bucketItem as? FromMyCoachCellViewModel)
         case .FROM_TIGNUM?:
-            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
+            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
 //            return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
         case .BESPOKE?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
@@ -712,6 +714,15 @@ private extension DailyBriefViewController {
                                _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
         let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: teamVisionModel)
+        cell.delegate = self
+        return cell
+    }
+
+    func getTeamVisionSuggestionCell(_ tableView: UITableView,
+                                     _ indexPath: IndexPath,
+                                     _ teamVisionSuggestionModel: TeamVisionSuggestionModel?) -> UITableViewCell {
+        let cell: TeamVisionSuggestionCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: teamVisionSuggestionModel)
         cell.delegate = self
         return cell
     }

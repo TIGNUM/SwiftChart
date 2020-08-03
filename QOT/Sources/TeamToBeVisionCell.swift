@@ -31,7 +31,7 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
         let subtitle = AppTextService.get(.daily_brief_team_to_be_vision_subtitle)
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: subtitle)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
-        ThemeText.dailyBriefFromTignumTitle.apply(("Your Team ToBeVision is ready"), to: baseHeaderView?.subtitleTextView)
+        ThemeText.dailyBriefFromTignumTitle.apply(subtitle, to: baseHeaderView?.subtitleTextView)
         ThemeText.dailyBriefTitle.apply(("NAME OF TEAM").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.bespokeText.apply(model.teamVision, to: toBeVisionLabel)
         let ctaText = AppTextService.get(.daily_brief_team_to_be_vision_cta)
