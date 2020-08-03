@@ -22,9 +22,13 @@ final class TeamEditPresenter {
 
 // MARK: - Private
 private extension TeamEditPresenter {
-    func updateLabels(_ type: TeamEdit.View, animated: Bool) {
+    func updateLabels(_ type: TeamEdit.View, teamName: String? = nil, animated: Bool) {
+        var subHeader = TeamEdit.subHeader.label(type: type)
+        if type == .memberInvite {
+            subHeader = String(format: subHeader, teamName ?? "")
+        }
         viewController?.setupLabels(header: TeamEdit.header.label(type: type),
-                                    subHeader: TeamEdit.subHeader.label(type: type),
+                                    subHeader: subHeader,
                                     description: TeamEdit.description.label(type: type),
                                     cta: TeamEdit.cta.label(type: type),
                                     animated: animated)
@@ -37,19 +41,19 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
         viewController?.refreshMemberList(at: indexPath)
     }
 
-    func prepareMemberInvite(_ team: QDMTeam?) {
-        updateLabels(.memberInvite, animated: true)
-        viewController?.updateTextCounter(maxChars: nil)
-        viewController?.refreshView()
+    func prepareMemberInvite(_ teamName: String?, maxMemberCount: Int) {
+        updateLabels(.memberInvite, teamName: teamName, animated: true)
+        viewController?.updateTextCounter(type: .memberInvite, max: maxMemberCount)
+        viewController?.refreshView(.memberInvite)
     }
 
-    func setupView(_ type: TeamEdit.View) {
-        viewController?.setupView()
+    func setupView(_ type: TeamEdit.View, teamName: String?) {
+        viewController?.setupView(type, teamName)
         updateLabels(type, animated: false)
     }
 
-    func setupTextCounter(maxChars: Int) {
-        viewController?.updateTextCounter(maxChars: maxChars)
+    func setupTextCounter(type: TeamEdit.View, max: Int) {
+        viewController?.updateTextCounter(type: type, max: max)
     }
 
     func presentErrorAlert(_ title: String, _ message: String) {
