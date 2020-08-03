@@ -23,13 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="&quot; I am a great listener in high pressure meetings&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rdq-1D-hq4">
-                    <rect key="frame" x="20" y="143.5" width="367" height="19.5"/>
+                    <rect key="frame" x="24" y="143.5" width="359" height="38.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="What could you do today to become that statement?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tz-ZK-ZO6">
-                    <rect key="frame" x="20" y="261" width="367" height="17"/>
+                    <rect key="frame" x="24" y="261" width="359" height="17"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggestion for today:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXp-zV-U2l">
-                    <rect key="frame" x="24" y="185" width="359" height="68"/>
+                    <rect key="frame" x="24" y="198" width="359" height="59"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -65,18 +65,18 @@
             <constraints>
                 <constraint firstItem="nod-F5-G7J" firstAttribute="trailing" secondItem="nXp-zV-U2l" secondAttribute="trailing" constant="24" id="1lC-Wc-PWi"/>
                 <constraint firstItem="nod-F5-G7J" firstAttribute="trailing" secondItem="bsc-m9-NNm" secondAttribute="trailing" constant="24" id="5d0-0z-mt3"/>
-                <constraint firstItem="7tz-ZK-ZO6" firstAttribute="top" secondItem="nXp-zV-U2l" secondAttribute="bottom" constant="8" id="61K-0z-zpE"/>
+                <constraint firstItem="7tz-ZK-ZO6" firstAttribute="top" secondItem="nXp-zV-U2l" secondAttribute="bottom" constant="4" id="61K-0z-zpE"/>
                 <constraint firstItem="Rdq-1D-hq4" firstAttribute="top" secondItem="jyt-BR-iGw" secondAttribute="bottom" constant="15.5" id="DWZ-SG-bl3"/>
                 <constraint firstItem="nod-F5-G7J" firstAttribute="bottom" secondItem="bsc-m9-NNm" secondAttribute="bottom" constant="48" id="Epy-Ez-7Fu"/>
                 <constraint firstItem="bsc-m9-NNm" firstAttribute="top" secondItem="7tz-ZK-ZO6" secondAttribute="bottom" constant="24" id="FVh-Vm-QEG"/>
                 <constraint firstItem="jyt-BR-iGw" firstAttribute="top" secondItem="D3C-Ea-S1y" secondAttribute="top" id="G5L-7s-DQT"/>
-                <constraint firstItem="nXp-zV-U2l" firstAttribute="top" secondItem="Rdq-1D-hq4" secondAttribute="bottom" constant="22" id="Mln-qy-mFK"/>
-                <constraint firstItem="nod-F5-G7J" firstAttribute="trailing" secondItem="7tz-ZK-ZO6" secondAttribute="trailing" constant="20" id="QCt-VX-r73"/>
-                <constraint firstItem="Rdq-1D-hq4" firstAttribute="leading" secondItem="nod-F5-G7J" secondAttribute="leading" constant="20" id="TfN-fI-z6n"/>
+                <constraint firstItem="nXp-zV-U2l" firstAttribute="top" secondItem="Rdq-1D-hq4" secondAttribute="bottom" constant="16" id="Mln-qy-mFK"/>
+                <constraint firstItem="nod-F5-G7J" firstAttribute="trailing" secondItem="7tz-ZK-ZO6" secondAttribute="trailing" constant="24" id="QCt-VX-r73"/>
+                <constraint firstItem="Rdq-1D-hq4" firstAttribute="leading" secondItem="nod-F5-G7J" secondAttribute="leading" constant="24" id="TfN-fI-z6n"/>
                 <constraint firstItem="nod-F5-G7J" firstAttribute="trailing" secondItem="jyt-BR-iGw" secondAttribute="trailing" id="ijl-rU-K6e"/>
-                <constraint firstItem="7tz-ZK-ZO6" firstAttribute="leading" secondItem="nod-F5-G7J" secondAttribute="leading" constant="20" id="kAn-iX-FAb"/>
+                <constraint firstItem="7tz-ZK-ZO6" firstAttribute="leading" secondItem="nod-F5-G7J" secondAttribute="leading" constant="24" id="kAn-iX-FAb"/>
                 <constraint firstItem="nXp-zV-U2l" firstAttribute="leading" secondItem="nod-F5-G7J" secondAttribute="leading" constant="24" id="q3S-vI-KP1"/>
-                <constraint firstItem="nod-F5-G7J" firstAttribute="trailing" secondItem="Rdq-1D-hq4" secondAttribute="trailing" constant="20" id="wV7-iq-4Ox"/>
+                <constraint firstItem="nod-F5-G7J" firstAttribute="trailing" secondItem="Rdq-1D-hq4" secondAttribute="trailing" constant="24" id="wV7-iq-4Ox"/>
                 <constraint firstItem="jyt-BR-iGw" firstAttribute="leading" secondItem="nod-F5-G7J" secondAttribute="leading" id="zuz-OH-Ib7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

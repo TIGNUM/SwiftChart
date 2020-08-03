@@ -1075,7 +1075,7 @@ enum ThemeText {
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
-             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled,
+             .dailyInsightsChartBarLabelUnselected, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled,
              .MediumBodySand:
             return Palette.sand40
         case .performanceSubtitle:
@@ -1120,7 +1120,7 @@ enum ThemeText {
              .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
              .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
              .mySprintDetailsProgress, .mySprintDetailsTextRegular, .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody,
-             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .shpiContent, .qotAlertMessage, .suggestionMyBest, .asterixText, .memberEmail:
+             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .shpiContent, .qotAlertMessage, .suggestionMyBest, .asterixText, .memberEmail, .dailyInsightsTbvAdvice:
             return Palette.sand70
         case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage, .registrationEmailError,
              .registrationCodeDisclaimerError:

@@ -31,19 +31,20 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(button)
     }
 
-    func configure(with: TeamVisionSuggestionModel?) {
-        guard let model = with else { return }
+    func configure(model: TeamVisionSuggestionModel?) {
         skeletonManager.hide()
         let subtitle = AppTextService.get(.daily_brief_team_vision_suggestion_subtitle)
-        baseHeaderView?.configure(title: model.title,
+        baseHeaderView?.configure(title: model?.title,
                                   subtitle: subtitle)
+        guard let teamColor = model?.teamColor else { return }
+        baseHeaderView?.titleLabel.textColor = UIColor(hex: teamColor)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         let cta = AppTextService.get(.daily_brief_team_vision_suggestion_cta)
         button.setTitle(cta, for: .normal)
         button.setButtonContentInset(padding: 16)
-        tbvSentence.text = model.tbvSentence
-        ThemeText.dailyInsightsTbvAdvice.apply(model.adviceText, to: adviceText)
+        tbvSentence.text = model?.tbvSentence
+        ThemeText.dailyInsightsTbvAdvice.apply(model?.adviceText, to: adviceText)
         let suggestion = AppTextService.get(.daily_brief_team_vision_suggestion_suggestion_title)
         ThemeText.dailyInsightsTbvAdvice.apply(suggestion, to: suggestionTitle)
         button.setTitle(AppTextService.get(.daily_brief_section_daily_insights_tbv_button_view_my_tbv), for: .normal)

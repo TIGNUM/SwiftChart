@@ -40,5 +40,6 @@ struct DailyBriefViewModel {
         case weather
         case mindsetShifter
         case teamToBeVision
+        case teamVisionSuggestion
     }
 }

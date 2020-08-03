@@ -205,7 +205,8 @@ extension DailyBriefViewController {
                 return UITableViewCell()
             }
         case .EXPLORE?:
-            return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
+            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
+//            return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
         case .SPRINT_CHALLENGE?:
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .ME_AT_MY_BEST?:
@@ -235,8 +236,7 @@ extension DailyBriefViewController {
         case .FROM_MY_COACH?:
             return getCoachMessageCell(tableView, indexPath, bucketItem as? FromMyCoachCellViewModel)
         case .FROM_TIGNUM?:
-            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
-//            return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
+            return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
         case .BESPOKE?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .DEPARTURE_INFO?:
@@ -700,6 +700,11 @@ private extension DailyBriefViewController {
         return cell
     }
 
+    /**
+     * Method name: getWeatherCellgetGuidedTrack.
+     * Description: Placeholder to display the Weather Information.
+     * Parameters: [tableView], [IndexPath]
+     */
     func getWeatherCell(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
@@ -709,6 +714,11 @@ private extension DailyBriefViewController {
         return cell
     }
 
+    /**
+     * Method name :getTeamToBeVisionCell.
+     * Description: Placeholder to display the latest Team To be Vision created.
+     * Parameters: [tableView], [IndexPath]
+     */
     func getTeamToBeVisionCell(_ tableView: UITableView,
                                _ indexPath: IndexPath,
                                _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
@@ -718,11 +728,16 @@ private extension DailyBriefViewController {
         return cell
     }
 
+    /**
+     * Method name:getTeamVisionSuggestionCell.
+     * Description: Placeholder to display the Team To Bbe Vision Suggestion.
+     * Parameters: [tableView], [IndexPath]
+     */
     func getTeamVisionSuggestionCell(_ tableView: UITableView,
                                      _ indexPath: IndexPath,
                                      _ teamVisionSuggestionModel: TeamVisionSuggestionModel?) -> UITableViewCell {
         let cell: TeamVisionSuggestionCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: teamVisionSuggestionModel)
+        cell.configure(model: teamVisionSuggestionModel)
         cell.delegate = self
         return cell
     }
@@ -768,6 +783,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(MindsetShifterCell.self)
         tableView.registerDequeueable(ExpertThoughtsTableViewCell.self)
         tableView.registerDequeueable(TeamToBeVisionCell.self)
+        tableView.registerDequeueable(TeamVisionSuggestionCell.self)
     }
 
     func scrollToSection(at: Int) {

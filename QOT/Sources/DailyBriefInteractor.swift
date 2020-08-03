@@ -241,8 +241,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .dailyCheckIn2,
                                                         elements: strongSelf.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
                 case .EXPLORE?:
-                    sectionDataList.append(ArraySection(model: .explore,
-                                                        elements: strongSelf.createExploreModel(exploreBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+                                                                                          elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
+//                    sectionDataList.append(ArraySection(model: .explore,
+//                                                        elements: strongSelf.createExploreModel(exploreBucket: bucket)))
                 case .ME_AT_MY_BEST?:
                     sectionDataList.append(ArraySection(model: .meAtMyBest,
                                                         elements: strongSelf.createMeAtMyBest(meAtMyBestBucket: bucket)))
@@ -262,10 +264,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .goodToKnow,
                                                         elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
                 case .FROM_TIGNUM?:
-                    sectionDataList.append(ArraySection(model: .teamToBeVision,
-                                                        elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
-//                    sectionDataList.append(ArraySection(model: .fromTignum,
-//                                                        elements: strongSelf.createFromTignum(fromTignum: bucket)))
+                    sectionDataList.append(ArraySection(model: .fromTignum,
+                                                        elements: strongSelf.createFromTignum(fromTignum: bucket)))
                 case .BESPOKE?:
                     sectionDataList.append(ArraySection(model: .bespoke,
                                                          elements: strongSelf.createProductsWeLove(productsBucket: bucket)))
@@ -319,6 +319,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .TEAM_TO_BE_VISION?:
                     sectionDataList.append(ArraySection(model: .teamToBeVision,
                                                         elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
+                case .TEAM_VISION_SUGGESTION?:
+                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -656,6 +659,19 @@ extension DailyBriefInteractor {
         let model = TeamToBeVisionCellViewModel(title: teamName, teamVision: teamVisionText, domainModel: teamVisionBucket)
         visionList.append(model)
         return visionList
+    }
+
+    func createTeamVisionSuggestionModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var teamVisionList: [BaseDailyBriefViewModel] = []
+        guard let collection = teamVisionBucket.contentCollections?.first else {
+            return teamVisionList
+        }
+        let visionSentence = "We are an inspired, enerfized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
+        let title = "WEB TEAM TOBEVISION"
+        let suggestion = "Practice recovery after stressful times to balance your autonomic nervous system."
+        let model = TeamVisionSuggestionModel(title: title, tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        teamVisionList.append(model)
+        return teamVisionList
     }
 
     // MARK: - Products we love
