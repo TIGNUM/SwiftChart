@@ -29,6 +29,10 @@ final class HorizontalHeaderView: UIView {
         collectionView.reloadData()
         centerSelectedItem()
     }
+
+    func setUserInteraction(_ enabled: Bool) {
+        collectionView.visibleCells.forEach { $0.isUserInteractionEnabled = enabled }
+    }
 }
 
 private extension HorizontalHeaderView {

@@ -10,7 +10,7 @@ import UIKit
 
 final class HorizontalHeaderCollectionViewCell: UICollectionViewCell, Dequeueable {
 
-    @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
+    @IBOutlet weak var horizontalHeaderView: HorizontalHeaderView!
 
     func configure(headerItems: [Team.Item]) {
         horizontalHeaderView.configure(headerItems: headerItems)

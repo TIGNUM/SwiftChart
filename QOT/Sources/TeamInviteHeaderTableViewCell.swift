@@ -14,16 +14,22 @@ final class TeamInviteHeaderTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var teamCountLabel: UILabel!
     @IBOutlet private weak var noteLabel: UILabel!
+    private lazy var skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         noteLabel.isHidden = true
         teamCountLabel.isHidden = true
+        skeletonManager.addTitle(headerLabel)
+        skeletonManager.addSubtitle(contentLabel)
+        skeletonManager.addSubtitle(teamCountLabel)
+        skeletonManager.addSubtitle(noteLabel)
     }
 
     func configure(header: String?, content: String?, teamCount: String?, note: String?) {
         noteLabel.isHidden = note == nil
         teamCountLabel.isHidden = teamCount == nil
+        skeletonManager.hide()
         ThemeText.myQOTPrepTitle.apply(header, to: headerLabel)
         ThemeText.tbvCustomizeBody.apply(content, to: contentLabel)
         ThemeText.registrationCodeDescriptionEmail.apply(teamCount, to: teamCountLabel)
