@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TeamInvitationCell" customModule="TIGNUM_X" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="261"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="296"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTl-4E-qt8">
@@ -21,25 +21,46 @@
                         <constraint firstAttribute="height" constant="128" id="B4f-ai-BlH"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E97-ee-Cpg">
-                    <rect key="frame" x="24" y="144" width="366" height="15"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E97-ee-Cpg">
+                    <rect key="frame" x="24" y="144" width="366" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFH-9U-1g8">
-                    <rect key="frame" x="282" y="191" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                    <rect key="frame" x="282" y="216" width="46" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="LpI-6X-BUZ"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v24-1P-9jN">
-                    <rect key="frame" x="344" y="191" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                    <rect key="frame" x="344" y="216" width="46" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Abe-co-nQV"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tlM-d5-r0D">
+                    <rect key="frame" x="344" y="216" width="46" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="sSq-HT-cse"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="tlM-d5-r0D" firstAttribute="top" secondItem="E97-ee-Cpg" secondAttribute="bottom" constant="32" id="3D1-Kg-rlx"/>
                 <constraint firstItem="mTl-4E-qt8" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="5gE-gt-2iG"/>
                 <constraint firstItem="E97-ee-Cpg" firstAttribute="top" secondItem="mTl-4E-qt8" secondAttribute="bottom" constant="16" id="CY0-bz-D9n"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="tlM-d5-r0D" secondAttribute="bottom" constant="40" id="D2C-Kv-JP4"/>
                 <constraint firstItem="CFH-9U-1g8" firstAttribute="centerY" secondItem="v24-1P-9jN" secondAttribute="centerY" id="GgN-nU-jI4"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="E97-ee-Cpg" secondAttribute="trailing" constant="24" id="NVY-zO-6zz"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="v24-1P-9jN" secondAttribute="bottom" constant="40" id="P1P-E9-BQa"/>
@@ -48,6 +69,7 @@
                 <constraint firstItem="mTl-4E-qt8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ag4-pZ-cfi"/>
                 <constraint firstItem="mTl-4E-qt8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mx1-KH-46c"/>
                 <constraint firstItem="E97-ee-Cpg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="oZw-R3-xWh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tlM-d5-r0D" secondAttribute="trailing" constant="24" id="vxi-Sf-WNW"/>
                 <constraint firstItem="v24-1P-9jN" firstAttribute="leading" secondItem="CFH-9U-1g8" secondAttribute="trailing" constant="16" id="xF8-wh-3d6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -57,8 +79,9 @@
                 <outlet property="headerView" destination="mTl-4E-qt8" id="G0n-dw-0Oq"/>
                 <outlet property="invitationLabel" destination="E97-ee-Cpg" id="lms-LU-r7B"/>
                 <outlet property="joinButton" destination="v24-1P-9jN" id="SHa-Tp-qpA"/>
+                <outlet property="seePendingButton" destination="tlM-d5-r0D" id="rVf-fC-tcp"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="-59.263392857142854"/>
+            <point key="canvasLocation" x="137.68115942028987" y="-47.544642857142854"/>
         </view>
     </objects>
 </document>

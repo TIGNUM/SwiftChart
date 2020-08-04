@@ -374,6 +374,15 @@ public extension AppTextKey {
     static let daily_brief_team_vision_suggestion_subtitle = AppTextKey("daily_brief.team_vision_suggestion.subtitle")
     static let daily_brief_team_vision_suggestion_cta = AppTextKey("daily_brief.team_vision_suggestion.cta")
     static let daily_brief_team_vision_suggestion_suggestion_title = AppTextKey("daily_brief.team_vision_suggestion.suggestion_title")
+    static let daily_brief_team_invitation_one_team_statement = AppTextKey("daily_brief.team_invitation.one_team_statement")
+//    " has invited you to be part of"
+    static let daily_brief_team_invitation_several_teams_statement = AppTextKey("daily_brief.team_invitation.several_teams_statement")
+//    "You have been invited to join"
+    static let daily_brief_team_invitation_belonging_sentence = AppTextKey("daily_brief.team_invitation.belonging_sentence")
+    static let daily_brief_team_invitation_decline_cta = AppTextKey("daily_brief.team_invitation.decline_cta")
+    static let daily_brief_team_invitation_join_cta = AppTextKey("daily_brief.team_invitation.join_cta")
+    static let daily_brief_team_invitation_see_pending_cta = AppTextKey("daily_brief.team_invitation.see_pending_cta")
+
 
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")

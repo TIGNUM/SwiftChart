@@ -168,6 +168,8 @@ extension DailyBriefViewController {
                 return getTeamToBeVisionCell(tableView, indexPath, nil)
             case 18:
                 return getTeamVisionSuggestionCell(tableView, indexPath, nil)
+            case 19:
+                return getTeamInvitationCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -256,8 +258,10 @@ extension DailyBriefViewController {
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         case .MINDSET_SHIFTER?:
             return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
-//        case .TEAM_TO_BE_VISION?:
-//            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
+        case .TEAM_TO_BE_VISION?:
+            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
+        case .TEAM_VISION_SUGGESTION?:
+            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
 
         default:
            return UITableViewCell()
@@ -739,6 +743,20 @@ private extension DailyBriefViewController {
         let cell: TeamVisionSuggestionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(model: teamVisionSuggestionModel)
         cell.delegate = self
+        return cell
+    }
+
+    /**
+     * Method name:getTeamInvitationCell.
+     * Description: Placeholder to display the Team To Bbe Vision Suggestion.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getTeamInvitationCell(_ tableView: UITableView,
+                               _ indexPath: IndexPath,
+                               _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
+        let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: teamInvitationModel)
+        //           cell.delegate = self
         return cell
     }
 }

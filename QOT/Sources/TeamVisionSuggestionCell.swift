@@ -47,8 +47,6 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
         ThemeText.dailyInsightsTbvAdvice.apply(model?.adviceText, to: adviceText)
         let suggestion = AppTextService.get(.daily_brief_team_vision_suggestion_suggestion_title)
         ThemeText.dailyInsightsTbvAdvice.apply(suggestion, to: suggestionTitle)
-        button.setTitle(AppTextService.get(.daily_brief_section_daily_insights_tbv_button_view_my_tbv), for: .normal)
-        button.setButtonContentInset(padding: 16)
     }
 }
 
