@@ -207,7 +207,7 @@ extension DailyBriefViewController {
                 return UITableViewCell()
             }
         case .EXPLORE?:
-            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
+           return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
 //            return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
         case .SPRINT_CHALLENGE?:
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
@@ -262,7 +262,8 @@ extension DailyBriefViewController {
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
         case .TEAM_VISION_SUGGESTION?:
             return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
-
+        case .TEAM_INVITATION?:
+            return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
         default:
            return UITableViewCell()
         }
@@ -802,6 +803,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ExpertThoughtsTableViewCell.self)
         tableView.registerDequeueable(TeamToBeVisionCell.self)
         tableView.registerDequeueable(TeamVisionSuggestionCell.self)
+        tableView.registerDequeueable(TeamInvitationCell.self)
     }
 
     func scrollToSection(at: Int) {

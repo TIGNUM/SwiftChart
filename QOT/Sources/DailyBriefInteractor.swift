@@ -198,6 +198,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .teamToBeVision,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamInvitation,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -241,8 +245,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .dailyCheckIn2,
                                                         elements: strongSelf.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
                 case .EXPLORE?:
-                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
-                                                                                          elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .teamInvitation,
+                                                                           elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
 //                    sectionDataList.append(ArraySection(model: .explore,
 //                                                        elements: strongSelf.createExploreModel(exploreBucket: bucket)))
                 case .ME_AT_MY_BEST?:
@@ -322,6 +326,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .TEAM_VISION_SUGGESTION?:
                     sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
                                                         elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
+                case .TEAM_INVITATION?:
+                    sectionDataList.append(ArraySection(model: .teamInvitation,
+                                                        elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -648,7 +655,7 @@ extension DailyBriefInteractor {
         return mindsetList
     }
 
-    // MARK: - TeamToBeVision
+    // MARK: - New TeamToBeVision
     func createTeamToBeVisionViewModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var visionList: [BaseDailyBriefViewModel] = []
         guard let collection = teamVisionBucket.contentCollections?.first else {
@@ -661,6 +668,7 @@ extension DailyBriefInteractor {
         return visionList
     }
 
+    // MARK: - TeamToBeVision Sentence
     func createTeamVisionSuggestionModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var teamVisionList: [BaseDailyBriefViewModel] = []
         guard let collection = teamVisionBucket.contentCollections?.first else {
@@ -672,6 +680,19 @@ extension DailyBriefInteractor {
         let model = TeamVisionSuggestionModel(title: title, teamColor: "#5790DD", tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
+    }
+
+    // MARK: - Team Invitation
+    func createTeamInvitation(invitationBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var invitationList: [BaseDailyBriefViewModel] = []
+        guard let collection = invitationBucket.contentCollections?.first else {
+            return invitationList
+        }
+        let teamOwner = "n.leon@tignum.com"
+        let teamName = "WEB TEAM"
+        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: [teamName], domainModel: invitationBucket)
+        invitationList.append(model)
+        return invitationList
     }
 
     // MARK: - Products we love
