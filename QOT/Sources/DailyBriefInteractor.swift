@@ -689,8 +689,8 @@ extension DailyBriefInteractor {
             return invitationList
         }
         let teamOwner = "n.leon@tignum.com"
-        let teamName = "WEB TEAM"
-        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: [teamName], domainModel: invitationBucket)
+        let teamNames = ["WEB TEAM", "iOS TEAM"]
+        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, domainModel: invitationBucket)
         invitationList.append(model)
         return invitationList
     }

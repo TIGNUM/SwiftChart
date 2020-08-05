@@ -49,7 +49,7 @@ final class AboutMeCell: BaseDailyBriefCell {
         footnoteHeightConstraint.constant = calculateFooterHeight(for: self.footnoteView.frame.width)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
     }
-
+    
     private func calculateFooterHeight(for width: CGFloat) -> CGFloat {
         // setting minimum to 1
         var height: CGFloat = 1

@@ -385,6 +385,9 @@ public extension AppTextKey {
     static let daily_brief_team_invitation_see_pending_cta = AppTextKey("daily_brief.team_invitation.see_pending_cta")
     static let daily_brief_team_invitation_title = AppTextKey("daily_brief.team_invitation.title")
 
+    static let daily_brief_team_invitation_and_label = AppTextKey("daily_brief.team_invitation.and_label")
+    static let daily_brief_team_invitation_other_teams_label = AppTextKey("daily_brief.team_invitation.other_teams_label")
+
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
     static let generic_event_removed_alert_event_removed_body = AppTextKey("generic.event_removed.alert.event_removed.body")

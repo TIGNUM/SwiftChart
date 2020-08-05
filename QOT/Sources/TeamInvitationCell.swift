@@ -17,6 +17,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
     @IBOutlet private weak var joinButton: AnimatedButton!
     @IBOutlet private weak var seePendingButton: UIButton!
     private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +40,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
                                   subtitle: nil)
         joinButton.setTitle(joinCta, for: .normal)
         let text1 = AppTextService.get(.daily_brief_team_invitation_one_team_statement)
+        let belongingText = AppTextService.get(.daily_brief_team_invitation_belonging_sentence)
         let text2 = AppTextService.get(.daily_brief_team_invitation_several_teams_statement)
 
         joinButton.setButtonContentInset(padding: 16)
@@ -48,19 +50,36 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         declineButton.setButtonContentInset(padding: 16)
         seePendingButton.setTitle(pendingCta, for: .normal)
         seePendingButton.setButtonContentInset(padding: 16)
-        seePendingButton.isHidden = model?.teamNames.count == 1
-        guard let count = model?.teamNames.count else { return }
+        seePendingButton.isHidden = model?.teamNames?.count == 1
+        guard let count = model?.teamNames?.count else { return }
+        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 16), .foregroundColor: UIColor.sand]
+        let sand70Attributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.sand70]
         if count > 1 {
             joinButton.isHidden = true
             declineButton.isHidden = true
-            let team2 = model?.teamNames[1]
-            let team3 = model?.teamNames[2]
-            invitationLabel.text = text2 + model?.teamNames.first + " and " + team2 
+            guard let teamNames = model?.teamNames else { return }
+            let attributedString = NSMutableAttributedString(string: text2 + " ", attributes: sand70Attributes)
+            let firstTeamString = NSMutableAttributedString(string: (teamNames.first ?? "") + " ", attributes: sandAttributes)
+            let andText = AppTextService.get(.daily_brief_team_invitation_and_label) + " "
+            let andString = NSMutableAttributedString(string: andText, attributes: sand70Attributes)
+            let otherTeamsText = AppTextService.get(.daily_brief_team_invitation_other_teams_label)
+            let teamCount = String(teamNames.count - 1) + " "
+            let otherTeamsString = NSMutableAttributedString(string: teamCount + otherTeamsText, attributes: sandAttributes)
+            attributedString.append(firstTeamString)
+            attributedString.append(andString)
+            attributedString.append(otherTeamsString)
+            invitationLabel.attributedText = attributedString
         } else {
             guard let teamOwner = model?.teamOwner else { return }
-            guard let teamName = model?.teamNames.first else { return }
-            invitationLabel.text = teamOwner + " " + text1 + " " + (teamName ?? "")
+            guard let teamNames = model?.teamNames else { return }
+            let attributedString = NSMutableAttributedString(string: teamOwner + " ", attributes: sandAttributes)
+            let teamNameString = NSMutableAttributedString(string: (teamNames.first ?? "" + " "), attributes: sandAttributes)
+            let textString =  NSMutableAttributedString(string: text1 + " ", attributes: sand70Attributes)
+            let belongingTextString = NSMutableAttributedString(string: "\n" + belongingText, attributes: sand70Attributes)
+            attributedString.append(textString)
+            attributedString.append(teamNameString)
+            attributedString.append(belongingTextString)
+            invitationLabel.attributedText = attributedString
         }
     }
-
 }
