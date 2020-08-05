@@ -16,6 +16,7 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
     @IBOutlet private weak var ctaButton: AnimatedButton!
     weak var delegate: DailyBriefViewController?
     @IBOutlet private weak var toBeVisionLabel: UILabel!
+    private var team: QDMTeam?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,11 +29,11 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
     func configure(with viewModel: TeamToBeVisionCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
+        self.team = model.team
         let subtitle = AppTextService.get(.daily_brief_team_to_be_vision_subtitle)
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: subtitle)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefFromTignumTitle.apply(subtitle, to: baseHeaderView?.subtitleTextView)
-        ThemeText.dailyBriefTitle.apply(("NAME OF TEAM").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.bespokeText.apply(model.teamVision, to: toBeVisionLabel)
         let ctaText = AppTextService.get(.daily_brief_team_to_be_vision_cta)
         ctaButton.setTitle(ctaText, for: .normal)
@@ -43,8 +44,8 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
     }
 
     @IBAction func ctaButtonTapped(_ sender: Any) {
-//        link?.launch()
-//        trackUserEvent(.OPEN, value: link?.appLinkId, stringValue: "FROM_TIGNUM", valueType: "APP_LINK", action: .TAP)
+        guard let team = team else { return }
+        delegate?.showTBV(team: team)
     }
 
     override func updateConstraints() {

@@ -198,8 +198,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .teamToBeVision,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
-        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
-                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+//        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+//                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .teamInvitation,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
@@ -245,10 +245,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .dailyCheckIn2,
                                                         elements: strongSelf.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
                 case .EXPLORE?:
-                    sectionDataList.append(ArraySection(model: .teamInvitation,
-                                                                           elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
-//                    sectionDataList.append(ArraySection(model: .explore,
-//                                                        elements: strongSelf.createExploreModel(exploreBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .explore,
+                                                        elements: strongSelf.createExploreModel(exploreBucket: bucket)))
                 case .ME_AT_MY_BEST?:
                     sectionDataList.append(ArraySection(model: .meAtMyBest,
                                                         elements: strongSelf.createMeAtMyBest(meAtMyBestBucket: bucket)))
@@ -323,9 +321,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .TEAM_TO_BE_VISION?:
                     sectionDataList.append(ArraySection(model: .teamToBeVision,
                                                         elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
-                case .TEAM_VISION_SUGGESTION?:
-                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
-                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
+//                case .TEAM_VISION_SUGGESTION?:
+//                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+//                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
                 case .TEAM_INVITATION?:
                     sectionDataList.append(ArraySection(model: .teamInvitation,
                                                         elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
@@ -658,12 +656,21 @@ extension DailyBriefInteractor {
     // MARK: - New TeamToBeVision
     func createTeamToBeVisionViewModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var visionList: [BaseDailyBriefViewModel] = []
-        guard let collection = teamVisionBucket.contentCollections?.first else {
-            return visionList
+        var visionAndDates: [(QDMTeamToBeVision, Date)] = [(QDMTeamToBeVision(), Date())]
+        teamVisionBucket.teamToBeVisions?.forEach { (vision) in
+            let dates: [Date] = [vision.createdAt ?? Date.distantPast, vision.modifiedAt ?? Date.distantPast, vision.modifiedOnDevice ?? Date.distantPast, vision.createdOnDevice ?? Date.distantPast]
+            let mostRecentDate = dates.max()
+            guard let recentDate = mostRecentDate else { return }
+            let dateVision = (vision, recentDate)
+            visionAndDates.append(dateVision)
         }
-        let teamVisionText = "We are an inspired, energized, dynamic and agile group of people who maximize the impact and performance of everyone we touch - both inside and outside of TIGNUM"
-        let teamName = "WEB TEAM"
-        let model = TeamToBeVisionCellViewModel(title: teamName, teamVision: teamVisionText, domainModel: teamVisionBucket)
+        visionAndDates.removeFirst()
+        visionAndDates.sort(by: {$0.1 > $1.1})
+        let latestVision = visionAndDates.first?.0
+        let visionText = latestVision?.text
+        let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
+        let title = team?.name
+        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, domainModel: teamVisionBucket)
         visionList.append(model)
         return visionList
     }
@@ -671,9 +678,9 @@ extension DailyBriefInteractor {
     // MARK: - TeamToBeVision Sentence
     func createTeamVisionSuggestionModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var teamVisionList: [BaseDailyBriefViewModel] = []
-        guard let collection = teamVisionBucket.contentCollections?.first else {
-            return teamVisionList
-        }
+//        guard let collection = teamVisionBucket.contentCollections?.first else {
+//            return teamVisionList
+//        }
         let visionSentence = "We are an inspired, enerfized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
         let title = "WEB TEAM TOBEVISION"
         let suggestion = "Practice recovery after stressful times to balance your autonomic nervous system."
@@ -685,11 +692,14 @@ extension DailyBriefInteractor {
     // MARK: - Team Invitation
     func createTeamInvitation(invitationBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var invitationList: [BaseDailyBriefViewModel] = []
-        guard let collection = invitationBucket.contentCollections?.first else {
-            return invitationList
+//        guard let collection = invitationBucket.contentCollections?.first else {
+//            return invitationList
+//        }
+        let teamOwner = invitationBucket.teamInvitations?.first?.sender
+        var teamNames: [String] = []
+        invitationBucket.teamInvitations?.forEach {(invitation) in
+            teamNames.append(invitation.team?.name ?? "")
         }
-        let teamOwner = "n.leon@tignum.com"
-        let teamNames = ["WEB TEAM", "iOS TEAM"]
         let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, domainModel: invitationBucket)
         invitationList.append(model)
         return invitationList

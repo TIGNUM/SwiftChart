@@ -166,9 +166,9 @@ extension DailyBriefViewController {
                 return getExpertThoughts(tableView, indexPath, nil)
             case 17:
                 return getTeamToBeVisionCell(tableView, indexPath, nil)
+//            case 18:
+//                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
             case 18:
-                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
-            case 19:
                 return getTeamInvitationCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
@@ -207,8 +207,7 @@ extension DailyBriefViewController {
                 return UITableViewCell()
             }
         case .EXPLORE?:
-           return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
-//            return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
+            return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
         case .SPRINT_CHALLENGE?:
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .ME_AT_MY_BEST?:
@@ -260,8 +259,8 @@ extension DailyBriefViewController {
             return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
         case .TEAM_TO_BE_VISION?:
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
-        case .TEAM_VISION_SUGGESTION?:
-            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
+//        case .TEAM_VISION_SUGGESTION?:
+//            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
         case .TEAM_INVITATION?:
             return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
         default:
@@ -856,6 +855,10 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
 // MARK: - Navigation
 extension DailyBriefViewController {
+
+    func showTBV(team: QDMTeam) {
+        router.showTBV(team: team)
+    }
 
     func showCustomizeTarget() {
         interactor.customizeSleepQuestion { [weak self] (question) in

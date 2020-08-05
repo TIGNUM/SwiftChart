@@ -14,11 +14,13 @@ final class TeamToBeVisionCellViewModel: BaseDailyBriefViewModel {
     // MARK: - Properties
     var teamVision: String?
     var title: String?
+    var team: QDMTeam?
 
     // MARK: - Init
-    init(title: String?, teamVision: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, teamVision: String?, team: QDMTeam?, domainModel: QDMDailyBriefBucket?) {
         self.teamVision = teamVision
         self.title = title
+        self.team = team
         super.init(domainModel)
     }
 
