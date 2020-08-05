@@ -658,7 +658,10 @@ extension DailyBriefInteractor {
         var visionList: [BaseDailyBriefViewModel] = []
         var visionAndDates: [(QDMTeamToBeVision, Date)] = [(QDMTeamToBeVision(), Date())]
         teamVisionBucket.teamToBeVisions?.forEach { (vision) in
-            let dates: [Date] = [vision.createdAt ?? Date.distantPast, vision.modifiedAt ?? Date.distantPast, vision.modifiedOnDevice ?? Date.distantPast, vision.createdOnDevice ?? Date.distantPast]
+            let dates: [Date] = [vision.createdAt ?? Date.distantPast,
+                                 vision.modifiedAt ?? Date.distantPast,
+                                 vision.modifiedOnDevice ?? Date.distantPast,
+                                 vision.createdOnDevice ?? Date.distantPast]
             let mostRecentDate = dates.max()
             guard let recentDate = mostRecentDate else { return }
             let dateVision = (vision, recentDate)
