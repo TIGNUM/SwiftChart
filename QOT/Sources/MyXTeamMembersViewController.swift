@@ -104,7 +104,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func updateView(hasMembers: Bool) {
         tableView.beginUpdates()
-        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .fade)
+        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .none)
         tableView.endUpdates()
         showDemoIfNeeded()
 
