@@ -74,14 +74,8 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 // MARK: - Private
 private extension MyQotMainViewController {
     func updadateCell(for indexPath: IndexPath) {
-        let item = interactor.getItem(at: indexPath)
-        let cell = collectionView.cellForItem(at: indexPath) as? MyQotMainCollectionViewCell
-        interactor.getSubtitle(for: item) { [weak self] (subtitle) in
-            self?.interactor.isCellEnabled(for: item) { (enabled) in
-                self?.interactor.getTitle(for: item) { title in
-                    cell?.configure(title: title, subtitle: subtitle, enabled: enabled)
-                }
-            }
+        if let cell = collectionView.cellForItem(at: indexPath) as? MyQotMainCollectionViewCell {
+            interactor.updateMainCell(cell: cell, at: indexPath)
         }
     }
 }
@@ -104,31 +98,33 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
             collectionView.deleteItems(at: indexPath)
         }, completion: { (done) in
-            updateIndexPath.forEach { (indexPath) in
-                self.updadateCell(for: indexPath)
-            }
+            updateIndexPath.forEach { self.updadateCell(for: $0) }
+            self.teamHeader?.setUserInteraction(true)
         })
+
     }
 
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: indexPath)
         }, completion: { (done) in
-            updateIndexPath.forEach { (indexPath) in
-                self.updadateCell(for: indexPath)
-            }
+            updateIndexPath.forEach { self.updadateCell(for: $0) }
+            self.teamHeader?.setUserInteraction(true)
         })
     }
 
     func reloadMainItems(updateIndexPath: [IndexPath]) {
+        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
-            updateIndexPath.forEach { (indexPath) in
-                self.updadateCell(for: indexPath)
-            }
-        }, completion: nil)
+            collectionView.reloadItems(at: updateIndexPath)
+        }, completion: { _ in
+            self.teamHeader?.setUserInteraction(true)
+        })
     }
 
     func reload() {
@@ -148,6 +144,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 
     func getTeamHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell: HorizontalHeaderCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        teamHeader = cell.horizontalHeaderView
         interactor.updateTeamHeaderItems { (items) in
             cell.configure(headerItems: items)
         }
@@ -155,15 +152,8 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
-        let item = interactor.getItem(at: indexPath)
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        interactor.getSubtitle(for: item) { [weak self] (subtitle) in
-            self?.interactor.isCellEnabled(for: item) { (enabled) in
-                self?.interactor.getTitle(for: item) { title in
-                    cell.configure(title: title, subtitle: subtitle, enabled: enabled)
-                }
-            }
-        }
+        interactor.updateMainCell(cell: cell, at: indexPath)
         return cell
     }
 }

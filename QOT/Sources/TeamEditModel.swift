@@ -10,6 +10,11 @@ import UIKit
 import qot_dal
 
 enum TeamEdit {
+    enum Section: Int, CaseIterable {
+        case info = 0
+        case members
+    }
+
     case header
     case subHeader
     case description
@@ -41,5 +46,17 @@ enum TeamEdit {
         case create
         case memberInvite
         case edit
+    }
+
+    struct Member {
+        var email: String
+        var me: Bool
+        var isOwner: Bool
+
+        init(email: String, me: Bool, isOwner: Bool) {
+            self.email = email
+            self.me = me
+            self.isOwner = isOwner
+        }
     }
 }

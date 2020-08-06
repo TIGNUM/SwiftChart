@@ -34,6 +34,7 @@ final class TeamInvitesInteractor: TeamInvitesWorker {
     func viewDidLoad() {
         addObservers()
         presenter.setupView()
+        presenter.reload(shouldDismiss: qdmInvitations.isEmpty)
         let teams = teamItems.filter { $0.header == .team }
         partOfTeams = teams.count
         getMaxTeamCount { (max) in

@@ -9,7 +9,6 @@
 import UIKit
 
 final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
-
     // MARK: - Properties
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -25,27 +24,28 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         layer.borderColor = UIColor.sand40.cgColor
         layer.cornerRadius = 15
         layer.borderWidth = 1
+        skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(subtitleLabel)
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = nil
-        subtitleLabel.text = nil
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(subtitleLabel)
         isUserInteractionEnabled = false
     }
 
-    func configure(title: String?, subtitle: String?, enabled: Bool) {
+    func setSubtitle(_ subtitle: String?) {
         let bkView = UIView()
         ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView
-        skeletonManager.hide()
+        skeletonManager.hide(.subtitle)
         ThemeText.linkMenuComment.apply(subtitle, to: subtitleLabel)
-        setEnabled(enabled, title: title)
     }
 
-    func setSubtitle(subtitle: String?) {
-        ThemeText.linkMenuComment.apply(subtitle, to: subtitleLabel)
+    func setTitle(title: String?) {
+        skeletonManager.hide(.title)
+        setEnabled(false, title: title)
     }
 
     func setEnabled(_ enabled: Bool, title: String?) {

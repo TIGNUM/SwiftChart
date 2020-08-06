@@ -86,6 +86,19 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         getSettingsTitle(completion)
     }
 
+    func updateMainCell(cell: MyQotMainCollectionViewCell, at indexPath: IndexPath) {
+        let item = getItem(at: indexPath)
+        getTitle(for: item) { title in
+            cell.setTitle(title: title)
+            self.isCellEnabled(for: item) { enabled in
+                cell.setEnabled(enabled, title: title)
+            }
+        }
+        getSubtitle(for: item) { subtitle in
+            cell.setSubtitle(subtitle)
+        }
+    }
+
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
         if teamHeaderItems.isEmpty {
             getTeamHeaderItems(showInvites: true) { (items) in

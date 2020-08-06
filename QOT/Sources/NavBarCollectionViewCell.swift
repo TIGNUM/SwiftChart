@@ -24,7 +24,9 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeView.level1.apply(self)
-
+        skeletonManager.addOtherView(buttonLeft)
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addOtherView(buttonRight)
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
     }
@@ -37,6 +39,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
     }
 
     func configure(title: String, tapLeft: actionClosure? = nil, tapRight: actionClosure? = nil) {
+        skeletonManager.hide()
         container.alpha = 1.0
         ThemeText.navigationBarHeader.apply(title, to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
@@ -47,6 +50,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
     }
 
     func setSettingsButton(_ title: String) {
+        skeletonManager.hide()
         buttonRight.setImage(nil, for: .normal)
         buttonRight.setAttributedTitle(NSAttributedString(string: title.uppercased(),
                                                           attributes: [.foregroundColor: UIColor.carbon,
