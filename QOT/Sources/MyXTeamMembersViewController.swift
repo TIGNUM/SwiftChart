@@ -166,6 +166,12 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
         }
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.deleteRows(at: [indexPath], with: .top)
+        }
+    }
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if let member = interactor.getMember(at: indexPath), let isOwner = interactor?.canEdit {
             if isOwner {
