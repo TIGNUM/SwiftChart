@@ -26,7 +26,7 @@ class TeamTableViewCell: UITableViewCell {
         let privateString = shareExtensionStrings?.personal ?? ""
         let participantsString = shareExtensionStrings?.participants ?? ""
         teamLibraryName.text = teamName ?? "" + " " + libraryString
-        participantsLabel.text = participants == 0 ? privateString : " " + participantsString
+        participantsLabel.text = participants == 0 ? privateString : String(participants) + " " + participantsString
     }
     
     @IBAction func checkButtonTapped(_ sender: UIButton) {
