@@ -11,11 +11,12 @@ import qot_dal
 
 extension QDMContentItem {
     var durationString: String {
+
         let min = String(format: "%.0f", max((valueDuration ?? 60), 1) / 60)
         switch format {
-        case .audio: return String(format: AppTextService.get(.generic_content_section_item_label_audio), min)
-        case .video: return String(format: AppTextService.get(.generic_content_section_item_label_video), min)
-        case .pdf: return String(format: AppTextService.get(.generic_content_section_item_label_read), min)
+        case .audio: return AppTextService.get(.generic_content_section_item_new_label_audio).replacingOccurrences(of: "($amount)", with: min)
+        case .video: return AppTextService.get(.generic_content_section_item_new_label_video).replacingOccurrences(of: "($amount)", with: min)
+        case .pdf: return AppTextService.get(.generic_content_section_item_new_label_pdf).replacingOccurrences(of: "($amount)", with: min)
         default: return ""
         }
     }

@@ -25,8 +25,9 @@ public extension AppTextKey {
     static let generic_content_error_title_invalid_content = AppTextKey("generic.content.error.title_invalid_content")
     static let know_strategy_list_strategy_section_next_up_title = AppTextKey("know.strategy_list.strategy.section_next_up.title")
     static let know_strategy_list_strategy_section_related_content_title = AppTextKey("know.strategy_list.strategy.section_related_content.title")
-    static let generic_content_section_item_label_pdf = AppTextKey("generic.content.section_item.label_pdf")
-    static let generic_content_section_item_label_audio = AppTextKey("generic.content.section_item.label_audio")
+    static let generic_content_section_item_new_label_pdf = AppTextKey("generic.content.section_item.new_label_pdf")
+    static let generic_content_section_item_new_label_audio = AppTextKey("generic.content.section_item.new_label_audio")
+
     static let generic_content_audio_alert_use_mobile_data_button_continue = AppTextKey("generic.content.audio.alert.use_mobile_data.button_continue")
     static let generic_download_status_audio_button_download = AppTextKey("generic.download_status.audio.button_download")
     static let generic_download_status_audio_button_downloaded = AppTextKey("generic.download_status.audio.button_downloaded")
@@ -845,7 +846,7 @@ public extension AppTextKey {
     static let onboarding_guided_track_section_footer_button_guided_track = AppTextKey("onboarding.guided_track.section_footer.button_guided_track")
     static let onboarding_guided_track_section_header_body = AppTextKey("onboarding.guided_track.section_header.body")
     static let onboarding_guided_track_section_header_title = AppTextKey("onboarding.guided_track.section_header.title")
-    static let generic_content_section_item_label_video = AppTextKey("generic.content.section_item.label_video")
+    static let generic_content_section_item_new_label_video = AppTextKey("generic.content.section_item.new_label_video")
     static let generic_content_video_alert_use_mobile_data_button_continue = AppTextKey("generic.content.video.alert.use_mobile_data.button_continue")
     static let generic_download_status_video_button_download = AppTextKey("generic.download_status.video.button_download")
     static let generic_download_status_video_button_downloaded = AppTextKey("generic.download_status.video.button_downloaded")
@@ -1027,4 +1028,8 @@ public extension AppTextKey {
     static let my_qot_my_library_bookmarks_edit_title = AppTextKey("my_qot.my_library.bookmarks.edit.title")
     static let my_qot_my_library_downloads_edit_title = AppTextKey("my_qot.my_library.downloads.edit.title")
     static let my_qot_my_library_links_edit_title = AppTextKey("my_qot.my_library.links.edit.title")
+
+    static let generic_content_section_item_label_audio = AppTextKey("generic.content.section_item.label_audio")
+    static let generic_content_section_item_label_pdf = AppTextKey("generic.content.section_item.label_pdf")
+    static let generic_content_section_item_label_video = AppTextKey("generic.content.section_item.label_video")
 }
