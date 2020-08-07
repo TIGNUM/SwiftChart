@@ -423,7 +423,7 @@ public extension AppTextKey {
     static let my_qot_section_my_tbv_subtitle_months_since = AppTextKey("my_qot.section_my_tbv.subtitle_months_since")
     static let my_qot_section_my_tbv_subtitle_more_than = AppTextKey("my_qot.section_my_tbv.subtitle_more_than")
     static let my_qot_my_library_section_header_title = AppTextKey("my_qot.my_library.section_header.title")
-    static let my_qot_my_library_section_header_team_title_template = AppTextKey("my_qot.my_library.section_header.team_title_template")
+    static let my_qot_my_library_section_header_new_team_title_template = AppTextKey("my_qot.my_library.section_header.new_team_title_template")
     static let my_qot_my_plans_section_header_title = AppTextKey("my_qot.my_plans.section_header.title")
     static let my_qot_my_plans_section_header_title_edit = AppTextKey("my_qot.my_plans.section_header.title_edit")
     static let my_qot_section_header_title = AppTextKey("my_qot.section_header.title")
@@ -1035,7 +1035,6 @@ public extension AppTextKey {
     static let bookmark_library_selection_normal_cell_participiant_count_template = AppTextKey("bookmark_library_selection.normal.cell_participiant_count_template")
     static let my_qot_my_library_subtitle_item_title_group_singular = AppTextKey("my_qot.my_library.subtitle_item.title_group_singular")
     static let my_qot_my_library_subtitle_items_title_group_plural = AppTextKey("my_qot.my_library.subtitle_items.title_group_plural")
-
-
+    static let my_qot_my_library_section_header_team_title_template = AppTextKey("my_qot.my_library.section_header.team_title_template")
 
 }
