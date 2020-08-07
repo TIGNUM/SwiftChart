@@ -971,7 +971,7 @@ public extension AppTextKey {
     static let bookmark_library_selection_normal_header_title = AppTextKey("bookmark_library_selection.normal.header_title")
     static let bookmark_library_selection_normal_cell_my_library_title = AppTextKey("bookmark_library_selection.normal.cell_my_library_title")
     static let bookmark_library_selection_normal_cell_my_library_subtitle = AppTextKey("bookmark_library_selection.normal.cell_my_library_subtitle")
-    static let bookmark_library_selection_normal_cell_participiant_count_template = AppTextKey("bookmark_library_selection.normal.cell_participiant_count_template")
+    static let bookmark_library_selection_normal_new_cell_participiant_count_template = AppTextKey("bookmark_library_selection.normal.new_cell_participiant_count_template")
     static let bookmark_library_selection_normal_save_button_title = AppTextKey("bookmark_library_selection.normal.save_button_title")
 }
 
@@ -1032,5 +1032,6 @@ public extension AppTextKey {
     static let generic_content_section_item_label_pdf = AppTextKey("generic.content.section_item.label_pdf")
     static let generic_content_section_item_label_video = AppTextKey("generic.content.section_item.label_video")
     static let generic_content_view_label_read = AppTextKey("generic.content.view.label_read")
+    static let bookmark_library_selection_normal_cell_participiant_count_template = AppTextKey("bookmark_library_selection.normal.cell_participiant_count_template")
 
 }
