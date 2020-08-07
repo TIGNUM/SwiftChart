@@ -881,7 +881,6 @@ public extension AppTextKey {
     static let generic_payment_screen_view_subtitle_footer = AppTextKey("generic.payment_screen.view.subtitle_footer")
     static let generic_payment_screen_view_button_logout = AppTextKey("generic.payment_screen.view.button_logout")
     static let generic_payment_screen_alert_body_logout = AppTextKey("generic.payment_screen.alert.body_logout")
-    static let generic_content_view_label_read = AppTextKey("generic.content.view.label_read")
     static let prepare_view_title_read_more = AppTextKey("prepare.view.title_read_more")
     static let prepare_alert_button_continue = AppTextKey("prepare.alert.button_continue")
     static let prepare_choice_view_title = AppTextKey("prepare.choice.view.title")
@@ -1032,4 +1031,6 @@ public extension AppTextKey {
     static let generic_content_section_item_label_audio = AppTextKey("generic.content.section_item.label_audio")
     static let generic_content_section_item_label_pdf = AppTextKey("generic.content.section_item.label_pdf")
     static let generic_content_section_item_label_video = AppTextKey("generic.content.section_item.label_video")
+    static let generic_content_view_label_read = AppTextKey("generic.content.view.label_read")
+
 }
