@@ -26,7 +26,7 @@ private extension TeamEditPresenter {
         var subHeader = TeamEdit.subHeader.label(type: type)
         if type == .memberInvite {
 //            subHeader = String(format: subHeader, teamName ?? "")
-            subHeader = subHeader.replacingOccurrences(of: "%@", with: teamName ?? "")
+            subHeader = subHeader.replacingOccurrences(of: "($teamName)", with: teamName ?? "")
         }
         viewController?.setupLabels(header: TeamEdit.header.label(type: type),
                                     subHeader: subHeader,
@@ -50,7 +50,7 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
 
     func setupView(_ type: TeamEdit.View, teamName: String?) {
         viewController?.setupView(type, teamName)
-        updateLabels(type, animated: false)
+        updateLabels(type, teamName: teamName, animated: false)
     }
 
     func setupTextCounter(type: TeamEdit.View, max: Int) {
