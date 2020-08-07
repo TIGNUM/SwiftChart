@@ -491,7 +491,7 @@ public extension AppTextKey {
 
     // MARK: - Team Member Invite
     static let my_x_team_member_invite_header = AppTextKey("my_x.team_member_invite.header")
-    static let my_x_team_member_invite_subHeader = AppTextKey("my_x.team_member_invite.subHeader")
+    static let my_x_team_member_invite_new_subHeader = AppTextKey("my_x.team_member_invite.new_subHeader")
     static let my_x_team_member_invite_description = AppTextKey("my_x.team_member_invite.description")
     static let my_x_team_member_invite_cta = AppTextKey("my_x.team_member_invite.cta")
     static let my_x_team_invite_cta = AppTextKey("team_invite.header_title.plural")
@@ -1037,5 +1037,5 @@ public extension AppTextKey {
     static let my_qot_my_library_section_header_team_title_template = AppTextKey("my_qot.my_library.section_header.team_title_template")
     static let generic_content_view_label_video = AppTextKey("generic.content.view.label_video")
     static let generic_alert_unknown_error_body = AppTextKey("generic.alert.unknown_error.body")
-
+    static let my_x_team_member_invite_subHeader = AppTextKey("my_x.team_member_invite.subHeader")
 }
