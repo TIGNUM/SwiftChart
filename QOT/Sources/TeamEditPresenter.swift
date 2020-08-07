@@ -49,7 +49,7 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
 
     func setupView(_ type: TeamEdit.View, teamName: String?) {
         viewController?.setupView(type, teamName)
-        updateLabels(type, teamName: teamName, animated: false)
+        updateLabels(type,teamName: teamName, animated: false)
     }
 
     func setupTextCounter(type: TeamEdit.View, max: Int) {
