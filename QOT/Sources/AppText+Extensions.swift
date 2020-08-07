@@ -374,7 +374,7 @@ public extension AppTextKey {
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
     static let generic_event_removed_alert_event_removed_body = AppTextKey("generic.event_removed.alert.event_removed.body")
     static let generic_event_removed_alert_event_removed_title = AppTextKey("generic.event_removed.alert.event_removed.title")
-    static let generic_alert_unknown_error_body = AppTextKey("generic.alert.unknown_error.body")
+    static let generic_alert_unknown_error_new_body = AppTextKey("generic.alert.unknown_error.new_body")
     static let generic_view_button_cancel = AppTextKey("generic.view.button_cancel")
     static let generic_view_button_update = AppTextKey("generic.view.button_update")
     static let generic_view_button_delete = AppTextKey("generic.view.button_delete")
@@ -893,7 +893,6 @@ public extension AppTextKey {
     static let onboarding_guided_track_view_body = AppTextKey("onboarding.guided_track.view.body")
     static let onboarding_guided_track_view_button_fast_track = AppTextKey("onboarding.guided_track.view.button_fast_track")
     static let onboarding_guided_track_view_button_guided_track = AppTextKey("onboarding.guided_track.view.button_guided_track")
-    static let generic_content_view_label_video = AppTextKey("generic.content.view.label_video")
     static let generic_alert_use_mobile_data_button_continue = AppTextKey("generic.alert_use_mobile_data.button_continue")
     static let generic_alert_use_mobile_data_title_use_mobile_data = AppTextKey("generic.alert_use_mobile_data.title_use_mobile_data")
     static let generic_alert_use_mobile_data_body_use_mobile_data = AppTextKey("generic.alert_use_mobile_data.body_use_mobile_data")
@@ -1036,5 +1035,7 @@ public extension AppTextKey {
     static let my_qot_my_library_subtitle_item_title_group_singular = AppTextKey("my_qot.my_library.subtitle_item.title_group_singular")
     static let my_qot_my_library_subtitle_items_title_group_plural = AppTextKey("my_qot.my_library.subtitle_items.title_group_plural")
     static let my_qot_my_library_section_header_team_title_template = AppTextKey("my_qot.my_library.section_header.team_title_template")
+    static let generic_content_view_label_video = AppTextKey("generic.content.view.label_video")
+    static let generic_alert_unknown_error_body = AppTextKey("generic.alert.unknown_error.body")
 
 }

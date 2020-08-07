@@ -197,7 +197,7 @@ extension UIViewController {
 
     func showAlert(messageType: String) {
         let title = AppTextService.get(.generic_alert_custom_error_title)
-        let message = AppTextService.get(.generic_alert_unknown_error_body).replacingOccurrences(of: "%@", with: messageType)
+        let message = AppTextService.get(.generic_alert_unknown_error_new_body).replacingOccurrences(of: "($messageType)", with: messageType)
         showAlert(type: .custom(title: title, message: message))
     }
 
