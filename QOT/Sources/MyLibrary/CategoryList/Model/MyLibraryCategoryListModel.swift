@@ -34,9 +34,8 @@ struct MyLibraryCategoryListModel {
 
         if let date = lastUpdated {
             let stringDate = DateFormatter.ddMMM.string(from: date)
-            info += String(format: AppTextService.get(.my_qot_my_library_subtitle_last_updated_title_group_last_update), stringDate)
+            info += AppTextService.get(.my_qot_my_library_subtitle_last_updated_new_title_group_last_update).replacingOccurrences(of: "($date)", with: stringDate)
         }
-
         return info
     }
 }

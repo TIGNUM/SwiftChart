@@ -465,7 +465,7 @@ public extension AppTextKey {
     static let my_qot_my_data_section_heat_map_label_heatmap_low = AppTextKey("my_qot.my_data.section_heat_map.label_heatmap_low")
     static let my_qot_my_library_subtitle_item_new_title_group_singular = AppTextKey("my_qot.my_library.subtitle_item.new_title_group_singular")
     static let my_qot_my_library_subtitle_items_new_title_group_plural = AppTextKey("my_qot.my_library.subtitle_items.new_title_group_plural")
-    static let my_qot_my_library_subtitle_last_updated_title_group_last_update = AppTextKey("my_qot.my_library.subtitle_last_updated.title_group_last_update")
+    static let my_qot_my_library_subtitle_last_updated_new_title_group_last_update = AppTextKey("my_qot.my_library.subtitle_last_updated.new_title_group_last_update")
     static let my_qot_my_library_section_all_title = AppTextKey("my_qot.my_library.section_all.title")
     static let my_qot_my_library_section_bookmarks_title = AppTextKey("my_qot.my_library.section_bookmarks.title")
     static let my_qot_my_library_downloads_alert_cancel_download_title = AppTextKey("my_qot.my_library.downloads.alert.cancel_download.title")
@@ -1038,4 +1038,5 @@ public extension AppTextKey {
     static let generic_content_view_label_video = AppTextKey("generic.content.view.label_video")
     static let generic_alert_unknown_error_body = AppTextKey("generic.alert.unknown_error.body")
     static let my_x_team_member_invite_subHeader = AppTextKey("my_x.team_member_invite.subHeader")
+    static let my_qot_my_library_subtitle_last_updated_title_group_last_update = AppTextKey("my_qot.my_library.subtitle_last_updated.title_group_last_update")
 }
