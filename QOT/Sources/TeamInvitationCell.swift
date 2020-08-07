@@ -82,4 +82,12 @@ final class TeamInvitationCell: BaseDailyBriefCell {
             invitationLabel.attributedText = attributedString
         }
     }
+
+//    @IBAction func didTabDecline() {
+//          NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: pendingInvite?.qdmInvite)
+//      }
+//
+//      @IBAction func didTabJoin() {
+//          NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: pendingInvite?.qdmInvite)
+//      }
 }
