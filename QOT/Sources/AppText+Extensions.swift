@@ -463,8 +463,8 @@ public extension AppTextKey {
     static let my_qot_my_data_ir_explanation_section_sleep_quality_subtitle = AppTextKey("my_qot.my_data.ir_explanation.section_sleep_quality.subtitle")
     static let my_qot_my_data_section_heat_map_body = AppTextKey("my_qot.my_data.section_heat_map.body")
     static let my_qot_my_data_section_heat_map_label_heatmap_low = AppTextKey("my_qot.my_data.section_heat_map.label_heatmap_low")
-    static let my_qot_my_library_subtitle_item_title_group_singular = AppTextKey("my_qot.my_library.subtitle_item.title_group_singular")
-    static let my_qot_my_library_subtitle_items_title_group_plural = AppTextKey("my_qot.my_library.subtitle_items.title_group_plural")
+    static let my_qot_my_library_subtitle_item_new_title_group_singular = AppTextKey("my_qot.my_library.subtitle_item.new_title_group_singular")
+    static let my_qot_my_library_subtitle_items_new_title_group_plural = AppTextKey("my_qot.my_library.subtitle_items.new_title_group_plural")
     static let my_qot_my_library_subtitle_last_updated_title_group_last_update = AppTextKey("my_qot.my_library.subtitle_last_updated.title_group_last_update")
     static let my_qot_my_library_section_all_title = AppTextKey("my_qot.my_library.section_all.title")
     static let my_qot_my_library_section_bookmarks_title = AppTextKey("my_qot.my_library.section_bookmarks.title")
@@ -1033,5 +1033,9 @@ public extension AppTextKey {
     static let generic_content_section_item_label_video = AppTextKey("generic.content.section_item.label_video")
     static let generic_content_view_label_read = AppTextKey("generic.content.view.label_read")
     static let bookmark_library_selection_normal_cell_participiant_count_template = AppTextKey("bookmark_library_selection.normal.cell_participiant_count_template")
+    static let my_qot_my_library_subtitle_item_title_group_singular = AppTextKey("my_qot.my_library.subtitle_item.title_group_singular")
+    static let my_qot_my_library_subtitle_items_title_group_plural = AppTextKey("my_qot.my_library.subtitle_items.title_group_plural")
+
+
 
 }

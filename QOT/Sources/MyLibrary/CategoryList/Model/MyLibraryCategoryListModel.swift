@@ -27,9 +27,9 @@ struct MyLibraryCategoryListModel {
     func infoText() -> String {
         var info: String
         if itemCount == 1 {
-            info = String(format: AppTextService.get(.my_qot_my_library_subtitle_item_title_group_singular), "\(itemCount)")
+            info = AppTextService.get(.my_qot_my_library_subtitle_item_new_title_group_singular).replacingOccurrences(of: "($count)", with: "\(itemCount)")
         } else {
-            info = String(format: AppTextService.get(.my_qot_my_library_subtitle_items_title_group_plural), "\(itemCount)")
+            info = AppTextService.get(.my_qot_my_library_subtitle_items_new_title_group_plural).replacingOccurrences(of: "($count)", with: "\(itemCount)")
         }
 
         if let date = lastUpdated {
