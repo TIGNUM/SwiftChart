@@ -883,7 +883,6 @@ public extension AppTextKey {
     static let generic_payment_screen_alert_body_logout = AppTextKey("generic.payment_screen.alert.body_logout")
     static let prepare_view_title_read_more = AppTextKey("prepare.view.title_read_more")
     static let prepare_alert_button_continue = AppTextKey("prepare.alert.button_continue")
-    static let prepare_choice_view_title = AppTextKey("prepare.choice.view.title")
 
     static let onboarding_launch_screen_view_title_intro = AppTextKey("onboarding.launch_screen.view.title_intro")
     static let onboarding_launch_screen_view_body_intro = AppTextKey("onboarding.launch_screen.view.body_intro")
@@ -1039,4 +1038,5 @@ public extension AppTextKey {
     static let generic_alert_unknown_error_body = AppTextKey("generic.alert.unknown_error.body")
     static let my_x_team_member_invite_subHeader = AppTextKey("my_x.team_member_invite.subHeader")
     static let my_qot_my_library_subtitle_last_updated_title_group_last_update = AppTextKey("my_qot.my_library.subtitle_last_updated.title_group_last_update")
+    static let prepare_choice_view_title = AppTextKey("prepare.choice.view.title")
 }
