@@ -19,6 +19,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     private var teamInvitation: QDMTeamInvitation?
+    weak var delegate: DailyBriefViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,10 +32,10 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(declineButton)
         skeletonManager.addOtherView(joinButton)
         skeletonManager.addOtherView(seePendingButton)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didSelectJoinTeam(_:)),
-                                               name: .didSelectTeamInviteJoin,
-                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(didSelectJoinTeam(_:)),
+//                                               name: .didSelectTeamInviteJoin,
+//                                               object: nil)
     }
 
     func configure(model: TeamInvitationModel?) {
@@ -98,5 +99,6 @@ final class TeamInvitationCell: BaseDailyBriefCell {
     }
 
     @IBAction func didTapPending(_ sender: Any) {
+        delegate?.presentTeamPendingInvites()
     }
 }

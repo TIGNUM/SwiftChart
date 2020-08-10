@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 import Intents
 
-final class DailyBriefWorker {
+final class DailyBriefWorker: WorkerTeam {
 
     // MARK: - Properties
     var model: MyPrepsModel?

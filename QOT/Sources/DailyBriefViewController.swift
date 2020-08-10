@@ -756,7 +756,7 @@ private extension DailyBriefViewController {
                                _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
         let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
         cell.configure(model: teamInvitationModel)
-        //           cell.delegate = self
+        cell.delegate = self
         return cell
     }
 }
@@ -853,7 +853,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func presentTeamPendingInvites() {
-        router.presentTeamPendingInvites(teamItems: <#T##[Team.Item]#>)
+        interactor.getTeamHeaderItems { (items) in
+            self.router.presentTeamPendingInvites(teamItems: items)
+        }
     }
 }
 

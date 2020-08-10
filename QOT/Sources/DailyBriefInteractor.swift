@@ -20,6 +20,7 @@ final class DailyBriefInteractor {
     private let presenter: DailyBriefPresenterInterface
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var expendImpactReadiness: Bool = false
+    private var teamHeaderItems = [Team.Item]()
 
     private var guidedClosedTrack: Bool = false
     private var isLoadingBuckets: Bool = false
@@ -1224,5 +1225,16 @@ extension DailyBriefInteractor {
                                                                   domainModel: sprintBucket,
                                                                   sprint: sprintBucket.sprint!))
         return createSprintChallengeList
+    }
+
+    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
+        if teamHeaderItems.isEmpty {
+            worker.getTeamHeaderItems(showInvites: true) { (items) in
+                self.teamHeaderItems = items
+                completion(items)
+            }
+        } else {
+            completion(teamHeaderItems)
+        }
     }
 }
