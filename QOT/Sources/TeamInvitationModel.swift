@@ -14,11 +14,13 @@ final class TeamInvitationModel: BaseDailyBriefViewModel {
     // MARK: - Properties
     let teamOwner: String?
     let teamNames: [String]?
+    let teamInvitations: [QDMTeamInvitation]?
 
     // MARK: - Init
-    init(teamOwner: String?, teamNames: [String]?, domainModel: QDMDailyBriefBucket?) {
+    init(teamOwner: String?, teamNames: [String]?, teamInvitations: [QDMTeamInvitation]?, domainModel: QDMDailyBriefBucket?) {
         self.teamOwner = teamOwner
         self.teamNames = teamNames
+        self.teamInvitations = teamInvitations
         super.init(domainModel)
     }
 

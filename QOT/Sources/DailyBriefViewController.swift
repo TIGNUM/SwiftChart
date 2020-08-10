@@ -851,6 +851,10 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?) {
         stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem)
     }
+
+    func presentTeamPendingInvites() {
+        router.presentTeamPendingInvites(teamItems: <#T##[Team.Item]#>)
+    }
 }
 
 // MARK: - Navigation

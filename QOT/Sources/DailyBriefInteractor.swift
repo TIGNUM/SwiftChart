@@ -700,7 +700,7 @@ extension DailyBriefInteractor {
         invitationBucket.teamInvitations?.forEach {(invitation) in
             teamNames.append(invitation.team?.name ?? "")
         }
-        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, domainModel: invitationBucket)
+        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, domainModel: invitationBucket)
         invitationList.append(model)
         return invitationList
     }

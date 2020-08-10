@@ -18,6 +18,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
     @IBOutlet private weak var seePendingButton: UIButton!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
+    private var teamInvitation: QDMTeamInvitation?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,10 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(declineButton)
         skeletonManager.addOtherView(joinButton)
         skeletonManager.addOtherView(seePendingButton)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didSelectJoinTeam(_:)),
+                                               name: .didSelectTeamInviteJoin,
+                                               object: nil)
     }
 
     func configure(model: TeamInvitationModel?) {
@@ -70,6 +75,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
             attributedString.append(otherTeamsString)
             invitationLabel.attributedText = attributedString
         } else {
+            self.teamInvitation = model?.teamInvitations?.first
             guard let teamOwner = model?.teamOwner else { return }
             guard let teamNames = model?.teamNames else { return }
             let attributedString = NSMutableAttributedString(string: teamOwner + " ", attributes: sandAttributes)
@@ -83,11 +89,14 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         }
     }
 
-//    @IBAction func didTabDecline() {
-//          NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: pendingInvite?.qdmInvite)
-//      }
-//
-//      @IBAction func didTabJoin() {
-//          NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: pendingInvite?.qdmInvite)
-//      }
+    @IBAction func didTapDecline(_ sender: Any) {
+        NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: teamInvitation)
+    }
+
+    @IBAction func didTapJoin(_ sender: Any) {
+        NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: teamInvitation)
+    }
+
+    @IBAction func didTapPending(_ sender: Any) {
+    }
 }
