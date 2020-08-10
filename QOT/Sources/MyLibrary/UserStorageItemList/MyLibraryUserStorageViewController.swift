@@ -54,6 +54,11 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
 
         interactor.viewDidLoad()
+        tableView.registerDequeueable(ArticleBookmarkTableViewCell.self)
+        tableView.registerDequeueable(VideoBookmarkTableViewCell.self)
+        tableView.registerDequeueable(AudioBookmarkTableViewCell.self)
+        tableView.registerDequeueable(NoteTableViewCell.self)
+        tableView.registerDequeueable(DownloadTableViewCell.self)
     }
 
     @objc override func trackPage() {
@@ -218,41 +223,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
         if let items = interactor.items, items.count > 0 {
             item = interactor.items?[indexPath.row]
         }
-
-        let cellType = item?.cellType ?? MyLibraryCellViewModel.CellType.DOWNLOAD
-        var returnCell: BaseMyLibraryTableViewCell?
-        switch cellType {
-        case .VIDEO:
-            let videoCell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            videoCell.configure(withUrl: item?.previewURL)
-            returnCell = videoCell
-        case .AUDIO:
-            let audioCell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            audioCell.configure(playButtonTitle: item?.duration, playButtonTag: indexPath.row)
-            returnCell = audioCell
-        case .ARTICLE:
-            let articleCell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            articleCell.configure(previewImageUrl: item?.previewURL)
-            returnCell = articleCell
-        case .NOTE:
-            let noteCell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)
-            noteCell.configure()
-            returnCell = noteCell
-        case .DOWNLOAD:
-            let downloadCell: DownloadTableViewCell = tableView.dequeueCell(for: indexPath)
-            downloadCell.configure()
-
-            if let itemModel = item {
-                downloadCell.setStatus(itemModel.downloadStatus)
-            }
-            returnCell = downloadCell
-        }
-
-        returnCell?.setTitle(item?.title)
-        returnCell?.icon.image = item?.icon
-        returnCell?.setInfoText(item?.description)
-
-        return returnCell ?? UITableViewCell()
+        return LibraryTableViewCellFactory.cellForStorageItem(tableView, indexPath, item)
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -12,6 +12,7 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var infoText: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var contentTitle: UILabel!
+    @IBOutlet weak var bottomSeparator: UIView!
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {

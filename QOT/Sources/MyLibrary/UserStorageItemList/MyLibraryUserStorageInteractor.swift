@@ -28,6 +28,8 @@ final class MyLibraryUserStorageInteractor {
     private var identifiersForCheck = Set<String>()
     private var itemForDownload: MyLibraryCellViewModel?
 
+    private var viewModelConverter = MyLibraryCellViewModelConverter()
+
     // Cannot be lazy as "Remove" state depends on selected items count
     private var editingButtons: [ButtonParameters] {
         return [ButtonParameters(title: worker.removeTitle,
@@ -98,7 +100,10 @@ final class MyLibraryUserStorageInteractor {
                 strongSelf.showEmptyAlert()
             } else {
                 strongSelf.infoViewModel = nil
-                strongSelf.items?.append(contentsOf: items.compactMap { strongSelf.viewModel(from: $0) })
+                strongSelf.items?.append(contentsOf: items.compactMap {
+                    strongSelf.viewModelConverter.viewModel(from: $0, team: strongSelf.team,
+                                                            downloadStatus: strongSelf.worker.downloadStatus(for: $0))
+                })
                 strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
                 strongSelf.presenter.presentData()
             }
@@ -415,184 +420,5 @@ extension MyLibraryUserStorageInteractor {
         if downloadedItemIsInItems {
             load()
         }
-    }
-}
-
-// MARK: - Cell presentation
-
-extension MyLibraryUserStorageInteractor {
-    private func viewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel? {
-        var viewModel: MyLibraryCellViewModel?
-        switch item.userStorageType {
-        case .DOWNLOAD:
-            viewModel = downloadViewModel(from: item)
-        case .BOOKMARK:
-            viewModel = bookmarkViewModel(from: item)
-        case .NOTE:
-            viewModel = noteViewModel(from: item)
-        case .EXTERNAL_LINK:
-            viewModel = linkViewModel(from: item)
-        case .UNKOWN:
-            return nil
-        }
-        if let team = self.team {
-            viewModel?.removable = (item.isMine ?? false || team.thisUserIsOwner)
-        }
-        return viewModel
-    }
-
-    private func downloadViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
-        let cellStatus: MyLibraryCellViewModel.DownloadStatus
-        let description: String
-        var fullDuration = ""
-        let cellType: MyLibraryCellViewModel.CellType
-
-        let downloadStatus = worker.downloadStatus(for: item)
-        switch downloadStatus.status {
-        case .NONE:
-            cellType = .DOWNLOAD
-            cellStatus = .waiting
-            description = ""
-        case .WAITING:
-            cellType = .DOWNLOAD
-            cellStatus = .waiting
-            description = worker.waitingForDownload
-        case .DOWNLOADING:
-            cellType = .DOWNLOAD
-            cellStatus = .downloading
-            description = worker.downloading
-        case .DOWNLOADED:
-            cellType = self.cellType(for: item)
-            cellStatus = .downloaded
-            let duration = mediaDuration(for: item)
-            description = duration.simple
-            fullDuration = duration.full
-        }
-        return MyLibraryCellViewModel(cellType: cellType,
-                                      title: item.title ?? "",
-                                      description: description,
-                                      duration: fullDuration,
-                                      icon: mediaIcon(for: item),
-                                      previewURL: URL(string: item.previewImageUrl ?? ""),
-                                      type: item.userStorageType,
-                                      mediaType: item.mediaType ?? .UNKOWN,
-                                      downloadStatus: cellStatus,
-                                      identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
-                                      mediaURL: URL(string: item.mediaPath() ?? ""))
-    }
-
-    private func noteViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
-        var descriptionExtension: String = ""
-        if let date = item.createdAt {
-            descriptionExtension = " | \(DateFormatter.ddMMM.string(from: date))"
-        }
-        let description = worker.personalNote + descriptionExtension
-        return MyLibraryCellViewModel(cellType: .NOTE,
-                                      title: item.note ?? "",
-                                      description: description,
-                                      duration: "",
-                                      icon: R.image.my_library_note_light(),
-                                      previewURL: nil,
-                                      type: item.userStorageType,
-                                      mediaType: item.mediaType ?? .UNKOWN,
-                                      downloadStatus: .none,
-                                      identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
-                                      mediaURL: URL(string: item.mediaPath() ?? ""))
-    }
-
-    private func linkViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
-        var description: String = ""
-        if let urllString = item.url, let url = URL(string: urllString), let host = url.host {
-            description = host.replacingOccurrences(of: "www.", with: "")
-        }
-        return MyLibraryCellViewModel(cellType: .ARTICLE,
-                                      title: item.title ?? "",
-                                      description: description,
-                                      duration: "",
-                                      icon: R.image.my_library_link(),
-                                      previewURL: URL(string: item.previewImageUrl ?? item.note ?? ""),
-                                      type: item.userStorageType,
-                                      mediaType: item.mediaType ?? .UNKOWN,
-                                      downloadStatus: .none,
-                                      identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
-                                      mediaURL: URL(string: item.mediaPath() ?? ""))
-    }
-
-    private func bookmarkViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
-        let durations = mediaDuration(for: item)
-        return MyLibraryCellViewModel(cellType: cellType(for: item),
-                                      title: item.title ?? "",
-                                      description: durations.simple,
-                                      duration: durations.full,
-                                      icon: mediaIcon(for: item),
-                                      previewURL: URL(string: item.previewImageUrl ?? ""),
-                                      type: item.userStorageType,
-                                      mediaType: item.mediaType ?? .UNKOWN,
-                                      downloadStatus: .none,
-                                      identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
-                                      mediaURL: URL(string: item.mediaPath() ?? ""))
-    }
-
-    // MARK: Presentation helper methods
-    private func mediaIcon(for item: QDMUserStorage) -> UIImage? {
-        switch item.mediaType ?? .UNKOWN {
-        case .VIDEO:
-            return R.image.my_library_camera()
-        case .AUDIO:
-            return R.image.my_library_listen()
-        case .PDF, .UNKOWN:
-            return R.image.my_library_read()
-        }
-    }
-
-    private func mediaDuration(for item: QDMUserStorage) -> (full: String, simple: String) {
-        var durationMinute = (item.durationInSeconds ?? 0)/60
-        let durationSeconds = (item.durationInSeconds ?? 0)%60
-        let fullDuration = String(format: "%d:%02d", durationMinute, durationSeconds)
-
-        var postfix = worker.read
-        switch item.mediaType ?? .UNKOWN {
-        case .VIDEO:
-            postfix = worker.watch
-        case .AUDIO:
-            postfix = worker.listen
-        default:
-            break
-        }
-        var simpleDuration = ""
-        if durationSeconds > 30 {
-            durationMinute += 1
-        }
-        if  durationMinute > 0 {
-            simpleDuration = "\(durationMinute) min \(postfix)"
-        } else if durationSeconds > 0 {
-            simpleDuration = fullDuration
-        }
-        if item.title == "Performance mindset" {
-            print("something")
-        }
-        return (fullDuration, simpleDuration)
-    }
-
-    private func cellType(for item: QDMUserStorage) -> MyLibraryCellViewModel.CellType {
-        let cellType: MyLibraryCellViewModel.CellType
-        switch item.contentType {
-        case .CONTENT_ITEM:
-            switch item.mediaType ?? .UNKOWN {
-            case .VIDEO:
-                cellType = .VIDEO
-            case .AUDIO:
-                cellType = .AUDIO
-            default:
-                cellType = .ARTICLE
-            }
-        default:
-            cellType = .ARTICLE
-        }
-        return cellType
     }
 }
