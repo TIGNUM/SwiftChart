@@ -695,9 +695,6 @@ extension DailyBriefInteractor {
     // MARK: - Team Invitation
     func createTeamInvitation(invitationBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var invitationList: [BaseDailyBriefViewModel] = []
-//        guard let collection = invitationBucket.contentCollections?.first else {
-//            return invitationList
-//        }
         let teamOwner = invitationBucket.teamInvitations?.first?.sender
         var teamNames: [String] = []
         invitationBucket.teamInvitations?.forEach {(invitation) in
