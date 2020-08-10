@@ -24,15 +24,30 @@ final class MyLibraryNotesWorker {
 
     // MARK: - Init
 
-    init(noteId: String?) {
+    init(noteId: String?, team: QDMTeam?) {
         self.noteId = noteId
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         if let noteId = noteId {
-            service.getUserStorages(for: .NOTE) { [weak self] (storages, _, _) in
-                self?.note = storages?.first(where: { $0.qotId == noteId })
-                if let completion = self?.noteCompletion {
-                    completion(self?.note?.note)
-                    self?.noteCompletion = nil
+            if let team = team {
+                dispatchGroup.enter()
+                service.getTeamStorages(for: .NOTE, in: team) { [weak self] (storages, _, _) in
+                    self?.note = storages?.first(where: { $0.qotId == noteId })
+                    dispatchGroup.leave()
                 }
+            } else {
+                dispatchGroup.enter()
+                service.getUserStorages(for: .NOTE) { [weak self] (storages, _, _) in
+                    self?.note = storages?.first(where: { $0.qotId == noteId })
+                    dispatchGroup.leave()
+                }
+            }
+        }
+        dispatchGroup.leave()
+        dispatchGroup.notify(queue: .main) {
+            if let completion = self.noteCompletion {
+                completion(self.note?.note)
+                self.noteCompletion = nil
             }
         }
     }

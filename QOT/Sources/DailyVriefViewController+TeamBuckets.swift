@@ -34,8 +34,19 @@ extension DailyBriefViewController {
         switch viewModel.type {
         case .storageItem:
             guard let storage = viewModel.feed?.teamStorage else { break }
-            if storage.openStorageItem() {
+            switch storage.userStorageType {
+            case .NOTE:
+                guard let noteController = R.storyboard.myLibraryNotes.myLibraryNotesViewController() else {
+                    return
+                }
+                let configurator = MyLibraryNotesConfigurator.make(with: viewModel.team)
+                configurator(noteController, storage.qotId ?? "")
+                present(noteController, animated: true, completion: nil)
                 didSelectRow(at: indexPath)
+            default:
+                if storage.openStorageItem() {
+                    didSelectRow(at: indexPath)
+                }
             }
         default: break
         }
