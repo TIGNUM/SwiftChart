@@ -1247,6 +1247,9 @@ extension DailyBriefInteractor {
 
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
         worker.joinTeamInvite(invitation) {(teams) in
+            NotificationCenter.default.post(name: .changedInviteStatus,
+                                            object: nil,
+                                            userInfo: nil)
         }
     }
 }

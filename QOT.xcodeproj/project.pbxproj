@@ -3357,7 +3357,7 @@
 			name = Sprint;
 			sourceTree = "<group>";
 		};
-		38095D1A24BDC4B40077EE86 /* Invitatations */ = {
+		38095D1A24BDC4B40077EE86 /* Invitations */ = {
 			isa = PBXGroup;
 			children = (
 				38095D2224BDC4EA0077EE86 /* TeamInvitesConfigurator.swift */,
@@ -3373,7 +3373,7 @@
 				38095D2F24BDDE680077EE86 /* TeamInviteHeaderTableViewCell.xib */,
 				38095D3124BDDE960077EE86 /* TeamInvitePendingTableViewCell.xib */,
 			);
-			name = Invitatations;
+			name = Invitations;
 			sourceTree = "<group>";
 		};
 		38290B7D2330F602004B5C14 /* SprintReflection */ = {
@@ -3423,7 +3423,7 @@
 				38593DF024A1114C00C2955D /* Team.storyboard */,
 				38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */,
 				382CDC5624A2431000B34BCE /* Editing */,
-				38095D1A24BDC4B40077EE86 /* Invitatations */,
+				38095D1A24BDC4B40077EE86 /* Invitations */,
 			);
 			name = Team;
 			sourceTree = "<group>";
