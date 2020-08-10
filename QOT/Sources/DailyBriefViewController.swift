@@ -923,6 +923,14 @@ extension DailyBriefViewController {
             router.presentContent(contentId)
         }
     }
+
+    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {
+        interactor.didSelectDeclineTeamInvite(invitation: invitation)
+    }
+
+    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
+        interactor.didSelectJoinTeamInvite(invitation: invitation)
+    }
 }
 
 extension DailyBriefViewController: QuestionnaireAnswer {

@@ -32,10 +32,6 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(declineButton)
         skeletonManager.addOtherView(joinButton)
         skeletonManager.addOtherView(seePendingButton)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(didSelectJoinTeam(_:)),
-//                                               name: .didSelectTeamInviteJoin,
-//                                               object: nil)
     }
 
     func configure(model: TeamInvitationModel?) {
@@ -91,11 +87,15 @@ final class TeamInvitationCell: BaseDailyBriefCell {
     }
 
     @IBAction func didTapDecline(_ sender: Any) {
-        NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: teamInvitation)
+        if let invitation = teamInvitation {
+            delegate?.didSelectDeclineTeamInvite(invitation: invitation)
+        }
     }
 
     @IBAction func didTapJoin(_ sender: Any) {
-        NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: teamInvitation)
+        if let invitation = teamInvitation {
+            delegate?.didSelectJoinTeamInvite(invitation: invitation)
+        }
     }
 
     @IBAction func didTapPending(_ sender: Any) {

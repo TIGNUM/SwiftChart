@@ -1227,6 +1227,8 @@ extension DailyBriefInteractor {
         return createSprintChallengeList
     }
 
+      // MARK: - Team functions
+
     func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
         if teamHeaderItems.isEmpty {
             worker.getTeamHeaderItems(showInvites: true) { (items) in
@@ -1235,6 +1237,16 @@ extension DailyBriefInteractor {
             }
         } else {
             completion(teamHeaderItems)
+        }
+    }
+
+    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {
+        worker.declineTeamInvite(invitation) {(teams) in
+        }
+    }
+
+    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
+        worker.joinTeamInvite(invitation) {(teams) in
         }
     }
 }
