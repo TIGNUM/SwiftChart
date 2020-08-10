@@ -179,7 +179,6 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         updateTeamHeaderItems {(items) in
             self.presenter.reload()
         }
-
     }
 
     func removeObserver() {
