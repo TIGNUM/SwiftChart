@@ -9,7 +9,6 @@
 import Foundation
 
 // TeamNewsFeed Related
-
 extension DailyBriefViewController {
     func getTeamNewsFeed(_ tableView: UITableView,
                          _ indexPath: IndexPath,
@@ -34,6 +33,7 @@ extension DailyBriefViewController {
         switch viewModel.type {
         case .storageItem:
             guard let storage = viewModel.feed?.teamStorage else { break }
+            trackUserEvent(.OPEN, value: storage.remoteID, valueType: .TEAM_LIBRARY_ITEM, action: .TAP)
             switch storage.userStorageType {
             case .NOTE:
                 guard let noteController = R.storyboard.myLibraryNotes.myLibraryNotesViewController() else {

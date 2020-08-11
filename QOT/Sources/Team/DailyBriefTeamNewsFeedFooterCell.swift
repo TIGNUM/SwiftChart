@@ -11,6 +11,7 @@ import UIKit
 class DailyBriefTeamNewsFeedFooterCell: BaseDailyBriefCell {
     @IBOutlet private weak var button: RoundedButton?
     var launchURL: URL?
+    var teamId: Int = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,17 +26,13 @@ class DailyBriefTeamNewsFeedFooterCell: BaseDailyBriefCell {
         }
         skeletonManager.hide()
         button?.setTitle(viewModel.actionButtonTitle, for: .normal)
-        launchURL = URLScheme.myLibrary.launchURLWith(["teamId": "\(viewModel.team.remoteID ?? 0)"])
+        teamId = viewModel.team.remoteID ?? 0
+        launchURL = URLScheme.myLibrary.launchURLWith(["teamId": "\(teamId)"])
     }
 
     @IBAction func didTapActionButton(_ button: Any?) {
         guard let url = launchURL else { return }
+        trackUserEvent(.OPEN_TEAM_LIBRARY, value: teamId, valueType: .TEAM, action: .TAP)
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
