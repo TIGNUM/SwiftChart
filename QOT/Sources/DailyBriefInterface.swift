@@ -59,6 +59,6 @@ protocol DailyBriefRouterInterface: BaseRouterInterface {
     func presentCoachPreparation()
     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?)
     func showMyDataScreen()
-    func presentTeamPendingInvites(teamItems: [Team.Item])
+    func presentTeamPendingInvites()
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)
 }

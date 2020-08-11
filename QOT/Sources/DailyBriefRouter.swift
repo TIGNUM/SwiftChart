@@ -89,13 +89,9 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
           viewController?.present(controller, animated: true)
       }
 
-    func presentTeamPendingInvites(teamItems: [Team.Item]) {
-        let identifier = R.storyboard.team.teamInviteViewControllerID.identifier
-        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamInvitesViewController
-        if let controller = controller {
-            let configurator = TeamInvitesConfigurator.make(teamItems: teamItems)
-            configurator(controller)
-            viewController?.pushToStart(childViewController: controller)
+    func presentTeamPendingInvites() {
+        if let launchURL = URLScheme.teamInvitations.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }
 }

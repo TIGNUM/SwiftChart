@@ -138,9 +138,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     @objc func presentTeamPendingInvites() {
-        let teamItems = teamHeaderItems
         clearTeamItems()
-        router.presentTeamPendingInvites(teamItems: teamItems)
+        router.presentTeamPendingInvites()
     }
 
     func presentMyProfile() {

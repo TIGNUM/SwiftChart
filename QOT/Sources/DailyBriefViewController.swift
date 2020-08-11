@@ -853,9 +853,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func presentTeamPendingInvites() {
-        interactor.getTeamHeaderItems { (items) in
-            self.router.presentTeamPendingInvites(teamItems: items)
-        }
+        self.router.presentTeamPendingInvites()
     }
 }
 

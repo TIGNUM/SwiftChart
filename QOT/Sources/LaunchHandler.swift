@@ -204,6 +204,7 @@ final class LaunchHandler {
             presentQRCodeURL(url)
         case .recovery3DPlanner: show3DRecoveryDecisionTree()
         case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
+        case .teamInvitations: showPendingInvitations()
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
@@ -236,6 +237,24 @@ final class LaunchHandler {
 // MARK: - Show Screen
 
 extension LaunchHandler {
+
+    func showPendingInvitations() {
+        let identifier = R.storyboard.team.teamInviteViewControllerID.identifier
+        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamInvitesViewController
+        TeamService.main.getTeamInvitations { (invitations, error) in
+            if let error = error {
+                log("Error getTeamInvitations: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            let teamItem = Team.Item(invites: invitations ?? [])
+
+            if let controller = controller {
+                let configurator = TeamInvitesConfigurator.make(teamItems: [teamItem])
+                configurator(controller)
+                self.push(viewController: controller)
+            }
+        }
+    }
 
     func showFirstLevelScreen(page: CoachCollectionViewController.Pages,
                               _ bucketName: String? = nil,
