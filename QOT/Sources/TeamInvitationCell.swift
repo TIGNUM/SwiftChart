@@ -15,7 +15,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
     @IBOutlet private weak var invitationLabel: UILabel!
     @IBOutlet private weak var declineButton: AnimatedButton!
     @IBOutlet private weak var joinButton: AnimatedButton!
-    @IBOutlet private weak var seePendingButton: UIButton!
+    @IBOutlet private weak var seePendingButton: AnimatedButton!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     private var teamInvitation: QDMTeamInvitation?
@@ -45,13 +45,13 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         let belongingText = AppTextService.get(.daily_brief_team_invitation_belonging_sentence)
         let text2 = AppTextService.get(.daily_brief_team_invitation_several_teams_statement)
 
-        joinButton.setButtonContentInset(padding: 16)
+//        joinButton.setButtonContentInset(padding: 16)
         let declineCta = AppTextService.get(.daily_brief_team_invitation_decline_cta)
         let pendingCta = AppTextService.get(.daily_brief_team_invitation_see_pending_cta)
         declineButton.setTitle(declineCta, for: .normal)
-        declineButton.setButtonContentInset(padding: 16)
+//        declineButton.setButtonContentInset(padding: 16)
         seePendingButton.setTitle(pendingCta, for: .normal)
-        seePendingButton.setButtonContentInset(padding: 16)
+//        seePendingButton.setButtonContentInset(padding: 16)
         seePendingButton.isHidden = model?.teamNames?.count == 1
         guard let count = model?.teamNames?.count else { return }
         let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 16), .foregroundColor: UIColor.sand]

@@ -30,6 +30,7 @@ final class TeamToBeVisionCellViewModel: BaseDailyBriefViewModel {
         }
         return super.isContentEqual(to: source) &&
             teamVision == source.teamVision &&
-            title == source.title
+            title == source.title &&
+            team?.qotId == source.team?.qotId
     }
 }
