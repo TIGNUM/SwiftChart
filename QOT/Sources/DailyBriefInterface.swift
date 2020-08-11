@@ -45,7 +45,6 @@ protocol DailyBriefInteractorInterface: Interactor {
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
-    func getTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
     func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation)
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation)
 }
