@@ -41,8 +41,8 @@ extension QDMUserEventTracking.Name {
     static let GET_STARTED = "GET_STARTED"
     static let AUDIO_PLAYBACK_SPEED = "AUDIO_PLAYBACK_SPEED"
     static let CHECK_DONT_SHOW_EXPLAINER = "CHECK_DONT_SHOW_EXPLAINER"
-    static let JOIN_TEAM = "JOIN_TEAM"
-    static let DECLINE_INVITE = "DECLINE_INVITE"
+    static let ACCEPT_TEAM_INVITATION = "ACCEPT_TEAM_INVITATION"
+    static let DECLINE_TEAM_INVITATION = "DECLINE_TEAM_INVITATION"
 }
 
 public extension QDMUserEventTracking.ValueType {

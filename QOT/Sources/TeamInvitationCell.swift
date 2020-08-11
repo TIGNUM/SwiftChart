@@ -85,14 +85,14 @@ final class TeamInvitationCell: BaseDailyBriefCell {
 
     @IBAction func didTapDecline(_ sender: Any) {
         if let invitation = teamInvitation {
-            trackUserEvent(.DECLINE_INVITE, value: invitation.team?.remoteID ?? 0, action: .TAP)
+            trackUserEvent(.DECLINE_TEAM_INVITATION, value: invitation.team?.remoteID ?? 0, action: .TAP)
             delegate?.didSelectDeclineTeamInvite(invitation: invitation)
         }
     }
 
     @IBAction func didTapJoin(_ sender: Any) {
         if let invitation = teamInvitation {
-            trackUserEvent(.JOIN_TEAM, value: invitation.team?.remoteID ?? 0, action: .TAP)
+            trackUserEvent(.ACCEPT_TEAM_INVITATION, value: invitation.team?.remoteID ?? 0, action: .TAP)
             delegate?.didSelectJoinTeamInvite(invitation: invitation)
         }
     }
