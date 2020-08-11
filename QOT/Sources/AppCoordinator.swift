@@ -96,14 +96,13 @@ final class AppCoordinator {
     }
 
     func setupBugLife() {
-        guard SessionService.main.getCurrentSession() != nil else { return }
         if SessionService.main.getCurrentSession()?.useremail?.lowercased().contains("@tignum.com") == true {
             Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
             Buglife.shared().delegate = AppDelegate.current
-            Buglife.shared().invocationOptions = [.shake]
+            Buglife.shared().invocationOptions = [.shake, .screenshot]
         } else {
             Buglife.shared().delegate = nil
-            Buglife.shared().invocationOptions = [.init(rawValue: 0)]
+            Buglife.shared().invocationOptions = []
         }
     }
 
@@ -257,6 +256,7 @@ extension AppCoordinator {
             importCalendarEventsIfAuthorized()
         }
         showApp()
+        setupBugLife()
     }
 
     func add3DTouchShortcuts() {
