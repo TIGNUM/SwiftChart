@@ -47,6 +47,7 @@ class LibraryTableViewCellFactory {
         returnCell?.setTitle(item.title)
         returnCell?.icon.image = item.icon
         returnCell?.setInfoText(item.description)
+        returnCell?.setCreationInfoText(item.storageUpdateInfo)
 
         return returnCell ?? UITableViewCell()
     }

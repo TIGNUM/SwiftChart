@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -40,6 +40,12 @@
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTG-Hr-5QQ">
+                        <rect key="frame" x="24" y="77" width="244" height="14.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VXZ-V5-jA1">
                         <rect key="frame" x="24" y="119" width="390" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -76,8 +82,11 @@
                     <constraint firstItem="8RV-dn-Oge" firstAttribute="top" secondItem="ZfO-d7-ckm" secondAttribute="top" constant="24" id="FcZ-kt-spB"/>
                     <constraint firstItem="8RV-dn-Oge" firstAttribute="leading" secondItem="ZfO-d7-ckm" secondAttribute="leading" constant="24" id="Hdz-Ex-n06"/>
                     <constraint firstItem="MxJ-IB-hLG" firstAttribute="centerX" secondItem="4VF-4m-ANQ" secondAttribute="centerX" id="Lzg-ed-yU1"/>
+                    <constraint firstItem="lTG-Hr-5QQ" firstAttribute="leading" secondItem="8RV-dn-Oge" secondAttribute="leading" id="M3N-ef-x8m"/>
                     <constraint firstItem="MxJ-IB-hLG" firstAttribute="centerY" secondItem="4VF-4m-ANQ" secondAttribute="centerY" id="PNu-Br-RT4"/>
+                    <constraint firstItem="lTG-Hr-5QQ" firstAttribute="top" secondItem="797-hI-XqB" secondAttribute="bottom" constant="8" id="S46-0N-ztX"/>
                     <constraint firstItem="797-hI-XqB" firstAttribute="leading" secondItem="eJ9-8Y-0fc" secondAttribute="trailing" constant="8" id="VE1-yp-ggZ"/>
+                    <constraint firstItem="lTG-Hr-5QQ" firstAttribute="trailing" secondItem="8RV-dn-Oge" secondAttribute="trailing" id="fpz-D3-s7E"/>
                     <constraint firstItem="MxJ-IB-hLG" firstAttribute="height" secondItem="4VF-4m-ANQ" secondAttribute="height" multiplier="40:72" id="fzG-yw-Hr3"/>
                     <constraint firstItem="VXZ-V5-jA1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="eJ9-8Y-0fc" secondAttribute="bottom" constant="21" id="gph-Ql-4sx"/>
                     <constraint firstItem="eJ9-8Y-0fc" firstAttribute="leading" secondItem="8RV-dn-Oge" secondAttribute="leading" id="hrJ-AS-Oib"/>
@@ -95,11 +104,13 @@
             </constraints>
             <connections>
                 <outlet property="bottomSeparator" destination="VXZ-V5-jA1" id="b7f-th-Z0S"/>
+                <outlet property="bottomVirticalSpace" destination="gph-Ql-4sx" id="Qv3-Wa-wH5"/>
                 <outlet property="contentTitle" destination="8RV-dn-Oge" id="aoa-U8-tTy"/>
                 <outlet property="icon" destination="eJ9-8Y-0fc" id="8nb-wE-9Q9"/>
                 <outlet property="infoText" destination="797-hI-XqB" id="ARW-2S-vt4"/>
                 <outlet property="playButton" destination="MxJ-IB-hLG" id="BPD-bO-Msj"/>
                 <outlet property="preview" destination="4VF-4m-ANQ" id="HIe-JR-02z"/>
+                <outlet property="updateInfoLavel" destination="lTG-Hr-5QQ" id="C0e-0K-PkV"/>
             </connections>
             <point key="canvasLocation" x="139" y="125"/>
         </tableViewCell>

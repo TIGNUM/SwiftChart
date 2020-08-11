@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -40,6 +40,12 @@
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOJ-U2-8Fs">
+                        <rect key="frame" x="24" y="77" width="286" height="14.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7q-rD-6JN">
                         <rect key="frame" x="24" y="109" width="390" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -73,14 +79,17 @@
                     <constraint firstItem="Fjs-VV-ziu" firstAttribute="leading" secondItem="uV1-x3-84O" secondAttribute="leading" constant="24" id="DEt-6y-REa"/>
                     <constraint firstItem="n7q-rD-6JN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dIs-Vz-V9a" secondAttribute="bottom" constant="21" id="OP8-CT-iIK"/>
                     <constraint firstItem="noV-fd-dwJ" firstAttribute="leading" secondItem="Fjs-VV-ziu" secondAttribute="trailing" constant="20" id="RbC-5v-qn7"/>
+                    <constraint firstItem="bOJ-U2-8Fs" firstAttribute="trailing" secondItem="Fjs-VV-ziu" secondAttribute="trailing" id="TFY-mc-svU"/>
                     <constraint firstItem="Fjs-VV-ziu" firstAttribute="top" secondItem="uV1-x3-84O" secondAttribute="top" constant="24" id="XNa-PF-qpP"/>
                     <constraint firstAttribute="bottom" secondItem="n7q-rD-6JN" secondAttribute="bottom" id="YRV-GS-zV5"/>
                     <constraint firstItem="h7r-hR-xFL" firstAttribute="centerY" secondItem="dIs-Vz-V9a" secondAttribute="centerY" id="aRp-JL-Dm2"/>
                     <constraint firstItem="h7r-hR-xFL" firstAttribute="leading" secondItem="dIs-Vz-V9a" secondAttribute="trailing" constant="8" id="bPB-JL-cBa"/>
+                    <constraint firstItem="bOJ-U2-8Fs" firstAttribute="leading" secondItem="Fjs-VV-ziu" secondAttribute="leading" id="cNH-yP-Ra9"/>
                     <constraint firstItem="bt7-wb-N14" firstAttribute="centerY" secondItem="uV1-x3-84O" secondAttribute="centerY" id="eWT-QN-ykc"/>
                     <constraint firstItem="dIs-Vz-V9a" firstAttribute="leading" secondItem="Fjs-VV-ziu" secondAttribute="leading" id="mZ7-Sc-y1H"/>
                     <constraint firstItem="n7q-rD-6JN" firstAttribute="leading" secondItem="uV1-x3-84O" secondAttribute="leading" constant="24" id="oes-9s-1KJ"/>
                     <constraint firstItem="dIs-Vz-V9a" firstAttribute="top" secondItem="Fjs-VV-ziu" secondAttribute="bottom" constant="8" id="q2R-zx-fmo"/>
+                    <constraint firstItem="bOJ-U2-8Fs" firstAttribute="top" secondItem="h7r-hR-xFL" secondAttribute="bottom" constant="8" id="sPg-TO-PIH"/>
                     <constraint firstAttribute="trailing" secondItem="n7q-rD-6JN" secondAttribute="trailing" id="wFF-QZ-1uc"/>
                     <constraint firstItem="noV-fd-dwJ" firstAttribute="height" secondItem="bt7-wb-N14" secondAttribute="height" id="xsT-VA-CGa"/>
                 </constraints>
@@ -91,9 +100,11 @@
                 <outlet property="activityIcon" destination="bt7-wb-N14" id="Adj-g9-INk"/>
                 <outlet property="activityView" destination="noV-fd-dwJ" id="urn-ch-gyV"/>
                 <outlet property="bottomSeparator" destination="n7q-rD-6JN" id="h78-gj-Fil"/>
+                <outlet property="bottomVirticalSpace" destination="OP8-CT-iIK" id="iLx-95-WJM"/>
                 <outlet property="contentTitle" destination="Fjs-VV-ziu" id="i01-6M-oFW"/>
                 <outlet property="icon" destination="dIs-Vz-V9a" id="bM0-wh-YXL"/>
                 <outlet property="infoText" destination="h7r-hR-xFL" id="Roi-3P-vJq"/>
+                <outlet property="updateInfoLavel" destination="bOJ-U2-8Fs" id="f2e-AD-3eu"/>
             </connections>
             <point key="canvasLocation" x="139" y="125"/>
         </tableViewCell>

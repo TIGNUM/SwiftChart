@@ -18,6 +18,10 @@ extension DailyBriefInteractor {
         let teamQotIds = Set(libraryFeeds.compactMap({ $0.teamStorage?.teamQotId })).sorted()
         var models = [TeamNewsFeedDailyBriefViewModel]()
         let converter = MyLibraryCellViewModelConverter()
+        let subtitleForOneItem = AppTextService.get(.daily_brief_section_team_news_feed_subtitle_for_one_item)
+        let subtitleForMultipleItems = AppTextService.get(.daily_brief_section_team_news_feed_subtitle_for_multiple_items)
+        let creationInfoTextTemplate = AppTextService.get(.daily_brief_section_team_news_feed_creation_info)
+        let openLibraryButtonTitle = AppTextService.get(.daily_brief_section_team_news_feed_open_library_button_title)
         for teamQotId in teamQotIds {
             let filteredFeeds = libraryFeeds.filter({ $0.teamQotId == teamQotId })
             guard let firstFeed = filteredFeeds.first, let team = firstFeed.team,
@@ -25,9 +29,12 @@ extension DailyBriefInteractor {
                     continue
             }
             // create header
+            let subtitleCount = filteredFeeds.count == 1 ? subtitleForOneItem :
+                subtitleForMultipleItems.replacingOccurrences(of: "${COUNT OF FEEDS}", with: "\(filteredFeeds.count)")
+            let subtitle = subtitleCount.replacingOccurrences(of: "${NAME OF THE TEAM}", with: team.name ?? "")
             let header = TeamNewsFeedDailyBriefViewModel(type: .header, team: team,
                                                          title: team.name ?? "TEAM Library",
-                                                         subtitle: "added items",
+                                                         subtitle: subtitle,
                                                          feed: firstFeed,
                                                          buttonTitle: nil, domainModel: bucket)
             models.append(header)
@@ -42,6 +49,11 @@ extension DailyBriefInteractor {
                 if count == index + 1 {
                     item.libraryCellViewModel?.hideBottomSeparator = true
                 }
+                let dateString = DateFormatter.ddMMM.string(from: storage.createdAt ?? Date())
+                let creationInfo = creationInfoTextTemplate
+                    .replacingOccurrences(of: "${CREATOR ACCOUNT}", with: storage.owner?.email ?? "")
+                    .replacingOccurrences(of: "${CREATION DATE}", with: dateString)
+                item.libraryCellViewModel?.storageUpdateInfo = creationInfo
                 itemModels.append(item)
             }
 
@@ -51,7 +63,7 @@ extension DailyBriefInteractor {
 
             let footer = TeamNewsFeedDailyBriefViewModel(type: .buttonAction, team: team,
                                                          title: nil, subtitle: nil, feed: firstFeed,
-                                                         buttonTitle: "OPEN LIBRARY", domainModel: bucket)
+                                                         buttonTitle: openLibraryButtonTitle, domainModel: bucket)
             models.append(footer)
         }
 

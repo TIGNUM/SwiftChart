@@ -13,12 +13,17 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var contentTitle: UILabel!
     @IBOutlet weak var bottomSeparator: UIView!
+    @IBOutlet weak var updateInfoLavel: UILabel!
+
+    @IBOutlet weak var bottomVirticalSpace: NSLayoutConstraint!
+
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         skeletonManager.addTitle(contentTitle)
         skeletonManager.addSubtitle(infoText)
+        skeletonManager.addSubtitle(updateInfoLavel)
         skeletonManager.addOtherView(icon)
         selectionStyle = .none
     }
@@ -43,5 +48,17 @@ extension BaseMyLibraryTableViewCell {
         skeletonManager.hide(.subtitle)
         guard let info = text else { return }
         ThemeText.myLibraryItemsItemDescription.apply(info, to: infoText)
+    }
+
+    func setCreationInfoText(_ text: String?) {
+        skeletonManager.hide(.subtitle)
+        ThemeText.myLibraryItemsItemDescription.apply(text, to: updateInfoLavel)
+        var verticalSpacing: CGFloat = 21 // default
+        if text?.isEmpty != false {
+            // adjust vertical space
+            verticalSpacing += 20 // labelHeight 12 + spacing 8
+        }
+        bottomVirticalSpace.constant = verticalSpacing
+        setNeedsUpdateConstraints()
     }
 }
