@@ -69,10 +69,25 @@ private extension TeamInvitePendingTableViewCell {
 // MARK: - Actions
 extension TeamInvitePendingTableViewCell {
     @IBAction func didTabDecline() {
+        trackUserEvent(.DECLINE_INVITE, value: pendingInvite?.qdmInvite.team?.remoteID ?? 0)
         NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: pendingInvite?.qdmInvite)
     }
 
     @IBAction func didTabJoin() {
+        trackUserEvent(.JOIN_TEAM, value: pendingInvite?.qdmInvite.team?.remoteID ?? 0)
         NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: pendingInvite?.qdmInvite)
+    }
+
+    func trackUserEvent(_ name: QDMUserEventTracking.Name,
+                        value: Int? = nil,
+                        stringValue: String? = nil,
+                        valueType: QDMUserEventTracking.ValueType? = nil) {
+        var userEventTrack = QDMUserEventTracking()
+        userEventTrack.name = name
+        userEventTrack.value = value
+        userEventTrack.stringValue = stringValue
+        userEventTrack.valueType = valueType
+        userEventTrack.action = .TAP
+        NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
     }
 }
