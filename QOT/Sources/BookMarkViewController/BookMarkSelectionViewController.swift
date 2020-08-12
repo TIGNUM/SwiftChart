@@ -69,7 +69,7 @@ private extension BookMarkSelectionViewController {
 
 private extension BookMarkSelectionViewController {
     @IBAction func didTapSaveButton(_ sender: Any?) {
-        backgroundView.alpha = 0
+        backgroundView.backgroundColor = .clear
         trackUserEvent(.SAVE, value: nil, stringValue: nil, valueType: nil, action: .TAP)
         interactor?.save()
     }
