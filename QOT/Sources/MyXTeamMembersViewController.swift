@@ -104,7 +104,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func updateView(hasMembers: Bool) {
         tableView.beginUpdates()
-        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .fade)
+        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .none)
         tableView.endUpdates()
         showDemoIfNeeded()
 
@@ -163,6 +163,12 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
             return [removeAction]
         case .pending:
             return member.wasReinvited ? [removeAction, invitedAction] : [removeAction, inviteAgainAction]
+        }
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.deleteRows(at: [indexPath], with: .top)
         }
     }
 
