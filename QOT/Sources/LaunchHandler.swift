@@ -242,12 +242,8 @@ extension LaunchHandler {
         let identifier = R.storyboard.team.teamInviteViewControllerID.identifier
         let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamInvitesViewController
         TeamService.main.getTeamInvitations { (invitations, error) in
-            if let error = error {
-                log("Error getTeamInvitations: \(error.localizedDescription)", level: .error)
-                // TODO handle error
-            }
+            guard error == nil else { return }
             let teamItem = Team.Item(invites: invitations ?? [])
-
             if let controller = controller {
                 let configurator = TeamInvitesConfigurator.make(teamItems: [teamItem])
                 configurator(controller)
