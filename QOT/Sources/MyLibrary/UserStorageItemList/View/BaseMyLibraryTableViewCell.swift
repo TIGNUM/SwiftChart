@@ -53,11 +53,9 @@ extension BaseMyLibraryTableViewCell {
     func setCreationInfoText(_ text: String?) {
         skeletonManager.hide(.subtitle)
         ThemeText.myLibraryItemsItemDescription.apply(text, to: updateInfoLavel)
-        var verticalSpacing: CGFloat = 21 // default
-        if text?.isEmpty == false {
-            // adjust vertical space
-            verticalSpacing += 20 // labelHeight 12 + spacing 8
-        }
+        let defaultSpacing: CGFloat = 0
+        let gapWhenCreatorInfoIsShowing: CGFloat = 24
+        let verticalSpacing: CGFloat = text?.isEmpty == false ? gapWhenCreatorInfoIsShowing : defaultSpacing
         bottomVirticalSpace.constant = verticalSpacing
         setNeedsUpdateConstraints()
     }

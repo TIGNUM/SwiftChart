@@ -41,7 +41,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1U-wx-8Tw">
-                        <rect key="frame" x="24" y="81" width="244" height="14.5"/>
+                        <rect key="frame" x="24" y="77.5" width="244" height="14.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="Jb4-Mu-Yef"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -73,20 +76,20 @@
                 <constraints>
                     <constraint firstItem="8uY-xV-wLh" firstAttribute="leading" secondItem="xLo-R4-SMS" secondAttribute="leading" id="50s-lV-hLE"/>
                     <constraint firstItem="xLo-R4-SMS" firstAttribute="top" secondItem="E1q-0W-1rq" secondAttribute="top" constant="24" id="6tF-mf-0vS"/>
+                    <constraint firstItem="G7P-hN-eZO" firstAttribute="top" secondItem="K1U-wx-8Tw" secondAttribute="bottom" constant="27" id="97o-MA-Vnz"/>
                     <constraint firstAttribute="bottom" secondItem="G7P-hN-eZO" secondAttribute="bottom" id="Dce-TJ-yl0"/>
                     <constraint firstItem="G7P-hN-eZO" firstAttribute="leading" secondItem="E1q-0W-1rq" secondAttribute="leading" constant="24" id="F35-g3-fQu"/>
                     <constraint firstAttribute="bottom" secondItem="u2e-zS-5Af" secondAttribute="bottom" constant="24" id="FA7-zH-QWl"/>
                     <constraint firstItem="K1U-wx-8Tw" firstAttribute="trailing" secondItem="xLo-R4-SMS" secondAttribute="trailing" id="HAE-3V-jDO"/>
                     <constraint firstAttribute="trailing" secondItem="u2e-zS-5Af" secondAttribute="trailing" id="IQl-Gg-ILX"/>
                     <constraint firstItem="xLo-R4-SMS" firstAttribute="leading" secondItem="E1q-0W-1rq" secondAttribute="leading" constant="24" id="Lqj-dV-hm1"/>
-                    <constraint firstItem="G7P-hN-eZO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8uY-xV-wLh" secondAttribute="bottom" constant="21" id="MeW-fA-6ho"/>
                     <constraint firstItem="xLo-R4-SMS" firstAttribute="trailing" secondItem="u2e-zS-5Af" secondAttribute="leading" constant="-5" id="MoW-tG-nqH"/>
                     <constraint firstItem="LtF-Ed-SdQ" firstAttribute="centerY" secondItem="8uY-xV-wLh" secondAttribute="centerY" id="Q5r-dq-PeB"/>
                     <constraint firstItem="LtF-Ed-SdQ" firstAttribute="leading" secondItem="8uY-xV-wLh" secondAttribute="trailing" constant="8" id="Szf-Qm-4s7"/>
                     <constraint firstItem="K1U-wx-8Tw" firstAttribute="leading" secondItem="xLo-R4-SMS" secondAttribute="leading" id="Tzb-Fc-cMh"/>
                     <constraint firstItem="u2e-zS-5Af" firstAttribute="top" secondItem="E1q-0W-1rq" secondAttribute="top" constant="24" id="dUl-cy-Ip6"/>
                     <constraint firstItem="LtF-Ed-SdQ" firstAttribute="trailing" secondItem="xLo-R4-SMS" secondAttribute="trailing" id="eDj-xD-Ady"/>
-                    <constraint firstItem="K1U-wx-8Tw" firstAttribute="top" secondItem="LtF-Ed-SdQ" secondAttribute="bottom" constant="12" id="hc6-gf-jcW"/>
+                    <constraint firstItem="K1U-wx-8Tw" firstAttribute="top" secondItem="8uY-xV-wLh" secondAttribute="bottom" constant="8" id="qHu-aF-IkR"/>
                     <constraint firstAttribute="trailing" secondItem="G7P-hN-eZO" secondAttribute="trailing" id="xk5-sp-bwJ"/>
                     <constraint firstItem="8uY-xV-wLh" firstAttribute="top" secondItem="xLo-R4-SMS" secondAttribute="bottom" constant="8" id="y0p-ve-i3r"/>
                 </constraints>
@@ -98,7 +101,7 @@
             </constraints>
             <connections>
                 <outlet property="bottomSeparator" destination="G7P-hN-eZO" id="IW6-xe-pNs"/>
-                <outlet property="bottomVirticalSpace" destination="MeW-fA-6ho" id="THq-VX-Yei"/>
+                <outlet property="bottomVirticalSpace" destination="97o-MA-Vnz" id="HzB-PO-fXo"/>
                 <outlet property="contentTitle" destination="xLo-R4-SMS" id="pat-nK-TWY"/>
                 <outlet property="icon" destination="8uY-xV-wLh" id="Ucy-he-qVT"/>
                 <outlet property="infoText" destination="LtF-Ed-SdQ" id="T8Y-Yq-T3r"/>
