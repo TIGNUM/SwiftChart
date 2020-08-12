@@ -43,7 +43,7 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
     func didTapEdit(isEditing: Bool)
     func didTapPlayItem(at row: Int)
     func didTapAddNote()
-    func handleSelectedItem(at index: Int)
+    func handleSelectedItem(at index: Int) -> Bool // return false is "deselect row" else keep the selection
     func getIdentifiersForCheckedItems() -> Set<String>
     func clearCheckedItems()
 }

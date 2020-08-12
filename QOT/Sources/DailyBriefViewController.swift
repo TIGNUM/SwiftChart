@@ -251,6 +251,8 @@ extension DailyBriefViewController {
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         case .MINDSET_SHIFTER?:
             return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
+        case .TEAM_NEWS_FEED?:
+            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         default:
            return UITableViewCell()
         }
@@ -261,18 +263,23 @@ extension DailyBriefViewController {
         let bucketList = bucketModel?.elements
         let bucketItem = bucketList?[indexPath.row]
 
-        switch bucketItem?.domainModel?.bucketName {
-        case .LATEST_WHATS_HOT?:
+        guard let bucketName = bucketItem?.domainModel?.bucketName else { return }
+
+        switch bucketName {
+        case .LATEST_WHATS_HOT:
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
              router.presentContent(whatsHotArticleId)
-        case .SOLVE_REFLECTION?:
+        case .SOLVE_REFLECTION:
             didSelectRow(at: indexPath)
             if (bucketItem as? SolveReminderTableCellViewModel) != nil {
                 let model = bucketItem as? SolveReminderTableCellViewModel
                 guard let solve = model?.solve else { break }
                 showSolveResults(solve: solve)
             }
+        case .TEAM_NEWS_FEED:
+            guard let viewModel = bucketItem as? TeamNewsFeedDailyBriefViewModel else { break }
+            handleTableViewRowSelection(with: viewModel, at: indexPath)
         default:
             break
         }
@@ -741,6 +748,13 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
         tableView.registerDequeueable(MindsetShifterCell.self)
         tableView.registerDequeueable(ExpertThoughtsTableViewCell.self)
+        tableView.registerDequeueable(DailyBriefTeamNewsFeedHeaderCell.self)
+        tableView.registerDequeueable(DailyBriefTeamNewsFeedFooterCell.self)
+        tableView.registerDequeueable(ArticleBookmarkTableViewCell.self)
+        tableView.registerDequeueable(VideoBookmarkTableViewCell.self)
+        tableView.registerDequeueable(AudioBookmarkTableViewCell.self)
+        tableView.registerDequeueable(NoteTableViewCell.self)
+        tableView.registerDequeueable(DownloadTableViewCell.self)
     }
 
     func scrollToSection(at: Int) {

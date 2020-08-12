@@ -177,30 +177,6 @@ final class MyLibraryUserStorageWorker {
         return attributedText
     }()
 
-    lazy var personalNote: String = {
-        return AppTextService.get(.my_qot_my_library_notes_section_item_label_personal_notes)
-    }()
-
-    lazy var downloading: String = {
-        return AppTextService.get(.my_qot_my_library_downloads_section_item_label_downloading)
-    }()
-
-    lazy var waitingForDownload: String = {
-        return AppTextService.get(.my_qot_my_library_downloads_section_item_label_waiting)
-    }()
-
-    lazy var read: String = {
-        return AppTextService.get(.my_qot_my_library_labels_title_read)
-    }()
-
-    lazy var watch: String = {
-        return AppTextService.get(.my_qot_my_library_labels_title_watch)
-    }()
-
-    lazy var listen: String = {
-        return AppTextService.get(.my_qot_my_library_labels_title_listen)
-    }()
-
     lazy var contentType: MyLibraryUserStorageContentType = {
         switch item.type {
         case .ALL: return .all
@@ -237,7 +213,7 @@ extension MyLibraryUserStorageWorker {
             }
         } else {
             if let team = team {
-                service.getTeamStorages (in: team) { [weak self] (teamStorages, initiated, error) in
+                service.getTeamStorages(in: team) { [weak self] (teamStorages, initiated, error) in
                     self?.handleStorages(teamStorages, initiated: initiated, completion: completion)
                 }
             } else {
