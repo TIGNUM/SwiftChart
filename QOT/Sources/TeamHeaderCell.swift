@@ -60,7 +60,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         self.teamId = ""
         itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
         itemButton.backgroundColor = .carbon
-        itemButton.layer.borderColor = UIColor.accent.cgColor
+        itemButton.layer.borderColor = UIColor.accent40.cgColor
         itemButton.setTitleColor(.accent, for: .normal)
         setSelected(false)
     }
@@ -95,13 +95,12 @@ private extension TeamHeaderCell {
 
     func setSelected(_ selected: Bool) {
         guard teamInvites.isEmpty else { return }
+        itemButton.layer.borderColor = UIColor(hex: hexColorString).withAlphaComponent(0.4).cgColor
         if selected {
             itemButton.backgroundColor = UIColor(hex: hexColorString)
-            itemButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
             itemButton.setTitleColor(.sand, for: .normal)
         } else {
             itemButton.backgroundColor = .clear
-            itemButton.layer.borderColor = UIColor(hex: hexColorString).cgColor
             itemButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
         }
     }

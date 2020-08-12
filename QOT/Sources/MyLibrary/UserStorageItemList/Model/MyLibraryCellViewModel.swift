@@ -39,6 +39,8 @@ struct MyLibraryCellViewModel: Equatable {
     let remoteId: Int
     let mediaURL: URL?
     var removable: Bool = true
+    var hideBottomSeparator: Bool = false
+    var storageUpdateInfo: String?
 
     static func == (lhs: MyLibraryCellViewModel, rhs: MyLibraryCellViewModel) -> Bool {
         return lhs.title == rhs.title &&

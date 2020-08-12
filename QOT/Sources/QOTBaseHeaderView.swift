@@ -38,6 +38,26 @@ final class QOTBaseHeaderView: UIView {
         }
     }
 
+    func setColor(dashColor: UIColor?, titleColor: UIColor?, subtitleColor: UIColor?) {
+        if let lineColor = dashColor {
+            lineView.backgroundColor = lineColor
+        }
+        if let titleTextColor = titleColor, title != nil,
+            let attributedString = titleLabel.attributedText?.mutableCopy() as? NSMutableAttributedString {
+            let range = NSRange(location: 0, length: attributedString.length)
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: titleTextColor,
+                                          range: range)
+            titleLabel.attributedText = attributedString
+        }
+        if let subtitleTextColor = subtitleColor, subtitle != nil,
+            let attributedString = subtitleTextView.attributedText?.mutableCopy() as? NSMutableAttributedString {
+            let range = NSRange(location: 0, length: attributedString.length)
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: subtitleTextColor,
+                                          range: range)
+            subtitleTextView.attributedText = attributedString
+        }
+    }
+
     func configure(title: String?, subtitle: String?, darkMode: Bool? = true, animated: Bool = false) {
         self.title = title
         self.subtitle = subtitle

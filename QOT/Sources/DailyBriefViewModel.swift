@@ -42,5 +42,6 @@ struct DailyBriefViewModel {
         case teamToBeVision
         case teamVisionSuggestion
         case teamInvitation
+        case teamNewsFeed
     }
 }
