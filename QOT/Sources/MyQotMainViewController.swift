@@ -188,8 +188,13 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        indexPathDeselect = indexPath
-        interactor.handleSelection(at: indexPath)
+        switch MyX.Section.allCases[indexPath.section] {
+        case .items:
+            indexPathDeselect = indexPath
+            interactor.handleSelection(at: indexPath)
+        default:
+            break
+        }
     }
 }
 
