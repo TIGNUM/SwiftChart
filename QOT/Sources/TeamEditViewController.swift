@@ -85,7 +85,6 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         hideOutlets(type)
         textCounterLabel.isHidden = type == .memberInvite
         textMaxCharsLabel.isHidden = type == .memberInvite
-        teamTextField.text = "HELLO"
     }
 
     func updateTextCounter(type: TeamEdit.View, max: Int, teamName: String?) {
