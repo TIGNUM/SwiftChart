@@ -315,13 +315,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .MINDSET_SHIFTER:
                     sectionDataList.append(ArraySection(model: .mindsetShifter,
                                                         elements: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket)))
-                case .TEAM_TO_BE_VISION?:
+                case .TEAM_TO_BE_VISION:
                     sectionDataList.append(ArraySection(model: .teamToBeVision,
                                                         elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
 //                case .TEAM_VISION_SUGGESTION?:
 //                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
 //                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
-                case .TEAM_INVITATION?:
+                case .TEAM_INVITATION:
                     sectionDataList.append(ArraySection(model: .teamInvitation,
                                                         elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
                 case .TEAM_NEWS_FEED:
