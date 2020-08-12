@@ -38,25 +38,32 @@ class MyLibraryCellViewModelConverter {
                    team: QDMTeam?,
                    downloadStatus: QDMDownloadStatus?) -> MyLibraryCellViewModel? {
         var viewModel: MyLibraryCellViewModel?
+        let creationInfoTextTemplate = AppTextService.get(.daily_brief_section_team_news_feed_creation_info)
+        let dateString = DateFormatter.ddMMM.string(from: item.createdAt ?? Date())
+        let creationInfo = creationInfoTextTemplate
+            .replacingOccurrences(of: "${CREATOR ACCOUNT}", with: item.owner?.email ?? "")
+            .replacingOccurrences(of: "${CREATION DATE}", with: dateString)
         switch item.userStorageType {
         case .DOWNLOAD:
-            viewModel = downloadViewModel(from: item, downloadStatus: downloadStatus)
+            viewModel = downloadViewModel(from: item,
+                                          creationInfo: team == nil ? nil : creationInfo,
+                                          downloadStatus: downloadStatus)
         case .BOOKMARK:
-            viewModel = bookmarkViewModel(from: item)
+            viewModel = bookmarkViewModel(from: item, creationInfo: team == nil ? nil : creationInfo)
         case .NOTE:
-            viewModel = noteViewModel(from: item)
+            viewModel = noteViewModel(from: item, creationInfo: team == nil ? nil : creationInfo)
         case .EXTERNAL_LINK:
-            viewModel = linkViewModel(from: item)
+            viewModel = linkViewModel(from: item, creationInfo: team == nil ? nil : creationInfo)
         case .UNKOWN:
             return nil
         }
         if let team = team {
-            viewModel?.removable = (item.isMine ?? false || team.thisUserIsOwner)
+            viewModel?.removable = ((item.isMine != nil ? item.isMine! : true) || team.thisUserIsOwner)
         }
         return viewModel
     }
 
-    private func downloadViewModel(from item: QDMUserStorage,
+    private func downloadViewModel(from item: QDMUserStorage, creationInfo: String?,
                                    downloadStatus: QDMDownloadStatus?) -> MyLibraryCellViewModel {
         let cellStatus: MyLibraryCellViewModel.DownloadStatus
         let description: String
@@ -83,21 +90,23 @@ class MyLibraryCellViewModelConverter {
             description = duration.simple
             fullDuration = duration.full
         }
-        return MyLibraryCellViewModel(cellType: cellType,
-                                      title: item.title ?? "",
-                                      description: description,
-                                      duration: fullDuration,
-                                      icon: mediaIcon(for: item),
-                                      previewURL: URL(string: item.previewImageUrl ?? ""),
-                                      type: item.userStorageType,
-                                      mediaType: item.mediaType ?? .UNKOWN,
-                                      downloadStatus: cellStatus,
-                                      identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
-                                      mediaURL: URL(string: item.mediaPath() ?? ""))
+        var model = MyLibraryCellViewModel(cellType: cellType,
+                                           title: item.title ?? "",
+                                           description: description,
+                                           duration: fullDuration,
+                                           icon: mediaIcon(for: item),
+                                           previewURL: URL(string: item.previewImageUrl ?? ""),
+                                           type: item.userStorageType,
+                                           mediaType: item.mediaType ?? .UNKOWN,
+                                           downloadStatus: cellStatus,
+                                           identifier: item.qotId ?? "",
+                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           mediaURL: URL(string: item.mediaPath() ?? ""))
+        model.storageUpdateInfo = creationInfo
+        return model
     }
 
-    private func noteViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
+    private func noteViewModel(from item: QDMUserStorage, creationInfo: String?) -> MyLibraryCellViewModel {
         var descriptionExtension: String = ""
         if let date = item.createdAt {
             descriptionExtension = " | \(DateFormatter.ddMMM.string(from: date))"
@@ -105,7 +114,7 @@ class MyLibraryCellViewModelConverter {
         let description = personalNote + descriptionExtension
         return MyLibraryCellViewModel(cellType: .NOTE,
                                       title: item.note ?? "",
-                                      description: description,
+                                      description: creationInfo ?? description,
                                       duration: "",
                                       icon: R.image.my_library_note_light(),
                                       previewURL: nil,
@@ -117,39 +126,43 @@ class MyLibraryCellViewModelConverter {
                                       mediaURL: URL(string: item.mediaPath() ?? ""))
     }
 
-    private func linkViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
+    private func linkViewModel(from item: QDMUserStorage, creationInfo: String?) -> MyLibraryCellViewModel {
         var description: String = ""
         if let urllString = item.url, let url = URL(string: urllString), let host = url.host {
             description = host.replacingOccurrences(of: "www.", with: "")
         }
-        return MyLibraryCellViewModel(cellType: .ARTICLE,
-                                      title: item.title ?? "",
-                                      description: description,
-                                      duration: "",
-                                      icon: R.image.my_library_link(),
-                                      previewURL: URL(string: item.previewImageUrl ?? item.note ?? ""),
-                                      type: item.userStorageType,
-                                      mediaType: item.mediaType ?? .UNKOWN,
-                                      downloadStatus: .none,
-                                      identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
-                                      mediaURL: URL(string: item.mediaPath() ?? ""))
+        var model = MyLibraryCellViewModel(cellType: .ARTICLE,
+                                           title: item.title ?? "",
+                                           description: description,
+                                           duration: "",
+                                           icon: R.image.my_library_link(),
+                                           previewURL: URL(string: item.previewImageUrl ?? item.note ?? ""),
+                                           type: item.userStorageType,
+                                           mediaType: item.mediaType ?? .UNKOWN,
+                                           downloadStatus: .none,
+                                           identifier: item.qotId ?? "",
+                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           mediaURL: URL(string: item.mediaPath() ?? ""))
+        model.storageUpdateInfo = creationInfo
+        return model
     }
 
-    private func bookmarkViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
+    private func bookmarkViewModel(from item: QDMUserStorage, creationInfo: String?) -> MyLibraryCellViewModel {
         let durations = mediaDuration(for: item)
-        return MyLibraryCellViewModel(cellType: cellType(for: item),
-                                      title: item.title ?? "",
-                                      description: durations.simple,
-                                      duration: durations.full,
-                                      icon: mediaIcon(for: item),
-                                      previewURL: URL(string: item.previewImageUrl ?? ""),
-                                      type: item.userStorageType,
-                                      mediaType: item.mediaType ?? .UNKOWN,
-                                      downloadStatus: .none,
-                                      identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
-                                      mediaURL: URL(string: item.mediaPath() ?? ""))
+        var model = MyLibraryCellViewModel(cellType: cellType(for: item),
+                                           title: item.title ?? "",
+                                           description: durations.simple,
+                                           duration: durations.full,
+                                           icon: mediaIcon(for: item),
+                                           previewURL: URL(string: item.previewImageUrl ?? ""),
+                                           type: item.userStorageType,
+                                           mediaType: item.mediaType ?? .UNKOWN,
+                                           downloadStatus: .none,
+                                           identifier: item.qotId ?? "",
+                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           mediaURL: URL(string: item.mediaPath() ?? ""))
+        model.storageUpdateInfo = creationInfo
+        return model
     }
 
     // MARK: Presentation helper methods

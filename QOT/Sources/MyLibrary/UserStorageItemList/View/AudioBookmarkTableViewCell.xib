@@ -57,6 +57,10 @@
                         <rect key="frame" x="24" y="53.5" width="16" height="16"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="D4D-3E-bwF"/>
+                            <constraint firstAttribute="height" constant="16" id="EK5-24-UOQ"/>
+                        </constraints>
                     </imageView>
                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRR-oe-tmP">
                         <rect key="frame" x="293" y="32.5" width="97" height="40"/>

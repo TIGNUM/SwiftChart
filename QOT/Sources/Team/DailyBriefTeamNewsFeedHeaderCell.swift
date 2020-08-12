@@ -26,9 +26,4 @@ class DailyBriefTeamNewsFeedHeaderCell: BaseDailyBriefCell {
         baseHeaderView?.configure(title: viewModel.title, subtitle: viewModel.subtitle)
         baseHeaderView?.setColor(dashColor: titleColor, titleColor: titleColor, subtitleColor: nil)
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
 }

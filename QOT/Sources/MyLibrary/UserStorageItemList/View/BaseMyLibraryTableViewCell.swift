@@ -54,7 +54,7 @@ extension BaseMyLibraryTableViewCell {
         skeletonManager.hide(.subtitle)
         ThemeText.myLibraryItemsItemDescription.apply(text, to: updateInfoLavel)
         var verticalSpacing: CGFloat = 21 // default
-        if text?.isEmpty != false {
+        if text?.isEmpty == false {
             // adjust vertical space
             verticalSpacing += 20 // labelHeight 12 + spacing 8
         }

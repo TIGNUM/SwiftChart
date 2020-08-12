@@ -238,8 +238,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MyLibraryUserStorageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor.handleSelectedItem(at: indexPath.row)
-        if tableView.isEditing == false {
+        if interactor.handleSelectedItem(at: indexPath.row) == false {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
@@ -248,7 +247,7 @@ extension MyLibraryUserStorageViewController: UITableViewDelegate {
         guard tableView.isEditing else {
             return
         }
-        interactor.handleSelectedItem(at: indexPath.row)
+        _ = interactor.handleSelectedItem(at: indexPath.row)
     }
 }
 

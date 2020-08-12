@@ -29,6 +29,7 @@ final class MyLibraryUserStorageInteractor {
     private var itemForDownload: MyLibraryCellViewModel?
 
     private var viewModelConverter = MyLibraryCellViewModelConverter()
+    private var hasRemovableItem = false
 
     // Cannot be lazy as "Remove" state depends on selected items count
     private var editingButtons: [ButtonParameters] {
@@ -90,6 +91,7 @@ final class MyLibraryUserStorageInteractor {
     @objc private func load(_ notification: Notification? = nil) {
         worker.loadData(in: team) { [weak self] (initiated, items) in
             guard let strongSelf = self else { return }
+            strongSelf.hasRemovableItem = false
             if strongSelf.items == nil {
                 strongSelf.items = [MyLibraryCellViewModel]()
                 strongSelf.presenter.presentData()
@@ -105,6 +107,7 @@ final class MyLibraryUserStorageInteractor {
                                                             downloadStatus: strongSelf.worker.downloadStatus(for: $0))
                 })
                 strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
+                strongSelf.hasRemovableItem = strongSelf.items?.filter({ $0.removable == true }).first != nil
                 strongSelf.presenter.presentData()
             }
         }
@@ -142,11 +145,11 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     var showEditButton: Bool {
-        return !(isEditing || items?.isEmpty != false || infoViewModel != nil) || worker.showAddButton
+        return !isEditing && hasRemovableItem
     }
 
     var canEdit: Bool {
-        return !(isEditing || items?.isEmpty != false)
+        return showEditButton
     }
 
     var itemType: MyLibraryCategoryType {
@@ -184,17 +187,20 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         router.presentCreateNote(noteId: nil, in: team)
     }
 
-    func handleSelectedItem(at index: Int) {
+    func handleSelectedItem(at index: Int) -> Bool {
         guard let items = self.items, items.count > index else {
-            return
+            return true
         }
-
+        var keepSelection = false
         let item = items[index]
         if isEditing {
-            return checkItemForDeletion(item)
+            let itemSelected = checkItemForDeletion(item)
+            presenter.present()
+            keepSelection = itemSelected
         } else {
             openItemDetails(item)
         }
+        return keepSelection
     }
 
     func getIdentifiersForCheckedItems() -> Set<String> {
@@ -263,7 +269,8 @@ extension MyLibraryUserStorageInteractor {
         presenter.present()
     }
 
-    private func checkItemForDeletion(_ item: MyLibraryCellViewModel) {
+    private func checkItemForDeletion(_ item: MyLibraryCellViewModel) -> Bool {
+        guard item.removable else { return false }
         let previouslySelected = identifiersForCheck.contains(item.identifier)
         if !previouslySelected {
             identifiersForCheck.insert(item.identifier)
@@ -271,7 +278,7 @@ extension MyLibraryUserStorageInteractor {
             identifiersForCheck.remove(item.identifier)
         }
         bottomButtons = editingButtons
-        presenter.present()
+        return identifiersForCheck.contains(item.identifier)
     }
 
     private func successfullyDeleted(identifier: String) {

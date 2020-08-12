@@ -20,7 +20,6 @@ extension DailyBriefInteractor {
         let converter = MyLibraryCellViewModelConverter()
         let subtitleForOneItem = AppTextService.get(.daily_brief_section_team_news_feed_subtitle_for_one_item)
         let subtitleForMultipleItems = AppTextService.get(.daily_brief_section_team_news_feed_subtitle_for_multiple_items)
-        let creationInfoTextTemplate = AppTextService.get(.daily_brief_section_team_news_feed_creation_info)
         let openLibraryButtonTitle = AppTextService.get(.daily_brief_section_team_news_feed_open_library_button_title)
         for teamQotId in teamQotIds {
             let filteredFeeds = libraryFeeds.filter({ $0.teamQotId == teamQotId })
@@ -49,11 +48,6 @@ extension DailyBriefInteractor {
                 if count == index + 1 {
                     item.libraryCellViewModel?.hideBottomSeparator = true
                 }
-                let dateString = DateFormatter.ddMMM.string(from: storage.createdAt ?? Date())
-                let creationInfo = creationInfoTextTemplate
-                    .replacingOccurrences(of: "${CREATOR ACCOUNT}", with: storage.owner?.email ?? "")
-                    .replacingOccurrences(of: "${CREATION DATE}", with: dateString)
-                item.libraryCellViewModel?.storageUpdateInfo = creationInfo
                 itemModels.append(item)
             }
 
