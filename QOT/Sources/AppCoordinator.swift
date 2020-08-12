@@ -116,7 +116,7 @@ final class AppCoordinator {
         ExtensionsDataManager().update(.toBeVision)
         ExtensionsDataManager().update(.teams)
         add3DTouchShortcuts()
-
+        setupBugLife()
         guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
             let naviController = R.storyboard.bottomNavigation().instantiateInitialViewController() as? UINavigationController,
             let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
@@ -256,7 +256,6 @@ extension AppCoordinator {
             importCalendarEventsIfAuthorized()
         }
         showApp()
-        setupBugLife()
     }
 
     func add3DTouchShortcuts() {
