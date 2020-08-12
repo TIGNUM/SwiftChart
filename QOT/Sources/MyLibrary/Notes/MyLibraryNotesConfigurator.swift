@@ -14,7 +14,7 @@ final class MyLibraryNotesConfigurator {
     static func make(with team: QDMTeam?) -> (MyLibraryNotesViewController, String?) -> Void {
         return { (viewController, note) in
             let router = MyLibraryNotesRouter(viewController: viewController)
-            let worker = MyLibraryNotesWorker(noteId: note)
+            let worker = MyLibraryNotesWorker(noteId: note, team: team)
             let presenter = MyLibraryNotesPresenter(viewController: viewController)
             let interactor = MyLibraryNotesInteractor(team: team, worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

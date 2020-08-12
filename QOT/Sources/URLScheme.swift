@@ -138,7 +138,7 @@ enum URLScheme: String {
         case .prepareEvent,
              .prepareDay: break
         case .preparation: return ["identifier"]
-        case .toBeVision: break
+        case .toBeVision: return ["teamId"]
         case .mySprints: break
         case .myLibrary: return ["teamId", "category"]
         case .myProfile: break

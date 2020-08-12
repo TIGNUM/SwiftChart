@@ -236,87 +236,83 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 guard let strongSelf = self else {
                     return
                 }
-                switch bucket.bucketName {
-                case .DAILY_CHECK_IN_1?:
+                guard let bucketName = bucket.bucketName else { return }
+                switch bucketName {
+                case .DAILY_CHECK_IN_1:
                     strongSelf.hasToBeVision = (bucket.toBeVision != nil)
                     strongSelf.didDailyCheckIn = (bucket.dailyCheckInAnswerIds?.isEmpty == false)
                     sectionDataList.append(ArraySection(model: .dailyCheckIn1,
                                                         elements: strongSelf.createImpactReadinessCell(impactReadinessBucket: bucket)))
-                case .DAILY_CHECK_IN_2?:
+                case .DAILY_CHECK_IN_2:
                     sectionDataList.append(ArraySection(model: .dailyCheckIn2,
                                                         elements: strongSelf.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
-                case .EXPLORE?:
+                case .EXPLORE:
                     sectionDataList.append(ArraySection(model: .explore,
                                                         elements: strongSelf.createExploreModel(exploreBucket: bucket)))
-                case .ME_AT_MY_BEST?:
+                case .ME_AT_MY_BEST:
                     sectionDataList.append(ArraySection(model: .meAtMyBest,
                                                         elements: strongSelf.createMeAtMyBest(meAtMyBestBucket: bucket)))
-                case .GET_TO_LEVEL_5?:
+                case .GET_TO_LEVEL_5:
                     sectionDataList.append(ArraySection(model: .getToLevel5,
                                                         elements: strongSelf.createLevel5Cell(level5Bucket: bucket)))
-                case .QUESTION_WITHOUT_ANSWER?:
+                case .QUESTION_WITHOUT_ANSWER:
                     sectionDataList.append(ArraySection(model: .questionWithoutAnswer,
                                                         elements: strongSelf.createQuestionsWithoutAnswer(questionsWithoutAnswerBucket: bucket)))
-                case .LATEST_WHATS_HOT?:
+                case .LATEST_WHATS_HOT:
                     sectionDataList.append(ArraySection(model: .whatsHotLatest,
                                                         elements: strongSelf.createLatestWhatsHot(whatsHotLatestCell: bucket)))
-                case .THOUGHTS_TO_PONDER?:
+                case .THOUGHTS_TO_PONDER:
                     sectionDataList.append(ArraySection(model: .thoughtsToPonder,
                                                         elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
-                case .GOOD_TO_KNOW?:
+                case .GOOD_TO_KNOW:
                     sectionDataList.append(ArraySection(model: .goodToKnow,
                                                         elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
-                case .FROM_TIGNUM?:
+                case .FROM_TIGNUM:
                     sectionDataList.append(ArraySection(model: .fromTignum,
                                                         elements: strongSelf.createFromTignum(fromTignum: bucket)))
-                case .BESPOKE?:
+                case .BESPOKE:
                     sectionDataList.append(ArraySection(model: .bespoke,
                                                          elements: strongSelf.createProductsWeLove(productsBucket: bucket)))
-                case .DEPARTURE_INFO?:
+                case .DEPARTURE_INFO:
                     sectionDataList.append(ArraySection(model: .departureInfo,
                                                         elements: strongSelf.createOnTheRoad(onTheRoadBucket: bucket)))
-                case .LEADERS_WISDOM?:
-                    sectionDataList.append(ArraySection(model: .leaderswisdom,
-                                                        elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
-                case .EXPERT_THOUGHTS?:
-                    sectionDataList.append(ArraySection(model: .expertthoughts,
-                                                        elements: strongSelf.createExpertThoughts(createExpertThoughts: bucket)))
-                case .FEAST_OF_YOUR_EYES?:
-                    sectionDataList.append(ArraySection(model: .feastForYourEyes,
-                                                        elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
-                case .FROM_MY_COACH?:
+                case .LEADERS_WISDOM:
+                    let elements = strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)
+                    sectionDataList.append(ArraySection(model: .leaderswisdom, elements: elements))
+                case .EXPERT_THOUGHTS:
+                    let elements = strongSelf.createExpertThoughts(createExpertThoughts: bucket)
+                    sectionDataList.append(ArraySection(model: .expertthoughts, elements: elements))
+                case .FEAST_OF_YOUR_EYES:
+                    let elements = strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)
+                    guard elements.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .feastForYourEyes, elements: elements))
+                case .FROM_MY_COACH:
                     let elements = strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)
-                    if elements.isEmpty == false {
-                        sectionDataList.append(ArraySection(model: .fromMyCoach, elements: elements))
-                    }
-                case .MY_PEAK_PERFORMANCE?:
+                    guard elements.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .fromMyCoach, elements: elements))
+                case .MY_PEAK_PERFORMANCE:
                     let elements = strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)
-                    if elements.count > 0 {
-                        sectionDataList.append(ArraySection(model: .myPeakPerformance, elements: elements))
-                    }
-                case .SPRINT_CHALLENGE?:
-                    if bucket.sprint != nil {
-                        sectionDataList.append(ArraySection(model: .sprint,
-                                                            elements: strongSelf.createSprintChallenge(bucket: bucket)))
-                    }
-                case .ABOUT_ME?:
+                    guard elements.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .myPeakPerformance, elements: elements))
+                case .SPRINT_CHALLENGE:
+                    guard bucket.sprint != nil else { break }
+                    sectionDataList.append(ArraySection(model: .sprint,
+                                                        elements: strongSelf.createSprintChallenge(bucket: bucket)))
+                case .ABOUT_ME:
                     sectionDataList.append(ArraySection(model: .aboutMe,
                                                         elements: strongSelf.createAboutMe(aboutMeBucket: bucket)))
-                case .SOLVE_REFLECTION?:
+                case .SOLVE_REFLECTION:
                     sectionDataList.append(ArraySection(model: .solveReflection,
                                                         elements: strongSelf.createSolveViewModel(bucket: bucket)))
-                case .WEATHER?:
+                case .WEATHER:
                     let models = strongSelf.createWeatherViewModel(weatherBucket: bucket)
-                    if models.count > 0 {
-                        sectionDataList.append(ArraySection(model: .weather,
-                                                            elements: models))
-                    }
-                case .GUIDE_TRACK?:
+                    guard models.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .weather, elements: models))
+                case .GUIDE_TRACK:
                     let elements = strongSelf.createGuidedTrack(guidedTrackBucket: bucket)
-                    if elements.isEmpty == false {
+                    guard elements.isEmpty == false else { break }
                         sectionDataList.append(ArraySection(model: .guidedTrack, elements: elements))
-                    }
-                case .MINDSET_SHIFTER?:
+                case .MINDSET_SHIFTER:
                     sectionDataList.append(ArraySection(model: .mindsetShifter,
                                                         elements: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket)))
                 case .TEAM_TO_BE_VISION?:
@@ -328,6 +324,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .TEAM_INVITATION?:
                     sectionDataList.append(ArraySection(model: .teamInvitation,
                                                         elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
+                case .TEAM_NEWS_FEED:
+                    let elements = strongSelf.createTeamNewFeedViewModel(with: bucket)
+                    guard elements.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .teamNewsFeed, elements: elements))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }

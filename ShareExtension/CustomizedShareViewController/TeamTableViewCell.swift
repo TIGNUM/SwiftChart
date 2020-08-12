@@ -25,8 +25,8 @@ class TeamTableViewCell: UITableViewCell {
         let libraryString = shareExtensionStrings?.library ?? ""
         let privateString = shareExtensionStrings?.personal ?? ""
         let participantsString = shareExtensionStrings?.participants ?? ""
-        teamLibraryName.text = teamName ?? "" + " " + libraryString
-        participantsLabel.text = participants == 0 ? privateString : " " + participantsString
+        teamLibraryName.text = libraryString.replacingOccurrences(of: "($teamName)", with: teamName ?? "")
+        participantsLabel.text = participants == 0 ? privateString : participantsString.replacingOccurrences(of: "($memberCount)", with: String(participants))
     }
     
     @IBAction func checkButtonTapped(_ sender: UIButton) {

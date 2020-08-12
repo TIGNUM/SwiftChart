@@ -43,6 +43,7 @@ extension QDMUserEventTracking.Name {
     static let CHECK_DONT_SHOW_EXPLAINER = "CHECK_DONT_SHOW_EXPLAINER"
     static let ACCEPT_TEAM_INVITATION = "ACCEPT_TEAM_INVITATION"
     static let DECLINE_TEAM_INVITATION = "DECLINE_TEAM_INVITATION"
+    static let OPEN_TEAM_LIBRARY = "OPEN_TEAM_LIBRARY"
 }
 
 public extension QDMUserEventTracking.ValueType {
@@ -56,6 +57,7 @@ public extension QDMUserEventTracking.ValueType {
     static let WRITE_TEAM_TBV = "WRITE_TEAM_TBV"
     static let PICK_TEAM_TBV_IMAGE = "PICK_TEAM_TBV_IMAGE"
     static let EDIT_TEAM_TBV = "EDIT_TEAM_TBV"
+    static let TEAM_LIBRARY_ITEM = "TEAM_LIBRARY_ITEM"
 }
 
 public extension QDMUserEventTracking.Action {
