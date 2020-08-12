@@ -43,7 +43,7 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
 
     func prepareMemberInvite(_ teamName: String?, maxMemberCount: Int) {
         updateLabels(.memberInvite, teamName: teamName, animated: true)
-        viewController?.updateTextCounter(type: .memberInvite, max: maxMemberCount)
+        viewController?.updateTextCounter(type: .memberInvite, max: maxMemberCount, teamName: nil)
         viewController?.refreshView(.memberInvite)
     }
 
@@ -52,8 +52,8 @@ extension TeamEditPresenter: TeamEditPresenterInterface {
         updateLabels(type, animated: false)
     }
 
-    func setupTextCounter(type: TeamEdit.View, max: Int) {
-        viewController?.updateTextCounter(type: type, max: max)
+    func setupTextCounter(type: TeamEdit.View, max: Int, teamName: String?) {
+        viewController?.updateTextCounter(type: type, max: max, teamName: teamName)
     }
 
     func presentErrorAlert(_ title: String, _ message: String) {

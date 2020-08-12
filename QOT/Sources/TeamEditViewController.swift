@@ -77,7 +77,7 @@ private extension TeamEditViewController {
 // MARK: - TeamEditViewControllerInterface
 extension TeamEditViewController: TeamEditViewControllerInterface {
     func setupView(_ type: TeamEdit.View, _ teamName: String?) {
-        teamTextField.text = teamName
+
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView
@@ -86,14 +86,16 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         hideOutlets(type)
         textCounterLabel.isHidden = type == .memberInvite
         textMaxCharsLabel.isHidden = type == .memberInvite
+        teamTextField.text = "HELLO"
     }
 
-    func updateTextCounter(type: TeamEdit.View, max: Int) {
+    func updateTextCounter(type: TeamEdit.View, max: Int, teamName: String?) {
         self.max = max
         memberMaxLabel.text = "/\(max)"
         textMaxCharsLabel.text = "/\(max)"
         textCounterLabel.isHidden = type == .memberInvite
         textMaxCharsLabel.isHidden = type == .memberInvite
+        teamTextField.text = teamName
     }
 
     func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool) {

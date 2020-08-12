@@ -53,12 +53,12 @@ private extension TeamEditInteractor {
         if type == .memberInvite {
             getMaxTeamMemberCount { (max) in
                 self.maxTeamMemberCount = max
-                self.presenter.setupTextCounter(type: .memberInvite, max: max)
+                self.presenter.setupTextCounter(type: .memberInvite, max: max, teamName: nil)
             }
         } else {
             getMaxChars { [weak self] (max) in
                 self?.maxChars = max
-                self?.presenter.setupTextCounter(type: self?.type ?? .edit, max: max)
+                self?.presenter.setupTextCounter(type: self?.type ?? .edit, max: max, teamName: self?.team?.name)
             }
             getMaxTeamMemberCount { (max) in
                 self.maxTeamMemberCount = max
