@@ -91,7 +91,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.70209792564655171" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xW2-C6-2mT" firstAttribute="top" secondItem="W13-sz-lbR" secondAttribute="bottom" constant="24" id="2W1-vN-QqG"/>
                             <constraint firstItem="d8T-vh-jZG" firstAttribute="bottom" secondItem="xW2-C6-2mT" secondAttribute="bottom" constant="16" id="5A5-di-Lyp"/>
@@ -109,6 +109,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="rSL-mH-zvx" id="Q7o-5g-7dG"/>
                         <outlet property="saveButton" destination="xW2-C6-2mT" id="rDX-Qr-BGm"/>
                         <outlet property="tableView" destination="W13-sz-lbR" id="htB-VQ-jp3"/>
                         <outlet property="tableViewHeightConstraint" destination="T2V-jN-Hl6" id="6IA-9F-GeT"/>

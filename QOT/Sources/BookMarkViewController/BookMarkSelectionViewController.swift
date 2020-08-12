@@ -15,6 +15,7 @@ final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelIgn
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var saveButton: RoundedButton!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private var backgroundView: UIView!
 
     var interactor: BookMarkSelectionInteractorInterface?
 
@@ -56,6 +57,11 @@ private extension BookMarkSelectionViewController {
         tableView?.registerDequeueable(BookMarkSelectionCell.self)
         ThemeText.myLibraryGroupName.apply(interactor?.headerTitle ?? "CHOOSE A LIBRARY", to: titleLabel)
         ThemableButton.myLibrary.apply(saveButton, title: interactor?.saveButtonTitle ?? "Save")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                self.backgroundView.backgroundColor = UIColor.carbonDark80
+            })
+        })
     }
 }
 
@@ -63,6 +69,7 @@ private extension BookMarkSelectionViewController {
 
 private extension BookMarkSelectionViewController {
     @IBAction func didTapSaveButton(_ sender: Any?) {
+        backgroundView.alpha = 0
         trackUserEvent(.SAVE, value: nil, stringValue: nil, valueType: nil, action: .TAP)
         interactor?.save()
     }
