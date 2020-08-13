@@ -20,7 +20,7 @@ final class ToBeVisionSelectionBar: UIView {
     private let rightMargin: CGFloat = -10
     private let leftMargin: CGFloat = 24
     private let titleMargin: CGFloat = -50
-    private var spacing: CGFloat = -30
+    private var spacing: CGFloat = -15
     private let buttonSize: CGFloat = 40
     private var arrayViews: [Weak<UIView>] = []
     private var arrayViewsCount = 0
@@ -99,7 +99,6 @@ private extension ToBeVisionSelectionBar {
         UIView.animate(withDuration: 0.25) {
             self.labelTitle.alpha = 1 - alpha
         }
-
         buttonMore.backgroundColor = isShowingAll ? .accent40 : .clear
     }
 }
@@ -142,12 +141,12 @@ extension ToBeVisionSelectionBar {
         buttonCamera.tintColor = tint
         buttonShare.tintColor = tint
 
-        gradientShadow.removeFromSuperlayer()
-        gradientShadow.frame = bounds
-        gradientShadow.locations = [0, 0.8, 1.0]
-        gradientShadow.colors = colorMode == .dark ? [UIColor.carbon.cgColor, UIColor.carbon.cgColor, UIColor.carbon05.cgColor] :
-            [UIColor.sand.cgColor, UIColor.sand.cgColor, UIColor.sand08.cgColor]
-        layer.insertSublayer(gradientShadow, at: 0)
+//        gradientShadow.removeFromSuperlayer()
+//        gradientShadow.frame = bounds
+//        gradientShadow.locations = [0, 0.8, 1.0]
+//        gradientShadow.colors = colorMode == .dark ? [UIColor.carbon.cgColor, UIColor.carbon.cgColor, UIColor.carbon05.cgColor] :
+//            [UIColor.sand.cgColor, UIColor.sand.cgColor, UIColor.sand08.cgColor]
+//        layer.insertSublayer(gradientShadow, at: 0)
     }
 
     func allOff() {
