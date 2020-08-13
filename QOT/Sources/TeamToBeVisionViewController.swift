@@ -27,7 +27,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var doubleMessageRatingView: UIView!
     @IBOutlet private weak var rateButton: UIButton!
     @IBOutlet private weak var singleMessageRateButton: UIButton!
-    @IBOutlet private weak var updateButton: UIButton!
+    @IBOutlet private weak var updateButton: AnimatedButton!
     @IBOutlet private weak var lastUpdatedLabel: UILabel!
     @IBOutlet private weak var lastUpdatedComment: UILabel!
     @IBOutlet private weak var lastRatedLabel: UILabel!
@@ -183,6 +183,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
         ThemeBorder.accent40.apply(updateButton)
+        updateButton.setTitle("Team rating", for: .normal)
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
