@@ -13,7 +13,7 @@ protocol TeamEditViewControllerInterface: class {
     func setupView(_ type: TeamEdit.View, _ teamName: String?)
     func refreshView(_ type: TeamEdit.View)
     func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool)
-    func updateTextCounter(type: TeamEdit.View, max: Int)
+    func updateTextCounter(type: TeamEdit.View, max: Int, teamName: String?)
     func presentErrorAlert(_ title: String, _ message: String)
     func refreshMemberList(at indexPath: [IndexPath])
     func dismiss()
@@ -21,7 +21,7 @@ protocol TeamEditViewControllerInterface: class {
 
 protocol TeamEditPresenterInterface {
     func setupView(_ type: TeamEdit.View, teamName: String?)
-    func setupTextCounter(type: TeamEdit.View, max: Int)
+    func setupTextCounter(type: TeamEdit.View, max: Int, teamName: String?)
     func prepareMemberInvite(_ teamName: String?, maxMemberCount: Int)
     func refreshMemberList(at indexPath: [IndexPath])
     func presentErrorAlert(_ title: String, _ message: String)
