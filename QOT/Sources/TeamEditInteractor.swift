@@ -41,7 +41,12 @@ private extension TeamEditInteractor {
                return TeamEdit.Member(email: qdmMember.email ?? "",
                                       me: qdmMember.me,
                                       isOwner: qdmMember.isTeamOwner)
-           }
+           }.sorted(by: { (first, second) -> Bool in
+            if first.isOwner {
+                return true
+            }
+            return first.email < second.email
+           })
            self.presenter.refreshMemberList(at: [])
         }
     }
