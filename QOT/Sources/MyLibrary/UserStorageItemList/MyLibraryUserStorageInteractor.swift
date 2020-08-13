@@ -106,7 +106,9 @@ final class MyLibraryUserStorageInteractor {
                     strongSelf.viewModelConverter.viewModel(from: $0, team: strongSelf.team,
                                                             downloadStatus: strongSelf.worker.downloadStatus(for: $0))
                 })
-                strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
+                if strongSelf.team == nil {
+                    strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
+                }
                 strongSelf.hasRemovableItem = strongSelf.items?.filter({ $0.removable == true }).first != nil
                 strongSelf.presenter.presentData()
             }
