@@ -25,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjs-VV-ziu">
-                        <rect key="frame" x="24" y="24" width="286" height="21.5"/>
+                        <rect key="frame" x="24" y="24" width="286" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="FWv-W8-hZB"/>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="p93-Gx-s0a"/>
@@ -35,15 +35,15 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7r-hR-xFL">
-                        <rect key="frame" x="48" y="54.5" width="31.5" height="14.5"/>
+                        <rect key="frame" x="48" y="55" width="31.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOJ-U2-8Fs">
-                        <rect key="frame" x="24" y="77.5" width="286" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOJ-U2-8Fs">
+                        <rect key="frame" x="24" y="78" width="286" height="14"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="aj9-eG-GtB"/>
+                            <constraint firstAttribute="height" constant="14" id="aj9-eG-GtB"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,7 +57,7 @@
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="my_library_bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="dIs-Vz-V9a">
-                        <rect key="frame" x="24" y="53.5" width="16" height="16"/>
+                        <rect key="frame" x="24" y="54" width="16" height="16"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -112,6 +112,7 @@
                 <outlet property="contentTitle" destination="Fjs-VV-ziu" id="i01-6M-oFW"/>
                 <outlet property="icon" destination="dIs-Vz-V9a" id="bM0-wh-YXL"/>
                 <outlet property="infoText" destination="h7r-hR-xFL" id="Roi-3P-vJq"/>
+                <outlet property="updateInfoLabelHeight" destination="aj9-eG-GtB" id="E1q-NE-XA4"/>
                 <outlet property="updateInfoLavel" destination="bOJ-U2-8Fs" id="f2e-AD-3eu"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="126.89732142857142"/>

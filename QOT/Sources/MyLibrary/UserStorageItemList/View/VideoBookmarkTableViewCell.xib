@@ -40,14 +40,17 @@
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTG-Hr-5QQ">
-                        <rect key="frame" x="24" y="77.5" width="244" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTG-Hr-5QQ">
+                        <rect key="frame" x="24" y="77.5" width="244" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="jlq-fk-1DZ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VXZ-V5-jA1">
-                        <rect key="frame" x="24" y="119.5" width="390" height="1"/>
+                        <rect key="frame" x="24" y="118.5" width="390" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="sGQ-ib-Y8v"/>
@@ -83,7 +86,7 @@
                     <constraint firstAttribute="trailing" secondItem="4VF-4m-ANQ" secondAttribute="trailing" id="7Tr-Pj-k6t"/>
                     <constraint firstAttribute="bottom" secondItem="4VF-4m-ANQ" secondAttribute="bottom" constant="24" id="7pd-xJ-YnH"/>
                     <constraint firstItem="797-hI-XqB" firstAttribute="trailing" secondItem="8RV-dn-Oge" secondAttribute="trailing" id="AEA-gt-47r"/>
-                    <constraint firstItem="VXZ-V5-jA1" firstAttribute="top" secondItem="lTG-Hr-5QQ" secondAttribute="bottom" constant="27.5" id="FYr-At-V89"/>
+                    <constraint firstItem="VXZ-V5-jA1" firstAttribute="top" secondItem="lTG-Hr-5QQ" secondAttribute="bottom" constant="27" id="FYr-At-V89"/>
                     <constraint firstItem="8RV-dn-Oge" firstAttribute="top" secondItem="ZfO-d7-ckm" secondAttribute="top" constant="24" id="FcZ-kt-spB"/>
                     <constraint firstItem="8RV-dn-Oge" firstAttribute="leading" secondItem="ZfO-d7-ckm" secondAttribute="leading" constant="24" id="Hdz-Ex-n06"/>
                     <constraint firstItem="MxJ-IB-hLG" firstAttribute="centerX" secondItem="4VF-4m-ANQ" secondAttribute="centerX" id="Lzg-ed-yU1"/>
@@ -114,6 +117,7 @@
                 <outlet property="infoText" destination="797-hI-XqB" id="ARW-2S-vt4"/>
                 <outlet property="playButton" destination="MxJ-IB-hLG" id="BPD-bO-Msj"/>
                 <outlet property="preview" destination="4VF-4m-ANQ" id="HIe-JR-02z"/>
+                <outlet property="updateInfoLabelHeight" destination="jlq-fk-1DZ" id="iWf-bN-HDv"/>
                 <outlet property="updateInfoLavel" destination="lTG-Hr-5QQ" id="C0e-0K-PkV"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="124.88839285714285"/>

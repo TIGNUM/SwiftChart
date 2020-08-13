@@ -16,6 +16,7 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var updateInfoLavel: UILabel!
 
     @IBOutlet weak var bottomVirticalSpace: NSLayoutConstraint!
+    @IBOutlet weak var updateInfoLabelHeight: NSLayoutConstraint!
 
     let skeletonManager = SkeletonManager()
 
@@ -34,6 +35,24 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
         ThemeView.level2Selected.apply(selectedView)
         selectedBackgroundView = selectedView
         selectionStyle = .default
+    }
+
+    override func layoutSubviews() {
+        guard updateInfoLavel != nil else {
+            super.layoutSubviews()
+            return
+        }
+        let defaultLabelHeight: CGFloat = 14
+        let expectedSize = updateInfoLavel.sizeThatFits(updateInfoLavel.frame.size)
+        var expectedHeight: CGFloat = defaultLabelHeight
+        if expectedSize.height > defaultLabelHeight {
+            expectedHeight = expectedSize.height
+        }
+        if updateInfoLabelHeight.constant != expectedHeight {
+            updateInfoLabelHeight.constant = expectedHeight
+            setNeedsUpdateConstraints()
+        }
+        super.layoutSubviews()
     }
 }
 
