@@ -1246,6 +1246,7 @@
 		F96D75B9249CF9C100DFFB22 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */; };
 		F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */; };
 		F96D75BF24A3671F00DFFB22 /* ConfirmationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */; };
+		F976016224E5701E00D0532E /* ToBeVisionSelectionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */; };
 		F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */; };
 		F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */; };
 		F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */; };
@@ -2619,6 +2620,7 @@
 		F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerShareViewController.swift; sourceTree = "<group>"; };
 		F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewCell.swift; sourceTree = "<group>"; };
+		F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToBeVisionSelectionBar.swift; sourceTree = "<group>"; };
 		F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainConfigurator.swift; sourceTree = "<group>"; };
 		F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInteractor.swift; sourceTree = "<group>"; };
 		F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInterface.swift; sourceTree = "<group>"; };
@@ -5487,6 +5489,7 @@
 				F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */,
 				F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */,
 				F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */,
+				F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */,
 			);
 			name = TeamToBeVision;
 			sourceTree = "<group>";
@@ -7033,6 +7036,7 @@
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
 				9C7F4199232BB9C7007E4B5D /* MyPeakPerformanceCell.swift in Sources */,
 				9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */,
+				F976016224E5701E00D0532E /* ToBeVisionSelectionBar.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				B430D7F123A915ED00C75C9C /* MyQotAdminEnvironmentSettingsWorker.swift in Sources */,
 				36B5BD3323142B4A00439A64 /* AskPermissionConfigurator.swift in Sources */,

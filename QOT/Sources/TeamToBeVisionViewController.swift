@@ -22,7 +22,6 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var warningImageView: UIImageView!
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var cameraButton: UIButton!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
     @IBOutlet private weak var singleMessageRatingView: UIView!
     @IBOutlet private weak var doubleMessageRatingView: UIView!
@@ -38,6 +37,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet private weak var teamNullStateImageView: UIImageView!
     @IBOutlet weak var infoStackView: UIStackView!
+    @IBOutlet weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
 
     var didShowNullStateView = false
     private let containerViewSize: CGFloat = 232.0
@@ -86,7 +86,6 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     private func showSkeleton() {
         skeletonManager.addTitle(headerLabel)
         skeletonManager.addSubtitle(toBeVisionLabel)
-        skeletonManager.addOtherView(cameraButton)
         skeletonManager.addOtherView(teamNullStateImageView)
         skeletonManager.addOtherView(userImageView)
         skeletonManager.addTitle(teamNullStateView.headerLabel)
@@ -95,21 +94,28 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         skeletonManager.addOtherView(teamNullStateView.writeButton)
     }
 
-    @IBAction func editButtonAction(_ sender: Any) {
+    @IBAction func writeButtonAction(_ sender: Any) {
+        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
+        interactor.showEditVision(isFromNullState: false)
+    }
+}
+
+extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
+
+    func didTapEditItem() {
         trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .EDIT_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
 
-    @IBAction func cameraButtonAction(_ sender: Any) {
+    func didTapCameraItem() {
         trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .PICK_TEAM_TBV_IMAGE, action: .TAP)
         imagePickerController.show(in: self, deletable: (tempTeamImageURL != nil || tempTeamImage != nil))
         imagePickerController.delegate = self
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
 
-    @IBAction func writeButtonAction(_ sender: Any) {
-        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
-        interactor.showEditVision(isFromNullState: false)
+    func didTapShareItem() {
+
     }
 }
 
@@ -153,6 +159,11 @@ private extension TeamToBeVisionViewController {
 
 // MARK: - TeamToBeVisionViewControllerInterface
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
+
+    func setSelectionBarButtonItems() {
+        toBeVisionSelectionBar.configure(self)
+    }
+
     func setupView() {
         scrollView.alpha = 0
         ThemeView.level2.apply(view)
@@ -166,10 +177,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         scrollView.scrollsToTop = true
         guard (interactor?.team?.thisUserIsOwner) == true else {
             infoStackView.isHidden = true
-            cameraButton.isHidden = true
             return
         }
-        ThemeBorder.accent40.apply(cameraButton)
         ThemeBorder.accent40.apply(shareButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)

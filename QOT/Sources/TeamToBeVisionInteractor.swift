@@ -30,6 +30,7 @@ final class TeamToBeVisionInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        presenter.setSelectionBarButtonItems()
         didUpdateTBVRelatedData()
         let notificationCenter = NotificationCenter.default
         downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
