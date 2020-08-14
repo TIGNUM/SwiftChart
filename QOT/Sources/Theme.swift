@@ -375,7 +375,7 @@ enum ThemableButton {
 
     var normal: ButtonTheme? {
         switch self {
-        case .myLibrary, .askPermissions, .syncedCalendar,
+        case  .askPermissions, .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
@@ -385,7 +385,7 @@ enum ThemableButton {
              .level5,
              .continueButton:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
-        case .myLibraryNotes:
+        case .myLibraryNotes, .myLibrary:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .paymentReminder:
             return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
