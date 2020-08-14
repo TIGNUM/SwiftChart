@@ -138,9 +138,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     @objc func presentTeamPendingInvites() {
-        let teamItems = teamHeaderItems
         clearTeamItems()
-        router.presentTeamPendingInvites(teamItems: teamItems)
+        router.presentTeamPendingInvites()
     }
 
     func presentMyProfile() {
@@ -160,6 +159,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didUpdateTeamRelatedData(_:)),
                                                name: .didFinishSynchronization, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didUpdateInvitations(_:)),
+                                               name: .changedInviteStatus, object: nil)
     }
 
     @objc func didUpdateTeamRelatedData(_ notification: Notification) {
@@ -169,6 +171,12 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             presenter.reload()
             ExtensionsDataManager().update(.teams)
         default: break
+        }
+    }
+
+    @objc func didUpdateInvitations(_ notification: Notification) {
+        updateTeamHeaderItems {(items) in
+            self.presenter.reload()
         }
     }
 

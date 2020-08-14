@@ -88,4 +88,10 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
           let controller = ShifterResultViewController(configure: configurator)
           viewController?.present(controller, animated: true)
       }
+
+    func presentTeamPendingInvites() {
+        if let launchURL = URLScheme.teamInvitations.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
+        }
+    }
 }

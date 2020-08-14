@@ -20,6 +20,7 @@ final class DailyBriefInteractor {
     private let presenter: DailyBriefPresenterInterface
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var expendImpactReadiness: Bool = false
+    private var teamHeaderItems = [Team.Item]()
 
     private var guidedClosedTrack: Bool = false
     private var isLoadingBuckets: Bool = false
@@ -196,6 +197,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .expertthoughts,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamToBeVision,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+//        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+//                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamInvitation,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -308,6 +315,15 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .MINDSET_SHIFTER:
                     sectionDataList.append(ArraySection(model: .mindsetShifter,
                                                         elements: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket)))
+                case .TEAM_TO_BE_VISION:
+                    sectionDataList.append(ArraySection(model: .teamToBeVision,
+                                                        elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
+//                case .TEAM_VISION_SUGGESTION?:
+//                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+//                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
+                case .TEAM_INVITATION:
+                    sectionDataList.append(ArraySection(model: .teamInvitation,
+                                                        elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
                 case .TEAM_NEWS_FEED:
                     let elements = strongSelf.createTeamNewFeedViewModel(with: bucket)
                     guard elements.isEmpty == false else { break }
@@ -636,6 +652,58 @@ extension DailyBriefInteractor {
                                             domainModel: mindsetBucket)
         mindsetList.append(model)
         return mindsetList
+    }
+
+    // MARK: - New TeamToBeVision
+    func createTeamToBeVisionViewModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var visionList: [BaseDailyBriefViewModel] = []
+        var visionAndDates: [(QDMTeamToBeVision, Date)] = [(QDMTeamToBeVision(), Date())]
+        teamVisionBucket.teamToBeVisions?.forEach { (vision) in
+            let dates: [Date] = [vision.createdAt ?? Date.distantPast,
+                                 vision.modifiedAt ?? Date.distantPast,
+                                 vision.modifiedOnDevice ?? Date.distantPast,
+                                 vision.createdOnDevice ?? Date.distantPast]
+            let mostRecentDate = dates.max()
+            guard let recentDate = mostRecentDate else { return }
+            let dateVision = (vision, recentDate)
+            visionAndDates.append(dateVision)
+        }
+        visionAndDates.removeFirst()
+        visionAndDates.sort(by: {$0.1 > $1.1})
+        let latestVision = visionAndDates.first?.0
+        let visionText = latestVision?.text
+        let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
+        let title = team?.name
+        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, domainModel: teamVisionBucket)
+        visionList.append(model)
+        return visionList
+    }
+
+    // MARK: - TeamToBeVision Sentence
+    func createTeamVisionSuggestionModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var teamVisionList: [BaseDailyBriefViewModel] = []
+//        guard let collection = teamVisionBucket.contentCollections?.first else {
+//            return teamVisionList
+//        }
+        let visionSentence = "We are an inspired, enerfized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
+        let title = "WEB TEAM TOBEVISION"
+        let suggestion = "Practice recovery after stressful times to balance your autonomic nervous system."
+        let model = TeamVisionSuggestionModel(title: title, teamColor: "#5790DD", tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        teamVisionList.append(model)
+        return teamVisionList
+    }
+
+    // MARK: - Team Invitation
+    func createTeamInvitation(invitationBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var invitationList: [BaseDailyBriefViewModel] = []
+        let teamOwner = invitationBucket.teamInvitations?.first?.sender
+        var teamNames: [String] = []
+        invitationBucket.teamInvitations?.forEach {(invitation) in
+            teamNames.append(invitation.team?.name ?? "")
+        }
+        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, domainModel: invitationBucket)
+        invitationList.append(model)
+        return invitationList
     }
 
     // MARK: - Products we love
@@ -1157,5 +1225,18 @@ extension DailyBriefInteractor {
                                                                   domainModel: sprintBucket,
                                                                   sprint: sprintBucket.sprint!))
         return createSprintChallengeList
+    }
+
+    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {
+        worker.declineTeamInvite(invitation) {(teams) in
+        }
+    }
+
+    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
+        worker.joinTeamInvite(invitation) {(teams) in
+            NotificationCenter.default.post(name: .changedInviteStatus,
+                                            object: nil,
+                                            userInfo: nil)
+        }
     }
 }

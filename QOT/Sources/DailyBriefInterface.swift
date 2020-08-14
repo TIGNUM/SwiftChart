@@ -45,6 +45,8 @@ protocol DailyBriefInteractorInterface: Interactor {
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
+    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation)
+    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation)
 }
 
 protocol DailyBriefRouterInterface: BaseRouterInterface {
@@ -56,6 +58,6 @@ protocol DailyBriefRouterInterface: BaseRouterInterface {
     func presentCoachPreparation()
     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?)
     func showMyDataScreen()
-
+    func presentTeamPendingInvites()
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)
 }
