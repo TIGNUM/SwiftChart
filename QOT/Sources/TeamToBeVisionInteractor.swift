@@ -122,7 +122,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     }
 
     func presentTrends() {
-       print("HELLO")
+        // TODO
     }
 
     var nullStateCTA: String? {

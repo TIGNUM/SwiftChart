@@ -95,7 +95,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @IBAction func didTapOpenTrends(_ sender: Any) {
-
+//        TODO
     }
 
     @IBAction func writeButtonAction(_ sender: Any) {
@@ -193,9 +193,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-        guard (interactor?.team?.thisUserIsOwner) == true else {
+        if interactor?.team?.thisUserIsOwner == false {
             pollButton.isHidden = true
-            return
         }
         ThemeText.trends.apply(AppTextService.get(.my_x_team_tbv_section_trends_label), to: trendsLabel)
     }
