@@ -505,6 +505,10 @@ public extension AppTextKey {
     static let my_qot_section_my_tbv_title = AppTextKey("my_qot.section_my_tbv.title")
     static let my_x_team_tbv_not_created = AppTextKey("myX.teamTBV.not.created.title")
 
+    static let my_x_team_tbv_section_rating_explanation_title = AppTextKey("my_x.team_tbv_section.rating_explanation.title")
+    static let my_x_team_tbv_section_rating_explanation_text = AppTextKey("my_x.team_tbv_section.rating_explanation.text")
+    static let my_x_team_tbv_section_rating_explanation_video_title = AppTextKey("my_x.team_tbv_section.rating_explanation.video_title")
+
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")
     static let my_x_team_create_description = AppTextKey("my_x.team.create_description")

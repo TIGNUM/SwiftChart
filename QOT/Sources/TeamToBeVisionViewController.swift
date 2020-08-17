@@ -96,8 +96,14 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @IBAction func editButtonAction(_ sender: Any) {
-        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .EDIT_TEAM_TBV, action: .TAP)
-        interactor.showEditVision(isFromNullState: false)
+//        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .EDIT_TEAM_TBV, action: .TAP)
+//        interactor.showEditVision(isFromNullState: false)
+        let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
+        if let controller = controller {
+            let configurator = VisionRatingExplanationConfigurator.make()
+            configurator(controller)
+            self.present(controller, animated: true, completion: nil)
+        }
     }
 
     @IBAction func cameraButtonAction(_ sender: Any) {
