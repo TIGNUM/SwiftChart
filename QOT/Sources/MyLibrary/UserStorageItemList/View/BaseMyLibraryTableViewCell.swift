@@ -16,6 +16,7 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var updateInfoLavel: UILabel!
 
     @IBOutlet weak var bottomVirticalSpace: NSLayoutConstraint!
+    @IBOutlet weak var updateInfoLabelHeight: NSLayoutConstraint!
 
     let skeletonManager = SkeletonManager()
 
@@ -35,6 +36,24 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
         selectedBackgroundView = selectedView
         selectionStyle = .default
     }
+
+    override func layoutSubviews() {
+        guard updateInfoLavel != nil else {
+            super.layoutSubviews()
+            return
+        }
+        let defaultLabelHeight: CGFloat = 14
+        let expectedSize = updateInfoLavel.sizeThatFits(updateInfoLavel.frame.size)
+        var expectedHeight: CGFloat = defaultLabelHeight
+        if expectedSize.height > defaultLabelHeight {
+            expectedHeight = expectedSize.height
+        }
+        if updateInfoLabelHeight.constant != expectedHeight {
+            updateInfoLabelHeight.constant = expectedHeight
+            setNeedsUpdateConstraints()
+        }
+        super.layoutSubviews()
+    }
 }
 
 extension BaseMyLibraryTableViewCell {
@@ -53,11 +72,9 @@ extension BaseMyLibraryTableViewCell {
     func setCreationInfoText(_ text: String?) {
         skeletonManager.hide(.subtitle)
         ThemeText.myLibraryItemsItemDescription.apply(text, to: updateInfoLavel)
-        var verticalSpacing: CGFloat = 21 // default
-        if text?.isEmpty == false {
-            // adjust vertical space
-            verticalSpacing += 20 // labelHeight 12 + spacing 8
-        }
+        let defaultSpacing: CGFloat = 0
+        let gapWhenCreatorInfoIsShowing: CGFloat = 24
+        let verticalSpacing: CGFloat = text?.isEmpty == false ? gapWhenCreatorInfoIsShowing : defaultSpacing
         bottomVirticalSpace.constant = verticalSpacing
         setNeedsUpdateConstraints()
     }

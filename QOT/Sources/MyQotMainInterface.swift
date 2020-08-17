@@ -52,5 +52,5 @@ protocol MyQotMainRouterInterface {
     func presentMyDataScreen()
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func showTBV(team: QDMTeam?)
-    func presentTeamPendingInvites(teamItems: [Team.Item])
+    func presentTeamPendingInvites()
 }

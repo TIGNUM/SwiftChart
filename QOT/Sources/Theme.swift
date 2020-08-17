@@ -375,7 +375,7 @@ enum ThemableButton {
 
     var normal: ButtonTheme? {
         switch self {
-        case .myLibrary, .askPermissions, .syncedCalendar,
+        case  .askPermissions, .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
@@ -385,7 +385,7 @@ enum ThemableButton {
              .level5,
              .continueButton:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
-        case .myLibraryNotes:
+        case .myLibraryNotes, .myLibrary:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .paymentReminder:
             return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
@@ -1077,8 +1077,13 @@ enum ThemeText {
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
+<<<<<<< HEAD
              .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled,
              .MediumBodySand, .teamTvbTimeSinceTitle:
+=======
+             .dailyInsightsChartBarLabelUnselected, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled,
+             .MediumBodySand:
+>>>>>>> dev
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -1122,7 +1127,7 @@ enum ThemeText {
              .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
              .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
              .mySprintDetailsProgress, .mySprintDetailsTextRegular, .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody,
-             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .shpiContent, .qotAlertMessage, .suggestionMyBest, .asterixText, .memberEmail:
+             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .shpiContent, .qotAlertMessage, .suggestionMyBest, .asterixText, .memberEmail, .dailyInsightsTbvAdvice:
             return Palette.sand70
         case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage, .registrationEmailError,
              .registrationCodeDisclaimerError:

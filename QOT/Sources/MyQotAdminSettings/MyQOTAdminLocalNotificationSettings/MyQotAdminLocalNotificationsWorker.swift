@@ -58,7 +58,8 @@ final class MyQotAdminLocalNotificationsWorker {
                                         "tignumx://qrcode-open-0001": "QRCode 1",
                                         "tignumx://qrcode-open-0002": "QRCode 2",
                                         "tignumx://qrcode-open-0003": "QRCode 3",
-                                        "tignumx://qrcode-open-0004": "QRCode 4"]
+                                        "tignumx://qrcode-open-0004": "QRCode 4",
+                                        "tignumx://team-invitations": "Open pending Team invitations"]
     // MARK: - Init
     init() { /* */ }
 }
