@@ -114,12 +114,15 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 } else {
                     teamVision.profileImageResource = nil
                 }
-
                 self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
                     self?.didUpdateTBVRelatedData()
                 }
             }
         }
+    }
+
+    func presentTrends() {
+       print("HELLO")
     }
 
     var nullStateCTA: String? {

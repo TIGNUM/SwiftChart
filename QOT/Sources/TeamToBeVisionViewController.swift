@@ -28,17 +28,18 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var rateButton: UIButton!
     @IBOutlet private weak var singleMessageRateButton: UIButton!
     @IBOutlet private weak var updateButton: AnimatedButton!
-    @IBOutlet private weak var lastUpdatedLabel: UILabel!
-    @IBOutlet private weak var lastUpdatedComment: UILabel!
     @IBOutlet private weak var lastRatedLabel: UILabel!
     @IBOutlet private weak var lastRatedComment: UILabel!
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet private weak var teamNullStateImageView: UIImageView!
-    @IBOutlet weak var infoStackView: UIStackView!
-    @IBOutlet weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
+    @IBOutlet private weak var infoStackView: UIStackView!
+    @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
+    @IBOutlet private weak var pollButton: AnimatedButton!
+    @IBOutlet private weak var trendsLabel: UILabel!
 
+    @IBOutlet private weak var lastModifiedLabel: UILabel!
     var didShowNullStateView = false
     private let containerViewSize: CGFloat = 232.0
     private let containerViewRatio: CGFloat = 1.2
@@ -75,7 +76,6 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(color: .carbon)
-
         interactor.viewWillAppear()
     }
 
@@ -92,6 +92,10 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         skeletonManager.addSubtitle(teamNullStateView.detailLabel)
         skeletonManager.addSubtitle(teamNullStateView.toBeVisionLabel)
         skeletonManager.addOtherView(teamNullStateView.writeButton)
+    }
+
+    @IBAction func didTapOpenTrends(_ sender: Any) {
+
     }
 
     @IBAction func writeButtonAction(_ sender: Any) {
@@ -115,7 +119,7 @@ extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
     }
 
     func didTapShareItem() {
-
+//        TODO
     }
 }
 
@@ -161,7 +165,7 @@ private extension TeamToBeVisionViewController {
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
     func setSelectionBarButtonItems() {
-        toBeVisionSelectionBar.configure(self)
+        toBeVisionSelectionBar.configure(isOwner: interactor?.team?.thisUserIsOwner, self)
     }
 
     func setupView() {
@@ -175,21 +179,25 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
-        guard (interactor?.team?.thisUserIsOwner) == true else {
-            infoStackView.isHidden = true
-            return
-        }
+
         ThemeBorder.accent40.apply(shareButton)
+        ThemeBorder.accent40.apply(pollButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
         ThemeBorder.accent40.apply(updateButton)
-        updateButton.setTitle("Team rating", for: .normal)
+        updateButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
+        pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
+        guard (interactor?.team?.thisUserIsOwner) == true else {
+            pollButton.isHidden = true
+            return
+        }
+        ThemeText.trends.apply(AppTextService.get(.my_x_team_tbv_section_trends_label), to: trendsLabel)
     }
 
     func load(_ teamVision: QDMTeamToBeVision?,
@@ -233,10 +241,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         singleMessageRatingView.isHidden = true
         doubleMessageRatingView.isHidden = true
         warningImageView.isHidden = true
-
-        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedTeamVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle),
-                                  to: lastUpdatedComment)
+        let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
+        ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }
 
     func showNullState(with title: String, message: String, writeMessage: String) {
@@ -326,6 +332,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionNullStateViewProtocol {
 extension TeamToBeVisionViewController: TeamToBeVisionNavigationBarViewProtocol {
 
     func didShare() {
-//        to do later
+//        TODO
     }
 }

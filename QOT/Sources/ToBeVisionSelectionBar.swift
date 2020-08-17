@@ -106,7 +106,7 @@ private extension ToBeVisionSelectionBar {
 // MARK: - Public
 
 extension ToBeVisionSelectionBar {
-    func configure(_ delegate: ToBeVisionSelectionBarProtocol) {
+    func configure(isOwner: Bool?, _ delegate: ToBeVisionSelectionBarProtocol) {
         self.delegate = delegate
 
         if arrayViewsCount > 0 { return }
@@ -119,39 +119,21 @@ extension ToBeVisionSelectionBar {
         setupButton(buttonMore, image: R.image.ic_more_unselected())
         buttonMore.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
         buttonMore.corner(radius: buttonSize / 2)
+        if isOwner == true {
+            setupButton(buttonEdit, image: R.image.ic_edit())
+            buttonEdit.addTarget(self, action: #selector(didTapEditItem), for: .touchUpInside)
 
-        setupButton(buttonEdit, image: R.image.ic_edit())
-        buttonEdit.addTarget(self, action: #selector(didTapEditItem), for: .touchUpInside)
-
-        setupButton(buttonCamera, image: R.image.photo())
-        buttonCamera.addTarget(self, action: #selector(didTapCameraItem), for: .touchUpInside)
+            setupButton(buttonCamera, image: R.image.photo())
+            buttonCamera.addTarget(self, action: #selector(didTapCameraItem), for: .touchUpInside)
+        }
 
         setupButton(buttonShare, image: R.image.ic_share_sand())
         buttonShare.addTarget(self, action: #selector(didTapShareItem), for: .touchUpInside)
-
         allOff()
-    }
-
-//     no need
-    func refreshColor() {
-        backgroundColor = .clear
-        let tint = colorMode.tint
-        buttonMore.tintColor = tint
-        buttonEdit.tintColor = tint
-        buttonCamera.tintColor = tint
-        buttonShare.tintColor = tint
-
-//        gradientShadow.removeFromSuperlayer()
-//        gradientShadow.frame = bounds
-//        gradientShadow.locations = [0, 0.8, 1.0]
-//        gradientShadow.colors = colorMode == .dark ? [UIColor.carbon.cgColor, UIColor.carbon.cgColor, UIColor.carbon05.cgColor] :
-//            [UIColor.sand.cgColor, UIColor.sand.cgColor, UIColor.sand08.cgColor]
-//        layer.insertSublayer(gradientShadow, at: 0)
     }
 
     func allOff() {
         isShowingAll = false
-        refreshColor()
         refresh()
     }
 }
