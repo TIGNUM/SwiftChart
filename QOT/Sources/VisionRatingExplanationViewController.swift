@@ -72,7 +72,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
         let memberTitle = AppTextService.get(.my_x_team_tbv_section_rating_explanation_member_title)
         ThemeText.ratingExplanationTitle.apply(isTeamOwner ? ownerTitle : memberTitle, to: titleLabel)
         let ownerText = AppTextService.get(.my_x_team_tbv_section_rating_explanation_text)
-        let memberText = AppTextService.get(.my_x_team_tbv_section_rating_explanation_member_text)
+        let memberText = AppTextService.get(.my_x_team_tbv_section_rating_explanation_member_text).replacingOccurrences(of: "${TEAM_NAME}", with: interactor.team?.name?.uppercased() ?? "")
         ThemeText.ratingExplanationText.apply(isTeamOwner ? ownerText : memberText, to: textLabel)
         ThemeText.ratingExplanationVideoTitle.apply(AppTextService.get(.my_x_team_tbv_section_rating_explanation_video_title), to: videoTitleLabel)
         updateBottomNavigation([createBlackCloseButton(#selector(didTapBackButton))], bottomNavigationRightBarItems())
