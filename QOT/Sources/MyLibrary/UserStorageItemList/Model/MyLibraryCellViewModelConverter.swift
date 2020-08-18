@@ -40,8 +40,9 @@ class MyLibraryCellViewModelConverter {
         var viewModel: MyLibraryCellViewModel?
         let creationInfoTextTemplate = AppTextService.get(.daily_brief_section_team_news_feed_creation_info)
         let dateString = DateFormatter.ddMMM.string(from: item.createdAt ?? Date())
+        let ownerName = item.owner?.email?.components(separatedBy: "@").first
         let creationInfo = creationInfoTextTemplate
-            .replacingOccurrences(of: "${CREATOR ACCOUNT}", with: item.owner?.email ?? "")
+            .replacingOccurrences(of: "${CREATOR ACCOUNT}", with: ownerName ?? "")
             .replacingOccurrences(of: "${CREATION DATE}", with: dateString)
         switch item.userStorageType {
         case .DOWNLOAD:
