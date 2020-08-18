@@ -506,8 +506,12 @@ public extension AppTextKey {
     static let my_x_team_tbv_not_created = AppTextKey("myX.teamTBV.not.created.title")
 
     static let my_x_team_tbv_section_rating_explanation_title = AppTextKey("my_x.team_tbv_section.rating_explanation.title")
+    static let my_x_team_tbv_section_rating_explanation_member_title = AppTextKey("my_x.team_tbv_section.rating_explanation.member_title")
     static let my_x_team_tbv_section_rating_explanation_text = AppTextKey("my_x.team_tbv_section.rating_explanation.text")
+    static let my_x_team_tbv_section_rating_explanation_member_text = AppTextKey("my_x.team_tbv_section.rating_explanation.member_text")
     static let my_x_team_tbv_section_rating_explanation_video_title = AppTextKey("my_x.team_tbv_section.rating_explanation.video_title")
+    static let my_x_team_tbv_section_rating_explanation_right_button = AppTextKey("my_x.team_tbv_section.rating_explanation.right_button")
+    static let my_x_team_tbv_section_rating_explanation_right_button_member = AppTextKey("my_x.team_tbv_section.rating_explanation.right_button_member")
 
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol VisionRatingExplanationViewControllerInterface: class {
     func setupView()
@@ -16,8 +17,12 @@ protocol VisionRatingExplanationPresenterInterface {
     func setupView()
 }
 
-protocol VisionRatingExplanationInteractorInterface: Interactor {}
+protocol VisionRatingExplanationInteractorInterface: Interactor {
+    var team: QDMTeam? { get }
+    func showRateScreen()
+}
 
 protocol VisionRatingExplanationRouterInterface {
     func dismiss()
+    func showRateScreen(with id: Int)
 }

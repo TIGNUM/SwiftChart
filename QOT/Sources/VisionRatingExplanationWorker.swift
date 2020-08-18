@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class VisionRatingExplanationWorker {
+final class VisionRatingExplanationWorker: WorkerTeam {
 
     // MARK: - Init
     init() { /**/ }

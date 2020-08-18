@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import qot_dal
 
 final class VisionRatingExplanationConfigurator {
-    static func make() -> (VisionRatingExplanationViewController) -> Void {
+    static func make(team: QDMTeam?) -> (VisionRatingExplanationViewController) -> Void {
         return { (viewController) in
+            let router = VisionRatingExplanationRouter(viewController: viewController)
             let presenter = VisionRatingExplanationPresenter(viewController: viewController)
-            let interactor = VisionRatingExplanationInteractor(presenter: presenter)
+            let interactor = VisionRatingExplanationInteractor(presenter: presenter, team: team, router: router)
             viewController.interactor = interactor
         }
     }

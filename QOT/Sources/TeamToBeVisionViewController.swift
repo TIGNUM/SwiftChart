@@ -100,9 +100,9 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 //        interactor.showEditVision(isFromNullState: false)
         let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
         if let controller = controller {
-            let configurator = VisionRatingExplanationConfigurator.make()
+            let configurator = VisionRatingExplanationConfigurator.make(team: interactor?.team)
             configurator(controller)
-            self.present(controller, animated: true, completion: nil)
+            self.pushToStart(childViewController: controller)
         }
     }
 
