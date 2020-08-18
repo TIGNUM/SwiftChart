@@ -52,7 +52,7 @@ enum MyX {
         }
 
         private func removePrefix(_ title: String) -> String {
-            return title.replacingOccurrences(of: "MY", with: "")
+            return title.replacingOccurrences(of: "MY", with: "TEAM")
         }
 
         static func items(_ isTeam: Bool) -> [MyX.Item] {
