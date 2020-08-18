@@ -80,7 +80,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView
-        teamTextField.autocapitalizationType = .sentences
+        teamTextField.autocapitalizationType = type == .create ? .sentences : .none
         teamTextField.keyboardType = type == .memberInvite ? .emailAddress : .default
         keyboardInputView.delegate = self
         hideOutlets(type)
