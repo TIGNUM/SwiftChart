@@ -113,6 +113,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
     }
 
     func refreshView(_ type: TeamEdit.View) {
+        teamTextField.autocapitalizationType = type == .create ? .sentences : .none
         teamTextField.resignFirstResponder()
         teamTextField.text = nil
         teamTextField.keyboardType = type == .memberInvite ? .emailAddress : .default

@@ -53,6 +53,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         guard let count = model?.teamNames?.count else { return }
         let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 16), .foregroundColor: UIColor.sand]
         let sand70Attributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.sand70]
+        ThemeButton.dailyBriefButtons.apply(joinButton)
         if count > 1 {
             joinButton.isHidden = true
             declineButton.isHidden = true
