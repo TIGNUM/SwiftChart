@@ -52,7 +52,7 @@ final class ExternalLinkImporter {
             for externalLink in externalLinks {
                 var team: QDMTeam?
                 if let teamQotId = externalLink.teamQotId {
-                    team = teams?.filter ({$0.qotId == teamQotId}).first
+                    team = teams?.filter({$0.qotId == teamQotId}).first
                 }
 
                 if let url = externalLink.url {

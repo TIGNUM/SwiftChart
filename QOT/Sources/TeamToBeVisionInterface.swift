@@ -34,6 +34,7 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     func showEditVision(isFromNullState: Bool)
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
+    func isShareBlocked(_ completion: @escaping (Bool) -> Void)
     func viewWillAppear()
     func saveToBeVision(image: UIImage?)
     var teamNullStateSubtitle: String? { get }
@@ -43,10 +44,13 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     var team: QDMTeam? { get }
     var nullStateCTA: String? { get }
     func lastUpdatedTeamVision() -> String?
+    func shareTeamToBeVision()
 
 }
 
 protocol TeamToBeVisionRouterInterface {
     func dismiss()
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
+    func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
+    func showViewController(viewController: UIViewController, completion: (() -> Void)?)
 }

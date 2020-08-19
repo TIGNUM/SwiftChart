@@ -97,6 +97,13 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         presenter.hideNullState()
     }
 
+    func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
+        guard let team = team else { return }
+        worker.getTeamToBeVision(for: team) { (teamVision) in
+            completion(teamVision?.headline == nil && teamVision?.text == nil)
+        }
+    }
+
     func saveToBeVision(image: UIImage?) {
         guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
@@ -147,6 +154,40 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         let days = DateComponentsFormatter.numberOfDays(date)
         lastUpdatedVision = self.dateString(for: days)
         return lastUpdatedVision
+    }
+
+    func shareTeamToBeVision() {
+        guard let vision = teamVision else { return }
+        worker.getTeamToBeVisionShareData(vision) { [weak self] (visionShare, error) in
+            guard error == nil else {
+                log("Getting Share Content Failed- \(error!)", level: .error)
+                self?.router.showAlert(type: .message(error!.localizedDescription),
+                                       handler: nil, handlerDestructive: nil)
+                return
+            }
+            let activityVC = UIActivityViewController(activityItems: [visionShare?.plainBody ?? ""],
+                                                      applicationActivities: nil)
+            activityVC.excludedActivityTypes = [UIActivity.ActivityType.openInIBooks,
+                                                UIActivity.ActivityType.airDrop,
+                                                UIActivity.ActivityType.postToTencentWeibo,
+                                                UIActivity.ActivityType.postToVimeo,
+                                                UIActivity.ActivityType.postToFlickr,
+                                                UIActivity.ActivityType.addToReadingList,
+                                                UIActivity.ActivityType.saveToCameraRoll,
+                                                UIActivity.ActivityType.assignToContact,
+                                                UIActivity.ActivityType.postToFacebook,
+                                                UIActivity.ActivityType.postToTwitter]
+
+            activityVC.completionWithItemsHandler = { (_, _, _, _) in
+                // swizzle back to original
+                swizzleMFMailComposeViewControllerMessageBody()
+            }
+
+            self?.router.showViewController(viewController: activityVC) {
+                // after present swizzle for mail
+                swizzleMFMailComposeViewControllerMessageBody()
+            }
+        }
     }
 
     private func dateString(for day: Int) -> String {

@@ -12,7 +12,7 @@ import qot_dal
 final class TeamToBeVisionWorker: WorkerTeam {
 
     // MARK: - Init
-    init() { /**/ }
+    init() { /* */ }
 
     lazy var emptyTeamTBVTitlePlaceholder = AppTextService.get(.myx_team_tbv_header_title_headline)
     lazy var emptyTeamTBVTextPlaceholder = AppTextService.get(.myx_team_tbv_empty_subtitle_vision)

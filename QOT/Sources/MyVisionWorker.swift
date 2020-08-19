@@ -111,7 +111,7 @@ final class MyVisionWorker {
         let days = DateComponentsFormatter.numberOfDays(date)
         return dateString(for: days)
     }
-    
+
     func visionToShare(_ completion: @escaping (QDMToBeVisionShare?) -> Void) {
         UserService.main.getMyToBeVisionShareData { (visionShare, _, _) in
             MyVisionWorker.toBeSharedVisionHTML = visionShare?.body

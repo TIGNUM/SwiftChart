@@ -56,6 +56,9 @@ protocol WorkerTeam {
     func getTeamToBeVision(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void)
 
     func updateTeamToBeVision(_ new: QDMTeamToBeVision, team: QDMTeam, _ completion: @escaping (QDMTeamToBeVision?) -> Void)
+
+    func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
+                                    _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void)
 }
 
 extension WorkerTeam {
@@ -287,6 +290,11 @@ extension WorkerTeam {
             }
             completion(vision)
         }
+    }
+
+    func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
+                                    _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void) {
+        TeamService.main.getTeamToBeVisionShareData(for: teamVision, completion)
     }
 }
 
