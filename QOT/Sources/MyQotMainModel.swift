@@ -38,7 +38,8 @@ enum MyX {
                 return AppTextService.get(.my_x_team_create_header)
             case .library:
                 let title = AppTextService.get(.my_qot_section_my_library_title)
-                return isTeam ? removePrefix(title) : title
+                let teamTitle = AppTextService.get(.my_x_section_team_library_title)
+                return isTeam ? teamTitle : title
             case .preps:
                 return AppTextService.get(.my_qot_section_my_plans_title)
             case .sprints:
@@ -47,7 +48,8 @@ enum MyX {
                 return AppTextService.get(.my_qot_section_my_data_title)
             case .toBeVision:
                 let title = AppTextService.get(.my_qot_section_my_tbv_title)
-                return isTeam ? removePrefix(title) : title
+                let teamTitle = AppTextService.get(.my_x_section_team_tbv_title)
+                return isTeam ? teamTitle : title
             }
         }
 

@@ -71,6 +71,7 @@ private extension TeamEditViewController {
         tableView.isHidden = type != .memberInvite
         memberMaxLabel.isHidden = type != .memberInvite
         memberCounterLabel.isHidden = type != .memberInvite
+        teamTextField.autocapitalizationType = type == .create ? .sentences : .none
     }
 }
 
@@ -80,7 +81,6 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         teamTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         teamTextField.corner(radius: Layout.CornerRadius.nine.rawValue, borderColor: .sand40)
         teamTextField.inputAccessoryView = keyboardInputView
-        teamTextField.autocapitalizationType = type == .create ? .sentences : .none
         teamTextField.keyboardType = type == .memberInvite ? .emailAddress : .default
         keyboardInputView.delegate = self
         hideOutlets(type)
@@ -113,7 +113,6 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
     }
 
     func refreshView(_ type: TeamEdit.View) {
-        teamTextField.autocapitalizationType = type == .create ? .sentences : .none
         teamTextField.resignFirstResponder()
         teamTextField.text = nil
         teamTextField.keyboardType = type == .memberInvite ? .emailAddress : .default
