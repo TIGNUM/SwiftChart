@@ -111,6 +111,10 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
+
+    @IBAction func shareButtonAction(_ sender: UIButton) {
+        didShare()
+    }
 }
 
 // MARK: - Private
@@ -197,9 +201,9 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         }
         skeletonManager.hide()
         interactor.hideNullState()
-//        interactor.isShareBlocked { [weak self] (hidden) in
-//            self?.shareButton.isHidden = hidden
-//        }
+        interactor.isShareBlocked { [weak self] (hidden) in
+            self?.shareButton.isHidden = hidden
+        }
         var headline = teamVision?.headline
         if headline?.isEmpty != false {
             headline = interactor.emptyTeamTBVTitlePlaceholder
@@ -316,6 +320,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionNullStateViewProtocol {
 extension TeamToBeVisionViewController: TeamToBeVisionNavigationBarViewProtocol {
 
     func didShare() {
-//        to do later
+        trackUserEvent(.SHARE, action: .TAP)
+        interactor.shareTeamToBeVision()
     }
 }
