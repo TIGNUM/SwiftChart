@@ -42,9 +42,7 @@ final class VisionRatingExplanationViewController: UIViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
-        guard let isTeamOwner = interactor.team?.thisUserIsOwner else { return [] }
-        let title = isTeamOwner ? AppTextService.get(.my_x_team_tbv_section_rating_explanation_right_button) : AppTextService.get(.my_x_team_tbv_section_rating_explanation_right_button_member)
-
+        let title = AppTextService.get(.my_x_team_tbv_section_rating_explanation_right_button_member)
         return [roundedBarButtonItem(title: title,
                                      buttonWidth: 160,
                                      action: #selector(startRating),
