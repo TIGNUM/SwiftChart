@@ -20,25 +20,25 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var warningImageView: UIImageView!
-    @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var cameraButton: UIButton!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
     @IBOutlet private weak var singleMessageRatingView: UIView!
     @IBOutlet private weak var doubleMessageRatingView: UIView!
     @IBOutlet private weak var rateButton: UIButton!
     @IBOutlet private weak var singleMessageRateButton: UIButton!
-    @IBOutlet private weak var updateButton: UIButton!
-    @IBOutlet private weak var lastUpdatedLabel: UILabel!
-    @IBOutlet private weak var lastUpdatedComment: UILabel!
     @IBOutlet private weak var lastRatedLabel: UILabel!
     @IBOutlet private weak var lastRatedComment: UILabel!
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet private weak var teamNullStateImageView: UIImageView!
-    @IBOutlet weak var infoStackView: UIStackView!
+    @IBOutlet private weak var infoStackView: UIStackView!
+    @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
+    @IBOutlet private weak var pollButton: AnimatedButton!
+    @IBOutlet private weak var trendsLabel: UILabel!
+    @IBOutlet weak var startRatingButton: UIButton!
 
+    @IBOutlet private weak var lastModifiedLabel: UILabel!
     var didShowNullStateView = false
     private let containerViewSize: CGFloat = 232.0
     private let containerViewRatio: CGFloat = 1.2
@@ -67,7 +67,6 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         interactor.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-        shareButton.isHidden = true
         showNullState(with: " ", message: " ", writeMessage: "")
         showSkeleton()
     }
@@ -75,18 +74,17 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(color: .carbon)
-
         interactor.viewWillAppear()
     }
 
-    func viewDidAppeasr(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackPage()
     }
 
     private func showSkeleton() {
         skeletonManager.addTitle(headerLabel)
         skeletonManager.addSubtitle(toBeVisionLabel)
-        skeletonManager.addOtherView(cameraButton)
         skeletonManager.addOtherView(teamNullStateImageView)
         skeletonManager.addOtherView(userImageView)
         skeletonManager.addTitle(teamNullStateView.headerLabel)
@@ -95,21 +93,41 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         skeletonManager.addOtherView(teamNullStateView.writeButton)
     }
 
-    @IBAction func editButtonAction(_ sender: Any) {
+    @IBAction func didTapOpenTrends(_ sender: Any) {
+//        TODO
+    }
+
+    @IBAction func showExplanation(_ sender: Any) {
+        trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
+        router.showRatingExplanation(team: interactor.team)
+    }
+
+    @IBAction func writeButtonAction(_ sender: Any) {
+        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
+        interactor.showEditVision(isFromNullState: false)
+    }
+}
+
+extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
+
+    func didTapEditItem() {
         trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .EDIT_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
 
-    @IBAction func cameraButtonAction(_ sender: Any) {
+    func didTapCameraItem() {
         trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .PICK_TEAM_TBV_IMAGE, action: .TAP)
         imagePickerController.show(in: self, deletable: (tempTeamImageURL != nil || tempTeamImage != nil))
         imagePickerController.delegate = self
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
 
-    @IBAction func writeButtonAction(_ sender: Any) {
-        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
-        interactor.showEditVision(isFromNullState: false)
+    func didTapShareItem() {
+        didShare()
+    }
+
+    func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
+        interactor.isShareBlocked(completion)
     }
 }
 
@@ -153,6 +171,11 @@ private extension TeamToBeVisionViewController {
 
 // MARK: - TeamToBeVisionViewControllerInterface
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
+
+    func setSelectionBarButtonItems() {
+        toBeVisionSelectionBar.configure(isOwner: interactor?.team?.thisUserIsOwner, self)
+    }
+
     func setupView() {
         scrollView.alpha = 0
         ThemeView.level2.apply(view)
@@ -164,22 +187,23 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
-        guard (interactor?.team?.thisUserIsOwner) == true else {
-            infoStackView.isHidden = true
-            cameraButton.isHidden = true
-            return
-        }
-        ThemeBorder.accent40.apply(cameraButton)
-        ThemeBorder.accent40.apply(shareButton)
+
+        ThemeBorder.accent40.apply(pollButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
-        ThemeBorder.accent40.apply(updateButton)
+        ThemeBorder.accent40.apply(startRatingButton)
+        startRatingButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
+        pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
+        if interactor?.team?.thisUserIsOwner == false {
+            pollButton.isHidden = true
+        }
+        ThemeText.trends.apply(AppTextService.get(.my_x_team_tbv_section_trends_label), to: trendsLabel)
     }
 
     func load(_ teamVision: QDMTeamToBeVision?,
@@ -197,9 +221,12 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         }
         skeletonManager.hide()
         interactor.hideNullState()
-//        interactor.isShareBlocked { [weak self] (hidden) in
-//            self?.shareButton.isHidden = hidden
-//        }
+        interactor.isShareBlocked { [weak self] (hidden) in
+            guard self?.interactor.team?.thisUserIsOwner == true else {
+                self?.toBeVisionSelectionBar.isHidden = hidden
+                return
+            }
+        }
         var headline = teamVision?.headline
         if headline?.isEmpty != false {
             headline = interactor.emptyTeamTBVTitlePlaceholder
@@ -223,10 +250,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         singleMessageRatingView.isHidden = true
         doubleMessageRatingView.isHidden = true
         warningImageView.isHidden = true
-
-        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedTeamVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle),
-                                  to: lastUpdatedComment)
+        let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
+        ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }
 
     func showNullState(with title: String, message: String, writeMessage: String) {
@@ -316,6 +341,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionNullStateViewProtocol {
 extension TeamToBeVisionViewController: TeamToBeVisionNavigationBarViewProtocol {
 
     func didShare() {
-//        to do later
+        trackUserEvent(.SHARE, value: interactor.team?.remoteID, valueType: .TEAM_TO_BE_VISION, action: .TAP)
+        interactor.shareTeamToBeVision()
     }
 }

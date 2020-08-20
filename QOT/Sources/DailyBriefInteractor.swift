@@ -325,7 +325,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .teamInvitation,
                                                         elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
                 case .TEAM_NEWS_FEED:
-                    let elements = strongSelf.createTeamNewFeedViewModel(with: bucket)
+                    let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
                     guard elements.isEmpty == false else { break }
                     sectionDataList.append(ArraySection(model: .teamNewsFeed, elements: elements))
                 default:

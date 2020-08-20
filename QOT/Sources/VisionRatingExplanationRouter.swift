@@ -34,13 +34,4 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
         MyToBeVisionRateConfigurator.configure(previousController: visionController, viewController: viewController, visionId: id)
         visionController.present(viewController, animated: true, completion: nil)
     }
-
-    func showRatingExplanation(team: QDMTeam?) {
-        let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
-        if let controller = controller {
-            let configurator = VisionRatingExplanationConfigurator.make(team: team)
-            configurator(controller)
-            viewController?.pushToStart(childViewController: controller)
-        }
-    }
 }

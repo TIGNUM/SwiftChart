@@ -37,4 +37,21 @@ extension TeamToBeVisionRouter: TeamToBeVisionRouterInterface {
                                                   team: team)
         visionController.present(controller, animated: true, completion: nil)
     }
+
+    func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
+        viewController?.showAlert(type: type, handler: handler, handlerDestructive: handlerDestructive)
+    }
+
+    func showViewController(viewController: UIViewController, completion: (() -> Void)?) {
+        self.viewController?.present(viewController, animated: true, completion: completion)
+    }
+
+    func showRatingExplanation(team: QDMTeam?) {
+        let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
+        if let controller = controller {
+            let configurator = VisionRatingExplanationConfigurator.make(team: team)
+            configurator(controller)
+            viewController?.pushToStart(childViewController: controller)
+        }
+    }
 }

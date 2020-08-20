@@ -57,7 +57,7 @@ final class MyLibraryCategoryListInteractor {
     }
 
     @objc func load(_ notification: Notification? = nil) {
-        worker.loadData (in: team) { [weak self] (initiated, items) in
+        worker.loadData(in: team) { [weak self] (initiated, items) in
             if !initiated {
                 // shows loading
             } else {

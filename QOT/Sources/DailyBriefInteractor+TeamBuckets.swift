@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 extension DailyBriefInteractor {
-    func createTeamNewFeedViewModel(with bucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+    func createTeamNewsFeedViewModel(with bucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         let libraryFeeds = bucket.teamNewsFeeds?.filter({
             $0.teamNewsFeedActionType == .STORAGE_ADDED && $0.teamStorage?.isMine == false
         }) ?? []

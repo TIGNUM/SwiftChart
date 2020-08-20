@@ -36,6 +36,11 @@ final class VisionRatingExplanationViewController: UIViewController {
         interactor.viewDidLoad()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
         guard let isTeamOwner = interactor.team?.thisUserIsOwner else { return [] }
         let title = isTeamOwner ? AppTextService.get(.my_x_team_tbv_section_rating_explanation_right_button) : AppTextService.get(.my_x_team_tbv_section_rating_explanation_right_button_member)
@@ -48,20 +53,9 @@ final class VisionRatingExplanationViewController: UIViewController {
     }
 
     @objc func startRating() {
-        trackUserEvent(.OPEN, valueType: "Team TBV rating", action: .TAP)
-        router.showRatingExplanation(team: interactor.team)
-//        interactor.showRateScreen()
+        trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .START_RATING, action: .TAP)
+//        TODO  Start rating
     }
-}
-
-// MARK: - Private
-private extension VisionRatingExplanationViewController {
-
-}
-
-// MARK: - Actions
-private extension VisionRatingExplanationViewController {
-
 }
 
 // MARK: - VisionRatingExplanationViewControllerInterface
@@ -69,9 +63,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
     func setupView() {
         guard let isTeamOwner = interactor.team?.thisUserIsOwner else { return }
         playIconBackgroundView.corner(radius: playIconBackgroundView.bounds.size.width/2)
-        let ownerTitle = AppTextService.get(.my_x_team_tbv_section_rating_explanation_title)
-        let memberTitle = AppTextService.get(.my_x_team_tbv_section_rating_explanation_member_title)
-        ThemeText.ratingExplanationTitle.apply(isTeamOwner ? ownerTitle : memberTitle, to: titleLabel)
+        ThemeText.ratingExplanationTitle.apply(AppTextService.get(isTeamOwner ? .my_x_team_tbv_section_rating_explanation_title : .my_x_team_tbv_section_rating_explanation_member_title), to: titleLabel)
         let ownerText = AppTextService.get(.my_x_team_tbv_section_rating_explanation_text)
         let memberText = AppTextService.get(.my_x_team_tbv_section_rating_explanation_member_text).replacingOccurrences(of: "${TEAM_NAME}", with: interactor.team?.name?.uppercased() ?? "")
         ThemeText.ratingExplanationText.apply(isTeamOwner ? ownerText : memberText, to: textLabel)
