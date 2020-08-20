@@ -25,4 +25,5 @@ protocol VisionRatingExplanationInteractorInterface: Interactor {
 protocol VisionRatingExplanationRouterInterface {
     func dismiss()
     func showRateScreen(with id: Int)
+    func showRatingExplanation(team: QDMTeam?) 
 }

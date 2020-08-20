@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class VisionRatingExplanationRouter {
 
@@ -21,6 +22,7 @@ final class VisionRatingExplanationRouter {
 
 // MARK: - VisionRatingExplanationRouterInterface
 extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface {
+
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
@@ -31,5 +33,14 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
             let visionController = self.viewController else { return }
         MyToBeVisionRateConfigurator.configure(previousController: visionController, viewController: viewController, visionId: id)
         visionController.present(viewController, animated: true, completion: nil)
+    }
+
+    func showRatingExplanation(team: QDMTeam?) {
+        let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
+        if let controller = controller {
+            let configurator = VisionRatingExplanationConfigurator.make(team: team)
+            configurator(controller)
+            viewController?.pushToStart(childViewController: controller)
+        }
     }
 }

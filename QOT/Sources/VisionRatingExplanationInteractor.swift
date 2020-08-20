@@ -34,11 +34,12 @@ final class VisionRatingExplanationInteractor {
 extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorInterface {
 
     func showRateScreen() {
-        guard let team = team else { return }
-        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
-            if let remoteId = teamVision?.remoteID {
-                self?.router.showRateScreen(with: remoteId)
-            }
-        }
+        
+//        guard let team = team else { return }
+//        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
+//            if let remoteId = teamVision?.remoteID {
+//                self?.router.showRateScreen(with: remoteId)
+//            }
+//        }
     }
 }

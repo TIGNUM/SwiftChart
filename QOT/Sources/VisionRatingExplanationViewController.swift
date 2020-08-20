@@ -49,7 +49,8 @@ final class VisionRatingExplanationViewController: UIViewController {
 
     @objc func startRating() {
         trackUserEvent(.OPEN, valueType: "Team TBV rating", action: .TAP)
-        interactor.showRateScreen()
+        router.showRatingExplanation(team: interactor.team)
+//        interactor.showRateScreen()
     }
 }
 
