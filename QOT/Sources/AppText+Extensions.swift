@@ -503,7 +503,14 @@ public extension AppTextKey {
     static let my_qot_section_my_plans_title = AppTextKey("my_qot.section_my_plans.title")
     static let my_qot_section_my_profile_title = AppTextKey("my_qot.section_my_profile.title")
     static let my_qot_section_my_tbv_title = AppTextKey("my_qot.section_my_tbv.title")
+
+      // MARK: - Team ToBeVision
+
     static let my_x_team_tbv_not_created = AppTextKey("myX.teamTBV.not.created.title")
+    static let my_x_team_tbv_section_update_subtitle = AppTextKey("my_x.team_tbv.section_update.subtitle")
+    static let my_x_team_tbv_section_rating_button = AppTextKey("my_x.team_tbv_section.rating_button")
+    static let my_x_team_tbv_section_poll_button = AppTextKey("my_x.team_tbv_section.poll_button")
+    static let my_x_team_tbv_section_trends_label = AppTextKey("my_x.team_tbv_section.trends_label")
 
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")

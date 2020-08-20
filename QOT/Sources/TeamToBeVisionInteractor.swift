@@ -30,6 +30,7 @@ final class TeamToBeVisionInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        presenter.setSelectionBarButtonItems()
         didUpdateTBVRelatedData()
         let notificationCenter = NotificationCenter.default
         downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
@@ -120,12 +121,15 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 } else {
                     teamVision.profileImageResource = nil
                 }
-
                 self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
                     self?.didUpdateTBVRelatedData()
                 }
             }
         }
+    }
+
+    func presentTrends() {
+        // TODO
     }
 
     var nullStateCTA: String? {
