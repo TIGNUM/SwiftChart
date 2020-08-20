@@ -37,4 +37,12 @@ extension TeamToBeVisionRouter: TeamToBeVisionRouterInterface {
                                                   team: team)
         visionController.present(controller, animated: true, completion: nil)
     }
+
+    func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
+        viewController?.showAlert(type: type, handler: handler, handlerDestructive: handlerDestructive)
+    }
+
+    func showViewController(viewController: UIViewController, completion: (() -> Void)?) {
+        self.viewController?.present(viewController, animated: true, completion: completion)
+    }
 }

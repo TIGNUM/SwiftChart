@@ -119,7 +119,11 @@ extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
     }
 
     func didTapShareItem() {
-//        TODO
+        didShare()
+    }
+
+    @IBAction func shareButtonAction(_ sender: UIButton) {
+        didShare()
     }
 }
 
@@ -214,9 +218,9 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         }
         skeletonManager.hide()
         interactor.hideNullState()
-//        interactor.isShareBlocked { [weak self] (hidden) in
-//            self?.shareButton.isHidden = hidden
-//        }
+        interactor.isShareBlocked { [weak self] (hidden) in
+            self?.shareButton.isHidden = hidden
+        }
         var headline = teamVision?.headline
         if headline?.isEmpty != false {
             headline = interactor.emptyTeamTBVTitlePlaceholder
@@ -331,6 +335,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionNullStateViewProtocol {
 extension TeamToBeVisionViewController: TeamToBeVisionNavigationBarViewProtocol {
 
     func didShare() {
-//        TODO
+        trackUserEvent(.SHARE, action: .TAP)
+        interactor.shareTeamToBeVision()
     }
 }
