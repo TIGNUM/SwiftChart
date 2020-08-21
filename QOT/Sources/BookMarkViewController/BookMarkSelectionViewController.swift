@@ -111,7 +111,7 @@ extension BookMarkSelectionViewController: UITableViewDelegate, UITableViewDataS
             let model = viewModels.at(index: indexPath.row) else { return cell }
         if let team = model.team {
             ThemeText.myLibraryItemsTitle.apply(team.name, to: cell.teamLibraryName)
-            let membersString = interactor?.memberCountTemplateString.replacingOccurrences(of: "($count)", with: "\(team.memberCount)")
+            let membersString = interactor?.memberCountTemplateString.replacingOccurrences(of: "${COUNT}", with: "\(team.memberCount)")
             ThemeText.asterixText.apply(membersString, to: cell.participantsLabel)
 
         } else {
