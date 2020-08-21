@@ -164,6 +164,12 @@ extension DailyBriefViewController {
                 return getMindsetShifterCell(tableView, indexPath, nil)
             case 16:
                 return getExpertThoughts(tableView, indexPath, nil)
+            case 17:
+                return getTeamToBeVisionCell(tableView, indexPath, nil)
+//            case 18:
+//                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
+            case 18:
+                return getTeamInvitationCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -251,6 +257,14 @@ extension DailyBriefViewController {
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         case .MINDSET_SHIFTER?:
             return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
+        case .TEAM_TO_BE_VISION?:
+            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
+//        case .TEAM_VISION_SUGGESTION?:
+//            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
+        case .TEAM_INVITATION?:
+            return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
+        case .TEAM_NEWS_FEED?:
+            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         default:
            return UITableViewCell()
         }
@@ -261,18 +275,23 @@ extension DailyBriefViewController {
         let bucketList = bucketModel?.elements
         let bucketItem = bucketList?[indexPath.row]
 
-        switch bucketItem?.domainModel?.bucketName {
-        case .LATEST_WHATS_HOT?:
+        guard let bucketName = bucketItem?.domainModel?.bucketName else { return }
+
+        switch bucketName {
+        case .LATEST_WHATS_HOT:
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
              router.presentContent(whatsHotArticleId)
-        case .SOLVE_REFLECTION?:
+        case .SOLVE_REFLECTION:
             didSelectRow(at: indexPath)
             if (bucketItem as? SolveReminderTableCellViewModel) != nil {
                 let model = bucketItem as? SolveReminderTableCellViewModel
                 guard let solve = model?.solve else { break }
                 showSolveResults(solve: solve)
             }
+        case .TEAM_NEWS_FEED:
+            guard let viewModel = bucketItem as? TeamNewsFeedDailyBriefViewModel else { break }
+            handleTableViewRowSelection(with: viewModel, at: indexPath)
         default:
             break
         }
@@ -692,11 +711,58 @@ private extension DailyBriefViewController {
         return cell
     }
 
+    /**
+     * Method name: getWeatherCellgetGuidedTrack.
+     * Description: Placeholder to display the Weather Information.
+     * Parameters: [tableView], [IndexPath]
+     */
     func getWeatherCell(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
+        cell.delegate = self
+        return cell
+    }
+
+    /**
+     * Method name :getTeamToBeVisionCell.
+     * Description: Placeholder to display the latest Team To be Vision created.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getTeamToBeVisionCell(_ tableView: UITableView,
+                               _ indexPath: IndexPath,
+                               _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
+        let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: teamVisionModel)
+        cell.delegate = self
+        return cell
+    }
+
+    /**
+     * Method name:getTeamVisionSuggestionCell.
+     * Description: Placeholder to display the Team To Bbe Vision Suggestion.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getTeamVisionSuggestionCell(_ tableView: UITableView,
+                                     _ indexPath: IndexPath,
+                                     _ teamVisionSuggestionModel: TeamVisionSuggestionModel?) -> UITableViewCell {
+        let cell: TeamVisionSuggestionCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: teamVisionSuggestionModel)
+        cell.delegate = self
+        return cell
+    }
+
+    /**
+     * Method name:getTeamInvitationCell.
+     * Description: Placeholder to display the Team To Bbe Vision Suggestion.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getTeamInvitationCell(_ tableView: UITableView,
+                               _ indexPath: IndexPath,
+                               _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
+        let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: teamInvitationModel)
         cell.delegate = self
         return cell
     }
@@ -741,6 +807,16 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
         tableView.registerDequeueable(MindsetShifterCell.self)
         tableView.registerDequeueable(ExpertThoughtsTableViewCell.self)
+        tableView.registerDequeueable(TeamToBeVisionCell.self)
+        tableView.registerDequeueable(TeamVisionSuggestionCell.self)
+        tableView.registerDequeueable(TeamInvitationCell.self)
+        tableView.registerDequeueable(DailyBriefTeamNewsFeedHeaderCell.self)
+        tableView.registerDequeueable(DailyBriefTeamNewsFeedFooterCell.self)
+        tableView.registerDequeueable(ArticleBookmarkTableViewCell.self)
+        tableView.registerDequeueable(VideoBookmarkTableViewCell.self)
+        tableView.registerDequeueable(AudioBookmarkTableViewCell.self)
+        tableView.registerDequeueable(NoteTableViewCell.self)
+        tableView.registerDequeueable(DownloadTableViewCell.self)
     }
 
     func scrollToSection(at: Int) {
@@ -789,10 +865,18 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?) {
         stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem)
     }
+
+    func presentTeamPendingInvites() {
+        self.router.presentTeamPendingInvites()
+    }
 }
 
 // MARK: - Navigation
 extension DailyBriefViewController {
+
+    func showTBV(team: QDMTeam) {
+        router.showTBV(team: team)
+    }
 
     func showCustomizeTarget() {
         interactor.customizeSleepQuestion { [weak self] (question) in
@@ -850,6 +934,14 @@ extension DailyBriefViewController {
         if let contentId = strategyID {
             router.presentContent(contentId)
         }
+    }
+
+    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {
+        interactor.didSelectDeclineTeamInvite(invitation: invitation)
+    }
+
+    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
+        interactor.didSelectJoinTeamInvite(invitation: invitation)
     }
 }
 

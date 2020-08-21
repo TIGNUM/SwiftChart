@@ -161,6 +161,10 @@ extension UIColor {
         return UIColor(red: 8/255, green: 8/255, blue: 7/255, alpha: 1)
     }
 
+    public class var carbonDark80: UIColor {
+        return UIColor(red: 8/255, green: 8/255, blue: 7/255, alpha: 0.8)
+    }
+
     public class var carbonNew: UIColor {
         return UIColor(red: 10/255, green: 10/255, blue: 9/255, alpha: 1)
     }

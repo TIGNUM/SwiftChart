@@ -20,6 +20,7 @@ final class DailyBriefInteractor {
     private let presenter: DailyBriefPresenterInterface
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var expendImpactReadiness: Bool = false
+    private var teamHeaderItems = [Team.Item]()
 
     private var guidedClosedTrack: Bool = false
     private var isLoadingBuckets: Bool = false
@@ -196,6 +197,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .expertthoughts,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamToBeVision,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+//        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+//                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamInvitation,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -229,89 +236,98 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 guard let strongSelf = self else {
                     return
                 }
-                switch bucket.bucketName {
-                case .DAILY_CHECK_IN_1?:
+                guard let bucketName = bucket.bucketName else { return }
+                switch bucketName {
+                case .DAILY_CHECK_IN_1:
                     strongSelf.hasToBeVision = (bucket.toBeVision != nil)
                     strongSelf.didDailyCheckIn = (bucket.dailyCheckInAnswerIds?.isEmpty == false)
                     sectionDataList.append(ArraySection(model: .dailyCheckIn1,
                                                         elements: strongSelf.createImpactReadinessCell(impactReadinessBucket: bucket)))
-                case .DAILY_CHECK_IN_2?:
+                case .DAILY_CHECK_IN_2:
                     sectionDataList.append(ArraySection(model: .dailyCheckIn2,
                                                         elements: strongSelf.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
-                case .EXPLORE?:
+                case .EXPLORE:
                     sectionDataList.append(ArraySection(model: .explore,
                                                         elements: strongSelf.createExploreModel(exploreBucket: bucket)))
-                case .ME_AT_MY_BEST?:
+                case .ME_AT_MY_BEST:
                     sectionDataList.append(ArraySection(model: .meAtMyBest,
                                                         elements: strongSelf.createMeAtMyBest(meAtMyBestBucket: bucket)))
-                case .GET_TO_LEVEL_5?:
+                case .GET_TO_LEVEL_5:
                     sectionDataList.append(ArraySection(model: .getToLevel5,
                                                         elements: strongSelf.createLevel5Cell(level5Bucket: bucket)))
-                case .QUESTION_WITHOUT_ANSWER?:
+                case .QUESTION_WITHOUT_ANSWER:
                     sectionDataList.append(ArraySection(model: .questionWithoutAnswer,
                                                         elements: strongSelf.createQuestionsWithoutAnswer(questionsWithoutAnswerBucket: bucket)))
-                case .LATEST_WHATS_HOT?:
+                case .LATEST_WHATS_HOT:
                     sectionDataList.append(ArraySection(model: .whatsHotLatest,
                                                         elements: strongSelf.createLatestWhatsHot(whatsHotLatestCell: bucket)))
-                case .THOUGHTS_TO_PONDER?:
+                case .THOUGHTS_TO_PONDER:
                     sectionDataList.append(ArraySection(model: .thoughtsToPonder,
                                                         elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
-                case .GOOD_TO_KNOW?:
+                case .GOOD_TO_KNOW:
                     sectionDataList.append(ArraySection(model: .goodToKnow,
                                                         elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
-                case .FROM_TIGNUM?:
+                case .FROM_TIGNUM:
                     sectionDataList.append(ArraySection(model: .fromTignum,
                                                         elements: strongSelf.createFromTignum(fromTignum: bucket)))
-                case .BESPOKE?:
+                case .BESPOKE:
                     sectionDataList.append(ArraySection(model: .bespoke,
                                                          elements: strongSelf.createProductsWeLove(productsBucket: bucket)))
-                case .DEPARTURE_INFO?:
+                case .DEPARTURE_INFO:
                     sectionDataList.append(ArraySection(model: .departureInfo,
                                                         elements: strongSelf.createOnTheRoad(onTheRoadBucket: bucket)))
-                case .LEADERS_WISDOM?:
-                    sectionDataList.append(ArraySection(model: .leaderswisdom,
-                                                        elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
-                case .EXPERT_THOUGHTS?:
-                    sectionDataList.append(ArraySection(model: .expertthoughts,
-                                                        elements: strongSelf.createExpertThoughts(createExpertThoughts: bucket)))
-                case .FEAST_OF_YOUR_EYES?:
-                    sectionDataList.append(ArraySection(model: .feastForYourEyes,
-                                                        elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
-                case .FROM_MY_COACH?:
+                case .LEADERS_WISDOM:
+                    let elements = strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)
+                    sectionDataList.append(ArraySection(model: .leaderswisdom, elements: elements))
+                case .EXPERT_THOUGHTS:
+                    let elements = strongSelf.createExpertThoughts(createExpertThoughts: bucket)
+                    sectionDataList.append(ArraySection(model: .expertthoughts, elements: elements))
+                case .FEAST_OF_YOUR_EYES:
+                    let elements = strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)
+                    guard elements.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .feastForYourEyes, elements: elements))
+                case .FROM_MY_COACH:
                     let elements = strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)
-                    if elements.isEmpty == false {
-                        sectionDataList.append(ArraySection(model: .fromMyCoach, elements: elements))
-                    }
-                case .MY_PEAK_PERFORMANCE?:
+                    guard elements.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .fromMyCoach, elements: elements))
+                case .MY_PEAK_PERFORMANCE:
                     let elements = strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)
-                    if elements.count > 0 {
-                        sectionDataList.append(ArraySection(model: .myPeakPerformance, elements: elements))
-                    }
-                case .SPRINT_CHALLENGE?:
-                    if bucket.sprint != nil {
-                        sectionDataList.append(ArraySection(model: .sprint,
-                                                            elements: strongSelf.createSprintChallenge(bucket: bucket)))
-                    }
-                case .ABOUT_ME?:
+                    guard elements.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .myPeakPerformance, elements: elements))
+                case .SPRINT_CHALLENGE:
+                    guard bucket.sprint != nil else { break }
+                    sectionDataList.append(ArraySection(model: .sprint,
+                                                        elements: strongSelf.createSprintChallenge(bucket: bucket)))
+                case .ABOUT_ME:
                     sectionDataList.append(ArraySection(model: .aboutMe,
                                                         elements: strongSelf.createAboutMe(aboutMeBucket: bucket)))
-                case .SOLVE_REFLECTION?:
+                case .SOLVE_REFLECTION:
                     sectionDataList.append(ArraySection(model: .solveReflection,
                                                         elements: strongSelf.createSolveViewModel(bucket: bucket)))
-                case .WEATHER?:
+                case .WEATHER:
                     let models = strongSelf.createWeatherViewModel(weatherBucket: bucket)
-                    if models.count > 0 {
-                        sectionDataList.append(ArraySection(model: .weather,
-                                                            elements: models))
-                    }
-                case .GUIDE_TRACK?:
+                    guard models.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .weather, elements: models))
+                case .GUIDE_TRACK:
                     let elements = strongSelf.createGuidedTrack(guidedTrackBucket: bucket)
-                    if elements.isEmpty == false {
+                    guard elements.isEmpty == false else { break }
                         sectionDataList.append(ArraySection(model: .guidedTrack, elements: elements))
-                    }
-                case .MINDSET_SHIFTER?:
+                case .MINDSET_SHIFTER:
                     sectionDataList.append(ArraySection(model: .mindsetShifter,
                                                         elements: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket)))
+                case .TEAM_TO_BE_VISION:
+                    sectionDataList.append(ArraySection(model: .teamToBeVision,
+                                                        elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
+//                case .TEAM_VISION_SUGGESTION?:
+//                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+//                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
+                case .TEAM_INVITATION:
+                    sectionDataList.append(ArraySection(model: .teamInvitation,
+                                                        elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
+                case .TEAM_NEWS_FEED:
+                    let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
+                    guard elements.isEmpty == false else { break }
+                    sectionDataList.append(ArraySection(model: .teamNewsFeed, elements: elements))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -636,6 +652,58 @@ extension DailyBriefInteractor {
                                             domainModel: mindsetBucket)
         mindsetList.append(model)
         return mindsetList
+    }
+
+    // MARK: - New TeamToBeVision
+    func createTeamToBeVisionViewModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var visionList: [BaseDailyBriefViewModel] = []
+        var visionAndDates: [(QDMTeamToBeVision, Date)] = [(QDMTeamToBeVision(), Date())]
+        teamVisionBucket.teamToBeVisions?.forEach { (vision) in
+            let dates: [Date] = [vision.createdAt ?? Date.distantPast,
+                                 vision.modifiedAt ?? Date.distantPast,
+                                 vision.modifiedOnDevice ?? Date.distantPast,
+                                 vision.createdOnDevice ?? Date.distantPast]
+            let mostRecentDate = dates.max()
+            guard let recentDate = mostRecentDate else { return }
+            let dateVision = (vision, recentDate)
+            visionAndDates.append(dateVision)
+        }
+        visionAndDates.removeFirst()
+        visionAndDates.sort(by: {$0.1 > $1.1})
+        let latestVision = visionAndDates.first?.0
+        let visionText = latestVision?.text
+        let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
+        let title = team?.name
+        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, domainModel: teamVisionBucket)
+        visionList.append(model)
+        return visionList
+    }
+
+    // MARK: - TeamToBeVision Sentence
+    func createTeamVisionSuggestionModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var teamVisionList: [BaseDailyBriefViewModel] = []
+//        guard let collection = teamVisionBucket.contentCollections?.first else {
+//            return teamVisionList
+//        }
+        let visionSentence = "We are an inspired, enerfized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
+        let title = "WEB TEAM TOBEVISION"
+        let suggestion = "Practice recovery after stressful times to balance your autonomic nervous system."
+        let model = TeamVisionSuggestionModel(title: title, teamColor: "#5790DD", tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        teamVisionList.append(model)
+        return teamVisionList
+    }
+
+    // MARK: - Team Invitation
+    func createTeamInvitation(invitationBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var invitationList: [BaseDailyBriefViewModel] = []
+        let teamOwner = invitationBucket.teamInvitations?.first?.sender
+        var teamNames: [String] = []
+        invitationBucket.teamInvitations?.forEach {(invitation) in
+            teamNames.append(invitation.team?.name ?? "")
+        }
+        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, domainModel: invitationBucket)
+        invitationList.append(model)
+        return invitationList
     }
 
     // MARK: - Products we love
@@ -1157,5 +1225,18 @@ extension DailyBriefInteractor {
                                                                   domainModel: sprintBucket,
                                                                   sprint: sprintBucket.sprint!))
         return createSprintChallengeList
+    }
+
+    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {
+        worker.declineTeamInvite(invitation) {(teams) in
+        }
+    }
+
+    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
+        worker.joinTeamInvite(invitation) {(teams) in
+            NotificationCenter.default.post(name: .changedInviteStatus,
+                                            object: nil,
+                                            userInfo: nil)
+        }
     }
 }

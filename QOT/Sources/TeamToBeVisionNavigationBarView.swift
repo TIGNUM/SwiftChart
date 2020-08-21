@@ -25,4 +25,8 @@ final class TeamToBeVisionNavigationBarView: UIView {
         title.text = AppTextService.get(.my_qot_my_tbv_section_navigation_bar_title)
     }
 
+    @IBAction func shareButtonAction(_ sender: UIButton) {
+        delegate?.didShare()
+    }
+
 }

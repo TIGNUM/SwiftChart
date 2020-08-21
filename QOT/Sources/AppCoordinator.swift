@@ -96,14 +96,13 @@ final class AppCoordinator {
     }
 
     func setupBugLife() {
-        guard SessionService.main.getCurrentSession() != nil else { return }
         if SessionService.main.getCurrentSession()?.useremail?.lowercased().contains("@tignum.com") == true {
             Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
             Buglife.shared().delegate = AppDelegate.current
-            Buglife.shared().invocationOptions = [.shake]
+            Buglife.shared().invocationOptions = [.shake, .screenshot]
         } else {
             Buglife.shared().delegate = nil
-            Buglife.shared().invocationOptions = [.init(rawValue: 0)]
+            Buglife.shared().invocationOptions = []
         }
     }
 
@@ -117,7 +116,7 @@ final class AppCoordinator {
         ExtensionsDataManager().update(.toBeVision)
         ExtensionsDataManager().update(.teams)
         add3DTouchShortcuts()
-
+        setupBugLife()
         guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
             let naviController = R.storyboard.bottomNavigation().instantiateInitialViewController() as? UINavigationController,
             let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {

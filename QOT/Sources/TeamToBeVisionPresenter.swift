@@ -40,4 +40,8 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
                              isRateEnabled: isRateEnabled,
                              shouldShowSingleMessageRating: shouldShowSingleMessageRating)
     }
+
+    func setSelectionBarButtonItems() {
+        viewController?.setSelectionBarButtonItems()
+    }
 }

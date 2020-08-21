@@ -18,4 +18,5 @@ extension Notification.Name {
     static let didSelectTeamInvite = Notification.Name("didSelectTeamInvite")
     static let didSelectTeamInviteDecline = Notification.Name("didSelectTeamInviteDecline")
     static let didSelectTeamInviteJoin = Notification.Name("didSelectTeamInviteJoin")
+    static let changedInviteStatus = Notification.Name("changedInviteStatus")
 }

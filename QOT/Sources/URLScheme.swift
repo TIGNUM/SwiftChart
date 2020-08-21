@@ -98,6 +98,7 @@ enum URLScheme: String {
     case signingVerificationCode = "verificationCode" // login
     case profile = "profile" // accountSetting
     case siriSettings = "siri-settings" // siriShortcuts
+    case teamInvitations = "team-invitations" // open pending team invites
 
     var queryNames: [String] {
         switch self {
@@ -137,7 +138,7 @@ enum URLScheme: String {
         case .prepareEvent,
              .prepareDay: break
         case .preparation: return ["identifier"]
-        case .toBeVision: break
+        case .toBeVision: return ["teamId"]
         case .mySprints: break
         case .myLibrary: return ["teamId", "category"]
         case .myProfile: break

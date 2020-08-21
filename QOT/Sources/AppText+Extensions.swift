@@ -370,6 +370,30 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_load_description = AppTextKey("daily_brief.section_impact_readiness.load_description")
     static let daily_brief_section_impact_readiness_future_load_description = AppTextKey("daily_brief.section_impact_readiness.future_load_description")
 
+    static let daily_brief_team_to_be_vision_cta = AppTextKey("daily_brief.team_to_be_vision.cta")
+    static let daily_brief_team_to_be_vision_subtitle = AppTextKey("daily_brief.team_to_be_vision.subtitle")
+    static let daily_brief_team_vision_suggestion_subtitle = AppTextKey("daily_brief.team_vision_suggestion.subtitle")
+    static let daily_brief_team_vision_suggestion_cta = AppTextKey("daily_brief.team_vision_suggestion.cta")
+    static let daily_brief_team_vision_suggestion_suggestion_title = AppTextKey("daily_brief.team_vision_suggestion.suggestion_title")
+
+    static let daily_brief_team_invitation_one_team_statement = AppTextKey("daily_brief.team_invitation.one_team_statement")
+//    " has invited you to be part of"
+    static let daily_brief_team_invitation_several_teams_statement = AppTextKey("daily_brief.team_invitation.several_teams_statement")
+//    "You have been invited to join"
+    static let daily_brief_team_invitation_belonging_sentence = AppTextKey("daily_brief.team_invitation.belonging_sentence")
+    static let daily_brief_team_invitation_decline_cta = AppTextKey("daily_brief.team_invitation.decline_cta")
+    static let daily_brief_team_invitation_join_cta = AppTextKey("daily_brief.team_invitation.join_cta")
+    static let daily_brief_team_invitation_see_pending_cta = AppTextKey("daily_brief.team_invitation.see_pending_cta")
+    static let daily_brief_team_invitation_title = AppTextKey("daily_brief.team_invitation.title")
+
+    static let daily_brief_team_invitation_and_label = AppTextKey("daily_brief.team_invitation.and_label")
+    static let daily_brief_team_invitation_other_teams_label = AppTextKey("daily_brief.team_invitation.other_teams_label")
+
+    static let daily_brief_section_team_news_feed_subtitle_for_one_item = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_one_item")
+    static let daily_brief_section_team_news_feed_subtitle_for_multiple_items = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_multiple_items")
+    static let daily_brief_section_team_news_feed_creation_info = AppTextKey("daily_brief.section_team_news_feed.creation_info")
+    static let daily_brief_section_team_news_feed_open_library_button_title = AppTextKey("daily_brief.section_team_news_feed.open_library_button_title")
+
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
     static let generic_event_removed_alert_event_removed_body = AppTextKey("generic.event_removed.alert.event_removed.body")
@@ -480,7 +504,14 @@ public extension AppTextKey {
     static let my_qot_section_my_plans_title = AppTextKey("my_qot.section_my_plans.title")
     static let my_qot_section_my_profile_title = AppTextKey("my_qot.section_my_profile.title")
     static let my_qot_section_my_tbv_title = AppTextKey("my_qot.section_my_tbv.title")
+
+      // MARK: - Team ToBeVision
+
     static let my_x_team_tbv_not_created = AppTextKey("myX.teamTBV.not.created.title")
+    static let my_x_team_tbv_section_update_subtitle = AppTextKey("my_x.team_tbv.section_update.subtitle")
+    static let my_x_team_tbv_section_rating_button = AppTextKey("my_x.team_tbv_section.rating_button")
+    static let my_x_team_tbv_section_poll_button = AppTextKey("my_x.team_tbv_section.poll_button")
+    static let my_x_team_tbv_section_trends_label = AppTextKey("my_x.team_tbv_section.trends_label")
 
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")

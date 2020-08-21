@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AJS-5B-nb3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AJS-5B-nb3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -81,6 +81,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xW2-C6-2mT" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="325" y="808" width="65" height="38"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="14" minY="10" maxX="14" maxY="10"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,7 +91,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.70209792564655171" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xW2-C6-2mT" firstAttribute="top" secondItem="W13-sz-lbR" secondAttribute="bottom" constant="24" id="2W1-vN-QqG"/>
                             <constraint firstItem="d8T-vh-jZG" firstAttribute="bottom" secondItem="xW2-C6-2mT" secondAttribute="bottom" constant="16" id="5A5-di-Lyp"/>
@@ -108,6 +109,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="rSL-mH-zvx" id="Q7o-5g-7dG"/>
                         <outlet property="saveButton" destination="xW2-C6-2mT" id="rDX-Qr-BGm"/>
                         <outlet property="tableView" destination="W13-sz-lbR" id="htB-VQ-jp3"/>
                         <outlet property="tableViewHeightConstraint" destination="T2V-jN-Hl6" id="6IA-9F-GeT"/>
