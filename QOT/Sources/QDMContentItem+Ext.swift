@@ -16,7 +16,7 @@ extension QDMContentItem {
         switch format {
         case .audio: return AppTextService.get(.generic_content_section_item_new_label_audio).replacingOccurrences(of: "${AMOUNT}", with: min)
         case .video: return AppTextService.get(.generic_content_section_item_new_label_video).replacingOccurrences(of: "${AMOUNT}", with: min)
-        case .pdf: return AppTextService.get(.generic_content_section_item_new_label_pdf).replacingOccurrences(of: "${AMOUNT}", with: min)
+        case .pdf: return AppTextService.get(.generic_content_section_item_new_label_read).replacingOccurrences(of: "${AMOUNT}", with: min)
         default: return ""
         }
     }

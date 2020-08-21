@@ -867,6 +867,7 @@ public extension AppTextKey {
     static let generic_payment_screen_alert_log_out_body_logout = AppTextKey("generic.payment_screen.alert.log_out.body_logout")
     static let generic_payment_screen_section_footer_button_switch_account = AppTextKey("generic.payment_screen.section_footer.button_switch_account")
     static let generic_content_section_item_label_read = AppTextKey("generic.content.section_item.label_read")
+    static let generic_content_section_item_new_label_read = AppTextKey("generic.content.section_item.new_label_read")
 
     static let onboarding_launch_screen_section_header_title_intro = AppTextKey("onboarding.launch_screen.section_header.title_intro")
     static let onboarding_launch_screen_section_footer_button_log_in = AppTextKey("onboarding.launch_screen.section_footer.button_log_in")
