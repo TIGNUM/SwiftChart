@@ -71,6 +71,7 @@ private extension TeamEditViewController {
         tableView.isHidden = type != .memberInvite
         memberMaxLabel.isHidden = type != .memberInvite
         memberCounterLabel.isHidden = type != .memberInvite
+        teamTextField.autocapitalizationType = type == .create ? .sentences : .none
     }
 }
 
