@@ -33,7 +33,7 @@ extension QDMContentCollection {
         if hasVideoOnly == true {
             let durations = contentItems.compactMap { $0.valueDuration }
             let total = String(Int(durations.reduce(0) { ($0/60) + ($1/60) }))
-            return String(format: AppTextService.get(.generic_content_section_item_label_video), total)
+            return AppTextService.get(.generic_content_section_item_new_label_video).replacingOccurrences(of: "${AMOUNT}", with: total)
         } else if hasAudioItems == true {
 
         } else if isFoundation == true {

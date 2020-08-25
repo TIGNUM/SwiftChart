@@ -33,7 +33,7 @@ final class BookMarkSelectionInteractor {
     }()
 
     lazy var memberCountTemplateString = {
-        AppTextService.get(.bookmark_library_selection_normal_cell_participiant_count_template)
+        AppTextService.get(.bookmark_library_selection_normal_new_cell_participiant_count_template)
     }()
 
     lazy var saveButtonTitle = {

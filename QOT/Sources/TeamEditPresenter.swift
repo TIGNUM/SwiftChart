@@ -25,7 +25,7 @@ private extension TeamEditPresenter {
     func updateLabels(_ type: TeamEdit.View, teamName: String? = nil, animated: Bool) {
         var subHeader = TeamEdit.subHeader.label(type: type)
         if type == .memberInvite {
-            subHeader = String(format: subHeader, teamName ?? "")
+            subHeader = subHeader.replacingOccurrences(of: "${TEAM_NAME}", with: teamName ?? "")
         }
         viewController?.setupLabels(header: TeamEdit.header.label(type: type),
                                     subHeader: subHeader,

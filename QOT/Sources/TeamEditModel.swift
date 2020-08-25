@@ -34,7 +34,7 @@ enum TeamEdit {
         case .header:
             return isCreate ? .my_x_team_create_header : isEdit ? .my_x_team_edit_header : .my_x_team_member_invite_header
         case .subHeader:
-            return isCreate || isEdit ? nil : .my_x_team_member_invite_subHeader
+            return isCreate || isEdit ? nil : .my_x_team_member_invite_new_subHeader
         case .description:
             return isCreate ? .my_x_team_create_description : isEdit ? nil : .my_x_team_member_invite_description
         case .cta:

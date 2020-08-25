@@ -18,7 +18,7 @@ final class MyLibraryCategoryListWorker {
     }()
 
     lazy var titleTemplateForTeam: String = {
-        return AppTextService.get(.my_qot_my_library_section_header_team_title_template)
+        return AppTextService.get(.my_qot_my_library_section_header_new_team_title_template)
     }()
 
     func loadData(in team: QDMTeam?, _ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {

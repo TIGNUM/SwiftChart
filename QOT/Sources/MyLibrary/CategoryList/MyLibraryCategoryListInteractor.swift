@@ -45,7 +45,7 @@ final class MyLibraryCategoryListInteractor {
 
     var titleText: String {
         if let team = team {
-            return String(format: worker.titleTemplateForTeam, team.name ?? "")
+            return worker.titleTemplateForTeam.replacingOccurrences(of: "${NAME}", with: team.name ?? "")
         }
         return worker.titleText
     }
