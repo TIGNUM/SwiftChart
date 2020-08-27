@@ -206,10 +206,10 @@ private extension UIViewController {
     var userStoragePageKey: String {
         switch (self as? MyLibraryUserStorageViewController)?.interactor?.itemType {
         case .ALL?: return "mylibrary.all"
-        case .BOOKMARKS?: return "mylibrary.bookmarks"
-        case .DOWNLOADS?: return "mylibrary.downloads"
-        case .LINKS?: return "mylibrary.links"
-        case .NOTES?: return "mylibrary.notes"
+        case .BOOKMARK?: return "mylibrary.bookmarks"
+        case .DOWNLOAD?: return "mylibrary.downloads"
+        case .EXTERNAL_LINK?: return "mylibrary.links"
+        case .NOTE?: return "mylibrary.notes"
         default: preconditionFailure()
         }
     }

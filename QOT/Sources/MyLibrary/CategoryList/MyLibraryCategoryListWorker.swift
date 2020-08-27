@@ -46,67 +46,56 @@ final class MyLibraryCategoryListWorker {
             }
         }
         dispatchGroup.notify(queue: .main) {
+            let isTeam = (team != nil)
             var userStorages = [MyLibraryCategoryListModel]()
-            let sorted = storages?.sorted(by: { (first, second) -> Bool in
+            let removedDuplications = isTeam ? self.removeDuplicates(from: storages ?? []) : storages ?? []
+            let sorted = removedDuplications.sorted(by: { (first, second) -> Bool in
                 first.modifiedAt?.timeIntervalSince1970 ?? 0 > second.modifiedAt?.timeIntervalSince1970 ?? 0
             })
 
-            let bookmarks = sorted?.compactMap({ (storage) -> QDMUserStorage? in
-                storage.userStorageType == .BOOKMARK ? storage : nil
-            })
+            let bookmarks = sorted.compactMap { $0.userStorageType == .BOOKMARK ? $0 : nil }
+            let downloads = sorted.compactMap { $0.userStorageType == .DOWNLOAD ? $0 : nil }
+            let notes = sorted.compactMap { $0.userStorageType == .NOTE ? $0 : nil }
+            let links = sorted.compactMap { $0.userStorageType == .EXTERNAL_LINK ? $0 : nil }
 
-            let downloads = sorted?.compactMap({ (storage) -> QDMUserStorage? in
-                storage.userStorageType == .DOWNLOAD ? storage : nil
-            })
-
-            let notes = sorted?.compactMap({ (storage) -> QDMUserStorage? in
-                storage.userStorageType == .NOTE ? storage : nil
-            })
-
-            let links = sorted?.compactMap({ (storage) -> QDMUserStorage? in
-                storage.userStorageType == .EXTERNAL_LINK ? storage : nil
-            })
-            var hasNewBookMark = false
-            if let newBookmarks = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .BOOKMARK }) {
-                hasNewBookMark = !(newBookmarks.isEmpty)
+            var newBookmarkCount = 0, newNoteCount = 0, newLinkCount = 0, downloadCount = 0
+            if isTeam {
+                newBookmarkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .BOOKMARK }).count ?? 0
+                newNoteCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .NOTE }).count ?? 0
+                newLinkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .EXTERNAL_LINK }).count ?? 0
+            }
+            if !isTeam {
+                downloadCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .DOWNLOAD }).count ?? 0
             }
 
-            var hasNewNote = false
-            if let newNotes = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .NOTE }) {
-                hasNewNote = !(newNotes.isEmpty)
-            }
-
-            var hasNewLinks = false
-            if let newLinks = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .EXTERNAL_LINK }) {
-                hasNewLinks = !(newLinks.isEmpty)
-            }
+            let allCounts = newBookmarkCount + newNoteCount + newLinkCount + downloadCount
 
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_all_title),
-                                                   items: self.removeDuplicates(from: sorted ?? []),
+                                                   items: sorted,
                                                    icon: R.image.my_library_group(),
                                                    type: .ALL,
-                                                   hasNewItem: hasNewBookMark || hasNewNote || hasNewLinks))
+                                                   newItemCount: allCounts))
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_bookmarks_title),
                                                    items: bookmarks,
                                                    icon: R.image.my_library_bookmark(),
-                                                   type: .BOOKMARKS,
-                                                   hasNewItem: hasNewBookMark))
-            if team == nil {
+                                                   type: .BOOKMARK,
+                                                   newItemCount: newBookmarkCount))
+            if !isTeam {
                 let title = AppTextService.get(.my_qot_my_library_section_downloads_title)
                 userStorages.append(self.viewModelWith(title: title, items: downloads,
-                                                       icon: R.image.my_library_download(), type: .DOWNLOADS,
-                                                       hasNewItem: false))
+                                                       icon: R.image.my_library_download(), type: .DOWNLOAD,
+                                                       newItemCount: 0))
             }
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_links_title),
                                                    items: links,
                                                    icon: R.image.my_library_link(),
-                                                   type: .LINKS,
-                                                   hasNewItem: hasNewLinks))
+                                                   type: .EXTERNAL_LINK,
+                                                   newItemCount: newLinkCount))
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_notes_title),
                                                    items: notes,
                                                    icon: R.image.my_library_note_light(),
-                                                   type: .NOTES,
-                                                   hasNewItem: hasNewNote))
+                                                   type: .NOTE,
+                                                   newItemCount: newNoteCount))
             completion(initiated, userStorages)
         }
     }
@@ -115,13 +104,13 @@ final class MyLibraryCategoryListWorker {
                        items: [QDMUserStorage]?,
                        icon: UIImage?,
                        type: MyLibraryCategoryType,
-                       hasNewItem: Bool) -> MyLibraryCategoryListModel {
+                       newItemCount: Int) -> MyLibraryCategoryListModel {
         return MyLibraryCategoryListModel(title: title,
                                           itemCount: items?.count ?? 0,
                                           lastUpdated: items?.first?.modifiedAt,
                                           icon: icon,
                                           type: type,
-                                          hasNewItem: hasNewItem)
+                                          newItemCount: newItemCount)
     }
 
     private func removeDuplicates(from results: [QDMUserStorage]) -> [QDMUserStorage] {

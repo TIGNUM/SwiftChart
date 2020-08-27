@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zQu-FT-wA1">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zQu-FT-wA1">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +19,7 @@
         <!--My Library Category List View Controller-->
         <scene sceneID="iYN-Ce-1we">
             <objects>
-                <viewController storyboardIdentifier="MyLibraryCategoryListViewController" id="zQu-FT-wA1" customClass="MyLibraryCategoryListViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyLibraryCategoryListViewController" id="zQu-FT-wA1" customClass="MyLibraryCategoryListViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4uT-AZ-s9g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +36,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyLibraryCategoryTableViewCell" rowHeight="100" id="Jdg-Yc-828" customClass="MyLibraryCategoryTableViewCell" customModule="QOT" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyLibraryCategoryTableViewCell" rowHeight="100" id="Jdg-Yc-828" customClass="MyLibraryCategoryTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jdg-Yc-828" id="tmY-Sr-Snj">
@@ -78,6 +76,17 @@
                                                     <rect key="frame" x="24" y="60" width="16" height="16"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2N-G5-2du">
+                                                    <rect key="frame" x="340" y="24" width="24" height="24"/>
+                                                    <color key="backgroundColor" red="0.93333333330000001" green="0.36862745099999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="VtV-Hl-LQN"/>
+                                                        <constraint firstAttribute="height" constant="24" id="aFg-v2-Vnp"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -92,6 +101,8 @@
                                                 <constraint firstItem="E8A-nN-5Uv" firstAttribute="leading" secondItem="YAJ-xG-CHr" secondAttribute="trailing" constant="8" id="Y2F-Wp-1zq"/>
                                                 <constraint firstItem="eFH-aa-rd3" firstAttribute="centerY" secondItem="tmY-Sr-Snj" secondAttribute="centerY" id="a4c-2X-dcq"/>
                                                 <constraint firstItem="E8A-nN-5Uv" firstAttribute="centerY" secondItem="YAJ-xG-CHr" secondAttribute="centerY" id="afC-uE-MmD"/>
+                                                <constraint firstItem="z2N-G5-2du" firstAttribute="trailing" secondItem="hPd-Ve-WhO" secondAttribute="trailing" id="bQc-Ex-bho"/>
+                                                <constraint firstItem="z2N-G5-2du" firstAttribute="top" secondItem="hPd-Ve-WhO" secondAttribute="top" id="g7C-Qp-KSZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="eFH-aa-rd3" secondAttribute="trailing" constant="24" id="upQ-Pf-Zs8"/>
                                                 <constraint firstItem="hPd-Ve-WhO" firstAttribute="top" secondItem="tmY-Sr-Snj" secondAttribute="top" constant="24" id="w16-D1-msx"/>
                                                 <constraint firstItem="O9F-xT-hTW" firstAttribute="leading" secondItem="tmY-Sr-Snj" secondAttribute="leading" constant="24" id="yLi-6c-EUD"/>
@@ -103,6 +114,7 @@
                                             <outlet property="categoryName" destination="hPd-Ve-WhO" id="gyA-Wo-fSb"/>
                                             <outlet property="iconView" destination="YAJ-xG-CHr" id="2Uq-ai-5D1"/>
                                             <outlet property="infoText" destination="E8A-nN-5Uv" id="nDL-oQ-2oW"/>
+                                            <outlet property="newItemCountLabel" destination="z2N-G5-2du" id="Cl1-P3-Qtg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -60,7 +60,7 @@ struct Team {
             self.title = Team.Header.invite.title
             self.teamId = Team.Header.invite.inviteId
             self.invites = invites
-            self.batchCount = (invites.count + (newItemCount ?? 0))
+            self.batchCount = newItemCount ?? 0
         }
     }
 }

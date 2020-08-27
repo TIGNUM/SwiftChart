@@ -41,9 +41,15 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         teamInvites.removeAll()
     }
 
-    func configure(teamId: String, title: String, hexColorString: String, selected: Bool, canDeselect: Bool) {
+    func configure(teamId: String,
+                   title: String,
+                   hexColorString: String,
+                   selected: Bool,
+                   canDeselect: Bool,
+                   newCount: Int = 0) {
         self.teamInvites.removeAll()
-        self.counterLabel.isHidden = true
+        self.counterLabel.isHidden = newCount == 0
+        self.counterLabel.text = nil
         self.teamId = teamId
         self.hexColorString = hexColorString
         self.itemSelected = selected
@@ -53,7 +59,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     }
 
     func configure(teamInvites: [QDMTeamInvitation]) {
-        self.counterLabel.isHidden = false
+        self.counterLabel.isHidden = !(teamInvites.isEmpty)
         self.counterLabel.text = String(teamInvites.count)
         self.teamInvites = teamInvites
         self.canDeselect = false

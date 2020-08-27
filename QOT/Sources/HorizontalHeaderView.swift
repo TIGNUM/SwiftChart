@@ -87,7 +87,8 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
                                title: item.title,
                                hexColorString: item.color,
                                selected: item.selected,
-                               canDeselect: canDeselect)
+                               canDeselect: canDeselect,
+                               newCount: item.batchCount)
             }
         }
         return cell
