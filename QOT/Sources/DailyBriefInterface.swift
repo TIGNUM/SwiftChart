@@ -47,6 +47,8 @@ protocol DailyBriefInteractorInterface: Interactor {
     func updateDailyBriefBucket()
     func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation)
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation)
+
+    func markAsRead(teamNewsFeed: QDMTeamNewsFeed?, _ completion: @escaping() -> Void)
 }
 
 protocol DailyBriefRouterInterface: BaseRouterInterface {

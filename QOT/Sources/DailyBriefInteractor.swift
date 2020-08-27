@@ -1239,4 +1239,10 @@ extension DailyBriefInteractor {
                                             userInfo: nil)
         }
     }
+
+    func markAsRead(teamNewsFeed: QDMTeamNewsFeed?, _ completion: @escaping () -> Void) {
+        worker.markAsRead(teamNewsFeed: teamNewsFeed) {
+            completion()
+        }
+    }
 }

@@ -24,12 +24,18 @@ final class MyLibraryCategoryListWorker {
     func loadData(in team: QDMTeam?, _ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {
         let dispatchGroup = DispatchGroup()
         var storages: [QDMUserStorage]?
+        var newItemFeeds: [QDMTeamNewsFeed]?
         var initiated = false
         dispatchGroup.enter()
         if let team = team {
             service.getTeamStorages(in: team) { (teamStorages, initialized, error) in
                 storages = teamStorages
                 initiated = initialized
+                dispatchGroup.leave()
+            }
+            dispatchGroup.enter()
+            TeamService.main.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
+                newItemFeeds = feeds
                 dispatchGroup.leave()
             }
         } else {
@@ -60,38 +66,62 @@ final class MyLibraryCategoryListWorker {
             let links = sorted?.compactMap({ (storage) -> QDMUserStorage? in
                 storage.userStorageType == .EXTERNAL_LINK ? storage : nil
             })
+            var hasNewBookMark = false
+            if let newBookmarks = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .BOOKMARK }) {
+                hasNewBookMark = !(newBookmarks.isEmpty)
+            }
+
+            var hasNewNote = false
+            if let newNotes = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .NOTE }) {
+                hasNewNote = !(newNotes.isEmpty)
+            }
+
+            var hasNewLinks = false
+            if let newLinks = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .EXTERNAL_LINK }) {
+                hasNewLinks = !(newLinks.isEmpty)
+            }
 
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_all_title),
                                                    items: self.removeDuplicates(from: sorted ?? []),
                                                    icon: R.image.my_library_group(),
-                                                   type: .ALL))
+                                                   type: .ALL,
+                                                   hasNewItem: hasNewBookMark || hasNewNote || hasNewLinks))
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_bookmarks_title),
                                                    items: bookmarks,
                                                    icon: R.image.my_library_bookmark(),
-                                                   type: .BOOKMARKS))
+                                                   type: .BOOKMARKS,
+                                                   hasNewItem: hasNewBookMark))
             if team == nil {
                 let title = AppTextService.get(.my_qot_my_library_section_downloads_title)
                 userStorages.append(self.viewModelWith(title: title, items: downloads,
-                                                       icon: R.image.my_library_download(), type: .DOWNLOADS))
+                                                       icon: R.image.my_library_download(), type: .DOWNLOADS,
+                                                       hasNewItem: false))
             }
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_links_title),
                                                    items: links,
                                                    icon: R.image.my_library_link(),
-                                                   type: .LINKS))
+                                                   type: .LINKS,
+                                                   hasNewItem: hasNewLinks))
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_notes_title),
                                                    items: notes,
                                                    icon: R.image.my_library_note_light(),
-                                                   type: .NOTES))
+                                                   type: .NOTES,
+                                                   hasNewItem: hasNewNote))
             completion(initiated, userStorages)
         }
     }
 
-    func viewModelWith(title: String, items: [QDMUserStorage]?, icon: UIImage?, type: MyLibraryCategoryType) -> MyLibraryCategoryListModel {
+    func viewModelWith(title: String,
+                       items: [QDMUserStorage]?,
+                       icon: UIImage?,
+                       type: MyLibraryCategoryType,
+                       hasNewItem: Bool) -> MyLibraryCategoryListModel {
         return MyLibraryCategoryListModel(title: title,
                                           itemCount: items?.count ?? 0,
                                           lastUpdated: items?.first?.modifiedAt,
                                           icon: icon,
-                                          type: type)
+                                          type: type,
+                                          hasNewItem: hasNewItem)
     }
 
     private func removeDuplicates(from results: [QDMUserStorage]) -> [QDMUserStorage] {

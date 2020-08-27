@@ -171,3 +171,16 @@ extension DailyBriefWorker {
         })
     }
 }
+
+// MARK: - Team News Feed
+extension DailyBriefWorker {
+    func markAsRead(teamNewsFeed: QDMTeamNewsFeed?, _ completion: @escaping () -> Void) {
+        guard let feed = teamNewsFeed else {
+            DispatchQueue.main.async { completion() }
+            return
+        }
+        TeamService.main.markAsRead(newsFeeds: [feed]) { (_) in
+            completion()
+        }
+    }
+}

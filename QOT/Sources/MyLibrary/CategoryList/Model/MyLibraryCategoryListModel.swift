@@ -10,11 +10,11 @@ import UIKit
 import qot_dal
 
 enum MyLibraryCategoryType: String {
-    case ALL
-    case BOOKMARKS
-    case DOWNLOADS
-    case LINKS
-    case NOTES
+    case ALL = "UNKOWN"
+    case BOOKMARKS = "BOOKMARK"
+    case DOWNLOADS = "DOWNLOAD"
+    case LINKS = "EXTERNAL_LINK"
+    case NOTES = "NOTE"
 }
 
 struct MyLibraryCategoryListModel {
@@ -23,6 +23,7 @@ struct MyLibraryCategoryListModel {
     var lastUpdated: Date?
     var icon: UIImage?
     var type: MyLibraryCategoryType
+    var hasNewItem: Bool = false
 
     func infoText() -> String {
         var info: String

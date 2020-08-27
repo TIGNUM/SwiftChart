@@ -66,6 +66,16 @@ extension MyQotMainWorker {
             }
         }
     }
+
+    func getUnreadLibraryItemCount(in team: QDMTeam?, _ completion: @escaping (Int) -> Void) {
+        guard let team = team else {
+            DispatchQueue.main.async { completion(0) }
+            return
+        }
+        TeamService.main.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
+            completion(feeds?.count ?? 0)
+        }
+    }
 }
 
 private extension MyQotMainWorker {

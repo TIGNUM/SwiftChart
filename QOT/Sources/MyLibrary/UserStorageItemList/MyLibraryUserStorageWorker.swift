@@ -275,4 +275,34 @@ extension MyLibraryUserStorageWorker {
             }
         }
     }
+
+    func markAsRead(teamNewsFeeds: [QDMTeamNewsFeed]?, _ completion: @escaping () -> Void) {
+        guard let feeds = teamNewsFeeds else {
+            DispatchQueue.main.async { completion() }
+            return
+        }
+        TeamService.main.markAsRead(newsFeeds: feeds) { (_) in
+            completion()
+        }
+    }
+
+    func markAsReadForAllLibraryItemNewsFeeds(in team: QDMTeam?, _ completion: @escaping () -> Void) {
+        let itemType = item.type
+        guard let team = team else {
+            DispatchQueue.main.async { completion() }
+            return
+        }
+        TeamService.main.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
+            guard let feeds = feeds?.filter({
+                let userStorageType = $0.teamStorage?.userStorageType
+                return (itemType == .ALL) || (userStorageType?.rawValue == itemType.rawValue) })
+                else {
+                    DispatchQueue.main.async { completion() }
+                    return
+            }
+            TeamService.main.markAsRead(newsFeeds: feeds) { (_) in
+                completion()
+            }
+        }
+    }
 }
