@@ -111,6 +111,7 @@ extension UIViewController {
         case is TeamInvitesViewController: return "team.pending.invitations"
         case is BookMarkSelectionViewController: return "bookmark_library_selection"
         case is TeamToBeVisionViewController: return "teamTBV"
+        case is VisionRatingExplanationViewController: return "rating_feature_explanation"
         default: preconditionFailure()
         }
     }

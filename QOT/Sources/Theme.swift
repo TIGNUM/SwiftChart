@@ -540,6 +540,9 @@ enum ThemeText {
     case teamTvbTimeSinceTitle
     case tbvCustomizeBody
     case trackedDays
+    case ratingExplanationTitle
+    case ratingExplanationText
+    case ratingExplanationVideoTitle
 
     case baseHeaderTitle(ThemeColorMode?)
     case baseHeaderSubtitle(ThemeColorMode?)
@@ -891,7 +894,7 @@ enum ThemeText {
              .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherBody, .dailyBriefSubtitle, .dailyBriefSand, .paymentReminderCellTitle,
-             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .featureExplanation, .coachMarkSubtitle, .registerIntroBody, .memberEmail:
+             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .featureExplanation, .coachMarkSubtitle, .registerIntroBody, .memberEmail, .ratingExplanationText, .ratingExplanationVideoTitle:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -1042,7 +1045,7 @@ enum ThemeText {
             return Fonts.fontDisplayBold30
         case .customizeQuestion:
             return Fonts.fontRegular16
-        case .featureTitle:
+        case .featureTitle, .ratingExplanationTitle:
             return Fonts.fontDisplayRegular34
         // MARK: - .fontRegular20
         default:
@@ -1068,7 +1071,7 @@ enum ThemeText {
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle, .myDataParameterSelectionSubtitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle, .customizeQuestion,
-             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand:
+             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle, .ratingExplanationText, .ratingExplanationVideoTitle:
             return Palette.sand
 
         // MARK: - .sand40
@@ -1217,7 +1220,8 @@ enum ThemeText {
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .center)
-        case .articleTitle, .articleTitleNotScaled, .audioFullScreenTitleDark, .audioFullScreenTitle, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight, .performanceSectionText, .teamTvbTimeSinceTitle, .trends:
+        case .articleTitle, .articleTitleNotScaled, .audioFullScreenTitleDark, .audioFullScreenTitle, .performanceSections,
+             .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight, .performanceSectionText, .teamTvbTimeSinceTitle, .trends, .ratingExplanationTitle:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1229,7 +1233,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
         case .bucketTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
-             .resultTitle, .resultTitleTheme, .resultListHeader, .resultHeader1, .resultHeader2, .resultHeaderTheme2, .resultList, .coachHeaderSubtitle, .coachSubtitle, .dailyInsightsTbvAdvice,
+             .resultTitle, .resultTitleTheme, .resultListHeader, .resultHeader1, .resultHeader2, .resultHeaderTheme2, .resultList, .coachHeaderSubtitle, .coachSubtitle, .dailyInsightsTbvAdvice, .ratingExplanationText, .ratingExplanationVideoTitle,
              .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .tbvCustomizeBody, .shpiQuestion, .shpiContent, .strategyTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
