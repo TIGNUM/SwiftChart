@@ -1281,6 +1281,15 @@
 		F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */; };
 		F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */; };
 		F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */; };
+		F99E9CC324EABD9C00325EAE /* VisionRatingExplanationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E9CBB24EABD9C00325EAE /* VisionRatingExplanationPresenter.swift */; };
+		F99E9CC424EABD9C00325EAE /* VisionRatingExplanationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E9CBC24EABD9C00325EAE /* VisionRatingExplanationWorker.swift */; };
+		F99E9CC524EABD9C00325EAE /* VisionRatingExplanationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E9CBD24EABD9C00325EAE /* VisionRatingExplanationRouter.swift */; };
+		F99E9CC624EABD9C00325EAE /* VisionRatingExplanationInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E9CBE24EABD9C00325EAE /* VisionRatingExplanationInterface.swift */; };
+		F99E9CC724EABD9C00325EAE /* VisionRatingExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E9CBF24EABD9C00325EAE /* VisionRatingExplanationViewController.swift */; };
+		F99E9CC824EABD9C00325EAE /* VisionRatingExplanationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E9CC024EABD9C00325EAE /* VisionRatingExplanationInteractor.swift */; };
+		F99E9CC924EABD9C00325EAE /* VisionRatingExplanationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E9CC124EABD9C00325EAE /* VisionRatingExplanationModel.swift */; };
+		F99E9CCA24EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E9CC224EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift */; };
+		F99E9CCC24EABFB300325EAE /* VisionRatingExplanation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F99E9CCB24EABFB300325EAE /* VisionRatingExplanation.storyboard */; };
 		F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */; };
 		F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */; };
 		F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */; };
@@ -2664,6 +2673,15 @@
 		F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsAudioTableViewCell.xib; sourceTree = "<group>"; };
 		F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsGroupTableViewCell.xib; sourceTree = "<group>"; };
 		F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsGroupTableViewCell.swift; sourceTree = "<group>"; };
+		F99E9CBB24EABD9C00325EAE /* VisionRatingExplanationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRatingExplanationPresenter.swift; sourceTree = "<group>"; };
+		F99E9CBC24EABD9C00325EAE /* VisionRatingExplanationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRatingExplanationWorker.swift; sourceTree = "<group>"; };
+		F99E9CBD24EABD9C00325EAE /* VisionRatingExplanationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRatingExplanationRouter.swift; sourceTree = "<group>"; };
+		F99E9CBE24EABD9C00325EAE /* VisionRatingExplanationInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRatingExplanationInterface.swift; sourceTree = "<group>"; };
+		F99E9CBF24EABD9C00325EAE /* VisionRatingExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRatingExplanationViewController.swift; sourceTree = "<group>"; };
+		F99E9CC024EABD9C00325EAE /* VisionRatingExplanationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRatingExplanationInteractor.swift; sourceTree = "<group>"; };
+		F99E9CC124EABD9C00325EAE /* VisionRatingExplanationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRatingExplanationModel.swift; sourceTree = "<group>"; };
+		F99E9CC224EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionRatingExplanationConfigurator.swift; sourceTree = "<group>"; };
+		F99E9CCB24EABFB300325EAE /* VisionRatingExplanation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VisionRatingExplanation.storyboard; sourceTree = "<group>"; };
 		F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCopyrightViewController.swift; sourceTree = "<group>"; };
 		F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpCopyrightViewController.xib; sourceTree = "<group>"; };
 		F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsRouter.swift; sourceTree = "<group>"; };
@@ -3659,6 +3677,7 @@
 		5F8A89882296CA530011A05C /* MyToBeVision */ = {
 			isa = PBXGroup;
 			children = (
+				F99E9CBA24EABD5600325EAE /* RatingExplanation */,
 				F910879724C5A69100CA343A /* TeamToBeVision */,
 				5F8A89902296DC270011A05C /* MyToBeVision.storyboard */,
 				75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */,
@@ -5754,6 +5773,22 @@
 			name = ToolsItems;
 			sourceTree = "<group>";
 		};
+		F99E9CBA24EABD5600325EAE /* RatingExplanation */ = {
+			isa = PBXGroup;
+			children = (
+				F99E9CBB24EABD9C00325EAE /* VisionRatingExplanationPresenter.swift */,
+				F99E9CBC24EABD9C00325EAE /* VisionRatingExplanationWorker.swift */,
+				F99E9CBD24EABD9C00325EAE /* VisionRatingExplanationRouter.swift */,
+				F99E9CBE24EABD9C00325EAE /* VisionRatingExplanationInterface.swift */,
+				F99E9CBF24EABD9C00325EAE /* VisionRatingExplanationViewController.swift */,
+				F99E9CC024EABD9C00325EAE /* VisionRatingExplanationInteractor.swift */,
+				F99E9CC124EABD9C00325EAE /* VisionRatingExplanationModel.swift */,
+				F99E9CC224EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift */,
+				F99E9CCB24EABFB300325EAE /* VisionRatingExplanation.storyboard */,
+			);
+			name = RatingExplanation;
+			sourceTree = "<group>";
+		};
 		F99F5BE1231404F4007367CF /* PopUpViewCopyright */ = {
 			isa = PBXGroup;
 			children = (
@@ -6192,6 +6227,7 @@
 				75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */,
 				B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */,
 				8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */,
+				F99E9CCC24EABFB300325EAE /* VisionRatingExplanation.storyboard in Resources */,
 				38095D3224BDDE960077EE86 /* TeamInvitePendingTableViewCell.xib in Resources */,
 				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
 				9C7F419B232BF499007E4B5D /* MyPeakPerformanceFooter.xib in Resources */,
@@ -6576,6 +6612,7 @@
 				F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */,
 				9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */,
 				9CC4261C2306A49E00F8072E /* GuidedTrackRowCell.swift in Sources */,
+				F99E9CCA24EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift in Sources */,
 				DBA3921D23247B2D0017E7F6 /* QuestionnaireProtocols.swift in Sources */,
 				B4BCD0F923AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift in Sources */,
 				36EC23062323F45700DB5696 /* DTSprintInteractor.swift in Sources */,
@@ -6699,6 +6736,7 @@
 				B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */,
 				DB5121602331945F009BFF22 /* PreparationWithMissingEventInterface.swift in Sources */,
 				F9B102A622D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift in Sources */,
+				F99E9CC424EABD9C00325EAE /* VisionRatingExplanationWorker.swift in Sources */,
 				5F7BE79C22899F8500BA5DCF /* MyQotAboutUsRouter.swift in Sources */,
 				B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */,
 				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
@@ -6882,6 +6920,7 @@
 				B430D7CB23A911DE00C75C9C /* MyQotAdminSettingsListConfigurator.swift in Sources */,
 				DB84AF1F231AAA1A005487BD /* UIImageView+Kingfisher.swift in Sources */,
 				8D32CFC322EB0AC900B2C4E8 /* MySprintStatus.swift in Sources */,
+				F99E9CC824EABD9C00325EAE /* VisionRatingExplanationInteractor.swift in Sources */,
 				8D322B9422E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift in Sources */,
 				5FA66644229C208F0027EE74 /* MyVisionEditDetailsConfigurator.swift in Sources */,
 				8D635A7C22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift in Sources */,
@@ -6900,6 +6939,7 @@
 				367CD17F22EF4EDE00AF2187 /* OnboardingLoginPresenter.swift in Sources */,
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
+				F99E9CC324EABD9C00325EAE /* VisionRatingExplanationPresenter.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
@@ -6922,6 +6962,7 @@
 				8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */,
 				360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */,
 				3666FD42232A4B7D00FC67D0 /* DTRecoveryWorker.swift in Sources */,
+				F99E9CC524EABD9C00325EAE /* VisionRatingExplanationRouter.swift in Sources */,
 				389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
@@ -7045,6 +7086,7 @@
 				F9348028247D467000DD1C7D /* FeatureExplainerWorker.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
 				8D0B4D222301CC4000A1AC47 /* RegistrationNamesPresenter.swift in Sources */,
+				F99E9CC624EABD9C00325EAE /* VisionRatingExplanationInterface.swift in Sources */,
 				F9458C6624AA379C004E2383 /* MyXTeamSettingsInteractor.swift in Sources */,
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
 				F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */,
@@ -7183,6 +7225,7 @@
 				75B9DCBA22CB666B00692A60 /* LeaderWisdomCellViewModel.swift in Sources */,
 				9CC426262306D39200F8072E /* GuidedTrackViewModel.swift in Sources */,
 				B856B47C22B0E29D0017A249 /* MyLibraryUserStorageViewController.swift in Sources */,
+				F99E9CC924EABD9C00325EAE /* VisionRatingExplanationModel.swift in Sources */,
 				8D40769022E5A5AA0027864D /* MySprintDetailsViewModel.swift in Sources */,
 				382CDC6524A2433300B34BCE /* TeamEditModel.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
@@ -7237,6 +7280,7 @@
 				3637662E223A66AF00C2C429 /* CoachPresenter.swift in Sources */,
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				36083829225F3ED000664B9B /* ArticleInterface.swift in Sources */,
+				F99E9CC724EABD9C00325EAE /* VisionRatingExplanationViewController.swift in Sources */,
 				3658257C2327D19200AC3F4A /* DTShortTBVViewController.swift in Sources */,
 				B499A7062395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift in Sources */,
 				F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */,

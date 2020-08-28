@@ -12,6 +12,7 @@ protocol ToBeVisionSelectionBarProtocol: class {
     func didTapEditItem()
     func didTapCameraItem()
     func didTapShareItem()
+    func isShareBlocked(_ completion: @escaping (Bool) -> Void)
 }
 
 final class ToBeVisionSelectionBar: UIView {
@@ -126,9 +127,12 @@ extension ToBeVisionSelectionBar {
             setupButton(buttonCamera, image: R.image.photo())
             buttonCamera.addTarget(self, action: #selector(didTapCameraItem), for: .touchUpInside)
         }
-
         setupButton(buttonShare, image: R.image.ic_share_sand())
         buttonShare.addTarget(self, action: #selector(didTapShareItem), for: .touchUpInside)
+        delegate.isShareBlocked { [weak self] (hideShare) in
+            guard let buttonShare = self?.buttonShare else { return }
+            buttonShare.isHidden = hideShare
+        }
         allOff()
     }
 

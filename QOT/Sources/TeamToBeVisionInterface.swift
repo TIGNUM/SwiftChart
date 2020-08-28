@@ -55,4 +55,5 @@ protocol TeamToBeVisionRouterInterface {
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
+    func showRatingExplanation(team: QDMTeam?)
 }
