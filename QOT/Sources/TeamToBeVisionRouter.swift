@@ -49,9 +49,25 @@ extension TeamToBeVisionRouter: TeamToBeVisionRouterInterface {
     func showRatingExplanation(team: QDMTeam?) {
         let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
         if let controller = controller {
-            let configurator = VisionRatingExplanationConfigurator.make(team: team)
-            configurator(controller)
-            viewController?.pushToStart(childViewController: controller)
+            let type: Explanation.Types = (team?.thisUserIsOwner == true) ? .ratingOwner : .ratingUser
+            showRating(team, type, controller)
         }
+    }
+
+    func showTbvPollEXplanation(team: QDMTeam?) {
+        let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
+        if let controller = controller {
+            let type: Explanation.Types = (team?.thisUserIsOwner == true) ? .tbvPollOwner : .tbvPollUser
+            showRating(team, type, controller)
+        }
+    }
+}
+
+// MARK: - Private
+private extension TeamToBeVisionRouter {
+    func showRating(_ team: QDMTeam?, _ type: Explanation.Types, _ controller: VisionRatingExplanationViewController) {
+        let configurator = VisionRatingExplanationConfigurator.make(team: team, type: type)
+        configurator(controller)
+        viewController?.pushToStart(childViewController: controller)
     }
 }

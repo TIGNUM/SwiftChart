@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class VisionRatingExplanationPresenter {
 
@@ -21,7 +22,11 @@ final class VisionRatingExplanationPresenter {
 
 // MARK: - VisionRatingExplanationInterface
 extension VisionRatingExplanationPresenter: VisionRatingExplanationPresenterInterface {
-    func setupView() {
+    func setupView(type: Explanation.Types) {
+        viewController?.setupRightBarButtonItem(title: AppTextService.get(.button_title_start), type: type)
+        viewController?.setupLabels(title: type.title,
+                                    text: type.text,
+                                    videoTitle: type.videoTitle)
         viewController?.setupView()
     }
 }

@@ -13,20 +13,25 @@ final class VisionRatingExplanationInteractor {
 
     // MARK: - Properties
     private lazy var worker = VisionRatingExplanationWorker()
-    let router: VisionRatingExplanationRouter
     private let presenter: VisionRatingExplanationPresenterInterface!
+    private var type = Explanation.Types.ratingOwner
+    let router: VisionRatingExplanationRouter
     var team: QDMTeam?
 
     // MARK: - Init
-    init(presenter: VisionRatingExplanationPresenterInterface, team: QDMTeam?, router: VisionRatingExplanationRouter) {
+    init(presenter: VisionRatingExplanationPresenterInterface,
+         team: QDMTeam?,
+         router: VisionRatingExplanationRouter,
+         type: Explanation.Types) {
         self.presenter = presenter
         self.team = team
         self.router = router
+        self.type = type
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        presenter.setupView(type: type)
     }
 }
 

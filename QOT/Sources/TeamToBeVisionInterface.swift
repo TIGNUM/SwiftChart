@@ -56,4 +56,5 @@ protocol TeamToBeVisionRouterInterface {
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
     func showRatingExplanation(team: QDMTeam?)
+    func showTbvPollEXplanation(team: QDMTeam?)
 }

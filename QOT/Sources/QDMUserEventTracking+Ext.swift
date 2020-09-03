@@ -60,6 +60,9 @@ public extension QDMUserEventTracking.ValueType {
     static let TEAM_LIBRARY_ITEM = "TEAM_LIBRARY_ITEM"
     static let START_RATING = "START_RATING"
     static let TEAM_TO_BE_VISION_RATING = "TEAM_TO_BE_VISION_RATING"
+    static let TEAM_TBV_GENERATOR = "TEAM_TBV_GENERATOR"
+    static let TEAM_TO_BE_VISION_RATING_EXPLANATION = "TEAM_TO_BE_VISION_RATING_EXPLANATION"
+    static let TEAM_TBV_GENERATOR_EXPLANATION = "TEAM_TBV_GENERATOR_EXPLANATION"
 }
 
 public extension QDMUserEventTracking.Action {
