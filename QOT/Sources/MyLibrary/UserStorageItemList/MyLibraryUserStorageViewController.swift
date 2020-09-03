@@ -219,9 +219,9 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var item: MyLibraryCellViewModel?
-        if let items = interactor.items, items.count > 0 {
-            item = interactor.items?[indexPath.row]
+        guard let items = interactor.items, items.count > 0,
+            let item = interactor.items?[indexPath.row] else {
+                return UITableViewCell()
         }
         return LibraryTableViewCellFactory.cellForStorageItem(tableView, indexPath, item)
     }

@@ -89,8 +89,8 @@ final class MyLibraryUserStorageInteractor {
     }
 
     @objc private func load(_ notification: Notification? = nil) {
-        worker.markAsReadForAllLibraryItemNewsFeeds(in: team) { }
-        worker.loadData(in: team) { [weak self] (initiated, items) in
+        let converter = viewModelConverter
+        worker.loadData(in: team) { [weak self] (initiated, items, feeds) in
             guard let strongSelf = self else { return }
             strongSelf.hasRemovableItem = false
             if strongSelf.items == nil {
@@ -103,9 +103,13 @@ final class MyLibraryUserStorageInteractor {
                 strongSelf.showEmptyAlert()
             } else {
                 strongSelf.infoViewModel = nil
-                strongSelf.items?.append(contentsOf: items.compactMap {
-                    strongSelf.viewModelConverter.viewModel(from: $0, team: strongSelf.team,
-                                                            downloadStatus: strongSelf.worker.downloadStatus(for: $0))
+                strongSelf.items?.append(contentsOf: items.compactMap { item in
+                    let feed = feeds?.filter({ $0.teamStorageId == item.remoteID }).first
+                    var model = converter.viewModel(from: item, team: strongSelf.team,
+                                                    downloadStatus: strongSelf.worker.downloadStatus(for: item))
+                    model?.teamLibraryNewsFeed = feed
+                    model?.showRedDot = (feed != nil)
+                    return model
                 })
                 if strongSelf.team == nil {
                     strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
@@ -202,6 +206,10 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
             keepSelection = itemSelected
         } else {
             openItemDetails(item)
+        }
+        self.items?[index].removeRedDot()
+        if let teamNewsFeed = item.teamLibraryNewsFeed {
+            worker.markAsRead(teamNewsFeeds: [teamNewsFeed]) { }
         }
         return keepSelection
     }

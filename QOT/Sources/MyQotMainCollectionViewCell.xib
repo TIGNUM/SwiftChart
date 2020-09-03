@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -37,18 +37,32 @@ MENU</string>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqq-pg-A6s">
+                    <rect key="frame" x="144" y="0.0" width="18" height="18"/>
+                    <color key="backgroundColor" red="0.93333333330000001" green="0.36862745099999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="csp-n9-kAI"/>
+                        <constraint firstAttribute="height" constant="18" id="ejZ-lX-1HR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803921568626" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="b55-Xz-va3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="0k5-KI-URQ"/>
+                <constraint firstItem="uqq-pg-A6s" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GUD-FB-vgQ"/>
                 <constraint firstAttribute="bottom" secondItem="3ME-vm-syq" secondAttribute="bottom" constant="20" id="VXU-mD-io5"/>
                 <constraint firstAttribute="trailing" secondItem="b55-Xz-va3" secondAttribute="trailing" constant="15" id="Y0q-X4-qkP"/>
                 <constraint firstItem="b55-Xz-va3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="fEB-RC-Bsw"/>
                 <constraint firstItem="3ME-vm-syq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="sDy-TO-0jV"/>
+                <constraint firstAttribute="trailing" secondItem="uqq-pg-A6s" secondAttribute="trailing" id="tbd-eM-74w"/>
                 <constraint firstAttribute="trailing" secondItem="3ME-vm-syq" secondAttribute="trailing" constant="15" id="uQF-MW-crZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="redDotLabel" destination="uqq-pg-A6s" id="Ru7-ym-4kb"/>
                 <outlet property="subtitleLabel" destination="b55-Xz-va3" id="ytS-iV-lGD"/>
                 <outlet property="titleLabel" destination="3ME-vm-syq" id="XJv-6E-012"/>
             </connections>

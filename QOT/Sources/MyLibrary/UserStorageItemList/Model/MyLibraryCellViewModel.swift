@@ -41,6 +41,8 @@ struct MyLibraryCellViewModel: Equatable {
     var removable: Bool = true
     var hideBottomSeparator: Bool = false
     var storageUpdateInfo: String?
+    var showRedDot: Bool = false
+    var teamLibraryNewsFeed: QDMTeamNewsFeed?
 
     static func == (lhs: MyLibraryCellViewModel, rhs: MyLibraryCellViewModel) -> Bool {
         return lhs.title == rhs.title &&
@@ -51,5 +53,9 @@ struct MyLibraryCellViewModel: Equatable {
             lhs.mediaType == rhs.mediaType &&
             lhs.remoteId == rhs.remoteId &&
             lhs.removable == rhs.removable
+    }
+
+    mutating func removeRedDot() {
+        self.showRedDot = false
     }
 }

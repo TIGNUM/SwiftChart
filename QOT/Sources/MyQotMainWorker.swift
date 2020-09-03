@@ -67,13 +67,37 @@ extension MyQotMainWorker {
         }
     }
 
-    func getUnreadLibraryItemCount(in team: QDMTeam?, _ completion: @escaping (Int) -> Void) {
+    func getTeamLibrarySubtitleAndCount(team: QDMTeam?, _ completion: @escaping (String?, Int) -> Void) {
         guard let team = team else {
-            DispatchQueue.main.async { completion(0) }
+            DispatchQueue.main.async { completion(nil, 0) }
             return
         }
         TeamService.main.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
-            completion(feeds?.count ?? 0)
+            guard let feeds = feeds, feeds.count > 0 else {
+                DispatchQueue.main.async { completion(nil, 0) }
+                return
+            }
+            let latestDay = feeds.compactMap({ $0.createdAt }).sorted().last ?? Date()
+            let daysCount = abs(latestDay.daysTo())
+            var daysString: String
+            switch daysCount {
+            case 0:
+                daysString = AppTextService.get(.my_qot_section_team_library_subtitle_added_today)
+            case 1:
+                daysString = AppTextService.get(.my_qot_section_team_library_subtitle_added_yesterday)
+            default:
+                daysString = AppTextService.get(.my_qot_section_team_library_subtitle_added_days_ago)
+            }
+            daysString = daysString.replacingOccurrences(of: "${DAYS}", with: "\(daysCount)")
+            var countString: String
+            switch feeds.count {
+            case 1:
+                countString = AppTextService.get(.my_qot_section_team_library_subtitle_single_item)
+            default:
+                countString = AppTextService.get(.my_qot_section_team_library_subtitle_multiple_items)
+            }
+            countString = daysString.replacingOccurrences(of: "${ITEM_COUNT}", with: "\(feeds.count)")
+            completion("\(countString)\n\(daysString)", feeds.count)
         }
     }
 }
