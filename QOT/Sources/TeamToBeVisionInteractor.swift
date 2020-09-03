@@ -90,8 +90,8 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         }
     }
 
-    func showNullState(with title: String, message: String, writeMessage: String) {
-        presenter.showNullState(with: title, message: message, writeMessage: writeMessage)
+    func showNullState(with title: String, teamName: String?, message: String) {
+        presenter.showNullState(with: title, teamName: teamName, message: message)
     }
 
     func hideNullState() {

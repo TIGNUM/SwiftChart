@@ -746,7 +746,8 @@ public extension AppTextKey {
     static let my_qot_my_tbv_null_state_title = AppTextKey("my_qot.my_tbv.null_state.title")
     static let myx_team_tbv_null_state_title = AppTextKey("my_x.team_tbv_null_state.title")
     static let myx_team_tbv_null_state_subtitle = AppTextKey("my_x.team_tbv_null_state.subtitle")
-    static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
+
+    static let my_x_team_tbv_section_new_header_title = AppTextKey("my_x.team_tbv_section.new_header_title")
     static let my_qot_my_tbv_alert_edit_photo_button_delete_photo = AppTextKey("my_qot.my_tbv.alert.edit_photo.button_delete_photo")
     static let my_qot_my_tbv_alert_update_body = AppTextKey("my_qot.my_tbv.alert.update.body")
     static let my_qot_my_tbv_tbv_tracker_data_section_footer_button_done = AppTextKey("my_qot.my_tbv.tbv_tracker_data.section_footer.button_done")
@@ -1085,4 +1086,8 @@ public extension AppTextKey {
     static let my_x_team_member_invite_subHeader = AppTextKey("my_x.team_member_invite.subHeader")
     static let my_qot_my_library_subtitle_last_updated_title_group_last_update = AppTextKey("my_qot.my_library.subtitle_last_updated.title_group_last_update")
     static let prepare_choice_view_title = AppTextKey("prepare.choice.view.title")
+}
+@available(*, unavailable, message: "Unavailable from QOT v3.1.9")
+public extension AppTextKey {
+    static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
 }

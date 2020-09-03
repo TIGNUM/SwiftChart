@@ -26,8 +26,8 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
         viewController?.setupView()
     }
 
-    func showNullState(with title: String, message: String, writeMessage: String) {
-        viewController?.showNullState(with: title, message: message, writeMessage: writeMessage)
+    func showNullState(with title: String, teamName: String?, message: String) {
+        viewController?.showNullState(with: title, teamName: teamName, message: message)
     }
 
     func hideNullState() {

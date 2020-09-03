@@ -986,33 +986,16 @@
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46H-uH-c9P">
-                                                <rect key="frame" x="150" y="479.5" width="200" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="cBQ-T5-odV"/>
-                                                    <constraint firstAttribute="width" constant="200" id="cuY-Gk-PhZ"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
-                                                <inset key="contentEdgeInsets" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
-                                                <state key="normal" title="Write">
-                                                    <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="writeButtonAction:" destination="TAI-qk-Edb" eventType="touchUpInside" id="nXF-mO-EGi"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="46H-uH-c9P" firstAttribute="leading" secondItem="PdT-fA-OVT" secondAttribute="leading" constant="150" id="3Xp-Mq-seS"/>
                                             <constraint firstItem="Ql7-he-0ax" firstAttribute="top" secondItem="PdT-fA-OVT" secondAttribute="top" id="4fS-kn-b5s"/>
+                                            <constraint firstAttribute="bottom" secondItem="OgS-zh-hrF" secondAttribute="bottom" constant="144" id="5zs-WN-cYf"/>
                                             <constraint firstItem="T0o-z5-88N" firstAttribute="leading" secondItem="PdT-fA-OVT" secondAttribute="leading" constant="24" id="9Wg-iH-aWq"/>
                                             <constraint firstAttribute="trailing" secondItem="D5V-Qb-Fem" secondAttribute="trailing" id="FtJ-9o-k4M"/>
                                             <constraint firstItem="OgS-zh-hrF" firstAttribute="trailing" secondItem="D5V-Qb-Fem" secondAttribute="trailing" id="HLH-Bp-V7A"/>
                                             <constraint firstItem="Ql7-he-0ax" firstAttribute="leading" secondItem="PdT-fA-OVT" secondAttribute="leading" id="LC6-pV-nkO"/>
                                             <constraint firstItem="OgS-zh-hrF" firstAttribute="leading" secondItem="PdT-fA-OVT" secondAttribute="leading" constant="24" id="Qke-CU-Wzd"/>
-                                            <constraint firstItem="46H-uH-c9P" firstAttribute="top" secondItem="OgS-zh-hrF" secondAttribute="bottom" constant="24" id="SvM-Vh-swY"/>
                                             <constraint firstItem="T0o-z5-88N" firstAttribute="top" secondItem="Ql7-he-0ax" secondAttribute="bottom" constant="20" id="Zmq-kZ-TSG"/>
-                                            <constraint firstAttribute="bottom" secondItem="46H-uH-c9P" secondAttribute="bottom" constant="80" id="fW8-Bu-FVW"/>
                                             <constraint firstItem="D5V-Qb-Fem" firstAttribute="leading" secondItem="PdT-fA-OVT" secondAttribute="leading" constant="24" id="kuv-su-F9N"/>
                                             <constraint firstItem="OgS-zh-hrF" firstAttribute="top" secondItem="D5V-Qb-Fem" secondAttribute="bottom" constant="24" id="mzV-GJ-o5z"/>
                                             <constraint firstItem="D5V-Qb-Fem" firstAttribute="top" secondItem="T0o-z5-88N" secondAttribute="bottom" constant="2" id="sXE-je-idM"/>
@@ -1032,7 +1015,6 @@
                                     <outlet property="headerLabel" destination="D5V-Qb-Fem" id="kh3-DV-1R2"/>
                                     <outlet property="teamNullStateImage" destination="Ql7-he-0ax" id="40N-S7-K0t"/>
                                     <outlet property="toBeVisionLabel" destination="T0o-z5-88N" id="Gbz-sQ-AlQ"/>
-                                    <outlet property="writeButton" destination="46H-uH-c9P" id="Ely-g0-cp3"/>
                                 </connections>
                             </view>
                         </subviews>
