@@ -40,6 +40,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 
     @IBOutlet private weak var lastModifiedLabel: UILabel!
     var didShowNullStateView = false
+    var shouldShowCreate = false
     private let containerViewSize: CGFloat = 232.0
     private let containerViewRatio: CGFloat = 1.2
     private let lowerBoundAlpha: CGFloat = 0.6
@@ -67,7 +68,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         interactor.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-        showNullState(with: " ", teamName: "", message: " ")
+        showNullState(with: "", teamName: "", message: "")
         showSkeleton()
     }
 
@@ -93,12 +94,12 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        guard didShowNullStateView else {
-            return []
+        if shouldShowCreate {
+            let button = RoundedButton(title: nil, target: self, action: #selector(writeButtonAction))
+            ThemableButton.myPlans.apply(button, title: interactor.nullStateCTA)
+            return [button.barButton]
         }
-        let button = RoundedButton(title: nil, target: self, action: #selector(writeButtonAction))
-        ThemableButton.myPlans.apply(button, title: interactor.nullStateCTA)
-        return [button.barButton]
+        return []
     }
 
     @IBAction func didTapOpenTrends(_ sender: Any) {
@@ -190,7 +191,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
-        let title = AppTextService.get(.my_x_team_tbv_section_new_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: interactor.team?.name?.uppercased() ?? "")
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: interactor.team?.name?.uppercased() ?? "")
         ThemeText.tbvSectionHeader.apply(title, to: toBeVisionLabel)
         userImageView.image = R.image.teamTBVPlaceholder()
 
@@ -223,6 +224,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             interactor.showNullState(with: interactor.teamNullStateTitle ?? "", teamName: interactor.team?.name, message: interactor.teamNullStateSubtitle ?? "")
             teamNullStateImageView.gradientBackground(top: true)
             teamNullStateImageView.gradientBackground(top: false)
+            shouldShowCreate = true
             return
         }
         if scrollView.alpha == 0 {

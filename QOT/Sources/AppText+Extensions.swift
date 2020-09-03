@@ -747,7 +747,7 @@ public extension AppTextKey {
     static let myx_team_tbv_null_state_title = AppTextKey("my_x.team_tbv_null_state.title")
     static let myx_team_tbv_null_state_subtitle = AppTextKey("my_x.team_tbv_null_state.subtitle")
 
-    static let my_x_team_tbv_section_new_header_title = AppTextKey("my_x.team_tbv_section.new_header_title")
+    static let my_x_team_tbv_new_section_header_title = AppTextKey("my_x.team_tbv.new_section_header_title")
     static let my_x_team_tbv_section_alert_message = AppTextKey("my_x.team_tbv_section.alert_message")
     static let my_x_team_tbv_section_alert_left_button = AppTextKey("my_x.team_tbv_section.alert_left_button")
     static let my_x_team_tbv_section_alert_right_button = AppTextKey("my_x.team_tbv_section.alert_right_button")

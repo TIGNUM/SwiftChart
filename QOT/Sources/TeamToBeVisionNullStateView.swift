@@ -25,7 +25,7 @@ final class TeamToBeVisionNullStateView: UIView {
     func setupView(with header: String, teamName: String?, message: String, delegate: TeamToBeVisionNullStateViewProtocol?) {
         self.delegate = delegate
         ThemeView.level2.apply(self)
-        ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_x_team_tbv_section_new_header_title).replacingOccurrences(of: "{$TEAM_NAME)", with: teamName?.uppercased() ?? ""), to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: teamName?.uppercased() ?? ""), to: toBeVisionLabel)
         ThemeText.tbvHeader.apply(header, to: headerLabel)
         ThemeText.tbvVision.apply(message, to: detailLabel)
     }
