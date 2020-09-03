@@ -88,6 +88,12 @@ extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
             tableView.reloadData()
         }
     }
+
+    func showBanner(message: String) {
+        let banner = NotificationBanner.instantiateFromNib()
+        banner.configure(message: message)
+        banner.show(in: self.view)
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource

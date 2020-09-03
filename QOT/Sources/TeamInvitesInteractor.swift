@@ -64,6 +64,7 @@ private extension TeamInvitesInteractor {
     @objc func didSelectJoinTeam(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
             joinTeamInvite(teamInvite) { [weak self] (teams) in
+                self?.presenter.showBanner(type: .join)
                 self?.setTeamAttributes {
                     self?.updateItemsAndReload()
                 }
@@ -74,6 +75,7 @@ private extension TeamInvitesInteractor {
     @objc func didSelectDeclineTeamInvite(_ notification: Notification) {
         if let teamInvite = notification.object as? QDMTeamInvitation {
             declineTeamInvite(teamInvite) { [weak self] (teams) in
+                self?.presenter.showBanner(type: .decline)
                 self?.setTeamAttributes {
                     self?.updateItemsAndReload()
                 }

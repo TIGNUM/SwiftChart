@@ -15,6 +15,18 @@ struct TeamInvite {
         case pendingInvite
     }
 
+    enum BannerType {
+        case join
+        case decline
+
+        var message: String {
+            switch self {
+            case .join: return AppTextService.get(.team_invite_banner_message_join)
+            case .decline: return AppTextService.get(.team_invite_banner_message_decline)
+            }
+        }
+    }
+
     class Header {
         let title: String = AppTextService.get(.team_invite_header_singular) + "S"
         private var maxTeams: Int

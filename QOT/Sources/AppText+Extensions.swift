@@ -563,6 +563,8 @@ public extension AppTextKey {
      static let settings_team_settings_team_members_admin_label = AppTextKey("settings.team_settings.team_members.admin_label")
 
     // MARK: - Team Invitations
+    static let team_invite_banner_message_decline = AppTextKey("team_invite.banner_message.decline")
+    static let team_invite_banner_message_join = AppTextKey("team_invite.banner_meesage.join")
     static let team_invite_header_plural = AppTextKey("team_invite.header_title.plural")
     static let team_invite_header_singular = AppTextKey("team_invite.header_title.singular")
     static let team_invite_content_info = AppTextKey("team_invite.content.info")

@@ -28,4 +28,8 @@ extension TeamInvitesPresenter: TeamInvitesPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func showBanner(type: TeamInvite.BannerType) {
+        viewController?.showBanner(message: type.message)
+    }
 }
