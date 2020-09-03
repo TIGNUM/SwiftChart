@@ -31,7 +31,9 @@ final class VisionRatingExplanationInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView(type: type)
+        worker.getVideoItem { item in
+            self.presenter.setupView(type: self.type, videoItem: item)
+        }
     }
 }
 

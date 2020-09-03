@@ -22,11 +22,15 @@ final class VisionRatingExplanationPresenter {
 
 // MARK: - VisionRatingExplanationInterface
 extension VisionRatingExplanationPresenter: VisionRatingExplanationPresenterInterface {
-    func setupView(type: Explanation.Types) {
+    func setupView(type: Explanation.Types, videoItem: QDMContentItem?) {
         viewController?.setupRightBarButtonItem(title: AppTextService.get(.button_title_start), type: type)
         viewController?.setupLabels(title: type.title,
                                     text: type.text,
                                     videoTitle: type.videoTitle)
+        viewController?.setupVideo(thumbNailURL: URL(string: videoItem?.valueImageURL ?? ""),
+                                   placeholder: R.image.preloading(),
+                                   videoURL: URL(string: videoItem?.valueMediaURL ?? ""),
+                                   duration: videoItem?.durationString ?? "")
         viewController?.setupView()
     }
 }

@@ -17,7 +17,7 @@ protocol VisionRatingExplanationViewControllerInterface: class {
 }
 
 protocol VisionRatingExplanationPresenterInterface {
-    func setupView(type: Explanation.Types)
+    func setupView(type: Explanation.Types, videoItem: QDMContentItem?)
 }
 
 protocol VisionRatingExplanationInteractorInterface: Interactor {
