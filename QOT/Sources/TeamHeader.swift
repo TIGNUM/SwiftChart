@@ -55,12 +55,12 @@ struct Team {
         }
 
         /// Team.Item
-        init(invites: [QDMTeamInvitation]) {
+        init(invites: [QDMTeamInvitation], _ newItemCount: Int? = 0) {
             self.header = .invite
             self.title = Team.Header.invite.title
             self.teamId = Team.Header.invite.inviteId
             self.invites = invites
-            self.batchCount = invites.count
+            self.batchCount = newItemCount ?? 0
         }
     }
 }

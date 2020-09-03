@@ -30,7 +30,7 @@ final class MyXTeamSettingsInteractor {
     func viewDidLoad() {
         addObservers()
         presenter.present()
-        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems(showNewRedDot: false) { [weak self] (teamHeaderItems) in
             self?.setFirstTeamSelected(teamHeaderItems)
             self?.teamHeaderItems = teamHeaderItems
             self?.presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
@@ -39,7 +39,7 @@ final class MyXTeamSettingsInteractor {
     }
 
     func viewDidAppear() {
-        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems(showNewRedDot: false) { [weak self] (teamHeaderItems) in
             if self?.teamHeaderItems.count ?? 0 > 0, teamHeaderItems.count == 0 {
                 self?.presenter.dismiss()
             }
@@ -107,7 +107,7 @@ private extension MyXTeamSettingsInteractor {
     }
 
     func handleRemoveOrLeaveTeam() {
-        worker.getTeamHeaderItems(showInvites: false) { [weak self] (teamHeaderItems) in
+        worker.getTeamHeaderItems(showNewRedDot: false) { [weak self] (teamHeaderItems) in
             self?.teamHeaderItems = teamHeaderItems
             if teamHeaderItems.isEmpty {
                 self?.presenter.dismiss()

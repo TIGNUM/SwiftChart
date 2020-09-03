@@ -13,7 +13,7 @@ class LibraryTableViewCellFactory {
                                    _ indexPath: IndexPath,
                                    _ item: MyLibraryCellViewModel?) -> UITableViewCell {
         guard let item = item else {
-            let cell = BaseMyLibraryTableViewCell()
+            let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure()
             return cell
         }
@@ -48,7 +48,7 @@ class LibraryTableViewCellFactory {
         returnCell?.icon.image = item.icon
         returnCell?.setInfoText(item.description)
         returnCell?.setCreationInfoText(item.storageUpdateInfo)
-
+        returnCell?.showRedDot(item.showRedDot)
         return returnCell ?? UITableViewCell()
     }
 }

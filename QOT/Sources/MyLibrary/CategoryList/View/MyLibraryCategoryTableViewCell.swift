@@ -12,10 +12,14 @@ class MyLibraryCategoryTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var categoryName: UILabel!
     @IBOutlet weak var infoText: UILabel!
+    @IBOutlet weak var newItemCountLabel: UILabel!
+    @IBOutlet weak var newItemCountLeading: NSLayoutConstraint!
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        newItemCountLabel.circle()
+        newItemCountLabel.isHidden = true
         skeletonManager.addSubtitle(categoryName)
         skeletonManager.addSubtitle(infoText)
         skeletonManager.addOtherView(iconView)
@@ -33,5 +37,7 @@ class MyLibraryCategoryTableViewCell: UITableViewCell, Dequeueable {
         self.categoryName.text = model.title
         self.iconView.image = model.icon
         self.infoText.text = model.infoText()
+        newItemCountLabel.isHidden = (model.newItemCount == 0)
+        self.setNeedsLayout()
     }
 }

@@ -12,6 +12,7 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     // MARK: - Properties
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var redDotLabel: UILabel!
     private lazy var skeletonManager = SkeletonManager()
 
     // MARK: - Life Cycle
@@ -24,6 +25,8 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         layer.borderColor = UIColor.sand40.cgColor
         layer.cornerRadius = 15
         layer.borderWidth = 1
+        redDotLabel.circle()
+        redDotLabel.isHidden = true
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(subtitleLabel)
     }
@@ -32,6 +35,7 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         super.prepareForReuse()
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(subtitleLabel)
+        redDotLabel.isHidden = true
         isUserInteractionEnabled = false
     }
 
@@ -41,6 +45,10 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         selectedBackgroundView = bkView
         skeletonManager.hide(.subtitle)
         ThemeText.linkMenuComment.apply(subtitle, to: subtitleLabel)
+    }
+
+    func showRedDot(_ show: Bool) {
+        redDotLabel.isHidden = !show
     }
 
     func setTitle(title: String?) {

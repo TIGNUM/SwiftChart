@@ -504,6 +504,11 @@ public extension AppTextKey {
     static let my_qot_section_my_plans_title = AppTextKey("my_qot.section_my_plans.title")
     static let my_qot_section_my_profile_title = AppTextKey("my_qot.section_my_profile.title")
     static let my_qot_section_my_tbv_title = AppTextKey("my_qot.section_my_tbv.title")
+    static let my_qot_section_team_library_subtitle_single_item = AppTextKey("my_qot.section_team_library.subtitle_single_item")
+    static let my_qot_section_team_library_subtitle_multiple_items = AppTextKey("my_qot.section_team_library.subtitle_multiple_items")
+    static let my_qot_section_team_library_subtitle_added_today = AppTextKey("my_qot.section_team_library.subtitle_added_today")
+    static let my_qot_section_team_library_subtitle_added_yesterday = AppTextKey("my_qot.section_team_library.subtitle_added_yesterday")
+    static let my_qot_section_team_library_subtitle_added_days_ago = AppTextKey("my_qot.section_team_library.subtitle_added_days_ago")
 
       // MARK: - Team ToBeVision
 

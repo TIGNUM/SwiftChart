@@ -21,7 +21,7 @@ protocol WorkerTeam {
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
-    func getTeamHeaderItems(showInvites: Bool, _ completion: @escaping ([Team.Item]) -> Void)
+    func getTeamHeaderItems(showNewRedDot: Bool, _ completion: @escaping ([Team.Item]) -> Void)
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
@@ -98,9 +98,9 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamHeaderItems(showInvites: Bool, _ completion: @escaping ([Team.Item]) -> Void) {
+    func getTeamHeaderItems(showNewRedDot: Bool, _ completion: @escaping ([Team.Item]) -> Void) {
         getTeams { (teams) in
-            if showInvites {
+            if showNewRedDot {
                 self.getTeamInvitations { (invites) in
                     self.createTeamHeaderItems(invites: invites, teams: teams) { (headerItems) in
                         completion(headerItems)

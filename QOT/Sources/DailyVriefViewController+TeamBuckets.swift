@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 // TeamNewsFeed Related
 extension DailyBriefViewController {
@@ -43,9 +44,15 @@ extension DailyBriefViewController {
                 configurator(noteController, storage.qotId ?? "")
                 present(noteController, animated: true, completion: nil)
                 didSelectRow(at: indexPath)
+                interactor.markAsRead(teamNewsFeed: viewModel.feed) { [weak self] in
+                    self?.didDeselectRow(at: indexPath)
+                }
             default:
                 if storage.openStorageItem() {
                     didSelectRow(at: indexPath)
+                    interactor.markAsRead(teamNewsFeed: viewModel.feed) { [weak self] in
+                        self?.didDeselectRow(at: indexPath)
+                    }
                 }
             }
         default: break

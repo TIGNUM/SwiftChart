@@ -23,10 +23,10 @@ final class MyLibraryUserStorageWorker {
     lazy var title: String = {
         switch item.type {
         case .ALL: return AppTextService.get(.my_qot_my_library_all_section_header_title)
-        case .BOOKMARKS: return AppTextService.get(.my_qot_my_library_bookmarks_section_header_title)
-        case .DOWNLOADS: return AppTextService.get(.my_qot_my_library_downloads_section_header_title)
-        case .LINKS: return AppTextService.get(.my_qot_my_library_links_section_header_title)
-        case .NOTES: return AppTextService.get(.my_qot_my_library_notes_section_header_title)
+        case .BOOKMARK: return AppTextService.get(.my_qot_my_library_bookmarks_section_header_title)
+        case .DOWNLOAD: return AppTextService.get(.my_qot_my_library_downloads_section_header_title)
+        case .EXTERNAL_LINK: return AppTextService.get(.my_qot_my_library_links_section_header_title)
+        case .NOTE: return AppTextService.get(.my_qot_my_library_notes_section_header_title)
         }
     }()
 
@@ -36,7 +36,7 @@ final class MyLibraryUserStorageWorker {
 
     lazy var editingTitle: String = {
         switch item.type {
-        case .NOTES:
+        case .NOTE:
             return AppTextService.get(.my_qot_my_library_notes_edit_title)
         default:
             return AppTextService.get(.my_x_my_library_remove_items_title)
@@ -60,7 +60,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var showAddButton: Bool = {
-        return item.type == .NOTES
+        return item.type == .NOTE
     }()
 
     lazy var cancelDownloadItemsAlertTitle: String = {
@@ -91,13 +91,13 @@ final class MyLibraryUserStorageWorker {
         switch item.type {
         case .ALL:
             return AppTextService.get(.my_qot_my_library_all_section_header_title)
-        case .BOOKMARKS:
+        case .BOOKMARK:
             return AppTextService.get(.my_qot_my_library_bookmarks_section_header_title)
-        case .DOWNLOADS:
+        case .DOWNLOAD:
             return AppTextService.get(.my_qot_my_library_downloads_section_header_title)
-        case .LINKS:
+        case .EXTERNAL_LINK:
             return AppTextService.get(.my_qot_my_library_links_section_header_title)
-        case .NOTES:
+        case .NOTE:
             return AppTextService.get(.my_qot_my_library_notes_null_state_subtitle)
         }
     }()
@@ -107,13 +107,13 @@ final class MyLibraryUserStorageWorker {
         switch item.type {
         case .ALL:
             image = R.image.my_library_group()
-        case .BOOKMARKS:
+        case .BOOKMARK:
             image = R.image.my_library_bookmark()
-        case .DOWNLOADS:
+        case .DOWNLOAD:
             image = R.image.my_library_download()
-        case .LINKS:
+        case .EXTERNAL_LINK:
             image = R.image.my_library_link()
-        case .NOTES:
+        case .NOTE:
             image = R.image.my_library_note_light()
         }
         return image ?? UIImage()
@@ -124,13 +124,13 @@ final class MyLibraryUserStorageWorker {
         switch item.type {
         case .ALL:
             image = R.image.my_library_group()
-        case .BOOKMARKS:
+        case .BOOKMARK:
             image = R.image.my_library_bookmark_text_icon()
-        case .DOWNLOADS:
+        case .DOWNLOAD:
             image = R.image.my_library_download_text_icon()
-        case .LINKS:
+        case .EXTERNAL_LINK:
             image = R.image.my_library_link_text_icon()
-        case .NOTES:
+        case .NOTE:
             image = R.image.my_library_note_light()
         }
         return image ?? UIImage()
@@ -143,13 +143,13 @@ final class MyLibraryUserStorageWorker {
         case .ALL:
             text = AppTextService.get(.my_qot_my_library_all_null_state_body)
             icon = nil
-        case .BOOKMARKS:
+        case .BOOKMARK:
             text = AppTextService.get(.my_qot_my_library_bookmarks_null_state_body)
-        case .DOWNLOADS:
+        case .DOWNLOAD:
             text = AppTextService.get(.my_qot_my_library_downloads_null_state_body)
-        case .LINKS:
+        case .EXTERNAL_LINK:
             text = AppTextService.get(.my_qot_my_library_links_null_state_body)
-        case .NOTES:
+        case .NOTE:
             text = AppTextService.get(.my_qot_my_library_notes_null_state_title)
             icon = nil
         }
@@ -180,45 +180,66 @@ final class MyLibraryUserStorageWorker {
     lazy var contentType: MyLibraryUserStorageContentType = {
         switch item.type {
         case .ALL: return .all
-        case .BOOKMARKS: return .bookmarks
-        case .DOWNLOADS: return .downloads
-        case .LINKS: return .links
-        case .NOTES: return .notes
+        case .BOOKMARK: return .bookmarks
+        case .DOWNLOAD: return .downloads
+        case .EXTERNAL_LINK: return .links
+        case .NOTE: return .notes
         }
     }()
+
+    func markAsRead(teamNewsFeeds: [QDMTeamNewsFeed]?, _ completion: @escaping () -> Void) {
+        guard let feeds = teamNewsFeeds else {
+            DispatchQueue.main.async { completion() }
+            return
+        }
+        TeamService.main.markAsRead(newsFeeds: feeds) { (_) in
+            completion()
+        }
+    }
 }
 
 // MARK: Data loading
 extension MyLibraryUserStorageWorker {
 
-    func loadData(in team: QDMTeam?, _ completion: @escaping (_ initiated: Bool, _ items: [QDMUserStorage]) -> Void) {
+    func loadData(in team: QDMTeam?,
+                  _ completion: @escaping (_ initiated: Bool, [QDMUserStorage], [QDMTeamNewsFeed]?) -> Void) {
         var storageType: UserStorageType = .UNKOWN
         switch item.type {
-        case .BOOKMARKS: storageType = .BOOKMARK
-        case .DOWNLOADS: storageType = .DOWNLOAD
-        case .LINKS: storageType = .EXTERNAL_LINK
-        case .NOTES: storageType = .NOTE
+        case .BOOKMARK: storageType = .BOOKMARK
+        case .DOWNLOAD: storageType = .DOWNLOAD
+        case .EXTERNAL_LINK: storageType = .EXTERNAL_LINK
+        case .NOTE: storageType = .NOTE
         case .ALL: storageType = .UNKOWN
         }
 
         if item.type != .ALL {
             if let team = team {
+                let teamService = TeamService.main
                 service.getTeamStorages(for: storageType, in: team) { [weak self] (storages, initiated, error) in
-                    self?.handleStorages(storages, initiated: initiated, completion: completion)
+                    self?.handleStorages(storages)
+                    teamService.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
+                        completion(initiated, self?.storages ?? [], feeds)
+                    }
                 }
             } else {
                 service.getUserStorages(for: storageType) { [weak self] (storages, initiated, error) in
-                    self?.handleStorages(storages, initiated: initiated, completion: completion)
+                    self?.handleStorages(storages)
+                    completion(initiated, self?.storages ?? [], nil)
                 }
             }
         } else {
             if let team = team {
+                let teamService = TeamService.main
                 service.getTeamStorages(in: team) { [weak self] (teamStorages, initiated, error) in
-                    self?.handleStorages(teamStorages, initiated: initiated, completion: completion)
+                    self?.handleStorages(teamStorages)
+                    teamService.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
+                        completion(initiated, self?.storages ?? [], feeds)
+                    }
                 }
             } else {
                 service.getUserStorages { [weak self] (storages, initiated, error) in
-                    self?.handleStorages(storages, initiated: initiated, completion: completion)
+                    self?.handleStorages(storages)
+                    completion(initiated, self?.storages ?? [], nil)
                 }
             }
         }
@@ -253,13 +274,10 @@ extension MyLibraryUserStorageWorker {
 
 // MARK: Private methods
 extension MyLibraryUserStorageWorker {
-    private func handleStorages(_ storages: [QDMUserStorage]?,
-                        initiated: Bool,
-                        completion: @escaping (_ initiated: Bool, _ items: [QDMUserStorage]) -> Void) {
+    private func handleStorages(_ storages: [QDMUserStorage]?) {
         let unsortedStorages: [QDMUserStorage] = storages ?? []
         self.storages = unsortedStorages.sorted(by: {
             ($0.createdAt?.timeIntervalSinceReferenceDate ?? 0) > ($1.createdAt?.timeIntervalSinceReferenceDate ?? 0) })
-        completion(initiated, self.storages)
     }
 
     func deleteFor(identifiers: [String], _ update: ((_ identifier: String, _ error: Error?) -> Void)?) {

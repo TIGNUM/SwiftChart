@@ -14,14 +14,18 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var contentTitle: UILabel!
     @IBOutlet weak var bottomSeparator: UIView!
     @IBOutlet weak var updateInfoLavel: UILabel!
+    @IBOutlet weak var redDotLabel: UILabel!
 
     @IBOutlet weak var bottomVirticalSpace: NSLayoutConstraint!
     @IBOutlet weak var updateInfoLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var redDotLeading: NSLayoutConstraint!
 
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        redDotLabel.circle()
+        redDotLabel.isHidden = true
         skeletonManager.addTitle(contentTitle)
         skeletonManager.addSubtitle(infoText)
         skeletonManager.addSubtitle(updateInfoLavel)
@@ -30,6 +34,7 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure() {
+        redDotLabel.isHidden = true
         skeletonManager.hide(.otherView)
         let selectedView = UIView()
         ThemeView.level2Selected.apply(selectedView)
@@ -77,5 +82,9 @@ extension BaseMyLibraryTableViewCell {
         let verticalSpacing: CGFloat = text?.isEmpty == false ? gapWhenCreatorInfoIsShowing : defaultSpacing
         bottomVirticalSpace.constant = verticalSpacing
         setNeedsUpdateConstraints()
+    }
+
+    func showRedDot(_ show: Bool) {
+        redDotLabel.isHidden = !show
     }
 }
