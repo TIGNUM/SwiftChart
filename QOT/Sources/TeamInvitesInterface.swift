@@ -12,11 +12,13 @@ import qot_dal
 protocol TeamInvitesViewControllerInterface: class {
     func setupView()
     func reload(shouldDismiss: Bool)
+    func showBanner(message: String)
 }
 
 protocol TeamInvitesPresenterInterface {
     func setupView()
     func reload(shouldDismiss: Bool)
+    func showBanner(type: TeamInvite.BannerType)
 }
 
 protocol TeamInvitesInteractorInterface: Interactor {

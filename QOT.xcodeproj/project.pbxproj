@@ -271,6 +271,8 @@
 		38095D3224BDDE960077EE86 /* TeamInvitePendingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38095D3124BDDE960077EE86 /* TeamInvitePendingTableViewCell.xib */; };
 		380B03CA241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B03C8241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift */; };
 		380B03CB241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B03C9241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib */; };
+		381E9B7324F66E2B00973916 /* NotificationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381E9B7224F66E2B00973916 /* NotificationBanner.swift */; };
+		381E9B7524F66E4900973916 /* NotificationBanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381E9B7424F66E4900973916 /* NotificationBanner.xib */; };
 		38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */; };
 		38290B872330F825004B5C14 /* DTSprintReflectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */; };
 		38290B882330F825004B5C14 /* DTSprintReflectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */; };
@@ -1246,7 +1248,6 @@
 		F96D75B9249CF9C100DFFB22 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */; };
 		F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */; };
 		F96D75BF24A3671F00DFFB22 /* ConfirmationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */; };
-		F976016224E5701E00D0532E /* ToBeVisionSelectionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */; };
 		F96D9F2A24D2DC3200188482 /* TeamToBeVisionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D9F2924D2DC3200188482 /* TeamToBeVisionCell.swift */; };
 		F96D9F2C24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */; };
 		F96D9F2E24D2DC6900188482 /* TeamToBeVisionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D9F2D24D2DC6900188482 /* TeamToBeVisionCell.xib */; };
@@ -1256,6 +1257,7 @@
 		F96D9F3824D85AB800188482 /* TeamInvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D9F3724D85AB800188482 /* TeamInvitationCell.swift */; };
 		F96D9F3A24D85ACB00188482 /* TeamInvitationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */; };
 		F96D9F3C24D85AE100188482 /* TeamInvitationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D9F3B24D85AE100188482 /* TeamInvitationCell.xib */; };
+		F976016224E5701E00D0532E /* ToBeVisionSelectionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */; };
 		F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */; };
 		F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */; };
 		F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */; };
@@ -1673,6 +1675,8 @@
 		38095D3124BDDE960077EE86 /* TeamInvitePendingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamInvitePendingTableViewCell.xib; sourceTree = "<group>"; };
 		380B03C8241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareQuestionDailyTableViewCell.swift; sourceTree = "<group>"; };
 		380B03C9241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareQuestionDailyTableViewCell.xib; sourceTree = "<group>"; };
+		381E9B7224F66E2B00973916 /* NotificationBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBanner.swift; sourceTree = "<group>"; };
+		381E9B7424F66E4900973916 /* NotificationBanner.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationBanner.xib; sourceTree = "<group>"; };
 		38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionPresenter.swift; sourceTree = "<group>"; };
 		38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionWorker.swift; sourceTree = "<group>"; };
 		38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionRouter.swift; sourceTree = "<group>"; };
@@ -2638,7 +2642,6 @@
 		F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerShareViewController.swift; sourceTree = "<group>"; };
 		F96D75BE24A3671F00DFFB22 /* ConfirmationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewCell.swift; sourceTree = "<group>"; };
-		F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToBeVisionSelectionBar.swift; sourceTree = "<group>"; };
 		F96D9F2924D2DC3200188482 /* TeamToBeVisionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionCell.swift; sourceTree = "<group>"; };
 		F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionCellViewModel.swift; sourceTree = "<group>"; };
 		F96D9F2D24D2DC6900188482 /* TeamToBeVisionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamToBeVisionCell.xib; sourceTree = "<group>"; };
@@ -2648,6 +2651,7 @@
 		F96D9F3724D85AB800188482 /* TeamInvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitationCell.swift; sourceTree = "<group>"; };
 		F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitationModel.swift; sourceTree = "<group>"; };
 		F96D9F3B24D85AE100188482 /* TeamInvitationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamInvitationCell.xib; sourceTree = "<group>"; };
+		F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToBeVisionSelectionBar.swift; sourceTree = "<group>"; };
 		F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainConfigurator.swift; sourceTree = "<group>"; };
 		F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInteractor.swift; sourceTree = "<group>"; };
 		F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInterface.swift; sourceTree = "<group>"; };
@@ -2921,6 +2925,7 @@
 		36376638223A6F0E00C2C429 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				381E9B7124F66DF200973916 /* Notification Banner */,
 				DB086F2624C5E52A00D4F64E /* BookMarkViewController */,
 				36E86D492270511100371C67 /* ArticleBulletPointTableViewCell.swift */,
 				36E86D4A2270511100371C67 /* ArticleBulletPointTableViewCell.xib */,
@@ -3428,6 +3433,15 @@
 				38095D3124BDDE960077EE86 /* TeamInvitePendingTableViewCell.xib */,
 			);
 			name = Invitations;
+			sourceTree = "<group>";
+		};
+		381E9B7124F66DF200973916 /* Notification Banner */ = {
+			isa = PBXGroup;
+			children = (
+				381E9B7224F66E2B00973916 /* NotificationBanner.swift */,
+				381E9B7424F66E4900973916 /* NotificationBanner.xib */,
+			);
+			path = "Notification Banner";
 			sourceTree = "<group>";
 		};
 		38290B7D2330F602004B5C14 /* SprintReflection */ = {
@@ -6326,6 +6340,7 @@
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
 				8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */,
+				381E9B7524F66E4900973916 /* NotificationBanner.xib in Resources */,
 				F96B23AD23507FD400130EFF /* DepartureBespokeFeastCell.xib in Resources */,
 				B80B2F0024DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib in Resources */,
 				B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */,
@@ -6927,6 +6942,7 @@
 				F902CF4F22DE0FC700FFC836 /* DailyCheckinSHPICell.swift in Sources */,
 				DBFDCE0622B2357B00C94C86 /* AudioBookmarkTableViewCell.swift in Sources */,
 				38E5A08C2412B06C008FCF8F /* CalendarEventSelectionRouter.swift in Sources */,
+				381E9B7324F66E2B00973916 /* NotificationBanner.swift in Sources */,
 				F9A8A023229682D300DE3A9C /* ToolsItemsConfigurator.swift in Sources */,
 				75DC687022C11D5D00FF183D /* MyToBeVisionRateWorker.swift in Sources */,
 				365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */,
