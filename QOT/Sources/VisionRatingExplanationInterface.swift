@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 protocol VisionRatingExplanationViewControllerInterface: class {
-    func setupView()
+    func setupView(type: Explanation.Types)
     func setupLabels(title: String, text: String, videoTitle: String)
     func setupVideo(thumbNailURL: URL?, placeholder: UIImage?, videoURL: URL?, duration: String)
     func setupRightBarButtonItem(title: String, type: Explanation.Types)
