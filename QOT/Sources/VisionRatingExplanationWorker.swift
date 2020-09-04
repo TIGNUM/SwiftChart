@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import qot_dal
 
 final class VisionRatingExplanationWorker: WorkerTeam {
 
     // MARK: - Init
     init() { /**/ }
+
+    func getVideoItem(_ completion: @escaping (QDMContentItem?) -> Void) {
+        ContentService.main.getContentItemById(0, completion)
+    }
 }

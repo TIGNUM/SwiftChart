@@ -92,20 +92,6 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         skeletonManager.addSubtitle(teamNullStateView.toBeVisionLabel)
         skeletonManager.addOtherView(teamNullStateView.writeButton)
     }
-
-    @IBAction func didTapOpenTrends(_ sender: Any) {
-//        TODO
-    }
-
-    @IBAction func showExplanation(_ sender: Any) {
-        trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        router.showRatingExplanation(team: interactor.team)
-    }
-
-    @IBAction func writeButtonAction(_ sender: Any) {
-        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
-        interactor.showEditVision(isFromNullState: false)
-    }
 }
 
 extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
@@ -166,7 +152,30 @@ private extension TeamToBeVisionViewController {
 
 // MARK: - Actions
 private extension TeamToBeVisionViewController {
+    @IBAction func didTapOpenTrends(_ sender: Any) {
+        //        TODO
+    }
 
+    @IBAction func showRatingExplanation(_ sender: Any) {
+        trackUserEvent(.OPEN,
+                       value: interactor?.team?.remoteID,
+                       valueType: .TEAM_TO_BE_VISION_RATING_EXPLANATION,
+                       action: .TAP)
+        router.showRatingExplanation(team: interactor.team)
+    }
+
+    @IBAction func showTbvPollExplanation(_ sender: Any) {
+        trackUserEvent(.OPEN,
+                       value: interactor?.team?.remoteID,
+                       valueType: .TEAM_TBV_GENERATOR_EXPLANATION,
+                       action: .TAP)
+        router.showTbvPollEXplanation(team: interactor.team)
+    }
+
+    @IBAction func writeButtonAction(_ sender: Any) {
+        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
+        interactor.showEditVision(isFromNullState: false)
+    }
 }
 
 // MARK: - TeamToBeVisionViewControllerInterface

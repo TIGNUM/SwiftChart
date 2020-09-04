@@ -22,7 +22,6 @@ final class VisionRatingExplanationRouter {
 
 // MARK: - VisionRatingExplanationRouterInterface
 extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface {
-
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
@@ -33,5 +32,9 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
             let visionController = self.viewController else { return }
         MyToBeVisionRateConfigurator.configure(previousController: visionController, viewController: viewController, visionId: id)
         visionController.present(viewController, animated: true, completion: nil)
+    }
+
+    func showTBVGenerator() {
+
     }
 }

@@ -5533,16 +5533,16 @@
 		F910879724C5A69100CA343A /* TeamToBeVision */ = {
 			isa = PBXGroup;
 			children = (
-				F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */,
-				F910879924C5A6BC00CA343A /* TeamToBeVisionWorker.swift */,
-				F910879A24C5A6BC00CA343A /* TeamToBeVisionRouter.swift */,
-				F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */,
-				F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */,
-				F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */,
-				F910879E24C5A6BC00CA343A /* TeamToBeVisionModel.swift */,
 				F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */,
-				F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */,
+				F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */,
+				F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */,
+				F910879E24C5A6BC00CA343A /* TeamToBeVisionModel.swift */,
 				F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */,
+				F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */,
+				F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */,
+				F910879A24C5A6BC00CA343A /* TeamToBeVisionRouter.swift */,
+				F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */,
+				F910879924C5A6BC00CA343A /* TeamToBeVisionWorker.swift */,
 				F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */,
 			);
 			name = TeamToBeVision;
@@ -5790,15 +5790,15 @@
 		F99E9CBA24EABD5600325EAE /* RatingExplanation */ = {
 			isa = PBXGroup;
 			children = (
-				F99E9CBB24EABD9C00325EAE /* VisionRatingExplanationPresenter.swift */,
-				F99E9CBC24EABD9C00325EAE /* VisionRatingExplanationWorker.swift */,
-				F99E9CBD24EABD9C00325EAE /* VisionRatingExplanationRouter.swift */,
-				F99E9CBE24EABD9C00325EAE /* VisionRatingExplanationInterface.swift */,
-				F99E9CBF24EABD9C00325EAE /* VisionRatingExplanationViewController.swift */,
-				F99E9CC024EABD9C00325EAE /* VisionRatingExplanationInteractor.swift */,
-				F99E9CC124EABD9C00325EAE /* VisionRatingExplanationModel.swift */,
-				F99E9CC224EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift */,
 				F99E9CCB24EABFB300325EAE /* VisionRatingExplanation.storyboard */,
+				F99E9CC224EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift */,
+				F99E9CC024EABD9C00325EAE /* VisionRatingExplanationInteractor.swift */,
+				F99E9CBE24EABD9C00325EAE /* VisionRatingExplanationInterface.swift */,
+				F99E9CC124EABD9C00325EAE /* VisionRatingExplanationModel.swift */,
+				F99E9CBB24EABD9C00325EAE /* VisionRatingExplanationPresenter.swift */,
+				F99E9CBD24EABD9C00325EAE /* VisionRatingExplanationRouter.swift */,
+				F99E9CBF24EABD9C00325EAE /* VisionRatingExplanationViewController.swift */,
+				F99E9CBC24EABD9C00325EAE /* VisionRatingExplanationWorker.swift */,
 			);
 			name = RatingExplanation;
 			sourceTree = "<group>";
