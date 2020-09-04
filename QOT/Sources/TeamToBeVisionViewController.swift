@@ -102,10 +102,6 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         return []
     }
 
-    @IBAction func didTapOpenTrends(_ sender: Any) {
-//        TODO
-    }
-
     @IBAction func showExplanation(_ sender: Any) {
         trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
         router.showRatingExplanation(team: interactor.team)
@@ -122,6 +118,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
                       message: AppTextService.get(.my_x_team_tbv_section_alert_message),
                       bottomItems: [add, openTeamPoll])
     }
+
 }
 
 extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
@@ -177,6 +174,29 @@ private extension TeamToBeVisionViewController {
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
+    }
+}
+
+// MARK: - Actions
+private extension TeamToBeVisionViewController {
+    @IBAction func didTapOpenTrends(_ sender: Any) {
+        //        TODO
+    }
+
+    @IBAction func showRatingExplanation(_ sender: Any) {
+        trackUserEvent(.OPEN,
+                       value: interactor?.team?.remoteID,
+                       valueType: .TEAM_TO_BE_VISION_RATING_EXPLANATION,
+                       action: .TAP)
+        router.showRatingExplanation(team: interactor.team)
+    }
+
+    @IBAction func showTbvPollExplanation(_ sender: Any) {
+        trackUserEvent(.OPEN,
+                       value: interactor?.team?.remoteID,
+                       valueType: .TEAM_TBV_GENERATOR_EXPLANATION,
+                       action: .TAP)
+        router.showTbvPollEXplanation(team: interactor.team)
     }
 }
 

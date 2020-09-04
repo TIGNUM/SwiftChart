@@ -511,7 +511,6 @@ public extension AppTextKey {
     static let my_qot_section_team_library_subtitle_added_days_ago = AppTextKey("my_qot.section_team_library.subtitle_added_days_ago")
 
       // MARK: - Team ToBeVision
-
     static let my_x_team_tbv_not_created = AppTextKey("myX.teamTBV.not.created.title")
     static let my_x_team_tbv_section_update_subtitle = AppTextKey("my_x.team_tbv.section_update.subtitle")
     static let my_x_team_tbv_section_rating_button = AppTextKey("my_x.team_tbv_section.rating_button")
@@ -563,6 +562,8 @@ public extension AppTextKey {
      static let settings_team_settings_team_members_admin_label = AppTextKey("settings.team_settings.team_members.admin_label")
 
     // MARK: - Team Invitations
+    static let team_invite_banner_message_decline = AppTextKey("team_invite.banner_message.decline")
+    static let team_invite_banner_message_join = AppTextKey("team_invite.banner_meesage.join")
     static let team_invite_header_plural = AppTextKey("team_invite.header_title.plural")
     static let team_invite_header_singular = AppTextKey("team_invite.header_title.singular")
     static let team_invite_content_info = AppTextKey("team_invite.content.info")
@@ -575,6 +576,17 @@ public extension AppTextKey {
     static let team_invite_error_add_myself = AppTextKey("team_edit.member_add.error_myself")
     static let team_invite_error_add_exisiting = AppTextKey("team_invite.error_add.exisiting")
     static let team_invite_content_info_reached_max = AppTextKey("team_invite.content_reached_max.info")
+
+    // MARK: - Team TBV
+    static let team_tbv_poll_title = AppTextKey("team-tbv.poll.title")
+    static let team_tbv_poll_title_member = AppTextKey("team-tbv.poll-member.title")
+    static let team_tbv_poll_content = AppTextKey("team-tbv.poll.content")
+    static let team_tbv_poll_content_member = AppTextKey("team-tbv.poll-member.content")
+    static let team_tbv_poll_video = AppTextKey("team-tbv.poll.video-title")
+    static let team_tbv_poll_button = AppTextKey("team-tbv.poll.button")
+
+    // MARK: - Button Titles
+    static let button_title_start = AppTextKey("button.title.start")
 
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")
