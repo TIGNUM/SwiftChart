@@ -32,7 +32,7 @@ extension DailyBriefInteractor {
                 subtitleForMultipleItems.replacingOccurrences(of: "${COUNT OF FEEDS}", with: "\(filteredFeeds.count)")
             let subtitle = subtitleCount.replacingOccurrences(of: "${NAME OF THE TEAM}", with: team.name ?? "")
             let header = TeamNewsFeedDailyBriefViewModel(type: .header, team: team,
-                                                         title: team.name ?? "TEAM Library",
+                                                         title: AppTextService.get(.daily_brief_section_team_news_feed_library).replacingOccurrences(of: "${TEAM_NAME}", with: team.name?.uppercased() ?? ""),
                                                          subtitle: subtitle,
                                                          feed: firstFeed,
                                                          buttonTitle: nil, domainModel: bucket)
