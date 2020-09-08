@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -65,17 +65,6 @@
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jg1-bx-UiB">
-                        <rect key="frame" x="24" y="15" width="18" height="18"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.36862745099999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="18" id="3ue-4m-98S"/>
-                            <constraint firstAttribute="width" constant="18" id="YUB-9E-yaf"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -94,8 +83,6 @@
                     <constraint firstItem="zVF-m9-hBf" firstAttribute="top" secondItem="EuV-fj-szh" secondAttribute="bottom" constant="8" id="a1h-Nd-2M3"/>
                     <constraint firstItem="EuV-fj-szh" firstAttribute="top" secondItem="r0p-H1-Ctu" secondAttribute="bottom" constant="8" id="cHT-jW-Yiw"/>
                     <constraint firstItem="0xb-hr-bfd" firstAttribute="leading" secondItem="EuV-fj-szh" secondAttribute="trailing" constant="8" id="iBS-hk-h4L"/>
-                    <constraint firstItem="Jg1-bx-UiB" firstAttribute="centerY" secondItem="r0p-H1-Ctu" secondAttribute="top" id="jP6-Pg-vaD"/>
-                    <constraint firstItem="Jg1-bx-UiB" firstAttribute="leading" secondItem="r0p-H1-Ctu" secondAttribute="leading" id="rQl-pM-2hu"/>
                     <constraint firstAttribute="trailingMargin" secondItem="r0p-H1-Ctu" secondAttribute="trailing" id="u42-E0-zhD"/>
                 </constraints>
             </tableViewCellContentView>
@@ -107,8 +94,6 @@
                 <outlet property="contentTitle" destination="r0p-H1-Ctu" id="rKD-2B-7X1"/>
                 <outlet property="icon" destination="EuV-fj-szh" id="kGI-Rg-JkZ"/>
                 <outlet property="infoText" destination="0xb-hr-bfd" id="gQ5-OV-Zha"/>
-                <outlet property="redDotLabel" destination="Jg1-bx-UiB" id="uHU-F9-mRL"/>
-                <outlet property="redDotLeading" destination="rQl-pM-2hu" id="NRm-Xm-tgj"/>
                 <outlet property="updateInfoLabelHeight" destination="gFI-Ni-jp9" id="05o-Uh-fRo"/>
                 <outlet property="updateInfoLavel" destination="zVF-m9-hBf" id="HOx-wH-mov"/>
             </connections>

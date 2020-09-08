@@ -48,7 +48,6 @@ class LibraryTableViewCellFactory {
         returnCell?.icon.image = item.icon
         returnCell?.setInfoText(item.description)
         returnCell?.setCreationInfoText(item.storageUpdateInfo)
-        returnCell?.showRedDot(item.showRedDot)
         return returnCell ?? UITableViewCell()
     }
 }
