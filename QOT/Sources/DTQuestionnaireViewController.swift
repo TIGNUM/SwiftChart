@@ -33,7 +33,7 @@ class DTQuestionnaireViewController: BaseViewController {
                                              dequeables: MultipleSelectionTableViewCell.self,
                                              SingleSelectionTableViewCell.self,
                                              QuestionTableViewCell.self,
-                                             AnimatedAnswerTableViewCell.self,
+                                                 AnimatedAnswerTableViewCell.self,
                                              TextTableViewCell.self,
                                              ExistingPreparationTableViewCell.self,
                                              UserInputTableViewCell.self)

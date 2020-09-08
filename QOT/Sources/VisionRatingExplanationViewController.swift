@@ -44,7 +44,7 @@ final class VisionRatingExplanationViewController: UIViewController {
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
         return [roundedBarButtonItem(title: rightBarButtonTitle,
-                                     buttonWidth: .Default,
+                                     buttonWidth: .Save,
                                      action: rightBarButtonAction,
                                      backgroundColor: .carbon,
                                      borderColor: .accent40)]
@@ -60,6 +60,7 @@ extension VisionRatingExplanationViewController {
 
     @objc func startTBVGenerator() {
         trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
+        router.showTBVGenerator()
     }
 }
 

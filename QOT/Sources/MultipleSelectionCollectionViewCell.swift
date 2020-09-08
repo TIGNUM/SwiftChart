@@ -14,7 +14,7 @@ protocol MultipleSelectionDelegate: class {
     func didDeSelectAnswer(_ answer: DTViewModel.Answer)
 }
 
-final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
+class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
     weak var delegate: MultipleSelectionDelegate?

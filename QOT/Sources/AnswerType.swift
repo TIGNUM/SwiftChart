@@ -21,4 +21,5 @@ enum AnswerType: String {
     case noAnswerRequired = "NO_ANSWER_REQUIRED"
     case uploadImage = "UPLOAD_IMAGE"
     case lastQuestion = "LAST_QUESTION"
+    case poll = "DECISION_TREE_POLL"
 }

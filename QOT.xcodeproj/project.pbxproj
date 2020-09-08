@@ -324,6 +324,8 @@
 		38966EA224D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */; };
 		38966EA324D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */; };
 		389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */; };
+		3898280B2502A84900A37C25 /* PollButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3898280A2502A84900A37C25 /* PollButton.xib */; };
+		3898280D2502A89900A37C25 /* PollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898280C2502A89900A37C25 /* PollButton.swift */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
 		389BBC86235EE68B0009FA02 /* CoachMarksWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */; };
 		389BBC87235EE68B0009FA02 /* CoachMarksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */; };
@@ -333,6 +335,14 @@
 		389BBC8B235EE68B0009FA02 /* CoachMarksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC83235EE68B0009FA02 /* CoachMarksModel.swift */; };
 		389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */; };
 		389BBC8E235EE8900009FA02 /* CoachMark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 389BBC8D235EE8900009FA02 /* CoachMark.storyboard */; };
+		38A2D17725025C7100CEA071 /* DTTeamTBVPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D16F25025C7000CEA071 /* DTTeamTBVPresenter.swift */; };
+		38A2D17825025C7100CEA071 /* DTTeamTBVWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17025025C7000CEA071 /* DTTeamTBVWorker.swift */; };
+		38A2D17925025C7100CEA071 /* DTTeamTBVRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17125025C7000CEA071 /* DTTeamTBVRouter.swift */; };
+		38A2D17A25025C7100CEA071 /* DTTeamTBVInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17225025C7100CEA071 /* DTTeamTBVInterface.swift */; };
+		38A2D17B25025C7100CEA071 /* DTTeamTBVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17325025C7100CEA071 /* DTTeamTBVViewController.swift */; };
+		38A2D17C25025C7100CEA071 /* DTTeamTBVInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17425025C7100CEA071 /* DTTeamTBVInteractor.swift */; };
+		38A2D17D25025C7100CEA071 /* DTTeamTBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17525025C7100CEA071 /* DTTeamTBV.swift */; };
+		38A2D17E25025C7100CEA071 /* DTTeamTBVConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17625025C7100CEA071 /* DTTeamTBVConfigurator.swift */; };
 		38C23E5124235DCA0034571B /* DTPrepareStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4924235DCA0034571B /* DTPrepareStartPresenter.swift */; };
 		38C23E5224235DCA0034571B /* DTPrepareStartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4A24235DCA0034571B /* DTPrepareStartWorker.swift */; };
 		38C23E5324235DCA0034571B /* DTPrepareStartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4B24235DCA0034571B /* DTPrepareStartRouter.swift */; };
@@ -369,6 +379,8 @@
 		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
 		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
+		38F95C9825068106009265DC /* PollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9625068106009265DC /* PollCollectionViewCell.swift */; };
+		38F95C9925068106009265DC /* PollCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C9725068106009265DC /* PollCollectionViewCell.xib */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
 		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
@@ -1728,6 +1740,8 @@
 		38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveView.xib; sourceTree = "<group>"; };
+		3898280A2502A84900A37C25 /* PollButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollButton.xib; sourceTree = "<group>"; };
+		3898280C2502A89900A37C25 /* PollButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollButton.swift; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
 		389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksWorker.swift; sourceTree = "<group>"; };
 		389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksRouter.swift; sourceTree = "<group>"; };
@@ -1737,6 +1751,14 @@
 		389BBC83235EE68B0009FA02 /* CoachMarksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksModel.swift; sourceTree = "<group>"; };
 		389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksConfigurator.swift; sourceTree = "<group>"; };
 		389BBC8D235EE8900009FA02 /* CoachMark.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoachMark.storyboard; sourceTree = "<group>"; };
+		38A2D16F25025C7000CEA071 /* DTTeamTBVPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVPresenter.swift; path = QOT/DTTeamTBVPresenter.swift; sourceTree = SOURCE_ROOT; };
+		38A2D17025025C7000CEA071 /* DTTeamTBVWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVWorker.swift; path = QOT/DTTeamTBVWorker.swift; sourceTree = SOURCE_ROOT; };
+		38A2D17125025C7000CEA071 /* DTTeamTBVRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVRouter.swift; path = QOT/DTTeamTBVRouter.swift; sourceTree = SOURCE_ROOT; };
+		38A2D17225025C7100CEA071 /* DTTeamTBVInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVInterface.swift; path = QOT/DTTeamTBVInterface.swift; sourceTree = SOURCE_ROOT; };
+		38A2D17325025C7100CEA071 /* DTTeamTBVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVViewController.swift; path = QOT/DTTeamTBVViewController.swift; sourceTree = SOURCE_ROOT; };
+		38A2D17425025C7100CEA071 /* DTTeamTBVInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVInteractor.swift; path = QOT/DTTeamTBVInteractor.swift; sourceTree = SOURCE_ROOT; };
+		38A2D17525025C7100CEA071 /* DTTeamTBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBV.swift; path = QOT/DTTeamTBV.swift; sourceTree = SOURCE_ROOT; };
+		38A2D17625025C7100CEA071 /* DTTeamTBVConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVConfigurator.swift; path = QOT/DTTeamTBVConfigurator.swift; sourceTree = SOURCE_ROOT; };
 		38C23E4924235DCA0034571B /* DTPrepareStartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartPresenter.swift; sourceTree = "<group>"; };
 		38C23E4A24235DCA0034571B /* DTPrepareStartWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartWorker.swift; sourceTree = "<group>"; };
 		38C23E4B24235DCA0034571B /* DTPrepareStartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartRouter.swift; sourceTree = "<group>"; };
@@ -1773,6 +1795,8 @@
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
+		38F95C9625068106009265DC /* PollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCollectionViewCell.swift; sourceTree = "<group>"; };
+		38F95C9725068106009265DC /* PollCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollCollectionViewCell.xib; sourceTree = "<group>"; };
 		3D5D38914F9360DAF8EBC4DD /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		5D2F517F0A68C796F3C9C214 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
@@ -3529,6 +3553,21 @@
 			name = Walkthrough;
 			sourceTree = "<group>";
 		};
+		38A2D16E25025C0F00CEA071 /* Team TBV */ = {
+			isa = PBXGroup;
+			children = (
+				38A2D17525025C7100CEA071 /* DTTeamTBV.swift */,
+				38A2D17625025C7100CEA071 /* DTTeamTBVConfigurator.swift */,
+				38A2D17425025C7100CEA071 /* DTTeamTBVInteractor.swift */,
+				38A2D17225025C7100CEA071 /* DTTeamTBVInterface.swift */,
+				38A2D16F25025C7000CEA071 /* DTTeamTBVPresenter.swift */,
+				38A2D17125025C7000CEA071 /* DTTeamTBVRouter.swift */,
+				38A2D17325025C7100CEA071 /* DTTeamTBVViewController.swift */,
+				38A2D17025025C7000CEA071 /* DTTeamTBVWorker.swift */,
+			);
+			name = "Team TBV";
+			sourceTree = "<group>";
+		};
 		38C23E4824235D370034571B /* Start */ = {
 			isa = PBXGroup;
 			children = (
@@ -4501,6 +4540,7 @@
 				36EC22F82323F43C00DB5696 /* Sprint */,
 				38290B7D2330F602004B5C14 /* SprintReflection */,
 				363B9CB6232BF2FF00C1A29E /* TBV */,
+				38A2D16E25025C0F00CEA071 /* Team TBV */,
 				ACB449922260E13700B0E79F /* Views */,
 			);
 			name = DecisionTree;
@@ -4511,7 +4551,9 @@
 			children = (
 				ACB449952260EB4F00B0E79F /* DecisionTreeButton.swift */,
 				ACB99E8B226F3A4500A73709 /* DotsLoadingView.swift */,
+				3898280C2502A89900A37C25 /* PollButton.swift */,
 				BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */,
+				3898280A2502A84900A37C25 /* PollButton.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -4549,6 +4591,8 @@
 				36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */,
 				36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */,
 				BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */,
+				38F95C9625068106009265DC /* PollCollectionViewCell.swift */,
+				38F95C9725068106009265DC /* PollCollectionViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -6186,6 +6230,7 @@
 				38593DF124A1114C00C2955D /* Team.storyboard in Resources */,
 				38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */,
 				F96D9F2E24D2DC6900188482 /* TeamToBeVisionCell.xib in Resources */,
+				38F95C9925068106009265DC /* PollCollectionViewCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
 				B86E742822A94D0700B0AE75 /* MyLibrary.storyboard in Resources */,
 				F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */,
@@ -6347,6 +6392,7 @@
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
 				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
 				B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */,
+				3898280B2502A84900A37C25 /* PollButton.xib in Resources */,
 				36E86D48226F45BC00371C67 /* StrategyListHeaderView.xib in Resources */,
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
@@ -6626,6 +6672,7 @@
 				36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */,
 				F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */,
 				9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */,
+				38A2D17C25025C7100CEA071 /* DTTeamTBVInteractor.swift in Sources */,
 				9CC4261C2306A49E00F8072E /* GuidedTrackRowCell.swift in Sources */,
 				F99E9CCA24EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift in Sources */,
 				DBA3921D23247B2D0017E7F6 /* QuestionnaireProtocols.swift in Sources */,
@@ -6638,6 +6685,7 @@
 				B430D7D723A911DE00C75C9C /* MyQotAdminEnvironmentSettingsViewController.swift in Sources */,
 				9CFA10652314082D0023E11E /* ImpactReadinessScoreViewModel.swift in Sources */,
 				B430D7F223A915ED00C75C9C /* MyQotAdminEnvironmentSettingsRouter.swift in Sources */,
+				38A2D17825025C7100CEA071 /* DTTeamTBVWorker.swift in Sources */,
 				3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */,
 				382CDC6024A2433300B34BCE /* TeamEditWorker.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
@@ -6657,6 +6705,7 @@
 				9100195020F6413900049118 /* ExtensionModel.swift in Sources */,
 				9100194F20F63E4C00049118 /* ExtensionUserDefaults.swift in Sources */,
 				36288A7323257EEF0036C8C0 /* DTSelectionModel.swift in Sources */,
+				38A2D17925025C7100CEA071 /* DTTeamTBVRouter.swift in Sources */,
 				36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */,
 				38C23E5124235DCA0034571B /* DTPrepareStartPresenter.swift in Sources */,
 				759AB42322C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.swift in Sources */,
@@ -6665,6 +6714,7 @@
 				B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */,
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
 				F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */,
+				38A2D17A25025C7100CEA071 /* DTTeamTBVInterface.swift in Sources */,
 				9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				B430D7ED23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsConfigurator.swift in Sources */,
@@ -6750,6 +6800,7 @@
 				5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */,
 				B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */,
 				DB5121602331945F009BFF22 /* PreparationWithMissingEventInterface.swift in Sources */,
+				38F95C9825068106009265DC /* PollCollectionViewCell.swift in Sources */,
 				F9B102A622D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift in Sources */,
 				F99E9CC424EABD9C00325EAE /* VisionRatingExplanationWorker.swift in Sources */,
 				5F7BE79C22899F8500BA5DCF /* MyQotAboutUsRouter.swift in Sources */,
@@ -6788,6 +6839,7 @@
 				8D8AA76622FDCB6700B59A81 /* RegistrationEmailInterface.swift in Sources */,
 				AC2BABB1223FAAB300769B1A /* SuggestionSearchTableViewCell.swift in Sources */,
 				F9D6381622D6365C0092C482 /* QuestionCellViewModel.swift in Sources */,
+				3898280D2502A89900A37C25 /* PollButton.swift in Sources */,
 				850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */,
 				36796A5D20D3C4B800B55429 /* SigningInfoWorker.swift in Sources */,
 				AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */,
@@ -6921,6 +6973,7 @@
 				5F360743228C20120074FEC4 /* SyncedCalendarsConfigurator.swift in Sources */,
 				F96D9F2C24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift in Sources */,
 				367A58582326A15D0089A082 /* DTSolveInteractor.swift in Sources */,
+				38A2D17D25025C7100CEA071 /* DTTeamTBV.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				AC103E462285B27200F426F0 /* MindsetResult.swift in Sources */,
 				5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */,
@@ -7168,6 +7221,7 @@
 				F906A02224AC8263007B6E1E /* TeamNameTableViewCell.swift in Sources */,
 				B49AD8A1233D0624000C5DCF /* CustomAlertSheetContentViewController.swift in Sources */,
 				8DF717E4232A48C700BB0E18 /* SyncedCalendarsRouter.swift in Sources */,
+				38A2D17725025C7100CEA071 /* DTTeamTBVPresenter.swift in Sources */,
 				9CC426242306B01100F8072E /* GuidedTrackItemType.swift in Sources */,
 				B86E744B22A9519900B0AE75 /* MyLibraryCategoryListRouter.swift in Sources */,
 				3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */,
@@ -7246,6 +7300,7 @@
 				382CDC6524A2433300B34BCE /* TeamEditModel.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
 				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
+				38A2D17B25025C7100CEA071 /* DTTeamTBVViewController.swift in Sources */,
 				367CD18422EF4EDE00AF2187 /* OnboardingLoginInteractor.swift in Sources */,
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,
 				8D322B9822E89C13000141E1 /* MySprintDetailsHeaderView.swift in Sources */,
@@ -7597,6 +7652,7 @@
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				5F8A89952296DEDF0011A05C /* MyVisionConfigurator.swift in Sources */,
 				B45DA6BE23AA6316006E7E33 /* MyQOTAdminChooseBucketsRouter.swift in Sources */,
+				38A2D17E25025C7100CEA071 /* DTTeamTBVConfigurator.swift in Sources */,
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				B4BCD0E623AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift in Sources */,

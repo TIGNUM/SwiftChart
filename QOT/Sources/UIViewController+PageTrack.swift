@@ -163,7 +163,8 @@ private extension UIViewController {
         case is DTSolveViewController: return "decisiontree.solve"
         case is DTSprintViewController: return "decisiontree.sprint"
         case is DTSprintReflectionViewController: return "decisiontree.sprint.reflection"
-        case is DTTBVViewController: return "decisiontree.tobevisiongenerator"
+        case is DTTBVViewController: return "decisiontree.tobevision.generator"
+        case is DTTeamTBVViewController: return "decisiontree.team.tobevision.generator"
 
         default: preconditionFailure()
         }

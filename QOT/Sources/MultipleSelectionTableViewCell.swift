@@ -34,6 +34,7 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
         collectionView.dataSource = self
         collectionView.collectionViewLayout = layout
         collectionView.registerDequeueable(MultipleSelectionCollectionViewCell.self)
+        collectionView.registerDequeueable(PollCollectionViewCell.self)
     }
 }
 

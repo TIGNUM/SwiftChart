@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PollCollectionViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="242" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="242" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RT-R8-v8s">
+                        <rect key="frame" x="206" y="20" width="20" height="20"/>
+                        <color key="backgroundColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="0gt-om-fso"/>
+                            <constraint firstAttribute="width" constant="20" id="J3l-g6-8QD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                        <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ua-oX-fkZ">
+                        <rect key="frame" x="16" y="20" width="174" height="20"/>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                        <color key="textColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1c-Kc-rcU">
+                        <rect key="frame" x="0.0" y="0.0" width="242" height="60"/>
+                        <connections>
+                            <action selector="didTapButton" destination="gTV-IL-0wX" eventType="touchUpInside" id="abG-E4-qa3"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="7RT-R8-v8s" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="7r8-Qp-BHk"/>
+                <constraint firstItem="7Ua-oX-fkZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="Iak-vC-cG4"/>
+                <constraint firstItem="w1c-Kc-rcU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Kh1-3S-q1D"/>
+                <constraint firstAttribute="trailing" secondItem="w1c-Kc-rcU" secondAttribute="trailing" id="QaV-kg-xLH"/>
+                <constraint firstItem="7RT-R8-v8s" firstAttribute="leading" secondItem="7Ua-oX-fkZ" secondAttribute="trailing" constant="16" id="Wjg-zZ-yqt"/>
+                <constraint firstAttribute="trailing" secondItem="7RT-R8-v8s" secondAttribute="trailing" constant="16" id="abj-2p-bmg"/>
+                <constraint firstItem="7Ua-oX-fkZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="akf-od-j9e"/>
+                <constraint firstAttribute="bottom" secondItem="7Ua-oX-fkZ" secondAttribute="bottom" constant="20" id="fdP-S4-Mjs"/>
+                <constraint firstItem="w1c-Kc-rcU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kE0-Lo-c4G"/>
+                <constraint firstAttribute="bottom" secondItem="w1c-Kc-rcU" secondAttribute="bottom" id="qGp-Nj-NVA"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="242" height="50"/>
+            <connections>
+                <outlet property="counterLabel" destination="7RT-R8-v8s" id="v4a-ry-R8n"/>
+                <outlet property="titeLabel" destination="7Ua-oX-fkZ" id="XcJ-4X-6Iz"/>
+            </connections>
+            <point key="canvasLocation" x="-1.4492753623188408" y="152.67857142857142"/>
+        </collectionViewCell>
+    </objects>
+</document>
