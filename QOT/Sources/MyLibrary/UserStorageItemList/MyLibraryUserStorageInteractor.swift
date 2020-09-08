@@ -114,6 +114,8 @@ final class MyLibraryUserStorageInteractor {
                 if strongSelf.team == nil {
                     strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
                 }
+                let feedsToMarkAsRead = strongSelf.items?.compactMap({ $0.teamLibraryNewsFeed })
+                strongSelf.worker.markAsReadSilence(teamNewsFeeds: feedsToMarkAsRead) { }
                 strongSelf.hasRemovableItem = strongSelf.items?.filter({ $0.removable == true }).first != nil
                 strongSelf.presenter.presentData()
             }
@@ -209,7 +211,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         }
         self.items?[index].removeRedDot()
         if let teamNewsFeed = item.teamLibraryNewsFeed {
-            worker.markAsRead(teamNewsFeeds: [teamNewsFeed]) { }
+            worker.markAsRead(teamNewsFeed: teamNewsFeed) { }
         }
         return keepSelection
     }

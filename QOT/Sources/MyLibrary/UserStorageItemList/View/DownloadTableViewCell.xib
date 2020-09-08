@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -76,22 +76,10 @@
                             <constraint firstAttribute="height" constant="40" id="T8W-lK-WVg"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k1F-Eo-V2F">
-                        <rect key="frame" x="24" y="15" width="18" height="18"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.36862745099999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="18" id="u9I-zl-nmi"/>
-                            <constraint firstAttribute="height" constant="18" id="viH-oD-FKy"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="bt7-wb-N14" secondAttribute="trailing" constant="44" id="0PO-YR-Aqw"/>
-                    <constraint firstItem="k1F-Eo-V2F" firstAttribute="leading" secondItem="Fjs-VV-ziu" secondAttribute="leading" id="3TY-DL-vo9"/>
                     <constraint firstItem="noV-fd-dwJ" firstAttribute="centerY" secondItem="bt7-wb-N14" secondAttribute="centerY" id="6Lz-Vq-Tef"/>
                     <constraint firstItem="noV-fd-dwJ" firstAttribute="centerX" secondItem="bt7-wb-N14" secondAttribute="centerX" id="7Wu-ZZ-hth"/>
                     <constraint firstItem="bOJ-U2-8Fs" firstAttribute="top" secondItem="dIs-Vz-V9a" secondAttribute="bottom" constant="8" id="9V6-uE-6fB"/>
@@ -112,7 +100,6 @@
                     <constraint firstItem="dIs-Vz-V9a" firstAttribute="top" secondItem="Fjs-VV-ziu" secondAttribute="bottom" constant="8" id="q2R-zx-fmo"/>
                     <constraint firstAttribute="trailing" secondItem="n7q-rD-6JN" secondAttribute="trailing" id="wFF-QZ-1uc"/>
                     <constraint firstItem="noV-fd-dwJ" firstAttribute="height" secondItem="bt7-wb-N14" secondAttribute="height" id="xsT-VA-CGa"/>
-                    <constraint firstItem="k1F-Eo-V2F" firstAttribute="centerY" secondItem="Fjs-VV-ziu" secondAttribute="top" id="yJS-zI-KlD"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,8 +112,6 @@
                 <outlet property="contentTitle" destination="Fjs-VV-ziu" id="i01-6M-oFW"/>
                 <outlet property="icon" destination="dIs-Vz-V9a" id="bM0-wh-YXL"/>
                 <outlet property="infoText" destination="h7r-hR-xFL" id="Roi-3P-vJq"/>
-                <outlet property="redDotLabel" destination="k1F-Eo-V2F" id="g3Y-hj-Wmm"/>
-                <outlet property="redDotLeading" destination="3TY-DL-vo9" id="gQu-uX-UQX"/>
                 <outlet property="updateInfoLabelHeight" destination="aj9-eG-GtB" id="E1q-NE-XA4"/>
                 <outlet property="updateInfoLavel" destination="bOJ-U2-8Fs" id="f2e-AD-3eu"/>
             </connections>
