@@ -40,6 +40,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 
     @IBOutlet private weak var lastModifiedLabel: UILabel!
     var didShowNullStateView = false
+    var shouldShowCreate = false
     private let containerViewSize: CGFloat = 232.0
     private let containerViewRatio: CGFloat = 1.2
     private let lowerBoundAlpha: CGFloat = 0.6
@@ -67,7 +68,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         interactor.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-        showNullState(with: " ", message: " ", writeMessage: "")
+        showNullState(with: "", teamName: "", message: "")
         showSkeleton()
     }
 
@@ -90,8 +91,34 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         skeletonManager.addTitle(teamNullStateView.headerLabel)
         skeletonManager.addSubtitle(teamNullStateView.detailLabel)
         skeletonManager.addSubtitle(teamNullStateView.toBeVisionLabel)
-        skeletonManager.addOtherView(teamNullStateView.writeButton)
     }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if shouldShowCreate {
+            let button = RoundedButton(title: nil, target: self, action: #selector(writeButtonAction))
+            ThemableButton.myPlans.apply(button, title: interactor.nullStateCTA)
+            return [button.barButton]
+        }
+        return []
+    }
+
+    @IBAction func showExplanation(_ sender: Any) {
+        trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
+        router.showRatingExplanation(team: interactor.team)
+    }
+
+    @objc func writeButtonAction(_ sender: Any) {
+        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
+            self?.trackUserEvent(.EDIT, value: self?.interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
+            self?.interactor.showEditVision(isFromNullState: false)
+            self?.shouldShowCreate = false
+        }
+        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
+        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
+                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
+                      bottomItems: [add, openTeamPoll])
+    }
+
 }
 
 extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
@@ -171,11 +198,6 @@ private extension TeamToBeVisionViewController {
                        action: .TAP)
         router.showTbvPollEXplanation(team: interactor.team)
     }
-
-    @IBAction func writeButtonAction(_ sender: Any) {
-        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
-        interactor.showEditVision(isFromNullState: false)
-    }
 }
 
 // MARK: - TeamToBeVisionViewControllerInterface
@@ -190,8 +212,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
-        ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_x_team_tbv_section_header_title),
-                                         to: toBeVisionLabel)
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: interactor.team?.name?.uppercased() ?? "")
+        ThemeText.tbvSectionHeader.apply(title, to: toBeVisionLabel)
         userImageView.image = R.image.teamTBVPlaceholder()
 
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
@@ -220,9 +242,10 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                 isRateEnabled: Bool,
                 shouldShowSingleMessageRating: Bool?) {
         if teamVision == nil {
-            interactor.showNullState(with: interactor.teamNullStateTitle ?? "", message: interactor.teamNullStateSubtitle ?? "", writeMessage: interactor.nullStateCTA ?? "")
+            interactor.showNullState(with: interactor.teamNullStateTitle ?? "", teamName: interactor.team?.name, message: interactor.teamNullStateSubtitle ?? "")
             teamNullStateImageView.gradientBackground(top: true)
             teamNullStateImageView.gradientBackground(top: false)
+            shouldShowCreate = true
             return
         }
         if scrollView.alpha == 0 {
@@ -263,10 +286,10 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }
 
-    func showNullState(with title: String, message: String, writeMessage: String) {
+    func showNullState(with title: String, teamName: String?, message: String) {
         didShowNullStateView = true
         teamNullStateView.isHidden = false
-        teamNullStateView.setupView(with: title, message: message, writeMessage: writeMessage, delegate: self)
+        teamNullStateView.setupView(with: title, teamName: teamName, message: message, delegate: self)
         refreshBottomNavigationItems()
         skeletonManager.hide()
     }
