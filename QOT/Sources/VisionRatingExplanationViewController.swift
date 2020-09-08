@@ -37,6 +37,11 @@ final class VisionRatingExplanationViewController: UIViewController {
         interactor.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateBottomNavigation([createBlackCloseButton(#selector(didTapBackButton))], bottomNavigationRightBarItems())
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
@@ -56,11 +61,13 @@ extension VisionRatingExplanationViewController {
     @objc func startRating() {
         trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
         router.showRateScreen(with: 0)
+        updateBottomNavigation([], [])
     }
 
     @objc func startTBVGenerator() {
         trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
         router.showTBVGenerator()
+        updateBottomNavigation([], [])
     }
 }
 
