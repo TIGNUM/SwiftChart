@@ -43,14 +43,10 @@ extension DailyBriefViewController {
                 let configurator = MyLibraryNotesConfigurator.make(with: viewModel.team)
                 configurator(noteController, storage.qotId ?? "")
                 present(noteController, animated: true, completion: nil)
-                didSelectRow(at: indexPath)
                 interactor.markAsRead(teamNewsFeed: viewModel.feed) { }
-                didDeselectRow(at: indexPath)
             default:
                 if storage.openStorageItem() {
-                    didSelectRow(at: indexPath)
                     interactor.markAsRead(teamNewsFeed: viewModel.feed) { }
-                    didDeselectRow(at: indexPath)
                 }
             }
         default: break

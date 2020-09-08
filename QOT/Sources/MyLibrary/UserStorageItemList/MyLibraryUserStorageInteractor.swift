@@ -108,13 +108,14 @@ final class MyLibraryUserStorageInteractor {
                     var model = converter.viewModel(from: item, team: strongSelf.team,
                                                     downloadStatus: strongSelf.worker.downloadStatus(for: item))
                     model?.teamLibraryNewsFeed = feed
+                    model?.showRedDot = (feed != nil)
                     return model
                 })
                 if strongSelf.team == nil {
                     strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
                 }
                 let feedsToMarkAsRead = strongSelf.items?.compactMap({ $0.teamLibraryNewsFeed })
-                strongSelf.worker.markAsRead(teamNewsFeeds: feedsToMarkAsRead) { }
+                strongSelf.worker.markAsReadSilence(teamNewsFeeds: feedsToMarkAsRead) { }
                 strongSelf.hasRemovableItem = strongSelf.items?.filter({ $0.removable == true }).first != nil
                 strongSelf.presenter.presentData()
             }
@@ -210,7 +211,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         }
         self.items?[index].removeRedDot()
         if let teamNewsFeed = item.teamLibraryNewsFeed {
-            worker.markAsRead(teamNewsFeeds: [teamNewsFeed]) { }
+            worker.markAsRead(teamNewsFeed: teamNewsFeed) { }
         }
         return keepSelection
     }

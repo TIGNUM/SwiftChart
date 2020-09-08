@@ -57,10 +57,14 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
 }
 
 extension BaseMyLibraryTableViewCell {
-    func setTitle(_ title: String?) {
+    func setTitle(_ title: String?, read: Bool) {
         skeletonManager.hide(.title)
         guard let titleText = title else { return }
-        ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
+        if read {
+            ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
+        } else {
+            ThemeText.myLibraryItemsItemNameGrey.apply(titleText.uppercased(), to: contentTitle)
+        }
     }
 
     func setInfoText(_ text: String?) {
