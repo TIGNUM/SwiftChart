@@ -188,8 +188,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 if viewModel.question.key == Prepare.QuestionKey.SelectExisting {
                     return getExistingPreparationCell(indexPath, tableView)
                 }
-                return getPollCell(indexPath, tableView)
-//                return getSelectionCell(indexPath, tableView)
+                return getSelectionCell(indexPath, tableView)
             case .poll:
                 return getPollCell(indexPath, tableView)
             case .text:
