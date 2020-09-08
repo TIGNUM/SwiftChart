@@ -64,9 +64,11 @@ extension MyVisionEditDetailsInteractor: MyVisionEditDetailsInteractorInterface 
         }
     }
 
-    func updateTeamToBeVision(_ teamVision: QDMTeamToBeVision, _ completion: @escaping (Error?) -> Void) {
-        worker.updateTeamToBeVision(teamVision) { (error) in
-            completion(error)
+    func updateTeamToBeVision(_ teamVision: QDMTeamToBeVision?, _ completion: @escaping (Error?) -> Void) {
+        if let teamVision = teamVision {
+            worker.updateTeamToBeVision(teamVision) { (error) in
+                completion(error)
+            }
         }
     }
 

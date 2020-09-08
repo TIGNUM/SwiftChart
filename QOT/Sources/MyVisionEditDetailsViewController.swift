@@ -167,7 +167,7 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
 
             return
         }
-        guard let teamVision = interactor?.teamVision else {
+        guard !descriptionTextView.text.isEmpty, let teamVision = interactor?.teamVision else {
             TeamService.main.createTeamToBeVision(headline: "",
                                                   subHeadline: "",
                                                   text: "",
@@ -183,6 +183,7 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
         interactor?.updateTeamToBeVision(teamToBeVision, {[weak self] (error) in
             self?.dismissController()
         })
+
     }
 
     private func getVision(for toBeVision: QDMToBeVision) -> QDMToBeVision {
