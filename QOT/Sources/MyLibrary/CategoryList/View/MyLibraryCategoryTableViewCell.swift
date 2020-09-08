@@ -38,6 +38,8 @@ class MyLibraryCategoryTableViewCell: UITableViewCell, Dequeueable {
         self.iconView.image = model.icon
         self.infoText.text = model.infoText()
         newItemCountLabel.isHidden = (model.newItemCount == 0)
+        categoryName.sizeToFit()
+        newItemCountLeading.constant = categoryName.frame.size.width
         self.setNeedsLayout()
     }
 }
