@@ -18,7 +18,7 @@ class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
     weak var delegate: MultipleSelectionDelegate?
-    @IBOutlet private weak var selectionButton: SelectionButton!
+    @IBOutlet weak var selectionButton: SelectionButton!
     private var maxSelections = 0
     private var selectionCounter = 0
     private var answer: DTViewModel.Answer?

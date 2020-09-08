@@ -8,6 +8,21 @@
 
 import Foundation
 
-final class PollButton: AbstractTreeButton {
+final class PollButton: SelectionButton {
 
+    // MARK: - Properties
+    @IBOutlet weak var titeLabel: UILabel!
+    @IBOutlet weak var counterLabel: UILabel!
+
+    // MARK: - Life Cycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        counterLabel.circle()
+    }
+
+    // MARK: - Configure
+    func configure(title: String, votes: Int, isSelected: Bool) {
+        super.configure(title: title, isSelected: isSelected)
+        counterLabel.text = String(votes)
+    }
 }

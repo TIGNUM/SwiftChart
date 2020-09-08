@@ -59,6 +59,15 @@ protocol WorkerTeam {
 
     func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
                                     _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void)
+
+    func getCurrentTeamToBeVisionPoll(for team: QDMTeam,
+                                      _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func openNewTeamToBeVisionPoll(for team: QDMTeam,
+                                   _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func closeTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 }
 
 extension WorkerTeam {
@@ -295,6 +304,42 @@ extension WorkerTeam {
     func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
                                     _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void) {
         TeamService.main.getTeamToBeVisionShareData(for: teamVision, completion)
+    }
+}
+
+// MARK: - Poll
+extension WorkerTeam {
+    func getCurrentTeamToBeVisionPoll(for team: QDMTeam,
+                                      _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.getCurrentTeamToBeVisionPoll(for: team) { (poll, _, error) in
+            if let error = error {
+                log("Error getCurrentTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
+    }
+
+    func openNewTeamToBeVisionPoll(for team: QDMTeam,
+                                   _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.openNewTeamToBeVisionPoll(for: team) { (poll, _, error) in
+            if let error = error {
+                log("Error openNewTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
+    }
+
+    func closeTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.closeTeamToBeVisionPoll(poll) { (poll, _, error) in
+            if let error = error {
+                log("Error closeTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
     }
 }
 

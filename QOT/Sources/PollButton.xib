@@ -19,9 +19,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIs-rW-Veq">
                             <rect key="frame" x="0.0" y="0.0" width="145" height="40"/>
-                            <connections>
-                                <action selector="didPressButton" destination="8f7-XN-Bdn" eventType="touchUpInside" id="Kb1-97-o7Y"/>
-                            </connections>
                         </button>
                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfG-tu-XWU">
                             <rect key="frame" x="16" y="10" width="77" height="20"/>
@@ -70,13 +67,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="1jt-dV-wFz"/>
             <connections>
-                <outlet property="constraintLeftMargin" destination="uKs-fN-4us" id="STT-PZ-nGy"/>
-                <outlet property="constraintSpacerWidth" destination="JJ6-21-Qlp" id="Xob-Ih-14p"/>
-                <outlet property="constraintTotalWidthMin" destination="CMi-9e-SkK" id="cVu-Lh-msf"/>
-                <outlet property="containerView" destination="iWh-bQ-jmu" id="spv-hW-7S6"/>
-                <outlet property="continueLabel" destination="KfG-tu-XWU" id="Ekh-8d-C44"/>
-                <outlet property="counterButton" destination="xIs-rW-Veq" id="c3T-UU-7jZ"/>
                 <outlet property="counterLabel" destination="hvp-jM-Mve" id="PFw-pc-vsc"/>
+                <outlet property="titeLabel" destination="KfG-tu-XWU" id="PAm-Gv-8mb"/>
             </connections>
             <point key="canvasLocation" x="-187.68115942028987" y="-252.45535714285714"/>
         </view>

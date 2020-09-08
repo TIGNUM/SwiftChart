@@ -50,7 +50,7 @@ final class AnswerButton: AbstractTreeButton {
     }
 }
 
-final class SelectionButton: AbstractTreeButton {
+class SelectionButton: AbstractTreeButton {
 
     @IBOutlet private weak var selectionLabel: UILabel!
     private var selectedBackgroundColor = UIColor.clear

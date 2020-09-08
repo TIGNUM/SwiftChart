@@ -381,6 +381,8 @@
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
 		38F95C9825068106009265DC /* PollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9625068106009265DC /* PollCollectionViewCell.swift */; };
 		38F95C9925068106009265DC /* PollCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C9725068106009265DC /* PollCollectionViewCell.xib */; };
+		38F95C9C2507D51D009265DC /* PollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9A2507D51D009265DC /* PollTableViewCell.swift */; };
+		38F95C9D2507D51D009265DC /* PollTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C9B2507D51D009265DC /* PollTableViewCell.xib */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
 		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
@@ -1797,6 +1799,8 @@
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
 		38F95C9625068106009265DC /* PollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCollectionViewCell.swift; sourceTree = "<group>"; };
 		38F95C9725068106009265DC /* PollCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollCollectionViewCell.xib; sourceTree = "<group>"; };
+		38F95C9A2507D51D009265DC /* PollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTableViewCell.swift; sourceTree = "<group>"; };
+		38F95C9B2507D51D009265DC /* PollTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollTableViewCell.xib; sourceTree = "<group>"; };
 		3D5D38914F9360DAF8EBC4DD /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		5D2F517F0A68C796F3C9C214 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
@@ -4593,6 +4597,8 @@
 				BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */,
 				38F95C9625068106009265DC /* PollCollectionViewCell.swift */,
 				38F95C9725068106009265DC /* PollCollectionViewCell.xib */,
+				38F95C9A2507D51D009265DC /* PollTableViewCell.swift */,
+				38F95C9B2507D51D009265DC /* PollTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -6304,6 +6310,7 @@
 				DBA3921A23247B2D0017E7F6 /* QuestionnaireViewController.storyboard in Resources */,
 				368A125F2277387900866DB0 /* SF-Pro-Display-Thin.otf in Resources */,
 				368A125D2277387900866DB0 /* SF-Pro-Display-Light.otf in Resources */,
+				38F95C9D2507D51D009265DC /* PollTableViewCell.xib in Resources */,
 				9C7F419F232CB521007E4B5D /* MyPeakPerformanceDividerView.xib in Resources */,
 				36E86D4C2270511100371C67 /* ArticleBulletPointTableViewCell.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
@@ -7488,6 +7495,7 @@
 				B4AB48B7230BF891003B3C1F /* MyDataSelectionRouter.swift in Sources */,
 				382C6C5623589FE000FAF497 /* MyQotSupportNovartisViewController.swift in Sources */,
 				382CDC6124A2433300B34BCE /* TeamEditRouter.swift in Sources */,
+				38F95C9C2507D51D009265DC /* PollTableViewCell.swift in Sources */,
 				5F7BE788228958BE00BA5DCF /* MyQotSupportViewController.swift in Sources */,
 				36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */,
 				F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */,
