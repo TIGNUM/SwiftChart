@@ -187,12 +187,18 @@ final class MyLibraryUserStorageWorker {
         }
     }()
 
-    func markAsRead(teamNewsFeeds: [QDMTeamNewsFeed]?, _ completion: @escaping () -> Void) {
+    func markAsReadSilence(teamNewsFeeds: [QDMTeamNewsFeed]?, _ completion: @escaping () -> Void) {
         guard let feeds = teamNewsFeeds else {
             DispatchQueue.main.async { completion() }
             return
         }
-        TeamService.main.markAsRead(newsFeeds: feeds) { (_) in
+        TeamService.main.markAsReadSilence(newsFeeds: feeds) { (_) in
+            completion()
+        }
+    }
+
+    func markAsRead(teamNewsFeed: QDMTeamNewsFeed, _ completion: @escaping () -> Void) {
+        TeamService.main.markAsRead(newsFeeds: [teamNewsFeed]) { (_) in
             completion()
         }
     }
@@ -217,7 +223,7 @@ extension MyLibraryUserStorageWorker {
                 let teamService = TeamService.main
                 service.getTeamStorages(for: storageType, in: team) { [weak self] (storages, initiated, error) in
                     self?.handleStorages(storages)
-                    teamService.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
+                    teamService.teamLibraryItemFeeds(for: team) { (feeds, _, _) in
                         completion(initiated, self?.storages ?? [], feeds)
                     }
                 }
@@ -232,7 +238,7 @@ extension MyLibraryUserStorageWorker {
                 let teamService = TeamService.main
                 service.getTeamStorages(in: team) { [weak self] (teamStorages, initiated, error) in
                     self?.handleStorages(teamStorages)
-                    teamService.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
+                    teamService.teamLibraryItemFeeds(for: team) { (feeds, _, _) in
                         completion(initiated, self?.storages ?? [], feeds)
                     }
                 }

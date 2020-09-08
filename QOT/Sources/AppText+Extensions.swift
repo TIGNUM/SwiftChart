@@ -533,6 +533,8 @@ public extension AppTextKey {
     static let my_x_team_create_subheader = AppTextKey("my_x.team_create.subtitle")
     static let my_x_team_create_cta = AppTextKey("my_x.team.create_cta")
     static let my_x_team_create_max_team_sutitle = AppTextKey("my_x.team_create.max_team_subtitle")
+    static let my_x_team_create_duplicated_name_error_description = AppTextKey("my_x.team.create_duplicated_name_error_description")
+    static let my_x_team_create_default_error_description = AppTextKey("my_x.team.create_default_error_description")
 
     // MARK: - Team Member Invite
     static let my_x_team_member_invite_header = AppTextKey("my_x.team_member_invite.header")

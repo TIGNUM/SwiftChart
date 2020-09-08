@@ -126,7 +126,22 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
     func createTeam(_ name: String?) {
         let max = maxMemberCount
         type = .memberInvite
-        createTeam(name) { [weak self] (team, _) in
+        createTeam(name) { [weak self] (team, error) in
+            guard error == nil else {
+                let title = AppTextService.get(.generic_alert_unknown_error_title)
+                var subtitle = AppTextService.get(.my_x_team_create_default_error_description)
+                if let teamError = (error as NSError?), teamError.domain == TeamServiceErrorDomain,
+                    let code = TeamServiceErrorCode(rawValue: teamError.code) {
+                    switch code {
+                    case .DuplicatedTeamName:
+                        subtitle = AppTextService.get(.my_x_team_create_duplicated_name_error_description)
+                    default:
+                        break
+                    }
+                }
+                self?.presenter.presentErrorAlert(title, subtitle)
+                return
+            }
             self?.team = team
             if let team = team, team.remoteID != 0 {
                 self?.setupMemberList(team: team)

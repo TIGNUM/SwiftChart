@@ -24,6 +24,7 @@ protocol MyLibraryCategoryListInteractorInterface: Interactor {
     var teamId: Int? { get }
     var categoryItems: [MyLibraryCategoryListModel] { get }
     func handleSelectedItem(at index: Int)
+    func reload()
 }
 
 protocol MyLibraryCategoryListRouterInterface {

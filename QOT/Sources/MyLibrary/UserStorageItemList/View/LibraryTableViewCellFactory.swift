@@ -44,11 +44,10 @@ class LibraryTableViewCellFactory {
             returnCell = downloadCell
         }
         returnCell?.bottomSeparator.isHidden = item.hideBottomSeparator
-        returnCell?.setTitle(item.title)
+        returnCell?.setTitle(item.title, read: item.showRedDot)
         returnCell?.icon.image = item.icon
         returnCell?.setInfoText(item.description)
         returnCell?.setCreationInfoText(item.storageUpdateInfo)
-        returnCell?.showRedDot(item.showRedDot)
         return returnCell ?? UITableViewCell()
     }
 }

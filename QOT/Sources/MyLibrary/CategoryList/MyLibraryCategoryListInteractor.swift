@@ -90,4 +90,8 @@ extension MyLibraryCategoryListInteractor: MyLibraryCategoryListInteractorInterf
             router.presentLibraryItems(for: item, in: team)
         }
     }
+
+    func reload() {
+        load()
+    }
 }
