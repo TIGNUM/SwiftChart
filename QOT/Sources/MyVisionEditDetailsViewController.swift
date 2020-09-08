@@ -183,7 +183,6 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
         interactor?.updateTeamToBeVision(teamToBeVision, {[weak self] (error) in
             self?.dismissController()
         })
-
     }
 
     private func getVision(for toBeVision: QDMToBeVision) -> QDMToBeVision {

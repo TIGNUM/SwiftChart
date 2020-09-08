@@ -26,7 +26,7 @@ protocol MyVisionEditDetailsInteractorInterface: Interactor {
     var originalVision: String { get }
     var isFromNullState: Bool { get }
     var visionPlaceholderDescription: String? { get }
-    func updateTeamToBeVision(_ teamVision: QDMTeamToBeVision?, _ completion: @escaping (Error?) -> Void)
+    func updateTeamToBeVision(_ teamVision: QDMTeamToBeVision, _ completion: @escaping (Error?) -> Void)
     func updateMyToBeVision(_ toBeVision: QDMToBeVision, _ completion: @escaping (Error?) -> Void)
     func formatPlaceholder(title: String) -> NSAttributedString?
     func format(title: String) -> NSAttributedString?
