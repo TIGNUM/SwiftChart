@@ -11,7 +11,6 @@ import UIKit
 final class NotificationBanner: UIView {
 
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var contentView: UIView!
     private var timer: Timer?
 
@@ -23,8 +22,14 @@ final class NotificationBanner: UIView {
         return headerView
     }
 
-    func configure(message: String) {
-        titleLabel.text = message
+    func configure(message: String, isDark: Bool) {
+        if isDark {
+            ThemeView.level1.apply(contentView)
+            ThemeText.darkBanner.apply(message, to: titleLabel)
+        } else {
+            ThemeView.whiteBanner.apply(contentView)
+            ThemeText.whiteBanner.apply(message, to: titleLabel)
+        }
     }
 
     func show(in view: UIView) {
@@ -39,13 +44,6 @@ final class NotificationBanner: UIView {
         }) { (_) in
             self.startTimer()
         }
-    }
-}
-
-// MARK: - Actions
-extension NotificationBanner {
-    @IBAction func didTapClose() {
-        hide()
     }
 }
 

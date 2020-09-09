@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -24,46 +24,28 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gc-Bt-yYh">
-                    <rect key="frame" x="24" y="13" width="326" height="19.5"/>
+                    <rect key="frame" x="24" y="13" width="41" height="19.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ej-1X-dST">
-                    <rect key="frame" x="374" y="14.5" width="16" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="16" id="0oR-o8-eRL"/>
-                        <constraint firstAttribute="height" constant="16" id="xqK-6I-wjG"/>
-                    </constraints>
-                    <state key="normal" image="ic_close_white"/>
-                    <connections>
-                        <action selector="didTapClose" destination="iN0-l3-epB" eventType="touchUpInside" id="Rtn-tA-mn9"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ffv-0N-fmS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2DP-EK-Kxr"/>
                 <constraint firstItem="ffv-0N-fmS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="HV1-XJ-6l4"/>
                 <constraint firstAttribute="bottom" secondItem="ffv-0N-fmS" secondAttribute="bottom" id="KPV-XK-JPO"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6ej-1X-dST" secondAttribute="trailing" constant="24" id="O1W-iC-ken"/>
-                <constraint firstItem="6ej-1X-dST" firstAttribute="leading" secondItem="9Gc-Bt-yYh" secondAttribute="trailing" constant="24" id="ih8-yn-LGL"/>
                 <constraint firstItem="9Gc-Bt-yYh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="iuH-Is-s6y"/>
                 <constraint firstItem="9Gc-Bt-yYh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="k3G-cM-viH"/>
-                <constraint firstItem="6ej-1X-dST" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="lMR-Ti-g8e"/>
                 <constraint firstAttribute="trailing" secondItem="ffv-0N-fmS" secondAttribute="trailing" constant="8" id="m5A-g3-V9T"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="closeButton" destination="6ej-1X-dST" id="Lew-SA-gEq"/>
                 <outlet property="contentView" destination="ffv-0N-fmS" id="aj4-cb-9p7"/>
                 <outlet property="titleLabel" destination="9Gc-Bt-yYh" id="fSa-sX-cpD"/>
             </connections>
             <point key="canvasLocation" x="-36.231884057971016" y="57.924107142857139"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_close_white" width="20" height="20"/>
-    </resources>
 </document>
