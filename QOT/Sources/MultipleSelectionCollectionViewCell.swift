@@ -23,6 +23,7 @@ class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
     private var selectionCounter = 0
     private var answer: DTViewModel.Answer?
     private var isAnswered = false
+    var votes = 0
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -55,11 +56,13 @@ extension MultipleSelectionCollectionViewCell {
             isAnswered = false
             selectionButton?.switchBackgroundColor()
             delegate?.didDeSelectAnswer(answer)
+            NotificationCenter.default.post(name: .didVoteTeamTBV, object: answer.remoteId)
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
             answer.setSelected(true)
             isAnswered = true
             selectionButton?.switchBackgroundColor()
             delegate?.didSelectAnswer(answer)
+            NotificationCenter.default.post(name: .didUnVoteTeamTBV, object: answer.remoteId)
         }
     }
 }

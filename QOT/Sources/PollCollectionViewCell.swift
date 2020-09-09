@@ -13,15 +13,10 @@ final class PollCollectionViewCell: MultipleSelectionCollectionViewCell {
     // MARK: - Properties
     @IBOutlet private weak var pollButton: PollButton!
 
-    // MARK: - Life Cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        pollButton.counterLabel.circle()
-    }
-
     // MARK: - Configure
     func configure(for answer: DTViewModel.Answer, maxSelections: Int, selectionCounter: Int, votes: Int) {
         super.configure(for: answer, maxSelections: maxSelections, selectionCounter: selectionCounter)
-        pollButton.configure(title: answer.title, votes: votes, isSelected: answer.selected)
+        super.votes = votes
+        pollButton.configure(title: answer.title, votes: votes, isSelected: answer.selected, answerId: answer.remoteId)
     }
 }

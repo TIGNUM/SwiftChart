@@ -15,17 +15,17 @@ protocol MultipleSelectionCellDelegate: class {
     func didSetHeight(to height: CGFloat)
 }
 
-class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
+class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable, MultipleSelectionDelegate {
 
     // MARK: - Properties
     weak var delegate: MultipleSelectionCellDelegate?
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
     private let layout = ChatViewLayout()
-    private var maxPossibleSelections = 0
-    private var selectionCounter = 0
     private var selectedAnswers: [DTViewModel.Answer] = []
     var answers: [DTViewModel.Answer] = []
+    var maxPossibleSelections = 0
+    var selectionCounter = 0
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -37,6 +37,7 @@ class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
         collectionView.registerDequeueable(PollCollectionViewCell.self)
     }
 
+    // MARK: - ChatViewLayout
     func chatViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let offset = collectionView.bounds.width * 0.1
         let answerText = answers[indexPath.row].title
@@ -49,6 +50,15 @@ class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
         let width: CGFloat = label.bounds.width
         let height: CGFloat = label.bounds.height
         return CGSize(width: width + 32, height: CGFloat(height) + 20)  //size includes constraints from cell.xib
+    }
+
+    // MARK: - MultipleSelectionDelegate
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didDeSelectAnswer(answer)
+    }
+
+    func didSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didSelectAnswer(answer)
     }
 }
 
@@ -65,17 +75,6 @@ extension MultipleSelectionTableViewCell {
     }
 }
 
-// MARK: - MultipleSelectionCollectionViewCellDelegate
-extension MultipleSelectionTableViewCell: MultipleSelectionDelegate {
-    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didDeSelectAnswer(answer)
-    }
-
-    func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didSelectAnswer(answer)
-    }
-}
-
 // MARK: - UICollectionViewDataSource
 extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,12 +83,11 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: PollCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        let cell: MultipleSelectionCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         let answer = answers[indexPath.row]
         cell.configure(for: answer,
                        maxSelections: maxPossibleSelections,
-                       selectionCounter: selectionCounter,
-                       votes: Int(randomNumber))
+                       selectionCounter: selectionCounter)
         cell.delegate = self
         return cell
     }

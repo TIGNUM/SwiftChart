@@ -324,7 +324,6 @@
 		38966EA224D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */; };
 		38966EA324D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */; };
 		389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */; };
-		3898280B2502A84900A37C25 /* PollButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3898280A2502A84900A37C25 /* PollButton.xib */; };
 		3898280D2502A89900A37C25 /* PollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898280C2502A89900A37C25 /* PollButton.swift */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
 		389BBC86235EE68B0009FA02 /* CoachMarksWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */; };
@@ -1742,7 +1741,6 @@
 		38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveView.xib; sourceTree = "<group>"; };
-		3898280A2502A84900A37C25 /* PollButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollButton.xib; sourceTree = "<group>"; };
 		3898280C2502A89900A37C25 /* PollButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollButton.swift; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
 		389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksWorker.swift; sourceTree = "<group>"; };
@@ -4557,7 +4555,6 @@
 				ACB99E8B226F3A4500A73709 /* DotsLoadingView.swift */,
 				3898280C2502A89900A37C25 /* PollButton.swift */,
 				BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */,
-				3898280A2502A84900A37C25 /* PollButton.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -6399,7 +6396,6 @@
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
 				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
 				B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */,
-				3898280B2502A84900A37C25 /* PollButton.xib in Resources */,
 				36E86D48226F45BC00371C67 /* StrategyListHeaderView.xib in Resources */,
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
