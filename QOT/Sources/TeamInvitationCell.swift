@@ -88,6 +88,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         if let invitation = teamInvitation {
             trackUserEvent(.DECLINE_TEAM_INVITATION, value: invitation.team?.remoteID ?? 0, action: .TAP)
             delegate?.didSelectDeclineTeamInvite(invitation: invitation)
+            delegate?.showBanner(message: AppTextService.get(.team_invite_banner_message_decline))
         }
     }
 
@@ -95,6 +96,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         if let invitation = teamInvitation {
             trackUserEvent(.ACCEPT_TEAM_INVITATION, value: invitation.team?.remoteID ?? 0, action: .TAP)
             delegate?.didSelectJoinTeamInvite(invitation: invitation)
+            delegate?.showBanner(message: AppTextService.get(.team_invite_banner_message_join))
         }
     }
 

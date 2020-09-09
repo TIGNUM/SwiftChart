@@ -31,6 +31,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func didChangeLocationPermission(granted: Bool)
     func showDailyCheckInQuestions()
     func showAlert(message: String?)
+    func showBanner(message: String)
 }
 
 final class DailyBriefNavigationController: UINavigationController {
@@ -871,6 +872,12 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func presentTeamPendingInvites() {
         self.router.presentTeamPendingInvites()
+    }
+
+    func showBanner(message: String) {
+        let banner = NotificationBanner.instantiateFromNib()
+        banner.configure(message: message)
+        banner.show(in: self.view)
     }
 }
 

@@ -239,10 +239,10 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         var headline = myVision?.headline
         if headline?.isEmpty != false {
-            headline = interactor.emptyTBVTitlePlaceholder
+            headline = interactor.nullStateTitle
         }
         ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
-        let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor.emptyTBVTextPlaceholder
+        let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor.nullStateSubtitle
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
 
         tempImageURL = myVision?.profileImageResource?.url()

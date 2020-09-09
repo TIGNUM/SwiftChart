@@ -2854,7 +2854,7 @@
 				F96D9F2F24D448F500188482 /* TeamVisionSuggestion */,
 				F96D9F2824D2DAB600188482 /* TeamToBeVision */,
 				F9D2BC1E22D4966B00DBF2CC /* FromTignum */,
-				B80B2EF224DAC4C900C6FD85 /* Team */,
+				B80B2EF224DAC4C900C6FD85 /* Team Library Feed */,
 				F916AAE92418E915002C1EFE /* MindsetShifter */,
 				9C24237022F0817F00B911E6 /* AboutMe */,
 				F9462248230C2C21000A3B42 /* Copyright */,
@@ -4754,7 +4754,7 @@
 			path = MyQOTAdminEditSprintsDetails;
 			sourceTree = "<group>";
 		};
-		B80B2EF224DAC4C900C6FD85 /* Team */ = {
+		B80B2EF224DAC4C900C6FD85 /* Team Library Feed */ = {
 			isa = PBXGroup;
 			children = (
 				B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */,
@@ -4763,7 +4763,7 @@
 				B80B2EFD24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.swift */,
 				B80B2EFE24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib */,
 			);
-			path = Team;
+			path = "Team Library Feed";
 			sourceTree = "<group>";
 		};
 		B83B33DA22C21D6E002AFED7 /* BottomNavigation */ = {

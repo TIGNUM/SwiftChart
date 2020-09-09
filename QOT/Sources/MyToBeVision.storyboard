@@ -1062,6 +1062,8 @@
                         <outlet property="teamNullStateView" destination="rhn-iS-Dly" id="EzG-pv-wf4"/>
                         <outlet property="toBeVisionLabel" destination="lbp-q7-uuS" id="GPQ-ke-prT"/>
                         <outlet property="toBeVisionSelectionBar" destination="LJj-4A-isB" id="9BH-gK-MVl"/>
+                        <outlet property="trendsBarView" destination="6KI-JU-mMr" id="xoa-Ai-2eb"/>
+                        <outlet property="trendsButton" destination="xhJ-oq-iqI" id="VMJ-eB-il9"/>
                         <outlet property="trendsLabel" destination="y1f-M1-asf" id="Cbs-Oo-Lgo"/>
                         <outlet property="userImageView" destination="uDT-9l-6OY" id="ZG1-4X-43p"/>
                         <outlet property="warningImageView" destination="Wat-UP-lQb" id="HgT-qG-iJY"/>

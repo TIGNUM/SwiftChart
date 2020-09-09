@@ -673,7 +673,10 @@ extension DailyBriefInteractor {
         let latestVision = visionAndDates.first?.0
         let visionText = latestVision?.text
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
-        let title = team?.name
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "")
+        guard visionText?.isEmpty == false else {
+            return visionList
+        }
         let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, domainModel: teamVisionBucket)
         visionList.append(model)
         return visionList
