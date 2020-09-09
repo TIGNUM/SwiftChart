@@ -237,10 +237,10 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         }
         var headline = teamVision?.headline
         if headline?.isEmpty != false {
-            headline = interactor.emptyTeamTBVTitlePlaceholder
+            headline = interactor.teamNullStateTitle
         }
         ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
-        let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.emptyTeamTBVTextPlaceholder
+        let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.teamNullStateSubtitle
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
         tempTeamImageURL = teamVision?.profileImageResource?.url()
         userImageView.contentMode = tempTeamImageURL == nil ? .center : .scaleAspectFill

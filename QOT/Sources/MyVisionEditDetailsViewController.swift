@@ -167,7 +167,7 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
 
             return
         }
-        guard let teamVision = interactor?.teamVision else {
+        guard !descriptionTextView.text.isEmpty, let teamVision = interactor?.teamVision else {
             TeamService.main.createTeamToBeVision(headline: "",
                                                   subHeadline: "",
                                                   text: "",
