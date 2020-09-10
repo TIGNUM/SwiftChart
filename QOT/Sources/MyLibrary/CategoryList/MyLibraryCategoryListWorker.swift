@@ -48,7 +48,7 @@ final class MyLibraryCategoryListWorker {
         dispatchGroup.notify(queue: .main) {
             let isTeam = (team != nil)
             var userStorages = [MyLibraryCategoryListModel]()
-            let removedDuplications = isTeam ? self.removeDuplicates(from: storages ?? []) : storages ?? []
+            let removedDuplications = isTeam ? storages ?? [] : self.removeDuplicates(from: storages ?? [])
             let sorted = removedDuplications.sorted(by: { (first, second) -> Bool in
                 first.modifiedAt?.timeIntervalSince1970 ?? 0 > second.modifiedAt?.timeIntervalSince1970 ?? 0
             })
