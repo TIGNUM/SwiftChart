@@ -157,7 +157,7 @@
                                     <outlet property="delegate" destination="yfg-Pb-uhD" id="FRO-d8-fRD"/>
                                 </connections>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightGradient" translatesAutoresizingMaskIntoConstraints="NO" id="FgR-1s-pLJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightGrAdient" translatesAutoresizingMaskIntoConstraints="NO" id="FgR-1s-pLJ">
                                 <rect key="frame" x="0.0" y="762" width="414" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -204,6 +204,6 @@
     <resources>
         <image name="ic_radio_selected" width="32" height="32"/>
         <image name="ic_radio_unselected" width="32" height="32"/>
-        <image name="lightGradient" width="375" height="153"/>
+        <image name="lightGrAdient" width="375" height="153"/>
     </resources>
 </document>
