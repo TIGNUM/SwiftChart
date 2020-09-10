@@ -53,6 +53,7 @@ private extension MyXTeamMembersInteractor {
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
+            log("teamId: " + teamId, level: .debug)
             setHeaderItemSelected(teamId: teamId)
         }
     }

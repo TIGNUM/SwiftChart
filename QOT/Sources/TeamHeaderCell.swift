@@ -92,6 +92,7 @@ private extension TeamHeaderCell {
         if userInfo.keys.contains(Team.KeyTeamId), let teamId = userInfo[Team.KeyTeamId] {
             itemSelected = self.teamId == teamId && !itemSelected
             setSelected(itemSelected)
+            log("teamId: " + teamId, level: .debug)
         }
         if itemSelected && userInfo.keys.contains(Team.KeyColor), let teamColor = userInfo[Team.KeyColor] {
             hexColorString = teamColor

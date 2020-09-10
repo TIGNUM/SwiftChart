@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class HorizontalHeaderView: UIView {
 
@@ -39,6 +40,7 @@ private extension HorizontalHeaderView {
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
+            log("teamId: " + teamId, level: .debug)
             for (index, item) in headerItems.enumerated() where item.teamId == teamId {
                 scrollToItem(index: index)
                 return

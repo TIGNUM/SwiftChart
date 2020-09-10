@@ -67,7 +67,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        interactor.removeObserver()
+        reload()
     }
 }
 
