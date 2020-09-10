@@ -50,10 +50,6 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
         return currentPage
     }
 
-    lazy var pageTitle: String? = {
-        return AppTextService.get(.know_section_header_title)
-    }()
-
     lazy var knowingNavigationController: KnowingNavigationController? = {
         let navController = R.storyboard.main().instantiateViewController(withIdentifier: KnowingNavigationController.storyboardID) as? KnowingNavigationController
         guard let knowingViewController = navController?.viewControllers.first  as? KnowingViewController else {
@@ -264,27 +260,24 @@ extension CoachCollectionViewController: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath)
         cell.layoutIfNeeded()
-        guard let section = Page(rawValue: indexPath.row) else {
+        guard let page = Page(rawValue: indexPath.row) else {
             assertionFailure()
             return UICollectionViewCell()
         }
-        switch section {
+        switch page {
         case .know:
             if let knowingNavigationController = knowingNavigationController {
                 display(contentController: knowingNavigationController, cell: cell)
-                currentPage = .know
             }
             return cell
         case .dailyBrief:
             if let dailyBriefNavigationController = dailyBriefNavigationController {
                 display(contentController: dailyBriefNavigationController, cell: cell)
-                currentPage = .dailyBrief
             }
             return cell
         case .myX:
             if let myQotNavigationController = myQotNavigationController {
                 display(contentController: myQotNavigationController, cell: cell)
-                currentPage = .myX
             }
             return cell
         }
@@ -345,7 +338,6 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
 
 // MARK: - Private methods
 private extension CoachCollectionViewController {
-
     func moveToCell(item: Int, animated: Bool) {
         collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .centeredHorizontally, animated: animated)
     }
@@ -353,7 +345,6 @@ private extension CoachCollectionViewController {
 
 // MARK: - UIGestureRecognizerDelegate
 extension CoachCollectionViewController {
-
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                     shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
@@ -374,5 +365,29 @@ extension CoachCollectionViewController {
             return nil
         }
         return super.bottomNavigationRightBarItems()
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension CoachCollectionViewController: UIScrollViewDelegate {
+    func getCurrentIndexPath() -> IndexPath {
+        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        switch getCurrentIndexPath().item {
+        case 0:
+            currentPage = .know
+            log("currentPage: \(currentPage)", level: .debug)
+        case 1:
+            currentPage = .dailyBrief
+            log("currentPage: \(currentPage)", level: .debug)
+        case 2:
+            currentPage = .myX
+            log("currentPage: \(currentPage)", level: .debug)
+        default: return
+        }
     }
 }
