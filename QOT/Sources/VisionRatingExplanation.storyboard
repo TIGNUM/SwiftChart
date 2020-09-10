@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="56" translatesAutoresizingMaskIntoConstraints="NO" id="v7n-DW-0dZ">
-                                <rect key="frame" x="0.0" y="285" width="414" height="156"/>
+                                <rect key="frame" x="0.0" y="285" width="414" height="162"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xD7-SA-2Cb">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
@@ -103,34 +103,35 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iy2-aX-baP">
-                                        <rect key="frame" x="0.0" y="136" width="414" height="20"/>
+                                        <rect key="frame" x="0.0" y="136" width="414" height="26"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-xL-iqZ">
-                                                <rect key="frame" x="348" y="0.0" width="42" height="20"/>
+                                                <rect key="frame" x="348" y="0.0" width="42" height="26"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nb-g4-r8Q">
-                                                <rect key="frame" x="320" y="0.0" width="20" height="20"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKU-xu-bFb">
+                                                <rect key="frame" x="318" y="3" width="20" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="CmX-jE-UCl"/>
-                                                    <constraint firstAttribute="width" constant="20" id="xNr-2N-THD"/>
+                                                    <constraint firstAttribute="height" constant="20" id="7sb-5N-Ld2"/>
+                                                    <constraint firstAttribute="width" constant="20" id="bKO-JS-xUG"/>
                                                 </constraints>
-                                                <state key="selected" image="checkmark_explainer"/>
+                                                <state key="selected" image="registration_checkmark"/>
                                                 <connections>
-                                                    <action selector="buttonChecked:" destination="uqk-NS-WIT" eventType="touchUpInside" id="SYZ-VP-7uh"/>
+                                                    <action selector="buttonChecked:" destination="uqk-NS-WIT" eventType="touchUpInside" id="8UY-sS-Sl0"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="2nb-g4-r8Q" firstAttribute="centerY" secondItem="6fb-xL-iqZ" secondAttribute="centerY" id="EnZ-Sk-TQ7"/>
-                                            <constraint firstAttribute="height" constant="20" id="FVa-F6-8uA"/>
+                                            <constraint firstItem="eKU-xu-bFb" firstAttribute="centerY" secondItem="6fb-xL-iqZ" secondAttribute="centerY" id="2AN-bX-ltU"/>
+                                            <constraint firstAttribute="height" constant="26" id="FVa-F6-8uA"/>
                                             <constraint firstAttribute="trailing" secondItem="6fb-xL-iqZ" secondAttribute="trailing" constant="24" id="HAu-cp-4zj"/>
                                             <constraint firstItem="6fb-xL-iqZ" firstAttribute="top" secondItem="iy2-aX-baP" secondAttribute="top" id="MUb-Dl-8Dv"/>
+                                            <constraint firstItem="6fb-xL-iqZ" firstAttribute="leading" secondItem="eKU-xu-bFb" secondAttribute="trailing" constant="10" id="Tb5-Z2-A0d"/>
                                             <constraint firstAttribute="bottom" secondItem="6fb-xL-iqZ" secondAttribute="bottom" id="sOc-8b-Azb"/>
-                                            <constraint firstItem="6fb-xL-iqZ" firstAttribute="leading" secondItem="2nb-g4-r8Q" secondAttribute="trailing" constant="8" id="zdg-U1-GeS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -156,13 +157,14 @@
                         <viewLayoutGuide key="safeArea" id="Ai0-eR-Lul"/>
                     </view>
                     <connections>
-                        <outlet property="checkButton" destination="2nb-g4-r8Q" id="zEg-Yv-97L"/>
+                        <outlet property="checkButton" destination="eKU-xu-bFb" id="iOW-IM-iFa"/>
                         <outlet property="checkMarkView" destination="iy2-aX-baP" id="AkH-3g-wsq"/>
                         <outlet property="checkmarkLabel" destination="6fb-xL-iqZ" id="tmm-2i-wfO"/>
                         <outlet property="playIconBackgroundView" destination="g5p-72-3G8" id="sZE-ee-w51"/>
                         <outlet property="textLabel" destination="Df3-YA-u4i" id="u0o-7V-ygH"/>
                         <outlet property="titleLabel" destination="3mT-FJ-dXm" id="WhH-cI-p6w"/>
                         <outlet property="videoDescriptionLabel" destination="Fsu-oD-KcD" id="xou-sy-N9E"/>
+                        <outlet property="videoImageView" destination="nTL-UG-kiK" id="z5u-eA-R2b"/>
                         <outlet property="videoTitleLabel" destination="mor-ze-gSr" id="jJe-qR-Gmz"/>
                         <outlet property="videoView" destination="xD7-SA-2Cb" id="p9W-Cm-Yq7"/>
                     </connections>
@@ -173,8 +175,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark_explainer" width="5" height="4"/>
         <image name="ic_camera_sand" width="17" height="10"/>
         <image name="ic_play_sand_hollow" width="16" height="16"/>
+        <image name="registration_checkmark" width="16" height="13"/>
     </resources>
 </document>

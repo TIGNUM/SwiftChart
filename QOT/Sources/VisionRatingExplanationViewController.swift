@@ -15,7 +15,6 @@ final class VisionRatingExplanationViewController: UIViewController {
     var interactor: VisionRatingExplanationInteractorInterface!
     @IBOutlet private weak var checkMarkView: UIView!
     @IBOutlet private weak var checkmarkLabel: UILabel!
-    @IBOutlet private weak var checkButton: UIButton!
     private lazy var router: VisionRatingExplanationRouterInterface = VisionRatingExplanationRouter(viewController: self)
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
@@ -23,8 +22,10 @@ final class VisionRatingExplanationViewController: UIViewController {
     @IBOutlet private weak var videoTitleLabel: UILabel!
     @IBOutlet private weak var videoDescriptionLabel: UILabel!
     @IBOutlet private weak var playIconBackgroundView: UIView!
+    @IBOutlet private weak var videoImageView: UIImageView!
     private var rightBarButtonTitle = ""
     private var rightBarButtonAction = #selector(startRating)
+    @IBOutlet weak var checkButton: UIButton!
     let skeletonManager = SkeletonManager()
 
     // MARK: - Init
@@ -55,13 +56,14 @@ final class VisionRatingExplanationViewController: UIViewController {
     @IBAction func buttonChecked(_ sender: Any) {
         checkButton.isSelected.toggle()
         checkButton.backgroundColor = checkButton.isSelected ? .accent70 : .clear
-//        TODO option to send notification to all members
+        //        TODO option to send notification to all members
     }
+
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
         return [roundedBarButtonItem(title: rightBarButtonTitle,
-                                     buttonWidth: .Default,
+                                     buttonWidth: .Cancel,
                                      action: rightBarButtonAction,
-                                     backgroundColor: .carbon,
+                                     backgroundColor: .clear,
                                      borderColor: .accent40)]
     }
 }
@@ -82,33 +84,38 @@ extension VisionRatingExplanationViewController {
 extension VisionRatingExplanationViewController: VisionRatingExplanationViewControllerInterface {
 
     func setupView(type: Explanation.Types) {
-        checkMarkView.alpha = 0
+        checkButton.layer.borderWidth = 1
+        checkButton.layer.borderColor = UIColor.accent.cgColor
+        checkButton.corner(radius: 2)
         playIconBackgroundView.circle()
-        checkButton.setImage(R.image.registration_checkmark(), for: .selected)
-        checkButton.corner(radius: 2, borderColor: .accent)
         ThemeText.ratingExplanationText.apply(AppTextService.get(.my_x_team_tbv_section_feature_explanation_checkmark), to: checkmarkLabel)
         updateBottomNavigation([createBlackCloseButton(#selector(didTapBackButton))], bottomNavigationRightBarItems())
         switch type {
         case .ratingOwner, .tbvPollOwner:
-            checkMarkView.alpha = 1
+            checkMarkView.isHidden = false
         default:
-            break
+            checkMarkView.isHidden = true
         }
         skeletonManager.hide()
     }
 
     func setupLabels(title: String, text: String, videoTitle: String) {
-        ThemeText.ratingExplanationTitle.apply(title, to: titleLabel)
+        ThemeText.ratingExplanationTitle.apply(title.uppercased(), to: titleLabel)
         let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team?.name ?? "").uppercased())
         ThemeText.ratingExplanationText.apply(adaptedText, to: textLabel)
         ThemeText.ratingExplanationVideoTitle.apply(videoTitle, to: videoTitleLabel)
+
     }
 
     func setupVideo(thumbNailURL: URL?, placeholder: UIImage?, videoURL: URL?, duration: String) {
-        guard videoURL != nil else {
+        if videoURL == nil {
             videoView.isHidden = true
-            return
         }
+        videoImageView.setImage(url: thumbNailURL, skeletonManager: self.skeletonManager) { (_) in /* */}
+        videoDescriptionLabel.text = duration
+        let videoTap = UITapGestureRecognizer(target: videoView, action: #selector(videoTapped(_:)))
+        videoView.isUserInteractionEnabled = true
+        videoView.addGestureRecognizer(videoTap)
     }
 
     func setupRightBarButtonItem(title: String, type: Explanation.Types) {
@@ -117,6 +124,10 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
         case .ratingUser, .ratingOwner: rightBarButtonAction = #selector(startRating)
         case .tbvPollOwner, .tbvPollUser: rightBarButtonAction = #selector(startTBVGenerator)
         }
+    }
+
+    @objc func videoTapped(_ sender: UITapGestureRecognizer) {
+        print("videoTapped")
     }
 }
 
