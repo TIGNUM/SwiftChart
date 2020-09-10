@@ -140,6 +140,7 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
                     }
                 }
                 self?.presenter.presentErrorAlert(title, subtitle)
+                self?.type = .create
                 return
             }
             self?.team = team

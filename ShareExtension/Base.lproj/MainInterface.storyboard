@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ub3-Ni-sD8">
-                                <rect key="frame" x="0.0" y="44" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="788"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConfirmationViewCell" id="DJ6-x0-1N4" userLabel="ConfirmationViewCell" customClass="ConfirmationViewCell" customModule="ShareExtension" customModuleProvider="target">
@@ -157,8 +157,16 @@
                                     <outlet property="delegate" destination="yfg-Pb-uhD" id="FRO-d8-fRD"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightGradient" translatesAutoresizingMaskIntoConstraints="NO" id="FgR-1s-pLJ">
+                                <rect key="frame" x="0.0" y="762" width="414" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="YQj-8G-Zr5"/>
+                                </constraints>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBq-KJ-BOY">
-                                <rect key="frame" x="334" y="784" width="56" height="38"/>
+                                <rect key="frame" x="334" y="796" width="56" height="38"/>
+                                <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="14" minY="10" maxX="14" maxY="10"/>
                                 <state key="normal" title="Add">
                                     <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -170,12 +178,15 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ub3-Ni-sD8" firstAttribute="bottom" secondItem="4bH-06-o9a" secondAttribute="bottom" constant="-30" id="1Io-wd-fNh"/>
                             <constraint firstItem="ub3-Ni-sD8" firstAttribute="leading" secondItem="4bH-06-o9a" secondAttribute="leading" id="1er-Ce-kLk"/>
-                            <constraint firstItem="4bH-06-o9a" firstAttribute="bottom" secondItem="aBq-KJ-BOY" secondAttribute="bottom" constant="40" id="4zp-cD-Xw2"/>
+                            <constraint firstAttribute="trailing" secondItem="FgR-1s-pLJ" secondAttribute="trailing" id="KrJ-YX-Jgv"/>
                             <constraint firstItem="ub3-Ni-sD8" firstAttribute="top" secondItem="4bH-06-o9a" secondAttribute="top" id="Lao-vG-VAd"/>
-                            <constraint firstItem="aBq-KJ-BOY" firstAttribute="top" secondItem="ub3-Ni-sD8" secondAttribute="bottom" constant="24" id="QvN-mP-4QY"/>
-                            <constraint firstItem="4bH-06-o9a" firstAttribute="trailing" secondItem="aBq-KJ-BOY" secondAttribute="trailing" constant="24" id="jwt-yk-ruz"/>
+                            <constraint firstItem="FgR-1s-pLJ" firstAttribute="bottom" secondItem="4bH-06-o9a" secondAttribute="bottom" constant="-30" id="fzs-wK-63Q"/>
+                            <constraint firstItem="4bH-06-o9a" firstAttribute="bottom" secondItem="aBq-KJ-BOY" secondAttribute="bottom" constant="28" id="qrQ-QE-GIr"/>
                             <constraint firstItem="4bH-06-o9a" firstAttribute="trailing" secondItem="ub3-Ni-sD8" secondAttribute="trailing" id="qvM-Ae-lEG"/>
+                            <constraint firstItem="FgR-1s-pLJ" firstAttribute="leading" secondItem="SZe-Qh-Y3l" secondAttribute="leading" id="sQA-FG-yKs"/>
+                            <constraint firstItem="4bH-06-o9a" firstAttribute="trailing" secondItem="aBq-KJ-BOY" secondAttribute="trailing" constant="24" id="u32-Q1-NHf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4bH-06-o9a"/>
                     </view>
@@ -193,5 +204,6 @@
     <resources>
         <image name="ic_radio_selected" width="32" height="32"/>
         <image name="ic_radio_unselected" width="32" height="32"/>
+        <image name="lightGradient" width="375" height="153"/>
     </resources>
 </document>
