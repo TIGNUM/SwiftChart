@@ -22,19 +22,18 @@ protocol CoachCollectionViewControllerDelegate: class {
 
 final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
 
-    enum Pages: Int, CaseIterable {
+    enum Page: Int, CaseIterable {
         case know = 0
         case dailyBrief
-        case myQot
+        case myX
     }
 
     // MARK: - Properties
-
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var coachButton: UIButton!
     private var bottomSearchViewConstraint: NSLayoutConstraint!
     private var heightSearchViewConstraint: NSLayoutConstraint!
-    private var preSelectedItem: Pages? = .dailyBrief
+    private var preSelectedItem: Page? = .dailyBrief
     private var panActive = false
     private var panSearchShowing: Bool = false {
         didSet {
@@ -45,6 +44,11 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     private var didDownSyncEvents = false
     private var displaySearchDragOffset: CGFloat = 88.0
     private var displaySearchWithDecelerating: Bool = false
+    private var currentPage = Page.dailyBrief
+
+    func getCurrentPage() -> Page {
+        return currentPage
+    }
 
     lazy var pageTitle: String? = {
         return AppTextService.get(.know_section_header_title)
@@ -84,7 +88,6 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     }()
 
     // MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeView.level1.apply(view)
@@ -153,10 +156,9 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
 }
 
 // MARK: - Notification
-
 extension CoachCollectionViewController {
     @objc func didGetScreenChangeNotification(_ notification: Notification) {
-        guard let page = notification.object as? Pages else { return }
+        guard let page = notification.object as? Page else { return }
         moveToCell(item: page.rawValue)
     }
 
@@ -179,7 +181,6 @@ extension CoachCollectionViewController {
 }
 
 // MARK: - Coach button
-
 extension CoachCollectionViewController {
     @IBAction func showCoachScreen() {
         guard let coachViewController = R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier) as? CoachViewController else {
@@ -197,9 +198,7 @@ extension CoachCollectionViewController {
 }
 
 // MARK: - handlepan
-
 extension CoachCollectionViewController {
-
     private func updatePan(currentY: CGFloat, isDragging: Bool) {
         let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
         bottomSearchViewConstraint.constant = panActive ? -currentY : -currentViewsYPositionInWindow
@@ -257,7 +256,6 @@ extension CoachCollectionViewController {
 }
 
 // MARK: - UICollectionViewControllerDataSource, UICollectionViewControllerDelegate
-
 extension CoachCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -266,7 +264,7 @@ extension CoachCollectionViewController: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath)
         cell.layoutIfNeeded()
-        guard let section = Pages(rawValue: indexPath.row) else {
+        guard let section = Page(rawValue: indexPath.row) else {
             assertionFailure()
             return UICollectionViewCell()
         }
@@ -274,16 +272,19 @@ extension CoachCollectionViewController: UICollectionViewDataSource, UICollectio
         case .know:
             if let knowingNavigationController = knowingNavigationController {
                 display(contentController: knowingNavigationController, cell: cell)
+                currentPage = .know
             }
             return cell
         case .dailyBrief:
             if let dailyBriefNavigationController = dailyBriefNavigationController {
                 display(contentController: dailyBriefNavigationController, cell: cell)
+                currentPage = .dailyBrief
             }
             return cell
-        case .myQot:
+        case .myX:
             if let myQotNavigationController = myQotNavigationController {
                 display(contentController: myQotNavigationController, cell: cell)
+                currentPage = .myX
             }
             return cell
         }
@@ -302,9 +303,7 @@ extension CoachCollectionViewController: UICollectionViewDataSource, UICollectio
 }
 
 // MARK: - CoachCollectionViewControllerDelegate
-
 extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
-
     func didTapCancel() {
         panSearchShowing = false
         if let searchViewController = searchViewController {
@@ -345,7 +344,6 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
 }
 
 // MARK: - Private methods
-
 private extension CoachCollectionViewController {
 
     func moveToCell(item: Int, animated: Bool) {
@@ -354,7 +352,6 @@ private extension CoachCollectionViewController {
 }
 
 // MARK: - UIGestureRecognizerDelegate
-
 extension CoachCollectionViewController {
 
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,

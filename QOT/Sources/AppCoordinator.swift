@@ -111,7 +111,7 @@ final class AppCoordinator {
         // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
     }
 
-    func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
+    func showApp(with displayedScreen: CoachCollectionViewController.Page? = .dailyBrief) {
         ExtensionsDataManager.didUserLogIn(true)
         ExtensionsDataManager().update(.toBeVision)
         ExtensionsDataManager().update(.teams)

@@ -230,10 +230,13 @@ private extension MyQotMainInteractor {
     }
 
     @objc func checkSelection(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[Team.KeyTeamId] {
-            log("teamId: " + teamId, level: .debug)
-            updateSelectedTeam(teamId: teamId)
+        let controller = AppDelegate.topViewController()?.QOTVisibleViewController() as? CoachCollectionViewController
+        if controller?.getCurrentPage() == .myX {
+            guard let userInfo = notification.userInfo as? [String: String] else { return }
+            if let teamId = userInfo[Team.KeyTeamId] {
+                log("teamId: " + teamId, level: .debug)
+                updateSelectedTeam(teamId: teamId)
+            }
         }
     }
 
