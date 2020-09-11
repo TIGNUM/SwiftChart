@@ -50,9 +50,10 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        log("🔅🔅🔆🔮🔮", level: .debug)
         setStatusBar(color: .carbon)
         interactor.addObserver()
-        collectionView.reloadData()
+        reload()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -98,31 +99,20 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
-        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
             collectionView.deleteItems(at: indexPath)
-        }, completion: { (done) in
-            updateIndexPath.forEach { self.updadateCell(for: $0) }
-            self.teamHeader?.setUserInteraction(true)
         })
     }
 
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
-        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: indexPath)
-        }, completion: { (done) in
-            updateIndexPath.forEach { self.updadateCell(for: $0) }
-            self.teamHeader?.setUserInteraction(true)
         })
     }
 
     func reloadMainItems(updateIndexPath: [IndexPath]) {
-        teamHeader?.setUserInteraction(false)
         collectionView.performBatchUpdates({
             collectionView.reloadItems(at: updateIndexPath)
-        }, completion: { _ in
-            self.teamHeader?.setUserInteraction(true)
         })
     }
 
@@ -148,6 +138,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
             cell.configure(headerItems: items)
         }
         return cell
+
     }
 
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {

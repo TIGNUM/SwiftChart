@@ -134,8 +134,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func handleSelection(at indexPath: IndexPath) {
         switch MyX.Item.items(selectedTeamItem != nil).at(index: indexPath.row) {
         case .teamCreate:
-            clearTeamItems()
             router.presentEditTeam(.create, team: nil)
+            clearTeamItems()
         case .library:
             router.presentMyLibrary(with: selectedTeamItem?.qdmTeam)
         case .preps:
@@ -151,13 +151,13 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     @objc func presentTeamPendingInvites() {
-        clearTeamItems()
         router.presentTeamPendingInvites()
+        clearTeamItems()
     }
 
     func presentMyProfile() {
-        clearTeamItems()
         router.presentMyProfile()
+        clearTeamItems()
     }
 
     func addObserver() {
@@ -261,6 +261,7 @@ private extension MyQotMainInteractor {
     }
 
     func clearTeamItems() {
+        log("👨‍👨‍👦‍👦↗️➡️↘️🗑", level: .debug)
         if selectedTeamItem != nil && selectedTeamItem?.header == .team {
             NotificationCenter.default.post(name: .didSelectTeam,
                                             object: nil,

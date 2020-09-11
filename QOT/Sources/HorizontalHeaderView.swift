@@ -17,6 +17,7 @@ final class HorizontalHeaderView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        log("⏰💤", level: .debug)
         collectionView.registerDequeueable(TeamHeaderCell.self)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
@@ -29,11 +30,6 @@ final class HorizontalHeaderView: UIView {
         self.canDeselect = canDeselect
         collectionView.reloadData()
         centerSelectedItem()
-    }
-
-    func setUserInteraction(_ enabled: Bool) {
-        log("enabled: \(enabled)", level: .debug)
-        collectionView.visibleCells.forEach { $0.isUserInteractionEnabled = enabled }
     }
 }
 
