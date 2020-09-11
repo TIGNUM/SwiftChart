@@ -537,14 +537,6 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: - ClickableLabelDelegate
-extension ArticleViewController: ClickableLabelDelegate {
-    func openLink(withURL url: URL) {
-        interactor.didTapLink(url)
-        trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .LINK, action: .TAP)
-    }
-}
-
 // MARK: - UIScrollViewDelegate
 extension ArticleViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
