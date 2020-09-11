@@ -380,13 +380,10 @@ extension CoachCollectionViewController: UIScrollViewDelegate {
         switch getCurrentIndexPath().item {
         case 0:
             currentPage = .know
-            log("currentPage: \(currentPage)", level: .debug)
         case 1:
             currentPage = .dailyBrief
-            log("currentPage: \(currentPage)", level: .debug)
         case 2:
             currentPage = .myX
-            log("currentPage: \(currentPage)", level: .debug)
         default: return
         }
     }

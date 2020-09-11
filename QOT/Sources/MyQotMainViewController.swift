@@ -105,7 +105,6 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
             updateIndexPath.forEach { self.updadateCell(for: $0) }
             self.teamHeader?.setUserInteraction(true)
         })
-
     }
 
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {

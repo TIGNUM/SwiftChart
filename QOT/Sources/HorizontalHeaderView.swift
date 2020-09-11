@@ -32,6 +32,7 @@ final class HorizontalHeaderView: UIView {
     }
 
     func setUserInteraction(_ enabled: Bool) {
+        log("enabled: \(enabled)", level: .debug)
         collectionView.visibleCells.forEach { $0.isUserInteractionEnabled = enabled }
     }
 }
