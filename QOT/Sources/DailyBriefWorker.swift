@@ -37,7 +37,7 @@ final class DailyBriefWorker: WorkerTeam {
             if let error = error {
                 log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
             }
-            if let bucketsList = buckets {
+            if let bucketsList = buckets?.sorted(by: { $0.sortOrder < $1.sortOrder }) {
                 completion(bucketsList)
             }
         })

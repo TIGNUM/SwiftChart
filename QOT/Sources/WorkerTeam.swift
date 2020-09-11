@@ -315,7 +315,7 @@ private extension WorkerTeam {
                                _ completion: @escaping ([Team.Item]) -> Void) {
         var teamHeaderItems = [Team.Item]()
         if !invites.isEmpty {
-            teamHeaderItems.append(Team.Item(invites: invites))
+            teamHeaderItems.append(Team.Item(invites: invites, invites.count))
         }
         teamHeaderItems.append(contentsOf: teams.compactMap { (team) -> Team.Item in
             return Team.Item(qdmTeam: team)
