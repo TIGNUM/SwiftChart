@@ -26,7 +26,7 @@ final class VisionRatingExplanationViewController: UIViewController {
     private var videoID: Int?
     private var rightBarButtonTitle = ""
     private var rightBarButtonAction = #selector(startRating)
-    @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet private weak var checkButton: UIButton!
     let skeletonManager = SkeletonManager()
 
     // MARK: - Init
@@ -119,9 +119,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
     }
 
     func setupVideo(thumbNailURL: URL?, placeholder: UIImage?, videoURL: URL?, duration: String, remoteID: Int) {
-        if videoURL == nil {
-            videoView.isHidden = true
-        }
+        videoView.isHidden = videoURL == nil
         self.videoID = remoteID
         videoImageView.setImage(url: thumbNailURL, skeletonManager: self.skeletonManager) { (_) in /* */}
         videoDescriptionLabel.text = duration
