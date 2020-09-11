@@ -30,7 +30,8 @@ extension VisionRatingExplanationPresenter: VisionRatingExplanationPresenterInte
         viewController?.setupVideo(thumbNailURL: URL(string: videoItem?.valueImageURL ?? ""),
                                    placeholder: R.image.preloading(),
                                    videoURL: URL(string: videoItem?.valueMediaURL ?? ""),
-                                   duration: videoItem?.durationString ?? "")
+                                   duration: videoItem?.durationString ?? "",
+                                   remoteID: videoItem?.remoteID ?? 0)
         viewController?.setupView(type: type)
     }
 }

@@ -16,12 +16,10 @@ final class VisionRatingExplanationWorker: WorkerTeam {
 
     func getVideoItem(type: Explanation.Types, _ completion: @escaping (QDMContentItem?) -> Void) {
         switch type {
-        case .ratingOwner:
+        case .ratingOwner, .ratingUser:
             ContentService.main.getContentItemById(110114, completion)
-        case .tbvPollOwner:
+        case .tbvPollOwner, .tbvPollUser:
             ContentService.main.getContentItemById(110113, completion)
-        default:
-            ContentService.main.getContentItemById(0, completion)
         }
     }
 }
