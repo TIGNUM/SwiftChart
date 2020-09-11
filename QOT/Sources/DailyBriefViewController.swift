@@ -292,6 +292,9 @@ extension DailyBriefViewController {
         case .TEAM_NEWS_FEED:
             guard let viewModel = bucketItem as? TeamNewsFeedDailyBriefViewModel else { break }
             handleTableViewRowSelection(with: viewModel, at: indexPath)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.setSelected(false, animated: true)
+            }
         default:
             break
         }

@@ -19,6 +19,8 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
 
+    private var isFirstAppear = true
+
     // MARK: - Init
 
     init(configure: Configurator<MyLibraryCategoryListViewController>) {
@@ -32,9 +34,17 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
         configurator(self)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !isFirstAppear {
+            interactor?.reload()
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+        isFirstAppear = false
     }
 
     override func viewDidLoad() {

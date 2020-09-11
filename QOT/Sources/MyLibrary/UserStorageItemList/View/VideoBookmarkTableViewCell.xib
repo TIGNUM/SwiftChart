@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -78,17 +78,6 @@
                         </constraints>
                         <state key="normal" image="ic_play_video"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRu-y7-ZPg">
-                        <rect key="frame" x="24" y="15" width="18" height="18"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.36862745099999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="18" id="IPm-Iq-God"/>
-                            <constraint firstAttribute="width" constant="18" id="R6j-h8-VH7"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -100,7 +89,6 @@
                     <constraint firstItem="VXZ-V5-jA1" firstAttribute="top" secondItem="lTG-Hr-5QQ" secondAttribute="bottom" constant="27" id="FYr-At-V89"/>
                     <constraint firstItem="8RV-dn-Oge" firstAttribute="top" secondItem="ZfO-d7-ckm" secondAttribute="top" constant="24" id="FcZ-kt-spB"/>
                     <constraint firstItem="8RV-dn-Oge" firstAttribute="leading" secondItem="ZfO-d7-ckm" secondAttribute="leading" constant="24" id="Hdz-Ex-n06"/>
-                    <constraint firstItem="jRu-y7-ZPg" firstAttribute="centerY" secondItem="8RV-dn-Oge" secondAttribute="top" id="IMy-T6-Z06"/>
                     <constraint firstItem="MxJ-IB-hLG" firstAttribute="centerX" secondItem="4VF-4m-ANQ" secondAttribute="centerX" id="Lzg-ed-yU1"/>
                     <constraint firstItem="lTG-Hr-5QQ" firstAttribute="leading" secondItem="8RV-dn-Oge" secondAttribute="leading" id="M3N-ef-x8m"/>
                     <constraint firstItem="MxJ-IB-hLG" firstAttribute="centerY" secondItem="4VF-4m-ANQ" secondAttribute="centerY" id="PNu-Br-RT4"/>
@@ -113,7 +101,6 @@
                     <constraint firstAttribute="bottom" secondItem="VXZ-V5-jA1" secondAttribute="bottom" id="psE-Ib-oEQ"/>
                     <constraint firstItem="VXZ-V5-jA1" firstAttribute="leading" secondItem="ZfO-d7-ckm" secondAttribute="leading" constant="24" id="r0v-Um-ut2"/>
                     <constraint firstItem="4VF-4m-ANQ" firstAttribute="top" secondItem="ZfO-d7-ckm" secondAttribute="top" constant="24" id="s8X-QR-uZR"/>
-                    <constraint firstItem="jRu-y7-ZPg" firstAttribute="leading" secondItem="8RV-dn-Oge" secondAttribute="leading" id="ur4-f0-BGV"/>
                     <constraint firstItem="8RV-dn-Oge" firstAttribute="trailing" secondItem="4VF-4m-ANQ" secondAttribute="leading" constant="-5" id="xbg-qc-d22"/>
                 </constraints>
             </tableViewCellContentView>
@@ -130,8 +117,6 @@
                 <outlet property="infoText" destination="797-hI-XqB" id="ARW-2S-vt4"/>
                 <outlet property="playButton" destination="MxJ-IB-hLG" id="BPD-bO-Msj"/>
                 <outlet property="preview" destination="4VF-4m-ANQ" id="HIe-JR-02z"/>
-                <outlet property="redDotLabel" destination="jRu-y7-ZPg" id="6JV-5U-TDM"/>
-                <outlet property="redDotLeading" destination="ur4-f0-BGV" id="rgW-84-D4B"/>
                 <outlet property="updateInfoLabelHeight" destination="jlq-fk-1DZ" id="iWf-bN-HDv"/>
                 <outlet property="updateInfoLavel" destination="lTG-Hr-5QQ" id="C0e-0K-PkV"/>
             </connections>

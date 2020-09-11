@@ -826,6 +826,7 @@ enum ThemeText {
     case myLibraryGroupDescription
     case myLibraryItemsTitle
     case myLibraryItemsItemName
+    case myLibraryItemsItemNameGrey
     case myLibraryItemsItemDescription
 
     case paymentReminderHeaderTitle
@@ -959,7 +960,7 @@ enum ThemeText {
              .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .resultClosingText,
-             .myLibraryItemsItemName, .mySprintsCellTitle, .mySprintDetailsDescription,
+             .myLibraryItemsItemName, .myLibraryItemsItemNameGrey, .mySprintsCellTitle, .mySprintDetailsDescription,
              .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
              .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
              .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle, .suggestionMyBest,
@@ -1193,6 +1194,8 @@ enum ThemeText {
             return lowValue ? Palette.redOrange40 : Palette.sand40
         case .tbvTrackerRatingDigitsSelected(let lowValue):
             return lowValue ? Palette.redOrange : Palette.sand
+        case .myLibraryItemsItemNameGrey:
+            return Palette.sand70
         }
     }
 
@@ -1414,7 +1417,7 @@ enum ThemeText {
             string = NSAttributedString(string: text,
                                         letterSpacing: -0.18, font: self.font, lineSpacing: 7, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: nil)
-        case .myLibraryItemsItemName:
+        case .myLibraryItemsItemName, .myLibraryItemsItemNameGrey:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color,
                                         alignment: alignment ?? .left, lineBreakMode: .byTruncatingTail)
