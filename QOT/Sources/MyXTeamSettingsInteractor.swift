@@ -53,6 +53,7 @@ private extension MyXTeamSettingsInteractor {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
             updateSelectedTeam(teamId: teamId)
+            log("teamId: " + teamId, level: .debug)
         }
         if let teamColor = userInfo[Team.KeyColor] {
             updateSelectedTeam(teamColor: teamColor)

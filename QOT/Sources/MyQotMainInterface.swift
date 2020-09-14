@@ -41,7 +41,6 @@ protocol MyQotMainInteractorInterface: Interactor {
 
     func presentMyProfile()
     func addObserver()
-    func removeObserver()
 }
 
 protocol MyQotMainRouterInterface {

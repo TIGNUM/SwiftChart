@@ -109,5 +109,6 @@ extension UIViewController: ClickableLabelDelegate {
                 showAlert(type: .message(error.localizedDescription))
             }
         }
+        trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .LINK, action: .TAP)
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import DifferenceKit
+import qot_dal
 
 final class MyQotMainPresenter {
 
@@ -28,18 +29,22 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
     }
 
     func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        log("indexPath: \(indexPath)", level: .debug)
         viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath)
     }
 
     func reloadMainItems(updateIndexPath: [IndexPath]) {
+        log("updateIndexPath: \(updateIndexPath)", level: .debug)
         viewController?.reloadMainItems(updateIndexPath: updateIndexPath)
     }
 
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+        log("indexPath: \(indexPath)", level: .debug)
         viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath)
     }
 
     func reload() {
+        log("viewController?.reload()", level: .debug)
         viewController?.reload()
     }
 }
