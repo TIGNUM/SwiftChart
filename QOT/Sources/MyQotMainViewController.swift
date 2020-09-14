@@ -18,7 +18,6 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     // MARK: - Properties
     var interactor: MyQotMainInteractorInterface!
     weak var delegate: CoachCollectionViewControllerDelegate?
-//    private var indexPathDeselect: IndexPath?
     private var isDragging = false
     private var teamHeader: HorizontalHeaderView?
     @IBOutlet private weak var collectionView: UICollectionView!
