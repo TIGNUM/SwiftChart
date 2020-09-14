@@ -14,6 +14,7 @@ final class HorizontalHeaderView: UIView {
     @IBOutlet private weak var collectionView: UICollectionView!
     private var headerItems = [Team.Item]()
     private var canDeselect = true
+    static var selectedTeamId = ""
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,11 +38,13 @@ private extension HorizontalHeaderView {
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
-            log("teamId: " + teamId, level: .debug)
+            HorizontalHeaderView.selectedTeamId = teamId == HorizontalHeaderView.selectedTeamId ? "" : teamId
             for (index, item) in headerItems.enumerated() where item.teamId == teamId {
                 scrollToItem(index: index)
-                return
+                break
             }
+            log("Team.selectedTeamId: ➡️➡️➡️➡️➡️➡️✅" + HorizontalHeaderView.selectedTeamId, level: .debug)
+            log("userInfo.teamId: ➡️➡️➡️➡️➡️➡️✅" + teamId, level: .debug)
         }
     }
 
@@ -53,6 +56,7 @@ private extension HorizontalHeaderView {
     }
 
     func scrollToItem(index: Int) {
+        guard collectionView.contentSize.width > collectionView.frame.size.width else { return }
         collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
                                     at: .centeredHorizontally,
                                     animated: true)
