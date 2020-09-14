@@ -18,7 +18,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     // MARK: - Properties
     var interactor: MyQotMainInteractorInterface!
     weak var delegate: CoachCollectionViewControllerDelegate?
-    private var indexPathDeselect: IndexPath?
+//    private var indexPathDeselect: IndexPath?
     private var isDragging = false
     private var teamHeader: HorizontalHeaderView?
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -53,22 +53,12 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         log("🔅🔅🔆🔮🔮", level: .debug)
         setStatusBar(color: .carbon)
         interactor.addObserver()
-        reload()
+        interactor.viewWillAppear()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
-
-        if let indexPath = indexPathDeselect {
-            collectionView.deselectItem(at: indexPath, animated: true)
-            indexPathDeselect = nil
-        }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        reload()
     }
 }
 
@@ -102,7 +92,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         collectionView.performBatchUpdates({
             collectionView.deleteItems(at: indexPath)
         }, completion: { (done) in
-            self.collectionView.reloadData()
+            self.reload()
         })
     }
 
@@ -110,7 +100,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: indexPath)
         }, completion: { (done) in
-            self.collectionView.reloadData()
+            self.reload()
         })
     }
 
@@ -183,7 +173,6 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch MyX.Section.allCases[indexPath.section] {
         case .items:
-            indexPathDeselect = indexPath
             interactor.handleSelection(at: indexPath)
         default:
             break

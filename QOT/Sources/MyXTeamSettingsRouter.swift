@@ -36,11 +36,11 @@ extension MyXTeamSettingsRouter: MyXTeamSettingsRouterInterface {
         }
     }
 
-    func presentTeamMembers(selectedTeamItem: Team.Item?, teamItems: [Team.Item]) {
+    func presentTeamMembers() {
         let identifier = R.storyboard.myQot.myXTeamMembersViewController_ID.identifier
         let controller = R.storyboard.myQot().instantiateViewController(withIdentifier: identifier) as? MyXTeamMembersViewController
         if let controller = controller {
-            let configurator = MyXTeamMembersConfigurator.make(selectedTeamItem: selectedTeamItem, teamItems: teamItems)
+            let configurator = MyXTeamMembersConfigurator.make()
             configurator(controller)
             viewController?.show(controller, sender: nil)
         }
