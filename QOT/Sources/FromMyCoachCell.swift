@@ -30,7 +30,7 @@ final class FromMyCoachCell: BaseDailyBriefCell {
     private func formMessageView(isFirst: Bool, with data: FromMyCoachCellViewModel.FromMyCoachMessage) {
         guard let view = FromMyCoachMessageView.instantiateFromNib() else { return }
         view.isFirstView = isFirst
-        view.configure(with: data)
+        view.configure(with: data, clickableLinkDelegate: self.clickableLinkDelegate)
         stackView.addArrangedSubview(view)
     }
 

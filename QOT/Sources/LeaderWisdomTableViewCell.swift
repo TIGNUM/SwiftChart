@@ -42,6 +42,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
 
     func configure(with viewModel: LeaderWisdomCellViewModel?) {
         guard let model = viewModel else { return }
+        descriptionLabel.delegate = clickableLinkDelegate
         skeletonManager.hide()
 
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(),

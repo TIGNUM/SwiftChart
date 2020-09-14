@@ -24,6 +24,7 @@ final class GoodToKnowCell: BaseDailyBriefCell {
 
     func configure(with viewModel: GoodToKnowCellViewModel?) {
         guard let model = viewModel else { return }
+        goodToKnowFact.delegate = clickableLinkDelegate
         skeletonManager.hide()
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
         ThemeText.dailyBriefSubtitle.apply(model.fact, to: goodToKnowFact)

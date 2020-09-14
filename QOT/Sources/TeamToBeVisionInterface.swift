@@ -11,7 +11,7 @@ import qot_dal
 
 protocol TeamToBeVisionViewControllerInterface: class {
     func setupView()
-    func showNullState(with title: String, message: String, writeMessage: String)
+    func showNullState(with title: String, teamName: String?, message: String)
     func hideNullState()
     func setSelectionBarButtonItems()
     func load(_ teamVision: QDMTeamToBeVision?,
@@ -22,7 +22,7 @@ protocol TeamToBeVisionViewControllerInterface: class {
 
 protocol TeamToBeVisionPresenterInterface {
     func setupView()
-    func showNullState(with title: String, message: String, writeMessage: String)
+    func showNullState(with title: String, teamName: String?, message: String)
     func hideNullState()
     func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func setSelectionBarButtonItems()
@@ -34,7 +34,7 @@ protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
 
 protocol TeamToBeVisionInteractorInterface: Interactor {
     func showEditVision(isFromNullState: Bool)
-    func showNullState(with title: String, message: String, writeMessage: String)
+    func showNullState(with title: String, teamName: String?, message: String)
     func hideNullState()
     func isShareBlocked(_ completion: @escaping (Bool) -> Void)
     func viewWillAppear()
@@ -56,4 +56,5 @@ protocol TeamToBeVisionRouterInterface {
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
     func showRatingExplanation(team: QDMTeam?)
+    func showTbvPollEXplanation(team: QDMTeam?)
 }

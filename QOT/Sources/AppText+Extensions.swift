@@ -394,7 +394,6 @@ public extension AppTextKey {
     static let daily_brief_section_team_news_feed_creation_info = AppTextKey("daily_brief.section_team_news_feed.creation_info")
     static let daily_brief_section_team_news_feed_open_library_button_title = AppTextKey("daily_brief.section_team_news_feed.open_library_button_title")
     static let daily_brief_section_team_news_feed_library = AppTextKey("daily_brief.section_team_news_feed.library")
-    static let my_x_team_tbv_new_section_header_title = AppTextKey("my_x.team_tbv.new_section_header_title")
 
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
@@ -513,7 +512,6 @@ public extension AppTextKey {
     static let my_qot_section_team_library_subtitle_added_days_ago = AppTextKey("my_qot.section_team_library.subtitle_added_days_ago")
 
       // MARK: - Team ToBeVision
-
     static let my_x_team_tbv_not_created = AppTextKey("myX.teamTBV.not.created.title")
     static let my_x_team_tbv_section_update_subtitle = AppTextKey("my_x.team_tbv.section_update.subtitle")
     static let my_x_team_tbv_section_rating_button = AppTextKey("my_x.team_tbv_section.rating_button")
@@ -581,6 +579,17 @@ public extension AppTextKey {
     static let team_invite_error_add_myself = AppTextKey("team_edit.member_add.error_myself")
     static let team_invite_error_add_exisiting = AppTextKey("team_invite.error_add.exisiting")
     static let team_invite_content_info_reached_max = AppTextKey("team_invite.content_reached_max.info")
+
+    // MARK: - Team TBV
+    static let team_tbv_poll_title = AppTextKey("team-tbv.poll.title")
+    static let team_tbv_poll_title_member = AppTextKey("team-tbv.poll-member.title")
+    static let team_tbv_poll_content = AppTextKey("team-tbv.poll.content")
+    static let team_tbv_poll_content_member = AppTextKey("team-tbv.poll-member.content")
+    static let team_tbv_poll_video = AppTextKey("team-tbv.poll.video-title")
+    static let team_tbv_poll_button = AppTextKey("team-tbv.poll.button")
+
+    // MARK: - Button Titles
+    static let button_title_start = AppTextKey("button.title.start")
 
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")
@@ -752,7 +761,12 @@ public extension AppTextKey {
     static let my_qot_my_tbv_null_state_title = AppTextKey("my_qot.my_tbv.null_state.title")
     static let myx_team_tbv_null_state_title = AppTextKey("my_x.team_tbv_null_state.title")
     static let myx_team_tbv_null_state_subtitle = AppTextKey("my_x.team_tbv_null_state.subtitle")
-    static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
+
+    static let my_x_team_tbv_new_section_header_title = AppTextKey("my_x.team_tbv.new_section_header_title")
+    static let my_x_team_tbv_section_alert_message = AppTextKey("my_x.team_tbv_section.alert_message")
+    static let my_x_team_tbv_section_alert_left_button = AppTextKey("my_x.team_tbv_section.alert_left_button")
+    static let my_x_team_tbv_section_alert_right_button = AppTextKey("my_x.team_tbv_section.alert_right_button")
+
     static let my_qot_my_tbv_alert_edit_photo_button_delete_photo = AppTextKey("my_qot.my_tbv.alert.edit_photo.button_delete_photo")
     static let my_qot_my_tbv_alert_update_body = AppTextKey("my_qot.my_tbv.alert.update.body")
     static let my_qot_my_tbv_tbv_tracker_data_section_footer_button_done = AppTextKey("my_qot.my_tbv.tbv_tracker_data.section_footer.button_done")
@@ -1091,4 +1105,8 @@ public extension AppTextKey {
     static let my_x_team_member_invite_subHeader = AppTextKey("my_x.team_member_invite.subHeader")
     static let my_qot_my_library_subtitle_last_updated_title_group_last_update = AppTextKey("my_qot.my_library.subtitle_last_updated.title_group_last_update")
     static let prepare_choice_view_title = AppTextKey("prepare.choice.view.title")
+}
+@available(*, unavailable, message: "Unavailable from QOT v3.1.9")
+public extension AppTextKey {
+    static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
 }
