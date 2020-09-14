@@ -25,8 +25,8 @@ extension MyXTeamSettingsPresenter: MyXTeamSettingsPresenterInterface {
          viewController?.updateTeamHeader(teamHeaderItems: teamHeaderItems)
     }
 
-    func present() {
-        viewController?.setup()
+    func setupView() {
+        viewController?.setupView()
     }
 
     func updateView() {

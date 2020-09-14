@@ -10,14 +10,14 @@ import Foundation
 import qot_dal
 
 protocol MyXTeamSettingsViewControllerInterface: class {
-    func setup()
+    func setupView()
     func updateTeamHeader(teamHeaderItems: [Team.Item])
     func updateView()
     func dismiss()
 }
 
 protocol MyXTeamSettingsPresenterInterface {
-    func present()
+    func setupView()
     func updateTeamHeader(teamHeaderItems: [Team.Item])
     func updateView()
     func dismiss()
@@ -26,14 +26,11 @@ protocol MyXTeamSettingsPresenterInterface {
 protocol MyXTeamSettingsInteractorInterface: Interactor {
     var teamSettingsText: String { get }
     var getSelectedItem: Team.Item? { get }
-    var getTeamItems: [Team.Item] { get }
     func getSelectedTeam() -> QDMTeam?
     var canEdit: Bool { get }
     var rowCount: Int { get }
 
-    func viewDidAppear()
-    func updateSelectedTeam(teamId: String)
-    func updateSelectedTeam(teamColor: String)
+    func updateTeamColor(_ color: String)
 
     func getTeamName() -> String
     func getTeamId() -> String
@@ -46,10 +43,12 @@ protocol MyXTeamSettingsInteractorInterface: Interactor {
 
     func deleteTeam(teamItem: Team.Item)
     func leaveTeam(teamItem: Team.Item)
+
+    func viewWillAppear()
 }
 
 protocol MyXTeamSettingsRouterInterface {
     func dismiss()
-    func presentTeamMembers(selectedTeamItem: Team.Item?, teamItems: [Team.Item])
+    func presentTeamMembers()
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
 }

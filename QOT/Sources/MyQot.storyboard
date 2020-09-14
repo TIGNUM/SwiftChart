@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -313,7 +313,6 @@
                     <connections>
                         <outlet property="headerHeightConstraint" destination="AxI-o6-sx7" id="Csg-A1-8jd"/>
                         <outlet property="headerView" destination="Fbz-7Z-v9W" id="HpI-mm-kMz"/>
-                        <outlet property="horizontalHeaderHeight" destination="goi-Z4-0hj" id="7Xr-wB-pR2"/>
                         <outlet property="horizontalHeaderView" destination="che-KX-sGX" id="ias-d0-wwl"/>
                         <outlet property="tableView" destination="HTS-fj-Ieu" id="OXV-gs-tid"/>
                         <segue destination="CTF-ig-qwc" kind="show" identifier="myX.teamMembers.segue.identifier" id="c3J-PK-9oX"/>

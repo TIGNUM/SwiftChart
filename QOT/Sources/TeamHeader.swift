@@ -40,7 +40,6 @@ struct Team {
         var title: String
         var teamId: String
         var color: String = ""
-        var selected: Bool = false
         var thisUserIsOwner = false
         var batchCount: Int = 0
 
@@ -52,7 +51,6 @@ struct Team {
             self.color = qdmTeam.teamColor ?? ""
             self.thisUserIsOwner = qdmTeam.thisUserIsOwner
             self.qdmTeam = qdmTeam
-            self.selected = qdmTeam.qotId == HorizontalHeaderView.selectedTeamId
         }
 
         /// Team.Item
@@ -62,6 +60,10 @@ struct Team {
             self.teamId = Team.Header.invite.inviteId
             self.invites = invites
             self.batchCount = newItemCount ?? 0
+        }
+
+        var isSelected: Bool {
+            return teamId == HorizontalHeaderView.selectedTeamId
         }
     }
 }

@@ -14,7 +14,6 @@ final class MyQotMainInteractor: MyQotMainWorker {
     // MARK: - Properties
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
-    private var teamHeaderItems = [Team.Item]()
     private var selectedTeamItem: Team.Item?
     private var subtitles: [String?] = []
     private var eventType: String?
@@ -113,10 +112,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
-        getTeamHeaderItems(showNewRedDot: true) { (items) in
-            self.teamHeaderItems = items
-            completion(items)
-        }
+        getTeamHeaderItems(showNewRedDot: true, completion)
     }
 
     func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void) {
@@ -131,7 +127,6 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         switch MyX.Item.items(selectedTeamItem != nil).at(index: indexPath.row) {
         case .teamCreate:
             router.presentEditTeam(.create, team: nil)
-            clearTeamItems()
         case .library:
             router.presentMyLibrary(with: selectedTeamItem?.qdmTeam)
         case .preps:
@@ -148,12 +143,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     @objc func presentTeamPendingInvites() {
         router.presentTeamPendingInvites()
-        clearTeamItems()
     }
 
     func presentMyProfile() {
         router.presentMyProfile()
-        clearTeamItems()
     }
 
     func addObserver() {
@@ -196,6 +189,13 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         NotificationCenter.default.removeObserver(self, name: .didFinishSynchronization, object: nil)
         NotificationCenter.default.removeObserver(self, name: .changedInviteStatus, object: nil)
     }
+
+    func viewWillAppear() {
+        getTeamHeaderItems(showNewRedDot: true) { [weak self] (items) in
+            self?.selectedTeamItem = items.filter { $0.isSelected }.first
+            self?.presenter.reload()
+        }
+    }
 }
 
 // MARK: - Private
@@ -237,33 +237,20 @@ private extension MyQotMainInteractor {
     }
 
     func updateSelectedTeam(teamId: String) {
-        teamHeaderItems.forEach { (item) in
-            item.selected = teamId == item.teamId && !item.selected
+        getTeamHeaderItems(showNewRedDot: true) { [weak self] (items) in
+            let teamItem = items.filter { $0.teamId == teamId }.first
+            if self?.selectedTeamItem == nil {
+                self?.selectedTeamItem = teamItem
+                self?.presenter.deleteItems(at: MyX.Item.indexPathArrayUpdate(),
+                                            updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
+            } else if self?.selectedTeamItem?.teamId == teamId {
+                self?.selectedTeamItem = nil
+                self?.presenter.inserItems(at: MyX.Item.indexPathArrayUpdate(),
+                                           updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert())
+            } else {
+                self?.selectedTeamItem = teamItem
+                self?.presenter.reloadMainItems(updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
+            }
         }
-
-        let teamItem = teamHeaderItems.filter { $0.teamId == teamId }.first
-        if selectedTeamItem == nil {
-            selectedTeamItem = teamItem
-            presenter.deleteItems(at: MyX.Item.indexPathArrayUpdate(),
-                                  updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
-        } else if selectedTeamItem?.teamId == teamId {
-            selectedTeamItem = nil
-            presenter.inserItems(at: MyX.Item.indexPathArrayUpdate(),
-                                 updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert())
-        } else {
-            selectedTeamItem = teamItem
-            presenter.reloadMainItems(updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
-        }
-    }
-
-    func clearTeamItems() {
-        log("👨‍👨‍👦‍👦↗️➡️↘️🗑", level: .debug)
-        if selectedTeamItem != nil && selectedTeamItem?.header == .team {
-            NotificationCenter.default.post(name: .didSelectTeam,
-                                            object: nil,
-                                            userInfo: [Team.KeyTeamId: selectedTeamItem?.teamId ?? ""])
-        }
-        teamHeaderItems.removeAll()
-        selectedTeamItem = nil
     }
 }
