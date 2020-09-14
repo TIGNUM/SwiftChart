@@ -92,7 +92,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         collectionView.performBatchUpdates({
             collectionView.deleteItems(at: indexPath)
         }, completion: { (done) in
-            self.reload()
+            self.reloadMainItems(updateIndexPath: updateIndexPath)
         })
     }
 
@@ -100,7 +100,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: indexPath)
         }, completion: { (done) in
-            self.reload()
+            self.reloadMainItems(updateIndexPath: updateIndexPath)
         })
     }
 
