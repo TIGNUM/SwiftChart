@@ -73,7 +73,7 @@ final class LaunchHandler {
              .strategies: showFirstLevelScreen(page: .know)
         case .myQOT,
              .meQotPartner,
-             .meTravel: showFirstLevelScreen(page: .myQot)
+             .meTravel: showFirstLevelScreen(page: .myX)
         case .coachMode: presentCoachModeScreen()
         case .createSolveAChallenge,
              .prepareProblem:
@@ -252,7 +252,7 @@ extension LaunchHandler {
         }
     }
 
-    func showFirstLevelScreen(page: CoachCollectionViewController.Pages,
+    func showFirstLevelScreen(page: CoachCollectionViewController.Page,
                               _ bucketName: String? = nil,
                               _ knowingSection: Knowing.Section? = nil) {
         guard let mainNavi = baseRootViewController?.navigationController else {

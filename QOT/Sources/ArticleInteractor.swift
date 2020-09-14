@@ -130,10 +130,6 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.headerTitle(for: section)
     }
 
-    func didTapLink(_ url: URL) {
-        router.didTapLink(url)
-    }
-
     func showRelatedArticle(remoteID: Int) {
         worker = ArticleWorker(selectedID: remoteID)
         worker.interactor = self

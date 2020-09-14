@@ -63,6 +63,7 @@ public extension QDMUserEventTracking.ValueType {
     static let TEAM_TBV_GENERATOR = "TEAM_TBV_GENERATOR"
     static let TEAM_TO_BE_VISION_RATING_EXPLANATION = "TEAM_TO_BE_VISION_RATING_EXPLANATION"
     static let TEAM_TBV_GENERATOR_EXPLANATION = "TEAM_TBV_GENERATOR_EXPLANATION"
+    static let MAIL_TO = "MAIL_TO"
 }
 
 public extension QDMUserEventTracking.Action {

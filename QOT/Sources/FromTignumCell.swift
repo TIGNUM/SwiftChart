@@ -32,6 +32,7 @@ final class FromTignumCell: BaseDailyBriefCell {
 
     func configure(with viewModel: FromTignumCellViewModel?) {
         guard let model = viewModel else { return }
+        fromTignumText.delegate = clickableLinkDelegate
         skeletonManager.hide()
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.subtitle)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0

@@ -11,7 +11,6 @@ import UIKit
 final class NotificationBanner: UIView {
 
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var contentView: UIView!
     private var timer: Timer?
 
@@ -23,29 +22,28 @@ final class NotificationBanner: UIView {
         return headerView
     }
 
-    func configure(message: String) {
-        titleLabel.text = message
+    func configure(message: String, isDark: Bool) {
+        if isDark {
+            ThemeView.level1.apply(contentView)
+            ThemeText.darkBanner.apply(message, to: titleLabel)
+        } else {
+            ThemeView.whiteBanner.apply(contentView)
+            ThemeText.whiteBanner.apply(message, to: titleLabel)
+        }
     }
 
     func show(in view: UIView) {
         let frame = self.frame
+        self.frame = CGRect(x: frame.origin.x,
+                            y: frame.origin.y,
+                            width: UIScreen.main.bounds.width,
+                            height: frame.height)
         view.addSubview(self)
-
         UIView.animate(withDuration: 0.3, animations: {
-            self.frame = CGRect(x: 0,
-                                y: frame.origin.y + 10 + frame.height,
-                                width: frame.width,
-                                height: frame.height)
+            self.frame.origin = CGPoint(x: 0, y: frame.origin.y + 10 + frame.height)
         }) { (_) in
             self.startTimer()
         }
-    }
-}
-
-// MARK: - Actions
-extension NotificationBanner {
-    @IBAction func didTapClose() {
-        hide()
     }
 }
 
@@ -57,7 +55,7 @@ private extension NotificationBanner {
 
         UIView.animate(withDuration: 0.3) {
             self.frame = CGRect(x: 0,
-                                y: self.frame.origin.y - (self.frame.height + 20),
+                                y: self.frame.origin.y - (self.frame.height + 60),
                                 width: self.frame.width,
                                 height: self.frame.height)
         }

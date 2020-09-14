@@ -41,7 +41,8 @@ final class FromMyCoachMessageView: UIView {
         }
     }
 
-    func configure(with data: FromMyCoachCellViewModel.FromMyCoachMessage) {
+    func configure(with data: FromMyCoachCellViewModel.FromMyCoachMessage, clickableLinkDelegate: ClickableLabelDelegate?) {
+        textLabel.delegate = clickableLinkDelegate
         topViewHeightConstraint.constant = isFirstView == true ? Spacing.defaultSpacing.rawValue : Spacing.fromSecondViewSpacing.rawValue
         topSeparatorView.isHidden = isFirstView == true
         ThemeView.level1.apply(self)

@@ -33,6 +33,8 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
         let subtitle = AppTextService.get(.daily_brief_team_to_be_vision_subtitle)
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: subtitle)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        let titleColor = UIColor(hex: model.team?.teamColor ?? "")
+        baseHeaderView?.setColor(dashColor: titleColor, titleColor: titleColor, subtitleColor: nil)
         ThemeText.dailyBriefFromTignumTitle.apply(subtitle, to: baseHeaderView?.subtitleTextView)
         ThemeText.bespokeText.apply(model.teamVision, to: toBeVisionLabel)
         let ctaText = AppTextService.get(.daily_brief_team_to_be_vision_cta)

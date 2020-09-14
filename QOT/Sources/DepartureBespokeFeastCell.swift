@@ -48,6 +48,8 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     // MARK: Public
     func configure(with viewModel: DepartureBespokeFeastModel?) {
         guard let model = viewModel else { return }
+        departureBespokeText.delegate = clickableLinkDelegate
+        bespokeTitleLabel.delegate = clickableLinkDelegate
         departureBespokeFeastModel = viewModel
         initialSetup()
         skeletonManager.hide()

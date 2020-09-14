@@ -31,6 +31,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func didChangeLocationPermission(granted: Bool)
     func showDailyCheckInQuestions()
     func showAlert(message: String?)
+    func showBanner(message: String)
 }
 
 final class DailyBriefNavigationController: UINavigationController {
@@ -412,6 +413,7 @@ private extension DailyBriefViewController {
         let cell: GoodToKnowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: goodToKnowCellViewModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -426,6 +428,7 @@ private extension DailyBriefViewController {
                                   _ fromTignumMessageViewModel: FromTignumCellViewModel?) -> UITableViewCell {
         let cell: FromTignumCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: fromTignumMessageViewModel)
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -439,6 +442,7 @@ private extension DailyBriefViewController {
                              _ coachMessageModel: FromMyCoachCellViewModel?) -> UITableViewCell {
         let cell: FromMyCoachCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: coachMessageModel)
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -448,6 +452,7 @@ private extension DailyBriefViewController {
         let cell: DepartureBespokeFeastCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: departureBespokeFeastModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -588,22 +593,24 @@ private extension DailyBriefViewController {
         let cell: LeaderWisdomTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: leadersWisdomViewModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
     /**
-      * Method name: getLeadersWisdom.
-      * Description: Placeholder to display the leaders wisdom Information.
-      * Parameters: [tableView], [IndexPath]
-      */
-     func getExpertThoughts(_ tableView: UITableView,
+     * Method name: getLeadersWisdom.
+     * Description: Placeholder to display the leaders wisdom Information.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getExpertThoughts(_ tableView: UITableView,
                            _ indexPath: IndexPath,
                            _ expertThoughtsViewModel: ExpertThoughtsCellViewModel?) -> UITableViewCell {
-         let cell: ExpertThoughtsTableViewCell = tableView.dequeueCell(for: indexPath)
-         cell.configure(with: expertThoughtsViewModel)
-         cell.delegate = self
-         return cell
-     }
+        let cell: ExpertThoughtsTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: expertThoughtsViewModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
+    }
 
     /**
      * Method name: getDailyCheckinInsightsSHPICell.
@@ -871,6 +878,12 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func presentTeamPendingInvites() {
         self.router.presentTeamPendingInvites()
+    }
+
+    func showBanner(message: String) {
+        let banner = NotificationBanner.instantiateFromNib()
+        banner.configure(message: message, isDark: false)
+        banner.show(in: self.view)
     }
 }
 

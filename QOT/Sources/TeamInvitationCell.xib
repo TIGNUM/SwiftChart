@@ -16,7 +16,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTl-4E-qt8">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="B4f-ai-BlH"/>
                     </constraints>
@@ -67,7 +67,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="tlM-d5-r0D" firstAttribute="top" secondItem="E97-ee-Cpg" secondAttribute="bottom" constant="32" id="3D1-Kg-rlx"/>
                 <constraint firstItem="mTl-4E-qt8" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="5gE-gt-2iG"/>

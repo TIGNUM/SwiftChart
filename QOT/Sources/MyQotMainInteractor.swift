@@ -134,8 +134,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func handleSelection(at indexPath: IndexPath) {
         switch MyX.Item.items(selectedTeamItem != nil).at(index: indexPath.row) {
         case .teamCreate:
-            clearTeamItems()
             router.presentEditTeam(.create, team: nil)
+            clearTeamItems()
         case .library:
             router.presentMyLibrary(with: selectedTeamItem?.qdmTeam)
         case .preps:
@@ -151,16 +151,17 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     @objc func presentTeamPendingInvites() {
-        clearTeamItems()
         router.presentTeamPendingInvites()
+        clearTeamItems()
     }
 
     func presentMyProfile() {
-        clearTeamItems()
         router.presentMyProfile()
+        clearTeamItems()
     }
 
     func addObserver() {
+        removeObserver()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
@@ -196,6 +197,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func removeObserver() {
         NotificationCenter.default.removeObserver(self, name: .didSelectTeam, object: nil)
         NotificationCenter.default.removeObserver(self, name: .didSelectTeamInvite, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didFinishSynchronization, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .changedInviteStatus, object: nil)
     }
 }
 
@@ -227,9 +230,13 @@ private extension MyQotMainInteractor {
     }
 
     @objc func checkSelection(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[Team.KeyTeamId] {
-            updateSelectedTeam(teamId: teamId)
+        let controller = AppDelegate.topViewController()?.QOTVisibleViewController() as? CoachCollectionViewController
+        if controller?.getCurrentPage() == .myX {
+            guard let userInfo = notification.userInfo as? [String: String] else { return }
+            if let teamId = userInfo[Team.KeyTeamId] {
+                log("teamId: " + teamId, level: .debug)
+                updateSelectedTeam(teamId: teamId)
+            }
         }
     }
 
@@ -254,6 +261,7 @@ private extension MyQotMainInteractor {
     }
 
     func clearTeamItems() {
+        log("👨‍👨‍👦‍👦↗️➡️↘️🗑", level: .debug)
         if selectedTeamItem != nil && selectedTeamItem?.header == .team {
             NotificationCenter.default.post(name: .didSelectTeam,
                                             object: nil,
