@@ -110,15 +110,16 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @objc func writeButtonAction(_ sender: Any) {
-        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
-            self?.trackUserEvent(.EDIT, value: self?.interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
-            self?.interactor.showEditVision(isFromNullState: false)
-            self?.shouldShowCreate = false
-        }
-        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
-        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
-                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
-                      bottomItems: [add, openTeamPoll])
+//        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
+        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
+        interactor.showEditVision(isFromNullState: false)
+        shouldShowCreate = false
+//        }
+//        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
+//        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
+//                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
+//                      bottomItems: [add, openTeamPoll])
+
     }
 
 }
