@@ -52,6 +52,7 @@ struct Team {
             self.color = qdmTeam.teamColor ?? ""
             self.thisUserIsOwner = qdmTeam.thisUserIsOwner
             self.qdmTeam = qdmTeam
+            self.selected = qdmTeam.qotId == HorizontalHeaderView.selectedTeamId
         }
 
         /// Team.Item
