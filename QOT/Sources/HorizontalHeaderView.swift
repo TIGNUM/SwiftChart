@@ -56,6 +56,7 @@ private extension HorizontalHeaderView {
     }
 
     func scrollToItem(index: Int) {
+        guard collectionView.contentSize.width > collectionView.frame.size.width else { return }
         collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
                                     at: .centeredHorizontally,
                                     animated: true)
