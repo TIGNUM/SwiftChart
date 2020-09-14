@@ -142,7 +142,6 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
             cell.configure(headerItems: items)
         }
         return cell
-
     }
 
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
