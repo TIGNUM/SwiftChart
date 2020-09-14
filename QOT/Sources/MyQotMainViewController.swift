@@ -101,12 +101,16 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
         collectionView.performBatchUpdates({
             collectionView.deleteItems(at: indexPath)
+        }, completion: { (done) in
+            self.collectionView.reloadData()
         })
     }
 
     func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: indexPath)
+        }, completion: { (done) in
+            self.collectionView.reloadData()
         })
     }
 
