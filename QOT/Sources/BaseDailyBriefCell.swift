@@ -12,6 +12,7 @@ import qot_dal
 class BaseDailyBriefCell: UITableViewCell, Dequeueable {
     private var markAsSeenTimer: Timer?
     let skeletonManager = SkeletonManager()
+    weak var clickableLinkDelegate: ClickableLabelDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -36,6 +36,8 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
 
     func configure(with viewModel: ExpertThoughtsCellViewModel?) {
         guard let model = viewModel else { return }
+        descriptionLabel.delegate = clickableLinkDelegate
+        expertNameLabel.delegate = clickableLinkDelegate
         skeletonManager.hide()
         audioButton.isHidden = model.format != .audio
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(),

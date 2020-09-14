@@ -98,9 +98,11 @@ extension UIViewController: UIGestureRecognizerDelegate {
 extension UIViewController: ClickableLabelDelegate {
     func openLink(withURL url: URL) {
         if url.scheme == "mailto" && UIApplication.shared.canOpenURL(url) == true {
+            trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .MAIL_TO, action: .TAP)
             UIApplication.shared.open(url)
         } else {
             do {
+                trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .LINK, action: .TAP)
                 present(try WebViewController(url), animated: true, completion: nil)
             } catch {
                 log("Failed to open url. Error: \(error)", level: .error)
