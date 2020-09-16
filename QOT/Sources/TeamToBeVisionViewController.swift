@@ -276,13 +276,10 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.teamNullStateSubtitle
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
         tempTeamImageURL = teamVision?.profileImageResource?.url()
-        userImageView.contentMode = tempTeamImageURL == nil ? .center : .scaleAspectFill
+        userImageView.contentMode = .scaleAspectFill
         userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
         removeGradients()
         addGradients()
-        //        TO DO: Get rate text for team
-        //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
-        //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
 
         //        Temp disabling Rating button items
         rateButton.isEnabled = false
