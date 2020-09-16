@@ -12,16 +12,16 @@ import qot_dal
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
     func reloadMainItems(updateIndexPath: [IndexPath])
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath])
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath])
     func reload()
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
     func reloadMainItems(updateIndexPath: [IndexPath])
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath])
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath])
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath])
     func reload()
 }
 
@@ -30,8 +30,6 @@ protocol MyQotMainInteractorInterface: Interactor {
     func itemCount(in section: Int) -> Int
 
     func getSettingsButtonTitle(_ completion: @escaping (String) -> Void)
-    func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?, Bool) -> Void)
-    func getTitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void)
     func getItem(at indexPath: IndexPath) -> MyX.Item?
 
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
@@ -43,6 +41,9 @@ protocol MyQotMainInteractorInterface: Interactor {
     func addObserver()
 
     func viewWillAppear()
+
+    func allMainCellReuseIdentifiers() -> [String]
+    func mainCellReuseIdentifier(at indexPath: IndexPath) -> String
 }
 
 protocol MyQotMainRouterInterface {

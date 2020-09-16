@@ -45,6 +45,10 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewDidLoad()
         interactor.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        interactor.allMainCellReuseIdentifiers().forEach { reuseIdentifier in
+            collectionView.register(UINib(resource: R.nib.myQotMainCollectionViewCell),
+                                    forCellWithReuseIdentifier: reuseIdentifier)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -87,19 +91,17 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         layout.sectionHeadersPinToVisibleBounds = true
     }
 
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath]) {
         collectionView.performBatchUpdates({
+            updateCell(originalIndexPath: originalIndexPathforUpdateIndexPath, newIndexPath: updateIndexPath)
             collectionView.deleteItems(at: indexPath)
-        }, completion: { (done) in
-            self.reloadMainItems(updateIndexPath: updateIndexPath)
         })
     }
 
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath]) {
         collectionView.performBatchUpdates({
+            updateCell(originalIndexPath: originalIndexPathforUpdateIndexPath, newIndexPath: updateIndexPath)
             collectionView.insertItems(at: indexPath)
-        }, completion: { (done) in
-            self.reloadMainItems(updateIndexPath: updateIndexPath)
         })
     }
 
@@ -107,6 +109,17 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         collectionView.performBatchUpdates({
             collectionView.reloadItems(at: updateIndexPath)
         })
+    }
+
+    func updateCell(originalIndexPath: [IndexPath], newIndexPath: [IndexPath]) {
+        if originalIndexPath.isEmpty == false, originalIndexPath.count == newIndexPath.count {
+            for index in 0..<newIndexPath.count {
+                guard let cell = collectionView.cellForItem(at: originalIndexPath[index]) as? MyQotMainCollectionViewCell else {
+                    continue
+                }
+                interactor.updateMainCell(cell: cell, at: newIndexPath[index])
+            }
+        }
     }
 
     func reload() {
@@ -134,7 +147,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        let reuseIdentifier = interactor.mainCellReuseIdentifier(at: indexPath)
+        let cell: MyQotMainCollectionViewCell =
+            (collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? MyQotMainCollectionViewCell)
+                ?? collectionView.dequeueCell(for: indexPath)
         interactor.updateMainCell(cell: cell, at: indexPath)
         return cell
     }

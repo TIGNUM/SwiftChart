@@ -28,9 +28,9 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
         viewController?.setupView()
     }
 
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath]) {
         log("indexPath: \(indexPath)", level: .debug)
-        viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath)
+        viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath, originalIndexPathforUpdateIndexPath: originalIndexPathforUpdateIndexPath)
     }
 
     func reloadMainItems(updateIndexPath: [IndexPath]) {
@@ -38,9 +38,9 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
         viewController?.reloadMainItems(updateIndexPath: updateIndexPath)
     }
 
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath]) {
         log("indexPath: \(indexPath)", level: .debug)
-        viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath)
+        viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath, originalIndexPathforUpdateIndexPath: originalIndexPathforUpdateIndexPath)
     }
 
     func reload() {
