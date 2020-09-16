@@ -669,6 +669,8 @@ extension DailyBriefInteractor {
             visionAndDates.append(dateVision)
         }
         visionAndDates.removeFirst()
+        let beginingOfDay = Date().beginingOfDate()
+        visionAndDates = visionAndDates.filter({ $0.1 > beginingOfDay })
         visionAndDates.sort(by: {$0.1 > $1.1})
         let latestVision = visionAndDates.first?.0
         let visionText = latestVision?.text
