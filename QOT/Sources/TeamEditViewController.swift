@@ -19,7 +19,7 @@ final class TeamEditViewController: UIViewController {
     @IBOutlet private weak var textContainerView: UIView!
     @IBOutlet private weak var teamTextField: UITextField!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var keyboardInputView: KeyboardInputView!
+    @IBOutlet private weak var keyboardInputView: KeyboardInputView!
     @IBOutlet private weak var memberCounterLabel: UILabel!
     @IBOutlet private weak var memberMaxLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
