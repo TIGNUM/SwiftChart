@@ -87,30 +87,8 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         layout.sectionHeadersPinToVisibleBounds = true
     }
 
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
-        collectionView.performBatchUpdates({
-            collectionView.deleteItems(at: indexPath)
-        }, completion: { (done) in
-            self.reloadMainItems(updateIndexPath: updateIndexPath)
-        })
-    }
-
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
-        collectionView.performBatchUpdates({
-            collectionView.insertItems(at: indexPath)
-        }, completion: { (done) in
-            self.reloadMainItems(updateIndexPath: updateIndexPath)
-        })
-    }
-
-    func reloadMainItems(updateIndexPath: [IndexPath]) {
-        collectionView.performBatchUpdates({
-            collectionView.reloadItems(at: updateIndexPath)
-        })
-    }
-
     func reload() {
-        collectionView.reloadData()
+        collectionView.reloadSections(IndexSet(integer: MyX.Section.items.rawValue))
     }
 
     func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
@@ -170,6 +148,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        interactor.handleSelection(at: indexPath)
         switch MyX.Section.allCases[indexPath.section] {
         case .items:
             interactor.handleSelection(at: indexPath)
