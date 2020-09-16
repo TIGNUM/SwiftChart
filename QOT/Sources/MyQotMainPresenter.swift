@@ -22,25 +22,23 @@ final class MyQotMainPresenter {
 }
 
 // MARK: - KnowingInterface
-
 extension MyQotMainPresenter: MyQotMainPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
 
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath]) {
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
+                     originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void) {
         log("indexPath: \(indexPath)", level: .debug)
-        viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath, originalIndexPathforUpdateIndexPath: originalIndexPathforUpdateIndexPath)
+        viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath,
+                                    originalIndexPathforUpdateIndexPath: originalIndexPathforUpdateIndexPath, completion)
     }
 
-    func reloadMainItems(updateIndexPath: [IndexPath]) {
-        log("updateIndexPath: \(updateIndexPath)", level: .debug)
-        viewController?.reloadMainItems(updateIndexPath: updateIndexPath)
-    }
-
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath]) {
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
+                    originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void) {
         log("indexPath: \(indexPath)", level: .debug)
-        viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath, originalIndexPathforUpdateIndexPath: originalIndexPathforUpdateIndexPath)
+        viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath,
+                                   originalIndexPathforUpdateIndexPath: originalIndexPathforUpdateIndexPath, completion)
     }
 
     func reload() {

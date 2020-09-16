@@ -41,74 +41,86 @@ final class MyQotMainInteractor: MyQotMainWorker {
         let dispatchGroup = DispatchGroup()
         // load header items
         dispatchGroup.enter()
-        getTeamHeaderItems(showNewRedDot: true) { [weak self] (items) in
-            self?.headerItems = items
-            self?.selectedTeamItem = items.filter { $0.isSelected }.first
+        var tmpHeaderItems = [Team.Item]()
+        var tmpSelectedTeamItem: Team.Item?
+        getTeamHeaderItems(showNewRedDot: true) { (items) in
+            tmpHeaderItems = items
+            tmpSelectedTeamItem = items.filter { $0.isSelected }.first
             dispatchGroup.leave()
         }
         // load setting title
         dispatchGroup.enter()
-        getSettingsTitle { [weak self] title in
-            self?.settingTitle = title
+        var tmpSettingTitle: String = ""
+        getSettingsTitle { title in
+            tmpSettingTitle = title
             dispatchGroup.leave()
         }
 
+        var tmpNewLibraryItemCount = 0
+        var tmpSubtitles = [String: String?]()
+        var tmpIsCellEnabled = [String: Bool]()
         for item in MyX.Item.allCases {
             dispatchGroup.enter()
             // load all "isCellEnabled"
-            isCellEnabled(for: item) { [weak self] enabled in
-                self?.isCellEnabled[item.rawValue] = enabled
+            isCellEnabled(for: item) { enabled in
+                tmpIsCellEnabled[item.rawValue] = enabled
                 dispatchGroup.leave()
             }
 
             // load all subtitles
-            dispatchGroup.enter()
             switch item {
             case .library:
                 dispatchGroup.enter()
-                getTeamLibrarySubtitleAndCount(team: selectedTeamItem?.qdmTeam) { [weak self] (subtitle, newItemCount) in
-                    self?.subtitles[MyX.Item.library.rawValue] = subtitle
+                getTeamLibrarySubtitleAndCount(team: selectedTeamItem?.qdmTeam) { (subtitle, newItemCount) in
+                    tmpSubtitles[MyX.Item.library.rawValue] = subtitle
                     // load new item counts
-                    self?.newLibraryItemCount = newItemCount
+                    tmpNewLibraryItemCount = newItemCount
                     dispatchGroup.leave()
                 }
             case .preps:
                 dispatchGroup.enter()
-                getPreparationSubtitle { [weak self] subtitle in
-                    self?.subtitles[MyX.Item.preps.rawValue] = subtitle
+                getPreparationSubtitle { subtitle in
+                    tmpSubtitles[MyX.Item.preps.rawValue] = subtitle
                     dispatchGroup.leave()
                 }
             case .sprints:
                 dispatchGroup.enter()
-                getCurrentSprintName { [weak self] subtitle in
-                    self?.subtitles[MyX.Item.sprints.rawValue] = subtitle
+                getCurrentSprintName { subtitle in
+                    tmpSubtitles[MyX.Item.sprints.rawValue] = subtitle
                     dispatchGroup.leave()
                 }
             case .data:
                 dispatchGroup.enter()
-                getMyDataSubtitle { [weak self] subtitle in
-                    self?.subtitles[MyX.Item.data.rawValue] = subtitle
+                getMyDataSubtitle { subtitle in
+                    tmpSubtitles[MyX.Item.data.rawValue] = subtitle
                     dispatchGroup.leave()
                 }
             case .toBeVision:
                 dispatchGroup.enter()
-                getToBeVisionSubtitle(team: selectedTeamItem?.qdmTeam) { [weak self] subtitle in
-                    self?.subtitles[MyX.Item.toBeVision.rawValue] = subtitle
+                getToBeVisionSubtitle(team: selectedTeamItem?.qdmTeam) { subtitle in
+                    tmpSubtitles[MyX.Item.toBeVision.rawValue] = subtitle
                     dispatchGroup.leave()
                 }
             default: break
             }
-            dispatchGroup.leave()
         }
 
         // load hasOwnerEmptyTeamToBeVision
         dispatchGroup.enter()
-        hasOwnerEmptyTeamTBV { [weak self] (isEmpty) in
-            self?.hasOwnerEmptyTeamTBV = isEmpty
+        var tmpHasOwnerEmptyTeamTBV = true
+        hasOwnerEmptyTeamTBV { (isEmpty) in
+            tmpHasOwnerEmptyTeamTBV = isEmpty
             dispatchGroup.leave()
         }
 
         dispatchGroup.notify(queue: .main) {
+            self.headerItems = tmpHeaderItems
+            self.selectedTeamItem = tmpSelectedTeamItem
+            self.settingTitle = tmpSettingTitle
+            self.newLibraryItemCount = tmpNewLibraryItemCount
+            self.subtitles = tmpSubtitles
+            self.isCellEnabled = tmpIsCellEnabled
+            self.hasOwnerEmptyTeamTBV = tmpHasOwnerEmptyTeamTBV
             completion()
         }
     }
@@ -305,24 +317,32 @@ private extension MyQotMainInteractor {
 
     func updateSelectedTeam(teamId: String) {
         let teamItem = headerItems.filter { $0.teamId == teamId }.first
-        if selectedTeamItem == nil {
+        // changing team
+        if selectedTeamItem != nil, teamItem != nil, teamItem?.teamId == selectedTeamItem?.teamId {
+            selectedTeamItem = teamItem
+            loadAllData { [weak self] in
+                self?.presenter.reload()
+            }
+        } else if selectedTeamItem != nil, teamItem == nil { // delselect team
+            selectedTeamItem = nil
+            loadAllData { [weak self] in
+                self?.presenter.inserItems(at: MyX.Item.indexPathArrayUpdate(),
+                                           updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert(),
+                                           originalIndexPathforUpdateIndexPath: MyX.Item.originalIndexPathArrayBeforeInsert()) {
+                }
+            }
+        } else if selectedTeamItem == nil, teamItem != nil { // select team
             selectedTeamItem = teamItem // select item
             loadAllData { [weak self] in
                 self?.presenter.deleteItems(at: MyX.Item.indexPathArrayUpdate(),
                                             updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete(),
-                                            originalIndexPathforUpdateIndexPath: MyX.Item.originalIndexPathArrayBeforeDelete())
-            }
-        } else if selectedTeamItem?.teamId == teamId {
-            selectedTeamItem = nil // deselect the item
-            loadAllData { [weak self] in
-                self?.presenter.inserItems(at: MyX.Item.indexPathArrayUpdate(),
-                                           updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert(),
-                                           originalIndexPathforUpdateIndexPath: MyX.Item.originalIndexPathArrayBeforeInsert())
+                                            originalIndexPathforUpdateIndexPath: MyX.Item.originalIndexPathArrayBeforeDelete()) {
+                }
             }
         } else { // if selected item is not available any more
             selectedTeamItem = teamItem
             loadAllData { [weak self] in
-                self?.presenter.reloadMainItems(updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
+                self?.presenter.reload()
             }
         }
     }

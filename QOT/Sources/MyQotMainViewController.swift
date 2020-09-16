@@ -91,23 +91,35 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         layout.sectionHeadersPinToVisibleBounds = true
     }
 
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath]) {
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
+                     originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void ) {
+        let existingCells = indexPath.compactMap { collectionView.cellForItem(at: $0) }
+        guard existingCells.count == indexPath.count else { // if cells are not enough to delete return
+            completion()
+            reload()
+            return
+        }
         collectionView.performBatchUpdates({
             updateCell(originalIndexPath: originalIndexPathforUpdateIndexPath, newIndexPath: updateIndexPath)
             collectionView.deleteItems(at: indexPath)
+        }, completion: { _ in
+            completion()
         })
     }
 
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath]) {
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
+                    originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void) {
+        let existingCells = indexPath.compactMap { collectionView.cellForItem(at: $0) }
+        guard existingCells.count < indexPath.count else { // if cells are already there
+            completion()
+            reload()
+            return
+        }
         collectionView.performBatchUpdates({
             updateCell(originalIndexPath: originalIndexPathforUpdateIndexPath, newIndexPath: updateIndexPath)
             collectionView.insertItems(at: indexPath)
-        })
-    }
-
-    func reloadMainItems(updateIndexPath: [IndexPath]) {
-        collectionView.performBatchUpdates({
-            collectionView.reloadItems(at: updateIndexPath)
+        }, completion: { _ in
+            completion()
         })
     }
 
@@ -123,7 +135,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func reload() {
-        collectionView.reloadData()
+        collectionView.reloadSections(IndexSet(integer: MyX.Section.items.rawValue))
     }
 
     func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {

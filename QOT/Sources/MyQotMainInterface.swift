@@ -11,17 +11,19 @@ import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
-    func reloadMainItems(updateIndexPath: [IndexPath])
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath])
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath])
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
+                     originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void)
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
+                    originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void)
     func reload()
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func reloadMainItems(updateIndexPath: [IndexPath])
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath])
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath], originalIndexPathforUpdateIndexPath: [IndexPath])
+    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
+                     originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void)
+    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
+                    originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void)
     func reload()
 }
 
