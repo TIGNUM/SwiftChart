@@ -19,7 +19,7 @@ final class TeamEditViewController: UIViewController {
     @IBOutlet private weak var textContainerView: UIView!
     @IBOutlet private weak var teamTextField: UITextField!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var keyboardInputView: KeyboardInputView!
+    @IBOutlet weak var keyboardInputView: KeyboardInputView!
     @IBOutlet private weak var memberCounterLabel: UILabel!
     @IBOutlet private weak var memberMaxLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
@@ -83,6 +83,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         teamTextField.inputAccessoryView = keyboardInputView
         teamTextField.keyboardType = type == .memberInvite ? .emailAddress : .default
         keyboardInputView.delegate = self
+        keyboardInputView.leftButton.setImage(type == .memberInvite ? nil : R.image.close(), for: .normal)
         hideOutlets(type)
         textCounterLabel.isHidden = type == .memberInvite
         textMaxCharsLabel.isHidden = type == .memberInvite
@@ -97,7 +98,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         teamTextField.text = teamName
     }
 
-    func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool) {
+    func setupLabels(header: String, subHeader: String, description: String, cta: String, leftButton: String, animated: Bool) {
         self.subHeader = subHeader
         if animated {
             UIView.animate(withDuration: Animation.duration_04) {
@@ -107,6 +108,8 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
             }
         } else {
             keyboardInputView.rightButton.setTitle(cta, for: .normal)
+            keyboardInputView.leftButton.setTitle(leftButton, for: .normal)
+            keyboardInputView.leftButton.sizeToFit()
             headerLabel.text = header
             titleLabel.text = description
         }
