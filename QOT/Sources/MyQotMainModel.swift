@@ -24,7 +24,7 @@ enum MyX {
         }
     }
 
-    enum Item: CaseIterable {
+    enum Item: String, CaseIterable {
         case teamCreate
         case library
         case preps
@@ -51,6 +51,29 @@ enum MyX {
 
         static func items(_ isTeam: Bool) -> [MyX.Item] {
             return isTeam ? [.library, .toBeVision] : MyX.Item.allCases
+        }
+
+        static func indexPathArrayUpdate() -> [IndexPath] {
+            return [IndexPath(item: 0, section: 2), // create Team
+                    IndexPath(item: 2, section: 2), // my plans
+                    IndexPath(item: 3, section: 2), // my sprints
+                    IndexPath(item: 4, section: 2)] // my data
+        }
+
+        static func indexPathToUpdateAfterDelete() -> [IndexPath] {
+            return [IndexPath(item: 0, section: 2), IndexPath(item: 1, section: 2)] // library, tobevision
+        }
+
+        static func indexPathToUpdateAfterInsert() -> [IndexPath] {
+            return [IndexPath(item: 1, section: 2), IndexPath(item: 5, section: 2)] // library, tobevision
+        }
+
+        static func originalIndexPathArrayBeforeDelete() -> [IndexPath] {
+            return [IndexPath(item: 1, section: 2), IndexPath(item: 5, section: 2)] // library, tobevision
+        }
+
+        static func originalIndexPathArrayBeforeInsert() -> [IndexPath] {
+            return [IndexPath(item: 0, section: 2), IndexPath(item: 1, section: 2)] // library, tobevision
         }
     }
 }
