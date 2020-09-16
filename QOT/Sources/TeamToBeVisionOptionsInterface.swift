@@ -9,14 +9,16 @@
 import Foundation
 
 protocol TeamToBeVisionOptionsViewControllerInterface: class {
-    func setupView()
+     func setupView(_ options: TeamToBeVisionOptionsModel, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int)
 }
 
 protocol TeamToBeVisionOptionsPresenterInterface {
-    func setupView()
+    func setupView(_ options: TeamToBeVisionOptionsModel, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int)
 }
 
-protocol TeamToBeVisionOptionsInteractorInterface: Interactor {}
+protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
+    var getType: TeamToBeVisionOptionsModel.Types { get }
+}
 
 protocol TeamToBeVisionOptionsRouterInterface {
     func dismiss()

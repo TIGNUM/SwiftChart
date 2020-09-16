@@ -11,7 +11,7 @@
         <!--Team To Be Vision Options View Controller-->
         <scene sceneID="3Tm-xq-qQi">
             <objects>
-                <viewController id="a5y-aR-naf" customClass="TeamToBeVisionOptionsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamToBeVisionOptionsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a5y-aR-naf" customClass="TeamToBeVisionOptionsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bqT-ed-UQt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,6 +29,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="203" id="zQN-m6-yAy"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="a5y-aR-naf" id="SoW-QT-e3F"/>
+                                    <outlet property="delegate" destination="a5y-aR-naf" id="ed9-Bi-GNJ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -57,4 +57,5 @@ protocol TeamToBeVisionRouterInterface {
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
     func showRatingExplanation(team: QDMTeam?)
     func showTbvPollEXplanation(team: QDMTeam?)
+    func showOptionsPage(_ type: TeamToBeVisionOptionsModel.Types)
 }

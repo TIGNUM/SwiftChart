@@ -25,7 +25,7 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+           super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
@@ -34,6 +34,11 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
         baseHeaderView?.addTo(superview: headerView)
         interactor.viewDidLoad()
         tableView.registerDequeueable(TeamToBeVisionOptionTableViewCell.self)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBar(color: .carbon)
     }
 }
 
@@ -49,7 +54,36 @@ private extension TeamToBeVisionOptionsViewController {
 
 // MARK: - TeamToBeVisionOptionsViewControllerInterface
 extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerInterface {
-    func setupView() {
-        // Do any additional setup after loading the view.
+
+    func setupView(_ options: TeamToBeVisionOptionsModel, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
+        optionModel = options
+        baseHeaderView?.configure(title: type.pageTitle, subtitle: "Ends")
     }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let type =  interactor.getType
+        switch type {
+        case .rating:
+            return optionModel.ratingCount
+        case .voting:
+            return optionModel.votingCount
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: TeamToBeVisionOptionTableViewCell = tableView.dequeueCell(for: indexPath)
+        let type =  interactor.getType
+        switch type {
+        case .rating:
+            cell.configure(title: optionModel.titleForItem(at: indexPath, type: .rating), cta: optionModel.ctaForItem(at: indexPath, type: .rating))
+            return cell
+        case .voting:
+            cell.configure(title: optionModel.titleForItem(at: indexPath, type: .voting), cta: optionModel.ctaForItem(at: indexPath, type: .voting))
+            return cell
+        }
+    }
+
 }

@@ -61,6 +61,17 @@ extension TeamToBeVisionRouter: TeamToBeVisionRouterInterface {
             showRating(team, type, controller)
         }
     }
+
+    //TEST
+
+    func showOptionsPage(_ type: TeamToBeVisionOptionsModel.Types) {
+        let controller = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController()
+        if let controller = controller {
+            let configurator = TeamToBeVisionOptionsConfigurator.make(type: type)
+            configurator(controller)
+            viewController?.pushToStart(childViewController: controller)
+        }
+    }
 }
 
 // MARK: - Private

@@ -5884,6 +5884,7 @@
 		F9F4706B2510C4A0002331F4 /* AdminOptions */ = {
 			isa = PBXGroup;
 			children = (
+				F9F4707C2510C51D002331F4 /* TeamToBeVisionOptions.storyboard */,
 				F9F4706C2510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift */,
 				F9F4706D2510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift */,
 				F9F4706E2510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift */,
@@ -5892,7 +5893,6 @@
 				F9F470712510C4D7002331F4 /* TeamToBeVisionOptionsInteractor.swift */,
 				F9F470722510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift */,
 				F9F470732510C4D7002331F4 /* TeamToBeVisionOptionsConfigurator.swift */,
-				F9F4707C2510C51D002331F4 /* TeamToBeVisionOptions.storyboard */,
 				F9F4707E2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift */,
 				F9F470802510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib */,
 			);

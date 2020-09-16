@@ -13,19 +13,27 @@ final class TeamToBeVisionOptionsInteractor {
     // MARK: - Properties
     private lazy var worker = TeamToBeVisionOptionsWorker()
     private let presenter: TeamToBeVisionOptionsPresenterInterface!
+    private var type = TeamToBeVisionOptionsModel.Types.voting
+    private var model = TeamToBeVisionOptionsModel()
+    private var remainingDays = 0
 
     // MARK: - Init
-    init(presenter: TeamToBeVisionOptionsPresenterInterface) {
+    init(presenter: TeamToBeVisionOptionsPresenterInterface, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
         self.presenter = presenter
+        self.type = type
+        self.remainingDays = remainingDays
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        presenter.setupView(model, type: type, remainingDays: remainingDays)
     }
 }
 
 // MARK: - TeamToBeVisionOptionsInteractorInterface
 extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterface {
 
+    var getType: TeamToBeVisionOptionsModel.Types {
+        return type
+    }
 }
