@@ -11,19 +11,16 @@ import qot_dal
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
-                     originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void)
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
-                    originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void)
+    func collectionViewCell(at indexPath: IndexPath) -> UICollectionViewCell?
+    func updateViewCells(deleteIndexPaths: [IndexPath],
+                         updateIndexPaths: [IndexPath], newIndexPathsForUpdatedItems: [IndexPath],
+                         insertIndexPaths: [IndexPath])
     func reload()
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
-                     originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void)
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
-                    originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void)
+    func presentItemsWith(identifiers: [String], maxCount: Int)
     func reload()
 }
 
@@ -36,7 +33,6 @@ protocol MyQotMainInteractorInterface: Interactor {
 
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void)
     func updateMainCell(cell: MyQotMainCollectionViewCell, at indexPath: IndexPath)
-    func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void)
     func handleSelection(at indexPath: IndexPath)
 
     func presentMyProfile()

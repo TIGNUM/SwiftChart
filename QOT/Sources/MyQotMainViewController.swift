@@ -91,51 +91,40 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         layout.sectionHeadersPinToVisibleBounds = true
     }
 
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
-                     originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void ) {
-        let existingCells = indexPath.compactMap { collectionView.cellForItem(at: $0) }
-        guard existingCells.count == indexPath.count else { // if cells are not enough to delete return
-            completion()
-            reload()
-            return
-        }
-        collectionView.performBatchUpdates({
-            updateCell(originalIndexPath: originalIndexPathforUpdateIndexPath, newIndexPath: updateIndexPath)
-            collectionView.deleteItems(at: indexPath)
-        }, completion: { _ in
-            completion()
-        })
-    }
-
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath],
-                    originalIndexPathforUpdateIndexPath: [IndexPath], _ completion: @escaping () -> Void) {
-        let existingCells = indexPath.compactMap { collectionView.cellForItem(at: $0) }
-        guard existingCells.count < indexPath.count else { // if cells are already there
-            completion()
-            reload()
-            return
-        }
-        collectionView.performBatchUpdates({
-            updateCell(originalIndexPath: originalIndexPathforUpdateIndexPath, newIndexPath: updateIndexPath)
-            collectionView.insertItems(at: indexPath)
-        }, completion: { _ in
-            completion()
-        })
-    }
-
     func updateCell(originalIndexPath: [IndexPath], newIndexPath: [IndexPath]) {
-        if originalIndexPath.isEmpty == false, originalIndexPath.count == newIndexPath.count {
-            for index in 0..<newIndexPath.count {
-                guard let cell = collectionView.cellForItem(at: originalIndexPath[index]) as? MyQotMainCollectionViewCell else {
-                    continue
-                }
-                interactor.updateMainCell(cell: cell, at: newIndexPath[index])
+        for index in 0..<newIndexPath.count {
+            guard let cell = collectionView.cellForItem(at: originalIndexPath[index]) as? MyQotMainCollectionViewCell else {
+                continue
             }
+            interactor.updateMainCell(cell: cell, at: newIndexPath[index])
         }
+    }
+
+    func updateViewCells(deleteIndexPaths: [IndexPath],
+                         updateIndexPaths: [IndexPath], newIndexPathsForUpdatedItems: [IndexPath],
+                         insertIndexPaths: [IndexPath]) {
+        collectionView.performBatchUpdates({
+            if updateIndexPaths.count > 0, updateIndexPaths.count == newIndexPathsForUpdatedItems.count {
+                updateCell(originalIndexPath: updateIndexPaths, newIndexPath: newIndexPathsForUpdatedItems)
+            } else {
+                reload()
+                return
+            }
+
+            if deleteIndexPaths.count > 0 {
+                collectionView.deleteItems(at: deleteIndexPaths)
+            } else if insertIndexPaths.count > 0 {
+                collectionView.insertItems(at: insertIndexPaths)
+            }
+        })
     }
 
     func reload() {
         collectionView.reloadSections(IndexSet(integer: MyX.Section.items.rawValue))
+    }
+
+    func collectionViewCell(at indexPath: IndexPath) -> UICollectionViewCell? {
+        collectionView.cellForItem(at: indexPath)
     }
 
     func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
