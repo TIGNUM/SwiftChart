@@ -120,7 +120,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func reload() {
-        collectionView.reloadSections(IndexSet(integer: MyX.Section.items.rawValue))
+        collectionView.reloadData()
     }
 
     func collectionViewCell(at indexPath: IndexPath) -> UICollectionViewCell? {
