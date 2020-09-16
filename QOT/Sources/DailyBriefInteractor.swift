@@ -221,7 +221,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         isLoadingBuckets = true
         var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
         worker.getDailyBriefBucketsForViewModel { [weak self] (bucketsList) in
-            guard let strongSelf = self else {
+            guard let strongSelf = self,
+                bucketsList.filter({ $0.bucketName == .DAILY_CHECK_IN_1 }).first != nil else {
                 return
             }
 
