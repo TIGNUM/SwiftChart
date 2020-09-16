@@ -120,7 +120,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 //                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
 //                      bottomItems: [add, openTeamPoll])
 
-        router.showOptionsPage(.voting)
+        router.showOptionsPage(.rating)
     }
 
 }

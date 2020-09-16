@@ -26,7 +26,7 @@ final class TeamToBeVisionOptionsInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView(model, type: type, remainingDays: remainingDays)
+        presenter.setupView(type: type, remainingDays: remainingDays)
     }
 }
 

@@ -16,7 +16,7 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
     @IBOutlet private weak var headerView: UIView!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
-    private var optionModel: TeamToBeVisionOptionsModel!
+    private var pageType: TeamToBeVisionOptionsModel.Types!
 
     // MARK: - Init
     init(configure: Configurator<TeamToBeVisionOptionsViewController>) {
@@ -42,21 +42,11 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
     }
 }
 
-// MARK: - Private
-private extension TeamToBeVisionOptionsViewController {
-
-}
-
-// MARK: - Actions
-private extension TeamToBeVisionOptionsViewController {
-
-}
-
 // MARK: - TeamToBeVisionOptionsViewControllerInterface
 extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerInterface {
 
-    func setupView(_ options: TeamToBeVisionOptionsModel, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
-        optionModel = options
+    func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
+        pageType = type
         baseHeaderView?.configure(title: type.pageTitle, subtitle: "Ends")
     }
 }
@@ -64,26 +54,12 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let type =  interactor.getType
-        switch type {
-        case .rating:
-            return optionModel.ratingCount
-        case .voting:
-            return optionModel.votingCount
-        }
+        return interactor.getType.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TeamToBeVisionOptionTableViewCell = tableView.dequeueCell(for: indexPath)
-        let type =  interactor.getType
-        switch type {
-        case .rating:
-            cell.configure(title: optionModel.titleForItem(at: indexPath, type: .rating), cta: optionModel.ctaForItem(at: indexPath, type: .rating))
-            return cell
-        case .voting:
-            cell.configure(title: optionModel.titleForItem(at: indexPath, type: .voting), cta: optionModel.ctaForItem(at: indexPath, type: .voting))
-            return cell
-        }
+        cell.configure(title: pageType.titleForItem(at: indexPath), cta: pageType.ctaForItem(at: indexPath))
+        return cell
     }
-
 }

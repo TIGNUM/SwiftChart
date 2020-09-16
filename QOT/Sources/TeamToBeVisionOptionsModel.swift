@@ -20,72 +20,59 @@ struct TeamToBeVisionOptionsModel {
             case .voting: return "TEAM TOBEVISION POLL"
             }
         }
-    }
 
-    enum Option: CaseIterable {
-        case vote
-        case endPoll
-        case rate
-        case endRate
-    }
-
-    var votingPage: [Option] {
-        return [.vote, .endPoll]
-    }
-
-    var ratingPage: [Option] {
-        return [.rate, .endRate]
-    }
-
-    private func title(for item: Option) -> String {
-        switch item {
-        case .vote:
-            return "Vote team qualities"
-        case .endPoll:
-            return "End Poll"
-        case .rate:
-            return "Rate Team ToBeVision"
-        case .endRate:
-            return "End rating for all"
+        var count: Int {
+            return pageValues.count
         }
-    }
 
-    private func cta(for item: Option) -> String {
-        switch item {
-        case .vote:
-            return "Vote"
-        case .endPoll:
-            return "Proceed"
-        case .rate:
-            return "Rate"
-        case .endRate:
-            return "Proceed"
+        enum Option: CaseIterable {
+            case vote
+            case endPoll
+            case rate
+            case endRate
         }
-    }
 
-    var ratingCount: Int {
-        return ratingPage.count
-    }
-
-    var votingCount: Int {
-        return votingPage.count
-    }
-
-    func titleForItem(at indexPath: IndexPath, type: Types) -> String {
-        switch type {
-        case .rating:
-             return title(for: ratingPage.at(index: indexPath.row) ?? .rate)
-        case .voting:
-            return title(for: votingPage.at(index: indexPath.row) ?? .vote)
+        var pageValues: [Option] {
+            switch self {
+            case .rating:
+                return [.rate, .endRate]
+            case .voting:
+                return [.vote, .endPoll]
+            }
         }
-    }
 
-    func ctaForItem(at indexPath: IndexPath, type: Types) -> String {
-        switch type {
-        case .rating:
-             return cta(for: ratingPage.at(index: indexPath.row) ?? .rate)
-        case .voting:
-            return cta(for: votingPage.at(index: indexPath.row) ?? .vote)
+        private func title(for item: Option) -> String {
+            switch item {
+            case .vote:
+                return "Vote team qualities"
+            case .endPoll:
+                return "End Poll"
+            case .rate:
+                return "Rate Team ToBeVision"
+            case .endRate:
+                return "End rating for all"
+            }
+        }
+
+        private func cta(for item: Option) -> String {
+            switch item {
+            case .vote:
+                return "Vote"
+            case .endPoll:
+                return "Proceed"
+            case .rate:
+                return "Rate"
+            case .endRate:
+                return "Proceed"
+            }
+        }
+
+        func titleForItem(at indexPath: IndexPath) -> String {
+            return title(for: pageValues.at(index: indexPath.row) ?? .rate)
+        }
+
+        func ctaForItem(at indexPath: IndexPath) -> String {
+            return cta(for: pageValues.at(index: indexPath.row) ?? .vote)
         }
     }
 }
