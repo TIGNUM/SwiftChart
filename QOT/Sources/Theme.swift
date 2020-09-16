@@ -1264,7 +1264,7 @@ enum ThemeText {
                                         letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color,
                                         alignment: alignment ?? .left)
         case .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed,
-             .mySprintDetailsProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight, .Text02Light:
+             .mySprintDetailsProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .center)
         case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle,
@@ -1277,7 +1277,7 @@ enum ThemeText {
                                                     alignment: alignment ?? .right)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead,
              .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle,
-             .dailyBriefFromTignumTitle, .featureExplanation:
+             .dailyBriefFromTignumTitle, .featureExplanation, .Text02Light:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color,
                                         alignment: alignment ?? .left)
