@@ -148,7 +148,6 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        interactor.handleSelection(at: indexPath)
         switch MyX.Section.allCases[indexPath.section] {
         case .items:
             interactor.handleSelection(at: indexPath)
