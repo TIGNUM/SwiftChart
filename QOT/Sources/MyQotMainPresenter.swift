@@ -22,25 +22,9 @@ final class MyQotMainPresenter {
 }
 
 // MARK: - KnowingInterface
-
 extension MyQotMainPresenter: MyQotMainPresenterInterface {
     func setupView() {
         viewController?.setupView()
-    }
-
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
-        log("indexPath: \(indexPath)", level: .debug)
-        viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath)
-    }
-
-    func reloadMainItems(updateIndexPath: [IndexPath]) {
-        log("updateIndexPath: \(updateIndexPath)", level: .debug)
-        viewController?.reloadMainItems(updateIndexPath: updateIndexPath)
-    }
-
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
-        log("indexPath: \(indexPath)", level: .debug)
-        viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath)
     }
 
     func reload() {

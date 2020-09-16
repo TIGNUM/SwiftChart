@@ -237,20 +237,11 @@ private extension MyQotMainInteractor {
     }
 
     func updateSelectedTeam(teamId: String) {
+        let selectedTeamId = selectedTeamItem?.teamId
         getTeamHeaderItems(showNewRedDot: true) { [weak self] (items) in
             let teamItem = items.filter { $0.teamId == teamId }.first
-            if self?.selectedTeamItem == nil {
-                self?.selectedTeamItem = teamItem
-                self?.presenter.deleteItems(at: MyX.Item.indexPathArrayUpdate(),
-                                            updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
-            } else if self?.selectedTeamItem?.teamId == teamId {
-                self?.selectedTeamItem = nil
-                self?.presenter.inserItems(at: MyX.Item.indexPathArrayUpdate(),
-                                           updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert())
-            } else {
-                self?.selectedTeamItem = teamItem
-                self?.presenter.reloadMainItems(updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
-            }
+            self?.selectedTeamItem = selectedTeamId == teamId ? nil : teamItem
+            self?.presenter.reload()
         }
     }
 }
