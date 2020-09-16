@@ -36,19 +36,19 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxz-3F-I14">
-                                <rect key="frame" x="24" y="97" width="46" height="24"/>
+                                <rect key="frame" x="24" y="97" width="49" height="24"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="/20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSk-So-LNw">
-                                <rect key="frame" x="360" y="97" width="30" height="24"/>
+                                <rect key="frame" x="361" y="97" width="29" height="24"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0e-yO-gd5">
-                                <rect key="frame" x="347.5" y="97" width="12.5" height="24"/>
+                                <rect key="frame" x="349.5" y="97" width="11.5" height="24"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -77,13 +77,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAA-fE-QPx">
-                                        <rect key="frame" x="347" y="94" width="19" height="14"/>
+                                        <rect key="frame" x="348.5" y="94" width="17.5" height="14"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40186215753424659" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gh-Hn-mV8">
-                                        <rect key="frame" x="339" y="94" width="8" height="14"/>
+                                        <rect key="frame" x="341.5" y="94" width="7" height="14"/>
                                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -217,13 +217,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-Bw-tH3">
-                            <rect key="frame" x="24" y="8" width="40" height="40"/>
+                            <rect key="frame" x="24" y="8" width="41" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="29C-AV-dt2"/>
-                                <constraint firstAttribute="width" constant="40" id="av3-lh-WHT"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
-                            <state key="normal" image="ic_close_sand">
+                            <inset key="contentEdgeInsets" minX="12" minY="10" maxX="13" maxY="10"/>
+                            <state key="normal" image="close">
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -244,6 +244,7 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="MZZ-Tc-4th"/>
                     <connections>
+                        <outlet property="leftButton" destination="Af5-Bw-tH3" id="pt9-Sn-5PO"/>
                         <outlet property="rightButton" destination="X7A-6y-VVr" id="Qrv-1p-jiq"/>
                     </connections>
                 </view>
@@ -286,6 +287,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_close_sand" width="40" height="40"/>
+        <image name="close" width="16" height="16"/>
     </resources>
 </document>

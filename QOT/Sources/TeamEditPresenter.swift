@@ -31,6 +31,7 @@ private extension TeamEditPresenter {
                                     subHeader: subHeader,
                                     description: TeamEdit.description.label(type: type),
                                     cta: TeamEdit.cta.label(type: type),
+                                    leftButton: TeamEdit.leftButton.label(type: type),
                                     animated: animated)
     }
 }
