@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AirshipKit
+import Airship
 import CoreLocation
 import Buglife
 import Kingfisher
@@ -195,13 +195,13 @@ private extension AppDelegate {
     }
 
     func setupUAirship() {
-        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
+        guard let path = Bundle.main.path(forResource: "AirshipCbonfig", ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
         config.developmentLogLevel = .error
         UAirship.takeOff(config)
-        UAirship.push().pushNotificationDelegate = remoteNotificationHandler
-        UAirship.push().updateRegistration()
-        UAirship.shared().analytics.isEnabled = true
+        UAirship.push()?.pushNotificationDelegate = remoteNotificationHandler
+        UAirship.push()?.updateRegistration()
+        UAirship.shared()?.analytics.isEnabled = true
     }
 
     func setupAppCenter() {
