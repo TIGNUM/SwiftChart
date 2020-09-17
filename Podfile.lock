@@ -55,7 +55,7 @@ DEPENDENCIES:
   - DifferenceKit
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `hotfix/iOS14`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -82,14 +82,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
-    :branch: hotfix/iOS14
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:SanggeonPark/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: d3a6a678bd34f35885002e445821d51bef1f3054
+    :commit: c4971f99b33a0cde5534884cc8fbf8764ec75637
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -113,6 +112,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
 
-PODFILE CHECKSUM: b9b62b56288ea60e415556be083175d71413eb22
+PODFILE CHECKSUM: 539cb477636ef161894dfff44f44fb4c003c527b
 
 COCOAPODS: 1.9.3
