@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 struct TeamToBeVisionOptionsModel {
 
@@ -16,8 +17,8 @@ struct TeamToBeVisionOptionsModel {
 
         var pageTitle: String {
             switch self {
-            case .rating: return "TEAM RATING IN PROGRESS"
-            case .voting: return "TEAM TOBEVISION POLL"
+            case .rating: return AppTextService.get(.my_x_team_tbv_options_rate_title)
+            case .voting: return AppTextService.get(.my_x_team_tbv_options_poll_title)
             }
         }
 
@@ -44,26 +45,26 @@ struct TeamToBeVisionOptionsModel {
         private func title(for item: Option) -> String {
             switch item {
             case .vote:
-                return "Vote team qualities"
+                return AppTextService.get(.my_x_team_tbv_options_poll_vote_title)
             case .endPoll:
-                return "End Poll"
+                return AppTextService.get(.my_x_team_tbv_options_poll_end_poll_title)
             case .rate:
-                return "Rate Team ToBeVision"
+                return AppTextService.get(.my_x_team_tbv_options_rate_rate_title)
             case .endRate:
-                return "End rating for all"
+                return AppTextService.get(.my_x_team_tbv_options_rate_end_rate_title)
             }
         }
 
         private func cta(for item: Option) -> String {
             switch item {
             case .vote:
-                return "Vote"
+                return AppTextService.get(.my_x_team_tbv_options_poll_vote_cta)
             case .endPoll:
-                return "Proceed"
+                return AppTextService.get(.my_x_team_tbv_options_poll_end_poll_cta)
             case .rate:
-                return "Rate"
+                return AppTextService.get(.my_x_team_tbv_options_rate_rate_cta)
             case .endRate:
-                return "Proceed"
+                return AppTextService.get(.my_x_team_tbv_options_rate_end_rate_cta)
             }
         }
 
