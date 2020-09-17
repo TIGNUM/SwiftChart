@@ -38,8 +38,8 @@ final class BaseRootViewController: BaseViewController, ScreenZLevel1 {
     }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         baseRootViewController = self
+        super.viewDidLoad()
         ThemeView.level1.apply(view)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleBottomNavigationBar(_:)),
@@ -66,6 +66,16 @@ final class BaseRootViewController: BaseViewController, ScreenZLevel1 {
                                                object: nil)
         setupBottomNavigationContainer()
         setupAudioPlayerBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        baseRootViewController = self
+        super.viewWillAppear(animated)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        baseRootViewController = self
+        super.viewDidAppear(animated)
     }
 
     override func viewDidLayoutSubviews() {
