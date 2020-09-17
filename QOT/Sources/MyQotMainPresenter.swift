@@ -22,29 +22,47 @@ final class MyQotMainPresenter {
 }
 
 // MARK: - KnowingInterface
-
 extension MyQotMainPresenter: MyQotMainPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
 
-    func deleteItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
-        log("indexPath: \(indexPath)", level: .debug)
-        viewController?.deleteItems(at: indexPath, updateIndexPath: updateIndexPath)
-    }
-
-    func reloadMainItems(updateIndexPath: [IndexPath]) {
-        log("updateIndexPath: \(updateIndexPath)", level: .debug)
-        viewController?.reloadMainItems(updateIndexPath: updateIndexPath)
-    }
-
-    func inserItems(at indexPath: [IndexPath], updateIndexPath: [IndexPath]) {
-        log("indexPath: \(indexPath)", level: .debug)
-        viewController?.inserItems(at: indexPath, updateIndexPath: updateIndexPath)
-    }
-
     func reload() {
         log("viewController?.reload()", level: .debug)
         viewController?.reload()
+    }
+
+    func presentItemsWith(identifiers: [String], maxCount: Int) {
+        // this process supports only adding items or deleting items.
+        // Doesn't support add some items and deleting some items at the same time.
+        var handledPrefixes = [String]()
+        var indexPathsToRemove = [IndexPath]()
+        var indexPathsToAdd = [IndexPath]()
+        var indexPathsToUpdate = [IndexPath]()
+        var newIndexPathsForUpdatedItems = [IndexPath]()
+        for index in (0...maxCount) {
+            let indexPath = IndexPath(item: index, section: 2)
+            if let cell = viewController?.collectionViewCell(at: indexPath),
+                let reuseIdentifier = cell.reuseIdentifier,
+                let prefix = reuseIdentifier.components(separatedBy: "_").first {
+                if identifiers.contains(prefix) {
+                    indexPathsToUpdate.append(indexPath)
+                    handledPrefixes.append(prefix)
+                    newIndexPathsForUpdatedItems.append(IndexPath(item: identifiers.firstIndex(of: prefix) ?? 0, section: 2))
+                } else {
+                    indexPathsToRemove.append(indexPath)
+                }
+            }
+        }
+        for (index, identifier) in identifiers.enumerated() {
+            if !handledPrefixes.contains(obj: identifier) {
+                indexPathsToAdd.append(IndexPath(item: index, section: 2))
+            }
+        }
+
+        viewController?.updateViewCells(deleteIndexPaths: indexPathsToRemove,
+                                        updateIndexPaths: indexPathsToUpdate,
+                                        newIndexPathsForUpdatedItems: newIndexPathsForUpdatedItems,
+                                        insertIndexPaths: indexPathsToAdd)
     }
 }

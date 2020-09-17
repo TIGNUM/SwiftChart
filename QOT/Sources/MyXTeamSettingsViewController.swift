@@ -20,7 +20,6 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var horizontalHeaderView: HorizontalHeaderView!
-    @IBOutlet private weak var horizontalHeaderHeight: NSLayoutConstraint!
     var interactor: MyXTeamSettingsInteractorInterface!
     var router: MyXTeamSettingsRouterInterface?
 
@@ -43,11 +42,11 @@ final class MyXTeamSettingsViewController: BaseViewController, ScreenZLevel3 {
         super.viewWillAppear(animated)
         setStatusBar(color: .carbon)
         updateBottomNavigation([backNavigationItem()], [])
+        interactor.viewWillAppear()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        interactor.viewDidAppear()
         trackPage()
     }
 }
@@ -77,7 +76,7 @@ private extension MyXTeamSettingsViewController {
 
 // MARK: - MyXTeamSettingsViewControllerInterface
 extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface {
-    func setup() {
+    func setupView() {
         let baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
@@ -95,12 +94,7 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
     }
 
     func updateTeamHeader(teamHeaderItems: [Team.Item]) {
-        if teamHeaderItems.isEmpty {
-            horizontalHeaderHeight.constant = 0
-        } else {
-            horizontalHeaderHeight.constant = 60
-            horizontalHeaderView.configure(headerItems: teamHeaderItems, canDeselect: false)
-        }
+       horizontalHeaderView.configure(headerItems: teamHeaderItems, canDeselect: false)
     }
 
     func dismiss() {
@@ -175,7 +169,7 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
         case .leaveTeam:
             QOTAlert.show(title: leaveTitle, message: leaveMessage, bottomItems: [cancel, leaveTeam])
         case .teamMembers:
-            router?.presentTeamMembers(selectedTeamItem: interactor.getSelectedItem, teamItems: interactor.getTeamItems)
+            router?.presentTeamMembers()
         default:
             break
         }

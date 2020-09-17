@@ -8,7 +8,7 @@
 
 import UIKit
 import Buglife
-import AirshipKit
+import Airship
 import qot_dal
 
 extension AppDelegate: BuglifeDelegate {
@@ -17,7 +17,7 @@ extension AppDelegate: BuglifeDelegate {
         // A slight hack. Rather than updating Bulife on logout and login etc we intecept it just before it's shown.
 
         let username = SessionService.main.getCurrentSession()?.useremail ?? "No username"
-        let apnsDeviceToken = UAirship.push().deviceToken ?? "No token"
+        let apnsDeviceToken = UAirship.push()?.deviceToken ?? "No token"
         buglife.setUserEmail(username)
         buglife.setStringValue(apnsDeviceToken, forAttribute: "APNS Devive Token")
         return nil

@@ -17,12 +17,14 @@ final class KeyboardInputView: UIView {
 
     // MARK: - Prooperties
     @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var leftButton: UIButton!
     weak var delegate: KeyboardInputViewProtocol?
 
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         rightButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        leftButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         updateRightButton(false)
     }
 

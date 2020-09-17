@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-import AirshipKit
+import Airship
 import Buglife
 import qot_dal
 

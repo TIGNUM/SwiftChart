@@ -5,7 +5,7 @@ target 'QOT' do
   pod 'R.swift'
   pod 'RSKImageCropper'
   pod 'SVProgressHUD'
-  pod 'UrbanAirship-iOS-SDK'
+  pod 'Airship'
   pod 'Buglife'
   pod 'SwiftyBeaver'
   pod 'AppCenter'
