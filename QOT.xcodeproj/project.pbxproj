@@ -321,8 +321,6 @@
 		386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */; };
 		3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
-		38966EA224D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */; };
-		38966EA324D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */; };
 		389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */; };
 		3898280D2502A89900A37C25 /* PollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898280C2502A89900A37C25 /* PollButton.swift */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
@@ -342,6 +340,8 @@
 		38A2D17C25025C7100CEA071 /* DTTeamTBVInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17425025C7100CEA071 /* DTTeamTBVInteractor.swift */; };
 		38A2D17D25025C7100CEA071 /* DTTeamTBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17525025C7100CEA071 /* DTTeamTBV.swift */; };
 		38A2D17E25025C7100CEA071 /* DTTeamTBVConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17625025C7100CEA071 /* DTTeamTBVConfigurator.swift */; };
+		389CC8182512021600028C54 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389CC8162512021500028C54 /* HorizontalHeaderCollectionViewCell.swift */; };
+		389CC8192512021600028C54 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389CC8172512021500028C54 /* HorizontalHeaderCollectionViewCell.xib */; };
 		38C23E5124235DCA0034571B /* DTPrepareStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4924235DCA0034571B /* DTPrepareStartPresenter.swift */; };
 		38C23E5224235DCA0034571B /* DTPrepareStartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4A24235DCA0034571B /* DTPrepareStartWorker.swift */; };
 		38C23E5324235DCA0034571B /* DTPrepareStartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4B24235DCA0034571B /* DTPrepareStartRouter.swift */; };
@@ -356,7 +356,6 @@
 		38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */; };
 		38C6516F24360188002CE496 /* WorkerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6516E24360188002CE496 /* WorkerContent.swift */; };
 		38C7CCE124A11CD600334EEB /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */; };
-		38CA8C4924B7D48B00830054 /* HorizontalHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38CA8C4824B7D48B00830054 /* HorizontalHeaderView.xib */; };
 		38D218E424A634C500B6FA26 /* HorizontalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */; };
 		38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */; };
 		38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E724A64C3000B6FA26 /* TeamHeader.swift */; };
@@ -1738,8 +1737,6 @@
 		386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareQuestionTableViewCell.xib; sourceTree = "<group>"; };
 		3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamHeaderCell.xib; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
-		38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
-		38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveView.xib; sourceTree = "<group>"; };
 		3898280C2502A89900A37C25 /* PollButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollButton.swift; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
@@ -1759,6 +1756,8 @@
 		38A2D17425025C7100CEA071 /* DTTeamTBVInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVInteractor.swift; path = QOT/DTTeamTBVInteractor.swift; sourceTree = SOURCE_ROOT; };
 		38A2D17525025C7100CEA071 /* DTTeamTBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBV.swift; path = QOT/DTTeamTBV.swift; sourceTree = SOURCE_ROOT; };
 		38A2D17625025C7100CEA071 /* DTTeamTBVConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVConfigurator.swift; path = QOT/DTTeamTBVConfigurator.swift; sourceTree = SOURCE_ROOT; };
+		389CC8162512021500028C54 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		389CC8172512021500028C54 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		38C23E4924235DCA0034571B /* DTPrepareStartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartPresenter.swift; sourceTree = "<group>"; };
 		38C23E4A24235DCA0034571B /* DTPrepareStartWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartWorker.swift; sourceTree = "<group>"; };
 		38C23E4B24235DCA0034571B /* DTPrepareStartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartRouter.swift; sourceTree = "<group>"; };
@@ -1773,7 +1772,6 @@
 		38C23E5F2423E8130034571B /* CalendarEventSelectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventSelectionHeaderView.xib; sourceTree = "<group>"; };
 		38C6516E24360188002CE496 /* WorkerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerContent.swift; sourceTree = "<group>"; };
 		38C7CCE024A11CD600334EEB /* KeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
-		38CA8C4824B7D48B00830054 /* HorizontalHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalHeaderView.xib; sourceTree = "<group>"; };
 		38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderView.swift; sourceTree = "<group>"; };
 		38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeaderCell.swift; sourceTree = "<group>"; };
 		38D218E724A64C3000B6FA26 /* TeamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeader.swift; sourceTree = "<group>"; };
@@ -2880,7 +2878,7 @@
 				F96D9F2F24D448F500188482 /* TeamVisionSuggestion */,
 				F96D9F2824D2DAB600188482 /* TeamToBeVision */,
 				F9D2BC1E22D4966B00DBF2CC /* FromTignum */,
-				B80B2EF224DAC4C900C6FD85 /* Team */,
+				B80B2EF224DAC4C900C6FD85 /* Team Library Feed */,
 				F916AAE92418E915002C1EFE /* MindsetShifter */,
 				9C24237022F0817F00B911E6 /* AboutMe */,
 				F9462248230C2C21000A3B42 /* Copyright */,
@@ -3589,12 +3587,11 @@
 		38D218E224A6344600B6FA26 /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				38966EA124D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift */,
-				38966EA024D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib */,
+				389CC8162512021500028C54 /* HorizontalHeaderCollectionViewCell.swift */,
+				389CC8172512021500028C54 /* HorizontalHeaderCollectionViewCell.xib */,
 				38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */,
 				38D218E724A64C3000B6FA26 /* TeamHeader.swift */,
 				38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */,
-				38CA8C4824B7D48B00830054 /* HorizontalHeaderView.xib */,
 				3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */,
 			);
 			name = Header;
@@ -4801,7 +4798,7 @@
 			path = MyQOTAdminEditSprintsDetails;
 			sourceTree = "<group>";
 		};
-		B80B2EF224DAC4C900C6FD85 /* Team */ = {
+		B80B2EF224DAC4C900C6FD85 /* Team Library Feed */ = {
 			isa = PBXGroup;
 			children = (
 				B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */,
@@ -4810,7 +4807,7 @@
 				B80B2EFD24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.swift */,
 				B80B2EFE24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib */,
 			);
-			path = Team;
+			path = "Team Library Feed";
 			sourceTree = "<group>";
 		};
 		B83B33DA22C21D6E002AFED7 /* BottomNavigation */ = {
@@ -6242,6 +6239,7 @@
 				38095D3024BDDE680077EE86 /* TeamInviteHeaderTableViewCell.xib in Resources */,
 				9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */,
 				360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */,
+				389CC8192512021600028C54 /* HorizontalHeaderCollectionViewCell.xib in Resources */,
 				B49BE661233B9BFB008CAED0 /* PaymentReminderViewController.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
@@ -6373,7 +6371,6 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
-				38CA8C4924B7D48B00830054 /* HorizontalHeaderView.xib in Resources */,
 				36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				380B03CB241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.xib in Resources */,
@@ -6408,7 +6405,6 @@
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
 				B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */,
 				754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */,
-				38966EA224D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.xib in Resources */,
 				383D5F1F24212C25007F8C2A /* walkThrough_search.mp4 in Resources */,
 				75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */,
 				DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */,
@@ -6463,6 +6459,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Airship/Airship.framework",
 				"${BUILT_PRODUCTS_DIR}/Buglife/Buglife.framework",
 				"${BUILT_PRODUCTS_DIR}/DifferenceKit/DifferenceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
@@ -6475,11 +6472,11 @@
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
-				"${BUILT_PRODUCTS_DIR}/UrbanAirship-iOS-SDK/AirshipKit.framework",
 				"${BUILT_PRODUCTS_DIR}/qot_dal/qot_dal.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Airship.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Buglife.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DifferenceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
@@ -6492,7 +6489,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AirshipKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/qot_dal.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6534,7 +6530,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				$SRCROOT/QOT/Generated/R.generated.swift,
+				"$SRCROOT/QOT/Generated/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6848,7 +6844,6 @@
 				AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */,
 				367A58562326A15D0089A082 /* DTSolveInterface.swift in Sources */,
 				9115F706208DE01E00EE5D1D /* ProfileSettingsInteractor.swift in Sources */,
-				38966EA324D0AF5600F6B082 /* HorizontalHeaderCollectionViewCell.swift in Sources */,
 				AC103E412285B27200F426F0 /* ShifterResultWorker.swift in Sources */,
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
 				389BBC8B235EE68B0009FA02 /* CoachMarksModel.swift in Sources */,
@@ -7653,6 +7648,7 @@
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
 				386C279C2418EBFF00184EC9 /* ResultsPrepareRouter.swift in Sources */,
 				F9207CE624B77BEB007B1AB6 /* MyXTeamMembersPresenter.swift in Sources */,
+				389CC8182512021600028C54 /* HorizontalHeaderCollectionViewCell.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				5F8A89952296DEDF0011A05C /* MyVisionConfigurator.swift in Sources */,
 				B45DA6BE23AA6316006E7E33 /* MyQOTAdminChooseBucketsRouter.swift in Sources */,
@@ -9024,10 +9020,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
-					Resources/Animations.xcassets/QOT,
-					Logo,
-				);
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

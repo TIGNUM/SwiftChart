@@ -221,7 +221,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         isLoadingBuckets = true
         var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
         worker.getDailyBriefBucketsForViewModel { [weak self] (bucketsList) in
-            guard let strongSelf = self else {
+            guard let strongSelf = self,
+                bucketsList.filter({ $0.bucketName == .DAILY_CHECK_IN_1 }).first != nil else {
                 return
             }
 
@@ -669,11 +670,16 @@ extension DailyBriefInteractor {
             visionAndDates.append(dateVision)
         }
         visionAndDates.removeFirst()
+        let beginingOfDay = Date().beginingOfDate()
+        visionAndDates = visionAndDates.filter({ $0.1 > beginingOfDay })
         visionAndDates.sort(by: {$0.1 > $1.1})
         let latestVision = visionAndDates.first?.0
         let visionText = latestVision?.text
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
-        let title = team?.name
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "")
+        guard visionText?.isEmpty == false else {
+            return visionList
+        }
         let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, domainModel: teamVisionBucket)
         visionList.append(model)
         return visionList

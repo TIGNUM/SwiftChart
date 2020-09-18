@@ -393,6 +393,7 @@ public extension AppTextKey {
     static let daily_brief_section_team_news_feed_subtitle_for_multiple_items = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_multiple_items")
     static let daily_brief_section_team_news_feed_creation_info = AppTextKey("daily_brief.section_team_news_feed.creation_info")
     static let daily_brief_section_team_news_feed_open_library_button_title = AppTextKey("daily_brief.section_team_news_feed.open_library_button_title")
+    static let daily_brief_section_team_news_feed_library = AppTextKey("daily_brief.section_team_news_feed.library")
 
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
@@ -518,6 +519,7 @@ public extension AppTextKey {
     static let my_x_team_tbv_section_trends_label = AppTextKey("my_x.team_tbv_section.trends_label")
 
     static let my_x_team_tbv_section_rating_explanation_title = AppTextKey("my_x.team_tbv_section.rating_explanation.title")
+    static let my_x_team_tbv_section_feature_explanation_checkmark = AppTextKey("my_x.team_tbv_section.feature_explanation_checkmark")
     static let my_x_team_tbv_section_rating_explanation_member_title = AppTextKey("my_x.team_tbv_section.rating_explanation.member_title")
     static let my_x_team_tbv_section_rating_explanation_text = AppTextKey("my_x.team_tbv_section.rating_explanation.text")
     static let my_x_team_tbv_section_rating_explanation_member_text = AppTextKey("my_x.team_tbv_section.rating_explanation.member_text")
@@ -530,6 +532,8 @@ public extension AppTextKey {
     static let my_x_team_create_subheader = AppTextKey("my_x.team_create.subtitle")
     static let my_x_team_create_cta = AppTextKey("my_x.team.create_cta")
     static let my_x_team_create_max_team_sutitle = AppTextKey("my_x.team_create.max_team_subtitle")
+    static let my_x_team_create_duplicated_name_error_description = AppTextKey("my_x.team.create_duplicated_name_error_description")
+    static let my_x_team_create_default_error_description = AppTextKey("my_x.team.create_default_error_description")
 
     // MARK: - Team Member Invite
     static let my_x_team_member_invite_header = AppTextKey("my_x.team_member_invite.header")
@@ -537,7 +541,8 @@ public extension AppTextKey {
     static let my_x_team_member_invite_description = AppTextKey("my_x.team_member_invite.description")
     static let my_x_team_member_invite_cta = AppTextKey("my_x.team_member_invite.cta")
     static let my_x_team_invite_cta = AppTextKey("team_invite.header_title.plural")
-    static let my_x_team_invite_max_members = AppTextKey("my_x.team.member.invite.max_members")
+    static let my_x_team_invite_max_members = AppTextKey("my_x.team_member.invite.max_members")
+    static let my_x_team_member_invite_done = AppTextKey("my_x.team_member_invite.done")
     static let team_invite_details_text = AppTextKey("team_invite.details.text")
 
     // MARK: - Team Member Edit

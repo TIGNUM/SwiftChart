@@ -96,7 +96,7 @@ extension MyQotMainWorker {
             default:
                 countString = AppTextService.get(.my_qot_section_team_library_subtitle_multiple_items)
             }
-            countString = daysString.replacingOccurrences(of: "${ITEM_COUNT}", with: "\(feeds.count)")
+            countString = countString.replacingOccurrences(of: "${ITEM_COUNT}", with: "\(feeds.count)")
             completion("\(countString)\n\(daysString)", feeds.count)
         }
     }

@@ -31,6 +31,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func didChangeLocationPermission(granted: Bool)
     func showDailyCheckInQuestions()
     func showAlert(message: String?)
+    func showBanner(message: String)
 }
 
 final class DailyBriefNavigationController: UINavigationController {
@@ -292,6 +293,9 @@ extension DailyBriefViewController {
         case .TEAM_NEWS_FEED:
             guard let viewModel = bucketItem as? TeamNewsFeedDailyBriefViewModel else { break }
             handleTableViewRowSelection(with: viewModel, at: indexPath)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.setSelected(false, animated: true)
+            }
         default:
             break
         }
@@ -353,6 +357,7 @@ private extension DailyBriefViewController {
                                 _ indexPath: IndexPath,
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
         let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
+        cell.clickableLinkDelegate = self
         cell.configure(viewModel: impactReadinessCellViewModel, tapLeft: { [weak self] in
                         self?.delegate?.moveToCell(item: 0)
                         }, tapRight: { [weak self] in
@@ -381,6 +386,7 @@ private extension DailyBriefViewController {
                                _ indexPath: IndexPath,
                                _ questionCellViewModel: QuestionCellViewModel?) -> UITableViewCell {
         let cell: QuestionCell = tableView.dequeueCell(for: indexPath)
+        cell.clickableLinkDelegate = self
         cell.configure(with: questionCellViewModel)
         return cell
     }
@@ -394,6 +400,7 @@ private extension DailyBriefViewController {
                          _ indexPath: IndexPath,
                          _ thoughtsCellViewModel: ThoughtsCellViewModel?) -> UITableViewCell {
         let cell: ThoughtsCell = tableView.dequeueCell(for: indexPath)
+        cell.clickableLinkDelegate = self
         cell.configure(with: thoughtsCellViewModel)
         return cell
     }
@@ -409,6 +416,7 @@ private extension DailyBriefViewController {
         let cell: GoodToKnowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: goodToKnowCellViewModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -423,6 +431,7 @@ private extension DailyBriefViewController {
                                   _ fromTignumMessageViewModel: FromTignumCellViewModel?) -> UITableViewCell {
         let cell: FromTignumCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: fromTignumMessageViewModel)
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -436,6 +445,7 @@ private extension DailyBriefViewController {
                              _ coachMessageModel: FromMyCoachCellViewModel?) -> UITableViewCell {
         let cell: FromMyCoachCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: coachMessageModel)
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -445,6 +455,7 @@ private extension DailyBriefViewController {
         let cell: DepartureBespokeFeastCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: departureBespokeFeastModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -457,6 +468,7 @@ private extension DailyBriefViewController {
                         _ indexPath: IndexPath,
                         _ aboutMeViewModel: AboutMeViewModel?) -> UITableViewCell {
         let cell: AboutMeCell = tableView.dequeueCell(for: indexPath)
+        cell.clickableLinkDelegate = self
         cell.configure(with: aboutMeViewModel)
         return cell
     }
@@ -472,6 +484,7 @@ private extension DailyBriefViewController {
         let cell: MindsetShifterCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: mindsetShifterViewModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -486,6 +499,7 @@ private extension DailyBriefViewController {
         let cell: MeAtMyBestCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: meAtMyBestViewModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -500,6 +514,7 @@ private extension DailyBriefViewController {
         let cell: MeAtMyBestEmptyCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: meAtMyBestCellEmptyViewModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -514,6 +529,7 @@ private extension DailyBriefViewController {
         let cell: SprintChallengeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: sprintChallengeModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
     /**
@@ -527,6 +543,7 @@ private extension DailyBriefViewController {
                      _ whatsHotViewModel: WhatsHotLatestCellViewModel?) -> UITableViewCell {
         let cell: WhatsHotLatestCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: whatsHotViewModel)
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -540,6 +557,7 @@ private extension DailyBriefViewController {
                           _ solveReminderViewModel: SolveReminderCellViewModel?) -> UITableViewCell {
         let cell: SolveReminderCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: solveReminderViewModel)
+        cell.clickableLinkDelegate = self
         cell.delegate = self
         return cell
     }
@@ -557,6 +575,7 @@ private extension DailyBriefViewController {
                        date: solveReminderTableCellViewModel?.date,
                        solve: solveReminderTableCellViewModel?.solve)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -571,6 +590,7 @@ private extension DailyBriefViewController {
         let cell: Level5Cell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: level5ViewModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -585,22 +605,24 @@ private extension DailyBriefViewController {
         let cell: LeaderWisdomTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: leadersWisdomViewModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
     /**
-      * Method name: getLeadersWisdom.
-      * Description: Placeholder to display the leaders wisdom Information.
-      * Parameters: [tableView], [IndexPath]
-      */
-     func getExpertThoughts(_ tableView: UITableView,
+     * Method name: getLeadersWisdom.
+     * Description: Placeholder to display the leaders wisdom Information.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getExpertThoughts(_ tableView: UITableView,
                            _ indexPath: IndexPath,
                            _ expertThoughtsViewModel: ExpertThoughtsCellViewModel?) -> UITableViewCell {
-         let cell: ExpertThoughtsTableViewCell = tableView.dequeueCell(for: indexPath)
-         cell.configure(with: expertThoughtsViewModel)
-         cell.delegate = self
-         return cell
-     }
+        let cell: ExpertThoughtsTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: expertThoughtsViewModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
+    }
 
     /**
      * Method name: getDailyCheckinInsightsSHPICell.
@@ -612,6 +634,7 @@ private extension DailyBriefViewController {
                                          _ dailyCheck2SHPIModel: DailyCheck2SHPIModel?) -> UITableViewCell {
         let cell: DailyCheckinSHPICell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheck2SHPIModel)
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -626,6 +649,7 @@ private extension DailyBriefViewController {
         let cell: DailyCheckinInsightsTBVCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheckIn2TBVModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -641,6 +665,7 @@ private extension DailyBriefViewController {
             let cell: DailyCheckinInsightsPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: dailyCheckIn2PeakPerformanceModel)
             cell.delegate = self
+            cell.clickableLinkDelegate = self
             return cell
     }
 
@@ -656,6 +681,7 @@ private extension DailyBriefViewController {
         let cell: MyPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
         cell.dailyBriefViewControllerDelegate = self
         cell.configure(with: peakPerformanceModel)
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -669,6 +695,7 @@ private extension DailyBriefViewController {
                         _ indexPath: IndexPath,
                         _ exploreViewModel: ExploreCellViewModel?) -> UITableViewCell {
         let cell: ExploreCell = tableView.dequeueCell(for: indexPath)
+        cell.clickableLinkDelegate = self
         if exploreViewModel?.section == .LearnStrategies {
             self.selectedStrategyID = exploreViewModel?.remoteID
             cell.configure(title: exploreViewModel?.title,
@@ -707,6 +734,7 @@ private extension DailyBriefViewController {
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: guidedtrackModel, hideDivider)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }
@@ -722,6 +750,7 @@ private extension DailyBriefViewController {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -736,6 +765,7 @@ private extension DailyBriefViewController {
         let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: teamVisionModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -750,6 +780,7 @@ private extension DailyBriefViewController {
         let cell: TeamVisionSuggestionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(model: teamVisionSuggestionModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 
@@ -764,6 +795,7 @@ private extension DailyBriefViewController {
         let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
         cell.configure(model: teamInvitationModel)
         cell.delegate = self
+        cell.clickableLinkDelegate = self
         return cell
     }
 }
@@ -868,6 +900,12 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func presentTeamPendingInvites() {
         self.router.presentTeamPendingInvites()
+    }
+
+    func showBanner(message: String) {
+        let banner = NotificationBanner.instantiateFromNib()
+        banner.configure(message: message, isDark: false)
+        banner.show(in: self.view)
     }
 }
 

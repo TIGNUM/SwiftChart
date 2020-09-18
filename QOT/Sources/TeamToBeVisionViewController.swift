@@ -36,7 +36,9 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
     @IBOutlet private weak var pollButton: AnimatedButton!
     @IBOutlet private weak var trendsLabel: UILabel!
-    @IBOutlet weak var startRatingButton: UIButton!
+    @IBOutlet private weak var startRatingButton: UIButton!
+    @IBOutlet private weak var trendsButton: UIButton!
+    @IBOutlet private weak var trendsBarView: UIView!
 
     @IBOutlet private weak var lastModifiedLabel: UILabel!
     var didShowNullStateView = false
@@ -108,15 +110,16 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @objc func writeButtonAction(_ sender: Any) {
-        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
-            self?.trackUserEvent(.EDIT, value: self?.interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
-            self?.interactor.showEditVision(isFromNullState: false)
-            self?.shouldShowCreate = false
-        }
-        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
-        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
-                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
-                      bottomItems: [add, openTeamPoll])
+//        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
+        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
+        interactor.showEditVision(isFromNullState: false)
+        shouldShowCreate = false
+//        }
+//        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
+//        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
+//                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
+//                      bottomItems: [add, openTeamPoll])
+
     }
 
 }
@@ -219,21 +222,27 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
 
-        ThemeBorder.accent40.apply(pollButton)
+//        ThemeBorder.accent40.apply(pollButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
-        ThemeBorder.accent40.apply(startRatingButton)
-        startRatingButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
-        pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
+//        ThemeBorder.accent40.apply(startRatingButton)
+//        startRatingButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
+//        pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-        if interactor?.team?.thisUserIsOwner == false {
-            pollButton.isHidden = true
-        }
+//        if interactor?.team?.thisUserIsOwner == false {
+//            pollButton.isHidden = true
+//        }
+//        Temporarily hide buttons
+        trendsLabel.isHidden = true
+        trendsBarView.isHidden = true
+        trendsButton.isHidden = true
+        startRatingButton.isHidden = true
+        pollButton.isHidden = true
         ThemeText.trends.apply(AppTextService.get(.my_x_team_tbv_section_trends_label), to: trendsLabel)
     }
 
@@ -261,19 +270,16 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         }
         var headline = teamVision?.headline
         if headline?.isEmpty != false {
-            headline = interactor.emptyTeamTBVTitlePlaceholder
+            headline = interactor.teamNullStateTitle
         }
         ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
-        let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.emptyTeamTBVTextPlaceholder
+        let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.teamNullStateSubtitle
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
         tempTeamImageURL = teamVision?.profileImageResource?.url()
-        userImageView.contentMode = tempTeamImageURL == nil ? .center : .scaleAspectFill
+        userImageView.contentMode = .scaleAspectFill
         userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
         removeGradients()
         addGradients()
-        //        TO DO: Get rate text for team
-        //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
-        //        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
 
         //        Temp disabling Rating button items
         rateButton.isEnabled = false

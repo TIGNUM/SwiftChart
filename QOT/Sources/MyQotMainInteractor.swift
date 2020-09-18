@@ -14,10 +14,15 @@ final class MyQotMainInteractor: MyQotMainWorker {
     // MARK: - Properties
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
-    private var teamHeaderItems = [Team.Item]()
     private var selectedTeamItem: Team.Item?
-    private var subtitles: [String?] = []
     private var eventType: String?
+
+    internal var headerItems = [Team.Item]()
+    internal var subtitles = [String: String?]() // [MyX.Item.rawValue: subtitle string]
+    internal var hasOwnerEmptyTeamTBV = false
+    internal var isCellEnabled = [String: Bool]() // [MyX.Item.rawValue: cell enabled]
+    internal var settingTitle: String = ""
+    internal var newLibraryItemCount: Int = 0
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -29,6 +34,92 @@ final class MyQotMainInteractor: MyQotMainWorker {
     func viewDidLoad() {
         presenter.setupView()
         ExtensionsDataManager().update(.teams)
+    }
+
+    func loadAllData(_ completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var tmpSelectedTeamItem: Team.Item? = selectedTeamItem
+        // load header items
+        dispatchGroup.enter()
+        var tmpHeaderItems = [Team.Item]()
+        getTeamHeaderItems(showNewRedDot: true) { (items) in
+            tmpHeaderItems = items
+            tmpSelectedTeamItem = items.filter { $0.isSelected }.first
+            dispatchGroup.leave()
+        }
+
+        var tmpNewLibraryItemCount = 0
+        var tmpSubtitles = [String: String?]()
+        var tmpIsCellEnabled = [String: Bool]()
+        for item in MyX.Item.allCases {
+            dispatchGroup.enter()
+            // load all "isCellEnabled"
+            isCellEnabled(for: tmpSelectedTeamItem, section: item) { enabled in
+                tmpIsCellEnabled[item.rawValue] = enabled
+                dispatchGroup.leave()
+            }
+
+            // load all subtitles
+            switch item {
+            case .library:
+                dispatchGroup.enter()
+                getTeamLibrarySubtitleAndCount(team: tmpSelectedTeamItem?.qdmTeam) { (subtitle, newItemCount) in
+                    tmpSubtitles[MyX.Item.library.rawValue] = subtitle
+                    // load new item counts
+                    tmpNewLibraryItemCount = newItemCount
+                    dispatchGroup.leave()
+                }
+            case .preps:
+                dispatchGroup.enter()
+                getPreparationSubtitle { subtitle in
+                    tmpSubtitles[MyX.Item.preps.rawValue] = subtitle
+                    dispatchGroup.leave()
+                }
+            case .sprints:
+                dispatchGroup.enter()
+                getCurrentSprintName { subtitle in
+                    tmpSubtitles[MyX.Item.sprints.rawValue] = subtitle
+                    dispatchGroup.leave()
+                }
+            case .data:
+                dispatchGroup.enter()
+                getMyDataSubtitle { subtitle in
+                    tmpSubtitles[MyX.Item.data.rawValue] = subtitle
+                    dispatchGroup.leave()
+                }
+            case .toBeVision:
+                dispatchGroup.enter()
+                getToBeVisionSubtitle(team: tmpSelectedTeamItem?.qdmTeam) { subtitle in
+                    tmpSubtitles[MyX.Item.toBeVision.rawValue] = subtitle
+                    dispatchGroup.leave()
+                }
+            default: break
+            }
+        }
+
+        // load hasOwnerEmptyTeamToBeVision
+        dispatchGroup.enter()
+        var tmpHasOwnerEmptyTeamTBV = true
+        hasOwnerEmptyTeamTBV (for: tmpSelectedTeamItem) { (isEmpty) in
+            tmpHasOwnerEmptyTeamTBV = isEmpty
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.headerItems = tmpHeaderItems
+            self?.selectedTeamItem = tmpSelectedTeamItem
+            self?.newLibraryItemCount = tmpNewLibraryItemCount
+            self?.subtitles = tmpSubtitles
+            self?.isCellEnabled = tmpIsCellEnabled
+            self?.hasOwnerEmptyTeamTBV = tmpHasOwnerEmptyTeamTBV
+            completion()
+        }
+    }
+
+    func loadAllDataAndReload() {
+        loadAllData { [weak self] in
+            self?.presenter.reload()
+        }
     }
 }
 
@@ -46,95 +137,73 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         return MyX.Item.items(selectedTeamItem != nil).at(index: indexPath.row)
     }
 
-    func getTitle(for item: MyX.Item?, _ completion: @escaping (String?) -> Void) {
+    func getTitle(for item: MyX.Item?) -> String? {
         let isTeam = selectedTeamItem != nil
         if item == .toBeVision && isTeam {
-            hasOwnerEmptyTeamTBV { (isEmpty) in
-                if isEmpty {
-                    completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision))
-                } else {
-                    completion(item?.title(isTeam: isTeam))
-                }
+            if self.hasOwnerEmptyTeamTBV {
+                return AppTextService.get(.myx_team_tbv_empty_subtitle_vision)
+            } else {
+                return item?.title(isTeam: isTeam)
             }
-        } else {
-            completion(item?.title(isTeam: isTeam))
         }
+        return item?.title(isTeam: isTeam)
     }
 
-    func getSubtitle(for item: MyX.Item?, _ completion: @escaping (String?, Bool) -> Void) {
+    func getSubtitle(for item: MyX.Item?) -> (String?, Bool) {
         switch item {
         case .teamCreate:
-            isCellEnabled(for: item) { (enabled) in
-                enabled ? completion(AppTextService.get(.my_x_team_create_subheader), false) : completion(AppTextService.get(.my_x_team_create_max_team_sutitle), false)
-            }
+            return self.isCellEnabled[MyX.Item.teamCreate.rawValue] == true ? (AppTextService.get(.my_x_team_create_subheader), false) : (AppTextService.get(.my_x_team_create_max_team_sutitle), false)
         case .library:
-            getTeamLibrarySubtitleAndCount(team: selectedTeamItem?.qdmTeam) { (subtitle, newItemCount) in
-                completion(subtitle, newItemCount != 0)
-            }
-        case .preps:
-            getPreparationSubtitle { subtitle in
-                completion(subtitle, false)
-            }
-        case .sprints:
-            getCurrentSprintName { subtitle in
-                completion(subtitle, false)
-            }
-        case .data:
-            getMyDataSubtitle { subtitle in
-                completion(subtitle, false)
-            }
-        case .toBeVision:
-            getToBeVisionSubtitle(team: selectedTeamItem?.qdmTeam) { subtitle in
-                completion(subtitle, false)
-            }
-        default:
-            DispatchQueue.main.async {
-                completion(nil, false)
-            }
+            return (self.subtitles[MyX.Item.library.rawValue] ?? nil, self.newLibraryItemCount != 0)
+        default: break
         }
+        let subtitle = self.subtitles[item?.rawValue ?? ""] ?? nil
+        return(subtitle, false)
     }
 
     func getSettingsButtonTitle(_ completion: @escaping (String) -> Void) {
-        getSettingsTitle(completion)
+        getSettingsTitle { [weak self] title in
+            self?.settingTitle = title
+            completion(title)
+        }
+    }
+
+    func allMainCellReuseIdentifiers() -> [String] {
+        var identifiers = [String]()
+        identifiers.append(contentsOf: MyX.Item.allCases.compactMap({ "\($0.rawValue)_personal" }))
+        identifiers.append(contentsOf: MyX.Item.allCases.compactMap({ "\($0.rawValue)_team" }))
+        return identifiers
+    }
+    func mainCellReuseIdentifier(at indexPath: IndexPath) -> String {
+        let item = getItem(at: indexPath)
+        return "\(item?.rawValue ?? "\(indexPath)")_\(selectedTeamItem != nil ? "team" : "personal")"
     }
 
     func updateMainCell(cell: MyQotMainCollectionViewCell, at indexPath: IndexPath) {
         let item = getItem(at: indexPath)
-        getTitle(for: item) { title in
-            cell.setTitle(title: title)
-            self.isCellEnabled(for: item) { enabled in
-                cell.setEnabled(enabled, title: title)
-            }
-        }
-        getSubtitle(for: item) { (subtitle, hasNewItems) in
-            cell.setSubtitle(subtitle)
-            cell.showRedDot(hasNewItems)
-        }
+        let title = getTitle(for: item)
+        cell.setTitle(title: title)
+        cell.setEnabled(self.isCellEnabled[item?.rawValue ?? ""] ?? true, title: title)
+        let subtitleResult = getSubtitle(for: item)
+        cell.setSubtitle(subtitleResult.0)
+        cell.showRedDot(subtitleResult.1)
     }
 
     func updateTeamHeaderItems(_ completion: @escaping ([Team.Item]) -> Void) {
-        if teamHeaderItems.isEmpty {
-            getTeamHeaderItems(showNewRedDot: true) { (items) in
-                self.teamHeaderItems = items
-                completion(items)
-            }
-        } else {
-            completion(teamHeaderItems)
-        }
+        getTeamHeaderItems(showNewRedDot: true, completion)
     }
 
-    func isCellEnabled(for section: MyX.Item?, _ completion: @escaping (Bool) -> Void) {
+    func isCellEnabled(for teamItem: Team.Item?, section: MyX.Item?, _ completion: @escaping (Bool) -> Void) {
         switch section {
         case .teamCreate: canCreateTeam(completion)
-        case .toBeVision: canSelectTBV(completion)
-        default: completion(true)
+        case .toBeVision: canSelectTBV(for: teamItem, completion)
+        default: DispatchQueue.main.async { completion(true) }
         }
     }
 
     func handleSelection(at indexPath: IndexPath) {
         switch MyX.Item.items(selectedTeamItem != nil).at(index: indexPath.row) {
         case .teamCreate:
-            clearTeamItems()
             router.presentEditTeam(.create, team: nil)
         case .library:
             router.presentMyLibrary(with: selectedTeamItem?.qdmTeam)
@@ -151,16 +220,15 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     @objc func presentTeamPendingInvites() {
-        clearTeamItems()
         router.presentTeamPendingInvites()
     }
 
     func presentMyProfile() {
-        clearTeamItems()
         router.presentMyProfile()
     }
 
     func addObserver() {
+        removeObserver()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkSelection),
                                                name: .didSelectTeam,
@@ -181,28 +249,32 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent else { return }
         switch result.dataType {
         case .TEAM:
-            presenter.reload()
+            loadAllDataAndReload()
             ExtensionsDataManager().update(.teams)
         default: break
         }
     }
 
     @objc func didUpdateInvitations(_ notification: Notification) {
-        updateTeamHeaderItems {(items) in
-            self.presenter.reload()
-        }
+        loadAllDataAndReload()
     }
 
     func removeObserver() {
         NotificationCenter.default.removeObserver(self, name: .didSelectTeam, object: nil)
         NotificationCenter.default.removeObserver(self, name: .didSelectTeamInvite, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didFinishSynchronization, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .changedInviteStatus, object: nil)
+    }
+
+    func viewWillAppear() {
+        loadAllDataAndReload()
     }
 }
 
 // MARK: - Private
 private extension MyQotMainInteractor {
-    func canSelectTBV(_ completion: @escaping (Bool) -> Void) {
-        guard let team = selectedTeamItem?.qdmTeam else {
+    func canSelectTBV(for teamItem: Team.Item?, _ completion: @escaping (Bool) -> Void) {
+        guard let team = teamItem?.qdmTeam else {
             completion(true)
             return
         }
@@ -216,8 +288,8 @@ private extension MyQotMainInteractor {
         }
     }
 
-    func hasOwnerEmptyTeamTBV(_ completion: @escaping (Bool) -> Void) {
-        if selectedTeamItem?.thisUserIsOwner == true, let team = selectedTeamItem?.qdmTeam {
+    func hasOwnerEmptyTeamTBV(for teamItem: Team.Item?, _ completion: @escaping (Bool) -> Void) {
+        if teamItem?.thisUserIsOwner == true, let team = teamItem?.qdmTeam {
             getTeamToBeVision(for: team) { (teamVision) in
                 completion(teamVision == nil)
             }
@@ -227,39 +299,40 @@ private extension MyQotMainInteractor {
     }
 
     @objc func checkSelection(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String] else { return }
-        if let teamId = userInfo[Team.KeyTeamId] {
-            updateSelectedTeam(teamId: teamId)
+        let controller = AppDelegate.topViewController()?.QOTVisibleViewController() as? CoachCollectionViewController
+        if controller?.getCurrentPage() == .myX {
+            guard let userInfo = notification.userInfo as? [String: String] else { return }
+            if let teamId = userInfo[Team.KeyTeamId] {
+                log("teamId: " + teamId, level: .debug)
+                updateSelectedTeam(teamId: teamId)
+            }
         }
     }
 
     func updateSelectedTeam(teamId: String) {
-        teamHeaderItems.forEach { (item) in
-            item.selected = teamId == item.teamId && !item.selected
-        }
-
-        let teamItem = teamHeaderItems.filter { $0.teamId == teamId }.first
-        if selectedTeamItem == nil {
+        let teamItem = headerItems.filter { $0.teamId == teamId }.first
+        if selectedTeamItem != nil, teamItem != nil, teamItem?.teamId != selectedTeamItem?.teamId { // changing team
             selectedTeamItem = teamItem
-            presenter.deleteItems(at: MyX.Item.indexPathArrayUpdate(),
-                                  updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
-        } else if selectedTeamItem?.teamId == teamId {
+            loadAllData { [weak self] in
+                self?.presenter.reload()
+            }
+            return
+        } else if selectedTeamItem != nil, teamItem != nil, teamItem?.teamId == selectedTeamItem?.teamId { // delselect team
             selectedTeamItem = nil
-            presenter.inserItems(at: MyX.Item.indexPathArrayUpdate(),
-                                 updateIndexPath: MyX.Item.indexPathToUpdateAfterInsert())
-        } else {
-            selectedTeamItem = teamItem
-            presenter.reloadMainItems(updateIndexPath: MyX.Item.indexPathToUpdateAfterDelete())
+        } else if selectedTeamItem == nil, teamItem != nil { // select team
+            selectedTeamItem = teamItem // select item
+        } else { // if selected item is not available any more
+            selectedTeamItem = nil
+            loadAllData { [weak self] in
+                self?.presenter.reload()
+            }
+            return
         }
-    }
-
-    func clearTeamItems() {
-        if selectedTeamItem != nil && selectedTeamItem?.header == .team {
-            NotificationCenter.default.post(name: .didSelectTeam,
-                                            object: nil,
-                                            userInfo: [Team.KeyTeamId: selectedTeamItem?.teamId ?? ""])
+        loadAllData { [weak self] in
+            let personalPrefixes: [String] = MyX.Item.allCases.compactMap({ $0.rawValue })
+            let teamPrefixes: [String] = [MyX.Item.library.rawValue, MyX.Item.toBeVision.rawValue]
+            self?.presenter.presentItemsWith(identifiers: self?.selectedTeamItem == nil ? personalPrefixes : teamPrefixes,
+                                             maxCount: MyX.Item.allCases.count)
         }
-        teamHeaderItems.removeAll()
-        selectedTeamItem = nil
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -313,7 +313,6 @@
                     <connections>
                         <outlet property="headerHeightConstraint" destination="AxI-o6-sx7" id="Csg-A1-8jd"/>
                         <outlet property="headerView" destination="Fbz-7Z-v9W" id="HpI-mm-kMz"/>
-                        <outlet property="horizontalHeaderHeight" destination="goi-Z4-0hj" id="7Xr-wB-pR2"/>
                         <outlet property="horizontalHeaderView" destination="che-KX-sGX" id="ias-d0-wwl"/>
                         <outlet property="tableView" destination="HTS-fj-Ieu" id="OXV-gs-tid"/>
                         <segue destination="CTF-ig-qwc" kind="show" identifier="myX.teamMembers.segue.identifier" id="c3J-PK-9oX"/>
@@ -813,7 +812,7 @@
                                 <rect key="frame" x="0.0" y="98" width="375" height="732"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vl2-o5-5qv">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="403.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="384.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pih-zv-4AU">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -851,7 +850,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTI-JQ-ziZ">
-                                                <rect key="frame" x="0.0" y="81" width="375" height="322.5"/>
+                                                <rect key="frame" x="0.0" y="81" width="375" height="303.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uk-s2-VTI" userLabel="companyView">
                                                         <rect key="frame" x="24" y="24" width="327" height="64"/>
@@ -892,10 +891,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Rc-py-rnV" userLabel="emailView">
-                                                        <rect key="frame" x="24" y="114" width="327" height="64"/>
+                                                        <rect key="frame" x="24" y="114" width="327" height="45"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a@a.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dn-OH-nIe">
-                                                                <rect key="frame" x="0.0" y="22" width="327" height="19"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dn-OH-nIe">
+                                                                <rect key="frame" x="0.0" y="22" width="327" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -907,7 +906,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQZ-vh-lEE">
-                                                                <rect key="frame" x="0.0" y="63" width="327" height="1"/>
+                                                                <rect key="frame" x="0.0" y="44" width="327" height="1"/>
                                                                 <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="UzZ-uu-d4U"/>
@@ -930,7 +929,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsX-zz-hDh" userLabel="logoutView">
-                                                        <rect key="frame" x="24" y="208" width="327" height="61.5"/>
+                                                        <rect key="frame" x="24" y="189" width="327" height="61.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout QOT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAJ-7f-Eci">
                                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="19"/>
