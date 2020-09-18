@@ -47,7 +47,7 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
 
     func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
         pageType = type
-        baseHeaderView?.configure(title: type.pageTitle, subtitle: "Ends")
+        baseHeaderView?.configure(title: type.pageTitle, subtitle: createSubtitle(remainingDays))
     }
 }
 
@@ -61,5 +61,28 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
         let cell: TeamToBeVisionOptionTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: pageType.titleForItem(at: indexPath), cta: pageType.ctaForItem(at: indexPath))
         return cell
+    }
+}
+
+// MARK: Private
+private extension TeamToBeVisionOptionsViewController {
+    func createSubtitle(_ remainingDays: Int) -> NSAttributedString {
+        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.sand70]
+        let redAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.redOrange]
+        let string = NSMutableAttributedString(string: "Ends", attributes: sandAttributes)
+        switch remainingDays {
+        case 0:
+            let today = NSMutableAttributedString(string: " today", attributes: redAttributes)
+            string.append(today)
+            return string
+        case 1:
+            let tomorrow = NSMutableAttributedString(string: " tomorrow", attributes: redAttributes)
+            string.append(tomorrow)
+            return string
+        default:
+            let daysString = NSMutableAttributedString(string: (" in ${days} days").replacingOccurrences(of: "${days}", with: String(remainingDays)), attributes: redAttributes)
+            string.append(daysString)
+            return string
+        }
     }
 }

@@ -67,7 +67,7 @@ extension TeamToBeVisionRouter: TeamToBeVisionRouterInterface {
     func showOptionsPage(_ type: TeamToBeVisionOptionsModel.Types) {
         let controller = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController()
         if let controller = controller {
-            let configurator = TeamToBeVisionOptionsConfigurator.make(type: type, remainingDays: 3)
+            let configurator = TeamToBeVisionOptionsConfigurator.make(type: type, remainingDays: 1)
             configurator(controller)
             viewController?.pushToStart(childViewController: controller)
         }

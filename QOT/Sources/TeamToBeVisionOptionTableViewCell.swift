@@ -21,8 +21,8 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String, cta: String) {
-        titleLabel.text = title
         ctaButton.setTitle(cta, for: .normal)
+        ctaButton.corner(radius: 20, borderColor: .accent)
+        ThemeText.optionPage.apply(title, to: titleLabel)
     }
-    
 }
