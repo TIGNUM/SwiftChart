@@ -12,7 +12,7 @@ import qot_dal
 protocol TeamEditViewControllerInterface: class {
     func setupView(_ type: TeamEdit.View, _ teamName: String?)
     func refreshView(_ type: TeamEdit.View)
-    func setupLabels(header: String, subHeader: String, description: String, cta: String, animated: Bool)
+    func setupLabels(header: String, subHeader: String, description: String, cta: String, leftButton: String, animated: Bool)
     func updateTextCounter(type: TeamEdit.View, max: Int, teamName: String?)
     func presentErrorAlert(_ title: String, _ message: String)
     func refreshMemberList(at indexPath: [IndexPath])

@@ -8,7 +8,7 @@
 
 import Foundation
 import UserNotifications
-import AirshipKit
+import Airship
 
 class RemoteNotificationPermission: PermissionInterface {
     var status: UNAuthorizationStatus = .notDetermined
@@ -37,7 +37,7 @@ class RemoteNotificationPermission: PermissionInterface {
 
     func askPermission(completion: @escaping (Bool) -> Void) {
         notificationCenter.requestAuthorization(options: [.sound, .alert, .badge]) { (granted: Bool, _: Error?) in
-            UAirship.push().userPushNotificationsEnabled = granted
+            UAirship.push()?.userPushNotificationsEnabled = granted
             DispatchQueue.main.async {
                 completion(granted)
             }

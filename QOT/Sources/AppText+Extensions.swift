@@ -554,7 +554,8 @@ public extension AppTextKey {
     static let my_x_team_member_invite_description = AppTextKey("my_x.team_member_invite.description")
     static let my_x_team_member_invite_cta = AppTextKey("my_x.team_member_invite.cta")
     static let my_x_team_invite_cta = AppTextKey("team_invite.header_title.plural")
-    static let my_x_team_invite_max_members = AppTextKey("my_x.team.member.invite.max_members")
+    static let my_x_team_invite_max_members = AppTextKey("my_x.team_member.invite.max_members")
+    static let my_x_team_member_invite_done = AppTextKey("my_x.team_member_invite.done")
     static let team_invite_details_text = AppTextKey("team_invite.details.text")
 
     // MARK: - Team Member Edit

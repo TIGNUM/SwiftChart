@@ -1253,7 +1253,7 @@ enum ThemeText {
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .askPermissionTitle,
              .weatherDescription, .weatherLocation, .weatherLastUpdate, .weatherTitle, .weatherBody, .mySensorsSensorTitle,
              .mySensorsTitle, .mySensorsNoDataInfoLabel, .mySensorsDescriptionTitle, .mySensorsDescriptionBody,
-             .insightsTBVText, .insightsSHPIText, .insightsTBVSentence:
+             .insightsTBVText, .insightsSHPIText, .insightsTBVSentence, .H02Light:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1277,7 +1277,7 @@ enum ThemeText {
                                                     alignment: alignment ?? .right)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead,
              .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle,
-             .dailyBriefFromTignumTitle, .featureExplanation:
+             .dailyBriefFromTignumTitle, .featureExplanation, .Text02Light:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1285,7 +1285,7 @@ enum ThemeText {
              .dailyBriefLevelContent,
              .weatherIntro,
              .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextInfo,
-             .mySprintDetailsTextActive, .H02Light, .Text01Light, .Text01LightCarbon100, .Text02Light:
+             .mySprintDetailsTextActive, .Text01Light, .Text01LightCarbon100:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color,
                                         alignment: alignment ?? .left)

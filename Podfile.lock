@@ -1,4 +1,16 @@
 PODS:
+  - Airship (14.1.0):
+    - Airship/Automation (= 14.1.0)
+    - Airship/Core (= 14.1.0)
+    - Airship/ExtendedActions (= 14.1.0)
+    - Airship/MessageCenter (= 14.1.0)
+  - Airship/Automation (14.1.0):
+    - Airship/Core
+  - Airship/Core (14.1.0)
+  - Airship/ExtendedActions (14.1.0):
+    - Airship/Core
+  - Airship/MessageCenter (14.1.0):
+    - Airship/Core
   - AppCenter (2.5.1):
     - AppCenter/Analytics (= 2.5.1)
     - AppCenter/Crashes (= 2.5.1)
@@ -35,9 +47,9 @@ PODS:
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
   - SwiftyBeaver (1.8.4)
-  - UrbanAirship-iOS-SDK (12.1.2)
 
 DEPENDENCIES:
+  - Airship
   - AppCenter
   - Buglife
   - DifferenceKit
@@ -49,7 +61,6 @@ DEPENDENCIES:
   - SVProgressHUD
   - "SwiftChart (from `git@github.com:SanggeonPark/SwiftChart.git`)"
   - SwiftyBeaver
-  - UrbanAirship-iOS-SDK
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -60,6 +71,7 @@ SPEC REPOS:
     - RSKImageCropper
     - SVProgressHUD
   trunk:
+    - Airship
     - AppCenter
     - Buglife
     - KeychainAccess
@@ -67,7 +79,6 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SwiftyBeaver
-    - UrbanAirship-iOS-SDK
 
 EXTERNAL SOURCES:
   qot_dal:
@@ -77,13 +88,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 2bd785c1b6c8d5d4ce4b420474e8bf5f98ac75e3
+    :commit: c4971f99b33a0cde5534884cc8fbf8764ec75637
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
     :git: "git@github.com:SanggeonPark/SwiftChart.git"
 
 SPEC CHECKSUMS:
+  Airship: 9e92efc2ba973583ab9a41b749e0dcd4f04669c6
   AppCenter: fddcbac6e4baae3d93a196ceb0bfe0e4ce407dec
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
@@ -99,8 +111,7 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
-  UrbanAirship-iOS-SDK: bc0d7363f62ac572211ba0191ddeac712d4d4b1f
 
-PODFILE CHECKSUM: 836f2b17450f24ad8f18f2bbc5c4dc2c38d921be
+PODFILE CHECKSUM: 539cb477636ef161894dfff44f44fb4c003c527b
 
 COCOAPODS: 1.9.3

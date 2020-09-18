@@ -6,7 +6,7 @@
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
-import AirshipKit
+import Airship
 import os.log
 
 final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {

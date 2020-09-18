@@ -14,28 +14,24 @@ final class MyXTeamMembersInteractor {
     // MARK: - Properties
     private lazy var worker = MyXTeamMembersWorker()
     private let presenter: MyXTeamMembersPresenterInterface!
-    private var teamHeaderItems = [Team.Item]()
     private var selectedTeamItem: Team.Item?
     private var membersList: [TeamMember] = []
     private var maxTeamMemberCount: Int = 0
 
     // MARK: - Init
-    init(presenter: MyXTeamMembersPresenterInterface, selectedTeamItem: Team.Item?, teamItems: [Team.Item]) {
+    init(presenter: MyXTeamMembersPresenterInterface) {
         self.presenter = presenter
-        self.selectedTeamItem = selectedTeamItem
-        self.teamHeaderItems = teamItems
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        presenter.updateTeamHeader(teamHeaderItems: teamHeaderItems)
-        if let teamId = selectedTeamItem?.teamId {
-            setHeaderItemSelected(teamId: teamId)
-        }
-
-        worker.getMaxTeamMemberCount { (max) in
-            self.maxTeamMemberCount = max
+        worker.getTeamHeaderItems(showNewRedDot: false) { [weak self] (items) in
+            self?.setSelectedTeam(items)
+            self?.presenter.updateTeamHeader(teamHeaderItems: items)
+            self?.worker.getMaxTeamMemberCount { (max) in
+                self?.maxTeamMemberCount = max
+            }
         }
 
         NotificationCenter.default.addObserver(self,
@@ -54,18 +50,23 @@ private extension MyXTeamMembersInteractor {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
             log("teamId: " + teamId, level: .debug)
-            setHeaderItemSelected(teamId: teamId)
+            updateSelectedTeam(teamId: teamId)
         }
     }
 
-    func setHeaderItemSelected(teamId: String) {
-        teamHeaderItems.forEach { (item) in
-            item.selected = (teamId == item.teamId)
-            if item.selected {
-                selectedTeamItem = item
-            }
+    func setSelectedTeam(_ items: [Team.Item]) {
+        selectedTeamItem = items.filter { $0.isSelected }.first
+        if selectedTeamItem == nil {
+            selectedTeamItem = items.first
+            HorizontalHeaderView.selectedTeamId = selectedTeamItem?.teamId ?? ""
         }
         refreshView()
+    }
+
+    func updateSelectedTeam(teamId: String) {
+        worker.getTeamHeaderItems(showNewRedDot: false) { [weak self] (items) in
+            self?.setSelectedTeam(items)
+        }
     }
 }
 

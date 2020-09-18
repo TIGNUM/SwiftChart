@@ -19,6 +19,7 @@ enum TeamEdit {
     case subHeader
     case description
     case cta
+    case leftButton
 
     func label(type: TeamEdit.View) -> String {
         if let key = key(type) {
@@ -39,6 +40,8 @@ enum TeamEdit {
             return isCreate ? .my_x_team_create_description : isEdit ? nil : .my_x_team_member_invite_description
         case .cta:
             return isCreate ? .my_x_team_create_cta : isEdit ? .my_x_team_edit_save_cta : .my_x_team_member_invite_cta
+        case .leftButton:
+            return type == .memberInvite ? .my_x_team_member_invite_done : nil
         }
     }
 
