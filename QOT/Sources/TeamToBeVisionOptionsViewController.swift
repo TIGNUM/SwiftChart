@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TeamToBeVisionOptionsViewController: UIViewController {
 
@@ -69,18 +70,18 @@ private extension TeamToBeVisionOptionsViewController {
     func createSubtitle(_ remainingDays: Int) -> NSAttributedString {
         let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.sand70]
         let redAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.redOrange]
-        let string = NSMutableAttributedString(string: "Ends", attributes: sandAttributes)
+        let string = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends), attributes: sandAttributes)
         switch remainingDays {
         case 0:
-            let today = NSMutableAttributedString(string: " today", attributes: redAttributes)
+            let today = NSMutableAttributedString(string: " " + AppTextService.get(.my_x_team_tbv_options_today), attributes: redAttributes)
             string.append(today)
             return string
         case 1:
-            let tomorrow = NSMutableAttributedString(string: " tomorrow", attributes: redAttributes)
+            let tomorrow = NSMutableAttributedString(string: " " + AppTextService.get(.my_x_team_tbv_options_tomorrow), attributes: redAttributes)
             string.append(tomorrow)
             return string
         default:
-            let daysString = NSMutableAttributedString(string: (" in ${days} days").replacingOccurrences(of: "${days}", with: String(remainingDays)), attributes: redAttributes)
+            let daysString = NSMutableAttributedString(string: " " + AppTextService.get(.my_x_team_tbv_options_days).replacingOccurrences(of: "${days}", with: String(remainingDays)), attributes: redAttributes)
             string.append(daysString)
             return string
         }

@@ -539,6 +539,11 @@ public extension AppTextKey {
     static let my_x_team_tbv_options_rate_rate_cta = AppTextKey("my_x.team_tbv_options.rate.rate_cta")
     static let my_x_team_tbv_options_rate_end_rate_cta = AppTextKey("my_x.team_tbv_options.rate.end_rate_cta")
 
+    static let my_x_team_tbv_options_ends = AppTextKey("my_x.team_tbv_options.ends")
+    static let my_x_team_tbv_options_today = AppTextKey("my_x.team_tbv_options.today")
+    static let my_x_team_tbv_options_tomorrow = AppTextKey("my_x.team_tbv_options.tomorrow")
+     static let my_x_team_tbv_options_days = AppTextKey("my_x.team_tbv_options.days")
+
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")
     static let my_x_team_create_description = AppTextKey("my_x.team.create_description")
