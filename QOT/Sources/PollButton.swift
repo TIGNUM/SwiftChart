@@ -12,7 +12,8 @@ final class PollButton: SelectionButton {
 
     // MARK: - Properties
     @IBOutlet weak var titeLabel: UILabel!
-    @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var counterLabelTop: UILabel!
+    @IBOutlet weak var counterLabelBottom: UILabel!
     @IBOutlet weak var counterBackgroundView: UIView!
     private var votes = 0
     private var answerId = 0
@@ -34,7 +35,8 @@ final class PollButton: SelectionButton {
         self.votes = votes
         self.answerId = answerId
         super.configure(title: title, isSelected: isSelected)
-        counterLabel.text = "\(votes - 1)" + "\n" + "\(votes)" + "\n" + "\(votes + 1)"
+        counterLabelTop.text = "\(votes)"
+        counterLabelBottom.text = "\(votes + 1)"
     }
 }
 
@@ -42,22 +44,30 @@ final class PollButton: SelectionButton {
 extension PollButton {
     @objc func didVote(_ notification: Notification) {
         if let answerId = notification.object as? Int, self.answerId == answerId {
-            let yPoint = counterLabel.frame.origin.y
-            let xPoint = counterLabel.frame.origin.x
-            let height = counterLabel.frame.height
+            let yPointTop = counterLabelTop.frame.origin.y
+            let yPointBottom = counterLabelBottom.frame.origin.y
+            let xPoint = counterLabelTop.frame.origin.x
+            let height = counterLabelTop.frame.height
             UIView.animate(withDuration: 0.6) {
-                self.counterLabel.frame.origin = CGPoint(x: xPoint, y: yPoint - height)
+                self.counterLabelTop.alpha = 1
+                self.counterLabelBottom.alpha = 0
+                self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop + height)
+                self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom + height)
             }
         }
     }
 
     @objc func didUnVote(_ notification: Notification) {
         if let answerId = notification.object as? Int, self.answerId == answerId {
-            let yPoint = counterLabel.frame.origin.y
-            let xPoint = counterLabel.frame.origin.x
-            let height = counterLabel.frame.height
+            let yPointTop = counterLabelTop.frame.origin.y
+            let yPointBottom = counterLabelBottom.frame.origin.y
+            let xPoint = counterLabelTop.frame.origin.x
+            let height = counterLabelTop.frame.height
             UIView.animate(withDuration: 0.6) {
-                self.counterLabel.frame.origin = CGPoint(x: xPoint, y: yPoint + height)
+                self.counterLabelTop.alpha = 0
+                self.counterLabelBottom.alpha = 1
+                self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop - height)
+                self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom - height)
             }
         }
     }
