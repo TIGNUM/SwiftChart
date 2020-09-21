@@ -352,6 +352,7 @@ enum ThemableButton {
     case articleMarkAsRead(selected: Bool)
     case level5
     case continueButton
+    case tbvOption(disabled: Bool)
 
     var titleAttributes: [NSAttributedString.Key: Any]? {
         switch self {
@@ -371,7 +372,8 @@ enum ThemableButton {
              .paymentReminder,
              .articleMarkAsRead,
              .level5,
-             .continueButton:
+             .continueButton,
+             .tbvOption:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -396,6 +398,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: (selected ? .clear : .accent30))
+        case .tbvOption(let disabled):
+            return ButtonTheme(foreground: disabled ? .sand40 : .accent, background: disabled ? .sand10 : .clear, border: disabled ? .clear : .accent)
         }
     }
 
@@ -420,6 +424,8 @@ enum ThemableButton {
                                background: (selected ? .accent40 : nil), border: (selected ? .clear : .accent10))
         case .level5, .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
+        default:
+            return nil
         }
     }
 
@@ -873,6 +879,8 @@ enum ThemeText {
     case registerIntroTitle
     case registerIntroNoteTitle
     case registerIntroBody
+    case optionPage
+    case optionPageDisabled
 
     // MARK: - New Approach
     case H01Light
@@ -893,7 +901,7 @@ enum ThemeText {
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
-          .mySprintsTitle, .registerIntroNoteTitle:
+          .mySprintsTitle, .registerIntroNoteTitle, .optionPage, .optionPageDisabled:
             return Fonts.fontRegular20
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
              .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
@@ -1087,14 +1095,14 @@ enum ThemeText {
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
              .dailyInsightsChartBarLabelUnselected, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled,
-             .MediumBodySand, .teamTvbTimeSinceTitle:
+             .MediumBodySand, .teamTvbTimeSinceTitle, .optionPageDisabled:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
              .articleAudioBar, .coachTitle, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
-             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends:
+             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle, .H03Light, .Text03Light:
@@ -1220,7 +1228,7 @@ enum ThemeText {
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
              .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
-             .myQOTBoxTitleDisabled:
+             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
