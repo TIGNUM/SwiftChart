@@ -15,7 +15,7 @@ final class TeamToBeVisionOptionsInteractor {
     private let presenter: TeamToBeVisionOptionsPresenterInterface!
     private var type = TeamToBeVisionOptionsModel.Types.voting
     private var model = TeamToBeVisionOptionsModel()
-    private var remainingDays = 0
+    private var remainingDays: Int = 0
 
     // MARK: - Init
     init(presenter: TeamToBeVisionOptionsPresenterInterface, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {

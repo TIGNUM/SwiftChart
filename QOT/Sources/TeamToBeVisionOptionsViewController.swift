@@ -60,7 +60,6 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
     func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
         pageType = type
         ThemeView.level1.apply(view)
-//        tableView.allowsSelection = false
         baseHeaderView?.configure(title: type.pageTitle, subtitle: createSubtitle(remainingDays))
     }
 }

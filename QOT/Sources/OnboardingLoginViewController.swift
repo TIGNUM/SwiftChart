@@ -195,7 +195,7 @@ private extension OnboardingLoginViewController {
 
     func presentEmailError(_ error: String) {
         emailField.textField.layer.borderColor = UIColor.redOrange.cgColor
-        ThemeText.loginEmailErrorMessage.apply("This TIGNUM X version is downloaded from the Store. Please download TIGNUM X from your Company App Store. If you already have a TIGNUM X account, your data will be transferred. Please contact your Company IT if you have any questions.", to: emailInstructionsLabel)
+        ThemeText.loginEmailErrorMessage.apply(error, to: emailInstructionsLabel)
     }
 
     func presentCodeError(_ error: String) {
