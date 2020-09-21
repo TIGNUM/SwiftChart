@@ -75,9 +75,9 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
         switch indexPath.row {
         case actionType.rate.rawValue:
             cell.configure(title: pageType.titleForItem(at: indexPath),
-                           cta: pageType.ctaForItem(at: indexPath, isDisabled: true),
+                           cta: pageType.ctaForItem(at: indexPath, isDisabled: hasVoted),
                            actionTag: actionType.rate.rawValue,
-                           buttonDisabled: true)
+                           buttonDisabled: hasVoted)
         case actionType.end.rawValue:
             let isDisabled = false
             cell.configure(title: pageType.titleForItem(at: indexPath),
