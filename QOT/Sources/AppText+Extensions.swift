@@ -542,7 +542,13 @@ public extension AppTextKey {
     static let my_x_team_tbv_options_ends = AppTextKey("my_x.team_tbv_options.ends")
     static let my_x_team_tbv_options_today = AppTextKey("my_x.team_tbv_options.today")
     static let my_x_team_tbv_options_tomorrow = AppTextKey("my_x.team_tbv_options.tomorrow")
-     static let my_x_team_tbv_options_days = AppTextKey("my_x.team_tbv_options.days")
+    static let my_x_team_tbv_options_days = AppTextKey("my_x.team_tbv_options.days")
+    static let my_x_team_tbv_options_voting_alert_message = AppTextKey("my_x.team_tbv_options.voting_alert_message")
+    static let my_x_team_tbv_options_rating_alert_message = AppTextKey("my_x.team_tbv_options.rating_alert_message")
+    static let my_x_team_tbv_options_voting_alert_title = AppTextKey("my_x.team_tbv_options.voting_alert_title")
+    static let my_x_team_tbv_options_rating_alert_title = AppTextKey("my_x.team_tbv_options.rating_alert_title")
+    static let my_x_team_tbv_options_alert_leftButton = AppTextKey("my_x.team_tbv_options.alert_leftButton")
+    static let my_x_team_tbv_options_alert_rightButton = AppTextKey("my_x.team_tbv_options.alert_rightButton")
 
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")

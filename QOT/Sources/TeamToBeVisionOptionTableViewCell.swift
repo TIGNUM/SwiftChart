@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import qot_dal
 
 final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var ctaButton: UIButton!
+    @IBOutlet weak var ctaButton: RoundedButton!
+    weak var delegate: TeamToBeVisionOptionsViewControllerDelegate?
+    private var actionTag: Int?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,9 +23,21 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
         ThemeView.level2Selected.apply(selectedBackgroundView!)
     }
 
-    func configure(title: String, cta: String) {
-        ctaButton.setTitle(cta, for: .normal)
-        ctaButton.corner(radius: 20, borderColor: .accent)
-        ThemeText.optionPage.apply(title, to: titleLabel)
+    func configure(title: String, cta: String, actionTag: Int, buttonDisabled: Bool) {
+        buttonDisabled ? ThemeText.optionPageDisabled.apply(title, to: titleLabel) : ThemeText.optionPage.apply(title, to: titleLabel)
+        self.actionTag = actionTag
+        ThemableButton.tbvOption(disabled: buttonDisabled).apply(ctaButton, title: cta)
+    }
+
+    @IBAction func ctaTapped(_ sender: Any) {
+        switch actionTag {
+        case TeamToBeVisionOptionsViewController.actionType.rate.rawValue:
+            break
+        // TODO: rate button action and vote button action
+        case TeamToBeVisionOptionsViewController.actionType.end.rawValue:
+            delegate?.showAlert()
+        default:
+            break
+        }
     }
 }

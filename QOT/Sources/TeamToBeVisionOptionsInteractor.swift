@@ -36,4 +36,8 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
     var getType: TeamToBeVisionOptionsModel.Types {
         return type
     }
+
+    var daysLeft: Int {
+        return remainingDays
+    }
 }

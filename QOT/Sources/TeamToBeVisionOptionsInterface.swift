@@ -18,6 +18,7 @@ protocol TeamToBeVisionOptionsPresenterInterface {
 
 protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var getType: TeamToBeVisionOptionsModel.Types { get }
+    var daysLeft: Int { get }
 }
 
 protocol TeamToBeVisionOptionsRouterInterface {

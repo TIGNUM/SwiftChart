@@ -9,7 +9,16 @@
 import UIKit
 import qot_dal
 
+protocol TeamToBeVisionOptionsViewControllerDelegate: class {
+    func showAlert()
+}
+
 final class TeamToBeVisionOptionsViewController: UIViewController {
+
+    enum actionType: Int {
+        case rate = 0
+        case end
+    }
 
     // MARK: - Properties
     var interactor: TeamToBeVisionOptionsInteractorInterface!
@@ -18,6 +27,8 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
     private var pageType: TeamToBeVisionOptionsModel.Types!
+//    TODO: pass in hasVoted argument if user has voted or rated
+    private var hasVoted: Bool = false
 
     // MARK: - Init
     init(configure: Configurator<TeamToBeVisionOptionsViewController>) {
@@ -48,6 +59,8 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
 
     func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
         pageType = type
+        ThemeView.level1.apply(view)
+//        tableView.allowsSelection = false
         baseHeaderView?.configure(title: type.pageTitle, subtitle: createSubtitle(remainingDays))
     }
 }
@@ -60,7 +73,23 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TeamToBeVisionOptionTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: pageType.titleForItem(at: indexPath), cta: pageType.ctaForItem(at: indexPath))
+        switch indexPath.row {
+        case actionType.rate.rawValue:
+            cell.configure(title: pageType.titleForItem(at: indexPath),
+                           cta: pageType.ctaForItem(at: indexPath, isDisabled: true),
+                           actionTag: actionType.rate.rawValue,
+                           buttonDisabled: true)
+        case actionType.end.rawValue:
+            let isDisabled = false
+            cell.configure(title: pageType.titleForItem(at: indexPath),
+                           cta: pageType.ctaForItem(at: indexPath, isDisabled: isDisabled),
+                           actionTag: actionType.end.rawValue,
+                           buttonDisabled: isDisabled)
+        default:
+            break
+        }
+        cell.selectionStyle = .none
+        cell.delegate = self
         return cell
     }
 }
@@ -85,5 +114,16 @@ private extension TeamToBeVisionOptionsViewController {
             string.append(daysString)
             return string
         }
+    }
+}
+
+extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerDelegate {
+
+    func showAlert() {
+        let cancel = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_leftButton))
+        let end = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_rightButton)) {(_) in
+        // TO DO: end rating or end poll
+        }
+        QOTAlert.show(title: pageType.alertTitle, message: pageType.alertMessage.replacingOccurrences(of: "${daysCount}", with: String(interactor.daysLeft)), bottomItems: [cancel, end])
     }
 }

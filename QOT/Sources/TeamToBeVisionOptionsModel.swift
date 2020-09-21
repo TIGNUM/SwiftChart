@@ -42,6 +42,24 @@ struct TeamToBeVisionOptionsModel {
             }
         }
 
+        var alertTitle: String {
+            switch self {
+            case .rating:
+                return AppTextService.get(.my_x_team_tbv_options_rating_alert_title)
+            case .voting:
+                return AppTextService.get(.my_x_team_tbv_options_voting_alert_title)
+            }
+        }
+
+        var alertMessage: String {
+            switch self {
+            case .voting:
+                return AppTextService.get(.my_x_team_tbv_options_voting_alert_message)
+            case .rating:
+                return AppTextService.get(.my_x_team_tbv_options_rating_alert_message)
+            }
+        }
+
         private func title(for item: Option) -> String {
             switch item {
             case .vote:
@@ -55,14 +73,14 @@ struct TeamToBeVisionOptionsModel {
             }
         }
 
-        private func cta(for item: Option) -> String {
+        private func cta(for item: Option, isDisabled: Bool) -> String {
             switch item {
             case .vote:
-                return AppTextService.get(.my_x_team_tbv_options_poll_vote_cta)
+                return isDisabled ? "voted" : AppTextService.get(.my_x_team_tbv_options_poll_vote_cta)
             case .endPoll:
                 return AppTextService.get(.my_x_team_tbv_options_poll_end_poll_cta)
             case .rate:
-                return AppTextService.get(.my_x_team_tbv_options_rate_rate_cta)
+                return isDisabled ? "rated" : AppTextService.get(.my_x_team_tbv_options_rate_rate_cta)
             case .endRate:
                 return AppTextService.get(.my_x_team_tbv_options_rate_end_rate_cta)
             }
@@ -72,8 +90,8 @@ struct TeamToBeVisionOptionsModel {
             return title(for: pageValues.at(index: indexPath.row) ?? .rate)
         }
 
-        func ctaForItem(at indexPath: IndexPath) -> String {
-            return cta(for: pageValues.at(index: indexPath.row) ?? .vote)
+        func ctaForItem(at indexPath: IndexPath, isDisabled: Bool) -> String {
+            return cta(for: pageValues.at(index: indexPath.row) ?? .vote, isDisabled: isDisabled)
         }
     }
 }
