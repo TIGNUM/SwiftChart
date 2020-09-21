@@ -221,27 +221,21 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
 
-//        ThemeBorder.accent40.apply(pollButton)
+        ThemeBorder.accent40.apply(pollButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
-//        ThemeBorder.accent40.apply(startRatingButton)
-//        startRatingButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
-//        pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
+        ThemeBorder.accent40.apply(startRatingButton)
+        startRatingButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
+        pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-//        if interactor?.team?.thisUserIsOwner == false {
-//            pollButton.isHidden = true
-//        }
-//        Temporarily hide buttons
-        trendsLabel.isHidden = true
-        trendsBarView.isHidden = true
-        trendsButton.isHidden = true
-        startRatingButton.isHidden = true
-        pollButton.isHidden = true
+        if interactor?.team?.thisUserIsOwner == false {
+            pollButton.isHidden = true
+        }
         ThemeText.trends.apply(AppTextService.get(.my_x_team_tbv_section_trends_label), to: trendsLabel)
     }
 
@@ -280,9 +274,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         removeGradients()
         addGradients()
 
-        //        Temp disabling Rating button items
-        rateButton.isEnabled = false
-        rateButton.isHidden = true
         singleMessageRateButton.isEnabled = false
         singleMessageRatingView.isHidden = true
         doubleMessageRatingView.isHidden = true

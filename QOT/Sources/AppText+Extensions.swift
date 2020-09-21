@@ -531,12 +531,14 @@ public extension AppTextKey {
     static let my_x_team_tbv_options_poll_vote_title = AppTextKey("my_x.team_tbv_options.poll.vote_title")
     static let my_x_team_tbv_options_poll_end_poll_title = AppTextKey("my_x.team_tbv_options.poll.end_poll_title")
     static let my_x_team_tbv_options_poll_vote_cta = AppTextKey("my_x.team_tbv_options.poll.vote_cta")
+    static let my_x_team_tbv_options_poll_voted_cta = AppTextKey("my_x.team_tbv_options.poll.voted_cta")
     static let my_x_team_tbv_options_poll_end_poll_cta = AppTextKey("my_x.team_tbv_options.poll.end_poll_cta")
 
     static let my_x_team_tbv_options_rate_title = AppTextKey("my_x.team_tbv_options.rate.title")
     static let my_x_team_tbv_options_rate_rate_title = AppTextKey("my_x.team_tbv_options.rate.rate_title")
     static let my_x_team_tbv_options_rate_end_rate_title = AppTextKey("my_x.team_tbv_options.rate.end_rate_title")
     static let my_x_team_tbv_options_rate_rate_cta = AppTextKey("my_x.team_tbv_options.rate.rate_cta")
+    static let my_x_team_tbv_options_rate_rated_cta = AppTextKey("my_x.team_tbv_options.rate.rated_cta")
     static let my_x_team_tbv_options_rate_end_rate_cta = AppTextKey("my_x.team_tbv_options.rate.end_rate_cta")
 
     static let my_x_team_tbv_options_ends = AppTextKey("my_x.team_tbv_options.ends")

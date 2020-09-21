@@ -76,11 +76,11 @@ struct TeamToBeVisionOptionsModel {
         private func cta(for item: Option, isDisabled: Bool) -> String {
             switch item {
             case .vote:
-                return isDisabled ? "voted" : AppTextService.get(.my_x_team_tbv_options_poll_vote_cta)
+                return isDisabled ? AppTextService.get(.my_x_team_tbv_options_poll_voted_cta) : AppTextService.get(.my_x_team_tbv_options_poll_vote_cta)
             case .endPoll:
                 return AppTextService.get(.my_x_team_tbv_options_poll_end_poll_cta)
             case .rate:
-                return isDisabled ? "rated" : AppTextService.get(.my_x_team_tbv_options_rate_rate_cta)
+                return isDisabled ? AppTextService.get(. my_x_team_tbv_options_rate_rated_cta): AppTextService.get(.my_x_team_tbv_options_rate_rate_cta)
             case .endRate:
                 return AppTextService.get(.my_x_team_tbv_options_rate_end_rate_cta)
             }
