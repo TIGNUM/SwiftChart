@@ -15,7 +15,6 @@ import qot_dal
 final class AppCoordinator {
 
     // MARK: - Static Properties
-
     static var permissionsManager: PermissionsManager?
     static var orientationManager: OrientationManager = OrientationManager()
 
@@ -32,7 +31,6 @@ final class AppCoordinator {
     private lazy var permissionsManager = PermissionsManager(delegate: self)
 
     // MARK: - Life Cycle
-
     init(remoteNotificationHandler: RemoteNotificationHandler) {
         self.remoteNotificationHandler = remoteNotificationHandler
         userLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
@@ -41,12 +39,16 @@ final class AppCoordinator {
         automaticLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didFinishSynchronization(_:)),
-                                               name: .didFinishSynchronization, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkDeletedEventForPreparation(_:)),
-                                               name: .needToCheckDeletedEventForPreparation, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didFinishSynchronization(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .needToCheckDeletedEventForPreparation,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.checkDeletedEventForPreparation(notification)
+        }
     }
 
     func start(completion: @escaping (() -> Void)) {
@@ -169,7 +171,6 @@ final class AppCoordinator {
 }
 
 // MARK: - private
-
 private extension AppCoordinator {
     func showSubscriptionReminderIfNeeded() {
         UserService.main.getUserData({ [weak self] (userData) in
@@ -211,7 +212,6 @@ private extension AppCoordinator {
 }
 
 // MARK: - Navigation
-
 extension AppCoordinator {
     func showCoachMarks() {
         guard let controller = R.storyboard.coachMark.coachMarksViewController(),
@@ -244,6 +244,7 @@ extension AppCoordinator {
         setupBugLife()
         UserDefault.clearAllDataLogOut()
         isReadyToProcessURL = false
+        HorizontalHeaderView.selectedTeamId = ""
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
@@ -283,7 +284,6 @@ extension AppCoordinator {
 }
 
 // MARK: - Handle incomming RemoteNotification
-
 extension AppCoordinator {
     func handleIncommingNotificationDeepLinkURLInBackground(identifier: String,
                                                             url: URL, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -319,9 +319,7 @@ extension AppCoordinator {
 }
 
 // MARK: - PermissionDelegate
-
 extension AppCoordinator: PermissionManagerDelegate {
-
     func permissionManager(_ manager: PermissionsManager,
                             didUpdatePermissions permissions: [PermissionsManager.Permission]) {
         var devicePermissions = [QDMDevicePermission]()
@@ -361,7 +359,6 @@ extension AppCoordinator: PermissionManagerDelegate {
 
 // MARK: Synchonization Update
 extension AppCoordinator {
-
     @objc func didFinishSynchronization(_ notification: Notification) {
         let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .USER]
         guard let syncResult = notification.object as? SyncResultContext,

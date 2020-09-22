@@ -12,7 +12,6 @@ import qot_dal
 final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-
     var interactor: MyLibraryNotesInteractorInterface?
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var textViewBottomConstraint: NSLayoutConstraint!
@@ -28,7 +27,6 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
     }()
 
     // MARK: - Init
-
     init(configure: Configurator<MyLibraryNotesViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
@@ -78,9 +76,7 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
 }
 
 // MARK: - Private
-
 private extension MyLibraryNotesViewController {
-
     private func keyboardToolbar() -> UIToolbar {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
@@ -117,9 +113,7 @@ private extension MyLibraryNotesViewController {
 }
 
 // MARK: - Actions
-
 private extension MyLibraryNotesViewController {
-
     // Superclass already has a `didTapDismissButton` method
     @objc func didTapDismiss() {
         textView.resignFirstResponder()
@@ -137,9 +131,7 @@ private extension MyLibraryNotesViewController {
 }
 
 // MARK: - MyLibraryNotesViewControllerInterface
-
 extension MyLibraryNotesViewController: MyLibraryNotesViewControllerInterface {
-
     func update() {
         updateTextViewText()
         saveButton?.isEnabled = interactor?.isSaveButtonEnabled ?? false
@@ -155,9 +147,7 @@ extension MyLibraryNotesViewController: MyLibraryNotesViewControllerInterface {
 }
 
 // MARK: - UITextViewDelegate
-
 extension MyLibraryNotesViewController: UITextViewDelegate {
-
     func textViewDidBeginEditing(_ textView: UITextView) {
         saveButton?.isEnabled = interactor?.isSaveButtonEnabled ?? false
         if textView.text == interactor?.placeholderText {
@@ -173,15 +163,13 @@ extension MyLibraryNotesViewController: UITextViewDelegate {
 }
 
 // Keyboard
-
 extension MyLibraryNotesViewController {
-
-    @objc override func keyboardWillAppear(notification: NSNotification) {
+    @objc override func keyboardWillAppear(_ notification: Notification) {
         let parameters = keyboardParameters(from: notification)
         animateTextView(height: parameters?.height ?? 0)
     }
 
-    @objc override func keyboardWillDisappear(notification: NSNotification) {
+    @objc override func keyboardWillDisappear(_ notification: Notification) {
         animateTextView(height: initialBottomOffset)
     }
 

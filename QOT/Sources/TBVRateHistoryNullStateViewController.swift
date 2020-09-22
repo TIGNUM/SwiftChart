@@ -56,10 +56,11 @@ private extension TBVRateHistoryNullStateViewController {
     }
 
     func addObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didFinishSynchronization(_:)),
-                                               name: .didFinishSynchronization,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didFinishSynchronization(notification)
+        }
     }
 
     func setupEmptySate() {

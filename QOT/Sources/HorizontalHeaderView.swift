@@ -20,10 +20,11 @@ final class HorizontalHeaderView: UIView {
         super.awakeFromNib()
         log("⏰💤", level: .debug)
         collectionView.registerDequeueable(TeamHeaderCell.self)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didSelectTeam,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.checkSelection(notification)
+        }
     }
 
     func configure(headerItems: [Team.Item], canDeselect: Bool = true) {
@@ -47,7 +48,8 @@ private extension HorizontalHeaderView {
                 scrollToItem(index: index)
                 break
             }
-            log("Team.selectedTeamId: ➡️➡️➡️➡️➡️➡️✅" + HorizontalHeaderView.selectedTeamId, level: .debug)
+            log("HorizontalHeaderView.selectedTeamId: ➡️➡️➡️➡️➡️➡️✅" + HorizontalHeaderView.selectedTeamId,
+                level: .debug)
             log("userInfo.teamId: ➡️➡️➡️➡️➡️➡️✅" + teamId, level: .debug)
         }
     }

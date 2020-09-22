@@ -54,10 +54,11 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         setupView()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didChangeOrientation),
-                                               name: UIDevice.orientationDidChangeNotification,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didChangeOrientation()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

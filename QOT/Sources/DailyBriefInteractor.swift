@@ -46,24 +46,7 @@ final class DailyBriefInteractor {
     // MARK: - Init
     init(presenter: DailyBriefPresenterInterface) {
         self.presenter = presenter
-
-        // Listen about UpSync Daily Check In User Answers
-        NotificationCenter.default.addObserver(self, selector: #selector(didGetDataSyncRequest(_ :)),
-                                               name: .requestSynchronization, object: nil)
-        // Listen about Expend/Collapse of Closed Guided Track
-        NotificationCenter.default.addObserver(self, selector: #selector(didGuidedClosedCellSizeChanges(_ :)),
-                                               name: .displayGuidedTrackRows, object: nil)
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didGetScrollNotificationToBucket(_ :)),
-                                               name: .scrollToBucket, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didLogout(_:)),
-                                               name: .userLogout, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didLogout(_:)),
-                                               name: .automaticLogout, object: nil)
-
+        addObservers()
         getDailyBriefBucketsForViewModel()
     }
 
@@ -102,6 +85,36 @@ private extension DailyBriefInteractor {
         }
         if let targetIndex = modelIndex {
             presenter.scrollToSection(at: targetIndex)
+        }
+    }
+
+    func addObservers() {
+        // Listen about UpSync Daily Check In User Answers
+        _ = NotificationCenter.default.addObserver(forName: .requestSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didGetDataSyncRequest(notification)
+        }
+        // Listen about Expend/Collapse of Closed Guided Track
+        _ = NotificationCenter.default.addObserver(forName: .displayGuidedTrackRows,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didGuidedClosedCellSizeChanges(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .scrollToBucket,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didGetScrollNotificationToBucket(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .userLogout,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didLogout(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .automaticLogout,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didLogout(notification)
         }
     }
 }

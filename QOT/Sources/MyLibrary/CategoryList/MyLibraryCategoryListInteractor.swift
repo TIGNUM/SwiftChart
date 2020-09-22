@@ -12,17 +12,14 @@ import qot_dal
 final class MyLibraryCategoryListInteractor {
 
     // MARK: - Properties
-
     private let worker: MyLibraryCategoryListWorker
     private let presenter: MyLibraryCategoryListPresenterInterface
     private let router: MyLibraryCategoryListRouterInterface
     private let team: QDMTeam?
     private var targetCategory: String?
-
     var categoryItems = [MyLibraryCategoryListModel]()
 
     // MARK: - Init
-
     init(team: QDMTeam?,
          category: String?,
          worker: MyLibraryCategoryListWorker,
@@ -33,16 +30,20 @@ final class MyLibraryCategoryListInteractor {
         self.router = router
         self.team = team
         self.targetCategory = category
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(load(_:)),
-                                               name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(load(_:)),
-                                               name: .didUpdateMyLibraryData, object: nil)
+
+        _ = NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.load(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .didUpdateMyLibraryData,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.load(notification)
+        }
     }
 
     // MARK: - Texts
-
     var titleText: String {
         if let team = team {
             return worker.titleTemplateForTeam.replacingOccurrences(of: "${NAME}", with: team.name ?? "")
@@ -50,7 +51,6 @@ final class MyLibraryCategoryListInteractor {
         return worker.titleText
     }
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
         load()
@@ -77,9 +77,7 @@ final class MyLibraryCategoryListInteractor {
 }
 
 // MARK: - MyLibraryCategoryListInteractorInterface
-
 extension MyLibraryCategoryListInteractor: MyLibraryCategoryListInteractorInterface {
-
     var teamId: Int? {
         return team?.remoteID == 0 ? nil : team?.remoteID
     }

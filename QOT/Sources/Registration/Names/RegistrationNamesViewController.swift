@@ -17,12 +17,12 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var lastNameField: QotPlaceholderTextField!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var mandatoryLabel: UILabel!
-    private var keyboardNotification: NSNotification?
-
+    private var keyboardNotification: Notification?
     private var bottomConstraintInitialValue: CGFloat = 0
     private let viewTheme = ThemeView.onboarding
     private let errorBorderColor = UIColor.redOrange.cgColor
     private let defaultBorderColor = UIColor.sand40.cgColor
+    var interactor: RegistrationNamesInteractorInterface!
 
     lazy private var createAccountButton: RoundedButton = {
         return RoundedButton(title: interactor.createButtonTitle,
@@ -41,14 +41,11 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         toolbar.backgroundColor = .carbonNew
-
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         createAccountBarButton.isEnabled = false
         toolbar.items = [space, createAccountBarButton.barButton]
         return toolbar
     }()
-
-    var interactor: RegistrationNamesInteractorInterface!
 
     // MARK: - Init
     init() {
@@ -138,18 +135,18 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
 
 // MARK: - Keyboard
 extension RegistrationNamesViewController {
-    override func keyboardWillAppear(notification: NSNotification) {
+    override func keyboardWillAppear(_ notification: Notification) {
         keyboardNotification = notification
         animateKeyboardNotification(notification)
     }
 
-    override func keyboardWillDisappear(notification: NSNotification) {
+    override func keyboardWillDisappear(_ notification: Notification) {
         animateKeyboardNotification(notification)
         keyboardNotification = nil
         refreshBottomNavigationItems()
     }
 
-    private func animateKeyboardNotification(_ notification: NSNotification) {
+    private func animateKeyboardNotification(_ notification: Notification) {
         guard let activeField = getActiveField() else { return }
 
         // Get animation curve and duration

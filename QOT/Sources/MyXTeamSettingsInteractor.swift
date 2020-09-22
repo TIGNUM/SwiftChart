@@ -70,21 +70,26 @@ private extension MyXTeamSettingsInteractor {
     }
 
     func addObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateViewData),
-                                               name: .didEditTeam, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateTeamName),
-                                               name: .didEditTeamName,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeamColor,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didEditTeam,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.updateViewData(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .didEditTeamName,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.updateTeamName(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .didSelectTeam,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.checkSelection(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .didSelectTeamColor,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.checkSelection(notification)
+        }
     }
 
     func setSelectedTeam(_ items: [Team.Item]) {

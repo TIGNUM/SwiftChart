@@ -25,17 +25,20 @@ extension Notification.Name {
 }
 
 final class NotificationHandler {
-    let center: NotificationCenter
+    weak var center: NotificationCenter?
     var handler: ((Notification) -> Void)?
 
     init(center: NotificationCenter = .default, name: NSNotification.Name, object: Any? = nil) {
         self.center = center
-        center.addObserver(self, selector: #selector(performHandler(notification:)), name: name, object: object)
+        _ = center.addObserver(forName: name,
+                           object: object,
+                           queue: .main) { [weak self] notification in
+            self?.performHandler(notification)
+        }
     }
 
     // MARK: - private
-
-    @objc private func performHandler(notification: Notification) {
+    @objc private func performHandler(_ notification: Notification) {
         DispatchQueue.main.async {
             self.handler?(notification)
         }

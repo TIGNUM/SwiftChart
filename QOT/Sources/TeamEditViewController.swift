@@ -98,7 +98,12 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         teamTextField.text = teamName
     }
 
-    func setupLabels(header: String, subHeader: String, description: String, cta: String, leftButton: String, animated: Bool) {
+    func setupLabels(header: String,
+                     subHeader: String,
+                     description: String,
+                     cta: String,
+                     leftButton: String,
+                     animated: Bool) {
         self.subHeader = subHeader
         if animated {
             UIView.animate(withDuration: Animation.duration_04) {
@@ -234,16 +239,16 @@ extension TeamEditViewController: KeyboardInputViewProtocol {
 
 // MARK: - Keyboard
 extension TeamEditViewController {
-    override func keyboardWillAppear(notification: NSNotification) {
+    override func keyboardWillAppear(_ notification: Notification) {
         animateKeyboardNotification(notification)
     }
 
-    override func keyboardWillDisappear(notification: NSNotification) {
+    override func keyboardWillDisappear(_ notification: Notification) {
         animateKeyboardNotification(notification)
         refreshBottomNavigationItems()
     }
 
-    private func animateKeyboardNotification(_ notification: NSNotification) {
+    private func animateKeyboardNotification(_ notification: Notification) {
         // Get animation curve and duration
         guard let parameters = keyboardParameters(from: notification) else { return }
 

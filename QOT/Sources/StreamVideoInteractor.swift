@@ -45,8 +45,11 @@ final class StreamVideoInteractor {
          presenter: StreamVideoPresenter) {
         self.worker = worker
         self.presenter = presenter
-        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateDownloadStatus(_:)),
-                                               name: .didUpdateDownloadStatus, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didUpdateDownloadStatus,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didUpdateDownloadStatus(notification)
+        }
     }
 
     var downloadButtonTitle: String {

@@ -11,8 +11,8 @@ import qot_dal
 
 final class Level5Cell: BaseDailyBriefCell {
 
-    @IBOutlet var headerView: UIView!
-    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+    private weak var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private var buttons: [AnimatedButton]!
     @IBOutlet private weak var levelTitle: UILabel!

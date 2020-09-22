@@ -32,9 +32,11 @@ final class MyQotProfileInteractor {
     func viewDidLoad() {
         updateMenuItems()
         updateViewData()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateViewData),
-                                               name: .updatedTeams, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .updatedTeams,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.updateViewData()
+        }
     }
 
     @objc func updateViewData() {
