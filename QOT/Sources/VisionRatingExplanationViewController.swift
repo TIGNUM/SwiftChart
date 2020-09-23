@@ -13,9 +13,9 @@ final class VisionRatingExplanationViewController: UIViewController {
 
     // MARK: - Properties
     var interactor: VisionRatingExplanationInteractorInterface!
+    private lazy var router = VisionRatingExplanationRouter(viewController: self)
     @IBOutlet private weak var checkMarkView: UIView!
     @IBOutlet private weak var checkmarkLabel: UILabel!
-    private lazy var router: VisionRatingExplanationRouterInterface = VisionRatingExplanationRouter(viewController: self)
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var videoView: UIView!
@@ -23,10 +23,10 @@ final class VisionRatingExplanationViewController: UIViewController {
     @IBOutlet private weak var videoDescriptionLabel: UILabel!
     @IBOutlet private weak var playIconBackgroundView: UIView!
     @IBOutlet private weak var videoImageView: UIImageView!
+    @IBOutlet private weak var checkButton: UIButton!
     private var videoID: Int?
     private var rightBarButtonTitle = ""
     private var rightBarButtonAction = #selector(startRating)
-    @IBOutlet private weak var checkButton: UIButton!
     let skeletonManager = SkeletonManager()
 
     // MARK: - Init
@@ -83,9 +83,9 @@ extension VisionRatingExplanationViewController {
         updateBottomNavigation([], [])
     }
 
-    @objc func startTBVGenerator() {
+    @objc func startTeamTBVGenerator() {
         trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
-        router.showTBVGenerator()
+        router.showTeamTBVGenerator()
         updateBottomNavigation([], [])
     }
 
@@ -104,7 +104,6 @@ extension VisionRatingExplanationViewController {
 
 // MARK: - VisionRatingExplanationViewControllerInterface
 extension VisionRatingExplanationViewController: VisionRatingExplanationViewControllerInterface {
-
     func setupView(type: Explanation.Types) {
         playIconBackgroundView.circle()
         ThemeText.ratingExplanationText.apply(AppTextService.get(.my_x_team_tbv_section_feature_explanation_checkmark), to: checkmarkLabel)
@@ -140,7 +139,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
         rightBarButtonTitle = title
         switch type {
         case .ratingUser, .ratingOwner: rightBarButtonAction = #selector(startRating)
-        case .tbvPollOwner, .tbvPollUser: rightBarButtonAction = #selector(startTBVGenerator)
+        case .tbvPollOwner, .tbvPollUser: rightBarButtonAction = #selector(startTeamTBVGenerator)
         }
     }
 }

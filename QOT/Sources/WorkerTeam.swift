@@ -70,6 +70,8 @@ protocol WorkerTeam {
                                  _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 
     func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString
+
+    func dateString(for day: Int) -> String
 }
 
 extension WorkerTeam {
@@ -364,6 +366,16 @@ extension WorkerTeam {
         let suffix = NSMutableAttributedString(string: " " + string, attributes: redAttributes)
         prefix.append(suffix)
         return prefix
+    }
+
+    func dateString(for day: Int) -> String {
+        if day == 0 {
+            return "Today"
+        } else if day == 1 {
+            return "Yesterday"
+        } else {
+            return String(day) + " Days"
+        }
     }
 }
 

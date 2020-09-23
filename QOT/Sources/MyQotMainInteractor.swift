@@ -210,7 +210,11 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .data:
             router.presentMyDataScreen()
         case .toBeVision:
-            router.showTBV(team: selectedTeamItem?.qdmTeam)
+            if let team = selectedTeamItem?.qdmTeam {
+                router.showTeamTBV(team)
+            } else {
+                router.showTBV()
+            }
         default: return
         }
     }

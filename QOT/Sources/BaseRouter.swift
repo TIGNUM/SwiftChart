@@ -22,6 +22,14 @@ protocol BaseRouterInterface {
     func showHomeScreen()
     func showFAQScreen(category: ContentCategory)
     func showCoachMarks()
+    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
+    func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
+    func showViewController(viewController: UIViewController, completion: (() -> Void)?)
+
+    func showTBV()
+    func showTeamTBV(_ team: QDMTeam)
+    func showTeamTBVPollEXplanation(_ team: QDMTeam?, _ poll: QDMTeamToBeVisionPoll?)
+    func showTeamRatingExplanation(_ team: QDMTeam?)
 
     func dismiss()
     func dismissChatBotFlow()
@@ -56,13 +64,13 @@ class BaseRouter: BaseRouterInterface {
     func presentMindsetShifter() {
         let configurator = DTMindsetConfigurator.make()
         let controller = DTMindsetViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
+        present(controller)
     }
 
     func presentRecovery() {
         let configurator = DTRecoveryConfigurator.make()
         let controller = DTRecoveryViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
+        present(controller)
     }
 
     func playMediaItem(_ contentItemId: Int) {
@@ -78,7 +86,7 @@ class BaseRouter: BaseRouterInterface {
     func showFAQScreen(category: ContentCategory) {
         if let controller = R.storyboard.myQot.myQotSupportDetailsViewController() {
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: category)
-            viewController?.present(controller, animated: true)
+            present(controller)
         }
     }
 
@@ -86,20 +94,19 @@ class BaseRouter: BaseRouterInterface {
         if let controller = R.storyboard.coachMark.coachMarksViewController() {
             let configurator = CoachMarksConfigurator.make()
             configurator(controller)
-            viewController?.pushToStart(childViewController: controller)
+            push(controller)
         }
     }
 
-    func showTBV(team: QDMTeam?) {
-        guard let team = team else {
-            if let controller = R.storyboard.myToBeVision.myVisionViewController() {
-                MyVisionConfigurator.configure(viewController: controller)
-                viewController?.pushToStart(childViewController: controller)
-            }
-            return
+    func showTBV() {
+        if let controller = R.storyboard.myToBeVision.myVisionViewController() {
+            MyVisionConfigurator.configure(viewController: controller)
+            push(controller)
         }
-        let controller = R.storyboard.myToBeVision.teamToBeVisionViewController()
-        if let controller = controller {
+    }
+
+    func showTeamTBV(_ team: QDMTeam) {
+        if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
             let configurator = TeamToBeVisionConfigurator.make(team: team)
             configurator(controller)
             viewController?.show(controller, sender: nil)
@@ -112,9 +119,63 @@ class BaseRouter: BaseRouterInterface {
             composer.setToRecipients(recipients)
             composer.setSubject(subject)
             composer.mailComposeDelegate = viewController
-            viewController?.present(composer, animated: true)
+            present(composer)
         } else {
             viewController?.showAlert(type: .message(AppTextService.get(.generic_alert_no_email_body)))
         }
+    }
+
+    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?) {
+        guard
+            let controller = R.storyboard.myToBeVision.myVisionEditDetailsViewController(),
+            let visionController = self.viewController else { return }
+        MyVisionEditDetailsConfigurator.configure(viewController: controller,
+                                                  title: title,
+                                                  vision: vision,
+                                                  isFromNullState: isFromNullState,
+                                                  team: team)
+        visionController.present(controller, animated: true, completion: nil)
+    }
+
+    func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
+        viewController?.showAlert(type: type, handler: handler, handlerDestructive: handlerDestructive)
+    }
+
+    func showViewController(viewController: UIViewController, completion: (() -> Void)?) {
+        present(viewController, completion: completion)
+    }
+
+    func showTeamTBVPollEXplanation(_ team: QDMTeam?, _ poll: QDMTeamToBeVisionPoll?) {
+        let type: Explanation.Types = (team?.thisUserIsOwner == true) ? .tbvPollOwner : .tbvPollUser
+        showExplanation(team, nil, type)
+    }
+
+    func showTeamRatingExplanation(_ team: QDMTeam?) {
+        let type: Explanation.Types = (team?.thisUserIsOwner == true) ? .ratingOwner : .ratingUser
+        showExplanation(team, nil, type)
+    }
+}
+
+// MARK: - Private
+private extension BaseRouter {
+    func showExplanation(_ team: QDMTeam?,
+                         _ poll: QDMTeamToBeVisionPoll?,
+                         _ type: Explanation.Types) {
+        let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
+        if let controller = controller {
+            let configurator = VisionRatingExplanationConfigurator.make(team: team,
+                                                                        poll: poll,
+                                                                        type: type)
+            configurator(controller)
+            push(controller)
+        }
+    }
+
+    func push(_ childViewController: UIViewController) {
+        viewController?.pushToStart(childViewController: childViewController)
+    }
+
+    func present(_ controller: UIViewController, completion: (() -> Void)? = nil) {
+        viewController?.present(controller, animated: true, completion: completion)
     }
 }

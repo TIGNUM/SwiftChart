@@ -34,7 +34,7 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
         visionController.present(viewController, animated: true, completion: nil)
     }
 
-    func showTBVGenerator() {
+    func showTeamTBVGenerator() {
         let configurator = DTTeamTBVConfigurator.make()
         let controller = DTTeamTBVViewController(configure: configurator)
         viewController?.present(controller, animated: true)

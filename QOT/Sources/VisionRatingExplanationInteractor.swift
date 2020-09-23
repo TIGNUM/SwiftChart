@@ -15,23 +15,23 @@ final class VisionRatingExplanationInteractor {
     private lazy var worker = VisionRatingExplanationWorker()
     private let presenter: VisionRatingExplanationPresenterInterface!
     private var type = Explanation.Types.ratingOwner
-    let router: VisionRatingExplanationRouter
+    private var poll: QDMTeamToBeVisionPoll?
     var team: QDMTeam?
 
     // MARK: - Init
     init(presenter: VisionRatingExplanationPresenterInterface,
          team: QDMTeam?,
-         router: VisionRatingExplanationRouter,
+         poll: QDMTeamToBeVisionPoll?,
          type: Explanation.Types) {
         self.presenter = presenter
         self.team = team
-        self.router = router
+        self.poll = poll
         self.type = type
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        worker.getVideoItem(type: self.type) { item in
+        worker.getVideoItem(type: type) { item in
             self.presenter.setupView(type: self.type, videoItem: item)
         }
     }
@@ -39,6 +39,9 @@ final class VisionRatingExplanationInteractor {
 
 // MARK: - VisionRatingExplanationInteractorInterface
 extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorInterface {
+    func startTeamTBVPoll() {
+
+    }
 
     func showRateScreen() {
 //        TODO

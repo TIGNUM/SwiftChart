@@ -23,10 +23,11 @@ protocol VisionRatingExplanationPresenterInterface {
 protocol VisionRatingExplanationInteractorInterface: Interactor {
     var team: QDMTeam? { get }
     func showRateScreen()
+    func startTeamTBVPoll()
 }
 
 protocol VisionRatingExplanationRouterInterface {
     func dismiss()
     func showRateScreen(with id: Int)
-    func showTBVGenerator()
+    func showTeamTBVGenerator()
 }

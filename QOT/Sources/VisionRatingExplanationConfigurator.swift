@@ -10,13 +10,15 @@ import Foundation
 import qot_dal
 
 final class VisionRatingExplanationConfigurator {
-    static func make(team: QDMTeam?, type: Explanation.Types) -> (VisionRatingExplanationViewController) -> Void {
+    static func make(team: QDMTeam?,
+                     poll: QDMTeamToBeVisionPoll?,
+                     type: Explanation.Types) -> (VisionRatingExplanationViewController) -> Void {
         return { (viewController) in
-            let router = VisionRatingExplanationRouter(viewController: viewController)
             let presenter = VisionRatingExplanationPresenter(viewController: viewController)
             let interactor = VisionRatingExplanationInteractor(presenter: presenter,
                                                                team: team,
-                                                               router: router, type: type)
+                                                               poll: poll,
+                                                               type: type)
             viewController.interactor = interactor
         }
     }

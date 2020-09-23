@@ -19,7 +19,7 @@ final class MindsetShifterCell: BaseDailyBriefCell {
     var negativeToPositiveView: NegativeToPositiveView?
     private var mindsetShifter: QDMMindsetShifter?
     @IBOutlet weak var sliderViewHeightConstraint: NSLayoutConstraint!
-    weak var delegate: DailyBriefViewController?
+    weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

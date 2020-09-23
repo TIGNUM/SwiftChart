@@ -13,7 +13,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
     var interactor: TeamToBeVisionInteractorInterface!
-    private lazy var router: TeamToBeVisionRouterInterface = TeamToBeVisionRouter(viewController: self)
+    private lazy var router = TeamToBeVisionRouter(viewController: self)
     @IBOutlet private weak var teamNullStateView: TeamToBeVisionNullStateView!
     @IBOutlet private weak var navigationBarView: TeamToBeVisionNavigationBarView!
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -106,7 +106,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func showExplanation(_ sender: Any) {
         trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        router.showRatingExplanation(team: interactor.team)
+        router.showTeamRatingExplanation(interactor.team)
     }
 
     @objc func writeButtonAction(_ sender: Any) {
@@ -119,11 +119,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         }
 
         let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
-            self?.trackUserEvent(.EDIT,
-                                 value: self?.interactor?.team?.remoteID,
-                                 valueType: .TEAM_TBV_GENERATOR,
-                                 action: .TAP)
-            self?.router.showTbvPollEXplanation(team: self?.interactor.team)
+            self?.showTeamTBVPollExplanation()
             self?.shouldShowCreate = false
         }
         QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
@@ -133,7 +129,6 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 }
 
 extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
-
     func didTapEditItem() {
         trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .EDIT_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: false)
@@ -157,7 +152,6 @@ extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
 
 // MARK: - Private
 private extension TeamToBeVisionViewController {
-
     func saveTeamToBeVisionImageAndData() {
         interactor.saveToBeVision(image: tempTeamImage)
     }
@@ -175,7 +169,6 @@ private extension TeamToBeVisionViewController {
 
 // MARK: - Observer
 private extension TeamToBeVisionViewController {
-
     func hideNavigationBarView() {
         navigationBarViewTopMarginConstraint.constant = -150
     }
@@ -194,26 +187,25 @@ private extension TeamToBeVisionViewController {
         //        TODO
     }
 
-    @IBAction func showRatingExplanation(_ sender: Any) {
+    @IBAction func showTeamRatingExplanation(_ sender: Any) {
         trackUserEvent(.OPEN,
-                       value: interactor?.team?.remoteID,
+                       value: interactor.team?.remoteID,
                        valueType: .TEAM_TO_BE_VISION_RATING_EXPLANATION,
                        action: .TAP)
-        router.showRatingExplanation(team: interactor.team)
+        router.showTeamRatingExplanation(interactor.team)
     }
 
-    @IBAction func showTbvPollExplanation(_ sender: Any) {
+    @IBAction func showTeamTBVPollExplanation() {
         trackUserEvent(.OPEN,
-                       value: interactor?.team?.remoteID,
+                       value: interactor.team?.remoteID,
                        valueType: .TEAM_TBV_GENERATOR_EXPLANATION,
                        action: .TAP)
-        router.showTbvPollEXplanation(team: interactor.team)
+        router.showTeamTBVPollEXplanation(interactor.team, nil)
     }
 }
 
 // MARK: - TeamToBeVisionViewControllerInterface
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
-
     func setSelectionBarButtonItems() {
         toBeVisionSelectionBar.configure(isOwner: interactor?.team?.thisUserIsOwner, self)
     }
@@ -259,7 +251,9 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                 isRateEnabled: Bool,
                 shouldShowSingleMessageRating: Bool?) {
         if teamVision == nil {
-            interactor.showNullState(with: interactor.teamNullStateTitle ?? "", teamName: interactor.team?.name, message: interactor.teamNullStateSubtitle ?? "")
+            interactor.showNullState(with: interactor.teamNullStateTitle ?? "",
+                                     teamName: interactor.team?.name,
+                                     message: interactor.teamNullStateSubtitle ?? "")
             teamNullStateImageView.gradientBackground(top: true)
             teamNullStateImageView.gradientBackground(top: false)
             shouldShowCreate = true
@@ -347,7 +341,6 @@ extension TeamToBeVisionViewController: ImagePickerControllerAdapterProtocol {
 }
 
 extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
-
     func deleteImage() {
         tempTeamImage = nil
         tempTeamImageURL = nil
@@ -374,7 +367,6 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
 }
 
 extension TeamToBeVisionViewController: TeamToBeVisionNullStateViewProtocol {
-
     func editTeamVisionAction() {
         trackUserEvent(.OPEN, valueType: .WRITE_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: true)
@@ -382,7 +374,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionNullStateViewProtocol {
 }
 
 extension TeamToBeVisionViewController: TeamToBeVisionNavigationBarViewProtocol {
-
     func didShare() {
         trackUserEvent(.SHARE, value: interactor.team?.remoteID, valueType: .TEAM_TO_BE_VISION, action: .TAP)
         interactor.shareTeamToBeVision()

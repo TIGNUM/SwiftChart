@@ -21,7 +21,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
 
     @IBAction func presentTBV(_ sender: Any) {
-        delegate?.presentMyToBeVision()
+        delegate?.showTBV()
     }
 
     override func awakeFromNib() {

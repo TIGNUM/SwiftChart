@@ -13,7 +13,7 @@ final class TeamToBeVisionInteractor {
 
     // MARK: - Properties
     private lazy var worker = TeamToBeVisionWorker()
-    let router: TeamToBeVisionRouter
+    private let router: TeamToBeVisionRouter
     private let presenter: TeamToBeVisionPresenterInterface!
     var team: QDMTeam?
     var teamVision: QDMTeamToBeVision?
@@ -79,7 +79,6 @@ final class TeamToBeVisionInteractor {
 
 // MARK: - TeamToBeVisionInteractorInterface
 extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
-
     func showEditVision(isFromNullState: Bool) {
         guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { (teamVision) in
@@ -156,7 +155,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         var lastUpdatedVision = ""
         guard let date = teamVision?.date?.beginingOfDate() else { return ""}
         let days = DateComponentsFormatter.numberOfDays(date)
-        lastUpdatedVision = self.dateString(for: days)
+        lastUpdatedVision = worker.dateString(for: days)
         return lastUpdatedVision
     }
 
@@ -191,16 +190,6 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 // after present swizzle for mail
                 swizzleMFMailComposeViewControllerMessageBody()
             }
-        }
-    }
-
-    private func dateString(for day: Int) -> String {
-        if day == 0 {
-            return "Today"
-        } else if day == 1 {
-            return "Yesterday"
-        } else {
-            return String(day) + " Days"
         }
     }
 }
