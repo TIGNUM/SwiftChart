@@ -174,8 +174,10 @@ extension DTViewModel {
         if let index = indexOf(answer.remoteId) {
             answers.remove(at: index)
             answers.insert(answer, at: index)
-            if question.answerType == .multiSelection || question.answerType == .singleSelection {
-                notifyCounterChanged()
+            if question.answerType == .multiSelection ||
+                question.answerType == .singleSelection ||
+                question.answerType == .poll {
+                    notifyCounterChanged()
             }
         }
     }

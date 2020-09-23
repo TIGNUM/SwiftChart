@@ -332,6 +332,8 @@
 		389BBC8B235EE68B0009FA02 /* CoachMarksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC83235EE68B0009FA02 /* CoachMarksModel.swift */; };
 		389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */; };
 		389BBC8E235EE8900009FA02 /* CoachMark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 389BBC8D235EE8900009FA02 /* CoachMark.storyboard */; };
+		389CC8182512021600028C54 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389CC8162512021500028C54 /* HorizontalHeaderCollectionViewCell.swift */; };
+		389CC8192512021600028C54 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389CC8172512021500028C54 /* HorizontalHeaderCollectionViewCell.xib */; };
 		38A2D17725025C7100CEA071 /* DTTeamTBVPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D16F25025C7000CEA071 /* DTTeamTBVPresenter.swift */; };
 		38A2D17825025C7100CEA071 /* DTTeamTBVWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17025025C7000CEA071 /* DTTeamTBVWorker.swift */; };
 		38A2D17925025C7100CEA071 /* DTTeamTBVRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17125025C7000CEA071 /* DTTeamTBVRouter.swift */; };
@@ -340,8 +342,6 @@
 		38A2D17C25025C7100CEA071 /* DTTeamTBVInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17425025C7100CEA071 /* DTTeamTBVInteractor.swift */; };
 		38A2D17D25025C7100CEA071 /* DTTeamTBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17525025C7100CEA071 /* DTTeamTBV.swift */; };
 		38A2D17E25025C7100CEA071 /* DTTeamTBVConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2D17625025C7100CEA071 /* DTTeamTBVConfigurator.swift */; };
-		389CC8182512021600028C54 /* HorizontalHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389CC8162512021500028C54 /* HorizontalHeaderCollectionViewCell.swift */; };
-		389CC8192512021600028C54 /* HorizontalHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389CC8172512021500028C54 /* HorizontalHeaderCollectionViewCell.xib */; };
 		38C23E5124235DCA0034571B /* DTPrepareStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4924235DCA0034571B /* DTPrepareStartPresenter.swift */; };
 		38C23E5224235DCA0034571B /* DTPrepareStartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4A24235DCA0034571B /* DTPrepareStartWorker.swift */; };
 		38C23E5324235DCA0034571B /* DTPrepareStartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23E4B24235DCA0034571B /* DTPrepareStartRouter.swift */; };
@@ -1748,6 +1748,8 @@
 		389BBC83235EE68B0009FA02 /* CoachMarksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksModel.swift; sourceTree = "<group>"; };
 		389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksConfigurator.swift; sourceTree = "<group>"; };
 		389BBC8D235EE8900009FA02 /* CoachMark.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoachMark.storyboard; sourceTree = "<group>"; };
+		389CC8162512021500028C54 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		389CC8172512021500028C54 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		38A2D16F25025C7000CEA071 /* DTTeamTBVPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVPresenter.swift; path = QOT/DTTeamTBVPresenter.swift; sourceTree = SOURCE_ROOT; };
 		38A2D17025025C7000CEA071 /* DTTeamTBVWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVWorker.swift; path = QOT/DTTeamTBVWorker.swift; sourceTree = SOURCE_ROOT; };
 		38A2D17125025C7000CEA071 /* DTTeamTBVRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVRouter.swift; path = QOT/DTTeamTBVRouter.swift; sourceTree = SOURCE_ROOT; };
@@ -1756,8 +1758,6 @@
 		38A2D17425025C7100CEA071 /* DTTeamTBVInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVInteractor.swift; path = QOT/DTTeamTBVInteractor.swift; sourceTree = SOURCE_ROOT; };
 		38A2D17525025C7100CEA071 /* DTTeamTBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBV.swift; path = QOT/DTTeamTBV.swift; sourceTree = SOURCE_ROOT; };
 		38A2D17625025C7100CEA071 /* DTTeamTBVConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DTTeamTBVConfigurator.swift; path = QOT/DTTeamTBVConfigurator.swift; sourceTree = SOURCE_ROOT; };
-		389CC8162512021500028C54 /* HorizontalHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
-		389CC8172512021500028C54 /* HorizontalHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		38C23E4924235DCA0034571B /* DTPrepareStartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartPresenter.swift; sourceTree = "<group>"; };
 		38C23E4A24235DCA0034571B /* DTPrepareStartWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartWorker.swift; sourceTree = "<group>"; };
 		38C23E4B24235DCA0034571B /* DTPrepareStartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPrepareStartRouter.swift; sourceTree = "<group>"; };
@@ -6039,7 +6039,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Tignum;
 				TargetAttributes = {
 					918D5E1E20EE050900AEAD37 = {
@@ -6530,7 +6530,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7787,6 +7787,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -7811,7 +7812,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -7847,7 +7848,7 @@
 					"NOVARTIS=1",
 				);
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D NOVARTIS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime;
@@ -7875,7 +7876,7 @@
 				DEVELOPMENT_TEAM = K82G24324U;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7901,7 +7902,7 @@
 				DEVELOPMENT_TEAM = K82G24324U;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Intent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -7928,7 +7929,7 @@
 				DEVELOPMENT_TEAM = K82G24324U;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = IntentUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -7955,7 +7956,7 @@
 				DEVELOPMENT_TEAM = K82G24324U;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -7994,6 +7995,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -8018,7 +8020,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DBUILD_DATABASE";
@@ -8049,7 +8051,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "TIGNUM X";
@@ -8075,7 +8077,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8100,7 +8102,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8125,7 +8127,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8151,7 +8153,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8177,7 +8179,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8203,7 +8205,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Intent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -8229,7 +8231,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Intent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.Intent;
@@ -8254,7 +8256,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Intent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.Intent;
@@ -8279,7 +8281,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Intent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.Intent;
@@ -8304,7 +8306,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Intent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.Intent;
@@ -8329,7 +8331,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = IntentUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -8355,7 +8357,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = IntentUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.IntentUI;
@@ -8380,7 +8382,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = IntentUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.IntentUI;
@@ -8405,7 +8407,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = IntentUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.IntentUI;
@@ -8430,7 +8432,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = IntentUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.IntentUI;
@@ -8455,7 +8457,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -8481,7 +8483,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.ShareExtension;
@@ -8506,7 +8508,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.ShareExtension;
@@ -8531,7 +8533,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.ShareExtension;
@@ -8556,7 +8558,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.ShareExtension;
@@ -8581,7 +8583,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -8607,7 +8609,7 @@
 				DEVELOPMENT_TEAM = K82G24324U;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
@@ -8634,7 +8636,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
@@ -8659,7 +8661,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
@@ -8684,7 +8686,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
@@ -8709,7 +8711,7 @@
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
@@ -8746,6 +8748,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -8764,7 +8767,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
@@ -8793,7 +8796,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "TIGNUM X";
@@ -8831,6 +8834,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -8855,7 +8859,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -8893,6 +8897,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -8911,7 +8916,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
@@ -8941,7 +8946,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "TIGNUM X";
@@ -8972,7 +8977,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "TIGNUM X";
@@ -9010,6 +9015,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -9020,7 +9026,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -9035,7 +9044,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DUNIT_TEST";
@@ -9069,7 +9078,7 @@
 					"UNIT_TEST=1",
 				);
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-Xfrontend -warn-long-expression-type-checking=100";
 				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xfrontend -warn-long-function-bodies=100";

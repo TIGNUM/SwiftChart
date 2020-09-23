@@ -34,10 +34,8 @@ class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
                                                name: .didUpdateSelectionCounter,
                                                object: nil)
     }
-}
 
-// MARK: - Configure
-extension MultipleSelectionCollectionViewCell {
+    // MARK: - Configure
     func configure(for answer: DTViewModel.Answer, maxSelections: Int, selectionCounter: Int) {
         self.answer = answer
         self.maxSelections = maxSelections
