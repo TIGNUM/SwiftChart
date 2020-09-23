@@ -19,10 +19,10 @@ final class MyQotMainInteractor: MyQotMainWorker {
 
     internal var headerItems = [Team.Item]()
     internal var subtitles = [String: String?]() // [MyX.Item.rawValue: subtitle string]
-    internal var hasOwnerEmptyTeamTBV = false
     internal var isCellEnabled = [String: Bool]() // [MyX.Item.rawValue: cell enabled]
     internal var settingTitle: String = ""
     internal var newLibraryItemCount: Int = 0
+    internal var tbvTitle: String = ""
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -49,8 +49,10 @@ final class MyQotMainInteractor: MyQotMainWorker {
         }
 
         var tmpNewLibraryItemCount = 0
+        var tmpToBeVisionTitle = ""
         var tmpSubtitles = [String: String?]()
         var tmpIsCellEnabled = [String: Bool]()
+
         for item in MyX.Item.allCases {
             dispatchGroup.enter()
             // load all "isCellEnabled"
@@ -93,16 +95,14 @@ final class MyQotMainInteractor: MyQotMainWorker {
                     tmpSubtitles[MyX.Item.toBeVision.rawValue] = subtitle
                     dispatchGroup.leave()
                 }
+
+                dispatchGroup.enter()
+                getToBeVisionTitle(item: .toBeVision, teamItem: tmpSelectedTeamItem) { title in
+                    tmpToBeVisionTitle = title
+                    dispatchGroup.leave()
+                }
             default: break
             }
-        }
-
-        // load hasOwnerEmptyTeamToBeVision
-        dispatchGroup.enter()
-        var tmpHasOwnerEmptyTeamTBV = true
-        hasOwnerEmptyTeamTBV (for: tmpSelectedTeamItem) { (isEmpty) in
-            tmpHasOwnerEmptyTeamTBV = isEmpty
-            dispatchGroup.leave()
         }
 
         dispatchGroup.notify(queue: .main) { [weak self] in
@@ -111,7 +111,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
             self?.newLibraryItemCount = tmpNewLibraryItemCount
             self?.subtitles = tmpSubtitles
             self?.isCellEnabled = tmpIsCellEnabled
-            self?.hasOwnerEmptyTeamTBV = tmpHasOwnerEmptyTeamTBV
+            self?.tbvTitle = tmpToBeVisionTitle
             completion()
         }
     }
@@ -140,13 +140,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func getTitle(for item: MyX.Item?) -> String? {
         let isTeam = selectedTeamItem != nil
         if item == .toBeVision && isTeam {
-            if self.hasOwnerEmptyTeamTBV {
-                return AppTextService.get(.myx_team_tbv_empty_subtitle_vision)
-            } else {
-                return item?.title(isTeam: isTeam)
-            }
+            return tbvTitle
         }
-        return item?.title(isTeam: isTeam)
+        return item?.title(isTeam: isTeam, isPollInProgress: false)
     }
 
     func getSubtitle(for item: MyX.Item?) -> (String?, Bool) {
@@ -285,16 +281,6 @@ private extension MyQotMainInteractor {
             }
         } else {
             completion(true)
-        }
-    }
-
-    func hasOwnerEmptyTeamTBV(for teamItem: Team.Item?, _ completion: @escaping (Bool) -> Void) {
-        if teamItem?.thisUserIsOwner == true, let team = teamItem?.qdmTeam {
-            getTeamToBeVision(for: team) { (teamVision) in
-                completion(teamVision == nil)
-            }
-        } else {
-            completion(false)
         }
     }
 

@@ -1351,6 +1351,17 @@
 		F9D6381D22D746D60092C482 /* ExploreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6381C22D746D60092C482 /* ExploreCellViewModel.swift */; };
 		F9E330342424A73D00967C28 /* MyPlansHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E330332424A73D00967C28 /* MyPlansHeaderView.swift */; };
 		F9E330362424A75800967C28 /* MyPlansHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9E330352424A75800967C28 /* MyPlansHeaderView.xib */; };
+		F9F470742510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4706C2510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift */; };
+		F9F470752510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4706D2510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift */; };
+		F9F470762510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4706E2510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift */; };
+		F9F470772510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4706F2510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift */; };
+		F9F470782510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F470702510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift */; };
+		F9F470792510C4D7002331F4 /* TeamToBeVisionOptionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F470712510C4D7002331F4 /* TeamToBeVisionOptionsInteractor.swift */; };
+		F9F4707A2510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F470722510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift */; };
+		F9F4707B2510C4D7002331F4 /* TeamToBeVisionOptionsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F470732510C4D7002331F4 /* TeamToBeVisionOptionsConfigurator.swift */; };
+		F9F4707D2510C51D002331F4 /* TeamToBeVisionOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9F4707C2510C51D002331F4 /* TeamToBeVisionOptions.storyboard */; };
+		F9F4707F2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4707E2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift */; };
+		F9F470812510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F470802510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib */; };
 		F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70C1322F9A26200E85BF3 /* SprintChallengeCell.swift */; };
 		F9F70C1622F9A2D300E85BF3 /* SprintChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F70C1522F9A2D300E85BF3 /* SprintChallengeCell.xib */; };
 		F9F70C1822F9A31E00E85BF3 /* SprintChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70C1722F9A31E00E85BF3 /* SprintChallengeViewModel.swift */; };
@@ -2756,6 +2767,17 @@
 		F9D6381C22D746D60092C482 /* ExploreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCellViewModel.swift; sourceTree = "<group>"; };
 		F9E330332424A73D00967C28 /* MyPlansHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlansHeaderView.swift; sourceTree = "<group>"; };
 		F9E330352424A75800967C28 /* MyPlansHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPlansHeaderView.xib; sourceTree = "<group>"; };
+		F9F4706C2510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsPresenter.swift; sourceTree = "<group>"; };
+		F9F4706D2510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsWorker.swift; sourceTree = "<group>"; };
+		F9F4706E2510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsRouter.swift; sourceTree = "<group>"; };
+		F9F4706F2510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsInterface.swift; sourceTree = "<group>"; };
+		F9F470702510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsViewController.swift; sourceTree = "<group>"; };
+		F9F470712510C4D7002331F4 /* TeamToBeVisionOptionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsInteractor.swift; sourceTree = "<group>"; };
+		F9F470722510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsModel.swift; sourceTree = "<group>"; };
+		F9F470732510C4D7002331F4 /* TeamToBeVisionOptionsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsConfigurator.swift; sourceTree = "<group>"; };
+		F9F4707C2510C51D002331F4 /* TeamToBeVisionOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamToBeVisionOptions.storyboard; sourceTree = "<group>"; };
+		F9F4707E2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionTableViewCell.swift; sourceTree = "<group>"; };
+		F9F470802510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamToBeVisionOptionTableViewCell.xib; sourceTree = "<group>"; };
 		F9F70C1322F9A26200E85BF3 /* SprintChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeCell.swift; sourceTree = "<group>"; };
 		F9F70C1522F9A2D300E85BF3 /* SprintChallengeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeCell.xib; sourceTree = "<group>"; };
 		F9F70C1722F9A31E00E85BF3 /* SprintChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeViewModel.swift; sourceTree = "<group>"; };
@@ -3729,6 +3751,7 @@
 		5F8A89882296CA530011A05C /* MyToBeVision */ = {
 			isa = PBXGroup;
 			children = (
+				F9F4706B2510C4A0002331F4 /* AdminOptions */,
 				F99E9CBA24EABD5600325EAE /* RatingExplanation */,
 				F910879724C5A69100CA343A /* TeamToBeVision */,
 				5F8A89902296DC270011A05C /* MyToBeVision.storyboard */,
@@ -5902,6 +5925,24 @@
 			name = ThoughtsToPonder;
 			sourceTree = "<group>";
 		};
+		F9F4706B2510C4A0002331F4 /* AdminOptions */ = {
+			isa = PBXGroup;
+			children = (
+				F9F4707C2510C51D002331F4 /* TeamToBeVisionOptions.storyboard */,
+				F9F470732510C4D7002331F4 /* TeamToBeVisionOptionsConfigurator.swift */,
+				F9F470712510C4D7002331F4 /* TeamToBeVisionOptionsInteractor.swift */,
+				F9F4706F2510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift */,
+				F9F470722510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift */,
+				F9F4706C2510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift */,
+				F9F4706E2510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift */,
+				F9F470702510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift */,
+				F9F4706D2510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift */,
+				F9F4707E2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift */,
+				F9F470802510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib */,
+			);
+			name = AdminOptions;
+			sourceTree = "<group>";
+		};
 		F9F70C1222F9A24000E85BF3 /* SprintChallenge */ = {
 			isa = PBXGroup;
 			children = (
@@ -6204,6 +6245,7 @@
 				F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */,
 				367A585F2326A4350089A082 /* DTViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
+				F9F4707D2510C51D002331F4 /* TeamToBeVisionOptions.storyboard in Resources */,
 				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
 				38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */,
 				B8FE4AA024DD7BF300B47F1D /* DownloadTableViewCell.xib in Resources */,
@@ -6314,6 +6356,7 @@
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
+				F9F470812510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib in Resources */,
 				8D8AA76222FDCB6700B59A81 /* Registration.storyboard in Resources */,
 				BB8990E3230EF18300FEDF5B /* NavBarTableViewCell.xib in Resources */,
 				B4B0EBA1231533720029BB40 /* MyDataChartCollectionViewCell.xib in Resources */,
@@ -6946,6 +6989,7 @@
 				36DA661620EBBF9E007089E3 /* TextField.swift in Sources */,
 				36EC23042323F45700DB5696 /* DTSprintInterface.swift in Sources */,
 				F902CF5522DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift in Sources */,
+				F9F4707A2510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift in Sources */,
 				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
@@ -7007,6 +7051,7 @@
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				F99E9CC324EABD9C00325EAE /* VisionRatingExplanationPresenter.swift in Sources */,
+				F9F470762510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
@@ -7149,6 +7194,7 @@
 				38C23E5E2423E70F0034571B /* CalendarEventSelectionHeaderView.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				F9A5C95022B7D0E000AB2E94 /* PaymentReminderWorker.swift in Sources */,
+				F9F470742510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift in Sources */,
 				38C23E5724235DCA0034571B /* DTPrepareStartModel.swift in Sources */,
 				F9348028247D467000DD1C7D /* FeatureExplainerWorker.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
@@ -7175,6 +7221,7 @@
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
 				38C23E5224235DCA0034571B /* DTPrepareStartWorker.swift in Sources */,
 				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
+				F9F4707B2510C4D7002331F4 /* TeamToBeVisionOptionsConfigurator.swift in Sources */,
 				386C27BA241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift in Sources */,
 				38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,
@@ -7233,6 +7280,7 @@
 				5F57F9F122831768003A9EDF /* MyQotAccountSettingsInteractor.swift in Sources */,
 				36796A5C20D3C4B800B55429 /* SigningInfoInteractor.swift in Sources */,
 				F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */,
+				F9F470772510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */,
 				F95B9236228EAE69000DEAEC /* ToolsInterface.swift in Sources */,
 				8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */,
@@ -7255,6 +7303,7 @@
 				8DD6B5942308190800C582A4 /* UIViewController+ActivityIndicator.swift in Sources */,
 				75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
+				F9F470752510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				BB0ED0982317FF7B006A0476 /* UISegmentedControl+Underline.swift in Sources */,
 				9C6E48C6232A4E4E004D657F /* UIButton+Animations.swift in Sources */,
@@ -7332,6 +7381,7 @@
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */,
+				F9F4707F2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift in Sources */,
 				DB2969F022C64B8C00B8A590 /* BaseRootViewController+BottomNavigation.swift in Sources */,
 				AC103E432285B27200F426F0 /* ShifterResultInterface.swift in Sources */,
 				AC103E452285B27200F426F0 /* ShifterResultInteractor.swift in Sources */,
@@ -7391,6 +7441,7 @@
 				8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */,
 				3658257D2327D19200AC3F4A /* DTShortTBVInteractor.swift in Sources */,
 				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
+				F9F470782510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift in Sources */,
 				F9348029247D467000DD1C7D /* FeatureExplainerRouter.swift in Sources */,
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
 				F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */,
@@ -7460,6 +7511,7 @@
 				B45DA6C323AA6316006E7E33 /* MyQOTAdminChooseBucketsConfigurator.swift in Sources */,
 				B4BCD0FA23AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
+				F9F470792510C4D7002331F4 /* TeamToBeVisionOptionsInteractor.swift in Sources */,
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				5F8A89932296DEC50011A05C /* MyVisionViewController.swift in Sources */,
@@ -7798,6 +7850,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -8006,6 +8059,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -8759,6 +8813,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -8845,6 +8900,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -8908,6 +8964,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -9026,6 +9083,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
 					Resources/Animations.xcassets/QOT,
 					Logo,

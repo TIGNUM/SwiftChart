@@ -150,7 +150,8 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func getCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let reuseIdentifier = interactor.mainCellReuseIdentifier(at: indexPath)
         let cell: MyQotMainCollectionViewCell =
-            (collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? MyQotMainCollectionViewCell)
+            (collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
+                                                for: indexPath) as? MyQotMainCollectionViewCell)
                 ?? collectionView.dequeueCell(for: indexPath)
         interactor.updateMainCell(cell: cell, at: indexPath)
         return cell

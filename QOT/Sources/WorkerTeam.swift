@@ -68,6 +68,8 @@ protocol WorkerTeam {
 
     func closeTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
                                  _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString
 }
 
 extension WorkerTeam {
@@ -340,6 +342,28 @@ extension WorkerTeam {
             }
             completion(poll)
         }
+    }
+
+    func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString {
+        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
+                                                              .foregroundColor: UIColor.sand70]
+        let redAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
+                                                             .foregroundColor: UIColor.redOrange]
+        let prefix = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends),
+                                               attributes: sandAttributes)
+        var string = ""
+        switch remainingDays {
+        case 0:
+            string = AppTextService.get(.my_x_team_tbv_options_today)
+        case 1:
+            string = AppTextService.get(.my_x_team_tbv_options_tomorrow)
+        default:
+            string = AppTextService.get(.my_x_team_tbv_options_days).replacingOccurrences(of: "${days}",
+                                                                                          with: String(remainingDays))
+        }
+        let suffix = NSMutableAttributedString(string: " " + string, attributes: redAttributes)
+        prefix.append(suffix)
+        return prefix
     }
 }
 

@@ -32,7 +32,7 @@ enum MyX {
         case data
         case toBeVision
 
-        func title(isTeam: Bool) -> String {
+        func title(isTeam: Bool, isPollInProgress: Bool) -> String {
             switch self {
             case .teamCreate:
                 return AppTextService.get(.my_x_team_create_header)
@@ -45,7 +45,11 @@ enum MyX {
             case .data:
                 return AppTextService.get(.my_qot_section_my_data_title)
             case .toBeVision:
-                return AppTextService.get(isTeam ? .my_x_section_team_tbv_title : .my_qot_section_my_tbv_title)
+                if isPollInProgress {
+                    return AppTextService.get(.team_tbv_poll_in_progress)
+                } else {
+                    return AppTextService.get(isTeam ? .my_x_section_team_tbv_title : .my_qot_section_my_tbv_title)
+                }
             }
         }
 

@@ -19,6 +19,8 @@ protocol MyQotMainWorker: WorkerTeam {
     func getMyDataSubtitle(_ completion: @escaping (String?) -> Void)
 
     func getToBeVisionSubtitle(team: QDMTeam?, _ completion: @escaping (String?) -> Void)
+
+    func getToBeVisionTitle(item: MyX.Item, teamItem: Team.Item?, _ completion: @escaping (String) -> Void)
 }
 
 extension MyQotMainWorker {
@@ -52,18 +54,38 @@ extension MyQotMainWorker {
     }
 
     func getToBeVisionSubtitle(team: QDMTeam?, _ completion: @escaping (String?) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var subtitle: String?
+
         if let team = team {
-            self.getTeamToBeVision(for: team) { (teamToBeVision) in
-                if teamToBeVision == nil && !team.thisUserIsOwner {
-                    completion(AppTextService.get(.my_x_team_tbv_not_created))
+            dispatchGroup.enter()
+            getTeamToBeVision(for: team) { (qdmTeamTBV) in
+                if qdmTeamTBV == nil && !team.thisUserIsOwner {
+                    subtitle = AppTextService.get(.my_x_team_tbv_not_created)
                 } else {
-                    completion(self.makeToBeVisionSubtitle(teamToBeVision: teamToBeVision))
+                    subtitle = makeToBeVisionSubtitle(teamToBeVision: qdmTeamTBV)
                 }
+                dispatchGroup.leave()
+            }
+
+            dispatchGroup.enter()
+            getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+                if let poll = poll {
+                    let days = poll.endDate?.daysTo() ?? 0
+                    subtitle = getTeamTBVPollRemainingDays(days).string
+                }
+                dispatchGroup.leave()
             }
         } else {
+            dispatchGroup.enter()
             UserService.main.getMyToBeVision { (toBeVision, _, _) in
-                completion(self.makeToBeVisionSubtitle(toBeVision: toBeVision))
+                subtitle = makeToBeVisionSubtitle(toBeVision: toBeVision)
+                dispatchGroup.leave()
             }
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            completion(subtitle)
         }
     }
 
@@ -100,6 +122,39 @@ extension MyQotMainWorker {
             completion("\(countString)\n\(daysString)", feeds.count)
         }
     }
+
+    func getToBeVisionTitle(item: MyX.Item, teamItem: Team.Item?, _ completion: @escaping (String) -> Void) {
+        guard let team = teamItem?.qdmTeam, team.name != nil else {
+            completion("")
+            return
+        }
+
+        let dispatchGroup = DispatchGroup()
+
+        dispatchGroup.enter()
+        var tmpHasOwnerEmptyTeamTBV = true
+        hasOwnerEmptyTeamTBV(for: team) { (isEmpty) in
+            tmpHasOwnerEmptyTeamTBV = isEmpty
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        var tmpPoll: QDMTeamToBeVisionPoll?
+        getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+            tmpPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            if tmpPoll != nil {
+                completion(item.title(isTeam: true, isPollInProgress: true))
+            } else if tmpHasOwnerEmptyTeamTBV == true {
+                completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision))
+            } else {
+                completion(item.title(isTeam: true, isPollInProgress: false))
+            }
+        }
+    }
 }
 
 private extension MyQotMainWorker {
@@ -110,7 +165,8 @@ private extension MyQotMainWorker {
         return 0
     }
 
-    func makeToBeVisionSubtitle(toBeVision: QDMToBeVision? = nil, teamToBeVision: QDMTeamToBeVision? = nil) -> String? {
+    func makeToBeVisionSubtitle(toBeVision: QDMToBeVision? = nil,
+                                teamToBeVision: QDMTeamToBeVision? = nil) -> String? {
         guard teamToBeVision != nil || toBeVision != nil else { return nil }
 
         var date: Date?
@@ -125,5 +181,15 @@ private extension MyQotMainWorker {
         let key: AppTextKey = since >= 3 ? .my_qot_section_my_tbv_subtitle_more_than : .my_qot_section_my_tbv_subtitle_less_than_3_months
         let subTitle = AppTextService.get(key)
         return subTitle
+    }
+
+    func hasOwnerEmptyTeamTBV(for team: QDMTeam?, _ completion: @escaping (Bool) -> Void) {
+        if team?.thisUserIsOwner == true, let team = team {
+            getTeamToBeVision(for: team) { (teamVision) in
+                completion(teamVision == nil)
+            }
+        } else {
+            completion(false)
+        }
     }
 }
