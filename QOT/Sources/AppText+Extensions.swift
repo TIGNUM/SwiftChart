@@ -589,6 +589,8 @@ public extension AppTextKey {
     static let team_tbv_poll_content_member = AppTextKey("team-tbv.poll-member.content")
     static let team_tbv_poll_video = AppTextKey("team-tbv.poll.video-title")
     static let team_tbv_poll_button = AppTextKey("team-tbv.poll.button")
+    static let team_tbv_poll_in_progress = AppTextKey("team_tbv.poll.in_progress")
+    static let team_tbv_poll_ends_in_days = AppTextKey(" team.tbv_poll.ends_in")
 
     // MARK: - Button Titles
     static let button_title_start = AppTextKey("button.title.start")

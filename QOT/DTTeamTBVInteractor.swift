@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DTTeamTBVInteractor: DTInteractor {}
+final class DTTeamTBVInteractor: DTInteractor, WorkerTeam {}
 
 // MARK: - DTTeamTBVInteractorInterface
 extension DTTeamTBVInteractor: DTTeamTBVInteractorInterface {}
