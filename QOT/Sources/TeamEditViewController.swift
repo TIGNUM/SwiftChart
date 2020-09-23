@@ -103,6 +103,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         if animated {
             UIView.animate(withDuration: Animation.duration_04) {
                 self.keyboardInputView.rightButton.setTitle(cta, for: .normal)
+                self.keyboardInputView.leftButton.setTitle(leftButton, for: .normal)
                 self.headerLabel.text = header
                 self.titleLabel.text = description
             }
@@ -121,6 +122,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         teamTextField.keyboardType = type == .memberInvite ? .emailAddress : .default
         hideOutlets(interactor.getType)
         updateKeyboardInputView(false)
+        keyboardInputView.leftButton.setImage(type == .memberInvite ? nil : R.image.close(), for: .normal)
         teamTextField.becomeFirstResponder()
     }
 
