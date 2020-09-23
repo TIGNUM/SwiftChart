@@ -526,6 +526,32 @@ public extension AppTextKey {
     static let my_x_team_tbv_section_rating_explanation_video_title = AppTextKey("my_x.team_tbv_section.rating_explanation.video_title")
     static let my_x_team_tbv_section_rating_explanation_right_button_member = AppTextKey("my_x.team_tbv_section.rating_explanation.right_button_member")
 
+    // MARK: - Team ToBeVision Admin Options
+    static let my_x_team_tbv_options_poll_title = AppTextKey("my_x.team_tbv_options.poll.title")
+    static let my_x_team_tbv_options_poll_vote_title = AppTextKey("my_x.team_tbv_options.poll.vote_title")
+    static let my_x_team_tbv_options_poll_end_poll_title = AppTextKey("my_x.team_tbv_options.poll.end_poll_title")
+    static let my_x_team_tbv_options_poll_vote_cta = AppTextKey("my_x.team_tbv_options.poll.vote_cta")
+    static let my_x_team_tbv_options_poll_voted_cta = AppTextKey("my_x.team_tbv_options.poll.voted_cta")
+    static let my_x_team_tbv_options_poll_end_poll_cta = AppTextKey("my_x.team_tbv_options.poll.end_poll_cta")
+
+    static let my_x_team_tbv_options_rate_title = AppTextKey("my_x.team_tbv_options.rate.title")
+    static let my_x_team_tbv_options_rate_rate_title = AppTextKey("my_x.team_tbv_options.rate.rate_title")
+    static let my_x_team_tbv_options_rate_end_rate_title = AppTextKey("my_x.team_tbv_options.rate.end_rate_title")
+    static let my_x_team_tbv_options_rate_rate_cta = AppTextKey("my_x.team_tbv_options.rate.rate_cta")
+    static let my_x_team_tbv_options_rate_rated_cta = AppTextKey("my_x.team_tbv_options.rate.rated_cta")
+    static let my_x_team_tbv_options_rate_end_rate_cta = AppTextKey("my_x.team_tbv_options.rate.end_rate_cta")
+
+    static let my_x_team_tbv_options_ends = AppTextKey("my_x.team_tbv_options.ends")
+    static let my_x_team_tbv_options_today = AppTextKey("my_x.team_tbv_options.today")
+    static let my_x_team_tbv_options_tomorrow = AppTextKey("my_x.team_tbv_options.tomorrow")
+    static let my_x_team_tbv_options_days = AppTextKey("my_x.team_tbv_options.days")
+    static let my_x_team_tbv_options_voting_alert_message = AppTextKey("my_x.team_tbv_options.voting_alert_message")
+    static let my_x_team_tbv_options_rating_alert_message = AppTextKey("my_x.team_tbv_options.rating_alert_message")
+    static let my_x_team_tbv_options_voting_alert_title = AppTextKey("my_x.team_tbv_options.voting_alert_title")
+    static let my_x_team_tbv_options_rating_alert_title = AppTextKey("my_x.team_tbv_options.rating_alert_title")
+    static let my_x_team_tbv_options_alert_leftButton = AppTextKey("my_x.team_tbv_options.alert_leftButton")
+    static let my_x_team_tbv_options_alert_rightButton = AppTextKey("my_x.team_tbv_options.alert_rightButton")
+
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")
     static let my_x_team_create_description = AppTextKey("my_x.team.create_description")
