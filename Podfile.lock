@@ -28,21 +28,21 @@ PODS:
     - DifferenceKit/Core
   - JTAppleCalendar (7.1.6)
   - KeychainAccess (4.2.1)
-  - Kingfisher (5.15.0):
-    - Kingfisher/Core (= 5.15.0)
-  - Kingfisher/Core (5.15.0)
+  - Kingfisher (5.15.4):
+    - Kingfisher/Core (= 5.15.4)
+  - Kingfisher/Core (5.15.4)
   - qot_dal (1.0):
     - KeychainAccess
-    - RealmSwift (~> 4.4.1)
+    - RealmSwift
     - SwiftyBeaver
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
-  - Realm (4.4.1):
-    - Realm/Headers (= 4.4.1)
-  - Realm/Headers (4.4.1)
-  - RealmSwift (4.4.1):
-    - Realm (= 4.4.1)
+  - Realm (5.4.3):
+    - Realm/Headers (= 5.4.3)
+  - Realm/Headers (5.4.3)
+  - RealmSwift (5.4.3):
+    - Realm (= 5.4.3)
   - RSKImageCropper (2.3.0)
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
@@ -87,7 +87,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 170ba8cb2e023ef5f68d6517495a9ebfd6937a26
+    :commit: 40dab22bc85cf87126ef68c77b052c6c58b12cab
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -100,17 +100,17 @@ SPEC CHECKSUMS:
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
-  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
-  qot_dal: f90779cac14553f5e62c44cdb20dcba7f3fafc3c
+  Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
+  qot_dal: 74ec5a8e7531a98811d0e74cb98854494fec4ac3
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
-  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
-  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
+  Realm: e3d5fcc50fd79ddf87a2d86301f6edbf57531f84
+  RealmSwift: db608068eccc54bce47928e8118bde13c120c307
   RSKImageCropper: c337eacdcbed50e695e5153ff0c2b861b6ebfa84
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
 
-PODFILE CHECKSUM: 688264ddb47f230e60f8dfa0cd1bd00c0e9addbd
+PODFILE CHECKSUM: 77fbd9071a6a24a8efa4a290972c199dbbaf4a00
 
 COCOAPODS: 1.9.3
