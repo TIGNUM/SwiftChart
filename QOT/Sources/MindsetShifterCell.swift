@@ -14,9 +14,9 @@ final class MindsetShifterCell: BaseDailyBriefCell {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var sliderView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    var baseHeaderView: QOTBaseHeaderView?
+    weak var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var ctaButton: AnimatedButton!
-    var negativeToPositiveView: NegativeToPositiveView?
+    weak var negativeToPositiveView: NegativeToPositiveView?
     private var mindsetShifter: QDMMindsetShifter?
     @IBOutlet weak var sliderViewHeightConstraint: NSLayoutConstraint!
     weak var delegate: DailyBriefViewController?

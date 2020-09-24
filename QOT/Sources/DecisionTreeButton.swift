@@ -181,10 +181,11 @@ extension NavigationButton {
     }
 
     func addObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didUpdateSelectionCounter(_:)),
-                                               name: .didUpdateSelectionCounter,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didUpdateSelectionCounter,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didUpdateSelectionCounter(notification)
+        }
     }
 
     @objc func didUpdateSelectionCounter(_ notification: Notification) {

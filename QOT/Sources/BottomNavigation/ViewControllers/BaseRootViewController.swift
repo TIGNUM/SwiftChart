@@ -38,34 +38,51 @@ final class BaseRootViewController: BaseViewController, ScreenZLevel1 {
     }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         baseRootViewController = self
+        super.viewDidLoad()
         ThemeView.level1.apply(view)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleBottomNavigationBar(_:)),
-                                               name: .updateBottomNavigation,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideBottomNavigationBar),
-                                               name: .hideBottomNavigation, object: nil)
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(userLogout(_:)),
-                                               name: .userLogout,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(userLogout(_:)),
-                                               name: .automaticLogout,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .updateBottomNavigation,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.handleBottomNavigationBar(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .hideBottomNavigation,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.hideBottomNavigationBar(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .userLogout,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.userLogout(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .automaticLogout,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.userLogout(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.keyboardWillShow(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.keyboardWillHide(notification)
+        }
         setupBottomNavigationContainer()
         setupAudioPlayerBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        baseRootViewController = self
+        super.viewWillAppear(animated)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        baseRootViewController = self
+        super.viewDidAppear(animated)
     }
 
     override func viewDidLayoutSubviews() {
@@ -132,7 +149,7 @@ extension BaseRootViewController {
 
 //Handle keyboard notifications
 extension BaseRootViewController {
-    @objc func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if shouldMoveBottomBarWithKeyboard,
             let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
@@ -143,7 +160,7 @@ extension BaseRootViewController {
         }
     }
 
-    @objc func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         if let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             UIView.animate(withDuration: duration) {
                 self.bottomNavigationBottomConstraint.constant = 0

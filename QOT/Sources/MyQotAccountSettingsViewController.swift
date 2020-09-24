@@ -14,7 +14,6 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
     // MARK: - Properties
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var emailHeaderLabel: UILabel!
     @IBOutlet private weak var companyHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotHeaderLabel: UILabel!
@@ -22,14 +21,26 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var userCompanyLabel: UILabel!
     @IBOutlet private weak var userEmailLabel: UILabel!
-
     @IBOutlet private weak var subHeaderView: UIView!
     @IBOutlet private weak var editButton: RoundedButton!
-
+    private weak var baseHeaderView: QOTBaseHeaderView?
     var interactor: MyQotAccountSettingsInteractor?
 
-    // MARK: - Life Cycle
+    private lazy var cancelAction: QOTAlertAction = {
+        return QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel))
+    }()
+    private lazy var logoutAction: QOTAlertAction = {
+        let title =  AppTextService.get(.my_qot_my_profile_account_settings_alert_log_out_button_logout)
+        return QOTAlertAction(title: title) { [weak self] (_) in
+            let key = self?.interactor?.logoutQOTKey
+            self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
+            self?.dismiss(animated: false, completion: {
+                self?.interactor?.logout()
+            })
+        }
+    }()
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
@@ -60,9 +71,10 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
     }
 
     // MARK: - Actions
-
     @IBAction func logout(_ sender: Any) {
-        interactor?.showLogoutAlert()
+        QOTAlert.show(title: nil,
+                      message: AppTextService.get(.my_qot_my_profile_account_settings_alert_log_out_body_logout),
+                      bottomItems: [cancelAction, logoutAction])
     }
 
     @IBAction func presentEditAccountSettings(_ sender: Any) {
@@ -76,24 +88,14 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
 extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        baseHeaderView?.configure(title: AppTextService.get(.my_qot_my_profile_section_account_settings_title), subtitle: nil)
+        baseHeaderView?.configure(title: AppTextService.get(.my_qot_my_profile_section_account_settings_title),
+                                  subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         ThemeView.level3.apply(headerView)
         subHeaderView.addHeader(with: .level3)
         ThemeButton.editButton.apply(editButton)
         setContentForView()
-    }
-
-    func showLogoutAlert() {
-        let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel))
-        let logout = QOTAlertAction(title: AppTextService.get(.my_qot_my_profile_account_settings_alert_log_out_button_logout)) { [weak self] (_) in
-            let key = self?.interactor?.logoutQOTKey
-            self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
-            self?.dismiss(animated: false, completion: nil)
-            self?.interactor?.logout()
-        }
-        QOTAlert.show(title: nil, message: AppTextService.get(.my_qot_my_profile_account_settings_alert_log_out_body_logout), bottomItems: [cancel, logout])
     }
 }
 

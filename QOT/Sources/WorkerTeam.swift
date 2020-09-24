@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-protocol WorkerTeam {
+protocol WorkerTeam: class {
 
     func getMaxTeamMemberCount(_ completion: @escaping (Int) -> Void)
 

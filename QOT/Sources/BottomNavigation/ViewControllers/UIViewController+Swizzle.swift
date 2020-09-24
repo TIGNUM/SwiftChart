@@ -290,11 +290,10 @@ extension UIViewController {
 
     @objc open func refreshBottomNavigationItems() {
         let swiftClassName = NSStringFromClass(type(of: self))
-        if self is ScreenZLevelIgnore {
+        if self is ScreenZLevelIgnore || swiftClassName == "UIViewController" {
             return
         }
         if (self is ScreenZLevelOverlay) ||
-            swiftClassName == "UIViewController" ||
             swiftClassName == "_UIRemoteViewController" ||
             swiftClassName == "INUIVoiceShortcutHostViewController" {
             log("hide BottomNavigationBar for : \(swiftClassName)", level: .info)

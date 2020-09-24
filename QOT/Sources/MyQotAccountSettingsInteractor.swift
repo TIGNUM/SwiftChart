@@ -70,10 +70,6 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
         worker.logout()
     }
 
-    func showLogoutAlert() {
-        presenter.showLogoutAlert()
-    }
-
     func presentEditAccountSettings() {
         router.presentEditAccountSettings()
     }

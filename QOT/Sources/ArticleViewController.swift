@@ -83,7 +83,11 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didEndAudio,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didEndAudio(notification)
+        }
         setColorMode()
         articleTopNavBar.isHidden = true
     }

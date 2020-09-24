@@ -10,12 +10,10 @@ import Foundation
 
 protocol MyQotAccountSettingsViewControllerInterface: class {
     func setupView()
-    func showLogoutAlert()
 }
 
 protocol MyQotAccountSettingsPresenterInterface {
     func setupView()
-    func showLogoutAlert()
 }
 
 protocol MyQotAccountSettingsInteractorInterface: Interactor {
@@ -27,7 +25,6 @@ protocol MyQotAccountSettingsInteractorInterface: Interactor {
     var withoutDeletingAccountText: String { get }
     var logoutQOTKey: String { get }
     func userProfile(_ completion: @escaping (UserProfileModel?) -> Void)
-    func showLogoutAlert()
     func logout()
     func presentEditAccountSettings()
 }

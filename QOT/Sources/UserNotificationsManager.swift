@@ -25,14 +25,19 @@ final class UserNotificationsManager {
     private let notificationCenter = UNUserNotificationCenter.current()
     private var isScheduling = false
     private var needToSchedule = false
+
     init() {
         // listen Sprint Up/Down, GuideItemNotification Down
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(userLogout(_:)),
-                                               name: .userLogout, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didFinishSynchronization(_:)),
-                                               name: .didFinishSynchronization, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .userLogout,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.userLogout(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didFinishSynchronization(notification)
+        }
     }
 
     func removeAll() {

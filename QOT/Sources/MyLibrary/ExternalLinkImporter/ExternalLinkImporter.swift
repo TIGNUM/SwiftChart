@@ -20,14 +20,26 @@ final class ExternalLinkImporter {
 
     init() {
         // add Listener
-        NotificationCenter.default.addObserver(self, selector: #selector(onLogout(_:)),
-                                               name: .userLogout, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onLogout(_:)),
-                                               name: .automaticLogout, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(load(_:)),
-                                               name: .userLogin, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(load(_:)),
-                                               name: UIApplication.didBecomeActiveNotification, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .userLogout,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.onLogout(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .automaticLogout,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.onLogout(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .userLogin,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.load(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.load(notification)
+        }
     }
 
     @objc func onLogout(_ notification: Notification) {

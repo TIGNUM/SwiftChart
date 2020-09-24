@@ -17,7 +17,6 @@ protocol ArticleTopNavBarProtocol: class {
 
 final class ArticleTopNavBar: UIView {
     private weak var delegate: ArticleTopNavBarProtocol?
-
     private let bottomMargin: CGFloat = -10
     private let rightMargin: CGFloat = -10
     private let leftMargin: CGFloat = 24

@@ -28,10 +28,11 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionButton.delegate = self
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(syncButton(_:)),
-                                               name: .didUpdateSelectionCounter,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didUpdateSelectionCounter,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.syncButton(notification)
+        }
     }
 }
 

@@ -11,24 +11,17 @@ import Foundation
 final class MyQotAccountSettingsPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: MyQotAccountSettingsViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: MyQotAccountSettingsViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - MyQotInterface
-
 extension MyQotAccountSettingsPresenter: MyQotAccountSettingsPresenterInterface {
     func setupView() {
         viewController?.setupView()
-    }
-
-    func showLogoutAlert() {
-        viewController?.showLogoutAlert()
     }
 }

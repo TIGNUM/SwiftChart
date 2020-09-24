@@ -12,30 +12,28 @@ import qot_dal
 final class PreparationWithMissingEventInteractor {
 
     // MARK: - Properties
-
     private let worker: PreparationWithMissingEventWorker
     private let presenter: PreparationWithMissingEventPresenterInterface
     private let router: PreparationWithMissingEventRouterInterface
-
     private var events = [QDMUserCalendarEvent]()
     private var preparation: QDMUserPreparation?
 
     // MARK: - Init
-
     init(worker: PreparationWithMissingEventWorker,
-        presenter: PreparationWithMissingEventPresenterInterface,
-        router: PreparationWithMissingEventRouterInterface) {
+         presenter: PreparationWithMissingEventPresenterInterface,
+         router: PreparationWithMissingEventRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationWillResignActive(_:)),
-                                               name: UIApplication.willResignActiveNotification, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.applicationWillResignActive(notification)
+        }
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         next()
     }
@@ -62,9 +60,7 @@ final class PreparationWithMissingEventInteractor {
 }
 
 // MARK: - PreparationWithMissingEventInteractorInterface
-
 extension PreparationWithMissingEventInteractor: PreparationWithMissingEventInteractorInterface {
-
     func preparationRemoteId() -> Int? {
         return preparation?.remoteID
     }

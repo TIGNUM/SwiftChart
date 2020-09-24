@@ -52,13 +52,15 @@ class QOTReachability: QOTReachabilityInterface {
     }
 
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(checkForReachability),
-                                               name: NSNotification.Name.reachabilityChanged,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: NSNotification.Name.reachabilityChanged,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.checkForReachability(notification)
+        }
         reachability?.startNotifier()
     }
 
-    @objc func checkForReachability(notification: NSNotification) {
+    @objc func checkForReachability(_ notification: Notification) {
         guard let networkReachability = notification.object as? Reachability else { return }
         let remoteHostStatus = networkReachability.currentReachabilityStatus()
         onStatusChange?(convert(remoteHostStatus))

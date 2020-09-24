@@ -12,13 +12,11 @@ import qot_dal
 final class MyQotAccountSettingsWorker {
 
     // MARK: - Properties
-
     private var userEmail: String?
     private let userService: UserService
     private let contentService: ContentService
 
     // MARK: - Init
-
     init(userService: UserService, contentService: ContentService) {
         self.userService = userService
         self.contentService = contentService
@@ -39,9 +37,7 @@ final class MyQotAccountSettingsWorker {
 }
 
 // MARK: - ContentService
-
 extension MyQotAccountSettingsWorker {
-
     var accountSettingsText: String {
         return AppTextService.get(.my_qot_my_profile_account_settings_section_header_title)
     }
@@ -72,7 +68,6 @@ extension MyQotAccountSettingsWorker {
 }
 
 // MARK: - Private extension
-
 private extension MyQotAccountSettingsWorker {
     func formProfile(for user: QDMUser?) -> UserProfileModel? {
         return UserProfileModel(imageURL: user?.profileImage?.url(),
