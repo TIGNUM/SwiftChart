@@ -12,13 +12,11 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     let viewTheme = ThemeView.onboarding
-
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var emailField: QotPlaceholderTextField!
     @IBOutlet private weak var responseLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-
     private var bottomConstraintInitialValue: CGFloat = 0
 
     private lazy var buttonNext: RoundedButton = {
@@ -83,7 +81,6 @@ private extension RegistrationEmailViewController {
 
 // MARK: - RegistrationEmailViewControllerInterface
 extension RegistrationEmailViewController: RegistrationEmailViewControllerInterface {
-
     func setupView() {
         viewTheme.apply(view)
         viewTheme.apply(emailField.textField)
@@ -144,17 +141,16 @@ extension RegistrationEmailViewController: UITextFieldDelegate {
 
 // MARK: - Keyboard
 extension RegistrationEmailViewController {
-
-    override func keyboardWillAppear(notification: NSNotification) {
+    override func keyboardWillAppear(_ notification: Notification) {
         animateKeyboardNotification(notification)
     }
 
-    override func keyboardWillDisappear(notification: NSNotification) {
+    override func keyboardWillDisappear(_ notification: Notification) {
         animateKeyboardNotification(notification)
         refreshBottomNavigationItems()
     }
 
-    private func animateKeyboardNotification(_ notification: NSNotification) {
+    private func animateKeyboardNotification(_ notification: Notification) {
         // Get animation curve and duration
         guard let parameters = keyboardParameters(from: notification) else { return }
 

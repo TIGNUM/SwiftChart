@@ -18,7 +18,6 @@ protocol Interactor {
 }
 
 extension Interactor {
-
     func viewDidLoad() {
         assertionFailure("\(#function) not implemented")
     }
@@ -28,7 +27,6 @@ extension Interactor {
  Mirrors functions of `UIViewController`.
  */
 protocol UIViewControllerInterface {
-
     func dismiss(animated flag: Bool, completion: (() -> Void)?)
 }
 

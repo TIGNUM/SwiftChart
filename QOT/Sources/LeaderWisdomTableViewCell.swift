@@ -10,10 +10,9 @@ import UIKit
 
 final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
 
-    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var videoViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var audioViewHeightConstraint: NSLayoutConstraint!
-    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var videoViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var audioViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var descriptionLabel: ClickableLabel!
     @IBOutlet private weak var videoThumbnailImageView: UIImageView!
@@ -25,6 +24,8 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     private var mediaURL: URL?
     private var duration: Double?
     private var remoteID: Int?
+    
+    private weak var baseHeaderView: QOTBaseHeaderView?
     weak var delegate: DailyBriefViewControllerDelegate?
 
     let defaultVideoViewHeight: CGFloat = 72.0

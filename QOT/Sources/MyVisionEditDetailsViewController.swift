@@ -45,17 +45,19 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
     }
 
     private func addKeyboardObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleKeyboard(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleKeyboard(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.handleKeyboard(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.handleKeyboard(notification)
+        }
     }
 
-    @objc private func handleKeyboard(notification: Notification) {
+    @objc private func handleKeyboard(_ notification: Notification) {
         guard
             let userInfo = notification.userInfo,
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }

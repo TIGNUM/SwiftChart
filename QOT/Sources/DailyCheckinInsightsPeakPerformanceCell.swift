@@ -11,14 +11,14 @@ import qot_dal
 
 final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
-    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var button: AnimatedButton!
-    private var hasNoPerformance: Bool? = false
     @IBOutlet weak var buttonToBottomConstraint: NSLayoutConstraint!
-    weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var buttonHeightConstraint: NSLayoutConstraint!
+    private var hasNoPerformance: Bool? = false
+    private weak var baseHeaderView: QOTBaseHeaderView?
+    weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

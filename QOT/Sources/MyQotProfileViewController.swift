@@ -15,7 +15,7 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    private var baseHeaderView: QOTBaseHeaderView?
+    private weak var baseHeaderView: QOTBaseHeaderView?
 
     var interactor: MyQotProfileInteractorInterface!
     weak var delegate: CoachCollectionViewControllerDelegate?

@@ -9,11 +9,11 @@
 import UIKit
 import qot_dal
 
-final class MyXTeamMembersWorker {
+protocol MyXTeamMembersWorker: WorkerTeam {
 
 }
 
-extension MyXTeamMembersWorker: WorkerTeam {
+extension MyXTeamMembersWorker {
     var teamMembersText: String {
         return AppTextService.get(.settings_team_settings_team_members).uppercased()
     }

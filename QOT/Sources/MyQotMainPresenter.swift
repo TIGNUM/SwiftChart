@@ -16,7 +16,7 @@ final class MyQotMainPresenter {
     private weak var viewController: MyQotMainViewControllerInterface?
 
     // MARK: - Init
-    init(viewController: MyQotMainViewControllerInterface) {
+    init(viewController: MyQotMainViewControllerInterface?) {
         self.viewController = viewController
     }
 }
@@ -35,6 +35,7 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
     func presentItemsWith(identifiers: [String], maxCount: Int) {
         // this process supports only adding items or deleting items.
         // Doesn't support add some items and deleting some items at the same time.
+        log("identifiers: ♻️♻️♻️ \(identifiers)", level: .debug)
         var handledPrefixes = [String]()
         var indexPathsToRemove = [IndexPath]()
         var indexPathsToAdd = [IndexPath]()
@@ -45,6 +46,7 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
             if let cell = viewController?.collectionViewCell(at: indexPath),
                 let reuseIdentifier = cell.reuseIdentifier,
                 let prefix = reuseIdentifier.components(separatedBy: "_").first {
+                log("prefix: ♻️♻️♻️ \(prefix)", level: .debug)
                 if identifiers.contains(prefix) {
                     indexPathsToUpdate.append(indexPath)
                     handledPrefixes.append(prefix)
@@ -59,7 +61,10 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
                 indexPathsToAdd.append(IndexPath(item: index, section: 2))
             }
         }
-
+        log("indexPathsToRemove: ♻️♻️♻️ \(indexPathsToRemove)", level: .debug)
+        log("indexPathsToUpdate: ♻️♻️♻️ \(indexPathsToUpdate)", level: .debug)
+        log("newIndexPathsForUpdatedItems: ♻️♻️♻️ \(newIndexPathsForUpdatedItems)", level: .debug)
+        log("indexPathsToAdd: ♻️♻️♻️ \(indexPathsToAdd)", level: .debug)
         viewController?.updateViewCells(deleteIndexPaths: indexPathsToRemove,
                                         updateIndexPaths: indexPathsToUpdate,
                                         newIndexPathsForUpdatedItems: newIndexPathsForUpdatedItems,

@@ -164,14 +164,17 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
 
     // MARK: Configuration
     private func addObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.keyboardWillShow(notification)
+        }
+
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.keyboardWillHide(notification)
+        }
     }
 
     func updateView(viewModel: DTViewModel) {
@@ -294,7 +297,7 @@ extension DTViewController {
 
 //Handle keyboard notifications
 extension DTViewController {
-    @objc func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             constraintBottom.constant = keyboardSize.height
@@ -304,7 +307,7 @@ extension DTViewController {
         }
     }
 
-    @objc func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         if let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             constraintToZero(duration)
         }
@@ -312,7 +315,6 @@ extension DTViewController {
 
     private func constraintToZero(_ duration: Double) {
         if constraintBottom.constant == 0 { return }
-
         constraintBottom.constant = 0
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
@@ -321,9 +323,7 @@ extension DTViewController {
 }
 
 // MARK: - UIGestureRecognizerDelegate
-
 extension DTViewController {
-
     func setupSwipeGestureRecognizer() {
         let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeDown(_:)))
         swipeGestureRecognizer.direction = .down
