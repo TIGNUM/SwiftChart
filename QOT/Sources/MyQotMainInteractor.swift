@@ -222,9 +222,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             if let team = team {
                 if let poll = teamTBVPoll, poll.open {
                     if poll.creator {
-                        router.showTeamTBVOptions(poll: poll,
-                                                  type: .voting,
-                                                  remainingDays: Date().days(to: poll.endDate ?? Date()))
+                        router.showTeamTBV(team, poll)
+//                        router.showTeamTBVOptions(poll: poll,
+//                                                  type: .voting,
+//                                                  remainingDays: Date().days(to: poll.endDate ?? Date()))
                     } else if poll.userDidVote {
                         //TODO: Show banner -> Poll ends in x days
                     } else {

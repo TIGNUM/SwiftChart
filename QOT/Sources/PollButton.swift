@@ -37,6 +37,16 @@ final class PollButton: SelectionButton {
         super.configure(title: title, isSelected: isSelected)
         counterLabelTop.text = "\(votes)"
         counterLabelBottom.text = "\(votes + 1)"
+        setHidden(votes == 0)
+    }
+}
+
+// MARK: - Private
+private extension PollButton {
+    func setHidden(_ isHidden: Bool) {
+        counterLabelTop.alpha = isHidden ? 0.3 : 1
+        counterLabelBottom.alpha = isHidden ? 0 : 1
+//        counterBackgroundView.alpha = isHidden ? 0 : 1
     }
 }
 
@@ -49,10 +59,10 @@ extension PollButton {
             let xPoint = counterLabelTop.frame.origin.x
             let height = counterLabelTop.frame.height
             UIView.animate(withDuration: 0.6) {
-                self.counterLabelTop.alpha = 1
-                self.counterLabelBottom.alpha = 0
-                self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop + height)
-                self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom + height)
+                self.counterLabelTop.alpha = 0
+                self.counterLabelBottom.alpha = 1
+                self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop - height)
+                self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom - height)
             }
         }
     }
@@ -64,10 +74,11 @@ extension PollButton {
             let xPoint = counterLabelTop.frame.origin.x
             let height = counterLabelTop.frame.height
             UIView.animate(withDuration: 0.6) {
-                self.counterLabelTop.alpha = 0
-                self.counterLabelBottom.alpha = 1
-                self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop - height)
-                self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom - height)
+                self.counterLabelTop.alpha = 1
+                self.counterLabelBottom.alpha = 0
+                self.setHidden(self.votes == 0)
+                self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop + height)
+                self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom + height)
             }
         }
     }
