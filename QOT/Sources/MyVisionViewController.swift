@@ -101,7 +101,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
 
     private func showRateScreen() {
         trackUserEvent(.OPEN, valueType: "QuestionnaireView", action: .TAP)
-        interactor.showRateScreen()
+        interactor.showRateScreen(delegate: self)
     }
 
     private func showSkeleton() {
@@ -369,7 +369,7 @@ extension MyVisionViewController {
     }
 }
 
-extension MyVisionViewController: MyToBeVisionRateViewControllerProtocol {
+extension MyVisionViewController: TBVRateDelegate {
     func doneAction() {
         interactor.showTracker()
     }

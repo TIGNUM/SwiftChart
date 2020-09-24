@@ -41,7 +41,7 @@ protocol MyVisionInteractorInterface: Interactor {
     func showNullState(with title: String, message: String, writeMessage: String)
     func showTBVData()
     func showEditVision(isFromNullState: Bool)
-    func showRateScreen()
+    func showRateScreen(delegate: TBVRateDelegate?)
 
     func hideNullState()
     func saveToBeVision(image: UIImage?)
@@ -53,13 +53,4 @@ protocol MyVisionInteractorInterface: Interactor {
     func isShareBlocked(_ completion: @escaping (Bool) -> Void)
     func getToBeVision(_ completion: @escaping (QDMToBeVision?) -> Void)
     func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void)
-}
-
-protocol MyVisionRouterInterface {
-    func showTracker()
-    func showTBVData(shouldShowNullState: Bool, visionId: Int?)
-    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
-    func showRateScreen(with id: Int)
-    func showViewController(viewController: UIViewController, completion: (() -> Void)?)
-    func showTBVGenerator()
 }

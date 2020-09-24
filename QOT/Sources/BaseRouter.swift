@@ -22,7 +22,6 @@ protocol BaseRouterInterface {
     func showHomeScreen()
     func showFAQScreen(category: ContentCategory)
     func showCoachMarks()
-    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
 
@@ -31,8 +30,16 @@ protocol BaseRouterInterface {
     func showTeamTBVPollEXplanation(_ team: QDMTeam?, _ poll: QDMTeamToBeVisionPoll?)
     func showTeamRatingExplanation(_ team: QDMTeam?)
 
+    func showTracker()
+    func showTBVData(shouldShowNullState: Bool, visionId: Int?)
+    func showRateScreen(with id: Int, delegate: TBVRateDelegate?)
+    func showTBVGenerator()
+    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
+
     func dismiss()
     func dismissChatBotFlow()
+
+    func showTeamTBVGenerator()
 }
 
 class BaseRouter: BaseRouterInterface {
@@ -125,18 +132,6 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?) {
-        guard
-            let controller = R.storyboard.myToBeVision.myVisionEditDetailsViewController(),
-            let visionController = self.viewController else { return }
-        MyVisionEditDetailsConfigurator.configure(viewController: controller,
-                                                  title: title,
-                                                  vision: vision,
-                                                  isFromNullState: isFromNullState,
-                                                  team: team)
-        visionController.present(controller, animated: true, completion: nil)
-    }
-
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
         viewController?.showAlert(type: type, handler: handler, handlerDestructive: handlerDestructive)
     }
@@ -154,6 +149,54 @@ class BaseRouter: BaseRouterInterface {
         let type: Explanation.Types = (team?.thisUserIsOwner == true) ? .ratingOwner : .ratingUser
         showExplanation(team, nil, type)
     }
+
+    func showTracker() {
+        presentRateHistory(.tracker)
+    }
+
+    func showTBVData(shouldShowNullState: Bool, visionId: Int?) {
+        if shouldShowNullState {
+            guard let viewController = R.storyboard.myToBeVisionRate.tbvRateHistoryNullStateViewController() else { return }
+            viewController.delegate = self.viewController as? MyVisionViewController
+            viewController.visionId = visionId
+            present(viewController)
+        } else {
+            presentRateHistory(.data)
+        }
+    }
+
+    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?) {
+        guard
+            let controller = R.storyboard.myToBeVision.myVisionEditDetailsViewController(),
+            let visionController = self.viewController else { return }
+        MyVisionEditDetailsConfigurator.configure(viewController: controller,
+                                                  title: title,
+                                                  vision: vision,
+                                                  isFromNullState: isFromNullState,
+                                                  team: team)
+        visionController.present(controller, animated: true)
+    }
+
+    func showRateScreen(with id: Int, delegate: TBVRateDelegate?) {
+        if let viewController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
+            MyToBeVisionRateConfigurator.configure(viewController: viewController,
+                                                   delegate: delegate,
+                                                   visionId: id)
+            present(viewController)
+        }
+    }
+
+    func showTeamTBVGenerator() {
+        let configurator = DTTeamTBVConfigurator.make()
+        let controller = DTTeamTBVViewController(configure: configurator)
+        present(controller)
+    }
+
+    func showTBVGenerator() {
+        let configurator = DTTBVConfigurator.make(delegate: viewController as? MyVisionViewController)
+        let controller = DTTBVViewController(configure: configurator)
+        present(controller)
+    }
 }
 
 // MARK: - Private
@@ -167,8 +210,14 @@ private extension BaseRouter {
                                                                         poll: poll,
                                                                         type: type)
             configurator(controller)
-            push(controller)
+            present(controller)
         }
+    }
+
+    func presentRateHistory(_ displayType: TBVGraph.DisplayType) {
+        guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
+        TBVRateHistoryConfigurator.configure(viewController: viewController, displayType: displayType)
+        present(viewController)
     }
 
     func push(_ childViewController: UIViewController) {

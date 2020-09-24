@@ -216,10 +216,10 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         router.showTracker()
     }
 
-    func showRateScreen() {
+    func showRateScreen(delegate: TBVRateDelegate?) {
         worker.getToBeVision { [weak self] (_, toBeVision) in
             if let remoteId = toBeVision?.remoteID {
-                self?.router.showRateScreen(with: remoteId)
+                self?.router.showRateScreen(with: remoteId, delegate: delegate)
             }
         }
     }

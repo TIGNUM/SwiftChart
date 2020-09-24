@@ -89,8 +89,10 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         }
     }
 
-    func showNullState(with title: String, teamName: String?, message: String) {
-        presenter.showNullState(with: title, teamName: teamName, message: message)
+    func showNullState() {
+        presenter.showNullState(with: teamNullStateTitle ?? "",
+                                teamName: team?.name,
+                                message: teamNullStateSubtitle ?? "")
     }
 
     func hideNullState() {

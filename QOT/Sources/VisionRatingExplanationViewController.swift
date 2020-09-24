@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class VisionRatingExplanationViewController: UIViewController {
+final class VisionRatingExplanationViewController: BaseViewController {
 
     // MARK: - Properties
     var interactor: VisionRatingExplanationInteractorInterface!
@@ -52,7 +52,7 @@ final class VisionRatingExplanationViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateBottomNavigation([createBlackCloseButton(#selector(didTapBackButton))], bottomNavigationRightBarItems())
+        updateBottomNavigation(bottomNavigationLeftBarItems(), bottomNavigationRightBarItems())
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,13 +73,17 @@ final class VisionRatingExplanationViewController: UIViewController {
                                      backgroundColor: .clear,
                                      borderColor: .accent40)]
     }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem] {
+        return [dismissNavigationItem(action: #selector(didTapDismissButton))]
+    }
 }
 
 // MARK: - Actions
 extension VisionRatingExplanationViewController {
     @objc func startRating() {
         trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        router.showRateScreen(with: 0)
+        router.showRateScreen(with: 0, delegate: self)
         updateBottomNavigation([], [])
     }
 
@@ -93,7 +97,7 @@ extension VisionRatingExplanationViewController {
         if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(videoID ?? 0)) {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
         }
-      }
+    }
 
     func setupButtons() {
         checkButton.layer.borderWidth = 1
@@ -106,8 +110,9 @@ extension VisionRatingExplanationViewController {
 extension VisionRatingExplanationViewController: VisionRatingExplanationViewControllerInterface {
     func setupView(type: Explanation.Types) {
         playIconBackgroundView.circle()
-        ThemeText.ratingExplanationText.apply(AppTextService.get(.my_x_team_tbv_section_feature_explanation_checkmark), to: checkmarkLabel)
-        updateBottomNavigation([createBlackCloseButton(#selector(didTapBackButton))], bottomNavigationRightBarItems())
+        ThemeText.ratingExplanationText.apply(AppTextService.get(.my_x_team_tbv_section_feature_explanation_checkmark),
+                                              to: checkmarkLabel)
+        updateBottomNavigation(bottomNavigationLeftBarItems(), bottomNavigationRightBarItems())
         switch type {
         case .ratingOwner, .tbvPollOwner:
             checkMarkView.isHidden = false
@@ -144,7 +149,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
     }
 }
 
-extension VisionRatingExplanationViewController: MyToBeVisionRateViewControllerProtocol {
+extension VisionRatingExplanationViewController: TBVRateDelegate {
     func doneAction() {
 
     }
