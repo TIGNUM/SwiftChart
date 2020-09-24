@@ -889,7 +889,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func showTeamTBV(_ team: QDMTeam) {
-        router.showTeamTBV(team)
+        interactor.getTeamTBVPoll(for: team) { [weak self] (poll) in
+            self?.router.showTeamTBV(team, poll)
+        }
     }
 
     func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {

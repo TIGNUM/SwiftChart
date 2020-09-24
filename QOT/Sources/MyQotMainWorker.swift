@@ -20,7 +20,8 @@ protocol MyQotMainWorker: WorkerTeam {
 
     func getToBeVisionSubtitle(team: QDMTeam?, _ completion: @escaping (String?) -> Void)
 
-    func getToBeVisionTitle(item: MyX.Item, teamItem: Team.Item?, _ completion: @escaping (String) -> Void)
+    func getToBeVisionData(item: MyX.Item,
+                           teamItem: Team.Item?, _ completion: @escaping (String, QDMTeamToBeVisionPoll?) -> Void)
 }
 
 extension MyQotMainWorker {
@@ -123,9 +124,10 @@ extension MyQotMainWorker {
         }
     }
 
-    func getToBeVisionTitle(item: MyX.Item, teamItem: Team.Item?, _ completion: @escaping (String) -> Void) {
+    func getToBeVisionData(item: MyX.Item,
+                           teamItem: Team.Item?, _ completion: @escaping (String, QDMTeamToBeVisionPoll?) -> Void) {
         guard let team = teamItem?.qdmTeam, team.name != nil else {
-            completion("")
+            completion("", nil)
             return
         }
 
@@ -147,11 +149,11 @@ extension MyQotMainWorker {
 
         dispatchGroup.notify(queue: .main) {
             if tmpPoll != nil {
-                completion(item.title(isTeam: true, isPollInProgress: true))
+                completion(item.title(isTeam: true, isPollInProgress: true), tmpPoll)
             } else if tmpHasOwnerEmptyTeamTBV == true {
-                completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision))
+                completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision), tmpPoll)
             } else {
-                completion(item.title(isTeam: true, isPollInProgress: false))
+                completion(item.title(isTeam: true, isPollInProgress: false), tmpPoll)
             }
         }
     }

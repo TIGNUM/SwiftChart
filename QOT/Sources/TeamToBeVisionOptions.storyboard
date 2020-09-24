@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a5y-aR-naf">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,6 +36,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="e76-4f-xMP"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="e76-4f-xMP" firstAttribute="trailing" secondItem="b6w-pm-qQZ" secondAttribute="trailing" id="L3i-Km-NVk"/>
@@ -45,7 +46,6 @@
                             <constraint firstItem="bp3-t5-sNY" firstAttribute="top" secondItem="e76-4f-xMP" secondAttribute="top" id="fWs-PZ-UpK"/>
                             <constraint firstItem="b6w-pm-qQZ" firstAttribute="top" secondItem="bp3-t5-sNY" secondAttribute="bottom" id="ws9-jQ-cLV"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="e76-4f-xMP"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="bp3-t5-sNY" id="aOP-Db-cl0"/>

@@ -66,7 +66,8 @@ private extension DTSolveViewController {
         interactor?.getUsersTBV { [weak self] (tbv, initiated) in
             if initiated && tbv?.text != nil {
                 let targetAnswer = DTViewModel.Answer(answer: answer,
-                                                      newTargetId: Solve.QuestionTargetId.ReviewTBV)
+                                                      newTargetId: Solve.QuestionTargetId.ReviewTBV,
+                                                      votes: 0)
                 self?.setAnswerNeedsSelection(targetAnswer)
                 self?.loadNextQuestion()
             } else {
@@ -74,7 +75,8 @@ private extension DTSolveViewController {
                                                          delegate: self?.shortTBVDelegate) { [weak self] in
                                                             let targetId = Solve.QuestionTargetId.PostCreationShortTBV
                                                             let targetAnswer = DTViewModel.Answer(answer: answer,
-                                                                                                  newTargetId: targetId)
+                                                                                                  newTargetId: targetId,
+                                                                                                  votes: 0)
                                                             self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion()
                 }

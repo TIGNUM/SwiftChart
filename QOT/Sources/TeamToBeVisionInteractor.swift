@@ -15,16 +15,21 @@ final class TeamToBeVisionInteractor {
     private lazy var worker = TeamToBeVisionWorker()
     private let router: TeamToBeVisionRouter
     private let presenter: TeamToBeVisionPresenterInterface!
-    var team: QDMTeam?
+    var team: QDMTeam
     var teamVision: QDMTeamToBeVision?
+    var poll: QDMTeamToBeVisionPoll?
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
     // MARK: - Init
-    init(presenter: TeamToBeVisionPresenterInterface, router: TeamToBeVisionRouter, team: QDMTeam?) {
+    init(presenter: TeamToBeVisionPresenterInterface,
+         router: TeamToBeVisionRouter,
+         team: QDMTeam,
+         poll: QDMTeamToBeVisionPoll?) {
         self.presenter = presenter
         self.router = router
         self.team = team
+        self.poll = poll
     }
 
     // MARK: - Interactor
@@ -64,7 +69,6 @@ final class TeamToBeVisionInteractor {
     }
 
     private func didUpdateTBVRelatedData() {
-        guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
             self?.teamVision = teamVision
 //            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
@@ -80,18 +84,17 @@ final class TeamToBeVisionInteractor {
 // MARK: - TeamToBeVisionInteractorInterface
 extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     func showEditVision(isFromNullState: Bool) {
-        guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { (teamVision) in
             self.router.showEditVision(title: teamVision?.headline ?? "",
                                        vision: teamVision?.text ?? "",
                                        isFromNullState: isFromNullState,
-                                       team: team)
+                                       team: self.team)
         }
     }
 
     func showNullState() {
         presenter.showNullState(with: teamNullStateTitle ?? "",
-                                teamName: team?.name,
+                                teamName: team.name,
                                 message: teamNullStateSubtitle ?? "")
     }
 
@@ -100,14 +103,13 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     }
 
     func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
-        guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { (teamVision) in
             completion(teamVision?.headline == nil && teamVision?.text == nil)
         }
     }
 
     func saveToBeVision(image: UIImage?) {
-        guard let team = team else { return }
+        let tmpTeam = team
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
             if var teamVision = teamVision {
                 teamVision.modifiedAt = Date()
@@ -122,7 +124,8 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 } else {
                     teamVision.profileImageResource = nil
                 }
-                self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
+                self?.worker.updateTeamToBeVision(teamVision,
+                                                  team: tmpTeam) { [weak self] (responseTeamVision) in
                     self?.didUpdateTBVRelatedData()
                 }
             }

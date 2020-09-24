@@ -23,6 +23,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
     internal var settingTitle: String = ""
     internal var newLibraryItemCount: Int = 0
     internal var tbvTitle: String = ""
+    internal var teamTBVPoll: QDMTeamToBeVisionPoll?
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -50,6 +51,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
 
         var tmpNewLibraryItemCount = 0
         var tmpToBeVisionTitle = ""
+        var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
         var tmpSubtitles = [String: String?]()
         var tmpIsCellEnabled = [String: Bool]()
 
@@ -97,8 +99,9 @@ final class MyQotMainInteractor: MyQotMainWorker {
                 }
 
                 dispatchGroup.enter()
-                getToBeVisionTitle(item: .toBeVision, teamItem: tmpSelectedTeamItem) { title in
+                getToBeVisionData(item: .toBeVision, teamItem: tmpSelectedTeamItem) { (title, poll) in
                     tmpToBeVisionTitle = title
+                    tmpTeamTBVPoll = poll
                     dispatchGroup.leave()
                 }
             default: break
@@ -112,6 +115,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
             self?.subtitles = tmpSubtitles
             self?.isCellEnabled = tmpIsCellEnabled
             self?.tbvTitle = tmpToBeVisionTitle
+            self?.teamTBVPoll = tmpTeamTBVPoll
             completion()
         }
     }
@@ -138,11 +142,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func getTitle(for item: MyX.Item?) -> String? {
-        let isTeam = selectedTeamItem != nil
-        if item == .toBeVision && isTeam {
+        if item == .toBeVision && selectedTeamItem != nil {
             return tbvTitle
         }
-        return item?.title(isTeam: isTeam, isPollInProgress: false)
+        return item?.title(isTeam: false, isPollInProgress: false)
     }
 
     func getSubtitle(for item: MyX.Item?) -> (String?, Bool) {
@@ -210,10 +213,26 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .data:
             router.presentMyDataScreen()
         case .toBeVision:
-            if let team = selectedTeamItem?.qdmTeam {
-                router.showTeamTBV(team)
-            } else {
+            let team = selectedTeamItem?.qdmTeam
+
+            if teamTBVPoll == nil && team == nil {
                 router.showTBV()
+            }
+
+            if let team = team {
+                if let poll = teamTBVPoll, poll.open {
+                    if poll.creator {
+                        router.showTeamTBVOptions(poll: poll,
+                                                  type: .voting,
+                                                  remainingDays: Date().days(to: poll.endDate ?? Date()))
+                    } else if poll.userDidVote {
+                        //TODO: Show banner -> Poll ends in x days
+                    } else {
+                        router.showTeamTBV(team, poll)
+                    }
+                } else {
+                    router.showTeamTBV(team, teamTBVPoll)
+                }
             }
         default: return
         }

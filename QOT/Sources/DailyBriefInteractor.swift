@@ -147,6 +147,10 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
+    func getTeamTBVPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        worker.getCurrentTeamToBeVisionPoll(for: team, completion)
+    }
+
     // MARK: - Properties
     var rowViewSectionCount: Int {
         return viewModelOldListModels.count

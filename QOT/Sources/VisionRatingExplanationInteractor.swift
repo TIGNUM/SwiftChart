@@ -15,12 +15,12 @@ final class VisionRatingExplanationInteractor {
     private lazy var worker = VisionRatingExplanationWorker()
     private let presenter: VisionRatingExplanationPresenterInterface!
     private var type = Explanation.Types.ratingOwner
-    private var poll: QDMTeamToBeVisionPoll?
-    var team: QDMTeam?
+    var poll: QDMTeamToBeVisionPoll?
+    var team: QDMTeam
 
     // MARK: - Init
     init(presenter: VisionRatingExplanationPresenterInterface,
-         team: QDMTeam?,
+         team: QDMTeam,
          poll: QDMTeamToBeVisionPoll?,
          type: Explanation.Types) {
         self.presenter = presenter
@@ -39,8 +39,11 @@ final class VisionRatingExplanationInteractor {
 
 // MARK: - VisionRatingExplanationInteractorInterface
 extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorInterface {
-    func startTeamTBVPoll() {
-
+    func startTeamTBVPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        worker.openNewTeamToBeVisionPoll(for: team) { [weak self] (poll) in
+            self?.poll = poll
+            completion(poll)
+        }
     }
 
     func showRateScreen() {

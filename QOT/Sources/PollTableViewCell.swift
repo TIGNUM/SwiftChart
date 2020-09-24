@@ -31,7 +31,7 @@ final class PollTableViewCell: MultipleSelectionTableViewCell {
         cell.configure(for: answer,
                        maxSelections: maxPossibleSelections,
                        selectionCounter: selectionCounter,
-                       votes: Int.random(in: 0..<100))
+                       votes: answer.votes)
         cell.delegate = self
         return cell
     }

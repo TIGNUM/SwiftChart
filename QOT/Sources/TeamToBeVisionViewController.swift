@@ -98,12 +98,12 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 // MARK: - ToBeVisionSelectionBarProtocol
 extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
     func didTapEditItem() {
-        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .EDIT_TEAM_TBV, action: .TAP)
+        trackUserEvent(.EDIT, value: interactor.team.remoteID, valueType: .EDIT_TEAM_TBV, action: .TAP)
         interactor.showEditVision(isFromNullState: false)
     }
 
     func didTapCameraItem() {
-        trackUserEvent(.EDIT, value: interactor?.team?.remoteID, valueType: .PICK_TEAM_TBV_IMAGE, action: .TAP)
+        trackUserEvent(.EDIT, value: interactor.team.remoteID, valueType: .PICK_TEAM_TBV_IMAGE, action: .TAP)
         imagePickerController.show(in: self, deletable: (tempTeamImageURL != nil || tempTeamImage != nil))
         imagePickerController.delegate = self
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
@@ -164,7 +164,7 @@ private extension TeamToBeVisionViewController {
 
     @IBAction func showTeamRatingExplanation(_ sender: Any) {
         trackUserEvent(.OPEN,
-                       value: interactor.team?.remoteID,
+                       value: interactor.team.remoteID,
                        valueType: .TEAM_TO_BE_VISION_RATING_EXPLANATION,
                        action: .TAP)
         router.showTeamRatingExplanation(interactor.team)
@@ -172,10 +172,10 @@ private extension TeamToBeVisionViewController {
 
     @IBAction func showTeamTBVPollExplanation() {
         trackUserEvent(.OPEN,
-                       value: interactor.team?.remoteID,
+                       value: interactor.team.remoteID,
                        valueType: .TEAM_TBV_GENERATOR_EXPLANATION,
                        action: .TAP)
-        router.showTeamTBVPollEXplanation(interactor.team, nil)
+        router.showTeamTBVPollEXplanation(interactor.team, interactor.poll)
     }
 
     @objc func showCreateAlert(_ sender: Any) {
@@ -198,7 +198,7 @@ private extension TeamToBeVisionViewController {
 // MARK: - TeamToBeVisionViewControllerInterface
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func setSelectionBarButtonItems() {
-        toBeVisionSelectionBar.configure(isOwner: interactor?.team?.thisUserIsOwner, self)
+        toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner, self)
     }
 
     func setupView() {
@@ -207,7 +207,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}",
-                                                                                                     with: interactor.team?.name?.uppercased() ?? "")
+                                                                                                     with: interactor.team.name?.uppercased() ?? "")
         ThemeText.tbvSectionHeader.apply(title, to: toBeVisionLabel)
         userImageView.image = R.image.teamTBVPlaceholder()
 
@@ -226,7 +226,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-        if interactor?.team?.thisUserIsOwner == false {
+        if interactor.team.thisUserIsOwner == false {
             pollButton.isHidden = true
         }
 
@@ -255,7 +255,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         skeletonManager.hide()
         interactor.hideNullState()
         interactor.isShareBlocked { [weak self] (hidden) in
-            guard self?.interactor.team?.thisUserIsOwner == true else {
+            guard self?.interactor.team.thisUserIsOwner == true else {
                 self?.toBeVisionSelectionBar.isHidden = hidden
                 return
             }
@@ -360,7 +360,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
 // MARK: - TeamToBeVisionNavigationBarViewProtocol
 extension TeamToBeVisionViewController: TeamToBeVisionNavigationBarViewProtocol {
     func didShare() {
-        trackUserEvent(.SHARE, value: interactor.team?.remoteID, valueType: .TEAM_TO_BE_VISION, action: .TAP)
+        trackUserEvent(.SHARE, value: interactor.team.remoteID, valueType: .TEAM_TO_BE_VISION, action: .TAP)
         interactor.shareTeamToBeVision()
     }
 }

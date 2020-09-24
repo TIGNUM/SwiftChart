@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTTeamTBVPresenter: DTPresenter {
     override func previousIsHidden(questionKey: String) -> Bool {
         return true
+    }
+
+    override func getVotes(answer: QDMAnswer, poll: QDMTeamToBeVisionPoll?) -> Int {
+        return poll?.voteResults.filter { $0.answer?.remoteID == answer.remoteID }.first?.count ?? 0
     }
 }
 

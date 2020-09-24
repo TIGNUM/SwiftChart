@@ -87,7 +87,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 170ba8cb2e023ef5f68d6517495a9ebfd6937a26
+    :commit: 38a10094d7f84c687f79641b5338a5d2cc210e35
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -111,6 +111,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
 
-PODFILE CHECKSUM: e0216d378715c6074f584f6b8e968ffb3b08b29f
+PODFILE CHECKSUM: 539cb477636ef161894dfff44f44fb4c003c527b
 
 COCOAPODS: 1.9.3

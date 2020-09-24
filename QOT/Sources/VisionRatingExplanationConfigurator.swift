@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 final class VisionRatingExplanationConfigurator {
-    static func make(team: QDMTeam?,
+    static func make(team: QDMTeam,
                      poll: QDMTeamToBeVisionPoll?,
                      type: Explanation.Types) -> (VisionRatingExplanationViewController) -> Void {
         return { (viewController) in

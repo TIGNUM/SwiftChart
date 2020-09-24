@@ -17,13 +17,16 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
     private var type = TeamToBeVisionOptionsModel.Types.voting
     private var model = TeamToBeVisionOptionsModel()
     private var remainingDays: Int = 0
+    private var poll: QDMTeamToBeVisionPoll?
 
     // MARK: - Init
     init(presenter: TeamToBeVisionOptionsPresenterInterface,
          type: TeamToBeVisionOptionsModel.Types,
+         poll: QDMTeamToBeVisionPoll?,
          remainingDays: Int) {
         self.presenter = presenter
         self.type = type
+        self.poll = poll
         self.remainingDays = remainingDays
     }
 

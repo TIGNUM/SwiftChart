@@ -112,6 +112,7 @@ extension UIViewController {
         case is BookMarkSelectionViewController: return "bookmark_library_selection"
         case is TeamToBeVisionViewController: return "teamTBV"
         case is VisionRatingExplanationViewController: return "rating_feature_explanation"
+        case is TeamToBeVisionOptionsViewController: return "teamTBV.options"
         default: preconditionFailure()
         }
     }

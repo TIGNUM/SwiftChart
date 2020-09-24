@@ -26,9 +26,9 @@ protocol BaseRouterInterface {
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
 
     func showTBV()
-    func showTeamTBV(_ team: QDMTeam)
-    func showTeamTBVPollEXplanation(_ team: QDMTeam?, _ poll: QDMTeamToBeVisionPoll?)
-    func showTeamRatingExplanation(_ team: QDMTeam?)
+    func showTeamTBV(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?)
+    func showTeamTBVPollEXplanation(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?)
+    func showTeamRatingExplanation(_ team: QDMTeam)
 
     func showTracker()
     func showTBVData(shouldShowNullState: Bool, visionId: Int?)
@@ -39,7 +39,8 @@ protocol BaseRouterInterface {
     func dismiss()
     func dismissChatBotFlow()
 
-    func showTeamTBVGenerator()
+    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?)
+    func showTeamTBVOptions(poll: QDMTeamToBeVisionPoll?, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int)
 }
 
 class BaseRouter: BaseRouterInterface {
@@ -112,9 +113,9 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showTeamTBV(_ team: QDMTeam) {
+    func showTeamTBV(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?) {
         if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
-            let configurator = TeamToBeVisionConfigurator.make(team: team)
+            let configurator = TeamToBeVisionConfigurator.make(team: team, poll: poll)
             configurator(controller)
             viewController?.show(controller, sender: nil)
         }
@@ -140,13 +141,13 @@ class BaseRouter: BaseRouterInterface {
         present(viewController, completion: completion)
     }
 
-    func showTeamTBVPollEXplanation(_ team: QDMTeam?, _ poll: QDMTeamToBeVisionPoll?) {
-        let type: Explanation.Types = (team?.thisUserIsOwner == true) ? .tbvPollOwner : .tbvPollUser
-        showExplanation(team, nil, type)
+    func showTeamTBVPollEXplanation(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?) {
+        let type: Explanation.Types = team.thisUserIsOwner ? .tbvPollOwner : .tbvPollUser
+        showExplanation(team, poll, type)
     }
 
-    func showTeamRatingExplanation(_ team: QDMTeam?) {
-        let type: Explanation.Types = (team?.thisUserIsOwner == true) ? .ratingOwner : .ratingUser
+    func showTeamRatingExplanation(_ team: QDMTeam) {
+        let type: Explanation.Types = team.thisUserIsOwner ? .ratingOwner : .ratingUser
         showExplanation(team, nil, type)
     }
 
@@ -186,8 +187,8 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showTeamTBVGenerator() {
-        let configurator = DTTeamTBVConfigurator.make()
+    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?) {
+        let configurator = DTTeamTBVConfigurator.make(poll: poll)
         let controller = DTTeamTBVViewController(configure: configurator)
         present(controller)
     }
@@ -197,11 +198,21 @@ class BaseRouter: BaseRouterInterface {
         let controller = DTTBVViewController(configure: configurator)
         present(controller)
     }
+
+    func showTeamTBVOptions(poll: QDMTeamToBeVisionPoll?, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
+        if let viewController = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
+            TeamToBeVisionOptionsConfigurator.make(viewController: viewController,
+                                                   type: type,
+                                                   poll: poll,
+                                                   remainingDays: remainingDays)
+            push(viewController)
+        }
+    }
 }
 
 // MARK: - Private
 private extension BaseRouter {
-    func showExplanation(_ team: QDMTeam?,
+    func showExplanation(_ team: QDMTeam,
                          _ poll: QDMTeamToBeVisionPoll?,
                          _ type: Explanation.Types) {
         let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()

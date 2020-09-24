@@ -82,15 +82,17 @@ final class VisionRatingExplanationViewController: BaseViewController {
 // MARK: - Actions
 extension VisionRatingExplanationViewController {
     @objc func startRating() {
-        trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
+        trackUserEvent(.OPEN, value: interactor.team.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
         router.showRateScreen(with: 0, delegate: self)
         updateBottomNavigation([], [])
     }
 
     @objc func startTeamTBVGenerator() {
-        trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
-        router.showTeamTBVGenerator()
-        updateBottomNavigation([], [])
+        trackUserEvent(.OPEN, value: interactor.team.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
+        interactor.startTeamTBVPoll { [weak self] (poll) in
+            self?.router.showTeamTBVGenerator(poll: poll)
+            self?.updateBottomNavigation([], [])
+        }
     }
 
     @objc func videoTapped(_ sender: UITapGestureRecognizer) {
@@ -124,7 +126,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
 
     func setupLabels(title: String, text: String, videoTitle: String) {
         ThemeText.ratingExplanationTitle.apply(title.uppercased(), to: titleLabel)
-        let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team?.name ?? "").uppercased())
+        let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team.name ?? "").uppercased())
         ThemeText.ratingExplanationText.apply(adaptedText, to: textLabel)
         ThemeText.ratingExplanationVideoTitle.apply(videoTitle, to: videoTitleLabel)
 

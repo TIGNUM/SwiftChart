@@ -12,7 +12,7 @@ protocol TeamToBeVisionOptionsViewControllerDelegate: class {
     func showAlert()
 }
 
-final class TeamToBeVisionOptionsViewController: BaseViewController {
+final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLevel2 {
 
     enum ActionType: Int {
         case rate = 0
@@ -51,11 +51,16 @@ final class TeamToBeVisionOptionsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(color: .carbon)
+        updateBottomNavigation(bottomNavigationLeftBarItems(), [])
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+    }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem] {
+        return [backNavigationItem()]
     }
 }
 

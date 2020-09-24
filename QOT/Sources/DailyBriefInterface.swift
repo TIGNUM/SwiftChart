@@ -86,6 +86,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?
     func getDailyBriefBucketsForViewModel()
     func getToBeVisionImage(completion: @escaping (URL?) -> Void)
+    func getTeamTBVPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
