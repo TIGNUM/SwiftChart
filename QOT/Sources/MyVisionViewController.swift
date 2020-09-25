@@ -263,7 +263,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
             singleMessageRatingView.isHidden = !shouldShowSingleMessage
             doubleMessageRatingView.isHidden = shouldShowSingleMessage
         } else {
-            singleMessageRatingView.isHidden = true
+            singleMessageRatingView.isHidden = false
             doubleMessageRatingView.isHidden = true
         }
 

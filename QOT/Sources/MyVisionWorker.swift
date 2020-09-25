@@ -151,6 +151,7 @@ final class MyVisionWorker {
         }
 
         dispatchGroup.notify(queue: .main) {
+            // completion(text, shouldShowSingleMessage, isRateEnabled)
             guard let visionText = tbv?.text, tbvTracks.isEmpty == false else {
                 completion(syncingText, nil, false)
                 return
