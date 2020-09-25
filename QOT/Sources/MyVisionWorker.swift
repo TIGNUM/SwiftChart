@@ -154,12 +154,16 @@ final class MyVisionWorker {
             // completion(text, shouldShowSingleMessage, isRateEnabled)
             guard let visionText = tbv?.text, tbvTracks.isEmpty == false else {
                 completion(syncingText, nil, false)
+                requestSynchronization(.MY_TO_BE_VISION, .DOWN_SYNC)
+                requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
+                log("tbv?.text = nil, tbvTracks.isEmpty == true 🚥🚥🚥", level: .debug)
                 return
             }
 
             guard sentences.isEmpty == false else {
                 completion(syncingText, nil, false)
                 requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
+                log("sentences.isEmpty == true 🚥🚥🚥", level: .debug)
                 return
             }
 
@@ -167,20 +171,24 @@ final class MyVisionWorker {
                 if visionText.contains(sentence) == false { // mismatched sentences.
                     completion(syncingText, nil, false)
                     requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
+                    log("visionText.contains(sentence) == false 🚥🚥🚥", level: .debug)
                     return
                 }
             }
 
             guard let report = ratingReport, report.days.isEmpty == false else {
+                log("ratingReport == nil, report.days.isEmpty == true 🚥🚥🚥", level: .debug)
                 completion(notRatedText, true, true)
                 return
             }
 
             guard let date = report.days.sorted().last?.beginingOfDate() else {
+                log("report.days.sorted().last == nil 🚥🚥🚥", level: .debug)
                 completion(syncingText, true, false)
                 return
             }
             let days = DateComponentsFormatter.numberOfDays(date)
+            log("days: \(days), showSinlge == falsem, ratingEnabled == true 🚥🚥🚥", level: .debug)
             completion(self.dateString(for: days), false, true)
         }
     }
