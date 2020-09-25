@@ -68,7 +68,7 @@ final class MyVisionInteractor {
     }
 
     private func didUpdateTBVRelatedData() {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
+        worker.getToBeVision { [weak self] (toBeVision) in
             self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
                 self?.presenter.load(toBeVision,
                                      rateText: text,
@@ -106,7 +106,7 @@ final class MyVisionInteractor {
 
 extension MyVisionInteractor: MyVisionInteractorInterface {
     func getToBeVision(_ completion: @escaping (QDMToBeVision?) -> Void) {
-        worker.getToBeVision { (_, toBeVision) in
+        worker.getToBeVision { (toBeVision) in
             completion(toBeVision)
         }
     }
@@ -157,7 +157,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func saveToBeVision(image: UIImage?) {
-        worker.getToBeVision { [weak self] (_, myVision) in
+        worker.getToBeVision { [weak self] (myVision) in
             if var myVision = myVision {
                 myVision.modifiedAt = Date()
                 if let myVisionImage = image {
@@ -205,7 +205,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
 
     func showTBVData() {
         worker.getRatingReport { [weak self] (report) in
-            self?.worker.getToBeVision { [weak self] (_, toBeVision) in
+            self?.worker.getToBeVision { [weak self] (toBeVision) in
                 self?.router.showTBVData(shouldShowNullState: report?.days.isEmpty == true,
                                          visionId: toBeVision?.remoteID)
             }
@@ -217,7 +217,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func showRateScreen() {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
+        worker.getToBeVision { [weak self] (toBeVision) in
             if let remoteId = toBeVision?.remoteID {
                 self?.router.showRateScreen(with: remoteId)
             }
@@ -225,7 +225,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func showEditVision(isFromNullState: Bool) {
-        worker.getToBeVision { [weak self] (_, toBeVision) in
+        worker.getToBeVision { [weak self] (toBeVision) in
             self?.router.showEditVision(title: toBeVision?.headline ?? "",
                                         vision: toBeVision?.text ?? "",
                                         isFromNullState: isFromNullState,
