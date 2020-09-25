@@ -15,7 +15,7 @@ protocol MediaPlayerViewControllerInterface: class {
     func showDestinationAlert()
 }
 
-final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverlay {
+final class MediaPlayerViewController: AVPlayerViewController {
     var overlayControls: MediaPlayerOverlay?
     var videoGravityObserver: NSKeyValueObservation?
     var zoomed: Bool = false
@@ -52,14 +52,6 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
         UIDevice.current.setValue(value, forKey: "orientation")
         UINavigationController.attemptRotationToDeviceOrientation()
         videoGravityObserver?.invalidate()
-    }
-
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-
-    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return nil
     }
 
     override func viewDidLayoutSubviews() {

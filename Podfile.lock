@@ -28,9 +28,9 @@ PODS:
     - DifferenceKit/Core
   - JTAppleCalendar (7.1.6)
   - KeychainAccess (4.2.1)
-  - Kingfisher (5.15.0):
-    - Kingfisher/Core (= 5.15.0)
-  - Kingfisher/Core (5.15.0)
+  - Kingfisher (5.15.4):
+    - Kingfisher/Core (= 5.15.4)
+  - Kingfisher/Core (5.15.4)
   - qot_dal (1.0):
     - KeychainAccess
     - RealmSwift
@@ -100,7 +100,7 @@ SPEC CHECKSUMS:
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
-  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+  Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
   qot_dal: 74ec5a8e7531a98811d0e74cb98854494fec4ac3
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
@@ -111,6 +111,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
 
-PODFILE CHECKSUM: 683951c76dad2898058ec6447c829c8d44ddb06b
+PODFILE CHECKSUM: 8a676c3c83abea5bfa2bdb6d1f60220c6c502369
 
 COCOAPODS: 1.9.3
