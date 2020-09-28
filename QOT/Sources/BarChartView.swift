@@ -74,19 +74,19 @@ class BarChartView: UIView {
     private func drawBar(xPos: CGFloat, yPos: CGFloat, isMyVote: Bool) {
         let barLayer = CALayer()
         barLayer.frame = CGRect(x: 0, y: yPos, width: xPos, height: barHeight)
-        barLayer.backgroundColor = isMyVote ? UIColor.red.cgColor : UIColor.white.cgColor
+        barLayer.backgroundColor = isMyVote ? UIColor.white.cgColor : UIColor.sand40.cgColor
         mainLayer.addSublayer(barLayer)
     }
 
     private func drawDetails(xPos: CGFloat, yPos: CGFloat, votes: Int, isMyVote: Bool) {
         let textLayer = CATextLayer()
         textLayer.frame = CGRect(x: xPos, y: yPos - 2, width: 110, height: barHeight)
-        textLayer.foregroundColor = isMyVote ? UIColor.red.cgColor: UIColor.white.cgColor
+        textLayer.foregroundColor = isMyVote ? UIColor.white.cgColor : UIColor.sand70.cgColor
         textLayer.backgroundColor = UIColor.clear.cgColor
         textLayer.alignmentMode = CATextLayerAlignmentMode.center
         textLayer.contentsScale = UIScreen.main.scale
-        textLayer.font = CTFontCreateWithName(UIFont.systemFont(ofSize: 16.0).fontName as CFString, 0, nil)
-        textLayer.fontSize = 16
+        textLayer.font = UIFont.sfProtextRegular(ofSize: 12.0)
+        textLayer.fontSize = 12
         let percentageString = String(percentage(votes)) + "%"
         textLayer.string = String(votes) + " votes" + " (" + percentageString + ")"
         mainLayer.addSublayer(textLayer)
@@ -99,11 +99,11 @@ class BarChartView: UIView {
                            isMyVote: Bool) {
         let textLayer = CATextLayer()
         textLayer.frame = CGRect(x: xPos, y: yPos - 2, width: width, height: barHeight)
-        textLayer.foregroundColor = UIColor.white.cgColor
+        textLayer.foregroundColor = isMyVote ? UIColor.white.cgColor : UIColor.sand70.cgColor
         textLayer.backgroundColor = UIColor.clear.cgColor
         textLayer.alignmentMode = CATextLayerAlignmentMode.left
         textLayer.contentsScale = UIScreen.main.scale
-        textLayer.font = CTFontCreateWithName(UIFont.boldSystemFont(ofSize: 16.0).fontName as CFString, 0, nil)
+        textLayer.font = UIFont.sfProtextRegular(ofSize: 16.0)
         textLayer.fontSize = 16
         textLayer.string = scoreIndex
         mainLayer.addSublayer(textLayer)

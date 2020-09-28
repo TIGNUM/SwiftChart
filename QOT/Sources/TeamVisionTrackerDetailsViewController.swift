@@ -13,7 +13,8 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
     // MARK: - Properties
     var interactor: TeamVisionTrackerDetailsInteractorInterface!
     private lazy var router: TeamVisionTrackerDetailsRouterInterface = TeamVisionTrackerDetailsRouter(viewController: self)
-    @IBOutlet weak var chartView: UIView!
+    @IBOutlet private weak var chartView: UIView!
+    @IBOutlet private weak var ratingsView: UIView!
 
     lazy var barChartView: BarChartView = {
         let barChartView = BarChartView()

@@ -8,6 +8,17 @@
 
 import UIKit
 
-struct TeamVisionTrackerDetailsModel {
+struct TeamVisionSentence {
+    var sentence: String
+    var ratingResults: [RatingResult]
 
+    struct RatingResult {
+        var date: Date
+        var ratings: [TeamVisionRating]
+
+        struct TeamVisionRating {
+            var rating: Int
+            var isMyRate: Bool
+        }
+    }
 }
