@@ -13,7 +13,7 @@ protocol MyVisionViewControllerInterface: class {
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
+    func load(ratingView: TBVRatingView, myVision: QDMToBeVision?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String)
 }
 
@@ -25,7 +25,7 @@ protocol MyVisionPresenterInterface {
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
+    func load(ratingView: TBVRatingView, myVision: QDMToBeVision?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String)
 }
 
@@ -49,7 +49,7 @@ protocol MyVisionInteractorInterface: Interactor {
     func shareToBeVision()
 
     func openToBeVisionGenerator()
-    func viewWillAppear()
+    func updateTBVData()
     func isShareBlocked(_ completion: @escaping (Bool) -> Void)
     func getToBeVision(_ completion: @escaping (QDMToBeVision?) -> Void)
     func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void)
