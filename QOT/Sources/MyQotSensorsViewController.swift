@@ -32,8 +32,11 @@ final class MyQotSensorsViewController: BaseViewController, ScreenZLevel3 {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         interactor?.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateData),
-                                               name: .requestSynchronization, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .requestSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didUpdateData()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -49,10 +52,11 @@ final class MyQotSensorsViewController: BaseViewController, ScreenZLevel3 {
 extension MyQotSensorsViewController {
     @IBAction func ouraRingStatusButtonAction(_ sender: UIButton) {
         trackUserEvent(.SELECT, valueType: sender.titleLabel?.text, action: .TAP)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleOpenURL),
-                                               name: .requestOpenUrl,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .requestOpenUrl,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.handleOpenURL(notification)
+        }
         interactor?.requestAuraAuthorization()
     }
 

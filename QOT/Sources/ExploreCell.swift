@@ -11,8 +11,7 @@ import qot_dal
 
 final class ExploreCell: BaseDailyBriefCell {
 
-    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var timeOfDayPosition: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -21,6 +20,7 @@ final class ExploreCell: BaseDailyBriefCell {
     private var contentID: Int?
     private var isStrategy = true
     weak var delegate: DailyBriefViewControllerDelegate?
+    private weak var baseHeaderView: QOTBaseHeaderView?
 
     override func awakeFromNib() {
         super.awakeFromNib()

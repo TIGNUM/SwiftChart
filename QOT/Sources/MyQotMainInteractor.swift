@@ -14,8 +14,12 @@ final class MyQotMainInteractor: MyQotMainWorker {
     // MARK: - Properties
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
-    private var selectedTeamItem: Team.Item?
+    private weak var selectedTeamItem: Team.Item?
     private var eventType: String?
+    private weak var teamSelectionObserver: NSObjectProtocol?
+    private weak var synchronizationObserver: NSObjectProtocol?
+    private weak var teamInviteObserver: NSObjectProtocol?
+    private weak var teamInviteStatusObserver: NSObjectProtocol?
 
     internal var headerItems = [Team.Item]()
     internal var subtitles = [String: String?]() // [MyX.Item.rawValue: subtitle string]
@@ -108,7 +112,16 @@ final class MyQotMainInteractor: MyQotMainWorker {
             }
         }
 
+        // load hasOwnerEmptyTeamToBeVision
+        dispatchGroup.enter()
+        var tmpHasOwnerEmptyTeamTBV = true
+        hasOwnerEmptyTeamTBV(for: tmpSelectedTeamItem) { (isEmpty) in
+            tmpHasOwnerEmptyTeamTBV = isEmpty
+            dispatchGroup.leave()
+        }
+
         dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.headerItems.removeAll()
             self?.headerItems = tmpHeaderItems
             self?.selectedTeamItem = tmpSelectedTeamItem
             self?.newLibraryItemCount = tmpNewLibraryItemCount
@@ -249,20 +262,26 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     func addObserver() {
         removeObserver()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(presentTeamPendingInvites),
-                                               name: .didSelectTeamInvite,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didUpdateTeamRelatedData(_:)),
-                                               name: .didFinishSynchronization, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didUpdateInvitations(_:)),
-                                               name: .changedInviteStatus, object: nil)
+        teamSelectionObserver = NotificationCenter.default.addObserver(forName: .didSelectTeam,
+                                                                       object: nil,
+                                                                       queue: .main) { [weak self] notification in
+            self?.checkSelection(notification)
+        }
+        teamInviteObserver = NotificationCenter.default.addObserver(forName: .didSelectTeamInvite,
+                                                                    object: nil,
+                                                                    queue: .main) { [weak self] notification in
+            self?.presentTeamPendingInvites()
+        }
+        synchronizationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                         object: nil,
+                                                                         queue: .main) { [weak self] notification in
+            self?.didUpdateTeamRelatedData(notification)
+        }
+        teamInviteStatusObserver = NotificationCenter.default.addObserver(forName: .changedInviteStatus,
+                                                                          object: nil,
+                                                                          queue: .main) { [weak self] notification in
+            self?.didUpdateInvitations(notification)
+        }
     }
 
     @objc func didUpdateTeamRelatedData(_ notification: Notification) {
@@ -280,10 +299,18 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func removeObserver() {
-        NotificationCenter.default.removeObserver(self, name: .didSelectTeam, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .didSelectTeamInvite, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .didFinishSynchronization, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .changedInviteStatus, object: nil)
+        if let teamSelectionObserver = teamSelectionObserver {
+            NotificationCenter.default.removeObserver(teamSelectionObserver)
+        }
+        if let teamInviteObserver = teamInviteObserver {
+            NotificationCenter.default.removeObserver(teamInviteObserver)
+        }
+        if let teamSelectionObserver = teamSelectionObserver {
+            NotificationCenter.default.removeObserver(teamSelectionObserver)
+        }
+        if let synchronizationObserver = synchronizationObserver {
+            NotificationCenter.default.removeObserver(synchronizationObserver)
+        }
     }
 
     func viewWillAppear() {
@@ -309,8 +336,7 @@ private extension MyQotMainInteractor {
     }
 
     @objc func checkSelection(_ notification: Notification) {
-        let controller = AppDelegate.topViewController()?.QOTVisibleViewController() as? CoachCollectionViewController
-        if controller?.getCurrentPage() == .myX {
+        if (AppDelegate.topViewController()?.QOTVisibleViewController() as? CoachCollectionViewController)?.getCurrentPage() == .myX {
             guard let userInfo = notification.userInfo as? [String: String] else { return }
             if let teamId = userInfo[Team.KeyTeamId] {
                 log("teamId: " + teamId, level: .debug)

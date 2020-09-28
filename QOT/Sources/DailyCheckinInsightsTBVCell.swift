@@ -11,13 +11,12 @@ import qot_dal
 
 final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
-    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
+    private weak var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var button: AnimatedButton!
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
-
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {

@@ -29,12 +29,17 @@ final class KnowingInteractor {
         self.worker = worker
         self.presenter = presenter
         self.router = router
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didGetNotificationToShowsKnowingSection(_ :)),
-                                               name: .showKnowingSection, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didFinishSynchronization(_ :)),
-                                               name: .didFinishSynchronization, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .showKnowingSection,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didGetNotificationToShowsKnowingSection(notification)
+        }
+
+        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didFinishSynchronization(notification)
+        }
     }
 
     // MARK: - Interactor

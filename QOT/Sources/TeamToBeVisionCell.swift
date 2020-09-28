@@ -11,12 +11,12 @@ import qot_dal
 
 final class TeamToBeVisionCell: BaseDailyBriefCell {
 
-    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var ctaButton: AnimatedButton!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
     private var team: QDMTeam?
     weak var delegate: DailyBriefViewControllerDelegate?
+    private weak var baseHeaderView: QOTBaseHeaderView?
 
     override func awakeFromNib() {
         super.awakeFromNib()

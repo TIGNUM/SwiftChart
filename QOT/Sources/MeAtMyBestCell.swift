@@ -13,12 +13,12 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var meAtMyBestContent: UILabel!
     @IBOutlet private weak var meAtMyBestFuture: UILabel!
     @IBOutlet private weak var suggestionLabel: UILabel!
     @IBOutlet private weak var ctaButton: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
+    weak var baseHeaderView: QOTBaseHeaderView?
 
     @IBAction func presentTBV(_ sender: Any) {
         delegate?.showTBV()

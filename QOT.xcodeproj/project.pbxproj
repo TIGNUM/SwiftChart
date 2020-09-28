@@ -8645,7 +8645,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
 			name = Debug;
 		};
@@ -8672,7 +8672,7 @@
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
 			name = Novartis;
 		};
@@ -8697,7 +8697,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
 			name = UnitTest;
 		};
@@ -8722,7 +8722,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
 			name = Database;
 		};
@@ -8747,7 +8747,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
 			name = Release;
 		};
@@ -8772,7 +8772,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
 			name = AppStore;
 		};

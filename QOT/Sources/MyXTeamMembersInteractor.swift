@@ -9,10 +9,9 @@
 import UIKit
 import qot_dal
 
-final class MyXTeamMembersInteractor {
+final class MyXTeamMembersInteractor: MyXTeamMembersWorker {
 
     // MARK: - Properties
-    private lazy var worker = MyXTeamMembersWorker()
     private let presenter: MyXTeamMembersPresenterInterface!
     private var selectedTeamItem: Team.Item?
     private var membersList: [TeamMember] = []
@@ -26,23 +25,24 @@ final class MyXTeamMembersInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        worker.getTeamHeaderItems(showNewRedDot: false) { [weak self] (items) in
+        getTeamHeaderItems(showNewRedDot: false) { [weak self] (items) in
             self?.setSelectedTeam(items)
             self?.presenter.updateTeamHeader(teamHeaderItems: items)
-            self?.worker.getMaxTeamMemberCount { (max) in
+            self?.getMaxTeamMemberCount { (max) in
                 self?.maxTeamMemberCount = max
             }
         }
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didSelectTeam,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.checkSelection(notification)
+        }
     }
 
-    var teamMembersText: String {
-        return worker.teamMembersText
-    }
+//    var teamMembersText: String {
+//        return teamMembersText
+//    }
 }
 // MARK: - Private
 private extension MyXTeamMembersInteractor {
@@ -64,7 +64,7 @@ private extension MyXTeamMembersInteractor {
     }
 
     func updateSelectedTeam(teamId: String) {
-        worker.getTeamHeaderItems(showNewRedDot: false) { [weak self] (items) in
+        getTeamHeaderItems(showNewRedDot: false) { [weak self] (items) in
             self?.setSelectedTeam(items)
         }
     }
@@ -90,7 +90,7 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
     func removeMember(at indexPath: IndexPath) {
         if let member = getMember(at: indexPath) {
-            worker.removeMember(member: member.member) { [weak self] in
+            removeMember(member: member.member) { [weak self] in
                 self?.refreshView()
             }
         }
@@ -98,7 +98,7 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
     func reinviteMember(at indexPath: IndexPath) {
         if let member = getMember(at: indexPath)?.member {
-            worker.reInviteMember(member: member) { [weak self] (updatedMember) in
+            reInviteMember(member: member) { [weak self] (updatedMember) in
                 self?.presenter.updateView(hasMembers: self?.membersList.isEmpty == false)
             }
         }
@@ -106,12 +106,12 @@ extension MyXTeamMembersInteractor: MyXTeamMembersInteractorInterface {
 
     func refreshView() {
         if let team = selectedTeamItem?.qdmTeam {
-            self.worker.getTeamMemberItems(team: team, { [weak self] (membersList) in
+            getTeamMemberItems(team: team, { [weak self] (membersList) in
                 self?.membersList = membersList
                 self?.presenter.updateView(hasMembers: membersList.isEmpty == false)
             })
         } else {
-            self.presenter.updateView(hasMembers: self.membersList.isEmpty == false)
+            presenter.updateView(hasMembers: self.membersList.isEmpty == false)
         }
     }
 }

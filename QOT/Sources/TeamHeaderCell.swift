@@ -25,14 +25,16 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         counterLabel.circle()
         counterLabel.isHidden = true
         itemButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeam,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkSelection),
-                                               name: .didSelectTeamColor,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didSelectTeam,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.checkSelection(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .didSelectTeamColor,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.checkSelection(notification)
+        }
     }
 
     override func prepareForReuse() {
@@ -76,6 +78,8 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
 private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
+        log("itemSelected: ⚠️⚠️⚠️⚠️ \(itemSelected)", level: .debug)
+        log("teamId: ⚠️⚠️⚠️⚠️ \(teamId)", level: .debug)
         if teamInvites.isEmpty {
             if !itemSelected || itemSelected && canDeselect {
                 NotificationCenter.default.post(name: .didSelectTeam,

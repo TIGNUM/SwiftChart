@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 class BaseViewController: UIViewController {
 
@@ -20,6 +21,6 @@ class BaseViewController: UIViewController {
     }
 
     deinit {
-        print("DEINIT \(self)")
+        log("DEINIT 🏁🏁🏁: \(self)", level: .debug)
     }
 }

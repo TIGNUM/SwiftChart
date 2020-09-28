@@ -12,7 +12,6 @@ import HealthKit
 
 final class ImpactReadiness1: BaseDailyBriefCell {
 
-    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var toBeVisionImage: UIImageView!
     @IBOutlet private weak var impactReadinessScore: UILabel!
@@ -20,13 +19,14 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBOutlet private weak var content: UILabel!
     @IBOutlet weak var intro: UILabel!
     @IBOutlet private weak var impactReadinessButton: AnimatedButton!
-    weak var delegate: DailyBriefViewControllerDelegate?
-    private var score: Int = 0
     @IBOutlet private weak var impactReadinessView: UIImageView!
     @IBOutlet private weak var buttonLeft: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var buttonRight: UIButton!
     typealias actionClosure = (() -> Void)
+    weak var delegate: DailyBriefViewControllerDelegate?
+    private weak var baseHeaderView: QOTBaseHeaderView?
+    private var score: Int = 0
     private var actionLeft: actionClosure?
     private var actionRight: actionClosure?
     private var showDailyCheckInScreen = false

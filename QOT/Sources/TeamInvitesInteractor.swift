@@ -51,14 +51,16 @@ final class TeamInvitesInteractor: TeamInvitesWorker {
 // MARK: - Private
 private extension TeamInvitesInteractor {
     func addObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didSelectJoinTeam(_:)),
-                                               name: .didSelectTeamInviteJoin,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didSelectDeclineTeamInvite(_:)),
-                                               name: .didSelectTeamInviteDecline,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didSelectTeamInviteJoin,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didSelectJoinTeam(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .didSelectTeamInviteDecline,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didSelectDeclineTeamInvite(notification)
+        }
     }
 
     @objc func didSelectJoinTeam(_ notification: Notification) {

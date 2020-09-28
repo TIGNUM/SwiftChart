@@ -95,13 +95,16 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
             setupSearchConstraints(searchViewController.view, parentView: view)
         }
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didGetScreenChangeNotification(_ :)),
-                                               name: .showFirstLevelScreen,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didFinishSynchronization(_:)),
-                                               name: .didFinishSynchronization, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .showFirstLevelScreen,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didGetScreenChangeNotification(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didFinishSynchronization(notification)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

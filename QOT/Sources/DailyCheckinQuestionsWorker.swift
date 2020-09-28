@@ -15,7 +15,7 @@ final class DailyCheckinQuestionsWorker {
 
     // MARK: - Properties
     var questions: [RatingQuestionViewModel.Question]?
-    var notificationObserver: NSObjectProtocol?
+    weak var observer: NSObjectProtocol?
 
     // MARK: - Init
 
@@ -67,19 +67,21 @@ final class DailyCheckinQuestionsWorker {
                     }
                     requestSynchronization(.HEALTH_DATA, .DOWN_SYNC) // request oura data
                     // wait for HEALTH_DATA sync for 3.5 seconds.
-                    var expirationTimer: Timer? = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { (timer) in
+                    var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { (timer) in
                         self?.getQuestions(completion)
                     }
 
-                    self?.notificationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { (notification) in
+                    self?.observer = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                            object: nil,
+                                                                            queue: nil) { [weak self] (notification) in
                         guard let syncResult = notification.object as? SyncResultContext,
-                            syncResult.dataType == .HEALTH_DATA, syncResult.syncRequestType == .DOWN_SYNC else { return }
-                        expirationTimer?.invalidate()
-                        expirationTimer = nil
+                              syncResult.dataType == .HEALTH_DATA,
+                              syncResult.syncRequestType == .DOWN_SYNC else { return }
+                        timer?.invalidate()
+                        timer = nil
                         self?.getQuestions(completion)
                     }
                 })
-
             } else { // if user doesn't have Oura, keep going
                 self?.getQuestions(completion)
             }
@@ -92,7 +94,7 @@ final class DailyCheckinQuestionsWorker {
         var hasSleepQuality = false
         var hasSleepQuantity = false
 
-        if let observer = notificationObserver {
+        if let observer = observer {
             NotificationCenter.default.removeObserver(observer)
         }
 

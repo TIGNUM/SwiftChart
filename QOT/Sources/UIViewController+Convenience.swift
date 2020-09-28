@@ -22,19 +22,27 @@ extension UIViewController {
     }
 
     func startObservingKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.keyboardWillAppear(notification)
+        }
+        _ = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.keyboardWillDisappear(notification)
+        }
     }
 
-    @objc func keyboardWillAppear(notification: NSNotification) {
+    @objc func keyboardWillAppear(_ notification: Notification) {
         fatalError("keyboardWillAppear: must be overriden")
     }
 
-    @objc func keyboardWillDisappear(notification: NSNotification) {
+    @objc func keyboardWillDisappear(_ notification: Notification) {
         fatalError("keyboardWillDisappear: must be overriden")
     }
 
-    func keyboardParameters(from notification: NSNotification) -> keyboardAnimationParameters? {
+    func keyboardParameters(from notification: Notification) -> keyboardAnimationParameters? {
         guard let userInfo = notification.userInfo else { return nil }
 
         let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue

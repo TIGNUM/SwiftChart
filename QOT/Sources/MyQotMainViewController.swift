@@ -19,7 +19,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     var interactor: MyQotMainInteractorInterface!
     weak var delegate: CoachCollectionViewControllerDelegate?
     private var isDragging = false
-    private var teamHeader: HorizontalHeaderView?
+    private weak var teamHeader: HorizontalHeaderView?
     @IBOutlet private weak var collectionView: UICollectionView!
 
     private lazy var headerSize: CGSize = {
@@ -130,8 +130,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func getNavigationHeaderCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
         let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(title: AppTextService.get(.my_qot_section_header_title),
-                       tapLeft: { self.delegate?.moveToCell(item: 1) },
-                       tapRight: { self.interactor.presentMyProfile() })
+                       tapLeft: { [weak self] in
+                        self?.delegate?.moveToCell(item: 1) },
+                       tapRight: { [weak self] in
+                        self?.interactor.presentMyProfile() })
         interactor.getSettingsButtonTitle { (title) in
             cell.setSettingsButton(title)
         }

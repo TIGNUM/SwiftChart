@@ -127,7 +127,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case Knowing.Section.header.rawValue:
             let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
@@ -149,10 +149,10 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                 guard
                     interactor?.fiftyFiveStrategies().count ?? 0 > indexPath.item - 1,
                     let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1] else {
-                        cell.configure(categoryTitle: nil,
-                                       viewCount: nil,
-                                       itemCount: nil)
-                        return cell
+                    cell.configure(categoryTitle: nil,
+                                   viewCount: nil,
+                                   itemCount: nil)
+                    return cell
                 }
                 cell.configure(categoryTitle: strategy.title,
                                viewCount: strategy.viewedCount,

@@ -38,10 +38,11 @@ final class MediaPlayerOverlay: UIView {
     }
 
     private func addOrientationObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didChangeOrientation),
-                                               name: UIDevice.orientationDidChangeNotification,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didChangeOrientation()
+        }
     }
 
     func configure(downloadTitle: String, isBokmarked: Bool, isDownloaded: Bool) {

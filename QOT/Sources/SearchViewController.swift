@@ -26,7 +26,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     @IBOutlet private weak var bottomView: UIView!
 
     var observers = [NSKeyValueObservation]()
-    private let suggestionsHeader = SuggestionsHeaderView.instantiateFromNib()
+    private lazy var suggestionsHeader = SuggestionsHeaderView.instantiateFromNib()
     private var avPlayerObserver: AVPlayerObserver?
     private var searchResults = [Search.Result]()
     private var searchSuggestions: SearchSuggestions?

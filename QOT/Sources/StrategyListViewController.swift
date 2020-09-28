@@ -12,16 +12,18 @@ import qot_dal
 final class StrategyListViewController: BaseWithTableViewController, ScreenZLevel2 {
 
     // MARK: - Properties
-
     var interactor: StrategyListInteractorInterface?
     private var lastAudioIndexPath: IndexPath?
 
     // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didEndAudio,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didEndAudio(notification)
+        }
         ThemeView.level2.apply(self.view)
     }
 
@@ -52,7 +54,6 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
 }
 
 // MARK: - Private
-
 private extension StrategyListViewController {
     func setupTableView() {
         tableView.backgroundColor = .clear
@@ -73,7 +74,6 @@ extension StrategyListViewController {
 }
 
 // MARK: - StrategyListViewControllerInterface
-
 extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
         setupTableView()
@@ -191,7 +191,6 @@ extension StrategyListViewController {
 }
 
 extension StrategyListViewController: IsPlayingDelegate {
-
     func isPlaying(remoteID: Int?) -> Bool {
         return interactor?.isPlaying(remoteID: remoteID) ?? false
     }

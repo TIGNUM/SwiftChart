@@ -19,17 +19,13 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
 
     // MARK: - Properties
     typealias SectionData = [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]
-
     weak var delegate: CoachCollectionViewControllerDelegate?
     var interactor: DailyBriefInteractorInterface!
     var sectionDataList: SectionData = []
-
-    private var navBarHeader: NavBarTableViewCell?
+    private weak var navBarHeader: NavBarTableViewCell?
     private var selectedStrategyID: Int?
     private var selectedToolID: Int?
-
     private lazy var router = DailyBriefRouter(viewController: self)
-
     private var isDragging = false
 
     // MARK: - Life Cycle
@@ -39,10 +35,11 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         navigationController?.navigationBar.isHidden = true
         tableView.rowHeight = UITableView.automaticDimension
         interactor.viewDidLoad()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateDailyBriefFromNotification(_:)),
-                                               name: .didUpdateDailyBriefBuckets,
-                                               object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didUpdateDailyBriefBuckets,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.updateDailyBriefFromNotification(notification)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -316,7 +313,7 @@ private extension DailyBriefViewController {
 
 // MARK: - Daily Brief Update Notification
 private extension DailyBriefViewController {
-    @objc func updateDailyBriefFromNotification(_ notification: NSNotification) {
+    @objc func updateDailyBriefFromNotification(_ notification: Notification) {
         interactor.getDailyBriefBucketsForViewModel()
     }
 }

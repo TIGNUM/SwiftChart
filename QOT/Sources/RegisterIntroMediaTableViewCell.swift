@@ -83,7 +83,8 @@ private extension RegisterIntroMediaTableViewCell {
             print(error.localizedDescription)
         }
         _ = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                               object: self.playerController.player?.currentItem, queue: .main) { [weak self] _ in
+                                                   object: self.playerController.player?.currentItem,
+                                                   queue: .main) { [weak self] _ in
             self?.startPlayingFromBeggining()
         }
         playerController.showsPlaybackControls = false

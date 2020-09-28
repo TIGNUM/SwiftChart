@@ -11,7 +11,7 @@ import qot_dal
 
 final class FromTignumCell: BaseDailyBriefCell {
 
-    private var baseHeaderView: QOTBaseHeaderView?
+    private weak var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var fromTignumText: ClickableLabel!
     private var detailsExpanded = false

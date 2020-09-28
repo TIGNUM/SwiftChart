@@ -12,6 +12,7 @@ import Social
 import MessageUI
 import qot_dal
 import EventKitUI
+import AVKit
 
 extension UIViewController {
     static var _lastBottomNavigationItem = [String: BottomNavigationItem]()
@@ -46,6 +47,17 @@ extension UIViewController {
             NotificationCenter.default.post(notification)
             UIActivityViewController._lastBottomNavigationItem[controllerIdentifier] = nil
         }
+    }
+}
+
+extension AVPlayerViewController: ScreenZLevelOverlay {
+
+    @objc override open func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 }
 

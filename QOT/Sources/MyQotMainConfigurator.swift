@@ -10,11 +10,11 @@ import Foundation
 
 final class MyQotMainConfigurator {
     static func configure(delegate: CoachCollectionViewControllerDelegate,
-                          viewController: MyQotMainViewController) {
+                          viewController: MyQotMainViewController?) {
         let router = MyQotMainRouter(viewController: viewController, delegate: delegate)
         let presenter = MyQotMainPresenter(viewController: viewController)
         let interactor = MyQotMainInteractor(presenter: presenter, router: router)
-        viewController.interactor = interactor
-        viewController.delegate = delegate
+        viewController?.interactor = interactor
+        viewController?.delegate = delegate
     }
 }
