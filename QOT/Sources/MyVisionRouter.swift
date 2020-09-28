@@ -62,7 +62,9 @@ extension MyVisionRouter: MyVisionRouterInterface {
         guard
             let viewController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController(),
             let visionController = self.viewController else { return }
-        MyToBeVisionRateConfigurator.configure(previousController: visionController, viewController: viewController, visionId: id)
+        MyToBeVisionRateConfigurator.configure(previousController: visionController,
+                                               viewController: viewController,
+                                               visionId: id)
         visionController.present(viewController, animated: true, completion: nil)
     }
 

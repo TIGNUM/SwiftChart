@@ -64,7 +64,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
         super.viewWillAppear(animated)
         setStatusBar(color: .carbon)
         QuestionnaireViewController.hasArrowsAnimated = false
-        interactor.viewWillAppear()
+        interactor.updateTBVData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -177,7 +177,6 @@ private extension MyVisionViewController {
 }
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
-
     func showNullState(with title: String, message: String, writeMessage: String) {
         didShowNullStateView = true
         nullStateView.isHidden = false
@@ -219,12 +218,11 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         userImageView.image = R.image.circlesWarning()
     }
 
-    func load(_ myVision: QDMToBeVision?,
-              rateText: String?,
-              isRateEnabled: Bool,
-              shouldShowSingleMessageRating: Bool?) {
+    func load(ratingView: TBVRatingView, myVision: QDMToBeVision?) {
         if myVision == nil {
-            interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "", writeMessage: interactor.nullStateCTA ?? "")
+            interactor.showNullState(with: interactor.nullStateTitle ?? "",
+                                     message: interactor.nullStateSubtitle ?? "",
+                                     writeMessage: interactor.nullStateCTA ?? "")
             return
         }
         if scrollView.alpha == 0 {
@@ -251,28 +249,21 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         removeGradients()
         addGradients(for: myVision)
 
-        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
-        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
+        // Rating
+        ThemeText.tvbTimeSinceTitle.apply(ratingView.title, to: singleMessageRatingLabel)
+        ThemeText.tvbTimeSinceTitle.apply(ratingView.title, to: lastRatedLabel)
+        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_track_subtiitle), to: lastRatedComment)
+        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
+        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle), to: lastUpdatedComment)
 
-        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_track_subtiitle),
-                                  to: lastRatedComment)
-
-        rateButton.isEnabled = isRateEnabled
-        singleMessageRateButton.isEnabled = isRateEnabled
-        if let shouldShowSingleMessage = shouldShowSingleMessageRating {
-            singleMessageRatingView.isHidden = !shouldShowSingleMessage
-            doubleMessageRatingView.isHidden = shouldShowSingleMessage
-        } else {
-            singleMessageRatingView.isHidden = true
-            doubleMessageRatingView.isHidden = true
-        }
+        rateButton.isEnabled = ratingView.isEnabled
+        singleMessageRateButton.isEnabled = ratingView.isEnabled
+        singleMessageRatingView.isHidden = ratingView.singleMsgViewIsHidden
+        doubleMessageRatingView.isHidden = ratingView.doubleMsgViewIsHidden
 
         interactor.shouldShowWarningIcon { [weak self] (show) in
             self?.warningImageView.isHidden = !show
         }
-        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle),
-                                  to: lastUpdatedComment)
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {
