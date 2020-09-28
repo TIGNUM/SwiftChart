@@ -28,4 +28,15 @@ final class TeamVisionTrackerDetailsInteractor {
 // MARK: - TeamVisionTrackerDetailsInteractorInterface
 extension TeamVisionTrackerDetailsInteractor: TeamVisionTrackerDetailsInteractorInterface {
 
+    var dataEntries1: [BarEntry] {
+        return worker.dataEntries1
+    }
+
+    var dataEntries2: [BarEntry] {
+        return worker.dataEntries2
+    }
+
+    var dataEntries3: [BarEntry] {
+        return worker.dataEntries3
+    }
 }

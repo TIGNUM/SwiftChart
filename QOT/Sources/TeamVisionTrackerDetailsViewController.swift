@@ -15,6 +15,9 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
     private lazy var router: TeamVisionTrackerDetailsRouterInterface = TeamVisionTrackerDetailsRouter(viewController: self)
     @IBOutlet private weak var chartView: UIView!
     @IBOutlet private weak var ratingsView: UIView!
+    @IBOutlet weak var firstDateButton: UIButton!
+    @IBOutlet weak var secondDateButton: UIButton!
+    @IBOutlet weak var thirdDateButton: UIButton!
 
     lazy var barChartView: BarChartView = {
         let barChartView = BarChartView()
@@ -36,20 +39,6 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
         super.viewDidLoad()
         interactor.viewDidLoad()
         ThemeView.level2.apply(self.view)
-        barChartView.dataEntries =
-            [
-                BarEntry(scoreIndex: 1, votes: 0, isMyVote: false),
-                BarEntry(scoreIndex: 2, votes: 0, isMyVote: false),
-                BarEntry(scoreIndex: 3, votes: 6, isMyVote: false),
-                BarEntry(scoreIndex: 4, votes: 2, isMyVote: true),
-                BarEntry(scoreIndex: 5, votes: 9, isMyVote: false),
-                BarEntry(scoreIndex: 6, votes: 200, isMyVote: false),
-                BarEntry(scoreIndex: 7, votes: 3, isMyVote: false),
-                BarEntry(scoreIndex: 8, votes: 10, isMyVote: false),
-                BarEntry(scoreIndex: 9, votes: 20, isMyVote: false),
-                BarEntry(scoreIndex: 10, votes: 39, isMyVote: false)
-        ]
-       chartView.addSubview(barChartView)
     }
 }
 
@@ -66,6 +55,10 @@ private extension TeamVisionTrackerDetailsViewController {
 // MARK: - TeamVisionTrackerDetailsViewControllerInterface
 extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewControllerInterface {
     func setupView() {
-        // Do any additional setup after loading the view.
+        firstDateButton.corner(radius: 20, borderColor: .accent40)
+        secondDateButton.corner(radius: 20, borderColor: .accent40)
+        thirdDateButton.corner(radius: 20, borderColor: .accent40)
+        barChartView.dataEntries = interactor.dataEntries1
+        chartView.addSubview(barChartView)
     }
 }

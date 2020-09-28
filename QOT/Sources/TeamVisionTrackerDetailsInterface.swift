@@ -16,7 +16,11 @@ protocol TeamVisionTrackerDetailsPresenterInterface {
     func setupView()
 }
 
-protocol TeamVisionTrackerDetailsInteractorInterface: Interactor {}
+protocol TeamVisionTrackerDetailsInteractorInterface: Interactor {
+    var dataEntries1: [BarEntry] { get }
+    var dataEntries2: [BarEntry] { get }
+    var dataEntries3: [BarEntry] { get }
+}
 
 protocol TeamVisionTrackerDetailsRouterInterface {
     func dismiss()

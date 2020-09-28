@@ -67,13 +67,13 @@ class BarChartView: UIView {
             Float(entry.votes) / Float(maxVotes))
         let yPos: CGFloat = CGFloat(index) * (barHeight + space) - 60
         drawBar(xPos: xPos, yPos: yPos, isMyVote: entry.isMyVote)
-        drawDetails(xPos: frame.size.width - 150, yPos: yPos, votes: entry.votes, isMyVote: entry.isMyVote)
-        drawIndex(xPos: -24, yPos: yPos, width: 30.0, scoreIndex: String(entry.scoreIndex), isMyVote: entry.isMyVote)
+        drawDetails(xPos: frame.size.width - 140, yPos: yPos, votes: entry.votes, isMyVote: entry.isMyVote)
+        drawIndex(xPos: 24, yPos: yPos, width: 30.0, scoreIndex: String(entry.scoreIndex), isMyVote: entry.isMyVote)
     }
 
     private func drawBar(xPos: CGFloat, yPos: CGFloat, isMyVote: Bool) {
         let barLayer = CALayer()
-        barLayer.frame = CGRect(x: 0, y: yPos, width: xPos, height: barHeight)
+        barLayer.frame = CGRect(x: 48, y: yPos, width: xPos, height: barHeight)
         barLayer.backgroundColor = isMyVote ? UIColor.white.cgColor : UIColor.sand40.cgColor
         mainLayer.addSublayer(barLayer)
     }
@@ -110,7 +110,7 @@ class BarChartView: UIView {
     }
 
     private func translateWidthValueToXPosition(value: Float) -> CGFloat {
-       let width = CGFloat(value) * (mainLayer.frame.width)/2
+        let width = CGFloat(value) * (mainLayer.frame.width)/2.2
         return abs(width)
     }
 }
