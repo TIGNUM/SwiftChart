@@ -39,7 +39,7 @@ class BarChartView: UIView {
     var dataEntries: [BarEntry] = [] {
         didSet {
             mainLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
-            mainLayer.frame = CGRect(x: frame.origin.x, y: 0, width: frame.size.width, height: frame.size.height)
+            mainLayer.frame = CGRect(x: frame.origin.x, y: 0, width: UIScreen.main.bounds.width, height: frame.size.height)
             for i in 0..<dataEntries.count {
                 showEntry(index: i, entry: dataEntries[i])
             }
@@ -67,7 +67,7 @@ class BarChartView: UIView {
             Float(entry.votes) / Float(maxVotes))
         let yPos: CGFloat = CGFloat(index) * (barHeight + space) - 60
         drawBar(xPos: xPos, yPos: yPos, isMyVote: entry.isMyVote)
-        drawDetails(xPos: frame.size.width - 140, yPos: yPos, votes: entry.votes, isMyVote: entry.isMyVote)
+        drawDetails(xPos: UIScreen.main.bounds.width - contentSpace, yPos: yPos, votes: entry.votes, isMyVote: entry.isMyVote)
         drawIndex(xPos: 24, yPos: yPos, width: 30.0, scoreIndex: String(entry.scoreIndex), isMyVote: entry.isMyVote)
     }
 

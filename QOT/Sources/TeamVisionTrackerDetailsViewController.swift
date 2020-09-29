@@ -18,6 +18,7 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
     @IBOutlet weak var firstDateButton: UIButton!
     @IBOutlet weak var secondDateButton: UIButton!
     @IBOutlet weak var thirdDateButton: UIButton!
+    @IBOutlet weak var myRatingValue: UILabel!
 
     lazy var barChartView: BarChartView = {
         let barChartView = BarChartView()
@@ -40,20 +41,35 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
         interactor.viewDidLoad()
         ThemeView.level2.apply(self.view)
     }
-}
 
-// MARK: - Private
-private extension TeamVisionTrackerDetailsViewController {
+    @IBAction func firstDateTapped(_ sender: Any) {
+        chartView.removeSubViews()
+        barChartView.dataEntries = interactor.dataEntries1
+        chartView.addSubview(barChartView)
 
-}
+    }
+    @IBAction func secondDateTapped(_ sender: Any) {
+        chartView.removeSubViews()
+        barChartView.dataEntries = interactor.dataEntries2
+        chartView.addSubview(barChartView)
 
-// MARK: - Actions
-private extension TeamVisionTrackerDetailsViewController {
-
+    }
+    @IBAction func thirdDateTapped(_ sender: Any) {
+        myRatingValue.text = "8"
+        ratingsView.alpha = 0
+        barChartView.dataEntries = self.interactor.dataEntries3
+        ratingsView.frame = CGRect(x: self.ratingsView.frame.origin.x, y: self.ratingsView.frame.origin.y + 25, width: self.ratingsView.frame.width, height: self.ratingsView.frame.height)
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.ratingsView.frame = CGRect(x: self.ratingsView.frame.origin.x, y: self.ratingsView.frame.origin.y - 25, width: self.ratingsView.frame.width, height: self.ratingsView.frame.height)
+            self.ratingsView.alpha = 1
+        }, completion: nil)
+    }
 }
 
 // MARK: - TeamVisionTrackerDetailsViewControllerInterface
 extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewControllerInterface {
+
     func setupView() {
         firstDateButton.corner(radius: 20, borderColor: .accent40)
         secondDateButton.corner(radius: 20, borderColor: .accent40)

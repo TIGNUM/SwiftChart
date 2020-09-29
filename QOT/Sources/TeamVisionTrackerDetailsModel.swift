@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 struct TeamVisionSentence {
     var sentence: String
@@ -14,11 +15,6 @@ struct TeamVisionSentence {
 
     struct RatingResult {
         var date: Date
-        var ratings: [TeamVisionRating]
-
-        struct TeamVisionRating {
-            var rating: Int
-            var isMyRate: Bool
-        }
+//        var ratings: [QDMTeamToBeVisionTrackerRating]
     }
 }
