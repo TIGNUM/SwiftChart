@@ -7,8 +7,7 @@
 //
 
 import Foundation
-
-import Foundation
+import qot_dal
 import UIKit
 
 struct BarEntry {
@@ -68,46 +67,47 @@ class BarChartView: UIView {
         let xPos: CGFloat = translateWidthValueToXPosition(value:
             Float(entry.votes) / Float(maxVotes))
         let yPos: CGFloat = CGFloat(index) * (barHeight + space) - 60
-        drawBar(xPos: xPos, yPos: yPos, isMyVote: entry.isMyVote)
-        drawDetails(xPos: UIScreen.main.bounds.width - contentSpace, yPos: yPos, votes: entry.votes, isMyVote: entry.isMyVote)
-        drawIndex(xPos: 24, yPos: yPos, width: 30.0, scoreIndex: String(entry.scoreIndex), isMyVote: entry.isMyVote)
+        let myVote =  entry.isMyVote ? entry.scoreIndex : nil
+        drawBar(xPos: xPos, yPos: yPos, myVote: myVote, scoreIndex: entry.scoreIndex)
+        drawDetails(xPos: UIScreen.main.bounds.width - contentSpace, yPos: yPos, votes: entry.votes, myVote: myVote, scoreIndex: entry.scoreIndex)
+        drawIndex(xPos: 24, yPos: yPos, width: 30.0, scoreIndex: entry.scoreIndex, myVote: myVote)
     }
 
-    private func drawBar(xPos: CGFloat, yPos: CGFloat, isMyVote: Bool) {
+    private func drawBar(xPos: CGFloat, yPos: CGFloat, myVote: Int?, scoreIndex: Int) {
         let barLayer = CALayer()
         barLayer.frame = CGRect(x: 48, y: yPos, width: xPos, height: barHeight)
-        barLayer.backgroundColor = isMyVote ? UIColor.white.cgColor : UIColor.sand40.cgColor
+        barLayer.backgroundColor = myVote == scoreIndex ? UIColor.white.cgColor : UIColor.sand40.cgColor
         mainLayer.addSublayer(barLayer)
     }
 
-    private func drawDetails(xPos: CGFloat, yPos: CGFloat, votes: Int, isMyVote: Bool) {
+    private func drawDetails(xPos: CGFloat, yPos: CGFloat, votes: Int, myVote: Int?, scoreIndex: Int) {
         let textLayer = CATextLayer()
         textLayer.frame = CGRect(x: xPos, y: yPos - 2, width: 110, height: barHeight)
-        textLayer.foregroundColor = isMyVote ? UIColor.white.cgColor : UIColor.sand70.cgColor
+        textLayer.foregroundColor = myVote == scoreIndex ? UIColor.white.cgColor : UIColor.sand70.cgColor
         textLayer.backgroundColor = UIColor.clear.cgColor
         textLayer.alignmentMode = CATextLayerAlignmentMode.center
         textLayer.contentsScale = UIScreen.main.scale
         textLayer.font = UIFont.sfProtextRegular(ofSize: 12.0)
         textLayer.fontSize = 12
-        let percentageString = String(percentage(votes)) + "%"
-        textLayer.string = String(votes) + " votes" + " (" + percentageString + ")"
+        let percentageString = String(percentage(votes))
+        textLayer.string = AppTextService.get(.my_x_team_vision_tracker_votes).replacingOccurrences(of: "${numberOfVotes}", with: String(votes)).replacingOccurrences(of: "${percentageString}", with: percentageString)
         mainLayer.addSublayer(textLayer)
     }
 
     private func drawIndex(xPos: CGFloat,
                            yPos: CGFloat,
                            width: CGFloat,
-                           scoreIndex: String,
-                           isMyVote: Bool) {
+                           scoreIndex: Int,
+                           myVote: Int?) {
         let textLayer = CATextLayer()
         textLayer.frame = CGRect(x: xPos, y: yPos - 2, width: width, height: barHeight)
-        textLayer.foregroundColor = isMyVote ? UIColor.white.cgColor : UIColor.sand70.cgColor
+        textLayer.foregroundColor = myVote == scoreIndex ? UIColor.white.cgColor : UIColor.sand70.cgColor
         textLayer.backgroundColor = UIColor.clear.cgColor
         textLayer.alignmentMode = CATextLayerAlignmentMode.left
         textLayer.contentsScale = UIScreen.main.scale
         textLayer.font = UIFont.sfProtextRegular(ofSize: 16.0)
         textLayer.fontSize = 16
-        textLayer.string = scoreIndex
+        textLayer.string = String(scoreIndex)
         mainLayer.addSublayer(textLayer)
     }
 

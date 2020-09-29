@@ -200,12 +200,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="averageRatingLabel" destination="pFS-sU-xSL" id="5LB-Zx-oOp"/>
+                        <outlet property="averageRatingValue" destination="L1c-fB-6j9" id="we1-xK-m6v"/>
                         <outlet property="chartView" destination="NUT-GY-N7f" id="J5f-m0-yKu"/>
                         <outlet property="firstDateButton" destination="DHf-bD-tYo" id="ylo-fT-Nzj"/>
+                        <outlet property="myRatingLabel" destination="XcU-Ew-SWJ" id="IXi-GD-FTs"/>
                         <outlet property="myRatingValue" destination="c92-3Q-fJx" id="a0l-Na-fbM"/>
                         <outlet property="ratingsView" destination="iW5-LC-Hte" id="FHq-g6-4dT"/>
                         <outlet property="secondDateButton" destination="gzs-HA-wAj" id="cLG-mF-wFY"/>
                         <outlet property="thirdDateButton" destination="Ev7-vu-Vex" id="Ekf-wG-MUg"/>
+                        <outlet property="totalVotesLabel" destination="axh-uh-DJJ" id="0EK-95-05D"/>
+                        <outlet property="totalVotesValue" destination="eel-MA-gnd" id="nKN-ol-DB3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEo-TM-2mS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
