@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DTTeamTBVViewControllerInterface: class {}
 
 protocol DTTeamTBVPresenterInterface {}
 
-protocol DTTeamTBVInteractorInterface: Interactor {}
+protocol DTTeamTBVInteractorInterface: Interactor {
+    func generateTBV(answers: [DTViewModel.Answer],
+                     _ completion: @escaping (QDMTeamToBeVision?) -> Void)
+}
 
 protocol DTTeamTBVRouterInterface {}

@@ -10,6 +10,8 @@ import UIKit
 
 final class DTTeamTBVViewController: DTViewController {
 
+    var tbvTeamInteractor: DTTeamTBVInteractorInterface?
+
     // MARK: - Init
     init(configure: Configurator<DTTeamTBVViewController>) {
         super.init(nibName: R.nib.dtViewController.name, bundle: R.nib.dtViewController.bundle)
@@ -23,10 +25,16 @@ final class DTTeamTBVViewController: DTViewController {
     override func didTapClose() {
         router?.dismissChatBotFlow()
     }
-}
 
-// MARK: - Private
-private extension DTTeamTBVViewController {}
+    override func didTapNext() {
+        let answers = viewModel?.answers.filter { $0.selected } ?? []
+        tbvTeamInteractor?.generateTBV(answers: answers) { [weak self] (teamTBV) in
+            print(self?.viewModel?.question.key)
+            print(teamTBV)
+            self?.router?.dismiss()
+        }
+    }
+}
 
 // MARK: - DTTeamTBVViewControllerInterface
 extension DTTeamTBVViewController: DTTeamTBVViewControllerInterface {}

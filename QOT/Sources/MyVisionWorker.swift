@@ -160,5 +160,5 @@ final class MyVisionWorker: WorkerTeam {
                 completion(strongSelf.dateString(for: days), false, true)
             }
         }
-    }    
+    }
 }

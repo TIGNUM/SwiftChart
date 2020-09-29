@@ -64,7 +64,7 @@ extension MyQotMainWorker {
                 if qdmTeamTBV == nil && !team.thisUserIsOwner {
                     subtitle = AppTextService.get(.my_x_team_tbv_not_created)
                 } else {
-                    subtitle = makeToBeVisionSubtitle(teamToBeVision: qdmTeamTBV)
+                    subtitle = self.makeToBeVisionSubtitle(teamToBeVision: qdmTeamTBV)
                 }
                 dispatchGroup.leave()
             }
@@ -73,14 +73,14 @@ extension MyQotMainWorker {
             getCurrentTeamToBeVisionPoll(for: team) { (poll) in
                 if let poll = poll {
                     let days = poll.endDate?.daysTo() ?? 0
-                    subtitle = getTeamTBVPollRemainingDays(days).string
+                    subtitle = self.getTeamTBVPollRemainingDays(days).string
                 }
                 dispatchGroup.leave()
             }
         } else {
             dispatchGroup.enter()
             UserService.main.getMyToBeVision { (toBeVision, _, _) in
-                subtitle = makeToBeVisionSubtitle(toBeVision: toBeVision)
+                subtitle = self.makeToBeVisionSubtitle(toBeVision: toBeVision)
                 dispatchGroup.leave()
             }
         }

@@ -39,7 +39,7 @@ protocol BaseRouterInterface {
     func dismiss()
     func dismissChatBotFlow()
 
-    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?)
+    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
     func showTeamTBVOptions(poll: QDMTeamToBeVisionPoll?, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int)
 }
 
@@ -187,8 +187,8 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?) {
-        let configurator = DTTeamTBVConfigurator.make(poll: poll)
+    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam) {
+        let configurator = DTTeamTBVConfigurator.make(poll: poll, team: team)
         let controller = DTTeamTBVViewController(configure: configurator)
         present(controller)
     }

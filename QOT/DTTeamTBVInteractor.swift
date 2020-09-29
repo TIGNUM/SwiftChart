@@ -11,14 +11,18 @@ import qot_dal
 
 final class DTTeamTBVInteractor: DTInteractor, WorkerTeam {
 
+    // MARK: - Properties
     var poll: QDMTeamToBeVisionPoll?
+    var team: QDMTeam?
 
     init(_ presenter: DTPresenterInterface,
          questionGroup: QuestionGroup,
          introKey: String,
-         poll: QDMTeamToBeVisionPoll?) {
+         poll: QDMTeamToBeVisionPoll?,
+         team: QDMTeam) {
         super.init(presenter, questionGroup: questionGroup, introKey: introKey)
         self.poll = poll
+        self.team = team
     }
 
     override func getTeamTBVPoll() -> QDMTeamToBeVisionPoll? {
@@ -27,4 +31,14 @@ final class DTTeamTBVInteractor: DTInteractor, WorkerTeam {
 }
 
 // MARK: - DTTeamTBVInteractorInterface
-extension DTTeamTBVInteractor: DTTeamTBVInteractorInterface {}
+extension DTTeamTBVInteractor: DTTeamTBVInteractorInterface {
+    func generateTBV(answers: [DTViewModel.Answer],
+                     _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
+        if let team = team {
+            createTeamToBeVision(answers: answers,
+                                 team: team) { (teamTBV) in
+                completion(teamTBV)
+            }
+        }
+    }
+}

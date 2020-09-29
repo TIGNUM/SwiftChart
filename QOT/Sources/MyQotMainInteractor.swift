@@ -112,14 +112,6 @@ final class MyQotMainInteractor: MyQotMainWorker {
             }
         }
 
-        // load hasOwnerEmptyTeamToBeVision
-        dispatchGroup.enter()
-        var tmpHasOwnerEmptyTeamTBV = true
-        hasOwnerEmptyTeamTBV(for: tmpSelectedTeamItem) { (isEmpty) in
-            tmpHasOwnerEmptyTeamTBV = isEmpty
-            dispatchGroup.leave()
-        }
-
         dispatchGroup.notify(queue: .main) { [weak self] in
             self?.headerItems.removeAll()
             self?.headerItems = tmpHeaderItems

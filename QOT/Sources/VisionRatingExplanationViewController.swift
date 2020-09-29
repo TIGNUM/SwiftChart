@@ -88,9 +88,10 @@ extension VisionRatingExplanationViewController {
     }
 
     @objc func startTeamTBVGenerator() {
+        let team = interactor.team
         trackUserEvent(.OPEN, value: interactor.team.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
         interactor.startTeamTBVPoll { [weak self] (poll) in
-            self?.router.showTeamTBVGenerator(poll: poll)
+            self?.router.showTeamTBVGenerator(poll: poll, team: team)
             self?.updateBottomNavigation([], [])
         }
     }

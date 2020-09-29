@@ -10,14 +10,16 @@ import Foundation
 import qot_dal
 
 final class DTTeamTBVConfigurator {
-    static func make(poll: QDMTeamToBeVisionPoll?) -> (DTTeamTBVViewController) -> Void {
+    static func make(poll: QDMTeamToBeVisionPoll?, team: QDMTeam) -> (DTTeamTBVViewController) -> Void {
         return { (viewController) in
             let router = DTTeamTBVRouter(viewController: viewController)
             let presenter = DTTeamTBVPresenter(viewController: viewController)
             let interactor = DTTeamTBVInteractor(presenter,
                                                  questionGroup: .TeamToBeVisionPoll,
                                                  introKey: DTTeamTBV.QuestionKey.Intro,
-                                                 poll: poll)
+                                                 poll: poll,
+                                                 team: team)
+            viewController.tbvTeamInteractor = interactor
             viewController.interactor = interactor
             viewController.router = router
         }
