@@ -19,7 +19,7 @@ struct BarEntry {
 
 class BarChartView: UIView {
 
-    private let mainLayer: CALayer = CALayer()
+    let mainLayer: CALayer = CALayer()
     let space: CGFloat = 18.0
     let barHeight: CGFloat = 16.0
     let contentSpace: CGFloat = 120.0
@@ -38,11 +38,13 @@ class BarChartView: UIView {
 
     var dataEntries: [BarEntry] = [] {
         didSet {
-            mainLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
-            mainLayer.frame = CGRect(x: frame.origin.x, y: 0, width: UIScreen.main.bounds.width, height: frame.size.height)
-            for i in 0..<dataEntries.count {
-                showEntry(index: i, entry: dataEntries[i])
-            }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: { () -> Void in
+                self.mainLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
+                self.mainLayer.frame = CGRect(x: self.frame.origin.x, y: 0, width: UIScreen.main.bounds.width, height: self.frame.size.height)
+                for i in 0..<self.dataEntries.count {
+                    self.showEntry(index: i, entry: self.dataEntries[i])
+                }
+            })
         }
     }
 
