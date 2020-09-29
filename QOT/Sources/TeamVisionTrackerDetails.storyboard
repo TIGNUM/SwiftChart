@@ -22,7 +22,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QT4-AP-4Hb">
                                         <rect key="frame" x="0.0" y="-30" width="414" height="313.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHf-bD-tYo">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHf-bD-tYo" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                                 <rect key="frame" x="24" y="248.5" width="83" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Exf-CL-abX"/>
@@ -51,7 +51,7 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzs-HA-wAj">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzs-HA-wAj" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                                 <rect key="frame" x="131" y="248.5" width="81" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="OUj-bH-yWy"/>
@@ -64,7 +64,7 @@
                                                     <action selector="secondDateTapped:" destination="uRV-g1-zMu" eventType="touchUpInside" id="oQp-4D-o5Y"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ev7-vu-Vex">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ev7-vu-Vex" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                                 <rect key="frame" x="236" y="248.5" width="83" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="UNJ-ni-C3B"/>
@@ -203,7 +203,7 @@
                         <outlet property="averageRatingLabel" destination="pFS-sU-xSL" id="5LB-Zx-oOp"/>
                         <outlet property="averageRatingValue" destination="L1c-fB-6j9" id="we1-xK-m6v"/>
                         <outlet property="chartView" destination="NUT-GY-N7f" id="J5f-m0-yKu"/>
-                        <outlet property="firstDateButton" destination="DHf-bD-tYo" id="ylo-fT-Nzj"/>
+                        <outlet property="firstDateButton" destination="DHf-bD-tYo" id="UFr-WW-a9I"/>
                         <outlet property="myRatingLabel" destination="XcU-Ew-SWJ" id="IXi-GD-FTs"/>
                         <outlet property="myRatingValue" destination="c92-3Q-fJx" id="a0l-Na-fbM"/>
                         <outlet property="ratingsView" destination="iW5-LC-Hte" id="FHq-g6-4dT"/>

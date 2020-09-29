@@ -353,6 +353,8 @@ enum ThemableButton {
     case level5
     case continueButton
     case tbvOption(disabled: Bool)
+    case dateButtons
+    case dateButtonsSelected
 
     var titleAttributes: [NSAttributedString.Key: Any]? {
         switch self {
@@ -373,7 +375,9 @@ enum ThemableButton {
              .articleMarkAsRead,
              .level5,
              .continueButton,
-             .tbvOption:
+             .tbvOption,
+             .dateButtonsSelected,
+             .dateButtons:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -400,6 +404,10 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: (selected ? .clear : .accent30))
         case .tbvOption(let disabled):
             return ButtonTheme(foreground: disabled ? .sand40 : .accent, background: disabled ? .sand10 : .clear, border: disabled ? .clear : .accent)
+        case .dateButtons:
+            return ButtonTheme(foreground: .accent, background: .carbon, border: .accent40)
+        case .dateButtonsSelected:
+            return ButtonTheme(foreground: .accent, background: .accent40, border: .clear)
         }
     }
 
