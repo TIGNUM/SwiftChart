@@ -69,4 +69,8 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
     var team: QDMTeam? {
         worker.team
     }
+
+    func showTeamVision() {
+        router.showTeamVision(team: team)
+    }
 }

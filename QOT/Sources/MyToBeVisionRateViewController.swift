@@ -86,7 +86,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         if isLastPage {
             return nil
         } else {
-            return super.bottomNavigationLeftBarItems()
+            return [dismissNavigationItem(action: #selector(dismissAction))]
         }
     }
 
@@ -142,8 +142,12 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         pageController?.setViewControllers([viewController], direction: .reverse, animated: false, completion: nil)
     }
 
-    @IBAction func dismissAction() {
-        interactor?.dismiss()
+    @objc private func dismissAction() {
+        guard interactor?.team != nil else {
+            interactor?.dismiss()
+            return
+        }
+        interactor?.showTeamVision()
     }
 }
 

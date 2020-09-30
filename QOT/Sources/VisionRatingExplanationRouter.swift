@@ -35,7 +35,7 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
                                                visionId: id,
                                                team: team,
                                                isOwner: type == .ratingOwner)
-        visionController.present(viewController, animated: true, completion: nil)
+        visionController.pushToStart(childViewController: viewController)
     }
 
     func showTBVGenerator() {

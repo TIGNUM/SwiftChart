@@ -19,6 +19,7 @@ final class MyToBeVisionRateWorker {
     var questions: [RatingQuestionViewModel.Question]?
     var dataTracks: [QDMToBeVisionTrack]?
     var teamDataTracks: [QDMTeamToBeVisionTrackerResult]?
+    var currentTrackerPoll: QDMTeamToBeVisionTrackerPoll?
 
     init(visionId: Int, viewController: MyToBeVisionRateViewController, team: QDMTeam?, isOwner: Bool) {
         self.visionId = visionId
@@ -64,9 +65,11 @@ final class MyToBeVisionRateWorker {
                         log("Error openNewTeamToBeVisionTrackerPoll \(error.localizedDescription)", level: .error)
                         // TODO handle error
                     }
+                    self.currentTrackerPoll = newTrackerPoll
                     self.teamDataTracks = newTrackerPoll?.qotTeamToBeVisionTrackers
 //                    guard let tracks = newTrackerPoll?.qotTeamToBeVisionTrackers else { return }
                     let tracks = ["we are the best", "we are great", "we listen"]
+
                     var remoteID = 344455
                     let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
 //                        guard let remoteID = track.remoteID else { return nil }
@@ -89,12 +92,21 @@ final class MyToBeVisionRateWorker {
                 }
                 return
 //            }
+//            if trackerPoll is not nil and user didnt vote yet --> Open " Team rating in progress" page with current poll
+//
         }
     }
 
     func addRating(for questionId: Int, value: Int, isoDate: Date) {
+        guard team != nil else {
         let item = dataTracks?.filter { $0.remoteID == questionId }.first
         item?.addRating(value, isoDate: isoDate)
+        return
+        }
+        var ratings = [QDMTeamToBeVisionTrackerVote]()
+        let item = teamDataTracks?.filter { $0.remoteID == questionId }.first
+        guard let rate = item?.voteWithRatingValue(value) else { return }
+        ratings.append(rate)
     }
 
     func saveQuestions() {

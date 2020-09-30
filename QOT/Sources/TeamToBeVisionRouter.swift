@@ -68,6 +68,6 @@ private extension TeamToBeVisionRouter {
     func showRating(_ team: QDMTeam?, _ type: Explanation.Types, _ controller: VisionRatingExplanationViewController) {
         let configurator = VisionRatingExplanationConfigurator.make(team: team, type: type)
         configurator(controller)
-        viewController?.pushToStart(childViewController: controller)
+        viewController?.present(controller, animated: true)
     }
 }
