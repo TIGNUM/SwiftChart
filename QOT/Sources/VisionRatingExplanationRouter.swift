@@ -26,11 +26,15 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
         viewController?.dismiss(animated: true, completion: nil)
     }
 
-    func showRateScreen(with id: Int) {
+    func showRateScreen(with id: Int, team: QDMTeam?, type: Explanation.Types) {
         guard
             let viewController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController(),
             let visionController = self.viewController else { return }
-        MyToBeVisionRateConfigurator.configure(previousController: visionController, viewController: viewController, visionId: id)
+        MyToBeVisionRateConfigurator.configure(previousController: visionController,
+                                               viewController: viewController,
+                                               visionId: id,
+                                               team: team,
+                                               isOwner: type == .ratingOwner)
         visionController.present(viewController, animated: true, completion: nil)
     }
 

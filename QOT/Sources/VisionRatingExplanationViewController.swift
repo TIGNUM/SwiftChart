@@ -74,7 +74,7 @@ final class VisionRatingExplanationViewController: UIViewController {
 extension VisionRatingExplanationViewController {
     @objc func startRating() {
         trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        router.showRateScreen(with: 0)
+        interactor.showRateScreen()
     }
 
     @objc func startTBVGenerator() {

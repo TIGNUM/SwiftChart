@@ -24,6 +24,7 @@ enum DailyCheckInQuestionKey: String {
 }
 
 enum ControllerType {
+    case teamVision
     case vision
     case dailyCheckin
     case customize
@@ -48,7 +49,7 @@ enum ControllerType {
 
     var config: Config {
         switch self {
-        case .vision:
+        case .vision, .teamVision:
             return Config.myVision()
         case .dailyCheckin, .customize:
             return Config.dailyCheckin()
@@ -57,7 +58,7 @@ enum ControllerType {
 
     var color: UIColor {
         switch self {
-        case .vision:
+        case .vision, .teamVision:
             return .sand
         case .dailyCheckin:
             return .carbon
@@ -259,8 +260,16 @@ extension QuestionnaireViewController {
             topIndex.text = answers.last?.title
             bottomIndex.text = answers.first?.title
         } else {
+            switch controllerType {
+            case .vision:
             topIndex.text = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)
             bottomIndex.text = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never)
+            case .teamVision:
+                topIndex.text = "We are doing great on this"
+                bottomIndex.text = "Not there at all"
+            default:
+                break
+            }
         }
     }
 
@@ -289,7 +298,7 @@ extension QuestionnaireViewController {
                                                                               lineSpacing: nil, lineHeight: nil,
                                                                               alignment: .center)
             }
-        case .vision:
+        case .vision, .teamVision:
             if let question = questionText {
                 let combined = NSMutableAttributedString()
                 combined.append(ThemeText.tbvQuestionLight.attributedString(AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself)))

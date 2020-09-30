@@ -45,7 +45,10 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     func questionnaireViewController(with question: RatingQuestionViewModel.Question?) -> UIViewController? {
         guard let questionnaire = question else { return nil }
-        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self)
+        guard interactor?.team != nil else {
+            return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .vision)
+        }
+        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .teamVision)
     }
 
     func indexOf(_ viewController: UIViewController?) -> Int {

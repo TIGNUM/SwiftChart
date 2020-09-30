@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol MyToBeVisionRateViewControllerInterface: class {
     func setupView(questions: [RatingQuestionViewModel.Question])
@@ -26,6 +27,7 @@ protocol MyToBeVisionRateInteracorInterface: Interactor {
     func dismiss()
     func showScreenLoader()
     func hideScreenLoader()
+    var team: QDMTeam? { get }
 }
 
 protocol MyToBeVisionRateRouterInterface {

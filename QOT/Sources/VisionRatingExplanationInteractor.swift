@@ -14,7 +14,7 @@ final class VisionRatingExplanationInteractor {
     // MARK: - Properties
     private lazy var worker = VisionRatingExplanationWorker()
     private let presenter: VisionRatingExplanationPresenterInterface!
-    private var type = Explanation.Types.ratingOwner
+    private var type: Explanation.Types = .ratingOwner
     let router: VisionRatingExplanationRouter
     var team: QDMTeam?
 
@@ -41,12 +41,11 @@ final class VisionRatingExplanationInteractor {
 extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorInterface {
 
     func showRateScreen() {
-//        TODO
-//        guard let team = team else { return }
-//        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
-//            if let remoteId = teamVision?.remoteID {
-//                self?.router.showRateScreen(with: remoteId)
-//            }
-//        }
+        guard let team = team else { return }
+        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
+            if let remoteId = teamVision?.remoteID {
+                self?.router.showRateScreen(with: remoteId, team: team, type: self?.type ?? .ratingOwner)
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@ final class MyToBeVisionRateConfigurator {
                           viewController: MyToBeVisionRateViewController,
                           visionId: Int) {
         let router = MyToBeVisionRateRouter(viewController: viewController)
-        let worker = MyToBeVisionRateWorker(visionId: visionId, viewController: viewController)
+        let worker = MyToBeVisionRateWorker(visionId: visionId, viewController: viewController, team: nil, isOwner: false)
         let presenter = MyToBeVisionRatePresenter(viewController: viewController)
         let interactor = MyToBeVisionRateInteractor(presenter: presenter,
                                                     worker: worker,
@@ -25,16 +25,18 @@ final class MyToBeVisionRateConfigurator {
     }
 
     static func configure(previousController: VisionRatingExplanationViewController,
-                           viewController: MyToBeVisionRateViewController,
-                           visionId: Int) {
-         let router = MyToBeVisionRateRouter(viewController: viewController)
-         let worker = MyToBeVisionRateWorker(visionId: visionId, viewController: viewController)
-         let presenter = MyToBeVisionRatePresenter(viewController: viewController)
-         let interactor = MyToBeVisionRateInteractor(presenter: presenter,
-                                                     worker: worker,
-                                                     router: router,
-                                                     isoDate: Date())
-         viewController.interactor = interactor
-         viewController.delegate = previousController
-     }
+                          viewController: MyToBeVisionRateViewController,
+                          visionId: Int,
+                          team: QDMTeam?,
+                          isOwner: Bool) {
+        let router = MyToBeVisionRateRouter(viewController: viewController)
+        let worker = MyToBeVisionRateWorker(visionId: visionId, viewController: viewController, team: team, isOwner: isOwner)
+        let presenter = MyToBeVisionRatePresenter(viewController: viewController)
+        let interactor = MyToBeVisionRateInteractor(presenter: presenter,
+                                                    worker: worker,
+                                                    router: router,
+                                                    isoDate: Date())
+        viewController.interactor = interactor
+        viewController.delegate = previousController
+    }
 }
