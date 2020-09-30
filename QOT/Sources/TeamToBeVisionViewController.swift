@@ -175,7 +175,7 @@ private extension TeamToBeVisionViewController {
                        value: interactor.team.remoteID,
                        valueType: .TEAM_TBV_GENERATOR_EXPLANATION,
                        action: .TAP)
-        router.showTeamTBVPollEXplanation(interactor.team, interactor.poll)
+        router.showTeamTBVPollEXplanation(interactor.team)
     }
 
     @objc func showCreateAlert(_ sender: Any) {

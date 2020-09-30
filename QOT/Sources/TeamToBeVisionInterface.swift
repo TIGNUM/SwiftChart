@@ -48,7 +48,6 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     var emptyTeamTBVTitlePlaceholder: String { get }
     var emptyTeamTBVTextPlaceholder: String { get }
     var team: QDMTeam { get }
-    var poll: QDMTeamToBeVisionPoll? { get }
     var nullStateCTA: String? { get }
 
     func lastUpdatedTeamVision() -> String?

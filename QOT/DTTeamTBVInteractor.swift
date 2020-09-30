@@ -41,4 +41,27 @@ extension DTTeamTBVInteractor: DTTeamTBVInteractorInterface {
             }
         }
     }
+
+    func voteTeamToBeVisionPoll(question: DTViewModel.Question,
+                                votes: [DTViewModel.Answer],
+                                _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        if let poll = poll {
+            QuestionService.main.question(with: question.remoteId) { (qdmQuestion) in
+                if let qdmQuestion = qdmQuestion {
+                    let votesIds = votes.compactMap { $0.remoteId }
+                    var qdmAnswers = [QDMAnswer]()
+                    qdmQuestion.answers.forEach { (qdmAnswer) in
+                        if votesIds.contains(obj: qdmAnswer.remoteID) {
+                            qdmAnswers.append(qdmAnswer)
+                        }
+                    }
+                    self.voteTeamToBeVisionPoll(poll,
+                                                question: qdmQuestion,
+                                                votes: qdmAnswers) { (poll) in
+                        completion(poll)
+                    }
+                }
+            }
+        }
+    }
 }

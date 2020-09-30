@@ -27,7 +27,7 @@ protocol BaseRouterInterface {
 
     func showTBV()
     func showTeamTBV(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?)
-    func showTeamTBVPollEXplanation(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?)
+    func showTeamTBVPollEXplanation(_ team: QDMTeam)
     func showTeamRatingExplanation(_ team: QDMTeam)
 
     func showTracker()
@@ -115,7 +115,7 @@ class BaseRouter: BaseRouterInterface {
 
     func showTeamTBV(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?) {
         if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
-            let configurator = TeamToBeVisionConfigurator.make(team: team, poll: poll)
+            let configurator = TeamToBeVisionConfigurator.make(team: team)
             configurator(controller)
             viewController?.show(controller, sender: nil)
         }
@@ -141,14 +141,14 @@ class BaseRouter: BaseRouterInterface {
         present(viewController, completion: completion)
     }
 
-    func showTeamTBVPollEXplanation(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?) {
+    func showTeamTBVPollEXplanation(_ team: QDMTeam) {
         let type: Explanation.Types = team.thisUserIsOwner ? .tbvPollOwner : .tbvPollUser
-        showExplanation(team, poll, type)
+        showExplanation(team, type)
     }
 
     func showTeamRatingExplanation(_ team: QDMTeam) {
         let type: Explanation.Types = team.thisUserIsOwner ? .ratingOwner : .ratingUser
-        showExplanation(team, nil, type)
+        showExplanation(team, type)
     }
 
     func showTracker() {
@@ -213,12 +213,10 @@ class BaseRouter: BaseRouterInterface {
 // MARK: - Private
 private extension BaseRouter {
     func showExplanation(_ team: QDMTeam,
-                         _ poll: QDMTeamToBeVisionPoll?,
                          _ type: Explanation.Types) {
         let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
         if let controller = controller {
             let configurator = VisionRatingExplanationConfigurator.make(team: team,
-                                                                        poll: poll,
                                                                         type: type)
             configurator(controller)
             present(controller)

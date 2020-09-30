@@ -28,11 +28,18 @@ final class DTTeamTBVViewController: DTViewController {
 
     override func didTapNext() {
         let answers = viewModel?.answers.filter { $0.selected } ?? []
-        tbvTeamInteractor?.generateTBV(answers: answers) { [weak self] (teamTBV) in
-            print(self?.viewModel?.question.key)
-            print(teamTBV)
-            self?.router?.dismiss()
+        if let question = viewModel?.question {
+            tbvTeamInteractor?.voteTeamToBeVisionPoll(question: question,
+                                                      votes: answers) { (poll) in
+                print(poll)
+            }
         }
+
+//        tbvTeamInteractor?.generateTBV(answers: answers) { [weak self] (teamTBV) in
+//            print(self?.viewModel?.question.key)
+//            print(teamTBV)
+//            self?.router?.dismiss()
+//        }
     }
 }
 

@@ -17,19 +17,16 @@ final class TeamToBeVisionInteractor {
     private let presenter: TeamToBeVisionPresenterInterface!
     var team: QDMTeam
     var teamVision: QDMTeamToBeVision?
-    var poll: QDMTeamToBeVisionPoll?
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
     // MARK: - Init
     init(presenter: TeamToBeVisionPresenterInterface,
          router: TeamToBeVisionRouter,
-         team: QDMTeam,
-         poll: QDMTeamToBeVisionPoll?) {
+         team: QDMTeam) {
         self.presenter = presenter
         self.router = router
         self.team = team
-        self.poll = poll
     }
 
     // MARK: - Interactor

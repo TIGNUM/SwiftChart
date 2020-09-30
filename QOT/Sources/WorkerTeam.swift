@@ -77,6 +77,11 @@ protocol WorkerTeam: class {
     func createTeamToBeVision(answers: [DTViewModel.Answer],
                               team: QDMTeam,
                               _ completion: @escaping (QDMTeamToBeVision?) -> Void)
+
+    func voteTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                question: QDMQuestion,
+                                votes: [QDMAnswer],
+                                _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 }
 
 extension WorkerTeam {
@@ -401,6 +406,20 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(teamTBV)
+        }
+    }
+
+    func voteTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                question: QDMQuestion,
+                                votes: [QDMAnswer],
+                                _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.voteTeamToBeVisionPoll(poll,
+                                                question: question,
+                                                votes: votes) { (poll, error) in
+            if let error = error {
+                log("Error voteTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+            }
+            completion(poll)
         }
     }
 }

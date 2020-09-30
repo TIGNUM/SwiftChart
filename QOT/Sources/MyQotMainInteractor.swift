@@ -178,6 +178,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         identifiers.append(contentsOf: MyX.Item.allCases.compactMap({ "\($0.rawValue)_team" }))
         return identifiers
     }
+
     func mainCellReuseIdentifier(at indexPath: IndexPath) -> String {
         let item = getItem(at: indexPath)
         return "\(item?.rawValue ?? "\(indexPath)")_\(selectedTeamItem != nil ? "team" : "personal")"
@@ -319,8 +320,14 @@ private extension MyQotMainInteractor {
         }
 
         if !team.thisUserIsOwner {
-            getTeamToBeVision(for: team) { (teamVision) in
-                completion(teamVision != nil)
+            getCurrentTeamToBeVisionPoll(for: team) { [weak self] (poll) in
+                if poll?.open == true {
+                    completion(poll?.userDidVote == false)
+                } else {
+                    self?.getTeamToBeVision(for: team) { (teamVision) in
+                        completion(teamVision != nil)
+                    }
+                }
             }
         } else {
             completion(true)
