@@ -253,6 +253,7 @@ enum ThemeButton {
     case carbonButton
     case audioButtonGrey
     case audioButtonStrategy
+    case dateButtons
 
     var defaultHeight: CGFloat {
         return 40.0
@@ -292,6 +293,10 @@ enum ThemeButton {
         case .backButton, .editButton, .carbonButton:
             colorUnselected = Palette.carbon
             colorBorder = Palette.accent40
+        case .dateButtons:
+            colorSelected = .accent40
+            colorUnselected = .carbon
+            colorBorder = .accent40
         }
 
         if let color = colorBorder {
@@ -353,7 +358,6 @@ enum ThemableButton {
     case level5
     case continueButton
     case tbvOption(disabled: Bool)
-    case dateButtons
     case dateButtonsSelected
 
     var titleAttributes: [NSAttributedString.Key: Any]? {
@@ -376,8 +380,7 @@ enum ThemableButton {
              .level5,
              .continueButton,
              .tbvOption,
-             .dateButtonsSelected,
-             .dateButtons:
+             .dateButtonsSelected:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -404,8 +407,6 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: (selected ? .clear : .accent30))
         case .tbvOption(let disabled):
             return ButtonTheme(foreground: disabled ? .sand40 : .accent, background: disabled ? .sand10 : .clear, border: disabled ? .clear : .accent)
-        case .dateButtons:
-            return ButtonTheme(foreground: .accent, background: .carbon, border: .accent40)
         case .dateButtonsSelected:
             return ButtonTheme(foreground: .accent, background: .accent40, border: .clear)
         }

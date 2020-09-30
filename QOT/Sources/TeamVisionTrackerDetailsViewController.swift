@@ -16,10 +16,10 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
     private lazy var router: TeamVisionTrackerDetailsRouterInterface = TeamVisionTrackerDetailsRouter(viewController: self)
     @IBOutlet private weak var chartView: UIView!
     @IBOutlet private weak var ratingsView: UIView!
-    @IBOutlet private weak var firstDateButton: RoundedButton!
+    @IBOutlet private weak var firstDateButton: UIButton!
 
-    @IBOutlet private weak var secondDateButton: RoundedButton!
-    @IBOutlet private weak var thirdDateButton: RoundedButton!
+    @IBOutlet private weak var secondDateButton: UIButton!
+    @IBOutlet private weak var thirdDateButton: UIButton!
     @IBOutlet private weak var myRatingValue: UILabel!
     @IBOutlet private weak var averageRatingLabel: UILabel!
     @IBOutlet private weak var myRatingLabel: UILabel!
@@ -50,17 +50,17 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
     }
 
     @IBAction func firstDateTapped(_ sender: Any) {
-        firstDateButton.isSelected = true
+        setButtons(button: firstDateButton)
         switchView(interactor.dataEntries1)
 
     }
     @IBAction func secondDateTapped(_ sender: Any) {
-        secondDateButton.isSelected = true
+        setButtons(button: secondDateButton)
         switchView(interactor.dataEntries2)
 
     }
     @IBAction func thirdDateTapped(_ sender: Any) {
-        thirdDateButton.isSelected = true
+        setButtons(button: thirdDateButton)
         switchView(interactor.dataEntries3)
     }
 }
@@ -69,9 +69,9 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
 extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewControllerInterface {
 
     func setupView() {
-        ThemeButton.dailyBriefButtons.apply(firstDateButton, selected: firstDateButton.isSelected)
-        ThemableButton.dateButtons.apply(secondDateButton, title: "07. Apr")
-        ThemableButton.dateButtons.apply(thirdDateButton, title: "30. Jun")
+        firstDateButton.setTitle("03 Mar", for: .normal)
+        secondDateButton.setTitle("07. Apr", for: .normal)
+        thirdDateButton.setTitle("30. Jun", for: .normal)
         barChartView.dataEntries = interactor.dataEntries1
         chartView.addSubview(barChartView)
         ThemeText.totalVotes.apply(AppTextService.get(.my_x_team_vision_tracker_total_votes), to: totalVotesLabel)
@@ -95,5 +95,15 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
             self.ratingsView.alpha = 1
             self.barChartView.dataEntries = data
         }, completion: nil)
+    }
+
+    func setButtons(button: UIButton) {
+        let buttons = [firstDateButton, secondDateButton, thirdDateButton]
+        buttons.forEach {(button) in
+            button?.corner(radius: 20, borderColor: .accent40)
+            button?.backgroundColor = .carbon
+        }
+        button.layer.borderWidth = 0
+        button.backgroundColor = .accent40
     }
 }
