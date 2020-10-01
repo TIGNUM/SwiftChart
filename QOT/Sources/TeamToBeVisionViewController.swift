@@ -19,16 +19,8 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
-    @IBOutlet private weak var warningImageView: UIImageView!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
-    @IBOutlet private weak var singleMessageRatingView: UIView!
-    @IBOutlet private weak var doubleMessageRatingView: UIView!
-    @IBOutlet private weak var rateButton: UIButton!
-    @IBOutlet private weak var singleMessageRateButton: UIButton!
-    @IBOutlet private weak var lastRatedLabel: UILabel!
-    @IBOutlet private weak var lastRatedComment: UILabel!
-    @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet private weak var teamNullStateImageView: UIImageView!
@@ -222,8 +214,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         scrollView.scrollsToTop = true
 
         ThemeBorder.accent40.apply(pollButton)
-        ThemeBorder.accent40.apply(rateButton)
-        ThemeBorder.accent40.apply(singleMessageRateButton)
         ThemeBorder.accent40.apply(startRatingButton)
         startRatingButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
         pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
@@ -274,10 +264,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         removeGradients()
         addGradients()
 
-        singleMessageRateButton.isEnabled = false
-        singleMessageRatingView.isHidden = true
-        doubleMessageRatingView.isHidden = true
-        warningImageView.isHidden = true
         let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
         ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }
