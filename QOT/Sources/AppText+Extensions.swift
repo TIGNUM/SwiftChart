@@ -616,7 +616,7 @@ public extension AppTextKey {
     static let team_tbv_poll_video = AppTextKey("team-tbv.poll.video-title")
     static let team_tbv_poll_button = AppTextKey("team-tbv.poll.button")
     static let team_tbv_poll_in_progress = AppTextKey("team_tbv.poll.in_progress")
-    static let team_tbv_poll_ends_in_days = AppTextKey(" team.tbv_poll.ends_in")
+    static let team_tbv_poll_ends_in_days = AppTextKey("team.tbv_poll.ends_in")
 
     // MARK: - Button Titles
     static let button_title_start = AppTextKey("button.title.start")
@@ -1067,6 +1067,10 @@ public extension AppTextKey {
     static let bookmark_library_selection_normal_cell_my_library_subtitle = AppTextKey("bookmark_library_selection.normal.cell_my_library_subtitle")
     static let bookmark_library_selection_normal_new_cell_participiant_count_template = AppTextKey("bookmark_library_selection.normal.new_cell_participiant_count_template")
     static let bookmark_library_selection_normal_save_button_title = AppTextKey("bookmark_library_selection.normal.save_button_title")
+
+    // MARK: - Alerts
+    static let alert_title_team_tbv_poll_submitted = AppTextKey("alert.title.team_tbv_poll_submitted")
+    static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")
