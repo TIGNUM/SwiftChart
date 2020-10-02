@@ -122,11 +122,18 @@ private extension DailyBriefInteractor {
 // MARK: Notification Listeners
 extension DailyBriefInteractor {
     @objc func didGetDataSyncRequest(_ notification: Notification) {
-        guard let request = notification.object as? SyncRequestContext,
-            request.dataType == .DAILY_CHECK_IN,
-            request.syncRequestType == .UP_SYNC else { return }
-        expendImpactReadiness = true
-        updateDailyBriefBucket()
+        guard let request = notification.object as? SyncRequestContext else { return }
+        switch request.dataType {
+        case .DAILY_CHECK_IN where request.syncRequestType == .UP_SYNC:
+            expendImpactReadiness = true
+            updateDailyBriefBucket()
+        case .DAILY_CHECK_IN_RESULT where request.syncRequestType == .DOWN_SYNC:
+            expendImpactReadiness = true
+            updateDailyBriefBucket()
+        default:
+            break
+        }
+
     }
 
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
@@ -461,7 +468,7 @@ extension DailyBriefInteractor {
                 enableButton = false
             } else if impactReadiness.dailyCheckInResult == nil, dailyCheckInResultRequestCheckTimer != nil,
                       let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
-                      answerDate.dateAfterSeconds(1) < Date() { // if we didn't get the feedback right away, try to get again.
+                      answerDate.dateAfterSeconds(3) < Date() { // if we didn't get the feedback right away, try to get again.
                 requestSynchronization(.DAILY_CHECK_IN_RESULT, .DOWN_SYNC)
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
                 readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
