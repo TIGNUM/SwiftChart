@@ -70,7 +70,6 @@ final class MyToBeVisionRateWorker {
                     self.currentTrackerPoll = newTrackerPoll
                     self.teamDataTracks = newTrackerPoll?.qotTeamToBeVisionTrackers
                     // guard let tracks = newTrackerPoll?.qotTeamToBeVisionTrackers else { return }
-                    
                     // Sending dummy data
                     let tracks = ["we are the best", "we are great", "we listen"]
                     var remoteID = 344455
