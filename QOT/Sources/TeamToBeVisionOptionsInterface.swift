@@ -21,7 +21,7 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var getType: TeamToBeVisionOptionsModel.Types { get }
     var daysLeft: Int { get }
     func showRateScreen()
-    func endRating() 
+    func endRating()
 }
 
 protocol TeamToBeVisionOptionsRouterInterface {

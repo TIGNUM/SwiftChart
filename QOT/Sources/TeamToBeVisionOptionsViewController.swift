@@ -126,7 +126,14 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
     func showAlert() {
         let cancel = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_leftButton))
         let end = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_rightButton)) {[weak self] (_) in
-            self?.didEndRating()
+            switch self?.pageType {
+            case .rating:
+                self?.didEndRating()
+            case .voting:
+//                TODO: End voting
+                break
+            default: break
+            }
         }
         QOTAlert.show(title: pageType.alertTitle, message: pageType.alertMessage.replacingOccurrences(of: "${daysCount}", with: String(interactor.daysLeft)), bottomItems: [cancel, end])
     }
