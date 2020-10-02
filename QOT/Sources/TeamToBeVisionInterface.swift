@@ -13,7 +13,6 @@ protocol TeamToBeVisionViewControllerInterface: class {
     func setupView()
     func showNullState(with title: String, teamName: String?, message: String)
     func hideNullState()
-    func hideTrends() 
     func setSelectionBarButtonItems()
     func load(_ teamVision: QDMTeamToBeVision?,
               rateText: String?,
@@ -26,7 +25,6 @@ protocol TeamToBeVisionPresenterInterface {
     func hideNullState()
     func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool)
     func setSelectionBarButtonItems()
-    func hideTrends()
 }
 
 protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
@@ -51,6 +49,7 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     func shareTeamToBeVision()
     func hasOpenVisionRatingPoll(_ completion: @escaping (Bool) -> Void)
     func ratingTapped()
+    func isTrendsHidden(_ completion: @escaping (Bool) -> Void) 
 }
 
 protocol TeamToBeVisionRouterInterface {

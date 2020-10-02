@@ -153,6 +153,12 @@ private extension TeamToBeVisionViewController {
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
     }
+
+    func hideTrends(_ hide: Bool) {
+        trendsBarView.isHidden = hide
+        trendsButton.isHidden = hide
+        trendsLabel.isHidden = hide
+    }
 }
 
 // MARK: - Observer
@@ -249,6 +255,9 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                 return
             }
         }
+        interactor.isTrendsHidden { [weak self] (hide) in
+            self?.hideTrends(hide)
+        }
         var headline = teamVision?.headline
         if headline?.isEmpty != false {
             headline = interactor.teamNullStateTitle
@@ -280,10 +289,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             teamNullStateView.isHidden = true
             refreshBottomNavigationItems()
         }
-    }
-
-    func hideTrends() {
-        trendsBarView.isHidden = true
     }
 }
 

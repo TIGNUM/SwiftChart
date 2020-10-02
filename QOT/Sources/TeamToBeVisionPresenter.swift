@@ -40,10 +40,6 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
                              isRateEnabled: isRateEnabled)
     }
 
-    func hideTrends() {
-        viewController?.hideTrends()
-    }
-
     func setSelectionBarButtonItems() {
         viewController?.setSelectionBarButtonItems()
     }

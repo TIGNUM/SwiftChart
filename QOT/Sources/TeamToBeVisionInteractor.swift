@@ -96,7 +96,10 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     }
 
     func isTrendsHidden(_ completion: @escaping (Bool) -> Void) {
-
+        guard let team = team else { return }
+        worker.getLatestClosedPolls(for: team) { (latestPolls) in
+            completion(latestPolls?.isEmpty ?? true)
+        }
     }
 
     func isShareBlocked(_ completion: @escaping (Bool) -> Void) {

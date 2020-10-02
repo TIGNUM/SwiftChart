@@ -65,6 +65,8 @@ protocol WorkerTeam: class {
     func getCurrentRatingPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
 
     func closeRatingPoll(for team: QDMTeam, _ completion: @escaping () -> Void)
+
+    func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void)
 }
 
 extension WorkerTeam {
@@ -337,8 +339,8 @@ extension WorkerTeam {
         }
     }
 
-//    to check
-    func getThreeLatestPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll?]) -> Void) {
+//    to check: getting up to three latest closed polls
+    func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void) {
         TeamService.main.allTeamToBeVisionTrackerPoll(for: team) {(allPolls, _, error) in
             if let error = error {
                 log("Error allTeamToBeVisionTrackerPol: \(error.localizedDescription)", level: .error)
@@ -348,7 +350,10 @@ extension WorkerTeam {
             closedPolls?.sort(by: { $0.endDate ?? Date() < $1.endDate ?? Date() })
             var lastPolls: [QDMTeamToBeVisionTrackerPoll] = []
             for _ in 0..<3 {
-                guard let lastPoll = closedPolls?.last else { return }
+                guard let lastPoll = closedPolls?.last else {
+                    completion(lastPolls)
+                    return
+                }
                 lastPolls.append(lastPoll)
                 lastPolls.reverse()
             }
