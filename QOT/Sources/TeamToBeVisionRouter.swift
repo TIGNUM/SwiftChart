@@ -22,6 +22,7 @@ final class TeamToBeVisionRouter {
 
 // MARK: - TeamToBeVisionRouterInterface
 extension TeamToBeVisionRouter: TeamToBeVisionRouterInterface {
+
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
@@ -60,6 +61,13 @@ extension TeamToBeVisionRouter: TeamToBeVisionRouterInterface {
             let type: Explanation.Types = (team?.thisUserIsOwner == true) ? .tbvPollOwner : .tbvPollUser
             showRating(team, type, controller)
         }
+    }
+
+    func showAdminOptions(team: QDMTeam?, remainingDays: Int) {
+        guard let optionsViewController = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() else { return }
+        let configurator = TeamToBeVisionOptionsConfigurator.make(type: .rating, remainingDays: remainingDays, team: team)
+        configurator(optionsViewController)
+        viewController?.present(optionsViewController, animated: true)
     }
 }
 

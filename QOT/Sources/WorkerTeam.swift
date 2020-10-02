@@ -59,9 +59,16 @@ protocol WorkerTeam: class {
 
     func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
                                     _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void)
+
+    func hasOpenRatingPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void)
+
+    func getCurrentRatingPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
+
+    func closeRatingPoll(for team: QDMTeam, _ completion: @escaping () -> Void)
 }
 
 extension WorkerTeam {
+
     func getMaxTeamMemberCount(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
             completion(config?.teamMaxMemberCount ?? 0)
@@ -295,6 +302,39 @@ extension WorkerTeam {
     func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
                                     _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void) {
         TeamService.main.getTeamToBeVisionShareData(for: teamVision, completion)
+    }
+
+    func hasOpenRatingPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void) {
+        TeamService.main.currentTeamToBeVisionTrackerPoll(for: team) { (currentTrackingPoll, _, error) in
+            if let error = error {
+                log("Error currentTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(currentTrackingPoll != nil)
+        }
+    }
+
+    func getCurrentRatingPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        TeamService.main.currentTeamToBeVisionTrackerPoll(for: team) { (currentTrackingPoll, _, error) in
+            if let error = error {
+                log("Error currentTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(currentTrackingPoll)
+        }
+    }
+
+    func closeRatingPoll(for team: QDMTeam, _ completion: @escaping () -> Void) {
+        getCurrentRatingPoll(for: team) { (currentTrackingPoll) in
+            guard let currentPoll = currentTrackingPoll else { return }
+            TeamService.main.closeTeamToBeVisionTrackerPoll(currentPoll) { (poll, _,  error) in
+                if let error = error {
+                    log("Error closeTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
+                    // TODO handle error
+                }
+                completion()
+            }
+        }
     }
 }
 

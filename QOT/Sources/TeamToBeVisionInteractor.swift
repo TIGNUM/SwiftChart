@@ -67,13 +67,10 @@ final class TeamToBeVisionInteractor {
         guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
             self?.teamVision = teamVision
-//            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                self?.presenter.load(teamVision,
-                                     rateText: "",
-                                     isRateEnabled: false,
-                                     shouldShowSingleMessageRating: true)
-            }
-//        }
+            self?.presenter.load(teamVision,
+                                 rateText: "",
+                                 isRateEnabled: false)
+        }
     }
 }
 
@@ -158,6 +155,24 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         let days = DateComponentsFormatter.numberOfDays(date)
         lastUpdatedVision = self.dateString(for: days)
         return lastUpdatedVision
+    }
+
+    func hasOpenVisionRatingPoll(_ completion: @escaping (Bool) -> Void) {
+        guard let team = team else { return }
+        worker.hasOpenRatingPoll(for: team, completion)
+    }
+
+    func ratingTapped() {
+        hasOpenVisionRatingPoll {(open) in
+            guard let isOwner = self.team?.thisUserIsOwner else { return }
+            if open, isOwner {
+                self.router.showAdminOptions(team: self.team, remainingDays: 3)
+            } else {
+//                trackUserEvent(.OPEN, value: self.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
+                self.router.showRatingExplanation(team: self.team)
+            }
+        }
+
     }
 
     func shareTeamToBeVision() {

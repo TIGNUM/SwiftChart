@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TeamToBeVisionOptionsWorker {
+final class TeamToBeVisionOptionsWorker: WorkerTeam {
 
     // MARK: - Init
     init() { /**/ }

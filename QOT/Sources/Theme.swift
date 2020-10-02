@@ -399,7 +399,7 @@ enum ThemableButton {
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: (selected ? .clear : .accent30))
         case .tbvOption(let disabled):
-            return ButtonTheme(foreground: disabled ? .sand40 : .accent, background: disabled ? .sand10 : .clear, border: disabled ? .clear : .accent)
+            return ButtonTheme(foreground: disabled ? .sand40 : .accent, background: disabled ? .sand10 : .clear, border: disabled ? .clear : .accent40)
         }
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TeamToBeVisionOptionsRouter {
 
@@ -23,5 +24,16 @@ final class TeamToBeVisionOptionsRouter {
 extension TeamToBeVisionOptionsRouter: TeamToBeVisionOptionsRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func showRateScreen(with id: Int, team: QDMTeam?, type: Explanation.Types) {
+        guard
+            let viewController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController(),
+            let visionController = self.viewController else { return }
+        MyToBeVisionRateConfigurator.configure(previousController: visionController,
+                                               viewController: viewController,
+                                               visionId: id,
+                                               team: team)
+        visionController.pushToStart(childViewController: viewController)
     }
 }

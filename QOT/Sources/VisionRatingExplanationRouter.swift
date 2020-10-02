@@ -33,9 +33,8 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
         MyToBeVisionRateConfigurator.configure(previousController: visionController,
                                                viewController: viewController,
                                                visionId: id,
-                                               team: team,
-                                               isOwner: type == .ratingOwner)
-        visionController.pushToStart(childViewController: viewController)
+                                               team: team)
+        visionController.present(viewController, animated: true)
     }
 
     func showTBVGenerator() {

@@ -28,10 +28,8 @@ protocol MyToBeVisionRateInteracorInterface: Interactor {
     func showScreenLoader()
     func hideScreenLoader()
     var team: QDMTeam? { get }
-    func showTeamVision()
 }
 
 protocol MyToBeVisionRateRouterInterface {
     func dismiss()
-    func showTeamVision(team: QDMTeam?)
 }

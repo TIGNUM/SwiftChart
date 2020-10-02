@@ -16,15 +16,14 @@ protocol TeamToBeVisionViewControllerInterface: class {
     func setSelectionBarButtonItems()
     func load(_ teamVision: QDMTeamToBeVision?,
               rateText: String?,
-              isRateEnabled: Bool,
-              shouldShowSingleMessageRating: Bool?)
+              isRateEnabled: Bool)
 }
 
 protocol TeamToBeVisionPresenterInterface {
     func setupView()
     func showNullState(with title: String, teamName: String?, message: String)
     func hideNullState()
-    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
+    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool)
     func setSelectionBarButtonItems()
 }
 
@@ -48,6 +47,8 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     func lastUpdatedTeamVision() -> String?
     func presentTrends()
     func shareTeamToBeVision()
+    func hasOpenVisionRatingPoll(_ completion: @escaping (Bool) -> Void)
+    func ratingTapped()
 }
 
 protocol TeamToBeVisionRouterInterface {
@@ -57,4 +58,5 @@ protocol TeamToBeVisionRouterInterface {
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
     func showRatingExplanation(team: QDMTeam?)
     func showTbvPollEXplanation(team: QDMTeam?)
+    func showAdminOptions(team: QDMTeam?, remainingDays: Int)
 }

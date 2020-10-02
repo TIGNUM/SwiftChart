@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol TeamToBeVisionOptionsViewControllerInterface: class {
      func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int)
@@ -19,8 +20,11 @@ protocol TeamToBeVisionOptionsPresenterInterface {
 protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var getType: TeamToBeVisionOptionsModel.Types { get }
     var daysLeft: Int { get }
+    func showRateScreen()
+    func endRating() 
 }
 
 protocol TeamToBeVisionOptionsRouterInterface {
     func dismiss()
+    func showRateScreen(with id: Int, team: QDMTeam?, type: Explanation.Types)
 }

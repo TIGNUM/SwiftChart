@@ -11,6 +11,7 @@ import qot_dal
 
 protocol TeamToBeVisionOptionsViewControllerDelegate: class {
     func showAlert()
+    func didTapRateOrVote()
 }
 
 final class TeamToBeVisionOptionsViewController: UIViewController {
@@ -27,7 +28,7 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
     private var pageType: TeamToBeVisionOptionsModel.Types!
-//    TODO: pass in hasVoted argument if user has voted or rated
+//   TODO: pass in hasVoted argument if user has voted or rated
     private var hasVoted: Bool = false
 
     // MARK: - Init
@@ -37,7 +38,7 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
-           super.init(coder: aDecoder)
+        super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
@@ -50,7 +51,11 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(color: .carbon)
+        updateBottomNavigation([dismissNavigationItem(action: #selector(dismissAction))], [])
+    }
+
+    @objc private func dismissAction() {
+        dismiss(animated: true)
     }
 }
 
@@ -120,9 +125,30 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
 
     func showAlert() {
         let cancel = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_leftButton))
-        let end = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_rightButton)) {(_) in
-        // TO DO: end rating or end poll
+        let end = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_rightButton)) {[weak self] (_) in
+            self?.didEndRating()
         }
         QOTAlert.show(title: pageType.alertTitle, message: pageType.alertMessage.replacingOccurrences(of: "${daysCount}", with: String(interactor.daysLeft)), bottomItems: [cancel, end])
+    }
+
+    func didTapRateOrVote() {
+        switch pageType {
+        case .rating:
+            interactor.showRateScreen()
+        case .voting:
+//            TODO: show Vote Screen
+            break
+        default: break
+        }
+    }
+
+    func didEndRating() {
+        interactor.endRating()
+    }
+}
+
+extension TeamToBeVisionOptionsViewController: MyToBeVisionRateViewControllerProtocol {
+    func doneAction() {
+
     }
 }

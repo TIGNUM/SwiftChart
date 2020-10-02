@@ -96,9 +96,8 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         return []
     }
 
-    @IBAction func showExplanation(_ sender: Any) {
-        trackUserEvent(.OPEN, value: interactor?.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        router.showRatingExplanation(team: interactor.team)
+    @IBAction func tapStartRating(_ sender: Any) {
+        interactor.ratingTapped()
     }
 
     @objc func writeButtonAction(_ sender: Any) {
@@ -231,8 +230,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
     func load(_ teamVision: QDMTeamToBeVision?,
                 rateText: String?,
-                isRateEnabled: Bool,
-                shouldShowSingleMessageRating: Bool?) {
+                isRateEnabled: Bool ) {
         if teamVision == nil {
             interactor.showNullState(with: interactor.teamNullStateTitle ?? "", teamName: interactor.team?.name, message: interactor.teamNullStateSubtitle ?? "")
             teamNullStateImageView.gradientBackground(top: true)

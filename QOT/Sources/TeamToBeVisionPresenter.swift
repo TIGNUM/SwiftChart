@@ -34,11 +34,10 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
         viewController?.hideNullState()
     }
 
-    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
+    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool) {
         viewController?.load(teamVision,
                              rateText: rateText,
-                             isRateEnabled: isRateEnabled,
-                             shouldShowSingleMessageRating: shouldShowSingleMessageRating)
+                             isRateEnabled: isRateEnabled)
     }
 
     func setSelectionBarButtonItems() {

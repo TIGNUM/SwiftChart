@@ -143,11 +143,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc private func dismissAction() {
-        guard interactor?.team != nil else {
-            interactor?.dismiss()
-            return
-        }
-        interactor?.showTeamVision()
+        interactor?.dismiss()
     }
 }
 
