@@ -13,6 +13,7 @@ final class TeamVisionTrackerDetailsWorker {
     // MARK: - Init
     init() { /**/ }
 
+//     Dummy data
     var dataEntries1 = [
         BarEntry(scoreIndex: 10, votes: 0, isMyVote: false),
         BarEntry(scoreIndex: 9, votes: 0, isMyVote: false),

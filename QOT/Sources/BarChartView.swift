@@ -18,10 +18,10 @@ struct BarEntry {
 
 class BarChartView: UIView {
 
-    let mainLayer: CALayer = CALayer()
-    let space: CGFloat = 18.0
-    let barHeight: CGFloat = 16.0
-    let contentSpace: CGFloat = 120.0
+    private let mainLayer: CALayer = CALayer()
+    private let space: CGFloat = 18.0
+    private let barHeight: CGFloat = 16.0
+    private let contentSpace: CGFloat = 120.0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
