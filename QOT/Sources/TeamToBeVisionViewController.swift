@@ -281,6 +281,10 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             refreshBottomNavigationItems()
         }
     }
+
+    func hideTrends() {
+        trendsBarView.isHidden = true
+    }
 }
 
 // MARK: - TeamVisionViewControllerScrollViewDelegate

@@ -61,7 +61,7 @@ final class MyToBeVisionRateWorker {
             }
             //            If there is no existing poll and I am the owner, open new Poll
             if team.thisUserIsOwner {
-                if trackerPoll == nil {
+//                if trackerPoll == nil {
                     TeamService.main.openNewTeamToBeVisionTrackerPoll(for: team) { (newTrackerPoll, _, error) in
                         if let error = error {
                             log("Error openNewTeamToBeVisionTrackerPoll \(error.localizedDescription)", level: .error)
@@ -93,29 +93,29 @@ final class MyToBeVisionRateWorker {
                         completion(questions)
                     }
                     return
-                    //            if there is an existing poll and owner didnt vote yet --> Opens from "Team rating in progress" page with current poll
-                } else if trackerPoll != nil {
-                    self.currentTrackerPoll = trackerPoll
-                    self.teamDataTracks = trackerPoll?.qotTeamToBeVisionTrackers
-
-                    guard let tracks = trackerPoll?.qotTeamToBeVisionTrackers else { return }
-                    let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
-                        guard let remoteID = track.remoteID else { return nil }
-                        let question = track.sentence
-                        let range = 10
-                        return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                                title: question ?? "",
-                                                                htmlTitle: nil,
-                                                                subtitle: nil,
-                                                                dailyPrepTitle: nil,
-                                                                key: nil,
-                                                                answers: nil,
-                                                                range: range,
-                                                                selectedAnswerIndex: nil)
-                    }
-                    self.questions = questions
-                    completion(questions)
-                }
+//                if there is an active rating poll already
+//                } else if trackerPoll != nil {
+//                    self.currentTrackerPoll = trackerPoll
+//                    self.teamDataTracks = trackerPoll?.qotTeamToBeVisionTrackers
+//
+//                    guard let tracks = trackerPoll?.qotTeamToBeVisionTrackers else { return }
+//                    let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
+//                        guard let remoteID = track.remoteID else { return nil }
+//                        let question = track.sentence
+//                        let range = 10
+//                        return RatingQuestionViewModel.Question(remoteID: remoteID,
+//                                                                title: question ?? "",
+//                                                                htmlTitle: nil,
+//                                                                subtitle: nil,
+//                                                                dailyPrepTitle: nil,
+//                                                                key: nil,
+//                                                                answers: nil,
+//                                                                range: range,
+//                                                                selectedAnswerIndex: nil)
+//                    }
+//                    self.questions = questions
+//                    completion(questions)
+//                }
             }
         }
     }

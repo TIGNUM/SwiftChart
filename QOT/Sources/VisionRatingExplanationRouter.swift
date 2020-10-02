@@ -27,6 +27,7 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
     }
 
     func showRateScreen(with id: Int, team: QDMTeam?, type: Explanation.Types) {
+        viewController?.dismiss(animated: true, completion: {
         guard
             let viewController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController(),
             let visionController = self.viewController else { return }
@@ -35,6 +36,7 @@ extension VisionRatingExplanationRouter: VisionRatingExplanationRouterInterface 
                                                visionId: id,
                                                team: team)
         visionController.present(viewController, animated: true)
+        })
     }
 
     func showTBVGenerator() {

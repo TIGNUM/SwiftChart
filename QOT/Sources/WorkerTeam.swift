@@ -327,13 +327,32 @@ extension WorkerTeam {
     func closeRatingPoll(for team: QDMTeam, _ completion: @escaping () -> Void) {
         getCurrentRatingPoll(for: team) { (currentTrackingPoll) in
             guard let currentPoll = currentTrackingPoll else { return }
-            TeamService.main.closeTeamToBeVisionTrackerPoll(currentPoll) { (poll, _,  error) in
+            TeamService.main.closeTeamToBeVisionTrackerPoll(currentPoll) { (poll, _, error) in
                 if let error = error {
                     log("Error closeTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
                     // TODO handle error
                 }
                 completion()
             }
+        }
+    }
+
+//    to check
+    func getThreeLatestPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll?]) -> Void) {
+        TeamService.main.allTeamToBeVisionTrackerPoll(for: team) {(allPolls, _, error) in
+            if let error = error {
+                log("Error allTeamToBeVisionTrackerPol: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            var closedPolls = allPolls?.filter { $0.open == false }
+            closedPolls?.sort(by: { $0.endDate ?? Date() < $1.endDate ?? Date() })
+            var lastPolls: [QDMTeamToBeVisionTrackerPoll] = []
+            for _ in 0..<3 {
+                guard let lastPoll = closedPolls?.last else { return }
+                lastPolls.append(lastPoll)
+                lastPolls.reverse()
+            }
+            completion(lastPolls)
         }
     }
 }

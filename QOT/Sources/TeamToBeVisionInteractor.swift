@@ -95,6 +95,10 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         presenter.hideNullState()
     }
 
+    func isTrendsHidden(_ completion: @escaping (Bool) -> Void) {
+
+    }
+
     func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
         guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { (teamVision) in
