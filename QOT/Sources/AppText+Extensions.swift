@@ -620,6 +620,7 @@ public extension AppTextKey {
 
     // MARK: - Button Titles
     static let button_title_start = AppTextKey("button.title.start")
+    static let team_tbv_poll_voted = AppTextKey("team.tbv-poll.voted")
 
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")
@@ -1071,6 +1072,9 @@ public extension AppTextKey {
     // MARK: - Alerts
     static let alert_title_team_tbv_poll_submitted = AppTextKey("alert.title.team_tbv_poll_submitted")
     static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
+
+    // MARK: - Banner
+    static let banner_tbv_poll_ends_days = AppTextKey(" tbv.poll.endstbv.poll.ends")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")

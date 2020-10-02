@@ -66,6 +66,27 @@ final class TeamToBeVisionInteractor {
     }
 
     private func didUpdateTBVRelatedData() {
+        let dispatchGroup = DispatchGroup()
+        var tmpTeamTBV: QDMTeamToBeVision?
+        var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
+
+        dispatchGroup.enter()
+        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
+            tmpTeamTBV = teamVision
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        worker.getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+            tmpTeamTBVPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.teamVision = tmpTeamTBV
+            
+        }
+
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
             self?.teamVision = teamVision
 //            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in

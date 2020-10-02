@@ -28,6 +28,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
     internal var newLibraryItemCount: Int = 0
     internal var tbvTitle: String = ""
     internal var teamTBVPoll: QDMTeamToBeVisionPoll?
+    internal var teamTBV: QDMTeamToBeVision?
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -56,6 +57,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
         var tmpNewLibraryItemCount = 0
         var tmpToBeVisionTitle = ""
         var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
+        var tmpTeamTBV: QDMTeamToBeVision?
         var tmpSubtitles = [String: String?]()
         var tmpIsCellEnabled = [String: Bool]()
 
@@ -102,6 +104,14 @@ final class MyQotMainInteractor: MyQotMainWorker {
                     dispatchGroup.leave()
                 }
 
+                if let team = tmpSelectedTeamItem?.qdmTeam {
+                    dispatchGroup.enter()
+                    getTeamToBeVision(for: team) { (teamVision) in
+                        tmpTeamTBV = teamVision
+                        dispatchGroup.leave()
+                    }
+                }
+
                 dispatchGroup.enter()
                 getToBeVisionData(item: .toBeVision, teamItem: tmpSelectedTeamItem) { (title, poll) in
                     tmpToBeVisionTitle = title
@@ -121,6 +131,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
             self?.isCellEnabled = tmpIsCellEnabled
             self?.tbvTitle = tmpToBeVisionTitle
             self?.teamTBVPoll = tmpTeamTBVPoll
+            self?.teamTBV = tmpTeamTBV
             completion()
         }
     }
@@ -226,17 +237,30 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             }
 
             if let team = team {
-                if let poll = teamTBVPoll, poll.open {
-                    if poll.creator {
+                if let poll = teamTBVPoll {
+
+                    switch (teamTBV == nil, poll.creator, poll.userDidVote, poll.open) {
+                    /// member
+                    case (true, false, true, true):
+                        print("show banner")
+                        showBanner(poll: poll)
+                    case (true, false, false, true):
+                        print("show explanation")
+                        router.showTeamTBVPollEXplanation(team)
+                    case (false, false, true, true):
+                        print("show team TBV")
                         router.showTeamTBV(team, poll)
-//                        router.showTeamTBVOptions(poll: poll,
-//                                                  type: .voting,
-//                                                  remainingDays: Date().days(to: poll.endDate ?? Date()))
-                    } else if poll.userDidVote {
-                        //TODO: Show banner -> Poll ends in x days
-                    } else {
+
+                    /// admin
+                    case (_, true, _, _):
+                        print("show TeamTBV")
                         router.showTeamTBV(team, poll)
+
+                    default:
+                        print("default")
+                        break
                     }
+
                 } else {
                     router.showTeamTBV(team, teamTBVPoll)
                 }
@@ -322,11 +346,9 @@ private extension MyQotMainInteractor {
         if !team.thisUserIsOwner {
             getCurrentTeamToBeVisionPoll(for: team) { [weak self] (poll) in
                 if poll?.open == true {
-                    completion(poll?.userDidVote == false)
+                    completion(true)
                 } else {
-                    self?.getTeamToBeVision(for: team) { (teamVision) in
-                        completion(teamVision != nil)
-                    }
+                    completion(self?.teamTBV != nil)
                 }
             }
         } else {
@@ -369,5 +391,11 @@ private extension MyQotMainInteractor {
             self?.presenter.presentItemsWith(identifiers: self?.selectedTeamItem == nil ? personalPrefixes : teamPrefixes,
                                              maxCount: MyX.Item.allCases.count)
         }
+    }
+
+    func showBanner(poll: QDMTeamToBeVisionPoll) {
+        var message = AppTextService.get(.banner_tbv_poll_ends_days)
+        message = message.replacingOccurrences(of: "%d", with: String(poll.remainingDays))
+        router.showBanner(message: message)
     }
 }

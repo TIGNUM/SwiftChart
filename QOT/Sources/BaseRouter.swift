@@ -41,6 +41,8 @@ protocol BaseRouterInterface {
 
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
     func showTeamTBVOptions(poll: QDMTeamToBeVisionPoll?, type: TeamToBeVisionOptionsModel.Types, remainingDays: Int)
+
+    func showBanner(message: String)
 }
 
 class BaseRouter: BaseRouterInterface {
@@ -206,6 +208,14 @@ class BaseRouter: BaseRouterInterface {
                                                    poll: poll,
                                                    remainingDays: remainingDays)
             push(viewController)
+        }
+    }
+
+    func showBanner(message: String) {
+        if let view = viewController?.view {
+            let banner = NotificationBanner.instantiateFromNib()
+            banner.configure(message: message, isDark: false)
+            banner.show(in: view)
         }
     }
 }

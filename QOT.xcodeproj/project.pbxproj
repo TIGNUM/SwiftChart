@@ -294,6 +294,7 @@
 		383D5F1F24212C25007F8C2A /* walkThrough_search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 383D5F1B24212C24007F8C2A /* walkThrough_search.mp4 */; };
 		383D5F2024212C25007F8C2A /* walkThrough_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 383D5F1C24212C24007F8C2A /* walkThrough_coach.mp4 */; };
 		383D5F2124212C25007F8C2A /* walkThrough_myQOT.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 383D5F1D24212C25007F8C2A /* walkThrough_myQOT.mp4 */; };
+		38406DAC2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38406DAB2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift */; };
 		3850F90423366DD0009EAA64 /* ResultsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */; };
 		3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */; };
 		38532AAF236AFBB100155643 /* CoachMarkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */; };
@@ -1721,6 +1722,7 @@
 		383D5F1B24212C24007F8C2A /* walkThrough_search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_search.mp4; sourceTree = "<group>"; };
 		383D5F1C24212C24007F8C2A /* walkThrough_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_coach.mp4; sourceTree = "<group>"; };
 		383D5F1D24212C25007F8C2A /* walkThrough_myQOT.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_myQOT.mp4; sourceTree = "<group>"; };
+		38406DAB2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMTeamToBeVisionPoll+Ext.swift"; sourceTree = "<group>"; };
 		3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeedbackViewController.swift; sourceTree = "<group>"; };
 		3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResultsFeedback.storyboard; sourceTree = "<group>"; };
 		38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -3397,6 +3399,7 @@
 				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 				B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */,
+				38406DAB2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -6818,6 +6821,7 @@
 				36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */,
 				91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */,
 				DB5121612331945F009BFF22 /* PreparationWithMissingEventViewController.swift in Sources */,
+				38406DAC2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift in Sources */,
 				5FF1A0FE22857BB300D76D55 /* MyQotAppSettingsRouter.swift in Sources */,
 				3608382A225F3ED000664B9B /* ArticleViewController.swift in Sources */,
 				8DF7870822FEB50800CDE0A9 /* RegistrationCodeRouter.swift in Sources */,
