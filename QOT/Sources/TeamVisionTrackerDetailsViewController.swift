@@ -69,11 +69,13 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
 extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewControllerInterface {
 
     func setupView() {
+//         TO DO: Get last three dates
         firstDateButton.setTitle("03 Mar", for: .normal)
         secondDateButton.setTitle("07. Apr", for: .normal)
         thirdDateButton.setTitle("30. Jun", for: .normal)
-        barChartView.dataEntries = interactor.dataEntries1
+        barChartView.dataEntries = interactor.dataEntries3
         chartView.addSubview(barChartView)
+        setValues(interactor.dataEntries3)
         ThemeText.totalVotes.apply(AppTextService.get(.my_x_team_vision_tracker_total_votes), to: totalVotesLabel)
         ThemeText.averageRating.apply(AppTextService.get(.my_x_team_vision_tracker_average_rating), to: averageRatingLabel)
         ThemeText.myRating.apply(AppTextService.get(.my_x_team_vision_tracker_my_rating), to: myRatingLabel)
@@ -81,14 +83,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
 
     func switchView(_ data: [BarEntry]) {
         ratingsView.alpha = 0
-        myRatingValue.text = String(data.filter { $0.isMyVote == true }.first?.scoreIndex ?? 0)
-
-        var totalSum = 0
-        data.forEach {(item) in
-            totalSum += item.votes
-        }
-
-        totalVotesValue.text = String(totalSum)
+        setValues(data)
         ratingsView.frame = CGRect(x: ratingsView.frame.origin.x, y: ratingsView.frame.origin.y + 25, width: ratingsView.frame.width, height: ratingsView.frame.height)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.ratingsView.frame = CGRect(x: self.ratingsView.frame.origin.x, y: self.ratingsView.frame.origin.y - 25, width: self.ratingsView.frame.width, height: self.ratingsView.frame.height)
@@ -105,5 +100,28 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
         }
         button.layer.borderWidth = 0
         button.backgroundColor = .accent40
+    }
+
+    func calculateAverage(_ data: [BarEntry]) -> Float {
+        var sum = 0
+        data.forEach { (entry) in
+            sum += entry.scoreIndex * entry.votes
+        }
+        let average = Float(sum)/Float(totalVotes(data))
+        return average
+    }
+
+    func totalVotes(_ data: [BarEntry]) -> Int {
+        var totalSum = 0
+        data.forEach {(item) in
+            totalSum += item.votes
+        }
+        return totalSum
+    }
+
+    func setValues( _ data: [BarEntry]) {
+        myRatingValue.text = String(data.filter { $0.isMyVote == true }.first?.scoreIndex ?? 0)
+        totalVotesValue.text = String(totalVotes(data))
+        averageRatingValue.text = String(format: "%.1f", calculateAverage(data))
     }
 }

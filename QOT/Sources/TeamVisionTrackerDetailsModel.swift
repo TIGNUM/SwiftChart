@@ -15,6 +15,6 @@ struct TeamVisionSentence {
 
     struct RatingResult {
         var date: Date
-//        var ratings: [QDMTeamToBeVisionTrackerRating]
+        var ratings: [QDMTeamToBeVisionTrackerRating]
     }
 }
