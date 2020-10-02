@@ -62,9 +62,8 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
     func endRating() {
         guard let team = team else { return }
         worker.closeRatingPoll(for: team) { [weak self] in
-//             go to Team TBVRateHistoryViewController for teams
+//            TO DO: go to Team TBVRateHistoryViewController for teams
             self?.router.dismiss()
-            print("TRENDS: go to team rate history")
         }
     }
 }

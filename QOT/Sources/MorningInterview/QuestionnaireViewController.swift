@@ -262,11 +262,11 @@ extension QuestionnaireViewController {
         } else {
             switch controllerType {
             case .vision:
-            topIndex.text = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)
-            bottomIndex.text = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never)
+                topIndex.text = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)
+                bottomIndex.text = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never)
             case .teamVision:
-                topIndex.text = "We are doing great on this"
-                bottomIndex.text = "Not there at all"
+                topIndex.text = AppTextService.get(.my_x_team_tbv_questionnaire_top_label)
+                bottomIndex.text = AppTextService.get(.my_x_team_tbv_questionnaire_bottom_label)
             default:
                 break
             }

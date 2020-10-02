@@ -833,6 +833,9 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_always")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.body_rate_yourself")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_never")
+
+    static let my_x_team_tbv_questionnaire_top_label = AppTextKey("my_x.team_tbv.questionnaire_top_label")
+    static let my_x_team_tbv_questionnaire_bottom_label = AppTextKey("my_x.team_tbv.questionnaire_bottom_label")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_sometimes")
     static let my_qot_my_tbv_tbv_tracker_result_section_footer_button_done = AppTextKey("my_qot.my_tbv.tbv_tracker.result.section_footer.button_done")
     static let my_qot_my_tbv_tbv_tracker_data_null_state_button_rate = AppTextKey("my_qot.my_tbv.tbv_tracker_data.null_state.button_rate")

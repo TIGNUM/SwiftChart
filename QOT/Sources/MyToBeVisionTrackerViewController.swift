@@ -77,8 +77,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
                        range: .defaultRange())
             return cell
         case .sentence:
-//            TO DO
-//            make sentence clickable and accent color, leading to TeamVisionDetailsResults VC
+//            TO DO: make sentence clickable and accent color, leading to TeamVisionDetailsResults VC
             let cell: TBVDataGraphAnswersTableViewCell = tableView.dequeueCell(for: indexPath)
             if let sentence = interactor.sentence(in: indexPath.row) {
                 cell.configure(sentence, selectedDate: interactor.selectedDate)
