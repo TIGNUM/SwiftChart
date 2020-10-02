@@ -60,7 +60,8 @@ final class MyToBeVisionRateWorker {
                 // TODO handle error
             }
             // If there is no existing poll and I am the owner --> Open new Poll
-            if team.thisUserIsOwner, trackerPoll == nil {
+//
+//            if team.thisUserIsOwner, trackerPoll == nil {
                 TeamService.main.openNewTeamToBeVisionTrackerPoll(for: team) { (newTrackerPoll, _, error) in
                     if let error = error {
                         log("Error openNewTeamToBeVisionTrackerPoll \(error.localizedDescription)", level: .error)
@@ -69,7 +70,8 @@ final class MyToBeVisionRateWorker {
                     self.currentTrackerPoll = newTrackerPoll
                     self.teamDataTracks = newTrackerPoll?.qotTeamToBeVisionTrackers
                     // guard let tracks = newTrackerPoll?.qotTeamToBeVisionTrackers else { return }
-                    // Entering temporary dummy data
+                    
+                    // Sending dummy data
                     let tracks = ["we are the best", "we are great", "we listen"]
                     var remoteID = 344455
                     let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
@@ -92,29 +94,30 @@ final class MyToBeVisionRateWorker {
                     completion(questions)
                 }
                 return
-                //                if I am the owner and there is an active rating poll or if I am a team Member, open current Poll
-            } else {
-                self.currentTrackerPoll = trackerPoll
-                self.teamDataTracks = trackerPoll?.qotTeamToBeVisionTrackers
-
-                guard let tracks = trackerPoll?.qotTeamToBeVisionTrackers else { return }
-                let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
-                    guard let remoteID = track.remoteID else { return nil }
-                    let question = track.sentence
-                    let range = 10
-                    return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                            title: question ?? "",
-                                                            htmlTitle: nil,
-                                                            subtitle: nil,
-                                                            dailyPrepTitle: nil,
-                                                            key: nil,
-                                                            answers: nil,
-                                                            range: range,
-                                                            selectedAnswerIndex: nil)
-                }
-                self.questions = questions
-                completion(questions)
-            }
+            //                if I am the owner and there is an active rating poll or if I am a team Member --> Open current Poll
+//
+//            } else {
+//                self.currentTrackerPoll = trackerPoll
+//                self.teamDataTracks = trackerPoll?.qotTeamToBeVisionTrackers
+//
+//                guard let tracks = trackerPoll?.qotTeamToBeVisionTrackers else { return }
+//                let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
+//                    guard let remoteID = track.remoteID else { return nil }
+//                    let question = track.sentence
+//                    let range = 10
+//                    return RatingQuestionViewModel.Question(remoteID: remoteID,
+//                                                            title: question ?? "",
+//                                                            htmlTitle: nil,
+//                                                            subtitle: nil,
+//                                                            dailyPrepTitle: nil,
+//                                                            key: nil,
+//                                                            answers: nil,
+//                                                            range: range,
+//                                                            selectedAnswerIndex: nil)
+//                }
+//                self.questions = questions
+//                completion(questions)
+//            }
         }
     }
 
