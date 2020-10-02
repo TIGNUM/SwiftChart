@@ -71,7 +71,7 @@ final class MyToBeVisionRateWorker {
                     self.teamDataTracks = newTrackerPoll?.qotTeamToBeVisionTrackers
                     // guard let tracks = newTrackerPoll?.qotTeamToBeVisionTrackers else { return }
                     // Sending dummy data
-                    let tracks = ["we are the best", "we are great", "we listen"]
+                    let tracks = ["We're simply the best", "Better than anyone", "Anyone I've ever known"]
                     var remoteID = 344455
                     let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
                         //                        guard let remoteID = track.remoteID else { return nil }
