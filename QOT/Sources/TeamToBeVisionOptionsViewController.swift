@@ -115,8 +115,10 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
 
     func showAlert() {
         let cancel = QOTAlertAction(title: interactor.alertCancelTitle)
-        let end = QOTAlertAction(title: interactor.alertEndTitle) { _ in
-        // TO DO: end rating or end poll
+        let end = QOTAlertAction(title: interactor.alertEndTitle) { [weak self] _ in
+            self?.interactor.endPoll { [weak self] (poll) in
+                self?.didTapBackButton()
+            }
         }
         let message = pageType.alertMessage.replacingOccurrences(of: "${daysCount}", with: String(interactor.daysLeft))
         QOTAlert.show(title: pageType.alertTitle,

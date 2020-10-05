@@ -58,4 +58,10 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
     var userDidVote: Bool {
         return poll?.userDidVote == true
     }
+
+    func endPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        if let poll = poll {
+            closeTeamToBeVisionPoll(poll, completion)
+        }
+    }
 }

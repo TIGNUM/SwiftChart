@@ -25,4 +25,6 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var userDidVote: Bool { get }
     var poll: QDMTeamToBeVisionPoll? { get }
     var team: QDMTeam? { get }
+
+    func endPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 }
