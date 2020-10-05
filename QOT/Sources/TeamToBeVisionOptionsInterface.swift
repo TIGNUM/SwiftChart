@@ -21,6 +21,7 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var daysLeft: Int { get }
     var alertCancelTitle: String { get }
     var alertEndTitle: String { get }
+    var userDidVote: Bool { get }
     func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString
 }
 

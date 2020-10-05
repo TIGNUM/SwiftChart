@@ -53,4 +53,8 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
     var alertEndTitle: String {
         return AppTextService.get(.my_x_team_tbv_options_alert_rightButton)
     }
+
+    var userDidVote: Bool {
+        return poll?.userDidVote == true
+    }
 }

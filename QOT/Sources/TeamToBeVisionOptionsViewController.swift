@@ -24,8 +24,6 @@ final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLeve
     private lazy var router: TeamToBeVisionOptionsRouterInterface = TeamToBeVisionOptionsRouter(viewController: self)
     private var pageType: TeamToBeVisionOptionsModel.Types!
     private var baseHeaderView: QOTBaseHeaderView?
-//    TODO: pass in hasVoted argument if user has voted or rated
-    private var hasVoted: Bool = false
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var tableView: UITableView!
 
@@ -85,9 +83,9 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
         switch ActionType(rawValue: indexPath.row)! {
         case .rate:
             cell.configure(title: pageType.titleForItem(at: indexPath),
-                           cta: pageType.ctaForItem(at: indexPath, isDisabled: hasVoted),
+                           cta: pageType.ctaForItem(at: indexPath, isDisabled: interactor.userDidVote),
                            actionType: .rate,
-                           buttonDisabled: hasVoted)
+                           buttonDisabled: interactor.userDidVote)
         case .end:
             let isDisabled = false
             cell.configure(title: pageType.titleForItem(at: indexPath),
