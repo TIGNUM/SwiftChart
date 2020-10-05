@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol TeamToBeVisionOptionsViewControllerInterface: class {
     func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString)
@@ -22,9 +23,6 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var alertCancelTitle: String { get }
     var alertEndTitle: String { get }
     var userDidVote: Bool { get }
-    func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString
-}
-
-protocol TeamToBeVisionOptionsRouterInterface {
-    func dismiss()
+    var poll: QDMTeamToBeVisionPoll? { get }
+    var team: QDMTeam? { get }
 }

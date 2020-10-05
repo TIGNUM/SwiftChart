@@ -151,7 +151,11 @@ private extension TeamToBeVisionViewController {
     }
 
     func addBatchToPollButton() {
-
+        shouldShowCreate = false
+        refreshBottomNavigationItems()
+        pollButton.isHidden = false
+        batchLabel.isHidden = false
+        batchLabel.circle()
     }
 }
 
@@ -169,18 +173,25 @@ private extension TeamToBeVisionViewController {
         router.showTeamRatingExplanation(interactor.team)
     }
 
-    @IBAction func showTeamTBVPollExplanation() {
+    @IBAction func didTapTeamTbvPollButton() {
         trackUserEvent(.OPEN,
                        value: interactor.team.remoteID,
-                       valueType: .TEAM_TBV_GENERATOR_EXPLANATION,
+                       valueType: .TEAM_TBV_POLL_BUTTON_TAP,
                        action: .TAP)
-        router.showTeamTBVPollEXplanation(interactor.team)
+        if interactor.shouldShowPollExplanation {
+            router.showTeamTBVPollEXplanation(interactor.team)
+        }
+        if interactor.shouldShowPollAdmin {
+            router.showTeamTBVOptions(poll: interactor.teamVisionPoll,
+                                      type: .voting,
+                                      team: interactor.team)
+        }
     }
 
     @objc func showCreateAlert(_ sender: Any) {
         let openTeamPollTitle = AppTextService.get(.my_x_team_tbv_section_alert_right_button)
         let openTeamPoll = QOTAlertAction(title: openTeamPollTitle) { [weak self] (_) in
-            self?.showTeamTBVPollExplanation()
+            self?.didTapTeamTbvPollButton()
         }
         let addTitle = AppTextService.get(.my_x_team_tbv_section_alert_left_button)
         let add = QOTAlertAction(title: addTitle) { [weak self] (_) in
@@ -301,12 +312,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool) {
         switch (userIsAdmim, userDidVote, pollIsOpen) {
         case (true, _, true):
-            shouldShowCreate = false
-            refreshBottomNavigationItems()
-            pollButton.isHidden = false
-            batchLabel.isHidden = false
-            batchLabel.circle()
-            print("add batch")
+            addBatchToPollButton()
         default: break
         }
     }

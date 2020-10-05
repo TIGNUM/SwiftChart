@@ -251,10 +251,11 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                         router.showTeamTBV(team, poll)
 
                     /// admin
-                    case (_, true, _, false):
+                    case (_, true, _, false),
+                         (false, true, _, true):
                         router.showTeamTBV(team, poll)
                     case (true, true, _, true):
-                        router.showTeamTBVOptions(poll: poll, type: .voting, remainingDays: poll.remainingDays)
+                        router.showTeamTBVOptions(poll: poll, type: .voting, team: team)
                     default:
                         break
                     }

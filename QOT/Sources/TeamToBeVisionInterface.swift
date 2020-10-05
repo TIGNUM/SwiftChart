@@ -30,7 +30,7 @@ protocol TeamToBeVisionPresenterInterface {
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?)
     func setSelectionBarButtonItems()
-    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool)    
+    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool)
 }
 
 protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
@@ -51,6 +51,9 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     var emptyTeamTBVTextPlaceholder: String { get }
     var team: QDMTeam { get }
     var nullStateCTA: String? { get }
+    var shouldShowPollExplanation: Bool { get }
+    var shouldShowPollAdmin: Bool { get }
+    var teamVisionPoll: QDMTeamToBeVisionPoll? { get }
 
     func lastUpdatedTeamVision() -> String?
     func presentTrends()

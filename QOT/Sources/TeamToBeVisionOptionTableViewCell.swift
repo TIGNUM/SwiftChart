@@ -34,8 +34,7 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
     @IBAction func ctaTapped(_ sender: Any) {
         switch actionType {
         case .rate:
-            break
-        // TODO: rate button action and vote button action
+            delegate?.showPoll()
         case .end:
             delegate?.showAlert()
         }

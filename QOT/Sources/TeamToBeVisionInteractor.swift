@@ -173,6 +173,14 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         return worker.emptyTeamTBVTextPlaceholder
     }
 
+    var shouldShowPollExplanation: Bool {
+        return teamVisionPoll?.shouldShowPollExplanation == true || teamVisionPoll == nil
+    }
+
+    var shouldShowPollAdmin: Bool {
+        return teamVisionPoll?.shouldShowPollAdmin == true
+    }
+
     func lastUpdatedTeamVision() -> String? {
         var lastUpdatedVision = ""
         guard let date = teamVision?.date?.beginingOfDate() else { return ""}

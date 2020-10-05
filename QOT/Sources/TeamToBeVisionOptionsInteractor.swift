@@ -16,15 +16,18 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
     private let presenter: TeamToBeVisionOptionsPresenterInterface!
     private var type = TeamToBeVisionOptionsModel.Types.voting
     private var model = TeamToBeVisionOptionsModel()
-    private var poll: QDMTeamToBeVisionPoll?
+    var poll: QDMTeamToBeVisionPoll?
+    var team: QDMTeam?
 
     // MARK: - Init
     init(presenter: TeamToBeVisionOptionsPresenterInterface,
          type: TeamToBeVisionOptionsModel.Types,
-         poll: QDMTeamToBeVisionPoll?) {
+         poll: QDMTeamToBeVisionPoll?,
+         team: QDMTeam?) {
         self.presenter = presenter
         self.type = type
         self.poll = poll
+        self.team = team
     }
 
     // MARK: - Interactor

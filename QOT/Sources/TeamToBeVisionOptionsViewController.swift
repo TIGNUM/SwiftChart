@@ -10,6 +10,7 @@ import UIKit
 
 protocol TeamToBeVisionOptionsViewControllerDelegate: class {
     func showAlert()
+    func showPoll()
 }
 
 final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLevel2 {
@@ -21,7 +22,7 @@ final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLeve
 
     // MARK: - Properties
     var interactor: TeamToBeVisionOptionsInteractorInterface!
-    private lazy var router: TeamToBeVisionOptionsRouterInterface = TeamToBeVisionOptionsRouter(viewController: self)
+    private lazy var router = TeamToBeVisionOptionsRouter(viewController: self)
     private var pageType: TeamToBeVisionOptionsModel.Types!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var headerView: UIView!
@@ -99,6 +100,19 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
 }
 
 extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerDelegate {
+    func showPoll() {
+        switch pageType {
+        case .rating:
+            break
+        case .voting:
+            if let team = interactor.team {
+                router.showTeamTBVGenerator(poll: interactor.poll, team: team)
+            }
+        default:
+            break
+        }
+    }
+
     func showAlert() {
         let cancel = QOTAlertAction(title: interactor.alertCancelTitle)
         let end = QOTAlertAction(title: interactor.alertEndTitle) { _ in

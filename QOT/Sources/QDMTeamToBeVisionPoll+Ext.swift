@@ -21,4 +21,18 @@ extension QDMTeamToBeVisionPoll {
         default: return false
         }
     }
+
+    var shouldShowPollExplanation: Bool {
+        switch (creator, userDidVote, open) {
+        case (true, _, true): return false
+        default: return true
+        }
+    }
+
+    var shouldShowPollAdmin: Bool {
+        switch (creator, userDidVote, open) {
+        case (true, _, true): return true
+        default: return false
+        }
+    }
 }
