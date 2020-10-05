@@ -13,4 +13,12 @@ extension QDMTeamToBeVisionPoll {
     var remainingDays: Int {
         return Date().days(to: endDate ?? Date())
     }
+
+    var showBatch: Bool {
+        switch (creator, userDidVote, open) {
+        case (false, false, true): return true
+        case (true, _, true): return true
+        default: return false
+        }
+    }
 }

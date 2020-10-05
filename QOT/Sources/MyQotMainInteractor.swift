@@ -170,6 +170,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             return self.isCellEnabled[MyX.Item.teamCreate.rawValue] == true ? (AppTextService.get(.my_x_team_create_subheader), false) : (AppTextService.get(.my_x_team_create_max_team_sutitle), false)
         case .library:
             return (self.subtitles[MyX.Item.library.rawValue] ?? nil, self.newLibraryItemCount != 0)
+        case .toBeVision:
+            return (self.subtitles[MyX.Item.toBeVision.rawValue] ?? nil, teamTBVPoll?.showBatch == true)
         default: break
         }
         let subtitle = self.subtitles[item?.rawValue ?? ""] ?? nil
