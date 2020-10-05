@@ -9,11 +9,11 @@
 import Foundation
 
 protocol TeamToBeVisionOptionsViewControllerInterface: class {
-     func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int)
+    func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString)
 }
 
 protocol TeamToBeVisionOptionsPresenterInterface {
-    func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int)
+    func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString)
 }
 
 protocol TeamToBeVisionOptionsInteractorInterface: Interactor {

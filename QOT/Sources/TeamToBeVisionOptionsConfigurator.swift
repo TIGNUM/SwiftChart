@@ -12,13 +12,9 @@ import qot_dal
 final class TeamToBeVisionOptionsConfigurator {
     static func make(viewController: TeamToBeVisionOptionsViewController,
                      type: TeamToBeVisionOptionsModel.Types,
-                     poll: QDMTeamToBeVisionPoll?,
-                     remainingDays: Int) {
+                     poll: QDMTeamToBeVisionPoll?) {
         let presenter = TeamToBeVisionOptionsPresenter(viewController: viewController)
-        let interactor = TeamToBeVisionOptionsInteractor(presenter: presenter,
-                                                         type: type,
-                                                         poll: poll,
-                                                         remainingDays: remainingDays)
+        let interactor = TeamToBeVisionOptionsInteractor(presenter: presenter, type: type, poll: poll)
         viewController.interactor = interactor
     }
 }

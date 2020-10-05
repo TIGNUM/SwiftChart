@@ -64,11 +64,10 @@ final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLeve
 
 // MARK: - TeamToBeVisionOptionsViewControllerInterface
 extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerInterface {
-    func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
+    func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString) {
         pageType = type
         ThemeView.level1.apply(view)
-        baseHeaderView?.configure(title: type.pageTitle,
-                                  subtitle: interactor.getTeamTBVPollRemainingDays(remainingDays))
+        baseHeaderView?.configure(title: type.pageTitle, subtitle: headerSubtitle)
     }
 }
 
@@ -102,12 +101,12 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
 extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerDelegate {
     func showAlert() {
         let cancel = QOTAlertAction(title: interactor.alertCancelTitle)
-        let end = QOTAlertAction(title: interactor.alertEndTitle) { [weak self] (_) in
+        let end = QOTAlertAction(title: interactor.alertEndTitle) { _ in
         // TO DO: end rating or end poll
         }
+        let message = pageType.alertMessage.replacingOccurrences(of: "${daysCount}", with: String(interactor.daysLeft))
         QOTAlert.show(title: pageType.alertTitle,
-                      message: pageType.alertMessage.replacingOccurrences(of: "${daysCount}",
-                                                                          with: String(interactor.daysLeft)),
+                      message: message,
                       bottomItems: [cancel, end])
     }
 }

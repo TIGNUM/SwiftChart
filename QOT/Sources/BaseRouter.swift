@@ -205,8 +205,7 @@ class BaseRouter: BaseRouterInterface {
         if let viewController = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
             TeamToBeVisionOptionsConfigurator.make(viewController: viewController,
                                                    type: type,
-                                                   poll: poll,
-                                                   remainingDays: remainingDays)
+                                                   poll: poll)
             push(viewController)
         }
     }
