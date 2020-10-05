@@ -105,10 +105,12 @@ extension UIViewController: UIGestureRecognizerDelegate {
 // MARK: - ClickableLabelDelegate
 extension UIViewController: ClickableLabelDelegate {
     func openLink(withURL url: URL) {
-        if url.scheme == "mailto" && UIApplication.shared.canOpenURL(url) == true {
-            trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .MAIL_TO, action: .TAP)
-            UIApplication.shared.open(url)
-        } else {
+        var valueType: QDMUserEventTracking.ValueType = .LINK
+        if url.scheme == "mailto" {
+            valueType = .MAIL_TO
+        }
+
+        if url.scheme == "http" || url.scheme == "https"{
             do {
                 trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .LINK, action: .TAP)
                 present(try WebViewController(url), animated: true, completion: nil)
@@ -116,7 +118,9 @@ extension UIViewController: ClickableLabelDelegate {
                 log("Failed to open url. Error: \(error)", level: .error)
                 showAlert(type: .message(error.localizedDescription))
             }
+        } else {
+            UIApplication.shared.open(url)
         }
-        trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .LINK, action: .TAP)
+        trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: valueType, action: .TAP)
     }
 }
