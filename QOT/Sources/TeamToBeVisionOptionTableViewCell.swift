@@ -29,6 +29,7 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
         buttonDisabled ? ThemeText.optionPageDisabled.apply(title, to: titleLabel) : ThemeText.optionPage.apply(title, to: titleLabel)
         self.actionType = actionType
         ThemableButton.tbvOption(disabled: buttonDisabled).apply(ctaButton, title: cta)
+        ctaButton.isUserInteractionEnabled = buttonDisabled == false
     }
 
     @IBAction func ctaTapped(_ sender: Any) {

@@ -311,7 +311,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     /// This all will change. The load func is doing way to many things. Please refactor.
     func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool) {
         switch (userIsAdmim, userDidVote, pollIsOpen) {
-        case (true, _, true):
+        case (true, _, true),
+             (false, false, true):
             addBatchToPollButton()
         default: break
         }
