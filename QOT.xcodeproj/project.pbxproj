@@ -295,6 +295,7 @@
 		383D5F2024212C25007F8C2A /* walkThrough_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 383D5F1C24212C24007F8C2A /* walkThrough_coach.mp4 */; };
 		383D5F2124212C25007F8C2A /* walkThrough_myQOT.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 383D5F1D24212C25007F8C2A /* walkThrough_myQOT.mp4 */; };
 		38406DAC2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38406DAB2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift */; };
+		38406DC5252785C700C3422E /* AnimatedButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38406DC4252785C700C3422E /* AnimatedButton.xib */; };
 		3850F90423366DD0009EAA64 /* ResultsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */; };
 		3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */; };
 		38532AAF236AFBB100155643 /* CoachMarkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */; };
@@ -1723,6 +1724,7 @@
 		383D5F1C24212C24007F8C2A /* walkThrough_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_coach.mp4; sourceTree = "<group>"; };
 		383D5F1D24212C25007F8C2A /* walkThrough_myQOT.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_myQOT.mp4; sourceTree = "<group>"; };
 		38406DAB2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMTeamToBeVisionPoll+Ext.swift"; sourceTree = "<group>"; };
+		38406DC4252785C700C3422E /* AnimatedButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedButton.xib; sourceTree = "<group>"; };
 		3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeedbackViewController.swift; sourceTree = "<group>"; };
 		3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResultsFeedback.storyboard; sourceTree = "<group>"; };
 		38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -3409,6 +3411,7 @@
 			children = (
 				8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */,
 				9C6E48C32328D970004D657F /* AnimatedButton.swift */,
+				38406DC4252785C700C3422E /* AnimatedButton.xib */,
 			);
 			name = BaseViews;
 			sourceTree = "<group>";
@@ -6345,6 +6348,7 @@
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
 				F9D15B3524B88DC7006476FD /* TeamMemberTableViewCell.xib in Resources */,
+				38406DC5252785C700C3422E /* AnimatedButton.xib in Resources */,
 				AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				DBA3921A23247B2D0017E7F6 /* QuestionnaireViewController.storyboard in Resources */,

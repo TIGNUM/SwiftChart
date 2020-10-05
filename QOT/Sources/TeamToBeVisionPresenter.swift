@@ -46,4 +46,10 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
     func setSelectionBarButtonItems() {
         viewController?.setSelectionBarButtonItems()
     }
+
+    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool) {
+        viewController?.updatePollButton(userIsAdmim: userIsAdmim,
+                                         userDidVote: userDidVote,
+                                         pollIsOpen: pollIsOpen)
+    }
 }

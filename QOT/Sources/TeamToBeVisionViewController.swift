@@ -19,26 +19,21 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
-    @IBOutlet private weak var warningImageView: UIImageView!
+//    @IBOutlet private weak var warningImageView: UIImageView!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
-    @IBOutlet private weak var singleMessageRatingView: UIView!
-    @IBOutlet private weak var doubleMessageRatingView: UIView!
-    @IBOutlet private weak var rateButton: UIButton!
-    @IBOutlet private weak var singleMessageRateButton: UIButton!
-    @IBOutlet private weak var lastRatedLabel: UILabel!
-    @IBOutlet private weak var lastRatedComment: UILabel!
-    @IBOutlet private weak var singleMessageRatingLabel: UILabel!
+//    @IBOutlet private weak var rateButton: UIButton!
+//    @IBOutlet private weak var singleMessageRateButton: UIButton!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet private weak var teamNullStateImageView: UIImageView!
-    @IBOutlet private weak var infoStackView: UIStackView!
     @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
     @IBOutlet private weak var pollButton: AnimatedButton!
     @IBOutlet private weak var trendsLabel: UILabel!
     @IBOutlet private weak var startRatingButton: UIButton!
     @IBOutlet private weak var trendsButton: UIButton!
     @IBOutlet private weak var trendsBarView: UIView!
+    @IBOutlet private weak var batchLabel: UILabel!
 
     @IBOutlet private weak var lastModifiedLabel: UILabel!
     private var didShowNullStateView = false
@@ -154,6 +149,10 @@ private extension TeamToBeVisionViewController {
         skeletonManager.addSubtitle(teamNullStateView.detailLabel)
         skeletonManager.addSubtitle(teamNullStateView.toBeVisionLabel)
     }
+
+    func addBatchToPollButton() {
+
+    }
 }
 
 // MARK: - Actions
@@ -215,8 +214,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         scrollView.scrollsToTop = true
 
         ThemeBorder.accent40.apply(pollButton)
-        ThemeBorder.accent40.apply(rateButton)
-        ThemeBorder.accent40.apply(singleMessageRateButton)
+//        ThemeBorder.accent40.apply(rateButton)
+//        ThemeBorder.accent40.apply(singleMessageRateButton)
         ThemeBorder.accent40.apply(startRatingButton)
         startRatingButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
         pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
@@ -238,10 +237,11 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         ThemeText.trends.apply(AppTextService.get(.my_x_team_tbv_section_trends_label), to: trendsLabel)
     }
 
+    /// FIXME: 🆘🤯 Please brake apart. To many conditions, to many things are happening here in one single function. Too long [♨️🐟]
     func load(_ teamVision: QDMTeamToBeVision?,
-                rateText: String?,
-                isRateEnabled: Bool,
-                shouldShowSingleMessageRating: Bool?) {
+              rateText: String?,
+              isRateEnabled: Bool,
+              shouldShowSingleMessageRating: Bool?) {
         if teamVision == nil {
             interactor.showNullState()
             teamNullStateImageView.gradientBackground(top: true)
@@ -273,10 +273,10 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         removeGradients()
         addGradients()
 
-        singleMessageRateButton.isEnabled = false
-        singleMessageRatingView.isHidden = true
-        doubleMessageRatingView.isHidden = true
-        warningImageView.isHidden = true
+//        singleMessageRateButton.isEnabled = false
+//        singleMessageRatingView.isHidden = true
+//        doubleMessageRatingView.isHidden = true
+//        warningImageView.isHidden = true
         let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
         ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }
@@ -294,6 +294,20 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             didShowNullStateView = false
             teamNullStateView.isHidden = true
             refreshBottomNavigationItems()
+        }
+    }
+
+    /// This all will change. The load func is doing way to many things. Please refactor.
+    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool) {
+        switch (userIsAdmim, userDidVote, pollIsOpen) {
+        case (true, _, true):
+            shouldShowCreate = false
+            refreshBottomNavigationItems()
+            pollButton.isHidden = false
+            batchLabel.isHidden = false
+            batchLabel.circle()
+            print("add batch")
+        default: break
         }
     }
 }

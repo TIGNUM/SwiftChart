@@ -1074,7 +1074,7 @@ public extension AppTextKey {
     static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
 
     // MARK: - Banner
-    static let banner_tbv_poll_ends_days = AppTextKey(" tbv.poll.endstbv.poll.ends")
+    static let banner_tbv_poll_ends_days = AppTextKey("tbv.poll.ends")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")

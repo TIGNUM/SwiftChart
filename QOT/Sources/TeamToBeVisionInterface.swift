@@ -18,6 +18,7 @@ protocol TeamToBeVisionViewControllerInterface: class {
               rateText: String?,
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?)
+    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool)
 }
 
 protocol TeamToBeVisionPresenterInterface {
@@ -29,6 +30,7 @@ protocol TeamToBeVisionPresenterInterface {
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?)
     func setSelectionBarButtonItems()
+    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool)    
 }
 
 protocol TeamToBeVisionViewControllerScrollViewDelegate: class {

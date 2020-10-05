@@ -242,22 +242,18 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                     switch (teamTBV == nil, poll.creator, poll.userDidVote, poll.open) {
                     /// member
                     case (true, false, true, true):
-                        print("show banner")
                         showBanner(poll: poll)
                     case (true, false, false, true):
-                        print("show explanation")
                         router.showTeamTBVPollEXplanation(team)
                     case (false, false, true, true):
-                        print("show team TBV")
                         router.showTeamTBV(team, poll)
 
                     /// admin
-                    case (_, true, _, _):
-                        print("show TeamTBV")
+                    case (_, true, _, false):
                         router.showTeamTBV(team, poll)
-
+                    case (true, true, _, true):
+                        router.showTeamTBVOptions(poll: poll, type: .voting, remainingDays: poll.remainingDays)
                     default:
-                        print("default")
                         break
                     }
 

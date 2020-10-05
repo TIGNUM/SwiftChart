@@ -17,6 +17,7 @@ final class TeamToBeVisionInteractor {
     private let presenter: TeamToBeVisionPresenterInterface!
     var team: QDMTeam
     var teamVision: QDMTeamToBeVision?
+    var teamVisionPoll: QDMTeamToBeVisionPoll?
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
@@ -71,7 +72,7 @@ final class TeamToBeVisionInteractor {
         var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
 
         dispatchGroup.enter()
-        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
+        worker.getTeamToBeVision(for: team) { (teamVision) in
             tmpTeamTBV = teamVision
             dispatchGroup.leave()
         }
@@ -84,18 +85,16 @@ final class TeamToBeVisionInteractor {
 
         dispatchGroup.notify(queue: .main) {
             self.teamVision = tmpTeamTBV
-            
-        }
+            self.teamVisionPoll = tmpTeamTBVPoll
+            self.presenter.load(self.teamVision,
+                                rateText: "",
+                                isRateEnabled: false,
+                                shouldShowSingleMessageRating: true)
+            self.presenter.updatePollButton(userIsAdmim: self.teamVisionPoll?.creator == true,
+                                            userDidVote: self.teamVisionPoll?.userDidVote == true,
+                                            pollIsOpen: self.teamVisionPoll?.open == true)
 
-        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
-            self?.teamVision = teamVision
-//            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                self?.presenter.load(teamVision,
-                                     rateText: "",
-                                     isRateEnabled: false,
-                                     shouldShowSingleMessageRating: true)
-            }
-//        }
+        }
     }
 }
 
