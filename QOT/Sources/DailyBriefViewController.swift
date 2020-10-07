@@ -11,29 +11,6 @@ import qot_dal
 import DifferenceKit
 import SafariServices
 
-protocol DailyBriefViewControllerDelegate: class {
-    func openTools(toolID: Int?)
-    func presentStrategyList(strategyID: Int?)
-    func showSolveResults(solve: QDMSolve)
-    func presentMyToBeVision()
-    func showCustomizeTarget()
-    func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
-    func saveTargetValue(value: Int?)
-    func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
-    func presentPrepareResults(for preparation: QDMUserPreparation?)
-    func presentPopUp(copyrightURL: String?, description: String?)
-    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
-    func reloadSprintCell(cell: UITableViewCell)
-    func didUpdateLevel5()
-    func displayCoachPreparationScreen()
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
-    func presentMyDataScreen()
-    func didChangeLocationPermission(granted: Bool)
-    func showDailyCheckInQuestions()
-    func showAlert(message: String?)
-    func showBanner(message: String)
-}
-
 final class DailyBriefNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
 }
@@ -859,7 +836,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 // MARK: - DailyBriefViewControllerDelegate
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
-
     func didChangeLocationPermission(granted: Bool) {
         if granted {
             requestSynchronization(.DAILY_BRIEF_WEATHER, .DOWN_SYNC)
@@ -896,7 +872,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func presentTeamPendingInvites() {
-        self.router.presentTeamPendingInvites()
+        router.presentTeamPendingInvites()
     }
 
     func showBanner(message: String) {
@@ -904,15 +880,28 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         banner.configure(message: message, isDark: false)
         banner.show(in: self.view)
     }
+
+    func showTBV() {
+        router.showTBV()
+    }
+
+    func showTeamTBV(_ team: QDMTeam) {
+        interactor.getTeamTBVPoll(for: team) { [weak self] (poll) in
+            self?.router.showTeamTBV(team, poll)
+        }
+    }
+
+    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {
+        interactor.didSelectDeclineTeamInvite(invitation: invitation)
+    }
+
+    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
+        interactor.didSelectJoinTeamInvite(invitation: invitation)
+    }
 }
 
 // MARK: - Navigation
 extension DailyBriefViewController {
-
-    func showTBV(team: QDMTeam) {
-        router.showTBV(team: team)
-    }
-
     func showCustomizeTarget() {
         interactor.customizeSleepQuestion { [weak self] (question) in
             self?.router.presentCustomizeTarget(question)
@@ -954,7 +943,7 @@ extension DailyBriefViewController {
     }
 
     func presentMyToBeVision() {
-        router.showTBV(team: nil)
+        router.showTBV()
     }
 
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?) {
@@ -969,14 +958,6 @@ extension DailyBriefViewController {
         if let contentId = strategyID {
             router.presentContent(contentId)
         }
-    }
-
-    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {
-        interactor.didSelectDeclineTeamInvite(invitation: invitation)
-    }
-
-    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
-        interactor.didSelectJoinTeamInvite(invitation: invitation)
     }
 }
 

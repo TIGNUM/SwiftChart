@@ -21,7 +21,8 @@ protocol WorkerTeam: class {
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
-    func getTeamHeaderItems(showNewRedDot: Bool, _ completion: @escaping ([Team.Item]) -> Void)
+    func getTeamHeaderItems(showNewRedDot: Bool,
+                            _ completion: @escaping ([Team.Item]) -> Void)
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
@@ -59,6 +60,24 @@ protocol WorkerTeam: class {
 
     func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
                                     _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void)
+
+    func getCurrentTeamToBeVisionPoll(for team: QDMTeam,
+                                      _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func openNewTeamToBeVisionPoll(for team: QDMTeam,
+                                   _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func closeTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString
+
+    func dateString(for day: Int) -> String
+
+    func voteTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                question: QDMQuestion,
+                                votes: [QDMAnswer],
+                                _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 }
 
 extension WorkerTeam {
@@ -98,7 +117,8 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamHeaderItems(showNewRedDot: Bool, _ completion: @escaping ([Team.Item]) -> Void) {
+    func getTeamHeaderItems(showNewRedDot: Bool,
+                            _ completion: @escaping ([Team.Item]) -> Void) {
         getTeams { (teams) in
             if showNewRedDot {
                 self.getTeamInvitations { (invites) in
@@ -295,6 +315,88 @@ extension WorkerTeam {
     func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
                                     _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void) {
         TeamService.main.getTeamToBeVisionShareData(for: teamVision, completion)
+    }
+}
+
+// MARK: - Poll
+extension WorkerTeam {
+    func getCurrentTeamToBeVisionPoll(for team: QDMTeam,
+                                      _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.getCurrentTeamToBeVisionPoll(for: team) { (poll, _, error) in
+            if let error = error {
+                log("Error getCurrentTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
+    }
+
+    func openNewTeamToBeVisionPoll(for team: QDMTeam,
+                                   _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.openNewTeamToBeVisionPoll(for: team) { (poll, _, error) in
+            if let error = error {
+                log("Error openNewTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
+    }
+
+    func closeTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.closeTeamToBeVisionPoll(poll) { (poll, _, error) in
+            if let error = error {
+                log("Error closeTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
+    }
+
+    func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString {
+        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
+                                                              .foregroundColor: UIColor.sand70]
+        let redAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
+                                                             .foregroundColor: UIColor.redOrange]
+        let prefix = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends),
+                                               attributes: sandAttributes)
+        var string = ""
+        switch remainingDays {
+        case 0:
+            string = AppTextService.get(.my_x_team_tbv_options_today)
+        case 1:
+            string = AppTextService.get(.my_x_team_tbv_options_tomorrow)
+        default:
+            string = AppTextService.get(.my_x_team_tbv_options_days).replacingOccurrences(of: "${days}",
+                                                                                          with: String(remainingDays))
+        }
+        let suffix = NSMutableAttributedString(string: " " + string, attributes: redAttributes)
+        prefix.append(suffix)
+        return prefix
+    }
+
+    func dateString(for day: Int) -> String {
+        if day == 0 {
+            return "Today"
+        } else if day == 1 {
+            return "Yesterday"
+        } else {
+            return String(day) + " Days"
+        }
+    }
+
+    func voteTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                question: QDMQuestion,
+                                votes: [QDMAnswer],
+                                _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.voteTeamToBeVisionPoll(poll,
+                                                question: question,
+                                                votes: votes) { (poll, error) in
+            if let error = error {
+                log("Error voteTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+            }
+            completion(poll)
+        }
     }
 }
 

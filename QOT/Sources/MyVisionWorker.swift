@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyVisionWorker {
+final class MyVisionWorker: WorkerTeam {
 
     private enum SharingKeys: String {
         case firstName = "*|FIRSTNAME|*"
@@ -159,16 +159,6 @@ final class MyVisionWorker {
                 let days = DateComponentsFormatter.numberOfDays(date)
                 completion(strongSelf.dateString(for: days), false, true)
             }
-        }
-    }
-
-    private func dateString(for day: Int) -> String {
-        if day == 0 {
-            return "Today"
-        } else if day == 1 {
-            return "Yesterday"
-        } else {
-            return String(day) + " Days"
         }
     }
 }

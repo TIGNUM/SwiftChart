@@ -7,13 +7,18 @@
 //
 
 import Foundation
+import qot_dal
 
 final class TeamToBeVisionOptionsConfigurator {
-    static func make(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) -> (TeamToBeVisionOptionsViewController) -> Void {
-        return { (viewController) in
-            let presenter = TeamToBeVisionOptionsPresenter(viewController: viewController)
-            let interactor = TeamToBeVisionOptionsInteractor(presenter: presenter, type: type, remainingDays: remainingDays)
-            viewController.interactor = interactor
-        }
+    static func make(viewController: TeamToBeVisionOptionsViewController,
+                     type: TeamToBeVisionOptionsModel.Types,
+                     poll: QDMTeamToBeVisionPoll?,
+                     team: QDMTeam?) {
+        let presenter = TeamToBeVisionOptionsPresenter(viewController: viewController)
+        let interactor = TeamToBeVisionOptionsInteractor(presenter: presenter,
+                                                         type: type,
+                                                         poll: poll,
+                                                         team: team)
+        viewController.interactor = interactor
     }
 }

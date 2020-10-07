@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-protocol MyToBeVisionRateViewControllerProtocol: class {
+protocol TBVRateDelegate: class {
     func doneAction()
 }
 
@@ -29,7 +29,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     private var tracks: [RatingQuestionViewModel.Question] = []
 
-    weak var delegate: MyToBeVisionRateViewControllerProtocol?
+    weak var delegate: TBVRateDelegate?
     var interactor: MyToBeVisionRateInteracorInterface?
 
     override func viewDidLoad() {

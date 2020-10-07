@@ -21,12 +21,13 @@ protocol VisionRatingExplanationPresenterInterface {
 }
 
 protocol VisionRatingExplanationInteractorInterface: Interactor {
-    var team: QDMTeam? { get }
+    var team: QDMTeam { get }
     func showRateScreen()
+    func startTeamTBVPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 }
 
 protocol VisionRatingExplanationRouterInterface {
     func dismiss()
     func showRateScreen(with id: Int)
-    func showTBVGenerator()
+    func showTeamTBVGenerator()
 }

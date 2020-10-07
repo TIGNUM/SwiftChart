@@ -8,20 +8,4 @@
 
 import UIKit
 
-final class TeamToBeVisionOptionsRouter {
-
-    // MARK: - Properties
-    private weak var viewController: TeamToBeVisionOptionsViewController?
-
-    // MARK: - Init
-    init(viewController: TeamToBeVisionOptionsViewController?) {
-        self.viewController = viewController
-    }
-}
-
-// MARK: - TeamToBeVisionOptionsRouterInterface
-extension TeamToBeVisionOptionsRouter: TeamToBeVisionOptionsRouterInterface {
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-}
+final class TeamToBeVisionOptionsRouter: BaseRouter {}

@@ -490,6 +490,11 @@ extension UIColor {
         return UIColor(red: 255/255, green: 83/255, blue: 73/255, alpha: 1)
     }
 
+    /// UIColor(red: 255/255, green: 73/255, blue: 81/255, alpha: 1)
+    public class var batchRed: UIColor {
+        return UIColor(red: 255/255, green: 73/255, blue: 81/255, alpha: 1)
+    }
+
     /// UIColor(red: 80/255, green: 277/255, blue: 194/255, alpha: 1)
     public class var aquaMarine: UIColor {
         return UIColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)

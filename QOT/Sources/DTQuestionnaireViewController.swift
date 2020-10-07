@@ -33,9 +33,10 @@ class DTQuestionnaireViewController: BaseViewController {
                                              dequeables: MultipleSelectionTableViewCell.self,
                                              SingleSelectionTableViewCell.self,
                                              QuestionTableViewCell.self,
-                                             AnimatedAnswerTableViewCell.self,
+                                                 AnimatedAnswerTableViewCell.self,
                                              TextTableViewCell.self,
                                              ExistingPreparationTableViewCell.self,
+                                             PollTableViewCell.self,
                                              UserInputTableViewCell.self)
     private var constraintTableHeight: NSLayoutConstraint?
     private var observers: [NSKeyValueObservation] = []
@@ -188,6 +189,8 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                     return getExistingPreparationCell(indexPath, tableView)
                 }
                 return getSelectionCell(indexPath, tableView)
+            case .poll:
+                return getPollCell(indexPath, tableView)
             case .text:
                 if viewModel.hasTypingAnimation {
                     return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? "")
@@ -248,6 +251,15 @@ private extension DTQuestionnaireViewController {
 
     func getSelectionCell(_ indexPath: IndexPath, _ tableView: UITableView) -> MultipleSelectionTableViewCell {
         let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(for: viewModel.answers,
+                       maxPossibleSelections: viewModel.question.maxSelections,
+                       collectionHeight: heightOfCollection)
+        cell.delegate = self
+        return cell
+    }
+
+    func getPollCell(_ indexPath: IndexPath, _ tableView: UITableView) -> PollTableViewCell {
+        let cell: PollTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(for: viewModel.answers,
                        maxPossibleSelections: viewModel.question.maxSelections,
                        collectionHeight: heightOfCollection)

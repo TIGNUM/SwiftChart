@@ -41,7 +41,8 @@ extension ResultsPrepareWorker {
             let answers = filteredAnswers.compactMap {
                 DTViewModel.Answer(qdmAnswer: $0,
                                    selectedIds: selectedIds,
-                                   decisions: $0.getDTViewModelAnswerDecisions())
+                                   decisions: $0.getDTViewModelAnswerDecisions(),
+                                   votes: 0)
             }
             completion(DTViewModel(question: question,
                                    answers: answers,

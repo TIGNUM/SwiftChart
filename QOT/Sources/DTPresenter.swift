@@ -79,6 +79,10 @@ class DTPresenter: DTPresenterInterface {
         return nil
     }
 
+    func getVotes(answer: QDMAnswer, poll: QDMTeamToBeVisionPoll?) -> Int {
+        return 0
+    }
+
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
         let answers = getAnswers(presentationModel.answerFilter,
@@ -117,7 +121,9 @@ class DTPresenter: DTPresenterInterface {
         if !presentationModel.selectedIds.isEmpty {
             return filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0,
                                                                    selectedIds: presentationModel.selectedIds,
-                                                                   decisions: $0.getDTViewModelAnswerDecisions()) }
+                                                                   decisions: $0.getDTViewModelAnswerDecisions(),
+                                                                   votes: getVotes(answer: $0,
+                                                                                   poll: presentationModel.poll)) }
         }
         return filteredAnswers.compactMap { (answer) -> DTViewModel.Answer in
             let selected = answer.subtitle?.isEmpty == true && question?.answerType == AnswerType.accept.rawValue
@@ -126,7 +132,8 @@ class DTPresenter: DTPresenterInterface {
                                       keys: answer.keys,
                                       selected: selected,
                                       backgroundColor: answerBackgroundColor(answer: answer),
-                                      decisions: answer.getDTViewModelAnswerDecisions() )
+                                      decisions: answer.getDTViewModelAnswerDecisions(),
+                                      votes: getVotes(answer: answer, poll: presentationModel.poll) )
         }
     }
 

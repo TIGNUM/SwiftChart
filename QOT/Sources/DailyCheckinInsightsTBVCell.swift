@@ -47,6 +47,6 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
 private extension DailyCheckinInsightsTBVCell {
     @IBAction func toBeVisionButton(_ sender: Any) {
-        delegate?.presentMyToBeVision()
+        delegate?.showTBV()
     }
 }

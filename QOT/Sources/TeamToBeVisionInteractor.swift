@@ -13,15 +13,18 @@ final class TeamToBeVisionInteractor {
 
     // MARK: - Properties
     private lazy var worker = TeamToBeVisionWorker()
-    let router: TeamToBeVisionRouter
+    private let router: TeamToBeVisionRouter
     private let presenter: TeamToBeVisionPresenterInterface!
-    var team: QDMTeam?
+    var team: QDMTeam
     var teamVision: QDMTeamToBeVision?
+    var teamVisionPoll: QDMTeamToBeVisionPoll?
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
     // MARK: - Init
-    init(presenter: TeamToBeVisionPresenterInterface, router: TeamToBeVisionRouter, team: QDMTeam?) {
+    init(presenter: TeamToBeVisionPresenterInterface,
+         router: TeamToBeVisionRouter,
+         team: QDMTeam) {
         self.presenter = presenter
         self.router = router
         self.team = team
@@ -64,34 +67,52 @@ final class TeamToBeVisionInteractor {
     }
 
     private func didUpdateTBVRelatedData() {
-        guard let team = team else { return }
-        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
-            self?.teamVision = teamVision
-//            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                self?.presenter.load(teamVision,
-                                     rateText: "",
-                                     isRateEnabled: false,
-                                     shouldShowSingleMessageRating: true)
-            }
-//        }
+        let dispatchGroup = DispatchGroup()
+        var tmpTeamTBV: QDMTeamToBeVision?
+        var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
+
+        dispatchGroup.enter()
+        worker.getTeamToBeVision(for: team) { (teamVision) in
+            tmpTeamTBV = teamVision
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        worker.getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+            tmpTeamTBVPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.teamVision = tmpTeamTBV
+            self.teamVisionPoll = tmpTeamTBVPoll
+            self.presenter.load(self.teamVision,
+                                rateText: "",
+                                isRateEnabled: false,
+                                shouldShowSingleMessageRating: true)
+            self.presenter.updatePollButton(userIsAdmim: self.teamVisionPoll?.creator == true,
+                                            userDidVote: self.teamVisionPoll?.userDidVote == true,
+                                            pollIsOpen: self.teamVisionPoll?.open == true)
+
+        }
     }
 }
 
 // MARK: - TeamToBeVisionInteractorInterface
 extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
-
     func showEditVision(isFromNullState: Bool) {
-        guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { (teamVision) in
             self.router.showEditVision(title: teamVision?.headline ?? "",
                                        vision: teamVision?.text ?? "",
                                        isFromNullState: isFromNullState,
-                                       team: team)
+                                       team: self.team)
         }
     }
 
-    func showNullState(with title: String, teamName: String?, message: String) {
-        presenter.showNullState(with: title, teamName: teamName, message: message)
+    func showNullState() {
+        presenter.showNullState(with: teamNullStateTitle ?? "",
+                                teamName: team.name,
+                                message: teamNullStateSubtitle ?? "")
     }
 
     func hideNullState() {
@@ -99,14 +120,13 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     }
 
     func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
-        guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { (teamVision) in
             completion(teamVision?.headline == nil && teamVision?.text == nil)
         }
     }
 
     func saveToBeVision(image: UIImage?) {
-        guard let team = team else { return }
+        let tmpTeam = team
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
             if var teamVision = teamVision {
                 teamVision.modifiedAt = Date()
@@ -121,7 +141,8 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 } else {
                     teamVision.profileImageResource = nil
                 }
-                self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
+                self?.worker.updateTeamToBeVision(teamVision,
+                                                  team: tmpTeam) { [weak self] (responseTeamVision) in
                     self?.didUpdateTBVRelatedData()
                 }
             }
@@ -152,11 +173,19 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         return worker.emptyTeamTBVTextPlaceholder
     }
 
+    var shouldShowPollExplanation: Bool {
+        return teamVisionPoll?.shouldShowPollExplanation == true || teamVisionPoll == nil
+    }
+
+    var shouldShowPollAdmin: Bool {
+        return teamVisionPoll?.shouldShowPollAdmin == true
+    }
+
     func lastUpdatedTeamVision() -> String? {
         var lastUpdatedVision = ""
         guard let date = teamVision?.date?.beginingOfDate() else { return ""}
         let days = DateComponentsFormatter.numberOfDays(date)
-        lastUpdatedVision = self.dateString(for: days)
+        lastUpdatedVision = worker.dateString(for: days)
         return lastUpdatedVision
     }
 
@@ -191,16 +220,6 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 // after present swizzle for mail
                 swizzleMFMailComposeViewControllerMessageBody()
             }
-        }
-    }
-
-    private func dateString(for day: Int) -> String {
-        if day == 0 {
-            return "Today"
-        } else if day == 1 {
-            return "Yesterday"
-        } else {
-            return String(day) + " Days"
         }
     }
 }

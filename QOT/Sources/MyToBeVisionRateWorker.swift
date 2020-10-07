@@ -13,13 +13,11 @@ final class MyToBeVisionRateWorker {
 
     private let userService = UserService.main
     private let visionId: Int
-    private let viewController: MyToBeVisionRateViewController
     var questions: [RatingQuestionViewModel.Question]?
     var dataTracks: [QDMToBeVisionTrack]?
 
-    init(visionId: Int, viewController: MyToBeVisionRateViewController) {
+    init(visionId: Int) {
         self.visionId = visionId
-        self.viewController = viewController
     }
 
     func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {

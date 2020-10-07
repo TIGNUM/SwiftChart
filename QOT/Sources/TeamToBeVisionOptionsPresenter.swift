@@ -21,7 +21,7 @@ final class TeamToBeVisionOptionsPresenter {
 
 // MARK: - TeamToBeVisionOptionsInterface
 extension TeamToBeVisionOptionsPresenter: TeamToBeVisionOptionsPresenterInterface {
-    func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
-        viewController?.setupView(type: type, remainingDays: remainingDays)
+    func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString) {
+        viewController?.setupView(type: type, headerSubtitle: headerSubtitle)
     }
 }
