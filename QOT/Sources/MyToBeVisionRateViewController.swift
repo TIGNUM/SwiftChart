@@ -45,7 +45,10 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     func questionnaireViewController(with question: RatingQuestionViewModel.Question?) -> UIViewController? {
         guard let questionnaire = question else { return nil }
-        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self)
+        guard interactor?.team != nil else {
+            return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .vision)
+        }
+        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .teamVision)
     }
 
     func indexOf(_ viewController: UIViewController?) -> Int {
@@ -83,7 +86,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         if isLastPage {
             return nil
         } else {
-            return super.bottomNavigationLeftBarItems()
+            return [dismissNavigationItem(action: #selector(dismissAction))]
         }
     }
 
@@ -139,7 +142,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         pageController?.setViewControllers([viewController], direction: .reverse, animated: false, completion: nil)
     }
 
-    @IBAction func dismissAction() {
+    @objc private func dismissAction() {
         interactor?.dismiss()
     }
 }

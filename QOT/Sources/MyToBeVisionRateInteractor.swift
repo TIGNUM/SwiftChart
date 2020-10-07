@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyToBeVisionRateInteractor {
 
@@ -63,5 +64,9 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
 
     func dismiss() {
         router.dismiss()
+    }
+
+    var team: QDMTeam? {
+        worker.team
     }
 }

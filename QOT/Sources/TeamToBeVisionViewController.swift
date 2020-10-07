@@ -48,7 +48,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     private var tempImageURL: URL?
     private var tempTeamImageURL: URL?
     private var imagePickerController: ImagePickerController!
-    let skeletonManager = SkeletonManager()
+    private lazy var skeletonManager = SkeletonManager()
 
     // MARK: - Init
     init(configure: Configurator<TeamToBeVisionViewController>) {
@@ -87,6 +87,22 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
             return [button.barButton]
         }
         return []
+    }
+
+    @IBAction func tapStartRating(_ sender: Any) {
+        interactor.ratingTapped()
+    }
+
+    @objc func writeButtonAction(_ sender: Any) {
+        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
+            self?.trackUserEvent(.EDIT, value: self?.interactor?.team?.remoteID, valueType: .WRITE_TEAM_TBV, action: .TAP)
+            self?.interactor.showEditVision(isFromNullState: false)
+            self?.shouldShowCreate = false
+        }
+        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
+        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
+                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
+                      bottomItems: [add, openTeamPoll])
     }
 }
 
@@ -127,6 +143,12 @@ private extension TeamToBeVisionViewController {
     func addGradients() {
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
+    }
+
+    func hideTrends(_ hide: Bool) {
+        trendsBarView.isHidden = hide
+        trendsButton.isHidden = hide
+        trendsLabel.isHidden = hide
     }
 
     func hideNavigationBarView() {
@@ -253,6 +275,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
               rateText: String?,
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
+
         if teamVision == nil {
             interactor.showNullState()
             teamNullStateImageView.gradientBackground(top: true)
@@ -271,6 +294,9 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                 return
             }
         }
+        interactor.isTrendsHidden { [weak self] (hide) in
+            self?.hideTrends(hide)
+        }
         var headline = teamVision?.headline
         if headline?.isEmpty != false {
             headline = interactor.teamNullStateTitle
@@ -288,6 +314,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 //        singleMessageRatingView.isHidden = true
 //        doubleMessageRatingView.isHidden = true
 //        warningImageView.isHidden = true
+
         let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
         ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }

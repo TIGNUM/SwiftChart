@@ -27,4 +27,11 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var team: QDMTeam? { get }
 
     func endPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+    func showRateScreen()
+    func endRating()
+}
+
+protocol TeamToBeVisionOptionsRouterInterface {
+    func dismiss()
+    func showRateScreen(with id: Int, team: QDMTeam?, type: Explanation.Types)
 }

@@ -50,12 +50,11 @@ extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorIn
     }
 
     func showRateScreen() {
-//        TODO
-//        guard let team = team else { return }
-//        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
-//            if let remoteId = teamVision?.remoteID {
-//                self?.router.showRateScreen(with: remoteId)
-//            }
-//        }
+        guard let team = team else { return }
+        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
+            if let remoteId = teamVision?.remoteID {
+                self?.router.showRateScreen(with: remoteId, team: team, type: self?.type ?? .ratingOwner)
+            }
+        }
     }
 }

@@ -7,5 +7,6 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyToBeVisionRateRouter: BaseRouter {}

@@ -58,4 +58,17 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     func lastUpdatedTeamVision() -> String?
     func presentTrends()
     func shareTeamToBeVision()
+    func hasOpenVisionRatingPoll(_ completion: @escaping (Bool) -> Void)
+    func ratingTapped()
+    func isTrendsHidden(_ completion: @escaping (Bool) -> Void) 
+}
+
+protocol TeamToBeVisionRouterInterface {
+    func dismiss()
+    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
+    func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
+    func showViewController(viewController: UIViewController, completion: (() -> Void)?)
+    func showRatingExplanation(team: QDMTeam?)
+    func showTbvPollEXplanation(team: QDMTeam?)
+    func showAdminOptions(team: QDMTeam?, remainingDays: Int)
 }

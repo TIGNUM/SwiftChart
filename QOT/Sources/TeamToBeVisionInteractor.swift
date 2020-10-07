@@ -93,7 +93,6 @@ final class TeamToBeVisionInteractor {
             self.presenter.updatePollButton(userIsAdmim: self.teamVisionPoll?.creator == true,
                                             userDidVote: self.teamVisionPoll?.userDidVote == true,
                                             pollIsOpen: self.teamVisionPoll?.open == true)
-
         }
     }
 }
@@ -117,6 +116,13 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
 
     func hideNullState() {
         presenter.hideNullState()
+    }
+
+    func isTrendsHidden(_ completion: @escaping (Bool) -> Void) {
+        guard let team = team else { return }
+        worker.getLatestClosedPolls(for: team) { (latestPolls) in
+            completion(latestPolls?.isEmpty ?? true)
+        }
     }
 
     func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
@@ -187,6 +193,24 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         let days = DateComponentsFormatter.numberOfDays(date)
         lastUpdatedVision = worker.dateString(for: days)
         return lastUpdatedVision
+    }
+
+    func hasOpenVisionRatingPoll(_ completion: @escaping (Bool) -> Void) {
+        guard let team = team else { return }
+        worker.hasOpenRatingPoll(for: team, completion)
+    }
+
+    func ratingTapped() {
+        hasOpenVisionRatingPoll {(open) in
+            guard let isOwner = self.team?.thisUserIsOwner else { return }
+            if open, isOwner {
+                self.router.showAdminOptions(team: self.team, remainingDays: 3)
+            } else {
+//                trackUserEvent(.OPEN, value: self.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
+                self.router.showRatingExplanation(team: self.team)
+            }
+        }
+
     }
 
     func shareTeamToBeVision() {

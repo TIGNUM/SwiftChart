@@ -18,6 +18,8 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
     private var model = TeamToBeVisionOptionsModel()
     var poll: QDMTeamToBeVisionPoll?
     var team: QDMTeam?
+    let router: TeamToBeVisionOptionsRouter
+    private var remainingDays: Int = 0
 
     // MARK: - Init
     init(presenter: TeamToBeVisionOptionsPresenterInterface,
@@ -63,6 +65,23 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
         if let poll = poll {
             requestSynchronization(.TEAM_TO_BE_VISION, .DOWN_SYNC)
             closeTeamToBeVisionPoll(poll, completion)
+        }
+    }
+
+    func showRateScreen() {
+        guard let team = team else { return }
+        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
+            if let remoteId = teamVision?.remoteID {
+                self?.router.showRateScreen(with: remoteId, team: team, type: .ratingOwner)
+            }
+        }
+    }
+
+    func endRating() {
+        guard let team = team else { return }
+        worker.closeRatingPoll(for: team) { [weak self] in
+//            TO DO: go to Team TBVRateHistoryViewController for teams
+            self?.router.dismiss()
         }
     }
 }
