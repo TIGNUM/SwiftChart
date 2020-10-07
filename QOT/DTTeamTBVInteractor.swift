@@ -35,10 +35,10 @@ extension DTTeamTBVInteractor: DTTeamTBVInteractorInterface {
     func generateTBV(answers: [DTViewModel.Answer],
                      _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
         if let team = team {
-            createTeamToBeVision(answers: answers,
-                                 team: team) { (teamTBV) in
-                completion(teamTBV)
-            }
+//            createTeamToBeVision(answers: answers,
+//                                 team: team) { (teamTBV) in
+//                completion(teamTBV)
+//            }
         }
     }
 

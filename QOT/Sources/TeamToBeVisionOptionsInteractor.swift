@@ -61,6 +61,7 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
 
     func endPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
         if let poll = poll {
+            requestSynchronization(.TEAM_TO_BE_VISION, .DOWN_SYNC)
             closeTeamToBeVisionPoll(poll, completion)
         }
     }

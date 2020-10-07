@@ -74,10 +74,6 @@ protocol WorkerTeam: class {
 
     func dateString(for day: Int) -> String
 
-    func createTeamToBeVision(answers: [DTViewModel.Answer],
-                              team: QDMTeam,
-                              _ completion: @escaping (QDMTeamToBeVision?) -> Void)
-
     func voteTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
                                 question: QDMQuestion,
                                 votes: [QDMAnswer],
@@ -386,26 +382,6 @@ extension WorkerTeam {
             return "Yesterday"
         } else {
             return String(day) + " Days"
-        }
-    }
-
-    func createTeamToBeVision(answers: [DTViewModel.Answer],
-                              team: QDMTeam,
-                              _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
-        var contentCollectionIds = [Int]()
-        for answer in answers {
-            for decision in answer.decisions {
-                if decision.targetType == .content, let targetId = decision.targetTypeId {
-                    contentCollectionIds.append(targetId)
-                }
-            }
-        }
-        TeamService.main.generateTeamToBeVisionWith(contentCollectionIds, for: team) { (teamTBV, _, error) in
-            if let error = error {
-                log("Error createTeamToBeVision: \(error.localizedDescription)", level: .error)
-                // TODO handle error
-            }
-            completion(teamTBV)
         }
     }
 
