@@ -40,9 +40,12 @@ protocol BaseRouterInterface {
     func dismissChatBotFlow()
 
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
-    func showTeamTBVOptions(poll: QDMTeamToBeVisionPoll?,
-                            type: TeamToBeVisionOptionsModel.Types,
-                            team: QDMTeam?)
+    func showTeamAdminVoteView(poll: QDMTeamToBeVisionPoll?,
+                               type: TeamToBeVisionOptionsModel.Types,
+                               team: QDMTeam?)
+    func showTeamAdminRatingView(poll: QDMTeamToBeVisionTrackerPoll?,
+                                 type: TeamToBeVisionOptionsModel.Types,
+                                 team: QDMTeam?)
 
     func showBanner(message: String)
 }
@@ -203,13 +206,27 @@ class BaseRouter: BaseRouterInterface {
         present(controller)
     }
 
-    func showTeamTBVOptions(poll: QDMTeamToBeVisionPoll?,
-                            type: TeamToBeVisionOptionsModel.Types,
-                            team: QDMTeam?) {
+    func showTeamAdminVoteView(poll: QDMTeamToBeVisionPoll?,
+                               type: TeamToBeVisionOptionsModel.Types,
+                               team: QDMTeam?) {
         if let viewController = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
             TeamToBeVisionOptionsConfigurator.make(viewController: viewController,
                                                    type: type,
-                                                   poll: poll,
+                                                   toBeVisionPoll: poll,
+                                                   trackerPoll: nil,
+                                                   team: team)
+            push(viewController)
+        }
+    }
+
+    func showTeamAdminRatingView(poll: QDMTeamToBeVisionTrackerPoll?,
+                                 type: TeamToBeVisionOptionsModel.Types,
+                                 team: QDMTeam?) {
+        if let viewController = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
+            TeamToBeVisionOptionsConfigurator.make(viewController: viewController,
+                                                   type: type,
+                                                   toBeVisionPoll: nil,
+                                                   trackerPoll: poll,
                                                    team: team)
             push(viewController)
         }

@@ -17,9 +17,11 @@ final class MyToBeVisionRateWorker {
     var dataTracks: [QDMToBeVisionTrack]?
     var teamDataTracks: [QDMTeamToBeVisionTrackerResult]?
     var currentTrackerPoll: QDMTeamToBeVisionTrackerPoll?
+    var team: QDMTeam?
 
-    init(visionId: Int) {
+    init(visionId: Int, team: QDMTeam?) {
         self.visionId = visionId
+        self.team = team
     }
 
     func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {

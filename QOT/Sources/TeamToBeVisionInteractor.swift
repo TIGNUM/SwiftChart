@@ -18,6 +18,7 @@ final class TeamToBeVisionInteractor {
     var team: QDMTeam
     var teamVision: QDMTeamToBeVision?
     var teamVisionPoll: QDMTeamToBeVisionPoll?
+    var teamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
@@ -41,8 +42,8 @@ final class TeamToBeVisionInteractor {
                 return
             }
             guard let syncResult = notification.object as? SyncResultContext,
-                syncResult.syncRequestType == .DOWN_SYNC,
-                syncResult.hasUpdatedContent else { return }
+                  syncResult.syncRequestType == .DOWN_SYNC,
+                  syncResult.hasUpdatedContent else { return }
             switch syncResult.dataType {
             case .TEAM_TO_BE_VISION:
                 strongSelf.didUpdateTBVRelatedData()
@@ -56,7 +57,7 @@ final class TeamToBeVisionInteractor {
             }
             guard let syncResult = notification.object as? SyncRequestContext else { return }
             if syncResult.dataType == .TEAM_TO_BE_VISION,
-                syncResult.syncRequestType == .UP_SYNC {
+               syncResult.syncRequestType == .UP_SYNC {
                 strongSelf.didUpdateTBVRelatedData()
             }
         }
@@ -70,6 +71,7 @@ final class TeamToBeVisionInteractor {
         let dispatchGroup = DispatchGroup()
         var tmpTeamTBV: QDMTeamToBeVision?
         var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
+        var tmpTeamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
 
         dispatchGroup.enter()
         worker.getTeamToBeVision(for: team) { (teamVision) in
@@ -83,16 +85,21 @@ final class TeamToBeVisionInteractor {
             dispatchGroup.leave()
         }
 
+        dispatchGroup.enter()
+        worker.getCurrentRatingPoll(for: team) { (poll) in
+            tmpTeamTrackerPoll = poll
+            dispatchGroup.leave()
+        }
+
         dispatchGroup.notify(queue: .main) {
             self.teamVision = tmpTeamTBV
             self.teamVisionPoll = tmpTeamTBVPoll
+            self.teamTrackerPoll = tmpTeamTrackerPoll
             self.presenter.load(self.teamVision,
                                 rateText: "",
-                                isRateEnabled: false,
-                                shouldShowSingleMessageRating: true)
-            self.presenter.updatePollButton(userIsAdmim: self.teamVisionPoll?.creator == true,
-                                            userDidVote: self.teamVisionPoll?.userDidVote == true,
-                                            pollIsOpen: self.teamVisionPoll?.open == true)
+                                isRateEnabled: false)
+            self.presenter.updatePoll(visionPoll: self.teamVisionPoll,
+                                      trackerPoll: self.teamTrackerPoll)
         }
     }
 }
@@ -119,7 +126,6 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     }
 
     func isTrendsHidden(_ completion: @escaping (Bool) -> Void) {
-        guard let team = team else { return }
         worker.getLatestClosedPolls(for: team) { (latestPolls) in
             completion(latestPolls?.isEmpty ?? true)
         }
@@ -196,23 +202,24 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     }
 
     func hasOpenVisionRatingPoll(_ completion: @escaping (Bool) -> Void) {
-        guard let team = team else { return }
         worker.hasOpenRatingPoll(for: team, completion)
     }
 
     func ratingTapped() {
-        hasOpenVisionRatingPoll {(open) in
-            guard let isOwner = self.team?.thisUserIsOwner else { return }
-            if open, isOwner {
-                self.router.showAdminOptions(team: self.team, remainingDays: 3)
-            } else {
-//                trackUserEvent(.OPEN, value: self.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-                self.router.showRatingExplanation(team: self.team)
+        let tmpTeam = team
+        if team.thisUserIsOwner {
+            worker.hasOpenRatingPoll(for: team) { [weak self] (open) in
+                if open {
+                    self?.router.showTeamAdminVoteView(poll: nil,
+                                                       type: .rating,
+                                                       team: tmpTeam)
+                } else {
+                    self?.router.showTeamRatingExplanation(tmpTeam)
+                }
             }
         }
-
     }
-
+    
     func shareTeamToBeVision() {
         guard let vision = teamVision else { return }
         worker.getTeamToBeVisionShareData(vision) { [weak self] (visionShare, error) in

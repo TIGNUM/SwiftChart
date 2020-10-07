@@ -254,6 +254,8 @@ enum ThemeButton {
     case audioButtonGrey
     case audioButtonStrategy
     case dateButtons
+    case pollActive
+    case pollInActive
 
     var defaultHeight: CGFloat {
         return 40.0
@@ -293,7 +295,7 @@ enum ThemeButton {
         case .backButton, .editButton, .carbonButton:
             colorUnselected = Palette.carbon
             colorBorder = Palette.accent40
-        case .dateButtons:
+        case .dateButtons, .pollActive:
             colorSelected = .accent40
             colorUnselected = .carbon
             colorBorder = .accent40
@@ -387,7 +389,8 @@ enum ThemableButton {
 
     var normal: ButtonTheme? {
         switch self {
-        case  .askPermissions, .syncedCalendar,
+        case .askPermissions,
+             .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
@@ -397,9 +400,12 @@ enum ThemableButton {
              .level5,
              .continueButton:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
-        case .myLibraryNotes, .myLibrary:
+        case .myLibraryNotes,
+             .myLibrary:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
-        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .paymentReminder:
+        case .fullscreenAudioPlayerDownload,
+             .fullscreenVideoPlayerDownload,
+             .paymentReminder:
             return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)

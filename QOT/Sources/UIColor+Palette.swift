@@ -105,6 +105,7 @@ extension UIColor {
         return accent.withAlphaComponent(0.75)
     }
 
+    /// UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
     public class var accent: UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
     }

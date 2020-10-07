@@ -1193,7 +1193,7 @@
 		F91087A324C5A6BD00CA343A /* TeamToBeVisionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */; };
 		F91087A424C5A6BD00CA343A /* TeamToBeVisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */; };
 		F91087A524C5A6BD00CA343A /* TeamToBeVisionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */; };
-		F91087A624C5A6BD00CA343A /* TeamToBeVisionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879E24C5A6BC00CA343A /* TeamToBeVisionModel.swift */; };
+		F91087A624C5A6BD00CA343A /* TeamToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */; };
 		F91087A724C5A6BD00CA343A /* TeamToBeVisionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */; };
 		F91087A924C5C7D500CA343A /* TeamToBeVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */; };
 		F91087AB24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */; };
@@ -1364,7 +1364,6 @@
 		F9E330342424A73D00967C28 /* MyPlansHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E330332424A73D00967C28 /* MyPlansHeaderView.swift */; };
 		F9E330362424A75800967C28 /* MyPlansHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9E330352424A75800967C28 /* MyPlansHeaderView.xib */; };
 		F9F470742510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4706C2510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift */; };
-		F9F470752510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4706D2510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift */; };
 		F9F470762510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4706E2510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift */; };
 		F9F470772510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4706F2510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift */; };
 		F9F470782510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F470702510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift */; };
@@ -2623,7 +2622,7 @@
 		F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionInterface.swift; sourceTree = "<group>"; };
 		F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionViewController.swift; sourceTree = "<group>"; };
 		F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionInteractor.swift; sourceTree = "<group>"; };
-		F910879E24C5A6BC00CA343A /* TeamToBeVisionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionModel.swift; sourceTree = "<group>"; };
+		F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVision.swift; sourceTree = "<group>"; };
 		F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionConfigurator.swift; sourceTree = "<group>"; };
 		F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNullStateView.swift; sourceTree = "<group>"; };
 		F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNavigationBarView.swift; sourceTree = "<group>"; };
@@ -2792,7 +2791,6 @@
 		F9E330332424A73D00967C28 /* MyPlansHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlansHeaderView.swift; sourceTree = "<group>"; };
 		F9E330352424A75800967C28 /* MyPlansHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPlansHeaderView.xib; sourceTree = "<group>"; };
 		F9F4706C2510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsPresenter.swift; sourceTree = "<group>"; };
-		F9F4706D2510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsWorker.swift; sourceTree = "<group>"; };
 		F9F4706E2510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsRouter.swift; sourceTree = "<group>"; };
 		F9F4706F2510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsInterface.swift; sourceTree = "<group>"; };
 		F9F470702510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionsViewController.swift; sourceTree = "<group>"; };
@@ -5630,7 +5628,7 @@
 				F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */,
 				F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */,
 				F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */,
-				F910879E24C5A6BC00CA343A /* TeamToBeVisionModel.swift */,
+				F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */,
 				F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */,
 				F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */,
 				F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */,
@@ -5980,7 +5978,6 @@
 				F9F4706C2510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift */,
 				F9F4706E2510C4D7002331F4 /* TeamToBeVisionOptionsRouter.swift */,
 				F9F470702510C4D7002331F4 /* TeamToBeVisionOptionsViewController.swift */,
-				F9F4706D2510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift */,
 				F9F4707E2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift */,
 				F9F470802510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib */,
 			);
@@ -6619,7 +6616,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6841,7 +6838,7 @@
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
 				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
-				F91087A624C5A6BD00CA343A /* TeamToBeVisionModel.swift in Sources */,
+				F91087A624C5A6BD00CA343A /* TeamToBeVision.swift in Sources */,
 				38095D2324BDC4EA0077EE86 /* TeamInvitesPresenter.swift in Sources */,
 				B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */,
 				B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */,
@@ -7354,7 +7351,6 @@
 				8DD6B5942308190800C582A4 /* UIViewController+ActivityIndicator.swift in Sources */,
 				75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
-				F9F470752510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift in Sources */,
 				F947EA0B2521F45D004C7076 /* TeamVisionTrackerDetailsInterface.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				BB0ED0982317FF7B006A0476 /* UISegmentedControl+Underline.swift in Sources */,
@@ -9140,7 +9136,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

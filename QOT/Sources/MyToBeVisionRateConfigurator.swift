@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyToBeVisionRateConfigurator {
     static func configure(viewController: MyToBeVisionRateViewController,
                           delegate: TBVRateDelegate?,
-                          visionId: Int) {
+                          visionId: Int,
+                          team: QDMTeam? = nil) {
         let router = MyToBeVisionRateRouter(viewController: viewController)
 //<<<<<<< HEAD
-        let worker = MyToBeVisionRateWorker(visionId: visionId)
+        let worker = MyToBeVisionRateWorker(visionId: visionId, team: team)
 //=======
 //        let worker = MyToBeVisionRateWorker(visionId: visionId, viewController: viewController, team: nil)
 //>>>>>>> f9d253774380beb2d9f3f07c2319adab215eeb4b

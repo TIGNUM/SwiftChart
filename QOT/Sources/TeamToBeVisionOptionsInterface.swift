@@ -23,12 +23,13 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var alertCancelTitle: String { get }
     var alertEndTitle: String { get }
     var userDidVote: Bool { get }
-    var poll: QDMTeamToBeVisionPoll? { get }
+    var toBeVisionPoll: QDMTeamToBeVisionPoll? { get }
+    var trackerPoll: QDMTeamToBeVisionTrackerPoll? { get }
     var team: QDMTeam? { get }
 
-    func endPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
-    func showRateScreen()
+    func endPoll(_ completion: @escaping () -> Void)
     func endRating()
+    func getTeamToBeVision(_ completion: @escaping (QDMTeamToBeVision?) -> Void)
 }
 
 protocol TeamToBeVisionOptionsRouterInterface {

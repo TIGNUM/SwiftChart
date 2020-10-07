@@ -14,23 +14,18 @@ protocol TeamToBeVisionViewControllerInterface: class {
     func showNullState(with title: String, message: String, header: String)
     func hideNullState()
     func setSelectionBarButtonItems()
-    func load(_ teamVision: QDMTeamToBeVision?,
-              rateText: String?,
-              isRateEnabled: Bool,
-              shouldShowSingleMessageRating: Bool?)
-    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool)
+    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool)
+    func updatePollButton(cta: TeamTBV.CTA)
+    func updateTrackerButton(cta: TeamTBV.CTA)
 }
 
 protocol TeamToBeVisionPresenterInterface {
     func setupView()
     func showNullState(with title: String, teamName: String?, message: String)
     func hideNullState()
-    func load(_ teamVision: QDMTeamToBeVision?,
-              rateText: String?,
-              isRateEnabled: Bool,
-              shouldShowSingleMessageRating: Bool?)
+    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool)
     func setSelectionBarButtonItems()
-    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool)
+    func updatePoll(visionPoll: QDMTeamToBeVisionPoll?, trackerPoll: QDMTeamToBeVisionTrackerPoll?)
 }
 
 protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
@@ -58,9 +53,8 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     func lastUpdatedTeamVision() -> String?
     func presentTrends()
     func shareTeamToBeVision()
-    func hasOpenVisionRatingPoll(_ completion: @escaping (Bool) -> Void)
     func ratingTapped()
-    func isTrendsHidden(_ completion: @escaping (Bool) -> Void) 
+    func isTrendsHidden(_ completion: @escaping (Bool) -> Void)
 }
 
 protocol TeamToBeVisionRouterInterface {

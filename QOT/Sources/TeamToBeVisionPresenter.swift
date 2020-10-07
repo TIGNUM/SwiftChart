@@ -37,18 +37,17 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
     }
 
     func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool) {
-        viewController?.load(teamVision,
-                             rateText: rateText,
-                             isRateEnabled: isRateEnabled)
+        viewController?.load(teamVision, rateText: rateText, isRateEnabled: isRateEnabled)
     }
 
     func setSelectionBarButtonItems() {
         viewController?.setSelectionBarButtonItems()
     }
 
-    func updatePollButton(userIsAdmim: Bool, userDidVote: Bool, pollIsOpen: Bool) {
-        viewController?.updatePollButton(userIsAdmim: userIsAdmim,
-                                         userDidVote: userDidVote,
-                                         pollIsOpen: pollIsOpen)
+    func updatePoll(visionPoll: QDMTeamToBeVisionPoll?, trackerPoll: QDMTeamToBeVisionTrackerPoll?) {
+        viewController?.updateTrackerButton(cta: TeamTBV.CTA.rating(visionPoll: visionPoll,
+                                                                    trackerPoll: trackerPoll))
+        viewController?.updatePollButton(cta: TeamTBV.CTA.generator(visionPoll: visionPoll,
+                                                                    trackerPoll: trackerPoll))
     }
 }

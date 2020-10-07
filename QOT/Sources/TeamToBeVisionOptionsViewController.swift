@@ -107,7 +107,7 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
             break
         case .voting:
             if let team = interactor.team {
-                router.showTeamTBVGenerator(poll: interactor.poll, team: team)
+                router.showTeamTBVGenerator(poll: interactor.toBeVisionPoll, team: team)
             }
         default:
             break
@@ -121,7 +121,7 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
             case .rating:
                 self?.didEndRating()
             case .voting:
-                self?.interactor.endPoll { [weak self] (poll) in
+                self?.interactor.endPoll { [weak self] in
                     self?.didTapBackButton()
                 }
             default: break
@@ -154,21 +154,16 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
     func didTapRateOrVote() {
         switch pageType {
         case .rating:
-            interactor.showRateScreen()
+            interactor.getTeamToBeVision { [weak self] (teamTBV) in
+                self?.router.showRateScreen(with: teamTBV?.remoteID ?? 0, delegate: nil)
+            }
         case .voting:
-//            TODO: show Vote Screen
-            break
+            router.showTBVGenerator()
         default: break
         }
     }
 
     func didEndRating() {
         interactor.endRating()
-    }
-}
-
-extension TeamToBeVisionOptionsViewController: MyToBeVisionRateViewControllerProtocol {
-    func doneAction() {
-
     }
 }

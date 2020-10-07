@@ -82,14 +82,9 @@ final class VisionRatingExplanationViewController: BaseViewController {
 // MARK: - Actions
 extension VisionRatingExplanationViewController {
     @objc func startRating() {
-//<<<<<<< HEAD
         trackUserEvent(.OPEN, value: interactor.team.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
         router.showRateScreen(with: 0, delegate: self)
         updateBottomNavigation([], [])
-//=======
-//        trackUserEvent(.OPEN, value: interactor.team?.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-//        interactor.showRateScreen()
-//>>>>>>> f9d253774380beb2d9f3f07c2319adab215eeb4b
     }
 
     @objc func startTeamTBVGenerator() {
@@ -151,8 +146,10 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
     func setupRightBarButtonItem(title: String, type: Explanation.Types) {
         rightBarButtonTitle = title
         switch type {
-        case .ratingUser, .ratingOwner: rightBarButtonAction = #selector(startRating)
-        case .tbvPollOwner, .tbvPollUser: rightBarButtonAction = #selector(startTeamTBVGenerator)
+        case .ratingUser,
+             .ratingOwner: rightBarButtonAction = #selector(startRating)
+        case .tbvPollOwner,
+             .tbvPollUser: rightBarButtonAction = #selector(startTeamTBVGenerator)
         }
     }
 }
