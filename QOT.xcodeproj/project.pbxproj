@@ -1240,6 +1240,16 @@
 		F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */; };
 		F946D08D243CF24C001E2D23 /* StreamVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946D08C243CF24C001E2D23 /* StreamVideoPresenter.swift */; };
 		F946D08F243CFA71001E2D23 /* StreamVideoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946D08E243CFA71001E2D23 /* StreamVideoConfigurator.swift */; };
+		F947EA082521F45D004C7076 /* TeamVisionTrackerDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA002521F45D004C7076 /* TeamVisionTrackerDetailsPresenter.swift */; };
+		F947EA092521F45D004C7076 /* TeamVisionTrackerDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA012521F45D004C7076 /* TeamVisionTrackerDetailsWorker.swift */; };
+		F947EA0A2521F45D004C7076 /* TeamVisionTrackerDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA022521F45D004C7076 /* TeamVisionTrackerDetailsRouter.swift */; };
+		F947EA0B2521F45D004C7076 /* TeamVisionTrackerDetailsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA032521F45D004C7076 /* TeamVisionTrackerDetailsInterface.swift */; };
+		F947EA0C2521F45D004C7076 /* TeamVisionTrackerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA042521F45D004C7076 /* TeamVisionTrackerDetailsViewController.swift */; };
+		F947EA0D2521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA052521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift */; };
+		F947EA0E2521F45D004C7076 /* TeamVisionTrackerDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA062521F45D004C7076 /* TeamVisionTrackerDetailsModel.swift */; };
+		F947EA0F2521F45D004C7076 /* TeamVisionTrackerDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA072521F45D004C7076 /* TeamVisionTrackerDetailsConfigurator.swift */; };
+		F947EA252521F4DA004C7076 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F947EA242521F4DA004C7076 /* BarChartView.swift */; };
+		F947EA2D2521F4FD004C7076 /* TeamVisionTrackerDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F947EA2C2521F4FD004C7076 /* TeamVisionTrackerDetails.storyboard */; };
 		F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */; };
 		F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9231228EAE46000DEAEC /* ToolsWorker.swift */; };
 		F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */; };
@@ -2659,6 +2669,16 @@
 		F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CopyRightBucketsViewController.xib; sourceTree = "<group>"; };
 		F946D08C243CF24C001E2D23 /* StreamVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoPresenter.swift; sourceTree = "<group>"; };
 		F946D08E243CFA71001E2D23 /* StreamVideoConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoConfigurator.swift; sourceTree = "<group>"; };
+		F947EA002521F45D004C7076 /* TeamVisionTrackerDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionTrackerDetailsPresenter.swift; sourceTree = "<group>"; };
+		F947EA012521F45D004C7076 /* TeamVisionTrackerDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionTrackerDetailsWorker.swift; sourceTree = "<group>"; };
+		F947EA022521F45D004C7076 /* TeamVisionTrackerDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionTrackerDetailsRouter.swift; sourceTree = "<group>"; };
+		F947EA032521F45D004C7076 /* TeamVisionTrackerDetailsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionTrackerDetailsInterface.swift; sourceTree = "<group>"; };
+		F947EA042521F45D004C7076 /* TeamVisionTrackerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionTrackerDetailsViewController.swift; sourceTree = "<group>"; };
+		F947EA052521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionTrackerDetailsInteractor.swift; sourceTree = "<group>"; };
+		F947EA062521F45D004C7076 /* TeamVisionTrackerDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionTrackerDetailsModel.swift; sourceTree = "<group>"; };
+		F947EA072521F45D004C7076 /* TeamVisionTrackerDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionTrackerDetailsConfigurator.swift; sourceTree = "<group>"; };
+		F947EA242521F4DA004C7076 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		F947EA2C2521F4FD004C7076 /* TeamVisionTrackerDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamVisionTrackerDetails.storyboard; sourceTree = "<group>"; };
 		F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsPresenter.swift; sourceTree = "<group>"; };
 		F95B9231228EAE46000DEAEC /* ToolsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsWorker.swift; sourceTree = "<group>"; };
 		F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsRouter.swift; sourceTree = "<group>"; };
@@ -3757,6 +3777,7 @@
 		5F8A89882296CA530011A05C /* MyToBeVision */ = {
 			isa = PBXGroup;
 			children = (
+				F947E9FF2521F419004C7076 /* TeamVisionTrackerResultDetails */,
 				F9F4706B2510C4A0002331F4 /* AdminOptions */,
 				F99E9CBA24EABD5600325EAE /* RatingExplanation */,
 				F910879724C5A69100CA343A /* TeamToBeVision */,
@@ -5707,6 +5728,23 @@
 			name = Copyright;
 			sourceTree = "<group>";
 		};
+		F947E9FF2521F419004C7076 /* TeamVisionTrackerResultDetails */ = {
+			isa = PBXGroup;
+			children = (
+				F947EA002521F45D004C7076 /* TeamVisionTrackerDetailsPresenter.swift */,
+				F947EA012521F45D004C7076 /* TeamVisionTrackerDetailsWorker.swift */,
+				F947EA022521F45D004C7076 /* TeamVisionTrackerDetailsRouter.swift */,
+				F947EA032521F45D004C7076 /* TeamVisionTrackerDetailsInterface.swift */,
+				F947EA042521F45D004C7076 /* TeamVisionTrackerDetailsViewController.swift */,
+				F947EA052521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift */,
+				F947EA062521F45D004C7076 /* TeamVisionTrackerDetailsModel.swift */,
+				F947EA072521F45D004C7076 /* TeamVisionTrackerDetailsConfigurator.swift */,
+				F947EA242521F4DA004C7076 /* BarChartView.swift */,
+				F947EA2C2521F4FD004C7076 /* TeamVisionTrackerDetails.storyboard */,
+			);
+			name = TeamVisionTrackerResultDetails;
+			sourceTree = "<group>";
+		};
 		F95B922E228EADF4000DEAEC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -6265,6 +6303,7 @@
 				366AFD1820BDAD3000109F29 /* FormView.xib in Resources */,
 				389BBC8E235EE8900009FA02 /* CoachMark.storyboard in Resources */,
 				F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */,
+				F947EA2D2521F4FD004C7076 /* TeamVisionTrackerDetails.storyboard in Resources */,
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
 				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
@@ -6774,6 +6813,7 @@
 				5F7BE7802289588100BA5DCF /* MyQotSupportInteractor.swift in Sources */,
 				36E12EC2232B57F0009E96EA /* DTPreparePresenter.swift in Sources */,
 				CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */,
+				F947EA0C2521F45D004C7076 /* TeamVisionTrackerDetailsViewController.swift in Sources */,
 				B430D7F323A915ED00C75C9C /* MyQotAdminEnvironmentSettingsModel.swift in Sources */,
 				CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */,
 				B430D7D023A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsModel.swift in Sources */,
@@ -6781,6 +6821,7 @@
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
 				36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */,
 				380B03CA241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift in Sources */,
+				F947EA0F2521F45D004C7076 /* TeamVisionTrackerDetailsConfigurator.swift in Sources */,
 				F9A5C94A22B7D08500AB2E94 /* PaymentReminderPresenter.swift in Sources */,
 				F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */,
 				B86CFC9323DEF29F004EAA68 /* ImpactReadiness1.swift in Sources */,
@@ -6934,6 +6975,7 @@
 				382CDC6424A2433300B34BCE /* TeamEditInteractor.swift in Sources */,
 				F91087A124C5A6BD00CA343A /* TeamToBeVisionWorker.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
+				F947EA092521F45D004C7076 /* TeamVisionTrackerDetailsWorker.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
 				8D25778922F8748300D42B90 /* OnboardingLoginViewModel.swift in Sources */,
 				F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */,
@@ -7194,6 +7236,7 @@
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				389BBC87235EE68B0009FA02 /* CoachMarksRouter.swift in Sources */,
 				F96D9F3824D85AB800188482 /* TeamInvitationCell.swift in Sources */,
+				F947EA0A2521F45D004C7076 /* TeamVisionTrackerDetailsRouter.swift in Sources */,
 				B474CA8D2398F85F00A829B5 /* RegisterIntroPresenter.swift in Sources */,
 				36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */,
 				367A58592326A15D0089A082 /* DTSolve.swift in Sources */,
@@ -7312,6 +7355,7 @@
 				75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
 				F9F470752510C4D7002331F4 /* TeamToBeVisionOptionsWorker.swift in Sources */,
+				F947EA0B2521F45D004C7076 /* TeamVisionTrackerDetailsInterface.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				BB0ED0982317FF7B006A0476 /* UISegmentedControl+Underline.swift in Sources */,
 				9C6E48C6232A4E4E004D657F /* UIButton+Animations.swift in Sources */,
@@ -7343,6 +7387,7 @@
 				754EBEF022C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift in Sources */,
 				8D0B4D252301CC4000A1AC47 /* RegistrationNamesInterface.swift in Sources */,
 				AC87A7A2220D981600622C90 /* Intents.intentdefinition in Sources */,
+				F947EA0E2521F45D004C7076 /* TeamVisionTrackerDetailsModel.swift in Sources */,
 				9CC426282306D42200F8072E /* GuideTrackModelItem.swift in Sources */,
 				8D40768F22E5A5AA0027864D /* MySprintDetailsInteractor.swift in Sources */,
 				F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */,
@@ -7476,6 +7521,7 @@
 				367A585D2326A1AF0089A082 /* DTViewController.swift in Sources */,
 				363B9CC9232D0B7D00C1A29E /* WorkerTBV.swift in Sources */,
 				B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */,
+				F947EA252521F4DA004C7076 /* BarChartView.swift in Sources */,
 				F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
 				9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */,
@@ -7703,6 +7749,7 @@
 				DBA3921C23247B2D0017E7F6 /* QuestionnaireTableViewCell.swift in Sources */,
 				38E84B80241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift in Sources */,
 				367CD18222EF4EDE00AF2187 /* OnboardingLoginInterface.swift in Sources */,
+				F947EA0D2521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift in Sources */,
 				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
 				75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */,
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
@@ -7715,6 +7762,7 @@
 				38A2D17E25025C7100CEA071 /* DTTeamTBVConfigurator.swift in Sources */,
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
+				F947EA082521F45D004C7076 /* TeamVisionTrackerDetailsPresenter.swift in Sources */,
 				B4BCD0E623AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */,

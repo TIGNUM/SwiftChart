@@ -10,7 +10,11 @@ target 'QOT' do
   pod 'SwiftyBeaver'
   pod 'AppCenter'
   pod 'Kingfisher'
+<<<<<<< HEAD
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'feature/QOT-3063-team-tbv-generator-poll'
+=======
+  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'feature/QOT-2993-Team-Edition-API'
+>>>>>>> d2f6b99f8dd0a8c8f89e0eb14d9f5ec5e2b257d6
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
   pod 'SwiftChart', :git => 'git@github.com:SanggeonPark/SwiftChart.git'

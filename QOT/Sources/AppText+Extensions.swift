@@ -552,6 +552,12 @@ public extension AppTextKey {
     static let my_x_team_tbv_options_alert_leftButton = AppTextKey("my_x.team_tbv_options.alert_leftButton")
     static let my_x_team_tbv_options_alert_rightButton = AppTextKey("my_x.team_tbv_options.alert_rightButton")
 
+    // MARK: - Team ToBeVision Tracker Details
+    static let my_x_team_vision_tracker_total_votes = AppTextKey("my_x.team_vision_tracker.total_votes")
+    static let my_x_team_vision_tracker_average_rating = AppTextKey("my_x.team_vision_tracker.average_rating")
+    static let my_x_team_vision_tracker_my_rating = AppTextKey("my_x.team_vision_tracker.my_rating")
+    static let my_x_team_vision_tracker_votes = AppTextKey("my_x.team_vision_tracker.votes")
+
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")
     static let my_x_team_create_description = AppTextKey("my_x.team.create_description")
