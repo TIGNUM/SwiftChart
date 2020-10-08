@@ -1175,7 +1175,7 @@ extension DailyBriefInteractor {
                                                               image: URL(string: collection.thumbnailURLString ?? ""),
                                                               author: collection.author ?? "",
                                                               publisheDate: collection.publishedDate ?? Date(),
-                                                              timeToRead: collection.secondsRequired,
+                                                              timeToRead: collection.durationString,
                                                               isNew: self.isNew(collection),
                                                               remoteID: collection.remoteID ?? 0,
                                                               domainModel: whatsHotLatest))
