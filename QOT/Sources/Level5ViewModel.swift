@@ -49,4 +49,10 @@ class Level5ViewModel: BaseDailyBriefViewModel {
     var confirmationMessage: String?
     var latestSavedValue: Int?
     var levelMessages: [LevelDetail]
+
+    func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        return super.isContentEqual(to: source) &&
+            domainModel?.latestGetToLevel5Value == source.domainModel?.latestGetToLevel5Value &&
+            domainModel?.currentGetToLevel5Value == source.domainModel?.currentGetToLevel5Value
+    }
 }
