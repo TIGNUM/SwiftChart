@@ -16,45 +16,83 @@ struct TeamTBV {
 
     enum CTA {
         case generator(visionPoll: QDMTeamToBeVisionPoll?,
-                       trackerPoll: QDMTeamToBeVisionTrackerPoll?)
+                       trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                       team: QDMTeam?)
         case rating(visionPoll: QDMTeamToBeVisionPoll?,
-                    trackerPoll: QDMTeamToBeVisionTrackerPoll?)
+                    trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                    team: QDMTeam?)
 
         func state() throws -> State {
             switch self {
-            case .generator(let visionPoll, let trackerPoll):
-                switch (trackerPoll?.open,
-                        visionPoll?.creator,
-                        visionPoll?.open,
-                        visionPoll?.userDidVote) {
-                case (true, false, _, _),
-                     (_, false, false, _): return .isHidden
+            case .generator(let visionPoll, let trackerPoll, let team):
+                log("🎯🎯🎯 Generator: trackerPoll?.open == true: \(trackerPoll?.open == true)", level: .debug)
+                log("🎯🎯🎯 Generator: visionPoll?.creator == true: \(visionPoll?.creator == true)", level: .debug)
+                log("🎯🎯🎯 Generator: visionPoll?.open == true: \(visionPoll?.open == true)", level: .debug)
+                log("🎯🎯🎯 Generator: visionPoll?.userDidVote == true: \(visionPoll?.userDidVote == true)", level: .debug)
+                log("🎯🎯🎯 Generator: team?.thisUserIsOwner == true: \(team?.thisUserIsOwner == true)", level: .debug)
+                switch (trackerPoll?.open == true,
+                        visionPoll?.creator == true,
+                        visionPoll?.open == true,
+                        visionPoll?.userDidVote == true,
+                        team?.thisUserIsOwner == true) {
+                case (false, false, false, false, false),
+                     (true, false, _, _, false),
+                     (_, false, false, _, false):
+                    log("🎯🎯🎯 Generator.State: .isHidden", level: .debug)
+                    return .isHidden
 
-                case (_, false, true, true): return .isActive
+                case (_, false, true, true, _),
+                     (false, false, false, false, true):
+                    log("🎯🎯🎯 Generator.State: .isActive", level: .debug)
+                    return .isActive
 
-                case (true, true, _, _): return .isInactive
+                case (true, true, _, _, true):
+                    log("🎯🎯🎯 Generator.State: .isInactive", level: .debug)
+                    return .isInactive
 
-                case (_, false, true, false),
-                     (_, true, true, _): return .hasBatch
+                case (_, false, true, false, _),
+                     (_, true, true, _, _):
+                    log("🎯🎯🎯 Generator.State: .hasBatch", level: .debug)
+                    return .hasBatch
 
-                default: throw StateError.unknown
+                default:
+                    log("🎯🎯🎯 Generator.State: StateError.unknown", level: .debug)
+                    throw StateError.unknown
                 }
-            case .rating(let visionPoll, let trackerPoll):
-                switch (visionPoll?.open,
-                        trackerPoll?.creator,
-                        trackerPoll?.open,
-                        trackerPoll?.didVote) {
-                case (true, false, _, _),
-                     (_, false, false, _): return .isHidden
+            case .rating(let visionPoll, let trackerPoll, let team):
+                log("🎱🎱🎱 Tracker: visionPoll?.open == true: \(visionPoll?.open == true)", level: .debug)
+                log("🎱🎱🎱 Tracker: trackerPoll?.creator == true: \(trackerPoll?.creator == true)", level: .debug)
+                log("🎱🎱🎱 Tracker: trackerPoll?.open == true: \(trackerPoll?.open == true)", level: .debug)
+                log("🎱🎱🎱 Tracker: trackerPoll?.didVote == true: \(trackerPoll?.didVote == true)", level: .debug)
+                log("🎱🎱🎱 Tracker: team?.thisUserIsOwner == true: \(team?.thisUserIsOwner == true)", level: .debug)
+                switch (visionPoll?.open == true,
+                        trackerPoll?.creator == true,
+                        trackerPoll?.open == true,
+                        trackerPoll?.didVote == true,
+                        team?.thisUserIsOwner == true) {
+                case (false, false, false, false, false),
+                     (true, false, _, _, false),
+                     (_, false, false, _, false):
+                    log("🎱🎱🎱 Tracker.State: .isHidden", level: .debug)
+                    return .isHidden
 
-                case (_, false, true, true): return .isActive
+                case (_, false, true, true, _),
+                     (false, false, false, false, true):
+                    log("🎱🎱🎱 Tracker.State: .isActive", level: .debug)
+                    return .isActive
 
-                case (true, true, _, _): return .isInactive
+                case (true, _, _, _, true):
+                    log("🎱🎱🎱 Tracker.State: .isInactive", level: .debug)
+                    return .isInactive
 
-                case (_, false, true, false),
-                     (_, true, true, _): return .hasBatch
+                case (_, false, true, false, _),
+                     (_, true, true, _, _):
+                    log("🎱🎱🎱 Tracker.State: .hasBatch", level: .debug)
+                    return .hasBatch
 
-                default: throw StateError.unknown
+                default:
+                    log("🎱🎱🎱 Tracker.State: .StateError.unknown", level: .debug)
+                    throw StateError.unknown
                 }
             }
         }

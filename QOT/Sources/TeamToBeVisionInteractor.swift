@@ -99,7 +99,8 @@ final class TeamToBeVisionInteractor {
                                 rateText: "",
                                 isRateEnabled: false)
             self.presenter.updatePoll(visionPoll: self.teamVisionPoll,
-                                      trackerPoll: self.teamTrackerPoll)
+                                      trackerPoll: self.teamTrackerPoll,
+                                      team: self.team)
         }
     }
 }

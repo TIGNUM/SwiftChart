@@ -25,7 +25,9 @@ protocol TeamToBeVisionPresenterInterface {
     func hideNullState()
     func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool)
     func setSelectionBarButtonItems()
-    func updatePoll(visionPoll: QDMTeamToBeVisionPoll?, trackerPoll: QDMTeamToBeVisionTrackerPoll?)
+    func updatePoll(visionPoll: QDMTeamToBeVisionPoll?,
+                    trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                    team: QDMTeam?)
 }
 
 protocol TeamToBeVisionViewControllerScrollViewDelegate: class {

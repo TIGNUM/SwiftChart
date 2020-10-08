@@ -751,7 +751,7 @@
                                                             <constraint firstAttribute="height" constant="1" id="iBi-zf-OFT"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YT-VH-eyH">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YT-VH-eyH" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                                         <rect key="frame" x="252" y="5" width="114" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="t0K-YQ-5Xg"/>
@@ -776,7 +776,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-ta-NLV">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-ta-NLV" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="6.5" width="137" height="37"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>

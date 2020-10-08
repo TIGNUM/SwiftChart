@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct ThemeAppearance {
     static func setNavigation(bar: UINavigationBar?, theme: ThemeView) {
@@ -254,8 +255,6 @@ enum ThemeButton {
     case audioButtonGrey
     case audioButtonStrategy
     case dateButtons
-    case pollActive
-    case pollInActive
 
     var defaultHeight: CGFloat {
         return 40.0
@@ -295,7 +294,7 @@ enum ThemeButton {
         case .backButton, .editButton, .carbonButton:
             colorUnselected = Palette.carbon
             colorBorder = Palette.accent40
-        case .dateButtons, .pollActive:
+        case .dateButtons:
             colorSelected = .accent40
             colorUnselected = .carbon
             colorBorder = .accent40
@@ -361,6 +360,7 @@ enum ThemableButton {
     case continueButton
     case tbvOption(disabled: Bool)
     case dateButtonsSelected
+    case poll
 
     var titleAttributes: [NSAttributedString.Key: Any]? {
         switch self {
@@ -382,7 +382,8 @@ enum ThemableButton {
              .level5,
              .continueButton,
              .tbvOption,
-             .dateButtonsSelected:
+             .dateButtonsSelected,
+             .poll:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -419,6 +420,8 @@ enum ThemableButton {
                                border: disabled ? .clear : .accent)
         case .dateButtonsSelected:
             return ButtonTheme(foreground: .accent, background: .accent40, border: .clear)
+        case .poll:
+            return ButtonTheme(foreground: .accent, background: .carbon90, border: .accent40)
         }
     }
 
@@ -471,9 +474,21 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+        case .poll:
+            return ButtonTheme(foreground: .sand40, background: .sand10, border: .sand10)
         default:
             return nil
         }
+    }
+
+    func apply(_ button: ButtonThemeable, key: AppTextKey) {
+        var button = button
+        button.titleAttributes = titleAttributes
+        button.normal = normal
+        button.highlight = highlight
+        button.select = select
+        button.disabled = disabled
+        button.setTitle(AppTextService.get(key))
     }
 
     func apply(_ button: ButtonThemeable, title: String?) {

@@ -25,8 +25,8 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet private weak var teamNullStateImageView: UIImageView!
     @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
-    @IBOutlet private weak var pollButton: AnimatedButton!
-    @IBOutlet private weak var trackerButton: AnimatedButton!
+    @IBOutlet private weak var pollButton: RoundedButton!
+    @IBOutlet private weak var trackerButton: RoundedButton!
     @IBOutlet private weak var trendsLabel: UILabel!
     @IBOutlet private weak var trendsButton: UIButton!
     @IBOutlet private weak var trendsBarView: UIView!
@@ -257,8 +257,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
         ThemeBorder.accent40.apply(pollButton)
         ThemeBorder.accent40.apply(trackerButton)
-        trackerButton.setTitle(AppTextService.get(.my_x_team_tbv_section_rating_button), for: .normal)
-//        pollButton.setTitle(AppTextService.get(.my_x_team_tbv_section_poll_button), for: .normal)
+        ThemableButton.poll.apply(pollButton, key: .my_x_team_tbv_section_poll_button)
+        ThemableButton.poll.apply(trackerButton, key: .my_x_team_tbv_section_rating_button)
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
@@ -401,12 +401,9 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
             case .isActive:
                 pollButton.isHidden = false
                 pollButton.isEnabled = true
-                ThemeBorder.accent40.apply(pollButton)
             case .isInactive:
                 pollButton.isHidden = false
-                pollButton.isEnabled = true
-                ThemableButton.poll(active: false).apply(pollButton,
-                                                         title: AppTextService.get(.my_x_team_tbv_section_poll_button))
+                pollButton.isEnabled = false
             case .hasBatch:
                 pollButton.isHidden = false
                 pollButton.isEnabled = true
@@ -426,10 +423,9 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
             case .isActive:
                 trackerButton.isHidden = false
                 trackerButton.isEnabled = true
-                ThemeBorder.accent40.apply(trackerButton)
             case .isInactive:
                 trackerButton.isHidden = false
-                trackerButton.isEnabled = true
+                trackerButton.isEnabled = false
 
             case .hasBatch:
                 trackerButton.isHidden = false
