@@ -50,7 +50,7 @@ class Level5ViewModel: BaseDailyBriefViewModel {
     var latestSavedValue: Int?
     var levelMessages: [LevelDetail]
 
-    func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
         return super.isContentEqual(to: source) &&
             domainModel?.latestGetToLevel5Value == source.domainModel?.latestGetToLevel5Value &&
             domainModel?.currentGetToLevel5Value == source.domainModel?.currentGetToLevel5Value
