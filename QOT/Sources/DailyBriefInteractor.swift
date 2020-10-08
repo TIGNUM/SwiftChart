@@ -1113,9 +1113,11 @@ extension DailyBriefInteractor {
     func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var meAtMyBestList: [BaseDailyBriefViewModel] = []
         let createMeAtMyBestTitle = AppTextService.get(.daily_brief_section_my_best_title)
+        guard createMeAtMyBestTitle.isEmpty == false else { return meAtMyBestList }
         if meAtMyBest.toBeVisionTrack?.sentence?.isEmpty != false {
             let tbvEmptyIntro = AppTextService.get(.daily_brief_section_my_best_empty_body)
             let ctaTBVButtonText = AppTextService.get(.daily_brief_section_my_best_empty_button_create_tbv)
+            guard tbvEmptyIntro.isEmpty == false, ctaTBVButtonText.isEmpty == false else { return [] }
             meAtMyBestList.append(MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
             return meAtMyBestList
         } else {
@@ -1123,6 +1125,9 @@ extension DailyBriefInteractor {
             let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
             let tbvIntro2 = DailyBriefAtMyBestWorker().storedText(meAtMyBest.contentCollections?.filter {$0.searchTags.contains("ME_AT_MY_BEST_REFLECTION")}.randomElement()?.contentItems.first?.valueText ?? " ")
             let ctaTBVButtonText = AppTextService.get(.daily_brief_section_my_best_button_my_tbv)
+            if tbvIntro.isEmpty && tbvSentence.isEmpty && tbvIntro2.isEmpty && ctaTBVButtonText.isEmpty {
+                return []
+            }
             meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle,
                                                           intro: tbvIntro,
                                                           tbvStatement: tbvSentence,
