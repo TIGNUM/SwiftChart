@@ -86,25 +86,6 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
         }
         return []
     }
-
-    @IBAction func tapStartRating(_ sender: Any) {
-        interactor.ratingTapped()
-    }
-
-    @objc func writeButtonAction(_ sender: Any) {
-        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
-            self?.trackUserEvent(.EDIT,
-                                 value: self?.interactor?.team.remoteID,
-                                 valueType: .WRITE_TEAM_TBV,
-                                 action: .TAP)
-            self?.interactor.showEditVision(isFromNullState: false)
-            self?.shouldShowCreate = false
-        }
-        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
-        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
-                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
-                      bottomItems: [add, openTeamPoll])
-    }
 }
 
 // MARK: - ToBeVisionSelectionBarProtocol
@@ -193,36 +174,86 @@ private extension TeamToBeVisionViewController {
 // MARK: - Actions
 private extension TeamToBeVisionViewController {
     @IBAction func didTapOpenTrends(_ sender: Any) {
-        //        TODO
+        //TODO
     }
 
-    @IBAction func showTeamRatingExplanation(_ sender: Any) {
-        trackUserEvent(.OPEN,
-                       value: interactor.team.remoteID,
-                       valueType: .TEAM_TO_BE_VISION_RATING_EXPLANATION,
-                       action: .TAP)
-        router.showTeamRatingExplanation(interactor.team)
-    }
+//    @IBAction func didTapRatingButton(_ sender: RoundedButton) {
+//        trackUserEvent(.OPEN,
+//                       value: interactor.team.remoteID,
+//                       valueType: .TEAM_TO_BE_VISION_RATING_EXPLANATION,
+//                       action: .TAP)
+//        router.showTeamRatingExplanation(interactor.team)
+//        interactor.ratingTapped()
+//    }
 
-    @IBAction func didTapTeamTbvPollButton() {
+    @IBAction func didTapPollButton(_ sender: RoundedButton) {
         trackUserEvent(.OPEN,
                        value: interactor.team.remoteID,
                        valueType: .TEAM_TBV_POLL_BUTTON_TAP,
                        action: .TAP)
-        if interactor.shouldShowPollExplanation {
-            router.showTeamTBVPollEXplanation(interactor.team)
-        }
-        if interactor.shouldShowPollAdmin {
+        switch sender.ctaAction {
+        case .showAdminOptionsGenerator:
             router.showTeamAdminVoteView(poll: interactor.teamVisionPoll,
                                          type: .voting,
                                          team: interactor.team)
+
+        case .showAdminOptionsRating:
+            router.showTeamAdminVoteView(poll: interactor.teamVisionPoll,
+                                         type: .rating,
+                                         team: interactor.team)
+
+        case .showBanner(let message):
+            router.showBanner(message: message)
+
+        case .showIntroGenerator:
+            router.showTeamTBVPollEXplanation(interactor.team)
+
+        case .showIntroRating:
+            router.showTeamRatingExplanation(interactor.team)
+
+        case .showRating:
+            interactor.ratingTapped()
+
+        case .showGenerator:
+            router.showTeamTBVGenerator(poll: interactor.teamVisionPoll,
+                                        team: interactor.team)
+
+        case .undefined,
+             .none: break
         }
+    }
+
+//        if interactor.shouldShowPollExplanation {
+//            router.showTeamTBVPollEXplanation(interactor.team)
+//        }
+//        if interactor.shouldShowPollAdmin {
+//            router.showTeamAdminVoteView(poll: interactor.teamVisionPoll,
+//                                         type: .voting,
+//                                         team: interactor.team)
+//        }
+//    }
+
+    @objc func writeButtonAction(_ sender: Any) {
+        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
+            self?.trackUserEvent(.EDIT,
+                                 value: self?.interactor?.team.remoteID,
+                                 valueType: .WRITE_TEAM_TBV,
+                                 action: .TAP)
+            self?.interactor.showEditVision(isFromNullState: false)
+            self?.shouldShowCreate = false
+        }
+        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
+        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
+                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
+                      bottomItems: [add, openTeamPoll])
     }
 
     @objc func showCreateAlert(_ sender: Any) {
         let openTeamPollTitle = AppTextService.get(.my_x_team_tbv_section_alert_right_button)
         let openTeamPoll = QOTAlertAction(title: openTeamPollTitle) { [weak self] (_) in
-            self?.didTapTeamTbvPollButton()
+            if let pollButton = self?.pollButton {
+                self?.didTapPollButton(pollButton)
+            }
         }
         let addTitle = AppTextService.get(.my_x_team_tbv_section_alert_left_button)
         let add = QOTAlertAction(title: addTitle) { [weak self] (_) in
@@ -255,8 +286,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
 
-        ThemeBorder.accent40.apply(pollButton)
-        ThemeBorder.accent40.apply(trackerButton)
         ThemableButton.poll.apply(pollButton, key: .my_x_team_tbv_section_poll_button)
         ThemableButton.poll.apply(trackerButton, key: .my_x_team_tbv_section_rating_button)
         let adapter = ImagePickerControllerAdapter(self)
@@ -392,10 +421,12 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
     }
 
     /// This all will change. The load func is doing way to many things. Please refactor.
-    func updatePollButton(cta: TeamTBV.CTA) {
+    func updatePollButton(poll: ButtonTheme.Poll) {
         do {
-            let state = try cta.state()
-            switch state {
+            let cta = try poll.stateWithAction()
+            pollButton.ctaState = cta.state
+            pollButton.ctaAction = cta.action
+            switch cta.state {
             case .isHidden:
                 pollButton.isHidden = true
             case .isActive:
@@ -403,21 +434,26 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 pollButton.isEnabled = true
             case .isInactive:
                 pollButton.isHidden = false
-                pollButton.isEnabled = false
+                pollButton.isEnabled = true
+                pollButton.isSelected = true
             case .hasBatch:
                 pollButton.isHidden = false
                 pollButton.isEnabled = true
                 addBatchToPollButton()
+            case .undefined:
+                break
             }
         } catch {
             log("StateError.unkown: \(error.localizedDescription)", level: .debug)
         }
     }
 
-    func updateTrackerButton(cta: TeamTBV.CTA) {
+    func updateTrackerButton(poll: ButtonTheme.Poll) {
         do {
-            let state = try cta.state()
-            switch state {
+            let cta = try poll.stateWithAction()
+            trackerButton.ctaState = cta.state
+            trackerButton.ctaAction = cta.action
+            switch cta.state {
             case .isHidden:
                 trackerButton.isHidden = true
             case .isActive:
@@ -425,12 +461,14 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 trackerButton.isEnabled = true
             case .isInactive:
                 trackerButton.isHidden = false
-                trackerButton.isEnabled = false
-
+                trackerButton.isEnabled = true
+                trackerButton.isSelected = true
             case .hasBatch:
                 trackerButton.isHidden = false
                 trackerButton.isEnabled = true
                 addBatchToTrackerButton()
+            case .undefined:
+                break
             }
         } catch {
             log("StateError.unkown: \(error.localizedDescription)", level: .debug)

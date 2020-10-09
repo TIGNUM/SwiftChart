@@ -100,7 +100,8 @@ final class TeamToBeVisionInteractor {
                                 isRateEnabled: false)
             self.presenter.updatePoll(visionPoll: self.teamVisionPoll,
                                       trackerPoll: self.teamTrackerPoll,
-                                      team: self.team)
+                                      team: self.team,
+                                      teamToBeVision: self.teamVision)
         }
     }
 }
@@ -220,7 +221,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
             }
         }
     }
-    
+
     func shareTeamToBeVision() {
         guard let vision = teamVision else { return }
         worker.getTeamToBeVisionShareData(vision) { [weak self] (visionShare, error) in

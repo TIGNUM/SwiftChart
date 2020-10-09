@@ -1084,6 +1084,7 @@ public extension AppTextKey {
 
     // MARK: - Banner
     static let banner_tbv_poll_ends_days = AppTextKey("tbv.poll.ends")
+    static let banner_unavailable_while_poll_active = AppTextKey("unavailable.while_poll.active")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")

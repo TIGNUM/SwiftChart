@@ -46,12 +46,15 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
 
     func updatePoll(visionPoll: QDMTeamToBeVisionPoll?,
                     trackerPoll: QDMTeamToBeVisionTrackerPoll?,
-                    team: QDMTeam?) {
-        viewController?.updateTrackerButton(cta: TeamTBV.CTA.rating(visionPoll: visionPoll,
-                                                                    trackerPoll: trackerPoll,
-                                                                    team: team))
-        viewController?.updatePollButton(cta: TeamTBV.CTA.generator(visionPoll: visionPoll,
-                                                                    trackerPoll: trackerPoll,
-                                                                    team: team))
+                    team: QDMTeam?,
+                    teamToBeVision: QDMTeamToBeVision?) {
+        viewController?.updateTrackerButton(poll: ButtonTheme.Poll.rating(visionPoll: visionPoll,
+                                                                          trackerPoll: trackerPoll,
+                                                                          team: team,
+                                                                          tbv: teamToBeVision))
+        viewController?.updatePollButton(poll: ButtonTheme.Poll.generator(visionPoll: visionPoll,
+                                                                          trackerPoll: trackerPoll,
+                                                                          team: team,
+                                                                          tbv: teamToBeVision))
     }
 }

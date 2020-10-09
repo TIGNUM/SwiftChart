@@ -363,29 +363,7 @@ enum ThemableButton {
     case poll
 
     var titleAttributes: [NSAttributedString.Key: Any]? {
-        switch self {
-        case .myLibrary,
-             .fullscreenAudioPlayerDownload,
-             .fullscreenVideoPlayerDownload,
-             .myLibraryNotes,
-             .askPermissions,
-             .fullscreenAudioPlayerDownloadLight,
-             .syncedCalendar,
-             .walkthroughGotIt,
-             .myPlans,
-             .signinInfo,
-             .myTbvDataRate,
-             .createAccountInfo,
-             .trackSelection,
-             .paymentReminder,
-             .articleMarkAsRead,
-             .level5,
-             .continueButton,
-             .tbvOption,
-             .dateButtonsSelected,
-             .poll:
-            return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
-        }
+        return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
     }
 
     var normal: ButtonTheme? {
@@ -427,7 +405,9 @@ enum ThemableButton {
 
     var highlight: ButtonTheme? {
         switch self {
-        case .myLibrary, .askPermissions, .syncedCalendar,
+        case .myLibrary,
+             .askPermissions,
+             .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
@@ -437,14 +417,18 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
-        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .paymentReminder:
+        case .fullscreenAudioPlayerDownload,
+             .fullscreenVideoPlayerDownload,
+             .paymentReminder:
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent70,
-                               background: (selected ? .accent40 : nil), border: (selected ? .clear : .accent10))
-        case .level5, .continueButton:
+                               background: (selected ? .accent40 : nil),
+                               border: (selected ? .clear : .accent10))
+        case .level5,
+             .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         default:
             return nil
@@ -453,10 +437,13 @@ enum ThemableButton {
 
     var select: ButtonTheme? {
         switch self {
-        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+        case .fullscreenAudioPlayerDownload,
+             .fullscreenVideoPlayerDownload:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+        case .poll:
+            return ButtonTheme(foreground: .sand40, background: .sand10, border: .clear)
         default:
             return nil
         }
@@ -474,41 +461,33 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
-        case .poll:
-            return ButtonTheme(foreground: .sand40, background: .sand10, border: .sand10)
         default:
             return nil
         }
     }
 
     func apply(_ button: ButtonThemeable, key: AppTextKey) {
-        var button = button
-        button.titleAttributes = titleAttributes
-        button.normal = normal
-        button.highlight = highlight
-        button.select = select
-        button.disabled = disabled
+        apply(button)
         button.setTitle(AppTextService.get(key))
     }
 
     func apply(_ button: ButtonThemeable, title: String?) {
-        var button = button
-        button.titleAttributes = titleAttributes
-        button.normal = normal
-        button.highlight = highlight
-        button.select = select
-        button.disabled = disabled
+        apply(button)
         button.setTitle(title)
     }
 
     func apply(_ button: ButtonThemeable, title: NSAttributedString) {
+        apply(button)
+        button.setAttributedTitle(title)
+    }
+
+    private func apply(_ button: ButtonThemeable) {
         var button = button
         button.titleAttributes = titleAttributes
         button.normal = normal
         button.highlight = highlight
         button.select = select
         button.disabled = disabled
-        button.setAttributedTitle(title)
     }
 }
 
