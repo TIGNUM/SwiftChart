@@ -177,15 +177,6 @@ private extension TeamToBeVisionViewController {
         //TODO
     }
 
-//    @IBAction func didTapRatingButton(_ sender: RoundedButton) {
-//        trackUserEvent(.OPEN,
-//                       value: interactor.team.remoteID,
-//                       valueType: .TEAM_TO_BE_VISION_RATING_EXPLANATION,
-//                       action: .TAP)
-//        router.showTeamRatingExplanation(interactor.team)
-//        interactor.ratingTapped()
-//    }
-
     @IBAction func didTapPollButton(_ sender: RoundedButton) {
         trackUserEvent(.OPEN,
                        value: interactor.team.remoteID,
@@ -222,16 +213,6 @@ private extension TeamToBeVisionViewController {
              .none: break
         }
     }
-
-//        if interactor.shouldShowPollExplanation {
-//            router.showTeamTBVPollEXplanation(interactor.team)
-//        }
-//        if interactor.shouldShowPollAdmin {
-//            router.showTeamAdminVoteView(poll: interactor.teamVisionPoll,
-//                                         type: .voting,
-//                                         team: interactor.team)
-//        }
-//    }
 
     @objc func writeButtonAction(_ sender: Any) {
         let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
