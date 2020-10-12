@@ -1382,6 +1382,9 @@
 		F9FEA8CF25344F8D009BF786 /* PollOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA8CE25344F8D009BF786 /* PollOpenCell.swift */; };
 		F9FEA8D725344F9F009BF786 /* PollOpenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FEA8D625344F9F009BF786 /* PollOpenCell.xib */; };
 		F9FEA8DF25344FB2009BF786 /* PollOpenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */; };
+		F9FEA91C25348D1E009BF786 /* RateOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */; };
+		F9FEA92425348D2C009BF786 /* RateOpenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FEA92325348D2C009BF786 /* RateOpenCell.xib */; };
+		F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA92B25348D42009BF786 /* RateOpenModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2812,6 +2815,9 @@
 		F9FEA8CE25344F8D009BF786 /* PollOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenCell.swift; sourceTree = "<group>"; };
 		F9FEA8D625344F9F009BF786 /* PollOpenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollOpenCell.xib; sourceTree = "<group>"; };
 		F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenModel.swift; sourceTree = "<group>"; };
+		F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenCell.swift; sourceTree = "<group>"; };
+		F9FEA92325348D2C009BF786 /* RateOpenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateOpenCell.xib; sourceTree = "<group>"; };
+		F9FEA92B25348D42009BF786 /* RateOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2924,6 +2930,7 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F9FEA91425348C84009BF786 /* OpenTBVRate */,
 				F9FEA8CD25344F34009BF786 /* OpenTBVPoll */,
 				F96D9F3624D853CD00188482 /* TeamInvitation */,
 				F96D9F2F24D448F500188482 /* TeamVisionSuggestion */,
@@ -6013,6 +6020,16 @@
 			name = OpenTBVPoll;
 			sourceTree = "<group>";
 		};
+		F9FEA91425348C84009BF786 /* OpenTBVRate */ = {
+			isa = PBXGroup;
+			children = (
+				F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */,
+				F9FEA92325348D2C009BF786 /* RateOpenCell.xib */,
+				F9FEA92B25348D42009BF786 /* RateOpenModel.swift */,
+			);
+			name = OpenTBVRate;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6519,6 +6536,7 @@
 				3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */,
 				B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */,
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
+				F9FEA92425348D2C009BF786 /* RateOpenCell.xib in Resources */,
 				386C27A5241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib in Resources */,
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
@@ -7056,6 +7074,7 @@
 				F902CF5522DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift in Sources */,
 				F9F4707A2510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift in Sources */,
 				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
+				F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
@@ -7431,6 +7450,7 @@
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
+				F9FEA91C25348D1E009BF786 /* RateOpenCell.swift in Sources */,
 				9C24238822F3271E00B911E6 /* BaseDailyBriefViewModel.swift in Sources */,
 				3655F2D42326EBD600334719 /* DTMindsetWorker.swift in Sources */,
 				9CC426202306A4DB00F8072E /* GuidedTrackRowViewModel.swift in Sources */,

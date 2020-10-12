@@ -741,6 +741,14 @@ extension DailyBriefInteractor {
         return openPollList
     }
 
+    // MARK: - Rate is Open
+    func createRateOpen(rateBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var openRateList: [BaseDailyBriefViewModel] = []
+        let model = RateOpenModel(team: QDMTeam(), domainModel: rateBucket)
+        openRateList.append(model)
+        return openRateList
+    }
+
     // MARK: - Products we love
     func createProductsWeLove(productsBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var productsList: [BaseDailyBriefViewModel] = []

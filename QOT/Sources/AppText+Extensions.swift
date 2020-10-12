@@ -388,6 +388,10 @@ public extension AppTextKey {
     static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
     static let daily_brief_team_open_poll_title = AppTextKey("daily_brief.team_open_poll.title")
 
+    static let daily_brief_rate_open_title = AppTextKey("daily_brief.rate_open.title")
+    static let daily_brief_rate_open_cta = AppTextKey("daily_brief.rate_open.cta")
+    static let daily_brief_rate_open_text = AppTextKey("daily_brief.rate_open.text")
+
     static let daily_brief_team_invitation_and_label = AppTextKey("daily_brief.team_invitation.and_label")
     static let daily_brief_team_invitation_other_teams_label = AppTextKey("daily_brief.team_invitation.other_teams_label")
 

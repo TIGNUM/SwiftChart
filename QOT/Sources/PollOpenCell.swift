@@ -30,11 +30,11 @@ final class PollOpenCell: BaseDailyBriefCell {
     func configure(model: PollOpenModel?) {
         skeletonManager.hide()
         ctaButton.setTitle(AppTextService.get(.daily_brief_team_open_poll_cta), for: .normal)
-        pollLabel.text = model?.teamAdmin
         let text = AppTextService.get(.daily_brief_team_open_poll_text).replacingOccurrences(of: "${team_admin}", with: model?.teamAdmin ?? "")
         let title = AppTextService.get(.daily_brief_team_open_poll_title).replacingOccurrences(of: "${team_name}", with: model?.teamName ?? "")
         ThemeText.dailyInsightsTbvAdvice.apply(text, to: pollLabel)
         baseHeaderView?.configure(title: title, subtitle: nil)
+        baseHeaderView?.titleLabel.textColor = model?.teamColor
     }
 
     @IBAction func startPoll(_ sender: Any) {
