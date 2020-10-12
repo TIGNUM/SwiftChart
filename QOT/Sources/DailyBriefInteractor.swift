@@ -220,6 +220,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 //                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .teamInvitation,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .openPoll,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -280,8 +282,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .whatsHotLatest,
                                                         elements: strongSelf.createLatestWhatsHot(whatsHotLatestCell: bucket)))
                 case .THOUGHTS_TO_PONDER:
-                    sectionDataList.append(ArraySection(model: .thoughtsToPonder,
-                                                        elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
+//                    sectionDataList.append(ArraySection(model: .thoughtsToPonder,
+//                                                        elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .openPoll,
+                                                        elements: strongSelf.createPollOpen(pollBucket: bucket)))
                 case .GOOD_TO_KNOW:
                     sectionDataList.append(ArraySection(model: .goodToKnow,
                                                         elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
@@ -727,6 +731,14 @@ extension DailyBriefInteractor {
         let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, domainModel: invitationBucket)
         invitationList.append(model)
         return invitationList
+    }
+
+    // MARK: - Poll is Open
+    func createPollOpen(pollBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var openPollList: [BaseDailyBriefViewModel] = []
+        let model = PollOpenModel(teamName: "TEAM PINGPONG", teamAdmin: "a.plancoulaine@tignum.com", teamColor: UIColor.green, domainModel: pollBucket)
+        openPollList.append(model)
+        return openPollList
     }
 
     // MARK: - Products we love

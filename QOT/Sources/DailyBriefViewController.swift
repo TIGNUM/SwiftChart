@@ -122,7 +122,8 @@ extension DailyBriefViewController {
             case 7:
                 return getDepartureBespokeFeastCell(tableView, indexPath, nil)
             case 8:
-                return getThoughtsCell(tableView, indexPath, nil)
+                return getOpenPollCell(tableView, indexPath, nil)
+//                return getThoughtsCell(tableView, indexPath, nil)
             case 9:
                 return getDepartureBespokeFeastCell(tableView, indexPath, nil)
             case 10:
@@ -145,6 +146,8 @@ extension DailyBriefViewController {
 //                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
             case 18:
                 return getTeamInvitationCell(tableView, indexPath, nil)
+//            case 19:
+//                return
             default:
                 return UITableViewCell()
             }
@@ -206,7 +209,8 @@ extension DailyBriefViewController {
         case .LATEST_WHATS_HOT?:
             return getWhatsHot(tableView, indexPath, bucketItem as? WhatsHotLatestCellViewModel)
         case .THOUGHTS_TO_PONDER?:
-            return getThoughtsCell(tableView, indexPath, bucketItem as? ThoughtsCellViewModel)
+            return getOpenPollCell(tableView, indexPath, bucketItem as? PollOpenModel)
+//            return getThoughtsCell(tableView, indexPath, bucketItem as? ThoughtsCellViewModel)
         case .GOOD_TO_KNOW?:
             return getGoodToKnowCell(tableView, indexPath, bucketItem as? GoodToKnowCellViewModel)
         case .FROM_MY_COACH?:
@@ -772,6 +776,21 @@ private extension DailyBriefViewController {
         cell.clickableLinkDelegate = self
         return cell
     }
+
+    /**
+     * Method name:getOpenPollCell.
+     * Description: Placeholder to display the that the TBV Poll is Open.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getOpenPollCell(_ tableView: UITableView,
+                         _ indexPath: IndexPath,
+                         _ pollOpenModel: PollOpenModel?) -> UITableViewCell {
+        let cell: PollOpenCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: pollOpenModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
+    }
 }
 
 // MARK: - DailyBriefViewControllerInterface
@@ -823,6 +842,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(AudioBookmarkTableViewCell.self)
         tableView.registerDequeueable(NoteTableViewCell.self)
         tableView.registerDequeueable(DownloadTableViewCell.self)
+        tableView.registerDequeueable(PollOpenCell.self)
     }
 
     func scrollToSection(at: Int) {
@@ -897,6 +917,10 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
         interactor.didSelectJoinTeamInvite(invitation: invitation)
+    }
+
+    func presentToBeVisionPoll(for team: QDMTeam) {
+        router.showExplanation(team)
     }
 }
 

@@ -65,6 +65,8 @@ protocol DailyBriefViewControllerDelegate: class {
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation)
 
     func presentTeamPendingInvites()
+
+    func presentToBeVisionPoll(for team: QDMTeam)
 }
 
 protocol DailyBriefViewControllerInterface: class {
@@ -113,4 +115,5 @@ protocol DailyBriefRouterInterface: BaseRouterInterface {
     func showMyDataScreen()
     func presentTeamPendingInvites()
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)
+    func showExplanation(_ team: QDMTeam)
 }

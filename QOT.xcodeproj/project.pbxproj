@@ -1379,6 +1379,9 @@
 		F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */; };
 		F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */; };
 		F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */; };
+		F9FEA8CF25344F8D009BF786 /* PollOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA8CE25344F8D009BF786 /* PollOpenCell.swift */; };
+		F9FEA8D725344F9F009BF786 /* PollOpenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FEA8D625344F9F009BF786 /* PollOpenCell.xib */; };
+		F9FEA8DF25344FB2009BF786 /* PollOpenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2806,6 +2809,9 @@
 		F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableViewCell.swift; sourceTree = "<group>"; };
 		F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableViewCell.xib; sourceTree = "<group>"; };
 		F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableHeaderView.swift; sourceTree = "<group>"; };
+		F9FEA8CE25344F8D009BF786 /* PollOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenCell.swift; sourceTree = "<group>"; };
+		F9FEA8D625344F9F009BF786 /* PollOpenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollOpenCell.xib; sourceTree = "<group>"; };
+		F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2918,6 +2924,7 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F9FEA8CD25344F34009BF786 /* OpenTBVPoll */,
 				F96D9F3624D853CD00188482 /* TeamInvitation */,
 				F96D9F2F24D448F500188482 /* TeamVisionSuggestion */,
 				F96D9F2824D2DAB600188482 /* TeamToBeVision */,
@@ -5996,6 +6003,16 @@
 			name = SprintChallenge;
 			sourceTree = "<group>";
 		};
+		F9FEA8CD25344F34009BF786 /* OpenTBVPoll */ = {
+			isa = PBXGroup;
+			children = (
+				F9FEA8CE25344F8D009BF786 /* PollOpenCell.swift */,
+				F9FEA8D625344F9F009BF786 /* PollOpenCell.xib */,
+				F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */,
+			);
+			name = OpenTBVPoll;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6343,6 +6360,7 @@
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
+				F9FEA8D725344F9F009BF786 /* PollOpenCell.xib in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */,
 				386C27A9241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib in Resources */,
@@ -7245,6 +7263,7 @@
 				F9F470742510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift in Sources */,
 				38C23E5724235DCA0034571B /* DTPrepareStartModel.swift in Sources */,
 				F9348028247D467000DD1C7D /* FeatureExplainerWorker.swift in Sources */,
+				F9FEA8DF25344FB2009BF786 /* PollOpenModel.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
 				8D0B4D222301CC4000A1AC47 /* RegistrationNamesPresenter.swift in Sources */,
 				F99E9CC624EABD9C00325EAE /* VisionRatingExplanationInterface.swift in Sources */,
@@ -7526,6 +7545,7 @@
 				B474CA8F2398F85F00A829B5 /* RegisterIntroRouter.swift in Sources */,
 				386C27B4241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.swift in Sources */,
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
+				F9FEA8CF25344F8D009BF786 /* PollOpenCell.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				F9207CE724B77BEB007B1AB6 /* MyXTeamMembersWorker.swift in Sources */,
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
