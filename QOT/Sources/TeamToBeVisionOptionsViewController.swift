@@ -50,6 +50,7 @@ final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLeve
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        interactor.viewWillAppear()
         setStatusBar(color: .carbon)
         updateBottomNavigation(bottomNavigationLeftBarItems(), [])
     }
@@ -70,6 +71,10 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
         pageType = type
         ThemeView.level1.apply(view)
         baseHeaderView?.configure(title: type.pageTitle, subtitle: headerSubtitle)
+    }
+
+    func reload() {
+        tableView.reloadData()
     }
 }
 

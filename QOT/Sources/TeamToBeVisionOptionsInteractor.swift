@@ -43,6 +43,32 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
         presenter.setupView(type: type,
                             headerSubtitle: getTeamTBVPollRemainingDays(remainingDays))
     }
+
+    func viewWillAppear() {
+        guard let team = team else { return }
+
+        let dispatchGroup = DispatchGroup()
+        var tmpTBVPoll: QDMTeamToBeVisionPoll?
+        var tmpTrackerPoll: QDMTeamToBeVisionTrackerPoll?
+
+        dispatchGroup.enter()
+        getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+            tmpTBVPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        getCurrentRatingPoll(for: team) { (poll) in
+            tmpTrackerPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.toBeVisionPoll = tmpTBVPoll
+            self?.trackerPoll = tmpTrackerPoll
+            self?.presenter.reload()
+        }
+    }
 }
 
 // MARK: - TeamToBeVisionOptionsInteractorInterface

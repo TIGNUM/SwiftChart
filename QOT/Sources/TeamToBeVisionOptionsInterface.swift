@@ -11,10 +11,12 @@ import qot_dal
 
 protocol TeamToBeVisionOptionsViewControllerInterface: class {
     func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString)
+    func reload()
 }
 
 protocol TeamToBeVisionOptionsPresenterInterface {
     func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString)
+    func reload()
 }
 
 protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
@@ -30,6 +32,7 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     func endPoll(_ completion: @escaping () -> Void)
     func endRating()
     func getTeamToBeVision(_ completion: @escaping (QDMTeamToBeVision?) -> Void)
+    func viewWillAppear()
 }
 
 protocol TeamToBeVisionOptionsRouterInterface {
