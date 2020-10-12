@@ -169,6 +169,14 @@ private extension TeamToBeVisionViewController {
         trackerBatchLabel.isHidden = false
         trackerBatchLabel.circle()
     }
+
+    func removeBatchTrackerButton() {
+        trackerBatchLabel.isHidden = true
+    }
+
+    func removeBatchPollButton() {
+        pollBatchLabel.isHidden = true
+    }
 }
 
 // MARK: - Actions
@@ -285,11 +293,11 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
     /// FIXME: 🆘🤯 Please brake apart. To many conditions, to many things are happening here in one single function. Too long [♨️🐟]
     func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool) {
+        shouldShowCreate = teamVision == nil
         if teamVision == nil {
             interactor.showNullState()
             teamNullStateImageView.gradientBackground(top: true)
             teamNullStateImageView.gradientBackground(top: false)
-            shouldShowCreate = true
             return
         }
         if scrollView.alpha == 0 {
@@ -321,6 +329,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
         let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
         ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
+        refreshBottomNavigationItems()
     }
 
     func showNullState(with title: String, message: String, header: String) {
@@ -404,6 +413,8 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
             let cta = try poll.stateWithAction()
             pollButton.ctaState = cta.state
             pollButton.ctaAction = cta.action
+            removeBatchPollButton()
+            pollButton.isSelected = false
             switch cta.state {
             case .isHidden:
                 pollButton.isHidden = true
@@ -418,7 +429,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 pollButton.isEnabled = true
                 addBatchToPollButton()
             case .undefined:
-                break
+                log("cta.state: undefined", level: .debug)
             }
         } catch {
             log("StateError.unkown: \(error.localizedDescription)", level: .debug)
@@ -430,6 +441,8 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
             let cta = try poll.stateWithAction()
             trackerButton.ctaState = cta.state
             trackerButton.ctaAction = cta.action
+            removeBatchTrackerButton()
+            trackerButton.isSelected = false
             switch cta.state {
             case .isHidden:
                 trackerButton.isHidden = true
@@ -444,7 +457,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 trackerButton.isEnabled = true
                 addBatchToTrackerButton()
             case .undefined:
-                break
+                log("cta.state: undefined", level: .debug)
             }
         } catch {
             log("StateError.unkown: \(error.localizedDescription)", level: .debug)
