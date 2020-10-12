@@ -34,7 +34,7 @@ final class PollOpenCell: BaseDailyBriefCell {
         let title = AppTextService.get(.daily_brief_team_open_poll_title).replacingOccurrences(of: "${team_name}", with: model?.teamName ?? "")
         ThemeText.dailyInsightsTbvAdvice.apply(text, to: pollLabel)
         baseHeaderView?.configure(title: title, subtitle: nil)
-        baseHeaderView?.titleLabel.textColor = model?.teamColor
+        baseHeaderView?.setColor(dashColor: model?.teamColor, titleColor: model?.teamColor, subtitleColor: nil)
     }
 
     @IBAction func startPoll(_ sender: Any) {

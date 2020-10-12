@@ -109,6 +109,13 @@ extension DailyBriefWorker {
         }
     }
 
+    func getTeamAdmin(team: QDMTeam, completion: @escaping (String?) -> Void) {
+        getTeamMembers(in: team) {(members) in
+            let admin = members.filter {$0.isTeamOwner}.first
+            completion(admin?.email)
+        }
+    }
+
    func saveTargetValue(value: Int?) {
         settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
             if let setting = settings?.first {

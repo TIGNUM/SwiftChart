@@ -13,11 +13,13 @@ final class RateOpenModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     let team: QDMTeam?
+    let ownerEmail: String?
 
 
     // MARK: - Init
-    init(team: QDMTeam?, domainModel: QDMDailyBriefBucket?) {
+    init(team: QDMTeam?, ownerEmail: String?, domainModel: QDMDailyBriefBucket?) {
         self.team = team
+        self.ownerEmail = ownerEmail
         super.init(domainModel)
     }
 }

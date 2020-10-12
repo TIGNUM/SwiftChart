@@ -26,14 +26,14 @@ final class RateOpenCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(ctaButton)
     }
 
-    func configure(model: RateOpenModel) {
+    func configure(model: RateOpenModel?) {
         skeletonManager.hide()
         ctaButton.setTitle(AppTextService.get(.daily_brief_rate_open_cta), for: .normal)
-        let text = AppTextService.get(.daily_brief_rate_open_text).replacingOccurrences(of: "${team_admin}", with: "a.plancoualaine@tignum.com")
-        let title = AppTextService.get(.daily_brief_rate_open_title).replacingOccurrences(of: "${team_name)", with: model.team?.name ?? "")
+        let text = AppTextService.get(.daily_brief_rate_open_text).replacingOccurrences(of: "${team_admin}", with: model?.ownerEmail ?? "")
+        let title = AppTextService.get(.daily_brief_rate_open_title).replacingOccurrences(of: "${team_name)", with: model?.team?.name ?? "")
         ThemeText.dailyInsightsTbvAdvice.apply(text, to: rateLabel)
         baseHeaderView?.configure(title: title, subtitle: nil)
-        baseHeaderView?.titleLabel.textColor = UIColor(hex: model.team?.teamColor ?? "")
+        let teamColor = UIColor(hex: model?.team?.teamColor ?? "")
+        baseHeaderView?.setColor(dashColor: teamColor, titleColor: teamColor, subtitleColor: nil)
     }
-
 }

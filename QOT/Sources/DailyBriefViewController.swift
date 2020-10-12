@@ -146,8 +146,10 @@ extension DailyBriefViewController {
 //                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
             case 18:
                 return getTeamInvitationCell(tableView, indexPath, nil)
-//            case 19:
-//                return
+            case 19:
+                return getOpenPollCell(tableView, indexPath, nil)
+            case 20:
+                return getOpenRateCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -764,7 +766,7 @@ private extension DailyBriefViewController {
 
     /**
      * Method name:getTeamInvitationCell.
-     * Description: Placeholder to display the Team To Bbe Vision Suggestion.
+     * Description: Placeholder to display the Team To Be Vision Suggestion.
      * Parameters: [tableView], [IndexPath]
      */
     func getTeamInvitationCell(_ tableView: UITableView,
@@ -778,8 +780,8 @@ private extension DailyBriefViewController {
     }
 
     /**
-     * Method name:getOpenPollCell.
-     * Description: Placeholder to display the that the TBV Poll is Open.
+     * Method name: getOpenPollCell.
+     * Description: Placeholder to display that the TBV Poll is Open.
      * Parameters: [tableView], [IndexPath]
      */
     func getOpenPollCell(_ tableView: UITableView,
@@ -787,6 +789,21 @@ private extension DailyBriefViewController {
                          _ pollOpenModel: PollOpenModel?) -> UITableViewCell {
         let cell: PollOpenCell = tableView.dequeueCell(for: indexPath)
         cell.configure(model: pollOpenModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
+    }
+
+    /**
+     * Method name: getOpenRateCell.
+     * Description: Placeholder to display that the TBV Rating Tracker is Open.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getOpenRateCell(_ tableView: UITableView,
+                         _ indexPath: IndexPath,
+                         _ rateOpenModel: RateOpenModel?) -> UITableViewCell {
+        let cell: RateOpenCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: rateOpenModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell
@@ -843,6 +860,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(NoteTableViewCell.self)
         tableView.registerDequeueable(DownloadTableViewCell.self)
         tableView.registerDequeueable(PollOpenCell.self)
+        tableView.registerDequeueable(RateOpenCell.self)
     }
 
     func scrollToSection(at: Int) {

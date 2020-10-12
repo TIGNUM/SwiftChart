@@ -164,6 +164,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.getCurrentTeamToBeVisionPoll(for: team, completion)
     }
 
+    func getTeamAdmin(for team: QDMTeam, _ completion: @escaping (String?) -> Void) {
+        worker.getTeamAdmin(team: team, completion: completion)
+    }
+
     // MARK: - Properties
     var rowViewSectionCount: Int {
         return viewModelOldListModels.count
@@ -221,6 +225,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         sectionDataList.append(ArraySection(model: .teamInvitation,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .openPoll,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .openRate,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .ratingFeedback,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
@@ -350,6 +358,15 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
                     guard elements.isEmpty == false else { break }
                     sectionDataList.append(ArraySection(model: .teamNewsFeed, elements: elements))
+                case .POLL_OPEN:
+                    sectionDataList.append(ArraySection(model: .openPoll,
+                                                        elements: strongSelf.createPollOpen(pollBucket: bucket)))
+                case .RATE_OPEN:
+                    sectionDataList.append(ArraySection(model: .openRate,
+                                                        elements: strongSelf.createRateOpen(rateBucket: bucket)))
+//                case .RATING_FEEDBACK:
+//                    sectionDataList.append(ArraySection(model: .ratingFeedback,
+//                                                        elements: strongSelf.createRateOpen(rateBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -744,7 +761,7 @@ extension DailyBriefInteractor {
     // MARK: - Rate is Open
     func createRateOpen(rateBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var openRateList: [BaseDailyBriefViewModel] = []
-        let model = RateOpenModel(team: QDMTeam(), domainModel: rateBucket)
+        let model = RateOpenModel(team: QDMTeam(), ownerEmail: "a.plancoulaine@tignum.com", domainModel: rateBucket)
         openRateList.append(model)
         return openRateList
     }
