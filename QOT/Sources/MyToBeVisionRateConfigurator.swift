@@ -13,7 +13,7 @@ final class MyToBeVisionRateConfigurator {
     static func configure(viewController: MyToBeVisionRateViewController,
                           delegate: TBVRateDelegate?,
                           visionId: Int,
-                          team: QDMTeam? = nil) {
+                          team: QDMTeam?) {
         let router = MyToBeVisionRateRouter(viewController: viewController)
 //<<<<<<< HEAD
         let worker = MyToBeVisionRateWorker(visionId: visionId, team: team)

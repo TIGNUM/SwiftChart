@@ -78,6 +78,12 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
     }
 }
 
+extension TeamToBeVisionOptionsViewController: TBVRateDelegate {
+    func doneAction() {
+        
+    }
+}
+
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,7 +115,11 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
     func showPoll() {
         switch pageType {
         case .rating:
-            break
+            if let teamTBVId = interactor.trackerPoll?.teamToBeVisionId {
+                router.showRateScreen(with: teamTBVId,
+                                      team: interactor.team,
+                                      delegate: self)
+            }
         case .voting:
             if let team = interactor.team {
                 router.showTeamTBVGenerator(poll: interactor.toBeVisionPoll, team: team)
@@ -160,7 +170,9 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
         switch pageType {
         case .rating:
             interactor.getTeamToBeVision { [weak self] (teamTBV) in
-                self?.router.showRateScreen(with: teamTBV?.remoteID ?? 0, delegate: nil)
+                self?.router.showRateScreen(with: teamTBV?.remoteID ?? 0,
+                                            team: self?.interactor.team,
+                                            delegate: nil)
             }
         case .voting:
             router.showTBVGenerator()

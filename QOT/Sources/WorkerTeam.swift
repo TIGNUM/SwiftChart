@@ -79,6 +79,9 @@ protocol WorkerTeam: class {
                                 votes: [QDMAnswer],
                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 
+    func openNewTeamToBeVisionTrackerPoll(for team: QDMTeam,
+                                          _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
+
     func hasOpenRatingPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void)
 
     func getCurrentRatingPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
@@ -458,6 +461,16 @@ extension WorkerTeam {
                                                 votes: votes) { (poll, error) in
             if let error = error {
                 log("Error voteTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+            }
+            completion(poll)
+        }
+    }
+
+    func openNewTeamToBeVisionTrackerPoll(for team: QDMTeam,
+                                          _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        TeamService.main.openNewTeamToBeVisionTrackerPoll(for: team) { (poll, _, error) in
+            if let error = error {
+                log("Error openNewTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
             }
             completion(poll)
         }

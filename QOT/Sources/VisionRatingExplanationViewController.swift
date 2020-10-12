@@ -83,8 +83,12 @@ final class VisionRatingExplanationViewController: BaseViewController {
 extension VisionRatingExplanationViewController {
     @objc func startRating() {
         trackUserEvent(.OPEN, value: interactor.team.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        router.showRateScreen(with: 0, delegate: self)
-        updateBottomNavigation([], [])
+        interactor.startTeamTrackerPoll { [weak self] (poll) in
+            self?.router.showRateScreen(with: poll?.teamToBeVisionId ?? 0,
+                                        team: self?.interactor.team,
+                                        delegate: self)
+            self?.updateBottomNavigation([], [])
+        }
     }
 
     @objc func startTeamTBVGenerator() {

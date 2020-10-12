@@ -32,7 +32,7 @@ protocol BaseRouterInterface {
 
     func showTracker()
     func showTBVData(shouldShowNullState: Bool, visionId: Int?)
-    func showRateScreen(with id: Int, delegate: TBVRateDelegate?)
+    func showRateScreen(with id: Int, team: QDMTeam?, delegate: TBVRateDelegate?)
     func showTBVGenerator()
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
 
@@ -185,11 +185,12 @@ class BaseRouter: BaseRouterInterface {
         visionController.present(controller, animated: true)
     }
 
-    func showRateScreen(with id: Int, delegate: TBVRateDelegate?) {
+    func showRateScreen(with id: Int, team: QDMTeam?, delegate: TBVRateDelegate?) {
         if let viewController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
             MyToBeVisionRateConfigurator.configure(viewController: viewController,
                                                    delegate: delegate,
-                                                   visionId: id)
+                                                   visionId: id,
+                                                   team: team)
             present(viewController)
         }
     }

@@ -48,4 +48,17 @@ extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorIn
             }
         }
     }
+
+    func startTeamTrackerPoll(_ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        let team = self.team
+        worker.getCurrentRatingPoll(for: team) { [weak self] (poll) in
+            if let poll = poll {
+                completion(poll)
+            } else {
+                self?.worker.openNewTeamToBeVisionTrackerPoll(for: team) { (poll) in
+                    completion(poll)
+                }
+            }
+        }
+    }
 }
