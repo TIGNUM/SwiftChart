@@ -275,9 +275,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-        if interactor.team.thisUserIsOwner == false {
-            pollButton.isHidden = true
-        }
 
         /// Temporarily hide buttons
         trendsLabel.isHidden = true
@@ -415,7 +412,6 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 pollButton.isEnabled = true
             case .isInactive:
                 pollButton.isHidden = false
-                pollButton.isEnabled = true
                 pollButton.isSelected = true
             case .hasBatch:
                 pollButton.isHidden = false
@@ -442,7 +438,6 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 trackerButton.isEnabled = true
             case .isInactive:
                 trackerButton.isHidden = false
-                trackerButton.isEnabled = true
                 trackerButton.isSelected = true
             case .hasBatch:
                 trackerButton.isHidden = false
