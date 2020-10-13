@@ -211,7 +211,7 @@ extension DailyBriefViewController {
         case .LATEST_WHATS_HOT?:
             return getWhatsHot(tableView, indexPath, bucketItem as? WhatsHotLatestCellViewModel)
         case .THOUGHTS_TO_PONDER?:
-            return getOpenPollCell(tableView, indexPath, bucketItem as? PollOpenModel)
+            return getRatingFeedbackCell(tableView, indexPath, bucketItem as? RatingFeedbackModel)
 //            return getThoughtsCell(tableView, indexPath, bucketItem as? ThoughtsCellViewModel)
         case .GOOD_TO_KNOW?:
             return getGoodToKnowCell(tableView, indexPath, bucketItem as? GoodToKnowCellViewModel)
@@ -808,6 +808,16 @@ private extension DailyBriefViewController {
         cell.clickableLinkDelegate = self
         return cell
     }
+
+    func getRatingFeedbackCell(_ tableView: UITableView,
+                               _ indexPath: IndexPath,
+                               _ ratingFeedbackModel: RatingFeedbackModel?) -> UITableViewCell {
+        let cell: RatingFeedbackCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: ratingFeedbackModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
+    }
 }
 
 // MARK: - DailyBriefViewControllerInterface
@@ -861,6 +871,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(DownloadTableViewCell.self)
         tableView.registerDequeueable(PollOpenCell.self)
         tableView.registerDequeueable(RateOpenCell.self)
+        tableView.registerDequeueable(RatingFeedbackCell.self)
     }
 
     func scrollToSection(at: Int) {

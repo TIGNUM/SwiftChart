@@ -44,7 +44,6 @@ struct DailyBriefViewModel {
         case teamInvitation
         case teamNewsFeed
         case openPoll
-        case openRate
-        case ratingFeedback
+        case tbvRate
     }
 }

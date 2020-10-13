@@ -226,9 +226,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .openPoll,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
-        sectionDataList.append(ArraySection(model: .openRate,
-                                            elements: [BaseDailyBriefViewModel.init(nil)]))
-        sectionDataList.append(ArraySection(model: .ratingFeedback,
+        sectionDataList.append(ArraySection(model: .tbvRate,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
@@ -292,8 +290,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .THOUGHTS_TO_PONDER:
 //                    sectionDataList.append(ArraySection(model: .thoughtsToPonder,
 //                                                        elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
-                    sectionDataList.append(ArraySection(model: .openPoll,
-                                                        elements: strongSelf.createPollOpen(pollBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .tbvRate,
+                                                        elements: strongSelf.createRate(rateBucket: bucket)))
                 case .GOOD_TO_KNOW:
                     sectionDataList.append(ArraySection(model: .goodToKnow,
                                                         elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
@@ -361,12 +359,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .POLL_OPEN:
                     sectionDataList.append(ArraySection(model: .openPoll,
                                                         elements: strongSelf.createPollOpen(pollBucket: bucket)))
-                case .RATE_OPEN:
-                    sectionDataList.append(ArraySection(model: .openRate,
-                                                        elements: strongSelf.createRateOpen(rateBucket: bucket)))
-//                case .RATING_FEEDBACK:
-//                    sectionDataList.append(ArraySection(model: .ratingFeedback,
-//                                                        elements: strongSelf.createRateOpen(rateBucket: bucket)))
+                case .TBV_RATE:
+                    sectionDataList.append(ArraySection(model: .tbvRate,
+                                                        elements: strongSelf.createRate(rateBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -759,11 +754,13 @@ extension DailyBriefInteractor {
     }
 
     // MARK: - Rate is Open
-    func createRateOpen(rateBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var openRateList: [BaseDailyBriefViewModel] = []
-        let model = RateOpenModel(team: QDMTeam(), ownerEmail: "a.plancoulaine@tignum.com", domainModel: rateBucket)
-        openRateList.append(model)
-        return openRateList
+    func createRate(rateBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var ratingBucketList: [BaseDailyBriefViewModel] = []
+//        check if rating is open or finished
+        let openRateModel = RateOpenModel(team: QDMTeam(), ownerEmail: "a.plancoulaine@tignum.com", domainModel: rateBucket)
+        let feedbackModel = RatingFeedbackModel(teamName: "iOS TEAM", feedback: "Your team is moving forward to the best team as you defined you're ready to rule your impact", averageValue: 5.6, teamColor: .blue, domainModel: rateBucket)
+        ratingBucketList.append(feedbackModel)
+        return ratingBucketList
     }
 
     // MARK: - Products we love

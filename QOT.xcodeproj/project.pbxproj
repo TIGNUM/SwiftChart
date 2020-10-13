@@ -1385,6 +1385,9 @@
 		F9FEA91C25348D1E009BF786 /* RateOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */; };
 		F9FEA92425348D2C009BF786 /* RateOpenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FEA92325348D2C009BF786 /* RateOpenCell.xib */; };
 		F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA92B25348D42009BF786 /* RateOpenModel.swift */; };
+		F9FEA94C2534A6BB009BF786 /* RatingFeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA94B2534A6BB009BF786 /* RatingFeedbackCell.swift */; };
+		F9FEA9542534A6CB009BF786 /* RatingFeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FEA9532534A6CB009BF786 /* RatingFeedbackCell.xib */; };
+		F9FEA95C2534A6DE009BF786 /* RatingFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2818,6 +2821,9 @@
 		F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenCell.swift; sourceTree = "<group>"; };
 		F9FEA92325348D2C009BF786 /* RateOpenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateOpenCell.xib; sourceTree = "<group>"; };
 		F9FEA92B25348D42009BF786 /* RateOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenModel.swift; sourceTree = "<group>"; };
+		F9FEA94B2534A6BB009BF786 /* RatingFeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFeedbackCell.swift; sourceTree = "<group>"; };
+		F9FEA9532534A6CB009BF786 /* RatingFeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingFeedbackCell.xib; sourceTree = "<group>"; };
+		F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFeedbackModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2930,6 +2936,7 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F9FEA94A2534A6A6009BF786 /* RatingFeedback */,
 				F9FEA91425348C84009BF786 /* OpenTBVRate */,
 				F9FEA8CD25344F34009BF786 /* OpenTBVPoll */,
 				F96D9F3624D853CD00188482 /* TeamInvitation */,
@@ -6030,6 +6037,16 @@
 			name = OpenTBVRate;
 			sourceTree = "<group>";
 		};
+		F9FEA94A2534A6A6009BF786 /* RatingFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				F9FEA94B2534A6BB009BF786 /* RatingFeedbackCell.swift */,
+				F9FEA9532534A6CB009BF786 /* RatingFeedbackCell.xib */,
+				F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */,
+			);
+			name = RatingFeedback;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6380,6 +6397,7 @@
 				F9FEA8D725344F9F009BF786 /* PollOpenCell.xib in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */,
+				F9FEA9542534A6CB009BF786 /* RatingFeedbackCell.xib in Resources */,
 				386C27A9241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				38E84B7D241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib in Resources */,
@@ -7488,6 +7506,7 @@
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				36083829225F3ED000664B9B /* ArticleInterface.swift in Sources */,
 				F99E9CC724EABD9C00325EAE /* VisionRatingExplanationViewController.swift in Sources */,
+				F9FEA94C2534A6BB009BF786 /* RatingFeedbackCell.swift in Sources */,
 				3658257C2327D19200AC3F4A /* DTShortTBVViewController.swift in Sources */,
 				B499A7062395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift in Sources */,
 				F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */,
@@ -7659,6 +7678,7 @@
 				360256E42051837300862B0E /* SearchWorker.swift in Sources */,
 				5F7BE77E2289586E00BA5DCF /* MyQotSupportInterface.swift in Sources */,
 				B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */,
+				F9FEA95C2534A6DE009BF786 /* RatingFeedbackModel.swift in Sources */,
 				F9D6381D22D746D60092C482 /* ExploreCellViewModel.swift in Sources */,
 				DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */,
 				ACCCBC9421E38B19008D744D /* UIImageView+Extensions.swift in Sources */,
