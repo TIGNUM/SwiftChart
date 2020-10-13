@@ -29,7 +29,11 @@ final class TBVRateHistoryWorker: WorkerTeam {
     func getData(_ completion: @escaping (ToBeVisionReport) -> Void) {
         if let team = team {
             getLatestClosedPolls(for: team) { [weak self] (polls) in
-                let tracks = polls?.compactMap { $0.qotTeamToBeVisionTrackers }.first ?? []
+                var tracks = [QDMTeamToBeVisionTrackerResult]()
+                polls?.forEach { tracks.append(contentsOf: $0.qotTeamToBeVisionTrackers ?? []) }
+
+//                let tracks = polls?.compactMap { $0.qotTeamToBeVisionTrackers }.compactMap { $0. } ?? []
+
                 UserService.main.getTeamToBeVisionTrackingReport(tracks: tracks) { [weak self] (report) in
                     guard let strongSelf = self else { return }
                     strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
