@@ -13,6 +13,7 @@ final class MyToBeVisionRateWorker: WorkerTeam {
 
     private let userService = UserService.main
     private let visionId: Int
+    private var teamRatings = [QDMTeamToBeVisionTrackerVote]()
     var questions: [RatingQuestionViewModel.Question]?
     var dataTracks: [QDMToBeVisionTrack]?
     var teamDataTracks: [QDMTeamToBeVisionTrackerResult]?
@@ -125,25 +126,53 @@ final class MyToBeVisionRateWorker: WorkerTeam {
 //    }
 
     func addRating(for questionId: Int, value: Int, isoDate: Date) {
-        guard team != nil else {
-            let item = dataTracks?.filter { $0.remoteID == questionId }.first
-            item?.addRating(value, isoDate: isoDate)
-            return
+        if team == nil {
+            addPersonalRating(for: questionId, value: value, isoDate: isoDate)
+        } else {
+            addTeamReating(for: questionId, value: value, isoDate: isoDate)
         }
-        var ratings = [QDMTeamToBeVisionTrackerVote]()
-        let item = teamDataTracks?.filter { $0.remoteID == questionId }.first
-        guard let rate = item?.voteWithRatingValue(value) else { return }
-        ratings.append(rate)
     }
 
     func saveQuestions() {
-        guard let tracks = dataTracks else { return }
-        userService.updateToBeVisionTracks(tracks) { (error) in }
+        if team == nil {
+            savePersonalRating()
+        } else {
+            saveTeamRating()
+        }
     }
 }
 
 // MARK: - Private
 private extension MyToBeVisionRateWorker {
+    func savePersonalRating() {
+        guard let tracks = dataTracks else { return }
+        userService.updateToBeVisionTracks(tracks) { (error) in }
+    }
+
+    func saveTeamRating() {
+        voteTeamToBeVisionTrackerPoll(teamRatings) { [weak self] (poll) in
+            self?.currentTrackerPoll = poll
+        }
+    }
+
+    func addPersonalRating(for questionId: Int, value: Int, isoDate: Date) {
+        let item = dataTracks?.filter { $0.remoteID == questionId }.first
+        item?.addRating(value, isoDate: isoDate)
+    }
+
+    // How to make QDMTeamToBeVisionTrackerVote intances
+    // var vote = [QDMTeamToBeVisionTrackerVote]()
+    // let poll: QDMTeamToBeVisionTrackerPoll = from some where
+    // let vote = poll.qotTeamToBeVisionTrackers[index].voteWithRatingValue(9)
+    // votes.append(vote)
+    // If user tries to vote with already closed poll, it will return 'TeamToBeVisionTrakcerPollIsAlreadyClosed'
+    // If user tries to vote on the poll which user alreay voted, it will return 'UserDidVoteTeamToBeVisionTrackerPoll'
+    func addTeamReating(for questionId: Int, value: Int, isoDate: Date) {
+        let item = teamDataTracks?.filter { $0.remoteID == questionId }.first
+        guard let rate = item?.voteWithRatingValue(value) else { return }
+        teamRatings.append(rate)
+    }
+
     func getPersonalQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
         userService.getToBeVisionTracksForRating { [weak self] (tracks) in
             guard let strongSelf = self else { return }
@@ -170,8 +199,11 @@ private extension MyToBeVisionRateWorker {
     }
 
     func getTeamQuestions(team: QDMTeam,
-                            _ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
-        getCurrentRatingPoll(for: team) { (poll) in
+                          _ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
+        getCurrentRatingPoll(for: team) { [weak self] (poll) in
+            self?.currentTrackerPoll = poll
+            self?.teamDataTracks = poll?.qotTeamToBeVisionTrackers
+
             guard let tracks = poll?.qotTeamToBeVisionTrackers else {
                 completion([])
                 return
@@ -191,7 +223,7 @@ private extension MyToBeVisionRateWorker {
                                                         range: range,
                                                         selectedAnswerIndex: nil)
             }
-            self.questions = questions
+            self?.questions = questions
             completion(questions)
         }
     }

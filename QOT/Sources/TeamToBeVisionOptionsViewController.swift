@@ -80,7 +80,7 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
 
 extension TeamToBeVisionOptionsViewController: TBVRateDelegate {
     func doneAction() {
-        
+
     }
 }
 
@@ -134,7 +134,9 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
         let end = QOTAlertAction(title: interactor.alertEndTitle) { [weak self] _ in
             switch self?.pageType {
             case .rating:
-                self?.didEndRating()
+                self?.interactor.endRating { [weak self] in
+                    self?.didTapBackButton()
+                }
             case .voting:
                 self?.interactor.endPoll { [weak self] in
                     self?.didTapBackButton()
@@ -142,24 +144,7 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
             default: break
             }
         }
-//<<<<<<< HEAD
-//        let cancel = QOTAlertAction(title: interactor.alertCancelTitle)
-//        let end = QOTAlertAction(title: interactor.alertEndTitle) { [weak self] _ in
-//            self?.interactor.endPoll { [weak self] (poll) in
-//                self?.didTapBackButton()
-//=======
-//        let cancel = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_leftButton))
-//        let end = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_rightButton)) {[weak self] (_) in
-//            switch self?.pageType {
-//            case .rating:
-//                self?.didEndRating()
-//            case .voting:
-////                TODO: End voting
-//                break
-//            default: break
-//>>>>>>> f9d253774380beb2d9f3f07c2319adab215eeb4b
-//            }
-//        }
+
         let message = pageType.alertMessage.replacingOccurrences(of: "${daysCount}", with: String(interactor.daysLeft))
         QOTAlert.show(title: pageType.alertTitle,
                       message: message,
@@ -178,9 +163,5 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
             router.showTBVGenerator()
         default: break
         }
-    }
-
-    func didEndRating() {
-        interactor.endRating()
     }
 }

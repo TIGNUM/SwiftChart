@@ -30,7 +30,7 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var team: QDMTeam? { get }
 
     func endPoll(_ completion: @escaping () -> Void)
-    func endRating()
+    func endRating(_ completion: @escaping () -> Void)
     func getTeamToBeVision(_ completion: @escaping (QDMTeamToBeVision?) -> Void)
     func viewWillAppear()
 }

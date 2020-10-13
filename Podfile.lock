@@ -38,11 +38,11 @@ PODS:
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
-  - Realm (5.4.8):
-    - Realm/Headers (= 5.4.8)
-  - Realm/Headers (5.4.8)
-  - RealmSwift (5.4.8):
-    - Realm (= 5.4.8)
+  - Realm (5.5.0):
+    - Realm/Headers (= 5.5.0)
+  - Realm/Headers (5.5.0)
+  - RealmSwift (5.5.0):
+    - Realm (= 5.5.0)
   - RSKImageCropper (2.3.0)
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
@@ -88,7 +88,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: b2d1550bdc9ccf4744f41c89a37d0cb7edf84db2
+    :commit: dae2dfa2ef6757f143ddb1c417532a21eb06734e
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -105,8 +105,8 @@ SPEC CHECKSUMS:
   qot_dal: 74ec5a8e7531a98811d0e74cb98854494fec4ac3
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
-  Realm: 042bbb59227a0159eda397b8a5a49fbd67495ce7
-  RealmSwift: 15ddd6b3398ebfc99810811c44f095df1313adb3
+  Realm: fb399d76f44042e5cdfc630f33828fdb4d077345
+  RealmSwift: 3b7e62356207ef16d34de4e55d475163bd2062bb
   RSKImageCropper: c337eacdcbed50e695e5153ff0c2b861b6ebfa84
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87

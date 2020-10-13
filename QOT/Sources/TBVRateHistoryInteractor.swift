@@ -15,12 +15,16 @@ final class TBVRateHistoryInteractor {
     private let worker: TBVRateHistoryWorker
     private let presenter: TBVRateHistoryPresenterInterface
     private let displayType: TBVGraph.DisplayType
+    private let team: QDMTeam?
 
     // MARK: - Init
-    init(_ presenter: TBVRateHistoryPresenterInterface, _ displayType: TBVGraph.DisplayType) {
+    init(_ presenter: TBVRateHistoryPresenterInterface,
+         _ displayType: TBVGraph.DisplayType,
+         _ team: QDMTeam?) {
         self.presenter = presenter
         self.displayType = displayType
-        self.worker = TBVRateHistoryWorker(displayType)
+        self.team = team
+        self.worker = TBVRateHistoryWorker(displayType, team: team)
     }
 
     func viewDidLoad() {

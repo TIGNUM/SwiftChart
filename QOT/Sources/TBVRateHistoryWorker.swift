@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class TBVRateHistoryWorker {
+final class TBVRateHistoryWorker: WorkerTeam {
 
     lazy var isDataType = displayType == .data
     lazy var title = isDataType ? AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_header_title) :
@@ -18,20 +18,36 @@ final class TBVRateHistoryWorker {
                                      AppTextService.get(.my_qot_my_tbv_tbv_tracker_result_section_header_body)
     lazy var graphTitle = AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_title)
     private let displayType: TBVGraph.DisplayType
+    private let team: QDMTeam?
     var dataModel: ToBeVisionReport?
 
-    init(_ displayType: TBVGraph.DisplayType) {
+    init(_ displayType: TBVGraph.DisplayType, team: QDMTeam?) {
         self.displayType = displayType
+        self.team = team
     }
 
     func getData(_ completion: @escaping (ToBeVisionReport) -> Void) {
-        UserService.main.getToBeVisionTrackingReport(last: 3) { [weak self] (report) in
-            guard let strongSelf = self else { return }
-            strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
-                                                    subtitle: strongSelf.subtitle,
-                                                    selectedDate: report.days.sorted(by: <).last!,
-                                                    report: report)
-            completion(strongSelf.dataModel!)
+        if let team = team {
+            getLatestClosedPolls(for: team) { [weak self] (polls) in
+                let tracks = polls?.compactMap { $0.qotTeamToBeVisionTrackers }.first ?? []
+                UserService.main.getTeamToBeVisionTrackingReport(tracks: tracks) { [weak self] (report) in
+                    guard let strongSelf = self else { return }
+                    strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
+                                                            subtitle: strongSelf.subtitle,
+                                                            selectedDate: report.days.sorted(by: <).last!,
+                                                            report: report)
+                    completion(strongSelf.dataModel!)
+                }
+            }
+        } else {
+            UserService.main.getToBeVisionTrackingReport(last: 3) { [weak self] (report) in
+                guard let strongSelf = self else { return }
+                strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
+                                                        subtitle: strongSelf.subtitle,
+                                                        selectedDate: report.days.sorted(by: <).last!,
+                                                        report: report)
+                completion(strongSelf.dataModel!)
+            }
         }
     }
 

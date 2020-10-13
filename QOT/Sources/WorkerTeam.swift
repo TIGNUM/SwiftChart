@@ -79,6 +79,9 @@ protocol WorkerTeam: class {
                                 votes: [QDMAnswer],
                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 
+    func voteTeamToBeVisionTrackerPoll(_ votes: [QDMTeamToBeVisionTrackerVote],
+                                       _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
+
     func openNewTeamToBeVisionTrackerPoll(for team: QDMTeam,
                                           _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
 
@@ -461,6 +464,23 @@ extension WorkerTeam {
                                                 votes: votes) { (poll, error) in
             if let error = error {
                 log("Error voteTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+            }
+            completion(poll)
+        }
+    }
+
+    // How to make QDMTeamToBeVisionTrackerVote intances
+    // var vote = [QDMTeamToBeVisionTrackerVote]()
+    // let poll: QDMTeamToBeVisionTrackerPoll = from some where
+    // let vote = poll.qotTeamToBeVisionTrackers[index].voteWithRatingValue(9)
+    // votes.append(vote)
+    // If user tries to vote with already closed poll, it will return 'TeamToBeVisionTrakcerPollIsAlreadyClosed'
+    // If user tries to vote on the poll which user alreay voted, it will return 'UserDidVoteTeamToBeVisionTrackerPoll'
+    func voteTeamToBeVisionTrackerPoll(_ votes: [QDMTeamToBeVisionTrackerVote],
+                                       _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        TeamService.main.voteTeamToBeVisionTrackerPoll(votes) { (poll, error) in
+            if let error = error {
+                log("Error voteTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
             }
             completion(poll)
         }

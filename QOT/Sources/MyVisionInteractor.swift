@@ -213,7 +213,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func showTracker() {
-        router.showTracker()
+        router.showTracker(for: nil)
     }
 
     func showRateScreen(delegate: TBVRateDelegate?) {

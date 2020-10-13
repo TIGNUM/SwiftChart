@@ -102,7 +102,7 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
 
     var userDidVote: Bool {
         switch type {
-        case .rating: return trackerPoll?.didVote ?? false
+        case .rating: return false//trackerPoll?.didVote ?? false
         case .voting: return toBeVisionPoll?.userDidVote ?? false
         }
     }
@@ -133,11 +133,8 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
         }
     }
 
-    func endRating() {
+    func endRating(_ completion: @escaping () -> Void) {
         guard let team = team else { return }
-        closeRatingPoll(for: team) { [weak self] in
-//            TO DO: go to Team TBVRateHistoryViewController for teams
-//            self?.router.dismiss()
-        }
+        closeRatingPoll(for: team, completion)
     }
 }
