@@ -204,11 +204,11 @@ class BaseRouter: BaseRouterInterface {
     }
 
     func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?) {
-        if let viewController = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
-            TeamToBeVisionOptionsConfigurator.make(viewController: viewController,
+        if let vc = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
+            TeamToBeVisionOptionsConfigurator.make(viewController: vc,
                                                    type: type,
                                                    team: team)
-            push(viewController)
+            self.viewController?.show(vc, sender: nil)
         }
     }
 

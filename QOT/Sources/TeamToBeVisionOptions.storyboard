@@ -30,10 +30,6 @@
                                     <constraint firstAttribute="height" constant="203" id="zQN-m6-yAy"/>
                                 </constraints>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="a5y-aR-naf" id="SoW-QT-e3F"/>
-                                    <outlet property="delegate" destination="a5y-aR-naf" id="ed9-Bi-GNJ"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="e76-4f-xMP"/>

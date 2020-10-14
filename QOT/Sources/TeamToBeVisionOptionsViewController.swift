@@ -8,10 +8,9 @@
 
 import UIKit
 
-protocol TeamToBeVisionOptionsViewControllerDelegate: class {
+protocol TeamAdminDelegate: class {
     func showAlert()
     func showPoll()
-    func didTapRateOrVote()
 }
 
 final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLevel2 {
@@ -66,6 +65,8 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
     }
 
     func reload() {
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.reloadData()
     }
 }
@@ -85,7 +86,7 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let type = interactor.getType
         let actionType = TeamAdmin.ActionType(rawValue: indexPath.row) ?? .rate
-        let isDisabled = actionType == .end ? false : interactor.userDidVote
+        let isDisabled = actionType == .end ? false : (interactor.userDidVote == true)
         let cell: TeamToBeVisionOptionTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: type.titleForItem(at: indexPath),
                        cta: type.ctaForItem(at: indexPath, isDisabled: isDisabled),
@@ -97,7 +98,7 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
     }
 }
 
-extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerDelegate {
+extension TeamToBeVisionOptionsViewController: TeamAdminDelegate {
     func showPoll() {
         switch interactor.getType {
         case .rating:
@@ -132,18 +133,5 @@ extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControll
         QOTAlert.show(title: interactor.getType.alertTitle,
                       message: message,
                       bottomItems: [cancel, end])
-    }
-
-    func didTapRateOrVote() {
-        switch interactor.getType {
-        case .rating:
-            interactor.getTeamToBeVision { [weak self] (teamTBV) in
-                self?.router.showRateScreen(with: teamTBV?.remoteID ?? 0,
-                                            team: self?.interactor.team,
-                                            delegate: nil)
-            }
-        case .voting:
-            router.showTBVGenerator()
-        }
     }
 }
