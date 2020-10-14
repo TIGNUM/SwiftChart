@@ -227,24 +227,10 @@ private extension TeamToBeVisionViewController {
         }
     }
 
-    @objc func writeButtonAction(_ sender: Any) {
-        let add = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_left_button)) { [weak self] (_) in
-            self?.trackUserEvent(.EDIT,
-                                 value: self?.interactor?.team.remoteID,
-                                 valueType: .WRITE_TEAM_TBV,
-                                 action: .TAP)
-            self?.interactor.showEditVision(isFromNullState: false)
-            self?.shouldShowCreate = false
-        }
-        let openTeamPoll = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_section_alert_right_button))
-        QOTAlert.show(title: interactor.nullStateCTA?.uppercased(),
-                      message: AppTextService.get(.my_x_team_tbv_section_alert_message),
-                      bottomItems: [add, openTeamPoll])
-    }
-
     @objc func showCreateAlert(_ sender: Any) {
         let openTeamPollTitle = AppTextService.get(.my_x_team_tbv_section_alert_right_button)
         let openTeamPoll = QOTAlertAction(title: openTeamPollTitle) { [weak self] (_) in
+            self?.trackUserEvent(.OPEN, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
             if let pollButton = self?.pollButton {
                 self?.didTapPollButton(pollButton)
             }
