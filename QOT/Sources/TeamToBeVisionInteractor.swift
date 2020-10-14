@@ -212,9 +212,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         if team.thisUserIsOwner {
             worker.hasOpenRatingPoll(for: team) { [weak self] (open) in
                 if open {
-                    self?.router.showTeamAdminVoteView(poll: nil,
-                                                       type: .rating,
-                                                       team: tmpTeam)
+                    self?.router.showTeamAdmin(type: .rating, team: tmpTeam)
                 } else {
                     self?.router.showTeamRatingExplanation(tmpTeam)
                 }

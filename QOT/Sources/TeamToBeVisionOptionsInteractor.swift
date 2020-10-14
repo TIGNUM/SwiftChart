@@ -13,38 +13,47 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
 
     // MARK: - Properties
     private let presenter: TeamToBeVisionOptionsPresenterInterface!
-    private var type = TeamToBeVisionOptionsModel.Types.voting
-    private var model = TeamToBeVisionOptionsModel()
-    var toBeVisionPoll: QDMTeamToBeVisionPoll?
-    var trackerPoll: QDMTeamToBeVisionTrackerPoll?
-    var team: QDMTeam?
-    private var remainingDays: Int = 0
+    private var type: TeamAdmin.Types = .voting
+    internal var toBeVisionPoll: QDMTeamToBeVisionPoll?
+    internal var trackerPoll: QDMTeamToBeVisionTrackerPoll?
+    internal var team: QDMTeam?
+
+    private lazy var remainingDays: Int = {
+        switch type {
+        case .rating: return trackerPoll?.remainingDays ?? 0
+        case .voting: return toBeVisionPoll?.remainingDays ?? 0
+        }
+    }()
 
     // MARK: - Init
     init(presenter: TeamToBeVisionOptionsPresenterInterface,
-         type: TeamToBeVisionOptionsModel.Types,
-         trackerPoll: QDMTeamToBeVisionTrackerPoll?,
-         tobeVisionPoll: QDMTeamToBeVisionPoll?,
+         type: TeamAdmin.Types,
          team: QDMTeam?) {
         self.presenter = presenter
         self.type = type
-        self.toBeVisionPoll = tobeVisionPoll
-        self.trackerPoll = trackerPoll
         self.team = team
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        var remainingDays = 0
-        switch type {
-        case .rating: remainingDays = 0
-        case .voting: remainingDays = toBeVisionPoll?.remainingDays ?? 0
+        getPollData { [weak self] in
+            guard let strongSelf = self else { return }
+            let days = strongSelf.remainingDays
+            strongSelf.presenter.setupView(title: strongSelf.type.pageTitle,
+                                           headerSubtitle: strongSelf.getTeamTBVPollRemainingDays(days))
         }
-        presenter.setupView(type: type,
-                            headerSubtitle: getTeamTBVPollRemainingDays(remainingDays))
     }
 
     func viewWillAppear() {
+        getPollData { [weak self] in
+            self?.presenter.reload()
+        }
+    }
+}
+
+// MARK: - Private
+private extension TeamToBeVisionOptionsInteractor {
+    func getPollData(_ completion: @escaping () -> Void) {
         guard let team = team else { return }
 
         let dispatchGroup = DispatchGroup()
@@ -66,7 +75,7 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
         dispatchGroup.notify(queue: .main) { [weak self] in
             self?.toBeVisionPoll = tmpTBVPoll
             self?.trackerPoll = tmpTrackerPoll
-            self?.presenter.reload()
+            completion()
         }
     }
 }
@@ -81,15 +90,12 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
         getTeamToBeVision(for: team, completion)
     }
 
-    var getType: TeamToBeVisionOptionsModel.Types {
+    var getType: TeamAdmin.Types {
         return type
     }
 
     var daysLeft: Int {
-        switch type {
-        case .rating: return 0
-        case .voting: return toBeVisionPoll?.remainingDays ?? 0
-        }
+        return remainingDays
     }
 
     var alertCancelTitle: String {
@@ -102,7 +108,7 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
 
     var userDidVote: Bool {
         switch type {
-        case .rating: return false//trackerPoll?.didVote ?? false
+        case .rating: return trackerPoll?.didVote ?? false
         case .voting: return toBeVisionPoll?.userDidVote ?? false
         }
     }
@@ -126,7 +132,7 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
 
     func showRateScreen() {
         guard let team = team else { return }
-        getTeamToBeVision(for: team) { [weak self] (teamVision) in
+        getTeamToBeVision(for: team) { (teamVision) in
             if let remoteId = teamVision?.remoteID {
 //                self?.router.showRateScreen(with: remoteId, delegate: nil)
             }

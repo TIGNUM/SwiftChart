@@ -255,7 +255,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                          (false, true, _, true):
                         router.showTeamTBV(team, poll)
                     case (true, true, _, true):
-                        router.showTeamAdminVoteView(poll: poll, type: .voting, team: team)
+                        router.showTeamAdmin(type: .voting, team: team)
                     default:
                         break
                     }

@@ -197,14 +197,10 @@ private extension TeamToBeVisionViewController {
                        action: .TAP)
         switch sender.ctaAction {
         case .showAdminOptionsGenerator:
-            router.showTeamAdminVoteView(poll: interactor.teamVisionPoll,
-                                         type: .voting,
-                                         team: interactor.team)
+            router.showTeamAdmin(type: .voting, team: interactor.team)
 
         case .showAdminOptionsRating:
-            router.showTeamAdminVoteView(poll: interactor.teamVisionPoll,
-                                         type: .rating,
-                                         team: interactor.team)
+            router.showTeamAdmin(type: .rating, team: interactor.team)
 
         case .showBanner(let message):
             router.showBanner(message: message)

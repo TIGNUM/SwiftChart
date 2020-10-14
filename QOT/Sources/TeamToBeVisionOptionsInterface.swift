@@ -10,17 +10,17 @@ import Foundation
 import qot_dal
 
 protocol TeamToBeVisionOptionsViewControllerInterface: class {
-    func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString)
+    func setupView(title: String, headerSubtitle: NSAttributedString)
     func reload()
 }
 
 protocol TeamToBeVisionOptionsPresenterInterface {
-    func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString)
+    func setupView(title: String, headerSubtitle: NSAttributedString)
     func reload()
 }
 
 protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
-    var getType: TeamToBeVisionOptionsModel.Types { get }
+    var getType: TeamAdmin.Types { get }
     var daysLeft: Int { get }
     var alertCancelTitle: String { get }
     var alertEndTitle: String { get }

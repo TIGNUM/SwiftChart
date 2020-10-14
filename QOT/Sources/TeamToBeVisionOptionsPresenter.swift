@@ -21,8 +21,8 @@ final class TeamToBeVisionOptionsPresenter {
 
 // MARK: - TeamToBeVisionOptionsInterface
 extension TeamToBeVisionOptionsPresenter: TeamToBeVisionOptionsPresenterInterface {
-    func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString) {
-        viewController?.setupView(type: type, headerSubtitle: headerSubtitle)
+    func setupView(title: String, headerSubtitle: NSAttributedString) {
+        viewController?.setupView(title: title, headerSubtitle: headerSubtitle)
     }
 
     func reload() {
