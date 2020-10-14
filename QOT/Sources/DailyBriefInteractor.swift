@@ -164,10 +164,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.getCurrentTeamToBeVisionPoll(for: team, completion)
     }
 
-    func getTeamAdmin(for team: QDMTeam, _ completion: @escaping (String?) -> Void) {
-        worker.getTeamAdmin(team: team, completion: completion)
-    }
-
     // MARK: - Properties
     var rowViewSectionCount: Int {
         return viewModelOldListModels.count
@@ -290,8 +286,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .THOUGHTS_TO_PONDER:
                     sectionDataList.append(ArraySection(model: .thoughtsToPonder,
                                                         elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
-//                    sectionDataList.append(ArraySection(model: .tbvRate,
-//                                                        elements: strongSelf.createRate(rateBucket: bucket)))
                 case .GOOD_TO_KNOW:
                     sectionDataList.append(ArraySection(model: .goodToKnow,
                                                         elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
@@ -346,7 +340,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .TEAM_TO_BE_VISION:
                     sectionDataList.append(ArraySection(model: .teamToBeVision,
                                                         elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
-                case .TEAM_VISION_SUGGESTION?:
+                case .TEAM_VISION_SUGGESTION:
                     sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
                                                         elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
                 case .TEAM_INVITATION:
@@ -420,6 +414,10 @@ extension DailyBriefInteractor {
         return bucket.contentCollections?.filter {
             $0.searchTags.contains(tag1) && $0.searchTags.contains(tag2)
         }.first?.contentItems.first?.valueText ?? ""
+    }
+
+    func getTeamAdmin(for team: QDMTeam, _ completion: @escaping (String?) -> Void) {
+        worker.getTeamAdmin(team: team, completion: completion)
     }
 
     func isNew(_ collection: QDMContentCollection) -> Bool {
@@ -748,8 +746,18 @@ extension DailyBriefInteractor {
     // MARK: - Poll is Open
     func createPollOpen(pollBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var openPollList: [BaseDailyBriefViewModel] = []
-        let model = PollOpenModel(teamName: "TEAM PINGPONG", teamAdmin: "a.plancoulaine@tignum.com", teamColor: UIColor.green, domainModel: pollBucket)
-        openPollList.append(model)
+        let openPolls = pollBucket.teamToBeVisionPolls?.filter { $0.open == true }
+        var adminEmail: String? = ""
+        openPolls?.forEach { (openPoll) in
+            guard openPoll.creator == false,
+                  openPoll.userDidVote == false,
+                  let team = pollBucket.myTeams?.filter({ $0.qotId == openPoll.teamQotId }).first else { return }
+            getTeamAdmin(for: team) { (email) in
+                adminEmail = email
+            }
+            let model = PollOpenModel(teamName: team.name?.uppercased(), teamAdmin: adminEmail, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: pollBucket)
+            openPollList.append(model)
+        }
         return openPollList
     }
 

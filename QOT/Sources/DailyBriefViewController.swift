@@ -141,13 +141,13 @@ extension DailyBriefViewController {
                 return getExpertThoughts(tableView, indexPath, nil)
             case 17:
                 return getTeamToBeVisionCell(tableView, indexPath, nil)
-//            case 18:
-//                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
             case 18:
-                return getTeamInvitationCell(tableView, indexPath, nil)
+                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
             case 19:
-                return getOpenPollCell(tableView, indexPath, nil)
+                return getTeamInvitationCell(tableView, indexPath, nil)
             case 20:
+                return getOpenPollCell(tableView, indexPath, nil)
+            case 21:
                 return getOpenRateCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
@@ -210,8 +210,7 @@ extension DailyBriefViewController {
         case .LATEST_WHATS_HOT?:
             return getWhatsHot(tableView, indexPath, bucketItem as? WhatsHotLatestCellViewModel)
         case .THOUGHTS_TO_PONDER?:
-            return getRatingFeedbackCell(tableView, indexPath, bucketItem as? RatingFeedbackModel)
-//            return getThoughtsCell(tableView, indexPath, bucketItem as? ThoughtsCellViewModel)
+            return getThoughtsCell(tableView, indexPath, bucketItem as? ThoughtsCellViewModel)
         case .GOOD_TO_KNOW?:
             return getGoodToKnowCell(tableView, indexPath, bucketItem as? GoodToKnowCellViewModel)
         case .FROM_MY_COACH?:
@@ -239,8 +238,8 @@ extension DailyBriefViewController {
             return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
         case .TEAM_TO_BE_VISION?:
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
-//        case .TEAM_VISION_SUGGESTION?:
-//            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
+        case .TEAM_VISION_SUGGESTION?:
+            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
         case .TEAM_INVITATION?:
             return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
         case .TEAM_NEWS_FEED?:
