@@ -213,13 +213,13 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func showTracker() {
-        router.showTracker()
+        router.showTracker(for: nil)
     }
 
     func showRateScreen(delegate: TBVRateDelegate?) {
         worker.getToBeVision { [weak self] (_, toBeVision) in
             if let remoteId = toBeVision?.remoteID {
-                self?.router.showRateScreen(with: remoteId, delegate: delegate)
+                self?.router.showRateScreen(with: remoteId, team: nil, delegate: delegate)
             }
         }
     }

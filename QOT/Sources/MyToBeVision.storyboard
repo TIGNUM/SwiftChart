@@ -730,9 +730,6 @@
                                                                 <state key="normal" image="arrowFront">
                                                                     <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
-                                                                <connections>
-                                                                    <action selector="didTapOpenTrends:" destination="TAI-qk-Edb" eventType="touchUpInside" id="1NH-bW-cIk"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -776,7 +773,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-ta-NLV" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-ta-NLV" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="6.5" width="137" height="37"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
@@ -815,22 +812,32 @@
                                                     <constraint firstAttribute="trailing" secondItem="8YT-VH-eyH" secondAttribute="trailing" id="yhX-Db-y5m"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lz-yT-Fm3">
+                                                <rect key="frame" x="24" y="572" width="366" height="40"/>
+                                                <connections>
+                                                    <action selector="didTapOpenTrends" destination="TAI-qk-Edb" eventType="touchUpInside" id="1Ae-ZG-KXo"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Omn-Lw-BLK" firstAttribute="bottom" secondItem="vKH-4l-bYg" secondAttribute="top" constant="-20" id="1BB-zX-CHL"/>
                                             <constraint firstItem="Omn-Lw-BLK" firstAttribute="top" secondItem="R5W-Tl-jin" secondAttribute="bottom" id="5wa-w7-Fjg"/>
+                                            <constraint firstItem="5Hf-yt-ZNg" firstAttribute="leading" secondItem="5lz-yT-Fm3" secondAttribute="leading" id="Hky-nW-1Yu"/>
                                             <constraint firstItem="Omn-Lw-BLK" firstAttribute="leading" secondItem="wI9-tX-fz2" secondAttribute="leading" constant="24" id="JXd-dT-Ogt"/>
                                             <constraint firstItem="Omn-Lw-BLK" firstAttribute="top" secondItem="wI9-tX-fz2" secondAttribute="top" constant="398" id="K1y-hB-Quz"/>
                                             <constraint firstAttribute="trailing" secondItem="Omn-Lw-BLK" secondAttribute="trailing" constant="24" id="OOa-48-zfn"/>
                                             <constraint firstItem="lbp-q7-uuS" firstAttribute="leading" secondItem="wI9-tX-fz2" secondAttribute="leading" constant="24" id="YIc-Rf-BaM"/>
                                             <constraint firstItem="vKH-4l-bYg" firstAttribute="leading" secondItem="wI9-tX-fz2" secondAttribute="leading" constant="24" id="aCw-wa-hiR"/>
+                                            <constraint firstItem="5Hf-yt-ZNg" firstAttribute="top" secondItem="5lz-yT-Fm3" secondAttribute="top" id="bHN-b3-362"/>
                                             <constraint firstAttribute="bottom" secondItem="069-b6-Z65" secondAttribute="bottom" constant="100" id="cVT-mP-o1d"/>
                                             <constraint firstAttribute="trailing" secondItem="R5W-Tl-jin" secondAttribute="trailing" id="i1n-8D-Ybv"/>
+                                            <constraint firstItem="5Hf-yt-ZNg" firstAttribute="bottom" secondItem="5lz-yT-Fm3" secondAttribute="bottom" id="ibI-wy-lO9"/>
                                             <constraint firstItem="069-b6-Z65" firstAttribute="leading" secondItem="wI9-tX-fz2" secondAttribute="leading" constant="24" id="jhJ-h4-6A7"/>
                                             <constraint firstAttribute="trailing" secondItem="vKH-4l-bYg" secondAttribute="trailing" constant="24" id="mDo-0O-fTt"/>
                                             <constraint firstItem="R5W-Tl-jin" firstAttribute="leading" secondItem="wI9-tX-fz2" secondAttribute="leading" id="rlR-NO-9gi"/>
                                             <constraint firstAttribute="trailing" secondItem="069-b6-Z65" secondAttribute="trailing" constant="24" id="w9N-56-0qC"/>
+                                            <constraint firstItem="5Hf-yt-ZNg" firstAttribute="trailing" secondItem="5lz-yT-Fm3" secondAttribute="trailing" id="wCl-mv-tBC"/>
                                             <constraint firstItem="069-b6-Z65" firstAttribute="top" secondItem="vKH-4l-bYg" secondAttribute="bottom" constant="24" id="yAT-dW-rYO"/>
                                         </constraints>
                                     </view>

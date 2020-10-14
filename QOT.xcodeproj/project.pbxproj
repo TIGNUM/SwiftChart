@@ -5750,16 +5750,16 @@
 		F947E9FF2521F419004C7076 /* TeamVisionTrackerResultDetails */ = {
 			isa = PBXGroup;
 			children = (
-				F947EA002521F45D004C7076 /* TeamVisionTrackerDetailsPresenter.swift */,
-				F947EA012521F45D004C7076 /* TeamVisionTrackerDetailsWorker.swift */,
-				F947EA022521F45D004C7076 /* TeamVisionTrackerDetailsRouter.swift */,
-				F947EA032521F45D004C7076 /* TeamVisionTrackerDetailsInterface.swift */,
-				F947EA042521F45D004C7076 /* TeamVisionTrackerDetailsViewController.swift */,
-				F947EA052521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift */,
-				F947EA062521F45D004C7076 /* TeamVisionTrackerDetailsModel.swift */,
-				F947EA072521F45D004C7076 /* TeamVisionTrackerDetailsConfigurator.swift */,
-				F947EA242521F4DA004C7076 /* BarChartView.swift */,
 				F947EA2C2521F4FD004C7076 /* TeamVisionTrackerDetails.storyboard */,
+				F947EA242521F4DA004C7076 /* BarChartView.swift */,
+				F947EA072521F45D004C7076 /* TeamVisionTrackerDetailsConfigurator.swift */,
+				F947EA052521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift */,
+				F947EA032521F45D004C7076 /* TeamVisionTrackerDetailsInterface.swift */,
+				F947EA062521F45D004C7076 /* TeamVisionTrackerDetailsModel.swift */,
+				F947EA002521F45D004C7076 /* TeamVisionTrackerDetailsPresenter.swift */,
+				F947EA022521F45D004C7076 /* TeamVisionTrackerDetailsRouter.swift */,
+				F947EA042521F45D004C7076 /* TeamVisionTrackerDetailsViewController.swift */,
+				F947EA012521F45D004C7076 /* TeamVisionTrackerDetailsWorker.swift */,
 			);
 			name = TeamVisionTrackerResultDetails;
 			sourceTree = "<group>";

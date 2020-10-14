@@ -337,21 +337,33 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 // MARK: - Private
 private extension MyQotMainInteractor {
     func canSelectTBV(for teamItem: Team.Item?, _ completion: @escaping (Bool) -> Void) {
-        guard let team = teamItem?.qdmTeam else {
+        guard let team = teamItem?.qdmTeam, team.thisUserIsOwner == false else {
             completion(true)
             return
         }
 
-        if !team.thisUserIsOwner {
-            getCurrentTeamToBeVisionPoll(for: team) { [weak self] (poll) in
-                if poll?.open == true {
-                    completion(true)
-                } else {
-                    completion(self?.teamTBV != nil)
-                }
+        let dispatchGroup = DispatchGroup()
+        var tmpPoll: QDMTeamToBeVisionPoll?
+        var tmpTeamTBV: QDMTeamToBeVision?
+
+        dispatchGroup.enter()
+        getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+            tmpPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        getTeamToBeVision(for: team) { (teamTBV) in
+            tmpTeamTBV = teamTBV
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            if tmpPoll?.open == true {
+                completion(true)
+            } else {
+                completion(tmpTeamTBV != nil)
             }
-        } else {
-            completion(true)
         }
     }
 

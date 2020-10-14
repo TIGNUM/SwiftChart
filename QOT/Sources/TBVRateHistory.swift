@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 class ToBeVisionReport {
-    let title: String
+    let title: String 
     let subtitle: String
     var selectedDate: Date
     let report: QDMToBeVisionRatingReport

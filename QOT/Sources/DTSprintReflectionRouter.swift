@@ -22,7 +22,8 @@ extension DTSprintReflectionRouter: DTSprintReflectionRouterInterface {
         WorkerTBV().getUsersTBV { [weak self] (tbv, _) in
             MyToBeVisionRateConfigurator.configure(viewController: rateController,
                                                    delegate: controller,
-                                                   visionId: tbv?.remoteID ?? 0)
+                                                   visionId: tbv?.remoteID ?? 0,
+                                                   team: nil)
             self?.viewController?.dismiss(animated: false) {
                 self?.viewController?.present(rateController, animated: true)
             }

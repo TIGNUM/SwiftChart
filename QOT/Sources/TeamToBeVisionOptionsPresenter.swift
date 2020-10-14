@@ -24,4 +24,8 @@ extension TeamToBeVisionOptionsPresenter: TeamToBeVisionOptionsPresenterInterfac
     func setupView(type: TeamToBeVisionOptionsModel.Types, headerSubtitle: NSAttributedString) {
         viewController?.setupView(type: type, headerSubtitle: headerSubtitle)
     }
+
+    func reload() {
+        viewController?.reload()
+    }
 }

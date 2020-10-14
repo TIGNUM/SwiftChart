@@ -43,6 +43,32 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
         presenter.setupView(type: type,
                             headerSubtitle: getTeamTBVPollRemainingDays(remainingDays))
     }
+
+    func viewWillAppear() {
+        guard let team = team else { return }
+
+        let dispatchGroup = DispatchGroup()
+        var tmpTBVPoll: QDMTeamToBeVisionPoll?
+        var tmpTrackerPoll: QDMTeamToBeVisionTrackerPoll?
+
+        dispatchGroup.enter()
+        getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+            tmpTBVPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        getCurrentRatingPoll(for: team) { (poll) in
+            tmpTrackerPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.toBeVisionPoll = tmpTBVPoll
+            self?.trackerPoll = tmpTrackerPoll
+            self?.presenter.reload()
+        }
+    }
 }
 
 // MARK: - TeamToBeVisionOptionsInteractorInterface
@@ -76,7 +102,7 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
 
     var userDidVote: Bool {
         switch type {
-        case .rating: return trackerPoll?.didVote ?? false
+        case .rating: return false//trackerPoll?.didVote ?? false
         case .voting: return toBeVisionPoll?.userDidVote ?? false
         }
     }
@@ -107,11 +133,8 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
         }
     }
 
-    func endRating() {
+    func endRating(_ completion: @escaping () -> Void) {
         guard let team = team else { return }
-        closeRatingPoll(for: team) { [weak self] in
-//            TO DO: go to Team TBVRateHistoryViewController for teams
-//            self?.router.dismiss()
-        }
+        closeRatingPoll(for: team, completion)
     }
 }

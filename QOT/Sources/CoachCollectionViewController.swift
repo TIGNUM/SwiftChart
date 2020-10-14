@@ -182,18 +182,11 @@ extension CoachCollectionViewController {
 // MARK: - Coach button
 extension CoachCollectionViewController {
     @IBAction func showCoachScreen() {
-
-//        guard let coachViewController = R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier) as? CoachViewController else {
-//            return
-//        }
-//         Temporary triggering this view from Coach button
-        guard let teamVisionTrackerDetails = R.storyboard.teamVisionTrackerDetails.teamVisionTrackerDetailsID() else {
+        guard let coachViewController = R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier) as? CoachViewController else {
             return
         }
-        let configurator = TeamVisionTrackerDetailsConfigurator.make()
-        configurator(teamVisionTrackerDetails)
-//        CoachConfigurator.make(viewController: coachViewController)
-        let navi = UINavigationController(rootViewController: teamVisionTrackerDetails)
+        CoachConfigurator.make(viewController: coachViewController)
+        let navi = UINavigationController(rootViewController: coachViewController)
         navi.modalTransitionStyle = .coverVertical
         navi.isNavigationBarHidden = true
         navi.isToolbarHidden = true

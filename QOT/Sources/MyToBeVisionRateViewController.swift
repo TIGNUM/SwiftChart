@@ -107,7 +107,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc private func doneAction() {
-        trackUserEvent(.CONFIRM, valueType: "MyToBeVision.SaveAnswers", action: .TAP)
+//        trackUserEvent(.CONFIRM, valueType: "MyToBeVision.SaveAnswers", action: .TAP)
         interactor?.saveQuestions()
         dismiss(animated: true) {[weak self] in
             self?.delegate?.doneAction()

@@ -32,16 +32,6 @@ final class DTTeamTBVInteractor: DTInteractor, WorkerTeam {
 
 // MARK: - DTTeamTBVInteractorInterface
 extension DTTeamTBVInteractor: DTTeamTBVInteractorInterface {
-    func generateTBV(answers: [DTViewModel.Answer],
-                     _ completion: @escaping (QDMTeamToBeVision?) -> Void) {
-        if let team = team {
-//            createTeamToBeVision(answers: answers,
-//                                 team: team) { (teamTBV) in
-//                completion(teamTBV)
-//            }
-        }
-    }
-
     func voteTeamToBeVisionPoll(question: DTViewModel.Question,
                                 votes: [DTViewModel.Answer],
                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
