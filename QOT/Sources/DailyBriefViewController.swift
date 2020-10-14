@@ -122,8 +122,7 @@ extension DailyBriefViewController {
             case 7:
                 return getDepartureBespokeFeastCell(tableView, indexPath, nil)
             case 8:
-                return getOpenPollCell(tableView, indexPath, nil)
-//                return getThoughtsCell(tableView, indexPath, nil)
+                return getThoughtsCell(tableView, indexPath, nil)
             case 9:
                 return getDepartureBespokeFeastCell(tableView, indexPath, nil)
             case 10:
@@ -246,6 +245,13 @@ extension DailyBriefViewController {
             return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
         case .TEAM_NEWS_FEED?:
             return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
+        case .TEAM_TOBEVISION_GENERATOR_POLL?:
+            return getOpenPollCell(tableView, indexPath, bucketItem as? PollOpenModel)
+        case .TEAM_TOBEVISION_TRACKER_POLL?:
+//            if rate if open
+            return getOpenRateCell(tableView, indexPath, bucketItem as? RateOpenModel)
+//            if rate is finished
+//          return get
         default:
            return UITableViewCell()
         }

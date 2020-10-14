@@ -220,8 +220,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .teamToBeVision,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
-//        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
-//                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .teamInvitation,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .openPoll,
@@ -288,10 +288,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .whatsHotLatest,
                                                         elements: strongSelf.createLatestWhatsHot(whatsHotLatestCell: bucket)))
                 case .THOUGHTS_TO_PONDER:
-//                    sectionDataList.append(ArraySection(model: .thoughtsToPonder,
-//                                                        elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
-                    sectionDataList.append(ArraySection(model: .tbvRate,
-                                                        elements: strongSelf.createRate(rateBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .thoughtsToPonder,
+                                                        elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
+//                    sectionDataList.append(ArraySection(model: .tbvRate,
+//                                                        elements: strongSelf.createRate(rateBucket: bucket)))
                 case .GOOD_TO_KNOW:
                     sectionDataList.append(ArraySection(model: .goodToKnow,
                                                         elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
@@ -346,9 +346,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .TEAM_TO_BE_VISION:
                     sectionDataList.append(ArraySection(model: .teamToBeVision,
                                                         elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
-//                case .TEAM_VISION_SUGGESTION?:
-//                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
-//                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
+                case .TEAM_VISION_SUGGESTION?:
+                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
                 case .TEAM_INVITATION:
                     sectionDataList.append(ArraySection(model: .teamInvitation,
                                                         elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
@@ -356,10 +356,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
                     guard elements.isEmpty == false else { break }
                     sectionDataList.append(ArraySection(model: .teamNewsFeed, elements: elements))
-                case .POLL_OPEN:
+                case .TEAM_TOBEVISION_GENERATOR_POLL:
                     sectionDataList.append(ArraySection(model: .openPoll,
                                                         elements: strongSelf.createPollOpen(pollBucket: bucket)))
-                case .TBV_RATE:
+                case .TEAM_TOBEVISION_TRACKER_POLL :
                     sectionDataList.append(ArraySection(model: .tbvRate,
                                                         elements: strongSelf.createRate(rateBucket: bucket)))
                 default:
