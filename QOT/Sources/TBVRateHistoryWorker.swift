@@ -29,26 +29,22 @@ final class TBVRateHistoryWorker: WorkerTeam {
     func getData(_ completion: @escaping (ToBeVisionReport) -> Void) {
         if let team = team {
             getLatestClosedPolls(for: team) { [weak self] (polls) in
-                var tracks = [QDMTeamToBeVisionTrackerResult]()
-                polls?.forEach { tracks.append(contentsOf: $0.qotTeamToBeVisionTrackers ?? []) }
-
-//                let tracks = polls?.compactMap { $0.qotTeamToBeVisionTrackers }.compactMap { $0. } ?? []
-
+                let tracks = polls?.compactMap { $0.qotTeamToBeVisionTrackers }.first ?? []
                 UserService.main.getTeamToBeVisionTrackingReport(tracks: tracks) { [weak self] (report) in
-                    guard let strongSelf = self else { return }
+                    guard let strongSelf = self, let date = report.days.sorted(by: <).last else { return }
                     strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
                                                             subtitle: strongSelf.subtitle,
-                                                            selectedDate: report.days.sorted(by: <).last!,
+                                                            selectedDate: date,
                                                             report: report)
                     completion(strongSelf.dataModel!)
                 }
             }
         } else {
             UserService.main.getToBeVisionTrackingReport(last: 3) { [weak self] (report) in
-                guard let strongSelf = self else { return }
+                guard let strongSelf = self, let date = report.days.sorted(by: <).last else { return }
                 strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
                                                         subtitle: strongSelf.subtitle,
-                                                        selectedDate: report.days.sorted(by: <).last!,
+                                                        selectedDate: date,
                                                         report: report)
                 completion(strongSelf.dataModel!)
             }

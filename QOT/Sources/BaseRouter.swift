@@ -223,13 +223,9 @@ class BaseRouter: BaseRouterInterface {
 
 // MARK: - Private
 private extension BaseRouter {
-    func showExplanation(_ team: QDMTeam,
-                         _ type: Explanation.Types) {
-        let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
-        if let controller = controller {
-            let configurator = VisionRatingExplanationConfigurator.make(team: team,
-                                                                        type: type)
-            configurator(controller)
+    func showExplanation(_ team: QDMTeam, _ type: Explanation.Types) {
+        if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+            VisionRatingExplanationConfigurator.make(team: team, type: type)(controller)
             present(controller)
         }
     }

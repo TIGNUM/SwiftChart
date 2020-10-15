@@ -55,8 +55,17 @@ extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorIn
             if let currentPoll = currentPoll {
                 completion(currentPoll)
             } else {
-                self?.worker.openNewTeamToBeVisionTrackerPoll(for: team) { (newPoll) in
-                    completion(newPoll)
+                self?.worker.openNewTeamToBeVisionTrackerPoll(for: team) { (_) in
+                    _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                               object: nil,
+                                                               queue: .main) { [weak self ] (notification) in
+                        if let context = notification.object as? SyncResultContext,
+                           context.syncRequestType == .DOWN_SYNC,
+                           context.hasUpdatedContent,
+                           context.dataType == .TEAM_TO_BE_VISION_TRACKER_POLL {
+                            self?.worker.getCurrentRatingPoll(for: team, completion)
+                        }
+                    }
                 }
             }
         }

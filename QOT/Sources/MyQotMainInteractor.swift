@@ -61,7 +61,11 @@ final class MyQotMainInteractor: MyQotMainWorker {
         var tmpSubtitles = [String: String?]()
         var tmpIsCellEnabled = [String: Bool]()
 
-        for item in MyX.Item.allCases {
+        _ = DispatchQueue.global(qos: .userInitiated)
+
+//        for item in MyX.Item.allCases {
+        DispatchQueue.concurrentPerform(iterations: MyX.Item.allCases.count) { (index) in
+            let item = MyX.Item.allCases[index]
             dispatchGroup.enter()
             // load all "isCellEnabled"
             isCellEnabled(for: tmpSelectedTeamItem, section: item) { enabled in
