@@ -247,12 +247,16 @@ extension DailyBriefViewController {
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
             return getOpenPollCell(tableView, indexPath, bucketItem as? PollOpenModel)
         case .TEAM_TOBEVISION_TRACKER_POLL?:
-//            if rate if open
-            return getOpenRateCell(tableView, indexPath, bucketItem as? RateOpenModel)
-//            if rate is finished
-//          return get
+            if (bucketItem as? RateOpenModel) != nil,
+               let rateViewModel = bucketItem as? RateOpenModel {
+                return getOpenRateCell(tableView, indexPath, rateViewModel)
+            } else if (bucketItem as? RatingFeedbackModel ) != nil,
+                      let feedbackModel = bucketItem as? RatingFeedbackModel {
+                return getRatingFeedbackCell(tableView, indexPath, feedbackModel)
+            }
+            return UITableViewCell()
         default:
-           return UITableViewCell()
+            return UITableViewCell()
         }
     }
 

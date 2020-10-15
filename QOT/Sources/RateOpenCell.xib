@@ -11,24 +11,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="mIT-Rf-twz" customClass="RateOpenCell" customModule="TIGNUM_X" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="226"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="285"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ie-zf-lV1">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="s1w-2A-ZPC"/>
+                        <constraint firstAttribute="height" constant="130" id="s1w-2A-ZPC"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpS-9i-HDe">
-                    <rect key="frame" x="24" y="110" width="366" height="20.5"/>
+                    <rect key="frame" x="24" y="140" width="366" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOl-md-phZ">
-                    <rect key="frame" x="312" y="147.5" width="78" height="38.5"/>
+                    <rect key="frame" x="312" y="177.5" width="78" height="67.5"/>
                     <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                     <state key="normal" title="Button"/>
                     <connections>
@@ -55,7 +55,7 @@
                 <outlet property="headerView" destination="3Ie-zf-lV1" id="edg-5C-aGJ"/>
                 <outlet property="rateLabel" destination="WpS-9i-HDe" id="ZYG-Pk-M4k"/>
             </connections>
-            <point key="canvasLocation" x="-839.13043478260875" y="-54.910714285714285"/>
+            <point key="canvasLocation" x="-839.13043478260875" y="-35.15625"/>
         </view>
     </objects>
 </document>

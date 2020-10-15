@@ -747,15 +747,12 @@ extension DailyBriefInteractor {
     func createPollOpen(pollBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var openPollList: [BaseDailyBriefViewModel] = []
         let openPolls = pollBucket.teamToBeVisionPolls?.filter { $0.open == true }
-        var adminEmail: String? = ""
         openPolls?.forEach { (openPoll) in
             guard openPoll.creator == false,
                   openPoll.userDidVote == false,
                   let team = pollBucket.myTeams?.filter({ $0.qotId == openPoll.teamQotId }).first else { return }
-            getTeamAdmin(for: team) { (email) in
-                adminEmail = email
-            }
-            let model = PollOpenModel(teamName: team.name?.uppercased(), teamAdmin: adminEmail, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: pollBucket)
+            let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
+            let model = PollOpenModel(teamName: team.name?.uppercased(), teamAdmin: teamOwner?.email, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: pollBucket)
             openPollList.append(model)
         }
         return openPollList
@@ -764,10 +761,19 @@ extension DailyBriefInteractor {
     // MARK: - Rate is Open
     func createRate(rateBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var ratingBucketList: [BaseDailyBriefViewModel] = []
-//        check if rating is open or finished
-        let openRateModel = RateOpenModel(team: QDMTeam(), ownerEmail: "a.plancoulaine@tignum.com", domainModel: rateBucket)
-        let feedbackModel = RatingFeedbackModel(teamName: "iOS TEAM", feedback: "Your team is moving forward to the best team as you defined you're ready to rule your impact", averageValue: 5.6, teamColor: .blue, domainModel: rateBucket)
-        ratingBucketList.append(feedbackModel)
+        let openRatings = rateBucket.teamToBeVisionTrackerPolls?.filter { $0.open == true }
+        openRatings?.forEach { (openRatings) in
+            if openRatings.didVote == false {
+                guard openRatings.creator == false,
+                      let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
+                let openRateModel = RateOpenModel(team: team, ownerEmail: "a.plancoulaine@tignum.com", domainModel: rateBucket)
+                ratingBucketList.append(openRateModel)
+            } else {
+                guard let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
+                let feedbackModel = RatingFeedbackModel(teamName: "iOS TEAM", feedback: "Your team is moving forward to the best team as you defined you're ready to rule your impact", averageValue: 5.6, teamColor: .blue, domainModel: rateBucket)
+                ratingBucketList.append(feedbackModel)
+            }
+        }
         return ratingBucketList
     }
 

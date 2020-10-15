@@ -30,7 +30,7 @@ final class RateOpenCell: BaseDailyBriefCell {
         skeletonManager.hide()
         ctaButton.setTitle(AppTextService.get(.daily_brief_rate_open_cta), for: .normal)
         let text = AppTextService.get(.daily_brief_rate_open_text).replacingOccurrences(of: "${team_admin}", with: model?.ownerEmail ?? "")
-        let title = AppTextService.get(.daily_brief_vision_rating_title).replacingOccurrences(of: "${team_name)", with: model?.team?.name ?? "")
+        let title = AppTextService.get(.daily_brief_vision_rating_title).replacingOccurrences(of: "${TEAM_NAME)", with: model?.team?.name ?? "")
         ThemeText.dailyInsightsTbvAdvice.apply(text, to: rateLabel)
         baseHeaderView?.configure(title: title, subtitle: nil)
         let teamColor = UIColor(hex: model?.team?.teamColor ?? "")
