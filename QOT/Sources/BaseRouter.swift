@@ -238,11 +238,11 @@ private extension BaseRouter {
     }
 
     func presentRateHistory(for team: QDMTeam?, _ displayType: TBVGraph.DisplayType) {
-        guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
-        TBVRateHistoryConfigurator.configure(viewController: viewController,
+        guard let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
+        TBVRateHistoryConfigurator.configure(viewController: controller,
                                              displayType: displayType,
                                              team: team)
-        present(viewController)
+        present(controller)
     }
 
     func push(_ childViewController: UIViewController) {
