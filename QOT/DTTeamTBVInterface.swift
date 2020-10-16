@@ -17,6 +17,8 @@ protocol DTTeamTBVInteractorInterface: Interactor {
     func voteTeamToBeVisionPoll(question: DTViewModel.Question,
                                 votes: [DTViewModel.Answer],
                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func teamToBeVisionExist(_ completion: @escaping (Bool) -> Void)
 }
 
 protocol DTTeamTBVRouterInterface {}

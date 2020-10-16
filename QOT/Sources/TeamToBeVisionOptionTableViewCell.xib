@@ -44,28 +44,25 @@
                             <action selector="ctaTapped:" destination="omd-dQ-CLY" eventType="touchUpInside" id="WTL-T6-3Xq"/>
                         </connections>
                     </button>
-                    <view alpha="0.20000000000000001" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5j-DO-YmB">
+                    <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5j-DO-YmB">
                         <rect key="frame" x="24" y="110" width="390" height="1"/>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.65892551369863017" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="c3r-oc-dE3"/>
+                            <constraint firstAttribute="height" constant="1" id="X8E-xx-79a"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="s5j-DO-YmB" firstAttribute="leading" secondItem="H9d-hP-xLU" secondAttribute="leading" constant="24" id="1tb-u3-Di3"/>
                     <constraint firstItem="ly5-Sq-Y31" firstAttribute="centerY" secondItem="ukK-zj-wbu" secondAttribute="centerY" id="8kI-LS-wJZ"/>
-                    <constraint firstItem="s5j-DO-YmB" firstAttribute="leading" secondItem="H9d-hP-xLU" secondAttribute="leading" constant="24" id="C5N-xw-tsF"/>
+                    <constraint firstItem="s5j-DO-YmB" firstAttribute="top" secondItem="ukK-zj-wbu" secondAttribute="bottom" constant="46" id="AW9-Mn-ct0"/>
                     <constraint firstItem="ukK-zj-wbu" firstAttribute="top" secondItem="H9d-hP-xLU" secondAttribute="top" constant="24" id="DeV-od-yzS"/>
                     <constraint firstItem="ly5-Sq-Y31" firstAttribute="top" secondItem="H9d-hP-xLU" secondAttribute="top" constant="24" id="H3o-cf-mZ2"/>
-                    <constraint firstAttribute="bottom" secondItem="s5j-DO-YmB" secondAttribute="bottom" constant="1" id="Ilm-5j-Eyx"/>
                     <constraint firstAttribute="bottom" secondItem="ukK-zj-wbu" secondAttribute="bottom" constant="24" id="Qks-ky-d8V"/>
-                    <constraint firstAttribute="bottom" secondItem="s5j-DO-YmB" secondAttribute="bottom" constant="1" id="Sj4-UY-tSQ"/>
-                    <constraint firstAttribute="trailing" secondItem="s5j-DO-YmB" secondAttribute="trailing" id="VZy-8N-qlc"/>
                     <constraint firstAttribute="trailing" secondItem="ly5-Sq-Y31" secondAttribute="trailing" constant="24" id="kHJ-Sg-Roz"/>
                     <constraint firstItem="ly5-Sq-Y31" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ukK-zj-wbu" secondAttribute="trailing" constant="16" id="pSq-vQ-9Sb"/>
-                    <constraint firstAttribute="trailing" secondItem="s5j-DO-YmB" secondAttribute="trailing" id="tSO-om-Mhn"/>
-                    <constraint firstItem="s5j-DO-YmB" firstAttribute="leading" secondItem="H9d-hP-xLU" secondAttribute="leading" constant="24" id="yxD-qZ-m7i"/>
+                    <constraint firstAttribute="trailing" secondItem="s5j-DO-YmB" secondAttribute="trailing" id="zCv-mm-g5t"/>
                     <constraint firstItem="ukK-zj-wbu" firstAttribute="leading" secondItem="H9d-hP-xLU" secondAttribute="leading" constant="24" id="zfa-IT-v3t"/>
                 </constraints>
             </tableViewCellContentView>

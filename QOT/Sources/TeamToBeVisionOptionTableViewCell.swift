@@ -12,8 +12,8 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var ctaButton: RoundedButton!
-    weak var delegate: TeamToBeVisionOptionsViewControllerDelegate?
-    private var actionType: TeamToBeVisionOptionsViewController.ActionType = .rate
+    weak var delegate: TeamAdminDelegate?
+    private var actionType: TeamAdmin.ActionType = .rate
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +24,7 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String,
                    cta: String,
-                   actionType: TeamToBeVisionOptionsViewController.ActionType,
+                   actionType: TeamAdmin.ActionType,
                    buttonDisabled: Bool) {
         buttonDisabled ? ThemeText.optionPageDisabled.apply(title, to: titleLabel) : ThemeText.optionPage.apply(title, to: titleLabel)
         self.actionType = actionType
@@ -35,10 +35,8 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
 
     @IBAction func ctaTapped(_ sender: Any) {
         switch actionType {
-        case .rate:
-            delegate?.showPoll()
-        case .end:
-            delegate?.showAlert()
+        case .rate: delegate?.showPoll()
+        case .end: delegate?.showAlert()
         }
     }
 }

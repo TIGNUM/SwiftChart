@@ -11,7 +11,7 @@ import qot_dal
 
 final class DTTeamTBVViewController: DTViewController {
 
-    var tbvTeamInteractor: DTTeamTBVInteractorInterface?
+    var tbvTeamInteractor: DTTeamTBVInteractorInterface!
 
     // MARK: - Init
     init(configure: Configurator<DTTeamTBVViewController>) {
@@ -28,23 +28,37 @@ final class DTTeamTBVViewController: DTViewController {
     }
 
     override func didTapNext() {
-        let answers = viewModel?.answers.filter { $0.selected } ?? []
+        vote()
+    }
+}
+
+private extension DTTeamTBVViewController {
+    func vote() {
+        let votes = viewModel?.answers.filter { $0.selected } ?? []
         if let question = viewModel?.question {
-            tbvTeamInteractor?.voteTeamToBeVisionPoll(question: question,
-                                                      votes: answers) { (poll) in
-
-                let buttonTitle = AppTextService.get(.onboarding_log_in_alert_device_small_screen_button_got_it)
-                let buttonGotIt = QOTAlertAction(title: buttonTitle) { [weak self] (_) in
-                    self?.router?.dismiss()
-                }
-                let title = AppTextService.get(.alert_title_team_tbv_poll_submitted)
-                var message = AppTextService.get(.alert_message_team_tbv_poll_submitted)
-                let remainingDays = Date().days(to: poll?.endDate ?? Date())
-                message = message.replacingOccurrences(of: "%d", with: String(remainingDays))
-
-                QOTAlert.show(title: title, message: message, bottomItems: [buttonGotIt])
+            tbvTeamInteractor.voteTeamToBeVisionPoll(question: question, votes: votes) { [weak self] (poll) in
+                self?.showDialog(poll)
             }
         }
+    }
+
+    func showDialog(_ poll: QDMTeamToBeVisionPoll?) {
+        let buttonTitle = AppTextService.get(.onboarding_log_in_alert_device_small_screen_button_got_it)
+        let title = AppTextService.get(.alert_title_team_tbv_poll_submitted)
+        var message = AppTextService.get(.alert_message_team_tbv_poll_submitted)
+        message = message.replacingOccurrences(of: "%d", with: String(poll?.remainingDays ?? 0))
+
+        let buttonGotIt = QOTAlertAction(title: buttonTitle) { [weak self] (_) in
+            self?.tbvTeamInteractor.teamToBeVisionExist { (teamToBeVisionExist) in
+                if teamToBeVisionExist {
+                    self?.didTapClose()
+                } else {
+                    AppDelegate.current.launchHandler.showFirstLevelScreen(page: .myX)
+                }
+            }
+        }
+
+        QOTAlert.show(title: title, message: message, bottomItems: [buttonGotIt])
     }
 }
 

@@ -40,12 +40,8 @@ protocol BaseRouterInterface {
     func dismissChatBotFlow()
 
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
-    func showTeamAdminVoteView(poll: QDMTeamToBeVisionPoll?,
-                               type: TeamToBeVisionOptionsModel.Types,
-                               team: QDMTeam?)
-    func showTeamAdminRatingView(poll: QDMTeamToBeVisionTrackerPoll?,
-                                 type: TeamToBeVisionOptionsModel.Types,
-                                 team: QDMTeam?)
+
+    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?)
 
     func showBanner(message: String)
 }
@@ -207,29 +203,12 @@ class BaseRouter: BaseRouterInterface {
         present(controller)
     }
 
-    func showTeamAdminVoteView(poll: QDMTeamToBeVisionPoll?,
-                               type: TeamToBeVisionOptionsModel.Types,
-                               team: QDMTeam?) {
-        if let viewController = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
-            TeamToBeVisionOptionsConfigurator.make(viewController: viewController,
+    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?) {
+        if let vc = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
+            TeamToBeVisionOptionsConfigurator.make(viewController: vc,
                                                    type: type,
-                                                   toBeVisionPoll: poll,
-                                                   trackerPoll: nil,
                                                    team: team)
-            push(viewController)
-        }
-    }
-
-    func showTeamAdminRatingView(poll: QDMTeamToBeVisionTrackerPoll?,
-                                 type: TeamToBeVisionOptionsModel.Types,
-                                 team: QDMTeam?) {
-        if let viewController = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
-            TeamToBeVisionOptionsConfigurator.make(viewController: viewController,
-                                                   type: type,
-                                                   toBeVisionPoll: nil,
-                                                   trackerPoll: poll,
-                                                   team: team)
-            push(viewController)
+            self.viewController?.show(vc, sender: nil)
         }
     }
 
@@ -244,13 +223,9 @@ class BaseRouter: BaseRouterInterface {
 
 // MARK: - Private
 private extension BaseRouter {
-    func showExplanation(_ team: QDMTeam,
-                         _ type: Explanation.Types) {
-        let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
-        if let controller = controller {
-            let configurator = VisionRatingExplanationConfigurator.make(team: team,
-                                                                        type: type)
-            configurator(controller)
+    func showExplanation(_ team: QDMTeam, _ type: Explanation.Types) {
+        if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+            VisionRatingExplanationConfigurator.make(team: team, type: type)(controller)
             present(controller)
         }
     }

@@ -54,4 +54,14 @@ extension DTTeamTBVInteractor: DTTeamTBVInteractorInterface {
             }
         }
     }
+
+    func teamToBeVisionExist(_ completion: @escaping (Bool) -> Void) {
+        if let team = team {
+            getTeamToBeVision(for: team) { (teamVision) in
+                completion(teamVision != nil)
+            }
+        } else {
+            completion(false)
+        }
+    }
 }

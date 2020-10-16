@@ -9,7 +9,12 @@
 import UIKit
 import qot_dal
 
-struct TeamToBeVisionOptionsModel {
+struct TeamAdmin {
+
+    enum ActionType: Int {
+        case rate = 0
+        case end
+    }
 
     enum Types: Int {
         case rating
