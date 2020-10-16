@@ -67,6 +67,8 @@ protocol DailyBriefViewControllerDelegate: class {
     func presentTeamPendingInvites()
 
     func presentToBeVisionPoll(for team: QDMTeam)
+
+    func presentToBeVisionRate(for team: QDMTeam)
 }
 
 protocol DailyBriefViewControllerInterface: class {
@@ -89,7 +91,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func getDailyBriefBucketsForViewModel()
     func getToBeVisionImage(completion: @escaping (URL?) -> Void)
     func getTeamTBVPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
-    func getTeamAdmin(for team: QDMTeam, _ completion: @escaping (String?) -> Void) 
+    func getTeamAdmin(for team: QDMTeam, _ completion: @escaping (String?) -> Void)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
 
@@ -115,5 +117,5 @@ protocol DailyBriefRouterInterface: BaseRouterInterface {
     func showMyDataScreen()
     func presentTeamPendingInvites()
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)
-    func showExplanation(_ team: QDMTeam)
+    func showExplanation(_ team: QDMTeam, type: Explanation.Types)
 }

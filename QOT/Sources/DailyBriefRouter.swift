@@ -95,11 +95,11 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func showExplanation(_ team: QDMTeam) {
+    func showExplanation(_ team: QDMTeam, type: Explanation.Types) {
         let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController()
         if let controller = controller {
             let configurator = VisionRatingExplanationConfigurator.make(team: team,
-                                                                        type: .tbvPollUser)
+                                                                        type: type)
             configurator(controller)
             viewController?.present(controller, animated: true)
         }

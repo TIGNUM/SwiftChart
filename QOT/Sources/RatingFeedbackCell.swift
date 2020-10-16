@@ -33,7 +33,7 @@ final class RatingFeedbackCell: BaseDailyBriefCell {
     func configure(model: RatingFeedbackModel?) {
         skeletonManager.hide()
         resultsButton.setTitle(AppTextService.get(.daily_brief_rating_ready_cta), for: .normal)
-        let title = AppTextService.get(.daily_brief_vision_rating_title).replacingOccurrences(of: "${TEAM_NAME}", with: model?.teamName ?? "")
+        let title = AppTextService.get(.daily_brief_vision_rating_title).replacingOccurrences(of: "${TEAM_NAME}", with: model?.teamName ?? "").uppercased()
         ThemeText.dailyInsightsTbvAdvice.apply(model?.feedback, to: feedbackLabel)
         ThemeText.iRscore.apply(String(model?.averageValue ?? 0), to: averageValueLabel)
         let subtitle = AppTextService.get(.daily_brief_rating_ready_subtitle)

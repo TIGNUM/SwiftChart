@@ -722,7 +722,7 @@ extension DailyBriefInteractor {
 //        guard let collection = teamVisionBucket.contentCollections?.first else {
 //            return teamVisionList
 //        }
-        let visionSentence = "We are an inspired, enerfized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
+        let visionSentence = "We are an inspired, energized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
         let title = "WEB TEAM TOBEVISION"
         let suggestion = "Practice recovery after stressful times to balance your autonomic nervous system."
         let model = TeamVisionSuggestionModel(title: title, teamColor: "#5790DD", tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
@@ -766,11 +766,12 @@ extension DailyBriefInteractor {
             if openRatings.didVote == false {
                 guard openRatings.creator == false,
                       let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
-                let openRateModel = RateOpenModel(team: team, ownerEmail: "a.plancoulaine@tignum.com", domainModel: rateBucket)
+                let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
+                let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, domainModel: rateBucket)
                 ratingBucketList.append(openRateModel)
             } else {
                 guard let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
-                let feedbackModel = RatingFeedbackModel(teamName: "iOS TEAM", feedback: "Your team is moving forward to the best team as you defined you're ready to rule your impact", averageValue: 5.6, teamColor: .blue, domainModel: rateBucket)
+                let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: "Your team is moving forward to the best team as you defined you're ready to rule your impact", averageValue: 5.6, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
                 ratingBucketList.append(feedbackModel)
             }
         }

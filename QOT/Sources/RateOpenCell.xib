@@ -32,7 +32,7 @@
                     <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="startPoll:" destination="mIT-Rf-twz" eventType="touchUpInside" id="ghx-nW-6w3"/>
+                        <action selector="startRating:" destination="mIT-Rf-twz" eventType="touchUpInside" id="WXQ-2L-DNh"/>
                     </connections>
                 </button>
             </subviews>
@@ -51,7 +51,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="ctaButton" destination="YOl-md-phZ" id="VMf-Le-ZBc"/>
+                <outlet property="ctaButton" destination="YOl-md-phZ" id="Uyu-0H-2Y2"/>
                 <outlet property="headerView" destination="3Ie-zf-lV1" id="edg-5C-aGJ"/>
                 <outlet property="rateLabel" destination="WpS-9i-HDe" id="ZYG-Pk-M4k"/>
             </connections>

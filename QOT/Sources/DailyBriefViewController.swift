@@ -958,7 +958,11 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func presentToBeVisionPoll(for team: QDMTeam) {
-        router.showExplanation(team)
+        router.showExplanation(team, type: .tbvPollUser)
+    }
+
+    func presentToBeVisionRate(for team: QDMTeam) {
+        router.showExplanation(team, type: .ratingUser)
     }
 }
 
