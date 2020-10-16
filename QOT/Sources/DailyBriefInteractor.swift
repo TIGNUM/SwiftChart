@@ -770,10 +770,10 @@ extension DailyBriefInteractor {
                 let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
                 let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, domainModel: rateBucket)
                 ratingBucketList.append(openRateModel)
-            } else {
-                guard let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
-                let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: "Your team is moving forward to the best team as you defined you're ready to rule your impact", averageValue: 5.6, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
-                ratingBucketList.append(feedbackModel)
+//            } else {
+//                guard let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
+//                let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: "Your team is moving forward to the best team as you defined you're ready to rule your impact", averageValue: 5.6, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
+//                ratingBucketList.append(feedbackModel)
             }
         }
         return ratingBucketList
