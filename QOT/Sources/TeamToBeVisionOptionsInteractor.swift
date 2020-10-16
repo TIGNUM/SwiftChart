@@ -130,15 +130,6 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
         }
     }
 
-//    func showRateScreen() {
-//        guard let team = team else { return }
-//        getTeamToBeVision(for: team) { (teamVision) in
-//            if let remoteId = teamVision?.remoteID {
-////                self?.router.showRateScreen(with: remoteId, delegate: nil)
-//            }
-//        }
-//    }
-
     func endRating(_ completion: @escaping () -> Void) {
         guard let team = team else { return }
         closeRatingPoll(for: team, completion)
