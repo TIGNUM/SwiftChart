@@ -395,7 +395,7 @@ enum ThemableButton {
         case .tbvOption(let disabled):
             return ButtonTheme(foreground: disabled ? .sand40 : .accent,
                                background: disabled ? .sand10 : .clear,
-                               border: disabled ? .clear : .accent)
+                               border: disabled ? .clear : .accent40)
         case .dateButtonsSelected:
             return ButtonTheme(foreground: .accent, background: .accent40, border: .clear)
         case .poll:

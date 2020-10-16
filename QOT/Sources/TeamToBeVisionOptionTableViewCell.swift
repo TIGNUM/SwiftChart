@@ -20,7 +20,6 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
         self.backgroundView = UIView(frame: bounds)
         self.selectedBackgroundView = UIView(frame: bounds)
         ThemeView.level2Selected.apply(selectedBackgroundView!)
-        ctaButton.corner(radius: 20, borderColor: .accent40)
     }
 
     func configure(title: String,
