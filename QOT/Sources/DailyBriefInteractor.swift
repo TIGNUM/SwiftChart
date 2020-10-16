@@ -753,7 +753,7 @@ extension DailyBriefInteractor {
                   openPoll.userDidVote == false,
                   let team = pollBucket.myTeams?.filter({ $0.qotId == openPoll.teamQotId }).first else { return }
             let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
-            let model = PollOpenModel(teamName: team.name?.uppercased(), teamAdmin: teamOwner?.email, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: pollBucket)
+            let model = PollOpenModel(team: team, teamAdmin: teamOwner?.email, domainModel: pollBucket)
             openPollList.append(model)
         }
         return openPollList

@@ -32,7 +32,7 @@
                     <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="startPoll:" destination="iN0-l3-epB" eventType="touchUpInside" id="h6C-uj-RLn"/>
+                        <action selector="startPoll:" destination="iN0-l3-epB" eventType="touchUpInside" id="NYU-eA-GQr"/>
                     </connections>
                 </button>
             </subviews>

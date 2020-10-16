@@ -36,9 +36,11 @@ final class PollOpenCell: BaseDailyBriefCell {
         let text = NSMutableAttributedString(string: AppTextService.get(.daily_brief_team_open_poll_text), attributes: sand70Attributes)
         attributedString.append(text)
         pollLabel.attributedText = attributedString
-        let title = AppTextService.get(.daily_brief_team_open_poll_title).replacingOccurrences(of: "${team_name}", with: model?.teamName ?? "")
+        let title = AppTextService.get(.daily_brief_team_open_poll_title).replacingOccurrences(of: "${team_name}", with: model?.team?.name ?? "").uppercased()
         baseHeaderView?.configure(title: title, subtitle: nil)
-        baseHeaderView?.setColor(dashColor: model?.teamColor, titleColor: model?.teamColor, subtitleColor: nil)
+        self.team = model?.team
+        let teamColor = UIColor(hex: model?.team?.teamColor ?? "")
+        baseHeaderView?.setColor(dashColor: teamColor, titleColor: teamColor, subtitleColor: nil)
     }
 
     @IBAction func startPoll(_ sender: Any) {

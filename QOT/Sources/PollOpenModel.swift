@@ -13,14 +13,12 @@ final class PollOpenModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     let teamAdmin: String?
-    let teamName: String?
-    let teamColor: UIColor?
+    let team: QDMTeam?
 
     // MARK: - Init
-    init(teamName: String?, teamAdmin: String?, teamColor: UIColor?, domainModel: QDMDailyBriefBucket?) {
-        self.teamName = teamName
+    init(team: QDMTeam?, teamAdmin: String?, domainModel: QDMDailyBriefBucket?) {
         self.teamAdmin = teamAdmin
-        self.teamColor = teamColor
+        self.team = team
         super.init(domainModel)
     }
 
@@ -29,8 +27,6 @@ final class PollOpenModel: BaseDailyBriefViewModel {
             return false
         }
         return super.isContentEqual(to: source) &&
-            teamName == source.teamName &&
-            teamAdmin == source.teamAdmin &&
-            teamColor == source.teamColor
+            teamAdmin == source.teamAdmin
     }
 }
