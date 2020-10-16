@@ -32,7 +32,8 @@ protocol BaseRouterInterface {
 
     func showTracker(for team: QDMTeam?)
     func showTBVData(shouldShowNullState: Bool, visionId: Int?)
-    func showRateScreen(with id: Int, team: QDMTeam?, delegate: TBVRateDelegate?)
+    func showRateScreen(with id: Int, delegate: TBVRateDelegate?)
+    func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?)
     func showTBVGenerator()
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
 
@@ -181,13 +182,19 @@ class BaseRouter: BaseRouterInterface {
         visionController.present(controller, animated: true)
     }
 
-    func showRateScreen(with id: Int, team: QDMTeam?, delegate: TBVRateDelegate?) {
-        if let viewController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
-            MyToBeVisionRateConfigurator.configure(viewController: viewController,
-                                                   delegate: delegate,
-                                                   visionId: id,
-                                                   team: team)
-            present(viewController)
+    func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?) {
+        if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
+            MyToBeVisionRateConfigurator.configure(controller: controller, trackerPoll: trackerPoll, team: team)
+            controller.delegate = delegate
+            present(controller)
+        }
+    }
+
+    func showRateScreen(with id: Int, delegate: TBVRateDelegate?) {
+        if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
+            MyToBeVisionRateConfigurator.configure(controller: controller, visionId: id)
+            controller.delegate = delegate
+            present(controller)
         }
     }
 

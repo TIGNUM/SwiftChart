@@ -15,6 +15,8 @@ final class VisionRatingExplanationInteractor {
     private lazy var worker = VisionRatingExplanationWorker()
     private let presenter: VisionRatingExplanationPresenterInterface!
     private var type = Explanation.Types.ratingOwner
+    private weak var downSyncObserver: NSObjectProtocol?
+
     var team: QDMTeam
 
     // MARK: - Init
@@ -49,25 +51,41 @@ extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorIn
         }
     }
 
-    func startTeamTrackerPoll(_ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+    func startTeamTrackerPoll(_ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void) {
+        removeObserver()
         let team = self.team
         worker.getCurrentRatingPoll(for: team) { [weak self] (currentPoll) in
             if let currentPoll = currentPoll {
-                completion(currentPoll)
+                completion(currentPoll, team)
             } else {
-                self?.worker.openNewTeamToBeVisionTrackerPoll(for: team) { (_) in
-                    _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
-                                                               object: nil,
-                                                               queue: .main) { [weak self ] (notification) in
-                        if let context = notification.object as? SyncResultContext,
-                           context.syncRequestType == .DOWN_SYNC,
-                           context.hasUpdatedContent,
-                           context.dataType == .TEAM_TO_BE_VISION_TRACKER_POLL {
-                            self?.worker.getCurrentRatingPoll(for: team, completion)
-                        }
+                self?.handleOpenNewTrackerPoll(team: team, completion)
+            }
+        }
+    }
+}
+
+// MARK: - Private
+private extension VisionRatingExplanationInteractor {
+    func handleOpenNewTrackerPoll(team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void) {
+        worker.openNewTeamToBeVisionTrackerPoll(for: team) { [weak self] _ in
+            self?.downSyncObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                            object: nil,
+                                                                            queue: .main) { [weak self] (notification) in
+                if let context = notification.object as? SyncResultContext,
+                   context.syncRequestType == .DOWN_SYNC,
+                   context.hasUpdatedContent,
+                   context.dataType == .TEAM_TO_BE_VISION_TRACKER_POLL {
+                    self?.worker.getCurrentRatingPoll(for: team) { (poll) in
+                        completion(poll, team)
                     }
                 }
             }
+        }
+    }
+
+    func removeObserver() {
+        if let downSyncObserver = downSyncObserver {
+            NotificationCenter.default.removeObserver(downSyncObserver)
         }
     }
 }
