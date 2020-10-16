@@ -12,6 +12,7 @@ import DifferenceKit
 
 public extension Notification.Name {
     static let scrollToBucket = Notification.Name("scrollToBucket")
+    static let didRateTBV = Notification.Name("didRateTBV")
 }
 
 final class DailyBriefInteractor {

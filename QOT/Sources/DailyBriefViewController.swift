@@ -35,10 +35,14 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         navigationController?.navigationBar.isHidden = true
         tableView.rowHeight = UITableView.automaticDimension
         interactor.viewDidLoad()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateBuckets),
+                                               name: .didRateTBV, object: nil)
         _ = NotificationCenter.default.addObserver(forName: .didUpdateDailyBriefBuckets,
                                                    object: nil,
                                                    queue: .main) { [weak self] notification in
             self?.updateDailyBriefFromNotification(notification)
+
         }
     }
 
@@ -329,6 +333,10 @@ private extension DailyBriefViewController {
 // MARK: - Daily Brief Update Notification
 private extension DailyBriefViewController {
     @objc func updateDailyBriefFromNotification(_ notification: Notification) {
+        interactor.getDailyBriefBucketsForViewModel()
+    }
+
+    @objc func updateBuckets() {
         interactor.getDailyBriefBucketsForViewModel()
     }
 }
