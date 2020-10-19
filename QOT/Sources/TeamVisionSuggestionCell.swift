@@ -16,7 +16,6 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
     @IBOutlet private weak var button: AnimatedButton!
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
-    @IBOutlet private weak var suggestionTitle: UILabel!
     private weak var baseHeaderView: QOTBaseHeaderView?
     weak var delegate: DailyBriefViewControllerDelegate?
 
@@ -35,17 +34,17 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
         let subtitle = AppTextService.get(.daily_brief_team_vision_suggestion_subtitle)
         baseHeaderView?.configure(title: model?.title,
                                   subtitle: subtitle)
-        guard let teamColor = model?.teamColor else { return }
-        baseHeaderView?.titleLabel.textColor = UIColor(hex: teamColor)
+        guard let color = model?.teamColor else { return }
+        let teamColor = UIColor(hex: color)
+        baseHeaderView?.setColor(dashColor: teamColor, titleColor: teamColor, subtitleColor: nil)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         let cta = AppTextService.get(.daily_brief_team_vision_suggestion_cta)
         button.setTitle(cta, for: .normal)
         button.setButtonContentInset(padding: 16)
-        tbvSentence.text = model?.tbvSentence
+//        tbvSentence.text = model?.tbvSentence
         ThemeText.dailyInsightsTbvAdvice.apply(model?.adviceText, to: adviceText)
-        let suggestion = AppTextService.get(.daily_brief_team_vision_suggestion_suggestion_title)
-        ThemeText.dailyInsightsTbvAdvice.apply(suggestion, to: suggestionTitle)
+        ThemeText.teamVisionSentence.apply(model?.tbvSentence, to: tbvSentence)
     }
 }
 

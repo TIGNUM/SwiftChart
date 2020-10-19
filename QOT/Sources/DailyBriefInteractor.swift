@@ -720,12 +720,15 @@ extension DailyBriefInteractor {
     // MARK: - TeamToBeVision Sentence
     func createTeamVisionSuggestionModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var teamVisionList: [BaseDailyBriefViewModel] = []
-//        guard let collection = teamVisionBucket.contentCollections?.first else {
-//            return teamVisionList
-//        }
-        let visionSentence = "We are an inspired, energized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
-        let title = "WEB TEAM TOBEVISION"
-        let suggestion = "Practice recovery after stressful times to balance your autonomic nervous system."
+        guard let collections = teamVisionBucket.contentCollections else {
+            return teamVisionList
+        }
+
+        let randomCollection = collections.randomElement()
+        let visionSentence = " We are an inspired"
+//        let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: "WEB TEAM" ?? "")
+        let suggestion =  randomCollection?.contentItems.first?.valueText
         let model = TeamVisionSuggestionModel(title: title, teamColor: "#5790DD", tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
@@ -770,11 +773,14 @@ extension DailyBriefInteractor {
                 let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
                 let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, domainModel: rateBucket)
                 ratingBucketList.append(openRateModel)
-//            } else {
-//                guard let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
-//                let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: "Your team is moving forward to the best team as you defined you're ready to rule your impact", averageValue: 5.6, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
-//                ratingBucketList.append(feedbackModel)
             }
+        }
+        let finishedRatings = rateBucket.teamToBeVisionTrackerPolls?.filter { $0.open == false }
+        finishedRatings?.forEach {(closedRating) in
+            guard let team = rateBucket.myTeams?.filter({ $0.qotId == closedRating.teamQotId }).first else { return }
+            let ratingFeedback = closedRating.feedback
+            let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: closedRating.feedback, averageValue: 5.6, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
+            ratingBucketList.append(feedbackModel)
         }
         return ratingBucketList
     }

@@ -30,7 +30,6 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
         self.actionType = actionType
         ThemableButton.tbvOption(disabled: buttonDisabled).apply(ctaButton, title: cta)
         ctaButton.isUserInteractionEnabled = buttonDisabled == false
-        ctaButton.corner(radius: 20, borderColor: .accent40)
     }
 
     @IBAction func ctaTapped(_ sender: Any) {

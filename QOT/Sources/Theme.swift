@@ -395,7 +395,7 @@ enum ThemableButton {
         case .tbvOption(let disabled):
             return ButtonTheme(foreground: disabled ? .sand40 : .accent,
                                background: disabled ? .sand10 : .clear,
-                               border: disabled ? .clear : .accent)
+                               border: disabled ? .clear : .accent40)
         case .dateButtonsSelected:
             return ButtonTheme(foreground: .accent, background: .accent40, border: .clear)
         case .poll:
@@ -816,6 +816,7 @@ enum ThemeText {
     case dailyInsightsTbvAdvice
     case dailyBriefFromTignumTitle
     case accountDetailEmail
+    case teamVisionSentence
 
     case chatbotButton
     case chatbotProgress(Bool, Bool)
@@ -1077,6 +1078,8 @@ enum ThemeText {
             return Fonts.fontDisplayBold30
         case .customizeQuestion:
             return Fonts.fontRegular16
+        case .teamVisionSentence:
+            return Fonts.fontRegular24
         case .featureTitle, .ratingExplanationTitle:
             return Fonts.fontDisplayRegular34
         // MARK: - .fontRegular20
@@ -1103,7 +1106,7 @@ enum ThemeText {
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle, .myDataParameterSelectionSubtitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle, .customizeQuestion,
-             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle, .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold:
+             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle, .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence:
             return Palette.sand
 
         // MARK: - .sand40
@@ -1258,6 +1261,10 @@ enum ThemeText {
              .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight, .performanceSectionText, .teamTvbTimeSinceTitle, .trends, .ratingExplanationTitle:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color,
+                                        alignment: alignment ?? .left)
+        case .teamVisionSentence:
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.4, font: self.font, lineSpacing: 4, textColor: self.color,
                                         alignment: alignment ?? .left)
         case .strategyHeader:
             string = NSAttributedString(string: text,
