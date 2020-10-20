@@ -82,7 +82,7 @@ private extension MyToBeVisionRateWorker {
     // If user tries to vote on the poll which user alreay voted, it will return 'UserDidVoteTeamToBeVisionTrackerPoll'
     func addTeamReating(for questionId: Int, value: Int, isoDate: Date) {
         let trackerResult = trackerPoll?.qotTeamToBeVisionTrackers?.filter { $0.remoteID == questionId }.first
-        guard let vote = trackerResult?.voteWithRatingValue(value) else { return }
+        guard let vote = trackerResult?.voteWithRatingValue(value, isoDate) else { return }
         votes.append(vote)
     }
 

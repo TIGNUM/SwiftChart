@@ -148,11 +148,11 @@ final class MyVisionWorker: WorkerTeam {
                     }
                 }
 
-                guard let report = report, report.days.count > 0 else {
+                guard let report = report, report.dates.count > 0 else {
                     completion(strongSelf.notRatedText, true, true)
                     return
                 }
-                guard let date = report.days.sorted().last?.beginingOfDate() else {
+                guard let date = report.dates.sorted().last?.beginingOfDate() else {
                     completion(strongSelf.syncingText, true, false)
                     return
                 }

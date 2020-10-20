@@ -54,7 +54,7 @@ final class TBVRateHistoryWorker: WorkerTeam {
     }
 
     var days: [Date] {
-        return dataModel?.report.days.sorted(by: <) ?? []
+        return dataModel?.report.dates.sorted(by: <) ?? []
     }
 }
 
@@ -62,7 +62,7 @@ final class TBVRateHistoryWorker: WorkerTeam {
 private extension TBVRateHistoryWorker {
     func getPersonalReport(_ completion: @escaping (ToBeVisionReport) -> Void) {
         UserService.main.getToBeVisionTrackingReport(last: 3) { [weak self] (report) in
-            guard let strongSelf = self, let date = report.days.sorted(by: <).last else { return }
+            guard let strongSelf = self, let date = report.dates.sorted(by: <).last else { return }
             strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
                                                     subtitle: strongSelf.subtitle,
                                                     selectedDate: date,
@@ -75,7 +75,7 @@ private extension TBVRateHistoryWorker {
         getLatestClosedPolls(for: team) { [weak self] (polls) in
             let tracks = polls?.compactMap { $0.qotTeamToBeVisionTrackers }.first ?? []
             UserService.main.getTeamToBeVisionTrackingReport(tracks: tracks) { [weak self] (report) in
-                guard let strongSelf = self, let date = report.days.sorted(by: <).last else { return }
+                guard let strongSelf = self, let date = report.dates.sorted(by: <).last else { return }
                 strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
                                                         subtitle: strongSelf.subtitle,
                                                         selectedDate: date,
