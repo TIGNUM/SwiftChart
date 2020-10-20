@@ -779,7 +779,7 @@ extension DailyBriefInteractor {
         finishedRatings?.forEach {(closedRating) in
             guard let team = rateBucket.myTeams?.filter({ $0.qotId == closedRating.teamQotId }).first else { return }
             let ratingFeedback = closedRating.feedback
-            let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: closedRating.feedback, averageValue: 5.6, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
+            let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: ratingFeedback, averageValue: 5.6, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
             ratingBucketList.append(feedbackModel)
         }
         return ratingBucketList
