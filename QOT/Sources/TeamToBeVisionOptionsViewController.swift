@@ -102,9 +102,9 @@ extension TeamToBeVisionOptionsViewController: TeamAdminDelegate {
     func showPoll() {
         switch interactor.getType {
         case .rating:
-            if let teamTBVId = interactor.trackerPoll?.teamToBeVisionId {
-                router.showRateScreen(with: teamTBVId, team: interactor.team, delegate: self)
-            }
+            router.showRateScreen(trackerPoll: interactor.trackerPoll,
+                                  team: interactor.team,
+                                  delegate: self)
         case .voting:
             if let team = interactor.team {
                 router.showTeamTBVGenerator(poll: interactor.toBeVisionPoll, team: team)
