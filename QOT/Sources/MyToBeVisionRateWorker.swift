@@ -80,8 +80,11 @@ private extension MyToBeVisionRateWorker {
     // If user tries to vote with already closed poll, it will return 'TeamToBeVisionTrakcerPollIsAlreadyClosed'
     // If user tries to vote on the poll which user alreay voted, it will return 'UserDidVoteTeamToBeVisionTrackerPoll'
     func addTeamReating(for questionId: Int, value: Int, isoDate: Date) {
+        if let index = votes.firstIndex(where: { $0.remoteID == questionId }) {
+            votes.remove(at: index)
+        }
         let trackerResult = trackerPoll?.qotTeamToBeVisionTrackers?.filter { $0.remoteID == questionId }.first
-        guard let vote = trackerResult?.voteWithRatingValue(value) else { return }
+        guard let vote = trackerResult?.voteWithRatingValue(value, isoDate) else { return }
         votes.append(vote)
     }
 
@@ -112,30 +115,26 @@ private extension MyToBeVisionRateWorker {
 
     func getTeamQuestions(team: QDMTeam,
                           _ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
-        getCurrentRatingPoll(for: team) { [weak self] (poll) in
-            self?.trackerPoll = poll
-
-            guard let tracks = poll?.qotTeamToBeVisionTrackers else {
-                completion([])
-                return
-            }
-
-            let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
-                guard let remoteID = track.remoteID else { return nil }
-                let question = track.sentence
-                let range = 10
-                return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                        title: question ?? "",
-                                                        htmlTitle: nil,
-                                                        subtitle: nil,
-                                                        dailyPrepTitle: nil,
-                                                        key: nil,
-                                                        answers: nil,
-                                                        range: range,
-                                                        selectedAnswerIndex: nil)
-            }
-            self?.questions = questions
-            completion(questions)
+        guard let tracks = trackerPoll?.qotTeamToBeVisionTrackers else {
+            completion([])
+            return
         }
+
+        let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
+            guard let remoteID = track.remoteID else { return nil }
+            let question = track.sentence
+            let range = 10
+            return RatingQuestionViewModel.Question(remoteID: remoteID,
+                                                    title: question ?? "",
+                                                    htmlTitle: nil,
+                                                    subtitle: nil,
+                                                    dailyPrepTitle: nil,
+                                                    key: nil,
+                                                    answers: nil,
+                                                    range: range,
+                                                    selectedAnswerIndex: nil)
+        }
+        self.questions = questions
+        completion(questions)
     }
 }
