@@ -38,11 +38,11 @@ PODS:
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
-  - Realm (5.5.0):
-    - Realm/Headers (= 5.5.0)
-  - Realm/Headers (5.5.0)
-  - RealmSwift (5.5.0):
-    - Realm (= 5.5.0)
+  - Realm (10.0.0):
+    - Realm/Headers (= 10.0.0)
+  - Realm/Headers (10.0.0)
+  - RealmSwift (10.0.0):
+    - Realm (= 10.0.0)
   - RSKImageCropper (2.3.0)
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
@@ -55,7 +55,7 @@ DEPENDENCIES:
   - DifferenceKit
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `feature/QOT-2993-Team-Edition-API`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -81,14 +81,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
-    :branch: feature/QOT-2993-Team-Edition-API
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:SanggeonPark/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 14d8ab9c9ea1e1718bf374cefd34c404d1ea791d
+    :commit: 51b2cd3a71cf37252bc8c2f0385996233e4fa9dc
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -105,13 +104,13 @@ SPEC CHECKSUMS:
   qot_dal: 74ec5a8e7531a98811d0e74cb98854494fec4ac3
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
-  Realm: fb399d76f44042e5cdfc630f33828fdb4d077345
-  RealmSwift: 3b7e62356207ef16d34de4e55d475163bd2062bb
+  Realm: 5654b8e5e45034d07b219e089034be2ef7d1e7bf
+  RealmSwift: 5b4c8c85be4c14ff52054a4d80a8d338167dd79c
   RSKImageCropper: c337eacdcbed50e695e5153ff0c2b861b6ebfa84
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
 
-PODFILE CHECKSUM: c38352f7e749a189a8e67bc1ba21c95020f93f62
+PODFILE CHECKSUM: d68961657c23af942252805c1b08bc3b81361c0c
 
 COCOAPODS: 1.9.3
