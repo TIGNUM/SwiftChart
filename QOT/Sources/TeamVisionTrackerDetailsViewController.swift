@@ -67,14 +67,16 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
 
 // MARK: - TeamVisionTrackerDetailsViewControllerInterface
 extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewControllerInterface {
-
     func setupView() {
         barChartView.dataEntries = interactor.dataEntries3
         chartView.addSubview(barChartView)
         setValues(interactor.dataEntries3)
-        ThemeText.totalVotes.apply(AppTextService.get(.my_x_team_vision_tracker_total_votes), to: totalVotesLabel)
-        ThemeText.averageRating.apply(AppTextService.get(.my_x_team_vision_tracker_average_rating), to: averageRatingLabel)
-        ThemeText.myRating.apply(AppTextService.get(.my_x_team_vision_tracker_my_rating), to: myRatingLabel)
+        ThemeText.totalVotes.apply(AppTextService.get(.my_x_team_vision_tracker_total_votes),
+                                   to: totalVotesLabel)
+        ThemeText.averageRating.apply(AppTextService.get(.my_x_team_vision_tracker_average_rating),
+                                      to: averageRatingLabel)
+        ThemeText.myRating.apply(AppTextService.get(.my_x_team_vision_tracker_my_rating),
+                                 to: myRatingLabel)
     }
 
     func setupDates(firstDate: String?, secondDate: String?, thirdDate: String?) {
@@ -92,7 +94,10 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
         setValues(data)
         ratingsView.frame = CGRect(x: ratingsView.frame.origin.x, y: ratingsView.frame.origin.y + 25, width: ratingsView.frame.width, height: ratingsView.frame.height)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.ratingsView.frame = CGRect(x: self.ratingsView.frame.origin.x, y: self.ratingsView.frame.origin.y - 25, width: self.ratingsView.frame.width, height: self.ratingsView.frame.height)
+            self.ratingsView.frame = CGRect(x: self.ratingsView.frame.origin.x,
+                                            y: self.ratingsView.frame.origin.y - 25,
+                                            width: self.ratingsView.frame.width,
+                                            height: self.ratingsView.frame.height)
             self.ratingsView.alpha = 1
             self.barChartView.dataEntries = data
         }, completion: nil)
