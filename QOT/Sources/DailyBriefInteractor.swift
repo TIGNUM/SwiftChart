@@ -720,6 +720,7 @@ extension DailyBriefInteractor {
             return teamVisionList
         }
         let vision = teamVisionBucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
+        guard vision != nil else { return teamVisionList }
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
         let visionSentence = vision?.sentences.first?.sentence
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "")

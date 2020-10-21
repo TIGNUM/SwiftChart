@@ -14,11 +14,11 @@ final class RatingFeedbackModel: BaseDailyBriefViewModel {
     // MARK: - Properties
     let teamName: String?
     let feedback: String?
-    let averageValue: Double?
+    let averageValue: String?
     let teamColor: UIColor?
 
     // MARK: - Init
-    init(teamName: String?, feedback: String?, averageValue: Double?, teamColor: UIColor?, domainModel: QDMDailyBriefBucket?) {
+    init(teamName: String?, feedback: String?, averageValue: String?, teamColor: UIColor?, domainModel: QDMDailyBriefBucket?) {
         self.teamName = teamName
         self.feedback = feedback
         self.averageValue = averageValue

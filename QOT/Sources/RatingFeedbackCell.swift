@@ -35,7 +35,7 @@ final class RatingFeedbackCell: BaseDailyBriefCell {
         resultsButton.setTitle(AppTextService.get(.daily_brief_rating_ready_cta), for: .normal)
         let title = AppTextService.get(.daily_brief_vision_rating_title).replacingOccurrences(of: "${TEAM_NAME}", with: model?.teamName ?? "").uppercased()
         ThemeText.dailyInsightsTbvAdvice.apply(model?.feedback, to: feedbackLabel)
-        ThemeText.iRscore.apply(String(model?.averageValue ?? 0), to: averageValueLabel)
+        ThemeText.iRscore.apply(model?.averageValue ?? "", to: averageValueLabel)
         let subtitle = AppTextService.get(.daily_brief_rating_ready_subtitle)
         baseHeaderView?.configure(title: title, subtitle: subtitle)
         baseHeaderView?.setColor(dashColor: model?.teamColor, titleColor: model?.teamColor, subtitleColor: .sand)
