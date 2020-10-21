@@ -723,7 +723,7 @@ extension DailyBriefInteractor {
         guard vision != nil else { return teamVisionList }
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
         let visionSentence = vision?.sentences.first?.sentence
-        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "")
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "").uppercased()
         let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? " ")
         let model = TeamVisionSuggestionModel(title: title, team: team, tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
         teamVisionList.append(model)
