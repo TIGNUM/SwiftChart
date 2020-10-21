@@ -17,6 +17,7 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
     private weak var baseHeaderView: QOTBaseHeaderView?
+    private var team: QDMTeam?
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
@@ -41,6 +42,7 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
         let cta = AppTextService.get(.daily_brief_team_vision_suggestion_cta)
         button.setTitle(cta, for: .normal)
         button.setButtonContentInset(padding: 16)
+        self.team = model?.team
         ThemeText.dailyInsightsTbvAdvice.apply(model?.adviceText, to: adviceText)
         ThemeText.teamVisionSentence.apply(model?.tbvSentence, to: tbvSentence)
     }
@@ -48,7 +50,7 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
 
 private extension TeamVisionSuggestionCell {
     @IBAction func toBeVisionButton(_ sender: Any) {
-//        guard let team = team else { return }
-//        delegate?.showTeamTBV(team)
+        guard let team = team else { return }
+        delegate?.showTeamTBV(team)
     }
 }

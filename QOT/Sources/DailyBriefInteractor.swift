@@ -719,13 +719,12 @@ extension DailyBriefInteractor {
         guard let collections = teamVisionBucket.contentCollections else {
             return teamVisionList
         }
-
-        let visionSentence = " We are an inspired"
-//        let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
-        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: "WEB TEAM")
+        let vision = teamVisionBucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
+        let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
+        let visionSentence = vision?.sentences.first?.sentence
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "")
         let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? " ")
-//        let suggestion =  teamVisionBucket.bucketText?.contentItems.first?.valueText
-        let model = TeamVisionSuggestionModel(title: title, team: QDMTeam(), tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        let model = TeamVisionSuggestionModel(title: title, team: team, tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
     }
@@ -775,7 +774,7 @@ extension DailyBriefInteractor {
         finishedRatings?.forEach {(closedRating) in
             guard let team = rateBucket.myTeams?.filter({ $0.qotId == closedRating.teamQotId }).first else { return }
             let ratingFeedback = closedRating.feedback
-            let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: ratingFeedback, averageValue: 5.6, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
+            let feedbackModel = RatingFeedbackModel(teamName: team.name, feedback: ratingFeedback, averageValue: closedRating.averageValue, teamColor: UIColor(hex: team.teamColor ?? ""), domainModel: rateBucket)
             ratingBucketList.append(feedbackModel)
         }
         return ratingBucketList
