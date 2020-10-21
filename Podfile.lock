@@ -55,7 +55,7 @@ DEPENDENCIES:
   - DifferenceKit
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `feature/QOT-2993-Team-Edition-API-copy`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `feature/QOT-2993-Team-Edition-API`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -81,14 +81,14 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
-    :branch: feature/QOT-2993-Team-Edition-API-copy
+    :branch: feature/QOT-2993-Team-Edition-API
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:SanggeonPark/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 590f6b0a75130b43d5c425067998041871635894
+    :commit: 77c8db43ab0bb9fe8b2b780a772ef92a958fe053
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -112,6 +112,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
 
-PODFILE CHECKSUM: ab49ddcbca2e1f0cd874dd40f9d66cd6b3d752a6
+PODFILE CHECKSUM: c38352f7e749a189a8e67bc1ba21c95020f93f62
 
 COCOAPODS: 1.9.3

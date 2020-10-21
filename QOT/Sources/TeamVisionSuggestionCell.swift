@@ -34,15 +34,13 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
         let subtitle = AppTextService.get(.daily_brief_team_vision_suggestion_subtitle)
         baseHeaderView?.configure(title: model?.title,
                                   subtitle: subtitle)
-        guard let color = model?.team?.teamColor else { return }
-        let teamColor = UIColor(hex: color)
+        let teamColor = UIColor(hex: model?.team?.teamColor ?? "")
         baseHeaderView?.setColor(dashColor: teamColor, titleColor: teamColor, subtitleColor: nil)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         let cta = AppTextService.get(.daily_brief_team_vision_suggestion_cta)
         button.setTitle(cta, for: .normal)
         button.setButtonContentInset(padding: 16)
-//        tbvSentence.text = model?.tbvSentence
         ThemeText.dailyInsightsTbvAdvice.apply(model?.adviceText, to: adviceText)
         ThemeText.teamVisionSentence.apply(model?.tbvSentence, to: tbvSentence)
     }

@@ -722,10 +722,10 @@ extension DailyBriefInteractor {
 
         let visionSentence = " We are an inspired"
 //        let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
-        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: "WEB TEAM" ?? "")
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: "WEB TEAM")
         let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? " ")
 //        let suggestion =  teamVisionBucket.bucketText?.contentItems.first?.valueText
-        let model = TeamVisionSuggestionModel(title: title, team:  QDMTeam(), tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        let model = TeamVisionSuggestionModel(title: title, team: QDMTeam(), tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
     }

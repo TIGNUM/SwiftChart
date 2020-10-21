@@ -70,7 +70,9 @@ final class VisionRatingExplanationViewController: BaseViewController {
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem] {
-        return [dismissNavigationItem(action: #selector(didTapDismissButton))]
+        let blackButton = dismissNavigationItem(action: #selector(didTapDismissButton))
+        blackButton.tintColor = .black
+        return [blackButton]
     }
 }
 
