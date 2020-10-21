@@ -417,10 +417,6 @@ extension DailyBriefInteractor {
         }.first?.contentItems.first?.valueText ?? ""
     }
 
-    func getTeamAdmin(for team: QDMTeam, _ completion: @escaping (String?) -> Void) {
-        worker.getTeamAdmin(team: team, completion: completion)
-    }
-
     func isNew(_ collection: QDMContentCollection) -> Bool {
         var isNewArticle = collection.viewedAt == nil
         if let firstInstallTimeStamp = self.firstInstallTimeStamp {
@@ -724,13 +720,12 @@ extension DailyBriefInteractor {
             return teamVisionList
         }
 
-        let randomCollection = collections.randomElement()
         let visionSentence = " We are an inspired"
 //        let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: "WEB TEAM" ?? "")
         let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? " ")
 //        let suggestion =  teamVisionBucket.bucketText?.contentItems.first?.valueText
-        let model = TeamVisionSuggestionModel(title: title, teamColor: "#5790DD", tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        let model = TeamVisionSuggestionModel(title: title, team:  QDMTeam(), tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
     }

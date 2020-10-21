@@ -34,7 +34,7 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
         let subtitle = AppTextService.get(.daily_brief_team_vision_suggestion_subtitle)
         baseHeaderView?.configure(title: model?.title,
                                   subtitle: subtitle)
-        guard let color = model?.teamColor else { return }
+        guard let color = model?.team?.teamColor else { return }
         let teamColor = UIColor(hex: color)
         baseHeaderView?.setColor(dashColor: teamColor, titleColor: teamColor, subtitleColor: nil)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
@@ -50,6 +50,7 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
 
 private extension TeamVisionSuggestionCell {
     @IBAction func toBeVisionButton(_ sender: Any) {
-//        delegate?.presentMyToBeVision()
+//        guard let team = team else { return }
+//        delegate?.showTeamTBV(team)
     }
 }
