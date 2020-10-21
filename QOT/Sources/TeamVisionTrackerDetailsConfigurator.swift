@@ -9,10 +9,10 @@
 import Foundation
 
 final class TeamVisionTrackerDetailsConfigurator {
-    static func make() -> (TeamVisionTrackerDetailsViewController) -> Void {
+    static func make(report: ToBeVisionReport) -> (TeamVisionTrackerDetailsViewController) -> Void {
         return { (viewController) in
             let presenter = TeamVisionTrackerDetailsPresenter(viewController: viewController)
-            let interactor = TeamVisionTrackerDetailsInteractor(presenter: presenter)
+            let interactor = TeamVisionTrackerDetailsInteractor(presenter: presenter, report: report)
             viewController.interactor = interactor
         }
     }

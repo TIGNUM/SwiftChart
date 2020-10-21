@@ -183,11 +183,6 @@ private extension TeamToBeVisionViewController {
 private extension TeamToBeVisionViewController {
     @IBAction func didTapOpenTrends() {
         router.showTracker(for: interactor.team)
-//        if let teamVisionTrackerDetails = R.storyboard.teamVisionTrackerDetails.teamVisionTrackerDetailsID() {
-//            let configurator = TeamVisionTrackerDetailsConfigurator.make()
-//            configurator(teamVisionTrackerDetails)
-//            pushToStart(childViewController: teamVisionTrackerDetails)
-//        }
     }
 
     @IBAction func didTapPollButton(_ sender: RoundedButton) {

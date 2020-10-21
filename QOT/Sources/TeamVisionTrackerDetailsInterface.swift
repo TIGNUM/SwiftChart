@@ -10,10 +10,11 @@ import Foundation
 
 protocol TeamVisionTrackerDetailsViewControllerInterface: class {
     func setupView()
+    func setupDates(firstDate: String?, secondDate: String?, thirdDate: String?)
 }
 
 protocol TeamVisionTrackerDetailsPresenterInterface {
-    func setupView()
+    func setupView(report: ToBeVisionReport)
 }
 
 protocol TeamVisionTrackerDetailsInteractorInterface: Interactor {

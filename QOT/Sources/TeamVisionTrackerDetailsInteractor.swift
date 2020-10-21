@@ -13,15 +13,17 @@ final class TeamVisionTrackerDetailsInteractor {
     // MARK: - Properties
     private lazy var worker = TeamVisionTrackerDetailsWorker()
     private let presenter: TeamVisionTrackerDetailsPresenterInterface!
+    private let report: ToBeVisionReport
 
     // MARK: - Init
-    init(presenter: TeamVisionTrackerDetailsPresenterInterface) {
+    init(presenter: TeamVisionTrackerDetailsPresenterInterface, report: ToBeVisionReport) {
         self.presenter = presenter
+        self.report = report
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        presenter.setupView(report: report)
     }
 }
 
