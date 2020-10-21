@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol TeamVisionTrackerDetailsViewControllerInterface: class {
     func setupView()
     func setupDates(firstDate: String?, secondDate: String?, thirdDate: String?)
+    func setupSentence(_ sentence: String)
 }
 
 protocol TeamVisionTrackerDetailsPresenterInterface {
-    func setupView(report: ToBeVisionReport)
+    func setupView(report: ToBeVisionReport, sentence: QDMToBeVisionSentence)
 }
 
 protocol TeamVisionTrackerDetailsInteractorInterface: Interactor {

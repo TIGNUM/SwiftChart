@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TeamVisionTrackerDetailsPresenter {
 
@@ -21,16 +22,16 @@ final class TeamVisionTrackerDetailsPresenter {
 
 // MARK: - TeamVisionTrackerDetailsInterface
 extension TeamVisionTrackerDetailsPresenter: TeamVisionTrackerDetailsPresenterInterface {
-    func setupView(report: ToBeVisionReport) {
+    func setupView(report: ToBeVisionReport, sentence: QDMToBeVisionSentence) {
         viewController?.setupView()
-        setupDates(report: report)
+        setupDates(dates: report.report.dates)
+        setupSentence(sentence.text)
     }
 }
 
 // MARK: - Private
 private extension TeamVisionTrackerDetailsPresenter {
-    func setupDates(report: ToBeVisionReport) {
-        let dates = report.report.dates
+    func setupDates(dates: [Date]) {
         var firstDateString: String?
         var secondDateString: String?
         var thirdDateString: String?
@@ -50,5 +51,9 @@ private extension TeamVisionTrackerDetailsPresenter {
         viewController?.setupDates(firstDate: firstDateString,
                                    secondDate: secondDateString,
                                    thirdDate: thirdDateString)
+    }
+
+    func setupSentence(_ sentence: String) {
+        viewController?.setupSentence(sentence)
     }
 }

@@ -92,8 +92,10 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         switch TBVGraph.Section.allCases[indexPath.section] {
         case .sentence:
             if let controller = R.storyboard.teamVisionTrackerDetails.teamVisionTrackerDetailsID(),
-               let report = report {
-                let configurator = TeamVisionTrackerDetailsConfigurator.make(report: report)
+               let report = report,
+               let sentence = interactor.sentence(in: indexPath.row) {
+                let configurator = TeamVisionTrackerDetailsConfigurator.make(report: report,
+                                                                             sentence: sentence)
                 configurator(controller)
                 pushToStart(childViewController: controller)
             }

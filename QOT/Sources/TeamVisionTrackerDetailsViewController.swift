@@ -26,6 +26,7 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
     @IBOutlet private weak var totalVotesLabel: UILabel!
     @IBOutlet private weak var totalVotesValue: UILabel!
     @IBOutlet private weak var averageRatingValue: UILabel!
+    @IBOutlet private weak var sentenceLabel: UILabel!
 
     lazy var barChartView: BarChartView = {
         let barChartView = BarChartView()
@@ -41,6 +42,10 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [backNavigationItemLight()]
     }
 
     override func viewDidLoad() {
@@ -71,6 +76,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
         barChartView.dataEntries = interactor.dataEntries3
         chartView.addSubview(barChartView)
         setValues(interactor.dataEntries3)
+
         ThemeText.totalVotes.apply(AppTextService.get(.my_x_team_vision_tracker_total_votes),
                                    to: totalVotesLabel)
         ThemeText.averageRating.apply(AppTextService.get(.my_x_team_vision_tracker_average_rating),
@@ -87,6 +93,10 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
         firstDateButton.isHidden = firstDate == nil
         secondDateButton.isHidden = secondDate == nil
         thirdDateButton.isHidden = thirdDate == nil
+    }
+
+    func setupSentence(_ sentence: String) {
+        sentenceLabel.text = sentence
     }
 
     func switchView(_ data: [BarEntry]) {

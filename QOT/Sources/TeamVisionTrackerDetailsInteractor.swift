@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TeamVisionTrackerDetailsInteractor {
 
@@ -14,16 +15,20 @@ final class TeamVisionTrackerDetailsInteractor {
     private lazy var worker = TeamVisionTrackerDetailsWorker()
     private let presenter: TeamVisionTrackerDetailsPresenterInterface!
     private let report: ToBeVisionReport
+    private let sentence: QDMToBeVisionSentence
 
     // MARK: - Init
-    init(presenter: TeamVisionTrackerDetailsPresenterInterface, report: ToBeVisionReport) {
+    init(presenter: TeamVisionTrackerDetailsPresenterInterface,
+         report: ToBeVisionReport,
+         sentence: QDMToBeVisionSentence) {
         self.presenter = presenter
         self.report = report
+        self.sentence = sentence
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView(report: report)
+        presenter.setupView(report: report, sentence: sentence)
     }
 }
 
