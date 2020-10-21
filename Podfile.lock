@@ -81,14 +81,14 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
-    :branch: feature/QOT-2993-Team-Edition-API
+    :branch: feature/QOT-2993-Team-Edition-API-copy
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:SanggeonPark/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 6be6d462e0e59a49a5c0be87d5af9df75f7d9563
+    :commit: 590f6b0a75130b43d5c425067998041871635894
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -112,7 +112,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
 
-
-PODFILE CHECKSUM: c38352f7e749a189a8e67bc1ba21c95020f93f62
+PODFILE CHECKSUM: ab49ddcbca2e1f0cd874dd40f9d66cd6b3d752a6
 
 COCOAPODS: 1.9.3
