@@ -42,6 +42,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                     <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="showResults:" destination="iN0-l3-epB" eventType="touchUpInside" id="lXd-Lb-7OY"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -12,17 +12,15 @@ import qot_dal
 final class RatingFeedbackModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    let teamName: String?
     let feedback: String?
     let averageValue: String?
-    let teamColor: UIColor?
+    let team: QDMTeam?
 
     // MARK: - Init
-    init(teamName: String?, feedback: String?, averageValue: String?, teamColor: UIColor?, domainModel: QDMDailyBriefBucket?) {
-        self.teamName = teamName
+    init(team: QDMTeam?, feedback: String?, averageValue: String?, domainModel: QDMDailyBriefBucket?) {
         self.feedback = feedback
         self.averageValue = averageValue
-        self.teamColor = teamColor
+        self.team = team
         super.init(domainModel)
     }
 }

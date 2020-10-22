@@ -137,6 +137,10 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
+    func showTracker(for team: QDMTeam?) {
+        presentRateHistory(for: team, .tracker)
+    }
+
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
         viewController?.showAlert(type: type, handler: handler, handlerDestructive: handlerDestructive)
     }
@@ -153,10 +157,6 @@ class BaseRouter: BaseRouterInterface {
     func showTeamRatingExplanation(_ team: QDMTeam) {
         let type: Explanation.Types = team.thisUserIsOwner ? .ratingOwner : .ratingUser
         showExplanation(team, type)
-    }
-
-    func showTracker(for team: QDMTeam?) {
-        presentRateHistory(for: team, .tracker)
     }
 
     func showTBVData(shouldShowNullState: Bool, visionId: Int?) {
