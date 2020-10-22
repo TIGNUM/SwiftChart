@@ -249,9 +249,11 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                     /// member
                     case (true, false, true, true):
                         showBanner(poll: poll)
+                    case(false, false, true, true):
+                        showBanner(poll: poll)
                     case (true, false, false, true):
                         router.showTeamTBVPollEXplanation(team)
-                    case (false, false, _, true):
+                    case (false, false, false, true):
                         router.showTeamTBV(team, poll)
 
                     /// admin
