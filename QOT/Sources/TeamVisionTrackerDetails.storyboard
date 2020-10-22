@@ -209,6 +209,7 @@
                         <outlet property="myRatingValue" destination="c92-3Q-fJx" id="a0l-Na-fbM"/>
                         <outlet property="ratingsView" destination="iW5-LC-Hte" id="FHq-g6-4dT"/>
                         <outlet property="secondDateButton" destination="gzs-HA-wAj" id="cLG-mF-wFY"/>
+                        <outlet property="sentenceLabel" destination="Ab5-av-ZF2" id="2mV-9e-JWV"/>
                         <outlet property="thirdDateButton" destination="Ev7-vu-Vex" id="Ekf-wG-MUg"/>
                         <outlet property="totalVotesLabel" destination="axh-uh-DJJ" id="0EK-95-05D"/>
                         <outlet property="totalVotesValue" destination="eel-MA-gnd" id="nKN-ol-DB3"/>

@@ -26,6 +26,7 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
     @IBOutlet private weak var totalVotesLabel: UILabel!
     @IBOutlet private weak var totalVotesValue: UILabel!
     @IBOutlet private weak var averageRatingValue: UILabel!
+    @IBOutlet private weak var sentenceLabel: UILabel!
 
     lazy var barChartView: BarChartView = {
         let barChartView = BarChartView()
@@ -43,6 +44,10 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
         super.init(coder: aDecoder)
     }
 
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [backNavigationItemLight()]
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
@@ -52,13 +57,13 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
     @IBAction func firstDateTapped(_ sender: Any) {
         setButtons(button: firstDateButton)
         switchView(interactor.dataEntries1)
-
     }
+
     @IBAction func secondDateTapped(_ sender: Any) {
         setButtons(button: secondDateButton)
         switchView(interactor.dataEntries2)
-
     }
+
     @IBAction func thirdDateTapped(_ sender: Any) {
         setButtons(button: thirdDateButton)
         switchView(interactor.dataEntries3)
@@ -67,18 +72,31 @@ final class TeamVisionTrackerDetailsViewController: UIViewController {
 
 // MARK: - TeamVisionTrackerDetailsViewControllerInterface
 extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewControllerInterface {
-
     func setupView() {
-//         TO DO: Get last three dates
-        firstDateButton.setTitle("03 Mar", for: .normal)
-        secondDateButton.setTitle("07. Apr", for: .normal)
-        thirdDateButton.setTitle("30. Jun", for: .normal)
         barChartView.dataEntries = interactor.dataEntries3
         chartView.addSubview(barChartView)
         setValues(interactor.dataEntries3)
-        ThemeText.totalVotes.apply(AppTextService.get(.my_x_team_vision_tracker_total_votes), to: totalVotesLabel)
-        ThemeText.averageRating.apply(AppTextService.get(.my_x_team_vision_tracker_average_rating), to: averageRatingLabel)
-        ThemeText.myRating.apply(AppTextService.get(.my_x_team_vision_tracker_my_rating), to: myRatingLabel)
+
+        ThemeText.totalVotes.apply(AppTextService.get(.my_x_team_vision_tracker_total_votes),
+                                   to: totalVotesLabel)
+        ThemeText.averageRating.apply(AppTextService.get(.my_x_team_vision_tracker_average_rating),
+                                      to: averageRatingLabel)
+        ThemeText.myRating.apply(AppTextService.get(.my_x_team_vision_tracker_my_rating),
+                                 to: myRatingLabel)
+    }
+
+    func setupDates(firstDate: String?, secondDate: String?, thirdDate: String?) {
+        firstDateButton.setTitle(firstDate, for: .normal)
+        secondDateButton.setTitle(secondDate, for: .normal)
+        thirdDateButton.setTitle(thirdDate, for: .normal)
+
+        firstDateButton.isHidden = firstDate == nil
+        secondDateButton.isHidden = secondDate == nil
+        thirdDateButton.isHidden = thirdDate == nil
+    }
+
+    func setupSentence(_ sentence: String) {
+        sentenceLabel.text = sentence
     }
 
     func switchView(_ data: [BarEntry]) {
@@ -86,7 +104,10 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
         setValues(data)
         ratingsView.frame = CGRect(x: ratingsView.frame.origin.x, y: ratingsView.frame.origin.y + 25, width: ratingsView.frame.width, height: ratingsView.frame.height)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
-            self.ratingsView.frame = CGRect(x: self.ratingsView.frame.origin.x, y: self.ratingsView.frame.origin.y - 25, width: self.ratingsView.frame.width, height: self.ratingsView.frame.height)
+            self.ratingsView.frame = CGRect(x: self.ratingsView.frame.origin.x,
+                                            y: self.ratingsView.frame.origin.y - 25,
+                                            width: self.ratingsView.frame.width,
+                                            height: self.ratingsView.frame.height)
             self.ratingsView.alpha = 1
             self.barChartView.dataEntries = data
         }, completion: nil)
@@ -94,7 +115,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
 
     func setButtons(button: UIButton) {
         let buttons = [firstDateButton, secondDateButton, thirdDateButton]
-        buttons.forEach {(button) in
+        buttons.forEach { (button) in
             button?.corner(radius: 20, borderColor: .accent40)
             button?.backgroundColor = .carbon
         }
