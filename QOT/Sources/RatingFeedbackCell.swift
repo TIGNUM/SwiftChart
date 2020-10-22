@@ -17,6 +17,7 @@ final class RatingFeedbackCell: BaseDailyBriefCell {
     @IBOutlet private weak var feedbackLabel: UILabel!
     @IBOutlet private weak var resultsButton: UIButton!
     private var baseHeaderView: QOTBaseHeaderView?
+    private var team: QDMTeam?
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
@@ -33,18 +34,24 @@ final class RatingFeedbackCell: BaseDailyBriefCell {
     func configure(model: RatingFeedbackModel?) {
         skeletonManager.hide()
         resultsButton.setTitle(AppTextService.get(.daily_brief_rating_ready_cta), for: .normal)
-        let title = AppTextService.get(.daily_brief_vision_rating_title).replacingOccurrences(of: "${TEAM_NAME}", with: model?.teamName ?? "").uppercased()
+        let title = AppTextService.get(.daily_brief_vision_rating_title).replacingOccurrences(of: "${TEAM_NAME}", with: model?.team?.name ?? "").uppercased()
         ThemeText.dailyInsightsTbvAdvice.apply(model?.feedback, to: feedbackLabel)
         ThemeText.iRscore.apply(model?.averageValue ?? "", to: averageValueLabel)
         let subtitle = AppTextService.get(.daily_brief_rating_ready_subtitle)
         baseHeaderView?.configure(title: title, subtitle: subtitle)
-        baseHeaderView?.setColor(dashColor: model?.teamColor, titleColor: model?.teamColor, subtitleColor: .sand)
+        baseHeaderView?.setColor(dashColor: UIColor(hex: model?.team?.teamColor ?? ""), titleColor: UIColor(hex: model?.team?.teamColor ?? ""), subtitleColor: .sand)
         ThemeText.baseHeaderSubtitleBold.apply(AppTextService.get(.daily_brief_rating_ready_average_title), to: averageLabel)
         ThemeText.baseHeaderSubtitleBold.apply(subtitle, to: baseHeaderView?.subtitleTextView)
+        self.team = model?.team
     }
 
     override func updateConstraints() {
         super.updateConstraints()
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+    }
+
+    @IBAction func showResults(_ sender: Any) {
+        guard let team = team else { return }
+        delegate?.presentRateHistory(for: team)
     }
 }
