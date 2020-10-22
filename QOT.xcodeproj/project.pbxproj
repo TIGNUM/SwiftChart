@@ -1194,7 +1194,6 @@
 		F91087A324C5A6BD00CA343A /* TeamToBeVisionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */; };
 		F91087A424C5A6BD00CA343A /* TeamToBeVisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */; };
 		F91087A524C5A6BD00CA343A /* TeamToBeVisionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */; };
-		F91087A624C5A6BD00CA343A /* TeamToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */; };
 		F91087A724C5A6BD00CA343A /* TeamToBeVisionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */; };
 		F91087A924C5C7D500CA343A /* TeamToBeVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */; };
 		F91087AB24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */; };
@@ -1380,6 +1379,15 @@
 		F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */; };
 		F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */; };
 		F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */; };
+		F9FEA8CF25344F8D009BF786 /* PollOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA8CE25344F8D009BF786 /* PollOpenCell.swift */; };
+		F9FEA8D725344F9F009BF786 /* PollOpenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FEA8D625344F9F009BF786 /* PollOpenCell.xib */; };
+		F9FEA8DF25344FB2009BF786 /* PollOpenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */; };
+		F9FEA91C25348D1E009BF786 /* RateOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */; };
+		F9FEA92425348D2C009BF786 /* RateOpenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FEA92325348D2C009BF786 /* RateOpenCell.xib */; };
+		F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA92B25348D42009BF786 /* RateOpenModel.swift */; };
+		F9FEA94C2534A6BB009BF786 /* RatingFeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA94B2534A6BB009BF786 /* RatingFeedbackCell.swift */; };
+		F9FEA9542534A6CB009BF786 /* RatingFeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FEA9532534A6CB009BF786 /* RatingFeedbackCell.xib */; };
+		F9FEA95C2534A6DE009BF786 /* RatingFeedbackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2624,7 +2632,6 @@
 		F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionInterface.swift; sourceTree = "<group>"; };
 		F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionViewController.swift; sourceTree = "<group>"; };
 		F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionInteractor.swift; sourceTree = "<group>"; };
-		F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVision.swift; sourceTree = "<group>"; };
 		F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionConfigurator.swift; sourceTree = "<group>"; };
 		F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNullStateView.swift; sourceTree = "<group>"; };
 		F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNavigationBarView.swift; sourceTree = "<group>"; };
@@ -2808,6 +2815,15 @@
 		F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableViewCell.swift; sourceTree = "<group>"; };
 		F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableViewCell.xib; sourceTree = "<group>"; };
 		F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableHeaderView.swift; sourceTree = "<group>"; };
+		F9FEA8CE25344F8D009BF786 /* PollOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenCell.swift; sourceTree = "<group>"; };
+		F9FEA8D625344F9F009BF786 /* PollOpenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollOpenCell.xib; sourceTree = "<group>"; };
+		F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenModel.swift; sourceTree = "<group>"; };
+		F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenCell.swift; sourceTree = "<group>"; };
+		F9FEA92325348D2C009BF786 /* RateOpenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateOpenCell.xib; sourceTree = "<group>"; };
+		F9FEA92B25348D42009BF786 /* RateOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenModel.swift; sourceTree = "<group>"; };
+		F9FEA94B2534A6BB009BF786 /* RatingFeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFeedbackCell.swift; sourceTree = "<group>"; };
+		F9FEA9532534A6CB009BF786 /* RatingFeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingFeedbackCell.xib; sourceTree = "<group>"; };
+		F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFeedbackModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2920,6 +2936,9 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F9FEA94A2534A6A6009BF786 /* RatingFeedback */,
+				F9FEA91425348C84009BF786 /* OpenTBVRate */,
+				F9FEA8CD25344F34009BF786 /* OpenTBVPoll */,
 				F96D9F3624D853CD00188482 /* TeamInvitation */,
 				F96D9F2F24D448F500188482 /* TeamVisionSuggestion */,
 				F96D9F2824D2DAB600188482 /* TeamToBeVision */,
@@ -5631,7 +5650,6 @@
 				F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */,
 				F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */,
 				F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */,
-				F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */,
 				F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */,
 				F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */,
 				F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */,
@@ -5999,6 +6017,36 @@
 			name = SprintChallenge;
 			sourceTree = "<group>";
 		};
+		F9FEA8CD25344F34009BF786 /* OpenTBVPoll */ = {
+			isa = PBXGroup;
+			children = (
+				F9FEA8CE25344F8D009BF786 /* PollOpenCell.swift */,
+				F9FEA8D625344F9F009BF786 /* PollOpenCell.xib */,
+				F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */,
+			);
+			name = OpenTBVPoll;
+			sourceTree = "<group>";
+		};
+		F9FEA91425348C84009BF786 /* OpenTBVRate */ = {
+			isa = PBXGroup;
+			children = (
+				F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */,
+				F9FEA92325348D2C009BF786 /* RateOpenCell.xib */,
+				F9FEA92B25348D42009BF786 /* RateOpenModel.swift */,
+			);
+			name = OpenTBVRate;
+			sourceTree = "<group>";
+		};
+		F9FEA94A2534A6A6009BF786 /* RatingFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				F9FEA94B2534A6BB009BF786 /* RatingFeedbackCell.swift */,
+				F9FEA9532534A6CB009BF786 /* RatingFeedbackCell.xib */,
+				F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */,
+			);
+			name = RatingFeedback;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6346,8 +6394,10 @@
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
+				F9FEA8D725344F9F009BF786 /* PollOpenCell.xib in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */,
+				F9FEA9542534A6CB009BF786 /* RatingFeedbackCell.xib in Resources */,
 				386C27A9241A454900184EC9 /* ResultsPrepareEditableTableViewCell.xib in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				38E84B7D241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib in Resources */,
@@ -6504,6 +6554,7 @@
 				3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */,
 				B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */,
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
+				F9FEA92425348D2C009BF786 /* RateOpenCell.xib in Resources */,
 				386C27A5241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib in Resources */,
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
@@ -6841,7 +6892,6 @@
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
 				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
-				F91087A624C5A6BD00CA343A /* TeamToBeVision.swift in Sources */,
 				38095D2324BDC4EA0077EE86 /* TeamInvitesPresenter.swift in Sources */,
 				B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */,
 				B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */,
@@ -7041,6 +7091,7 @@
 				F902CF5522DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift in Sources */,
 				F9F4707A2510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift in Sources */,
 				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
+				F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
@@ -7249,6 +7300,7 @@
 				F9F470742510C4D7002331F4 /* TeamToBeVisionOptionsPresenter.swift in Sources */,
 				38C23E5724235DCA0034571B /* DTPrepareStartModel.swift in Sources */,
 				F9348028247D467000DD1C7D /* FeatureExplainerWorker.swift in Sources */,
+				F9FEA8DF25344FB2009BF786 /* PollOpenModel.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
 				8D0B4D222301CC4000A1AC47 /* RegistrationNamesPresenter.swift in Sources */,
 				F99E9CC624EABD9C00325EAE /* VisionRatingExplanationInterface.swift in Sources */,
@@ -7416,6 +7468,7 @@
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
+				F9FEA91C25348D1E009BF786 /* RateOpenCell.swift in Sources */,
 				9C24238822F3271E00B911E6 /* BaseDailyBriefViewModel.swift in Sources */,
 				3655F2D42326EBD600334719 /* DTMindsetWorker.swift in Sources */,
 				9CC426202306A4DB00F8072E /* GuidedTrackRowViewModel.swift in Sources */,
@@ -7453,6 +7506,7 @@
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				36083829225F3ED000664B9B /* ArticleInterface.swift in Sources */,
 				F99E9CC724EABD9C00325EAE /* VisionRatingExplanationViewController.swift in Sources */,
+				F9FEA94C2534A6BB009BF786 /* RatingFeedbackCell.swift in Sources */,
 				3658257C2327D19200AC3F4A /* DTShortTBVViewController.swift in Sources */,
 				B499A7062395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift in Sources */,
 				F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */,
@@ -7530,6 +7584,7 @@
 				B474CA8F2398F85F00A829B5 /* RegisterIntroRouter.swift in Sources */,
 				386C27B4241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.swift in Sources */,
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
+				F9FEA8CF25344F8D009BF786 /* PollOpenCell.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				F9207CE724B77BEB007B1AB6 /* MyXTeamMembersWorker.swift in Sources */,
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
@@ -7623,6 +7678,7 @@
 				360256E42051837300862B0E /* SearchWorker.swift in Sources */,
 				5F7BE77E2289586E00BA5DCF /* MyQotSupportInterface.swift in Sources */,
 				B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */,
+				F9FEA95C2534A6DE009BF786 /* RatingFeedbackModel.swift in Sources */,
 				F9D6381D22D746D60092C482 /* ExploreCellViewModel.swift in Sources */,
 				DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */,
 				ACCCBC9421E38B19008D744D /* UIImageView+Extensions.swift in Sources */,

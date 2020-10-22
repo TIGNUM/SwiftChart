@@ -143,7 +143,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc private func dismissAction() {
-        interactor?.dismiss()
+        dismiss(animated: true)
     }
 }
 

@@ -36,8 +36,8 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
         viewController?.hideNullState()
     }
 
-    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool) {
-        viewController?.load(teamVision, rateText: rateText, isRateEnabled: isRateEnabled)
+    func load(_ teamVision: QDMTeamToBeVision?) {
+        viewController?.load(teamVision)
     }
 
     func setSelectionBarButtonItems() {
@@ -57,4 +57,13 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
                                                                           team: team,
                                                                           tbv: teamToBeVision))
     }
+
+    func hideTrends(_ hide: Bool) {
+        viewController?.hideTrends(hide)
+    }
+
+    func hideSelectionBar(_ hide: Bool) {
+        viewController?.hideSelectionBar(hide)
+    }
+
 }

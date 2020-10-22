@@ -100,7 +100,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         }
     }
 
-    @IBAction func didTapPending(_ sender: Any) {        
+    @IBAction func didTapPending(_ sender: Any) {
         delegate?.presentTeamPendingInvites()
     }
 }
