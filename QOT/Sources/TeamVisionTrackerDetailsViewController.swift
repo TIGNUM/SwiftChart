@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class TeamVisionTrackerDetailsViewController: UIViewController {
+final class TeamVisionTrackerDetailsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: TeamVisionTrackerDetailsInteractorInterface!
