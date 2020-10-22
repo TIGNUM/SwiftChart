@@ -247,9 +247,8 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
                     switch (teamTBV == nil, poll.creator, poll.userDidVote, poll.open) {
                     /// member
-                    case (true, false, true, true):
-                        showBanner(poll: poll)
-                    case(false, false, true, true):
+                    case (true, false, true, true),
+                         (false, false, true, true):
                         showBanner(poll: poll)
                     case (true, false, false, true):
                         router.showTeamTBVPollEXplanation(team)
