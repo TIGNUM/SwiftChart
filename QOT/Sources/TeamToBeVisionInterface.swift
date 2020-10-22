@@ -14,17 +14,21 @@ protocol TeamToBeVisionViewControllerInterface: class {
     func showNullState(with title: String, message: String, header: String)
     func hideNullState()
     func setSelectionBarButtonItems()
-    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool)
+    func load(_ teamVision: QDMTeamToBeVision?)
     func updatePollButton(poll: ButtonTheme.Poll)
     func updateTrackerButton(poll: ButtonTheme.Poll)
+    func hideSelectionBar(_ hide: Bool)
+    func hideTrends(_ hide: Bool)
 }
 
 protocol TeamToBeVisionPresenterInterface {
     func setupView()
     func showNullState(with title: String, teamName: String?, message: String)
     func hideNullState()
-    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool)
+    func load(_ teamVision: QDMTeamToBeVision?)
     func setSelectionBarButtonItems()
+    func hideSelectionBar(_ hide: Bool)
+    func hideTrends(_ hide: Bool)
     func updatePoll(visionPoll: QDMTeamToBeVisionPoll?,
                     trackerPoll: QDMTeamToBeVisionTrackerPoll?,
                     team: QDMTeam?,

@@ -1194,7 +1194,6 @@
 		F91087A324C5A6BD00CA343A /* TeamToBeVisionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */; };
 		F91087A424C5A6BD00CA343A /* TeamToBeVisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */; };
 		F91087A524C5A6BD00CA343A /* TeamToBeVisionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */; };
-		F91087A624C5A6BD00CA343A /* TeamToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */; };
 		F91087A724C5A6BD00CA343A /* TeamToBeVisionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */; };
 		F91087A924C5C7D500CA343A /* TeamToBeVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */; };
 		F91087AB24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */; };
@@ -2633,7 +2632,6 @@
 		F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionInterface.swift; sourceTree = "<group>"; };
 		F910879C24C5A6BC00CA343A /* TeamToBeVisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionViewController.swift; sourceTree = "<group>"; };
 		F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionInteractor.swift; sourceTree = "<group>"; };
-		F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVision.swift; sourceTree = "<group>"; };
 		F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionConfigurator.swift; sourceTree = "<group>"; };
 		F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNullStateView.swift; sourceTree = "<group>"; };
 		F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNavigationBarView.swift; sourceTree = "<group>"; };
@@ -5652,7 +5650,6 @@
 				F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */,
 				F910879D24C5A6BC00CA343A /* TeamToBeVisionInteractor.swift */,
 				F910879B24C5A6BC00CA343A /* TeamToBeVisionInterface.swift */,
-				F910879E24C5A6BC00CA343A /* TeamToBeVision.swift */,
 				F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */,
 				F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */,
 				F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */,
@@ -6895,7 +6892,6 @@
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
 				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
-				F91087A624C5A6BD00CA343A /* TeamToBeVision.swift in Sources */,
 				38095D2324BDC4EA0077EE86 /* TeamInvitesPresenter.swift in Sources */,
 				B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */,
 				B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */,

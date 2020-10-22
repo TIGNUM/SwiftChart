@@ -127,12 +127,6 @@ private extension TeamToBeVisionViewController {
         userImageView.gradientBackground(top: false)
     }
 
-    func hideTrends(_ hide: Bool) {
-        trendsBarView.isHidden = hide
-        trendsButton.isHidden = hide
-        trendsLabel.isHidden = hide
-    }
-
     func hideNavigationBarView() {
         navigationBarViewTopMarginConstraint.constant = -150
     }
@@ -236,6 +230,21 @@ private extension TeamToBeVisionViewController {
                       message: AppTextService.get(.my_x_team_tbv_section_alert_message),
                       bottomItems: [add, openTeamPoll])
     }
+
+    func setupContent(_ teamVision: QDMTeamToBeVision?) {
+        var headline = teamVision?.headline
+        if headline?.isEmpty != false {
+            headline = interactor.teamNullStateTitle
+        }
+        ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
+        let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.teamNullStateSubtitle
+        detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
+        tempTeamImageURL = teamVision?.profileImageResource?.url()
+        userImageView.contentMode = .scaleAspectFill
+        userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
+        let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
+        ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
+    }
 }
 
 // MARK: - TeamToBeVisionViewControllerInterface
@@ -265,16 +274,10 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-
-        /// Temporarily hide buttons
-        trendsLabel.isHidden = true
-        trendsBarView.isHidden = true
-        trendsButton.isHidden = true
         ThemeText.trends.apply(AppTextService.get(.my_x_team_tbv_section_trends_label), to: trendsLabel)
     }
 
-    /// FIXME: 🆘🤯 Please brake apart. To many conditions, to many things are happening here in one single function. Too long [♨️🐟]
-    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool) {
+    func load(_ teamVision: QDMTeamToBeVision?) {
         shouldShowCreate = teamVision == nil
         if teamVision == nil {
             interactor.showNullState()
@@ -283,34 +286,15 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             return
         }
         if scrollView.alpha == 0 {
-            UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
+            UIView.animate(withDuration: Animation.duration_04) {
+                self.scrollView.alpha = 1
+            }
         }
         skeletonManager.hide()
         interactor.hideNullState()
-        interactor.isShareBlocked { [weak self] (hidden) in
-            guard self?.interactor.team.thisUserIsOwner == true else {
-                self?.toBeVisionSelectionBar.isHidden = hidden
-                return
-            }
-        }
-        interactor.isTrendsHidden { [weak self] (hide) in
-            self?.hideTrends(hide)
-        }
-        var headline = teamVision?.headline
-        if headline?.isEmpty != false {
-            headline = interactor.teamNullStateTitle
-        }
-        ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
-        let text = (teamVision?.text?.isEmpty == Optional(false)) ? teamVision?.text : interactor.teamNullStateSubtitle
-        detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
-        tempTeamImageURL = teamVision?.profileImageResource?.url()
-        userImageView.contentMode = .scaleAspectFill
-        userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
+        setupContent(teamVision)
         removeGradients()
         addGradients()
-
-        let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
-        ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
         refreshBottomNavigationItems()
     }
 
@@ -328,6 +312,16 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             teamNullStateView.isHidden = true
             refreshBottomNavigationItems()
         }
+    }
+
+    func hideTrends(_ hide: Bool) {
+        trendsBarView.isHidden = hide
+        trendsButton.isHidden = hide
+        trendsLabel.isHidden = hide
+    }
+
+    func hideSelectionBar(_ hide: Bool) {
+        toBeVisionSelectionBar.isHidden = hide
     }
 }
 
@@ -389,7 +383,6 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
         refreshBottomNavigationItems()
     }
 
-    /// This all will change. The load func is doing way to many things. Please refactor.
     func updatePollButton(poll: ButtonTheme.Poll) {
         do {
             let cta = try poll.stateWithAction()

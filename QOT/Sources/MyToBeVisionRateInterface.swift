@@ -24,12 +24,10 @@ protocol MyToBeVisionRatePresenterInterface {
 protocol MyToBeVisionRateInteracorInterface: Interactor {
     func addRating(for questionId: Int, value: Int)
     func saveQuestions()
-    func dismiss()
     func showScreenLoader()
     func hideScreenLoader()
     var team: QDMTeam? { get }
 }
 
 protocol MyToBeVisionRateRouterInterface {
-    func dismiss()
 }

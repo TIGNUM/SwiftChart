@@ -95,9 +95,7 @@ final class TeamToBeVisionInteractor {
             self.teamVision = tmpTeamTBV
             self.teamVisionPoll = tmpTeamTBVPoll
             self.teamTrackerPoll = tmpTeamTrackerPoll
-            self.presenter.load(self.teamVision,
-                                rateText: "",
-                                isRateEnabled: false)
+            self.presenter.load(self.teamVision)
             self.presenter.updatePoll(visionPoll: self.teamVisionPoll,
                                       trackerPoll: self.teamTrackerPoll,
                                       team: self.team,
@@ -125,6 +123,15 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
 
     func hideNullState() {
         presenter.hideNullState()
+        isShareBlocked { [weak self] (hidden) in
+            if self?.team.thisUserIsOwner == false {
+                self?.presenter.hideSelectionBar(hidden)
+            }
+        }
+        isTrendsHidden { [weak self] (hide) in
+            self?.presenter.hideTrends(hide)
+        }
+
     }
 
     func isTrendsHidden(_ completion: @escaping (Bool) -> Void) {

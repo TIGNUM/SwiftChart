@@ -386,7 +386,6 @@ extension UIViewController {
         if let action = action {
             buttonAction = action
         }
-
         let isLight = isLightBackground()
         let button = RoundedButton.init(title: nil, target: self, action: buttonAction)
         let heightConstraint = getLayoutConstraint(item: button, attribute: .height)
