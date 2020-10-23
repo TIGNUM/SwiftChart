@@ -224,7 +224,7 @@ class BaseRouter: BaseRouterInterface {
 
     func showBanner(message: String) {
         if let view = viewController?.view {
-            let banner = NotificationBanner.instantiateFromNib()
+            let banner =  NotificationBanner.shared
             banner.configure(message: message, isDark: false)
             banner.show(in: view)
         }

@@ -942,9 +942,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func showBanner(message: String) {
-        let banner = NotificationBanner.instantiateFromNib()
+        let banner =  NotificationBanner.shared
         banner.configure(message: message, isDark: false)
-        banner.show(in: self.view)
+        banner.show(in: view)
     }
 
     func showTBV() {
