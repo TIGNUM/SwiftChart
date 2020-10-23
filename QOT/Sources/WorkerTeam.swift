@@ -365,23 +365,21 @@ extension WorkerTeam {
         }
     }
 
-//    to check: getting up to three latest closed polls
     func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void) {
-        TeamService.main.allTeamToBeVisionTrackerPoll(for: team) {(allPolls, _, error) in
+        TeamService.main.allTeamToBeVisionTrackerPoll(for: team) { (allPolls, _, error) in
             if let error = error {
                 log("Error allTeamToBeVisionTrackerPol: \(error.localizedDescription)", level: .error)
                 // TODO handle error
             }
-            var closedPolls = allPolls?.filter { $0.open == false }
-            closedPolls?.sort(by: { $0.endDate ?? Date() < $1.endDate ?? Date() })
+            var closedPolls = allPolls?.filter { $0.open == false && $0.qotTeamToBeVisionTrackers?.isEmpty == false } ?? []
+            closedPolls.sort(by: { $0.endDate ?? Date() < $1.endDate ?? Date() })
             var lastPolls: [QDMTeamToBeVisionTrackerPoll] = []
-            for _ in 0..<3 {
-                guard let lastPoll = closedPolls?.last else {
-                    completion(lastPolls)
-                    return
+
+            for (index, poll) in closedPolls.reversed().enumerated() {
+                if index == 3 {
+                    break
                 }
-                lastPolls.append(lastPoll)
-                lastPolls.reverse()
+                lastPolls.append(poll)
             }
             completion(lastPolls)
         }

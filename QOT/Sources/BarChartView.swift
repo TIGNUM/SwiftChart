@@ -90,7 +90,9 @@ class BarChartView: UIView {
         textLayer.font = UIFont.sfProtextRegular(ofSize: 12.0)
         textLayer.fontSize = 12
         let percentageString = String(percentage(votes))
-        textLayer.string = AppTextService.get(.my_x_team_vision_tracker_votes).replacingOccurrences(of: "${numberOfVotes}", with: String(votes)).replacingOccurrences(of: "${percentageString}", with: percentageString)
+        textLayer.string = AppTextService.get(.my_x_team_vision_tracker_votes)
+            .replacingOccurrences(of: "${numberOfVotes}", with: String(votes))
+            .replacingOccurrences(of: "${percentageString}", with: percentageString)
         mainLayer.addSublayer(textLayer)
     }
 
