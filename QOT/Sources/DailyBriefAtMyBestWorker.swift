@@ -27,4 +27,22 @@ final class DailyBriefAtMyBestWorker {
         }
         return UserDefault.myBestText.stringValue ?? text
     }
+
+    func storedTeamVisionText(_ text: String, today: Date = Date()) -> String {
+        let userDefaultStamp = UserDefault.teamVisionSuggestionDate.object
+        UserDefault.teamVisionSuggestionDate.setObject(today)
+
+        var shouldSetText = false
+        if let dateStamp = userDefaultStamp as? Date {
+            if dateStamp.dayOfMonth != today.dayOfMonth {
+                shouldSetText = true
+            }
+        } else {
+            shouldSetText = true
+        }
+        if shouldSetText {
+            UserDefault.teamVisionSuggestion.setStringValue(value: text)
+        }
+        return UserDefault.teamVisionSuggestion.stringValue ?? text
+    }
 }

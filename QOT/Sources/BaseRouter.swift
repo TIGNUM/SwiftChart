@@ -137,6 +137,10 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
+    func showTracker(for team: QDMTeam?) {
+        presentRateHistory(for: team, .tracker)
+    }
+
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
         viewController?.showAlert(type: type, handler: handler, handlerDestructive: handlerDestructive)
     }
@@ -153,10 +157,6 @@ class BaseRouter: BaseRouterInterface {
     func showTeamRatingExplanation(_ team: QDMTeam) {
         let type: Explanation.Types = team.thisUserIsOwner ? .ratingOwner : .ratingUser
         showExplanation(team, type)
-    }
-
-    func showTracker(for team: QDMTeam?) {
-        presentRateHistory(for: team, .tracker)
     }
 
     func showTBVData(shouldShowNullState: Bool, visionId: Int?) {
@@ -183,11 +183,14 @@ class BaseRouter: BaseRouterInterface {
     }
 
     func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?) {
-        if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
-            MyToBeVisionRateConfigurator.configure(controller: controller, trackerPoll: trackerPoll, team: team)
-            controller.delegate = delegate
-            present(controller)
-        }
+        viewController?.dismiss(animated: true, completion: {
+
+            if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
+                MyToBeVisionRateConfigurator.configure(controller: controller, trackerPoll: trackerPoll, team: team)
+                controller.delegate = delegate
+                self.present(controller)
+            }
+        })
     }
 
     func showRateScreen(with id: Int, delegate: TBVRateDelegate?) {
@@ -221,7 +224,7 @@ class BaseRouter: BaseRouterInterface {
 
     func showBanner(message: String) {
         if let view = viewController?.view {
-            let banner = NotificationBanner.instantiateFromNib()
+            let banner = NotificationBanner.shared
             banner.configure(message: message, isDark: false)
             banner.show(in: view)
         }

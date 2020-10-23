@@ -377,14 +377,23 @@ public extension AppTextKey {
     static let daily_brief_team_vision_suggestion_suggestion_title = AppTextKey("daily_brief.team_vision_suggestion.suggestion_title")
 
     static let daily_brief_team_invitation_one_team_statement = AppTextKey("daily_brief.team_invitation.one_team_statement")
-//    " has invited you to be part of"
     static let daily_brief_team_invitation_several_teams_statement = AppTextKey("daily_brief.team_invitation.several_teams_statement")
-//    "You have been invited to join"
     static let daily_brief_team_invitation_belonging_sentence = AppTextKey("daily_brief.team_invitation.belonging_sentence")
     static let daily_brief_team_invitation_decline_cta = AppTextKey("daily_brief.team_invitation.decline_cta")
     static let daily_brief_team_invitation_join_cta = AppTextKey("daily_brief.team_invitation.join_cta")
     static let daily_brief_team_invitation_see_pending_cta = AppTextKey("daily_brief.team_invitation.see_pending_cta")
     static let daily_brief_team_invitation_title = AppTextKey("daily_brief.team_invitation.title")
+
+    static let daily_brief_team_open_poll_cta = AppTextKey("daily_brief.team_open_poll.cta")
+    static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+    static let daily_brief_team_open_poll_title = AppTextKey("daily_brief.team_open_poll.title")
+
+    static let daily_brief_rate_open_cta = AppTextKey("daily_brief.rate_open.cta")
+    static let daily_brief_rate_open_text = AppTextKey("daily_brief.rate_open.text")
+    static let daily_brief_vision_rating_title = AppTextKey("daily_brief.vision_rating.title")
+    static let daily_brief_rating_ready_subtitle = AppTextKey("daily_brief.rating_ready.subtitle")
+    static let daily_brief_rating_ready_average_title = AppTextKey("daily_brief.rating_ready.average_title")
+    static let daily_brief_rating_ready_cta = AppTextKey("daily_brief.rating_ready.cta")
 
     static let daily_brief_team_invitation_and_label = AppTextKey("daily_brief.team_invitation.and_label")
     static let daily_brief_team_invitation_other_teams_label = AppTextKey("daily_brief.team_invitation.other_teams_label")

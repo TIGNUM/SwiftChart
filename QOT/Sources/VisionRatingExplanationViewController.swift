@@ -24,10 +24,10 @@ final class VisionRatingExplanationViewController: BaseViewController {
     @IBOutlet private weak var playIconBackgroundView: UIView!
     @IBOutlet private weak var videoImageView: UIImageView!
     @IBOutlet private weak var checkButton: UIButton!
+    private var skeletonManager = SkeletonManager()
     private var videoID: Int?
     private var rightBarButtonTitle = ""
     private var rightBarButtonAction = #selector(startRating)
-    let skeletonManager = SkeletonManager()
 
     // MARK: - Init
     init(configure: Configurator<VisionRatingExplanationViewController>) {
@@ -43,11 +43,6 @@ final class VisionRatingExplanationViewController: BaseViewController {
         super.viewDidLoad()
         interactor.viewDidLoad()
         setupButtons()
-        skeletonManager.addOtherView(videoView)
-        skeletonManager.addOtherView(checkMarkView)
-        skeletonManager.addOtherView(checkButton)
-        skeletonManager.addSubtitle(textLabel)
-        skeletonManager.addSubtitle(titleLabel)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +70,8 @@ final class VisionRatingExplanationViewController: BaseViewController {
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem] {
-        return [dismissNavigationItem(action: #selector(didTapDismissButton))]
+        let blackButton = dismissNavigationItemBlack(action: #selector(didTapDismissButton))
+        return [blackButton]
     }
 }
 
@@ -124,7 +120,6 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
         default:
             checkMarkView.isHidden = true
         }
-        skeletonManager.hide()
     }
 
     func setupLabels(title: String, text: String, videoTitle: String) {
@@ -138,7 +133,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
     func setupVideo(thumbNailURL: URL?, placeholder: UIImage?, videoURL: URL?, duration: String, remoteID: Int) {
         videoView.isHidden = videoURL == nil
         self.videoID = remoteID
-        videoImageView.setImage(url: thumbNailURL, skeletonManager: self.skeletonManager) { (_) in /* */}
+        videoImageView.setImage(url: thumbNailURL, skeletonManager: skeletonManager) { (_) in /* */}
         videoDescriptionLabel.text = duration
         let videoTap = UITapGestureRecognizer(target: self, action: #selector(self.videoTapped(_:)))
         videoView.isUserInteractionEnabled = true

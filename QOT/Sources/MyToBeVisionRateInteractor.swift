@@ -62,10 +62,6 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
         presenter.hideScreenLoader()
     }
 
-    func dismiss() {
-        router.dismiss()
-    }
-
     var team: QDMTeam? {
         worker.team
     }

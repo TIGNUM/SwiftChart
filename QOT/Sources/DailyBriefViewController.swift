@@ -35,10 +35,14 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         navigationController?.navigationBar.isHidden = true
         tableView.rowHeight = UITableView.automaticDimension
         interactor.viewDidLoad()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateBuckets),
+                                               name: .didRateTBV, object: nil)
         _ = NotificationCenter.default.addObserver(forName: .didUpdateDailyBriefBuckets,
                                                    object: nil,
                                                    queue: .main) { [weak self] notification in
             self?.updateDailyBriefFromNotification(notification)
+
         }
     }
 
@@ -141,10 +145,14 @@ extension DailyBriefViewController {
                 return getExpertThoughts(tableView, indexPath, nil)
             case 17:
                 return getTeamToBeVisionCell(tableView, indexPath, nil)
-//            case 18:
-//                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
             case 18:
+                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
+            case 19:
                 return getTeamInvitationCell(tableView, indexPath, nil)
+            case 20:
+                return getOpenPollCell(tableView, indexPath, nil)
+            case 21:
+                return getOpenRateCell(tableView, indexPath, nil)
             default:
                 return UITableViewCell()
             }
@@ -234,14 +242,25 @@ extension DailyBriefViewController {
             return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
         case .TEAM_TO_BE_VISION?:
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
-//        case .TEAM_VISION_SUGGESTION?:
-//            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
+        case .TEAM_VISION_SUGGESTION?:
+            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
         case .TEAM_INVITATION?:
             return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
         case .TEAM_NEWS_FEED?:
             return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
+        case .TEAM_TOBEVISION_GENERATOR_POLL?:
+            return getOpenPollCell(tableView, indexPath, bucketItem as? PollOpenModel)
+        case .TEAM_TOBEVISION_TRACKER_POLL?:
+            if (bucketItem as? RateOpenModel) != nil,
+               let rateViewModel = bucketItem as? RateOpenModel {
+                return getOpenRateCell(tableView, indexPath, rateViewModel)
+            } else if (bucketItem as? RatingFeedbackModel ) != nil,
+                      let feedbackModel = bucketItem as? RatingFeedbackModel {
+                return getRatingFeedbackCell(tableView, indexPath, feedbackModel)
+            }
+            return UITableViewCell()
         default:
-           return UITableViewCell()
+            return UITableViewCell()
         }
     }
 
@@ -314,6 +333,10 @@ private extension DailyBriefViewController {
 // MARK: - Daily Brief Update Notification
 private extension DailyBriefViewController {
     @objc func updateDailyBriefFromNotification(_ notification: Notification) {
+        interactor.getDailyBriefBucketsForViewModel()
+    }
+
+    @objc func updateBuckets() {
         interactor.getDailyBriefBucketsForViewModel()
     }
 }
@@ -760,7 +783,7 @@ private extension DailyBriefViewController {
 
     /**
      * Method name:getTeamInvitationCell.
-     * Description: Placeholder to display the Team To Bbe Vision Suggestion.
+     * Description: Placeholder to display the Team To Be Vision Suggestion.
      * Parameters: [tableView], [IndexPath]
      */
     func getTeamInvitationCell(_ tableView: UITableView,
@@ -768,6 +791,46 @@ private extension DailyBriefViewController {
                                _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
         let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
         cell.configure(model: teamInvitationModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
+    }
+
+    /**
+     * Method name: getOpenPollCell.
+     * Description: Placeholder to display that the TBV Poll is Open.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getOpenPollCell(_ tableView: UITableView,
+                         _ indexPath: IndexPath,
+                         _ pollOpenModel: PollOpenModel?) -> UITableViewCell {
+        let cell: PollOpenCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: pollOpenModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
+    }
+
+    /**
+     * Method name: getOpenRateCell.
+     * Description: Placeholder to display that the TBV Rating Tracker is Open.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getOpenRateCell(_ tableView: UITableView,
+                         _ indexPath: IndexPath,
+                         _ rateOpenModel: RateOpenModel?) -> UITableViewCell {
+        let cell: RateOpenCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: rateOpenModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
+    }
+
+    func getRatingFeedbackCell(_ tableView: UITableView,
+                               _ indexPath: IndexPath,
+                               _ ratingFeedbackModel: RatingFeedbackModel?) -> UITableViewCell {
+        let cell: RatingFeedbackCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(model: ratingFeedbackModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell
@@ -823,6 +886,9 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(AudioBookmarkTableViewCell.self)
         tableView.registerDequeueable(NoteTableViewCell.self)
         tableView.registerDequeueable(DownloadTableViewCell.self)
+        tableView.registerDequeueable(PollOpenCell.self)
+        tableView.registerDequeueable(RateOpenCell.self)
+        tableView.registerDequeueable(RatingFeedbackCell.self)
     }
 
     func scrollToSection(at: Int) {
@@ -876,7 +942,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func showBanner(message: String) {
-        let banner = NotificationBanner.instantiateFromNib()
+        let banner = NotificationBanner.shared
         banner.configure(message: message, isDark: false)
         banner.show(in: self.view)
     }
@@ -897,6 +963,18 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation) {
         interactor.didSelectJoinTeamInvite(invitation: invitation)
+    }
+
+    func presentToBeVisionPoll(for team: QDMTeam) {
+        router.showExplanation(team, type: .tbvPollUser)
+    }
+
+    func presentToBeVisionRate(for team: QDMTeam) {
+        router.showExplanation(team, type: .ratingUser)
+    }
+
+    func presentRateHistory(for team: QDMTeam) {
+        router.showTracker(for: team)
     }
 }
 

@@ -358,7 +358,6 @@ extension LaunchHandler {
         guard let coachViewController = R.storyboard.coach.coachViewControllerID() else {
             return
         }
-
         CoachConfigurator.make(viewController: coachViewController)
         let coachScreenNavigationController = UINavigationController(rootViewController: coachViewController)
         coachScreenNavigationController.modalTransitionStyle = .coverVertical

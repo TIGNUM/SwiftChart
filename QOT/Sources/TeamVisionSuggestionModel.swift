@@ -15,14 +15,14 @@ final class TeamVisionSuggestionModel: BaseDailyBriefViewModel {
     let title: String?
     let tbvSentence: String?
     let adviceText: String?
-    let teamColor: String?
+    let team: QDMTeam?
 
     // MARK: - Init
-    init(title: String?, teamColor: String?, tbvSentence: String?, adviceText: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, team: QDMTeam?, tbvSentence: String?, adviceText: String?, domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.tbvSentence = tbvSentence
         self.adviceText = adviceText
-        self.teamColor = teamColor
+        self.team = team
         super.init(domainModel)
     }
 

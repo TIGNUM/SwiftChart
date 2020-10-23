@@ -34,6 +34,8 @@ enum UserDefault: String {
     case mindsetExplanation = "qot.userdefault.key.mindset.explanation.seen"
     case recoveryExplanation = "qot.userdefault.key.recovery.explanation.seen"
     case showTableViewSwipeDemo = "qot.userdefault.key.show.table.view.swipe.demo"
+    case teamVisionSuggestion = "qot.userdefault.key.team.vision.suggestion"
+    case teamVisionSuggestionDate = "qot.userdefault.key.team.vision.suggestion.date"
 }
 
 extension UserDefault {

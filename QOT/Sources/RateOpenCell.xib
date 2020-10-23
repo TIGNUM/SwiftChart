@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="mIT-Rf-twz" customClass="RateOpenCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="285"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ie-zf-lV1">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="s1w-2A-ZPC"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpS-9i-HDe">
+                    <rect key="frame" x="24" y="140" width="366" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOl-md-phZ">
+                    <rect key="frame" x="312" y="177.5" width="78" height="67.5"/>
+                    <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="startRating:" destination="mIT-Rf-twz" eventType="touchUpInside" id="WXQ-2L-DNh"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="ybC-gy-Bio"/>
+            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ybC-gy-Bio" firstAttribute="trailing" secondItem="YOl-md-phZ" secondAttribute="trailing" constant="24" id="7WG-ct-Ekx"/>
+                <constraint firstItem="ybC-gy-Bio" firstAttribute="trailing" secondItem="WpS-9i-HDe" secondAttribute="trailing" constant="24" id="Ar9-pG-C6h"/>
+                <constraint firstItem="ybC-gy-Bio" firstAttribute="bottom" secondItem="YOl-md-phZ" secondAttribute="bottom" constant="40" id="FXs-Vh-5RI"/>
+                <constraint firstItem="3Ie-zf-lV1" firstAttribute="trailing" secondItem="ybC-gy-Bio" secondAttribute="trailing" id="IkD-th-6fV"/>
+                <constraint firstItem="YOl-md-phZ" firstAttribute="top" secondItem="WpS-9i-HDe" secondAttribute="bottom" constant="17" id="PfZ-Lm-nUj"/>
+                <constraint firstItem="WpS-9i-HDe" firstAttribute="leading" secondItem="ybC-gy-Bio" secondAttribute="leading" constant="24" id="Wo4-tg-sN6"/>
+                <constraint firstItem="3Ie-zf-lV1" firstAttribute="top" secondItem="mIT-Rf-twz" secondAttribute="top" id="bwY-N1-2qD"/>
+                <constraint firstItem="WpS-9i-HDe" firstAttribute="top" secondItem="3Ie-zf-lV1" secondAttribute="bottom" constant="10" id="dJl-GP-nGe"/>
+                <constraint firstItem="3Ie-zf-lV1" firstAttribute="leading" secondItem="ybC-gy-Bio" secondAttribute="leading" id="hYL-SS-nM1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="ctaButton" destination="YOl-md-phZ" id="Uyu-0H-2Y2"/>
+                <outlet property="headerView" destination="3Ie-zf-lV1" id="edg-5C-aGJ"/>
+                <outlet property="rateLabel" destination="WpS-9i-HDe" id="ZYG-Pk-M4k"/>
+            </connections>
+            <point key="canvasLocation" x="-839.13043478260875" y="-35.15625"/>
+        </view>
+    </objects>
+</document>
