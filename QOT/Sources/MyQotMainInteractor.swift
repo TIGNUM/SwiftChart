@@ -165,7 +165,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         if item == .toBeVision && selectedTeamItem != nil {
             return tbvTitle
         }
-        return item?.title(isTeam: false, isPollInProgress: false)
+        return item?.title(isTeam: selectedTeamItem != nil, isPollInProgress: false)
     }
 
     func getSubtitle(for item: MyX.Item?) -> (String?, Bool) {
