@@ -942,7 +942,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func showBanner(message: String) {
-        let banner =  NotificationBanner.shared
+        let banner = NotificationBanner.shared
         banner.configure(message: message, isDark: false)
         banner.show(in: view)
     }

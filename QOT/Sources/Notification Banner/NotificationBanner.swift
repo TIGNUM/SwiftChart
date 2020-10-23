@@ -15,14 +15,6 @@ final class NotificationBanner: UIView {
     private var timer: Timer?
     private var isEnabled: Bool = true
 
-//    static func instantiateFromNib() -> NotificationBanner {
-//        guard let headerView = R.nib.notificationBanner.instantiate(withOwner: self).first as? NotificationBanner else {
-//            fatalError("Cannot load NotificationBanner view")
-//        }
-//        headerView.contentView.corner(radius: 8)
-//        return headerView
-//    }
-
     static var shared: NotificationBanner = {
         guard let headerView = R.nib.notificationBanner.instantiate(withOwner: self).first as? NotificationBanner else {
             fatalError("Cannot load NotificationBanner view")
