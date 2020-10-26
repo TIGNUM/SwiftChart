@@ -73,14 +73,15 @@ private extension TBVRateHistoryWorker {
 
     func getTeamReport(_ team: QDMTeam, _ completion: @escaping (ToBeVisionReport) -> Void) {
         getLatestClosedPolls(for: team) { [weak self] (polls) in
-            let tracks = polls?.compactMap { $0.qotTeamToBeVisionTrackers }.first ?? []
-            UserService.main.getTeamToBeVisionTrackingReport(tracks: tracks) { [weak self] (report) in
-                guard let strongSelf = self, let date = report.dates.sorted(by: <).last else { return }
-                strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
-                                                        subtitle: strongSelf.subtitle,
-                                                        selectedDate: date,
-                                                        report: report)
-                completion(strongSelf.dataModel!)
+            if let polls = polls, polls.isEmpty == false {
+                UserService.main.getTeamToBeVisionTrackingReport(polls: polls) { (report) in
+                    guard let strongSelf = self, let date = report.dates.sorted(by: <).last else { return }
+                    strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
+                                                            subtitle: strongSelf.subtitle,
+                                                            selectedDate: date,
+                                                            report: report)
+                    completion(strongSelf.dataModel!)
+                }
             }
         }
     }
