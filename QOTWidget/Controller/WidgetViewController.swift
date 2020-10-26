@@ -40,6 +40,7 @@ final class WidgetViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
 		syncDisplayMode()
         myToBeVisionView.delegate = self
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,9 +56,9 @@ final class WidgetViewController: UIViewController, NCWidgetProviding {
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .expanded {
-            preferredContentSize.height = totalHeight
+            self.preferredContentSize.height = 350
         } else {
-            preferredContentSize = maxSize
+            self.preferredContentSize.height = 110
         }
     }
 }
