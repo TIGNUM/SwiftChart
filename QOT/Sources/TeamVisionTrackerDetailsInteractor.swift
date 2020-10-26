@@ -12,7 +12,8 @@ import qot_dal
 final class TeamVisionTrackerDetailsInteractor {
 
     // MARK: - Properties
-    private lazy var worker = TeamVisionTrackerDetailsWorker()
+    private lazy var worker = TeamVisionTrackerDetailsWorker(report: report,
+                                                             selectedSentence: sentence.text)
     private let presenter: TeamVisionTrackerDetailsPresenterInterface!
     private let report: ToBeVisionReport
     private let sentence: QDMToBeVisionSentence
