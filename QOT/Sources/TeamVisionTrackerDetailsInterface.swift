@@ -11,12 +11,12 @@ import qot_dal
 
 protocol TeamVisionTrackerDetailsViewControllerInterface: class {
     func setupView()
-    func setupDates(firstDate: String?, secondDate: String?, thirdDate: String?)
+    func setupDates(firstDate: String?, secondDate: String?, thirdDate: String?, selectedIndex: Int)
     func setupSentence(_ sentence: String)
 }
 
 protocol TeamVisionTrackerDetailsPresenterInterface {
-    func setupView(report: ToBeVisionReport, sentence: QDMToBeVisionSentence)
+    func setupView(report: ToBeVisionReport, sentence: QDMToBeVisionSentence, selectedDate: Date)
 }
 
 protocol TeamVisionTrackerDetailsInteractorInterface: Interactor {

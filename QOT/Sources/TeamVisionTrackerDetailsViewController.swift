@@ -54,17 +54,17 @@ final class TeamVisionTrackerDetailsViewController: BaseViewController, ScreenZL
         ThemeView.level2.apply(self.view)
     }
 
-    @IBAction func firstDateTapped(_ sender: Any) {
+    @IBAction func firstDateTapped(_ sender: UIButton) {
         setButtons(button: firstDateButton)
         switchView(interactor.dataEntries1)
     }
 
-    @IBAction func secondDateTapped(_ sender: Any) {
+    @IBAction func secondDateTapped(_ sender: UIButton) {
         setButtons(button: secondDateButton)
         switchView(interactor.dataEntries2)
     }
 
-    @IBAction func thirdDateTapped(_ sender: Any) {
+    @IBAction func thirdDateTapped(_ sender: UIButton) {
         setButtons(button: thirdDateButton)
         switchView(interactor.dataEntries3)
     }
@@ -85,7 +85,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
                                  to: myRatingLabel)
     }
 
-    func setupDates(firstDate: String?, secondDate: String?, thirdDate: String?) {
+    func setupDates(firstDate: String?, secondDate: String?, thirdDate: String?, selectedIndex: Int) {
         firstDateButton.setTitle(firstDate, for: .normal)
         secondDateButton.setTitle(secondDate, for: .normal)
         thirdDateButton.setTitle(thirdDate, for: .normal)
@@ -93,6 +93,13 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
         firstDateButton.isHidden = firstDate == nil
         secondDateButton.isHidden = secondDate == nil
         thirdDateButton.isHidden = thirdDate == nil
+
+        switch selectedIndex {
+        case 0: firstDateTapped(firstDateButton)
+        case 1: secondDateTapped(secondDateButton)
+        case 3: thirdDateTapped(thirdDateButton)
+        default: break
+        }
     }
 
     func setupSentence(_ sentence: String) {

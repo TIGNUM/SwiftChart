@@ -95,7 +95,8 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
                let report = report,
                let sentence = interactor.sentence(in: indexPath.row) {
                 let configurator = TeamVisionTrackerDetailsConfigurator.make(report: report,
-                                                                             sentence: sentence)
+                                                                             sentence: sentence,
+                                                                             selectedDate: interactor.selectedDate)
                 configurator(controller)
                 pushToStart(childViewController: controller)
             }
