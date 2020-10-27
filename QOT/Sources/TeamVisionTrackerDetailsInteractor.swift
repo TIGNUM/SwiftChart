@@ -17,25 +17,27 @@ final class TeamVisionTrackerDetailsInteractor {
     private let presenter: TeamVisionTrackerDetailsPresenterInterface!
     private let report: ToBeVisionReport
     private let sentence: QDMToBeVisionSentence
+    private let selectedDate: Date
 
     // MARK: - Init
     init(presenter: TeamVisionTrackerDetailsPresenterInterface,
          report: ToBeVisionReport,
-         sentence: QDMToBeVisionSentence) {
+         sentence: QDMToBeVisionSentence,
+         selectedDate: Date) {
         self.presenter = presenter
         self.report = report
         self.sentence = sentence
+        self.selectedDate = selectedDate
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView(report: report, sentence: sentence)
+        presenter.setupView(report: report, sentence: sentence, selectedDate: selectedDate)
     }
 }
 
 // MARK: - TeamVisionTrackerDetailsInteractorInterface
 extension TeamVisionTrackerDetailsInteractor: TeamVisionTrackerDetailsInteractorInterface {
-
     var dataEntries1: [BarEntry] {
         return worker.dataEntries1
     }

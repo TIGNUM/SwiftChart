@@ -22,19 +22,20 @@ final class TeamVisionTrackerDetailsPresenter {
 
 // MARK: - TeamVisionTrackerDetailsInterface
 extension TeamVisionTrackerDetailsPresenter: TeamVisionTrackerDetailsPresenterInterface {
-    func setupView(report: ToBeVisionReport, sentence: QDMToBeVisionSentence) {
+    func setupView(report: ToBeVisionReport, sentence: QDMToBeVisionSentence, selectedDate: Date) {
         viewController?.setupView()
-        setupDates(dates: report.report.dates)
+        setupDates(dates: report.report.dates, selectedDate: selectedDate)
         setupSentence(sentence.text)
     }
 }
 
 // MARK: - Private
 private extension TeamVisionTrackerDetailsPresenter {
-    func setupDates(dates: [Date]) {
+    func setupDates(dates: [Date], selectedDate: Date) {
         var firstDateString: String?
         var secondDateString: String?
         var thirdDateString: String?
+        let selectedIndex = indexOf(dates, selectedDate: selectedDate)
 
         if let firstDate = dates.first {
             firstDateString = DateFormatter.whatsHot.string(from: firstDate)
@@ -50,10 +51,15 @@ private extension TeamVisionTrackerDetailsPresenter {
 
         viewController?.setupDates(firstDate: firstDateString,
                                    secondDate: secondDateString,
-                                   thirdDate: thirdDateString)
+                                   thirdDate: thirdDateString,
+                                   selectedIndex: selectedIndex)
     }
 
     func setupSentence(_ sentence: String) {
         viewController?.setupSentence(sentence)
+    }
+
+    func indexOf(_ dates: [Date], selectedDate: Date) -> Int {
+        return dates.firstIndex(where: { $0 == selectedDate }) ?? 0
     }
 }

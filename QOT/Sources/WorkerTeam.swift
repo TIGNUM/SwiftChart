@@ -371,7 +371,10 @@ extension WorkerTeam {
                 log("Error allTeamToBeVisionTrackerPol: \(error.localizedDescription)", level: .error)
                 // TODO handle error
             }
-            var closedPolls = allPolls?.filter { $0.open == false && $0.qotTeamToBeVisionTrackers?.isEmpty == false } ?? []
+            var closedPolls = allPolls?.filter { $0.open == false &&
+                $0.qotTeamToBeVisionTrackers?.isEmpty == false &&
+                $0.averageValue != nil &&
+                $0.feedback != nil } ?? []
             closedPolls.sort(by: { $0.endDate ?? Date() < $1.endDate ?? Date() })
             var lastPolls: [QDMTeamToBeVisionTrackerPoll] = []
 
