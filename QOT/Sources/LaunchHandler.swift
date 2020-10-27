@@ -205,15 +205,12 @@ final class LaunchHandler {
         case .recovery3DPlanner: show3DRecoveryDecisionTree()
         case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         case .teamInvitations: showPendingInvitations()
-        case .tbvGeneratorPollClosed:
+        case .tbvGeneratorPollClosed, .tbvTrackerPollClosed:
             guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
             showTeamTBV(teamId)
         case .tbvGeneratorPollOpened:
             guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
             showTBVPoll(teamId)
-        case .tbvTrackerPollClosed:
-            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
-            showTeamTBV(teamId)
         case .tbvTrackerPollOpened:
             guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
             showTBVRating(teamId)
@@ -265,41 +262,42 @@ extension LaunchHandler {
     }
 
     func showTeamTBV(_ teamId: Int) {
-        TeamService.main.getTeams { [weak self] (teams, _, _) in
-            if let teams = teams, teams.isEmpty == false {
-                if let team = teams.filter ({ $0.remoteID == teamId }).first {
-                    if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
-                        let configurator = TeamToBeVisionConfigurator.make(team: team)
-                        configurator(controller)
-                        self?.present(viewController: controller)
-                    }
-                }
+        if let team = getTeam(teamId) {
+            if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
+                let configurator = TeamToBeVisionConfigurator.make(team: team)
+                configurator(controller)
+                present(viewController: controller)
             }
         }
     }
 
+
     func showTBVRating(_ teamId: Int) {
-        TeamService.main.getTeams { [weak self] (teams, _, _) in
+        if let team = getTeam(teamId) {
+            if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                VisionRatingExplanationConfigurator.make(team: team, type: .tbvPollUser)(controller)
+                present(viewController: controller)
+            }
+        }
+    }
+
+    func getTeam(_ teamId: Int) -> QDMTeam? {
+        var currentTeam: QDMTeam?
+        TeamService.main.getTeams { (teams, _, _) in
             if let teams = teams, teams.isEmpty == false {
                 if let team = teams.filter ({ $0.remoteID == teamId }).first {
-                    if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
-                        VisionRatingExplanationConfigurator.make(team: team, type: .tbvPollUser)(controller)
-                        self?.present(viewController: controller)
-                    }
+                    currentTeam = team
                 }
             }
         }
+        return currentTeam
     }
 
     func showTBVPoll(_ teamId: Int) {
-        TeamService.main.getTeams { [weak self] (teams, _, _) in
-            if let teams = teams, teams.isEmpty == false {
-                if let team = teams.filter ({ $0.remoteID == teamId }).first {
-                    if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
-                        VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
-                        self?.present(viewController: controller)
-                    }
-                }
+        if let team = getTeam(teamId) {
+            if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
+                present(viewController: controller)
             }
         }
     }
