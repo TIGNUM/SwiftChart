@@ -295,15 +295,9 @@ extension LaunchHandler {
         TeamService.main.getTeams { [weak self] (teams, _, _) in
             if let teams = teams, teams.isEmpty == false {
                 if let team = teams.filter ({ $0.remoteID == teamId }).first {
-                    TeamService.main.getCurrentTeamToBeVisionPoll(for: team) { (poll, _, error) in
-                        if let error = error {
-                            log("Error getCurrentTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
-                            // TODO handle error
-                        }
-                        if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
-                            VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
-                            self?.present(viewController: controller)
-                        }
+                    if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                        VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
+                        self?.present(viewController: controller)
                     }
                 }
             }
