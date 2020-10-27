@@ -205,6 +205,18 @@ final class LaunchHandler {
         case .recovery3DPlanner: show3DRecoveryDecisionTree()
         case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         case .teamInvitations: showPendingInvitations()
+        case .tbvGeneratorPollClosed:
+            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
+            showTeamTBV(teamId)
+        case .tbvGeneratorPollOpened:
+            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
+            showTBVPoll(teamId)
+        case .tbvTrackerPollClosed:
+            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
+            showTeamTBV(teamId)
+        case .tbvTrackerPollOpened:
+            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
+            showTBVRating(teamId)
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
@@ -248,6 +260,52 @@ extension LaunchHandler {
                 let configurator = TeamInvitesConfigurator.make(teamItems: [teamItem])
                 configurator(controller)
                 self.push(viewController: controller)
+            }
+        }
+    }
+
+    func showTeamTBV(_ teamId: Int) {
+        TeamService.main.getTeams { [weak self] (teams, _, _) in
+            if let teams = teams, teams.isEmpty == false {
+                if let team = teams.filter ({ $0.remoteID == teamId }).first {
+                    if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
+                        let configurator = TeamToBeVisionConfigurator.make(team: team)
+                        configurator(controller)
+                        self?.present(viewController: controller)
+                    }
+                }
+            }
+        }
+    }
+
+    func showTBVRating(_ teamId: Int) {
+        TeamService.main.getTeams { [weak self] (teams, _, _) in
+            if let teams = teams, teams.isEmpty == false {
+                if let team = teams.filter ({ $0.remoteID == teamId }).first {
+                    if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                        VisionRatingExplanationConfigurator.make(team: team, type: .tbvPollUser)(controller)
+                        self?.present(viewController: controller)
+                    }
+                }
+            }
+        }
+    }
+
+    func showTBVPoll(_ teamId: Int) {
+        TeamService.main.getTeams { [weak self] (teams, _, _) in
+            if let teams = teams, teams.isEmpty == false {
+                if let team = teams.filter ({ $0.remoteID == teamId }).first {
+                    TeamService.main.getCurrentTeamToBeVisionPoll(for: team) { (poll, _, error) in
+                        if let error = error {
+                            log("Error getCurrentTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                            // TODO handle error
+                        }
+                        if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                            VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
+                            self?.present(viewController: controller)
+                        }
+                    }
+                }
             }
         }
     }

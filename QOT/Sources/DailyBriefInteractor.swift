@@ -589,7 +589,6 @@ extension DailyBriefInteractor {
     func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createLevel5List: [BaseDailyBriefViewModel] = []
         var levelMessageModels: [Level5ViewModel.LevelDetail] = []
-
         let title = AppTextService.get(.daily_brief_section_level_5_title)
         let intro = AppTextService.get(.daily_brief_section_level_5_body)
         let question = AppTextService.get(.daily_brief_section_level_5_question)
