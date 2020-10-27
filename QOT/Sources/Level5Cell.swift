@@ -140,16 +140,16 @@ final class Level5Cell: BaseDailyBriefCell {
     }
 
     func setProgress() {
-        let array: [[Float]] = [[0.2, 0.0, 0.0, 0.0],
-                                [0.40, 0.25, 0.0, 0.0],
-                                [0.60, 0.50, 0.33, 0.0],
-                                [0.80, 0.75, 0.66, 0.50],
-                                [1.0, 1.0, 1.0, 1.0]]
-        let item = array[tmpAnswer]
-        knowledgeProgress.setProgress(item[0], animated: true)
-        readinessProgress.setProgress(item[1], animated: true)
-        awarenssProgress.setProgress(item[2], animated: true)
-        masteryProgress.setProgress(item[3], animated: true)
+//        let array: [[Float]] = [[0.2, 0.0, 0.0, 0.0],
+//                                [0.40, 0.25, 0.0, 0.0],
+//                                [0.60, 0.50, 0.33, 0.0],
+//                                [0.80, 0.75, 0.66, 0.50],
+//                                [1.0, 1.0, 1.0, 1.0]]
+//        let item = array[tmpAnswer]
+//        knowledgeProgress.setProgress(item[0], animated: true)
+//        readinessProgress.setProgress(item[1], animated: true)
+//        awarenssProgress.setProgress(item[2], animated: true)
+//        masteryProgress.setProgress(item[3], animated: true)
 
     }
 }
