@@ -36,8 +36,11 @@ final class TeamToBeVisionInteractor {
         presenter.setupView()
         presenter.setSelectionBarButtonItems()
         didUpdateTBVRelatedData()
+
         let notificationCenter = NotificationCenter.default
-        downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+        downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization,
+                                                          object: nil,
+                                                          queue: nil) { [weak self ] (notification) in
             guard let strongSelf = self else {
                 return
             }
@@ -51,7 +54,9 @@ final class TeamToBeVisionInteractor {
                 break
             }
         }
-        upSyncObserver = notificationCenter.addObserver(forName: .requestSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+        upSyncObserver = notificationCenter.addObserver(forName: .requestSynchronization,
+                                                        object: nil,
+                                                        queue: nil) { [weak self ] (notification) in
             guard let strongSelf = self else {
                 return
             }
