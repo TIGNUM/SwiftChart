@@ -36,7 +36,9 @@ final class MyPrepsWorker {
                     everydayItems.append(prepItem)
                 }
             }
-            self?.model = MyPrepsModel(items: [criticalItems, everydayItems])
+            let sortedCriticalItems = criticalItems.sorted(by: { $0.qdmPrep.eventDate ?? Date.distantFuture < $1.qdmPrep.eventDate ?? Date.distantFuture })
+            let sortedEverydayItems = everydayItems.sorted(by: { $0.qdmPrep.eventDate ?? Date.distantFuture < $1.qdmPrep.eventDate ?? Date.distantFuture })
+            self?.model = MyPrepsModel(items: [sortedCriticalItems, sortedEverydayItems])
             completion(self?.model)
         }
     }
@@ -50,7 +52,7 @@ final class MyPrepsWorker {
                                                          qdmRec: $0)
                 recoveryItems.append(recoveryItem)
             }
-            self?.recModel = RecoveriesModel(items: recoveryItems)
+            self?.recModel = RecoveriesModel(items: recoveryItems.sorted(by: { $0.qdmRec.createdAt ?? Date.distantFuture < $1.qdmRec.createdAt ?? Date.distantFuture }))
             completion(self?.recModel)
         }
     }
@@ -64,7 +66,7 @@ final class MyPrepsWorker {
                                                              qdmMind: $0)
                 mindsetItems.append(mindsetItem)
             }
-            self?.mindModel = MindsetShiftersModel(items: mindsetItems)
+            self?.mindModel = MindsetShiftersModel(items: mindsetItems.sorted(by: { $0.qdmMind.createdAt ?? Date.distantFuture < $1.qdmMind.createdAt ?? Date.distantFuture }))
             completion(self?.mindModel)
         }
     }
@@ -105,39 +107,39 @@ final class MyPrepsWorker {
 
 extension MyPrepsWorker {
     func remove(segmentedControl: Int, at indexPath: IndexPath, completion: @escaping () -> Void) {
-        if segmentedControl == 0 {
-            let item = model?.items[indexPath.section][indexPath.row]
-            if let qdmPrep = item?.qdmPrep {
-                let externalIdentifier = qdmPrep.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first
-                WorkerCalendar().deleteLocalEvent(externalIdentifier)
-                UserService.main.deleteUserPreparation(qdmPrep) { [weak self] (error) in
-                    if let error = error {
-                        log("Error deleteUserPreparation: \(error.localizedDescription)", level: .error)
+            if segmentedControl == 0 {
+                let item = model?.items[indexPath.section][indexPath.row]
+                if let qdmPrep = item?.qdmPrep {
+                    let externalIdentifier = qdmPrep.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first
+                    WorkerCalendar().deleteLocalEvent(externalIdentifier)
+                    UserService.main.deleteUserPreparation(qdmPrep) { [weak self] (error) in
+                        if let error = error {
+                            log("Error deleteUserPreparation: \(error.localizedDescription)", level: .error)
+                        }
+                        self?.model?.items[indexPath.section].remove(at: indexPath.row)
+                        completion()
                     }
-                    self?.model?.items[indexPath.section].remove(at: indexPath.row)
-                    completion()
                 }
-            }
-        } else if segmentedControl == 1 {
-            if let qdmMind = mindModel?.items[indexPath.row].qdmMind {
-                UserService.main.deleteMindsetShifter(qdmMind) { [weak self] (error) in
-                    if let error = error {
-                        log("Error deleteMindsetShifter: \(error.localizedDescription)", level: .error)
+            } else if segmentedControl == 1 {
+                if let qdmMind = mindModel?.items[indexPath.row].qdmMind {
+                    UserService.main.deleteMindsetShifter(qdmMind) { [weak self] (error) in
+                        if let error = error {
+                            log("Error deleteMindsetShifter: \(error.localizedDescription)", level: .error)
+                        }
+                        self?.mindModel?.items.remove(at: indexPath.row)
+                        completion()
                     }
-                    self?.mindModel?.items.remove(at: indexPath.row)
-                    completion()
                 }
-            }
-        } else if segmentedControl == 2 {
-            if let qdmRec = recModel?.items[indexPath.row].qdmRec {
-                UserService.main.deleteRecovery3D(qdmRec) { [weak self] (error) in
-                    if let error = error {
-                        log("Error deleteRecovery3D: \(error.localizedDescription)", level: .error)
+            } else if segmentedControl == 2 {
+                if let qdmRec = recModel?.items[indexPath.row].qdmRec {
+                    UserService.main.deleteRecovery3D(qdmRec) { [weak self] (error) in
+                        if let error = error {
+                            log("Error deleteRecovery3D: \(error.localizedDescription)", level: .error)
+                        }
+                        self?.recModel?.items.remove(at: indexPath.row)
+                        completion()
                     }
-                    self?.recModel?.items.remove(at: indexPath.row)
-                    completion()
                 }
             }
         }
-    }
 }
