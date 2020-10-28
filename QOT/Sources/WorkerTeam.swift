@@ -466,6 +466,7 @@ extension WorkerTeam {
             if let error = error {
                 log("Error voteTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
             }
+            NotificationCenter.default.post(name: .didRateTBV, object: nil)
             completion(poll)
         }
     }

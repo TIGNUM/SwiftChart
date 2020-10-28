@@ -150,6 +150,5 @@ final class Level5Cell: BaseDailyBriefCell {
         readinessProgress.setProgress(item[1], animated: true)
         awarenssProgress.setProgress(item[2], animated: true)
         masteryProgress.setProgress(item[3], animated: true)
-
     }
 }

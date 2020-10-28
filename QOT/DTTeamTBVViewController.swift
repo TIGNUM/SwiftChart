@@ -29,7 +29,6 @@ final class DTTeamTBVViewController: DTViewController {
 
     override func didTapNext() {
         vote()
-        NotificationCenter.default.post(name: .didRateTBV, object: nil)
     }
 }
 
