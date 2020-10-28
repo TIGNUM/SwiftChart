@@ -851,6 +851,7 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_always")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.body_rate_yourself")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_never")
+    static let my_x_my_tbv_tbv_tracker_data_section_team_header = AppTextKey("my_x.my_tbv.tbv_tracker_data_section.team_header")
 
     static let my_x_team_tbv_questionnaire_top_label = AppTextKey("my_x.team_tbv.questionnaire_top_label")
     static let my_x_team_tbv_questionnaire_bottom_label = AppTextKey("my_x.team_tbv.questionnaire_bottom_label")
