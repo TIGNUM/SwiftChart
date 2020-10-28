@@ -152,7 +152,7 @@ final class MyVisionWorker {
 
         dispatchGroup.notify(queue: .main) {
             // completion(myVision, rateText, doubleMsgViewIsHidden, rateEnabled)
-            var ratingView = TBVRatingView()
+            let ratingView = TBVRatingView()
 
             guard let visionText = tbv?.text, tbvTracks.isEmpty == false else {
                 ratingView.isHidden = true
@@ -181,29 +181,29 @@ final class MyVisionWorker {
                     ratingView.isEnabled = false
                     ratingView.doubleMsgViewIsHidden = true
                     ratingView.singleMsgViewIsHidden = false
-                    completion(ratingView ,tbv)
+                    completion(ratingView, tbv)
                     requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
                     return
                 }
             }
 
-            guard let report = ratingReport, report.days.isEmpty == false else {
+            guard let report = ratingReport, report.dates.isEmpty == false else {
                 ratingView.isHidden = false
                 ratingView.title = notRatedText
                 ratingView.isEnabled = true
                 ratingView.doubleMsgViewIsHidden = true
                 ratingView.singleMsgViewIsHidden = false
-                completion(ratingView ,tbv)
+                completion(ratingView, tbv)
                 return
             }
 
-            guard let date = report.days.sorted().last?.beginingOfDate() else {
+            guard let date = report.dates.sorted().last?.beginingOfDate() else {
                 ratingView.isHidden = false
                 ratingView.title = syncingText
                 ratingView.isEnabled = false
                 ratingView.doubleMsgViewIsHidden = true
                 ratingView.singleMsgViewIsHidden = false
-                completion(ratingView ,tbv)
+                completion(ratingView, tbv)
                 return
             }
             let days = DateComponentsFormatter.numberOfDays(date)
@@ -212,7 +212,7 @@ final class MyVisionWorker {
             ratingView.isEnabled = true
             ratingView.doubleMsgViewIsHidden = false
             ratingView.singleMsgViewIsHidden = true
-            completion(ratingView ,tbv)            
+            completion(ratingView, tbv)
         }
     }
 

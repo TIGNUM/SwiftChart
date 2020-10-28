@@ -63,7 +63,7 @@ extension TeamMemberTableViewCell {
                         self.demoView.frame.origin = CGPoint(x: demoOrigin.x - 180, y: 0)
                         self.demoRemoveView.frame.origin = CGPoint(x: demoRemoveOrigin.x - 80, y: 0)
                         self.demoInviteView.frame.origin = CGPoint(x: demoInviteOrigin.x - 180, y: 0)
-        }) { _ in }
+                       }, completion: { _ in })
 
         UIView.animate(withDuration: 0.8,
                        delay: 3.0,
@@ -74,11 +74,11 @@ extension TeamMemberTableViewCell {
                         self.demoView.frame.origin = CGPoint(x: demoOrigin.x, y: 0)
                         self.demoRemoveView.frame.origin = CGPoint(x: demoRemoveOrigin.x, y: 0)
                         self.demoInviteView.frame.origin = CGPoint(x: demoInviteOrigin.x, y: 0)
-        }) { _ in
-            self.demoView.removeFromSuperview()
-            self.demoInviteView.removeFromSuperview()
-            self.demoRemoveView.removeFromSuperview()
-            UserDefault.showTableViewSwipeDemo.setBoolValue(value: true)
-        }
+                       }, completion: { _ in
+                        self.demoView.removeFromSuperview()
+                        self.demoInviteView.removeFromSuperview()
+                        self.demoRemoveView.removeFromSuperview()
+                        UserDefault.showTableViewSwipeDemo.setBoolValue(value: true)
+                       })
     }
 }

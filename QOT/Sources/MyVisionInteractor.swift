@@ -214,7 +214,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     func showTBVData() {
         worker.getRatingReport { [weak self] (report) in
             self?.getToBeVision { [weak self] (toBeVision) in
-                self?.router.showTBVData(shouldShowNullState: report?.days.isEmpty == true,
+                self?.router.showTBVData(shouldShowNullState: report?.dates.isEmpty == true,
                                          visionId: toBeVision?.remoteID)
             }
         }
