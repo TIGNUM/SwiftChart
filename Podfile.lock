@@ -1,15 +1,15 @@
 PODS:
-  - Airship (14.1.1):
-    - Airship/Automation (= 14.1.1)
-    - Airship/Core (= 14.1.1)
-    - Airship/ExtendedActions (= 14.1.1)
-    - Airship/MessageCenter (= 14.1.1)
-  - Airship/Automation (14.1.1):
+  - Airship (14.1.2):
+    - Airship/Automation (= 14.1.2)
+    - Airship/Core (= 14.1.2)
+    - Airship/ExtendedActions (= 14.1.2)
+    - Airship/MessageCenter (= 14.1.2)
+  - Airship/Automation (14.1.2):
     - Airship/Core
-  - Airship/Core (14.1.1)
-  - Airship/ExtendedActions (14.1.1):
+  - Airship/Core (14.1.2)
+  - Airship/ExtendedActions (14.1.2):
     - Airship/Core
-  - Airship/MessageCenter (14.1.1):
+  - Airship/MessageCenter (14.1.2):
     - Airship/Core
   - AppCenter (3.3.4):
     - AppCenter/Analytics (= 3.3.4)
@@ -28,22 +28,22 @@ PODS:
     - DifferenceKit/Core
   - JTAppleCalendar (7.1.6)
   - KeychainAccess (4.2.1)
-  - Kingfisher (5.15.4):
-    - Kingfisher/Core (= 5.15.4)
-  - Kingfisher/Core (5.15.4)
+  - Kingfisher (5.15.6):
+    - Kingfisher/Core (= 5.15.6)
+  - Kingfisher/Core (5.15.6)
   - qot_dal (1.0):
     - KeychainAccess
-    - RealmSwift
+    - RealmSwift (~> 10.0.0)
     - SwiftyBeaver
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
-  - Realm (5.4.8):
-    - Realm/Headers (= 5.4.8)
-  - Realm/Headers (5.4.8)
-  - RealmSwift (5.4.8):
-    - Realm (= 5.4.8)
-  - RSKImageCropper (2.3.0)
+  - Realm (10.0.0):
+    - Realm/Headers (= 10.0.0)
+  - Realm/Headers (10.0.0)
+  - RealmSwift (10.0.0):
+    - Realm (= 10.0.0)
+  - RSKImageCropper (3.0.0)
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
   - SwiftyBeaver (1.9.2)
@@ -87,30 +87,30 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 70fa12c1d119f822795974e972ebaf1b822f25e4
+    :commit: d77d9fbd5aa710f4dd01fa6c7718d11131013f58
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
     :git: "git@github.com:SanggeonPark/SwiftChart.git"
 
 SPEC CHECKSUMS:
-  Airship: b16fbc589e97cab679c8cebdcfa96e290787186b
+  Airship: fe6fb1ec1307690acdf2891896b00c15cee5ec6b
   AppCenter: 0487be185c038ed2ecc5ed38219af1dcd280af23
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
-  Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
-  qot_dal: 74ec5a8e7531a98811d0e74cb98854494fec4ac3
+  Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
+  qot_dal: 216928abdf5f62ca79cd77f0e3b4b95847982683
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
-  Realm: 042bbb59227a0159eda397b8a5a49fbd67495ce7
-  RealmSwift: 15ddd6b3398ebfc99810811c44f095df1313adb3
-  RSKImageCropper: c337eacdcbed50e695e5153ff0c2b861b6ebfa84
+  Realm: 5654b8e5e45034d07b219e089034be2ef7d1e7bf
+  RealmSwift: 5b4c8c85be4c14ff52054a4d80a8d338167dd79c
+  RSKImageCropper: 81f449b4df96bdaf28e1ad6dcce28dcda2235458
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
 
-PODFILE CHECKSUM: 683951c76dad2898058ec6447c829c8d44ddb06b
+PODFILE CHECKSUM: 8a676c3c83abea5bfa2bdb6d1f60220c6c502369
 
 COCOAPODS: 1.9.3
