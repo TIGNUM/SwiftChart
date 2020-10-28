@@ -54,7 +54,6 @@ final class DailyBriefInteractor {
     func viewDidLoad() {
         presenter.setupView()
         getDailyBriefDummySectionModels()
-        NotificationCenter.default.post(name: .requestSynchronization, object: nil)
     }
 }
 
@@ -236,6 +235,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
         if isLoadingBuckets {
             needToLoadBuckets = true
+            return
         }
 
         isLoadingBuckets = true
@@ -243,6 +243,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.getDailyBriefBucketsForViewModel { [weak self] (bucketsList) in
             guard let strongSelf = self,
                 bucketsList.filter({ $0.bucketName == .DAILY_CHECK_IN_1 }).first != nil else {
+                self?.isLoadingBuckets = false
+                if self?.needToLoadBuckets == true {
+                    self?.needToLoadBuckets = false
+                    self?.getDailyBriefBucketsForViewModel()
+                }
                 return
             }
 
@@ -255,6 +260,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
             bucketsList.forEach { [weak self] (bucket) in
                 guard let strongSelf = self else {
+                    self?.isLoadingBuckets = false
+                    if self?.needToLoadBuckets == true {
+                        self?.needToLoadBuckets = false
+                        self?.getDailyBriefBucketsForViewModel()
+                    }
                     return
                 }
                 guard let bucketName = bucket.bucketName else { return }
@@ -595,11 +605,9 @@ extension DailyBriefInteractor {
         let level1Title = AppTextService.get(.daily_brief_section_level_5_level_1_title)
         let level1Text = AppTextService.get(.daily_brief_section_level_5_level_1_body)
         let comeBackText = level5.bucketText?.contentItems.filter {$0.searchTags.contains("COME_BACK")}.first?.valueText ?? "Noted! Come back in 1 month."
-        var lastEstimatedLevel: Int?
-        lastEstimatedLevel = level5.latestGetToLevel5Value
         var questionLevel: String?
-        if lastEstimatedLevel != nil {
-            questionLevel = youRatedPart1 + " " + String(lastEstimatedLevel ?? 0) + " " + youRatedPart2
+        if let lastValue = level5.latestGetToLevel5Value, lastValue > 0 {
+            questionLevel = youRatedPart1 + " " + String(lastValue) + " " + youRatedPart2
         } else {
             questionLevel = question
         }
