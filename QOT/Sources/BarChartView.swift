@@ -60,15 +60,17 @@ class BarChartView: UIView {
         dataEntries.forEach {(item) in
             votesArray.append(item.votes)
         }
-        return votesArray.sorted {$0 > $1}.first ?? 0
+        return votesArray.sorted {$0 > $1}.first ?? 1
     }
 
     private func showEntry(index: Int, entry: BarEntry) {
-        let xPos: CGFloat = translateWidthValueToXPosition(value:
-            Float(entry.votes) / Float(maxVotes))
+        let xPos: CGFloat = translateWidthValueToXPosition(value: Float(entry.votes) / Float(maxVotes))
         let yPos: CGFloat = CGFloat(index) * (barHeight + space) - 60
-        let myVote =  entry.isMyVote ? entry.scoreIndex : nil
-        drawBar(xPos: xPos, yPos: yPos, myVote: myVote, scoreIndex: entry.scoreIndex)
+        let myVote = entry.isMyVote ? entry.scoreIndex : nil
+        drawBar(xPos: xPos > 0.0 ? xPos : -1.0,
+                yPos: yPos,
+                myVote: myVote,
+                scoreIndex: entry.scoreIndex)
         drawDetails(xPos: UIScreen.main.bounds.width - contentSpace, yPos: yPos, votes: entry.votes, myVote: myVote, scoreIndex: entry.scoreIndex)
         drawIndex(xPos: 24, yPos: yPos, width: 30.0, scoreIndex: entry.scoreIndex, myVote: myVote)
     }
@@ -89,11 +91,14 @@ class BarChartView: UIView {
         textLayer.contentsScale = UIScreen.main.scale
         textLayer.font = UIFont.sfProtextRegular(ofSize: 12.0)
         textLayer.fontSize = 12
-        let percentageString = String(percentage(votes))
-        textLayer.string = AppTextService.get(.my_x_team_vision_tracker_votes)
-            .replacingOccurrences(of: "${numberOfVotes}", with: String(votes))
-            .replacingOccurrences(of: "${percentageString}", with: percentageString)
-        mainLayer.addSublayer(textLayer)
+        let percentageValue = percentage(votes)
+        if percentageValue > 0 {
+            let percentageString = "(\(String(percentageValue))%)"
+            textLayer.string = AppTextService.get(.my_x_team_vision_tracker_votes)
+                .replacingOccurrences(of: "${numberOfVotes}", with: String(votes))
+                .replacingOccurrences(of: "${percentageString}", with: percentageString)
+            mainLayer.addSublayer(textLayer)
+        }
     }
 
     private func drawIndex(xPos: CGFloat,
