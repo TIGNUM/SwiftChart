@@ -17,12 +17,11 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var secondDot: UILabel!
     @IBOutlet private var ratingLabels: [UILabel]!
     @IBOutlet private var ratingContainerViews: [UIView]!
-    @IBOutlet private weak var arrowView: UIImageView!
 
     func configure(_ sentence: QDMToBeVisionSentence, selectedDate: Date, isTeam: Bool) {
         removeAllLayers()
         setupTheme(sentence, isTeam: isTeam)
-        setupView(sentence, isTeam: isTeam)
+        setupView(sentence)
         setupRatingLabels(sentence, selectedDate: selectedDate)
     }
 }
@@ -54,8 +53,7 @@ private extension TBVDataGraphAnswersTableViewCell {
         ThemeText.tbvTrackerRating.apply(AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_label_last_ratings), to: lastRatingLabel)
     }
 
-    func setupView(_ sentence: QDMToBeVisionSentence, isTeam: Bool) {
-        arrowView.isHidden = !isTeam
+    func setupView(_ sentence: QDMToBeVisionSentence) {
         secondDot.isHidden = false
         firstDot.isHidden = false
         ratingContainerViews[1].isHidden = false
