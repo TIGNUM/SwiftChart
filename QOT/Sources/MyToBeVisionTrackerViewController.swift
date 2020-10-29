@@ -83,6 +83,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
             if let sentence = interactor.sentence(in: indexPath.row) {
                 cell.configure(sentence, selectedDate: interactor.selectedDate)
             }
+            cell.isUserInteractionEnabled = interactor.isUserInteractionEnabled
             return cell
         }
     }
