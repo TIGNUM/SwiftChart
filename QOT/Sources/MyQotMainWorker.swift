@@ -72,7 +72,7 @@ extension MyQotMainWorker {
             dispatchGroup.enter()
             getCurrentTeamToBeVisionPoll(for: team) { (poll) in
                 if let poll = poll {
-                    let days = poll.endDate?.daysTo() ?? 0
+                    let days = -(poll.endDate?.daysTo() ?? 0)
                     subtitle = self.getTeamTBVPollRemainingDays(days).string
                 }
                 dispatchGroup.leave()

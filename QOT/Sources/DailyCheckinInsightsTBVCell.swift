@@ -34,7 +34,6 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
         skeletonManager.hide()
         baseHeaderView?.configure(title: model.title,
                                   subtitle: model.introText)
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         button.setTitle(model.cta, for: .normal)
         button.setButtonContentInset(padding: 16)
@@ -50,3 +49,4 @@ private extension DailyCheckinInsightsTBVCell {
         delegate?.showTBV()
     }
 }
+

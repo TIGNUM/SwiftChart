@@ -46,6 +46,12 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
         ThemeText.dailyInsightsTbvAdvice.apply(model?.adviceText, to: adviceText)
         ThemeText.teamVisionSentence.apply(model?.tbvSentence, to: tbvSentence)
     }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+    }
 }
 
 private extension TeamVisionSuggestionCell {

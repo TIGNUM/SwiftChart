@@ -16,6 +16,8 @@ final class TBVRateHistoryWorker: WorkerTeam {
                                   AppTextService.get(.my_qot_my_tbv_tbv_tracker_result_section_header_title)
     lazy var subtitle = isDataType ? AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_header_subtitle) :
                                      AppTextService.get(.my_qot_my_tbv_tbv_tracker_result_section_header_body)
+    lazy var teamSubtitle = AppTextService.get(.my_x_my_tbv_tbv_tracker_data_section_team_header)
+
     lazy var graphTitle = AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_title)
     private let displayType: TBVGraph.DisplayType
     private let team: QDMTeam?
