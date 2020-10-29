@@ -17,11 +17,12 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var secondDot: UILabel!
     @IBOutlet private var ratingLabels: [UILabel]!
     @IBOutlet private var ratingContainerViews: [UIView]!
+    @IBOutlet private weak var arrowView: UIImageView!
 
-    func configure(_ sentence: QDMToBeVisionSentence, selectedDate: Date) {
+    func configure(_ sentence: QDMToBeVisionSentence, selectedDate: Date, isTeam: Bool) {
         removeAllLayers()
-        setupTheme(sentence)
-        setupView(sentence)
+        setupTheme(sentence, isTeam: isTeam)
+        setupView(sentence, isTeam: isTeam)
         setupRatingLabels(sentence, selectedDate: selectedDate)
     }
 }
@@ -48,12 +49,13 @@ private extension TBVDataGraphAnswersTableViewCell {
         }
     }
 
-    func setupTheme(_ sentence: QDMToBeVisionSentence) {
-        ThemeText.tbvTrackerAnswer.apply(sentence.text, to: answerLabel)
+    func setupTheme(_ sentence: QDMToBeVisionSentence, isTeam: Bool) {
+        isTeam ? ThemeText.tbvTrackerAnswerTeam.apply(sentence.text, to: answerLabel) : ThemeText.tbvTrackerAnswer.apply(sentence.text, to: answerLabel)
         ThemeText.tbvTrackerRating.apply(AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_label_last_ratings), to: lastRatingLabel)
     }
 
-    func setupView(_ sentence: QDMToBeVisionSentence) {
+    func setupView(_ sentence: QDMToBeVisionSentence, isTeam: Bool) {
+        arrowView.isHidden = !isTeam
         secondDot.isHidden = false
         firstDot.isHidden = false
         ratingContainerViews[1].isHidden = false
