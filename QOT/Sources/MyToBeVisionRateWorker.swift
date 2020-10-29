@@ -14,7 +14,7 @@ final class MyToBeVisionRateWorker: WorkerTeam {
     private let visionId: Int
     private var dataTracks: [QDMToBeVisionTrack]?
     private var votes = [QDMTeamToBeVisionTrackerVote]()
-    private var trackerPoll: QDMTeamToBeVisionTrackerPoll?
+    var trackerPoll: QDMTeamToBeVisionTrackerPoll?
     var questions: [RatingQuestionViewModel.Question]?
     var team: QDMTeam?
 
@@ -45,26 +45,29 @@ final class MyToBeVisionRateWorker: WorkerTeam {
         }
     }
 
-    func saveQuestions() {
+    func saveQuestions(_ completion: @escaping () -> Void) {
         if team == nil {
-            savePersonalRating()
+            savePersonalRating(completion)
         } else {
-            saveTeamRating()
+            saveTeamRating(completion)
         }
     }
 }
 
 // MARK: - Private
 private extension MyToBeVisionRateWorker {
-    func savePersonalRating() {
+    func savePersonalRating(_ completion: @escaping () -> Void) {
         guard let tracks = dataTracks else { return }
-        UserService.main.updateToBeVisionTracks(tracks) { (error) in }
+        UserService.main.updateToBeVisionTracks(tracks) { (error) in
+            completion()
+        }
     }
 
-    func saveTeamRating() {
+    func saveTeamRating(_ completion: @escaping () -> Void)  {
         voteTeamToBeVisionTrackerPoll(votes) { [weak self] (poll) in
             self?.trackerPoll = poll
             NotificationCenter.default.post(name: .didRateTBV, object: nil)
+            completion()
         }
     }
 
