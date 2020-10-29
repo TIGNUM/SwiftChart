@@ -49,10 +49,7 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
     }
 
     var subtitle: String {
-        guard team == nil else {
-            return worker.teamSubtitle
-        }
-        return worker.subtitle
+        return team == nil ? worker.subtitle : worker.teamSubtitle
     }
 
     var title: String {
