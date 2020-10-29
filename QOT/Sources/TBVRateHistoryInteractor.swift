@@ -72,6 +72,10 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
         return worker.selectedDate
     }
 
+    var isUserInteractionEnabled: Bool {
+        return team != nil
+    }
+
     func setSelection(for date: Date) {
         worker.setSelection(for: date)
     }
