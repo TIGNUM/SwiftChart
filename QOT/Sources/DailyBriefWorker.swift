@@ -36,9 +36,13 @@ final class DailyBriefWorker: WorkerTeam {
         DailyBriefService.main.getDailyBriefBuckets({ (buckets, error) in
             if let error = error {
                 log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                completion([])
+                return
             }
             if let bucketsList = buckets?.sorted(by: { $0.sortOrder < $1.sortOrder }) {
                 completion(bucketsList)
+            } else {
+                completion([])
             }
         })
     }
@@ -166,6 +170,7 @@ extension DailyBriefWorker {
                     if let error = error {
                         log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
                     }
+                    requestSynchronization(.BUCKET_RECORD, .UP_SYNC)
                 })
             }
         })

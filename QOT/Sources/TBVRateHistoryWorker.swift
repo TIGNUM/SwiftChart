@@ -29,7 +29,7 @@ final class TBVRateHistoryWorker {
             guard let strongSelf = self else { return }
             strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
                                                     subtitle: strongSelf.subtitle,
-                                                    selectedDate: report.days.sorted(by: <).last!,
+                                                    selectedDate: report.dates.sorted(by: <).last!,
                                                     report: report)
             completion(strongSelf.dataModel!)
         }
@@ -55,6 +55,6 @@ final class TBVRateHistoryWorker {
     }
 
     var days: [Date] {
-        return dataModel?.report.days.sorted(by: <) ?? []
+        return dataModel?.report.dates.sorted(by: <) ?? []
     }
 }

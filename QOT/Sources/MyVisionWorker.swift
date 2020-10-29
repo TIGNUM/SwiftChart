@@ -40,11 +40,8 @@ final class MyVisionWorker {
     lazy var updateAlertCreateTitle = AppTextService.get(.my_qot_my_tbv_alert_update_create)
     lazy var emptyTBVTextPlaceholder = AppTextService.get(.my_qot_my_tbv_empty_subtitle_vision)
     lazy var emptyTBVTitlePlaceholder = AppTextService.get(.my_qot_my_tbv_section_header_title_headline)
-    private lazy var notRatedText = AppTextService.get(.my_qot_my_tbv_section_track_null_state_title)
-    private lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
-    private var isMyVisionInitialized: Bool = false
     var toBeVisionDidChange: ((QDMToBeVision?) -> Void)?
     static var toBeSharedVisionHTML: String?
 
@@ -63,11 +60,13 @@ final class MyVisionWorker {
         }
     }
 
-    func getToBeVision(_ completion: @escaping (_ initialized: Bool, _ toBeVision: QDMToBeVision?) -> Void) {
-        UserService.main.getMyToBeVision { [weak self] (vision, initialized, _) in
+    func getToBeVision(_ completion: @escaping (QDMToBeVision?) -> Void) {
+        UserService.main.getMyToBeVision { [weak self] (vision, _, error) in
+            if let error = error {
+                log("Error - getMyToBeVision: \(error.localizedDescription)", level: .error)
+            }
             self?.toBeVision = vision
-            self?.isMyVisionInitialized = initialized
-            completion(initialized, vision)
+            completion(vision)
         }
     }
 
@@ -79,7 +78,7 @@ final class MyVisionWorker {
 
     func updateMyToBeVision(_ new: QDMToBeVision, completion: @escaping (_ toBeVision: QDMToBeVision?) -> Void) {
         UserService.main.updateMyToBeVision(new) { [weak self] error in
-            self?.getToBeVision { [weak self] (_, qdmVision) in
+            self?.getToBeVision { [weak self] (qdmVision) in
                 self?.updateWidget()
                 completion(qdmVision)
             }
@@ -123,52 +122,122 @@ final class MyVisionWorker {
         widgetDataManager.update(.toBeVision)
     }
 
-    func getRateButtonValues(_ completion: @escaping (String?, Bool?, Bool) -> Void) {
-        getRatingReport { [weak self] (report) in
-            self?.getVisionTracks { [weak self] (tracks) in
-                guard let strongSelf = self else { return }
+    func getRateButtonValues(_ completion: @escaping (TBVRatingView, QDMToBeVision?) -> Void) {
+        let syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
+        let notRatedText = AppTextService.get(.my_qot_my_tbv_section_track_null_state_title)
+        let dispatchGroup = DispatchGroup()
+        var ratingReport: QDMToBeVisionRatingReport?
+        var tbvTracks = [QDMToBeVisionTrack]()
+        var sentences = [String]()
+        var tbv: QDMToBeVision?
 
-                guard let visionText = strongSelf.toBeVision?.text,
-                    !tracks.isEmpty else {
-                    completion(strongSelf.syncingText, nil, false)
-                    return
-                }
-                let sentences = tracks.compactMap({$0.sentence})
-                guard !sentences.isEmpty else {
-                    completion(strongSelf.syncingText, nil, false)
+        dispatchGroup.enter()
+        getRatingReport { (report) in
+            ratingReport = report
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        getVisionTracks { (tracks) in
+            tbvTracks = tracks
+            sentences = tracks.compactMap { $0.sentence }
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        getToBeVision { (toBeVision) in
+            tbv = toBeVision
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            // completion(myVision, rateText, doubleMsgViewIsHidden, rateEnabled)
+            let ratingView = TBVRatingView()
+
+            guard let visionText = tbv?.text, tbvTracks.isEmpty == false else {
+                ratingView.isHidden = true
+                ratingView.singleMsgViewIsHidden = true
+                ratingView.doubleMsgViewIsHidden = true
+                completion(ratingView, tbv)
+                requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
+                return
+            }
+
+            guard sentences.isEmpty == false else {
+                ratingView.isHidden = false
+                ratingView.title = syncingText
+                ratingView.isEnabled = false
+                ratingView.doubleMsgViewIsHidden = true
+                ratingView.singleMsgViewIsHidden = false
+                completion(ratingView, tbv)
+                requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
+                return
+            }
+
+            for sentence in sentences {
+                if visionText.contains(sentence) == false { // mismatched sentences.
+                    ratingView.isHidden = false
+                    ratingView.title = syncingText
+                    ratingView.isEnabled = false
+                    ratingView.doubleMsgViewIsHidden = true
+                    ratingView.singleMsgViewIsHidden = false
+                    completion(ratingView, tbv)
                     requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
                     return
                 }
-
-                for sentence in sentences {
-                    if visionText.contains(sentence) == false { // mismatched sentences.
-                        completion(strongSelf.syncingText, nil, false)
-                        requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
-                        return
-                    }
-                }
-
-                guard let report = report, report.days.count > 0 else {
-                    completion(strongSelf.notRatedText, true, true)
-                    return
-                }
-                guard let date = report.days.sorted().last?.beginingOfDate() else {
-                    completion(strongSelf.syncingText, true, false)
-                    return
-                }
-                let days = DateComponentsFormatter.numberOfDays(date)
-                completion(strongSelf.dateString(for: days), false, true)
             }
+
+            guard let report = ratingReport, report.dates.isEmpty == false else {
+                ratingView.isHidden = false
+                ratingView.title = notRatedText
+                ratingView.isEnabled = true
+                ratingView.doubleMsgViewIsHidden = true
+                ratingView.singleMsgViewIsHidden = false
+                completion(ratingView, tbv)
+                return
+            }
+
+            guard let date = report.dates.sorted().last?.beginingOfDate() else {
+                ratingView.isHidden = false
+                ratingView.title = syncingText
+                ratingView.isEnabled = false
+                ratingView.doubleMsgViewIsHidden = true
+                ratingView.singleMsgViewIsHidden = false
+                completion(ratingView, tbv)
+                return
+            }
+            let days = DateComponentsFormatter.numberOfDays(date)
+            ratingView.isHidden = false
+            ratingView.title = self.dateString(for: days)
+            ratingView.isEnabled = true
+            ratingView.doubleMsgViewIsHidden = false
+            ratingView.singleMsgViewIsHidden = true
+            completion(ratingView, tbv)
         }
     }
 
     private func dateString(for day: Int) -> String {
-        if day == 0 {
-            return "Today"
-        } else if day == 1 {
-            return "Yesterday"
-        } else {
-            return String(day) + " Days"
+        switch day {
+        case 0: return "Today"
+        case 1: return "Yesterday"
+        default: return String(day) + " Days"
         }
+    }
+}
+
+//completion(myVision, rateText, doubleMsgViewIsHidden, rateEnabled)
+class TBVRatingView {
+    var title: String
+    var isEnabled: Bool
+    var isHidden: Bool
+    var doubleMsgViewIsHidden: Bool
+    var singleMsgViewIsHidden: Bool
+
+    init() {
+        self.title = ""
+        self.isEnabled = false
+        self.isHidden = true
+        self.doubleMsgViewIsHidden = true
+        self.singleMsgViewIsHidden = true
     }
 }

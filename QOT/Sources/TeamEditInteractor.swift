@@ -72,13 +72,17 @@ private extension TeamEditInteractor {
     }
 
     func showAlertIfNeeded(email: String?) -> Bool {
-        if (members.filter { $0.me == true && $0.email == email }.first != nil) {
+        if (members.filter {
+            $0.me == true && $0.email.caseInsensitiveCompare(email ?? "") == .orderedSame
+        }.first != nil) {
             let title = AppTextService.get(.generic_alert_unknown_error_title)
             let message = AppTextService.get(.team_invite_error_add_myself)
             presenter.presentErrorAlert(title, message)
             return true
         }
-        if (members.filter { $0.email == email && $0.me == false }.first != nil) {
+        if (members.filter {
+            $0.email.caseInsensitiveCompare(email ?? "") == .orderedSame && $0.me == false
+        }.first != nil) {
             let title = AppTextService.get(.generic_alert_unknown_error_title)
             let message = AppTextService.get(.team_invite_error_add_exisiting)
             presenter.presentErrorAlert(title, message)

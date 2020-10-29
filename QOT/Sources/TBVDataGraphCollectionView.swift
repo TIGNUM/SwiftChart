@@ -20,7 +20,7 @@ class TBVDataGraphCollectionView: UICollectionView {
     }
 
     private var getDates: [Date] {
-        return tbvReport?.report.days.sorted(by: <) ?? []
+        return tbvReport?.report.dates.sorted(by: <) ?? []
     }
 
     private var getSelectedDate: Date? {

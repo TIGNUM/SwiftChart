@@ -18,7 +18,7 @@ final class WhatsHotLatestCellViewModel: BaseDailyBriefViewModel {
     let image: URL?
     let author: String
     let publisheDate: Date
-    let timeToRead: Int
+    let timeToRead: String
     let isNew: Bool
     let remoteID: Int
 
@@ -28,7 +28,7 @@ final class WhatsHotLatestCellViewModel: BaseDailyBriefViewModel {
                   image: URL?,
                   author: String,
                   publisheDate: Date,
-                  timeToRead: Int,
+                  timeToRead: String,
                   isNew: Bool,
                   remoteID: Int,
                   domainModel: QDMDailyBriefBucket?) {
