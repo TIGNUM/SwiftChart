@@ -59,29 +59,27 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     var criticalPrepItems: [MyPrepsModel.Item]? {
-        let orderedItems = worker.model?.items.first?.sorted(by: { $0.qdmPrep.eventDate ?? Date.distantFuture < $1.qdmPrep.eventDate ?? Date.distantFuture })
-        return orderedItems
+        let criticalItems = worker.model?.items.first
+        return criticalItems
     }
 
     var everydayPrepItems: [MyPrepsModel.Item]? {
-        let orderedItems = worker.model?.items.last?.sorted(by: { $0.qdmPrep.eventDate ?? Date.distantFuture < $1.qdmPrep.eventDate ?? Date.distantFuture })
-        return orderedItems
+        let everydayItems = worker.model?.items.last
+        return everydayItems
     }
 
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Item? {
         guard worker.recModel?.items.count ?? 0 > indexPath.row else {
             return nil
         }
-        let sortedItems = worker.recModel?.items.sorted(by: { $0.qdmRec.createdAt ?? Date.distantFuture < $1.qdmRec.createdAt ?? Date.distantFuture })
-        return sortedItems?[indexPath.row]
+        return worker.recModel?.items[indexPath.row]
     }
 
     func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Item? {
         guard worker.mindModel?.items.count ?? 0 > indexPath.row else {
             return nil
         }
-        let sortedItems = worker.mindModel?.items.sorted(by: { $0.qdmMind.createdAt ?? Date.distantFuture < $1.qdmMind.createdAt ?? Date.distantFuture })
-        return sortedItems?[indexPath.row]
+        return worker.mindModel?.items[indexPath.row]
     }
 
     func preparations(completion: @escaping ((MyPrepsModel?) -> Void)) {
