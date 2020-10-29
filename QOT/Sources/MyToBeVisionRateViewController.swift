@@ -107,11 +107,14 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc private func doneAction() {
-//        trackUserEvent(.CONFIRM, valueType: "MyToBeVision.SaveAnswers", action: .TAP)
         interactor?.saveQuestions()
-        dismiss(animated: true) {[weak self] in
-            self?.delegate?.doneAction()
-        }
+    }
+
+    func showAlert(action: QOTAlertAction, days: Int?) {
+        QOTAlert.show(title: AppTextService.get(.alert_tracker_poll_answers_submitted_title) ,
+                      message: AppTextService.get(.alert_tracker_poll_answers_submitted_message)
+                        .replacingOccurrences(of: "${NUMBER_OF_DAYS}", with: String(days ?? 0)),
+                      bottomItems: [action])
     }
 
     func next(from viewController: UIViewController) -> UIViewController? {

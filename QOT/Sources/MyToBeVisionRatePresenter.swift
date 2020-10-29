@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyToBeVisionRatePresenter {
 
@@ -29,5 +30,13 @@ extension MyToBeVisionRatePresenter: MyToBeVisionRatePresenterInterface {
 
     func hideScreenLoader() {
         viewController?.hideScreenLoader()
+    }
+
+    func showAlert(action: QOTAlertAction, days: Int?)  {
+        viewController?.showAlert(action: action, days: days)
+    }
+
+    func dismiss(animated flag: Bool, completion: (() -> Void)?) {
+        viewController?.dismiss(animated: flag, completion: completion)
     }
 }

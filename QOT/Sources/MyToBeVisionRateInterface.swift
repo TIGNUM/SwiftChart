@@ -13,12 +13,16 @@ protocol MyToBeVisionRateViewControllerInterface: class {
     func setupView(questions: [RatingQuestionViewModel.Question])
     func showScreenLoader()
     func hideScreenLoader()
+    func showAlert(action: QOTAlertAction, days: Int?)
+    func dismiss(animated flag: Bool, completion: (() -> Void)?)
 }
 
 protocol MyToBeVisionRatePresenterInterface {
     func setupView(questions: [RatingQuestionViewModel.Question])
     func showScreenLoader()
     func hideScreenLoader()
+    func showAlert(action: QOTAlertAction, days: Int?)
+    func dismiss(animated flag: Bool, completion: (() -> Void)?)
 }
 
 protocol MyToBeVisionRateInteracorInterface: Interactor {
@@ -27,6 +31,8 @@ protocol MyToBeVisionRateInteracorInterface: Interactor {
     func showScreenLoader()
     func hideScreenLoader()
     var team: QDMTeam? { get }
+    func showTracker()
+    func showAlert()
 }
 
 protocol MyToBeVisionRateRouterInterface {

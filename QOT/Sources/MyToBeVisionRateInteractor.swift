@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyToBeVisionRateInteractor {
+final class MyToBeVisionRateInteractor: WorkerTeam {
 
     let presenter: MyToBeVisionRatePresenterInterface
     let worker: MyToBeVisionRateWorker
@@ -43,6 +43,12 @@ final class MyToBeVisionRateInteractor {
             }
         }
     }
+
+    @objc func showTracker() {
+        presenter.dismiss(animated: true) {
+            self.router.showTracker(for: self.worker.team)
+        }
+    }
 }
 
 extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
@@ -51,7 +57,9 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
     }
 
     func saveQuestions() {
-        worker.saveQuestions()
+        worker.saveQuestions {[weak self] in
+            self?.showAlert()
+        }
     }
 
     func showScreenLoader() {
@@ -60,6 +68,14 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
 
     func hideScreenLoader() {
         presenter.hideScreenLoader()
+    }
+
+    func showAlert() {
+        let seeResults = QOTAlertAction(title: AppTextService.get(.alert_tracker_poll_answers_submitted_cta),
+                                        target: self,
+                                        action: #selector(showTracker),
+                                        handler: nil)
+        presenter.showAlert(action: seeResults, days: worker.trackerPoll?.remainingDays)
     }
 
     var team: QDMTeam? {
