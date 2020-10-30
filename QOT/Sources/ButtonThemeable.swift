@@ -69,7 +69,9 @@ extension ButtonTheme {
                         visionPoll?.userDidVote == true,
                         team?.thisUserIsOwner == true) {
                 case (false, false, false, false),
-                     (true, _, _, false):
+                     (true, true, true, false),
+                     (true, false, true, false),
+                     (true, true, false, false):
                     log("🎯🎯🎯 Generator.State: .isHidden", level: .debug)
                     return (state: .isHidden, action: .undefined)
 
@@ -77,16 +79,23 @@ extension ButtonTheme {
                     log("🎯🎯🎯 Generator.State: .isActive, action: ", level: .debug)
                     return (state: .isActive, action: .showIntroGenerator)
 
-                case (_, _, true, false),
+                case (false, false, true, false),
                      (true, false, false, true):
                     log("🎯🎯🎯 Generator.State: .isInactive, action: .showBanner", level: .debug)
                     let message = AppTextService.get(.banner_unavailable_while_poll_active)
                     return (state: .isInactive, action: .showBanner(message: message))
-
+                case (true, false, false, false):
+                    log("🎯🎯🎯 Generator.State: .isInactive, action: .showBanner", level: .debug)
+                    let message = AppTextService.get(.banner_unavailable_while_rate_active)
+                    return (state: .isInactive, action: .showBanner(message: message))
                 case (false, true, false, false):
                     log("🎯🎯🎯 Generator.State: .hasBatch, action: .showIntro", level: .debug)
                     return (state: .hasBatch, action: .showIntroGenerator)
-
+                case (false, true, true, false):
+                    log("🎯🎯🎯 Generator.State: .isInactive, action: .showBanner", level: .debug)
+                    let string = AppTextService.get(.team_tbv_poll_ends)
+                    let message = string.replacingOccurrences(of: "${number_of_days}", with: String(visionPoll?.remainingDays ?? 0))
+                    return (state: .isInactive, action: .showBanner(message: message))
                 case (false, true, _, true):
                     log("🎯🎯🎯 Generator.State: .hasBatch, action: .showAdminOptionsGenerator", level: .debug)
                     return (state: .hasBatch, action: .showAdminOptionsGenerator)
@@ -113,12 +122,15 @@ extension ButtonTheme {
                 case (false, false, _, true):
                     log("🎱🎱🎱 Tracker.State: .isActive, action: .showIntro", level: .debug)
                     return (state: .isActive, action: .showIntroRating)
-
+                case (false, true, true, false):
+                    log("🎱🎱🎱 Tracker.State: .isInactive, action: .showBanner", level: .debug)
+                    let string = AppTextService.get(.team_tbv_rate_ends)
+                    let message = string.replacingOccurrences(of: "${number_of_days}", with: String(trackerPoll?.remainingDays ?? 0))
+                    return (state: .isInactive, action: .showBanner(message: message))
                 case (true, false, false, true):
                     log("🎱🎱🎱 Tracker.State: .isInactive, action: .showBanner", level: .debug)
                     let message = AppTextService.get(.banner_unavailable_while_poll_active)
                     return (state: .isInactive, action: .showBanner(message: message))
-
                 case (_, _, true, false):
                     log("🎱🎱🎱 Tracker.State: .isInactive, action: .showBanner", level: .debug)
                     let message = AppTextService.get(.banner_unavailable_while_poll_active)

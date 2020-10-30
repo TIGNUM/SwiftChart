@@ -410,8 +410,8 @@ private extension MyQotMainInteractor {
     }
 
     func showBanner(poll: QDMTeamToBeVisionPoll) {
-        var message = AppTextService.get(.banner_tbv_poll_ends_days)
-        message = message.replacingOccurrences(of: "%d", with: String(poll.remainingDays))
+        var message = AppTextService.get(.team_tbv_poll_ends)
+        message = message.replacingOccurrences(of: "${number_of_days}", with: String(poll.remainingDays))
         router.showBanner(message: message)
     }
 }
