@@ -16,10 +16,10 @@ final class MyPeakPerformanceCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Init
 
-    var title: MypeakPerformanceTitle
+    var title: MyPeakPerformanceTitle
     var sections: [MyPeakPerformanceSections]
 
-    struct MypeakPerformanceTitle {
+    struct MyPeakPerformanceTitle {
         let title: String
     }
 
@@ -39,7 +39,7 @@ final class MyPeakPerformanceCellViewModel: BaseDailyBriefViewModel {
         let qdmUserPreparation: QDMUserPreparation?
     }
 
-    init(title: MypeakPerformanceTitle, sections: [MyPeakPerformanceSections], domainModel: QDMDailyBriefBucket?) {
+    init(title: MyPeakPerformanceTitle, sections: [MyPeakPerformanceSections], domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.sections = sections
         super.init(domainModel)

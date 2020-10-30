@@ -943,7 +943,7 @@ extension DailyBriefInteractor {
                 sectionsModels.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceSections(sections: sections, rows: rows))
             }
         }
-        let cellViewModel = MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle(title: bucketTitle),
+        let cellViewModel = MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MyPeakPerformanceTitle(title: bucketTitle),
                                                                 sections: sectionsModels,
                                                                 domainModel: myPeakperformance)
         createMyPeakPerformanceList.append(cellViewModel)
