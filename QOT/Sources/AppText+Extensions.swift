@@ -1094,11 +1094,14 @@ public extension AppTextKey {
 
     // MARK: - Alerts
     static let alert_title_team_tbv_poll_submitted = AppTextKey("alert.title.team_tbv_poll_submitted")
-    static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
+    static let qot_alert_message_team_tbv_poll_submitted = AppTextKey("qot_alert.message.team_tbv_poll_submitted")
 
     // MARK: - Banner
-    static let banner_tbv_poll_ends_days = AppTextKey("tbv.poll.ends")
+
+    static let team_tbv_poll_ends = AppTextKey("team_tbv.poll.ends")
+    static let team_tbv_rate_ends = AppTextKey("team_tbv.rate.ends")
     static let banner_unavailable_while_poll_active = AppTextKey("unavailable.while_poll.active")
+    static let banner_unavailable_while_rate_active = AppTextKey("unavailable.while_rate.active")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")
@@ -1171,4 +1174,10 @@ public extension AppTextKey {
 @available(*, unavailable, message: "Unavailable from QOT v3.1.9")
 public extension AppTextKey {
     static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
+}
+
+@available(*, unavailable, message: "Unavailable from QOT v3.2.1")
+public extension AppTextKey {
+    static let banner_tbv_poll_ends_days = AppTextKey("tbv.poll.ends")
+    static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
 }
