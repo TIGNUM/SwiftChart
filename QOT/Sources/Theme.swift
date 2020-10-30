@@ -779,6 +779,7 @@ enum ThemeText {
     case tbvTrackerHeader
     case tbvTrackerBody
     case tbvTrackerAnswer
+    case tbvTrackerAnswerTeam
     case tbvTrackerRating
     case tbvTrackerRatingDigits(Bool)
     case tbvTrackerRatingDigitsSelected(Bool)
@@ -988,7 +989,7 @@ enum ThemeText {
             .bucketTitle, .solveQuestions, .impactBucket, .articleStrategyTitle, .articleStrategyRead,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
-             .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeaderTitle,
+             .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .tbvTrackerAnswerTeam, .accountHeaderTitle,
              .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .resultClosingText,
@@ -1123,7 +1124,7 @@ enum ThemeText {
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
              .articleAudioBar, .coachTitle, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
-             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage:
+             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage, .tbvTrackerAnswerTeam:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle, .H03Light, .Text03Light:
@@ -1273,7 +1274,7 @@ enum ThemeText {
         case .performanceStaticTitle, .fromCoachTitle, .resultDate:
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
-        case .bucketTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
+        case .bucketTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .tbvTrackerAnswerTeam, .qotTools,
              .resultTitle, .resultTitleTheme, .resultListHeader, .resultHeader1, .resultHeader2, .resultHeaderTheme2, .resultList, .coachHeaderSubtitle, .coachSubtitle, .dailyInsightsTbvAdvice, .ratingExplanationText, .ratingExplanationVideoTitle,
              .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .tbvCustomizeBody, .shpiQuestion, .shpiContent, .strategyTitle, .whiteBanner, .darkBanner, .baseHeaderSubtitleBold:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,

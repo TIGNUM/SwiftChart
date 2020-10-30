@@ -81,8 +81,12 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         case .sentence:
             let cell: TBVDataGraphAnswersTableViewCell = tableView.dequeueCell(for: indexPath)
             if let sentence = interactor.sentence(in: indexPath.row) {
-                cell.configure(sentence, selectedDate: interactor.selectedDate)
+                cell.configure(sentence, selectedDate: interactor.selectedDate, isTeam: interactor.isUserInteractionEnabled)
+                let backgroundView = UIView()
+                backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
+                cell.selectedBackgroundView = backgroundView
             }
+            cell.accessoryView = interactor.isUserInteractionEnabled ? UIImageView(image: R.image.ic_disclosure_accent()) : nil
             cell.isUserInteractionEnabled = interactor.isUserInteractionEnabled
             return cell
         }
