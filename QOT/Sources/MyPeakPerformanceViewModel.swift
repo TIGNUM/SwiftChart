@@ -56,6 +56,6 @@ final class MyPeakPerformanceCellViewModel: BaseDailyBriefViewModel {
         let eventTitles = Set(domainModel?.preparations?.compactMap({ $0.eventTitle }) ?? [])
         let sourceEventTitles = Set(source.domainModel?.preparations?.compactMap({ $0.eventTitle }) ?? [])
 
-        return eventDates == sourceEventDates && eventTitles == sourceEventTitles
+        return super.isContentEqual(to: source) && eventDates == sourceEventDates && eventTitles == sourceEventTitles
     }
 }
