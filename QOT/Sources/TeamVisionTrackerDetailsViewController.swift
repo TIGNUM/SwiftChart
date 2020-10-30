@@ -17,7 +17,6 @@ final class TeamVisionTrackerDetailsViewController: BaseViewController, ScreenZL
     @IBOutlet private weak var chartView: UIView!
     @IBOutlet private weak var ratingsView: UIView!
     @IBOutlet private weak var firstDateButton: UIButton!
-
     @IBOutlet private weak var secondDateButton: UIButton!
     @IBOutlet private weak var thirdDateButton: UIButton!
     @IBOutlet private weak var myRatingValue: UILabel!
