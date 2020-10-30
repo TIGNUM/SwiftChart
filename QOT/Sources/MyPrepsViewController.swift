@@ -415,22 +415,11 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
             var title = ""
             title = item?.calendarEventTitle.uppercased() ?? ""
-            switch indexPath.section {
-            case PrepTypes.criticalEvents.rawValue:
-                if item?.missingEvent == true {
-                    title = item?.title.uppercased() ?? ""
-                    cell.subtitleView.isHidden = true
-                }
-                cell.configure(title: title, subtitle: subtitle)
-            case PrepTypes.everyday.rawValue:
-                if item?.missingEvent == true {
-                    title = item?.title.uppercased() ?? ""
-                    cell.subtitleView.isHidden = true
-                }
-                cell.configure(title: title, subtitle: subtitle)
-            default:
-                break
+            if title.isEmpty {
+                title = item?.title.uppercased() ?? ""
+                cell.subtitleView.isHidden = true
             }
+            cell.configure(title: title, subtitle: subtitle)
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor.itemMind(at: indexPath)
             cell.configure(title: item?.title.uppercased(), subtitle: item?.date)
