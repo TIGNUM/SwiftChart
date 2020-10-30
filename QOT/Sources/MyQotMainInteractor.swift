@@ -28,6 +28,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
     internal var newLibraryItemCount: Int = 0
     internal var tbvTitle: String = ""
     internal var teamTBVPoll: QDMTeamToBeVisionPoll?
+    internal var teamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
     internal var teamTBV: QDMTeamToBeVision?
 
     // MARK: - Init
@@ -57,6 +58,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
         var tmpNewLibraryItemCount = 0
         var tmpToBeVisionTitle = ""
         var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
+        var tmpTeamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
         var tmpTeamTBV: QDMTeamToBeVision?
         var tmpSubtitles = [String: String?]()
         var tmpIsCellEnabled = [String: Bool]()
@@ -117,9 +119,10 @@ final class MyQotMainInteractor: MyQotMainWorker {
                 }
 
                 dispatchGroup.enter()
-                getToBeVisionData(item: .toBeVision, teamItem: tmpSelectedTeamItem) { (title, poll) in
+                getToBeVisionData(item: .toBeVision, teamItem: tmpSelectedTeamItem) { (title, poll, trackerPoll) in
                     tmpToBeVisionTitle = title
                     tmpTeamTBVPoll = poll
+                    tmpTeamTrackerPoll = trackerPoll
                     dispatchGroup.leave()
                 }
             default: break
@@ -135,6 +138,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
             self?.isCellEnabled = tmpIsCellEnabled
             self?.tbvTitle = tmpToBeVisionTitle
             self?.teamTBVPoll = tmpTeamTBVPoll
+            self?.teamTrackerPoll = tmpTeamTrackerPoll
             self?.teamTBV = tmpTeamTBV
             completion()
         }
@@ -175,7 +179,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .library:
             return (self.subtitles[MyX.Item.library.rawValue] ?? nil, self.newLibraryItemCount != 0)
         case .toBeVision:
-            return (self.subtitles[MyX.Item.toBeVision.rawValue] ?? nil, teamTBVPoll?.showBatch == true)
+            return (self.subtitles[MyX.Item.toBeVision.rawValue] ?? nil, teamTBVPoll?.showBatch == true || teamTBVPoll?.open == true || teamTrackerPoll?.open == true)
         default: break
         }
         let subtitle = self.subtitles[item?.rawValue ?? ""] ?? nil
