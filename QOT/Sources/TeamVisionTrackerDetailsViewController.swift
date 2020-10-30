@@ -44,7 +44,7 @@ final class TeamVisionTrackerDetailsViewController: BaseViewController, ScreenZL
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [backNavigationItemLight()]
+        return [backNavigationItem()]
     }
 
     override func viewDidLoad() {
