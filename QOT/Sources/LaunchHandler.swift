@@ -271,7 +271,6 @@ extension LaunchHandler {
         }
     }
 
-
     func showTBVRating(_ teamId: Int) {
         if let team = getTeam(teamId) {
             if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {

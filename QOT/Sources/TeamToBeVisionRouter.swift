@@ -8,6 +8,4 @@
 
 import UIKit
 
-
 final class TeamToBeVisionRouter: BaseRouter {}
-
