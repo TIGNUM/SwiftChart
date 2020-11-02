@@ -58,7 +58,10 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
 
     func saveQuestions() {
         worker.saveQuestions {[weak self] in
-            self?.showAlert()
+            guard self?.worker.team == nil else {
+                self?.showAlert()
+                return
+            }
         }
     }
 
