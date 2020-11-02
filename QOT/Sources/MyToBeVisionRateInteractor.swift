@@ -62,6 +62,7 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
                 self?.showAlert()
                 return
             }
+            self?.presenter.dismiss(animated: true, completion: nil)
         }
     }
 
