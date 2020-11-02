@@ -142,7 +142,7 @@ extension MyQotMainWorker {
 
         dispatchGroup.enter()
         var tmpPoll: QDMTeamToBeVisionPoll?
-        var tmpTrackerPoll : QDMTeamToBeVisionTrackerPoll?
+        var tmpTrackerPoll: QDMTeamToBeVisionTrackerPoll?
         getCurrentTeamToBeVisionPoll(for: team) { (poll) in
             tmpPoll = poll
             dispatchGroup.leave()

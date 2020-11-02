@@ -179,7 +179,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .library:
             return (self.subtitles[MyX.Item.library.rawValue] ?? nil, self.newLibraryItemCount != 0)
         case .toBeVision:
-            return (self.subtitles[MyX.Item.toBeVision.rawValue] ?? nil, teamTBVPoll?.showBatch == true || teamTBVPoll?.open == true || teamTrackerPoll?.open == true)
+            return (self.subtitles[MyX.Item.toBeVision.rawValue] ?? nil, teamTBVPoll?.showBatch == true ||
+                        (teamTBVPoll?.open == true && teamTBVPoll?.userDidVote == false) ||
+                        (teamTrackerPoll?.open == true && teamTrackerPoll?.didVote == false))
         default: break
         }
         let subtitle = self.subtitles[item?.rawValue ?? ""] ?? nil
