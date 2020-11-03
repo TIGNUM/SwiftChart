@@ -64,6 +64,10 @@ enum URLScheme: String {
     case qrcode0010 = "qrcode-open-0010"
     case recovery3DPlanner = "3d-recovery-planner"
     case mindsetShifterPlanner = "mindset-shifter-planner"
+    case tbvTrackerPollOpened = "tbv-tracker-poll-opened"
+    case tbvTrackerPollClosed = "tbv-tracker-closed"
+    case tbvGeneratorPollOpened = "tbv-generator-poll-opened"
+    case tbvGeneratorPollClosed = "tbv-generator-poll-closed"
 
     // Competability fro 1.x version notifications
     case fitbit = "fitbit-integration" // IGNORE
@@ -139,6 +143,10 @@ enum URLScheme: String {
              .prepareDay: break
         case .preparation: return ["identifier"]
         case .toBeVision: return ["teamId"]
+        case .tbvTrackerPollOpened: return ["teamId"]
+        case .tbvTrackerPollClosed: return ["teamId"]
+        case .tbvGeneratorPollOpened: return ["teamId"]
+        case .tbvGeneratorPollClosed: return ["teamId"]
         case .mySprints: break
         case .myLibrary: return ["teamId", "category"]
         case .myProfile: break

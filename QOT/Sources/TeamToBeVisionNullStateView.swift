@@ -7,25 +7,16 @@
 //
 
 import UIKit
-import qot_dal
-
-protocol TeamToBeVisionNullStateViewProtocol: class {
-    func editTeamVisionAction()
-}
 
 final class TeamToBeVisionNullStateView: UIView {
-
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var toBeVisionLabel: UILabel!
     @IBOutlet weak var teamNullStateImage: UIImageView!
 
-    weak var delegate: TeamToBeVisionNullStateViewProtocol?
-
-    func setupView(with header: String, teamName: String?, message: String, delegate: TeamToBeVisionNullStateViewProtocol?) {
-        self.delegate = delegate
+    func setupView(with header: String, message: String, sectionHeader: String) {
         ThemeView.level2.apply(self)
-        ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: teamName?.uppercased() ?? ""), to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(sectionHeader, to: toBeVisionLabel)
         ThemeText.tbvHeader.apply(header, to: headerLabel)
         ThemeText.tbvVision.apply(message, to: detailLabel)
     }

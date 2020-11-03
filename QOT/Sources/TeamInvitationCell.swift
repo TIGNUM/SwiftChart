@@ -19,7 +19,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     private var teamInvitation: QDMTeamInvitation?
-    weak var delegate: DailyBriefViewController?
+    weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

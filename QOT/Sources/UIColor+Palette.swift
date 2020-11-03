@@ -105,6 +105,7 @@ extension UIColor {
         return accent.withAlphaComponent(0.75)
     }
 
+    /// UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
     public class var accent: UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
     }
@@ -488,6 +489,11 @@ extension UIColor {
     /// UIColor(red: 255/255, green: 83/255, blue: 73/255, alpha: 1)
     public class var coral: UIColor {
         return UIColor(red: 255/255, green: 83/255, blue: 73/255, alpha: 1)
+    }
+
+    /// UIColor(red: 255/255, green: 73/255, blue: 81/255, alpha: 1)
+    public class var batchRed: UIColor {
+        return UIColor(red: 255/255, green: 73/255, blue: 81/255, alpha: 1)
     }
 
     /// UIColor(red: 80/255, green: 277/255, blue: 194/255, alpha: 1)

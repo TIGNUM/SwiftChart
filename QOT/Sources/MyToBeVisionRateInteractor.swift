@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import qot_dal
 
-final class MyToBeVisionRateInteractor {
+final class MyToBeVisionRateInteractor: WorkerTeam {
 
     let presenter: MyToBeVisionRatePresenterInterface
     let worker: MyToBeVisionRateWorker
@@ -42,6 +43,10 @@ final class MyToBeVisionRateInteractor {
             }
         }
     }
+
+    @objc func dismiss() {
+        presenter.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
@@ -50,7 +55,13 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
     }
 
     func saveQuestions() {
-        worker.saveQuestions()
+        worker.saveQuestions {[weak self] in
+            guard self?.worker.team == nil else {
+                self?.showAlert()
+                return
+            }
+            self?.presenter.dismiss(animated: true, completion: nil)
+        }
     }
 
     func showScreenLoader() {
@@ -61,7 +72,15 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
         presenter.hideScreenLoader()
     }
 
-    func dismiss() {
-        router.dismiss()
+    func showAlert() {
+        let seeResults = QOTAlertAction(title: AppTextService.get(.alert_tracker_poll_answers_submitted_cta),
+                                        target: self,
+                                        action: #selector(dismiss),
+                                        handler: nil)
+        presenter.showAlert(action: seeResults, days: worker.trackerPoll?.remainingDays)
+    }
+
+    var team: QDMTeam? {
+        worker.team
     }
 }

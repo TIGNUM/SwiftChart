@@ -15,7 +15,7 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
     @IBOutlet private weak var ctaButton: AnimatedButton!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
     private var team: QDMTeam?
-    weak var delegate: DailyBriefViewController?
+    weak var delegate: DailyBriefViewControllerDelegate?
     private weak var baseHeaderView: QOTBaseHeaderView?
 
     override func awakeFromNib() {
@@ -47,7 +47,7 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
 
     @IBAction func ctaButtonTapped(_ sender: Any) {
         guard let team = team else { return }
-        delegate?.showTBV(team: team)
+        delegate?.showTeamTBV(team)
     }
 
     override func updateConstraints() {

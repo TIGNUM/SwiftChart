@@ -27,6 +27,7 @@ protocol TBVRateHistoryInteractorInterface: Interactor {
     var days: [Date] { get }
     var numberOfRows: Int { get }
     var selectedDate: Date { get }
+    var isUserInteractionEnabled: Bool { get }
 
     func setSelection(for date: Date)
     func sentence(in row: Int) -> QDMToBeVisionSentence?

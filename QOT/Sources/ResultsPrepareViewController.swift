@@ -50,11 +50,11 @@ final class ResultsPrepareViewController: BaseWithGroupedTableViewController, Sc
 
 // MARK: - Bottom Navigation
 extension ResultsPrepareViewController {
-    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return nil
     }
 
-    @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return rightBarItems
     }
 }

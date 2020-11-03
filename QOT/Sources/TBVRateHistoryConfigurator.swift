@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import qot_dal
 
 final class TBVRateHistoryConfigurator {
-    static func configure(viewController: MyToBeVisionTrackerViewController, displayType: TBVGraph.DisplayType) {
+    static func configure(viewController: MyToBeVisionTrackerViewController,
+                          displayType: TBVGraph.DisplayType,
+                          team: QDMTeam?) {
         let presenter = TBVRateHistoryPresenter(viewController: viewController)
-        let interactor = TBVRateHistoryInteractor(presenter, displayType)
+        let interactor = TBVRateHistoryInteractor(presenter, displayType, team)
         viewController.interactor = interactor
     }
 }

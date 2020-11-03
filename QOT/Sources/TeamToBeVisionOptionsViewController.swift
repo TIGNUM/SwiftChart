@@ -7,28 +7,19 @@
 //
 
 import UIKit
-import qot_dal
 
-protocol TeamToBeVisionOptionsViewControllerDelegate: class {
+protocol TeamAdminDelegate: class {
     func showAlert()
+    func showPoll()
 }
 
-final class TeamToBeVisionOptionsViewController: UIViewController {
-
-    enum actionType: Int {
-        case rate = 0
-        case end
-    }
+final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
     var interactor: TeamToBeVisionOptionsInteractorInterface!
-    private lazy var router: TeamToBeVisionOptionsRouterInterface = TeamToBeVisionOptionsRouter(viewController: self)
+    private lazy var router = TeamToBeVisionOptionsRouter(viewController: self)
     @IBOutlet private weak var headerView: UIView!
-    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
-    private var pageType: TeamToBeVisionOptionsModel.Types!
-//    TODO: pass in hasVoted argument if user has voted or rated
-    private var hasVoted: Bool = false
 
     // MARK: - Init
     init(configure: Configurator<TeamToBeVisionOptionsViewController>) {
@@ -37,30 +28,52 @@ final class TeamToBeVisionOptionsViewController: UIViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
-           super.init(coder: aDecoder)
+        super.init(coder: aDecoder)
     }
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderView?.addTo(superview: headerView)
-        interactor.viewDidLoad()
         tableView.registerDequeueable(TeamToBeVisionOptionTableViewCell.self)
+        interactor.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        interactor.viewWillAppear()
         setStatusBar(color: .carbon)
+        updateBottomNavigation(bottomNavigationLeftBarItems(), [])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem] {
+        return [backNavigationItem()]
     }
 }
 
 // MARK: - TeamToBeVisionOptionsViewControllerInterface
 extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerInterface {
-
-    func setupView(type: TeamToBeVisionOptionsModel.Types, remainingDays: Int) {
-        pageType = type
+    func setupView(title: String, headerSubtitle: NSAttributedString) {
         ThemeView.level1.apply(view)
-        baseHeaderView?.configure(title: type.pageTitle, subtitle: createSubtitle(remainingDays))
+        let baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
+        baseHeaderView?.configure(title: title, subtitle: headerSubtitle)
+    }
+
+    func reload() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.reloadData()
+    }
+}
+
+extension TeamToBeVisionOptionsViewController: TBVRateDelegate {
+    func doneAction() {
+
     }
 }
 
@@ -71,58 +84,54 @@ extension TeamToBeVisionOptionsViewController: UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let type = interactor.getType
+        let actionType = TeamAdmin.ActionType(rawValue: indexPath.row) ?? .rate
+        let isDisabled = actionType == .end ? false : (interactor.userDidVote == true)
         let cell: TeamToBeVisionOptionTableViewCell = tableView.dequeueCell(for: indexPath)
-        switch indexPath.row {
-        case actionType.rate.rawValue:
-            cell.configure(title: pageType.titleForItem(at: indexPath),
-                           cta: pageType.ctaForItem(at: indexPath, isDisabled: hasVoted),
-                           actionTag: actionType.rate.rawValue,
-                           buttonDisabled: hasVoted)
-        case actionType.end.rawValue:
-            let isDisabled = false
-            cell.configure(title: pageType.titleForItem(at: indexPath),
-                           cta: pageType.ctaForItem(at: indexPath, isDisabled: isDisabled),
-                           actionTag: actionType.end.rawValue,
-                           buttonDisabled: isDisabled)
-        default:
-            break
-        }
+        cell.configure(title: type.titleForItem(at: indexPath),
+                       cta: type.ctaForItem(at: indexPath, isDisabled: isDisabled),
+                       actionType: actionType,
+                       buttonDisabled: isDisabled)
         cell.selectionStyle = .none
         cell.delegate = self
         return cell
     }
 }
 
-// MARK: Private
-private extension TeamToBeVisionOptionsViewController {
-    func createSubtitle(_ remainingDays: Int) -> NSAttributedString {
-        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.sand70]
-        let redAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.redOrange]
-        let string = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends), attributes: sandAttributes)
-        switch remainingDays {
-        case 0:
-            let today = NSMutableAttributedString(string: " " + AppTextService.get(.my_x_team_tbv_options_today), attributes: redAttributes)
-            string.append(today)
-            return string
-        case 1:
-            let tomorrow = NSMutableAttributedString(string: " " + AppTextService.get(.my_x_team_tbv_options_tomorrow), attributes: redAttributes)
-            string.append(tomorrow)
-            return string
-        default:
-            let daysString = NSMutableAttributedString(string: " " + AppTextService.get(.my_x_team_tbv_options_days).replacingOccurrences(of: "${days}", with: String(remainingDays)), attributes: redAttributes)
-            string.append(daysString)
-            return string
+extension TeamToBeVisionOptionsViewController: TeamAdminDelegate {
+    func showPoll() {
+        switch interactor.getType {
+        case .rating:
+            router.showRateScreen(trackerPoll: interactor.trackerPoll,
+                                  team: interactor.team,
+                                  delegate: self)
+        case .voting:
+            if let team = interactor.team {
+                router.showTeamTBVGenerator(poll: interactor.toBeVisionPoll, team: team)
+            }
         }
     }
-}
-
-extension TeamToBeVisionOptionsViewController: TeamToBeVisionOptionsViewControllerDelegate {
 
     func showAlert() {
-        let cancel = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_leftButton))
-        let end = QOTAlertAction(title: AppTextService.get(.my_x_team_tbv_options_alert_rightButton)) {(_) in
-        // TO DO: end rating or end poll
+        let cancel = QOTAlertAction(title: interactor.alertCancelTitle)
+        let end = QOTAlertAction(title: interactor.alertEndTitle) { [weak self] _ in
+            switch self?.interactor.getType {
+            case .rating:
+                self?.interactor.endRating { [weak self] in
+                    self?.didTapBackButton()
+                }
+            case .voting:
+                self?.interactor.endPoll { [weak self] in
+                    self?.didTapBackButton()
+                }
+            default: break
+            }
         }
-        QOTAlert.show(title: pageType.alertTitle, message: pageType.alertMessage.replacingOccurrences(of: "${daysCount}", with: String(interactor.daysLeft)), bottomItems: [cancel, end])
+
+        let message = interactor.getType.alertMessage.replacingOccurrences(of: "${daysCount}",
+                                                                           with: String(interactor.daysLeft))
+        QOTAlert.show(title: interactor.getType.alertTitle,
+                      message: message,
+                      bottomItems: [cancel, end])
     }
 }

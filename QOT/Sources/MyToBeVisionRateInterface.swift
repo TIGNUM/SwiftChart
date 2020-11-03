@@ -7,27 +7,32 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol MyToBeVisionRateViewControllerInterface: class {
     func setupView(questions: [RatingQuestionViewModel.Question])
     func showScreenLoader()
     func hideScreenLoader()
+    func showAlert(action: QOTAlertAction, days: Int?)
+    func dismiss(animated flag: Bool, completion: (() -> Void)?)
 }
 
 protocol MyToBeVisionRatePresenterInterface {
     func setupView(questions: [RatingQuestionViewModel.Question])
     func showScreenLoader()
     func hideScreenLoader()
+    func showAlert(action: QOTAlertAction, days: Int?)
+    func dismiss(animated flag: Bool, completion: (() -> Void)?)
 }
 
 protocol MyToBeVisionRateInteracorInterface: Interactor {
     func addRating(for questionId: Int, value: Int)
     func saveQuestions()
-    func dismiss()
     func showScreenLoader()
     func hideScreenLoader()
+    var team: QDMTeam? { get }
+    func showAlert()
 }
 
 protocol MyToBeVisionRateRouterInterface {
-    func dismiss()
 }

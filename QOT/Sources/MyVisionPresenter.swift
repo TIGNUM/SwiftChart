@@ -21,6 +21,7 @@ final class MyVisionPresenter {
 }
 
 extension MyVisionPresenter: MyVisionPresenterInterface {
+
     func showNullState(with title: String, message: String, writeMessage: String) {
         viewController?.showNullState(with: title, message: message, writeMessage: writeMessage)
     }
@@ -33,8 +34,11 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
         viewController?.setupView()
     }
 
-    func load(ratingView: TBVRatingView, myVision: QDMToBeVision?) {
-        viewController?.load(ratingView: ratingView, myVision: myVision)
+    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
+        viewController?.load(myVision,
+                             rateText: rateText,
+                             isRateEnabled: isRateEnabled,
+                             shouldShowSingleMessageRating: shouldShowSingleMessageRating)
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String) {

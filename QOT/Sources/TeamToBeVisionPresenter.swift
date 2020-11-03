@@ -27,21 +27,43 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
     }
 
     func showNullState(with title: String, teamName: String?, message: String) {
-        viewController?.showNullState(with: title, teamName: teamName, message: message)
+        var header = AppTextService.get(.my_x_team_tbv_new_section_header_title)
+        header = header.replacingOccurrences(of: "{$TEAM_NAME}", with: teamName?.uppercased() ?? "")
+        viewController?.showNullState(with: title, message: message, header: header)
     }
 
     func hideNullState() {
         viewController?.hideNullState()
     }
 
-    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
-        viewController?.load(teamVision,
-                             rateText: rateText,
-                             isRateEnabled: isRateEnabled,
-                             shouldShowSingleMessageRating: shouldShowSingleMessageRating)
+    func load(_ teamVision: QDMTeamToBeVision?) {
+        viewController?.load(teamVision)
     }
 
     func setSelectionBarButtonItems() {
         viewController?.setSelectionBarButtonItems()
     }
+
+    func updatePoll(visionPoll: QDMTeamToBeVisionPoll?,
+                    trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                    team: QDMTeam?,
+                    teamToBeVision: QDMTeamToBeVision?) {
+        viewController?.updateTrackerButton(poll: ButtonTheme.Poll.rating(visionPoll: visionPoll,
+                                                                          trackerPoll: trackerPoll,
+                                                                          team: team,
+                                                                          tbv: teamToBeVision))
+        viewController?.updatePollButton(poll: ButtonTheme.Poll.generator(visionPoll: visionPoll,
+                                                                          trackerPoll: trackerPoll,
+                                                                          team: team,
+                                                                          tbv: teamToBeVision))
+    }
+
+    func hideTrends(_ hide: Bool) {
+        viewController?.hideTrends(hide)
+    }
+
+    func hideSelectionBar(_ hide: Bool) {
+        viewController?.hideSelectionBar(hide)
+    }
+
 }

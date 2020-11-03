@@ -73,7 +73,18 @@ extension MyToBeVisionView {
     func setupView() {
         noNetworkLabel.adjustsFontSizeToFitWidth = true
         toBeVisionImageView.layer.masksToBounds = true
-		toBeVisionText.textColor = .black
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        let userInterfaceStyle = traitCollection.userInterfaceStyle
+        switch userInterfaceStyle {
+        case .dark:
+            toBeVisionText.textColor = .white
+       default:
+            toBeVisionText.textColor = .black
+        }
     }
 
     func layout() {

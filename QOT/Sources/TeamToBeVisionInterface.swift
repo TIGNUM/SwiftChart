@@ -11,21 +11,28 @@ import qot_dal
 
 protocol TeamToBeVisionViewControllerInterface: class {
     func setupView()
-    func showNullState(with title: String, teamName: String?, message: String)
+    func showNullState(with title: String, message: String, header: String)
     func hideNullState()
     func setSelectionBarButtonItems()
-    func load(_ teamVision: QDMTeamToBeVision?,
-              rateText: String?,
-              isRateEnabled: Bool,
-              shouldShowSingleMessageRating: Bool?)
+    func load(_ teamVision: QDMTeamToBeVision?)
+    func updatePollButton(poll: ButtonTheme.Poll)
+    func updateTrackerButton(poll: ButtonTheme.Poll)
+    func hideSelectionBar(_ hide: Bool)
+    func hideTrends(_ hide: Bool)
 }
 
 protocol TeamToBeVisionPresenterInterface {
     func setupView()
     func showNullState(with title: String, teamName: String?, message: String)
     func hideNullState()
-    func load(_ teamVision: QDMTeamToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
+    func load(_ teamVision: QDMTeamToBeVision?)
     func setSelectionBarButtonItems()
+    func hideSelectionBar(_ hide: Bool)
+    func hideTrends(_ hide: Bool)
+    func updatePoll(visionPoll: QDMTeamToBeVisionPoll?,
+                    trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                    team: QDMTeam?,
+                    teamToBeVision: QDMTeamToBeVision?)
 }
 
 protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
@@ -34,20 +41,27 @@ protocol TeamToBeVisionViewControllerScrollViewDelegate: class {
 
 protocol TeamToBeVisionInteractorInterface: Interactor {
     func showEditVision(isFromNullState: Bool)
-    func showNullState(with title: String, teamName: String?, message: String)
+    func showNullState()
     func hideNullState()
     func isShareBlocked(_ completion: @escaping (Bool) -> Void)
     func viewWillAppear()
     func saveToBeVision(image: UIImage?)
+
     var teamNullStateSubtitle: String? { get }
     var teamNullStateTitle: String? { get }
     var emptyTeamTBVTitlePlaceholder: String { get }
     var emptyTeamTBVTextPlaceholder: String { get }
-    var team: QDMTeam? { get }
+    var team: QDMTeam { get }
     var nullStateCTA: String? { get }
+    var shouldShowPollExplanation: Bool { get }
+    var shouldShowPollAdmin: Bool { get }
+    var teamVisionPoll: QDMTeamToBeVisionPoll? { get }
+
     func lastUpdatedTeamVision() -> String?
     func presentTrends()
     func shareTeamToBeVision()
+    func ratingTapped()
+    func isTrendsHidden(_ completion: @escaping (Bool) -> Void)
 }
 
 protocol TeamToBeVisionRouterInterface {
@@ -57,4 +71,5 @@ protocol TeamToBeVisionRouterInterface {
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
     func showRatingExplanation(team: QDMTeam?)
     func showTbvPollEXplanation(team: QDMTeam?)
+    func showAdminOptions(team: QDMTeam?, remainingDays: Int)
 }

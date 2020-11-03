@@ -17,6 +17,62 @@ enum MyPeakPerformanceBucketType: String, CaseIterable {
     case REFLECT
 }
 
+protocol DailyBriefViewControllerDelegate: class {
+    func openTools(toolID: Int?)
+
+    func presentStrategyList(strategyID: Int?)
+
+    func showSolveResults(solve: QDMSolve)
+
+    func showCustomizeTarget()
+
+    func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
+
+    func saveTargetValue(value: Int?)
+
+    func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
+
+    func presentPrepareResults(for preparation: QDMUserPreparation?)
+
+    func presentPopUp(copyrightURL: String?, description: String?)
+
+    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
+
+    func reloadSprintCell(cell: UITableViewCell)
+
+    func didUpdateLevel5()
+
+    func displayCoachPreparationScreen()
+
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
+
+    func presentMyDataScreen()
+
+    func didChangeLocationPermission(granted: Bool)
+
+    func showDailyCheckInQuestions()
+
+    func showAlert(message: String?)
+
+    func showBanner(message: String)
+
+    func showTBV()
+
+    func showTeamTBV(_ team: QDMTeam)
+
+    func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation)
+
+    func didSelectJoinTeamInvite(invitation: QDMTeamInvitation)
+
+    func presentTeamPendingInvites()
+
+    func presentToBeVisionPoll(for team: QDMTeam)
+
+    func presentToBeVisionRate(for team: QDMTeam)
+
+    func presentRateHistory(for team: QDMTeam)
+}
+
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
@@ -36,7 +92,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?
     func getDailyBriefBucketsForViewModel()
     func getToBeVisionImage(completion: @escaping (URL?) -> Void)
-
+    func getTeamTBVPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
 
@@ -62,4 +118,5 @@ protocol DailyBriefRouterInterface: BaseRouterInterface {
     func showMyDataScreen()
     func presentTeamPendingInvites()
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)
+    func showExplanation(_ team: QDMTeam, type: Explanation.Types)
 }

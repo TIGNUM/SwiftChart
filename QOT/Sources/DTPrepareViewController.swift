@@ -127,7 +127,8 @@ private extension DTPrepareViewController {
                                                            delegate: self?.prepareInteractor) { [weak self] in
                                                             let targetId = Prepare.QuestionTargetId.IntentionPerceived
                                                             let targetAnswer = DTViewModel.Answer(answer: answer,
-                                                                                                  newTargetId: targetId)
+                                                                                                  newTargetId: targetId,
+                                                                                                  votes: 0)
                                                             self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion()
                 }
