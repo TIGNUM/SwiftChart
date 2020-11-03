@@ -854,48 +854,12 @@
                                     <outlet property="delegate" destination="TAI-qk-Edb" id="JbU-nU-UgM"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkE-ah-pNG" customClass="TeamToBeVisionNavigationBarView" customModule="TIGNUM_X" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-106" width="414" height="96"/>
-                                <subviews>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8U4-zG-6Tz">
-                                        <rect key="frame" x="24" y="65" width="37" height="17"/>
-                                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
-                                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxU-0m-WGX">
-                                        <rect key="frame" x="350" y="51" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="G87-0E-tym"/>
-                                            <constraint firstAttribute="width" constant="40" id="Nlf-iR-RlP"/>
-                                        </constraints>
-                                        <state key="normal" image="share"/>
-                                        <connections>
-                                            <action selector="shareButtonAction:" destination="MkE-ah-pNG" eventType="touchUpInside" id="W9X-N2-JJG"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBN-NN-xtw">
-                                        <rect key="frame" x="0.0" y="95" width="414" height="1"/>
-                                        <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="Cob-jX-Inb"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkE-ah-pNG" customClass="ToBeVisionSelectionBar" customModule="TIGNUM_X" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="-106" width="414" height="70"/>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="96" id="9EW-ao-2Bf"/>
-                                    <constraint firstItem="8U4-zG-6Tz" firstAttribute="leading" secondItem="MkE-ah-pNG" secondAttribute="leading" constant="24" id="Eo5-Wn-hmF"/>
-                                    <constraint firstAttribute="bottom" secondItem="SBN-NN-xtw" secondAttribute="bottom" id="VLj-Sd-GuQ"/>
-                                    <constraint firstItem="SBN-NN-xtw" firstAttribute="leading" secondItem="MkE-ah-pNG" secondAttribute="leading" id="bLS-rS-yGQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="nxU-0m-WGX" secondAttribute="trailing" constant="24" id="cRX-vn-E4k"/>
-                                    <constraint firstAttribute="bottom" secondItem="8U4-zG-6Tz" secondAttribute="bottom" constant="14" id="gdX-yK-Oky"/>
-                                    <constraint firstAttribute="trailing" secondItem="SBN-NN-xtw" secondAttribute="trailing" id="jHR-8L-QO9"/>
-                                    <constraint firstItem="SBN-NN-xtw" firstAttribute="top" secondItem="nxU-0m-WGX" secondAttribute="bottom" constant="4" id="jKr-4H-p1h"/>
+                                    <constraint firstAttribute="height" constant="70" id="UHm-Ni-hOZ"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="title" destination="8U4-zG-6Tz" id="YKM-40-di2"/>
-                                </connections>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-iS-Dly" customClass="TeamToBeVisionNullStateView" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
