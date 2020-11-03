@@ -16,8 +16,8 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
     @IBOutlet private weak var button: AnimatedButton!
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
-    @IBOutlet private weak var suggestionTitle: UILabel!
     private weak var baseHeaderView: QOTBaseHeaderView?
+    private var team: QDMTeam?
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
@@ -35,22 +35,28 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
         let subtitle = AppTextService.get(.daily_brief_team_vision_suggestion_subtitle)
         baseHeaderView?.configure(title: model?.title,
                                   subtitle: subtitle)
-        guard let teamColor = model?.teamColor else { return }
-        baseHeaderView?.titleLabel.textColor = UIColor(hex: teamColor)
+        let teamColor = UIColor(hex: model?.team?.teamColor ?? "")
+        baseHeaderView?.setColor(dashColor: teamColor, titleColor: teamColor, subtitleColor: nil)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         let cta = AppTextService.get(.daily_brief_team_vision_suggestion_cta)
         button.setTitle(cta, for: .normal)
         button.setButtonContentInset(padding: 16)
-        tbvSentence.text = model?.tbvSentence
+        self.team = model?.team
         ThemeText.dailyInsightsTbvAdvice.apply(model?.adviceText, to: adviceText)
-        let suggestion = AppTextService.get(.daily_brief_team_vision_suggestion_suggestion_title)
-        ThemeText.dailyInsightsTbvAdvice.apply(suggestion, to: suggestionTitle)
+        ThemeText.teamVisionSentence.apply(model?.tbvSentence, to: tbvSentence)
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
     }
 }
 
 private extension TeamVisionSuggestionCell {
     @IBAction func toBeVisionButton(_ sender: Any) {
-//        delegate?.presentMyToBeVision()
+        guard let team = team else { return }
+        delegate?.showTeamTBV(team)
     }
 }

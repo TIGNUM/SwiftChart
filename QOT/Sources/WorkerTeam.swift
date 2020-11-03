@@ -21,7 +21,8 @@ protocol WorkerTeam: class {
 
     func getTeams(_ completion: @escaping ([QDMTeam]) -> Void)
 
-    func getTeamHeaderItems(showNewRedDot: Bool, _ completion: @escaping ([Team.Item]) -> Void)
+    func getTeamHeaderItems(showNewRedDot: Bool,
+                            _ completion: @escaping ([Team.Item]) -> Void)
 
     func getTeamMembers(in team: QDMTeam, _ completion: @escaping ([QDMTeamMember]) -> Void)
 
@@ -59,9 +60,42 @@ protocol WorkerTeam: class {
 
     func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
                                     _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void)
+
+    func getCurrentTeamToBeVisionPoll(for team: QDMTeam,
+                                      _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func openNewTeamToBeVisionPoll(for team: QDMTeam,
+                                   _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func closeTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString
+
+    func dateString(for day: Int) -> String
+
+    func voteTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                question: QDMQuestion,
+                                votes: [QDMAnswer],
+                                _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+
+    func voteTeamToBeVisionTrackerPoll(_ votes: [QDMTeamToBeVisionTrackerVote],
+                                       _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
+
+    func openNewTeamToBeVisionTrackerPoll(for team: QDMTeam,
+                                          _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
+
+    func hasOpenRatingPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void)
+
+    func getCurrentRatingPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
+
+    func closeRatingPoll(for team: QDMTeam, _ completion: @escaping () -> Void)
+
+    func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void)
 }
 
 extension WorkerTeam {
+
     func getMaxTeamMemberCount(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
             completion(config?.teamMaxMemberCount ?? 0)
@@ -98,7 +132,8 @@ extension WorkerTeam {
         }
     }
 
-    func getTeamHeaderItems(showNewRedDot: Bool, _ completion: @escaping ([Team.Item]) -> Void) {
+    func getTeamHeaderItems(showNewRedDot: Bool,
+                            _ completion: @escaping ([Team.Item]) -> Void) {
         getTeams { (teams) in
             if showNewRedDot {
                 self.getTeamInvitations { (invites) in
@@ -295,6 +330,172 @@ extension WorkerTeam {
     func getTeamToBeVisionShareData(_ teamVision: QDMTeamToBeVision,
                                     _ completion: @escaping (QDMToBeVisionShare?, Error?) -> Void) {
         TeamService.main.getTeamToBeVisionShareData(for: teamVision, completion)
+    }
+
+    func hasOpenRatingPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void) {
+        TeamService.main.currentTeamToBeVisionTrackerPoll(for: team) { (currentTrackingPoll, _, error) in
+            if let error = error {
+                log("Error currentTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(currentTrackingPoll != nil)
+        }
+    }
+
+    func getCurrentRatingPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        TeamService.main.currentTeamToBeVisionTrackerPoll(for: team) { (currentTrackingPoll, _, error) in
+            if let error = error {
+                log("Error currentTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(currentTrackingPoll)
+        }
+    }
+
+    func closeRatingPoll(for team: QDMTeam, _ completion: @escaping () -> Void) {
+        getCurrentRatingPoll(for: team) { (currentTrackingPoll) in
+            guard let currentPoll = currentTrackingPoll else { return }
+            TeamService.main.closeTeamToBeVisionTrackerPoll(currentPoll) { (poll, _, error) in
+                if let error = error {
+                    log("Error closeTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
+                    // TODO handle error
+                }
+                completion()
+            }
+        }
+    }
+
+    func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void) {
+        TeamService.main.allTeamToBeVisionTrackerPoll(for: team) { (allPolls, _, error) in
+            if let error = error {
+                log("Error allTeamToBeVisionTrackerPol: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            var closedPolls = allPolls?.filter { $0.open == false &&
+                $0.qotTeamToBeVisionTrackers?.isEmpty == false &&
+                $0.averageValue != nil &&
+                $0.feedback != nil } ?? []
+            closedPolls.sort(by: { $0.endDate ?? Date() < $1.endDate ?? Date() })
+            var lastPolls: [QDMTeamToBeVisionTrackerPoll] = []
+
+            for (index, poll) in closedPolls.reversed().enumerated() {
+                if index == 3 {
+                    break
+                }
+                lastPolls.append(poll)
+            }
+            completion(lastPolls)
+        }
+    }
+}
+
+// MARK: - Poll
+extension WorkerTeam {
+    func getCurrentTeamToBeVisionPoll(for team: QDMTeam,
+                                      _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.getCurrentTeamToBeVisionPoll(for: team) { (poll, _, error) in
+            if let error = error {
+                log("Error getCurrentTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
+    }
+
+    func openNewTeamToBeVisionPoll(for team: QDMTeam,
+                                   _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.openNewTeamToBeVisionPoll(for: team) { (poll, _, error) in
+            if let error = error {
+                log("Error openNewTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
+    }
+
+    func closeTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.closeTeamToBeVisionPoll(poll) { (poll, _, error) in
+            if let error = error {
+                log("Error closeTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(poll)
+        }
+    }
+
+    func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString {
+        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
+                                                              .foregroundColor: UIColor.sand70]
+        let redAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
+                                                             .foregroundColor: UIColor.redOrange]
+        let prefix = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends),
+                                               attributes: sandAttributes)
+        var string = ""
+        switch remainingDays {
+        case 0:
+            string = AppTextService.get(.my_x_team_tbv_options_today)
+        case 1:
+            string = AppTextService.get(.my_x_team_tbv_options_tomorrow)
+        default:
+            string = AppTextService.get(.my_x_team_tbv_options_days).replacingOccurrences(of: "${days}",
+                                                                                          with: String(remainingDays))
+        }
+        let suffix = NSMutableAttributedString(string: " " + string, attributes: redAttributes)
+        prefix.append(suffix)
+        return prefix
+    }
+
+    func dateString(for day: Int) -> String {
+        if day == 0 {
+            return "Today"
+        } else if day == 1 {
+            return "Yesterday"
+        } else {
+            return String(day) + " Days"
+        }
+    }
+
+    func voteTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
+                                question: QDMQuestion,
+                                votes: [QDMAnswer],
+                                _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        TeamService.main.voteTeamToBeVisionPoll(poll,
+                                                question: question,
+                                                votes: votes) { (poll, error) in
+            if let error = error {
+                log("Error voteTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+            }
+            NotificationCenter.default.post(name: .didRateTBV, object: nil)
+            completion(poll)
+        }
+    }
+
+    // How to make QDMTeamToBeVisionTrackerVote intances
+    // var vote = [QDMTeamToBeVisionTrackerVote]()
+    // let poll: QDMTeamToBeVisionTrackerPoll = from some where
+    // let vote = poll.qotTeamToBeVisionTrackers[index].voteWithRatingValue(9)
+    // votes.append(vote)
+    // If user tries to vote with already closed poll, it will return 'TeamToBeVisionTrakcerPollIsAlreadyClosed'
+    // If user tries to vote on the poll which user alreay voted, it will return 'UserDidVoteTeamToBeVisionTrackerPoll'
+    func voteTeamToBeVisionTrackerPoll(_ votes: [QDMTeamToBeVisionTrackerVote],
+                                       _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        TeamService.main.voteTeamToBeVisionTrackerPoll(votes) { (poll, error) in
+            if let error = error {
+                log("Error voteTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
+            }
+            completion(poll)
+        }
+    }
+
+    func openNewTeamToBeVisionTrackerPoll(for team: QDMTeam,
+                                          _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        TeamService.main.openNewTeamToBeVisionTrackerPoll(for: team) { (poll, _, error) in
+            if let error = error {
+                log("Error openNewTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
+            }
+            completion(poll)
+        }
     }
 }
 

@@ -28,7 +28,9 @@ final class TBVDataGraphBarViewCell: UICollectionViewCell, Dequeueable {
                rating: CGFloat,
                range: TBVGraph.Range) {
 
-        progressBarHeightConstraint.constant = range.barHeight(for: rating)
+        if rating.isFinite == true {
+            progressBarHeightConstraint.constant = range.barHeight(for: rating)
+        }
         ratingLabelContainerView.backgroundColor = isSelected ? config.ratingCircleColor : .clear
         progressView.backgroundColor = isSelected ? config.selectedBarColor : config.progressBarColor
         graphBarView.backgroundColor = config.graphBarColor

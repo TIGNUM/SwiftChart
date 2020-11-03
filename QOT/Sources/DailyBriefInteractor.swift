@@ -12,6 +12,7 @@ import DifferenceKit
 
 public extension Notification.Name {
     static let scrollToBucket = Notification.Name("scrollToBucket")
+    static let didRateTBV = Notification.Name("didRateTBV")
 }
 
 final class DailyBriefInteractor {
@@ -166,6 +167,10 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
+    func getTeamTBVPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        worker.getCurrentTeamToBeVisionPoll(for: team, completion)
+    }
+
     // MARK: - Properties
     var rowViewSectionCount: Int {
         return viewModelOldListModels.count
@@ -218,9 +223,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .teamToBeVision,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
-//        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
-//                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
         sectionDataList.append(ArraySection(model: .teamInvitation,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .openPoll,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .tbvRate,
                                             elements: [BaseDailyBriefViewModel.init(nil)]))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
@@ -349,9 +358,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .TEAM_TO_BE_VISION:
                     sectionDataList.append(ArraySection(model: .teamToBeVision,
                                                         elements: strongSelf.createTeamToBeVisionViewModel(teamVisionBucket: bucket)))
-//                case .TEAM_VISION_SUGGESTION?:
-//                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
-//                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
+                case .TEAM_VISION_SUGGESTION:
+                    sectionDataList.append(ArraySection(model: .teamVisionSuggestion,
+                                                        elements: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket)))
                 case .TEAM_INVITATION:
                     sectionDataList.append(ArraySection(model: .teamInvitation,
                                                         elements: strongSelf.createTeamInvitation(invitationBucket: bucket)))
@@ -359,6 +368,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
                     guard elements.isEmpty == false else { break }
                     sectionDataList.append(ArraySection(model: .teamNewsFeed, elements: elements))
+                case .TEAM_TOBEVISION_GENERATOR_POLL:
+                    sectionDataList.append(ArraySection(model: .openPoll,
+                                                        elements: strongSelf.createPollOpen(pollBucket: bucket)))
+                case .TEAM_TOBEVISION_TRACKER_POLL :
+                    sectionDataList.append(ArraySection(model: .tbvRate,
+                                                        elements: strongSelf.createRate(rateBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -595,7 +610,6 @@ extension DailyBriefInteractor {
     func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createLevel5List: [BaseDailyBriefViewModel] = []
         var levelMessageModels: [Level5ViewModel.LevelDetail] = []
-
         let title = AppTextService.get(.daily_brief_section_level_5_title)
         let intro = AppTextService.get(.daily_brief_section_level_5_body)
         let question = AppTextService.get(.daily_brief_section_level_5_question)
@@ -720,13 +734,16 @@ extension DailyBriefInteractor {
     // MARK: - TeamToBeVision Sentence
     func createTeamVisionSuggestionModel(teamVisionBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var teamVisionList: [BaseDailyBriefViewModel] = []
-//        guard let collection = teamVisionBucket.contentCollections?.first else {
-//            return teamVisionList
-//        }
-        let visionSentence = "We are an inspired, enerfized, dynamic, and agile group of people who maximizes the impact and performance of everyone we touch."
-        let title = "WEB TEAM TOBEVISION"
-        let suggestion = "Practice recovery after stressful times to balance your autonomic nervous system."
-        let model = TeamVisionSuggestionModel(title: title, teamColor: "#5790DD", tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        guard let collections = teamVisionBucket.contentCollections else {
+            return teamVisionList
+        }
+        let vision = teamVisionBucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
+        guard vision != nil else { return teamVisionList }
+        let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
+        let visionSentence = vision?.sentences.first?.sentence
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "").uppercased()
+        let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? " ")
+        let model = TeamVisionSuggestionModel(title: title, team: team, tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
     }
@@ -742,6 +759,44 @@ extension DailyBriefInteractor {
         let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, domainModel: invitationBucket)
         invitationList.append(model)
         return invitationList
+    }
+
+    // MARK: - Poll is Open
+    func createPollOpen(pollBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var openPollList: [BaseDailyBriefViewModel] = []
+        let openPolls = pollBucket.teamToBeVisionPolls?.filter { $0.open == true }
+        openPolls?.forEach { (openPoll) in
+            guard openPoll.creator == false,
+                  openPoll.userDidVote == false,
+                  let team = pollBucket.myTeams?.filter({ $0.qotId == openPoll.teamQotId }).first else { return }
+            let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
+            let model = PollOpenModel(team: team, teamAdmin: teamOwner?.email, domainModel: pollBucket)
+            openPollList.append(model)
+        }
+        return openPollList
+    }
+
+    // MARK: - Rate is Open
+    func createRate(rateBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var ratingBucketList: [BaseDailyBriefViewModel] = []
+        let openRatings = rateBucket.teamToBeVisionTrackerPolls?.filter { $0.open == true }
+        openRatings?.forEach { (openRatings) in
+            if openRatings.didVote == false {
+                guard openRatings.creator == false,
+                      let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
+                let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
+                let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, domainModel: rateBucket)
+                ratingBucketList.append(openRateModel)
+            }
+        }
+        let finishedRatings = rateBucket.teamToBeVisionTrackerPolls?.filter { $0.open == false }
+        finishedRatings?.forEach {(closedRating) in
+            guard let team = rateBucket.myTeams?.filter({ $0.qotId == closedRating.teamQotId }).first else { return }
+            let ratingFeedback = closedRating.feedback
+            let feedbackModel = RatingFeedbackModel(team: team, feedback: ratingFeedback, averageValue: closedRating.averageValue, domainModel: rateBucket)
+            ratingBucketList.append(feedbackModel)
+        }
+        return ratingBucketList
     }
 
     // MARK: - Products we love

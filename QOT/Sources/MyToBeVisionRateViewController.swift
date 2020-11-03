@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-protocol MyToBeVisionRateViewControllerProtocol: class {
+protocol TBVRateDelegate: class {
     func doneAction()
 }
 
@@ -29,7 +29,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     private var tracks: [RatingQuestionViewModel.Question] = []
 
-    weak var delegate: MyToBeVisionRateViewControllerProtocol?
+    weak var delegate: TBVRateDelegate?
     var interactor: MyToBeVisionRateInteracorInterface?
 
     override func viewDidLoad() {
@@ -45,7 +45,10 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     func questionnaireViewController(with question: RatingQuestionViewModel.Question?) -> UIViewController? {
         guard let questionnaire = question else { return nil }
-        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self)
+        guard interactor?.team != nil else {
+            return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .vision)
+        }
+        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .teamVision)
     }
 
     func indexOf(_ viewController: UIViewController?) -> Int {
@@ -83,7 +86,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         if isLastPage {
             return nil
         } else {
-            return super.bottomNavigationLeftBarItems()
+            return [dismissNavigationItem(action: #selector(dismissAction))]
         }
     }
 
@@ -104,11 +107,14 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc private func doneAction() {
-        trackUserEvent(.CONFIRM, valueType: "MyToBeVision.SaveAnswers", action: .TAP)
         interactor?.saveQuestions()
-        dismiss(animated: true) {[weak self] in
-            self?.delegate?.doneAction()
-        }
+    }
+
+    func showAlert(action: QOTAlertAction, days: Int?) {
+        QOTAlert.show(title: AppTextService.get(.alert_tracker_poll_answers_submitted_title) ,
+                      message: AppTextService.get(.alert_tracker_poll_answers_submitted_message)
+                        .replacingOccurrences(of: "${NUMBER_OF_DAYS}", with: String(days ?? 0)),
+                      bottomItems: [action])
     }
 
     func next(from viewController: UIViewController) -> UIViewController? {
@@ -139,8 +145,8 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         pageController?.setViewControllers([viewController], direction: .reverse, animated: false, completion: nil)
     }
 
-    @IBAction func dismissAction() {
-        interactor?.dismiss()
+    @objc private func dismissAction() {
+        dismiss(animated: true)
     }
 }
 

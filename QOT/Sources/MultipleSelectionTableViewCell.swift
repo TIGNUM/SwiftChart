@@ -15,17 +15,17 @@ protocol MultipleSelectionCellDelegate: class {
     func didSetHeight(to height: CGFloat)
 }
 
-final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
+class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable, MultipleSelectionDelegate {
 
     // MARK: - Properties
     weak var delegate: MultipleSelectionCellDelegate?
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
     private let layout = ChatViewLayout()
-    private var maxPossibleSelections = 0
-    private var selectionCounter = 0
-    private var answers: [DTViewModel.Answer] = []
     private var selectedAnswers: [DTViewModel.Answer] = []
+    var answers: [DTViewModel.Answer] = []
+    var maxPossibleSelections = 0
+    var selectionCounter = 0
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -34,6 +34,31 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
         collectionView.dataSource = self
         collectionView.collectionViewLayout = layout
         collectionView.registerDequeueable(MultipleSelectionCollectionViewCell.self)
+        collectionView.registerDequeueable(PollCollectionViewCell.self)
+    }
+
+    // MARK: - ChatViewLayout
+    func chatViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let offset = collectionView.bounds.width * 0.1
+        let answerText = answers[indexPath.row].title
+
+        let label = UILabel(frame: CGRect(center: .zero, size: CGSize(width: collectionView.bounds.width - offset, height: .AnswerButtonBig)))
+        label.numberOfLines = 2
+        label.attributedText = ThemeText.chatbotButton.attributedString(answerText)
+        label.sizeToFit()
+
+        let width: CGFloat = label.bounds.width
+        let height: CGFloat = label.bounds.height
+        return CGSize(width: width + 32, height: CGFloat(height) + 20)  //size includes constraints from cell.xib
+    }
+
+    // MARK: - MultipleSelectionDelegate
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didDeSelectAnswer(answer)
+    }
+
+    func didSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didSelectAnswer(answer)
     }
 }
 
@@ -50,17 +75,6 @@ extension MultipleSelectionTableViewCell {
     }
 }
 
-// MARK: - MultipleSelectionCollectionViewCellDelegate
-extension MultipleSelectionTableViewCell: MultipleSelectionDelegate {
-    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didDeSelectAnswer(answer)
-    }
-
-    func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didSelectAnswer(answer)
-    }
-}
-
 // MARK: - UICollectionViewDataSource
 extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -71,7 +85,9 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MultipleSelectionCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         let answer = answers[indexPath.row]
-        cell.configure(for: answer, maxSelections: maxPossibleSelections, selectionCounter: selectionCounter)
+        cell.configure(for: answer,
+                       maxSelections: maxPossibleSelections,
+                       selectionCounter: selectionCounter)
         cell.delegate = self
         return cell
     }
@@ -81,20 +97,6 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
 extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
     func chatViewLayout(_ layout: ChatViewLayout, alignmentForSectionAt section: Int) -> ChatViewAlignment {
         return .right
-    }
-
-    func chatViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let offset = collectionView.bounds.width * 0.1
-        let answerText = answers[indexPath.row].title
-
-        let label = UILabel(frame: CGRect(center: .zero, size: CGSize(width: collectionView.bounds.width - offset, height: .AnswerButtonBig)))
-        label.numberOfLines = 2
-        label.attributedText = ThemeText.chatbotButton.attributedString(answerText)
-        label.sizeToFit()
-
-        let width: CGFloat = label.bounds.width
-        let height: CGFloat = label.bounds.height
-        return CGSize(width: width + 32, height: CGFloat(height) + 20)  //size includes constraints from cell.xib
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, horizontalInteritemSpacingForSectionAt section: Int) -> CGFloat {

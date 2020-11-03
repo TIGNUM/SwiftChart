@@ -14,15 +14,16 @@ protocol MultipleSelectionDelegate: class {
     func didDeSelectAnswer(_ answer: DTViewModel.Answer)
 }
 
-final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
+class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
     weak var delegate: MultipleSelectionDelegate?
-    @IBOutlet private weak var selectionButton: SelectionButton!
+    @IBOutlet weak var selectionButton: SelectionButton!
     private var maxSelections = 0
     private var selectionCounter = 0
     private var answer: DTViewModel.Answer?
     private var isAnswered = false
+    var votes = 0
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -34,10 +35,8 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
             self?.syncButton(notification)
         }
     }
-}
 
-// MARK: - Configure
-extension MultipleSelectionCollectionViewCell {
+    // MARK: - Configure
     func configure(for answer: DTViewModel.Answer, maxSelections: Int, selectionCounter: Int) {
         self.answer = answer
         self.maxSelections = maxSelections
@@ -56,11 +55,13 @@ extension MultipleSelectionCollectionViewCell {
             isAnswered = false
             selectionButton?.switchBackgroundColor()
             delegate?.didDeSelectAnswer(answer)
+            NotificationCenter.default.post(name: .didUnVoteTeamTBV, object: answer.remoteId)
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
             answer.setSelected(true)
             isAnswered = true
             selectionButton?.switchBackgroundColor()
             delegate?.didSelectAnswer(answer)
+            NotificationCenter.default.post(name: .didVoteTeamTBV, object: answer.remoteId)
         }
     }
 }

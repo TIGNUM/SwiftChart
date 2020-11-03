@@ -59,11 +59,13 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     var criticalPrepItems: [MyPrepsModel.Item]? {
-        return worker.model?.items.first
+        let criticalItems = worker.model?.items.first
+        return criticalItems
     }
 
     var everydayPrepItems: [MyPrepsModel.Item]? {
-        return worker.model?.items.last
+        let everydayItems = worker.model?.items.last
+        return everydayItems
     }
 
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Item? {

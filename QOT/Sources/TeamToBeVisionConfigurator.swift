@@ -14,7 +14,9 @@ final class TeamToBeVisionConfigurator {
         return { (viewController) in
             let router = TeamToBeVisionRouter(viewController: viewController)
             let presenter = TeamToBeVisionPresenter(viewController: viewController)
-            let interactor = TeamToBeVisionInteractor(presenter: presenter, router: router, team: team)
+            let interactor = TeamToBeVisionInteractor(presenter: presenter,
+                                                      router: router,
+                                                      team: team)
             viewController.interactor = interactor
         }
     }

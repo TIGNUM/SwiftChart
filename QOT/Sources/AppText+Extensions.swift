@@ -377,14 +377,23 @@ public extension AppTextKey {
     static let daily_brief_team_vision_suggestion_suggestion_title = AppTextKey("daily_brief.team_vision_suggestion.suggestion_title")
 
     static let daily_brief_team_invitation_one_team_statement = AppTextKey("daily_brief.team_invitation.one_team_statement")
-//    " has invited you to be part of"
     static let daily_brief_team_invitation_several_teams_statement = AppTextKey("daily_brief.team_invitation.several_teams_statement")
-//    "You have been invited to join"
     static let daily_brief_team_invitation_belonging_sentence = AppTextKey("daily_brief.team_invitation.belonging_sentence")
     static let daily_brief_team_invitation_decline_cta = AppTextKey("daily_brief.team_invitation.decline_cta")
     static let daily_brief_team_invitation_join_cta = AppTextKey("daily_brief.team_invitation.join_cta")
     static let daily_brief_team_invitation_see_pending_cta = AppTextKey("daily_brief.team_invitation.see_pending_cta")
     static let daily_brief_team_invitation_title = AppTextKey("daily_brief.team_invitation.title")
+
+    static let daily_brief_team_open_poll_cta = AppTextKey("daily_brief.team_open_poll.cta")
+    static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+    static let daily_brief_team_open_poll_title = AppTextKey("daily_brief.team_open_poll.title")
+
+    static let daily_brief_rate_open_cta = AppTextKey("daily_brief.rate_open.cta")
+    static let daily_brief_rate_open_text = AppTextKey("daily_brief.rate_open.text")
+    static let daily_brief_vision_rating_title = AppTextKey("daily_brief.vision_rating.title")
+    static let daily_brief_rating_ready_subtitle = AppTextKey("daily_brief.rating_ready.subtitle")
+    static let daily_brief_rating_ready_average_title = AppTextKey("daily_brief.rating_ready.average_title")
+    static let daily_brief_rating_ready_cta = AppTextKey("daily_brief.rating_ready.cta")
 
     static let daily_brief_team_invitation_and_label = AppTextKey("daily_brief.team_invitation.and_label")
     static let daily_brief_team_invitation_other_teams_label = AppTextKey("daily_brief.team_invitation.other_teams_label")
@@ -552,6 +561,12 @@ public extension AppTextKey {
     static let my_x_team_tbv_options_alert_leftButton = AppTextKey("my_x.team_tbv_options.alert_leftButton")
     static let my_x_team_tbv_options_alert_rightButton = AppTextKey("my_x.team_tbv_options.alert_rightButton")
 
+    // MARK: - Team ToBeVision Tracker Details
+    static let my_x_team_vision_tracker_total_votes = AppTextKey("tracker.poll.total_votes")
+    static let my_x_team_vision_tracker_average_rating = AppTextKey("tracker.poll.averag_rating")
+    static let my_x_team_vision_tracker_my_rating = AppTextKey("tracker.poll.my_rating")
+    static let my_x_team_vision_tracker_votes = AppTextKey("tracker.poll.percentage_vote")
+
     // MARK: - Team Create
     static let my_x_team_create_header = AppTextKey("my_x.team.create")
     static let my_x_team_create_description = AppTextKey("my_x.team.create_description")
@@ -615,9 +630,12 @@ public extension AppTextKey {
     static let team_tbv_poll_content_member = AppTextKey("team-tbv.poll-member.content")
     static let team_tbv_poll_video = AppTextKey("team-tbv.poll.video-title")
     static let team_tbv_poll_button = AppTextKey("team-tbv.poll.button")
+    static let team_tbv_poll_in_progress = AppTextKey("team_tbv.poll.in_progress")
+    static let team_tbv_poll_ends_in_days = AppTextKey("team.tbv_poll.ends_in")
 
     // MARK: - Button Titles
     static let button_title_start = AppTextKey("button.title.start")
+    static let team_tbv_poll_voted = AppTextKey("team.tbv-poll.voted")
 
     // MARK: - Library
     static let my_qot_my_library_section_notes_title = AppTextKey("my_qot.my_library.section_notes.title")
@@ -833,6 +851,14 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_always")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.body_rate_yourself")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_never")
+    static let my_x_my_tbv_tbv_tracker_data_section_team_header = AppTextKey("my_x.my_tbv.tbv_tracker_data_section.team_header")
+
+    static let alert_tracker_poll_answers_submitted_title = AppTextKey("alert.tracker_poll.answers_submitted.title")
+    static let alert_tracker_poll_answers_submitted_message = AppTextKey("alert.tracker_poll.answers_submitted.message")
+    static let alert_tracker_poll_answers_submitted_cta = AppTextKey("alert.tracker_poll.answers_submitted.cta")
+
+    static let my_x_team_tbv_questionnaire_top_label = AppTextKey("my_x.team_tbv.questionnaire_top_label")
+    static let my_x_team_tbv_questionnaire_bottom_label = AppTextKey("my_x.team_tbv.questionnaire_bottom_label")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_sometimes")
     static let my_qot_my_tbv_tbv_tracker_result_section_footer_button_done = AppTextKey("my_qot.my_tbv.tbv_tracker.result.section_footer.button_done")
     static let my_qot_my_tbv_tbv_tracker_data_null_state_button_rate = AppTextKey("my_qot.my_tbv.tbv_tracker_data.null_state.button_rate")
@@ -1065,6 +1091,17 @@ public extension AppTextKey {
     static let bookmark_library_selection_normal_cell_my_library_subtitle = AppTextKey("bookmark_library_selection.normal.cell_my_library_subtitle")
     static let bookmark_library_selection_normal_new_cell_participiant_count_template = AppTextKey("bookmark_library_selection.normal.new_cell_participiant_count_template")
     static let bookmark_library_selection_normal_save_button_title = AppTextKey("bookmark_library_selection.normal.save_button_title")
+
+    // MARK: - Alerts
+    static let alert_title_team_tbv_poll_submitted = AppTextKey("alert.title.team_tbv_poll_submitted")
+    static let qot_alert_message_team_tbv_poll_submitted = AppTextKey("qot_alert.message.team_tbv_poll_submitted")
+
+    // MARK: - Banner
+
+    static let team_tbv_poll_ends = AppTextKey("team_tbv.poll.ends")
+    static let team_tbv_rate_ends = AppTextKey("team_tbv.rate.ends")
+    static let banner_unavailable_while_poll_active = AppTextKey("unavailable.while_poll.active")
+    static let banner_unavailable_while_rate_active = AppTextKey("unavailable.while_rate.active")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")
@@ -1137,4 +1174,10 @@ public extension AppTextKey {
 @available(*, unavailable, message: "Unavailable from QOT v3.1.9")
 public extension AppTextKey {
     static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
+}
+
+@available(*, unavailable, message: "Unavailable from QOT v3.2.1")
+public extension AppTextKey {
+    static let banner_tbv_poll_ends_days = AppTextKey("tbv.poll.ends")
+    static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
 }

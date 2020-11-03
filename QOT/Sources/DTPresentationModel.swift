@@ -17,6 +17,7 @@ struct DTPresentationModel {
     let tbv: QDMToBeVision?
     let selectedIds: [Int]
     let preparations: [QDMUserPreparation]
+    let poll: QDMTeamToBeVisionPoll?
 
     init(question: QDMQuestion?,
          questionUpdate: String?,
@@ -24,7 +25,8 @@ struct DTPresentationModel {
          userInputText: String?,
          tbv: QDMToBeVision?,
          selectedIds: [Int],
-         preparations: [QDMUserPreparation]) {
+         preparations: [QDMUserPreparation],
+         poll: QDMTeamToBeVisionPoll?) {
         self.question = question
         self.questionUpdate = questionUpdate
         self.answerFilter = answerFilter
@@ -32,9 +34,10 @@ struct DTPresentationModel {
         self.tbv = tbv
         self.selectedIds = selectedIds
         self.preparations = preparations
+        self.poll = poll
     }
 
-    init(question: QDMQuestion?) {
+    init(question: QDMQuestion?, poll: QDMTeamToBeVisionPoll?) {
         self.question = question
         self.questionUpdate = nil
         self.answerFilter = nil
@@ -42,6 +45,11 @@ struct DTPresentationModel {
         self.tbv = nil
         self.selectedIds = []
         self.preparations = []
+        self.poll = poll
+    }
+
+    var answerType: AnswerType {
+        return AnswerType(rawValue: question?.answerType ?? "") ?? .singleSelection
     }
 
     func getNavigationButton(isHidden: Bool, isDark: Bool) -> NavigationButton? {
@@ -49,11 +57,10 @@ struct DTPresentationModel {
         if question.defaultButtonText?.isEmpty == true && question.confirmationButtonText?.isEmpty == true {
             return nil
         }
-        let enabled = question.answerType != AnswerType.multiSelection.rawValue
         let title = question.defaultButtonText?.isEmpty == true ? question.confirmationButtonText : question.defaultButtonText
         let navigationButton = NavigationButton.instantiateFromNib()
         navigationButton.configure(title: title ?? "", minSelection: 0, isDark: isDark)
-        if !enabled,
+        if !answerType.isEnabled,
             let maxSelections = question.maxPossibleSelections,
             let defaultTitle = question.defaultButtonText,
             let confirmationTitle = question.confirmationButtonText {

@@ -386,7 +386,6 @@ extension UIViewController {
         if let action = action {
             buttonAction = action
         }
-
         let isLight = isLightBackground()
         let button = RoundedButton.init(title: nil, target: self, action: buttonAction)
         let heightConstraint = getLayoutConstraint(item: button, attribute: .height)
@@ -395,6 +394,21 @@ extension UIViewController {
         ThemeButton.backButton.apply(button)
         button.setImage(R.image.ic_close(), for: .normal)
         ThemeButton.closeButton(isLight ? .light : .dark).apply(button)
+        return UIBarButtonItem(customView: button)
+    }
+
+    @objc open func dismissNavigationItemBlack(action: Selector? = nil) -> UIBarButtonItem {
+        var buttonAction = #selector(didTapDismissButton)
+        if let action = action {
+            buttonAction = action
+        }
+        let button = RoundedButton.init(title: nil, target: self, action: buttonAction)
+        let heightConstraint = getLayoutConstraint(item: button, attribute: .height)
+        let widthConstraint = getLayoutConstraint(item: button, attribute: .width)
+        button.addConstraints([heightConstraint, widthConstraint])
+        ThemeButton.backButton.apply(button)
+        button.setImage(R.image.ic_close(), for: .normal)
+        button.backgroundColor = .black
         return UIBarButtonItem(customView: button)
     }
 

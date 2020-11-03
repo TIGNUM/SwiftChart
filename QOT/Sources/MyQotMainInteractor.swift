@@ -23,10 +23,13 @@ final class MyQotMainInteractor: MyQotMainWorker {
 
     internal var headerItems = [Team.Item]()
     internal var subtitles = [String: String?]() // [MyX.Item.rawValue: subtitle string]
-    internal var hasOwnerEmptyTeamTBV = false
     internal var isCellEnabled = [String: Bool]() // [MyX.Item.rawValue: cell enabled]
     internal var settingTitle: String = ""
     internal var newLibraryItemCount: Int = 0
+    internal var tbvTitle: String = ""
+    internal var teamTBVPoll: QDMTeamToBeVisionPoll?
+    internal var teamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
+    internal var teamTBV: QDMTeamToBeVision?
 
     // MARK: - Init
     init(presenter: MyQotMainPresenterInterface, router: MyQotMainRouterInterface) {
@@ -53,9 +56,18 @@ final class MyQotMainInteractor: MyQotMainWorker {
         }
 
         var tmpNewLibraryItemCount = 0
+        var tmpToBeVisionTitle = ""
+        var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
+        var tmpTeamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
+        var tmpTeamTBV: QDMTeamToBeVision?
         var tmpSubtitles = [String: String?]()
         var tmpIsCellEnabled = [String: Bool]()
-        for item in MyX.Item.allCases {
+
+        _ = DispatchQueue.global(qos: .userInitiated)
+
+//        for item in MyX.Item.allCases {
+        DispatchQueue.concurrentPerform(iterations: MyX.Item.allCases.count) { (index) in
+            let item = MyX.Item.allCases[index]
             dispatchGroup.enter()
             // load all "isCellEnabled"
             isCellEnabled(for: tmpSelectedTeamItem, section: item) { enabled in
@@ -97,16 +109,24 @@ final class MyQotMainInteractor: MyQotMainWorker {
                     tmpSubtitles[MyX.Item.toBeVision.rawValue] = subtitle
                     dispatchGroup.leave()
                 }
+
+                if let team = tmpSelectedTeamItem?.qdmTeam {
+                    dispatchGroup.enter()
+                    getTeamToBeVision(for: team) { (teamVision) in
+                        tmpTeamTBV = teamVision
+                        dispatchGroup.leave()
+                    }
+                }
+
+                dispatchGroup.enter()
+                getToBeVisionData(item: .toBeVision, teamItem: tmpSelectedTeamItem) { (title, poll, trackerPoll) in
+                    tmpToBeVisionTitle = title
+                    tmpTeamTBVPoll = poll
+                    tmpTeamTrackerPoll = trackerPoll
+                    dispatchGroup.leave()
+                }
             default: break
             }
-        }
-
-        // load hasOwnerEmptyTeamToBeVision
-        dispatchGroup.enter()
-        var tmpHasOwnerEmptyTeamTBV = true
-        hasOwnerEmptyTeamTBV(for: tmpSelectedTeamItem) { (isEmpty) in
-            tmpHasOwnerEmptyTeamTBV = isEmpty
-            dispatchGroup.leave()
         }
 
         dispatchGroup.notify(queue: .main) { [weak self] in
@@ -116,7 +136,10 @@ final class MyQotMainInteractor: MyQotMainWorker {
             self?.newLibraryItemCount = tmpNewLibraryItemCount
             self?.subtitles = tmpSubtitles
             self?.isCellEnabled = tmpIsCellEnabled
-            self?.hasOwnerEmptyTeamTBV = tmpHasOwnerEmptyTeamTBV
+            self?.tbvTitle = tmpToBeVisionTitle
+            self?.teamTBVPoll = tmpTeamTBVPoll
+            self?.teamTrackerPoll = tmpTeamTrackerPoll
+            self?.teamTBV = tmpTeamTBV
             completion()
         }
     }
@@ -143,15 +166,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func getTitle(for item: MyX.Item?) -> String? {
-        let isTeam = selectedTeamItem != nil
-        if item == .toBeVision && isTeam {
-            if self.hasOwnerEmptyTeamTBV {
-                return AppTextService.get(.myx_team_tbv_empty_subtitle_vision)
-            } else {
-                return item?.title(isTeam: isTeam)
-            }
+        if item == .toBeVision && selectedTeamItem != nil {
+            return tbvTitle
         }
-        return item?.title(isTeam: isTeam)
+        return item?.title(isTeam: selectedTeamItem != nil, isPollInProgress: false)
     }
 
     func getSubtitle(for item: MyX.Item?) -> (String?, Bool) {
@@ -160,6 +178,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             return self.isCellEnabled[MyX.Item.teamCreate.rawValue] == true ? (AppTextService.get(.my_x_team_create_subheader), false) : (AppTextService.get(.my_x_team_create_max_team_sutitle), false)
         case .library:
             return (self.subtitles[MyX.Item.library.rawValue] ?? nil, self.newLibraryItemCount != 0)
+        case .toBeVision:
+            return (self.subtitles[MyX.Item.toBeVision.rawValue] ?? nil, teamTBVPoll?.showBatch == true ||
+                        (teamTBVPoll?.open == true && teamTBVPoll?.userDidVote == false) ||
+                        (teamTrackerPoll?.open == true && teamTrackerPoll?.didVote == false))
         default: break
         }
         let subtitle = self.subtitles[item?.rawValue ?? ""] ?? nil
@@ -179,6 +201,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         identifiers.append(contentsOf: MyX.Item.allCases.compactMap({ "\($0.rawValue)_team" }))
         return identifiers
     }
+
     func mainCellReuseIdentifier(at indexPath: IndexPath) -> String {
         let item = getItem(at: indexPath)
         return "\(item?.rawValue ?? "\(indexPath)")_\(selectedTeamItem != nil ? "team" : "personal")"
@@ -219,7 +242,39 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .data:
             router.presentMyDataScreen()
         case .toBeVision:
-            router.showTBV(team: selectedTeamItem?.qdmTeam)
+            let team = selectedTeamItem?.qdmTeam
+
+            if teamTBVPoll == nil && team == nil {
+                router.showTBV()
+            }
+
+            if let team = team {
+                if let poll = teamTBVPoll {
+
+                    switch (teamTBV == nil, poll.creator, poll.userDidVote, poll.open) {
+                    /// member
+                    case (true, false, true, true):
+                        showBanner(poll: poll)
+                    case (true, false, false, true):
+                        router.showTeamTBVPollEXplanation(team)
+                    case (false, false, false, true),
+                         (false, false, true, true):
+                        router.showTeamTBV(team, poll)
+
+                    /// admin
+                    case (_, true, _, false),
+                         (false, true, _, true):
+                        router.showTeamTBV(team, poll)
+                    case (true, true, _, true):
+                        router.showTeamAdmin(type: .voting, team: team)
+                    default:
+                        break
+                    }
+
+                } else {
+                    router.showTeamTBV(team, teamTBVPoll)
+                }
+            }
         default: return
         }
     }
@@ -293,27 +348,33 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 // MARK: - Private
 private extension MyQotMainInteractor {
     func canSelectTBV(for teamItem: Team.Item?, _ completion: @escaping (Bool) -> Void) {
-        guard let team = teamItem?.qdmTeam else {
+        guard let team = teamItem?.qdmTeam, team.thisUserIsOwner == false else {
             completion(true)
             return
         }
 
-        if !team.thisUserIsOwner {
-            getTeamToBeVision(for: team) { (teamVision) in
-                completion(teamVision != nil)
-            }
-        } else {
-            completion(true)
-        }
-    }
+        let dispatchGroup = DispatchGroup()
+        var tmpPoll: QDMTeamToBeVisionPoll?
+        var tmpTeamTBV: QDMTeamToBeVision?
 
-    func hasOwnerEmptyTeamTBV(for teamItem: Team.Item?, _ completion: @escaping (Bool) -> Void) {
-        if teamItem?.thisUserIsOwner == true, let team = teamItem?.qdmTeam {
-            getTeamToBeVision(for: team) { (teamVision) in
-                completion(teamVision == nil)
+        dispatchGroup.enter()
+        getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+            tmpPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        getTeamToBeVision(for: team) { (teamTBV) in
+            tmpTeamTBV = teamTBV
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            if tmpPoll?.open == true {
+                completion(true)
+            } else {
+                completion(tmpTeamTBV != nil)
             }
-        } else {
-            completion(false)
         }
     }
 
@@ -352,5 +413,11 @@ private extension MyQotMainInteractor {
             self?.presenter.presentItemsWith(identifiers: self?.selectedTeamItem == nil ? personalPrefixes : teamPrefixes,
                                              maxCount: MyX.Item.allCases.count)
         }
+    }
+
+    func showBanner(poll: QDMTeamToBeVisionPoll) {
+        var message = AppTextService.get(.team_tbv_poll_ends)
+        message = message.replacingOccurrences(of: "${number_of_days}", with: String(poll.remainingDays))
+        router.showBanner(message: message)
     }
 }

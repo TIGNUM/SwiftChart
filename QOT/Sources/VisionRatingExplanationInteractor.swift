@@ -15,23 +15,22 @@ final class VisionRatingExplanationInteractor {
     private lazy var worker = VisionRatingExplanationWorker()
     private let presenter: VisionRatingExplanationPresenterInterface!
     private var type = Explanation.Types.ratingOwner
-    let router: VisionRatingExplanationRouter
-    var team: QDMTeam?
+    private weak var downSyncObserver: NSObjectProtocol?
+
+    var team: QDMTeam
 
     // MARK: - Init
     init(presenter: VisionRatingExplanationPresenterInterface,
-         team: QDMTeam?,
-         router: VisionRatingExplanationRouter,
+         team: QDMTeam,
          type: Explanation.Types) {
         self.presenter = presenter
         self.team = team
-        self.router = router
         self.type = type
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        worker.getVideoItem(type: self.type) { item in
+        worker.getVideoItem(type: type) { item in
             self.presenter.setupView(type: self.type, videoItem: item)
         }
     }
@@ -39,14 +38,54 @@ final class VisionRatingExplanationInteractor {
 
 // MARK: - VisionRatingExplanationInteractorInterface
 extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorInterface {
+    func startTeamTBVPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        let team = self.team
+        worker.getCurrentTeamToBeVisionPoll(for: team) { [weak self] (poll) in
+            if let poll = poll {
+                completion(poll)
+            } else {
+                self?.worker.openNewTeamToBeVisionPoll(for: team) { (poll) in
+                    completion(poll)
+                }
+            }
+        }
+    }
 
-    func showRateScreen() {
-//        TODO
-//        guard let team = team else { return }
-//        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
-//            if let remoteId = teamVision?.remoteID {
-//                self?.router.showRateScreen(with: remoteId)
-//            }
-//        }
+    func startTeamTrackerPoll(_ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void) {
+        removeObserver()
+        let team = self.team
+        worker.getCurrentRatingPoll(for: team) { [weak self] (currentPoll) in
+            if let currentPoll = currentPoll {
+                completion(currentPoll, team)
+            } else {
+                self?.handleOpenNewTrackerPoll(team: team, completion)
+            }
+        }
+    }
+}
+
+// MARK: - Private
+private extension VisionRatingExplanationInteractor {
+    func handleOpenNewTrackerPoll(team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void) {
+        worker.openNewTeamToBeVisionTrackerPoll(for: team) { [weak self] _ in
+            self?.downSyncObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                            object: nil,
+                                                                            queue: .main) { [weak self] (notification) in
+                if let context = notification.object as? SyncResultContext,
+                   context.syncRequestType == .DOWN_SYNC,
+                   context.hasUpdatedContent,
+                   context.dataType == .TEAM_TO_BE_VISION_TRACKER_POLL {
+                    self?.worker.getCurrentRatingPoll(for: team) { (poll) in
+                        completion(poll, team)
+                    }
+                }
+            }
+        }
+    }
+
+    func removeObserver() {
+        if let downSyncObserver = downSyncObserver {
+            NotificationCenter.default.removeObserver(downSyncObserver)
+        }
     }
 }

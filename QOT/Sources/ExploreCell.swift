@@ -19,8 +19,8 @@ final class ExploreCell: BaseDailyBriefCell {
     @IBOutlet private weak var exploreButton: AnimatedButton!
     private var contentID: Int?
     private var isStrategy = true
+    weak var delegate: DailyBriefViewControllerDelegate?
     private weak var baseHeaderView: QOTBaseHeaderView?
-    weak var delegate: DailyBriefViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,9 +52,9 @@ final class ExploreCell: BaseDailyBriefCell {
 
     @IBAction func didTapExplore(_ sender: Any) {
         if isStrategy {
-            delegate?.presentStrategyList(strategyID: self.contentID)
+            delegate?.presentStrategyList(strategyID: contentID)
         } else {
-            delegate?.openTools(toolID: self.contentID)
+            delegate?.openTools(toolID: contentID)
         }
     }
 }

@@ -13,7 +13,7 @@ protocol MyVisionViewControllerInterface: class {
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
-    func load(ratingView: TBVRatingView, myVision: QDMToBeVision?)
+    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String)
 }
 
@@ -25,7 +25,7 @@ protocol MyVisionPresenterInterface {
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
-    func load(ratingView: TBVRatingView, myVision: QDMToBeVision?)
+    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String)
 }
 
@@ -41,7 +41,7 @@ protocol MyVisionInteractorInterface: Interactor {
     func showNullState(with title: String, message: String, writeMessage: String)
     func showTBVData()
     func showEditVision(isFromNullState: Bool)
-    func showRateScreen()
+    func showRateScreen(delegate: TBVRateDelegate?)
 
     func hideNullState()
     func saveToBeVision(image: UIImage?)
@@ -49,17 +49,8 @@ protocol MyVisionInteractorInterface: Interactor {
     func shareToBeVision()
 
     func openToBeVisionGenerator()
-    func updateTBVData()
+    func viewWillAppear()
     func isShareBlocked(_ completion: @escaping (Bool) -> Void)
     func getToBeVision(_ completion: @escaping (QDMToBeVision?) -> Void)
     func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void)
-}
-
-protocol MyVisionRouterInterface {
-    func showTracker()
-    func showTBVData(shouldShowNullState: Bool, visionId: Int?)
-    func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
-    func showRateScreen(with id: Int)
-    func showViewController(viewController: UIViewController, completion: (() -> Void)?)
-    func showTBVGenerator()
 }

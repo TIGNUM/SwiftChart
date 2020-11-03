@@ -205,6 +205,15 @@ final class LaunchHandler {
         case .recovery3DPlanner: show3DRecoveryDecisionTree()
         case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         case .teamInvitations: showPendingInvitations()
+        case .tbvGeneratorPollClosed, .tbvTrackerPollClosed:
+            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
+            showTeamTBV(teamId)
+        case .tbvGeneratorPollOpened:
+            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
+            showTBVPoll(teamId)
+        case .tbvTrackerPollOpened:
+            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
+            showTBVRating(teamId)
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
@@ -248,6 +257,46 @@ extension LaunchHandler {
                 let configurator = TeamInvitesConfigurator.make(teamItems: [teamItem])
                 configurator(controller)
                 self.push(viewController: controller)
+            }
+        }
+    }
+
+    func showTeamTBV(_ teamId: Int) {
+        if let team = getTeam(teamId) {
+            if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
+                let configurator = TeamToBeVisionConfigurator.make(team: team)
+                configurator(controller)
+                present(viewController: controller)
+            }
+        }
+    }
+
+    func showTBVRating(_ teamId: Int) {
+        if let team = getTeam(teamId) {
+            if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                VisionRatingExplanationConfigurator.make(team: team, type: .tbvPollUser)(controller)
+                present(viewController: controller)
+            }
+        }
+    }
+
+    func getTeam(_ teamId: Int) -> QDMTeam? {
+        var currentTeam: QDMTeam?
+        TeamService.main.getTeams { (teams, _, _) in
+            if let teams = teams, teams.isEmpty == false {
+                if let team = teams.filter ({ $0.remoteID == teamId }).first {
+                    currentTeam = team
+                }
+            }
+        }
+        return currentTeam
+    }
+
+    func showTBVPoll(_ teamId: Int) {
+        if let team = getTeam(teamId) {
+            if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
+                present(viewController: controller)
             }
         }
     }
