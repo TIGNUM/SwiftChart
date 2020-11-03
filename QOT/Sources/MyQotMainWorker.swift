@@ -21,7 +21,7 @@ protocol MyQotMainWorker: WorkerTeam {
     func getToBeVisionSubtitle(team: QDMTeam?, _ completion: @escaping (String?) -> Void)
 
     func getToBeVisionData(item: MyX.Item,
-                           teamItem: Team.Item?, _ completion: @escaping (String, QDMTeamToBeVisionPoll?) -> Void)
+                           teamItem: Team.Item?, _ completion: @escaping (String, QDMTeamToBeVisionPoll?, QDMTeamToBeVisionTrackerPoll?) -> Void)
 }
 
 extension MyQotMainWorker {
@@ -125,9 +125,9 @@ extension MyQotMainWorker {
     }
 
     func getToBeVisionData(item: MyX.Item,
-                           teamItem: Team.Item?, _ completion: @escaping (String, QDMTeamToBeVisionPoll?) -> Void) {
+                           teamItem: Team.Item?, _ completion: @escaping (String, QDMTeamToBeVisionPoll?, QDMTeamToBeVisionTrackerPoll?) -> Void) {
         guard let team = teamItem?.qdmTeam, team.name != nil else {
-            completion("", nil)
+            completion("", nil, nil)
             return
         }
 
@@ -142,18 +142,25 @@ extension MyQotMainWorker {
 
         dispatchGroup.enter()
         var tmpPoll: QDMTeamToBeVisionPoll?
+        var tmpTrackerPoll: QDMTeamToBeVisionTrackerPoll?
         getCurrentTeamToBeVisionPoll(for: team) { (poll) in
             tmpPoll = poll
             dispatchGroup.leave()
         }
-
+        dispatchGroup.enter()
+        getCurrentRatingPoll(for: team) {(trackerPoll) in
+            tmpTrackerPoll = trackerPoll
+            dispatchGroup.leave()
+        }
         dispatchGroup.notify(queue: .main) {
             if tmpPoll != nil {
-                completion(item.title(isTeam: true, isPollInProgress: true), tmpPoll)
+                completion(item.title(isTeam: true, isPollInProgress: true), tmpPoll, nil)
+            } else if tmpTrackerPoll != nil {
+                completion(item.title(isTeam: true, isPollInProgress: false), nil, tmpTrackerPoll)
             } else if tmpHasOwnerEmptyTeamTBV == true {
-                completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision), tmpPoll)
+                completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision), tmpPoll, tmpTrackerPoll)
             } else {
-                completion(item.title(isTeam: true, isPollInProgress: false), tmpPoll)
+                completion(item.title(isTeam: true, isPollInProgress: false), tmpPoll, tmpTrackerPoll)
             }
         }
     }
