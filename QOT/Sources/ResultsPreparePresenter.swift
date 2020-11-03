@@ -26,7 +26,7 @@ private extension ResultsPreparePresenter {
     func getHeaderItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         if let title = preparation?.updatedName {
             return ResultsPrepare.Sections.header(title: title.uppercased())
-        } else if let name = preparation?.name, preparation?.event == nil {
+        } else if let name = preparation?.name, preparation?.eventDate == nil {
             return ResultsPrepare.Sections.header(title: name.uppercased())
         }
         return getDefaultHeader(preparation)

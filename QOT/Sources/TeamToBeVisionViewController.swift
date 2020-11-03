@@ -265,7 +265,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
-
         ThemableButton.poll.apply(pollButton, key: .my_x_team_tbv_section_poll_button)
         ThemableButton.poll.apply(trackerButton, key: .my_x_team_tbv_section_rating_button)
         let adapter = ImagePickerControllerAdapter(self)

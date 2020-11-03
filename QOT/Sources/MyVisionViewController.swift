@@ -6,6 +6,14 @@
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
+//
+//  MyVisionViewController.swift
+//  QOT
+//
+//  Created by Ashish Maheshwari on 23.05.19.
+//  Copyright © 2019 Tignum. All rights reserved.
+//
+
 import UIKit
 import qot_dal
 import Kingfisher
