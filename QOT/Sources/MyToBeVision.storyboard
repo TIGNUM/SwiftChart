@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -854,10 +855,20 @@
                                     <outlet property="delegate" destination="TAI-qk-Edb" id="JbU-nU-UgM"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkE-ah-pNG" customClass="ToBeVisionSelectionBar" customModule="TIGNUM_X" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkE-ah-pNG">
                                 <rect key="frame" x="0.0" y="-106" width="414" height="70"/>
-                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbP-3W-6KU" customClass="ToBeVisionSelectionBar" customModule="TIGNUM_X" customModuleProvider="target">
+                                        <rect key="frame" x="50" y="0.0" width="364" height="70"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="XbP-3W-6KU" firstAttribute="leading" secondItem="MkE-ah-pNG" secondAttribute="leading" constant="50" id="1Re-fO-yFx"/>
+                                    <constraint firstAttribute="bottom" secondItem="XbP-3W-6KU" secondAttribute="bottom" id="8I2-0B-4kR"/>
+                                    <constraint firstAttribute="trailing" secondItem="XbP-3W-6KU" secondAttribute="trailing" id="Cej-az-EAE"/>
+                                    <constraint firstItem="XbP-3W-6KU" firstAttribute="top" secondItem="MkE-ah-pNG" secondAttribute="top" id="TSA-gm-wAB"/>
                                     <constraint firstAttribute="height" constant="70" id="UHm-Ni-hOZ"/>
                                 </constraints>
                             </view>
@@ -956,8 +967,9 @@
                         <outlet property="headerLabel" destination="P5d-oL-yAf" id="okE-FP-hq7"/>
                         <outlet property="imageContainerView" destination="R5W-Tl-jin" id="iPF-kA-Ngg"/>
                         <outlet property="lastModifiedLabel" destination="vKH-4l-bYg" id="2CE-8S-MRj"/>
-                        <outlet property="navigationBarView" destination="MkE-ah-pNG" id="2tV-R8-Krn"/>
+                        <outlet property="navigationBarView" destination="XbP-3W-6KU" id="FwP-zT-D35"/>
                         <outlet property="navigationBarViewTopMarginConstraint" destination="KAA-Fd-15R" id="IUa-hf-mQx"/>
+                        <outlet property="navigationContainer" destination="MkE-ah-pNG" id="TKn-3o-eUF"/>
                         <outlet property="pollBatchLabel" destination="qQz-Vx-PaW" id="hIw-5F-18r"/>
                         <outlet property="pollButton" destination="bFn-ta-NLV" id="09f-7s-rcy"/>
                         <outlet property="scrollView" destination="BCS-Em-vqH" id="ZSZ-iF-RMs"/>
@@ -988,5 +1000,8 @@
         <image name="share" width="16" height="16"/>
         <image name="tbv_edit_toolbar_gradient" width="375" height="100"/>
         <image name="teamTBVPlaceholder" width="375" height="332"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

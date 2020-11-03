@@ -16,6 +16,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     private lazy var router = TeamToBeVisionRouter(viewController: self)
     @IBOutlet private weak var teamNullStateView: TeamToBeVisionNullStateView!
     @IBOutlet private weak var navigationBarView: ToBeVisionSelectionBar!
+    @IBOutlet private weak var navigationContainer: UIView!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
