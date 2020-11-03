@@ -15,7 +15,6 @@ final class RateOpenModel: BaseDailyBriefViewModel {
     let team: QDMTeam?
     let ownerEmail: String?
 
-
     // MARK: - Init
     init(team: QDMTeam?, ownerEmail: String?, domainModel: QDMDailyBriefBucket?) {
         self.team = team

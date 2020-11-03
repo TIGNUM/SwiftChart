@@ -44,10 +44,8 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
         }
     }
 
-    @objc func showTracker() {
-        presenter.dismiss(animated: true) {
-            self.router.showTracker(for: self.worker.team)
-        }
+    @objc func dismiss() {
+        presenter.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -58,7 +56,11 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
 
     func saveQuestions() {
         worker.saveQuestions {[weak self] in
-            self?.showAlert()
+            guard self?.worker.team == nil else {
+                self?.showAlert()
+                return
+            }
+            self?.presenter.dismiss(animated: true, completion: nil)
         }
     }
 
@@ -73,7 +75,7 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
     func showAlert() {
         let seeResults = QOTAlertAction(title: AppTextService.get(.alert_tracker_poll_answers_submitted_cta),
                                         target: self,
-                                        action: #selector(showTracker),
+                                        action: #selector(dismiss),
                                         handler: nil)
         presenter.showAlert(action: seeResults, days: worker.trackerPoll?.remainingDays)
     }

@@ -32,7 +32,7 @@ extension MyToBeVisionRatePresenter: MyToBeVisionRatePresenterInterface {
         viewController?.hideScreenLoader()
     }
 
-    func showAlert(action: QOTAlertAction, days: Int?)  {
+    func showAlert(action: QOTAlertAction, days: Int?) {
         viewController?.showAlert(action: action, days: days)
     }
 

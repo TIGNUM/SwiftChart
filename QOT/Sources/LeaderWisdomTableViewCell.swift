@@ -24,7 +24,6 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     private var mediaURL: URL?
     private var duration: Double?
     private var remoteID: Int?
-    
     private weak var baseHeaderView: QOTBaseHeaderView?
     weak var delegate: DailyBriefViewControllerDelegate?
 
