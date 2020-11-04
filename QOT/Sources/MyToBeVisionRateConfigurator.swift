@@ -28,8 +28,7 @@ final class MyToBeVisionRateConfigurator {
         let presenter = MyToBeVisionRatePresenter(viewController: controller)
         let interactor = MyToBeVisionRateInteractor(presenter: presenter,
                                                     worker: worker,
-                                                    router: router,
-                                                    isoDate: Date())
+                                                    router: router)
         controller.interactor = interactor
     }
 }

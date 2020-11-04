@@ -14,16 +14,14 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     let presenter: MyToBeVisionRatePresenterInterface
     let worker: MyToBeVisionRateWorker
     let router: MyToBeVisionRateRouter
-    private let isoDate: Date
+    private lazy var isoDate = worker.trackerPoll?.createdAt ?? Date()
 
     init(presenter: MyToBeVisionRatePresenterInterface,
          worker: MyToBeVisionRateWorker,
-         router: MyToBeVisionRateRouter,
-         isoDate: Date) {
+         router: MyToBeVisionRateRouter) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
-        self.isoDate = isoDate
     }
 
     func viewDidLoad() {
