@@ -94,6 +94,13 @@ private extension DailyBriefInteractor {
                                                    queue: .main) { [weak self] notification in
             self?.didGetDataSyncRequest(notification)
         }
+
+        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didGetDataSyncRequest(notification)
+        }
+
         // Listen about Expend/Collapse of Closed Guided Track
         _ = NotificationCenter.default.addObserver(forName: .displayGuidedTrackRows,
                                                    object: nil,
@@ -126,6 +133,15 @@ extension DailyBriefInteractor {
         case .DAILY_CHECK_IN where request.syncRequestType == .UP_SYNC:
             expendImpactReadiness = true
             updateDailyBriefBucket()
+        default:
+            break
+        }
+
+    }
+
+    @objc func didGetDataSyncResult(_ notification: Notification) {
+        guard let request = notification.object as? SyncResultContext else { return }
+        switch request.dataType {
         case .DAILY_CHECK_IN_RESULT where request.syncRequestType == .DOWN_SYNC:
             expendImpactReadiness = true
             updateDailyBriefBucket()
@@ -469,6 +485,7 @@ extension DailyBriefInteractor {
         // check request time for result
         if let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
             impactReadiness.dailyCheckInResult == nil {
+            readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
             // if it took longer than dailyCheckInResultRequestTimeOut and still we don't have result
             if answerDate.dateAfterSeconds(dailyCheckInResultRequestTimeOut) < Date() {
                 readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_error_body)
@@ -480,9 +497,7 @@ extension DailyBriefInteractor {
                       let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
                       answerDate.dateAfterSeconds(3) < Date() { // if we didn't get the feedback right away, try to get again.
                 requestSynchronization(.DAILY_CHECK_IN_RESULT, .DOWN_SYNC)
-                readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
-                readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
                 dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(dailyCheckInResultRequestTimeOut),
                                                                            repeats: false) { (timer) in
                                                                             self.dailyCheckInResultRequestCheckTimer?.invalidate()
