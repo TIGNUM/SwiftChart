@@ -1,28 +1,27 @@
 //
-//  NewDailyBriefCollectionViewCell.swift
+//  NewDailyBriefGetStartedCollectionViewCell.swift
 //  QOT
 //
-//  Created by Simu Voicu-Mircea on 03/11/2020.
+//  Created by Simu Voicu-Mircea on 04/11/2020.
 //  Copyright © 2020 Tignum. All rights reserved.
 //
 
 import UIKit
 import Kingfisher
 
-let maximumHeight: CGFloat = 1000.0
-
-class NewDailyBriefCollectionViewCell: UICollectionViewCell, Dequeueable {
+class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueable {
+    @IBOutlet weak var upperContentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var body: UILabel!
     @IBOutlet weak var arrowButton: UIButton!
 
-    private static let sizingCell = UINib(nibName: "NewDailyBriefCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyBriefCollectionViewCell
+    private static let sizingCell = UINib(nibName: "NewDailyBriefGetStartedCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyBriefGetStartedCollectionViewCell
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        upperContentView.layer.borderWidth = 0.5
+        upperContentView.layer.borderColor = UIColor.lightGray.cgColor
     }
 
     // MARK: - Actions
@@ -31,14 +30,12 @@ class NewDailyBriefCollectionViewCell: UICollectionViewCell, Dequeueable {
     }
 
     // MARK: - Public
-    public func configure(with viewModel: NewBaseDailyBriefModel?) {
-        caption.text = viewModel?.caption
+    public func configure(with viewModel: NewDailyBriefGetStartedModel?) {
         title.text = viewModel?.title
-        body.text = viewModel?.body
         imageView.kf.setImage(with: URL.init(string: viewModel?.image ?? ""))
     }
 
-    public static func height(for viewModel: NewBaseDailyBriefModel, forWidth width: CGFloat) -> CGFloat {
+    public static func height(for viewModel: NewDailyBriefGetStartedModel, forWidth width: CGFloat) -> CGFloat {
         sizingCell?.prepareForReuse()
         sizingCell?.configure(with: viewModel)
         sizingCell?.layoutIfNeeded()
