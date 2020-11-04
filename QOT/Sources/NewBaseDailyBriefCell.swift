@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-let width = UIScreen.main.bounds.width - 2*24.0
+let standardWidth = UIScreen.main.bounds.width - 2*24.0
 
 class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     @IBOutlet private var collectionView: UICollectionView!
@@ -21,7 +21,8 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
         ThemeView.level1.apply(self)
         selectionStyle = .none
-        collectionView.registerDequeueable(NewDailyBriefCollectionViewCell.self)
+        collectionView.registerDequeueable(NewDailyStandardBriefCollectionViewCell.self)
+        collectionView.registerDequeueable(NewDailyBriefGetStartedCollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -37,10 +38,25 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         if let modelDatasource = models {
             datasource?.append(contentsOf: modelDatasource)
         }
-        guard let viewModel = calculateHeighest(with: datasource ?? [], forWidth: width) else {
-            return
+        var width = standardWidth - 8
+        var height: CGFloat = 0
+
+        if datasource?.first as? NewDailyBriefGetStartedModel != nil {
+            width = 183
+            guard let viewModel = calculateHeighest(with: datasource ?? [], forWidth: width) as? NewDailyBriefGetStartedModel else {
+                return
+            }
+            height = NewDailyBriefGetStartedCollectionViewCell.height(for: viewModel, forWidth: width)
+            collectionView.isPagingEnabled = false
+            flowLayout.minimumLineSpacing = 34
+        } else {
+            guard let viewModel = calculateHeighest(with: datasource ?? [], forWidth: width) as? NewDailyBriefStandardModel else {
+                return
+            }
+            height = NewDailyStandardBriefCollectionViewCell.height(for: viewModel, forWidth: width)
+            collectionView.isPagingEnabled = true
+            flowLayout.minimumLineSpacing = 8
         }
-        let height = NewDailyBriefCollectionViewCell.height(for: viewModel, forWidth: width)
 
         flowLayout.itemSize = CGSize(width: width, height: height)
         collectionViewHeightConstraint.constant = height
@@ -56,18 +72,23 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: NewDailyBriefCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(with: datasource?[indexPath.row])
-        cell.layer.borderWidth = 0.5
-        cell.layer.borderColor = UIColor.lightGray.cgColor
+        let cell: UICollectionViewCell = UICollectionViewCell.init()
+        if let model = datasource?[indexPath.row] as? NewDailyBriefStandardModel {
+            let cell: NewDailyStandardBriefCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(with: model)
+            cell.layer.borderWidth = 0.5
+            cell.layer.borderColor = UIColor.lightGray.cgColor
+            return cell
+        } else if let model = datasource?[indexPath.row] as? NewDailyBriefGetStartedModel {
+            let cell: NewDailyBriefGetStartedCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(with: model)
+            return cell
+        }
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // expand animation
-//        guard let urlString = departureBespokeFeastModel?.copyrights.at(index: indexPath.item) else { return }
-//        let copyrightDescription = AppTextService.get(.daily_brief_alert_copyright_title)
-//        delegate?.presentPopUp(copyrightURL: urlString, description: copyrightDescription)
     }
 }
