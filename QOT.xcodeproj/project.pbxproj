@@ -1262,6 +1262,7 @@
 		F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9241228EE273000DEAEC /* ToolsTableViewCell.swift */; };
 		F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */; };
 		F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */; };
+		F96225752552FA68003FF235 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96225742552FA68003FF235 /* UINavigationController+Extension.swift */; };
 		F9638C492306A47D00B8E543 /* Notification+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9638C482306A47D00B8E543 /* Notification+Ext.swift */; };
 		F96B23AB23507FB900130EFF /* DepartureBespokeFeastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23AA23507FB900130EFF /* DepartureBespokeFeastCell.swift */; };
 		F96B23AD23507FD400130EFF /* DepartureBespokeFeastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96B23AC23507FD400130EFF /* DepartureBespokeFeastCell.xib */; };
@@ -2699,6 +2700,7 @@
 		F95B9241228EE273000DEAEC /* ToolsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableViewCell.swift; sourceTree = "<group>"; };
 		F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableViewCell.xib; sourceTree = "<group>"; };
 		F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableHeaderView.swift; sourceTree = "<group>"; };
+		F96225742552FA68003FF235 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		F9638C482306A47D00B8E543 /* Notification+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Ext.swift"; sourceTree = "<group>"; };
 		F96B23AA23507FB900130EFF /* DepartureBespokeFeastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastCell.swift; sourceTree = "<group>"; };
 		F96B23AC23507FD400130EFF /* DepartureBespokeFeastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureBespokeFeastCell.xib; sourceTree = "<group>"; };
@@ -5321,6 +5323,7 @@
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				36CB720922B8772300C99AFC /* qot_dal */,
 				8DC2F7222313F11D0002F29F /* UIViewController+StreamVideo */,
+				F96225742552FA68003FF235 /* UINavigationController+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -6670,7 +6673,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7326,6 +7329,7 @@
 				38C23E5224235DCA0034571B /* DTPrepareStartWorker.swift in Sources */,
 				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
 				F9F4707B2510C4D7002331F4 /* TeamToBeVisionOptionsConfigurator.swift in Sources */,
+				F96225752552FA68003FF235 /* UINavigationController+Extension.swift in Sources */,
 				386C27BA241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift in Sources */,
 				38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,

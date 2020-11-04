@@ -92,6 +92,8 @@ protocol WorkerTeam: class {
     func closeRatingPoll(for team: QDMTeam, _ completion: @escaping () -> Void)
 
     func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void)
+
+    func getRatingReport(_ completion: @escaping (QDMToBeVisionRatingReport?) -> Void) 
 }
 
 extension WorkerTeam {
@@ -495,6 +497,12 @@ extension WorkerTeam {
                 log("Error openNewTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
             }
             completion(poll)
+        }
+    }
+
+    func getRatingReport(_ completion: @escaping (QDMToBeVisionRatingReport?) -> Void) {
+        UserService.main.getToBeVisionTrackingReport(last: 3) { (report) in
+            completion(report)
         }
     }
 }

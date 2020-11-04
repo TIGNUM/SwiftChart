@@ -60,7 +60,18 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
                 self?.showAlert()
                 return
             }
-            self?.presenter.dismiss(animated: true, completion: nil)
+            self?.showTBVData()
+        }
+    }
+
+    func showTBVData() {
+        worker.getRatingReport { [weak self] (report) in
+            self?.worker.getToBeVision { [weak self] (_, toBeVision) in
+                self?.presenter.dismiss(animated: true) {
+                    self?.router.showTBVData(shouldShowNullState: report?.dates.isEmpty == true,
+                                             visionId: toBeVision?.remoteID)
+                }
+            }
         }
     }
 

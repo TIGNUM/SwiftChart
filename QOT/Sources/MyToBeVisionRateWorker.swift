@@ -17,6 +17,7 @@ final class MyToBeVisionRateWorker: WorkerTeam {
     var trackerPoll: QDMTeamToBeVisionTrackerPoll?
     var questions: [RatingQuestionViewModel.Question]?
     var team: QDMTeam?
+    private var toBeVision: QDMToBeVision?
 
     init(visionId: Int) {
         self.visionId = visionId
@@ -50,6 +51,13 @@ final class MyToBeVisionRateWorker: WorkerTeam {
             savePersonalRating(completion)
         } else {
             saveTeamRating(completion)
+        }
+    }
+
+    func getToBeVision(_ completion: @escaping (_ initialized: Bool, _ toBeVision: QDMToBeVision?) -> Void) {
+        UserService.main.getMyToBeVision { [weak self] (vision, initialized, _) in
+            self?.toBeVision = vision
+            completion(initialized, vision)
         }
     }
 }
