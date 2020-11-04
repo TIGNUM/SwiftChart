@@ -493,9 +493,12 @@ extension DailyBriefInteractor {
                 dailyCheckInResultRequestCheckTimer = nil
                 expendImpactReadiness = false
                 enableButton = false
+                // try it again
+                requestSynchronization(.DAILY_CHECK_IN_RESULT, .DOWN_SYNC)
             } else if impactReadiness.dailyCheckInResult == nil, dailyCheckInResultRequestCheckTimer != nil,
                       let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
-                      answerDate.dateAfterSeconds(3) < Date() { // if we didn't get the feedback right away, try to get again.
+                      answerDate.dateAfterSeconds(dailyCheckInResultRequestTimeOut/2) < Date() {
+                // if we didn't get the feedback right away, try to get again.
                 requestSynchronization(.DAILY_CHECK_IN_RESULT, .DOWN_SYNC)
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
                 dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(dailyCheckInResultRequestTimeOut),
