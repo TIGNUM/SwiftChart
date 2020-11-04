@@ -975,6 +975,12 @@
 		B4BCD0FC23AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F423AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift */; };
 		B4BCD0FD23AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F523AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift */; };
 		B4BCD0FE23AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F623AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift */; };
+		B4BCE2BC25502EA800A1116F /* NewBaseDailyBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE2BB25502EA800A1116F /* NewBaseDailyBriefCell.swift */; };
+		B4BCE2C92550353900A1116F /* NewBaseDailyBriefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE2B425502D6C00A1116F /* NewBaseDailyBriefCell.xib */; };
+		B4BCE2D12551649B00A1116F /* NewDailyBriefCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE2D02551649B00A1116F /* NewDailyBriefCollectionViewCell.xib */; };
+		B4BCE2D9255164B500A1116F /* NewDailyBriefCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE2D8255164B500A1116F /* NewDailyBriefCollectionViewCell.swift */; };
+		B4BCE2E82551BF3E00A1116F /* NewBaseDailyBriefModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE2E72551BF3E00A1116F /* NewBaseDailyBriefModel.swift */; };
+		B4BCE2F72551C8B900A1116F /* DynamicHeightProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE2F62551C8B900A1116F /* DynamicHeightProtocol.swift */; };
 		B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */; };
 		B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
@@ -2406,6 +2412,12 @@
 		B4BCD0F423AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsInteractor.swift; sourceTree = "<group>"; };
 		B4BCD0F523AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsModel.swift; sourceTree = "<group>"; };
 		B4BCD0F623AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsConfigurator.swift; sourceTree = "<group>"; };
+		B4BCE2B425502D6C00A1116F /* NewBaseDailyBriefCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewBaseDailyBriefCell.xib; path = /Users/Voicu/Development/qos_ios/QOT/Sources/NewBaseDailyBriefCell.xib; sourceTree = "<absolute>"; };
+		B4BCE2BB25502EA800A1116F /* NewBaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBaseDailyBriefCell.swift; sourceTree = "<group>"; };
+		B4BCE2D02551649B00A1116F /* NewDailyBriefCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDailyBriefCollectionViewCell.xib; sourceTree = "<group>"; };
+		B4BCE2D8255164B500A1116F /* NewDailyBriefCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyBriefCollectionViewCell.swift; sourceTree = "<group>"; };
+		B4BCE2E72551BF3E00A1116F /* NewBaseDailyBriefModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBaseDailyBriefModel.swift; sourceTree = "<group>"; };
+		B4BCE2F62551C8B900A1116F /* DynamicHeightProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightProtocol.swift; sourceTree = "<group>"; };
 		B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQOTAdminEditSprintsDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
@@ -2965,6 +2977,7 @@
 				F9EB5E6922C104A00085A03F /* ThoughtsToPonder */,
 				B49EACCB2328EA47006BA566 /* Weather */,
 				F96A4BCF22C4F16D0021C415 /* WhatsHotLatest */,
+				B4BCE2E62551BE4800A1116F /* NewBaseDailyBrief */,
 				9C24238722F3271E00B911E6 /* BaseDailyBriefViewModel.swift */,
 				B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */,
 			);
@@ -4868,6 +4881,19 @@
 			path = MyQOTAdminEditSprintsDetails;
 			sourceTree = "<group>";
 		};
+		B4BCE2E62551BE4800A1116F /* NewBaseDailyBrief */ = {
+			isa = PBXGroup;
+			children = (
+				B4BCE2BB25502EA800A1116F /* NewBaseDailyBriefCell.swift */,
+				B4BCE2B425502D6C00A1116F /* NewBaseDailyBriefCell.xib */,
+				B4BCE2E72551BF3E00A1116F /* NewBaseDailyBriefModel.swift */,
+				B4BCE2D8255164B500A1116F /* NewDailyBriefCollectionViewCell.swift */,
+				B4BCE2D02551649B00A1116F /* NewDailyBriefCollectionViewCell.xib */,
+				B4BCE2F62551C8B900A1116F /* DynamicHeightProtocol.swift */,
+			);
+			name = NewBaseDailyBrief;
+			sourceTree = "<group>";
+		};
 		B80B2EF224DAC4C900C6FD85 /* Team Library Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -6534,6 +6560,7 @@
 				B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */,
 				36E86D48226F45BC00371C67 /* StrategyListHeaderView.xib in Resources */,
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
+				B4BCE2C92550353900A1116F /* NewBaseDailyBriefCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
 				B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */,
 				9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */,
@@ -6568,6 +6595,7 @@
 				B4AB48D4230D3A9B003B3C1F /* MyDataChartTableViewCell.xib in Resources */,
 				F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */,
 				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
+				B4BCE2D12551649B00A1116F /* NewDailyBriefCollectionViewCell.xib in Resources */,
 				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
 				38C23E5A24235E000034571B /* DTPrepareStartViewController.xib in Resources */,
 				F916AAED2418E958002C1EFE /* MindsetShifterCell.xib in Resources */,
@@ -6855,6 +6883,7 @@
 				F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */,
 				38A2D17A25025C7100CEA071 /* DTTeamTBVInterface.swift in Sources */,
 				9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */,
+				B4BCE2F72551C8B900A1116F /* DynamicHeightProtocol.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				B430D7ED23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsConfigurator.swift in Sources */,
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
@@ -7092,6 +7121,7 @@
 				F9F4707A2510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift in Sources */,
 				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
 				F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */,
+				B4BCE2E82551BF3E00A1116F /* NewBaseDailyBriefModel.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
@@ -7465,6 +7495,7 @@
 				36E4CF0A22BC51BD009A2DF7 /* ChoiceWorker.swift in Sources */,
 				B45DA6BD23AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift in Sources */,
 				F91087A324C5A6BD00CA343A /* TeamToBeVisionInterface.swift in Sources */,
+				B4BCE2BC25502EA800A1116F /* NewBaseDailyBriefCell.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
@@ -7664,6 +7695,7 @@
 				5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */,
 				8DF7870922FEB50800CDE0A9 /* RegistrationCodeInterface.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
+				B4BCE2D9255164B500A1116F /* NewDailyBriefCollectionViewCell.swift in Sources */,
 				36376630223A66AF00C2C429 /* CoachRouter.swift in Sources */,
 				B8FE4AA224DD81EE00B47F1D /* LibraryTableViewCellFactory.swift in Sources */,
 				36E6E3F122493016001BE9C7 /* ComponentDetailViewController.swift in Sources */,
