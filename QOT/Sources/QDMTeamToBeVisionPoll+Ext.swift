@@ -17,7 +17,7 @@ extension QDMTeamToBeVisionPoll {
     var showBatch: Bool {
         switch (creator, userDidVote, open) {
         case (false, false, true): return true
-        case (true, _, true): return true
+        case (true, false, true): return true
         default: return false
         }
     }

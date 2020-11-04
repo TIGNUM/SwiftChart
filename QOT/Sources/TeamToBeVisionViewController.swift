@@ -15,7 +15,8 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     var interactor: TeamToBeVisionInteractorInterface!
     private lazy var router = TeamToBeVisionRouter(viewController: self)
     @IBOutlet private weak var teamNullStateView: TeamToBeVisionNullStateView!
-    @IBOutlet private weak var navigationBarView: TeamToBeVisionNavigationBarView!
+    @IBOutlet private weak var navigationBarView: ToBeVisionSelectionBar!
+    @IBOutlet private weak var navigationContainer: UIView!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
@@ -128,7 +129,7 @@ private extension TeamToBeVisionViewController {
     }
 
     func hideNavigationBarView() {
-        navigationBarViewTopMarginConstraint.constant = -150
+        navigationBarViewTopMarginConstraint.constant = -100
     }
 
     func showNavigationBarView() {
@@ -251,13 +252,14 @@ private extension TeamToBeVisionViewController {
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func setSelectionBarButtonItems() {
         toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner, self)
+        navigationBarView.configure(isOwner: interactor.team.thisUserIsOwner, self)
+        navigationBarView.backgroundColor = .carbon
     }
 
     func setupView() {
         scrollView.alpha = 0
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
-        navigationBarView.delegate = self
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}",
                                                                                                      with: interactor.team.name?.uppercased() ?? "")
         ThemeText.tbvSectionHeader.apply(title, to: toBeVisionLabel)
@@ -265,7 +267,6 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
 
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
-
         ThemableButton.poll.apply(pollButton, key: .my_x_team_tbv_section_poll_button)
         ThemableButton.poll.apply(trackerButton, key: .my_x_team_tbv_section_rating_button)
         let adapter = ImagePickerControllerAdapter(self)

@@ -55,7 +55,6 @@ final class DailyBriefInteractor {
     func viewDidLoad() {
         presenter.setupView()
         getDailyBriefDummySectionModels()
-        NotificationCenter.default.post(name: .requestSynchronization, object: nil)
     }
 }
 
@@ -96,6 +95,13 @@ private extension DailyBriefInteractor {
                                                    queue: .main) { [weak self] notification in
             self?.didGetDataSyncRequest(notification)
         }
+
+        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didGetDataSyncRequest(notification)
+        }
+
         // Listen about Expend/Collapse of Closed Guided Track
         _ = NotificationCenter.default.addObserver(forName: .displayGuidedTrackRows,
                                                    object: nil,
@@ -123,11 +129,27 @@ private extension DailyBriefInteractor {
 // MARK: Notification Listeners
 extension DailyBriefInteractor {
     @objc func didGetDataSyncRequest(_ notification: Notification) {
-        guard let request = notification.object as? SyncRequestContext,
-            request.dataType == .DAILY_CHECK_IN,
-            request.syncRequestType == .UP_SYNC else { return }
-        expendImpactReadiness = true
-        updateDailyBriefBucket()
+        guard let request = notification.object as? SyncRequestContext else { return }
+        switch request.dataType {
+        case .DAILY_CHECK_IN where request.syncRequestType == .UP_SYNC:
+            expendImpactReadiness = true
+            updateDailyBriefBucket()
+        default:
+            break
+        }
+
+    }
+
+    @objc func didGetDataSyncResult(_ notification: Notification) {
+        guard let request = notification.object as? SyncResultContext else { return }
+        switch request.dataType {
+        case .DAILY_CHECK_IN_RESULT where request.syncRequestType == .DOWN_SYNC:
+            expendImpactReadiness = true
+            updateDailyBriefBucket()
+        default:
+            break
+        }
+
     }
 
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
@@ -238,6 +260,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
         if isLoadingBuckets {
             needToLoadBuckets = true
+            return
         }
 
         isLoadingBuckets = true
@@ -245,6 +268,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.getDailyBriefBucketsForViewModel { [weak self] (bucketsList) in
             guard let strongSelf = self,
                 bucketsList.filter({ $0.bucketName == .DAILY_CHECK_IN_1 }).first != nil else {
+                self?.isLoadingBuckets = false
+                if self?.needToLoadBuckets == true {
+                    self?.needToLoadBuckets = false
+                    self?.getDailyBriefBucketsForViewModel()
+                }
                 return
             }
 
@@ -257,6 +285,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
             bucketsList.forEach { [weak self] (bucket) in
                 guard let strongSelf = self else {
+                    self?.isLoadingBuckets = false
+                    if self?.needToLoadBuckets == true {
+                        self?.needToLoadBuckets = false
+                        self?.getDailyBriefBucketsForViewModel()
+                    }
                     return
                 }
                 guard let bucketName = bucket.bucketName else { return }
@@ -467,6 +500,7 @@ extension DailyBriefInteractor {
         // check request time for result
         if let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
             impactReadiness.dailyCheckInResult == nil {
+            readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
             // if it took longer than dailyCheckInResultRequestTimeOut and still we don't have result
             if answerDate.dateAfterSeconds(dailyCheckInResultRequestTimeOut) < Date() {
                 readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_error_body)
@@ -474,8 +508,11 @@ extension DailyBriefInteractor {
                 dailyCheckInResultRequestCheckTimer = nil
                 expendImpactReadiness = false
                 enableButton = false
+            } else if impactReadiness.dailyCheckInResult == nil, dailyCheckInResultRequestCheckTimer != nil,
+                      let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
+                      answerDate.dateAfterSeconds(3) < Date() { // if we didn't get the feedback right away, try to get again.
+                requestSynchronization(.DAILY_CHECK_IN_RESULT, .DOWN_SYNC)
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
-                readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
                 dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(dailyCheckInResultRequestTimeOut),
                                                                            repeats: false) { (timer) in
                                                                             self.dailyCheckInResultRequestCheckTimer?.invalidate()
@@ -598,11 +635,9 @@ extension DailyBriefInteractor {
         let level1Title = AppTextService.get(.daily_brief_section_level_5_level_1_title)
         let level1Text = AppTextService.get(.daily_brief_section_level_5_level_1_body)
         let comeBackText = level5.bucketText?.contentItems.filter {$0.searchTags.contains("COME_BACK")}.first?.valueText ?? "Noted! Come back in 1 month."
-        var lastEstimatedLevel: Int?
-        lastEstimatedLevel = level5.latestGetToLevel5Value
         var questionLevel: String?
-        if lastEstimatedLevel != nil {
-            questionLevel = youRatedPart1 + " " + String(lastEstimatedLevel ?? 0) + " " + youRatedPart2
+        if let lastValue = level5.latestGetToLevel5Value, lastValue > 0 {
+            questionLevel = youRatedPart1 + " " + String(lastValue) + " " + youRatedPart2
         } else {
             questionLevel = question
         }
@@ -979,7 +1014,7 @@ extension DailyBriefInteractor {
                 sectionsModels.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceSections(sections: sections, rows: rows))
             }
         }
-        let cellViewModel = MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle(title: bucketTitle),
+        let cellViewModel = MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MyPeakPerformanceTitle(title: bucketTitle),
                                                                 sections: sectionsModels,
                                                                 domainModel: myPeakperformance)
         createMyPeakPerformanceList.append(cellViewModel)
@@ -1157,9 +1192,11 @@ extension DailyBriefInteractor {
     func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var meAtMyBestList: [BaseDailyBriefViewModel] = []
         let createMeAtMyBestTitle = AppTextService.get(.daily_brief_section_my_best_title)
+        guard createMeAtMyBestTitle.isEmpty == false else { return meAtMyBestList }
         if meAtMyBest.toBeVisionTrack?.sentence?.isEmpty != false {
             let tbvEmptyIntro = AppTextService.get(.daily_brief_section_my_best_empty_body)
             let ctaTBVButtonText = AppTextService.get(.daily_brief_section_my_best_empty_button_create_tbv)
+            guard tbvEmptyIntro.isEmpty == false, ctaTBVButtonText.isEmpty == false else { return [] }
             meAtMyBestList.append(MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
             return meAtMyBestList
         } else {
@@ -1167,6 +1204,9 @@ extension DailyBriefInteractor {
             let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
             let tbvIntro2 = DailyBriefAtMyBestWorker().storedText(meAtMyBest.contentCollections?.filter {$0.searchTags.contains("ME_AT_MY_BEST_REFLECTION")}.randomElement()?.contentItems.first?.valueText ?? " ")
             let ctaTBVButtonText = AppTextService.get(.daily_brief_section_my_best_button_my_tbv)
+            if tbvIntro.isEmpty && tbvSentence.isEmpty && tbvIntro2.isEmpty && ctaTBVButtonText.isEmpty {
+                return []
+            }
             meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle,
                                                           intro: tbvIntro,
                                                           tbvStatement: tbvSentence,
@@ -1219,7 +1259,7 @@ extension DailyBriefInteractor {
                                                               image: URL(string: collection.thumbnailURLString ?? ""),
                                                               author: collection.author ?? "",
                                                               publisheDate: collection.publishedDate ?? Date(),
-                                                              timeToRead: collection.secondsRequired,
+                                                              timeToRead: collection.durationString,
                                                               isNew: self.isNew(collection),
                                                               remoteID: collection.remoteID ?? 0,
                                                               domainModel: whatsHotLatest))

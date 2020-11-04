@@ -63,7 +63,7 @@ private extension MyToBeVisionRateWorker {
         }
     }
 
-    func saveTeamRating(_ completion: @escaping () -> Void)  {
+    func saveTeamRating(_ completion: @escaping () -> Void) {
         voteTeamToBeVisionTrackerPoll(votes) { [weak self] (poll) in
             self?.trackerPoll = poll
             NotificationCenter.default.post(name: .didRateTBV, object: nil)

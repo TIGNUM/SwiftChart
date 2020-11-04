@@ -34,9 +34,8 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
         return QOTAlertAction(title: title) { [weak self] (_) in
             let key = self?.interactor?.logoutQOTKey
             self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
-            self?.dismiss(animated: false, completion: {
-                self?.interactor?.logout()
-            })
+            self?.interactor?.logout()
+            self?.dismiss(animated: false) {}
         }
     }()
 

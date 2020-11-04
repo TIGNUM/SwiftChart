@@ -96,7 +96,7 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func hasEvent() -> Bool {
-        return preparation?.event != nil
+        return preparation?.eventDate != nil
     }
 
     func getDTViewModel(key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {

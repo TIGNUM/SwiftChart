@@ -34,7 +34,11 @@ final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
 
     @IBAction func ctaTapped(_ sender: Any) {
         switch actionType {
-        case .rate: delegate?.showPoll()
+        case .rate:
+            // disable the button first.
+            ThemeText.optionPageDisabled.apply(titleLabel.attributedText?.string, to: titleLabel)
+            ThemableButton.tbvOption(disabled: true).apply(ctaButton, title: ctaButton.titleLabel?.text)
+            delegate?.showPoll()
         case .end: delegate?.showAlert()
         }
     }

@@ -77,12 +77,13 @@ final class Level5Cell: BaseDailyBriefCell {
         ThemeText.level5Question.apply(model?.question, to: questionLabel)
         confirmationMessage = model?.confirmationMessage
         levelMessages = model?.levelMessages ?? []
-        if let selectedValue = model?.domainModel?.currentGetToLevel5Value ?? model?.domainModel?.latestGetToLevel5Value {
-            tmpAnswer = selectedValue - 1
-            savedAnswer = tmpAnswer
+        savedAnswer = nil
+        if let selectedValue = model?.domainModel?.latestGetToLevel5Value {
+            tmpAnswer = max(selectedValue - 1, 0)
         }
-        if model?.domainModel?.currentGetToLevel5Value == nil && model?.domainModel?.latestGetToLevel5Value != nil {
-            savedAnswer = nil
+        if let currentAnswer = model?.domainModel?.currentGetToLevel5Value {
+            savedAnswer = max(currentAnswer - 1, 0)
+            tmpAnswer = max(currentAnswer - 1, 0)
         }
         updateButtonStatus()
         initialSetup()

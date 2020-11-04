@@ -16,10 +16,10 @@ final class MyPeakPerformanceCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Init
 
-    var title: MypeakPerformanceTitle
+    var title: MyPeakPerformanceTitle
     var sections: [MyPeakPerformanceSections]
 
-    struct MypeakPerformanceTitle {
+    struct MyPeakPerformanceTitle {
         let title: String
     }
 
@@ -39,7 +39,7 @@ final class MyPeakPerformanceCellViewModel: BaseDailyBriefViewModel {
         let qdmUserPreparation: QDMUserPreparation?
     }
 
-    init(title: MypeakPerformanceTitle, sections: [MyPeakPerformanceSections], domainModel: QDMDailyBriefBucket?) {
+    init(title: MyPeakPerformanceTitle, sections: [MyPeakPerformanceSections], domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.sections = sections
         super.init(domainModel)
@@ -56,6 +56,6 @@ final class MyPeakPerformanceCellViewModel: BaseDailyBriefViewModel {
         let eventTitles = Set(domainModel?.preparations?.compactMap({ $0.eventTitle }) ?? [])
         let sourceEventTitles = Set(source.domainModel?.preparations?.compactMap({ $0.eventTitle }) ?? [])
 
-        return eventDates == sourceEventDates && eventTitles == sourceEventTitles
+        return super.isContentEqual(to: source) && eventDates == sourceEventDates && eventTitles == sourceEventTitles
     }
 }

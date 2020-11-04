@@ -183,13 +183,20 @@ class BaseRouter: BaseRouterInterface {
     }
 
     func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?) {
-        viewController?.dismiss(animated: true, completion: {
+        let showClosure: (UIViewController?) -> Void = { (presentingViewController) in
             if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
                 MyToBeVisionRateConfigurator.configure(controller: controller, trackerPoll: trackerPoll, team: team)
                 controller.delegate = delegate
-                self.present(controller)
+                presentingViewController?.present(controller, animated: true, completion: nil)
             }
-        })
+        }
+        if let presentingViewController = viewController?.presentingViewController {
+            viewController?.dismiss(animated: true, completion: {
+                showClosure(presentingViewController)
+            })
+        } else {
+            showClosure(viewController)
+        }
     }
 
     func showRateScreen(with id: Int, delegate: TBVRateDelegate?) {

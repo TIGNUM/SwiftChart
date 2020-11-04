@@ -96,10 +96,12 @@ extension ButtonTheme {
                     let string = AppTextService.get(.team_tbv_poll_ends)
                     let message = string.replacingOccurrences(of: "${number_of_days}", with: String(visionPoll?.remainingDays ?? 0))
                     return (state: .isInactive, action: .showBanner(message: message))
-                case (false, true, _, true):
+                case (false, true, false, true):
                     log("🎯🎯🎯 Generator.State: .hasBatch, action: .showAdminOptionsGenerator", level: .debug)
                     return (state: .hasBatch, action: .showAdminOptionsGenerator)
-
+                case(false, true, true, true):
+                    log("🎯🎯🎯 Generator.State: .isActive, action: .showAdminOptionsGenerator", level: .debug)
+                    return (state: .isActive, action: .showAdminOptionsGenerator)
                 default:
                     log("🎯🎯🎯 Generator.State: StateError.unknown", level: .debug)
                     throw State.StateError.unknown
@@ -140,10 +142,12 @@ extension ButtonTheme {
                     log("🎱🎱🎱 Tracker.State: .hasBatch, action: .showIntro", level: .debug)
                     return (state: .hasBatch, action: .showIntroRating)
 
-                case (false, true, _, true):
+                case (false, true, false, true):
                     log("🎱🎱🎱 Tracker.State: .hasBatch, action: .showAdminOptionsRating", level: .debug)
                     return (state: .hasBatch, action: .showAdminOptionsRating)
-
+                case (false, true, true, true):
+                    log("🎱🎱🎱 Tracker.State: .isActive, action: .showAdminOptionsRating", level: .debug)
+                    return(state: .isActive, action: .showAdminOptionsRating)
                 default:
                     log("🎱🎱🎱 Tracker.State: StateError.unknown", level: .debug)
                     throw State.StateError.unknown

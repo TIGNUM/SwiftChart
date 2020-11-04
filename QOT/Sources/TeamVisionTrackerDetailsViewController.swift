@@ -107,6 +107,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
 
     func switchView(_ data: [BarEntry]) {
         ratingsView.alpha = 0
+        barChartView.alpha = 0
         setValues(data)
         ratingsView.frame = CGRect(x: ratingsView.frame.origin.x, y: ratingsView.frame.origin.y + 25, width: ratingsView.frame.width, height: ratingsView.frame.height)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
@@ -115,6 +116,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
                                             width: self.ratingsView.frame.width,
                                             height: self.ratingsView.frame.height)
             self.ratingsView.alpha = 1
+            self.barChartView.alpha = 1
             self.barChartView.dataEntries = data
         }, completion: nil)
     }

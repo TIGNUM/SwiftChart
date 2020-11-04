@@ -32,18 +32,21 @@ class BarChartView: UIView {
      }
 
      private func setupView() {
-         self.layer.addSublayer(mainLayer)
+         layer.addSublayer(mainLayer)
      }
 
     var dataEntries: [BarEntry] = [] {
         didSet {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: { () -> Void in
-                self.mainLayer.sublayers?.forEach({$0.removeFromSuperlayer()})
-                self.mainLayer.frame = CGRect(x: self.frame.origin.x, y: 0, width: UIScreen.main.bounds.width, height: self.frame.size.height)
+            mainLayer.sublayers?.forEach { $0.removeFromSuperlayer() }
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                self.mainLayer.frame = CGRect(x: self.frame.origin.x, y: 0,
+                                              width: UIScreen.main.bounds.width,
+                                              height: self.frame.size.height)
                 for i in 0..<self.dataEntries.count {
                     self.showEntry(index: i, entry: self.dataEntries[i])
                 }
-            })
+            }
         }
     }
 
@@ -71,7 +74,10 @@ class BarChartView: UIView {
                 yPos: yPos,
                 myVote: myVote,
                 scoreIndex: entry.scoreIndex)
-        drawDetails(xPos: UIScreen.main.bounds.width - contentSpace, yPos: yPos, votes: entry.votes, myVote: myVote, scoreIndex: entry.scoreIndex)
+        drawDetails(xPos: UIScreen.main.bounds.width - contentSpace,
+                    yPos: yPos,
+                    votes: entry.votes,
+                    myVote: myVote, scoreIndex: entry.scoreIndex)
         drawIndex(xPos: 24, yPos: yPos, width: 30.0, scoreIndex: entry.scoreIndex, myVote: myVote)
     }
 
