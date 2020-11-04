@@ -44,9 +44,9 @@ final class PollButton: SelectionButton {
 // MARK: - Private
 private extension PollButton {
     func setHidden(_ isHidden: Bool) {
-        counterLabelTop.alpha = isHidden ? 0.3 : 1
+        counterLabelTop.alpha = isHidden ? 0 : 1
         counterLabelBottom.alpha = isHidden ? 0 : 1
-//        counterBackgroundView.alpha = isHidden ? 0 : 1
+        counterBackgroundView.alpha = isHidden ? 0 : 1
     }
 }
 
@@ -61,6 +61,7 @@ extension PollButton {
             UIView.animate(withDuration: 0.6) {
                 self.counterLabelTop.alpha = 0
                 self.counterLabelBottom.alpha = 1
+                self.counterBackgroundView.alpha = 1
                 self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop - height)
                 self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom - height)
             }
