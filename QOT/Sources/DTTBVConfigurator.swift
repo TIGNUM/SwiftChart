@@ -15,7 +15,7 @@ final class DTTBVConfigurator {
             let router = DTTBVRouter(viewController: viewController)
             let presenter = DTTBVPresenter(viewController: viewController)
             let interactor = DTTBVInteractor(presenter,
-                                             questionGroup: .TeamToBeVisionPoll,
+                                             questionGroup: .ToBeVision_3_0,
                                              introKey: TBV.QuestionKey.Instructions)
             viewController.interactor = interactor
             viewController.router = router
