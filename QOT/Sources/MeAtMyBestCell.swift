@@ -21,7 +21,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
     weak var baseHeaderView: QOTBaseHeaderView?
 
     @IBAction func presentTBV(_ sender: Any) {
-        delegate?.presentMyToBeVision()
+        delegate?.showTBV()
     }
 
     override func awakeFromNib() {

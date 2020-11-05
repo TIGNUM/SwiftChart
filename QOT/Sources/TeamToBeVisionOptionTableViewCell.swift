@@ -7,37 +7,39 @@
 //
 
 import Foundation
-import qot_dal
 
 final class TeamToBeVisionOptionTableViewCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var ctaButton: RoundedButton!
-    weak var delegate: TeamToBeVisionOptionsViewControllerDelegate?
-    private var actionTag: Int?
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var ctaButton: RoundedButton!
+    weak var delegate: TeamAdminDelegate?
+    private var actionType: TeamAdmin.ActionType = .rate
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView = UIView(frame: self.bounds)
+        self.backgroundView = UIView(frame: bounds)
+        self.selectedBackgroundView = UIView(frame: bounds)
         ThemeView.level2Selected.apply(selectedBackgroundView!)
     }
 
-    func configure(title: String, cta: String, actionTag: Int, buttonDisabled: Bool) {
+    func configure(title: String,
+                   cta: String,
+                   actionType: TeamAdmin.ActionType,
+                   buttonDisabled: Bool) {
         buttonDisabled ? ThemeText.optionPageDisabled.apply(title, to: titleLabel) : ThemeText.optionPage.apply(title, to: titleLabel)
-        self.actionTag = actionTag
+        self.actionType = actionType
         ThemableButton.tbvOption(disabled: buttonDisabled).apply(ctaButton, title: cta)
+        ctaButton.isUserInteractionEnabled = buttonDisabled == false
     }
 
     @IBAction func ctaTapped(_ sender: Any) {
-        switch actionTag {
-        case TeamToBeVisionOptionsViewController.actionType.rate.rawValue:
-            break
-        // TODO: rate button action and vote button action
-        case TeamToBeVisionOptionsViewController.actionType.end.rawValue:
-            delegate?.showAlert()
-        default:
-            break
+        switch actionType {
+        case .rate:
+            // disable the button first.
+            ThemeText.optionPageDisabled.apply(titleLabel.attributedText?.string, to: titleLabel)
+            ThemableButton.tbvOption(disabled: true).apply(ctaButton, title: ctaButton.titleLabel?.text)
+            delegate?.showPoll()
+        case .end: delegate?.showAlert()
         }
     }
 }

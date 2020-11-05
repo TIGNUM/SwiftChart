@@ -90,6 +90,7 @@ extension UIViewController {
         case is QuestionnaireViewController:
             if let controllerType = (self as? QuestionnaireViewController)?.controllerType {
                 switch controllerType {
+                case .teamVision: return "teamtobevision.tracker.questionaire"
                 case .vision: return "tobevision.tracker.questionaire"
                 case .dailyCheckin: return "daily.checkin.questions"
                 case .customize: return "sleep.quantity.customize.target"
@@ -112,6 +113,7 @@ extension UIViewController {
         case is BookMarkSelectionViewController: return "bookmark_library_selection"
         case is TeamToBeVisionViewController: return "teamTBV"
         case is VisionRatingExplanationViewController: return "rating_feature_explanation"
+        case is TeamToBeVisionOptionsViewController: return "teamTBV.options"
         default: preconditionFailure()
         }
     }
@@ -163,7 +165,8 @@ private extension UIViewController {
         case is DTSolveViewController: return "decisiontree.solve"
         case is DTSprintViewController: return "decisiontree.sprint"
         case is DTSprintReflectionViewController: return "decisiontree.sprint.reflection"
-        case is DTTBVViewController: return "decisiontree.tobevisiongenerator"
+        case is DTTBVViewController: return "decisiontree.tobevision.generator"
+        case is DTTeamTBVViewController: return "decisiontree.team.tobevision.generator"
 
         default: preconditionFailure()
         }

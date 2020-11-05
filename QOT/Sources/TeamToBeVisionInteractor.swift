@@ -13,15 +13,19 @@ final class TeamToBeVisionInteractor {
 
     // MARK: - Properties
     private lazy var worker = TeamToBeVisionWorker()
-    let router: TeamToBeVisionRouter
+    private let router: TeamToBeVisionRouter
     private let presenter: TeamToBeVisionPresenterInterface!
-    var team: QDMTeam?
+    var team: QDMTeam
     var teamVision: QDMTeamToBeVision?
+    var teamVisionPoll: QDMTeamToBeVisionPoll?
+    var teamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
     // MARK: - Init
-    init(presenter: TeamToBeVisionPresenterInterface, router: TeamToBeVisionRouter, team: QDMTeam?) {
+    init(presenter: TeamToBeVisionPresenterInterface,
+         router: TeamToBeVisionRouter,
+         team: QDMTeam) {
         self.presenter = presenter
         self.router = router
         self.team = team
@@ -32,14 +36,17 @@ final class TeamToBeVisionInteractor {
         presenter.setupView()
         presenter.setSelectionBarButtonItems()
         didUpdateTBVRelatedData()
+
         let notificationCenter = NotificationCenter.default
-        downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+        downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization,
+                                                          object: nil,
+                                                          queue: nil) { [weak self ] (notification) in
             guard let strongSelf = self else {
                 return
             }
             guard let syncResult = notification.object as? SyncResultContext,
-                syncResult.syncRequestType == .DOWN_SYNC,
-                syncResult.hasUpdatedContent else { return }
+                  syncResult.syncRequestType == .DOWN_SYNC,
+                  syncResult.hasUpdatedContent else { return }
             switch syncResult.dataType {
             case .TEAM_TO_BE_VISION:
                 strongSelf.didUpdateTBVRelatedData()
@@ -47,13 +54,15 @@ final class TeamToBeVisionInteractor {
                 break
             }
         }
-        upSyncObserver = notificationCenter.addObserver(forName: .requestSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+        upSyncObserver = notificationCenter.addObserver(forName: .requestSynchronization,
+                                                        object: nil,
+                                                        queue: nil) { [weak self ] (notification) in
             guard let strongSelf = self else {
                 return
             }
             guard let syncResult = notification.object as? SyncRequestContext else { return }
             if syncResult.dataType == .TEAM_TO_BE_VISION,
-                syncResult.syncRequestType == .UP_SYNC {
+               syncResult.syncRequestType == .UP_SYNC {
                 strongSelf.didUpdateTBVRelatedData()
             }
         }
@@ -64,49 +73,86 @@ final class TeamToBeVisionInteractor {
     }
 
     private func didUpdateTBVRelatedData() {
-        guard let team = team else { return }
-        worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
-            self?.teamVision = teamVision
-//            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                self?.presenter.load(teamVision,
-                                     rateText: "",
-                                     isRateEnabled: false,
-                                     shouldShowSingleMessageRating: true)
-            }
-//        }
+        let dispatchGroup = DispatchGroup()
+        var tmpTeamTBV: QDMTeamToBeVision?
+        var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
+        var tmpTeamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
+
+        dispatchGroup.enter()
+        worker.getTeamToBeVision(for: team) { (teamVision) in
+            tmpTeamTBV = teamVision
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        worker.getCurrentTeamToBeVisionPoll(for: team) { (poll) in
+            tmpTeamTBVPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        worker.getCurrentRatingPoll(for: team) { (poll) in
+            tmpTeamTrackerPoll = poll
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.teamVision = tmpTeamTBV
+            self.teamVisionPoll = tmpTeamTBVPoll
+            self.teamTrackerPoll = tmpTeamTrackerPoll
+            self.presenter.load(self.teamVision)
+            self.presenter.updatePoll(visionPoll: self.teamVisionPoll,
+                                      trackerPoll: self.teamTrackerPoll,
+                                      team: self.team,
+                                      teamToBeVision: self.teamVision)
+        }
     }
 }
 
 // MARK: - TeamToBeVisionInteractorInterface
 extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
-
     func showEditVision(isFromNullState: Bool) {
-        guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { (teamVision) in
             self.router.showEditVision(title: teamVision?.headline ?? "",
                                        vision: teamVision?.text ?? "",
                                        isFromNullState: isFromNullState,
-                                       team: team)
+                                       team: self.team)
         }
     }
 
-    func showNullState(with title: String, teamName: String?, message: String) {
-        presenter.showNullState(with: title, teamName: teamName, message: message)
+    func showNullState() {
+        presenter.showNullState(with: teamNullStateTitle ?? "",
+                                teamName: team.name,
+                                message: teamNullStateSubtitle ?? "")
     }
 
     func hideNullState() {
         presenter.hideNullState()
+        isShareBlocked { [weak self] (hidden) in
+            if self?.team.thisUserIsOwner == false {
+                self?.presenter.hideSelectionBar(hidden)
+            }
+        }
+        isTrendsHidden { [weak self] (hide) in
+            self?.presenter.hideTrends(hide)
+        }
+
+    }
+
+    func isTrendsHidden(_ completion: @escaping (Bool) -> Void) {
+        worker.getLatestClosedPolls(for: team) { (latestPolls) in
+            completion(latestPolls?.isEmpty ?? true)
+        }
     }
 
     func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
-        guard let team = team else { return }
         worker.getTeamToBeVision(for: team) { (teamVision) in
             completion(teamVision?.headline == nil && teamVision?.text == nil)
         }
     }
 
     func saveToBeVision(image: UIImage?) {
-        guard let team = team else { return }
+        let tmpTeam = team
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
             if var teamVision = teamVision {
                 teamVision.modifiedAt = Date()
@@ -121,7 +167,8 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 } else {
                     teamVision.profileImageResource = nil
                 }
-                self?.worker.updateTeamToBeVision(teamVision, team: team) { [weak self] (responseTeamVision) in
+                self?.worker.updateTeamToBeVision(teamVision,
+                                                  team: tmpTeam) { [weak self] (responseTeamVision) in
                     self?.didUpdateTBVRelatedData()
                 }
             }
@@ -152,12 +199,37 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         return worker.emptyTeamTBVTextPlaceholder
     }
 
+    var shouldShowPollExplanation: Bool {
+        return teamVisionPoll?.shouldShowPollExplanation == true || teamVisionPoll == nil
+    }
+
+    var shouldShowPollAdmin: Bool {
+        return teamVisionPoll?.shouldShowPollAdmin == true
+    }
+
     func lastUpdatedTeamVision() -> String? {
         var lastUpdatedVision = ""
         guard let date = teamVision?.date?.beginingOfDate() else { return ""}
         let days = DateComponentsFormatter.numberOfDays(date)
-        lastUpdatedVision = self.dateString(for: days)
+        lastUpdatedVision = worker.dateString(for: days)
         return lastUpdatedVision
+    }
+
+    func hasOpenVisionRatingPoll(_ completion: @escaping (Bool) -> Void) {
+        worker.hasOpenRatingPoll(for: team, completion)
+    }
+
+    func ratingTapped() {
+        let tmpTeam = team
+        if team.thisUserIsOwner {
+            worker.hasOpenRatingPoll(for: team) { [weak self] (open) in
+                if open {
+                    self?.router.showTeamAdmin(type: .rating, team: tmpTeam)
+                } else {
+                    self?.router.showTeamRatingExplanation(tmpTeam)
+                }
+            }
+        }
     }
 
     func shareTeamToBeVision() {
@@ -191,16 +263,6 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 // after present swizzle for mail
                 swizzleMFMailComposeViewControllerMessageBody()
             }
-        }
-    }
-
-    private func dateString(for day: Int) -> String {
-        if day == 0 {
-            return "Today"
-        } else if day == 1 {
-            return "Yesterday"
-        } else {
-            return String(day) + " Days"
         }
     }
 }

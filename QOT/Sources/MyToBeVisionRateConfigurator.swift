@@ -10,31 +10,25 @@ import Foundation
 import qot_dal
 
 final class MyToBeVisionRateConfigurator {
-    static func configure(previousController: MyVisionViewController,
-                          viewController: MyToBeVisionRateViewController,
-                          visionId: Int) {
-        let router = MyToBeVisionRateRouter(viewController: viewController)
-        let worker = MyToBeVisionRateWorker(visionId: visionId, viewController: viewController)
-        let presenter = MyToBeVisionRatePresenter(viewController: viewController)
-        let interactor = MyToBeVisionRateInteractor(presenter: presenter,
-                                                    worker: worker,
-                                                    router: router,
-                                                    isoDate: Date())
-        viewController.interactor = interactor
-        viewController.delegate = previousController
+    static func configure(controller: MyToBeVisionRateViewController, visionId: Int) {
+        let worker = MyToBeVisionRateWorker(visionId: visionId)
+        configure(controller: controller, worker: worker)
     }
 
-    static func configure(previousController: VisionRatingExplanationViewController,
-                          viewController: MyToBeVisionRateViewController,
-                          visionId: Int) {
-        let router = MyToBeVisionRateRouter(viewController: viewController)
-        let worker = MyToBeVisionRateWorker(visionId: visionId, viewController: viewController)
-        let presenter = MyToBeVisionRatePresenter(viewController: viewController)
+    static func configure(controller: MyToBeVisionRateViewController,
+                          trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                          team: QDMTeam?) {
+        let worker = MyToBeVisionRateWorker(trackerPoll: trackerPoll, team: team)
+        configure(controller: controller, worker: worker)
+    }
+
+    private static func configure(controller: MyToBeVisionRateViewController,
+                                  worker: MyToBeVisionRateWorker) {
+        let router = MyToBeVisionRateRouter(viewController: controller)
+        let presenter = MyToBeVisionRatePresenter(viewController: controller)
         let interactor = MyToBeVisionRateInteractor(presenter: presenter,
                                                     worker: worker,
-                                                    router: router,
-                                                    isoDate: Date())
-        viewController.interactor = interactor
-        viewController.delegate = previousController
+                                                    router: router)
+        controller.interactor = interactor
     }
 }

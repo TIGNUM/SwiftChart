@@ -7,18 +7,6 @@
 //
 
 import Foundation
+import qot_dal
 
-final class MyToBeVisionRateRouter {
-
-    private weak var viewController: MyToBeVisionRateViewController?
-
-    init(viewController: MyToBeVisionRateViewController) {
-        self.viewController = viewController
-    }
-}
-
-extension MyToBeVisionRateRouter: MyToBeVisionRateRouterInterface {
-    func dismiss() {
-        viewController?.dismiss(animated: true)
-    }
-}
+final class MyToBeVisionRateRouter: BaseRouter {}

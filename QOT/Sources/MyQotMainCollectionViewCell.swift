@@ -14,6 +14,7 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var redDotLabel: UILabel!
     private lazy var skeletonManager = SkeletonManager()
+    @IBOutlet weak var background: UIView!
 
     // MARK: - Life Cycle
     override func awakeFromNib() {
@@ -22,9 +23,9 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         isUserInteractionEnabled = false
         contentView.backgroundColor = .clear
         selectedBackgroundView = nil
-        layer.borderColor = UIColor.sand40.cgColor
-        layer.cornerRadius = 15
-        layer.borderWidth = 1
+        background.layer.borderColor = UIColor.sand40.cgColor
+        background.layer.cornerRadius = 15
+        background.layer.borderWidth = 1
         redDotLabel.circle()
         redDotLabel.isHidden = true
         skeletonManager.addTitle(titleLabel)

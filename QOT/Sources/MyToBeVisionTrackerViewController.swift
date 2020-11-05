@@ -14,6 +14,7 @@ final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3
     var interactor: TBVRateHistoryInteractorInterface!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var loaderView: UIView!
+    private var report: ToBeVisionReport?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ private extension MyToBeVisionTrackerViewController {
 // MARK: - TBVRateHistoryViewControllerInterface
 extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterface {
     func setupView(with data: ToBeVisionReport) {
+        self.report = data
         ThemeView.level3.apply(view)
         tableView.registerDequeueable(TBVDataGraphTableViewCell.self)
         tableView.registerDequeueable(TBVDataGraphSubHeadingTableViewCell.self)
@@ -79,9 +81,31 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         case .sentence:
             let cell: TBVDataGraphAnswersTableViewCell = tableView.dequeueCell(for: indexPath)
             if let sentence = interactor.sentence(in: indexPath.row) {
-                cell.configure(sentence, selectedDate: interactor.selectedDate)
+                cell.configure(sentence, selectedDate: interactor.selectedDate, isTeam: interactor.isUserInteractionEnabled)
+                let backgroundView = UIView()
+                backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
+                cell.selectedBackgroundView = backgroundView
             }
+            cell.accessoryView = interactor.isUserInteractionEnabled ? UIImageView(image: R.image.ic_disclosure_accent()) : nil
+            cell.isUserInteractionEnabled = interactor.isUserInteractionEnabled
             return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch TBVGraph.Section.allCases[indexPath.section] {
+        case .sentence:
+            if let controller = R.storyboard.teamVisionTrackerDetails.teamVisionTrackerDetailsID(),
+               let report = report,
+               let sentence = interactor.sentence(in: indexPath.row) {
+                let configurator = TeamVisionTrackerDetailsConfigurator.make(report: report,
+                                                                             sentence: sentence,
+                                                                             selectedDate: interactor.selectedDate)
+                configurator(controller)
+                pushToStart(childViewController: controller)
+            }
+        default: break
         }
     }
 

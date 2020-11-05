@@ -39,11 +39,8 @@ final class MyXTeamMembersInteractor: MyXTeamMembersWorker {
             self?.checkSelection(notification)
         }
     }
-
-//    var teamMembersText: String {
-//        return teamMembersText
-//    }
 }
+
 // MARK: - Private
 private extension MyXTeamMembersInteractor {
     @objc func checkSelection(_ notification: Notification) {

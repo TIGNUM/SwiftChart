@@ -21,14 +21,14 @@ class DTViewModel {
     let showNextQuestionAutomated: Bool
 
     init(question: DTViewModel.Question,
-                  answers: [DTViewModel.Answer],
-                  tbvText: String?,
-                  userInputText: String?,
-                  hasTypingAnimation: Bool,
-                  typingAnimationDuration: Double,
-                  previousButtonIsHidden: Bool,
-                  dismissButtonIsHidden: Bool,
-                  showNextQuestionAutomated: Bool) {
+         answers: [DTViewModel.Answer],
+         tbvText: String?,
+         userInputText: String?,
+         hasTypingAnimation: Bool,
+         typingAnimationDuration: Double,
+         previousButtonIsHidden: Bool,
+         dismissButtonIsHidden: Bool,
+         showNextQuestionAutomated: Bool) {
         self.question = question
         self.answers = answers
         self.tbvText = tbvText
@@ -88,37 +88,42 @@ class DTViewModel {
         var selected: Bool = false
         var backgroundColor: UIColor
         let decisions: [Decision]
+        var votes: Int
 
         init(remoteId: Int,
              title: String,
              keys: [String],
              selected: Bool,
              backgroundColor: UIColor,
-             decisions: [Decision]) {
+             decisions: [Decision],
+             votes: Int) {
             self.remoteId = remoteId
             self.title = title
             self.keys = keys
             self.selected = selected
             self.backgroundColor = backgroundColor
             self.decisions = decisions
+            self.votes = votes
         }
 
-        init(answer: DTViewModel.Answer, newTargetId: Int) {
+        init(answer: DTViewModel.Answer, newTargetId: Int, votes: Int) {
             self.remoteId = answer.remoteId
             self.title = answer.title
             self.keys = answer.keys
             self.selected = true
             self.backgroundColor = answer.backgroundColor
             self.decisions = [Decision(answer, newTargetId)]
+            self.votes = votes
         }
 
-        init(qdmAnswer: QDMAnswer, selectedIds: [Int], decisions: [Decision]) {
+        init(qdmAnswer: QDMAnswer, selectedIds: [Int], decisions: [Decision], votes: Int) {
             self.remoteId = qdmAnswer.remoteID ?? 0
             self.title = qdmAnswer.subtitle ?? ""
             self.keys = qdmAnswer.keys
             self.selected = selectedIds.contains(obj: qdmAnswer.remoteID ?? 0)
             self.backgroundColor = .clear
             self.decisions = decisions
+            self.votes = votes
         }
 
         static func == (lhs: DTViewModel.Answer, rhs: DTViewModel.Answer) -> Bool {
@@ -174,8 +179,10 @@ extension DTViewModel {
         if let index = indexOf(answer.remoteId) {
             answers.remove(at: index)
             answers.insert(answer, at: index)
-            if question.answerType == .multiSelection || question.answerType == .singleSelection {
-                notifyCounterChanged()
+            if question.answerType == .multiSelection ||
+                question.answerType == .singleSelection ||
+                question.answerType == .poll {
+                    notifyCounterChanged()
             }
         }
     }

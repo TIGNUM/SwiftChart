@@ -16,6 +16,8 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
     var highlight: ButtonTheme? = ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
     var select: ButtonTheme?
     var disabled: ButtonTheme? = ButtonTheme(foreground: .sand08, background: nil, border: .sand08)
+    var ctaState: ButtonTheme.State?
+    var ctaAction: ButtonTheme.Action?
 
     /// Closure used in specific cases (see `QOTAlert` implementation)
     var handler: ((UIButton) -> Void)?
@@ -81,7 +83,6 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
 
 // MARK: - Public methods
 extension RoundedButton {
-
     func setTitle(_ title: String?) {
         setTitle(title, for: .normal)
     }
@@ -124,16 +125,13 @@ extension RoundedButton {
 
 // MARK: - Bar button helpers
 extension RoundedButton {
-
     var barButton: UIBarButtonItem {
         return UIBarButtonItem(customView: embeddedInView(self))
     }
 }
 
 // MARK: - Private methods
-
 private extension RoundedButton {
-
     func setTheme(_ theme: ButtonTheme, for state: UIControl.State, with title: NSAttributedString?) {
         var attributes: [NSAttributedString.Key: Any] = titleAttributes ?? [NSAttributedString.Key: Any]()
         attributes[.foregroundColor] = theme.foregroundColor

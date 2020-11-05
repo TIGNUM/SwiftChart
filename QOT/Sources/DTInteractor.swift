@@ -46,7 +46,7 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func loadIntroQuestion(_ firstQuestion: QDMQuestion?) {
-        let presentationModel = DTPresentationModel(question: firstQuestion)
+        let presentationModel = DTPresentationModel(question: firstQuestion, poll: getTeamTBVPoll())
         let node = Node(questionId: firstQuestion?.remoteID,
                         answerFilter: nil,
                         titleUpdate: nil)
@@ -128,7 +128,8 @@ class DTInteractor: DTInteractorInterface {
                                    userInputText: userInputText,
                                    tbv: tbv,
                                    selectedIds: selectedIds,
-                                   preparations: preparations)
+                                   preparations: preparations,
+                                   poll: getTeamTBVPoll())
     }
 
     func getCriticalPreparations(_ completion: @escaping ([QDMUserPreparation]) -> Void) {
@@ -152,7 +153,8 @@ class DTInteractor: DTInteractorInterface {
                                    userInputText: selection.userInput,
                                    tbv: tbv,
                                    selectedIds: [],
-                                   preparations: preparations)
+                                   preparations: preparations,
+                                   poll: getTeamTBVPoll())
     }
 
     func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {
@@ -167,6 +169,10 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
+        return nil
+    }
+
+    func getTeamTBVPoll() -> QDMTeamToBeVisionPoll? {
         return nil
     }
 
