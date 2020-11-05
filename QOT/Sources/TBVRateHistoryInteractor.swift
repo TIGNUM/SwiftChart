@@ -53,11 +53,11 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
     }
 
     var title: String {
-        return worker.title
+        return team == nil ? worker.title : worker.teamHeader
     }
 
     var graphTitle: String {
-        return worker.graphTitle.uppercased()
+        return team == nil ? worker.graphTitle.uppercased() : worker.teamTitle.uppercased()
     }
 
     var average: [Date: Double] {
