@@ -280,7 +280,8 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_body_missing_five_days_data = AppTextKey("daily_brief.section_impact_readiness.body_missing_five_days_data")
     static let daily_brief_section_impact_readiness_button_my_data = AppTextKey("daily_brief.section_impact_readiness.button_my_data")
     static let daily_brief_section_impact_readiness_empty_body = AppTextKey("daily_brief.section_impact_readiness.empty.body")
-    static let daily_brief_section_impact_readiness_error_body = AppTextKey("daily_brief.section_impact_readiness.error.body")
+    static let daily_brief_section_impact_readiness_network_error_body = AppTextKey("daily_brief.section_impact_readiness.network_error.body")
+    static let daily_brief_section_impact_readiness_load_error_body = AppTextKey("daily_brief.section_impact_readiness.load_error.body")
     static let daily_brief_section_impact_readiness_label_out_of_100 = AppTextKey("daily_brief.section_impact_readiness.label_out_of_100")
     static let daily_brief_section_impact_readiness_loading_body = AppTextKey("daily_brief.section_impact_readiness.loading.body")
     static let daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer =  AppTextKey("daily_brief.section_impact_readiness.section_five_days_rolling.body_explainer")
@@ -1137,4 +1138,9 @@ public extension AppTextKey {
 @available(*, unavailable, message: "Unavailable from QOT v3.1.9")
 public extension AppTextKey {
     static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
+}
+
+@available(*, unavailable, message: "Unavailable from QOT v3.2.2")
+public extension AppTextKey {
+    static let daily_brief_section_impact_readiness_error_body = AppTextKey("daily_brief.section_impact_readiness.error.body")
 }
