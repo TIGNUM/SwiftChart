@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,27 +20,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZP-Sd-Oqh">
-                    <rect key="frame" x="56" y="21" width="334" height="34"/>
+                    <rect key="frame" x="60" y="21" width="330" height="30"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70411494009999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="icP-Ok-rSo">
-                    <rect key="frame" x="24" y="30" width="16" height="16"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark_oval" translatesAutoresizingMaskIntoConstraints="NO" id="icP-Ok-rSo">
+                    <rect key="frame" x="24" y="26" width="20" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="16" id="pg7-QW-8ik"/>
-                        <constraint firstAttribute="height" constant="16" id="uRh-jg-2QP"/>
+                        <constraint firstAttribute="width" constant="20" id="YYD-Fm-tde"/>
+                        <constraint firstAttribute="height" constant="20" id="yVy-b0-tzv"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_grey" translatesAutoresizingMaskIntoConstraints="NO" id="bvt-Lt-GDD">
-                    <rect key="frame" x="26" y="32" width="12" height="12"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark_sand" translatesAutoresizingMaskIntoConstraints="NO" id="bvt-Lt-GDD">
+                    <rect key="frame" x="28" y="30" width="12" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="2j7-oL-vP6"/>
                         <constraint firstAttribute="width" constant="12" id="Kre-Sf-v9A"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="question_mark" translatesAutoresizingMaskIntoConstraints="NO" id="py4-0a-swi">
-                    <rect key="frame" x="26" y="32" width="12" height="12"/>
+                    <rect key="frame" x="28" y="30" width="12" height="12"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="12" id="MGa-ZL-uzE"/>
                         <constraint firstAttribute="height" constant="12" id="XsV-bG-Msx"/>
@@ -50,20 +50,20 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTy-VN-eDU">
-                            <rect key="frame" x="56" y="21" width="334" height="34"/>
+                            <rect key="frame" x="60" y="21" width="330" height="34"/>
                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70411494009999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="5Vr-9b-CnV">
-                            <rect key="frame" x="24" y="30" width="16" height="16"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark_oval" translatesAutoresizingMaskIntoConstraints="NO" id="5Vr-9b-CnV">
+                            <rect key="frame" x="24" y="28" width="20" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="16" id="cf9-9P-aQe"/>
-                                <constraint firstAttribute="width" constant="16" id="wWZ-e1-3hO"/>
+                                <constraint firstAttribute="height" constant="20" id="cf9-9P-aQe"/>
+                                <constraint firstAttribute="width" constant="20" id="wWZ-e1-3hO"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_grey" translatesAutoresizingMaskIntoConstraints="NO" id="oTe-EA-PJg">
-                            <rect key="frame" x="26" y="32" width="12" height="12"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark_sand" translatesAutoresizingMaskIntoConstraints="NO" id="oTe-EA-PJg">
+                            <rect key="frame" x="28" y="32" width="12" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="MnY-vS-d9C"/>
                                 <constraint firstAttribute="width" constant="12" id="oW6-rq-o8c"/>
@@ -121,15 +121,16 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hcn-mA-qsQ" userLabel="BottomSeperator">
                     <rect key="frame" x="24" y="65" width="390" height="1"/>
+                    <viewLayoutGuide key="safeArea" id="iTp-TN-KOH"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="5u5-Bc-NG0"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="tuN-fn-aeL"/>
                         <constraint firstAttribute="height" constant="1" id="zjS-NA-tAG"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="iTp-TN-KOH"/>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Mfa-pw-UrH"/>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Mfa-pw-UrH" firstAttribute="trailing" secondItem="Xi9-Dh-Doj" secondAttribute="trailing" constant="-100" id="0le-4H-Rqa"/>
@@ -158,7 +159,6 @@
                 <constraint firstItem="Hcn-mA-qsQ" firstAttribute="top" secondItem="icP-Ok-rSo" secondAttribute="bottom" constant="19" id="pKa-fE-ZwP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="Mfa-pw-UrH"/>
             <connections>
                 <outlet property="demoEmailLabel" destination="HTy-VN-eDU" id="LXt-Iy-4ib"/>
                 <outlet property="demoInviteView" destination="Xi9-Dh-Doj" id="I4X-nb-1jL"/>
@@ -173,8 +173,8 @@
         </view>
     </objects>
     <resources>
-        <image name="check_grey" width="5" height="4.5"/>
-        <image name="circle" width="9" height="9"/>
+        <image name="ic_checkmark_oval" width="18" height="18"/>
+        <image name="ic_checkmark_sand" width="10" height="9"/>
         <image name="question_mark" width="3" height="5"/>
     </resources>
 </document>
