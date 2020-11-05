@@ -501,7 +501,6 @@ extension DailyBriefInteractor {
                 dailyCheckInResultRequestCheckTimer = nil
                 expendImpactReadiness = false
                 enableButton = false
-
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
                 dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(2),
                                                                            repeats: true) { (timer) in
