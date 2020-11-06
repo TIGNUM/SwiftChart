@@ -66,11 +66,21 @@ extension DailyBriefViewController {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 1 : .leastNormalMagnitude
+        return section == 0 ? 44 : .leastNormalMagnitude
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 1000
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = R.nib.newDailyBriefTableViewHeader(owner: self)
+        headerView?.configure(tapLeft: { [weak self] in
+            self?.delegate?.moveToCell(item: 0)
+        }, tapRight: { [weak self] in
+            self?.delegate?.moveToCell(item: 2)
+        })
+        return headerView
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -272,6 +282,13 @@ extension DailyBriefViewController {
         guard let bucketName = bucketItem?.domainModel?.bucketName else { return }
 
         switch bucketName {
+        case .DAILY_CHECK_IN_1:
+            guard let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel else { break }
+            if impactReadinessCellViewModel.readinessScore == -1 {
+                showDailyCheckInQuestions()
+            } else {
+                //show impact readiness detailsVC
+            }
         case .LATEST_WHATS_HOT:
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
@@ -353,14 +370,23 @@ private extension DailyBriefViewController {
     func getImpactReadinessCell(_ tableView: UITableView,
                                 _ indexPath: IndexPath,
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
-        let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
-        cell.clickableLinkDelegate = self
-        cell.configure(viewModel: impactReadinessCellViewModel, tapLeft: { [weak self] in
-                        self?.delegate?.moveToCell(item: 0)
-                        }, tapRight: { [weak self] in
-                            self?.delegate?.moveToCell(item: 2)
-                    })
-        cell.delegate = self
+//        let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
+//        cell.clickableLinkDelegate = self
+//        cell.configure(viewModel: impactReadinessCellViewModel, tapLeft: { [weak self] in
+//                        self?.delegate?.moveToCell(item: 0)
+//                        }, tapRight: { [weak self] in
+//                            self?.delegate?.moveToCell(item: 2)
+//                    })
+//        cell.delegate = self
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+        let standardModel1: NewBaseDailyBriefModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel?.title ?? "",
+                                                                             title: impactReadinessCellViewModel?.title ?? "",
+                                                                             body: impactReadinessCellViewModel?.feedback ?? "",
+                                                                             image: "",
+                                                                             domainModel: nil)
+        cell.configure(with: [standardModel1])
+
         return cell
     }
 
@@ -399,6 +425,7 @@ private extension DailyBriefViewController {
         let cell: ThoughtsCell = tableView.dequeueCell(for: indexPath)
         cell.clickableLinkDelegate = self
         cell.configure(with: thoughtsCellViewModel)
+
         return cell
     }
 
@@ -889,6 +916,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(PollOpenCell.self)
         tableView.registerDequeueable(RateOpenCell.self)
         tableView.registerDequeueable(RatingFeedbackCell.self)
+        tableView.registerDequeueable(NewBaseDailyBriefCell.self)
     }
 
     func scrollToSection(at: Int) {
