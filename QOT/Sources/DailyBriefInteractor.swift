@@ -494,30 +494,36 @@ extension DailyBriefInteractor {
         if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false,
             impactReadiness.dailyCheckInResult == nil {
             expendImpactReadiness = false
-
+            dailyCheckInResultRequestCheckTimer?.invalidate()
+            dailyCheckInResultRequestCheckTimer = nil
         }
 
         // check request time for result
         if let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
             impactReadiness.dailyCheckInResult == nil {
             readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
-            // if it took longer than dailyCheckInResultRequestTimeOut and still we don't have result
-            if answerDate.dateAfterSeconds(dailyCheckInResultRequestTimeOut) < Date() {
-                readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_error_body)
+            if QOTReachability().isReachable == false {
+                readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_network_error_body)
                 dailyCheckInResultRequestCheckTimer?.invalidate()
                 dailyCheckInResultRequestCheckTimer = nil
                 expendImpactReadiness = false
                 enableButton = false
-            } else if impactReadiness.dailyCheckInResult == nil, dailyCheckInResultRequestCheckTimer != nil,
-                      let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
-                      answerDate.dateAfterSeconds(3) < Date() { // if we didn't get the feedback right away, try to get again.
-                requestSynchronization(.DAILY_CHECK_IN_RESULT, .DOWN_SYNC)
+            }
+            // if it took longer than dailyCheckInResultRequestTimeOut and still we don't have result
+            else if answerDate.dateAfterSeconds(dailyCheckInResultRequestTimeOut) < Date() {
+                readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_load_error_body)
+                dailyCheckInResultRequestCheckTimer?.invalidate()
+                dailyCheckInResultRequestCheckTimer = nil
+                expendImpactReadiness = false
+                enableButton = false
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
-                dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(dailyCheckInResultRequestTimeOut),
-                                                                           repeats: false) { (timer) in
-                                                                            self.dailyCheckInResultRequestCheckTimer?.invalidate()
-                                                                            self.dailyCheckInResultRequestCheckTimer = nil
-                                                                            self.updateDailyBriefBucket()
+                dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(2),
+                                                                           repeats: true) { (timer) in
+                    // try it again
+                    log("DailyBriefInteractor: Retry to get Impact Readiness Score", level: .info)
+                    requestSynchronization(.DAILY_CHECK_IN, .UP_SYNC)
+                    requestSynchronization(.DAILY_CHECK_IN_RESULT, .DOWN_SYNC)
+                    self.updateDailyBriefBucket()
                 }
             }
         } else if impactReadiness.dailyCheckInResult != nil { // if we got the result.
