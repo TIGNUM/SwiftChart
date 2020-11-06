@@ -10,13 +10,13 @@ import Foundation
 import qot_dal
 
 enum CoachSection: Int, CaseIterable {
-    case search = 0
-    case tools
-    case sprint
+    case mindset = 0
+    case recovery
     case event
     case challenge
-    case mindset
-    case recovery
+    case sprint
+    case tools
+    case search
 }
 
 struct CoachModel {
