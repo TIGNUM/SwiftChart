@@ -814,8 +814,8 @@ extension DailyBriefInteractor {
         let finishedRatings = rateBucket.teamToBeVisionTrackerPolls?.filter { $0.open == false }
         finishedRatings?.forEach {(closedRating) in
             guard let team = rateBucket.myTeams?.filter({ $0.qotId == closedRating.teamQotId }).first else { return }
-            let ratingFeedback = closedRating.feedback
-            let feedbackModel = RatingFeedbackModel(team: team, feedback: ratingFeedback, averageValue: closedRating.averageValue, domainModel: rateBucket)
+            guard let ratingFeedback = closedRating.feedback, let averageValue = closedRating.averageValue else { return }
+            let feedbackModel = RatingFeedbackModel(team: team, feedback: ratingFeedback, averageValue: averageValue, domainModel: rateBucket)
             ratingBucketList.append(feedbackModel)
         }
         return ratingBucketList
