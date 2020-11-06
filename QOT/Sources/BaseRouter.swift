@@ -126,14 +126,41 @@ class BaseRouter: BaseRouterInterface {
     }
 
     func presentMailComposer(recipients: [String], subject: String) {
-        if MFMailComposeViewController.canSendMail() == true {
+        BaseRouter.sendEmail(to: recipients.first ?? Defaults.firstLevelSupportEmail,
+                             subject: subject,
+                             body: "", from: viewController)
+    }
+
+    static func sendEmail(to: String, subject: String, body: String, from: UIViewController?) {
+        if MFMailComposeViewController.canSendMail() {
             let composer = MFMailComposeViewController()
-            composer.setToRecipients(recipients)
+            composer.setToRecipients([to])
             composer.setSubject(subject)
-            composer.mailComposeDelegate = viewController
-            present(composer)
+            composer.mailComposeDelegate = from
+            from?.present(composer, animated: true)
+            return
+        }
+        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let bodyEncoded = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+
+        let gmailUrl = URL(string: "googlegmail://co?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let outlookUrl = URL(string: "ms-outlook://compose?to=\(to)&subject=\(subjectEncoded)")
+        let yahooMail = URL(string: "ymail://mail/compose?to=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let sparkUrl = URL(string: "readdle-spark://compose?recipient=\(to)&subject=\(subjectEncoded)&body=\(bodyEncoded)")
+        let defaultUrl = URL(string: "mailto:\(to)?subject=\(subjectEncoded)&body=\(bodyEncoded)")
+
+        if let gmailUrl = gmailUrl, UIApplication.shared.canOpenURL(gmailUrl) {
+            UIApplication.shared.open(gmailUrl, options: [:], completionHandler: nil)
+        } else if let outlookUrl = outlookUrl, UIApplication.shared.canOpenURL(outlookUrl) {
+            UIApplication.shared.open(outlookUrl, options: [:], completionHandler: nil)
+        } else if let yahooMail = yahooMail, UIApplication.shared.canOpenURL(yahooMail) {
+            UIApplication.shared.open(yahooMail, options: [:], completionHandler: nil)
+        } else if let sparkUrl = sparkUrl, UIApplication.shared.canOpenURL(sparkUrl) {
+            UIApplication.shared.open(sparkUrl, options: [:], completionHandler: nil)
+        } else if let defaultUrl = defaultUrl, UIApplication.shared.canOpenURL(defaultUrl) {
+            UIApplication.shared.open(defaultUrl, options: [:], completionHandler: nil)
         } else {
-            viewController?.showAlert(type: .message(AppTextService.get(.generic_alert_no_email_body)))
+            from?.showAlert(type: .message(AppTextService.get(.generic_alert_no_email_body)))
         }
     }
 
