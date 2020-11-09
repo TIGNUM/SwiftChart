@@ -154,8 +154,12 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
         let remove = AppTextService.get(.settings_team_settings_team_members_remove)
 
         let removeAction = UITableViewRowAction(style: .normal, title: remove) { (action, indexPath) in
-            self.trackUserEvent(.REMOVE_MEMBER, value: member.member.remoteID ?? 0, action: .TAP)
-            self.interactor.removeMember(at: indexPath)
+            let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel))
+            let remove = QOTAlertAction(title: AppTextService.get(.generic_alert_view_button_remove)) { [weak self] (_) in
+                self?.trackUserEvent(.REMOVE_MEMBER, value: member.member.remoteID ?? 0, action: .TAP)
+                self?.interactor.removeMember(at: indexPath)
+            }
+            QOTAlert.show(title: AppTextService.get(.alert_remove_member_title).replacingOccurrences(of: "${name_of_team}", with: self.interactor.getSelectedTeamItem?.title ?? ""), message: AppTextService.get(.alert_remove_member_message), bottomItems: [cancel, remove])
         }
         removeAction.backgroundColor = .redOrange
         switch member.status {
