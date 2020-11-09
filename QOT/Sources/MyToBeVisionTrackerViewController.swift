@@ -15,10 +15,13 @@ final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var loaderView: UIView!
     private var report: ToBeVisionReport?
+    let skeletonManager = SkeletonManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor.addObserver()
         interactor.viewDidLoad()
+        skeletonManager.addOtherView(tableView)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -48,6 +51,7 @@ extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterfa
         tableView.dataSource = self
         tableView.delegate = self
         tableView.reloadData()
+        skeletonManager.hide()
     }
 }
 

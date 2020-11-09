@@ -15,6 +15,7 @@ final class TBVRateHistoryInteractor {
     private let worker: TBVRateHistoryWorker
     private let presenter: TBVRateHistoryPresenterInterface
     private let displayType: TBVGraph.DisplayType
+    private weak var synchronizationObserver: NSObjectProtocol?
     private let team: QDMTeam?
 
     // MARK: - Init
@@ -82,5 +83,32 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
 
     func sentence(in row: Int) -> QDMToBeVisionSentence? {
         return worker.sentences.at(index: row)
+    }
+
+    func addObserver() {
+        removeObserver()
+
+        synchronizationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                         object: nil,
+                                                                         queue: .main) { [weak self] notification in
+            self?.didUpdateTrackers(notification)
+        }
+    }
+
+    @objc func didUpdateTrackers(_ notification: Notification) {
+        guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent, result.syncRequestType == .UP_SYNC else { return }
+        switch result.dataType {
+        case .TEAM_TO_BE_VISION_TRACKER_POLL:
+            worker.getData { [weak self] (report) in
+                self?.presenter.setupView(with: report)
+            }
+        default: break
+        }
+    }
+
+    func removeObserver() {
+        if let synchronizationObserver = synchronizationObserver {
+            NotificationCenter.default.removeObserver(synchronizationObserver)
+        }
     }
 }

@@ -42,7 +42,10 @@ final class TBVRateHistoryWorker: WorkerTeam {
 
     var sentences: [QDMToBeVisionSentence] {
         if let dataModel = dataModel {
-            return dataModel.report.sentences.filter { ($0.ratings[dataModel.selectedDate] ?? -1) > 0 }
+            let sentencesWithThreeDates = dataModel.report.sentences.filter { ($0.ratings.count == 3) }
+            let sentencesWithTwoDates = dataModel.report.sentences.filter { ($0.ratings.count == 2) }
+            let allSentences = dataModel.report.sentences
+            return sentencesWithThreeDates.isEmpty ? (sentencesWithTwoDates.isEmpty ? allSentences : sentencesWithTwoDates) : sentencesWithThreeDates
         }
         return []
     }

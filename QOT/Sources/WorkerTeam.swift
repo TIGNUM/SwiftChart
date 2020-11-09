@@ -377,7 +377,7 @@ extension WorkerTeam {
                 $0.qotTeamToBeVisionTrackers?.isEmpty == false &&
                 $0.averageValue != nil &&
                 $0.feedback != nil } ?? []
-            closedPolls.sort(by: { $0.endDate ?? Date() < $1.endDate ?? Date() })
+            closedPolls.sort(by: { $0.createdAt ?? Date() < $1.createdAt ?? Date() })
             var lastPolls: [QDMTeamToBeVisionTrackerPoll] = []
 
             for (index, poll) in closedPolls.reversed().enumerated() {
