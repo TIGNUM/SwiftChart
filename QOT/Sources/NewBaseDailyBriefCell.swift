@@ -10,12 +10,16 @@ import Foundation
 import qot_dal
 
 let standardWidth = UIScreen.main.bounds.width - 2*24.0
+let detailsWidth = UIScreen.main.bounds.width
 
 class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
-    private var datasource: [NewBaseDailyBriefModel]? = []
+    @IBOutlet weak var collectionViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewTrailingConstraint: NSLayoutConstraint!
+    private var datasource: [BaseDailyBriefViewModel]? = []
+    private var detailsMode: Bool = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,8 +37,9 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     }
 
     // MARK: - Public
-    func configure(with models: [NewBaseDailyBriefModel]?) {
+    func configure(with models: [BaseDailyBriefViewModel]?) {
         datasource?.removeAll()
+
         if let modelDatasource = models {
             datasource?.append(contentsOf: modelDatasource)
         }
@@ -56,9 +61,13 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
             guard let viewModel = calculateHeighest(with: datasource ?? [], forWidth: width) as? NewDailyBriefStandardModel else {
                 return
             }
+            detailsMode = viewModel.detailsMode ?? false
+            width = detailsMode ? detailsWidth : (standardWidth - 8)
+            collectionViewLeadingConstraint.constant  = detailsMode ? 0 : 24.0
+            collectionViewTrailingConstraint.constant = detailsMode ? 0 : 24.0
             height = NewDailyStandardBriefCollectionViewCell.height(for: viewModel, forWidth: width)
             collectionView.isPagingEnabled = true
-            flowLayout.minimumLineSpacing = 8
+            flowLayout.minimumLineSpacing = detailsMode ? 0 : 8
         }
 
         flowLayout.itemSize = CGSize(width: width, height: height)
@@ -79,7 +88,7 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
         if let model = datasource?[indexPath.row] as? NewDailyBriefStandardModel {
             let cell: NewDailyStandardBriefCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.configure(with: model)
-            cell.layer.borderWidth = 0.5
+            cell.layer.borderWidth = detailsMode ? 0 :  0.5
             cell.layer.borderColor = UIColor.lightGray.cgColor
             return cell
         } else if let model = datasource?[indexPath.row] as? NewDailyBriefGetStartedModel {

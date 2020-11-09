@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class NewDailyBriefGetStartedModel: NewBaseDailyBriefModel {
+final class NewDailyBriefGetStartedModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var title: String?
@@ -19,7 +19,7 @@ final class NewDailyBriefGetStartedModel: NewBaseDailyBriefModel {
     init(title: String?, image: String?, domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.image = image
-        super.init(domainModel: domainModel)
+        super.init(domainModel)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
