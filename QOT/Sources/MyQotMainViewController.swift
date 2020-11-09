@@ -44,6 +44,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
+        interactor.addObserver()
         navigationController?.navigationBar.isHidden = true
         interactor.allMainCellReuseIdentifiers().forEach { reuseIdentifier in
             collectionView.register(UINib(resource: R.nib.myQotMainCollectionViewCell),
@@ -55,7 +56,6 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewWillAppear(animated)
         log("🔅🔅🔆🔮🔮", level: .debug)
         setStatusBar(color: .carbon)
-        interactor.addObserver()
         interactor.viewWillAppear()
     }
 
@@ -157,6 +157,10 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
                 ?? collectionView.dequeueCell(for: indexPath)
         interactor.updateMainCell(cell: cell, at: indexPath)
         return cell
+    }
+
+    @objc func loadDataAndReload() {
+        interactor.loadAllDataAndReload()
     }
 }
 
