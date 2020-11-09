@@ -195,7 +195,7 @@ private extension AppDelegate {
     }
 
     func setupUAirship() {
-        guard let path = Bundle.main.path(forResource: "AirshipCbonfig", ofType: "plist") else { return }
+        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
         config.developmentLogLevel = .error
         UAirship.takeOff(config)
