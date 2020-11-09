@@ -154,6 +154,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         UserNotificationsManager.main.scheduleNotifications()
     }
 
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        log("Did Fail To Register For Remote Notifications With Error: \(error)", level: .error)
+    }
+
     func application(_ application: UIApplication,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
