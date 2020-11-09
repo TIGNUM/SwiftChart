@@ -38,6 +38,9 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         if let modelDatasource = models {
             datasource?.append(contentsOf: modelDatasource)
         }
+        if datasource?.count ?? 0 <= 1 {
+            collectionView.isUserInteractionEnabled = false
+        }
         var width = standardWidth - 8
         var height: CGFloat = 0
 

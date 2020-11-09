@@ -985,6 +985,8 @@
 		B4BCE34F2552C63C00A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE34E2552C63C00A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib */; };
 		B4BCE35A2552C9DC00A1116F /* NewDailyBriefGetStartedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE3592552C9DC00A1116F /* NewDailyBriefGetStartedModel.swift */; };
 		B4BCE3682552CB9B00A1116F /* NewDailyBriefStandardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE3672552CB9B00A1116F /* NewDailyBriefStandardModel.swift */; };
+		B4BCE3BD2555401D00A1116F /* NewDailyBriefTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE3BC2555401C00A1116F /* NewDailyBriefTableViewHeader.swift */; };
+		B4BCE3C52555406900A1116F /* NewDailyBriefTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE3C42555406900A1116F /* NewDailyBriefTableViewHeader.xib */; };
 		B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */; };
 		B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
@@ -2426,6 +2428,8 @@
 		B4BCE34E2552C63C00A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDailyBriefGetStartedCollectionViewCell.xib; sourceTree = "<group>"; };
 		B4BCE3592552C9DC00A1116F /* NewDailyBriefGetStartedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyBriefGetStartedModel.swift; sourceTree = "<group>"; };
 		B4BCE3672552CB9B00A1116F /* NewDailyBriefStandardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyBriefStandardModel.swift; sourceTree = "<group>"; };
+		B4BCE3BC2555401C00A1116F /* NewDailyBriefTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyBriefTableViewHeader.swift; sourceTree = "<group>"; };
+		B4BCE3C42555406900A1116F /* NewDailyBriefTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDailyBriefTableViewHeader.xib; sourceTree = "<group>"; };
 		B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQOTAdminEditSprintsDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
@@ -4926,6 +4930,8 @@
 				B4BCE2B425502D6C00A1116F /* NewBaseDailyBriefCell.xib */,
 				B4BCE2F62551C8B900A1116F /* DynamicHeightProtocol.swift */,
 				B4BCE2E72551BF3E00A1116F /* NewBaseDailyBriefModel.swift */,
+				B4BCE3BC2555401C00A1116F /* NewDailyBriefTableViewHeader.swift */,
+				B4BCE3C42555406900A1116F /* NewDailyBriefTableViewHeader.xib */,
 			);
 			name = BaseDailyBriefTableViewCell;
 			sourceTree = "<group>";
@@ -6482,6 +6488,7 @@
 				F934801E247D464A00DD1C7D /* FeatureExplainer.storyboard in Resources */,
 				5FD890A922807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib in Resources */,
 				8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */,
+				B4BCE3C52555406900A1116F /* NewDailyBriefTableViewHeader.xib in Resources */,
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
 				75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */,
 				B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */,
@@ -7158,6 +7165,7 @@
 				F9F4707A2510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift in Sources */,
 				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
 				F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */,
+				B4BCE3BD2555401D00A1116F /* NewDailyBriefTableViewHeader.swift in Sources */,
 				B4BCE2E82551BF3E00A1116F /* NewBaseDailyBriefModel.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
