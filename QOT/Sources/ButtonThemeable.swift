@@ -71,7 +71,8 @@ extension ButtonTheme {
                 case (false, false, false, false),
                      (true, true, true, false),
                      (true, false, true, false),
-                     (true, true, false, false):
+                     (true, true, false, false),
+                     (true, false, false, false):
                     log("🎯🎯🎯 Generator.State: .isHidden", level: .debug)
                     return (state: .isHidden, action: .undefined)
 
@@ -79,12 +80,11 @@ extension ButtonTheme {
                     log("🎯🎯🎯 Generator.State: .isActive, action: ", level: .debug)
                     return (state: .isActive, action: .showIntroGenerator)
 
-                case (false, false, true, false),
-                     (true, false, false, true):
+                case (false, false, true, false):
                     log("🎯🎯🎯 Generator.State: .isInactive, action: .showBanner", level: .debug)
                     let message = AppTextService.get(.banner_unavailable_while_poll_active)
                     return (state: .isInactive, action: .showBanner(message: message))
-                case (true, false, false, false):
+                case (true, false, false, true):
                     log("🎯🎯🎯 Generator.State: .isInactive, action: .showBanner", level: .debug)
                     let message = AppTextService.get(.banner_unavailable_while_rate_active)
                     return (state: .isInactive, action: .showBanner(message: message))

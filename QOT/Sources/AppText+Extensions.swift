@@ -280,7 +280,8 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_body_missing_five_days_data = AppTextKey("daily_brief.section_impact_readiness.body_missing_five_days_data")
     static let daily_brief_section_impact_readiness_button_my_data = AppTextKey("daily_brief.section_impact_readiness.button_my_data")
     static let daily_brief_section_impact_readiness_empty_body = AppTextKey("daily_brief.section_impact_readiness.empty.body")
-    static let daily_brief_section_impact_readiness_error_body = AppTextKey("daily_brief.section_impact_readiness.error.body")
+    static let daily_brief_section_impact_readiness_network_error_body = AppTextKey("daily_brief.section_impact_readiness.network_error.body")
+    static let daily_brief_section_impact_readiness_load_error_body = AppTextKey("daily_brief.section_impact_readiness.load_error.body")
     static let daily_brief_section_impact_readiness_label_out_of_100 = AppTextKey("daily_brief.section_impact_readiness.label_out_of_100")
     static let daily_brief_section_impact_readiness_loading_body = AppTextKey("daily_brief.section_impact_readiness.loading.body")
     static let daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer =  AppTextKey("daily_brief.section_impact_readiness.section_five_days_rolling.body_explainer")
@@ -408,6 +409,9 @@ public extension AppTextKey {
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
     static let generic_event_removed_alert_event_removed_body = AppTextKey("generic.event_removed.alert.event_removed.body")
     static let generic_event_removed_alert_event_removed_title = AppTextKey("generic.event_removed.alert.event_removed.title")
+    static let generic_alert_view_button_remove = AppTextKey("generic.alert_view.button_remove")
+    static let alert_remove_member_message = AppTextKey("alert.remove_member.message")
+    static let alert_remove_member_title = AppTextKey("alert.remove_member.title")
     static let generic_alert_unknown_error_new_body = AppTextKey("generic.alert.unknown_error.new_body")
     static let generic_view_button_cancel = AppTextKey("generic.view.button_cancel")
     static let generic_view_button_update = AppTextKey("generic.view.button_update")
@@ -840,6 +844,7 @@ public extension AppTextKey {
     static let my_qot_my_tbv_edit_body_placeholder = AppTextKey("my_qot.my_tbv.edit.body_placeholder")
     static let my_qot_my_tbv_tbv_tracker_data_null_state_section_my_tbv_title = AppTextKey("my_qot.my_tbv.tbv_tracker_data.null_state.section_my_tbv.title")
     static let my_qot_my_tbv_tbv_tracker_data_section_my_tbv_title = AppTextKey("my_qot.my_tbv.tbv_tracker_data.section_my_tbv.title")
+    static let my_x_team_tbv_tracker_data_title = AppTextKey("my_x.team_tbv.tracker_data.title")
     static let my_qot_my_tbv_tbv_tracker_data_section_header_subtitle = AppTextKey("my_qot.my_tbv.tbv_tracker_data.section_header.subtitle")
     static let my_qot_my_tbv_tbv_tracker_result_section_header_body = AppTextKey("my_qot.my_tbv.tbv_tracker.result.section_header.body")
     static let my_qot_my_tbv_tbv_tracker_data_null_state_section_my_tbv_title_description = AppTextKey("my_qot.my_tbv.tbv_tracker_data.null_state.section_my_tbv.title_description")
@@ -847,6 +852,7 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_result_section_header_title = AppTextKey("my_qot.my_tbv.tbv_tracker.result.section_header.title")
     static let my_qot_my_tbv_tbv_tracker_data_null_state_section_header_header = AppTextKey("my_qot.my_tbv.tbv_tracker_data.null_state.section_header.header")
     static let my_qot_my_tbv_tbv_tracker_data_section_header_title = AppTextKey("my_qot.my_tbv.tbv_tracker_data.section_header.title")
+    static let my_x_team_tbv_tracker_data_header_title = AppTextKey("my_x.team_tbv.tracker_data.header_title")
     static let my_qot_my_tbv_section_navigation_bar_title = AppTextKey("my_qot.my_tbv.section_navigation_bar.title")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_always")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.body_rate_yourself")
@@ -1176,8 +1182,9 @@ public extension AppTextKey {
     static let my_x_team_tbv_section_header_title = AppTextKey("my_x.team_tbv.section_header_title")
 }
 
-@available(*, unavailable, message: "Unavailable from QOT v3.2.1")
+@available(*, unavailable, message: "Unavailable from QOT v3.2.2")
 public extension AppTextKey {
+    static let daily_brief_section_impact_readiness_error_body = AppTextKey("daily_brief.section_impact_readiness.error.body")
     static let banner_tbv_poll_ends_days = AppTextKey("tbv.poll.ends")
     static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
 }

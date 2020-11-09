@@ -52,16 +52,10 @@ final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
     }
 
     private func sendEmail() {
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients(["support@tignumx.com"])
-            mail.setMessageBody("<p>About my TIGNUM X Membership</p>", isHTML: true)
-
-            present(mail, animated: true)
-        } else {
-            print("not sending email")
-        }
+        BaseRouter.sendEmail(to: Defaults.firstLevelSupportEmail,
+                             subject: "About my TIGNUM X Membership",
+                             body: "",
+                             from: self)
     }
 
     override func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

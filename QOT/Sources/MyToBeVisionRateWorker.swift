@@ -95,7 +95,7 @@ private extension MyToBeVisionRateWorker {
         if let index = votes.firstIndex(where: { $0.remoteID == questionId }) {
             votes.remove(at: index)
         }
-        let trackerResult = trackerPoll?.qotTeamToBeVisionTrackers?.filter { $0.remoteID == questionId }.first
+        var trackerResult = trackerPoll?.qotTeamToBeVisionTrackers?.filter { $0.remoteID == questionId }.first
         guard let vote = trackerResult?.voteWithRatingValue(value, isoDate) else { return }
         votes.append(vote)
     }
