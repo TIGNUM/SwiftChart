@@ -158,10 +158,6 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         interactor.updateMainCell(cell: cell, at: indexPath)
         return cell
     }
-
-    @objc func loadDataAndReload() {
-        interactor.loadAllDataAndReload()
-    }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
