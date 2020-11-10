@@ -15,12 +15,9 @@ final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var loaderView: UIView!
     private var report: ToBeVisionReport?
-    let skeletonManager = SkeletonManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        skeletonManager.addOtherView(tableView)
         interactor.viewDidLoad()
         interactor.addObserver()
     }
