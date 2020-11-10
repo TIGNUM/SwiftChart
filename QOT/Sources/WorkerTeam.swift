@@ -93,7 +93,7 @@ protocol WorkerTeam: class {
 
     func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void)
 
-    func getRatingReport(_ completion: @escaping (QDMToBeVisionRatingReport?) -> Void) 
+    func getRatingReport(_ completion: @escaping (QDMToBeVisionRatingReport?) -> Void)
 }
 
 extension WorkerTeam {
