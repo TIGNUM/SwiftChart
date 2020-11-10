@@ -109,8 +109,8 @@ elif [ "$app_target" = "beta" ] ; then
   share_extension_group_id="group.share.com.tignum.qot.v3"
   internal_validation_scheme_id="qotbeta3"
   team_id="4FQQH349R5"
-  urbanairship_app_key="k_EoxqdfT_6WFazZVGi6wQ"
-  urbanairship_app_secrete="64wwwpX8R8Strty8QstJmg"
+  urbanairship_app_key="lC-AKEGBRtGBlh8U03CatQ"
+  urbanairship_app_secrete="ZGtdKxcQQgOlMAvoNSvg4Q"
   hockey_app_id="b0fc4862-5edc-47fc-bd1d-83a5a5f9f8a4"
 fi
 
@@ -160,6 +160,11 @@ sed -i '' "s/4FQQH349R5/$team_id/g" QOT.xcodeproj/project.pbxproj
 # change urbanairship Key and Secret
 plutil -replace productionAppKey -string $urbanairship_app_key QOT/Resources/AirshipConfig.plist
 plutil -replace productionAppSecret -string $urbanairship_app_secrete QOT/Resources/AirshipConfig.plist
+
+if [ "$app_target" = "beta" ] ; then # novartis special
+plutil -replace developmentAppKey -string $urbanairship_app_key QOT/Resources/AirshipConfig.plist
+plutil -replace developmentAppSecret -string $urbanairship_app_secrete QOT/Resources/AirshipConfig.plist
+fi
 
 # change hockey app id
 plutil -replace HOCKEY_APP_ID -string $hockey_app_id QOT/Resources/Info.plist
