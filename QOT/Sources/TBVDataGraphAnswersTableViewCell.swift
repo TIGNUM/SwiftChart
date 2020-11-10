@@ -18,7 +18,7 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private var ratingLabels: [UILabel]!
     @IBOutlet private var ratingContainerViews: [UIView]!
 
-    func configure(_ sentence: QDMToBeVisionSentence, selectedDate: Date, isTeam: Bool) {
+    func  configure(_ sentence: QDMToBeVisionSentence, selectedDate: Date, isTeam: Bool) {
         removeAllLayers()
         setupTheme(sentence, isTeam: isTeam)
         setupView(sentence)

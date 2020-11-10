@@ -43,7 +43,7 @@ final class TBVRateHistoryWorker: WorkerTeam {
 
     var sentences: [QDMToBeVisionSentence] {
         if let dataModel = dataModel {
-            return dataModel.report.sentences.filter { ($0.ratings[dataModel.selectedDate] ?? -1) > 0}
+            return dataModel.report.sentences.filter { ($0.ratings[dataModel.selectedDate] ?? -1) > 0 }
         }
         return []
     }
