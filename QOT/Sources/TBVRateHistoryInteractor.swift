@@ -87,7 +87,6 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
 
     func addObserver() {
         removeObserver()
-
         synchronizationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
                                                                          object: nil,
                                                                          queue: .main) { [weak self] notification in
