@@ -154,6 +154,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         UserNotificationsManager.main.scheduleNotifications()
     }
 
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        log("Did Fail To Register For Remote Notifications With Error: \(error)", level: .error)
+    }
+
     func application(_ application: UIApplication,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
@@ -195,7 +199,7 @@ private extension AppDelegate {
     }
 
     func setupUAirship() {
-        guard let path = Bundle.main.path(forResource: "AirshipCbonfig", ofType: "plist") else { return }
+        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
         config.developmentLogLevel = .error
         UAirship.takeOff(config)
