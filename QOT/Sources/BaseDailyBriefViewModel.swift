@@ -10,7 +10,7 @@ import Foundation
 import DifferenceKit
 import qot_dal
 
-class BaseDailyBriefViewModel: Differentiable {
+class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
 
     // MARK: - Properties
     typealias DifferenceIdentifier = String
@@ -44,5 +44,10 @@ class BaseDailyBriefViewModel: Differentiable {
             domainModel?.preparationIds == source.domainModel?.preparationIds &&
             domainModel?.sprintId == source.domainModel?.sprintId &&
             domainModel?.dailyCheckInAnswerIds == source.domainModel?.dailyCheckInAnswerIds
+    }
+
+    // MARK: - Public
+    public func height(forWidth width: CGFloat) -> CGFloat {
+        return 0
     }
 }

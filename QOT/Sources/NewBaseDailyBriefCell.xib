@@ -41,6 +41,8 @@
             <connections>
                 <outlet property="collectionView" destination="Zfv-7c-ikK" id="7oc-iv-3ov"/>
                 <outlet property="collectionViewHeightConstraint" destination="QHq-4S-avz" id="cSd-Hm-p6X"/>
+                <outlet property="collectionViewLeadingConstraint" destination="650-eC-bqo" id="snZ-zn-xyd"/>
+                <outlet property="collectionViewTrailingConstraint" destination="MhS-KJ-r9P" id="7oY-Ld-FQP"/>
                 <outlet property="flowLayout" destination="NyA-vs-UEG" id="sPC-f9-TGc"/>
             </connections>
             <point key="canvasLocation" x="-0.7246376811594204" y="5.6919642857142856"/>

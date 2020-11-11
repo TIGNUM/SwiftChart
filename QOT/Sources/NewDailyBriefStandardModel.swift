@@ -8,21 +8,23 @@
 
 import qot_dal
 
-final class NewDailyBriefStandardModel: NewBaseDailyBriefModel {
+final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var caption: String?
     var title: String?
     var body: String?
     var image: String?
+    var detailsMode: Bool?
 
     // MARK: - Init
-    init(caption: String?, title: String?, body: String?, image: String?, domainModel: QDMDailyBriefBucket?) {
+    init(caption: String?, title: String?, body: String?, image: String?, detailsMode: Bool = false, domainModel: QDMDailyBriefBucket?) {
         self.caption = caption
         self.title = title
         self.body = body
         self.image = image
-        super.init(domainModel: domainModel)
+        self.detailsMode = detailsMode
+        super.init(domainModel)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

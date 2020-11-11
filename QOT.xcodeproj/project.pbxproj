@@ -979,7 +979,6 @@
 		B4BCE2C92550353900A1116F /* NewBaseDailyBriefCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE2B425502D6C00A1116F /* NewBaseDailyBriefCell.xib */; };
 		B4BCE2D12551649B00A1116F /* NewDailyStandardBriefCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE2D02551649B00A1116F /* NewDailyStandardBriefCollectionViewCell.xib */; };
 		B4BCE2D9255164B500A1116F /* NewDailyStandardBriefCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE2D8255164B500A1116F /* NewDailyStandardBriefCollectionViewCell.swift */; };
-		B4BCE2E82551BF3E00A1116F /* NewBaseDailyBriefModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE2E72551BF3E00A1116F /* NewBaseDailyBriefModel.swift */; };
 		B4BCE2F72551C8B900A1116F /* DynamicHeightProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE2F62551C8B900A1116F /* DynamicHeightProtocol.swift */; };
 		B4BCE3472552C62F00A1116F /* NewDailyBriefGetStartedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE3462552C62F00A1116F /* NewDailyBriefGetStartedCollectionViewCell.swift */; };
 		B4BCE34F2552C63C00A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE34E2552C63C00A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib */; };
@@ -987,6 +986,14 @@
 		B4BCE3682552CB9B00A1116F /* NewDailyBriefStandardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE3672552CB9B00A1116F /* NewDailyBriefStandardModel.swift */; };
 		B4BCE3BD2555401D00A1116F /* NewDailyBriefTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE3BC2555401C00A1116F /* NewDailyBriefTableViewHeader.swift */; };
 		B4BCE3C52555406900A1116F /* NewDailyBriefTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4BCE3C42555406900A1116F /* NewDailyBriefTableViewHeader.xib */; };
+		B4BCE40C2559045400A1116F /* BaseDailyBriefDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE4042559045400A1116F /* BaseDailyBriefDetailsPresenter.swift */; };
+		B4BCE40D2559045400A1116F /* BaseDailyBriefDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE4052559045400A1116F /* BaseDailyBriefDetailsWorker.swift */; };
+		B4BCE40E2559045400A1116F /* BaseDailyBriefDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE4062559045400A1116F /* BaseDailyBriefDetailsRouter.swift */; };
+		B4BCE40F2559045400A1116F /* BaseDailyBriefDetailsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE4072559045400A1116F /* BaseDailyBriefDetailsInterface.swift */; };
+		B4BCE4102559045400A1116F /* BaseDailyBriefDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE4082559045400A1116F /* BaseDailyBriefDetailsViewController.swift */; };
+		B4BCE4112559045400A1116F /* BaseDailyBriefDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE4092559045400A1116F /* BaseDailyBriefDetailsInteractor.swift */; };
+		B4BCE4122559045400A1116F /* BaseDailyBriefDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE40A2559045400A1116F /* BaseDailyBriefDetailsModel.swift */; };
+		B4BCE4132559045400A1116F /* BaseDailyBriefDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE40B2559045400A1116F /* BaseDailyBriefDetailsConfigurator.swift */; };
 		B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */; };
 		B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
@@ -2422,7 +2429,6 @@
 		B4BCE2BB25502EA800A1116F /* NewBaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBaseDailyBriefCell.swift; sourceTree = "<group>"; };
 		B4BCE2D02551649B00A1116F /* NewDailyStandardBriefCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDailyStandardBriefCollectionViewCell.xib; sourceTree = "<group>"; };
 		B4BCE2D8255164B500A1116F /* NewDailyStandardBriefCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyStandardBriefCollectionViewCell.swift; sourceTree = "<group>"; };
-		B4BCE2E72551BF3E00A1116F /* NewBaseDailyBriefModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBaseDailyBriefModel.swift; sourceTree = "<group>"; };
 		B4BCE2F62551C8B900A1116F /* DynamicHeightProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightProtocol.swift; sourceTree = "<group>"; };
 		B4BCE3462552C62F00A1116F /* NewDailyBriefGetStartedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyBriefGetStartedCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4BCE34E2552C63C00A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDailyBriefGetStartedCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -2430,6 +2436,14 @@
 		B4BCE3672552CB9B00A1116F /* NewDailyBriefStandardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyBriefStandardModel.swift; sourceTree = "<group>"; };
 		B4BCE3BC2555401C00A1116F /* NewDailyBriefTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyBriefTableViewHeader.swift; sourceTree = "<group>"; };
 		B4BCE3C42555406900A1116F /* NewDailyBriefTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDailyBriefTableViewHeader.xib; sourceTree = "<group>"; };
+		B4BCE4042559045400A1116F /* BaseDailyBriefDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefDetailsPresenter.swift; sourceTree = "<group>"; };
+		B4BCE4052559045400A1116F /* BaseDailyBriefDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefDetailsWorker.swift; sourceTree = "<group>"; };
+		B4BCE4062559045400A1116F /* BaseDailyBriefDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefDetailsRouter.swift; sourceTree = "<group>"; };
+		B4BCE4072559045400A1116F /* BaseDailyBriefDetailsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefDetailsInterface.swift; sourceTree = "<group>"; };
+		B4BCE4082559045400A1116F /* BaseDailyBriefDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefDetailsViewController.swift; sourceTree = "<group>"; };
+		B4BCE4092559045400A1116F /* BaseDailyBriefDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefDetailsInteractor.swift; sourceTree = "<group>"; };
+		B4BCE40A2559045400A1116F /* BaseDailyBriefDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefDetailsModel.swift; sourceTree = "<group>"; };
+		B4BCE40B2559045400A1116F /* BaseDailyBriefDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefDetailsConfigurator.swift; sourceTree = "<group>"; };
 		B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQOTAdminEditSprintsDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
@@ -4896,12 +4910,10 @@
 		B4BCE2E62551BE4800A1116F /* NewDailyBrief */ = {
 			isa = PBXGroup;
 			children = (
+				B4BCE3EF2558617600A1116F /* BaseDailyBriefDetailsView */,
 				B4BCE3582552C95E00A1116F /* BaseDailyBriefTableViewCell */,
 				B4BCE3572552C8FD00A1116F /* StandardCollectionViewCell */,
 				B4BCE3562552C8E900A1116F /* GetStartedCollectionViewCell */,
-				B4BCE3462552C62F00A1116F /* NewDailyBriefGetStartedCollectionViewCell.swift */,
-				B4BCE34E2552C63C00A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib */,
-				B4BCE3592552C9DC00A1116F /* NewDailyBriefGetStartedModel.swift */,
 			);
 			name = NewDailyBrief;
 			sourceTree = "<group>";
@@ -4909,6 +4921,9 @@
 		B4BCE3562552C8E900A1116F /* GetStartedCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				B4BCE3462552C62F00A1116F /* NewDailyBriefGetStartedCollectionViewCell.swift */,
+				B4BCE34E2552C63C00A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib */,
+				B4BCE3592552C9DC00A1116F /* NewDailyBriefGetStartedModel.swift */,
 			);
 			name = GetStartedCollectionViewCell;
 			sourceTree = "<group>";
@@ -4929,11 +4944,25 @@
 				B4BCE2BB25502EA800A1116F /* NewBaseDailyBriefCell.swift */,
 				B4BCE2B425502D6C00A1116F /* NewBaseDailyBriefCell.xib */,
 				B4BCE2F62551C8B900A1116F /* DynamicHeightProtocol.swift */,
-				B4BCE2E72551BF3E00A1116F /* NewBaseDailyBriefModel.swift */,
 				B4BCE3BC2555401C00A1116F /* NewDailyBriefTableViewHeader.swift */,
 				B4BCE3C42555406900A1116F /* NewDailyBriefTableViewHeader.xib */,
 			);
 			name = BaseDailyBriefTableViewCell;
+			sourceTree = "<group>";
+		};
+		B4BCE3EF2558617600A1116F /* BaseDailyBriefDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				B4BCE4042559045400A1116F /* BaseDailyBriefDetailsPresenter.swift */,
+				B4BCE4052559045400A1116F /* BaseDailyBriefDetailsWorker.swift */,
+				B4BCE4062559045400A1116F /* BaseDailyBriefDetailsRouter.swift */,
+				B4BCE4072559045400A1116F /* BaseDailyBriefDetailsInterface.swift */,
+				B4BCE4082559045400A1116F /* BaseDailyBriefDetailsViewController.swift */,
+				B4BCE4092559045400A1116F /* BaseDailyBriefDetailsInteractor.swift */,
+				B4BCE40A2559045400A1116F /* BaseDailyBriefDetailsModel.swift */,
+				B4BCE40B2559045400A1116F /* BaseDailyBriefDetailsConfigurator.swift */,
+			);
+			name = BaseDailyBriefDetailsView;
 			sourceTree = "<group>";
 		};
 		B80B2EF224DAC4C900C6FD85 /* Team Library Feed */ = {
@@ -6904,6 +6933,7 @@
 				8D5668B922DCAD4800AA172F /* MySprintsListInterface.swift in Sources */,
 				AC1A40DC22A54EB70022156C /* SolveResultsRouter.swift in Sources */,
 				F99DF60F2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift in Sources */,
+				B4BCE4132559045400A1116F /* BaseDailyBriefDetailsConfigurator.swift in Sources */,
 				B80B2EFB24DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.swift in Sources */,
 				B4AB48BB230BF891003B3C1F /* MyDataSelectionModel.swift in Sources */,
 				B856B47E22B0E29D0017A249 /* MyLibraryCellViewModel.swift in Sources */,
@@ -7069,6 +7099,7 @@
 				B4AB48B8230BF891003B3C1F /* MyDataSelectionInterface.swift in Sources */,
 				5F62BE9A228AB66100852F7E /* MyQotSupportDetailsWorker.swift in Sources */,
 				3658257B2327D19200AC3F4A /* DTShortTBVInterface.swift in Sources */,
+				B4BCE40D2559045400A1116F /* BaseDailyBriefDetailsWorker.swift in Sources */,
 				DB2969F322C64CB600B8A590 /* FullScreenBackgroundCircleView.swift in Sources */,
 				5F36072C228BEDA20074FEC4 /* MyQotSensorsInterface.swift in Sources */,
 				385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */,
@@ -7166,7 +7197,6 @@
 				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
 				F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */,
 				B4BCE3BD2555401D00A1116F /* NewDailyBriefTableViewHeader.swift in Sources */,
-				B4BCE2E82551BF3E00A1116F /* NewBaseDailyBriefModel.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
@@ -7205,6 +7235,7 @@
 				5F360735228C1EF10074FEC4 /* SyncedCalendarsInterface.swift in Sources */,
 				B430D7CB23A911DE00C75C9C /* MyQotAdminSettingsListConfigurator.swift in Sources */,
 				DB84AF1F231AAA1A005487BD /* UIImageView+Kingfisher.swift in Sources */,
+				B4BCE40E2559045400A1116F /* BaseDailyBriefDetailsRouter.swift in Sources */,
 				8D32CFC322EB0AC900B2C4E8 /* MySprintStatus.swift in Sources */,
 				F99E9CC824EABD9C00325EAE /* VisionRatingExplanationInteractor.swift in Sources */,
 				8D322B9422E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift in Sources */,
@@ -7270,6 +7301,7 @@
 				5F7BE78C22895ED200BA5DCF /* MyQotSupportModel.swift in Sources */,
 				8D8AA76A22FDCB6700B59A81 /* RegistrationEmailRouter.swift in Sources */,
 				38095D2424BDC4EA0077EE86 /* TeamInvitesWorker.swift in Sources */,
+				B4BCE40C2559045400A1116F /* BaseDailyBriefDetailsPresenter.swift in Sources */,
 				36083826225F3ED000664B9B /* ArticlePresenter.swift in Sources */,
 				363B9CC1232BF34A00C1A29E /* DTTBVRouter.swift in Sources */,
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
@@ -7280,6 +7312,7 @@
 				B474CA922398F85F00A829B5 /* RegisterIntroInteractor.swift in Sources */,
 				B4A075BD230EF14900DDB922 /* MyDataHeatMapDateCell.swift in Sources */,
 				3608382B225F3ED000664B9B /* ArticleInteractor.swift in Sources */,
+				B4BCE40F2559045400A1116F /* BaseDailyBriefDetailsInterface.swift in Sources */,
 				7F9217BD1FD01C5D00CAE9E0 /* PhotosPermission.swift in Sources */,
 				9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */,
 				38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */,
@@ -7354,6 +7387,7 @@
 				363765FD223A4BD200C2C429 /* KnowingRouter.swift in Sources */,
 				5FA6663E229C20600027EE74 /* MyVisionEditDetailsPresenter.swift in Sources */,
 				38290B8B2330F825004B5C14 /* DTSprintReflectionInteractor.swift in Sources */,
+				B4BCE4102559045400A1116F /* BaseDailyBriefDetailsViewController.swift in Sources */,
 				B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */,
 				F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */,
 				B88A19E8241A41A000FC5019 /* OpenGraphMetaDataParser.swift in Sources */,
@@ -7385,6 +7419,7 @@
 				F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */,
 				389BBC88235EE68B0009FA02 /* CoachMarksInterface.swift in Sources */,
 				B4BCD0FC23AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift in Sources */,
+				B4BCE4122559045400A1116F /* BaseDailyBriefDetailsModel.swift in Sources */,
 				B8BCE59C22AF95B20012AAAC /* ShareExtentionData.swift in Sources */,
 				B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */,
 				5F7BE79A22899F5F00BA5DCF /* MyQotAboutUsWorker.swift in Sources */,
@@ -7937,6 +7972,7 @@
 				5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */,
 				E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */,
 				DB2969EE22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift in Sources */,
+				B4BCE4112559045400A1116F /* BaseDailyBriefDetailsInteractor.swift in Sources */,
 				5FD890AB22807C6800B1CE7F /* MyQotProfileHeaderView.swift in Sources */,
 				F946D08F243CFA71001E2D23 /* StreamVideoConfigurator.swift in Sources */,
 				B4BCD0F823AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift in Sources */,

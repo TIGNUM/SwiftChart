@@ -287,7 +287,7 @@ extension DailyBriefViewController {
             if impactReadinessCellViewModel.readinessScore == -1 {
                 showDailyCheckInQuestions()
             } else {
-                //show impact readiness detailsVC
+                router.presentDailyBriefDetailsScreen(model: impactReadinessCellViewModel)
             }
         case .LATEST_WHATS_HOT:
              didSelectRow(at: indexPath)
@@ -380,11 +380,11 @@ private extension DailyBriefViewController {
 //        cell.delegate = self
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
-        let standardModel1: NewBaseDailyBriefModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel?.title ?? "",
-                                                                             title: impactReadinessCellViewModel?.title ?? "",
-                                                                             body: impactReadinessCellViewModel?.feedback ?? "",
-                                                                             image: "",
-                                                                             domainModel: nil)
+        let standardModel1 = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel?.title ?? "",
+                                                             title: impactReadinessCellViewModel?.title ?? "",
+                                                             body: impactReadinessCellViewModel?.feedback ?? "",
+                                                             image: "",
+                                                             domainModel: nil)
         cell.configure(with: [standardModel1])
 
         return cell
@@ -1063,6 +1063,13 @@ extension DailyBriefViewController {
     func presentStrategyList(strategyID: Int?) {
         if let contentId = strategyID {
             router.presentContent(contentId)
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? BaseDailyBriefDetailsViewController,
+           let model = sender as? BaseDailyBriefViewModel {
+            BaseDailyBriefDetailsConfigurator.configure(model: model, viewController: controller)
         }
     }
 }

@@ -104,4 +104,10 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
             viewController?.present(controller, animated: true)
         }
     }
+
+    func presentDailyBriefDetailsScreen(model: BaseDailyBriefViewModel) {
+        dailyBriefViewController?.performSegue(withIdentifier: R.segue.dailyBriefViewController.dailyBriefDetailsSegueIdentifier,
+                                               sender: model)
+
+    }
 }

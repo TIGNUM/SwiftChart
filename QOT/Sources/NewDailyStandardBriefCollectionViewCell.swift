@@ -36,6 +36,8 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
         title.text = viewModel?.title
         body.text = viewModel?.body
         imageView.kf.setImage(with: URL.init(string: viewModel?.image ?? ""))
+        arrowButton.isHidden = viewModel?.detailsMode ?? false
+        body.numberOfLines = viewModel?.detailsMode ?? false ? 0 : 2
     }
 
     public static func height(for viewModel: NewDailyBriefStandardModel, forWidth width: CGFloat) -> CGFloat {
