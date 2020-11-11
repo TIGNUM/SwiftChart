@@ -63,12 +63,23 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
     }
 
     func showTBVData() {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        var tmpReport: QDMToBeVisionRatingReport?
+        var tmpVision: QDMToBeVision?
         worker.getRatingReport { [weak self] (report) in
-            self?.worker.getToBeVision { [weak self] (_, toBeVision) in
-                self?.presenter.dismiss(animated: true) {
-                    self?.router.showTBVData(shouldShowNullState: report?.dates.isEmpty == true,
-                                             visionId: toBeVision?.remoteID)
-                }
+            tmpReport = report
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        worker.getToBeVision { [weak self] (_, toBeVision) in
+            tmpVision = toBeVision
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.presenter.dismiss(animated: true) {
+                self?.router.showTBVData(shouldShowNullState: tmpReport?.dates.isEmpty == true,
+                                         visionId: tmpVision?.remoteID)
             }
         }
     }

@@ -134,6 +134,8 @@ extension DailyBriefInteractor {
         case .DAILY_CHECK_IN where request.syncRequestType == .UP_SYNC:
             expendImpactReadiness = true
             updateDailyBriefBucket()
+        case .TEAM:
+            updateDailyBriefBucket()
         default:
             break
         }
