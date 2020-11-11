@@ -32,6 +32,21 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     weak var delegate: TBVRateDelegate?
     var interactor: MyToBeVisionRateInteracorInterface?
 
+    lazy var setupPageViewContollerOnce: () -> Void = {
+        pageIndicator.translatesAutoresizingMaskIntoConstraints = false
+        pageIndicatorView?.addSubview(pageIndicator)
+        pageIndicator.addConstraints(to: pageIndicatorView)
+        pageIndicator.pageColor = .sand
+        let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        pageController.delegate = self
+        pageController.dataSource = self
+        self.pageController = pageController
+        self.addChild(pageController)
+        view.insertSubview(pageController.view, belowSubview: pageContainerView)
+        pageController.view.clipsToBounds = false
+        return {}
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .carbon
@@ -162,21 +177,11 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
 
     func setupView(questions: [RatingQuestionViewModel.Question]) {
         ThemeView.level3.apply(view)
+        setupPageViewContollerOnce()
         self.tracks = questions
-        pageIndicator.translatesAutoresizingMaskIntoConstraints = false
-        pageIndicatorView?.addSubview(pageIndicator)
-        pageIndicator.addConstraints(to: pageIndicatorView)
-        pageIndicator.pageColor = .sand
         pageIndicator.pageCount = questions.count
-        let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        pageController.delegate = self
-        pageController.dataSource = self
-        self.pageController = pageController
-        self.addChild(pageController)
-        view.insertSubview(pageController.view, belowSubview: pageContainerView)
-        pageController.view.clipsToBounds = false
         if let viewController = questionnaireViewController(with: self.tracks.first) {
-            pageController.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
+            pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
     }
 }
