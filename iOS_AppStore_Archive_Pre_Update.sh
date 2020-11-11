@@ -161,7 +161,7 @@ sed -i '' "s/4FQQH349R5/$team_id/g" QOT.xcodeproj/project.pbxproj
 plutil -replace productionAppKey -string $urbanairship_app_key QOT/Resources/AirshipConfig.plist
 plutil -replace productionAppSecret -string $urbanairship_app_secrete QOT/Resources/AirshipConfig.plist
 
-if [ "$app_target" = "beta" ] ; then # novartis special
+if [ "$app_target" = "beta" ] ; then # Beta special
 plutil -replace developmentAppKey -string $urbanairship_app_key QOT/Resources/AirshipConfig.plist
 plutil -replace developmentAppSecret -string $urbanairship_app_secrete QOT/Resources/AirshipConfig.plist
 fi
