@@ -11,10 +11,16 @@ import Foundation
 final class PollButton: SelectionButton {
 
     // MARK: - Properties
-    @IBOutlet weak var titeLabel: UILabel!
+    @IBOutlet weak var pollTitleLabel: UILabel!
     @IBOutlet weak var counterLabelTop: UILabel!
     @IBOutlet weak var counterLabelBottom: UILabel!
     @IBOutlet weak var counterBackgroundView: UIView!
+    @IBOutlet weak var counterContainerView: UIView!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelTopWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelBottomWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var backgroundWidthConstraint: NSLayoutConstraint!
     private var votes = 0
     private var answerId = 0
 
@@ -35,18 +41,13 @@ final class PollButton: SelectionButton {
         self.votes = votes
         self.answerId = answerId
         super.configure(title: title, isSelected: isSelected)
-        counterLabelTop.text = "\(votes)"
+        pollTitleLabel.attributedText = ThemeText.chatbotButton.attributedString(title, alignment: .center)
+        counterLabelTop.text = votes > 0 ? "\(votes)" : "\(votes + 1)"
         counterLabelBottom.text = "\(votes + 1)"
-        setHidden(votes == 0)
-    }
-}
-
-// MARK: - Private
-private extension PollButton {
-    func setHidden(_ isHidden: Bool) {
-        counterLabelTop.alpha = isHidden ? 0 : 1
-        counterLabelBottom.alpha = isHidden ? 0 : 1
-        counterBackgroundView.alpha = isHidden ? 0 : 1
+        backgroundWidthConstraint.constant = (votes == 0) ? 0 : 24
+        labelTopWidthConstraint.constant = (votes == 0) ? 0 : 24
+        labelBottomWidthConstraint.constant = (votes == 0) ? 0 : 24
+        containerWidthConstraint.constant = (votes == 0) ? 0 : 24
     }
 }
 
@@ -54,32 +55,40 @@ private extension PollButton {
 extension PollButton {
     @objc func didVote(_ notification: Notification) {
         if let answerId = notification.object as? Int, self.answerId == answerId {
-            let yPointTop = counterLabelTop.frame.origin.y
-            let yPointBottom = counterLabelBottom.frame.origin.y
-            let xPoint = counterLabelTop.frame.origin.x
-            let height = counterLabelTop.frame.height
+            if votes > 0 {
+                topConstraint.constant = topConstraint.constant - counterLabelTop.frame.height
+            }
+            backgroundWidthConstraint.constant = 24
+            labelTopWidthConstraint.constant = 24
+            labelBottomWidthConstraint.constant = 24
+            containerWidthConstraint.constant = 24
             UIView.animate(withDuration: 0.6) {
-                self.counterLabelTop.alpha = 0
-                self.counterLabelBottom.alpha = 1
-                self.counterBackgroundView.alpha = 1
-                self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop - height)
-                self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom - height)
+                if self.votes > 0 {
+                    self.counterLabelTop.alpha = 0
+                    self.counterLabelBottom.alpha = 1
+                    self.counterBackgroundView.alpha = 1
+                }
+                self.layoutIfNeeded()
             }
         }
     }
 
     @objc func didUnVote(_ notification: Notification) {
         if let answerId = notification.object as? Int, self.answerId == answerId {
-            let yPointTop = counterLabelTop.frame.origin.y
-            let yPointBottom = counterLabelBottom.frame.origin.y
-            let xPoint = counterLabelTop.frame.origin.x
-            let height = counterLabelTop.frame.height
+            if votes > 0 {
+                topConstraint.constant = topConstraint.constant + counterLabelTop.frame.height
+            } else {
+                backgroundWidthConstraint.constant = 0
+                labelTopWidthConstraint.constant = 0
+                labelBottomWidthConstraint.constant = 0
+                containerWidthConstraint.constant = 0
+            }
             UIView.animate(withDuration: 0.6) {
-                self.counterLabelTop.alpha = 1
-                self.counterLabelBottom.alpha = 0
-                self.setHidden(self.votes == 0)
-                self.counterLabelTop.frame.origin = CGPoint(x: xPoint, y: yPointTop + height)
-                self.counterLabelBottom.frame.origin = CGPoint(x: xPoint, y: yPointBottom + height)
+                if self.votes > 0 {
+                    self.counterLabelTop.alpha = 1
+                    self.counterLabelBottom.alpha = 0
+                }
+                self.layoutIfNeeded()
             }
         }
     }
