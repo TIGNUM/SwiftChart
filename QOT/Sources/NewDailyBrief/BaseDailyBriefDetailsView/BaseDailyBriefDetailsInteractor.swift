@@ -14,7 +14,7 @@ final class BaseDailyBriefDetailsInteractor {
     private lazy var worker = BaseDailyBriefDetailsWorker(model: model)
     private let presenter: BaseDailyBriefDetailsPresenterInterface!
     let model: BaseDailyBriefViewModel
-    
+
     // MARK: - Init
     init(presenter: BaseDailyBriefDetailsPresenterInterface, model: BaseDailyBriefViewModel) {
         self.presenter = presenter

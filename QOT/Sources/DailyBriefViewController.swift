@@ -27,6 +27,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     private var selectedToolID: Int?
     private lazy var router = DailyBriefRouter(viewController: self)
     private var isDragging = false
+    private var transition: CardTransition?
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -52,6 +53,11 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
         trackPage()
+    }
+
+    override var statusBarAnimatableConfig: StatusBarAnimatableConfig {
+        return StatusBarAnimatableConfig(prefersHidden: false,
+                                         animation: .slide)
     }
 }
 
@@ -282,13 +288,6 @@ extension DailyBriefViewController {
         guard let bucketName = bucketItem?.domainModel?.bucketName else { return }
 
         switch bucketName {
-        case .DAILY_CHECK_IN_1:
-            guard let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel else { break }
-            if impactReadinessCellViewModel.readinessScore == -1 {
-                showDailyCheckInQuestions()
-            } else {
-                router.presentDailyBriefDetailsScreen(model: impactReadinessCellViewModel)
-            }
         case .LATEST_WHATS_HOT:
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
@@ -383,9 +382,10 @@ private extension DailyBriefViewController {
         let standardModel1 = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel?.title ?? "",
                                                              title: impactReadinessCellViewModel?.title ?? "",
                                                              body: impactReadinessCellViewModel?.feedback ?? "",
-                                                             image: "",
+                                                             image: impactReadinessCellViewModel?.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              domainModel: nil)
         cell.configure(with: [standardModel1])
+        cell.delegate = self
 
         return cell
     }
@@ -1070,6 +1070,11 @@ extension DailyBriefViewController {
         if let controller = segue.destination as? BaseDailyBriefDetailsViewController,
            let model = sender as? BaseDailyBriefViewModel {
             BaseDailyBriefDetailsConfigurator.configure(model: model, viewController: controller)
+            controller.transitioningDelegate = transition
+
+            // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
+            controller.modalPresentationCapturesStatusBarAppearance = true
+            controller.modalPresentationStyle = .custom
         }
     }
 }
@@ -1095,5 +1100,59 @@ extension DailyBriefViewController: QuestionnaireAnswer {
 extension DailyBriefViewController: PopUpCopyrightViewControllerProtocol {
     func cancelAction() {
          dismiss(animated: true)
+    }
+}
+
+extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
+    func didTapOnCollectionViewCell(at indexPath: IndexPath, sender: NewBaseDailyBriefCell) {
+        guard let indexPathOfTableViewCell = tableView.indexPath(for: sender) else {
+            return
+        }
+
+        let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPathOfTableViewCell.section)
+        let bucketList = bucketModel?.elements
+        let bucketItem = bucketList?[indexPath.row]
+
+        guard (bucketItem?.domainModel?.bucketName) != nil else { return }
+
+        guard let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel else { return }
+        if impactReadinessCellViewModel.readinessScore == -1 {
+            showDailyCheckInQuestions()
+        } else {
+            performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: impactReadinessCellViewModel) { [weak self] in
+                self?.router.presentDailyBriefDetailsScreen(model: impactReadinessCellViewModel)
+
+            }
+        }
+    }
+
+    func performExpandAnimation(for cell: NewBaseDailyBriefCell, withInsideIndexPath: IndexPath, model: BaseDailyBriefViewModel, completionHandler: (@escaping () -> Void)) {
+
+        guard let collectionViewCell = cell.collectionView.cellForItem(at: withInsideIndexPath) as? NewDailyStandardBriefCollectionViewCell else { return }
+        collectionViewCell.freezeAnimations()
+
+        guard let currentCellFrame = collectionViewCell.layer.presentation()?.frame else { return }
+        guard let cardPresentationFrameOnScreen = collectionViewCell.superview?.convert(currentCellFrame, to: self.view) else { return }
+
+        let cardFrameWithoutTransform = { () -> CGRect in
+            let center = collectionViewCell.center
+            let size = collectionViewCell.bounds.size
+            let r = CGRect(
+                x: center.x - size.width / 2,
+                y: center.y - size.height / 2,
+                width: size.width,
+                height: size.height
+            )
+            return collectionViewCell.superview?.convert(r, to: self.view) ?? CGRect.zero
+        }()
+
+        let params = CardTransition.Params(fromCardFrame: cardPresentationFrameOnScreen,
+                                           fromCardFrameWithoutTransform: cardFrameWithoutTransform,
+                                           fromCell: collectionViewCell)
+        transition = CardTransition(params: params)
+
+        completionHandler()
+
+        collectionViewCell.unfreezeAnimations()
     }
 }

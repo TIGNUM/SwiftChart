@@ -359,7 +359,7 @@
                     <navigationItem key="navigationItem" title="DAILY BRIEF" id="AIf-Bu-9Yb"/>
                     <connections>
                         <outlet property="tableView" destination="MNr-kG-dc4" id="3gm-BS-DIt"/>
-                        <segue destination="vWw-M8-gKP" kind="presentation" identifier="daily.brief.details.segue.identifier" customClass="CustomSegueModal" customModule="TIGNUM_X" customModuleProvider="target" modalPresentationStyle="fullScreen" id="OF3-HQ-ZiA"/>
+                        <segue destination="vWw-M8-gKP" kind="presentation" identifier="daily.brief.details.segue.identifier" id="acS-GA-L9I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4qC-fV-33O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,23 +532,24 @@
         <!--Base Daily Brief Details View Controller-->
         <scene sceneID="9qk-7e-rdb">
             <objects>
-                <viewController storyboardIdentifier="BaseDailyBriefDetailsViewController" id="vWw-M8-gKP" customClass="BaseDailyBriefDetailsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pFA-8t-TK6">
+                <viewController storyboardIdentifier="BaseDailyBriefDetailsViewController" modalPresentationStyle="fullScreen" id="vWw-M8-gKP" customClass="BaseDailyBriefDetailsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pFA-8t-TK6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="IoL-hh-31b">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoL-hh-31b">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="FWy-qD-mgD"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="IoL-hh-31b" firstAttribute="leading" secondItem="FWy-qD-mgD" secondAttribute="leading" id="C7e-NT-v4r"/>
-                            <constraint firstItem="FWy-qD-mgD" firstAttribute="trailing" secondItem="IoL-hh-31b" secondAttribute="trailing" id="Gu7-ik-EN5"/>
-                            <constraint firstItem="IoL-hh-31b" firstAttribute="top" secondItem="FWy-qD-mgD" secondAttribute="top" id="Pec-1j-a40"/>
-                            <constraint firstItem="FWy-qD-mgD" firstAttribute="bottom" secondItem="IoL-hh-31b" secondAttribute="bottom" id="yzp-WQ-uim"/>
+                            <constraint firstItem="IoL-hh-31b" firstAttribute="leading" secondItem="pFA-8t-TK6" secondAttribute="leading" id="C7e-NT-v4r"/>
+                            <constraint firstAttribute="trailing" secondItem="IoL-hh-31b" secondAttribute="trailing" id="Gu7-ik-EN5"/>
+                            <constraint firstItem="IoL-hh-31b" firstAttribute="top" secondItem="pFA-8t-TK6" secondAttribute="top" id="Pec-1j-a40"/>
+                            <constraint firstAttribute="bottom" secondItem="IoL-hh-31b" secondAttribute="bottom" id="yzp-WQ-uim"/>
                         </constraints>
                     </view>
                     <connections>

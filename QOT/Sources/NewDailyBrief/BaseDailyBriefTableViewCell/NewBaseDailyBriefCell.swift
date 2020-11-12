@@ -9,17 +9,21 @@
 import Foundation
 import qot_dal
 
-let standardWidth = UIScreen.main.bounds.width - 2*24.0
-let detailsWidth = UIScreen.main.bounds.width
+protocol NewBaseDailyBriefCellProtocol: class {
+    func didTapOnCollectionViewCell(at indexPath: IndexPath, sender: NewBaseDailyBriefCell)
+}
 
 class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
-    @IBOutlet private var collectionView: UICollectionView!
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var collectionViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var collectionViewTrailingConstraint: NSLayoutConstraint!
-    private var datasource: [BaseDailyBriefViewModel]? = []
-    private var detailsMode: Bool = false
+    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var collectionViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var collectionViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet var collectionViewTrailingConstraint: NSLayoutConstraint!
+    var datasource: [BaseDailyBriefViewModel]? = []
+    var detailsMode: Bool = false
+    weak var delegate: NewBaseDailyBriefCellProtocol?
+    let standardWidth = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +33,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         collectionView.registerDequeueable(NewDailyBriefGetStartedCollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
+
     }
 
     override func prepareForReuse() {
@@ -36,17 +41,13 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         collectionView.reloadData()
     }
 
-    // MARK: - Public
-    func configure(with models: [BaseDailyBriefViewModel]?) {
-        datasource?.removeAll()
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        setupCollectionView()
+    }
 
-        if let modelDatasource = models {
-            datasource?.append(contentsOf: modelDatasource)
-        }
-        if datasource?.count ?? 0 <= 1 {
-            collectionView.isUserInteractionEnabled = false
-        }
-        var width = standardWidth - 8
+    private func setupCollectionView() {
+        var width = self.frame.width
         var height: CGFloat = 0
 
         if datasource?.first as? NewDailyBriefGetStartedModel != nil {
@@ -62,7 +63,8 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
                 return
             }
             detailsMode = viewModel.detailsMode ?? false
-            width = detailsMode ? detailsWidth : (standardWidth - 8)
+            width = detailsMode ? width : (width - 48)
+            collectionViewTopConstraint.constant  = detailsMode ? 0 : 30.0
             collectionViewLeadingConstraint.constant  = detailsMode ? 0 : 24.0
             collectionViewTrailingConstraint.constant = detailsMode ? 0 : 24.0
             height = NewDailyStandardBriefCollectionViewCell.height(for: viewModel, forWidth: width)
@@ -74,6 +76,16 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         collectionViewHeightConstraint.constant = height
         flowLayout.invalidateLayout()
         collectionView.reloadData()
+    }
+
+    // MARK: - Public
+    func configure(with models: [BaseDailyBriefViewModel]?) {
+        datasource?.removeAll()
+
+        if let modelDatasource = models {
+            datasource?.append(contentsOf: modelDatasource)
+        }
+        setupCollectionView()
     }
 }
 
@@ -101,6 +113,6 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // expand animation
+        delegate?.didTapOnCollectionViewCell(at: indexPath, sender: self)
     }
 }

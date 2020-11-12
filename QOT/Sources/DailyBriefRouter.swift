@@ -108,6 +108,5 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     func presentDailyBriefDetailsScreen(model: BaseDailyBriefViewModel) {
         dailyBriefViewController?.performSegue(withIdentifier: R.segue.dailyBriefViewController.dailyBriefDetailsSegueIdentifier,
                                                sender: model)
-
     }
 }

@@ -12,7 +12,7 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewBaseDailyBriefCell" rowHeight="467" id="OhP-6P-2G1" customClass="NewBaseDailyBriefCell" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="405" height="467"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OhP-6P-2G1" id="2ig-6A-7QJ">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OhP-6P-2G1" id="2ig-6A-7QJ">
                 <rect key="frame" x="0.0" y="0.0" width="405" height="467"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -34,7 +34,7 @@
                 <constraints>
                     <constraint firstItem="Zfv-7c-ikK" firstAttribute="leading" secondItem="2ig-6A-7QJ" secondAttribute="leading" constant="24" id="650-eC-bqo"/>
                     <constraint firstAttribute="trailing" secondItem="Zfv-7c-ikK" secondAttribute="trailing" constant="24" id="MhS-KJ-r9P"/>
-                    <constraint firstAttribute="bottom" secondItem="Zfv-7c-ikK" secondAttribute="bottom" constant="20" id="WIl-Z8-qo2"/>
+                    <constraint firstAttribute="bottom" secondItem="Zfv-7c-ikK" secondAttribute="bottom" priority="999" constant="20" id="WIl-Z8-qo2"/>
                     <constraint firstItem="Zfv-7c-ikK" firstAttribute="top" secondItem="2ig-6A-7QJ" secondAttribute="top" constant="30" id="pK3-ZQ-Xq8"/>
                 </constraints>
             </tableViewCellContentView>
@@ -42,6 +42,7 @@
                 <outlet property="collectionView" destination="Zfv-7c-ikK" id="7oc-iv-3ov"/>
                 <outlet property="collectionViewHeightConstraint" destination="QHq-4S-avz" id="cSd-Hm-p6X"/>
                 <outlet property="collectionViewLeadingConstraint" destination="650-eC-bqo" id="snZ-zn-xyd"/>
+                <outlet property="collectionViewTopConstraint" destination="pK3-ZQ-Xq8" id="IZm-SK-kkb"/>
                 <outlet property="collectionViewTrailingConstraint" destination="MhS-KJ-r9P" id="7oY-Ld-FQP"/>
                 <outlet property="flowLayout" destination="NyA-vs-UEG" id="sPC-f9-TGc"/>
             </connections>

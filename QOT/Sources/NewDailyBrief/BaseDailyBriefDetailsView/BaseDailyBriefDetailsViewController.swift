@@ -26,17 +26,27 @@ final class BaseDailyBriefDetailsViewController: BaseViewController, ScreenZLeve
         super.init(coder: aDecoder)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeView.level1.apply(self.view)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerDequeueable(NewBaseDailyBriefCell.self)
+        tableView.insetsContentViewsToSafeArea = false
         interactor.viewDidLoad()
     }
 
     override func didTapBackButton() {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    override var statusBarAnimatableConfig: StatusBarAnimatableConfig {
+        return StatusBarAnimatableConfig(prefersHidden: true,
+                                         animation: .slide)
     }
 }
 
@@ -69,23 +79,41 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
         }
         return UITableViewCell.init()
     }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+
 // MARK: Helpers
 
     func getDetailsMainCell(forBucketName: DailyBriefBucketName?) -> UITableViewCell {
         let model = interactor.getModel()
         switch forBucketName {
         case DailyBriefBucketName.DAILY_CHECK_IN_1:
-            guard let impactReadinessModel = model as? ImpactReadinessCellViewModel else {
+            guard let impactReadinessModel = model as? ImpactReadinessCellViewModel,
+                  let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: self) else {
                 return UITableViewCell.init()
             }
-            let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: IndexPath(row: 0, section: 0))
             let standardModel1 = NewDailyBriefStandardModel.init(caption: impactReadinessModel.title ?? "",
                                                                  title: impactReadinessModel.title ?? "",
                                                                  body: impactReadinessModel.feedback ?? "",
-                                                                 image: "",
+                                                                 image: impactReadinessModel.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                  detailsMode: true,
                                                                  domainModel: nil)
             cell.configure(with: [standardModel1])
+            cell.collectionView.contentInsetAdjustmentBehavior = .never
 
             return cell
         default:
