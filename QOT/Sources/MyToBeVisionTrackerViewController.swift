@@ -19,6 +19,7 @@ final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
+        interactor.addObserver()
     }
 
     override func viewDidAppear(_ animated: Bool) {

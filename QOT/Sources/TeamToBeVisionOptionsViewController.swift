@@ -118,7 +118,9 @@ extension TeamToBeVisionOptionsViewController: TeamAdminDelegate {
             switch self?.interactor.getType {
             case .rating:
                 self?.interactor.endRating { [weak self] in
-                    self?.didTapBackButton()
+                    self?.navigationController?.popViewController {
+                        self?.router.showTracker(for: self?.interactor.team)
+                    }
                 }
             case .voting:
                 self?.interactor.endPoll { [weak self] in

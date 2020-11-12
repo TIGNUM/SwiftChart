@@ -57,12 +57,6 @@ final class MyVisionWorker: WorkerTeam {
         }
     }
 
-    func getRatingReport(_ completion: @escaping (QDMToBeVisionRatingReport?) -> Void) {
-        UserService.main.getToBeVisionTrackingReport(last: 3) { (report) in
-            completion(report)
-        }
-    }
-
     func getToBeVision(_ completion: @escaping (_ initialized: Bool, _ toBeVision: QDMToBeVision?) -> Void) {
         UserService.main.getMyToBeVision { [weak self] (vision, initialized, _) in
             self?.toBeVision = vision

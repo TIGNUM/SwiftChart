@@ -89,9 +89,9 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
         secondDateButton.setTitle(secondDate, for: .normal)
         thirdDateButton.setTitle(thirdDate, for: .normal)
 
-        firstDateButton.isHidden = firstDate == nil
-        secondDateButton.isHidden = secondDate == nil
-        thirdDateButton.isHidden = thirdDate == nil
+        firstDateButton.isHidden = interactor.dataEntries1.isEmpty
+        secondDateButton.isHidden = interactor.dataEntries2.isEmpty
+        thirdDateButton.isHidden = interactor.dataEntries3.isEmpty
 
         switch selectedIndex {
         case 0: firstDateTapped(firstDateButton)
