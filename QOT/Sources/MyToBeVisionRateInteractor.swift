@@ -28,17 +28,39 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
         getQuestions { [weak self] (questions) in
             self?.presenter.setupView(questions: questions)
         }
+        // Listen about UpSync Daily Check In User Answers
+        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.didGetDataSyncResult(notification)
+        }
     }
 
     private func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
-        if let questions = worker.questions {
+        if let questions = worker.questions, questions.isEmpty == false {
             completion(questions)
         } else {
             showScreenLoader()
-            worker.getQuestions { [weak self] (tracks) in
-                self?.hideScreenLoader()
-                completion(tracks)
+            worker.getQuestions { [weak self] (questions) in
+                if questions.isEmpty == false {
+                    self?.hideScreenLoader()
+                }
+                completion(questions)
             }
+        }
+    }
+
+    @objc private func didGetDataSyncResult(_ notification: Notification) {
+        guard let result = notification.object as? SyncResultContext else { return }
+        switch result.dataType {
+        case .TEAM_TO_BE_VISION_TRACKER_POLL where result.syncRequestType == .DOWN_SYNC && result.hasUpdatedContent:
+            if worker.questions?.isEmpty != true { // reload if there is no questions.
+                getQuestions { [weak self] (questions) in
+                    self?.presenter.setupView(questions: questions)
+                }
+            }
+        default:
+            break
         }
     }
 
@@ -58,7 +80,29 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
                 self?.showAlert()
                 return
             }
-            self?.presenter.dismiss(animated: true, completion: nil)
+            self?.showTBVData()
+        }
+    }
+
+    func showTBVData() {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        var tmpReport: QDMToBeVisionRatingReport?
+        var tmpVision: QDMToBeVision?
+        worker.getRatingReport { [weak self] (report) in
+            tmpReport = report
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        worker.getToBeVision { [weak self] (_, toBeVision) in
+            tmpVision = toBeVision
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.presenter.dismiss(animated: true) {
+                self?.router.showTBVData(shouldShowNullState: tmpReport?.dates.isEmpty == true,
+                                         visionId: tmpVision?.remoteID)
+            }
         }
     }
 

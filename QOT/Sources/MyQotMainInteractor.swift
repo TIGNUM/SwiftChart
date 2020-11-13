@@ -153,6 +153,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
 
 // MARK: - MyQotMainInteractorInterface
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
+
     var sectionCount: Int {
         return MyX.Section.allCases.count
     }
@@ -317,6 +318,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         case .TEAM:
             loadAllDataAndReload()
             ExtensionsDataManager().update(.teams)
+        case .TEAM_TO_BE_VISION:
+            guard result.syncRequestType == .DOWN_SYNC else { return }
+            loadAllDataAndReload()
         default: break
         }
     }

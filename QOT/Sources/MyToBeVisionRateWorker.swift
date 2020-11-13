@@ -11,13 +11,15 @@ import qot_dal
 
 final class MyToBeVisionRateWorker: WorkerTeam {
 
-    private let visionId: Int
+    private let visionId: Int // Only for Personal ToBeVision
     private var dataTracks: [QDMToBeVisionTrack]?
     private var votes = [QDMTeamToBeVisionTrackerVote]()
     var trackerPoll: QDMTeamToBeVisionTrackerPoll?
     var questions: [RatingQuestionViewModel.Question]?
     var team: QDMTeam?
+    private var toBeVision: QDMToBeVision?
 
+    // Personal ToBeVision
     init(visionId: Int) {
         self.visionId = visionId
         self.team = nil
@@ -50,6 +52,13 @@ final class MyToBeVisionRateWorker: WorkerTeam {
             savePersonalRating(completion)
         } else {
             saveTeamRating(completion)
+        }
+    }
+
+    func getToBeVision(_ completion: @escaping (_ initialized: Bool, _ toBeVision: QDMToBeVision?) -> Void) {
+        UserService.main.getMyToBeVision { [weak self] (vision, initialized, _) in
+            self?.toBeVision = vision
+            completion(initialized, vision)
         }
     }
 }
@@ -87,7 +96,7 @@ private extension MyToBeVisionRateWorker {
         if let index = votes.firstIndex(where: { $0.remoteID == questionId }) {
             votes.remove(at: index)
         }
-        var trackerResult = trackerPoll?.qotTeamToBeVisionTrackers?.filter { $0.remoteID == questionId }.first
+        let trackerResult = trackerPoll?.qotTeamToBeVisionTrackers?.filter { $0.remoteID == questionId }.first
         guard let vote = trackerResult?.voteWithRatingValue(value, isoDate) else { return }
         votes.append(vote)
     }
@@ -119,26 +128,29 @@ private extension MyToBeVisionRateWorker {
 
     func getTeamQuestions(team: QDMTeam,
                           _ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
-        guard let tracks = trackerPoll?.qotTeamToBeVisionTrackers else {
-            completion([])
-            return
-        }
 
-        let questions = tracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
-            guard let remoteID = track.remoteID else { return nil }
-            let question = track.sentence
-            let range = 10
-            return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                    title: question ?? "",
-                                                    htmlTitle: nil,
-                                                    subtitle: nil,
-                                                    dailyPrepTitle: nil,
-                                                    key: nil,
-                                                    answers: nil,
-                                                    range: range,
-                                                    selectedAnswerIndex: nil)
+        TeamService.main.currentTeamToBeVisionTrackerPoll(for: team) { [weak self] (poll, _, error) in
+            guard error == nil, let trackers = poll?.qotTeamToBeVisionTrackers else {
+                // show alert
+                completion([])
+                return
+            }
+            let questions = trackers.compactMap { (track) -> RatingQuestionViewModel.Question? in
+                guard let remoteID = track.remoteID else { return nil }
+                let question = track.sentence
+                let range = 10
+                return RatingQuestionViewModel.Question(remoteID: remoteID,
+                                                        title: question ?? "",
+                                                        htmlTitle: nil,
+                                                        subtitle: nil,
+                                                        dailyPrepTitle: nil,
+                                                        key: nil,
+                                                        answers: nil,
+                                                        range: range,
+                                                        selectedAnswerIndex: nil)
+            }
+            self?.questions = questions
+            completion(questions)
         }
-        self.questions = questions
-        completion(questions)
     }
 }
