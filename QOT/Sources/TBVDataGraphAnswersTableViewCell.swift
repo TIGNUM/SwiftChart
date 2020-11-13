@@ -49,8 +49,11 @@ private extension TBVDataGraphAnswersTableViewCell {
     }
 
     func setupTheme(_ sentence: QDMToBeVisionSentence, isTeam: Bool) {
-        isTeam ? ThemeText.tbvTrackerAnswerTeam.apply(sentence.text, to: answerLabel) : ThemeText.tbvTrackerAnswer.apply(sentence.text, to: answerLabel)
-        ThemeText.tbvTrackerRating.apply(AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_label_last_ratings), to: lastRatingLabel)
+        isTeam ? ThemeText.tbvTrackerAnswerTeam.apply(sentence.text,
+                                                      to: answerLabel) : ThemeText.tbvTrackerAnswer.apply(sentence.text,
+                                                                                                          to: answerLabel)
+        ThemeText.tbvTrackerRating.apply(AppTextService.get(.my_x_team_vision_tracker_average_rating),
+                                         to: lastRatingLabel)
     }
 
     func setupView(_ sentence: QDMToBeVisionSentence) {
