@@ -238,6 +238,7 @@ extension UIViewController {
             naviController.isNavigationBarHidden = true
             naviController.modalPresentationStyle = viewControllerToPresent.modalPresentationStyle
             naviController.modalTransitionStyle = viewControllerToPresent.modalTransitionStyle
+            naviController.transitioningDelegate = viewControllerToPresent.transitioningDelegate
             naviController.modalPresentationCapturesStatusBarAppearance = viewControllerToPresent.modalPresentationCapturesStatusBarAppearance
 
             vc = naviController
