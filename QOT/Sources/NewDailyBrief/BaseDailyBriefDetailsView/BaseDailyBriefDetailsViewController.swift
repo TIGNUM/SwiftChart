@@ -94,7 +94,7 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return interactor?.getDetailsMainCell(for: indexPath, owner: self) ?? UITableViewCell.init()
+        return interactor?.getDetailsTableViewCell(for: indexPath, owner: self) ?? UITableViewCell.init()
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
