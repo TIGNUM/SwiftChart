@@ -718,25 +718,16 @@ private extension DailyBriefViewController {
     func getExploreCell(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ exploreViewModel: ExploreCellViewModel?) -> UITableViewCell {
-        let cell: ExploreCell = tableView.dequeueCell(for: indexPath)
-        cell.clickableLinkDelegate = self
-        if exploreViewModel?.section == .LearnStrategies {
-            self.selectedStrategyID = exploreViewModel?.remoteID
-            cell.configure(title: exploreViewModel?.title,
-                           introText: exploreViewModel?.introText ?? "",
-                           bucketTitle: exploreViewModel?.bucketTitle ?? "",
-                           isStrategy: true,
-                           remoteID: exploreViewModel?.remoteID)
-            cell.delegate = self
-        } else if exploreViewModel?.section == .QOTLibrary {
-            self.selectedToolID = exploreViewModel?.remoteID
-            cell.configure(title: exploreViewModel?.title,
-                           introText: exploreViewModel?.introText ?? "",
-                           bucketTitle: exploreViewModel?.bucketTitle ?? "",
-                           isStrategy: false,
-                           remoteID: exploreViewModel?.remoteID)
-            cell.delegate = self
-        }
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+        let standardModel = NewDailyBriefStandardModel.init(caption: exploreViewModel?.bucketTitle ?? "",
+                                                             title: exploreViewModel?.title ?? "",
+                                                             body: exploreViewModel?.duration ?? "",
+                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                             domainModel: nil)
+        cell.configure(with: [standardModel])
+        cell.delegate = self
+
         return cell
     }
 
@@ -1106,15 +1097,16 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
 
         guard let dailyBriefCellViewModel = bucketItem else { return }
 
-        if dailyBriefCellViewModel as? ImpactReadinessCellViewModel != nil {
-            let impactReadinessCellViewModel = dailyBriefCellViewModel as? ImpactReadinessCellViewModel
-            if impactReadinessCellViewModel?.readinessScore == -1 {
+        if let impactReadinessCellViewModel = dailyBriefCellViewModel as? ImpactReadinessCellViewModel {
+            if impactReadinessCellViewModel.readinessScore == -1 {
                 showDailyCheckInQuestions()
             } else {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                     self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
                 }
             }
+        } else if let exploreCellModel = dailyBriefCellViewModel as? ExploreCellViewModel {
+            presentStrategyList(strategyID: exploreCellModel.remoteID)
         } else {
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)

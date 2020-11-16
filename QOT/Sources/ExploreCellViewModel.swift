@@ -16,14 +16,16 @@ final class ExploreCellViewModel: BaseDailyBriefViewModel {
     var bucketTitle: String?
     var title: String?
     var remoteID: Int?
+    var duration: String?
     var section: ContentSection
 
     // MARK: - Init
-    init(bucketTitle: String?, title: String?, introText: String?, remoteID: Int?, domainModel: QDMDailyBriefBucket?, section: ContentSection) {
+    init(bucketTitle: String?, title: String?, introText: String?, remoteID: Int?, duration: String?, domainModel: QDMDailyBriefBucket?, section: ContentSection) {
         self.introText = introText
         self.bucketTitle = bucketTitle
         self.title = title
         self.remoteID = remoteID
+        self.duration = duration
         self.section = section
         super.init(domainModel)
     }
@@ -37,6 +39,7 @@ final class ExploreCellViewModel: BaseDailyBriefViewModel {
             bucketTitle == source.bucketTitle &&
             title == source.title &&
             remoteID == source.remoteID &&
+            duration == source.duration &&
             section == source.section
     }
 }

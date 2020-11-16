@@ -929,6 +929,7 @@ extension DailyBriefInteractor {
                                                              title: exploreContentCollections.first?.title,
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.first?.remoteID,
+                                                             duration: exploreContentCollections.first?.durationString,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.first?.section ?? ContentSection.Unkown))
                 return exploreModelList
@@ -937,6 +938,7 @@ extension DailyBriefInteractor {
                                                              title: exploreContentCollections.at(index: 1)?.title,
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.at(index: 1)?.remoteID,
+                                                             duration: exploreContentCollections.first?.durationString,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unkown))
                 return exploreModelList
@@ -945,6 +947,7 @@ extension DailyBriefInteractor {
                                                              title: exploreContentCollections.last?.title,
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.last?.remoteID,
+                                                             duration: exploreContentCollections.first?.durationString,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.last?.section ?? ContentSection.Unkown))
                 return exploreModelList }
@@ -952,6 +955,7 @@ extension DailyBriefInteractor {
         exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.first?.valueText,
                                                      title: "", introText: "",
                                                      remoteID: 666,
+                                                     duration: exploreContentCollections.first?.durationString,
                                                      domainModel: explore,
                                                      section: ContentSection.Unkown))
         return exploreModelList
