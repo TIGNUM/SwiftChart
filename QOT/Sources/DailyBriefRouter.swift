@@ -23,16 +23,6 @@ final class DailyBriefRouter: BaseRouter {
 
 // MARK: - DailyBriefRouterInterface
 extension DailyBriefRouter: DailyBriefRouterInterface {
-
-    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
-        if let data = data,
-            let controller = QuestionnaireViewController.viewController(with: data,
-                                                                        delegate: dailyBriefViewController,
-                                                                        controllerType: .customize) {
-            viewController?.present(controller, animated: true)
-        }
-    }
-
     func presentPopUp(copyrightURL: String?, description: String?) {
         let popUpController = PopUpCopyrightViewController(delegate: dailyBriefViewController,
                                                            copyrightURL: copyrightURL,
@@ -67,14 +57,6 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
             let configurator = ResultsPrepareConfigurator.make(preparation, resultType: .prepareDailyBrief)
             let controller = ResultsPrepareViewController(configure: configurator)
             viewController?.present(controller, animated: true)
-        }
-    }
-
-    func showMyDataScreen() {
-        if let childViewController = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
-            let configurator = MyDataScreenConfigurator.make()
-            configurator(childViewController)
-            viewController?.pushToStart(childViewController: childViewController)
         }
     }
 

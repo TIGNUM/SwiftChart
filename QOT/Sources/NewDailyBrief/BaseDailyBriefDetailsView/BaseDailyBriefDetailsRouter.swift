@@ -17,15 +17,29 @@ final class BaseDailyBriefDetailsRouter {
     init(viewController: BaseDailyBriefDetailsViewController?) {
         self.viewController = viewController
     }
-
-    func popBack() {
-        viewController?.navigationController?.popViewController(animated: true)
-    }
 }
 
 // MARK: - BaseDailyBriefDetailsRouterInterface
 extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func showMyDataScreen() {
+        if let childViewController = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
+            let configurator = MyDataScreenConfigurator.make()
+            configurator(childViewController)
+            childViewController.showStatusBar = false
+            viewController?.navigationController?.pushViewController(childViewController, animated: true)
+        }
+    }
+
+    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
+        if let data = data,
+            let controller = QuestionnaireViewController.viewController(with: data,
+                                                                        delegate: viewController,
+                                                                        controllerType: .customize) {
+            viewController?.pushToStart(childViewController: controller)
+        }
     }
 }

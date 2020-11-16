@@ -369,22 +369,14 @@ private extension DailyBriefViewController {
     func getImpactReadinessCell(_ tableView: UITableView,
                                 _ indexPath: IndexPath,
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
-//        let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
-//        cell.clickableLinkDelegate = self
-//        cell.configure(viewModel: impactReadinessCellViewModel, tapLeft: { [weak self] in
-//                        self?.delegate?.moveToCell(item: 0)
-//                        }, tapRight: { [weak self] in
-//                            self?.delegate?.moveToCell(item: 2)
-//                    })
-//        cell.delegate = self
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
-        let standardModel1 = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel?.title ?? "",
+        let standardModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel?.title ?? "",
                                                              title: impactReadinessCellViewModel?.title ?? "",
                                                              body: impactReadinessCellViewModel?.feedback ?? "",
                                                              image: impactReadinessCellViewModel?.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              domainModel: nil)
-        cell.configure(with: [standardModel1])
+        cell.configure(with: [standardModel])
         cell.delegate = self
 
         return cell
@@ -394,10 +386,18 @@ private extension DailyBriefViewController {
                                      _ indexPath: IndexPath,
                                      _ impactReadinessScoreViewModel: ImpactReadinessScoreViewModel?)
         -> UITableViewCell {
-            let cell: ImpactReadinessCell2 = tableView.dequeueCell(for: indexPath)
-            cell.configure(viewModel: impactReadinessScoreViewModel)
-            cell.delegate = self
-            return cell
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+        //We need to add AppTextService for these hardcoded strings
+        let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
+                                                             title: "Your load and recovery in detail",
+                                                             body:  "The last 5 days are key on how you fell today",
+                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                             domainModel: nil)
+        cell.configure(with: [standardModel])
+        cell.delegate = self
+
+        return cell
     }
 
     /**
@@ -897,7 +897,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(GuidedTrackSectionCell.self)
         tableView.registerDequeueable(GuidedTrackRowCell.self)
         tableView.registerDequeueable(ImpactReadiness1.self)
-        tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
@@ -1008,12 +1007,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
 // MARK: - Navigation
 extension DailyBriefViewController {
-    func showCustomizeTarget() {
-        interactor.customizeSleepQuestion { [weak self] (question) in
-            self?.router.presentCustomizeTarget(question)
-        }
-    }
-
     func showDailyCheckInQuestions() {
         router.presentDailyCheckInQuestions()
     }
@@ -1024,10 +1017,6 @@ extension DailyBriefViewController {
 
     func displayCoachPreparationScreen() {
         router.presentCoachPreparation()
-    }
-
-    func presentMyDataScreen() {
-        router.showMyDataScreen()
     }
 
     func presentPopUp(copyrightURL: String?, description: String?) {
@@ -1111,17 +1100,24 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
 
         let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPathOfTableViewCell.section)
         let bucketList = bucketModel?.elements
-        let bucketItem = bucketList?[indexPath.row]
+        let bucketItem = bucketList?[indexPathOfTableViewCell.row]
 
         guard (bucketItem?.domainModel?.bucketName) != nil else { return }
 
-        guard let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel else { return }
-        if impactReadinessCellViewModel.readinessScore == -1 {
-            showDailyCheckInQuestions()
-        } else {
-            performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: impactReadinessCellViewModel) { [weak self] in
-                self?.router.presentDailyBriefDetailsScreen(model: impactReadinessCellViewModel)
+        guard let dailyBriefCellViewModel = bucketItem else { return }
 
+        if dailyBriefCellViewModel as? ImpactReadinessCellViewModel != nil {
+            let impactReadinessCellViewModel = dailyBriefCellViewModel as? ImpactReadinessCellViewModel
+            if impactReadinessCellViewModel?.readinessScore == -1 {
+                showDailyCheckInQuestions()
+            } else {
+                performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
+                    self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
+                }
+            }
+        } else {
+            performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
+                self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
             }
         }
     }

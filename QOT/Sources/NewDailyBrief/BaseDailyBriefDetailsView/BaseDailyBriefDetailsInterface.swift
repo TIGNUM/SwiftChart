@@ -10,6 +10,9 @@ import Foundation
 
 protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func setupView()
+    func showAlert(message: String?)
+    func presentMyDataScreen()
+    func showCustomizeTarget()
 }
 
 protocol BaseDailyBriefDetailsPresenterInterface {
@@ -18,8 +21,13 @@ protocol BaseDailyBriefDetailsPresenterInterface {
 
 protocol BaseDailyBriefDetailsInteractorInterface: Interactor {
     func getModel() -> BaseDailyBriefViewModel
+    func getNumberOfRows() -> Int
+    func getDetailsMainCell(for indexPath: IndexPath, owner: BaseDailyBriefDetailsViewController) -> UITableViewCell
+    func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
 }
 
 protocol BaseDailyBriefDetailsRouterInterface {
     func dismiss()
+    func showMyDataScreen()
+    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
 }

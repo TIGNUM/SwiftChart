@@ -617,6 +617,9 @@ extension UIColor {
         return UIColor(red: 180.0 / 255.0, green: 201.0 / 255.0, blue: 206.0 / 255.0, alpha: 1.0)
     }
 
+    public class var actionBlue: UIColor {
+        return UIColor(red: 0 / 255.0, green: 98.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
     //Solid Colors
 
     public class var skeletonTitleColor: UIColor {
