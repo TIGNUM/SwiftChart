@@ -14,6 +14,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     let presenter: MyToBeVisionRatePresenterInterface
     let worker: MyToBeVisionRateWorker
     let router: MyToBeVisionRateRouter
+    private weak var synchronizationObserver: NSObjectProtocol?
     private lazy var isoDate = worker.trackerPoll?.createdAt ?? Date()
 
     init(presenter: MyToBeVisionRatePresenterInterface,
@@ -28,12 +29,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
         getQuestions { [weak self] (questions) in
             self?.presenter.setupView(questions: questions)
         }
-        // Listen about UpSync Daily Check In User Answers
-        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
-                                                   object: nil,
-                                                   queue: .main) { [weak self] notification in
-            self?.didGetDataSyncResult(notification)
-        }
+        addObserver()
     }
 
     private func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
@@ -47,6 +43,20 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
                 }
                 completion(questions)
             }
+        }
+    }
+
+    func addObserver() {
+        synchronizationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                         object: nil,
+                                                                         queue: .main) { [weak self] notification in
+            self?.didGetDataSyncResult(notification)
+        }
+    }
+
+    func removeObserver() {
+        if let synchronizationObserver = synchronizationObserver {
+            NotificationCenter.default.removeObserver(synchronizationObserver)
         }
     }
 
@@ -65,6 +75,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     }
 
     @objc func dismiss() {
+        removeObserver()
         presenter.dismiss(animated: true, completion: nil)
     }
 }
@@ -77,6 +88,7 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
     func saveQuestions() {
         worker.saveQuestions {[weak self] in
             guard self?.worker.team == nil else {
+                self?.removeObserver()
                 self?.showAlert()
                 return
             }
@@ -89,12 +101,12 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
         dispatchGroup.enter()
         var tmpReport: QDMToBeVisionRatingReport?
         var tmpVision: QDMToBeVision?
-        worker.getRatingReport { [weak self] (report) in
+        worker.getRatingReport { (report) in
             tmpReport = report
             dispatchGroup.leave()
         }
         dispatchGroup.enter()
-        worker.getToBeVision { [weak self] (_, toBeVision) in
+        worker.getToBeVision { (_, toBeVision) in
             tmpVision = toBeVision
             dispatchGroup.leave()
         }
