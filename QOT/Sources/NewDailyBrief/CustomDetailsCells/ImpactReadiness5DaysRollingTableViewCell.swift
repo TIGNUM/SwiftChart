@@ -1,19 +1,19 @@
 //
-//  ImpactReadinessCell2.swift
+//  ImpactReadiness5DaysRollingTableViewCell.swift
 //  QOT
 //
-//  Created by Srikanth Roopa on 26.08.19.
-//  Copyright © 2019 Tignum. All rights reserved.
+//  Created by Simu Voicu-Mircea on 15.11.2020.
+//  Copyright © 2020 Tignum. All rights reserved.
 //
 
 import Foundation
 import qot_dal
 
-final class ImpactReadinessCell2: BaseDailyBriefCell {
+final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
 
     @IBOutlet weak var howYouFeelToday: UILabel!
     @IBOutlet weak var asterixText: UILabel!
-//// sleepQuantity
+    //// sleepQuantity
     @IBOutlet weak var sleepQuantityButton: UIButton!
     @IBOutlet weak var sleepQuantityTarget: UIButton!
     @IBOutlet weak var sleepQuantityScoreButton: UIButton!
@@ -30,7 +30,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var futureLoadScoreButton: UIButton!
     ////  delagate
     @IBOutlet weak var mainStackView: UIStackView!
-    weak var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
     @IBOutlet weak var moreData: AnimatedButton!
     @IBOutlet weak var dividerView: UIView!
     @IBOutlet weak var dividerView1: UIView!
@@ -41,7 +41,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        moreData.corner(radius: Layout.cornerRadius20, borderColor: .white)
         skeletonManager.addSubtitle(rollingDataLabel)
         skeletonManager.addSubtitle(howYouFeelToday)
         skeletonManager.addSubtitle(asterixText)
@@ -98,7 +98,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         let asteriskLoad = viewModel?.hasFiveDayLoadValue == true ? "" : "*"
 
         // Sleep Quantity
-        let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_new_title)
+        let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_new_title).uppercased()
         sleepQuantityButton.setTitle(quantityTitle, for: .normal)
         let hour = " " + AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h)
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
@@ -144,7 +144,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         }
 
         // Button
-        moreData.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_my_data), for: .normal)
+        moreData.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_my_data).uppercased(), for: .normal)
     }
 
     @IBAction func sleepQuantityTapped(_ sender: Any) {

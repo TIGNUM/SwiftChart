@@ -701,8 +701,6 @@
 		91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EF2037168900E27822 /* CGRect+Convenience.swift */; };
 		91D4E2BB43301FA8D3995437 /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE5B5709A00341CFD794D10A /* Pods_QOT.framework */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
-		9C20083C2313D3B50035CAF0 /* ImpactReadinessCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C20083B2313D3B50035CAF0 /* ImpactReadinessCell2.xib */; };
-		9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20083D2313ED5A0035CAF0 /* ImpactReadinessCell2.swift */; };
 		9C2008402313F0BE0035CAF0 /* ImpactReadiness1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C20083F2313F0BE0035CAF0 /* ImpactReadiness1.xib */; };
 		9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C24237122F081A400B911E6 /* AboutMeCell.xib */; };
 		9C24237422F0868300B911E6 /* AboutMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24237322F0868300B911E6 /* AboutMeCell.swift */; };
@@ -918,6 +916,8 @@
 		B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */; };
 		B47CA1AE2334F66C001A65AE /* ArticleEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47CA1AC2334F66B001A65AE /* ArticleEmptyTableViewCell.xib */; };
 		B47CA1AF2334F66C001A65AE /* ArticleEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */; };
+		B48B53A72561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48B53A62561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift */; };
+		B48B53AF2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B48B53AE2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib */; };
 		B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4993F48233243D4001E5676 /* SkeletonManager.swift */; };
 		B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */; };
 		B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B499A7032395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib */; };
@@ -2178,8 +2178,6 @@
 		91CD12EF2037168900E27822 /* CGRect+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Convenience.swift"; sourceTree = "<group>"; };
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		9482C2502E55FA84E54C707D /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
-		9C20083B2313D3B50035CAF0 /* ImpactReadinessCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpactReadinessCell2.xib; sourceTree = "<group>"; };
-		9C20083D2313ED5A0035CAF0 /* ImpactReadinessCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCell2.swift; sourceTree = "<group>"; };
 		9C20083F2313F0BE0035CAF0 /* ImpactReadiness1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpactReadiness1.xib; sourceTree = "<group>"; };
 		9C2008412313F88A0035CAF0 /* ImpactReadiness1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadiness1.swift; sourceTree = "<group>"; };
 		9C24237122F081A400B911E6 /* AboutMeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutMeCell.xib; sourceTree = "<group>"; };
@@ -2376,6 +2374,8 @@
 		B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenRouter.swift; sourceTree = "<group>"; };
 		B47CA1AC2334F66B001A65AE /* ArticleEmptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleEmptyTableViewCell.xib; sourceTree = "<group>"; };
 		B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		B48B53A62561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadiness5DaysRollingTableViewCell.swift; sourceTree = "<group>"; };
+		B48B53AE2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImpactReadiness5DaysRollingTableViewCell.xib; sourceTree = "<group>"; };
 		B4993F48233243D4001E5676 /* SkeletonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonManager.swift; sourceTree = "<group>"; };
 		B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterIntro.storyboard; sourceTree = "<group>"; };
 		B499A7032395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterIntroMediaTableViewCell.xib; sourceTree = "<group>"; };
@@ -4511,8 +4511,6 @@
 			children = (
 				9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */,
 				F9638C482306A47D00B8E543 /* Notification+Ext.swift */,
-				9C20083B2313D3B50035CAF0 /* ImpactReadinessCell2.xib */,
-				9C20083D2313ED5A0035CAF0 /* ImpactReadinessCell2.swift */,
 				9C20083F2313F0BE0035CAF0 /* ImpactReadiness1.xib */,
 				9C2008412313F88A0035CAF0 /* ImpactReadiness1.swift */,
 				9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */,
@@ -4820,6 +4818,15 @@
 			path = MyDataScreen;
 			sourceTree = "<group>";
 		};
+		B48B539F2561BF7B00FC183D /* CustomDetailsCells */ = {
+			isa = PBXGroup;
+			children = (
+				B48B53A62561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift */,
+				B48B53AE2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib */,
+			);
+			path = CustomDetailsCells;
+			sourceTree = "<group>";
+		};
 		B499A7012395282500BDD4CE /* RegisterVideoIntro */ = {
 			isa = PBXGroup;
 			children = (
@@ -4926,11 +4933,12 @@
 		B4BCE451255BCEC500A1116F /* NewDailyBrief */ = {
 			isa = PBXGroup;
 			children = (
+				B4BCE463255BCEC500A1116F /* BaseDailyBriefTableViewCell */,
+				B4BCE45A255BCEC500A1116F /* BaseDailyBriefDetailsView */,
+				B48B539F2561BF7B00FC183D /* CustomDetailsCells */,
+				B4BCE456255BCEC500A1116F /* GetStartedCollectionViewCell */,
 				B4BCE491255BD01600A1116F /* ExpandAnimation */,
 				B4BCE452255BCEC500A1116F /* StandardCollectionViewCell */,
-				B4BCE456255BCEC500A1116F /* GetStartedCollectionViewCell */,
-				B4BCE45A255BCEC500A1116F /* BaseDailyBriefDetailsView */,
-				B4BCE463255BCEC500A1116F /* BaseDailyBriefTableViewCell */,
 			);
 			path = NewDailyBrief;
 			sourceTree = "<group>";
@@ -6608,9 +6616,9 @@
 				B4A075BB230EF13B00DDB922 /* MyDataHeatMapDateCell.xib in Resources */,
 				B8FE4A9A24DD7A9400B47F1D /* VideoBookmarkTableViewCell.xib in Resources */,
 				36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */,
-				9C20083C2313D3B50035CAF0 /* ImpactReadinessCell2.xib in Resources */,
 				368F2AF52296D74D0008A36D /* ArticleNextUpTableViewCell.xib in Resources */,
 				B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */,
+				B48B53AF2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib in Resources */,
 				F902CF5722DE10B800FFC836 /* DailyCheckinSHPICell.xib in Resources */,
 				75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */,
 				F96B23B12350BF1100130EFF /* DepartureBespokeFeastImageCell.xib in Resources */,
@@ -7105,6 +7113,7 @@
 				3666FD43232A4B7D00FC67D0 /* DTRecoveryRouter.swift in Sources */,
 				B4BCE46B255BCEC500A1116F /* NewDailyBriefStandardModel.swift in Sources */,
 				F934802D247D467000DD1C7D /* FeatureExplainerModel.swift in Sources */,
+				B48B53A72561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift in Sources */,
 				B4BCD0E723AB7CD900B80747 /* MyQOTAdminEditSprintsWorker.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
 				3658257A2327D19200AC3F4A /* DTShortTBVRouter.swift in Sources */,
@@ -7633,7 +7642,6 @@
 				F934802A247D467000DD1C7D /* FeatureExplainerInterface.swift in Sources */,
 				F91087AB24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift in Sources */,
 				759AB41B22C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift in Sources */,
-				9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */,
 				9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */,
 				B8BB413322C555BF002897E4 /* MediaPlayerModel.swift in Sources */,
 				8DC59B6322FD75D700587EA4 /* BaseSigningWorker.swift in Sources */,

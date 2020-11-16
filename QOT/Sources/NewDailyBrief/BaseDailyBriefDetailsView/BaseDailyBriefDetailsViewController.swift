@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class BaseDailyBriefDetailsViewController: BaseViewController, ScreenZLevel1 {
+final class BaseDailyBriefDetailsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: BaseDailyBriefDetailsInteractorInterface!
@@ -36,6 +36,7 @@ final class BaseDailyBriefDetailsViewController: BaseViewController, ScreenZLeve
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerDequeueable(NewBaseDailyBriefCell.self)
+        tableView.registerDequeueable(ImpactReadiness5DaysRollingTableViewCell.self)
         tableView.insetsContentViewsToSafeArea = false
         interactor.viewDidLoad()
     }
@@ -65,19 +66,35 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
     func setupView() {
         // Do any additional setup after loading the view.
     }
+
+    func showAlert(message: String?) {
+        let closeButtonItem = createCloseButton(#selector(dismissAlert))
+        QOTAlert.show(title: nil, message: message, bottomItems: [closeButtonItem])
+    }
+
+    @objc func dismissAlert() {
+        QOTAlert.dismiss()
+    }
+
+    func presentMyDataScreen() {
+        router.showMyDataScreen()
+    }
+
+    func showCustomizeTarget() {
+        interactor.customizeSleepQuestion { [weak self] (question) in
+            self?.router.presentCustomizeTarget(question)
+        }
+    }
 }
 
 // MARK: - BaseDailyBriefDetailsViewControllerInterface
 extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return interactor?.getNumberOfRows() ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath == IndexPath(row: 0, section: 0) {
-            return getDetailsMainCell(forBucketName: interactor.getModel().domainModel?.bucketName)
-        }
-        return UITableViewCell.init()
+        return interactor?.getDetailsMainCell(for: indexPath, owner: self) ?? UITableViewCell.init()
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -95,29 +112,22 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
+}
 
-// MARK: Helpers
+extension BaseDailyBriefDetailsViewController: QuestionnaireAnswer {
 
-    func getDetailsMainCell(forBucketName: DailyBriefBucketName?) -> UITableViewCell {
-        let model = interactor.getModel()
-        switch forBucketName {
-        case DailyBriefBucketName.DAILY_CHECK_IN_1:
-            guard let impactReadinessModel = model as? ImpactReadinessCellViewModel,
-                  let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: self) else {
-                return UITableViewCell.init()
-            }
-            let standardModel1 = NewDailyBriefStandardModel.init(caption: impactReadinessModel.title ?? "",
-                                                                 title: impactReadinessModel.title ?? "",
-                                                                 body: impactReadinessModel.feedback ?? "",
-                                                                 image: impactReadinessModel.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                 detailsMode: true,
-                                                                 domainModel: nil)
-            cell.configure(with: [standardModel1])
-            cell.collectionView.contentInsetAdjustmentBehavior = .never
+    func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {
+    }
 
-            return cell
-        default:
-            return UITableViewCell.init()
+    func isSelecting(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
+    }
+
+    func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
+        let index = 0
+        if index == NSNotFound { return }
+        interactor.customizeSleepQuestion { (question) in
+            let answers = question?.answers?.count ?? 0
+            question?.selectedAnswerIndex = (answers - 1) - answer
         }
     }
 }

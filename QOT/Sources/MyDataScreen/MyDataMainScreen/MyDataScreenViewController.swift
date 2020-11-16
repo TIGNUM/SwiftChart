@@ -19,11 +19,12 @@ enum MyDataRowType: Int, CaseIterable {
     case heatMap
 }
 
-final class MyDataScreenViewController: BaseViewController, ScreenZLevel2 {
+final class MyDataScreenViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyDataScreenInteractorInterface?
     var router: MyDataScreenRouterInterface?
+    var showStatusBar: Bool = true
     private var myDataScreenModel: MyDataScreenModel?
     @IBOutlet private weak var tableView: UITableView!
 
@@ -70,6 +71,11 @@ final class MyDataScreenViewController: BaseViewController, ScreenZLevel2 {
             type = data
         }
         router?.passDataToScene(segue: segue, withType: type)
+    }
+
+    override var statusBarAnimatableConfig: StatusBarAnimatableConfig {
+        return StatusBarAnimatableConfig(prefersHidden: !showStatusBar,
+                                         animation: .slide)
     }
 }
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,7 +25,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="921" id="j0e-ng-78g" customClass="ImpactReadinessCell2" customModule="TIGNUM_X" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImpactReadiness5DaysRollingTableViewCell" rowHeight="921" id="j0e-ng-78g" customClass="ImpactReadiness5DaysRollingTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="510" height="921"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j0e-ng-78g" id="8Yj-oo-Y2h">
@@ -96,7 +97,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="QNe-NR-s5v">
                                         <rect key="frame" x="0.0" y="0.0" width="277.33333333333331" height="68.333333333333329"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypq-XO-6MU">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypq-XO-6MU">
                                                 <rect key="frame" x="0.0" y="0.0" width="277.33333333333331" height="45.333333333333336"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                 <state key="normal" title="button">
@@ -110,7 +111,7 @@
                                                 <rect key="frame" x="0.0" y="45.333333333333343" width="277.33333333333331" height="23"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                 <state key="normal" image="arrowFront">
-                                                    <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" red="0.0" green="0.38431372549019605" blue="1" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="targetReference:" destination="j0e-ng-78g" eventType="touchUpInside" id="2HT-Vk-yBe"/>
@@ -121,7 +122,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="NNX-8y-mBV">
                                         <rect key="frame" x="323.33333333333331" y="0.0" width="138.66666666666669" height="68.333333333333329"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YxX-Mu-3U2">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YxX-Mu-3U2">
                                                 <rect key="frame" x="0.0" y="0.0" width="138.66666666666666" height="48"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="30"/>
                                                 <state key="normal">
@@ -146,11 +147,11 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="TCT-M3-c5t"/>
                                 <constraints>
                                     <constraint firstItem="NNX-8y-mBV" firstAttribute="width" secondItem="fmb-Ah-GUN" secondAttribute="width" multiplier="0.3" id="PfE-um-OrX"/>
                                     <constraint firstItem="QNe-NR-s5v" firstAttribute="width" secondItem="fmb-Ah-GUN" secondAttribute="width" multiplier="0.6" id="ZHp-r9-hwa"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="TCT-M3-c5t"/>
                             </stackView>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8z4-Ej-ZJM">
                                 <rect key="frame" x="0.0" y="149.66666666666669" width="462" height="1"/>
@@ -165,7 +166,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="lK5-2t-V1d">
                                         <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="48"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prj-E5-bhL">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prj-E5-bhL">
                                                 <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="48"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                 <state key="normal" title="Button">
@@ -180,7 +181,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Tcr-WX-ACj">
                                         <rect key="frame" x="323.33333333333331" y="0.0" width="138.66666666666669" height="48"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUs-F4-FcQ">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUs-F4-FcQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="138.66666666666666" height="48"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="30"/>
                                                 <state key="normal">
@@ -193,11 +194,11 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="xdC-wg-jHh"/>
                                 <constraints>
                                     <constraint firstItem="Tcr-WX-ACj" firstAttribute="width" secondItem="vpT-on-Lvb" secondAttribute="width" multiplier="0.3" id="npm-GB-ibF"/>
                                     <constraint firstItem="lK5-2t-V1d" firstAttribute="width" secondItem="vpT-on-Lvb" secondAttribute="width" multiplier="0.7" id="v12-02-mlo"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="xdC-wg-jHh"/>
                             </stackView>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NH1-eb-z0H">
                                 <rect key="frame" x="0.0" y="299.33333333333331" width="462" height="1"/>
@@ -212,7 +213,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="4i2-bD-7cF">
                                         <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="48"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSt-qD-ewf">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSt-qD-ewf">
                                                 <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="48"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="17"/>
                                                 <state key="normal" title="Button">
@@ -227,7 +228,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="MyV-2K-oTt">
                                         <rect key="frame" x="323.33333333333331" y="0.0" width="138.66666666666669" height="48"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J46-BO-pb4">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J46-BO-pb4">
                                                 <rect key="frame" x="0.0" y="0.0" width="138.66666666666666" height="48"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="30"/>
                                                 <state key="normal">
@@ -240,11 +241,11 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="cne-Ni-slB"/>
                                 <constraints>
                                     <constraint firstItem="MyV-2K-oTt" firstAttribute="width" secondItem="vaR-qT-3fJ" secondAttribute="width" multiplier="0.3" id="l0e-xj-7qU"/>
                                     <constraint firstItem="4i2-bD-7cF" firstAttribute="width" secondItem="vaR-qT-3fJ" secondAttribute="width" multiplier="0.7" id="xzh-LN-ckW"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="cne-Ni-slB"/>
                             </stackView>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzn-iG-QS3">
                                 <rect key="frame" x="0.0" y="449.33333333333337" width="462" height="1"/>
@@ -259,7 +260,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="UQl-Ee-roz">
                                         <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="48"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5g-f8-m9S">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5g-f8-m9S">
                                                 <rect key="frame" x="0.0" y="0.0" width="323.33333333333331" height="48"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                                 <state key="normal" title="Button">
@@ -274,7 +275,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="DOe-jp-dBH">
                                         <rect key="frame" x="323.33333333333331" y="0.0" width="138.66666666666669" height="48"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EW-7V-bUV">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EW-7V-bUV">
                                                 <rect key="frame" x="0.0" y="0.0" width="138.66666666666666" height="48"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="30"/>
                                                 <state key="normal">
@@ -287,11 +288,11 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <viewLayoutGuide key="safeArea" id="pih-90-Ius"/>
                                 <constraints>
                                     <constraint firstItem="UQl-Ee-roz" firstAttribute="width" secondItem="vhx-zG-Xv7" secondAttribute="width" multiplier="0.7" id="jyo-ef-phf"/>
                                     <constraint firstItem="DOe-jp-dBH" firstAttribute="width" secondItem="vhx-zG-Xv7" secondAttribute="width" multiplier="0.3" id="pLv-sD-K5i"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="pih-90-Ius"/>
                             </stackView>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2D-6G-Fsh">
                                 <rect key="frame" x="0.0" y="599" width="462" height="1"/>
@@ -306,7 +307,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You tracked 2 days out of 5 days" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wK-nL-2qR">
                                         <rect key="frame" x="0.0" y="0.0" width="462" height="17"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                        <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" systemColor="systemOrangeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXb-tO-SMh">
@@ -335,7 +336,7 @@
                         </constraints>
                         <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         <state key="normal">
-                            <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                         <connections>
                             <action selector="presentMyData:" destination="j0e-ng-78g" eventType="touchUpInside" id="P1C-eo-kWm"/>
@@ -383,5 +384,8 @@
     </objects>
     <resources>
         <image name="arrowFront" width="16" height="16"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -24,8 +24,6 @@ protocol DailyBriefViewControllerDelegate: class {
 
     func showSolveResults(solve: QDMSolve)
 
-    func showCustomizeTarget()
-
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
 
     func saveTargetValue(value: Int?)
@@ -45,8 +43,6 @@ protocol DailyBriefViewControllerDelegate: class {
     func displayCoachPreparationScreen()
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
-
-    func presentMyDataScreen()
 
     func didChangeLocationPermission(granted: Bool)
 
@@ -108,14 +104,12 @@ protocol DailyBriefInteractorInterface: Interactor {
 }
 
 protocol DailyBriefRouterInterface: BaseRouterInterface {
-    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
     func presentPopUp(copyrightURL: String?, description: String?)
     func presentSolveResults(solve: QDMSolve)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
     func presentDailyCheckInQuestions()
     func presentCoachPreparation()
     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?)
-    func showMyDataScreen()
     func presentTeamPendingInvites()
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)
     func showExplanation(_ team: QDMTeam, type: Explanation.Types)
