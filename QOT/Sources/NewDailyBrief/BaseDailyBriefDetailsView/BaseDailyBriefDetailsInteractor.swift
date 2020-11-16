@@ -92,6 +92,21 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                     break
                 }
             }
+        case DailyBriefBucketName.EXPERT_THOUGHTS:
+            guard let expertThoughtsModel = model as? ExpertThoughtsCellViewModel,
+                  let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner),
+                  indexPath == IndexPath.init(row: 0, section: 0) else {
+                return UITableViewCell.init()
+            }
+            let standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsModel.title ?? "",
+                                                                 title: expertThoughtsModel.description ?? "",
+                                                                 body: expertThoughtsModel.name ?? "",
+                                                                 image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                 detailsMode: true,
+                                                                 domainModel: nil)
+            cell.configure(with: [standardModel])
+            cell.collectionView.contentInsetAdjustmentBehavior = .never
+            return cell
         default:
             return UITableViewCell.init()
         }
