@@ -34,8 +34,8 @@ private extension TBVDataGraphAnswersTableViewCell {
         var index = 0
 
         for (date, rating) in sortedDict {
-            let isLow = lowRange.contains(rating)
-            let text = rating <= 0 ? "-" : String(describing: rating)
+            let isLow = lowRange.contains(Int(rating))
+            let text = rating <= 0 ? "-" : String(format: "%.1f", rating)
             var theme: ThemeText = .tbvTrackerRatingDigits(isLow)
 
             if date == selectedDate {
