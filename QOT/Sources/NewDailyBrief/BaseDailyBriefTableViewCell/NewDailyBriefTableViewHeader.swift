@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 class NewDailyBriefTableViewHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
@@ -31,6 +32,7 @@ class NewDailyBriefTableViewHeader: UITableViewHeaderFooterView {
     public func configure(tapLeft: actionClosure?, tapRight: actionClosure?) {
         actionLeft = tapLeft
         actionRight = tapRight
+        ThemeText.navigationBarHeader.apply(AppTextService.get(.daily_brief_section_header_title), to: titleLabel)
         leftButton.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
     }
