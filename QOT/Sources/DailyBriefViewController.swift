@@ -372,7 +372,8 @@ private extension DailyBriefViewController {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
         let standardModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel?.title ?? "",
-                                                             title: impactReadinessCellViewModel?.title ?? "",
+                                                            title: ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessCellViewModel?.readinessScore,
+                                                                                                              impactReadinessNoDataTitle: impactReadinessCellViewModel?.title),
                                                              body: impactReadinessCellViewModel?.feedback ?? "",
                                                              image: impactReadinessCellViewModel?.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              domainModel: impactReadinessCellViewModel?.domainModel)
@@ -390,8 +391,8 @@ private extension DailyBriefViewController {
 
         //We need to add AppTextService for these hardcoded strings
         let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
-                                                             title: "Your load and recovery in detail",
-                                                             body: "The last 5 days are key on how you fell today",
+                                                            title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
+                                                             body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              domainModel: impactReadinessScoreViewModel?.domainModel)
         cell.configure(with: [standardModel])
@@ -575,7 +576,7 @@ private extension DailyBriefViewController {
             }
 
             let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_whats_hot_title),
-                                                                title: whatsHotViewModel?.title ?? "",
+                                                                title: NSAttributedString.init(string: whatsHotViewModel?.title ?? ""),
                                                                  body: dateAndDurationText,
                                                                  image: whatsHotViewModel?.image?.absoluteString ?? "",
                                                                  domainModel: whatsHotViewModel?.domainModel)
@@ -643,7 +644,7 @@ private extension DailyBriefViewController {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
         let standardModel = NewDailyBriefStandardModel.init(caption: leadersWisdomViewModel?.title ?? "",
-                                                             title: leadersWisdomViewModel?.subtitle ?? "",
+                                                             title: NSAttributedString.init(string: leadersWisdomViewModel?.subtitle ?? ""),
                                                              body: leadersWisdomViewModel?.description ?? "",
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              CTAType: leadersWisdomViewModel?.format ?? .unknown,
@@ -665,7 +666,7 @@ private extension DailyBriefViewController {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
         let standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsViewModel?.title ?? "",
-                                                             title: expertThoughtsViewModel?.description ?? "",
+                                                             title: NSAttributedString.init(string: expertThoughtsViewModel?.description ?? ""),
                                                              body: expertThoughtsViewModel?.name ?? "",
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              domainModel: expertThoughtsViewModel?.domainModel)
@@ -748,7 +749,7 @@ private extension DailyBriefViewController {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
         let standardModel = NewDailyBriefStandardModel.init(caption: exploreViewModel?.bucketTitle ?? "",
-                                                             title: exploreViewModel?.title ?? "",
+                                                             title: NSAttributedString.init(string: exploreViewModel?.title ?? ""),
                                                              body: exploreViewModel?.duration ?? "",
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              domainModel: exploreViewModel?.domainModel)

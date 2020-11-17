@@ -17,14 +17,14 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var caption: String?
-    var title: String?
+    var title: NSAttributedString?
     var body: String?
     var image: String?
     var detailsMode: Bool?
     var CTAType: ContentFormat
 
     // MARK: - Init
-    init(caption: String?, title: String?, body: String?, image: String?, detailsMode: Bool = false, CTAType: ContentFormat = .unknown, domainModel: QDMDailyBriefBucket?) {
+    init(caption: String?, title: NSAttributedString?, body: String?, image: String?, detailsMode: Bool = false, CTAType: ContentFormat = .unknown, domainModel: QDMDailyBriefBucket?) {
         self.caption = caption
         self.title = title
         self.body = body
@@ -57,7 +57,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         titleSizingLabel.numberOfLines = 3
         titleSizingLabel.font = UIFont.sfProtextRegular(ofSize: 24.0)
         titleSizingLabel.lineBreakMode = .byTruncatingTail
-        titleSizingLabel.text = title
+        titleSizingLabel.attributedText = title
 
         let bodySizingLabel = UILabel()
         bodySizingLabel.numberOfLines = 0
