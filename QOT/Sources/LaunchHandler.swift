@@ -262,41 +262,47 @@ extension LaunchHandler {
     }
 
     func showTeamTBV(_ teamId: Int) {
-        if let team = getTeam(teamId) {
-            if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
-                let configurator = TeamToBeVisionConfigurator.make(team: team)
-                configurator(controller)
-                present(viewController: controller)
+        getTeam(teamId) { [weak self] (team) in
+            if let team = team {
+                if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
+                    let configurator = TeamToBeVisionConfigurator.make(team: team)
+                    configurator(controller)
+                    self?.present(viewController: controller)
+                }
             }
         }
     }
 
     func showTBVRating(_ teamId: Int) {
-        if let team = getTeam(teamId) {
-            if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
-                VisionRatingExplanationConfigurator.make(team: team, type: .tbvPollUser)(controller)
-                present(viewController: controller)
-            }
-        }
-    }
-
-    func getTeam(_ teamId: Int) -> QDMTeam? {
-        var currentTeam: QDMTeam?
-        TeamService.main.getTeams { (teams, _, _) in
-            if let teams = teams, teams.isEmpty == false {
-                if let team = teams.filter ({ $0.remoteID == teamId }).first {
-                    currentTeam = team
+        getTeam(teamId) { [weak self] (team) in
+            if let team = team {
+                if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                    VisionRatingExplanationConfigurator.make(team: team, type: .tbvPollUser)(controller)
+                    self?.present(viewController: controller)
                 }
             }
         }
-        return currentTeam
     }
 
     func showTBVPoll(_ teamId: Int) {
-        if let team = getTeam(teamId) {
-            if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
-                VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
-                present(viewController: controller)
+        getTeam(teamId) { [weak self] (team) in
+            if let team = team {
+                if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+                    VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
+                    self?.present(viewController: controller)
+                }
+            }
+        }
+    }
+
+    func getTeam(_ teamId: Int, _ completion: @escaping (QDMTeam?) -> Void) {
+        TeamService.main.getTeams { (teams, _, _) in
+            if let teams = teams, teams.isEmpty == false {
+                if let team = teams.filter({ $0.remoteID == teamId }).first {
+                    completion(team)
+                }
+            } else {
+                completion(nil)
             }
         }
     }
