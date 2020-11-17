@@ -26,10 +26,10 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     }
 
     func viewDidLoad() {
+        addObserver()
         getQuestions { [weak self] (questions) in
             self?.presenter.setupView(questions: questions)
         }
-        addObserver()
     }
 
     private func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
@@ -39,6 +39,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
             showScreenLoader()
             worker.getQuestions { [weak self] (questions) in
                 if questions.isEmpty == false {
+                    self?.removeObserver()
                     self?.hideScreenLoader()
                 }
                 completion(questions)
@@ -63,11 +64,9 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     @objc private func didGetDataSyncResult(_ notification: Notification) {
         guard let result = notification.object as? SyncResultContext else { return }
         switch result.dataType {
-        case .TEAM_TO_BE_VISION_TRACKER_POLL where result.syncRequestType == .DOWN_SYNC && result.hasUpdatedContent:
-            if worker.questions?.isEmpty != true { // reload if there is no questions.
-                getQuestions { [weak self] (questions) in
-                    self?.presenter.setupView(questions: questions)
-                }
+        case .TEAM_TO_BE_VISION_TRACKER_POLL where result.syncRequestType == .DOWN_SYNC:
+            getQuestions { [weak self] (questions) in
+                self?.presenter.setupView(questions: questions)
             }
         default:
             break
@@ -75,7 +74,6 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     }
 
     @objc func dismiss() {
-        removeObserver()
         presenter.dismiss(animated: true, completion: nil)
     }
 }
@@ -88,7 +86,6 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
     func saveQuestions() {
         worker.saveQuestions {[weak self] in
             guard self?.worker.team == nil else {
-                self?.removeObserver()
                 self?.showAlert()
                 return
             }
