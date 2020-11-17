@@ -168,14 +168,14 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
             if interactor?.profile?.givenName != text {
                 interactor?.profile?.givenName = text
                 interactor?.generateSections()
-                shouldAllowSave = true
+                shouldAllowSave = text != ""
             }
         case 1: // LastName
-            if interactor?.profile?.familyName != text {
-                 interactor?.profile?.familyName = text
+                if interactor?.profile?.familyName != text {
+                interactor?.profile?.familyName = text
                 interactor?.generateSections()
-                shouldAllowSave = true
-            }
+                shouldAllowSave = text != ""
+                }
         default: return
         }
     }
