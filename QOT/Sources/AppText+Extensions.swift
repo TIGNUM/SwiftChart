@@ -225,6 +225,8 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_button_explore_score = AppTextKey("daily_brief.section_impact_readiness.button_explore_score")
     static let daily_brief_section_impact_readiness_null_state_button_start_dci = AppTextKey("daily_brief.section_impact_readiness.null_state.button_start_dci")
     static let daily_brief_section_impact_readiness_section_5_day_rolling_title = AppTextKey("daily_brief.section_impact_readiness.section_5_day_rolling.title")
+    static let daily_brief_section_impact_readiness_section_5_day_rolling_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_5_day_rolling.subtitle")
+    static let daily_brief_section_impact_readiness_section_5_day_rolling_body = AppTextKey("daily_brief.section_impact_readiness.section_5_day_rolling.body")
     static let daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours = AppTextKey("daily_brief.daily_check_in.questionnaire.section_slider.subtitle_hours")
     static let daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours_more = AppTextKey("daily_brief.daily_check_in.questionnaire.section_slider.subtitle_hours_more")
     static let daily_brief_daily_check_in_questionnaire_section_slider_subtitle_peak_perpormances_more = AppTextKey("daily_brief.daily_check_in.questionnaire.section_slider.subtitle_peak_perpormances_more")

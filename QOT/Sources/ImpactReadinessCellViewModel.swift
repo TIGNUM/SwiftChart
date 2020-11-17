@@ -56,4 +56,19 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
             domainModel?.toBeVision?.profileImageResource?.url() == source.domainModel?.toBeVision?.profileImageResource?.url() &&
             domainModel?.dailyCheckInResult?.targetSleepQuantity == source.domainModel?.dailyCheckInResult?.targetSleepQuantity
     }
+
+    static func createAttributedImpactReadinessTitle(for readinessScore: Int?, impactReadinessNoDataTitle: String?) -> NSAttributedString {
+        let firstAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        let secondAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        guard readinessScore != -1 else {
+            return NSAttributedString.init(string: impactReadinessNoDataTitle ?? "", attributes: firstAttributes)
+        }
+
+        let impactReadinessAttrString = NSMutableAttributedString(string: "\(readinessScore ?? 0)", attributes: firstAttributes)
+        let outOfAttrString = NSAttributedString(string: " out of 100", attributes: secondAttributes)
+
+        impactReadinessAttrString.append(outOfAttrString)
+
+        return impactReadinessAttrString
+    }
 }

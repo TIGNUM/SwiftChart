@@ -53,8 +53,10 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                       indexPath == IndexPath.init(row: 0, section: 0) else {
                     return UITableViewCell.init()
                 }
+
                 let standardModel1 = NewDailyBriefStandardModel.init(caption: impactReadinessModel.title ?? "",
-                                                                     title: impactReadinessModel.title ?? "",
+                                                                     title: ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessModel.readinessScore,
+                                                                                                                       impactReadinessNoDataTitle: impactReadinessModel.title),
                                                                      body: impactReadinessModel.feedback ?? "",
                                                                      image: impactReadinessModel.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                      detailsMode: true,
@@ -70,8 +72,8 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                         return UITableViewCell.init()
                     }
                     let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
-                                                                         title: "Your load and recovery in detail",
-                                                                         body: "The last 5 days are key on how you fell today",
+                                                                         title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
+                                                                         body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
                                                                          image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                          detailsMode: true,
                                                                          domainModel: nil)
@@ -99,7 +101,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return UITableViewCell.init()
             }
             let standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsModel.title ?? "",
-                                                                 title: expertThoughtsModel.description ?? "",
+                                                                 title: NSAttributedString.init(string: expertThoughtsModel.description ?? ""),
                                                                  body: expertThoughtsModel.name ?? "",
                                                                  image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                  detailsMode: true,
@@ -115,7 +117,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             }
 
             let standardModel = NewDailyBriefStandardModel.init(caption: leadersWisdomViewModel.title ?? "",
-                                                                 title: leadersWisdomViewModel.subtitle ?? "",
+                                                                 title: NSAttributedString.init(string: leadersWisdomViewModel.subtitle ?? ""),
                                                                  body: leadersWisdomViewModel.description ?? "",
                                                                  image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                  detailsMode: true,

@@ -35,12 +35,12 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
     // MARK: - Public
     public func configure(with viewModel: NewDailyBriefStandardModel?) {
         caption.text = viewModel?.caption
-        title.text = viewModel?.title
+        title.attributedText = viewModel?.title
         body.text = viewModel?.body
         imageView.kf.setImage(with: URL.init(string: viewModel?.image ?? ""))
         arrowButton.isHidden = viewModel?.detailsMode ?? false
         body.numberOfLines = viewModel?.detailsMode ?? false ? 0 : 2
-        titleTrailingConstraint.constant = viewModel?.detailsMode ?? false ? 68 : 20
+        titleTrailingConstraint.constant = 20
 
         var CTAIcon = UIImage.init(named: "diagonal arrow")
 
