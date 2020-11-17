@@ -22,7 +22,7 @@ protocol BaseDailyBriefDetailsPresenterInterface {
 protocol BaseDailyBriefDetailsInteractorInterface: Interactor {
     func getModel() -> BaseDailyBriefViewModel
     func getNumberOfRows() -> Int
-    func getDetailsMainCell(for indexPath: IndexPath, owner: BaseDailyBriefDetailsViewController) -> UITableViewCell
+    func getDetailsTableViewCell(for indexPath: IndexPath, owner: BaseDailyBriefDetailsViewController) -> UITableViewCell
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
 }
 

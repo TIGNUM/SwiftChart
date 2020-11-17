@@ -44,7 +44,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
         }
     }
 
-    func getDetailsMainCell(for indexPath: IndexPath, owner: BaseDailyBriefDetailsViewController) -> UITableViewCell {
+    func getDetailsTableViewCell(for indexPath: IndexPath, owner: BaseDailyBriefDetailsViewController) -> UITableViewCell {
         switch model.domainModel?.bucketName {
         case DailyBriefBucketName.DAILY_CHECK_IN_1:
             if (model as? ImpactReadinessCellViewModel) != nil {
@@ -105,5 +105,4 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
         worker.customizeSleepQuestion(completion: completion)
     }
-
 }

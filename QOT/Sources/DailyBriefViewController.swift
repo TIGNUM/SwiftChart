@@ -375,7 +375,7 @@ private extension DailyBriefViewController {
                                                              title: impactReadinessCellViewModel?.title ?? "",
                                                              body: impactReadinessCellViewModel?.feedback ?? "",
                                                              image: impactReadinessCellViewModel?.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: nil)
+                                                             domainModel: impactReadinessCellViewModel?.domainModel)
         cell.configure(with: [standardModel])
         cell.delegate = self
 
@@ -393,7 +393,7 @@ private extension DailyBriefViewController {
                                                              title: "Your load and recovery in detail",
                                                              body:  "The last 5 days are key on how you fell today",
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: nil)
+                                                             domainModel: impactReadinessScoreViewModel?.domainModel)
         cell.configure(with: [standardModel])
         cell.delegate = self
 
@@ -565,10 +565,24 @@ private extension DailyBriefViewController {
     func getWhatsHot(_ tableView: UITableView,
                      _ indexPath: IndexPath,
                      _ whatsHotViewModel: WhatsHotLatestCellViewModel?) -> UITableViewCell {
-        let cell: WhatsHotLatestCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: whatsHotViewModel)
-        cell.clickableLinkDelegate = self
-        return cell
+            let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+            //We need to add AppTextService for these hardcoded strings
+            var dateAndDurationText = ""
+            if let publishDate = whatsHotViewModel?.publisheDate,
+               let durationString = whatsHotViewModel?.timeToRead {
+                dateAndDurationText = DateFormatter.whatsHotBucket.string(from: publishDate) + " | " + durationString
+            }
+
+            let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_whats_hot_title),
+                                                                title: whatsHotViewModel?.title ?? "",
+                                                                 body: dateAndDurationText,
+                                                                 image: whatsHotViewModel?.image?.absoluteString ?? "",
+                                                                 domainModel: whatsHotViewModel?.domainModel)
+            cell.configure(with: [standardModel])
+            cell.delegate = self
+
+            return cell
     }
 
     /**
@@ -724,7 +738,7 @@ private extension DailyBriefViewController {
                                                              title: exploreViewModel?.title ?? "",
                                                              body: exploreViewModel?.duration ?? "",
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: nil)
+                                                             domainModel: exploreViewModel?.domainModel)
         cell.configure(with: [standardModel])
         cell.delegate = self
 
@@ -1093,11 +1107,12 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
         let bucketList = bucketModel?.elements
         let bucketItem = bucketList?[indexPathOfTableViewCell.row]
 
-        guard (bucketItem?.domainModel?.bucketName) != nil else { return }
+        guard let bucketName = bucketItem?.domainModel?.bucketName,
+              let dailyBriefCellViewModel = bucketItem else { return }
 
-        guard let dailyBriefCellViewModel = bucketItem else { return }
-
-        if let impactReadinessCellViewModel = dailyBriefCellViewModel as? ImpactReadinessCellViewModel {
+        switch bucketName {
+        case .DAILY_CHECK_IN_1:
+            guard let impactReadinessCellViewModel = dailyBriefCellViewModel as? ImpactReadinessCellViewModel else { return }
             if impactReadinessCellViewModel.readinessScore == -1 {
                 showDailyCheckInQuestions()
             } else {
@@ -1105,9 +1120,14 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                     self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
                 }
             }
-        } else if let exploreCellModel = dailyBriefCellViewModel as? ExploreCellViewModel {
+        case .EXPLORE:
+            guard let exploreCellModel = dailyBriefCellViewModel as? ExploreCellViewModel else { return }
             presentStrategyList(strategyID: exploreCellModel.remoteID)
-        } else {
+        case .LATEST_WHATS_HOT:
+             didSelectRow(at: indexPath)
+             guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
+             router.presentContent(whatsHotArticleId)
+        default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
             }
