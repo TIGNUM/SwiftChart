@@ -391,7 +391,7 @@ private extension DailyBriefViewController {
         //We need to add AppTextService for these hardcoded strings
         let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
                                                              title: "Your load and recovery in detail",
-                                                             body:  "The last 5 days are key on how you fell today",
+                                                             body: "The last 5 days are key on how you fell today",
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              domainModel: impactReadinessScoreViewModel?.domainModel)
         cell.configure(with: [standardModel])
@@ -655,10 +655,16 @@ private extension DailyBriefViewController {
     func getExpertThoughts(_ tableView: UITableView,
                            _ indexPath: IndexPath,
                            _ expertThoughtsViewModel: ExpertThoughtsCellViewModel?) -> UITableViewCell {
-        let cell: ExpertThoughtsTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: expertThoughtsViewModel)
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+        let standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsViewModel?.title ?? "",
+                                                             title: expertThoughtsViewModel?.description ?? "",
+                                                             body: expertThoughtsViewModel?.name ?? "",
+                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                             domainModel: expertThoughtsViewModel?.domainModel)
+        cell.configure(with: [standardModel])
         cell.delegate = self
-        cell.clickableLinkDelegate = self
+
         return cell
     }
 
@@ -881,7 +887,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.registerDequeueable(WhatsHotLatestCell.self)
         tableView.registerDequeueable(QuestionCell.self)
         tableView.registerDequeueable(ThoughtsCell.self)
         tableView.registerDequeueable(GoodToKnowCell.self)
@@ -889,7 +894,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(DailyCheckinInsightsTBVCell.self)
         tableView.registerDequeueable(DailyCheckinSHPICell.self)
         tableView.registerDequeueable(DailyCheckinInsightsPeakPerformanceCell.self)
-        tableView.registerDequeueable(ExploreCell.self)
         tableView.registerDequeueable(AboutMeCell.self)
         tableView.registerDequeueable(MeAtMyBestCell.self)
         tableView.registerDequeueable(Level5Cell.self)
@@ -901,12 +905,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(GuidedTrackSectionCell.self)
         tableView.registerDequeueable(GuidedTrackRowCell.self)
-        tableView.registerDequeueable(ImpactReadiness1.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
         tableView.registerDequeueable(MindsetShifterCell.self)
-        tableView.registerDequeueable(ExpertThoughtsTableViewCell.self)
         tableView.registerDequeueable(TeamToBeVisionCell.self)
         tableView.registerDequeueable(TeamVisionSuggestionCell.self)
         tableView.registerDequeueable(TeamInvitationCell.self)
@@ -1112,7 +1114,14 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
 
         switch bucketName {
         case .DAILY_CHECK_IN_1:
-            guard let impactReadinessCellViewModel = dailyBriefCellViewModel as? ImpactReadinessCellViewModel else { return }
+            guard let impactReadinessCellViewModel = dailyBriefCellViewModel as? ImpactReadinessCellViewModel else {
+                if let impactReadinessScoreCellViewModel = dailyBriefCellViewModel as? ImpactReadinessScoreViewModel {
+                    performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
+                        self?.router.presentDailyBriefDetailsScreen(model: impactReadinessScoreCellViewModel)
+                    }
+                }
+                return
+            }
             if impactReadinessCellViewModel.readinessScore == -1 {
                 showDailyCheckInQuestions()
             } else {
