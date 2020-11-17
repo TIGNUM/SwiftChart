@@ -107,6 +107,21 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             cell.configure(with: [standardModel])
             cell.collectionView.contentInsetAdjustmentBehavior = .never
             return cell
+        case DailyBriefBucketName.LEADERS_WISDOM:
+            guard let leadersWisdomViewModel = model as? LeaderWisdomCellViewModel,
+                  let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner),
+                  indexPath == IndexPath.init(row: 0, section: 0) else {
+                return UITableViewCell.init()
+            }
+
+            let standardModel = NewDailyBriefStandardModel.init(caption: leadersWisdomViewModel.title ?? "",
+                                                                 title: leadersWisdomViewModel.subtitle ?? "",
+                                                                 body: leadersWisdomViewModel.description ?? "",
+                                                                 image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                 detailsMode: true,
+                                                                 domainModel: leadersWisdomViewModel.domainModel)
+            cell.configure(with: [standardModel])
+            return cell
         default:
             return UITableViewCell.init()
         }
