@@ -918,7 +918,7 @@ enum ThemeText {
             return Fonts.fontRegular12
         case .asterix, .weatherLocation:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
+        case .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .registerIntroNoteTitle, .optionPage, .optionPageDisabled:
@@ -983,7 +983,8 @@ enum ThemeText {
             case .scale: return Fonts.fontRegular24
             case .scaleNot: return Fonts.fontRegular16
             }
-
+        case .navigationBarHeader:
+            return Fonts.fontLight24
         // MARK: - .fontLight16
         case .articleRelatedTitle, .articleRelatedTitleInStrategy, .myQOTTitle, .whatsHotHeader, .sprintText,
             .bucketTitle, .solveQuestions, .impactBucket, .articleStrategyTitle, .articleStrategyRead,
@@ -1093,7 +1094,7 @@ enum ThemeText {
         switch self {
 
         // MARK: - .sand
-        case .navigationBarHeader, .quotation, .iRscore, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
+        case .quotation, .iRscore, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .bucketTitle, .solveQuestions,
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
@@ -1231,6 +1232,8 @@ enum ThemeText {
             return lowValue ? Palette.redOrange : Palette.sand
         case .myLibraryItemsItemNameGrey:
             return Palette.sand70
+        case .navigationBarHeader:
+            return .white
         }
     }
 
