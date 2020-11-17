@@ -14,6 +14,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     let presenter: MyToBeVisionRatePresenterInterface
     let worker: MyToBeVisionRateWorker
     let router: MyToBeVisionRateRouter
+    private weak var synchronizationObserver: NSObjectProtocol?
     private lazy var isoDate = worker.trackerPoll?.createdAt ?? Date()
 
     init(presenter: MyToBeVisionRatePresenterInterface,
@@ -25,14 +26,9 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     }
 
     func viewDidLoad() {
+        addObserver()
         getQuestions { [weak self] (questions) in
             self?.presenter.setupView(questions: questions)
-        }
-        // Listen about UpSync Daily Check In User Answers
-        _ = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
-                                                   object: nil,
-                                                   queue: .main) { [weak self] notification in
-            self?.didGetDataSyncResult(notification)
         }
     }
 
@@ -43,6 +39,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
             showScreenLoader()
             worker.getQuestions { [weak self] (questions) in
                 if questions.isEmpty == false {
+                    self?.removeObserver()
                     self?.hideScreenLoader()
                 }
                 completion(questions)
@@ -50,14 +47,26 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
         }
     }
 
+    func addObserver() {
+        synchronizationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                         object: nil,
+                                                                         queue: .main) { [weak self] notification in
+            self?.didGetDataSyncResult(notification)
+        }
+    }
+
+    func removeObserver() {
+        if let synchronizationObserver = synchronizationObserver {
+            NotificationCenter.default.removeObserver(synchronizationObserver)
+        }
+    }
+
     @objc private func didGetDataSyncResult(_ notification: Notification) {
         guard let result = notification.object as? SyncResultContext else { return }
         switch result.dataType {
-        case .TEAM_TO_BE_VISION_TRACKER_POLL where result.syncRequestType == .DOWN_SYNC && result.hasUpdatedContent:
-            if worker.questions?.isEmpty != true { // reload if there is no questions.
-                getQuestions { [weak self] (questions) in
-                    self?.presenter.setupView(questions: questions)
-                }
+        case .TEAM_TO_BE_VISION_TRACKER_POLL where result.syncRequestType == .DOWN_SYNC:
+            getQuestions { [weak self] (questions) in
+                self?.presenter.setupView(questions: questions)
             }
         default:
             break
@@ -89,12 +98,12 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
         dispatchGroup.enter()
         var tmpReport: QDMToBeVisionRatingReport?
         var tmpVision: QDMToBeVision?
-        worker.getRatingReport { [weak self] (report) in
+        worker.getRatingReport { (report) in
             tmpReport = report
             dispatchGroup.leave()
         }
         dispatchGroup.enter()
-        worker.getToBeVision { [weak self] (_, toBeVision) in
+        worker.getToBeVision { (_, toBeVision) in
             tmpVision = toBeVision
             dispatchGroup.leave()
         }

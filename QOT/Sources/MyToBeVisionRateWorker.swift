@@ -135,6 +135,7 @@ private extension MyToBeVisionRateWorker {
                 completion([])
                 return
             }
+            self?.trackerPoll = poll
             let questions = trackers.compactMap { (track) -> RatingQuestionViewModel.Question? in
                 guard let remoteID = track.remoteID else { return nil }
                 let question = track.sentence
