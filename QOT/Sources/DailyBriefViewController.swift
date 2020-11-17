@@ -640,10 +640,17 @@ private extension DailyBriefViewController {
     func getLeadersWisdom(_ tableView: UITableView,
                           _ indexPath: IndexPath,
                           _ leadersWisdomViewModel: LeaderWisdomCellViewModel?) -> UITableViewCell {
-        let cell: LeaderWisdomTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: leadersWisdomViewModel)
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+        let standardModel = NewDailyBriefStandardModel.init(caption: leadersWisdomViewModel?.title ?? "",
+                                                             title: leadersWisdomViewModel?.subtitle ?? "",
+                                                             body: leadersWisdomViewModel?.description ?? "",
+                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                             CTAType: leadersWisdomViewModel?.format ?? .unknown,
+                                                             domainModel: leadersWisdomViewModel?.domainModel)
+        cell.configure(with: [standardModel])
         cell.delegate = self
-        cell.clickableLinkDelegate = self
+
         return cell
     }
 
@@ -1136,6 +1143,24 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
              router.presentContent(whatsHotArticleId)
+        case .LEADERS_WISDOM:
+            guard let leaderWisdomCellModel = dailyBriefCellViewModel as? LeaderWisdomCellViewModel else { return }
+            if leaderWisdomCellModel.format == .audio {
+                let media = MediaPlayerModel(title: leaderWisdomCellModel.videoTitle?.uppercased() ?? "",
+                                             subtitle: "",
+                                             url: leaderWisdomCellModel.videoThumbnail,
+                                             totalDuration: leaderWisdomCellModel.audioDuration ?? 0,
+                                             progress: 0,
+                                             currentTime: 0,
+                                             mediaRemoteId: leaderWisdomCellModel.remoteID ?? 0)
+                NotificationCenter.default.post(name: .playPauseAudio, object: media)
+            } else if leaderWisdomCellModel.format == .video {
+                stream(videoURL: leaderWisdomCellModel.videoThumbnail ?? URL(string: "")!, contentItem: nil)
+            } else {
+                performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
+                    self?.router.presentDailyBriefDetailsScreen(model: leaderWisdomCellModel)
+                }
+            }
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)

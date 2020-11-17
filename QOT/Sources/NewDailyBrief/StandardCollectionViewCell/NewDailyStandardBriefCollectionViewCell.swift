@@ -41,6 +41,20 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
         arrowButton.isHidden = viewModel?.detailsMode ?? false
         body.numberOfLines = viewModel?.detailsMode ?? false ? 0 : 2
         titleTrailingConstraint.constant = viewModel?.detailsMode ?? false ? 68 : 20
+
+        var CTAIcon = UIImage.init(named: "diagonal arrow")
+
+        switch viewModel?.CTAType {
+        case .audio:
+            CTAIcon = UIImage.init(named: "ic_audio")
+        case .video:
+            CTAIcon = UIImage.init(named: "ic_camera_tools")
+        default:
+            break
+        }
+
+        arrowButton.setImage(CTAIcon, for: .normal)
+        arrowButton.imageView?.tintColor = .white
     }
 
     public func resetTransform() {

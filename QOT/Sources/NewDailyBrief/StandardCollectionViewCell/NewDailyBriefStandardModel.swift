@@ -8,6 +8,11 @@
 
 import qot_dal
 
+enum CTAType {
+    case normal
+    case audio
+    case video
+}
 final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
@@ -16,14 +21,16 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
     var body: String?
     var image: String?
     var detailsMode: Bool?
+    var CTAType: ContentFormat
 
     // MARK: - Init
-    init(caption: String?, title: String?, body: String?, image: String?, detailsMode: Bool = false, domainModel: QDMDailyBriefBucket?) {
+    init(caption: String?, title: String?, body: String?, image: String?, detailsMode: Bool = false, CTAType: ContentFormat = .unknown, domainModel: QDMDailyBriefBucket?) {
         self.caption = caption
         self.title = title
         self.body = body
         self.image = image
         self.detailsMode = detailsMode
+        self.CTAType = CTAType
         super.init(domainModel)
     }
 
