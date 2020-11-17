@@ -521,10 +521,17 @@ private extension DailyBriefViewController {
     func getMeAtMyBest(_ tableView: UITableView,
                        _ indexPath: IndexPath,
                        _ meAtMyBestViewModel: MeAtMyBestCellViewModel?) -> UITableViewCell {
-        let cell: MeAtMyBestCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: meAtMyBestViewModel)
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+        //We need to add AppTextService for these hardcoded strings
+        let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel?.title ?? "",
+                                                            title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
+                                                            body: meAtMyBestViewModel?.tbvStatement ?? "",
+                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                             domainModel: meAtMyBestViewModel?.domainModel)
+        cell.configure(with: [standardModel])
         cell.delegate = self
-        cell.clickableLinkDelegate = self
+
         return cell
     }
 
@@ -536,10 +543,17 @@ private extension DailyBriefViewController {
     func getMeAtMyBestEmpty(_ tableView: UITableView,
                             _ indexPath: IndexPath,
                             _ meAtMyBestCellEmptyViewModel: MeAtMyBestCellEmptyViewModel?) -> UITableViewCell {
-        let cell: MeAtMyBestEmptyCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: meAtMyBestCellEmptyViewModel)
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+        //We need to add AppTextService for these hardcoded strings
+        let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestCellEmptyViewModel?.title ?? "",
+                                                            title: NSAttributedString.init(string: meAtMyBestCellEmptyViewModel?.buttonText ?? ""),
+                                                            body: meAtMyBestCellEmptyViewModel?.intro ?? "",
+                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                             domainModel: meAtMyBestCellEmptyViewModel?.domainModel)
+        cell.configure(with: [standardModel])
         cell.delegate = self
-        cell.clickableLinkDelegate = self
+
         return cell
     }
 
@@ -903,12 +917,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(DailyCheckinSHPICell.self)
         tableView.registerDequeueable(DailyCheckinInsightsPeakPerformanceCell.self)
         tableView.registerDequeueable(AboutMeCell.self)
-        tableView.registerDequeueable(MeAtMyBestCell.self)
         tableView.registerDequeueable(Level5Cell.self)
         tableView.registerDequeueable(FromMyCoachCell.self)
         tableView.registerDequeueable(LeaderWisdomTableViewCell.self)
         tableView.registerDequeueable(MyPeakPerformanceCell.self)
-        tableView.registerDequeueable(MeAtMyBestEmptyCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(GuidedTrackSectionCell.self)
@@ -1161,6 +1173,14 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                     self?.router.presentDailyBriefDetailsScreen(model: leaderWisdomCellModel)
                 }
+            }
+        case .ME_AT_MY_BEST:
+            if dailyBriefCellViewModel.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false {
+                performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
+                    self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
+                }
+            } else {
+                router.showTBV()
             }
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in

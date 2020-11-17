@@ -42,4 +42,11 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
             viewController?.pushToStart(childViewController: controller)
         }
     }
+
+    func showTBV() {
+        if let controller = R.storyboard.myToBeVision.myVisionViewController() {
+            MyVisionConfigurator.configure(viewController: controller)
+            viewController?.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }
