@@ -93,7 +93,7 @@
                                             <constraint firstItem="vEx-jr-3gg" firstAttribute="leading" secondItem="QT4-AP-4Hb" secondAttribute="leading" constant="24" id="Opf-MC-hdi"/>
                                             <constraint firstAttribute="trailing" secondItem="Ab5-av-ZF2" secondAttribute="trailing" constant="24" id="TNR-Xq-ttL"/>
                                             <constraint firstItem="vEx-jr-3gg" firstAttribute="top" secondItem="Ab5-av-ZF2" secondAttribute="bottom" constant="24" id="XSr-CF-W7s"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vEx-jr-3gg" secondAttribute="trailing" constant="71" id="XuP-Gt-LHX"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vEx-jr-3gg" secondAttribute="trailing" constant="30" id="XuP-Gt-LHX"/>
                                             <constraint firstItem="mOx-zV-kja" firstAttribute="top" secondItem="QT4-AP-4Hb" secondAttribute="top" constant="40" id="gW7-Q1-eqG"/>
                                             <constraint firstItem="Ab5-av-ZF2" firstAttribute="leading" secondItem="QT4-AP-4Hb" secondAttribute="leading" constant="24" id="vhZ-8C-bJI"/>
                                             <constraint firstItem="mOx-zV-kja" firstAttribute="leading" secondItem="QT4-AP-4Hb" secondAttribute="leading" constant="24" id="vzC-9Z-4Fl"/>
