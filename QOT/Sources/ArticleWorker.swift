@@ -178,6 +178,7 @@ final class ArticleWorker {
         content?.contentItems.filter {
             $0.tabs.isEmpty
                 && content?.section == .ExclusiveRecoveryContent
+                || (content?.section == .FAQ_TEAM && $0.format != .subtitle)
                 && $0.remoteID != self.articleAudioItem?.remoteID
                 && $0.format != .pdf
                 && $0.format != .video
@@ -187,7 +188,7 @@ final class ArticleWorker {
         if MyQotAboutUsModel.Item.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
-        let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .USING_QOT]
+        let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .FAQ_TEAM, .USING_QOT]
         if infoArticleSections.contains(obj: content?.section ?? .Unkown) {
             content?.contentItems.forEach({ (item) in
                 if item.searchTags.contains("FAQ_SUPPORT_EMAIL") {
@@ -331,6 +332,7 @@ final class ArticleWorker {
              .ExclusiveRecoveryContent:
             return 1
         case .FAQ_3_0,
+             .FAQ_TEAM,
              .USING_QOT:
             return 2
         default:
@@ -368,7 +370,8 @@ final class ArticleWorker {
         case .WhatsHot?:
             return indexPath.section == 0 ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
         case .FAQ_3_0?,
-             .USING_QOT?:
+            .FAQ_TEAM?,
+            .USING_QOT?:
             return indexPath.section == 0 ? learnStrategyItems.at(index: indexPath.item) : contactSupportItems.at(index: indexPath.item)
         default:
             switch indexPath.section {
@@ -383,7 +386,12 @@ final class ArticleWorker {
     }
 
     func isSectionSupport() -> Bool {
-        return content?.section == .FAQ_3_0 || content?.section == .USING_QOT
+        switch content?.section {
+        case .FAQ_3_0,
+             .FAQ_TEAM,
+             .USING_QOT: return true
+        default: return false
+        }
     }
 
     func contactSupportAttributtedString() -> NSAttributedString {
@@ -417,7 +425,7 @@ final class ArticleWorker {
         switch content.section {
         case .WhatsHot:
             return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
-        case .FAQ_3_0, .USING_QOT:
+        case .FAQ_3_0, .FAQ_TEAM, .USING_QOT:
             return section == 0 ? learnStrategyItems.count : contactSupportItems.count
         default:
             switch section {
@@ -496,7 +504,7 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .Tools, .QOTLibrary, .About, .FAQ_3_0, .USING_QOT, .ExclusiveRecoveryContent: return true
+        case .Tools, .QOTLibrary, .About, .FAQ_3_0, .FAQ_TEAM, .USING_QOT, .ExclusiveRecoveryContent: return true
         default: return false
         }
     }

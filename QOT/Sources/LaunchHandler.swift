@@ -500,7 +500,7 @@ extension LaunchHandler {
         baseRootViewController?.pushToStart(childViewController: viewController, enableInteractivePop: true)
     }
 
-    func present(viewController: UIViewController) {
+        func present(viewController: UIViewController) {
         baseRootViewController?.present(viewController, animated: true, completion: nil)
     }
 }

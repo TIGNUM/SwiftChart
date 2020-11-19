@@ -14,6 +14,7 @@ struct MyQotSupportModel {
     enum MyQotSupportModelItem: Int {
         case usingQOT
         case faq
+        case faqTeam
         case contactSupport
         case contactSupportNovartis
         case featureRequest
@@ -23,7 +24,7 @@ struct MyQotSupportModel {
             #if NOVARTIS
                 return [.usingQOT, .faq, .contactSupportNovartis, .featureRequest, .introduction]
             #else
-                return [.usingQOT, .faq, .contactSupport, .featureRequest, .introduction]
+            return [.usingQOT, .faq, .faqTeam, .contactSupport, .featureRequest, .introduction]
             #endif
         }
 
@@ -33,6 +34,8 @@ struct MyQotSupportModel {
                 return ".my_qot_my_profile_support_using_qot"
             case .faq:
                 return ".my_qot_my_profile_support_faq"
+            case .faqTeam:
+                return ".my_qot_my_profile_support_faq_team"
             case .contactSupport:
                 return ".my_qot_my_profile_support_contact_support"
             case .contactSupportNovartis:
@@ -50,6 +53,8 @@ struct MyQotSupportModel {
                 return AppTextService.get(.my_qot_my_profile_support_using_qot_section_header_title)
             case .faq:
                 return AppTextService.get(.my_qot_my_profile_support_section_faq_title)
+            case .faqTeam:
+                return AppTextService.get(.faq_teams_title)
             case .contactSupport:
                 return AppTextService.get(.my_qot_my_profile_support_section_contact_support_title)
             case .contactSupportNovartis:
@@ -67,6 +72,8 @@ struct MyQotSupportModel {
                 return AppTextService.get(.my_qot_my_profile_support_section_using_qot_subtitle)
             case .faq:
                 return AppTextService.get(.my_qot_my_profile_support_section_faq_subtitle)
+            case .faqTeam:
+                return AppTextService.get(.faq_teams_subtitle)
             case .contactSupport, .contactSupportNovartis:
                 return AppTextService.get(.my_qot_my_profile_support_section_contact_support_subtitle)
             case .featureRequest:
