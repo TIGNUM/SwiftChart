@@ -704,9 +704,7 @@
 		9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C24237122F081A400B911E6 /* AboutMeCell.xib */; };
 		9C24237422F0868300B911E6 /* AboutMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24237322F0868300B911E6 /* AboutMeCell.swift */; };
 		9C24237622F0869700B911E6 /* AboutMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24237522F0869700B911E6 /* AboutMeViewModel.swift */; };
-		9C24237922F08A6200B911E6 /* MeAtMyBestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C24237822F08A6200B911E6 /* MeAtMyBestCell.xib */; };
 		9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C24237B22F0941D00B911E6 /* SolveReminderCell.xib */; };
-		9C24237E22F0999C00B911E6 /* MeAtMyBestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24237D22F0999C00B911E6 /* MeAtMyBestCell.swift */; };
 		9C24238222F099BE00B911E6 /* MeAtMyBestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238122F099BE00B911E6 /* MeAtMyBestCellViewModel.swift */; };
 		9C24238822F3271E00B911E6 /* BaseDailyBriefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238722F3271E00B911E6 /* BaseDailyBriefViewModel.swift */; };
 		9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */; };
@@ -740,8 +738,6 @@
 		9CF3BE3F22FC62140027D111 /* MyPeakPerformanceModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */; };
 		9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */; };
 		9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */; };
-		9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4E230189650027D111 /* MeAtMyBestEmptyCell.xib */; };
-		9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */; };
 		9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */; };
 		9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8176123184A320024BCCE /* Level5ViewModel.swift */; };
 		9CFA10652314082D0023E11E /* ImpactReadinessScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */; };
@@ -917,6 +913,8 @@
 		B47CA1AF2334F66C001A65AE /* ArticleEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */; };
 		B48B53A72561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48B53A62561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift */; };
 		B48B53AF2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B48B53AE2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib */; };
+		B48B5469256468C400FC183D /* MeAtMyBestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48B5468256468C400FC183D /* MeAtMyBestTableViewCell.swift */; };
+		B48B5471256468D100FC183D /* MeAtMyBestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B48B5470256468D100FC183D /* MeAtMyBestTableViewCell.xib */; };
 		B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4993F48233243D4001E5676 /* SkeletonManager.swift */; };
 		B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */; };
 		B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B499A7032395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib */; };
@@ -2173,9 +2171,7 @@
 		9C24237122F081A400B911E6 /* AboutMeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutMeCell.xib; sourceTree = "<group>"; };
 		9C24237322F0868300B911E6 /* AboutMeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeCell.swift; sourceTree = "<group>"; };
 		9C24237522F0869700B911E6 /* AboutMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeViewModel.swift; sourceTree = "<group>"; };
-		9C24237822F08A6200B911E6 /* MeAtMyBestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeAtMyBestCell.xib; sourceTree = "<group>"; };
 		9C24237B22F0941D00B911E6 /* SolveReminderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveReminderCell.xib; sourceTree = "<group>"; };
-		9C24237D22F0999C00B911E6 /* MeAtMyBestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestCell.swift; sourceTree = "<group>"; };
 		9C24238122F099BE00B911E6 /* MeAtMyBestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestCellViewModel.swift; sourceTree = "<group>"; };
 		9C24238722F3271E00B911E6 /* BaseDailyBriefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefViewModel.swift; sourceTree = "<group>"; };
 		9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheck2SHPIModel.swift; sourceTree = "<group>"; };
@@ -2211,8 +2207,6 @@
 		9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceModelItemType.swift; sourceTree = "<group>"; };
 		9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2ViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckIn2ModelItemType.swift; sourceTree = "<group>"; };
-		9CF3BE4E230189650027D111 /* MeAtMyBestEmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeAtMyBestEmptyCell.xib; sourceTree = "<group>"; };
-		9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestEmptyCell.swift; sourceTree = "<group>"; };
 		9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestEmptyViewModel.swift; sourceTree = "<group>"; };
 		9CF8176123184A320024BCCE /* Level5ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5ViewModel.swift; sourceTree = "<group>"; };
 		9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessScoreViewModel.swift; sourceTree = "<group>"; };
@@ -2366,6 +2360,8 @@
 		B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		B48B53A62561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadiness5DaysRollingTableViewCell.swift; sourceTree = "<group>"; };
 		B48B53AE2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImpactReadiness5DaysRollingTableViewCell.xib; sourceTree = "<group>"; };
+		B48B5468256468C400FC183D /* MeAtMyBestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestTableViewCell.swift; sourceTree = "<group>"; };
+		B48B5470256468D100FC183D /* MeAtMyBestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeAtMyBestTableViewCell.xib; sourceTree = "<group>"; };
 		B4993F48233243D4001E5676 /* SkeletonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonManager.swift; sourceTree = "<group>"; };
 		B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterIntro.storyboard; sourceTree = "<group>"; };
 		B499A7032395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterIntroMediaTableViewCell.xib; sourceTree = "<group>"; };
@@ -4447,11 +4443,7 @@
 		9C24237722F08A4600B911E6 /* MeAtMyBest */ = {
 			isa = PBXGroup;
 			children = (
-				9C24237822F08A6200B911E6 /* MeAtMyBestCell.xib */,
-				9C24237D22F0999C00B911E6 /* MeAtMyBestCell.swift */,
 				9C24238122F099BE00B911E6 /* MeAtMyBestCellViewModel.swift */,
-				9CF3BE4E230189650027D111 /* MeAtMyBestEmptyCell.xib */,
-				9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */,
 				9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */,
 			);
 			name = MeAtMyBest;
@@ -4805,6 +4797,8 @@
 			children = (
 				B48B53A62561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift */,
 				B48B53AE2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib */,
+				B48B5468256468C400FC183D /* MeAtMyBestTableViewCell.swift */,
+				B48B5470256468D100FC183D /* MeAtMyBestTableViewCell.xib */,
 			);
 			path = CustomDetailsCells;
 			sourceTree = "<group>";
@@ -6501,7 +6495,6 @@
 				B49BE661233B9BFB008CAED0 /* PaymentReminderViewController.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
-				9C24237922F08A6200B911E6 /* MeAtMyBestCell.xib in Resources */,
 				F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
 				F9A5C93D22B29CFD00AB2E94 /* Coach.storyboard in Resources */,
@@ -6628,6 +6621,7 @@
 				DB086F4324C8544A00D4F64E /* BookMarkSelectionCell.xib in Resources */,
 				38C23E5C2423D9B70034571B /* CalendarEventSelectionViewController.xib in Resources */,
 				F9D2BC2422D496AF00DBF2CC /* FromTignumCell.xib in Resources */,
+				B48B5471256468D100FC183D /* MeAtMyBestTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
@@ -6658,7 +6652,6 @@
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
 				B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */,
-				9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */,
 				9CC4261E2306A4AE00F8072E /* GuidedTrackRowCell.xib in Resources */,
 				8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */,
 				B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */,
@@ -7222,6 +7215,7 @@
 				F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
+				B48B5469256468C400FC183D /* MeAtMyBestTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
 				B45DA6C023AA6316006E7E33 /* MyQOTAdminChooseBucketsViewController.swift in Sources */,
@@ -7671,7 +7665,6 @@
 				38E5A08E2412B06C008FCF8F /* CalendarEventSelectionViewController.swift in Sources */,
 				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
 				F9458C6524AA379C004E2383 /* MyXTeamSettingsViewController.swift in Sources */,
-				9C24237E22F0999C00B911E6 /* MeAtMyBestCell.swift in Sources */,
 				5F7BE79822899F2B00BA5DCF /* MyQotAboutUsPresenter.swift in Sources */,
 				B430D7D223A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInteractor.swift in Sources */,
 				36E4CF0F22BC51BD009A2DF7 /* ChoiceModel.swift in Sources */,
@@ -7727,7 +7720,6 @@
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
 				F91087A524C5A6BD00CA343A /* TeamToBeVisionInteractor.swift in Sources */,
 				8D40768E22E5A5AA0027864D /* MySprintDetailsViewController.swift in Sources */,
-				9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,
 				382CDC6324A2433300B34BCE /* TeamEditViewController.swift in Sources */,

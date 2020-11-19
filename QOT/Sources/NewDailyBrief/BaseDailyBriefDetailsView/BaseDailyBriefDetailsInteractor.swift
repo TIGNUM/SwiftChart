@@ -124,6 +124,45 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                                  domainModel: leadersWisdomViewModel.domainModel)
             cell.configure(with: [standardModel])
             return cell
+        case DailyBriefBucketName.ME_AT_MY_BEST:
+            if model.domainModel?.toBeVisionTrack?.sentence?.isEmpty == false {
+                switch indexPath.row {
+                case 0:
+                    guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner),
+                          let meAtMyBestViewModel = model as? MeAtMyBestCellViewModel else {
+                        return UITableViewCell.init()
+                    }
+                    let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel.title ?? "",
+                                                                        title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
+                                                                        body: meAtMyBestViewModel.tbvStatement ?? "",
+                                                                        image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                        detailsMode: true,
+                                                                        domainModel: meAtMyBestViewModel.domainModel)
+
+                    cell.configure(with: [standardModel])
+                    cell.collectionView.contentInsetAdjustmentBehavior = .never
+                    return cell
+                case 1:
+                    return UITableViewCell.init()
+                default:
+                    break
+                }
+            } else {
+                guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner),
+                      let meAtMyBestCellEmptyViewModel = model as? MeAtMyBestCellEmptyViewModel else {
+                    return UITableViewCell.init()
+                }
+                let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestCellEmptyViewModel.title ?? "",
+                                                                    title: NSAttributedString.init(string: meAtMyBestCellEmptyViewModel.buttonText ?? ""),
+                                                                    body: meAtMyBestCellEmptyViewModel.intro ?? "",
+                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                     detailsMode: true,
+                                                                     domainModel: meAtMyBestCellEmptyViewModel.domainModel)
+
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            }
         default:
             return UITableViewCell.init()
         }

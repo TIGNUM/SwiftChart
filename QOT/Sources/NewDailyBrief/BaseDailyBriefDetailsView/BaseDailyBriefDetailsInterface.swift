@@ -13,6 +13,7 @@ protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func showAlert(message: String?)
     func presentMyDataScreen()
     func showCustomizeTarget()
+    func showTBV()
 }
 
 protocol BaseDailyBriefDetailsPresenterInterface {
@@ -30,4 +31,5 @@ protocol BaseDailyBriefDetailsRouterInterface {
     func dismiss()
     func showMyDataScreen()
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
+    func showTBV()
 }

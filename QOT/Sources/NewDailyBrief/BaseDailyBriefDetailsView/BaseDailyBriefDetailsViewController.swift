@@ -85,6 +85,10 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
             self?.router.presentCustomizeTarget(question)
         }
     }
+
+    func showTBV() {
+        router.showTBV()
+    }
 }
 
 // MARK: - BaseDailyBriefDetailsViewControllerInterface
