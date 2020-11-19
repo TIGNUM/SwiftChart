@@ -262,16 +262,17 @@ class BaseRouter: BaseRouterInterface {
             banner.show(in: view)
         }
     }
-}
 
-// MARK: - Private
-private extension BaseRouter {
     func showExplanation(_ team: QDMTeam, _ type: Explanation.Types) {
         if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
             VisionRatingExplanationConfigurator.make(team: team, type: type)(controller)
             present(controller)
         }
     }
+}
+
+// MARK: - Private
+private extension BaseRouter {
 
     func presentRateHistory(for team: QDMTeam?, _ displayType: TBVGraph.DisplayType) {
         guard let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
