@@ -36,14 +36,14 @@ protocol BaseRouterInterface {
     func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?)
     func showTBVGenerator()
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
-
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func dismiss()
     func dismissChatBotFlow()
 
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
 
     func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?)
-
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types)
     func showBanner(message: String)
 }
 
@@ -122,6 +122,16 @@ class BaseRouter: BaseRouterInterface {
             let configurator = TeamToBeVisionConfigurator.make(team: team)
             configurator(controller)
             viewController?.show(controller, sender: nil)
+        }
+    }
+
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?) {
+        let identifier = R.storyboard.team.teamEditViewControllerID.identifier
+        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
+        if let controller = controller {
+            let configurator = TeamEditConfigurator.make(type: type, team: team)
+            configurator(controller)
+            viewController?.present(controller, animated: true)
         }
     }
 
@@ -263,7 +273,7 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showExplanation(_ team: QDMTeam, _ type: Explanation.Types) {
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types) {
         if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
             VisionRatingExplanationConfigurator.make(team: team, type: type)(controller)
             present(controller)
