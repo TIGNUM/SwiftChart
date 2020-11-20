@@ -97,6 +97,7 @@ extension VisionRatingExplanationViewController {
 
     @objc func createTeam() {
         router.presentEditTeam(.create, team: nil)
+        updateBottomNavigation([], [])
     }
 
     @objc func videoTapped(_ sender: UITapGestureRecognizer) {
@@ -152,8 +153,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
              .ratingOwner: rightBarButtonAction = #selector(startRating)
         case .tbvPollOwner,
              .tbvPollUser: rightBarButtonAction = #selector(startTeamTBVGenerator)
-        case .createTeam:
-            rightBarButtonAction = #selector(createTeam)
+        case .createTeam: rightBarButtonAction = #selector(createTeam)
         }
     }
 }

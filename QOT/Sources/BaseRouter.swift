@@ -126,12 +126,21 @@ class BaseRouter: BaseRouterInterface {
     }
 
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?) {
-        let identifier = R.storyboard.team.teamEditViewControllerID.identifier
-        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
-        if let controller = controller {
-            let configurator = TeamEditConfigurator.make(type: type, team: team)
-            configurator(controller)
-            viewController?.present(controller, animated: true)
+        let showClosure: (UIViewController?) -> Void = { (presentingViewController) in
+            let identifier = R.storyboard.team.teamEditViewControllerID.identifier
+            let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
+            if let controller = controller {
+                let configurator = TeamEditConfigurator.make(type: type, team: team)
+                configurator(controller)
+                presentingViewController?.present(controller, animated: true)
+            }
+        }
+        if let presentingViewController = viewController?.presentingViewController {
+            viewController?.dismiss(animated: true, completion: {
+                showClosure(presentingViewController)
+            })
+        } else {
+            showClosure(viewController)
         }
     }
 

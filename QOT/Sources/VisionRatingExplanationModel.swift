@@ -23,7 +23,7 @@ struct Explanation {
             case .ratingUser: return AppTextService.get(.my_x_team_tbv_section_rating_explanation_member_title)
             case .tbvPollOwner: return AppTextService.get(.team_tbv_poll_title)
             case .tbvPollUser: return AppTextService.get(.team_tbv_poll_title_member)
-            case .createTeam: return "CREATING TEAM"
+            case .createTeam: return AppTextService.get(.create_team_explanation_title)
             }
         }
 
@@ -33,7 +33,7 @@ struct Explanation {
             case .ratingUser: return AppTextService.get(.my_x_team_tbv_section_rating_explanation_member_text)
             case .tbvPollOwner: return AppTextService.get(.team_tbv_poll_content)
             case .tbvPollUser: return AppTextService.get(.team_tbv_poll_content_member)
-            case .createTeam: return " A team is blablablabla blablabla blablablabla blablablablabla"
+            case .createTeam: return AppTextService.get(.create_team_explanation_subtitle)
             }
         }
 
@@ -43,7 +43,7 @@ struct Explanation {
                  .ratingUser: return AppTextService.get(.my_x_team_tbv_section_rating_explanation_video_title)
             case .tbvPollOwner,
                  .tbvPollUser: return AppTextService.get(.team_tbv_poll_video)
-            case .createTeam: return "CREATE A TEAM"
+            case .createTeam: return AppTextService.get(.create_team_explanation_title)
             }
         }
     }
