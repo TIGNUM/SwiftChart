@@ -94,6 +94,8 @@ protocol WorkerTeam: class {
     func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void)
 
     func getRatingReport(_ completion: @escaping (QDMToBeVisionRatingReport?) -> Void)
+
+    func hasOpenGeneratorPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void)
 }
 
 extension WorkerTeam {
@@ -341,6 +343,16 @@ extension WorkerTeam {
                 // TODO handle error
             }
             completion(currentTrackingPoll != nil)
+        }
+    }
+
+    func hasOpenGeneratorPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void) {
+        TeamService.main.getCurrentTeamToBeVisionPoll(for: team) { (currentPoll, _, error) in
+            if let error = error {
+                log("Error currentTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(currentPoll != nil)
         }
     }
 
