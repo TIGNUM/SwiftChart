@@ -45,11 +45,13 @@ final class SearchWorker {
                                   _ contentCollections: [QDMContentCollection]? = nil,
                                   _ contentItems: [QDMContentItem]? = nil,
                                   _ completion: @escaping ([Search.Result]) -> Void) {
-        let QOTGuideCategoryId = 100047 // TODO: we need to have
         var searchArray = [Search.Result]()
-        if let collections = contentCollections?.filter({ $0.categoryIDs.contains(QOTGuideCategoryId) == false }) {
+        if let collections = contentCollections?
+            .filter({ $0.categoryIDs.contains(ContentCategory.QOTGuide.rawValue) == false }) {
             if searchFilter == .tools {
-                searchArray.append(contentsOf: Search.resultFrom(collections, filter: searchFilter, displayType: .tool))
+                searchArray.append(contentsOf: Search.resultFrom(collections,
+                                                                 filter: searchFilter,
+                                                                 displayType: .tool))
             } else {
                 collections.forEach { (content) in
                     if content.section == .QOTLibrary && searchFilter == .all {
