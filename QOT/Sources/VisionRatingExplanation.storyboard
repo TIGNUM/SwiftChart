@@ -119,7 +119,9 @@
                                                     <constraint firstAttribute="height" constant="20" id="7sb-5N-Ld2"/>
                                                     <constraint firstAttribute="width" constant="20" id="bKO-JS-xUG"/>
                                                 </constraints>
-                                                <state key="selected" image="registration_checkmark"/>
+                                                <state key="selected" image="registration_checkmark">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="buttonChecked:" destination="uqk-NS-WIT" eventType="touchUpInside" id="8UY-sS-Sl0"/>
                                                 </connections>
