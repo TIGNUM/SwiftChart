@@ -27,7 +27,8 @@ class MeAtMyBestTableViewCell: BaseDailyBriefCell {
         ThemeText.tbvStatement.apply(AppTextService.get(.daily_brief_section_my_best_suggestion_body), to: titleLabel)
         ThemeText.suggestionMyBest.apply(model.intro2, to: bodyLabel)
         ctaButton.setButtonContentInset(padding: 16)
-        ctaButton.setTitle(model.buttonText, for: .normal)
+        ctaButton.setTitle(model.buttonText?.uppercased(), for: .normal)
+        ThemeButton.whiteRounded.apply(ctaButton)
     }
 
 }

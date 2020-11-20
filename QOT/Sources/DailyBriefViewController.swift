@@ -1027,7 +1027,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         router.showExplanation(team, type: .ratingUser)
     }
 
-    func presentRateHistory(for team: QDMTeam) {
+    func showRateHistory(for team: QDMTeam) {
         router.showTracker(for: team)
     }
 }

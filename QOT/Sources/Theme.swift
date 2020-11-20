@@ -255,6 +255,7 @@ enum ThemeButton {
     case audioButtonGrey
     case audioButtonStrategy
     case dateButtons
+    case whiteRounded
 
     var defaultHeight: CGFloat {
         return 40.0
@@ -298,6 +299,8 @@ enum ThemeButton {
             colorSelected = .accent40
             colorUnselected = .carbon
             colorBorder = .accent40
+        case .whiteRounded:
+            colorBorder = .white
         }
 
         if let color = colorBorder {
@@ -997,7 +1000,7 @@ enum ThemeText {
              .myLibraryItemsItemName, .myLibraryItemsItemNameGrey, .mySprintsCellTitle, .mySprintDetailsDescription,
              .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
              .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
-             .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle, .suggestionMyBest,
+             .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle,
              .H02Light, .Text01Light, .Text01LightCarbon100:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
@@ -1068,7 +1071,7 @@ enum ThemeText {
             return Fonts.fontDisplayRegular20
         case .strategyTitle:
             return Fonts.fontDisplayThin38
-        case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
+        case .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
              .mySprintDetailsTitle, .H01Light:
             return Fonts.fontDisplayLight24
         // MARK: - .fontLight12
@@ -1078,7 +1081,7 @@ enum ThemeText {
         case .registerIntroTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle:
             return Fonts.fontDisplayBold30
-        case .customizeQuestion:
+        case .customizeQuestion, .suggestionMyBest, .tbvStatement:
             return Fonts.fontRegular16
         case .teamVisionSentence:
             return Fonts.fontRegular24
@@ -1097,7 +1100,7 @@ enum ThemeText {
         case .quotation, .iRscore, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .bucketTitle, .solveQuestions,
-             .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
+             .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
              .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
@@ -1142,7 +1145,7 @@ enum ThemeText {
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle,
              .paymentReminderCellSubtitle, .Text01Light:
             return Palette.carbon70
-        case .articleHeadlineSmallFade, .articleTagSelected:
+        case .articleHeadlineSmallFade, .articleTagSelected, .tbvStatement:
             return Palette.sand50
         case .articleHeadlineSmallLight:
             return Palette.sand10
@@ -1162,7 +1165,7 @@ enum ThemeText {
              .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
              .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
              .mySprintDetailsProgress, .mySprintDetailsTextRegular, .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody, .averageRating, .totalVotes,
-             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .shpiContent, .qotAlertMessage, .suggestionMyBest, .asterixText, .memberEmail, .dailyInsightsTbvAdvice:
+             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .shpiContent, .qotAlertMessage, .asterixText, .memberEmail, .dailyInsightsTbvAdvice:
             return Palette.sand70
         case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage, .registrationEmailError,
              .registrationCodeDisclaimerError:
@@ -1232,7 +1235,7 @@ enum ThemeText {
             return lowValue ? Palette.redOrange : Palette.sand
         case .myLibraryItemsItemNameGrey:
             return Palette.sand70
-        case .navigationBarHeader:
+        case .navigationBarHeader, .suggestionMyBest:
             return .white
         }
     }

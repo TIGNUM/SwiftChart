@@ -246,7 +246,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             let team = selectedTeamItem?.qdmTeam
 
             if teamTBVPoll == nil && team == nil {
-                router.showTBV()
+                router.showTBV(showModal: false)
             }
 
             if let team = team {
@@ -257,7 +257,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                     case (true, false, true, true):
                         showBanner(poll: poll)
                     case (true, false, false, true):
-                        router.showTeamTBVPollEXplanation(team)
+                        router.showTeamTBVPollEXplanation(team, showModal: false)
                     case (false, false, false, true),
                          (false, false, true, true):
                         router.showTeamTBV(team, poll)
