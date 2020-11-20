@@ -55,6 +55,8 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         viewModel.isInAnimationTransition = true
         standardCell.hideCTAButton = false
 
+        viewModel.body = self.params.fromCell.body.text
+
         let animatedContainerView = UIView()
         if GlobalConstants.isEnabledDebugAnimatingViews {
             animatedContainerView.layer.borderColor = UIColor.yellow.cgColor
