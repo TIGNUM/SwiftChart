@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,12 +34,13 @@
                 <constraints>
                     <constraint firstItem="Zfv-7c-ikK" firstAttribute="leading" secondItem="2ig-6A-7QJ" secondAttribute="leading" constant="24" id="650-eC-bqo"/>
                     <constraint firstAttribute="trailing" secondItem="Zfv-7c-ikK" secondAttribute="trailing" constant="24" id="MhS-KJ-r9P"/>
-                    <constraint firstAttribute="bottom" secondItem="Zfv-7c-ikK" secondAttribute="bottom" priority="999" constant="20" id="WIl-Z8-qo2"/>
-                    <constraint firstItem="Zfv-7c-ikK" firstAttribute="top" secondItem="2ig-6A-7QJ" secondAttribute="top" constant="30" id="pK3-ZQ-Xq8"/>
+                    <constraint firstAttribute="bottom" secondItem="Zfv-7c-ikK" secondAttribute="bottom" priority="998" constant="20" id="WIl-Z8-qo2"/>
+                    <constraint firstItem="Zfv-7c-ikK" firstAttribute="top" secondItem="2ig-6A-7QJ" secondAttribute="top" priority="999" constant="30" id="pK3-ZQ-Xq8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="collectionView" destination="Zfv-7c-ikK" id="7oc-iv-3ov"/>
+                <outlet property="collectionViewBottomConstraint" destination="WIl-Z8-qo2" id="8JK-jf-31a"/>
                 <outlet property="collectionViewHeightConstraint" destination="QHq-4S-avz" id="cSd-Hm-p6X"/>
                 <outlet property="collectionViewLeadingConstraint" destination="650-eC-bqo" id="snZ-zn-xyd"/>
                 <outlet property="collectionViewTopConstraint" destination="pK3-ZQ-Xq8" id="IZm-SK-kkb"/>

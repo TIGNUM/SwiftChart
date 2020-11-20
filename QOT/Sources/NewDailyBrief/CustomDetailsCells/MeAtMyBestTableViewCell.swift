@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 class MeAtMyBestTableViewCell: BaseDailyBriefCell {
     @IBOutlet weak var titleLabel: UILabel!
@@ -15,6 +16,18 @@ class MeAtMyBestTableViewCell: BaseDailyBriefCell {
     weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
 
     @IBAction func didTapCTAButton(_ sender: Any) {
-        delegate?.showCustomizeTarget()
+        delegate?.showTBV()
     }
+
+    func configure(with viewModel: MeAtMyBestCellViewModel?) {
+        guard let model = viewModel else {
+            return
+        }
+        skeletonManager.hide()
+        ThemeText.tbvStatement.apply(AppTextService.get(.daily_brief_section_my_best_suggestion_body), to: titleLabel)
+        ThemeText.suggestionMyBest.apply(model.intro2, to: bodyLabel)
+        ctaButton.setButtonContentInset(padding: 16)
+        ctaButton.setTitle(model.buttonText, for: .normal)
+    }
+
 }

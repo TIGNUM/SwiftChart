@@ -4957,10 +4957,10 @@
 		B4BCE463255BCEC500A1116F /* BaseDailyBriefTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				B4BCE464255BCEC500A1116F /* NewBaseDailyBriefCell.swift */,
-				B4BCE465255BCEC500A1116F /* NewDailyBriefTableViewHeader.swift */,
 				B4BCE466255BCEC500A1116F /* DynamicHeightProtocol.swift */,
+				B4BCE465255BCEC500A1116F /* NewDailyBriefTableViewHeader.swift */,
 				B4BCE467255BCEC500A1116F /* NewDailyBriefTableViewHeader.xib */,
+				B4BCE464255BCEC500A1116F /* NewBaseDailyBriefCell.swift */,
 				B4BCE468255BCEC500A1116F /* NewBaseDailyBriefCell.xib */,
 			);
 			path = BaseDailyBriefTableViewCell;
@@ -8901,10 +8901,11 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = K82G24324U;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

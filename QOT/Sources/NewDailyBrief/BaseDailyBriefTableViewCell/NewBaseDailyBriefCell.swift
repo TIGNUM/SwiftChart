@@ -20,6 +20,8 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     @IBOutlet var collectionViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var collectionViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var collectionViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet var collectionViewBottomConstraint: NSLayoutConstraint!
+
     var datasource: [BaseDailyBriefViewModel]? = []
     var detailsMode: Bool = false
     weak var delegate: NewBaseDailyBriefCellProtocol?

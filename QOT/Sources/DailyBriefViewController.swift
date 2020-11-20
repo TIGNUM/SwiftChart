@@ -525,7 +525,7 @@ private extension DailyBriefViewController {
 
         //We need to add AppTextService for these hardcoded strings
         let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel?.title ?? "",
-                                                            title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
+                                                            title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
                                                             body: meAtMyBestViewModel?.tbvStatement ?? "",
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                              domainModel: meAtMyBestViewModel?.domainModel)
@@ -1175,7 +1175,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 }
             }
         case .ME_AT_MY_BEST:
-            if dailyBriefCellViewModel.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false {
+            if !(dailyBriefCellViewModel.domainModel?.toBeVisionTrack?.sentence?.isEmpty ?? true) {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                     self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
                 }

@@ -39,6 +39,11 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return 2
             }
             return 0
+        case DailyBriefBucketName.ME_AT_MY_BEST:
+            if (model as? MeAtMyBestCellViewModel) != nil {
+                return 2
+            }
+            return 1
         default:
             return 1
         }
@@ -133,7 +138,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                         return UITableViewCell.init()
                     }
                     let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel.title ?? "",
-                                                                        title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
+                                                                        title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
                                                                         body: meAtMyBestViewModel.tbvStatement ?? "",
                                                                         image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                         detailsMode: true,
@@ -143,7 +148,14 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                     cell.collectionView.contentInsetAdjustmentBehavior = .never
                     return cell
                 case 1:
-                    return UITableViewCell.init()
+                    guard let meAtMyBestViewModel = model as? MeAtMyBestCellViewModel,
+                          let cell: MeAtMyBestTableViewCell = R.nib.meAtMyBestTableViewCell(owner: owner) else {
+                        return UITableViewCell.init()
+                    }
+
+                    cell.configure(with: meAtMyBestViewModel)
+                    cell.delegate = owner
+                    return cell
                 default:
                     break
                 }

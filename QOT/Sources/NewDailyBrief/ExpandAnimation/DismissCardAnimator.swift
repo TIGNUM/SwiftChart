@@ -43,9 +43,17 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         }
 
         let screens: (cardDetail: BaseDailyBriefDetailsViewController, home: DailyBriefViewController) = (fromVC, toVC)
-        guard let cardDetailView = fromVC.tableView else {
+        guard let cardDetailView = fromVC.view,
+              let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewBaseDailyBriefCell,
+              let standardCell = dailyBriefCell.collectionView.cellForItem(at: IndexPath.init(item: 0, section: 0)) as? NewDailyStandardBriefCollectionViewCell else {
             return
         }
+
+        guard let viewModel = dailyBriefCell.datasource?.first as? NewDailyBriefStandardModel else {
+            return
+        }
+        viewModel.isInAnimationTransition = true
+        standardCell.hideCTAButton = false
 
         let animatedContainerView = UIView()
         if GlobalConstants.isEnabledDebugAnimatingViews {
@@ -84,21 +92,13 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
 
         container.layoutIfNeeded()
 
-        // Force card filling bottom
-        let stretchCardToFillBottom = screens.cardDetail.tableView.bottomAnchor.constraint(equalTo: cardDetailView.bottomAnchor)
-
-        params.fromCell.arrowButton.alpha = 0
-        params.fromCell.body.alpha = 0
-
         func animateCardViewBackToPlace() {
-            stretchCardToFillBottom.isActive = false
             // Back to identity
             // NOTE: Animated container view in a way, helps us to not messing up `transform` with `AutoLayout` animation.
             cardDetailView.transform = CGAffineTransform.identity
             animatedContainerTopConstraint.constant = self.params.fromCardFrameWithoutTransform.minY
             animatedContainerWidthConstraint.constant = self.params.fromCardFrameWithoutTransform.width
             animatedContainerHeightConstraint.constant = self.params.fromCardFrameWithoutTransform.height
-
             container.layoutIfNeeded()
         }
 
@@ -106,25 +106,18 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             let success = !ctx.transitionWasCancelled
             if success {
                 self.params.fromCell.isHidden = false
-                UIView.animate(withDuration: 0.3) { [weak self] in
-                    self?.params.fromCell.arrowButton.alpha = 1
-                    self?.params.fromCell.body.alpha = 1
-                } completion: { _ in
-                    animatedContainerView.removeConstraints(animatedContainerView.constraints)
-                    animatedContainerView.removeFromSuperview()
-                    cardDetailView.removeFromSuperview()
-                }
+                animatedContainerView.removeConstraints(animatedContainerView.constraints)
+                animatedContainerView.removeFromSuperview()
+                cardDetailView.removeFromSuperview()
             } else {
-                stretchCardToFillBottom.isActive = false
-                cardDetailView.removeConstraint(stretchCardToFillBottom)
                 container.removeConstraints(container.constraints)
 
                 container.addSubview(cardDetailView)
                 cardDetailView.edges(to: container)
             }
             ctx.completeTransition(success)
+            viewModel.isInAnimationTransition = false
         }
-        
         UIView.animate(withDuration: transitionDuration(using: ctx), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
             animateCardViewBackToPlace()
         }) { _ in

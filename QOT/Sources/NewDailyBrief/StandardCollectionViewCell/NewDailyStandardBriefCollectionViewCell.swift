@@ -19,7 +19,7 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
     var disabledHighlightedAnimation = false
-
+    public var hideCTAButton = true
     private static let sizingCell = UINib(nibName: "NewDailyStandardBriefCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyStandardBriefCollectionViewCell
 
     // MARK: - Lifecycle
@@ -38,8 +38,8 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
         title.attributedText = viewModel?.title
         body.text = viewModel?.body
         imageView.kf.setImage(with: URL.init(string: viewModel?.image ?? ""))
-        arrowButton.isHidden = viewModel?.detailsMode ?? false
-        body.numberOfLines = viewModel?.detailsMode ?? false ? 0 : 2
+        arrowButton.isHidden = (viewModel?.detailsMode ?? false) && hideCTAButton
+        body.numberOfLines = (viewModel?.detailsMode ?? false) ? ((viewModel?.isInAnimationTransition ?? false) ? 2 : 0) : 2
         titleTrailingConstraint.constant = 20
 
         var CTAIcon = UIImage.init(named: "diagonal arrow")

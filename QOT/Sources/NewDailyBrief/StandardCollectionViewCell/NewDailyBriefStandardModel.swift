@@ -21,15 +21,23 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
     var body: String?
     var image: String?
     var detailsMode: Bool?
+    var isInAnimationTransition: Bool?
     var CTAType: ContentFormat
 
     // MARK: - Init
-    init(caption: String?, title: NSAttributedString?, body: String?, image: String?, detailsMode: Bool = false, CTAType: ContentFormat = .unknown, domainModel: QDMDailyBriefBucket?) {
+    init(caption: String?,
+         title: NSAttributedString?,
+         body: String?, image: String?,
+         detailsMode: Bool = false,
+         isInAnimationTransition: Bool = false,
+         CTAType: ContentFormat = .unknown,
+         domainModel: QDMDailyBriefBucket?) {
         self.caption = caption
         self.title = title
         self.body = body
         self.image = image
         self.detailsMode = detailsMode
+        self.isInAnimationTransition = isInAnimationTransition
         self.CTAType = CTAType
         super.init(domainModel)
     }
@@ -54,13 +62,13 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         captionSizingLabel.text = caption
 
         let titleSizingLabel = UILabel()
-        titleSizingLabel.numberOfLines = 3
+        titleSizingLabel.numberOfLines = 4
         titleSizingLabel.font = UIFont.sfProtextRegular(ofSize: 24.0)
         titleSizingLabel.lineBreakMode = .byTruncatingTail
         titleSizingLabel.attributedText = title
 
         let bodySizingLabel = UILabel()
-        bodySizingLabel.numberOfLines = 0
+        bodySizingLabel.numberOfLines = isInAnimationTransition ?? false ? 2 : 0
         bodySizingLabel.font = UIFont.sfProtextRegular(ofSize: 16.0)
         bodySizingLabel.lineBreakMode = .byTruncatingTail
         bodySizingLabel.text = body
