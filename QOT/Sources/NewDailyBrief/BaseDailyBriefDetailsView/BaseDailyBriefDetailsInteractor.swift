@@ -204,6 +204,36 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             default:
                 break
             }
+        case DailyBriefBucketName.MY_PEAK_PERFORMANCE:
+            switch indexPath.row {
+            case 0:
+                guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner),
+                      let peakPerformanceModel = model as? PeakPerformanceViewModel else {
+                    return UITableViewCell.init()
+                }
+                let standardModel = NewDailyBriefStandardModel.init(caption: peakPerformanceModel.title,
+                                                                     title: NSAttributedString.init(string: peakPerformanceModel.eventTitle ?? ""),
+                                                                     body: peakPerformanceModel.contentSentence,
+                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                     detailsMode: true,
+                                                                     domainModel: nil)
+
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            case 1:
+                guard let peakPerformanceModel = model as? PeakPerformanceViewModel,
+                      let cell: PeakPerformanceTableViewCell = R.nib.peakPerformanceTableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+
+                cell.configure(with: peakPerformanceModel)
+                cell.delegate = owner
+
+                return cell
+            default:
+                break
+            }
         default:
             return UITableViewCell.init()
         }

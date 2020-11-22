@@ -57,4 +57,12 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
          let controller = ShifterResultViewController(configure: configurator)
          viewController?.present(controller, animated: true)
      }
+
+    func presentPrepareResults(for preparation: QDMUserPreparation?) {
+        if let preparation = preparation {
+            let configurator = ResultsPrepareConfigurator.make(preparation, resultType: .prepareDailyBrief)
+            let controller = ResultsPrepareViewController(configure: configurator)
+            viewController?.present(controller, animated: true)
+        }
+    }
 }

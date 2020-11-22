@@ -93,6 +93,10 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?) {
         router.presentMindsetResults(for: mindsetShifter)
     }
+
+    func presentPrepareResults(for preparation: QDMUserPreparation?) {
+        router.presentPrepareResults(for: preparation)
+    }
 }
 
 // MARK: - BaseDailyBriefDetailsViewControllerInterface

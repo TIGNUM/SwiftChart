@@ -16,6 +16,7 @@ protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func showCustomizeTarget()
     func showTBV()
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
+    func presentPrepareResults(for preparation: QDMUserPreparation?)
 }
 
 protocol BaseDailyBriefDetailsPresenterInterface {
@@ -35,4 +36,5 @@ protocol BaseDailyBriefDetailsRouterInterface {
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
     func showTBV()
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
+    func presentPrepareResults(for preparation: QDMUserPreparation?)
 }

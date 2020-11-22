@@ -255,6 +255,7 @@ enum ThemeButton {
     case audioButtonGrey
     case audioButtonStrategy
     case dateButtons
+    case newBlueButton
 
     var defaultHeight: CGFloat {
         return 40.0
@@ -298,6 +299,10 @@ enum ThemeButton {
             colorSelected = .accent40
             colorUnselected = .carbon
             colorBorder = .accent40
+        case .newBlueButton:
+            colorSelected = .actionBlue
+            colorUnselected = .actionBlue
+            colorBorder = .clear
         }
 
         if let color = colorBorder {
