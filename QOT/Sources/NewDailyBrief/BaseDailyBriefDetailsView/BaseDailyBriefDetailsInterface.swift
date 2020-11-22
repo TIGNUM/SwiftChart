@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func setupView()
@@ -14,6 +15,7 @@ protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func presentMyDataScreen()
     func showCustomizeTarget()
     func showTBV()
+    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
 }
 
 protocol BaseDailyBriefDetailsPresenterInterface {
@@ -32,4 +34,5 @@ protocol BaseDailyBriefDetailsRouterInterface {
     func showMyDataScreen()
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
     func showTBV()
+    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
 }

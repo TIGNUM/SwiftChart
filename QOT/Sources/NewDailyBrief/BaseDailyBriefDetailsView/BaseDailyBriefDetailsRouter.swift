@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class BaseDailyBriefDetailsRouter {
 
@@ -49,4 +50,11 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
             viewController?.navigationController?.pushViewController(controller, animated: true)
         }
     }
+
+    func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?) {
+         let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
+                                                           resultType: .mindsetShifterBucket)
+         let controller = ShifterResultViewController(configure: configurator)
+         viewController?.present(controller, animated: true)
+     }
 }
