@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Knowing Navigation Controller-->
         <scene sceneID="avl-rB-fqR">
@@ -88,12 +93,15 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbm-Zq-tF6">
-                                <rect key="frame" x="314" y="762" width="80" height="80"/>
+                                <rect key="frame" x="340" y="737" width="74" height="105"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="dVQ-Dh-gXN"/>
-                                    <constraint firstAttribute="height" constant="80" id="uzu-Od-uLa"/>
+                                    <constraint firstAttribute="width" constant="74" id="dVQ-Dh-gXN"/>
+                                    <constraint firstAttribute="height" constant="105" id="uzu-Od-uLa"/>
                                 </constraints>
-                                <state key="normal" image="ic_coach"/>
+                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                                <state key="normal" title="COACH" backgroundImage="new_coach_button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="showCoachScreen" destination="EyY-ig-0lr" eventType="touchUpInside" id="cMy-ti-9i3"/>
                                 </connections>
@@ -102,7 +110,7 @@
                         <viewLayoutGuide key="safeArea" id="eMu-mg-HCD"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eMu-mg-HCD" firstAttribute="trailing" secondItem="Fbm-Zq-tF6" secondAttribute="trailing" constant="20" id="K7e-NR-pgX"/>
+                            <constraint firstItem="eMu-mg-HCD" firstAttribute="trailing" secondItem="Fbm-Zq-tF6" secondAttribute="trailing" id="K7e-NR-pgX"/>
                             <constraint firstItem="2QY-Es-Pku" firstAttribute="trailing" secondItem="eMu-mg-HCD" secondAttribute="trailing" id="Lyt-Lz-Xor"/>
                             <constraint firstItem="eMu-mg-HCD" firstAttribute="bottom" secondItem="Fbm-Zq-tF6" secondAttribute="bottom" constant="20" id="PkH-qZ-wRw"/>
                             <constraint firstItem="2QY-Es-Pku" firstAttribute="leading" secondItem="eMu-mg-HCD" secondAttribute="leading" id="YbN-C9-Kk1"/>
@@ -601,8 +609,8 @@
         <segue reference="Wow-uG-vpq"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="ic_coach" width="80" height="80"/>
         <image name="ic_more_unselected" width="16" height="16"/>
         <image name="img1.png" width="16" height="16"/>
+        <image name="new_coach_button" width="74" height="104.66666412353516"/>
     </resources>
 </document>
