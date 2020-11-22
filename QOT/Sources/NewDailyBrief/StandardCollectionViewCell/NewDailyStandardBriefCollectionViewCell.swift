@@ -18,6 +18,7 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
     @IBOutlet weak var body: UILabel!
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
+    let skeletonManager = SkeletonManager()
     var disabledHighlightedAnimation = false
     public var hideCTAButton = true
     private static let sizingCell = UINib(nibName: "NewDailyStandardBriefCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyStandardBriefCollectionViewCell
@@ -34,14 +35,23 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
 
     // MARK: - Public
     public func configure(with viewModel: NewDailyBriefStandardModel?) {
-        caption.text = viewModel?.caption
-        title.attributedText = viewModel?.title
-        body.text = viewModel?.body
-        imageView.kf.setImage(with: URL.init(string: viewModel?.image ?? ""))
-        arrowButton.isHidden = (viewModel?.detailsMode ?? false) && hideCTAButton
-        body.numberOfLines = (viewModel?.detailsMode ?? false) ? ((viewModel?.isInAnimationTransition ?? false) ? 2 : 0) : 2
+        guard let model = viewModel else {
+            skeletonManager.addTitle(title)
+            skeletonManager.addSubtitle(caption)
+            skeletonManager.addOtherView(body)
+            skeletonManager.addOtherView(body)
+            skeletonManager.addOtherView(imageView)
+            arrowButton.isHidden = true
+            return
+        }
+        caption.text = model.caption
+        title.attributedText = model.title
+        body.text = model.body
+        imageView.kf.setImage(with: URL.init(string: model.image ?? ""))
+        arrowButton.isHidden = (model.detailsMode ?? false) && hideCTAButton
+        body.numberOfLines = (model.detailsMode ?? false) ? ((model.isInAnimationTransition ?? false) ? 2 : 0) : 2
         titleTrailingConstraint.constant = 20
-
+        skeletonManager.hide()
         var CTAIcon = UIImage.init(named: "diagonal arrow")
 
         switch viewModel?.CTAType {

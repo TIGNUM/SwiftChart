@@ -122,57 +122,15 @@ extension DailyBriefViewController {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+        var standardModel: BaseDailyBriefViewModel?
+
         guard let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPath.section),
                 let domainModel = bucketModel.elements[indexPath.row].domainModel else {
-            switch indexPath.section {
-            case 0:
-                return getImpactReadinessCell(tableView, indexPath, nil)
-            case 1:
-                return getDailyCheckIn2TBVCell(tableView, indexPath, nil)
-            case 2:
-                return getRandomQuestionCell(tableView, indexPath, nil)
-            case 3:
-                return getMeAtMyBestEmpty(tableView, indexPath, nil)
-            case 4:
-                return getGoodToKnowCell(tableView, indexPath, nil)
-            case 5:
-                return getExploreCell(tableView, indexPath, nil)
-            case 6:
-                return getLeadersWisdom(tableView, indexPath, nil)
-            case 7:
-                return getDepartureBespokeFeastCell(tableView, indexPath, nil)
-            case 8:
-                return getThoughtsCell(tableView, indexPath, nil)
-            case 9:
-                return getDepartureBespokeFeastCell(tableView, indexPath, nil)
-            case 10:
-                return getAboutMeCell(tableView, indexPath, nil)
-            case 11:
-                return getWhatsHot(tableView, indexPath, nil)
-            case 12:
-                return getlevel5(tableView, indexPath, nil)
-            case 13:
-                return getFromTignumMessageCell(tableView, indexPath, nil)
-            case 14:
-                return getWeatherCell(tableView, indexPath, nil)
-            case 15:
-                return getMindsetShifterCell(tableView, indexPath, nil)
-            case 16:
-                return getExpertThoughts(tableView, indexPath, nil)
-            case 17:
-                return getTeamToBeVisionCell(tableView, indexPath, nil)
-            case 18:
-                return getTeamVisionSuggestionCell(tableView, indexPath, nil)
-            case 19:
-                return getTeamInvitationCell(tableView, indexPath, nil)
-            case 20:
-                return getOpenPollCell(tableView, indexPath, nil)
-            case 21:
-                return getOpenRateCell(tableView, indexPath, nil)
-            default:
-                return UITableViewCell()
-            }
+            cell.configure(with: nil)
+            return cell
         }
+
         let bucketList = bucketModel.elements
         let bucketItem = bucketList[indexPath.row]
 
@@ -180,12 +138,20 @@ extension DailyBriefViewController {
         case .DAILY_CHECK_IN_1?:
             if (bucketItem as? ImpactReadinessCellViewModel) != nil,
                 let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
-                    return getImpactReadinessCell(tableView, indexPath, impactReadinessCellViewModel)
+                standardModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel.title,
+                                                                title: ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessCellViewModel.readinessScore,
+                                                                impactReadinessNoDataTitle: impactReadinessCellViewModel.title),
+                                                                body: impactReadinessCellViewModel.feedback,
+                                                                image: impactReadinessCellViewModel.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: impactReadinessCellViewModel.domainModel)
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil,
                 let impactReadinessScoreViewModel = bucketItem as? ImpactReadinessScoreViewModel {
-                    return getImpactReadinessScoreCell(tableView, indexPath, impactReadinessScoreViewModel)
+                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
+                                                                title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
+                                                                body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: impactReadinessScoreViewModel.domainModel)
             }
-            return getImpactReadinessCell(tableView, indexPath, nil)
         case .DAILY_CHECK_IN_2?:
             guard let dailyCheckIn2ViewModel = bucketItem as? DailyCheckin2ViewModel else {
                 return getDailyCheckIn2TBVCell(tableView, indexPath, nil)
@@ -206,14 +172,30 @@ extension DailyBriefViewController {
                 return UITableViewCell()
             }
         case .EXPLORE?:
-            return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
+            if let exploreViewModel = bucketItem as? ExploreCellViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: exploreViewModel.bucketTitle,
+                                                                title: NSAttributedString.init(string: exploreViewModel.title ?? ""),
+                                                                body: exploreViewModel.duration,
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: exploreViewModel.domainModel)
+            }
         case .SPRINT_CHALLENGE?:
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .ME_AT_MY_BEST?:
-            if bucketItem.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false {
-                return getMeAtMyBestEmpty(tableView, indexPath, bucketItem as? MeAtMyBestCellEmptyViewModel)
+            if bucketItem.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false,
+               let meAtMyBestCellEmptyViewModel = bucketItem as? MeAtMyBestCellViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestCellEmptyViewModel.title,
+                                                                title: NSAttributedString.init(string: meAtMyBestCellEmptyViewModel.buttonText ?? ""),
+                                                                body: meAtMyBestCellEmptyViewModel.intro ?? "",
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: meAtMyBestCellEmptyViewModel.domainModel)
+            } else if let meAtMyBestViewModel = bucketItem as? MeAtMyBestCellViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel.title,
+                                                                title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
+                                                                body: meAtMyBestViewModel.tbvStatement,
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: meAtMyBestViewModel.domainModel)
             }
-            return getMeAtMyBest(tableView, indexPath, bucketItem as? MeAtMyBestCellViewModel)
         case .ABOUT_ME?:
             return getAboutMeCell(tableView, indexPath, bucketItem as? AboutMeViewModel)
         case .SOLVE_REFLECTION?:
@@ -228,7 +210,17 @@ extension DailyBriefViewController {
         case .QUESTION_WITHOUT_ANSWER?:
             return getRandomQuestionCell(tableView, indexPath, bucketItem as? QuestionCellViewModel)
         case .LATEST_WHATS_HOT?:
-            return getWhatsHot(tableView, indexPath, bucketItem as? WhatsHotLatestCellViewModel)
+            if let whatsHotViewModel = bucketItem as? WhatsHotLatestCellViewModel {
+                let publishDate = whatsHotViewModel.publisheDate
+                let durationString = whatsHotViewModel.timeToRead
+                let dateAndDurationText = DateFormatter.whatsHotBucket.string(from: publishDate) + " | " + durationString
+
+                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_whats_hot_title),
+                                                                    title: NSAttributedString.init(string: whatsHotViewModel.title),
+                                                                     body: dateAndDurationText,
+                                                                     image: whatsHotViewModel.image?.absoluteString ?? "",
+                                                                     domainModel: whatsHotViewModel.domainModel)
+            }
         case .THOUGHTS_TO_PONDER?:
             return getThoughtsCell(tableView, indexPath, bucketItem as? ThoughtsCellViewModel)
         case .GOOD_TO_KNOW?:
@@ -242,9 +234,22 @@ extension DailyBriefViewController {
         case .DEPARTURE_INFO?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .LEADERS_WISDOM?:
-            return getLeadersWisdom(tableView, indexPath, bucketItem as? LeaderWisdomCellViewModel)
+            if let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: leadersWisdomViewModel.title,
+                                                                title: NSAttributedString.init(string: leadersWisdomViewModel.subtitle ?? ""),
+                                                                body: leadersWisdomViewModel.description ?? "",
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                CTAType: leadersWisdomViewModel.format,
+                                                                domainModel: leadersWisdomViewModel.domainModel)
+            }
         case .EXPERT_THOUGHTS?:
-            return getExpertThoughts(tableView, indexPath, bucketItem as? ExpertThoughtsCellViewModel)
+            if let expertThoughtsViewModel = bucketItem as? ExpertThoughtsCellViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsViewModel.title,
+                                                                     title: NSAttributedString.init(string: expertThoughtsViewModel.description ?? ""),
+                                                                     body: expertThoughtsViewModel.name,
+                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                     domainModel: expertThoughtsViewModel.domainModel)
+            }
         case .FEAST_OF_YOUR_EYES?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .MY_PEAK_PERFORMANCE?:
@@ -255,7 +260,13 @@ extension DailyBriefViewController {
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         case .MINDSET_SHIFTER?:
-            return getMindsetShifterCell(tableView, indexPath, bucketItem as? MindsetShifterViewModel)
+            if let mindsetShifterViewModel = bucketItem as? MindsetShifterViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: mindsetShifterViewModel.title,
+                                                                    title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
+                                                                    body: mindsetShifterViewModel.subtitle,
+                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                     domainModel: mindsetShifterViewModel.domainModel)
+            }
         case .TEAM_TO_BE_VISION?:
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
         case .TEAM_VISION_SUGGESTION?:
@@ -278,6 +289,13 @@ extension DailyBriefViewController {
         default:
             return UITableViewCell()
         }
+
+        if let model = standardModel {
+            cell.configure(with: [model])
+        }
+        cell.delegate = self
+
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -360,51 +378,6 @@ private extension DailyBriefViewController {
 // MARK: - Get TableViewCells
 private extension DailyBriefViewController {
 
-    /**
-     * Method name: impactReadinessCell.
-     * Description: Placeholder to display the Random Question Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-
-    func getImpactReadinessCell(_ tableView: UITableView,
-                                _ indexPath: IndexPath,
-                                _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
-        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-        let standardModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel?.title ?? "",
-                                                            title: ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessCellViewModel?.readinessScore,
-                                                                                                              impactReadinessNoDataTitle: impactReadinessCellViewModel?.title),
-                                                             body: impactReadinessCellViewModel?.feedback ?? "",
-                                                             image: impactReadinessCellViewModel?.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: impactReadinessCellViewModel?.domainModel)
-        cell.configure(with: [standardModel])
-        cell.delegate = self
-
-        return cell
-    }
-
-    func getImpactReadinessScoreCell(_ tableView: UITableView,
-                                     _ indexPath: IndexPath,
-                                     _ impactReadinessScoreViewModel: ImpactReadinessScoreViewModel?)
-        -> UITableViewCell {
-        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-        let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
-                                                            title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
-                                                             body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
-                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: impactReadinessScoreViewModel?.domainModel)
-        cell.configure(with: [standardModel])
-        cell.delegate = self
-
-        return cell
-    }
-
-    /**
-     * Method name: getRandomQuestionCell.
-     * Description: Placeholder to display the Random Question Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getRandomQuestionCell(_ tableView: UITableView,
                                _ indexPath: IndexPath,
                                _ questionCellViewModel: QuestionCellViewModel?) -> UITableViewCell {
@@ -414,11 +387,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getThoughtsCell.
-     * Description: Placeholder to display the Random Question Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getThoughtsCell(_ tableView: UITableView,
                          _ indexPath: IndexPath,
                          _ thoughtsCellViewModel: ThoughtsCellViewModel?) -> UITableViewCell {
@@ -429,11 +397,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getGoodToKnowCell.
-     * Description: Placeholder to display the Random Good To Know Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getGoodToKnowCell(_ tableView: UITableView,
                            _ indexPath: IndexPath,
                            _ goodToKnowCellViewModel: GoodToKnowCellViewModel?) -> UITableViewCell {
@@ -444,12 +407,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getFromTignumMessageCell.
-     * Description: Placeholder to display the Frojm Tignum Message Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-
     func getFromTignumMessageCell(_ tableView: UITableView,
                                   _ indexPath: IndexPath,
                                   _ fromTignumMessageViewModel: FromTignumCellViewModel?) -> UITableViewCell {
@@ -459,11 +416,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getCoachMessageCell.
-     * Description: Placeholder to display the Random Departure Info Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getCoachMessageCell(_ tableView: UITableView,
                              _ indexPath: IndexPath,
                              _ coachMessageModel: FromMyCoachCellViewModel?) -> UITableViewCell {
@@ -483,11 +435,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getAboutMeCell.
-     * Description: Placeholder to display the About me Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getAboutMeCell(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ aboutMeViewModel: AboutMeViewModel?) -> UITableViewCell {
@@ -497,74 +444,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getMindsetShifterCell.
-     * Description: Placeholder to display the Mindset Shifter Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-    func getMindsetShifterCell(_ tableView: UITableView,
-                        _ indexPath: IndexPath,
-                        _ mindsetShifterViewModel: MindsetShifterViewModel?) -> UITableViewCell {
-        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-        let standardModel = NewDailyBriefStandardModel.init(caption: mindsetShifterViewModel?.title ?? "",
-                                                            title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
-                                                            body: mindsetShifterViewModel?.subtitle,
-                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: mindsetShifterViewModel?.domainModel)
-        cell.configure(with: [standardModel])
-        cell.delegate = self
-
-        return cell
-    }
-
-    /**
-     * Method name: getMeAtMyBest.
-     * Description: Placeholder to display the Me At My Best Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-    func getMeAtMyBest(_ tableView: UITableView,
-                       _ indexPath: IndexPath,
-                       _ meAtMyBestViewModel: MeAtMyBestCellViewModel?) -> UITableViewCell {
-        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-        let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel?.title ?? "",
-                                                            title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
-                                                            body: meAtMyBestViewModel?.tbvStatement ?? "",
-                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: meAtMyBestViewModel?.domainModel)
-        cell.configure(with: [standardModel])
-        cell.delegate = self
-
-        return cell
-    }
-
-    /**
-     * Method name: getMeAtMyBest.
-     * Description: Placeholder to display the Me At My Best Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-    func getMeAtMyBestEmpty(_ tableView: UITableView,
-                            _ indexPath: IndexPath,
-                            _ meAtMyBestCellEmptyViewModel: MeAtMyBestCellEmptyViewModel?) -> UITableViewCell {
-        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-        let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestCellEmptyViewModel?.title ?? "",
-                                                            title: NSAttributedString.init(string: meAtMyBestCellEmptyViewModel?.buttonText ?? ""),
-                                                            body: meAtMyBestCellEmptyViewModel?.intro ?? "",
-                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: meAtMyBestCellEmptyViewModel?.domainModel)
-        cell.configure(with: [standardModel])
-        cell.delegate = self
-
-        return cell
-    }
-
-    /**
-     * Method name: getSprints.
-     * Description: Placeholder to display the Me At My Best Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getSprints(_ tableView: UITableView,
                     _ indexPath: IndexPath,
                     _ sprintChallengeModel: SprintChallengeViewModel?) -> UITableViewCell {
@@ -574,39 +453,7 @@ private extension DailyBriefViewController {
         cell.clickableLinkDelegate = self
         return cell
     }
-    /**
-     * Method name: getWhatsHot.
-     * Description: Placeholder to display the Whats Hot Information.
-     * Parameters: [tableView], [IndexPath]
-     */
 
-    func getWhatsHot(_ tableView: UITableView,
-                     _ indexPath: IndexPath,
-                     _ whatsHotViewModel: WhatsHotLatestCellViewModel?) -> UITableViewCell {
-            let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-            var dateAndDurationText = ""
-            if let publishDate = whatsHotViewModel?.publisheDate,
-               let durationString = whatsHotViewModel?.timeToRead {
-                dateAndDurationText = DateFormatter.whatsHotBucket.string(from: publishDate) + " | " + durationString
-            }
-
-            let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_whats_hot_title),
-                                                                title: NSAttributedString.init(string: whatsHotViewModel?.title ?? ""),
-                                                                 body: dateAndDurationText,
-                                                                 image: whatsHotViewModel?.image?.absoluteString ?? "",
-                                                                 domainModel: whatsHotViewModel?.domainModel)
-            cell.configure(with: [standardModel])
-            cell.delegate = self
-
-            return cell
-    }
-
-    /**
-     * Method name: getSolveReminder.
-     * Description: Placeholder to display the Me At My Best Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getSolveReminder(_ tableView: UITableView,
                           _ indexPath: IndexPath,
                           _ solveReminderViewModel: SolveReminderCellViewModel?) -> UITableViewCell {
@@ -617,11 +464,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getSolveReminderTableCell.
-     * Description: Placeholder to display the Solve Reminder Table Cell.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getSolveReminderTableCell(_ tableView: UITableView,
                                    _ indexPath: IndexPath,
                                    _ solveReminderTableCellViewModel: SolveReminderTableCellViewModel?) -> UITableViewCell {
@@ -634,11 +476,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getLevel 5.
-     * Description: Placeholder to display the Level 5 Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getlevel5(_ tableView: UITableView,
                    _ indexPath: IndexPath,
                    _ level5ViewModel: Level5ViewModel?) -> UITableViewCell {
@@ -649,54 +486,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getLeadersWisdom.
-     * Description: Placeholder to display the leaders wisdom Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-    func getLeadersWisdom(_ tableView: UITableView,
-                          _ indexPath: IndexPath,
-                          _ leadersWisdomViewModel: LeaderWisdomCellViewModel?) -> UITableViewCell {
-        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-        let standardModel = NewDailyBriefStandardModel.init(caption: leadersWisdomViewModel?.title ?? "",
-                                                             title: NSAttributedString.init(string: leadersWisdomViewModel?.subtitle ?? ""),
-                                                             body: leadersWisdomViewModel?.description ?? "",
-                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             CTAType: leadersWisdomViewModel?.format ?? .unknown,
-                                                             domainModel: leadersWisdomViewModel?.domainModel)
-        cell.configure(with: [standardModel])
-        cell.delegate = self
-
-        return cell
-    }
-
-    /**
-     * Method name: getLeadersWisdom.
-     * Description: Placeholder to display the leaders wisdom Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-    func getExpertThoughts(_ tableView: UITableView,
-                           _ indexPath: IndexPath,
-                           _ expertThoughtsViewModel: ExpertThoughtsCellViewModel?) -> UITableViewCell {
-        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-        let standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsViewModel?.title ?? "",
-                                                             title: NSAttributedString.init(string: expertThoughtsViewModel?.description ?? ""),
-                                                             body: expertThoughtsViewModel?.name ?? "",
-                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: expertThoughtsViewModel?.domainModel)
-        cell.configure(with: [standardModel])
-        cell.delegate = self
-
-        return cell
-    }
-
-    /**
-     * Method name: getDailyCheckinInsightsSHPICell.
-     * Description: Placeholder to display the getDailyCheckinInsightsSHPICell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getDailyCheckinInsightsSHPICell(_ tableView: UITableView,
                                          _ indexPath: IndexPath,
                                          _ dailyCheck2SHPIModel: DailyCheck2SHPIModel?) -> UITableViewCell {
@@ -706,11 +495,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getDailyCheckIn2TBVCell.
-     * Description: Placeholder to display the getDailyCheckIn2TBV Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getDailyCheckIn2TBVCell(_ tableView: UITableView,
                                  _ indexPath: IndexPath,
                                  _ dailyCheckIn2TBVModel: DailyCheckIn2TBVModel?) -> UITableViewCell {
@@ -721,11 +505,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getDailyCheckIn2PeakPerformanceModel.
-     * Description: Placeholder to display the getDailyCheckIn2TBV Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getDailyCheckIn2PeakPerformanceCell(_ tableView: UITableView,
                                              _ indexPath: IndexPath,
                                              _ dailyCheckIn2PeakPerformanceModel: DailyCheckIn2PeakPerformanceModel?)
@@ -737,12 +516,6 @@ private extension DailyBriefViewController {
             return cell
     }
 
-    /**
-     * Method name: getMyPeakPerformance.
-     * Description: Placeholder to display the peak performance Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-
     func getMyPeakPerformance(_ tableView: UITableView,
                               _ indexPath: IndexPath,
                               _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> UITableViewCell {
@@ -753,33 +526,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getExploreCell.
-     * Description: Placeholder to display the leaders wisdom Information.
-     * Parameters: [?tableView], [IndexPath]
-     */
-
-    func getExploreCell(_ tableView: UITableView,
-                        _ indexPath: IndexPath,
-                        _ exploreViewModel: ExploreCellViewModel?) -> UITableViewCell {
-        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-
-        let standardModel = NewDailyBriefStandardModel.init(caption: exploreViewModel?.bucketTitle ?? "",
-                                                             title: NSAttributedString.init(string: exploreViewModel?.title ?? ""),
-                                                             body: exploreViewModel?.duration ?? "",
-                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                             domainModel: exploreViewModel?.domainModel)
-        cell.configure(with: [standardModel])
-        cell.delegate = self
-
-        return cell
-    }
-
-    /**
-     * Method name: getGuidedTrack.
-     * Description: Placeholder to display the Guided Track Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getGuidedTrack(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ hideDivider: Bool,
@@ -798,11 +544,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getWeatherCellgetGuidedTrack.
-     * Description: Placeholder to display the Weather Information.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getWeatherCell(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
@@ -813,11 +554,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name :getTeamToBeVisionCell.
-     * Description: Placeholder to display the latest Team To be Vision created.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getTeamToBeVisionCell(_ tableView: UITableView,
                                _ indexPath: IndexPath,
                                _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
@@ -828,11 +564,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name:getTeamVisionSuggestionCell.
-     * Description: Placeholder to display the Team To Bbe Vision Suggestion.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getTeamVisionSuggestionCell(_ tableView: UITableView,
                                      _ indexPath: IndexPath,
                                      _ teamVisionSuggestionModel: TeamVisionSuggestionModel?) -> UITableViewCell {
@@ -843,11 +574,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name:getTeamInvitationCell.
-     * Description: Placeholder to display the Team To Be Vision Suggestion.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getTeamInvitationCell(_ tableView: UITableView,
                                _ indexPath: IndexPath,
                                _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
@@ -858,11 +584,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getOpenPollCell.
-     * Description: Placeholder to display that the TBV Poll is Open.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getOpenPollCell(_ tableView: UITableView,
                          _ indexPath: IndexPath,
                          _ pollOpenModel: PollOpenModel?) -> UITableViewCell {
@@ -873,11 +594,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getOpenRateCell.
-     * Description: Placeholder to display that the TBV Rating Tracker is Open.
-     * Parameters: [tableView], [IndexPath]
-     */
     func getOpenRateCell(_ tableView: UITableView,
                          _ indexPath: IndexPath,
                          _ rateOpenModel: RateOpenModel?) -> UITableViewCell {
@@ -921,7 +637,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(AboutMeCell.self)
         tableView.registerDequeueable(Level5Cell.self)
         tableView.registerDequeueable(FromMyCoachCell.self)
-        tableView.registerDequeueable(LeaderWisdomTableViewCell.self)
         tableView.registerDequeueable(MyPeakPerformanceCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
@@ -930,17 +645,16 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
-        tableView.registerDequeueable(MindsetShifterCell.self)
         tableView.registerDequeueable(TeamToBeVisionCell.self)
         tableView.registerDequeueable(TeamVisionSuggestionCell.self)
         tableView.registerDequeueable(TeamInvitationCell.self)
-        tableView.registerDequeueable(DailyBriefTeamNewsFeedHeaderCell.self)
-        tableView.registerDequeueable(DailyBriefTeamNewsFeedFooterCell.self)
-        tableView.registerDequeueable(ArticleBookmarkTableViewCell.self)
-        tableView.registerDequeueable(VideoBookmarkTableViewCell.self)
-        tableView.registerDequeueable(AudioBookmarkTableViewCell.self)
-        tableView.registerDequeueable(NoteTableViewCell.self)
-        tableView.registerDequeueable(DownloadTableViewCell.self)
+//        tableView.registerDequeueable(DailyBriefTeamNewsFeedHeaderCell.self)
+//        tableView.registerDequeueable(DailyBriefTeamNewsFeedFooterCell.self)
+//        tableView.registerDequeueable(ArticleBookmarkTableViewCell.self)
+//        tableView.registerDequeueable(VideoBookmarkTableViewCell.self)
+//        tableView.registerDequeueable(AudioBookmarkTableViewCell.self)
+//        tableView.registerDequeueable(NoteTableViewCell.self)
+//        tableView.registerDequeueable(DownloadTableViewCell.self)
         tableView.registerDequeueable(PollOpenCell.self)
         tableView.registerDequeueable(RateOpenCell.self)
         tableView.registerDequeueable(RatingFeedbackCell.self)

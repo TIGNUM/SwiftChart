@@ -50,7 +50,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
 
     private func setupCollectionView() {
         var width = self.frame.width
-        var height: CGFloat = 0
+        var height: CGFloat = 463
 
         if datasource?.first as? NewDailyBriefGetStartedModel != nil {
             width = 183
@@ -61,17 +61,16 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
             collectionView.isPagingEnabled = false
             flowLayout.minimumLineSpacing = 34
         } else {
-            guard let viewModel = calculateHeighest(with: datasource ?? [], forWidth: width) as? NewDailyBriefStandardModel else {
-                return
+            if let viewModel = calculateHeighest(with: datasource ?? [], forWidth: width) as? NewDailyBriefStandardModel {
+                detailsMode = viewModel.detailsMode ?? false
+                width = detailsMode ? width : (width - 48)
+                collectionViewTopConstraint.constant  = detailsMode ? 0 : 30.0
+                collectionViewLeadingConstraint.constant  = detailsMode ? 0 : 24.0
+                collectionViewTrailingConstraint.constant = detailsMode ? 0 : 24.0
+                height = NewDailyStandardBriefCollectionViewCell.height(for: viewModel, forWidth: width)
+                collectionView.isPagingEnabled = true
+                flowLayout.minimumLineSpacing = detailsMode ? 0 : 8
             }
-            detailsMode = viewModel.detailsMode ?? false
-            width = detailsMode ? width : (width - 48)
-            collectionViewTopConstraint.constant  = detailsMode ? 0 : 30.0
-            collectionViewLeadingConstraint.constant  = detailsMode ? 0 : 24.0
-            collectionViewTrailingConstraint.constant = detailsMode ? 0 : 24.0
-            height = NewDailyStandardBriefCollectionViewCell.height(for: viewModel, forWidth: width)
-            collectionView.isPagingEnabled = true
-            flowLayout.minimumLineSpacing = detailsMode ? 0 : 8
         }
 
         flowLayout.itemSize = CGSize(width: width, height: height)
@@ -82,11 +81,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
 
     // MARK: - Public
     func configure(with models: [BaseDailyBriefViewModel]?) {
-        datasource?.removeAll()
-
-        if let modelDatasource = models {
-            datasource?.append(contentsOf: modelDatasource)
-        }
+        datasource = models
         setupCollectionView()
     }
 }
@@ -94,11 +89,13 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
 extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataSource {
     // MARK: CollectionView delegates and datasource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datasource?.count ?? 0
+        guard let dataSource = datasource else {
+            return 1
+        }
+        return dataSource.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell = UICollectionViewCell.init()
         if let model = datasource?[indexPath.row] as? NewDailyBriefStandardModel {
             let cell: NewDailyStandardBriefCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.configure(with: model)
@@ -109,9 +106,12 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
             let cell: NewDailyBriefGetStartedCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.configure(with: model)
             return cell
-        }
+        } else {
+            let cell: NewDailyStandardBriefCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            cell.configure(with: nil)
 
-        return cell
+            return cell
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
