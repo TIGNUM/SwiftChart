@@ -58,7 +58,6 @@ final class VisionRatingExplanationViewController: BaseViewController {
     @IBAction func buttonChecked(_ sender: Any) {
         checkButton.isSelected.toggle()
         checkButton.backgroundColor = checkButton.isSelected ? .accent70 : .clear
-        //        TODO option to send notification to all members
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
@@ -80,7 +79,7 @@ extension VisionRatingExplanationViewController {
     @objc func startRating() {
         guard let teamID = interactor.team?.remoteID else { return }
         trackUserEvent(.OPEN, value: teamID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        interactor.startTeamTrackerPoll { [weak self] (poll, team) in
+        interactor.startTeamTrackerPoll(sendPushNotification: checkButton.isSelected) { [weak self] (poll, team) in
             self?.router.showRateScreen(trackerPoll: poll, team: team, delegate: self)
             self?.updateBottomNavigation([], [])
         }
@@ -89,7 +88,7 @@ extension VisionRatingExplanationViewController {
     @objc func startTeamTBVGenerator() {
         guard let team = interactor.team else { return }
         trackUserEvent(.OPEN, value: team.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
-        interactor.startTeamTBVPoll { [weak self] (poll) in
+        interactor.startTeamTBVPoll(sendPushNotification: checkButton.isSelected) { [weak self] (poll) in
             self?.router.showTeamTBVGenerator(poll: poll, team: team)
             self?.updateBottomNavigation([], [])
         }
