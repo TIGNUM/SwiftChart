@@ -32,15 +32,13 @@ final class BaseDailyBriefDetailsInteractor {
 extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterface {
     func getNumberOfRows() -> Int {
         switch model.domainModel?.bucketName {
-        case DailyBriefBucketName.DAILY_CHECK_IN_1:
+        case DailyBriefBucketName.DAILY_CHECK_IN_1, DailyBriefBucketName.GET_TO_LEVEL_5, DailyBriefBucketName.MY_PEAK_PERFORMANCE:
             return 2
         case DailyBriefBucketName.ME_AT_MY_BEST:
             if (model as? MeAtMyBestCellViewModel) != nil {
                 return 2
             }
             return 1
-        case DailyBriefBucketName.GET_TO_LEVEL_5:
-            return 2
         case DailyBriefBucketName.FROM_MY_COACH:
             if let fromMyCoachModel = model as? FromMyCoachCellViewModel {
                 return fromMyCoachModel.messages.count + 1
