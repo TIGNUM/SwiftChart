@@ -14,7 +14,7 @@ final class BaseDailyBriefDetailsInteractor {
     // MARK: - Properties
     private lazy var worker = BaseDailyBriefDetailsWorker(model: model)
     private let presenter: BaseDailyBriefDetailsPresenterInterface!
-    let model: BaseDailyBriefViewModel
+    private var model: BaseDailyBriefViewModel
 
     // MARK: - Init
     init(presenter: BaseDailyBriefDetailsPresenterInterface, model: BaseDailyBriefViewModel) {
@@ -44,6 +44,8 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return 2
             }
             return 1
+        case DailyBriefBucketName.GET_TO_LEVEL_5:
+            return 2
         default:
             return 1
         }
@@ -234,6 +236,44 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             default:
                 break
             }
+        case DailyBriefBucketName.GET_TO_LEVEL_5:
+            switch indexPath.row {
+            case 0:
+                guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner),
+                      let level5Model = model as? Level5ViewModel else {
+                    return UITableViewCell.init()
+                }
+                let intro = level5Model.intro
+                let messages = level5Model.levelMessages
+                let question = level5Model.question
+                var levelMessages: [Level5ViewModel.LevelDetail] = []
+                let selectedValue = level5Model.domainModel?.currentGetToLevel5Value
+                let levelDetailZero = Level5ViewModel.LevelDetail.init(levelTitle: question, levelContent: intro)
+                levelMessages.append(levelDetailZero)
+                levelMessages.append(contentsOf: messages)
+                let standardModel = NewDailyBriefStandardModel.init(caption: level5Model.title,
+                                                                     title: NSAttributedString.init(string: levelMessages[selectedValue ?? 0].levelTitle ?? ""),
+                                                                     body: levelMessages[selectedValue ?? 0].levelContent,
+                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                     detailsMode: true,
+                                                                     domainModel: level5Model.domainModel)
+
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            case 1:
+                guard let level5Model = model as? Level5ViewModel,
+                      let cell: Level5TableViewCell = R.nib.level5TableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+
+                cell.configure(with: level5Model)
+                cell.delegate = owner
+
+                return cell
+            default:
+                break
+            }
         default:
             return UITableViewCell.init()
         }
@@ -244,7 +284,15 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
         return self.model
     }
 
+    func updateModel(_ model: BaseDailyBriefViewModel) {
+        self.model = model
+    }
+
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
         worker.customizeSleepQuestion(completion: completion)
+    }
+
+    func saveAnswerValue(_ value: Int) {
+        worker.saveAnswerValue(value)
     }
 }

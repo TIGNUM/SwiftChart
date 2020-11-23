@@ -54,3 +54,27 @@ final class BaseDailyBriefDetailsWorker {
         })
     }
 }
+
+// MARK: - Get to level 5
+extension BaseDailyBriefDetailsWorker {
+    func saveAnswerValue(_ value: Int) {
+        DailyBriefService.main.getDailyBriefBuckets({ (buckets, error) in
+            if let error = error {
+                log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                return
+            }
+            if let bucketsList = buckets?.sorted(by: { $0.sortOrder < $1.sortOrder }) {
+                var level5Bucket = bucketsList.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
+                level5Bucket?.currentGetToLevel5Value = value
+                if let level5Bucket = level5Bucket {
+                    DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
+                        if let error = error {
+                            log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                        }
+                        requestSynchronization(.BUCKET_RECORD, .UP_SYNC)
+                    })
+                }
+            }
+        })
+    }
+}
