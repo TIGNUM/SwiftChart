@@ -152,10 +152,21 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     }
 
     func isEditBlocked(_ completion: @escaping (Bool) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var tmpHasTracker: Bool?
+        var tmpHasPoll: Bool?
+        dispatchGroup.enter()
         worker.hasOpenRatingPoll(for: team) { (hasTracker) in
-            self.worker.hasOpenGeneratorPoll(for: self.team) { (hasPoll) in
-                completion(hasTracker == true  || hasPoll == true )
-            }
+            tmpHasTracker = hasTracker
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        worker.hasOpenGeneratorPoll(for: team) { (hasPoll) in
+            tmpHasPoll = hasPoll
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion(tmpHasTracker == true  || tmpHasPoll == true)
         }
     }
 
