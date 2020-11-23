@@ -377,7 +377,6 @@ private extension DailyBriefViewController {
 
 // MARK: - Get TableViewCells
 private extension DailyBriefViewController {
-
     func getRandomQuestionCell(_ tableView: UITableView,
                                _ indexPath: IndexPath,
                                _ questionCellViewModel: QuestionCellViewModel?) -> UITableViewCell {
@@ -743,7 +742,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         router.showExplanation(team, type: .ratingUser)
     }
 
-    func presentRateHistory(for team: QDMTeam) {
+    func showRateHistory(for team: QDMTeam) {
         router.showTracker(for: team)
     }
 }

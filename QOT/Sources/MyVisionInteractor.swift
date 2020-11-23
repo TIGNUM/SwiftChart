@@ -17,10 +17,12 @@ final class MyVisionInteractor {
     private lazy var worker = MyVisionWorker()
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
+    private var showSubVCModal: Bool
 
-    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter) {
+    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter, showSubVCModal: Bool = false) {
         self.presenter = presenter
         self.router = router
+        self.showSubVCModal = showSubVCModal
     }
 
     deinit {
@@ -206,20 +208,27 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     func showTBVData() {
         worker.getRatingReport { [weak self] (report) in
             self?.worker.getToBeVision { [weak self] (_, toBeVision) in
+                guard let strongSelf = self else {
+                    return
+                }
                 self?.router.showTBVData(shouldShowNullState: report?.dates.isEmpty == true,
-                                         visionId: toBeVision?.remoteID)
+                                         visionId: toBeVision?.remoteID,
+                                         showModal: strongSelf.showSubVCModal)
             }
         }
     }
 
     func showTracker() {
-        router.showTracker(for: nil)
+        router.showTracker(for: nil, showModal: showSubVCModal)
     }
 
     func showRateScreen(delegate: TBVRateDelegate?) {
         worker.getToBeVision { [weak self] (_, toBeVision) in
+            guard let strongSelf = self else {
+                return
+            }
             if let remoteId = toBeVision?.remoteID {
-                self?.router.showRateScreen(with: remoteId, delegate: delegate)
+                strongSelf.router.showRateScreen(with: remoteId, delegate: delegate, showModal: strongSelf.showSubVCModal)
             }
         }
     }

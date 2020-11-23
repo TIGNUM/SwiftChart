@@ -11,7 +11,6 @@ import qot_dal
 
 final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
 
-    @IBOutlet weak var howYouFeelToday: UILabel!
     @IBOutlet weak var asterixText: UILabel!
     //// sleepQuantity
     @IBOutlet weak var sleepQuantityButton: UIButton!
@@ -36,14 +35,11 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
     @IBOutlet weak var dividerView1: UIView!
     @IBOutlet weak var dividerView2: UIView!
     @IBOutlet weak var dividerView3: UIView!
-    @IBOutlet weak var rollingDataLabel: UILabel!
     @IBOutlet weak var trackedDaysLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .white)
-        skeletonManager.addSubtitle(rollingDataLabel)
-        skeletonManager.addSubtitle(howYouFeelToday)
         skeletonManager.addSubtitle(asterixText)
         for view in mainStackView.arrangedSubviews {
             skeletonManager.addOtherView(view)
@@ -53,8 +49,6 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
     }
 
     func hide(_ hidden: Bool) {
-        rollingDataLabel.isHidden = hidden
-        howYouFeelToday.isHidden = hidden
         asterixText.isHidden = hidden
         sleepQuantityButton.isHidden = hidden
         sleepQuantityScoreButton.isHidden = hidden
@@ -78,8 +72,6 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
             skeletonManager.hide()
         }
         var asterixCharacter = "*"
-        ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
 
         if viewModel?.hasFiveDayLoadValue != true,
             viewModel?.hasFiveDaySleepQualityValue != true,
