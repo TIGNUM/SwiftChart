@@ -21,11 +21,10 @@ protocol VisionRatingExplanationPresenterInterface {
 }
 
 protocol VisionRatingExplanationInteractorInterface: Interactor {
-    var team: QDMTeam { get }
-    func startTeamTBVPoll(sendPushNotification: Bool,
-                          _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
-    func startTeamTrackerPoll(sendPushNotification: Bool,
-                              _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void)
+    var team: QDMTeam? { get }
+    func startTeamTBVPoll(sendPushNotification: Bool, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
+    func startTeamTrackerPoll(sendPushNotification: Bool, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?,
+                                                                                   QDMTeam?) -> Void)
 }
 
 protocol VisionRatingExplanationRouterInterface {
