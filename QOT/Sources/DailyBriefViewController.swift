@@ -206,7 +206,20 @@ extension DailyBriefViewController {
             }
             return UITableViewCell()
         case .GET_TO_LEVEL_5?:
-            return getlevel5(tableView, indexPath, bucketItem as? Level5ViewModel)
+            if let level5ViewModel = bucketItem as? Level5ViewModel,
+               let intro = level5ViewModel.intro,
+               let question = level5ViewModel.question {
+                    let messages = level5ViewModel.levelMessages
+                    let levelDetailZero = Level5ViewModel.LevelDetail.init(levelTitle: question, levelContent: intro)
+                    var levelMessages: [Level5ViewModel.LevelDetail] = []
+                    levelMessages.append(levelDetailZero)
+                    levelMessages.append(contentsOf: messages)
+                standardModel = NewDailyBriefStandardModel.init(caption: level5ViewModel.title,
+                                                                title: NSAttributedString.init(string: levelMessages[level5ViewModel.domainModel?.currentGetToLevel5Value ?? 0].levelTitle ?? ""),
+                                                                body: levelMessages[level5ViewModel.domainModel?.currentGetToLevel5Value ?? 0].levelContent,
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: level5ViewModel.domainModel)
+            }
         case .QUESTION_WITHOUT_ANSWER?:
             return getRandomQuestionCell(tableView, indexPath, bucketItem as? QuestionCellViewModel)
         case .LATEST_WHATS_HOT?:
@@ -481,16 +494,6 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    func getlevel5(_ tableView: UITableView,
-                   _ indexPath: IndexPath,
-                   _ level5ViewModel: Level5ViewModel?) -> UITableViewCell {
-        let cell: Level5Cell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: level5ViewModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
     func getDailyCheckinInsightsSHPICell(_ tableView: UITableView,
                                          _ indexPath: IndexPath,
                                          _ dailyCheck2SHPIModel: DailyCheck2SHPIModel?) -> UITableViewCell {
@@ -630,7 +633,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(DailyCheckinSHPICell.self)
         tableView.registerDequeueable(DailyCheckinInsightsPeakPerformanceCell.self)
         tableView.registerDequeueable(AboutMeCell.self)
-        tableView.registerDequeueable(Level5Cell.self)
         tableView.registerDequeueable(FromMyCoachCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
@@ -672,19 +674,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         }
     }
 
-    func didUpdateLevel5() {
-        tableView.beginUpdates()
-        tableView.setNeedsLayout()
-        tableView.endUpdates()
-    }
-
     func reloadSprintCell(cell: UITableViewCell) {
         tableView.beginUpdates()
         tableView.endUpdates()
-    }
-
-    func saveAnswerValue(_ value: Int, from cell: UITableViewCell) {
-        interactor.saveAnswerValue(value)
     }
 
     func saveTargetValue(value: Int?) {

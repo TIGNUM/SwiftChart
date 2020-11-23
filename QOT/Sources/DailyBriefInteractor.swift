@@ -421,9 +421,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     }
 
     // MARK: Save methods
-    func saveAnswerValue(_ value: Int) {
-        worker.saveAnswerValue(value)
-    }
 
     func saveTargetValue(value: Int?) {
         worker.saveTargetValue(value: value)

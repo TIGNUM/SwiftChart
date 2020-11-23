@@ -24,8 +24,6 @@ protocol DailyBriefViewControllerDelegate: class {
 
     func showSolveResults(solve: QDMSolve)
 
-    func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
-
     func saveTargetValue(value: Int?)
 
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
@@ -37,8 +35,6 @@ protocol DailyBriefViewControllerDelegate: class {
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
 
     func reloadSprintCell(cell: UITableViewCell)
-
-    func didUpdateLevel5()
 
     func displayCoachPreparationScreen()
 
@@ -92,7 +88,6 @@ protocol DailyBriefInteractorInterface: Interactor {
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
 
-    func saveAnswerValue(_ value: Int)
     func saveTargetValue(value: Int?)
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])

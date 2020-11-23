@@ -257,6 +257,7 @@ enum ThemeButton {
     case dateButtons
     case newBlueButton
     case whiteRounded
+    case level5Button
 
     var defaultHeight: CGFloat {
         return 40.0
@@ -305,7 +306,13 @@ enum ThemeButton {
             colorUnselected = .actionBlue
             colorBorder = .clear
         case .whiteRounded:
+            colorSelected = .white30
             colorBorder = .white
+            colorUnselected = .clear
+        case .level5Button:
+            colorSelected = .actionBlue
+            colorUnselected = .clear
+            colorBorder = .actionBlue
         }
 
         if let color = colorBorder {
@@ -931,12 +938,12 @@ enum ThemeText {
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .registerIntroNoteTitle, .optionPage, .optionPageDisabled:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
+        case .categorySubHeader, .searchTopic, .solveFuture, .performanceSectionText, .goodToKnow, .bespokeText,
              .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
              .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherBody, .dailyBriefSubtitle, .dailyBriefSand, .paymentReminderCellTitle, .averageRating, .myRating, .totalVotes,
-             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .featureExplanation, .coachMarkSubtitle, .registerIntroBody, .memberEmail, .ratingExplanationText, .ratingExplanationVideoTitle, .whiteBanner, .darkBanner, .baseHeaderSubtitleBold:
+             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .featureExplanation, .coachMarkSubtitle, .registerIntroBody, .memberEmail, .ratingExplanationText, .ratingExplanationVideoTitle, .whiteBanner, .darkBanner, .baseHeaderSubtitleBold, .level5Question:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -999,7 +1006,7 @@ enum ThemeText {
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .tbvTrackerAnswerTeam, .accountHeaderTitle,
-             .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
+             .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .resultClosingText,
              .myLibraryItemsItemName, .myLibraryItemsItemNameGrey, .mySprintsCellTitle, .mySprintDetailsDescription,
@@ -1092,6 +1099,8 @@ enum ThemeText {
             return Fonts.fontRegular24
         case .featureTitle, .ratingExplanationTitle:
             return Fonts.fontDisplayRegular34
+        case .dailyBriefLevelTitle:
+            return Fonts.fontDisplayRegular24
         // MARK: - .fontRegular20
         default:
             return Fonts.fontRegular20
@@ -1105,12 +1114,11 @@ enum ThemeText {
         case .quotation, .iRscore, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .bucketTitle, .solveQuestions,
-             .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
+             .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
              .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
-             .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
-             .dailyBriefLevelTitle, .searchSuggestion, .myRating,
+             .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle, .searchSuggestion, .myRating,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle, .myDataParameterSelectionSubtitle,
@@ -1240,8 +1248,11 @@ enum ThemeText {
             return lowValue ? Palette.redOrange : Palette.sand
         case .myLibraryItemsItemNameGrey:
             return Palette.sand70
-        case .navigationBarHeader, .suggestionMyBest:
+        case .navigationBarHeader, .suggestionMyBest, .dailyBriefLevelTitle:
             return .white
+        case .level5Question:
+            return .lightGray
+
         }
     }
 
@@ -1628,6 +1639,7 @@ private struct Fonts {
     static let fontSemiBold16 = UIFont.sfProtextSemibold(ofSize: 16.0)
 
     static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
+    static let fontDisplayRegular24 = UIFont.sfProDisplayRegular(ofSize: 24)
     static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
     static let fontDisplayRegular34 = UIFont.sfProDisplayRegular(ofSize: 34.0)
     static let fontDisplayRegular40 = UIFont.sfProDisplayRegular(ofSize: 40.0)
