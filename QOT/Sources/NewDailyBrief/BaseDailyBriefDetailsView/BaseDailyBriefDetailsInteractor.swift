@@ -33,12 +33,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
     func getNumberOfRows() -> Int {
         switch model.domainModel?.bucketName {
         case DailyBriefBucketName.DAILY_CHECK_IN_1:
-            if (model as? ImpactReadinessCellViewModel) != nil {
-               return 1
-            } else if (model as? ImpactReadinessScoreViewModel) != nil {
-                return 2
-            }
-            return 0
+            return 2
         case DailyBriefBucketName.ME_AT_MY_BEST:
             if (model as? MeAtMyBestCellViewModel) != nil {
                 return 2
@@ -60,9 +55,12 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
         switch model.domainModel?.bucketName {
         case DailyBriefBucketName.DAILY_CHECK_IN_1:
             if (model as? ImpactReadinessCellViewModel) != nil {
-                guard let impactReadinessModel = model as? ImpactReadinessCellViewModel,
-                      let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner),
-                      indexPath == IndexPath.init(row: 0, section: 0) else {
+                guard let impactReadinessModel = model as? ImpactReadinessCellViewModel else {
+                    return UITableViewCell.init()
+                }
+                switch indexPath.row {
+                case 0:
+                      guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
                     return UITableViewCell.init()
                 }
 
@@ -77,6 +75,16 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 cell.collectionView.contentInsetAdjustmentBehavior = .never
 
                 return cell
+                case 1:
+                    guard let cell: ImpactReadinessTableViewCell = R.nib.impactReadinessTableViewCell(owner: owner) else {
+                        return UITableViewCell.init()
+                    }
+
+                    cell.configure(viewModel: impactReadinessModel)
+                    return cell
+                default:
+                    break
+                }
             } else if let scoreModel = model as? ImpactReadinessScoreViewModel {
                 switch indexPath.row {
                 case 0:

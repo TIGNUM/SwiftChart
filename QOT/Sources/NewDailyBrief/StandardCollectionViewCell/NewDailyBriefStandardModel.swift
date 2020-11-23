@@ -21,6 +21,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
     var body: String?
     var image: String?
     var detailsMode: Bool?
+    var numberOfLinesForBody: Int
     var isInAnimationTransition: Bool?
     var CTAType: ContentFormat
 
@@ -29,6 +30,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
          title: NSAttributedString?,
          body: String?, image: String?,
          detailsMode: Bool = false,
+         numberOfLinesForBody: Int = 2,
          isInAnimationTransition: Bool = false,
          CTAType: ContentFormat = .unknown,
          domainModel: QDMDailyBriefBucket?) {
@@ -37,6 +39,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         self.body = body
         self.image = image
         self.detailsMode = detailsMode
+        self.numberOfLinesForBody = numberOfLinesForBody
         self.isInAnimationTransition = isInAnimationTransition
         self.CTAType = CTAType
         super.init(domainModel)
@@ -68,7 +71,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         titleSizingLabel.attributedText = title
 
         let bodySizingLabel = UILabel()
-        bodySizingLabel.numberOfLines = isInAnimationTransition ?? false ? 2 : 0
+        bodySizingLabel.numberOfLines = isInAnimationTransition ?? false ? numberOfLinesForBody : 0
         bodySizingLabel.font = UIFont.sfProtextRegular(ofSize: 16.0)
         bodySizingLabel.lineBreakMode = .byTruncatingTail
         bodySizingLabel.text = body
