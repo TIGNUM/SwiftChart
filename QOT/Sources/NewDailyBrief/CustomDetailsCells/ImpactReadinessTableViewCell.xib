@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="153" id="Ayy-rr-w11" customClass="ImpactReadinessTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ayy-rr-w11" id="lwF-ab-w11">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDO-OR-EBB">
+                        <rect key="frame" x="24" y="12" width="366" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHH-UQ-P4j" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                        <rect key="frame" x="351" y="53" width="39" height="40"/>
+                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="didTapCTAButton:" destination="Ayy-rr-w11" eventType="touchUpInside" id="URI-bC-AIz"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="tDO-OR-EBB" secondAttribute="trailing" constant="24" id="ATd-UD-Ga0"/>
+                    <constraint firstItem="tDO-OR-EBB" firstAttribute="top" secondItem="lwF-ab-w11" secondAttribute="top" constant="12" id="HI4-1Q-hSD"/>
+                    <constraint firstItem="tDO-OR-EBB" firstAttribute="leading" secondItem="lwF-ab-w11" secondAttribute="leading" constant="24" id="RDo-Or-gYl"/>
+                    <constraint firstAttribute="bottom" secondItem="qHH-UQ-P4j" secondAttribute="bottom" constant="60" id="VPZ-HV-iBW"/>
+                    <constraint firstItem="qHH-UQ-P4j" firstAttribute="trailing" secondItem="tDO-OR-EBB" secondAttribute="trailing" id="ZXJ-U4-o1h"/>
+                    <constraint firstItem="qHH-UQ-P4j" firstAttribute="top" secondItem="tDO-OR-EBB" secondAttribute="bottom" constant="20" id="kWv-Gt-a9f"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="ctaButton" destination="qHH-UQ-P4j" id="zW6-un-Yzz"/>
+                <outlet property="linkTitle" destination="tDO-OR-EBB" id="VgX-pK-4CM"/>
+            </connections>
+            <point key="canvasLocation" x="-239.13043478260872" y="5.0223214285714279"/>
+        </tableViewCell>
+    </objects>
+</document>

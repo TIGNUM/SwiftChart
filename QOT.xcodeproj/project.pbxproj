@@ -894,6 +894,8 @@
 		B474CA922398F85F00A829B5 /* RegisterIntroInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */; };
 		B474CA932398F85F00A829B5 /* RegisterIntroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */; };
 		B474CA942398F85F00A829B5 /* RegisterIntroConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */; };
+		B4792D67256D135300D24E7F /* ImpactReadinessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4792D66256D135300D24E7F /* ImpactReadinessTableViewCell.swift */; };
+		B4792D75256D136200D24E7F /* ImpactReadinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4792D74256D136200D24E7F /* ImpactReadinessTableViewCell.xib */; };
 		B47953B3230AD512006EFE0F /* MyDataScreenInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */; };
 		B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */; };
 		B47953B5230AD512006EFE0F /* MyDataScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */; };
@@ -2332,6 +2334,8 @@
 		B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroInteractor.swift; sourceTree = "<group>"; };
 		B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroModel.swift; sourceTree = "<group>"; };
 		B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroConfigurator.swift; sourceTree = "<group>"; };
+		B4792D66256D135300D24E7F /* ImpactReadinessTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessTableViewCell.swift; sourceTree = "<group>"; };
+		B4792D74256D136200D24E7F /* ImpactReadinessTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpactReadinessTableViewCell.xib; sourceTree = "<group>"; };
 		B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenInterface.swift; sourceTree = "<group>"; };
 		B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenPresenter.swift; sourceTree = "<group>"; };
 		B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenModel.swift; sourceTree = "<group>"; };
@@ -4766,6 +4770,8 @@
 		B48B539F2561BF7B00FC183D /* CustomDetailsCells */ = {
 			isa = PBXGroup;
 			children = (
+				B4792D66256D135300D24E7F /* ImpactReadinessTableViewCell.swift */,
+				B4792D74256D136200D24E7F /* ImpactReadinessTableViewCell.xib */,
 				B48B53A62561C03500FC183D /* ImpactReadiness5DaysRollingTableViewCell.swift */,
 				B48B53AE2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib */,
 				B48B5468256468C400FC183D /* MeAtMyBestTableViewCell.swift */,
@@ -6628,6 +6634,7 @@
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
 				B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */,
 				754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */,
+				B4792D75256D136200D24E7F /* ImpactReadinessTableViewCell.xib in Resources */,
 				383D5F1F24212C25007F8C2A /* walkThrough_search.mp4 in Resources */,
 				75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */,
 				DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */,
@@ -7026,6 +7033,7 @@
 				DB5121602331945F009BFF22 /* PreparationWithMissingEventInterface.swift in Sources */,
 				38F95C9825068106009265DC /* PollCollectionViewCell.swift in Sources */,
 				F9B102A622D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift in Sources */,
+				B4792D67256D135300D24E7F /* ImpactReadinessTableViewCell.swift in Sources */,
 				F99E9CC424EABD9C00325EAE /* VisionRatingExplanationWorker.swift in Sources */,
 				5F7BE79C22899F8500BA5DCF /* MyQotAboutUsRouter.swift in Sources */,
 				B4BCE46C255BCEC500A1116F /* NewDailyBriefGetStartedModel.swift in Sources */,

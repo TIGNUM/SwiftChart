@@ -12,7 +12,7 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
     // MARK: - Properties
     // Default values are for backwards compatibility until all instances get "Themed"
     var titleAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
-    var normal: ButtonTheme? = ButtonTheme(foreground: .accent, background: nil, border: .accent40)
+    var normal: ButtonTheme? = ButtonTheme(foreground: .white, background: nil, border: .white)
     var highlight: ButtonTheme? = ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
     var select: ButtonTheme?
     var disabled: ButtonTheme? = ButtonTheme(foreground: .sand08, background: nil, border: .sand08)
@@ -92,7 +92,7 @@ extension RoundedButton {
     }
 
     func setAttributedTitle(_ title: NSAttributedString?) {
-        let normalTheme = self.normal ?? ButtonTheme(foreground: .accent, background: .clear, border: .accent40)
+        let normalTheme = self.normal ?? ButtonTheme(foreground: .white, background: .clear, border: .white)
         tintColor = normalTheme.foregroundColor
 
         layer.borderColor = normalTheme.borderColor?.cgColor

@@ -400,7 +400,11 @@ extension LaunchHandler {
             default:
                 if let controller = R.storyboard.main.tignum_XArticleViewController() {
                     ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
-                    self?.present(viewController: controller)
+                    if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
+                        detailsVC.pushToStart(childViewController: controller)
+                    } else {
+                        self?.present(viewController: controller)
+                    }
                 }
             }
         })
