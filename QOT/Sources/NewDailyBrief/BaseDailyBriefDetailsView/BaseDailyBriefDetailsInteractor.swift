@@ -70,15 +70,15 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 cell.collectionView.contentInsetAdjustmentBehavior = .never
 
                 return cell
-            } else if (model as? ImpactReadinessScoreViewModel) != nil {
+            } else if let scoreModel = model as? ImpactReadinessScoreViewModel {
                 switch indexPath.row {
                 case 0:
                     guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
                         return UITableViewCell.init()
                     }
-                    let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
+                    let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).lowercased().capitalizingFirstLetter(),
                                                                          title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
-                                                                         body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
+                                                                         body: scoreModel.howYouFeelToday,
                                                                          image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                          detailsMode: true,
                                                                          domainModel: nil)

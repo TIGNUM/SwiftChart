@@ -99,6 +99,11 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
         if let model = datasource?[indexPath.row] as? NewDailyBriefStandardModel {
             let cell: NewDailyStandardBriefCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.configure(with: model)
+            if let tbvStatement = cell.body.text,
+               model.domainModel?.bucketName == DailyBriefBucketName.ME_AT_MY_BEST {
+                cell.body.text = "”" + tbvStatement + "”"
+                cell.body.textColor = .white
+            }
             cell.layer.borderWidth = detailsMode ? 0 :  0.5
             cell.layer.borderColor = UIColor.lightGray.cgColor
             return cell
