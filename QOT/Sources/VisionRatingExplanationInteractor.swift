@@ -17,11 +17,11 @@ final class VisionRatingExplanationInteractor {
     private var type = Explanation.Types.ratingOwner
     private weak var downSyncObserver: NSObjectProtocol?
 
-    var team: QDMTeam
+    var team: QDMTeam?
 
     // MARK: - Init
     init(presenter: VisionRatingExplanationPresenterInterface,
-         team: QDMTeam,
+         team: QDMTeam?,
          type: Explanation.Types) {
         self.presenter = presenter
         self.team = team
@@ -38,8 +38,9 @@ final class VisionRatingExplanationInteractor {
 
 // MARK: - VisionRatingExplanationInteractorInterface
 extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorInterface {
+
     func startTeamTBVPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
-        let team = self.team
+        guard let team = self.team else { return }
         worker.getCurrentTeamToBeVisionPoll(for: team) { [weak self] (poll) in
             if let poll = poll {
                 completion(poll)
@@ -53,7 +54,7 @@ extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorIn
 
     func startTeamTrackerPoll(_ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void) {
         removeObserver()
-        let team = self.team
+        guard let team = self.team else { return }
         worker.getCurrentRatingPoll(for: team) { [weak self] (currentPoll) in
             if let currentPoll = currentPoll {
                 completion(currentPoll, team)

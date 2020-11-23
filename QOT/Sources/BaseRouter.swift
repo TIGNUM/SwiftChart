@@ -36,14 +36,14 @@ protocol BaseRouterInterface {
     func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?)
     func showTBVGenerator()
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
-
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func dismiss()
     func dismissChatBotFlow()
 
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
 
     func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?)
-
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types)
     func showBanner(message: String)
 }
 
@@ -122,6 +122,25 @@ class BaseRouter: BaseRouterInterface {
             let configurator = TeamToBeVisionConfigurator.make(team: team)
             configurator(controller)
             viewController?.show(controller, sender: nil)
+        }
+    }
+
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?) {
+        let showClosure: (UIViewController?) -> Void = { (presentingViewController) in
+            let identifier = R.storyboard.team.teamEditViewControllerID.identifier
+            let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
+            if let controller = controller {
+                let configurator = TeamEditConfigurator.make(type: type, team: team)
+                configurator(controller)
+                presentingViewController?.present(controller, animated: true)
+            }
+        }
+        if let presentingViewController = viewController?.presentingViewController {
+            viewController?.dismiss(animated: true, completion: {
+                showClosure(presentingViewController)
+            })
+        } else {
+            showClosure(viewController)
         }
     }
 
@@ -262,16 +281,17 @@ class BaseRouter: BaseRouterInterface {
             banner.show(in: view)
         }
     }
-}
 
-// MARK: - Private
-private extension BaseRouter {
-    func showExplanation(_ team: QDMTeam, _ type: Explanation.Types) {
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types) {
         if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
             VisionRatingExplanationConfigurator.make(team: team, type: type)(controller)
             present(controller)
         }
     }
+}
+
+// MARK: - Private
+private extension BaseRouter {
 
     func presentRateHistory(for team: QDMTeam?, _ displayType: TBVGraph.DisplayType) {
         guard let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }

@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 final class VisionRatingExplanationConfigurator {
-    static func make(team: QDMTeam, type: Explanation.Types) -> (VisionRatingExplanationViewController) -> Void {
+    static func make(team: QDMTeam?, type: Explanation.Types) -> (VisionRatingExplanationViewController) -> Void {
         return { (viewController) in
             let presenter = VisionRatingExplanationPresenter(viewController: viewController)
             let interactor = VisionRatingExplanationInteractor(presenter: presenter, team: team, type: type)

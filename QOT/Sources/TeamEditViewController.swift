@@ -223,7 +223,7 @@ extension TeamEditViewController: UITableViewDelegate, UITableViewDataSource {
 extension TeamEditViewController: KeyboardInputViewProtocol {
     func didTapLeftButton() {
         teamTextField.resignFirstResponder()
-        router.dismiss()
+        dismiss()
     }
 
     func didTapRightButton() {
