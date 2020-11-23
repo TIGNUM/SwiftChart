@@ -65,7 +65,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         captionSizingLabel.text = caption
 
         let titleSizingLabel = UILabel()
-        titleSizingLabel.numberOfLines = 4
+        titleSizingLabel.numberOfLines = 5
         titleSizingLabel.font = UIFont.sfProtextRegular(ofSize: 24.0)
         titleSizingLabel.lineBreakMode = .byTruncatingTail
         titleSizingLabel.attributedText = title

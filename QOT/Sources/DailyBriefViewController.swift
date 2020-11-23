@@ -268,8 +268,8 @@ extension DailyBriefViewController {
         case .EXPERT_THOUGHTS?:
             if let expertThoughtsViewModel = bucketItem as? ExpertThoughtsCellViewModel {
                 standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsViewModel.title,
-                                                                     title: NSAttributedString.init(string: expertThoughtsViewModel.description ?? ""),
-                                                                     body: expertThoughtsViewModel.name,
+                                                                     title: NSAttributedString.init(string: expertThoughtsViewModel.name ?? ""),
+                                                                     body: expertThoughtsViewModel.description,
                                                                      image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                      domainModel: expertThoughtsViewModel.domainModel)
             }

@@ -121,8 +121,8 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return UITableViewCell.init()
             }
             let standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsModel.title ?? "",
-                                                                 title: NSAttributedString.init(string: expertThoughtsModel.description ?? ""),
-                                                                 body: expertThoughtsModel.name ?? "",
+                                                                 title: NSAttributedString.init(string: expertThoughtsModel.name ?? ""),
+                                                                 body: expertThoughtsModel.description ?? "",
                                                                  image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                  detailsMode: true,
                                                                  domainModel: nil)
