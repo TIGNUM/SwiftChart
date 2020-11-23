@@ -967,14 +967,12 @@ extension DailyBriefInteractor {
         let bucketTitle = AppTextService.get(.daily_brief_section_my_peak_performances_title)
         var contentSentence = ""
         var contentSubtitle = ""
-        var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
         let yesterday = -1, tomorrow = 1, threeDays = 3
         let tags: [MyPeakPerformanceBucketType] = [.IN_THREE_DAYS, .TOMORROW, .TODAY, .REFLECT]
         for tag in tags {
             var localPreparationList = [QDMUserPreparation]()
-            var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
             switch tag {
             case .IN_THREE_DAYS:
                 contentSentence = myPeakperformance.contentCollections?.filter {
@@ -1017,20 +1015,17 @@ extension DailyBriefInteractor {
             if localPreparationList.count > 0 {
                 localPreparationList.forEach({ (prepareItem) in
                     let subtitle = prepareItem.eventType ?? ""  + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
-                    rows.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceRow(title: prepareItem.eventTitle ?? prepareItem.name,
-                                                                                    subtitle: subtitle,
-                                                                                    qdmUserPreparation: prepareItem))
+                    createMyPeakPerformanceList.append(PeakPerformanceViewModel.init(title: bucketTitle,
+                                                                                     contentSubtitle: contentSubtitle,
+                                                                                     contentSentence: contentSentence,
+                                                                                     eventTitle: prepareItem.eventTitle ?? prepareItem.name,
+                                                                                     eventSubtitle: subtitle,
+                                                                                     qdmUserPreparation: prepareItem,
+                                                                                     domainModel: myPeakperformance))
                 })
-                let sections = MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow(sectionSubtitle: contentSubtitle,
-                                                                                          sectionContent: contentSentence)
-                sectionsModels.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceSections(sections: sections, rows: rows))
             }
         }
-        let cellViewModel = MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MyPeakPerformanceTitle(title: bucketTitle),
-                                                                sections: sectionsModels,
-                                                                domainModel: myPeakperformance)
-        createMyPeakPerformanceList.append(cellViewModel)
-        return sectionsModels.count > 0 ? createMyPeakPerformanceList : []
+        return createMyPeakPerformanceList
     }
 
     // MARK: - My Stats

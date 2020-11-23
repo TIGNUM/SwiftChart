@@ -253,7 +253,13 @@ extension DailyBriefViewController {
         case .FEAST_OF_YOUR_EYES?:
             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .MY_PEAK_PERFORMANCE?:
-            return getMyPeakPerformance(tableView, indexPath, bucketItem as? MyPeakPerformanceCellViewModel)
+            if let peakPerformanceViewModel = bucketItem as? PeakPerformanceViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: peakPerformanceViewModel.title,
+                                                                title: NSAttributedString.init(string: peakPerformanceViewModel.eventTitle ?? ""),
+                                                                body: peakPerformanceViewModel.contentSubtitle,
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: peakPerformanceViewModel.domainModel)
+            }
         case .GUIDE_TRACK?:
             let showDivider = indexPath.row == bucketList.count - 1
             return getGuidedTrack(tableView, indexPath, showDivider, bucketItem as? GuidedTrackViewModel)
@@ -515,16 +521,6 @@ private extension DailyBriefViewController {
             return cell
     }
 
-    func getMyPeakPerformance(_ tableView: UITableView,
-                              _ indexPath: IndexPath,
-                              _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> UITableViewCell {
-        let cell: MyPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
-        cell.dailyBriefViewControllerDelegate = self
-        cell.configure(with: peakPerformanceModel)
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
     func getGuidedTrack(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ hideDivider: Bool,
@@ -636,7 +632,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(AboutMeCell.self)
         tableView.registerDequeueable(Level5Cell.self)
         tableView.registerDequeueable(FromMyCoachCell.self)
-        tableView.registerDequeueable(MyPeakPerformanceCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(GuidedTrackSectionCell.self)

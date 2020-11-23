@@ -22,10 +22,10 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
     @IBOutlet weak var lowSecondStatement: UILabel!
     @IBOutlet weak var lowThirdStatement: UILabel!
     @IBOutlet weak var seeMyPlanButton: UIButton!
-    
+
     weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
     private var mindsetShifter: QDMMindsetShifter?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
