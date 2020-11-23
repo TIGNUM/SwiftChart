@@ -390,7 +390,7 @@ private extension DailyBriefViewController {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
         //We need to add AppTextService for these hardcoded strings
-        let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
+        let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).lowercased().capitalizingFirstLetter(),
                                                             title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
                                                              body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
                                                              image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
@@ -1027,7 +1027,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         router.showExplanation(team, type: .ratingUser)
     }
 
-    func presentRateHistory(for team: QDMTeam) {
+    func showRateHistory(for team: QDMTeam) {
         router.showTracker(for: team)
     }
 }

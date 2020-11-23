@@ -66,7 +66,7 @@ protocol DailyBriefViewControllerDelegate: class {
 
     func presentToBeVisionRate(for team: QDMTeam)
 
-    func presentRateHistory(for team: QDMTeam)
+    func showRateHistory(for team: QDMTeam)
 }
 
 protocol DailyBriefViewControllerInterface: class {
