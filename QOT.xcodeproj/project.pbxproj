@@ -481,13 +481,7 @@
 		75423EFF22CE242B008EE726 /* TBVRateHistoryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF722CE242B008EE726 /* TBVRateHistoryConfigurator.swift */; };
 		75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */; };
 		75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */; };
-		75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */; };
-		75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */; };
 		75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */; };
-		75423F1522CF4919008EE726 /* FromMyCoachHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1422CF4919008EE726 /* FromMyCoachHeaderView.swift */; };
-		75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F1622CF492B008EE726 /* FromMyCoachHeaderView.xib */; };
-		75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1822CF4AA2008EE726 /* FromMyCoachMessageView.swift */; };
-		75423F1B22CF4ABB008EE726 /* FromMyCoachMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F1A22CF4ABB008EE726 /* FromMyCoachMessageView.xib */; };
 		75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */; };
 		754EBEE622C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEE422C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift */; };
 		754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEE522C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib */; };
@@ -1945,13 +1939,7 @@
 		75423EF722CE242B008EE726 /* TBVRateHistoryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryConfigurator.swift; sourceTree = "<group>"; };
 		75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFooterView.swift; sourceTree = "<group>"; };
 		75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSettingsFooterView.xib; sourceTree = "<group>"; };
-		75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCell.swift; sourceTree = "<group>"; };
-		75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachCell.xib; sourceTree = "<group>"; };
 		75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCellViewModel.swift; sourceTree = "<group>"; };
-		75423F1422CF4919008EE726 /* FromMyCoachHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachHeaderView.swift; sourceTree = "<group>"; };
-		75423F1622CF492B008EE726 /* FromMyCoachHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachHeaderView.xib; sourceTree = "<group>"; };
-		75423F1822CF4AA2008EE726 /* FromMyCoachMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachMessageView.swift; sourceTree = "<group>"; };
-		75423F1A22CF4ABB008EE726 /* FromMyCoachMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachMessageView.xib; sourceTree = "<group>"; };
 		75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionNullStateView.swift; sourceTree = "<group>"; };
 		754EBEE422C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphSubHeadingTableViewCell.swift; sourceTree = "<group>"; };
 		754EBEE522C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphSubHeadingTableViewCell.xib; sourceTree = "<group>"; };
@@ -3954,13 +3942,7 @@
 		75423F0D22CF4876008EE726 /* FromMyCoach */ = {
 			isa = PBXGroup;
 			children = (
-				75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */,
-				75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */,
 				75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */,
-				75423F1422CF4919008EE726 /* FromMyCoachHeaderView.swift */,
-				75423F1622CF492B008EE726 /* FromMyCoachHeaderView.xib */,
-				75423F1822CF4AA2008EE726 /* FromMyCoachMessageView.swift */,
-				75423F1A22CF4ABB008EE726 /* FromMyCoachMessageView.xib */,
 			);
 			name = FromMyCoach;
 			sourceTree = "<group>";
@@ -6459,7 +6441,6 @@
 				386C27BB241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib in Resources */,
 				B4BCE47A255BCEC500A1116F /* NewDailyBriefTableViewHeader.xib in Resources */,
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
-				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
 				386C27B5241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib in Resources */,
 				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
 				B44D4462256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib in Resources */,
@@ -6555,7 +6536,6 @@
 				BB8990E3230EF18300FEDF5B /* NavBarTableViewCell.xib in Resources */,
 				B4B0EBA1231533720029BB40 /* MyDataChartCollectionViewCell.xib in Resources */,
 				ACF0B9792260BC80008CFAEC /* TextTableViewCell.xib in Resources */,
-				75423F1B22CF4ABB008EE726 /* FromMyCoachMessageView.xib in Resources */,
 				5F8A89912296DC270011A05C /* MyToBeVision.storyboard in Resources */,
 				B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */,
 				36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */,
@@ -6643,7 +6623,6 @@
 				754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */,
 				B4792D75256D136200D24E7F /* ImpactReadinessTableViewCell.xib in Resources */,
 				383D5F1F24212C25007F8C2A /* walkThrough_search.mp4 in Resources */,
-				75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */,
 				DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */,
 				386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */,
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
@@ -7209,7 +7188,6 @@
 				DBA3921B23247B2D0017E7F6 /* QuestionaireCellIndicator.swift in Sources */,
 				75423EF822CE242B008EE726 /* TBVRateHistoryPresenter.swift in Sources */,
 				BB15775C233A1D1D00202978 /* ArticleTopNavBar.swift in Sources */,
-				75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */,
 				7F6567441FE28FBC00A6CB7F /* Clean.swift in Sources */,
 				B80B2F0224DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift in Sources */,
 				754EBEE622C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift in Sources */,
@@ -7324,7 +7302,6 @@
 				36EC230C2323F89900DB5696 /* DTQuestionnaireViewController.swift in Sources */,
 				7F9217B91FD01C2F00CAE9E0 /* RemoteNotificationPermission.swift in Sources */,
 				36E86D4F227059A100371C67 /* MarkAsReadTableViewCell.swift in Sources */,
-				75423F1522CF4919008EE726 /* FromMyCoachHeaderView.swift in Sources */,
 				F90BD425230164CA00008702 /* SolveTableViewCelll.swift in Sources */,
 				F9F70C1822F9A31E00E85BF3 /* SprintChallengeViewModel.swift in Sources */,
 				CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */,
@@ -7917,7 +7894,6 @@
 				367CD18222EF4EDE00AF2187 /* OnboardingLoginInterface.swift in Sources */,
 				F947EA0D2521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift in Sources */,
 				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
-				75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */,
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
 				386C279C2418EBFF00184EC9 /* ResultsPrepareRouter.swift in Sources */,
 				F9207CE624B77BEB007B1AB6 /* MyXTeamMembersPresenter.swift in Sources */,

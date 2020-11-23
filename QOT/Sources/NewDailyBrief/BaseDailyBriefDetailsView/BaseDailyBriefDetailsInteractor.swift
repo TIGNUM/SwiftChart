@@ -91,7 +91,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                     guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
                         return UITableViewCell.init()
                     }
-                    let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).lowercased().capitalizingFirstLetter(),
+                    let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title),
                                                                          title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
                                                                          body: scoreModel.howYouFeelToday,
                                                                          image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
@@ -286,6 +286,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return cell
             default:
                 break
+            }
         case DailyBriefBucketName.FROM_MY_COACH:
             switch indexPath.row {
             case 0:
