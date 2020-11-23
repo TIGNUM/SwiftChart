@@ -175,6 +175,35 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 cell.collectionView.contentInsetAdjustmentBehavior = .never
                 return cell
             }
+        case DailyBriefBucketName.MINDSET_SHIFTER:
+            switch indexPath.row {
+            case 0:
+                guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+                let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
+                                                                     title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
+                                                                     body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
+                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                     detailsMode: true,
+                                                                     domainModel: nil)
+
+                cell.configure(with: [standardModel2])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            case 1:
+                guard let mindsetShifterModel = model as? MindsetShifterViewModel,
+                      let cell: MindsetShifterTableViewCell = R.nib.mindsetShifterTableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+
+                cell.configure(with: mindsetShifterModel)
+                cell.delegate = owner
+
+                return cell
+            default:
+                break
+            }
         default:
             return UITableViewCell.init()
         }

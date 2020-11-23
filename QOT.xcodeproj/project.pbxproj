@@ -882,6 +882,8 @@
 		B430D80123A916B600C75C9C /* MyQotAdminLocalNotificationsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7FA23A916B500C75C9C /* MyQotAdminLocalNotificationsInterface.swift */; };
 		B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */; };
 		B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */; };
+		B44D443C2568415800B3B4F6 /* MindsetShifterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D443B2568415800B3B4F6 /* MindsetShifterTableViewCell.swift */; };
+		B44D44442568418000B3B4F6 /* MindsetShifterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B44D44432568418000B3B4F6 /* MindsetShifterTableViewCell.xib */; };
 		B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */; };
 		B45DA6BC23AA6316006E7E33 /* MyQOTAdminChooseBucketsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DA6B423AA6316006E7E33 /* MyQOTAdminChooseBucketsPresenter.swift */; };
 		B45DA6BD23AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DA6B523AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift */; };
@@ -2329,6 +2331,8 @@
 		B430D7FA23A916B500C75C9C /* MyQotAdminLocalNotificationsInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminLocalNotificationsInterface.swift; sourceTree = "<group>"; };
 		B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDetailView.swift; sourceTree = "<group>"; };
 		B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDetailView.xib; sourceTree = "<group>"; };
+		B44D443B2568415800B3B4F6 /* MindsetShifterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterTableViewCell.swift; sourceTree = "<group>"; };
+		B44D44432568418000B3B4F6 /* MindsetShifterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetShifterTableViewCell.xib; sourceTree = "<group>"; };
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
 		B45DA6B423AA6316006E7E33 /* MyQOTAdminChooseBucketsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminChooseBucketsPresenter.swift; sourceTree = "<group>"; };
 		B45DA6B523AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminChooseBucketsWorker.swift; sourceTree = "<group>"; };
@@ -4799,6 +4803,8 @@
 				B48B53AE2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib */,
 				B48B5468256468C400FC183D /* MeAtMyBestTableViewCell.swift */,
 				B48B5470256468D100FC183D /* MeAtMyBestTableViewCell.xib */,
+				B44D443B2568415800B3B4F6 /* MindsetShifterTableViewCell.swift */,
+				B44D44432568418000B3B4F6 /* MindsetShifterTableViewCell.xib */,
 			);
 			path = CustomDetailsCells;
 			sourceTree = "<group>";
@@ -6539,6 +6545,7 @@
 				75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */,
 				B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */,
 				8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */,
+				B44D44442568418000B3B4F6 /* MindsetShifterTableViewCell.xib in Resources */,
 				F99E9CCC24EABFB300325EAE /* VisionRatingExplanation.storyboard in Resources */,
 				38095D3224BDDE960077EE86 /* TeamInvitePendingTableViewCell.xib in Resources */,
 				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
@@ -7358,6 +7365,7 @@
 				5F62BE92228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift in Sources */,
 				5FF1A0FA22857B9400D76D55 /* MyQotAppSettingsPresenter.swift in Sources */,
 				36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */,
+				B44D443C2568415800B3B4F6 /* MindsetShifterTableViewCell.swift in Sources */,
 				B49AC292233BA5DC009AC1CF /* PaymentFooterView.swift in Sources */,
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,

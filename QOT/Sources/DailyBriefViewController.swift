@@ -506,10 +506,16 @@ private extension DailyBriefViewController {
     func getMindsetShifterCell(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ mindsetShifterViewModel: MindsetShifterViewModel?) -> UITableViewCell {
-        let cell: MindsetShifterCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: mindsetShifterViewModel)
+        let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
+
+        let standardModel = NewDailyBriefStandardModel.init(caption: mindsetShifterViewModel?.title ?? "",
+                                                            title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
+                                                            body: mindsetShifterViewModel?.subtitle,
+                                                             image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                             domainModel: mindsetShifterViewModel?.domainModel)
+        cell.configure(with: [standardModel])
         cell.delegate = self
-        cell.clickableLinkDelegate = self
+
         return cell
     }
 
@@ -523,7 +529,6 @@ private extension DailyBriefViewController {
                        _ meAtMyBestViewModel: MeAtMyBestCellViewModel?) -> UITableViewCell {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
-        //We need to add AppTextService for these hardcoded strings
         let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel?.title ?? "",
                                                             title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
                                                             body: meAtMyBestViewModel?.tbvStatement ?? "",
@@ -545,7 +550,6 @@ private extension DailyBriefViewController {
                             _ meAtMyBestCellEmptyViewModel: MeAtMyBestCellEmptyViewModel?) -> UITableViewCell {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
-        //We need to add AppTextService for these hardcoded strings
         let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestCellEmptyViewModel?.title ?? "",
                                                             title: NSAttributedString.init(string: meAtMyBestCellEmptyViewModel?.buttonText ?? ""),
                                                             body: meAtMyBestCellEmptyViewModel?.intro ?? "",
@@ -582,7 +586,6 @@ private extension DailyBriefViewController {
                      _ whatsHotViewModel: WhatsHotLatestCellViewModel?) -> UITableViewCell {
             let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
 
-            //We need to add AppTextService for these hardcoded strings
             var dateAndDurationText = ""
             if let publishDate = whatsHotViewModel?.publisheDate,
                let durationString = whatsHotViewModel?.timeToRead {
