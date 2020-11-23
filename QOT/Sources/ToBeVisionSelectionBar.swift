@@ -13,6 +13,7 @@ protocol ToBeVisionSelectionBarProtocol: class {
     func didTapCameraItem()
     func didTapShareItem()
     func isShareBlocked(_ completion: @escaping (Bool) -> Void)
+    func isEditBlocked(_ completion: @escaping (Bool) -> Void)
 }
 
 final class ToBeVisionSelectionBar: UIView {
@@ -73,18 +74,61 @@ private extension ToBeVisionSelectionBar {
         labelTitle.centerYAnchor.constraint(equalTo: lastContainer!.centerYAnchor).isActive = true
     }
 
-    func setupButton(_ item: AnimatedButton, image: UIImage?) {
-        item.setImage(image, for: .normal)
-        item.tintColor = colorMode.tint
-        item.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        item.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        item.translatesAutoresizingMaskIntoConstraints = false
-
+    func setupButton(_ item: AnimatedButton?, image: UIImage?) {
+        item?.setImage(image, for: .normal)
+        item?.tintColor = colorMode.tint
+        item?.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        item?.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        item?.translatesAutoresizingMaskIntoConstraints = false
         if let view = arrayViews[arrayViewsCount].value {
+            guard let item = item else { return }
             view.addSubview(item)
             item.addConstraints(to: view)
         }
         arrayViewsCount += 1
+    }
+}
+
+// MARK: - Public
+
+extension ToBeVisionSelectionBar {
+    func configure(isOwner: Bool?, _ delegate: ToBeVisionSelectionBarProtocol) {
+        self.delegate = delegate
+        if arrayViewsCount > 0 {
+            arrayViewsCount = 0
+            arrayViews = []
+        }
+
+        let expectedButtonCount: CGFloat = 4
+        spacing = -(bounds.width - expectedButtonCount * buttonSize - rightMargin * 2) / expectedButtonCount
+
+        setupContainers()
+        setupButton(buttonMore, image: R.image.ic_more_unselected())
+        buttonMore.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
+        buttonMore.corner(radius: buttonSize / 2)
+        if isOwner == true {
+            delegate.isEditBlocked { [weak self] (hideEdit) in
+                guard hideEdit else {
+                    self?.setupButton(self?.buttonEdit, image: R.image.ic_edit())
+                    self?.buttonEdit.addTarget(self, action: #selector(self?.didTapEditItem), for: .touchUpInside)
+                    self?.setupButton(self?.buttonCamera, image: R.image.photo())
+                    self?.buttonCamera.addTarget(self, action: #selector(self?.didTapCameraItem), for: .touchUpInside)
+                    self?.allOff()
+                    return
+                }
+            }
+        }
+
+        delegate.isShareBlocked { [weak self] (hideShare) in
+            self?.setupButton(self?.buttonShare, image: R.image.ic_share_sand())
+            self?.buttonShare.addTarget(self, action: #selector(self?.didTapShareItem), for: .touchUpInside)
+            self?.allOff()
+        }
+    }
+
+    func allOff() {
+        isShowingAll = false
+        refresh()
     }
 
     func refresh() {
@@ -101,44 +145,6 @@ private extension ToBeVisionSelectionBar {
             self.labelTitle.alpha = 1 - alpha
         }
         buttonMore.backgroundColor = isShowingAll ? .accent40 : .clear
-    }
-}
-
-// MARK: - Public
-
-extension ToBeVisionSelectionBar {
-    func configure(isOwner: Bool?, _ delegate: ToBeVisionSelectionBarProtocol) {
-        self.delegate = delegate
-
-        if arrayViewsCount > 0 { return }
-
-        let expectedButtonCount: CGFloat = 4
-        spacing = -(bounds.width - expectedButtonCount * buttonSize - rightMargin * 2) / expectedButtonCount
-
-        setupContainers()
-
-        setupButton(buttonMore, image: R.image.ic_more_unselected())
-        buttonMore.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
-        buttonMore.corner(radius: buttonSize / 2)
-        if isOwner == true {
-            setupButton(buttonEdit, image: R.image.ic_edit())
-            buttonEdit.addTarget(self, action: #selector(didTapEditItem), for: .touchUpInside)
-
-            setupButton(buttonCamera, image: R.image.photo())
-            buttonCamera.addTarget(self, action: #selector(didTapCameraItem), for: .touchUpInside)
-        }
-        setupButton(buttonShare, image: R.image.ic_share_sand())
-        buttonShare.addTarget(self, action: #selector(didTapShareItem), for: .touchUpInside)
-        delegate.isShareBlocked { [weak self] (hideShare) in
-            guard let buttonShare = self?.buttonShare else { return }
-            buttonShare.isHidden = hideShare
-        }
-        allOff()
-    }
-
-    func allOff() {
-        isShowingAll = false
-        refresh()
     }
 }
 
