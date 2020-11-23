@@ -58,7 +58,6 @@ final class VisionRatingExplanationViewController: BaseViewController {
     @IBAction func buttonChecked(_ sender: Any) {
         checkButton.isSelected.toggle()
         checkButton.backgroundColor = checkButton.isSelected ? .accent70 : .clear
-        //        TODO option to send notification to all members
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
@@ -78,20 +77,26 @@ final class VisionRatingExplanationViewController: BaseViewController {
 // MARK: - Actions
 extension VisionRatingExplanationViewController {
     @objc func startRating() {
-        trackUserEvent(.OPEN, value: interactor.team.remoteID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        interactor.startTeamTrackerPoll { [weak self] (poll, team) in
+        guard let teamID = interactor.team?.remoteID else { return }
+        trackUserEvent(.OPEN, value: teamID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
+        interactor.startTeamTrackerPoll(sendPushNotification: checkButton.isSelected) { [weak self] (poll, team) in
             self?.router.showRateScreen(trackerPoll: poll, team: team, delegate: self)
             self?.updateBottomNavigation([], [])
         }
     }
 
     @objc func startTeamTBVGenerator() {
-        let team = interactor.team
-        trackUserEvent(.OPEN, value: interactor.team.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
-        interactor.startTeamTBVPoll { [weak self] (poll) in
+        guard let team = interactor.team else { return }
+        trackUserEvent(.OPEN, value: team.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
+        interactor.startTeamTBVPoll(sendPushNotification: checkButton.isSelected) { [weak self] (poll) in
             self?.router.showTeamTBVGenerator(poll: poll, team: team)
             self?.updateBottomNavigation([], [])
         }
+    }
+
+    @objc func createTeam() {
+        router.presentEditTeam(.create, team: nil)
+        updateBottomNavigation([], [])
     }
 
     @objc func videoTapped(_ sender: UITapGestureRecognizer) {
@@ -124,7 +129,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
 
     func setupLabels(title: String, text: String, videoTitle: String) {
         ThemeText.ratingExplanationTitle.apply(title.uppercased(), to: titleLabel)
-        let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team.name ?? "").uppercased())
+        let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team?.name ?? "").uppercased())
         ThemeText.ratingExplanationText.apply(adaptedText, to: textLabel)
         ThemeText.ratingExplanationVideoTitle.apply(videoTitle, to: videoTitleLabel)
 
@@ -147,6 +152,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
              .ratingOwner: rightBarButtonAction = #selector(startRating)
         case .tbvPollOwner,
              .tbvPollUser: rightBarButtonAction = #selector(startTeamTBVGenerator)
+        case .createTeam: rightBarButtonAction = #selector(createTeam)
         }
     }
 }

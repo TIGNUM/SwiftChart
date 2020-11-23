@@ -110,6 +110,10 @@ extension TeamToBeVisionViewController: ToBeVisionSelectionBarProtocol {
     func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
         interactor.isShareBlocked(completion)
     }
+
+    func isEditBlocked(_ completion: @escaping (Bool) -> Void) {
+        interactor.isEditBlocked(completion)
+    }
 }
 
 // MARK: - Private
@@ -251,6 +255,7 @@ private extension TeamToBeVisionViewController {
 // MARK: - TeamToBeVisionViewControllerInterface
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func setSelectionBarButtonItems() {
+        toBeVisionSelectionBar.allOff()
         toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner, self)
         navigationBarView.configure(isOwner: interactor.team.thisUserIsOwner, self)
         navigationBarView.backgroundColor = .carbon

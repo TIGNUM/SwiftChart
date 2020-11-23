@@ -65,6 +65,7 @@ protocol WorkerTeam: class {
                                       _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 
     func openNewTeamToBeVisionPoll(for team: QDMTeam,
+                                   sendPushNotification: Bool,
                                    _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 
     func closeTeamToBeVisionPoll(_ poll: QDMTeamToBeVisionPoll,
@@ -83,6 +84,7 @@ protocol WorkerTeam: class {
                                        _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
 
     func openNewTeamToBeVisionTrackerPoll(for team: QDMTeam,
+                                          sendPushNotification: Bool,
                                           _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
 
     func hasOpenRatingPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void)
@@ -94,6 +96,8 @@ protocol WorkerTeam: class {
     func getLatestClosedPolls(for team: QDMTeam, _ completion: @escaping ([QDMTeamToBeVisionTrackerPoll]?) -> Void)
 
     func getRatingReport(_ completion: @escaping (QDMToBeVisionRatingReport?) -> Void)
+
+    func hasOpenGeneratorPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void)
 }
 
 extension WorkerTeam {
@@ -344,6 +348,16 @@ extension WorkerTeam {
         }
     }
 
+    func hasOpenGeneratorPoll(for team: QDMTeam, _ completion: @escaping (Bool) -> Void) {
+        TeamService.main.getCurrentTeamToBeVisionPoll(for: team) { (currentPoll, _, error) in
+            if let error = error {
+                log("Error currentTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
+                // TODO handle error
+            }
+            completion(currentPoll != nil)
+        }
+    }
+
     func getCurrentRatingPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
         TeamService.main.currentTeamToBeVisionTrackerPoll(for: team) { (currentTrackingPoll, _, error) in
             if let error = error {
@@ -405,8 +419,10 @@ extension WorkerTeam {
     }
 
     func openNewTeamToBeVisionPoll(for team: QDMTeam,
+                                   sendPushNotification: Bool,
                                    _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
-        TeamService.main.openNewTeamToBeVisionPoll(for: team) { (poll, _, error) in
+        TeamService.main.openNewTeamToBeVisionPoll(for: team,
+                                                   sendPushNotification: sendPushNotification) { (poll, _, error) in
             if let error = error {
                 log("Error openNewTeamToBeVisionPoll: \(error.localizedDescription)", level: .error)
                 // TODO handle error
@@ -491,8 +507,10 @@ extension WorkerTeam {
     }
 
     func openNewTeamToBeVisionTrackerPoll(for team: QDMTeam,
+                                          sendPushNotification: Bool,
                                           _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
-        TeamService.main.openNewTeamToBeVisionTrackerPoll(for: team) { (poll, _, error) in
+        TeamService.main.openNewTeamToBeVisionTrackerPoll(for: team,
+                                                          sendPushNotification: sendPushNotification) { (poll, _, error) in
             if let error = error {
                 log("Error openNewTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
             }

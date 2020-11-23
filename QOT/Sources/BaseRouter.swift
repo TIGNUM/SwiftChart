@@ -36,14 +36,14 @@ protocol BaseRouterInterface {
     func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?, showModal: Bool)
     func showTBVGenerator()
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
-
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func dismiss()
     func dismissChatBotFlow()
 
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
 
     func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?)
-
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types)
     func showBanner(message: String)
 }
 
@@ -125,6 +125,25 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
+    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?) {
+        let showClosure: (UIViewController?) -> Void = { (presentingViewController) in
+            let identifier = R.storyboard.team.teamEditViewControllerID.identifier
+            let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
+            if let controller = controller {
+                let configurator = TeamEditConfigurator.make(type: type, team: team)
+                configurator(controller)
+                presentingViewController?.present(controller, animated: true)
+            }
+        }
+        if let presentingViewController = viewController?.presentingViewController {
+            viewController?.dismiss(animated: true, completion: {
+                showClosure(presentingViewController)
+            })
+        } else {
+            showClosure(viewController)
+        }
+    }
+
     func presentMailComposer(recipients: [String], subject: String) {
         BaseRouter.sendEmail(to: recipients.first ?? Defaults.firstLevelSupportEmail,
                              subject: subject,
@@ -184,6 +203,10 @@ class BaseRouter: BaseRouterInterface {
     func showTeamRatingExplanation(_ team: QDMTeam, showModal: Bool = true) {
         let type: Explanation.Types = team.thisUserIsOwner ? .ratingOwner : .ratingUser
         showExplanation(team, type, showModal: showModal)
+    }
+
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types) {
+        showExplanation(team, type, showModal: true)
     }
 
     func showTBVData(shouldShowNullState: Bool, visionId: Int?, showModal: Bool = true) {
@@ -267,8 +290,9 @@ class BaseRouter: BaseRouterInterface {
 
 // MARK: - Private
 private extension BaseRouter {
-    func showExplanation(_ team: QDMTeam, _ type: Explanation.Types, showModal: Bool = true) {
-        if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types, showModal: Bool = true) {
+        if let team = team,
+           let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
             VisionRatingExplanationConfigurator.make(team: team, type: type)(controller)
             showModal ? present(controller) : push(controller)
         }

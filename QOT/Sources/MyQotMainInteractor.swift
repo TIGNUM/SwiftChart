@@ -233,7 +233,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func handleSelection(at indexPath: IndexPath) {
         switch MyX.Item.items(selectedTeamItem != nil).at(index: indexPath.row) {
         case .teamCreate:
-            router.presentEditTeam(.create, team: nil)
+            router.showExplanation(nil, .createTeam)
         case .library:
             router.presentMyLibrary(with: selectedTeamItem?.qdmTeam)
         case .preps:

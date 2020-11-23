@@ -3816,7 +3816,7 @@
 			children = (
 				F947E9FF2521F419004C7076 /* TeamVisionTrackerResultDetails */,
 				F9F4706B2510C4A0002331F4 /* AdminOptions */,
-				F99E9CBA24EABD5600325EAE /* RatingExplanation */,
+				F99E9CBA24EABD5600325EAE /* ExplanationPage */,
 				F910879724C5A69100CA343A /* TeamToBeVision */,
 				5F8A89902296DC270011A05C /* MyToBeVision.storyboard */,
 				75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */,
@@ -3884,6 +3884,7 @@
 				382C6C5523589FE000FAF497 /* MyQotSupportNovartisViewController.swift */,
 				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
 				F9D15B3224B88DB4006476FD /* TeamMemberTableViewCell.swift */,
+				F9D15B3424B88DC7006476FD /* TeamMemberTableViewCell.xib */,
 				F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */,
 				F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */,
 				5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */,
@@ -3893,7 +3894,6 @@
 				5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */,
 				5FD890A722807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib */,
 				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
-				F9D15B3424B88DC7006476FD /* TeamMemberTableViewCell.xib */,
 				F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */,
 				F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */,
 				5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */,
@@ -6007,7 +6007,7 @@
 			name = ToolsItems;
 			sourceTree = "<group>";
 		};
-		F99E9CBA24EABD5600325EAE /* RatingExplanation */ = {
+		F99E9CBA24EABD5600325EAE /* ExplanationPage */ = {
 			isa = PBXGroup;
 			children = (
 				F99E9CCB24EABFB300325EAE /* VisionRatingExplanation.storyboard */,
@@ -6020,7 +6020,7 @@
 				F99E9CBF24EABD9C00325EAE /* VisionRatingExplanationViewController.swift */,
 				F99E9CBC24EABD9C00325EAE /* VisionRatingExplanationWorker.swift */,
 			);
-			name = RatingExplanation;
+			name = ExplanationPage;
 			sourceTree = "<group>";
 		};
 		F99F5BE1231404F4007367CF /* PopUpViewCopyright */ = {

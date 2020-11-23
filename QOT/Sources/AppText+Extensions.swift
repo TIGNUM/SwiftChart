@@ -1068,6 +1068,9 @@ public extension AppTextKey {
 
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
 
+    static let create_team_explanation_title = AppTextKey("create_team.explanation.title")
+    static let create_team_explanation_subtitle = AppTextKey("create_team.explanation.subtitle")
+
     // MARK: - Results Prepare
     static let results_prepare_header_title = AppTextKey("results_prepare.header.title")
     static let results_prepare_connect_calendar_title = AppTextKey("prepare_results.connect_calaendar.title")
