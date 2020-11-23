@@ -54,17 +54,17 @@ class SkeletonManager {
     // MARK: Public
     func addTitle(_ view: UIView) {
         skeletonableTitles.append(view)
-        addShimmerView(to: view, withBackgroundColor: titleColor, lighterShimmer: true)
+        addShimmerView(to: view, withBackgroundColor: titleColor, lighterShimmer: false)
     }
 
     func addSubtitle(_ view: UIView) {
         skeletonableSubtitles.append(view)
-        addShimmerView(to: view, withBackgroundColor: subtitleColor, lighterShimmer: true)
+        addShimmerView(to: view, withBackgroundColor: subtitleColor, lighterShimmer: false)
     }
 
     func addOtherView(_ view: UIView) {
         skeletonableOtherViews.append(view)
-        addShimmerView(to: view, withBackgroundColor: otherViewColor, lighterShimmer: true)
+        addShimmerView(to: view, withBackgroundColor: otherViewColor, lighterShimmer: false)
     }
 
     func hide() {
@@ -158,8 +158,8 @@ private class ShimmerAnimatedView: UIView {
                                 lighterShimmer ? withColor.withAlphaComponent(0.5).lighter.cgColor :
                                                  withColor.withAlphaComponent(0.5).darker.cgColor,
                                 withColor.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.7, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.8)
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.5)
         gradientLayer.frame = toView.bounds
 
         toView.layer.insertSublayer(gradientLayer, below: softEdgesImageView.layer)
