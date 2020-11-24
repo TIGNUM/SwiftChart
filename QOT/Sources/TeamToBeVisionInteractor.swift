@@ -34,7 +34,6 @@ final class TeamToBeVisionInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        presenter.setSelectionBarButtonItems()
         didUpdateTBVRelatedData()
 
         let notificationCenter = NotificationCenter.default
@@ -70,6 +69,7 @@ final class TeamToBeVisionInteractor {
 
     func viewWillAppear() {
         didUpdateTBVRelatedData()
+        presenter.setSelectionBarButtonItems()
     }
 
     private func didUpdateTBVRelatedData() {
@@ -148,6 +148,25 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
         worker.getTeamToBeVision(for: team) { (teamVision) in
             completion(teamVision?.headline == nil && teamVision?.text == nil)
+        }
+    }
+
+    func isEditBlocked(_ completion: @escaping (Bool) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var tmpHasTracker: Bool?
+        var tmpHasPoll: Bool?
+        dispatchGroup.enter()
+        worker.hasOpenRatingPoll(for: team) { (hasTracker) in
+            tmpHasTracker = hasTracker
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        worker.hasOpenGeneratorPoll(for: team) { (hasPoll) in
+            tmpHasPoll = hasPoll
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion(tmpHasTracker == true  || tmpHasPoll == true)
         }
     }
 

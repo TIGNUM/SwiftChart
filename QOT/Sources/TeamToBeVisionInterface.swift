@@ -44,6 +44,7 @@ protocol TeamToBeVisionInteractorInterface: Interactor {
     func showNullState()
     func hideNullState()
     func isShareBlocked(_ completion: @escaping (Bool) -> Void)
+    func isEditBlocked(_ completion: @escaping (Bool) -> Void)
     func viewWillAppear()
     func saveToBeVision(image: UIImage?)
 
