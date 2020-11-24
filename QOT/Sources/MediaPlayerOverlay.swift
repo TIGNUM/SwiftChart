@@ -22,6 +22,7 @@ final class MediaPlayerOverlay: UIView {
     @IBOutlet private weak var downloadButton: RoundedButton!
     @IBOutlet private weak var bookmarkButton: RoundedButton!
     weak var delegate: MediaPlayerOverlayDelegate?
+    var buttonsHidden: Bool? = false
 
     static func instantiateFromNib() -> MediaPlayerOverlay {
         guard let mediaPlayerOverlay = R.nib.mediaPlayerOverlay.instantiate(withOwner: self).first as? MediaPlayerOverlay else {
@@ -61,6 +62,41 @@ final class MediaPlayerOverlay: UIView {
         UIView.animate(withDuration: 0.1) { [weak self] in
             self?.downloadButton.alpha = alpha
             self?.bookmarkButton.alpha = alpha
+            self?.buttonsHidden = hidden
+        }
+    }
+
+    func buttonsHide() {
+        self.buttonsHidden = false
+        UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
+            self.downloadButton.alpha = 0
+            self.bookmarkButton.alpha = 0
+        }) { (complete) in
+            self.buttonsHidden?.toggle()
+        }
+    }
+
+    func buttonsShow() {
+        guard buttonsHidden == true else { return }
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            self?.downloadButton.alpha = 1
+            self?.bookmarkButton.alpha = 1
+            self?.buttonsHidden?.toggle()
+        }
+    }
+
+    func buttonsShowAndHide() {
+        UIView.animate(withDuration: 0.2, delay: 0.3, options: [], animations: {
+            self.downloadButton.alpha = 1
+            self.bookmarkButton.alpha = 1
+            self.buttonsHidden = true
+        }) { (completed) in
+            UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
+                self.downloadButton.alpha = 0
+                self.bookmarkButton.alpha = 0
+            }) { (completed) in
+                self.buttonsHidden = false
+            }
         }
     }
 }
