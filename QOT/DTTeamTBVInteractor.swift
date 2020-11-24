@@ -14,15 +14,18 @@ final class DTTeamTBVInteractor: DTInteractor, WorkerTeam {
     // MARK: - Properties
     var poll: QDMTeamToBeVisionPoll?
     var team: QDMTeam?
+    var showBanner: Bool?
 
     init(_ presenter: DTPresenterInterface,
          questionGroup: QuestionGroup,
          introKey: String,
+         showBanner: Bool?,
          poll: QDMTeamToBeVisionPoll?,
          team: QDMTeam) {
         super.init(presenter, questionGroup: questionGroup, introKey: introKey)
         self.poll = poll
         self.team = team
+        self.showBanner = showBanner
     }
 
     override func getTeamTBVPoll() -> QDMTeamToBeVisionPoll? {

@@ -163,6 +163,15 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     @objc private func dismissAction() {
         dismiss(animated: true)
     }
+
+    func showWhiteBanner() {
+        if interactor?.showBanner == true {
+            let message = AppTextService.get(.banner_notification_sent)
+            let banner = NotificationBanner.shared
+            banner.configure(message: message, isDark: false)
+            banner.show(in: self.view)
+        }
+    }
 }
 
 extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterface {
@@ -180,6 +189,7 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
         setupPageViewContollerOnce()
         self.tracks = questions
         pageIndicator.pageCount = questions.count
+        showWhiteBanner()
         if let viewController = questionnaireViewController(with: self.tracks.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }

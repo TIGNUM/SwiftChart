@@ -615,6 +615,7 @@ public extension AppTextKey {
     static let team_invite_banner_message_decline = AppTextKey("team_invite.banner_message.decline")
     static let team_invite_banner_message_join = AppTextKey("team_invite.banner_meesage.join")
     static let team_invite_header_plural = AppTextKey("team_invite.header_title.plural")
+    static let banner_notification_sent = AppTextKey("banner.notification.sent")
     static let team_invite_header_singular = AppTextKey("team_invite.header_title.singular")
     static let team_invite_content_info = AppTextKey("team_invite.content.info")
     static let team_invite_content_count = AppTextKey("team_invite.content.count")
