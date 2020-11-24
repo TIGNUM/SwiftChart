@@ -146,7 +146,7 @@ extension DailyBriefViewController {
                                                                 domainModel: impactReadinessCellViewModel.domainModel)
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil,
                 let impactReadinessScoreViewModel = bucketItem as? ImpactReadinessScoreViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
+                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title),
                                                                 title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
                                                                 body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
                                                                 image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
@@ -226,7 +226,13 @@ extension DailyBriefViewController {
         case .GOOD_TO_KNOW?:
             return getGoodToKnowCell(tableView, indexPath, bucketItem as? GoodToKnowCellViewModel)
         case .FROM_MY_COACH?:
-            return getCoachMessageCell(tableView, indexPath, bucketItem as? FromMyCoachCellViewModel)
+            if let fromMyCoachViewModel = bucketItem as? FromMyCoachCellViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: "Message from my TIGNUM coach",
+                                                                title: NSAttributedString.init(string: fromMyCoachViewModel.detail.title),
+                                                                body: fromMyCoachViewModel.messages.first?.text,
+                                                                image: fromMyCoachViewModel.detail.imageUrl?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: fromMyCoachViewModel.domainModel)
+            }
         case .FROM_TIGNUM?:
             return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
         case .BESPOKE?:
@@ -417,15 +423,6 @@ private extension DailyBriefViewController {
                                   _ fromTignumMessageViewModel: FromTignumCellViewModel?) -> UITableViewCell {
         let cell: FromTignumCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: fromTignumMessageViewModel)
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getCoachMessageCell(_ tableView: UITableView,
-                             _ indexPath: IndexPath,
-                             _ coachMessageModel: FromMyCoachCellViewModel?) -> UITableViewCell {
-        let cell: FromMyCoachCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: coachMessageModel)
         cell.clickableLinkDelegate = self
         return cell
     }
