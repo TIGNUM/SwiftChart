@@ -17,6 +17,8 @@ protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func showTBV()
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
+    func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
+    func didUpdateLevel5(with model: Level5ViewModel)
 }
 
 protocol BaseDailyBriefDetailsPresenterInterface {
@@ -25,9 +27,11 @@ protocol BaseDailyBriefDetailsPresenterInterface {
 
 protocol BaseDailyBriefDetailsInteractorInterface: Interactor {
     func getModel() -> BaseDailyBriefViewModel
+    func updateModel(_ model: BaseDailyBriefViewModel)
     func getNumberOfRows() -> Int
     func getDetailsTableViewCell(for indexPath: IndexPath, owner: BaseDailyBriefDetailsViewController) -> UITableViewCell
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
+    func saveAnswerValue(_ value: Int)
 }
 
 protocol BaseDailyBriefDetailsRouterInterface {

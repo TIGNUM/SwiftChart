@@ -43,19 +43,19 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         }
 
         let screens: (cardDetail: BaseDailyBriefDetailsViewController, home: DailyBriefViewController) = (fromVC, toVC)
-        guard let cardDetailView = fromVC.view,
-              let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewBaseDailyBriefCell,
-              let standardCell = dailyBriefCell.collectionView.cellForItem(at: IndexPath.init(item: 0, section: 0)) as? NewDailyStandardBriefCollectionViewCell else {
+        guard let cardDetailView = fromVC.view else {
             return
         }
 
-        guard let viewModel = dailyBriefCell.datasource?.first as? NewDailyBriefStandardModel else {
-            return
-        }
-        viewModel.isInAnimationTransition = true
-        standardCell.hideCTAButton = false
+        if let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewBaseDailyBriefCell,
+           let standardCell = dailyBriefCell.collectionView.cellForItem(at: IndexPath.init(item: 0, section: 0)) as? NewDailyStandardBriefCollectionViewCell,
+           let viewModel = dailyBriefCell.datasource?.first as? NewDailyBriefStandardModel {
+            viewModel.isInAnimationTransition = true
+            standardCell.hideCTAButton = false
 
-        viewModel.body = self.params.fromCell.body.text
+            viewModel.body = self.params.fromCell.body.text
+            viewModel.caption = self.params.fromCell.caption.text
+        }
 
         let animatedContainerView = UIView()
         if GlobalConstants.isEnabledDebugAnimatingViews {
@@ -118,7 +118,10 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
                 cardDetailView.edges(to: container)
             }
             ctx.completeTransition(success)
-            viewModel.isInAnimationTransition = false
+            if let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewBaseDailyBriefCell,
+               let viewModel = dailyBriefCell.datasource?.first as? NewDailyBriefStandardModel {
+                viewModel.isInAnimationTransition = false
+            }
         }
         UIView.animate(withDuration: transitionDuration(using: ctx), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
             animateCardViewBackToPlace()

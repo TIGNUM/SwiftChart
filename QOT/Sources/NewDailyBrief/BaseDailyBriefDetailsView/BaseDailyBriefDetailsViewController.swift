@@ -97,6 +97,17 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
     func presentPrepareResults(for preparation: QDMUserPreparation?) {
         router.presentPrepareResults(for: preparation)
     }
+
+    func saveAnswerValue(_ value: Int, from cell: UITableViewCell) {
+        interactor.saveAnswerValue(value)
+    }
+
+    func didUpdateLevel5(with model: Level5ViewModel) {
+        interactor.updateModel(model)
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
+        tableView.endUpdates()
+    }
 }
 
 // MARK: - BaseDailyBriefDetailsViewControllerInterface

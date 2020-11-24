@@ -159,24 +159,6 @@ extension DailyBriefWorker {
     }
 }
 
-// MARK: - Get to level 5
-extension DailyBriefWorker {
-    func saveAnswerValue(_ value: Int) {
-        getDailyBriefBucketsForViewModel(completion: {(buckets) in
-            var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
-            level5Bucket?.currentGetToLevel5Value = value
-            if let level5Bucket = level5Bucket {
-                DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
-                    if let error = error {
-                        log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
-                    }
-                    requestSynchronization(.BUCKET_RECORD, .UP_SYNC)
-                })
-            }
-        })
-    }
-}
-
 // MARK: - Team News Feed
 extension DailyBriefWorker {
     func markAsRead(teamNewsFeed: QDMTeamNewsFeed?, _ completion: @escaping () -> Void) {
