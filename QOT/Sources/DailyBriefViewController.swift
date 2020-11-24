@@ -138,11 +138,15 @@ extension DailyBriefViewController {
         case .DAILY_CHECK_IN_1?:
             if (bucketItem as? ImpactReadinessCellViewModel) != nil,
                 let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
+                let title = ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessCellViewModel.readinessScore,
+                                                                                              impactReadinessNoDataTitle: impactReadinessCellViewModel.title)
+                let body = impactReadinessCellViewModel.feedback?.isEmpty ?? true ? impactReadinessCellViewModel.readinessIntro : impactReadinessCellViewModel.feedback
+                let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? 0 : 2
                 standardModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel.title,
-                                                                title: ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessCellViewModel.readinessScore,
-                                                                impactReadinessNoDataTitle: impactReadinessCellViewModel.title),
-                                                                body: impactReadinessCellViewModel.feedback,
+                                                                title: title,
+                                                                body: body,
                                                                 image: impactReadinessCellViewModel.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                numberOfLinesForBody: numberOfLines,
                                                                 domainModel: impactReadinessCellViewModel.domainModel)
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil,
                 let impactReadinessScoreViewModel = bucketItem as? ImpactReadinessScoreViewModel {

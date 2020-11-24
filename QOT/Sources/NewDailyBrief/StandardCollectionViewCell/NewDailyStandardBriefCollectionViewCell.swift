@@ -49,7 +49,7 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
         body.text = model.body
         imageView.kf.setImage(with: URL.init(string: model.image ?? ""))
         arrowButton.isHidden = (model.detailsMode ?? false) && hideCTAButton
-        body.numberOfLines = (model.detailsMode ?? false) ? ((model.isInAnimationTransition ?? false) ? 2 : 0) : 2
+        body.numberOfLines = (model.detailsMode ?? false) ? ((model.isInAnimationTransition ?? false) ? model.numberOfLinesForBody : 0) : model.numberOfLinesForBody
         titleTrailingConstraint.constant = 20
         skeletonManager.hide()
         var CTAIcon = UIImage.init(named: "diagonal arrow")
