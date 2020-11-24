@@ -38,7 +38,6 @@ protocol BaseRouterInterface {
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func dismiss()
-    func dismissChatBotFlow()
 
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
 
@@ -59,10 +58,6 @@ class BaseRouter: BaseRouterInterface {
     // MARK: - BaseRouterInterface
     @objc func dismiss() {
         viewController?.dismiss(animated: true)
-    }
-
-    func dismissChatBotFlow() {
-        AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
     func presentContent(_ contentId: Int) {

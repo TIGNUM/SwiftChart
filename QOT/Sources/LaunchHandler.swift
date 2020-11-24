@@ -15,7 +15,7 @@ enum LaunchOption: String {
     case edit
 }
 
-final class LaunchHandler {
+final class LaunchHandler: BaseRouter {
 
     private var appDelegate: AppDelegate {
         return AppDelegate.current
@@ -264,11 +264,7 @@ extension LaunchHandler {
     func showTeamTBV(_ teamId: Int) {
         getTeam(teamId) { [weak self] (team) in
             if let team = team {
-                if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
-                    let configurator = TeamToBeVisionConfigurator.make(team: team)
-                    configurator(controller)
-                    self?.present(viewController: controller)
-                }
+                self?.showTeamTBV(team, nil)
             }
         }
     }
