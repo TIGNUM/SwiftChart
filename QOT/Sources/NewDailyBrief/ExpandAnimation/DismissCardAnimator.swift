@@ -54,6 +54,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             standardCell.hideCTAButton = false
 
             viewModel.body = self.params.fromCell.body.text
+            viewModel.caption = self.params.fromCell.caption.text
         }
 
         let animatedContainerView = UIView()
