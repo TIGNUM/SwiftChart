@@ -187,10 +187,14 @@ private extension TeamToBeVisionViewController {
                        action: .TAP)
         switch sender.ctaAction {
         case .showAdminOptionsGenerator:
-            router.showTeamAdmin(type: .voting, team: interactor.team)
+            router.showTeamAdmin(type: .voting,
+                                 team: interactor.team,
+                                 notificationSent: false)
 
         case .showAdminOptionsRating:
-            router.showTeamAdmin(type: .rating, team: interactor.team)
+            router.showTeamAdmin(type: .rating,
+                                 team: interactor.team,
+                                 notificationSent: false)
 
         case .showBanner(let message):
             router.showBanner(message: message)
@@ -206,7 +210,8 @@ private extension TeamToBeVisionViewController {
 
         case .showGenerator:
             router.showTeamTBVGenerator(poll: interactor.teamVisionPoll,
-                                        team: interactor.team)
+                                        team: interactor.team,
+                                        showBanner: false)
 
         case .undefined,
              .none: break

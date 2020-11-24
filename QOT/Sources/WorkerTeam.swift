@@ -498,9 +498,7 @@ extension WorkerTeam {
                                           sendPushNotification: Bool,
                                           _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
         TeamService.main.openNewTeamToBeVisionTrackerPoll(for: team,
-                                                          sendPushNotification: sendPushNotification) { (poll,
-                                                                                                         _,
-                                                                                                         error) in
+                                                          sendPushNotification: sendPushNotification) { (poll, _, error) in
             if let error = error {
                 log("Error openNewTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
             }

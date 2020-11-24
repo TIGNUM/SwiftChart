@@ -19,6 +19,7 @@ protocol DTTeamTBVInteractorInterface: Interactor {
                                 _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
 
     func teamToBeVisionExist(_ completion: @escaping (Bool) -> Void)
+    var showBanner: Bool? { get }
 }
 
 protocol DTTeamTBVRouterInterface {}
