@@ -44,6 +44,11 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return 2
             }
             return 1
+        case DailyBriefBucketName.FROM_MY_COACH:
+            if let fromMyCoachModel = model as? FromMyCoachCellViewModel {
+                return fromMyCoachModel.messages.count + 1
+            }
+            return 1
         default:
             return 1
         }
@@ -181,7 +186,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
                     return UITableViewCell.init()
                 }
-                let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(),
+                let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title),
                                                                      title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
                                                                      body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
                                                                      image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
@@ -233,6 +238,32 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return cell
             default:
                 break
+            }
+        case DailyBriefBucketName.FROM_MY_COACH:
+            switch indexPath.row {
+            case 0:
+                guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner),
+                      let fromMyCoachModel = model as? FromMyCoachCellViewModel else {
+                    return UITableViewCell.init()
+                }
+                let standardModel = NewDailyBriefStandardModel.init(caption: "From my coach",
+                                                                title: NSAttributedString.init(string: fromMyCoachModel.detail.title),
+                                                                body: nil,
+                                                                image: fromMyCoachModel.detail.imageUrl?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                detailsMode: true,
+                                                                domainModel: fromMyCoachModel.domainModel)
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            default:
+                guard let fromMyCoachModel = model as? FromMyCoachCellViewModel,
+                      let cell: FromMyCoachTableViewCell = R.nib.fromMyCoachTableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+
+                cell.configure(with: fromMyCoachModel.messages[indexPath.row - 1], hideSeparatorView: indexPath.row == fromMyCoachModel.messages.count)
+
+                return cell
             }
         default:
             return UITableViewCell.init()

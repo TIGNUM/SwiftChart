@@ -894,6 +894,8 @@
 		B474CA922398F85F00A829B5 /* RegisterIntroInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */; };
 		B474CA932398F85F00A829B5 /* RegisterIntroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */; };
 		B474CA942398F85F00A829B5 /* RegisterIntroConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */; };
+		B4792D39256CFB4000D24E7F /* FromMyCoachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4792D38256CFB4000D24E7F /* FromMyCoachTableViewCell.swift */; };
+		B4792D47256CFB5900D24E7F /* FromMyCoachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4792D46256CFB5900D24E7F /* FromMyCoachTableViewCell.xib */; };
 		B47953B3230AD512006EFE0F /* MyDataScreenInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */; };
 		B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */; };
 		B47953B5230AD512006EFE0F /* MyDataScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */; };
@@ -2332,6 +2334,8 @@
 		B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroInteractor.swift; sourceTree = "<group>"; };
 		B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroModel.swift; sourceTree = "<group>"; };
 		B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroConfigurator.swift; sourceTree = "<group>"; };
+		B4792D38256CFB4000D24E7F /* FromMyCoachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachTableViewCell.swift; sourceTree = "<group>"; };
+		B4792D46256CFB5900D24E7F /* FromMyCoachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachTableViewCell.xib; sourceTree = "<group>"; };
 		B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenInterface.swift; sourceTree = "<group>"; };
 		B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenPresenter.swift; sourceTree = "<group>"; };
 		B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenModel.swift; sourceTree = "<group>"; };
@@ -4774,6 +4778,8 @@
 				B44D44432568418000B3B4F6 /* MindsetShifterTableViewCell.xib */,
 				B44D4459256B1B0500B3B4F6 /* PeakPerformanceTableViewCell.swift */,
 				B44D4461256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib */,
+				B4792D38256CFB4000D24E7F /* FromMyCoachTableViewCell.swift */,
+				B4792D46256CFB5900D24E7F /* FromMyCoachTableViewCell.xib */,
 			);
 			path = CustomDetailsCells;
 			sourceTree = "<group>";
@@ -6576,6 +6582,7 @@
 				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
 				B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
+				B4792D47256CFB5900D24E7F /* FromMyCoachTableViewCell.xib in Resources */,
 				8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */,
 				3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */,
 				369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */,
@@ -7854,6 +7861,7 @@
 				B4AB48BC230BF891003B3C1F /* MyDataSelectionConfigurator.swift in Sources */,
 				8D5668BA22DCAD4800AA172F /* MySprintsListViewController.swift in Sources */,
 				36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */,
+				B4792D39256CFB4000D24E7F /* FromMyCoachTableViewCell.swift in Sources */,
 				B4AB48B5230BF890003B3C1F /* MyDataSelectionPresenter.swift in Sources */,
 				B430D7FE23A916B600C75C9C /* MyQotAdminLocalNotificationsConfigurator.swift in Sources */,
 				F99DF5FC2292D75A00341DAB /* ToolsCollectionsInteractor.swift in Sources */,
