@@ -108,7 +108,9 @@ extension TeamToBeVisionOptionsViewController: TeamAdminDelegate {
                                   delegate: self)
         case .voting:
             if let team = interactor.team {
-                router.showTeamTBVGenerator(poll: interactor.toBeVisionPoll, team: team, showBanner: false)
+                router.showTeamTBVGenerator(poll: interactor.toBeVisionPoll,
+                                            team: team,
+                                            showBanner: interactor.showBanner)
             }
         }
     }
