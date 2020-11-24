@@ -38,8 +38,8 @@ protocol BaseRouterInterface {
     func dismiss()
     func dismissChatBotFlow()
 
-    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam, showBanner: Bool?) 
-    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?, notificationSent: Bool?)
+    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam, showBanner: Bool?)
+    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?, showBanner: Bool?)
     func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types)
 
     func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?,
@@ -274,12 +274,12 @@ class BaseRouter: BaseRouterInterface {
         present(controller)
     }
 
-    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?, notificationSent: Bool?) {
+    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?, showBanner: Bool?) {
         if let vc = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
             TeamToBeVisionOptionsConfigurator.make(viewController: vc,
                                                    type: type,
                                                    team: team,
-                                                   notificationSent: notificationSent)
+                                                   showBanner: showBanner)
             self.viewController?.show(vc, sender: nil)
         }
     }

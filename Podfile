@@ -10,7 +10,7 @@ target 'QOT' do
   pod 'SwiftyBeaver'
   pod 'AppCenter'
   pod 'Kingfisher'
-  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'build-seed-db'
+  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
   pod 'SwiftChart', :git => 'git@github.com:SanggeonPark/SwiftChart.git'

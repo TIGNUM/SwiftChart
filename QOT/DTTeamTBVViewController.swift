@@ -23,9 +23,6 @@ final class DTTeamTBVViewController: DTViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-//    override func viewDidLoad() {
-//        showBlackBanner()
-//    }
     override func viewDidAppear(_ animated: Bool) {
         showBlackBanner()
     }

@@ -189,12 +189,12 @@ private extension TeamToBeVisionViewController {
         case .showAdminOptionsGenerator:
             router.showTeamAdmin(type: .voting,
                                  team: interactor.team,
-                                 notificationSent: false)
+                                 showBanner: false)
 
         case .showAdminOptionsRating:
             router.showTeamAdmin(type: .rating,
                                  team: interactor.team,
-                                 notificationSent: false)
+                                 showBanner: false)
 
         case .showBanner(let message):
             router.showBanner(message: message)

@@ -13,9 +13,9 @@ final class TeamToBeVisionOptionsConfigurator {
     static func make(viewController: TeamToBeVisionOptionsViewController,
                      type: TeamAdmin.Types,
                      team: QDMTeam?,
-                     notificationSent: Bool?) {
+                     showBanner: Bool?) {
         let presenter = TeamToBeVisionOptionsPresenter(viewController: viewController)
-        let interactor = TeamToBeVisionOptionsInteractor(presenter: presenter, type: type, team: team, notificationSent: notificationSent)
+        let interactor = TeamToBeVisionOptionsInteractor(presenter: presenter, type: type, team: team, showBanner: showBanner)
         viewController.interactor = interactor
     }
 }
