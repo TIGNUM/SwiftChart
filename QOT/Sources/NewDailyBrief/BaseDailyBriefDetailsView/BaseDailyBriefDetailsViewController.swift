@@ -135,6 +135,14 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView.init()
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
+    }
 }
 
 extension BaseDailyBriefDetailsViewController: QuestionnaireAnswer {
