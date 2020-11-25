@@ -10,9 +10,12 @@ import Foundation
 import qot_dal
 
 final class TeamToBeVisionOptionsConfigurator {
-    static func make(viewController: TeamToBeVisionOptionsViewController, type: TeamAdmin.Types, team: QDMTeam?) {
+    static func make(viewController: TeamToBeVisionOptionsViewController,
+                     type: TeamAdmin.Types,
+                     team: QDMTeam?,
+                     showBanner: Bool?) {
         let presenter = TeamToBeVisionOptionsPresenter(viewController: viewController)
-        let interactor = TeamToBeVisionOptionsInteractor(presenter: presenter, type: type, team: team)
+        let interactor = TeamToBeVisionOptionsInteractor(presenter: presenter, type: type, team: team, showBanner: showBanner)
         viewController.interactor = interactor
     }
 }

@@ -17,6 +17,7 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
     internal var toBeVisionPoll: QDMTeamToBeVisionPoll?
     internal var trackerPoll: QDMTeamToBeVisionTrackerPoll?
     internal var team: QDMTeam?
+    internal var showBanner: Bool?
 
     private lazy var remainingDays: Int = {
         switch type {
@@ -28,10 +29,12 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
     // MARK: - Init
     init(presenter: TeamToBeVisionOptionsPresenterInterface,
          type: TeamAdmin.Types,
-         team: QDMTeam?) {
+         team: QDMTeam?,
+         showBanner: Bool?) {
         self.presenter = presenter
         self.type = type
         self.team = team
+        self.showBanner = showBanner
     }
 
     // MARK: - Interactor

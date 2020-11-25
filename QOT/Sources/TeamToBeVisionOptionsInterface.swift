@@ -28,6 +28,7 @@ protocol TeamToBeVisionOptionsInteractorInterface: Interactor {
     var toBeVisionPoll: QDMTeamToBeVisionPoll? { get }
     var trackerPoll: QDMTeamToBeVisionTrackerPoll? { get }
     var team: QDMTeam? { get }
+    var showBanner: Bool? { get }
 
     func endPoll(_ completion: @escaping () -> Void)
     func endRating(_ completion: @escaping () -> Void)
