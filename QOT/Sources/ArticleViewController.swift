@@ -216,7 +216,7 @@ extension ArticleViewController: ArticleTopNavBarProtocol {
 
     func didTapShareItem() {
         trackUserEvent(.SHARE, value: interactor.remoteID, valueType: .CONTENT, action: .TAP)
-        let share = interactYareable
+        let share = interactor.whatsHotShareable
         guard let title = share.message else { return }
         guard let shareLink = share.shareableLink, let url = URL(string: shareLink) else { return }
         let dispatchGroup = DispatchGroup()
@@ -415,11 +415,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video( _, let title, let description, _, _, _):
-            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title.uppercased(),
-                           durationString: description ?? "",
-                           icon: R.image.my_library_camera())
+        case .video( _, let title, let description, let placeholderURL, _, _):
+            let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title,
+                           timeToWatch: description,
+                           imageURL: placeholderURL,
+                           forcedColorMode: .dark,
+                           isSeen: false)
             return cell
         case .pdf(let title, let description, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
