@@ -117,11 +117,13 @@ extension TeamToBeVisionOptionsViewController: TeamAdminDelegate {
 
     func showAlert() {
         let cancel = QOTAlertAction(title: interactor.alertCancelTitle)
+        let hasRatings = interactor.trackerPoll?.qotTeamToBeVisionTrackers?.first?.qotTeamToBeVisionTrackerRatings?.isEmpty == false
         let end = QOTAlertAction(title: interactor.alertEndTitle) { [weak self] _ in
             switch self?.interactor.getType {
             case .rating:
                 self?.interactor.endRating { [weak self] in
                     self?.navigationController?.popViewController {
+                        guard hasRatings == true else { return }
                         self?.router.showTracker(for: self?.interactor.team)
                     }
                 }
