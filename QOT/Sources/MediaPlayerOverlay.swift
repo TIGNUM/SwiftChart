@@ -34,7 +34,7 @@ final class MediaPlayerOverlay: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
-        buttonsShowHide()
+        buttonsForScreen()
         addOrientationObserver()
     }
 
@@ -52,7 +52,7 @@ final class MediaPlayerOverlay: UIView {
         bookmarkButton.isSelected = isBokmarked
     }
 
-    func buttonsShowHide() {
+    func buttonsForScreen() {
         var hidden = UIDevice.current.orientation.isLandscape
         if let avPlayerViewController = delegate as? AVPlayerViewController,
             avPlayerViewController.videoGravity.rawValue == AVLayerVideoGravity.resizeAspectFill.rawValue {
@@ -66,16 +66,6 @@ final class MediaPlayerOverlay: UIView {
         }
     }
 
-    func buttonsAnimateHide() {
-        self.buttonsHidden = false
-        UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
-            self.downloadButton.alpha = 0
-            self.bookmarkButton.alpha = 0
-        }) { (complete) in
-            self.buttonsHidden?.toggle()
-        }
-    }
-
     func buttonsShow() {
         guard buttonsHidden == true else { return }
         UIView.animate(withDuration: 0.1) { [weak self] in
@@ -85,7 +75,17 @@ final class MediaPlayerOverlay: UIView {
         }
     }
 
-    func buttonsShowAndHide() {
+    func buttonsHide() {
+        self.buttonsHidden = false
+        UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
+            self.downloadButton.alpha = 0
+            self.bookmarkButton.alpha = 0
+        }) { (complete) in
+            self.buttonsHidden = true
+        }
+    }
+
+    func buttonsAnimate() {
         UIView.animate(withDuration: 0.2, delay: 0.3, options: [], animations: {
             self.downloadButton.alpha = 1
             self.bookmarkButton.alpha = 1
@@ -109,7 +109,7 @@ private extension MediaPlayerOverlay {
     }
 
     @objc func didChangeOrientation() {
-        self.buttonsShowHide()
+        self.buttonsForScreen()
     }
 }
 

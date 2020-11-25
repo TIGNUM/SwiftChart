@@ -63,9 +63,9 @@ final class MediaPlayerViewController: AVPlayerViewController {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if overlayControls?.buttonsHidden == true {
-            self.overlayControls?.buttonsShowAndHide()
+            self.overlayControls?.buttonsAnimate()
         } else {
-            self.overlayControls?.buttonsAnimateHide()
+            self.overlayControls?.buttonsHide()
         }
     }
 
@@ -80,7 +80,7 @@ final class MediaPlayerViewController: AVPlayerViewController {
 
     func addVideoGravityObserver() {
         videoGravityObserver = self.observe(\.videoGravity) { [weak self] (_, _) in
-            self?.overlayControls?.buttonsShowHide()
+            self?.overlayControls?.buttonsForScreen()
         }
     }
 
@@ -220,7 +220,7 @@ extension UIViewController {
             }
             if player.timeControlStatus == .playing {
                 self?.trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
-                controller.overlayControls?.buttonsAnimateHide()
+                controller.overlayControls?.buttonsHide()
             }
         }
     }
