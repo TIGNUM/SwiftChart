@@ -80,13 +80,13 @@ enum ThemeView {
     var color: UIColor {
         switch self {
         case .level1:
-            return Palette.carbon
+            return .black
         case .level2:
-            return Palette.carbon
+            return .black
         case .level3:
-            return Palette.carbon
+            return .black
         case .level1Secondary:
-            return Palette.carbon
+            return .black
         case .level1Selected:
             return Palette.accent04
         case .level2Selected:

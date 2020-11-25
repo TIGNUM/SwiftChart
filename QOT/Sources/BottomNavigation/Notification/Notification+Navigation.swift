@@ -19,6 +19,4 @@ extension Notification.Name {
     static let hideBottomNavigation = Notification.Name("hideBottomNavigation")
     static let didTapDismissBottomNavigation = Notification.Name("didTapDismissBottomNavigation")
     static let didDismissMindsetResultView = Notification.Name("didDismissMindsetResultView")
-    //  Notification to hide/display the GuidedTrack Bucket
-    static let displayGuidedTrackRows = Notification.Name("showGuidedTrack")
 }

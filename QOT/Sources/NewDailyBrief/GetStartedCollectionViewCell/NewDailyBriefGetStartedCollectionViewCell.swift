@@ -32,7 +32,7 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
     // MARK: - Public
     public func configure(with viewModel: NewDailyBriefGetStartedModel?) {
         title.text = viewModel?.title
-        imageView.kf.setImage(with: URL.init(string: viewModel?.image ?? ""))
+        imageView.image = UIImage.init(named: viewModel?.image ?? "")
     }
 
     public static func height(for viewModel: NewDailyBriefGetStartedModel, forWidth width: CGFloat) -> CGFloat {

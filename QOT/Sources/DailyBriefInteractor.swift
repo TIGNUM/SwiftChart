@@ -23,7 +23,6 @@ final class DailyBriefInteractor {
     private var expendImpactReadiness: Bool = false
     private var teamHeaderItems = [Team.Item]()
 
-    private var guidedClosedTrack: Bool = false
     private var isLoadingBuckets: Bool = false
     private var needToLoadBuckets: Bool = false
 
@@ -102,12 +101,6 @@ private extension DailyBriefInteractor {
             self?.didGetDataSyncRequest(notification)
         }
 
-        // Listen about Expend/Collapse of Closed Guided Track
-        _ = NotificationCenter.default.addObserver(forName: .displayGuidedTrackRows,
-                                                   object: nil,
-                                                   queue: .main) { [weak self] notification in
-            self?.didGuidedClosedCellSizeChanges(notification)
-        }
         _ = NotificationCenter.default.addObserver(forName: .scrollToBucket,
                                                    object: nil,
                                                    queue: .main) { [weak self] notification in
@@ -156,12 +149,6 @@ extension DailyBriefInteractor {
 
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
         expendImpactReadiness = !expendImpactReadiness
-        updateDailyBriefBucket()
-    }
-
-    //  Display the expand/collapse of the guided close track
-    @objc func didGuidedClosedCellSizeChanges(_ notification: Notification) {
-        guidedClosedTrack = !guidedClosedTrack
         updateDailyBriefBucket()
     }
 
@@ -1069,66 +1056,45 @@ extension DailyBriefInteractor {
 
     // MARK: - Guided tour
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var guidedtrackList: [BaseDailyBriefViewModel] = []
+        var guidedTrackList: [GuidedTrackViewModel] = []
         let title = AppTextService.get(.daily_brief_section_guided_track_title)
-        let intro = AppTextService.get(.daily_brief_section_guided_track_body)
-        let buttonTitle = AppTextService.get(.daily_brief_section_guided_track_button_get_to_know_qot)
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: title,
-                                                    levelTitle: "",
-                                                    content: intro,
-                                                    buttonText: buttonTitle,
-                                                    type: GuidedTrackItemType.SECTION,
-                                                    appLink: nil,
-                                                    domain: guidedTrack))
-
-        guard guidedClosedTrack == true else {
-            return guidedtrackList
-        }
-//        TO DO
-//        let level1Title = AppTextService.get(.daily_brief_section_guided_track_section_step_1_subtitle)
-//        let level1Description = AppTextService.get(.daily_brief_section_guided_track_section_step_1_body)
-//        let level1Cta = AppTextService.get(.daily_brief_section_guided_track_section_step_1_button)
-//
-//        let level2Tile = AppTextService.get(.daily_brief_section_guided_track_section_step_2_subtitle)
-//        let level2Description = AppTextService.get(.daily_brief_section_guided_track_section_step_2_body)
-//        let level2Cta = AppTextService.get(.daily_brief_section_guided_track_section_step_2_button)
-//
-//        let level3Title = AppTextService.get(.daily_brief_section_guided_track_section_step_3_subtitle)
-//        let level3Description = AppTextService.get(.daily_brief_section_guided_track_section_step_3_body)
-//        let level3Cta = AppTextService.get(.daily_brief_section_guided_track_section_step_3_button)
-//
-//        let level4Title = AppTextService.get(.daily_brief_section_guided_track_section_step_4_subtitle)
-//        let level4Description = AppTextService.get(.daily_brief_section_guided_track_section_step_4_body)
-//        let level4Cta = AppTextService.get(.daily_brief_section_guided_track_section_step_4_button)
-//
-//        let level5Title = AppTextService.get(.daily_brief_section_guided_track_section_step_5_subtitle)
-//        let level5Description = AppTextService.get(.daily_brief_section_guided_track_section_step_5_body)
-//        let level5Cta = AppTextService.get(.daily_brief_section_guided_track_section_step_5_button)
+        var items: [GuidedTrackItem] = []
 
         guidedTrack.contentCollections?.forEach { (contentItem) in
-            let levelTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_TITLE")}
-                .first?.valueText
-            let levelDescription = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_DESCRIPTION")}
-                .first?.valueText
-            let levelCta = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_CTA")}
-                .first?.valueText
-            let qdmAppLink = contentItem.links.first
-
-            if  let levelTitle = levelTitle,
-                let levelDescription = levelDescription,
-                let levelCta = levelCta,
-                let qdmAppLink = qdmAppLink {
-
-                guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "",
-                                                            levelTitle: levelTitle,
-                                                            content: levelDescription,
-                                                            buttonText: levelCta,
-                                                            type: GuidedTrackItemType.ROW,
-                                                            appLink: qdmAppLink,
-                                                            domain: guidedTrack))
+            var title: String = ""
+            var image: String = ""
+            if let qdmAppLink = contentItem.links.first {
+                switch contentItem.searchTags.first {
+                case "DB_GUIDED_TRACK_1":
+                    title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_video)
+                    image = "get-started-video"
+                    items.append(GuidedTrackItem.init(title: title,
+                                                      image: image,
+                                                      appLink: qdmAppLink))
+                case "DB_GUIDED_TRACK_2":
+                    title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_tbv)
+                    image = "get-started-tbv"
+                    items.append(GuidedTrackItem.init(title: title,
+                                                      image: image,
+                                                      appLink: qdmAppLink))
+                case "DB_GUIDED_TRACK_4":
+                    title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_prepare)
+                    image = "get-started-prepare"
+                    items.append(GuidedTrackItem.init(title: title,
+                                                      image: image,
+                                                      appLink: qdmAppLink))
+                default:
+                    break
+                }
             }
         }
-        return guidedtrackList
+
+        let guidedTrackViewModel = GuidedTrackViewModel.init(title: title,
+                                                             items: items,
+                                                             domain: guidedTrack)
+        guidedTrackList.append(guidedTrackViewModel)
+
+        return guidedTrackList
     }
 
     // MARK: - Tignum Messages
@@ -1216,6 +1182,7 @@ extension DailyBriefInteractor {
                                                           tbvStatement: tbvSentence,
                                                           intro2: tbvIntro2,
                                                           buttonText: ctaTBVButtonText,
+                                                          image: meAtMyBest.toBeVision?.profileImageResource?.urlString(),
                                                           domainModel: meAtMyBest))
             return meAtMyBestList
         }
