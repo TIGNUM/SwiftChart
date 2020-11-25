@@ -123,7 +123,7 @@ final class ArticleWorker {
                                        publishDate: content.publishedDate,
                                        timeToRead: content.minutesToRead,
                                        imageURL: content.thumbnailURLString)
-            relatedContent = [QDMContentCollection]()
+        relatedContent = [QDMContentCollection]()
         nextUp = nil
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
