@@ -95,8 +95,9 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
 
     func styleVelocityButton() {
         velocityButton.circle()
+        velocityButton.backgroundColor = .clear
         velocityButton.layer.borderWidth = 1
-        velocityButton.layer.borderColor = UIColor.accent.cgColor
+        velocityButton.layer.borderColor = UIColor.accent40.cgColor
     }
 
     func configureMedia(_ media: MediaPlayerModel, isPlaying: Bool = true) {
@@ -264,10 +265,11 @@ extension AudioFullScreenViewController {
 
     @IBAction func didTapVelocity() {
         velocityButton.backgroundColor = .accent40
+        velocityButton.layer.borderWidth = 0
         var title = ""
         switch velocity {
         case 0.5:
-            velocityButton.backgroundColor = .sand
+            styleVelocityButton()
             velocity = 1
             title = "1 X"
         case 1:
