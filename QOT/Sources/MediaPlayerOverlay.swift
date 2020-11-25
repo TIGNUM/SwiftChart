@@ -78,23 +78,23 @@ final class MediaPlayerOverlay: UIView {
     func buttonsHide() {
         self.buttonsHidden = false
         UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
-            self.downloadButton.alpha = 0
-            self.bookmarkButton.alpha = 0 }) { (completed) in
-            self.buttonsHidden = true
-        }
+                        self.downloadButton.alpha = 0
+                        self.bookmarkButton.alpha = 0 }, completion: { (completed) in
+                            self.buttonsHidden = true
+                        })
     }
 
     func buttonsAnimate() {
         UIView.animate(withDuration: 0.2, delay: 0.3, options: [], animations: {
-            self.downloadButton.alpha = 1
-            self.bookmarkButton.alpha = 1
-            self.buttonsHidden = false }) { (completed) in
-            UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
-                self.downloadButton.alpha = 0
-                self.bookmarkButton.alpha = 0 }) { (completed) in
-                self.buttonsHidden = true
-            }
-        }
+                        self.downloadButton.alpha = 1
+                        self.bookmarkButton.alpha = 1
+                        self.buttonsHidden = false }, completion: { (completed) in
+                            UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
+                                            self.downloadButton.alpha = 0
+                                            self.bookmarkButton.alpha = 0 }, completion: { (completed) in
+                                                self.buttonsHidden = true
+                                            })
+                        })
     }
 }
 
