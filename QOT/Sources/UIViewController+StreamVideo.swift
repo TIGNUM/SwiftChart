@@ -65,7 +65,7 @@ final class MediaPlayerViewController: AVPlayerViewController {
         if overlayControls?.buttonsHidden == true {
             self.overlayControls?.buttonsShowAndHide()
         } else {
-            self.overlayControls?.buttonsHide()
+            self.overlayControls?.buttonsAnimateHide()
         }
     }
 
@@ -220,7 +220,7 @@ extension UIViewController {
             }
             if player.timeControlStatus == .playing {
                 self?.trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
-                controller.overlayControls?.buttonsHide()
+                controller.overlayControls?.buttonsAnimateHide()
             }
         }
     }
