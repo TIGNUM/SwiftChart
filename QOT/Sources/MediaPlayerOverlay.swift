@@ -79,8 +79,7 @@ final class MediaPlayerOverlay: UIView {
         self.buttonsHidden = false
         UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
             self.downloadButton.alpha = 0
-            self.bookmarkButton.alpha = 0
-        }) { (complete) in
+            self.bookmarkButton.alpha = 0 }) { (completed) in
             self.buttonsHidden = true
         }
     }
@@ -89,12 +88,10 @@ final class MediaPlayerOverlay: UIView {
         UIView.animate(withDuration: 0.2, delay: 0.3, options: [], animations: {
             self.downloadButton.alpha = 1
             self.bookmarkButton.alpha = 1
-            self.buttonsHidden = false
-        }) { (completed) in
+            self.buttonsHidden = false }) { (completed) in
             UIView.animate(withDuration: 0.2, delay: 3, options: [], animations: {
                 self.downloadButton.alpha = 0
-                self.bookmarkButton.alpha = 0
-            }) { (completed) in
+                self.bookmarkButton.alpha = 0 }) { (completed) in
                 self.buttonsHidden = true
             }
         }

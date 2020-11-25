@@ -47,8 +47,7 @@ final class NotificationBanner: UIView {
                                 height: frame.height)
             view.addSubview(self)
             UIView.animate(withDuration: 0.3, animations: {
-                self.frame.origin = CGPoint(x: 0, y: frame.origin.y + 10 + frame.height)
-            }) { (_) in
+                self.frame.origin = CGPoint(x: 0, y: frame.origin.y + 10 + frame.height) }) { (_) in
                 self.startTimer()
             }
         }
