@@ -61,7 +61,7 @@ private extension DTTeamTBVViewController {
             }
         }
 
-        QOTAlert.show(title: title, message: message, bottomItems: [buttonGotIt])
+        QOTAlert.showWithoutDismiss(title: title, message: message, bottomItems: [buttonGotIt])
     }
 
     func showBlackBanner() {

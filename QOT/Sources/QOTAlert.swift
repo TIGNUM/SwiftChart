@@ -42,6 +42,7 @@ class QOTAlert {
                     message: message,
                     bottomAlertItems: bottomItems,
                     buttonAlignment: buttonAlignment,
+                    isDimissable: true,
                     cancelHandler: cancelHandler)
     }
 
@@ -55,6 +56,21 @@ class QOTAlert {
                     message: message,
                     bottomBarItems: bottomItems,
                     buttonAlignment: buttonAlignment,
+                    isDimissable: true,
+                    cancelHandler: cancelHandler)
+    }
+
+    static func showWithoutDismiss(title: String?,
+                     message: String?,
+                     bottomItems: [QOTAlertAction]? = nil,
+                     buttonAlignment: QOTAlertViewController.ButtonsAlignment = .right,
+                     cancelHandler: (() -> Void)? = nil) {
+
+        shared.show(title: title,
+                    message: message,
+                    bottomAlertItems: bottomItems,
+                    buttonAlignment: buttonAlignment,
+                    isDimissable: false,
                     cancelHandler: cancelHandler)
     }
 
@@ -71,6 +87,7 @@ private extension QOTAlert {
               bottomAlertItems: [QOTAlertAction]? = nil,
               bottomBarItems: [UIBarButtonItem]? = nil,
               buttonAlignment: QOTAlertViewController.ButtonsAlignment,
+              isDimissable: Bool,
               cancelHandler: (() -> Void)? = nil) {
         let controller = R.storyboard.qotAlert.qotAlertViewController() ?? QOTAlertViewController()
         controller.delegate = self
@@ -82,6 +99,7 @@ private extension QOTAlert {
         } else {
             controller.set(title: title, message: message, bottomItems: bottomBarItems)
         }
+        controller.removeGestureRecognizers(isDismissable: isDimissable)
     }
 
     func show(controller: QOTAlertViewController) {
@@ -231,6 +249,12 @@ extension QOTAlertViewController {
         }
         // Bottom buttons
         self.bottomItems = bottomItems
+    }
+
+    func removeGestureRecognizers(isDismissable: Bool) {
+        guard isDismissable == false else { return }
+        backgroundView.gestureRecognizers?.forEach(backgroundView.removeGestureRecognizer)
+        dragView.gestureRecognizers?.forEach(dragView.removeGestureRecognizer)
     }
 
     func show() {
