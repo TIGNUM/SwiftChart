@@ -109,7 +109,6 @@ extension QOTAlert: QOTAlertViewControllerDelegate {
     }
 }
 
-// MARK: -
 // MARK: - QOTAlertViewController
 
 protocol QOTAlertViewControllerDelegate: class {
