@@ -145,7 +145,7 @@ extension DailyBriefViewController {
                 standardModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel.title,
                                                                 title: title,
                                                                 body: body,
-                                                                image: impactReadinessCellViewModel.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                 numberOfLinesForBody: numberOfLines,
                                                                 domainModel: impactReadinessCellViewModel.domainModel)
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil,
@@ -197,7 +197,7 @@ extension DailyBriefViewController {
                 standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel.title,
                                                                 title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
                                                                 body: meAtMyBestViewModel.tbvStatement,
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                image: meAtMyBestViewModel.image,
                                                                 domainModel: meAtMyBestViewModel.domainModel)
             }
         case .ABOUT_ME?:
@@ -284,8 +284,21 @@ extension DailyBriefViewController {
                                                                 domainModel: peakPerformanceViewModel.domainModel)
             }
         case .GUIDE_TRACK?:
-            let showDivider = indexPath.row == bucketList.count - 1
-            return getGuidedTrack(tableView, indexPath, showDivider, bucketItem as? GuidedTrackViewModel)
+            if let guidedTrackViewModel = bucketItem as? GuidedTrackViewModel,
+               let items = guidedTrackViewModel.items {
+                var models: [NewDailyBriefGetStartedModel] = []
+                for item in items {
+                    let model = NewDailyBriefGetStartedModel.init(title: item.title,
+                                                                  image: item.image,
+                                                                  appLink: item.appLink,
+                                                                  domainModel: guidedTrackViewModel.domainModel)
+                    models.append(model)
+                }
+                cell.configure(with: models)
+
+                return cell
+
+            }
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         case .MINDSET_SHIFTER?:
@@ -525,24 +538,6 @@ private extension DailyBriefViewController {
             return cell
     }
 
-    func getGuidedTrack(_ tableView: UITableView,
-                        _ indexPath: IndexPath,
-                        _ hideDivider: Bool,
-                        _ guidedtrackModel: GuidedTrackViewModel?) -> UITableViewCell {
-        if guidedtrackModel?.type == GuidedTrackItemType.SECTION {
-            let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(with: guidedtrackModel)
-            cell.button.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: -8.0)
-            return cell
-        }
-        let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: guidedtrackModel, hideDivider)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-        return cell
-    }
-
     func getWeatherCell(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
@@ -636,8 +631,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(AboutMeCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
-        tableView.registerDequeueable(GuidedTrackSectionCell.self)
-        tableView.registerDequeueable(GuidedTrackRowCell.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)

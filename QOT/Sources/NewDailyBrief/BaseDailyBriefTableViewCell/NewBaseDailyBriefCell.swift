@@ -120,6 +120,9 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let model = datasource?[indexPath.row] as? NewDailyBriefGetStartedModel {
+            model.appLink?.launch()
+        }
         delegate?.didTapOnCollectionViewCell(at: indexPath, sender: self)
     }
 }
