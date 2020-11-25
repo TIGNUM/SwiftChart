@@ -216,7 +216,7 @@ extension ArticleViewController: ArticleTopNavBarProtocol {
 
     func didTapShareItem() {
         trackUserEvent(.SHARE, value: interactor.remoteID, valueType: .CONTENT, action: .TAP)
-        let share = interactor.whatsHotShareable
+        let share = interactYareable
         guard let title = share.message else { return }
         guard let shareLink = share.shareableLink, let url = URL(string: shareLink) else { return }
         let dispatchGroup = DispatchGroup()
