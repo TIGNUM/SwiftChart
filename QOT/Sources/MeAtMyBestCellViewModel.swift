@@ -17,14 +17,16 @@ final class MeAtMyBestCellViewModel: BaseDailyBriefViewModel {
     var tbvStatement: String?
     var intro2: String?
     var buttonText: String?
+    var image: String?
 
     // MARK: - Init
-    init(title: String?, intro: String?, tbvStatement: String?, intro2: String?, buttonText: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, intro: String?, tbvStatement: String?, intro2: String?, buttonText: String?, image: String?, domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.intro = intro
         self.tbvStatement = tbvStatement
         self.intro2 = intro2
         self.buttonText = buttonText
+        self.image = image
         super.init(domainModel)
     }
 

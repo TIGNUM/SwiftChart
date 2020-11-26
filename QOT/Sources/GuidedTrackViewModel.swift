@@ -12,36 +12,22 @@ import qot_dal
 final class GuidedTrackViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var bucketTitle: String?
-    var levelTitle: String?
-    var content: String?
-    var buttonText: String?
-    var appLink: QDMAppLink?
-    var type: GuidedTrackItemType?
+    var title: String?
+    var items: [GuidedTrackItem]?
 
     // MARK: - Init
-    internal init(bucketTitle: String = "",
-                  levelTitle: String,
-                  content: String?,
-                  buttonText: String?,
-                  type: GuidedTrackItemType?,
-                  appLink: QDMAppLink?,
+    internal init(title: String?,
+                  items: [GuidedTrackItem]?,
                   domain: QDMDailyBriefBucket) {
-        self.bucketTitle = bucketTitle
-        self.levelTitle = levelTitle
-        self.content = content
-        self.buttonText = buttonText
-        self.appLink = appLink
-        self.type = type
+        self.title = title
+        self.items = items
         super.init(domain)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
         guard let source = source as? GuidedTrackViewModel else { return false }
         return super.isContentEqual(to: source) &&
-        bucketTitle == source.bucketTitle &&
-        levelTitle == source.levelTitle &&
-        content == source.content &&
-        buttonText == source.buttonText
+        title == source.title &&
+        items == source.items
     }
 }

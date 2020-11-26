@@ -708,15 +708,8 @@
 		9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */; };
 		9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */; };
 		9CBFF845234CCD0200833AC2 /* AppText+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBFF844234CCD0200833AC2 /* AppText+Extensions.swift */; };
-		9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */; };
-		9CC426182306A47500F8072E /* GuidedTrackSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426172306A47500F8072E /* GuidedTrackSectionCell.swift */; };
-		9CC4261A2306A48A00F8072E /* GuidedTrackSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426192306A48A00F8072E /* GuidedTrackSectionViewModel.swift */; };
-		9CC4261C2306A49E00F8072E /* GuidedTrackRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC4261B2306A49E00F8072E /* GuidedTrackRowCell.swift */; };
-		9CC4261E2306A4AE00F8072E /* GuidedTrackRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC4261D2306A4AE00F8072E /* GuidedTrackRowCell.xib */; };
-		9CC426202306A4DB00F8072E /* GuidedTrackRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC4261F2306A4DB00F8072E /* GuidedTrackRowViewModel.swift */; };
-		9CC426242306B01100F8072E /* GuidedTrackItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426232306B01100F8072E /* GuidedTrackItemType.swift */; };
+		9CC426242306B01100F8072E /* GuidedTrackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426232306B01100F8072E /* GuidedTrackItem.swift */; };
 		9CC426262306D39200F8072E /* GuidedTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426252306D39200F8072E /* GuidedTrackViewModel.swift */; };
-		9CC426282306D42200F8072E /* GuideTrackModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426272306D42200F8072E /* GuideTrackModelItem.swift */; };
 		9CE28A2322E1C78C00013C44 /* DailyBriefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */; };
 		9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */; };
 		9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */; };
@@ -2166,15 +2159,8 @@
 		9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderTableCellViewModel.swift; sourceTree = "<group>"; };
 		9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
 		9CBFF844234CCD0200833AC2 /* AppText+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppText+Extensions.swift"; sourceTree = "<group>"; };
-		9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidedTrackSectionCell.xib; sourceTree = "<group>"; };
-		9CC426172306A47500F8072E /* GuidedTrackSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackSectionCell.swift; sourceTree = "<group>"; };
-		9CC426192306A48A00F8072E /* GuidedTrackSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackSectionViewModel.swift; sourceTree = "<group>"; };
-		9CC4261B2306A49E00F8072E /* GuidedTrackRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackRowCell.swift; sourceTree = "<group>"; };
-		9CC4261D2306A4AE00F8072E /* GuidedTrackRowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidedTrackRowCell.xib; sourceTree = "<group>"; };
-		9CC4261F2306A4DB00F8072E /* GuidedTrackRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackRowViewModel.swift; sourceTree = "<group>"; };
-		9CC426232306B01100F8072E /* GuidedTrackItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackItemType.swift; sourceTree = "<group>"; };
+		9CC426232306B01100F8072E /* GuidedTrackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackItem.swift; sourceTree = "<group>"; };
 		9CC426252306D39200F8072E /* GuidedTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackViewModel.swift; sourceTree = "<group>"; };
-		9CC426272306D42200F8072E /* GuideTrackModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTrackModelItem.swift; sourceTree = "<group>"; };
 		9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBriefViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2ViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckIn2ModelItemType.swift; sourceTree = "<group>"; };
@@ -4457,15 +4443,8 @@
 		9CC426142306A41E00F8072E /* GuidedTrack */ = {
 			isa = PBXGroup;
 			children = (
-				9CC426232306B01100F8072E /* GuidedTrackItemType.swift */,
-				9CC4261B2306A49E00F8072E /* GuidedTrackRowCell.swift */,
-				9CC4261F2306A4DB00F8072E /* GuidedTrackRowViewModel.swift */,
-				9CC426172306A47500F8072E /* GuidedTrackSectionCell.swift */,
-				9CC426192306A48A00F8072E /* GuidedTrackSectionViewModel.swift */,
+				9CC426232306B01100F8072E /* GuidedTrackItem.swift */,
 				9CC426252306D39200F8072E /* GuidedTrackViewModel.swift */,
-				9CC426272306D42200F8072E /* GuideTrackModelItem.swift */,
-				9CC4261D2306A4AE00F8072E /* GuidedTrackRowCell.xib */,
-				9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */,
 			);
 			name = GuidedTrack;
 			sourceTree = "<group>";
@@ -6455,7 +6434,6 @@
 				B4BCE46A255BCEC500A1116F /* NewDailyStandardBriefCollectionViewCell.xib in Resources */,
 				B8FE4A9C24DD7B7A00B47F1D /* AudioBookmarkTableViewCell.xib in Resources */,
 				38095D3024BDDE680077EE86 /* TeamInviteHeaderTableViewCell.xib in Resources */,
-				9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */,
 				360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */,
 				389CC8192512021600028C54 /* HorizontalHeaderCollectionViewCell.xib in Resources */,
 				B49BE661233B9BFB008CAED0 /* PaymentReminderViewController.xib in Resources */,
@@ -6614,7 +6592,6 @@
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
 				B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */,
-				9CC4261E2306A4AE00F8072E /* GuidedTrackRowCell.xib in Resources */,
 				8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */,
 				B4792CA0256BABF200D24E7F /* Level5TableViewCell.xib in Resources */,
 				B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */,
@@ -6888,7 +6865,6 @@
 				F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */,
 				9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */,
 				38A2D17C25025C7100CEA071 /* DTTeamTBVInteractor.swift in Sources */,
-				9CC4261C2306A49E00F8072E /* GuidedTrackRowCell.swift in Sources */,
 				F99E9CCA24EABD9C00325EAE /* VisionRatingExplanationConfigurator.swift in Sources */,
 				DBA3921D23247B2D0017E7F6 /* QuestionnaireProtocols.swift in Sources */,
 				B4BCD0F923AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift in Sources */,
@@ -7459,7 +7435,7 @@
 				B49AD8A1233D0624000C5DCF /* CustomAlertSheetContentViewController.swift in Sources */,
 				8DF717E4232A48C700BB0E18 /* SyncedCalendarsRouter.swift in Sources */,
 				38A2D17725025C7100CEA071 /* DTTeamTBVPresenter.swift in Sources */,
-				9CC426242306B01100F8072E /* GuidedTrackItemType.swift in Sources */,
+				9CC426242306B01100F8072E /* GuidedTrackItem.swift in Sources */,
 				B86E744B22A9519900B0AE75 /* MyLibraryCategoryListRouter.swift in Sources */,
 				3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */,
 				38290B8A2330F825004B5C14 /* DTSprintReflectionViewController.swift in Sources */,
@@ -7491,7 +7467,6 @@
 				B4BCD0E823AB7CD900B80747 /* MyQOTAdminEditSprintsRouter.swift in Sources */,
 				9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */,
 				B856B47F22B0E29D0017A249 /* MyLibraryUserStorageConfigurator.swift in Sources */,
-				9CC426182306A47500F8072E /* GuidedTrackSectionCell.swift in Sources */,
 				AC103E56228969EF00F426F0 /* ReactionsTableViewCell.swift in Sources */,
 				8DD6B5942308190800C582A4 /* UIViewController+ActivityIndicator.swift in Sources */,
 				75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */,
@@ -7525,12 +7500,10 @@
 				5FF1A0F422857B2C00D76D55 /* MyQotAppSettingsViewController.swift in Sources */,
 				B4F9763A2359EB090071F7EC /* QOTBaseHeaderView.swift in Sources */,
 				F9D15B3324B88DB4006476FD /* TeamMemberTableViewCell.swift in Sources */,
-				9CC4261A2306A48A00F8072E /* GuidedTrackSectionViewModel.swift in Sources */,
 				754EBEF022C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift in Sources */,
 				8D0B4D252301CC4000A1AC47 /* RegistrationNamesInterface.swift in Sources */,
 				AC87A7A2220D981600622C90 /* Intents.intentdefinition in Sources */,
 				F947EA0E2521F45D004C7076 /* TeamVisionTrackerDetailsModel.swift in Sources */,
-				9CC426282306D42200F8072E /* GuideTrackModelItem.swift in Sources */,
 				8D40768F22E5A5AA0027864D /* MySprintDetailsInteractor.swift in Sources */,
 				F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */,
 				B430D7C623A911DE00C75C9C /* MyQotAdminSettingsListWorker.swift in Sources */,
@@ -7561,7 +7534,6 @@
 				F9FEA91C25348D1E009BF786 /* RateOpenCell.swift in Sources */,
 				9C24238822F3271E00B911E6 /* BaseDailyBriefViewModel.swift in Sources */,
 				3655F2D42326EBD600334719 /* DTMindsetWorker.swift in Sources */,
-				9CC426202306A4DB00F8072E /* GuidedTrackRowViewModel.swift in Sources */,
 				36E86D532270651A00371C67 /* ArticleRelatedTableViewCell.swift in Sources */,
 				F934802A247D467000DD1C7D /* FeatureExplainerInterface.swift in Sources */,
 				F91087AB24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift in Sources */,

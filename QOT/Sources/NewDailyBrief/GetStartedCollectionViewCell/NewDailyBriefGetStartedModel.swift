@@ -14,11 +14,13 @@ final class NewDailyBriefGetStartedModel: BaseDailyBriefViewModel {
     // MARK: - Properties
     var title: String?
     var image: String?
+    var appLink: QDMAppLink?
 
     // MARK: - Init
-    init(title: String?, image: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, image: String?, appLink: QDMAppLink?, domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.image = image
+        self.appLink = appLink
         super.init(domainModel)
     }
 
@@ -28,7 +30,8 @@ final class NewDailyBriefGetStartedModel: BaseDailyBriefViewModel {
         }
         return super.isContentEqual(to: source) &&
             title == source.title &&
-            image == source.image
+            image == source.image &&
+            appLink?.url() == source.appLink?.url()
     }
 
     // MARK: - Public
