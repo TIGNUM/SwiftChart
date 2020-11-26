@@ -82,7 +82,7 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
 
     func showCustomizeTarget() {
         interactor.customizeSleepQuestion { [weak self] (question) in
-            self?.router.showTBV()
+            self?.router.presentCustomizeTarget(question)
         }
     }
 
