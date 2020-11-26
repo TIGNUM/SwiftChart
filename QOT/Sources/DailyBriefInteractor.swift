@@ -1179,7 +1179,7 @@ extension DailyBriefInteractor {
             }
             meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle,
                                                           intro: tbvIntro,
-                                                          tbvStatement: tbvSentence,
+                                                          tbvStatement: "”" + tbvSentence + "”",
                                                           intro2: tbvIntro2,
                                                           buttonText: ctaTBVButtonText,
                                                           image: meAtMyBest.toBeVision?.profileImageResource?.urlString(),

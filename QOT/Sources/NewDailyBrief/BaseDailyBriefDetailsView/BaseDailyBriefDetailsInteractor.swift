@@ -153,7 +153,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                     let standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel.title ?? "",
                                                                         title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
                                                                         body: meAtMyBestViewModel.tbvStatement ?? "",
-                                                                        image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                        image: meAtMyBestViewModel.image,
                                                                         detailsMode: true,
                                                                         domainModel: meAtMyBestViewModel.domainModel)
 
