@@ -18,7 +18,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var bookmarkButton: RoundedButton!
     @IBOutlet private weak var playPauseButton: UIButton!
     @IBOutlet private weak var fullScreenCircles: FullScreenBackgroundCircleView!
-    @IBOutlet private weak var velocityButton: UIButton!
+    @IBOutlet private weak var velocityButton: RoundedButton!
 
     var media: MediaPlayerModel?
     var contentItem: QDMContentItem?
@@ -63,7 +63,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     }
 
     func setupButtons() {
-        velocityButton.circle()
+        styleVelocityButton()
         switch colorMode {
         case .dark:
             ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
@@ -91,6 +91,13 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
 
     func set(colorMode: ColorMode) {
         self.colorMode = colorMode
+    }
+
+    func styleVelocityButton() {
+        velocityButton.circle()
+        velocityButton.backgroundColor = .clear
+        velocityButton.layer.borderWidth = 1
+        velocityButton.layer.borderColor = UIColor.accent40.cgColor
     }
 
     func configureMedia(_ media: MediaPlayerModel, isPlaying: Bool = true) {
@@ -257,9 +264,12 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapVelocity() {
+        velocityButton.backgroundColor = .accent40
+        velocityButton.layer.borderWidth = 0
         var title = ""
         switch velocity {
         case 0.5:
+            styleVelocityButton()
             velocity = 1
             title = "1 X"
         case 1:
