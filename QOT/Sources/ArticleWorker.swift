@@ -135,7 +135,7 @@ final class ArticleWorker {
         }
         dispatchGroup.enter()
         ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
-            self?.relatedContent = relatedContens ?? []
+            self?.relatedContent = relatedContens?.filter { !$0.contentItems.isEmpty } ?? []
             if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
                 relation.type == "NEXT_UP"
             }).first, let nextUpId = nextUpContentRelation.contentID {
@@ -172,7 +172,7 @@ final class ArticleWorker {
         content?.contentItems.filter { $0.tabs.first == "BULLETS" }.forEach { (bulletItem) in
             items.append(Article.Item(type: ContentItemValue(item: bulletItem), content: bulletItem.valueText))
         }
-        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf && $0.format != .video }.forEach { item in
+        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf }.forEach { item in
             items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
         content?.contentItems.filter {
