@@ -87,7 +87,7 @@ private extension RegisterIntroMediaTableViewCell {
                                                    queue: .main) { [weak self] _ in
             self?.startPlayingFromBeggining()
         }
-        playerController.showsPlaybackControls = false
+        playerController.showsPlaybackControls = true
         mediaContentView.addSubview(playerController.view)
         playerController.view.frame = mediaContentView.bounds
         playerController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
