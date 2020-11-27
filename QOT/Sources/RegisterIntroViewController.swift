@@ -124,7 +124,7 @@ extension RegisterIntroViewController {
                 UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
                 self.videoCell.playerController.removeFromParent()
                 self.videoCell.mediaContentView.fill(subview: self.videoCell.playerController.view)
-                self.videoCell.playerController.showsPlaybackControls = true
+                self.videoCell.playerController.showsPlaybackControls = false
                 self.videoCell.soundToggleButton.isSelected = !(self.videoCell.playerController.player?.isMuted ?? true)
                 self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                 self.refreshBottomNavigationItems()
