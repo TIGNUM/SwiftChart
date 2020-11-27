@@ -77,10 +77,20 @@ final class VisionRatingExplanationViewController: BaseViewController {
 // MARK: - Actions
 extension VisionRatingExplanationViewController {
     @objc func startRating() {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         guard let teamID = interactor.team?.remoteID else { return }
         trackUserEvent(.OPEN, value: teamID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        interactor.startTeamTrackerPoll(sendPushNotification: checkButton.isSelected) { [weak self] (poll, team) in
-            self?.router.showRateScreen(trackerPoll: poll, team: team, showBanner: self?.checkButton.isSelected, delegate: self)
+        var tmpPoll: QDMTeamToBeVisionTrackerPoll?
+        var tmpTeam: QDMTeam?
+
+        interactor.startTeamTrackerPoll(sendPushNotification: checkButton.isSelected) { (poll, team) in
+            tmpPoll = poll
+            tmpTeam = team
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.router.showRateScreen(trackerPoll: tmpPoll, team: tmpTeam, showBanner: self?.checkButton.isSelected, delegate: self)
             self?.updateBottomNavigation([], [])
         }
     }
