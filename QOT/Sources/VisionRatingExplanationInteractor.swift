@@ -54,7 +54,6 @@ extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorIn
 
     func startTeamTrackerPoll(sendPushNotification: Bool,
                               _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void) {
-        removeObserver()
         guard let team = self.team else { return }
         worker.getCurrentRatingPoll(for: team) { [weak self] (currentPoll) in
             if let currentPoll = currentPoll {
@@ -71,25 +70,8 @@ private extension VisionRatingExplanationInteractor {
     func handleOpenNewTrackerPoll(team: QDMTeam,
                                   sendPushNotification: Bool,
                                   _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void) {
-        worker.openNewTeamToBeVisionTrackerPoll(for: team, sendPushNotification: sendPushNotification) { [weak self] _ in
-            self?.downSyncObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
-                                                                            object: nil,
-                                                                            queue: .main) { [weak self] (notification) in
-                if let context = notification.object as? SyncResultContext,
-                   context.syncRequestType == .DOWN_SYNC,
-                   context.hasUpdatedContent,
-                   context.dataType == .TEAM_TO_BE_VISION_TRACKER_POLL {
-                    self?.worker.getCurrentRatingPoll(for: team) { (poll) in
-                        completion(poll, team)
-                    }
-                }
-            }
-        }
-    }
-
-    func removeObserver() {
-        if let downSyncObserver = downSyncObserver {
-            NotificationCenter.default.removeObserver(downSyncObserver)
+        worker.openNewTeamToBeVisionTrackerPoll(for: team, sendPushNotification: sendPushNotification) { (poll) in
+            completion(poll, team)
         }
     }
 }
