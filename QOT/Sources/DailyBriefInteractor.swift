@@ -20,7 +20,7 @@ final class DailyBriefInteractor {
     // MARK: - Properties
     private let presenter: DailyBriefPresenterInterface
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
-    private var expendImpactReadiness: Bool = false
+    private var isCalculatingImpactReadiness: Bool = false
     private var teamHeaderItems = [Team.Item]()
 
     private var isLoadingBuckets: Bool = false
@@ -29,6 +29,7 @@ final class DailyBriefInteractor {
     private let dailyCheckInResultRequestTimeOut: Int = 20 // seconds
     private var dailyCheckInResultRequestCheckTimer: Timer?
     private var targetBucketName: DailyBriefBucketName?
+    private var detailsDelegate: BaseDailyBriefDetailsViewControllerInterface?
 
     var didDailyCheckIn = false
     var hasSiriShortcuts = false
@@ -124,10 +125,7 @@ extension DailyBriefInteractor {
     @objc func didGetDataSyncRequest(_ notification: Notification) {
         guard let request = notification.object as? SyncRequestContext else { return }
         switch request.dataType {
-        case .DAILY_CHECK_IN where request.syncRequestType == .UP_SYNC:
-            expendImpactReadiness = true
-            updateDailyBriefBucket()
-        case .TEAM:
+        case .DAILY_CHECK_IN where request.syncRequestType == .UP_SYNC, .TEAM:
             updateDailyBriefBucket()
         default:
             break
@@ -139,7 +137,6 @@ extension DailyBriefInteractor {
         guard let request = notification.object as? SyncResultContext else { return }
         switch request.dataType {
         case .DAILY_CHECK_IN_RESULT where request.syncRequestType == .DOWN_SYNC:
-            expendImpactReadiness = true
             updateDailyBriefBucket()
         default:
             break
@@ -148,7 +145,6 @@ extension DailyBriefInteractor {
     }
 
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
-        expendImpactReadiness = !expendImpactReadiness
         updateDailyBriefBucket()
     }
 
@@ -171,6 +167,9 @@ extension DailyBriefInteractor {
 
 // MARK: - DailyBriefInteractorInterface
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
+    func setDetailsDelegate(_ delegate: BaseDailyBriefDetailsViewControllerInterface) {
+        self.detailsDelegate = delegate
+    }
 
     func getTeamTBVPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
         worker.getCurrentTeamToBeVisionPoll(for: team, completion)
@@ -473,13 +472,14 @@ extension DailyBriefInteractor {
         }
 
         let bucketTitle = AppTextService.get(.daily_brief_section_impact_readiness_title)
-
+        var show5DaysImpactReadiness = true
         //If the daily check in completed update the ImpactReadinessCellViewModel
         let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? -1)
         var enableButton = true
         if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false,
             impactReadiness.dailyCheckInResult == nil {
-            expendImpactReadiness = false
+            show5DaysImpactReadiness = false
+            isCalculatingImpactReadiness = false
             dailyCheckInResultRequestCheckTimer?.invalidate()
             dailyCheckInResultRequestCheckTimer = nil
         }
@@ -488,11 +488,13 @@ extension DailyBriefInteractor {
         if let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
             impactReadiness.dailyCheckInResult == nil {
             readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_loading_body)
+            isCalculatingImpactReadiness = true
             if QOTReachability().isReachable == false {
                 readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_network_error_body)
                 dailyCheckInResultRequestCheckTimer?.invalidate()
                 dailyCheckInResultRequestCheckTimer = nil
-                expendImpactReadiness = false
+                show5DaysImpactReadiness = false
+                isCalculatingImpactReadiness = false
                 enableButton = false
             }
             // if it took longer than dailyCheckInResultRequestTimeOut and still we don't have result
@@ -500,7 +502,8 @@ extension DailyBriefInteractor {
                 readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_load_error_body)
                 dailyCheckInResultRequestCheckTimer?.invalidate()
                 dailyCheckInResultRequestCheckTimer = nil
-                expendImpactReadiness = false
+                show5DaysImpactReadiness = false
+                isCalculatingImpactReadiness = false
                 enableButton = false
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
                 dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(2),
@@ -517,19 +520,23 @@ extension DailyBriefInteractor {
             dailyCheckInResultRequestCheckTimer = nil
             feedback = impactReadiness.dailyCheckInResult?.feedback
             readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_intro)
-            expendImpactReadiness = true
+            show5DaysImpactReadiness = true
+            isCalculatingImpactReadiness = false
         }
 
-        impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
+        let impactReadinessModel = ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      feedback: feedback,
                                                                      feedbackRelatedLink: impactReadiness.dailyCheckInResult?.feedbackContentItem?.links.first,
                                                                      linkCTA: impactReadiness.dailyCheckInResult?.feedbackContentItem?.links.first?.description,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
                                                                      readinessScore: readinessscore,
                                                                      readinessIntro: readinessIntro,
-                                                                     isExpanded: expendImpactReadiness,
+                                                                     isCalculating: isCalculatingImpactReadiness,
                                                                      enableButton: enableButton,
-                                                                     domainModel: impactReadiness))
+                                                                     domainModel: impactReadiness)
+        impactReadinessList.append(impactReadinessModel)
+        detailsDelegate?.didUpdateImpactReadiness(with: impactReadinessModel)
+
         let howYouFeelToday = AppTextService.get(.daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer)
         let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
         let roundedSleepQuantity = round(10*sleepQuantity)/10
@@ -542,7 +549,7 @@ extension DailyBriefInteractor {
             models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title,
                                                                             subTitle: collection.contentItems.first?.valueText))
         }
-        if expendImpactReadiness {
+        if show5DaysImpactReadiness {
             let asteriskText = AppTextService.get(.daily_brief_section_impact_readiness_body_missing_five_days_data)
             let hasFullLoadData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForLoad
             let hasFullSleepQuantityData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForSleepQuantity

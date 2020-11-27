@@ -19,6 +19,7 @@ protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func presentPrepareResults(for preparation: QDMUserPreparation?)
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
     func didUpdateLevel5(with model: Level5ViewModel)
+    func didUpdateImpactReadiness(with model: ImpactReadinessCellViewModel)
 }
 
 protocol BaseDailyBriefDetailsPresenterInterface {

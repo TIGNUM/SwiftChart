@@ -303,11 +303,11 @@ extension DailyBriefViewController {
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         case .MINDSET_SHIFTER?:
             if let mindsetShifterViewModel = bucketItem as? MindsetShifterViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: mindsetShifterViewModel.title,
-                                                                    title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
-                                                                    body: mindsetShifterViewModel.subtitle,
-                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                     domainModel: mindsetShifterViewModel.domainModel)
+                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_mindset_shifter_card_caption),
+                                                                title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_mindset_shifter_card_title)),
+                                                                body: AppTextService.get(.daily_brief_section_mindset_shifter_card_body),
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: mindsetShifterViewModel.domainModel)
             }
         case .TEAM_TO_BE_VISION?:
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
@@ -775,6 +775,7 @@ extension DailyBriefViewController {
            let model = sender as? BaseDailyBriefViewModel {
             BaseDailyBriefDetailsConfigurator.configure(model: model, viewController: controller)
             controller.transitioningDelegate = transition
+            interactor.setDetailsDelegate(controller)
 
             // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
             controller.modalPresentationCapturesStatusBarAppearance = true
@@ -830,7 +831,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 }
                 return
             }
-            if impactReadinessCellViewModel.readinessScore == -1 {
+            if impactReadinessCellViewModel.readinessScore == -1 && !impactReadinessCellViewModel.isCalculating {
                 showDailyCheckInQuestions()
             } else {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in

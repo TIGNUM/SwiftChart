@@ -371,6 +371,13 @@ public extension AppTextKey {
     static let daily_brief_section_mindset_shifter_subtitle = AppTextKey("daily_brief.section_mindset_shifter.subtitle")
     static let daily_brief_section_mindset_shifter_title = AppTextKey("daily_brief.section_mindset_shifter.title")
     static let daily_brief_section_mindset_shifter_cta = AppTextKey("daily_brief.section_mindset_shifter.cta")
+    static let daily_brief_section_mindset_shifter_card_caption = AppTextKey("daily_brief.section_mindset_shifter_card.caption")
+    static let daily_brief_section_mindset_shifter_card_title = AppTextKey("daily_brief.section_mindset_shifter_card.title")
+    static let daily_brief_section_mindset_shifter_card_body = AppTextKey("daily_brief.section_mindset_shifter_card.body")
+
+
+
+
     static let daily_brief_section_impact_readiness_intro = AppTextKey("daily_brief.section_impact_readiness.intro")
 
     static let daily_brief_section_impact_readiness_sleep_quantity_description = AppTextKey("daily_brief.section_impact_readiness.sleep_quantity_description")

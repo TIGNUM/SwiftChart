@@ -96,6 +96,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation)
 
     func markAsRead(teamNewsFeed: QDMTeamNewsFeed?, _ completion: @escaping() -> Void)
+    func setDetailsDelegate(_ delegate: BaseDailyBriefDetailsViewControllerInterface)
 }
 
 protocol DailyBriefRouterInterface: BaseRouterInterface {

@@ -34,9 +34,9 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
         switch model.domainModel?.bucketName {
         case DailyBriefBucketName.DAILY_CHECK_IN_1:
             if let impactReadinessModel = model as? ImpactReadinessCellViewModel {
-                return impactReadinessModel.enableButton ? 2 : 1
+                return impactReadinessModel.feedbackRelatedLink != nil ? 2 : 1
             }
-            return 1
+            return ((model as? ImpactReadinessScoreViewModel) != nil) ? 2 : 1
         case DailyBriefBucketName.GET_TO_LEVEL_5, DailyBriefBucketName.MY_PEAK_PERFORMANCE:
             return 2
         case DailyBriefBucketName.ME_AT_MY_BEST:
@@ -49,6 +49,8 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return fromMyCoachModel.messages.count + 1
             }
             return 1
+        case DailyBriefBucketName.MINDSET_SHIFTER:
+            return model as? MindsetShifterViewModel != nil ? 2 : 1
         default:
             return 1
         }
@@ -196,12 +198,13 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
         case DailyBriefBucketName.MINDSET_SHIFTER:
             switch indexPath.row {
             case 0:
-                guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
+                guard let mindsetShifterModel = model as? MindsetShifterViewModel,
+                      let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
                     return UITableViewCell.init()
                 }
-                let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title),
-                                                                     title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
-                                                                     body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
+                let standardModel2 = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_mindset_shifter_card_caption),
+                                                                     title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_mindset_shifter_card_title)),
+                                                                     body: mindsetShifterModel.subtitle,
                                                                      image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                      detailsMode: true,
                                                                      domainModel: nil)
