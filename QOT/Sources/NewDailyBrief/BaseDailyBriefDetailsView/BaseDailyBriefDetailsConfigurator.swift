@@ -10,8 +10,6 @@ import Foundation
 
 final class BaseDailyBriefDetailsConfigurator {
     static func configure(model: BaseDailyBriefViewModel, viewController: BaseDailyBriefDetailsViewController) {
-        let router = BaseDailyBriefDetailsRouter(viewController: viewController)
-        let worker = BaseDailyBriefDetailsWorker(model: model)
         let presenter = BaseDailyBriefDetailsPresenter(viewController: viewController)
         let interactor = BaseDailyBriefDetailsInteractor(presenter: presenter, model: model)
 

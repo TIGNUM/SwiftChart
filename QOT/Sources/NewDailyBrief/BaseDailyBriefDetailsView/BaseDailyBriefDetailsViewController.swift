@@ -108,6 +108,11 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
         tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
         tableView.endUpdates()
     }
+
+    func didUpdateImpactReadiness(with model: ImpactReadinessCellViewModel) {
+        interactor.updateModel(model)
+        tableView.reloadData()
+    }
 }
 
 // MARK: - BaseDailyBriefDetailsViewControllerInterface

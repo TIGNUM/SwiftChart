@@ -775,6 +775,7 @@ extension DailyBriefViewController {
            let model = sender as? BaseDailyBriefViewModel {
             BaseDailyBriefDetailsConfigurator.configure(model: model, viewController: controller)
             controller.transitioningDelegate = transition
+            interactor.setDetailsDelegate(controller)
 
             // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
             controller.modalPresentationCapturesStatusBarAppearance = true
@@ -830,7 +831,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 }
                 return
             }
-            if impactReadinessCellViewModel.readinessScore == -1 {
+            if impactReadinessCellViewModel.readinessScore == -1 && !impactReadinessCellViewModel.isCalculating {
                 showDailyCheckInQuestions()
             } else {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in

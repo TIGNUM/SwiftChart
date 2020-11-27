@@ -34,9 +34,9 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
         switch model.domainModel?.bucketName {
         case DailyBriefBucketName.DAILY_CHECK_IN_1:
             if let impactReadinessModel = model as? ImpactReadinessCellViewModel {
-                return impactReadinessModel.enableButton ? 2 : 1
+                return impactReadinessModel.feedbackRelatedLink != nil ? 2 : 1
             }
-            return 1
+            return ((model as? ImpactReadinessScoreViewModel) != nil) ? 2 : 1
         case DailyBriefBucketName.GET_TO_LEVEL_5, DailyBriefBucketName.MY_PEAK_PERFORMANCE:
             return 2
         case DailyBriefBucketName.ME_AT_MY_BEST:
