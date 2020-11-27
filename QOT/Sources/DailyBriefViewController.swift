@@ -303,11 +303,11 @@ extension DailyBriefViewController {
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         case .MINDSET_SHIFTER?:
             if let mindsetShifterViewModel = bucketItem as? MindsetShifterViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: mindsetShifterViewModel.title,
-                                                                    title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
-                                                                    body: mindsetShifterViewModel.subtitle,
-                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                     domainModel: mindsetShifterViewModel.domainModel)
+                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_mindset_shifter_card_caption),
+                                                                title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_mindset_shifter_card_title)),
+                                                                body: AppTextService.get(.daily_brief_section_mindset_shifter_card_body),
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                domainModel: mindsetShifterViewModel.domainModel)
             }
         case .TEAM_TO_BE_VISION?:
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
