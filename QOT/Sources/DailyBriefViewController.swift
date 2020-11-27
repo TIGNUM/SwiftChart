@@ -187,7 +187,7 @@ extension DailyBriefViewController {
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .ME_AT_MY_BEST?:
             if bucketItem.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false,
-               let meAtMyBestCellEmptyViewModel = bucketItem as? MeAtMyBestCellViewModel {
+               let meAtMyBestCellEmptyViewModel = bucketItem as? MeAtMyBestCellEmptyViewModel {
                 standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestCellEmptyViewModel.title,
                                                                 title: NSAttributedString.init(string: meAtMyBestCellEmptyViewModel.buttonText ?? ""),
                                                                 body: meAtMyBestCellEmptyViewModel.intro ?? "",

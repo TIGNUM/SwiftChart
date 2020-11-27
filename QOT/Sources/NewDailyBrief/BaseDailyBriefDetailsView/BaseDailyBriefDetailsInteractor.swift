@@ -66,7 +66,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                                      title: ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessModel.readinessScore,
                                                                                                                        impactReadinessNoDataTitle: impactReadinessModel.title),
                                                                      body: impactReadinessModel.feedback ?? "",
-                                                                     image: impactReadinessModel.dailyCheckImageURL?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                      detailsMode: true,
                                                                      domainModel: nil)
                 cell.configure(with: [standardModel1])
