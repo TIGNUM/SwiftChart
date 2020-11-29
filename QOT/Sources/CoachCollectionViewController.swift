@@ -112,7 +112,8 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
         setStatusBar(colorMode: .dark)
 
         coachButton.alpha = 0.0
-        UIView.animate(withDuration: 0.75) { [weak self] in
+
+        UIView.animate(withDuration: 0.75, delay: 0.4, options: []) {  [weak self] in
             self?.coachButton.alpha = self?.panSearchShowing == true ? 0.0 : 1.0
         }
 
