@@ -110,8 +110,10 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
     }
 
     func didUpdateImpactReadiness(with model: ImpactReadinessCellViewModel) {
-        interactor.updateModel(model)
-        tableView.reloadData()
+        if interactor.getModel().domainModel?.bucketName == DailyBriefBucketName.DAILY_CHECK_IN_1 {
+            interactor.updateModel(model)
+            tableView.reloadData()
+        }
     }
 }
 

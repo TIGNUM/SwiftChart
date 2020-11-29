@@ -18,16 +18,17 @@ final class BaseDailyBriefDetailsWorker {
     }
 
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
-        QuestionService.main.question(with: 100360, in: .DailyCheckIn1) { (question) in
+        QuestionService.main.question(with: 100360, in: .DailyCheckIn1) { [weak self] (question) in
         // FIXME: need to separate question and answers from daily-check-in.
-            guard let question = question else { return }
+            guard let strongSelf = self,
+                  let question = question else { return }
             let answers = question.answers.sorted(by: { $0.sortOrder ?? 0 > $1.sortOrder ?? 0 })
                 .compactMap({ (qdmAnswer) -> RatingQuestionViewModel.Answer? in
                     return RatingQuestionViewModel.Answer(remoteID: qdmAnswer.remoteID,
                                                           title: qdmAnswer.title,
                                                           subtitle: qdmAnswer.subtitle)
                 })
-            self.getTargetValue { (sleepTargetValue) in
+            strongSelf.getTargetValue { (sleepTargetValue) in
                 guard let sleepTargetValue = sleepTargetValue else { return }
                 let selectedAnswerIndex = question.answers.count - 1 - (sleepTargetValue - 60)/30
                 let model = RatingQuestionViewModel.Question(remoteID: question.remoteID,
@@ -72,6 +73,9 @@ extension BaseDailyBriefDetailsWorker {
                             log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
                         }
                         requestSynchronization(.BUCKET_RECORD, .UP_SYNC)
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
+                        }
                     })
                 }
             }

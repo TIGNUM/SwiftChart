@@ -769,19 +769,6 @@ extension DailyBriefViewController {
             router.presentContent(contentId)
         }
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? BaseDailyBriefDetailsViewController,
-           let model = sender as? BaseDailyBriefViewModel {
-            BaseDailyBriefDetailsConfigurator.configure(model: model, viewController: controller)
-            controller.transitioningDelegate = transition
-            interactor.setDetailsDelegate(controller)
-
-            // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
-            controller.modalPresentationCapturesStatusBarAppearance = true
-            controller.modalPresentationStyle = .custom
-        }
-    }
 }
 
 extension DailyBriefViewController: QuestionnaireAnswer {
@@ -826,7 +813,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
             guard let impactReadinessCellViewModel = dailyBriefCellViewModel as? ImpactReadinessCellViewModel else {
                 if let impactReadinessScoreCellViewModel = dailyBriefCellViewModel as? ImpactReadinessScoreViewModel {
                     performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
-                        self?.router.presentDailyBriefDetailsScreen(model: impactReadinessScoreCellViewModel)
+                        self?.router.presentDailyBriefDetailsScreen(model: impactReadinessScoreCellViewModel, transitioningDelegate: self?.transition)
                     }
                 }
                 return
@@ -835,7 +822,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 showDailyCheckInQuestions()
             } else {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
-                    self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
+                    self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
                 }
             }
         case .EXPLORE:
@@ -860,26 +847,25 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 stream(videoURL: leaderWisdomCellModel.videoThumbnail ?? URL(string: "")!, contentItem: nil)
             } else {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
-                    self?.router.presentDailyBriefDetailsScreen(model: leaderWisdomCellModel)
+                    self?.router.presentDailyBriefDetailsScreen(model: leaderWisdomCellModel, transitioningDelegate: self?.transition)
                 }
             }
         case .ME_AT_MY_BEST:
             if !(dailyBriefCellViewModel.domainModel?.toBeVisionTrack?.sentence?.isEmpty ?? true) {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
-                    self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
+                    self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
                 }
             } else {
                 router.showTBV()
             }
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
-                self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel)
+                self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
             }
         }
     }
 
     func performExpandAnimation(for cell: NewBaseDailyBriefCell, withInsideIndexPath: IndexPath, model: BaseDailyBriefViewModel, completionHandler: (@escaping () -> Void)) {
-
         guard let collectionViewCell = cell.collectionView.cellForItem(at: withInsideIndexPath) as? NewDailyStandardBriefCollectionViewCell else { return }
         collectionViewCell.freezeAnimations()
 

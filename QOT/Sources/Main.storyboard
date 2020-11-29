@@ -367,7 +367,6 @@
                     <navigationItem key="navigationItem" title="DAILY BRIEF" id="AIf-Bu-9Yb"/>
                     <connections>
                         <outlet property="tableView" destination="MNr-kG-dc4" id="3gm-BS-DIt"/>
-                        <segue destination="vWw-M8-gKP" kind="presentation" identifier="daily.brief.details.segue.identifier" id="acS-GA-L9I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4qC-fV-33O" userLabel="First Responder" sceneMemberID="firstResponder"/>

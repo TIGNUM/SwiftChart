@@ -87,8 +87,14 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func presentDailyBriefDetailsScreen(model: BaseDailyBriefViewModel) {
-        dailyBriefViewController?.performSegue(withIdentifier: R.segue.dailyBriefViewController.dailyBriefDetailsSegueIdentifier,
-                                               sender: model)
+    func presentDailyBriefDetailsScreen(model: BaseDailyBriefViewModel, transitioningDelegate: UIViewControllerTransitioningDelegate?) {
+        if let controller = R.storyboard.main.baseDailyBriefDetailsViewController() {
+            BaseDailyBriefDetailsConfigurator.configure(model: model, viewController: controller)
+            dailyBriefViewController?.interactor.setDetailsDelegate(controller)
+            controller.modalPresentationCapturesStatusBarAppearance = true
+            controller.modalPresentationStyle = .custom
+            controller.transitioningDelegate = transitioningDelegate
+            dailyBriefViewController?.present(controller, animated: true, completion: nil)
+        }
     }
 }

@@ -41,8 +41,8 @@ class Level5TableViewCell: BaseDailyBriefCell {
     }
 
     @IBAction func save(_ sender: UIButton) {
-        setButtonText(AppTextService.get(.daily_brief_section_level_5_button_saved))
-        saveButton.layer.borderWidth = 0
+        setButtonText(AppTextService.get(.daily_brief_section_level_5_button_saved).uppercased())
+        ThemeButton.whiteRounded.apply(saveButton, selected: false)
         saveButton.isEnabled = false
         savedAnswer = tmpAnswer
         delegate?.saveAnswerValue(tmpAnswer, from: self)
@@ -120,7 +120,7 @@ class Level5TableViewCell: BaseDailyBriefCell {
     func updateButtonStatus() {
         if tmpAnswer == savedAnswer {
             setButtonText(AppTextService.get(.daily_brief_section_level_5_button_save).uppercased())
-            saveButton.layer.borderWidth = 0
+            ThemeButton.whiteRounded.apply(saveButton, selected: false)
             saveButton.isEnabled = false
         } else {
             setButtonText(AppTextService.get(.daily_brief_section_level_5_button_save).uppercased())

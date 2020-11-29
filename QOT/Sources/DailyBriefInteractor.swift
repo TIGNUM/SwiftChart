@@ -29,7 +29,7 @@ final class DailyBriefInteractor {
     private let dailyCheckInResultRequestTimeOut: Int = 20 // seconds
     private var dailyCheckInResultRequestCheckTimer: Timer?
     private var targetBucketName: DailyBriefBucketName?
-    private var detailsDelegate: BaseDailyBriefDetailsViewControllerInterface?
+    private weak var detailsDelegate: BaseDailyBriefDetailsViewControllerInterface?
 
     var didDailyCheckIn = false
     var hasSiriShortcuts = false
