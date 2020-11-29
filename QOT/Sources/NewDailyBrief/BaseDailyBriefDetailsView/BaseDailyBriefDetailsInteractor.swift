@@ -300,10 +300,10 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                       let fromMyCoachModel = model as? FromMyCoachCellViewModel else {
                     return UITableViewCell.init()
                 }
-                let standardModel = NewDailyBriefStandardModel.init(caption: "From my coach",
+                let standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_from_my_tignum_coach_card_title),
                                                                 title: NSAttributedString.init(string: fromMyCoachModel.detail.title),
                                                                 body: nil,
-                                                                image: fromMyCoachModel.detail.imageUrl?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                 detailsMode: true,
                                                                 domainModel: fromMyCoachModel.domainModel)
                 cell.configure(with: [standardModel])

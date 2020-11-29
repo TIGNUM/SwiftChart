@@ -255,6 +255,7 @@ public extension AppTextKey {
     static let daily_brief_section_explore_title = AppTextKey("daily_brief.section_explore.title")
     static let daily_brief_section_explore_body = AppTextKey("daily_brief.section_explore.body")
     static let daily_brief_section_from_my_tignum_coach_title = AppTextKey("daily_brief.section_from_my_tignum_coach.title")
+    static let daily_brief_section_from_my_tignum_coach_card_title = AppTextKey("daily_brief.section_from_my_tignum_coach_card.title")
     static let daily_brief_section_from_tignum_title = AppTextKey("daily_brief.section_from_tignum.title")
     static let daily_brief_section_good_to_know_title = AppTextKey("daily_brief.section_good_to_know.title")
     static let daily_brief_section_guided_track_video = AppTextKey("daily_brief.section_guided_track_video.title")

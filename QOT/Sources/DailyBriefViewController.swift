@@ -244,10 +244,10 @@ extension DailyBriefViewController {
             return getGoodToKnowCell(tableView, indexPath, bucketItem as? GoodToKnowCellViewModel)
         case .FROM_MY_COACH?:
             if let fromMyCoachViewModel = bucketItem as? FromMyCoachCellViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: "Message from my TIGNUM coach",
+                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_from_my_tignum_coach_card_title),
                                                                 title: NSAttributedString.init(string: fromMyCoachViewModel.detail.title),
                                                                 body: fromMyCoachViewModel.messages.first?.text,
-                                                                image: fromMyCoachViewModel.detail.imageUrl?.absoluteString ?? "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
+                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                 domainModel: fromMyCoachViewModel.domainModel)
             }
         case .FROM_TIGNUM?:
