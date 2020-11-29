@@ -69,10 +69,11 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                     return UITableViewCell.init()
                 }
 
+                let body = impactReadinessModel.feedback?.isEmpty ?? true ? impactReadinessModel.readinessIntro : impactReadinessModel.feedback
                 let standardModel1 = NewDailyBriefStandardModel.init(caption: impactReadinessModel.title ?? "",
                                                                      title: ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessModel.readinessScore,
                                                                                                                        impactReadinessNoDataTitle: impactReadinessModel.title),
-                                                                     body: impactReadinessModel.feedback ?? "",
+                                                                     body: body,
                                                                      image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
                                                                      detailsMode: true,
                                                                      domainModel: nil)
