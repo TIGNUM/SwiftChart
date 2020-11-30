@@ -83,7 +83,7 @@ extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
 
     func reload(shouldDismiss: Bool) {
         if shouldDismiss {
-            didTapBackButton()
+            dismissAfterBanner()
         } else {
             tableView.reloadData()
         }
@@ -93,6 +93,12 @@ extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
         let banner = NotificationBanner.shared
         banner.configure(message: message, isDark: false)
         banner.show(in: self.view)
+    }
+
+    func dismissAfterBanner() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
