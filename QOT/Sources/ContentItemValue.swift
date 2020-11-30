@@ -128,8 +128,18 @@ enum ContentItemValue {
 
     var duration: Int {
         switch self {
-        case .audio(_, _, _, _, _, let duration, _): return Int(duration)
+        case .audio(_, _, _, _, _, let duration, _),
+             .video(_, _, _, _, _, let duration): return Int(duration)
         default: return 0
+        }
+    }
+
+    var durationString: String {
+        let min = String(format: "%.0d", max((duration), 1) / 60)
+        switch self {
+        case .audio: return AppTextService.get(.generic_content_section_item_new_label_audio).replacingOccurrences(of: "${AMOUNT}", with: min)
+        case .video: return AppTextService.get(.generic_content_section_item_new_label_video).replacingOccurrences(of: "${AMOUNT}", with: min)
+        default: return ""
         }
     }
 }

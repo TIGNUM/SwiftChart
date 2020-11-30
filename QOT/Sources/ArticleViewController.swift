@@ -415,10 +415,10 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video( _, let title, let description, let placeholderURL, _, _):
+        case .video( _, let title, _, let placeholderURL, _, _):
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
-                           timeToWatch: description,
+                           timeToWatch: item.type.durationString,
                            imageURL: placeholderURL,
                            forcedColorMode: .dark,
                            isSeen: false)
