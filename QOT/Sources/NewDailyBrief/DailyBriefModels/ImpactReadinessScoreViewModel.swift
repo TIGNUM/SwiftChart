@@ -10,7 +10,6 @@ import Foundation
 import qot_dal
 
 class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
-
     var howYouFeelToday: String?
     var asteriskText: String?
     var sleepQuantityValue: Double?
@@ -21,7 +20,6 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
     var hasFiveDayLoadValue: Bool?
     var futureLoadValue: Double?
     var targetSleepQuantity: Double?
-    var title: String?
     var subTitle: String?
     var impactDataModels: [ImpactDataViewModel]?
     var type = ImpactReadinessType.DAILY_CHECK_IN
@@ -32,6 +30,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
     }
     init(howYouFeelToday: String?,
          asteriskText: String?,
+         image: String?,
          sleepQuantityValue: Double?,
          hasFiveDaySleepQuantityValues: Bool?,
          sleepQualityValue: Double?,
@@ -61,7 +60,12 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
         self.maxTrackingDays = maxTrackingDays
 
         self.impactDataModels = impactDataModels
-        super.init(domainModel, subIdentifier)
+        super.init(domainModel,
+                   subIdentifier,
+                   caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title),
+                   title: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle),
+                   body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
+                   image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

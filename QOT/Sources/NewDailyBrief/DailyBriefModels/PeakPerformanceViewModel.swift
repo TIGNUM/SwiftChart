@@ -12,7 +12,6 @@ import qot_dal
 final class PeakPerformanceViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var title: String
     let contentSubtitle: String?
     let contentSentence: String?
     let eventTitle: String?
@@ -25,15 +24,19 @@ final class PeakPerformanceViewModel: BaseDailyBriefViewModel {
          contentSentence: String?,
          eventTitle: String?,
          eventSubtitle: String?,
+         image: String?,
          qdmUserPreparation: QDMUserPreparation?,
          domainModel: QDMDailyBriefBucket?) {
-        self.title = title
         self.contentSubtitle = contentSubtitle
         self.contentSentence = contentSentence
         self.eventTitle = eventTitle
         self.eventSubtitle = eventSubtitle
         self.qdmUserPreparation = qdmUserPreparation
-        super.init(domainModel)
+        super.init(domainModel,
+                   caption: title,
+                   title: eventTitle,
+                   body: eventSubtitle,
+                   image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

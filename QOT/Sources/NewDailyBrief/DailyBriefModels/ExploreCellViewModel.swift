@@ -14,20 +14,25 @@ final class ExploreCellViewModel: BaseDailyBriefViewModel {
     // MARK: - Properties
     var introText: String?
     var bucketTitle: String?
-    var title: String?
     var remoteID: Int?
     var duration: String?
     var section: ContentSection
 
     // MARK: - Init
-    init(bucketTitle: String?, title: String?, introText: String?, remoteID: Int?, duration: String?, domainModel: QDMDailyBriefBucket?, section: ContentSection) {
+    init(bucketTitle: String?,
+         title: String?,
+         introText: String?,
+         remoteID: Int?,
+         duration: String?,
+         image: String?,
+         domainModel: QDMDailyBriefBucket?,
+         section: ContentSection) {
         self.introText = introText
         self.bucketTitle = bucketTitle
-        self.title = title
         self.remoteID = remoteID
         self.duration = duration
         self.section = section
-        super.init(domainModel)
+        super.init(domainModel, caption: bucketTitle, title: title, body: duration, image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

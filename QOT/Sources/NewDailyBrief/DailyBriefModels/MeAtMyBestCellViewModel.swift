@@ -12,22 +12,22 @@ import qot_dal
 final class MeAtMyBestCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var title: String?
     var intro: String?
     var tbvStatement: String?
     var intro2: String?
     var buttonText: String?
-    var image: String?
 
     // MARK: - Init
     init(title: String?, intro: String?, tbvStatement: String?, intro2: String?, buttonText: String?, image: String?, domainModel: QDMDailyBriefBucket?) {
-        self.title = title
         self.intro = intro
         self.tbvStatement = tbvStatement
         self.intro2 = intro2
         self.buttonText = buttonText
-        self.image = image
-        super.init(domainModel)
+        super.init(domainModel,
+                   caption: title,
+                   title: AppTextService.get(.daily_brief_section_my_best_card_title),
+                   body: tbvStatement,
+                   image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

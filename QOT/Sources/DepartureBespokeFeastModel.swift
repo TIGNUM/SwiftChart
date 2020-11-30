@@ -13,19 +13,17 @@ final class DepartureBespokeFeastModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var subtitle: String?
-    var title: String?
     var text: String?
     var images: [String?]
     var copyrights: [String?]
 
     // MARK: - Init
     init(title: String?, subtitle: String?, text: String?, images: [String?], copyrights: [String?], domainModel: QDMDailyBriefBucket?) {
-        self.title = title
         self.subtitle = subtitle
         self.text = text
         self.images = images
         self.copyrights = copyrights
-        super.init(domainModel)
+        super.init(domainModel, title: title)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

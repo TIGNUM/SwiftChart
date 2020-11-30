@@ -12,15 +12,13 @@ import qot_dal
 final class MeAtMyBestCellEmptyViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var title: String?
     var intro: String?
     var buttonText: String?
 
     // MARK: - Init
-    init(title: String?, intro: String?, buttonText: String?, domainModel: QDMDailyBriefBucket?) {
-        self.title = title
+    init(title: String?, intro: String?, buttonText: String?, image: String?, domainModel: QDMDailyBriefBucket?) {
         self.intro = intro
         self.buttonText = buttonText
-        super.init(domainModel)
+        super.init(domainModel, caption: title, title: buttonText, body: intro, image: image)
     }
 }

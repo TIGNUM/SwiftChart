@@ -25,7 +25,7 @@ enum GlobalConstants {
     static let isEnabledTopSafeAreaInsetsFixOnCardDetailViewController = false
 
     /// If true, will always allow user to scroll while it's animated.
-    static let isEnabledAllowsUserInteractionWhileHighlightingCard = true
+    static let isEnabledAllowsUserInteractionWhileHighlightingCard = false
 }
 
 extension GlobalConstants {

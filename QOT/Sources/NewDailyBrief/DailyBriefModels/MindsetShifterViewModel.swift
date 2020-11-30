@@ -11,16 +11,21 @@ import qot_dal
 
 final class MindsetShifterViewModel: BaseDailyBriefViewModel {
     // MARK: - Properties
-    let title: String?
+
     let subtitle: String?
     let mindsetShifter: QDMMindsetShifter?
 
     // MARK: - Init
-   init(title: String?, subtitle: String?, mindsetShifter: QDMMindsetShifter?, domainModel: QDMDailyBriefBucket?) {
-        self.title = title
+    init(caption: String?,
+         title: String?,
+         body: String?,
+         image: String?,
+         subtitle: String?,
+         mindsetShifter: QDMMindsetShifter?,
+         domainModel: QDMDailyBriefBucket?) {
         self.subtitle = subtitle
         self.mindsetShifter = mindsetShifter
-        super.init(domainModel)
+        super.init(domainModel, caption: caption, title: title, body: body, image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
