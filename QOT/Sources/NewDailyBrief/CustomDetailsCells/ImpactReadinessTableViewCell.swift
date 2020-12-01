@@ -12,7 +12,7 @@ import qot_dal
 class ImpactReadinessTableViewCell: BaseDailyBriefCell {
     @IBOutlet weak var linkTitle: UILabel!
     @IBOutlet weak var ctaButton: AnimatedButton!
-    
+
     weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
     var feedbackRelatedLink: QDMAppLink?
 

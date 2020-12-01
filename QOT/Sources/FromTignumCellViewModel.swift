@@ -13,19 +13,27 @@ final class FromTignumCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var text: String?
-    var title: String?
     var subtitle: String?
     var cta: String?
     var link: QDMAppLink?
 
     // MARK: - Init
-    init(title: String?, text: String?, subtitle: String?, cta: String?, link: QDMAppLink?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?,
+         text: String?,
+         subtitle: String?,
+         image: String?,
+         cta: String?,
+         link: QDMAppLink?,
+         domainModel: QDMDailyBriefBucket?) {
         self.text = text
-        self.title = title
         self.subtitle = subtitle
         self.cta = cta
         self.link = link
-        super.init(domainModel)
+        super.init(domainModel,
+                   caption: title,
+                   title: subtitle,
+                   body: text,
+                   image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

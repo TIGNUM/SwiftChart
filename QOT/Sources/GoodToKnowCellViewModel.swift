@@ -13,15 +13,21 @@ final class GoodToKnowCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var fact: String?
-    var title: String?
     var copyright: String?
 
     // MARK: - Init
-    init(title: String?, fact: String?, copyright: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?,
+         fact: String?,
+         copyright: String?,
+         image: String?,
+         domainModel: QDMDailyBriefBucket?) {
         self.fact = fact
-        self.title = title
         self.copyright = copyright
-        super.init(domainModel)
+        super.init(domainModel,
+                   caption: title,
+                   title: fact,
+                   body: copyright,
+                   image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

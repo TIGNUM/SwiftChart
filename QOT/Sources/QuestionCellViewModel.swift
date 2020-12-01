@@ -13,12 +13,16 @@ final class QuestionCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var text: String?
-    var title: String?
 
     // MARK: - Init
-    init(title: String?, text: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?,
+         text: String?,
+         image: String?,
+         domainModel: QDMDailyBriefBucket?) {
         self.text = text
-        self.title = title
-        super.init(domainModel)
+        super.init(domainModel,
+                   caption: title,
+                   title: text,
+                   image: image)
     }
 }

@@ -12,7 +12,6 @@ import qot_dal
 final class LeaderWisdomCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var title: String?
     var subtitle: String?
     var description: String?
     var audioDuration: Double?
@@ -26,18 +25,18 @@ final class LeaderWisdomCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Init
     init(title: String?,
-                  subtitle: String?,
-                  description: String?,
-                  audioDuration: Double?,
-                  audioLink: URL?,
-                  videoTitle: String?,
-                  videoDuration: Double?,
-                  videoThumbnail: URL?,
-                  format: ContentFormat,
-                  remoteID: Int?,
-                  durationString: String?,
-                  domainModel: QDMDailyBriefBucket?) {
-        self.title = title
+         subtitle: String?,
+         description: String?,
+         image: String?,
+         audioDuration: Double?,
+         audioLink: URL?,
+         videoTitle: String?,
+         videoDuration: Double?,
+         videoThumbnail: URL?,
+         format: ContentFormat,
+         remoteID: Int?,
+         durationString: String?,
+         domainModel: QDMDailyBriefBucket?) {
         self.subtitle = subtitle
         self.description = description
         self.audioDuration = audioDuration
@@ -48,6 +47,6 @@ final class LeaderWisdomCellViewModel: BaseDailyBriefViewModel {
         self.format = format
         self.remoteID = remoteID
         self.durationString = durationString
-        super.init(domainModel)
+        super.init(domainModel, caption: title, title: subtitle, body: description, image: image)
     }
 }

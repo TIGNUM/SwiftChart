@@ -12,18 +12,16 @@ import qot_dal
 final class TeamVisionSuggestionModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    let title: String?
     let tbvSentence: String?
     let adviceText: String?
     let team: QDMTeam?
 
     // MARK: - Init
     init(title: String?, team: QDMTeam?, tbvSentence: String?, adviceText: String?, domainModel: QDMDailyBriefBucket?) {
-        self.title = title
         self.tbvSentence = tbvSentence
         self.adviceText = adviceText
         self.team = team
-        super.init(domainModel)
+        super.init(domainModel, title: title)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

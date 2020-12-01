@@ -14,13 +14,28 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
 
     // MARK: - Properties
     typealias DifferenceIdentifier = String
+    var caption: String?
+    var title: String?
+    var attributedTitle: NSAttributedString?
+    var body: String?
+    var image: String?
     var domainModel: QDMDailyBriefBucket?
     var subIdentifier = ""
 
     // MARK: - Init
-    init(_ domainModel: QDMDailyBriefBucket?, _ subIdentifier: String? = "") {
+    init(_ domainModel: QDMDailyBriefBucket?,
+         _ subIdentifier: String? = "",
+         caption: String? = "",
+         title: String? = "",
+         body: String? = "",
+         image: String? = "") {
         self.domainModel = domainModel
         self.subIdentifier = subIdentifier ?? ""
+        self.caption = caption
+        self.title = title
+        self.attributedTitle = ThemeText.dailyBriefTitle.attributedString(title)
+        self.body = body
+        self.image = image
     }
 
     var differenceIdentifier: DifferenceIdentifier {
@@ -28,7 +43,11 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
     }
 
     func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
-        return domainModel?.toBeVisionId == source.domainModel?.toBeVisionId &&
+        return caption == source.caption &&
+            title == source.title &&
+            body == source.body &&
+            image == source.image &&
+            domainModel?.toBeVisionId == source.domainModel?.toBeVisionId &&
             domainModel?.toBeVisionTrackId == source.domainModel?.toBeVisionTrackId &&
             domainModel?.SHPIQuestionId == source.domainModel?.SHPIQuestionId &&
             domainModel?.latestGetToLevel5Value == source.domainModel?.latestGetToLevel5Value &&
