@@ -18,7 +18,7 @@ final class DailyBriefNavigationController: UINavigationController {
 final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
-    typealias SectionData = [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]
+    typealias SectionData = [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]
     weak var delegate: CoachCollectionViewControllerDelegate?
     var interactor: DailyBriefInteractorInterface!
     var sectionDataList: SectionData = []
@@ -34,7 +34,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         super.viewDidLoad()
         ThemeView.level1.apply(view)
         navigationController?.navigationBar.isHidden = true
-        tableView.rowHeight = UITableView.automaticDimension
+        setupTableView()
         interactor.viewDidLoad()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateBuckets),
@@ -59,6 +59,19 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         return StatusBarAnimatableConfig(prefersHidden: false,
                                          animation: .slide)
     }
+
+    func setupTableView() {
+        let headerView = R.nib.newDailyBriefTableViewHeader(owner: self)
+        headerView?.configure(tapLeft: { [weak self] in
+            self?.delegate?.moveToCell(item: 0)
+        }, tapRight: { [weak self] in
+            self?.delegate?.moveToCell(item: 2)
+        })
+        tableView.tableHeaderView = headerView
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = 160
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -72,7 +85,7 @@ extension DailyBriefViewController {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 44 : .leastNormalMagnitude
+        return UITableView.automaticDimension
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,25 +93,10 @@ extension DailyBriefViewController {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = R.nib.newDailyBriefTableViewHeader(owner: self)
-        headerView?.configure(tapLeft: { [weak self] in
-            self?.delegate?.moveToCell(item: 0)
-        }, tapRight: { [weak self] in
-            self?.delegate?.moveToCell(item: 2)
-        })
-        return headerView
-    }
+        let sectionHeader = R.nib.newDailyBriefTableViewSectionHeader(owner: self)
+        sectionHeader?.configure(title: interactor.bucketViewModelNew()?.at(index: section)?.model.title)
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = UIView(frame: CGRect(origin: .zero, size: tableView.frame.size))
-
-        if section == interactor.rowViewSectionCount - 1 {
-            footer.backgroundColor = ThemeView.level1.color
-            return footer
-        }
-
-        footer.backgroundColor = .sand10
-        return footer
+        return sectionHeader
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -135,154 +133,6 @@ extension DailyBriefViewController {
         let bucketItem = bucketList[indexPath.row]
 
         switch domainModel.bucketName {
-        case .DAILY_CHECK_IN_1?:
-            if (bucketItem as? ImpactReadinessCellViewModel) != nil,
-                let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
-                let title = ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: impactReadinessCellViewModel.readinessScore,
-                                                                                              impactReadinessNoDataTitle: impactReadinessCellViewModel.title)
-                let body = impactReadinessCellViewModel.feedback?.isEmpty ?? true ? impactReadinessCellViewModel.readinessIntro : impactReadinessCellViewModel.feedback
-                let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? 0 : 2
-                standardModel = NewDailyBriefStandardModel.init(caption: impactReadinessCellViewModel.title,
-                                                                title: title,
-                                                                body: body,
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                numberOfLinesForBody: numberOfLines,
-                                                                domainModel: impactReadinessCellViewModel.domainModel)
-            } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil,
-                let impactReadinessScoreViewModel = bucketItem as? ImpactReadinessScoreViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title),
-                                                                title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle)),
-                                                                body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                domainModel: impactReadinessScoreViewModel.domainModel)
-            }
-        case .DAILY_CHECK_IN_2?:
-            guard let dailyCheckIn2ViewModel = bucketItem as? DailyCheckin2ViewModel else {
-                return getDailyCheckIn2TBVCell(tableView, indexPath, nil)
-            }
-            switch dailyCheckIn2ViewModel.type {
-            case .TBV?:
-                return getDailyCheckIn2TBVCell(tableView,
-                                               indexPath,
-                                               dailyCheckIn2ViewModel.dailyCheckIn2TBVModel)
-            case .PEAKPERFORMANCE?:
-                return getDailyCheckIn2PeakPerformanceCell(tableView,
-                                                           indexPath,
-                                                           dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel)
-            case .SHPI?:
-                return getDailyCheckinInsightsSHPICell(tableView,
-                                                       indexPath, dailyCheckIn2ViewModel.dailyCheck2SHPIModel)
-            case .none:
-                return UITableViewCell()
-            }
-        case .EXPLORE?:
-            if let exploreViewModel = bucketItem as? ExploreCellViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: exploreViewModel.bucketTitle,
-                                                                title: NSAttributedString.init(string: exploreViewModel.title ?? ""),
-                                                                body: exploreViewModel.duration,
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                domainModel: exploreViewModel.domainModel)
-            }
-        case .SPRINT_CHALLENGE?:
-            return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
-        case .ME_AT_MY_BEST?:
-            if bucketItem.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false,
-               let meAtMyBestCellEmptyViewModel = bucketItem as? MeAtMyBestCellEmptyViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestCellEmptyViewModel.title,
-                                                                title: NSAttributedString.init(string: meAtMyBestCellEmptyViewModel.buttonText ?? ""),
-                                                                body: meAtMyBestCellEmptyViewModel.intro ?? "",
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                domainModel: meAtMyBestCellEmptyViewModel.domainModel)
-            } else if let meAtMyBestViewModel = bucketItem as? MeAtMyBestCellViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: meAtMyBestViewModel.title,
-                                                                title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_my_best_card_title)),
-                                                                body: meAtMyBestViewModel.tbvStatement,
-                                                                image: meAtMyBestViewModel.image,
-                                                                domainModel: meAtMyBestViewModel.domainModel)
-            }
-        case .ABOUT_ME?:
-            return getAboutMeCell(tableView, indexPath, bucketItem as? AboutMeViewModel)
-        case .SOLVE_REFLECTION?:
-            if (bucketItem as? SolveReminderCellViewModel) != nil {
-                return getSolveReminder(tableView, indexPath, bucketItem as? SolveReminderCellViewModel)
-            } else if (bucketItem as? SolveReminderTableCellViewModel) != nil {
-                return getSolveReminderTableCell(tableView, indexPath, bucketItem as? SolveReminderTableCellViewModel)
-            }
-            return UITableViewCell()
-        case .GET_TO_LEVEL_5?:
-            if let level5ViewModel = bucketItem as? Level5ViewModel,
-               let intro = level5ViewModel.intro,
-               let question = level5ViewModel.question {
-                    let messages = level5ViewModel.levelMessages
-                    let levelDetailZero = Level5ViewModel.LevelDetail.init(levelTitle: question, levelContent: intro)
-                    var levelMessages: [Level5ViewModel.LevelDetail] = []
-                    levelMessages.append(levelDetailZero)
-                    levelMessages.append(contentsOf: messages)
-                standardModel = NewDailyBriefStandardModel.init(caption: level5ViewModel.title,
-                                                                title: NSAttributedString.init(string: levelMessages[level5ViewModel.domainModel?.currentGetToLevel5Value ?? 0].levelTitle ?? ""),
-                                                                body: levelMessages[level5ViewModel.domainModel?.currentGetToLevel5Value ?? 0].levelContent,
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                domainModel: level5ViewModel.domainModel)
-            }
-        case .QUESTION_WITHOUT_ANSWER?:
-            return getRandomQuestionCell(tableView, indexPath, bucketItem as? QuestionCellViewModel)
-        case .LATEST_WHATS_HOT?:
-            if let whatsHotViewModel = bucketItem as? WhatsHotLatestCellViewModel {
-                let publishDate = whatsHotViewModel.publisheDate
-                let durationString = whatsHotViewModel.timeToRead
-                let dateAndDurationText = DateFormatter.whatsHotBucket.string(from: publishDate) + " | " + durationString
-
-                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_whats_hot_title),
-                                                                    title: NSAttributedString.init(string: whatsHotViewModel.title),
-                                                                     body: dateAndDurationText,
-                                                                     image: whatsHotViewModel.image?.absoluteString ?? "",
-                                                                     domainModel: whatsHotViewModel.domainModel)
-            }
-        case .THOUGHTS_TO_PONDER?:
-            return getThoughtsCell(tableView, indexPath, bucketItem as? ThoughtsCellViewModel)
-        case .GOOD_TO_KNOW?:
-            return getGoodToKnowCell(tableView, indexPath, bucketItem as? GoodToKnowCellViewModel)
-        case .FROM_MY_COACH?:
-            if let fromMyCoachViewModel = bucketItem as? FromMyCoachCellViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_from_my_tignum_coach_card_title),
-                                                                title: NSAttributedString.init(string: fromMyCoachViewModel.detail.title),
-                                                                body: fromMyCoachViewModel.messages.first?.text,
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                domainModel: fromMyCoachViewModel.domainModel)
-            }
-        case .FROM_TIGNUM?:
-            return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
-        case .BESPOKE?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
-        case .DEPARTURE_INFO?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
-        case .LEADERS_WISDOM?:
-            if let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: leadersWisdomViewModel.title,
-                                                                title: NSAttributedString.init(string: leadersWisdomViewModel.subtitle ?? ""),
-                                                                body: leadersWisdomViewModel.description ?? "",
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                CTAType: leadersWisdomViewModel.format,
-                                                                domainModel: leadersWisdomViewModel.domainModel)
-            }
-        case .EXPERT_THOUGHTS?:
-            if let expertThoughtsViewModel = bucketItem as? ExpertThoughtsCellViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: expertThoughtsViewModel.title,
-                                                                     title: NSAttributedString.init(string: expertThoughtsViewModel.name ?? ""),
-                                                                     body: expertThoughtsViewModel.description,
-                                                                     image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                     domainModel: expertThoughtsViewModel.domainModel)
-            }
-        case .FEAST_OF_YOUR_EYES?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
-        case .MY_PEAK_PERFORMANCE?:
-            if let peakPerformanceViewModel = bucketItem as? PeakPerformanceViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: peakPerformanceViewModel.title,
-                                                                title: NSAttributedString.init(string: peakPerformanceViewModel.eventTitle ?? ""),
-                                                                body: peakPerformanceViewModel.contentSubtitle,
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                domainModel: peakPerformanceViewModel.domainModel)
-            }
         case .GUIDE_TRACK?:
             if let guidedTrackViewModel = bucketItem as? GuidedTrackViewModel,
                let items = guidedTrackViewModel.items {
@@ -299,16 +149,46 @@ extension DailyBriefViewController {
                 return cell
 
             }
-        case .WEATHER?:
-            return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
-        case .MINDSET_SHIFTER?:
-            if let mindsetShifterViewModel = bucketItem as? MindsetShifterViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: AppTextService.get(.daily_brief_section_mindset_shifter_card_caption),
-                                                                title: NSAttributedString.init(string: AppTextService.get(.daily_brief_section_mindset_shifter_card_title)),
-                                                                body: AppTextService.get(.daily_brief_section_mindset_shifter_card_body),
-                                                                image: "https://homepages.cae.wisc.edu/~ece533/images/boy.bmp",
-                                                                domainModel: mindsetShifterViewModel.domainModel)
+        case .DAILY_CHECK_IN_1?:
+            if let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
+                let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? 0 : 2
+                standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                                title: bucketItem.title,
+                                                                body: bucketItem.body,
+                                                                image: bucketItem.image,
+                                                                numberOfLinesForBody: numberOfLines,
+                                                                domainModel: bucketItem.domainModel)
+            } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil {
+                standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                                title: bucketItem.title,
+                                                                body: bucketItem.body,
+                                                                image: bucketItem.image,
+                                                                domainModel: bucketItem.domainModel)
             }
+        case .LEADERS_WISDOM?:
+            if let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel {
+                standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                                title: bucketItem.title,
+                                                                body: bucketItem.body,
+                                                                image: bucketItem.image,
+                                                                CTAType: leadersWisdomViewModel.format,
+                                                                domainModel: bucketItem.domainModel)
+            }
+        case .SOLVE_REFLECTION?:
+            if (bucketItem as? SolveReminderCellViewModel) != nil {
+                return getSolveReminder(tableView, indexPath, bucketItem as? SolveReminderCellViewModel)
+            } else if (bucketItem as? SolveReminderTableCellViewModel) != nil {
+                return getSolveReminderTableCell(tableView, indexPath, bucketItem as? SolveReminderTableCellViewModel)
+            }
+            return UITableViewCell()
+        case .BESPOKE?:
+            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
+        case .DEPARTURE_INFO?:
+            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
+        case .FEAST_OF_YOUR_EYES?:
+            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
+        case .SPRINT_CHALLENGE?:
+            return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .TEAM_TO_BE_VISION?:
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
         case .TEAM_VISION_SUGGESTION?:
@@ -328,8 +208,14 @@ extension DailyBriefViewController {
                 return getRatingFeedbackCell(tableView, indexPath, feedbackModel)
             }
             return UITableViewCell()
+        case .WEATHER?:
+            return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         default:
-            return UITableViewCell()
+            standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                            title: bucketItem.title,
+                                                            body: bucketItem.body,
+                                                            image: bucketItem.image,
+                                                            domainModel: bucketItem.domainModel)
         }
 
         if let model = standardModel {
@@ -419,44 +305,6 @@ private extension DailyBriefViewController {
 
 // MARK: - Get TableViewCells
 private extension DailyBriefViewController {
-    func getRandomQuestionCell(_ tableView: UITableView,
-                               _ indexPath: IndexPath,
-                               _ questionCellViewModel: QuestionCellViewModel?) -> UITableViewCell {
-        let cell: QuestionCell = tableView.dequeueCell(for: indexPath)
-        cell.clickableLinkDelegate = self
-        cell.configure(with: questionCellViewModel)
-        return cell
-    }
-
-    func getThoughtsCell(_ tableView: UITableView,
-                         _ indexPath: IndexPath,
-                         _ thoughtsCellViewModel: ThoughtsCellViewModel?) -> UITableViewCell {
-        let cell: ThoughtsCell = tableView.dequeueCell(for: indexPath)
-        cell.clickableLinkDelegate = self
-        cell.configure(with: thoughtsCellViewModel)
-
-        return cell
-    }
-
-    func getGoodToKnowCell(_ tableView: UITableView,
-                           _ indexPath: IndexPath,
-                           _ goodToKnowCellViewModel: GoodToKnowCellViewModel?) -> UITableViewCell {
-        let cell: GoodToKnowCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: goodToKnowCellViewModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getFromTignumMessageCell(_ tableView: UITableView,
-                                  _ indexPath: IndexPath,
-                                  _ fromTignumMessageViewModel: FromTignumCellViewModel?) -> UITableViewCell {
-        let cell: FromTignumCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: fromTignumMessageViewModel)
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
     func getDepartureBespokeFeastCell(_ tableView: UITableView,
                               _ indexPath: IndexPath,
                               _ departureBespokeFeastModel: DepartureBespokeFeastModel?) -> UITableViewCell {
@@ -464,15 +312,6 @@ private extension DailyBriefViewController {
         cell.configure(with: departureBespokeFeastModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getAboutMeCell(_ tableView: UITableView,
-                        _ indexPath: IndexPath,
-                        _ aboutMeViewModel: AboutMeViewModel?) -> UITableViewCell {
-        let cell: AboutMeCell = tableView.dequeueCell(for: indexPath)
-        cell.clickableLinkDelegate = self
-        cell.configure(with: aboutMeViewModel)
         return cell
     }
 
@@ -506,36 +345,6 @@ private extension DailyBriefViewController {
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell
-    }
-
-    func getDailyCheckinInsightsSHPICell(_ tableView: UITableView,
-                                         _ indexPath: IndexPath,
-                                         _ dailyCheck2SHPIModel: DailyCheck2SHPIModel?) -> UITableViewCell {
-        let cell: DailyCheckinSHPICell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: dailyCheck2SHPIModel)
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getDailyCheckIn2TBVCell(_ tableView: UITableView,
-                                 _ indexPath: IndexPath,
-                                 _ dailyCheckIn2TBVModel: DailyCheckIn2TBVModel?) -> UITableViewCell {
-        let cell: DailyCheckinInsightsTBVCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: dailyCheckIn2TBVModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getDailyCheckIn2PeakPerformanceCell(_ tableView: UITableView,
-                                             _ indexPath: IndexPath,
-                                             _ dailyCheckIn2PeakPerformanceModel: DailyCheckIn2PeakPerformanceModel?)
-        -> UITableViewCell {
-            let cell: DailyCheckinInsightsPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(with: dailyCheckIn2PeakPerformanceModel)
-            cell.delegate = self
-            cell.clickableLinkDelegate = self
-            return cell
     }
 
     func getWeatherCell(_ tableView: UITableView,
@@ -611,7 +420,7 @@ private extension DailyBriefViewController {
 
 // MARK: - DailyBriefViewControllerInterface
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]>) {
         tableView.reload(using: differenceList, with: .fade) { data in
             self.interactor.updateViewModelListNew(data)
         }
@@ -621,17 +430,9 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.registerDequeueable(QuestionCell.self)
-        tableView.registerDequeueable(ThoughtsCell.self)
-        tableView.registerDequeueable(GoodToKnowCell.self)
-        tableView.registerDequeueable(FromTignumCell.self)
-        tableView.registerDequeueable(DailyCheckinInsightsTBVCell.self)
-        tableView.registerDequeueable(DailyCheckinSHPICell.self)
-        tableView.registerDequeueable(DailyCheckinInsightsPeakPerformanceCell.self)
-        tableView.registerDequeueable(AboutMeCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
-        tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
+        tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(DepartureBespokeFeastCell.self)
         tableView.registerDequeueable(TeamToBeVisionCell.self)
@@ -856,8 +657,11 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                     self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
                 }
             } else {
-                router.showTBV()
+                router.showTBV(showModal: false)
             }
+        case .FROM_TIGNUM:
+            guard let fromTignumCellModel = dailyBriefCellViewModel as? FromTignumCellViewModel else { return }
+            fromTignumCellModel.link?.launch()
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)

@@ -16,10 +16,6 @@ enum CTAType {
 final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var caption: String?
-    var title: NSAttributedString?
-    var body: String?
-    var image: String?
     var detailsMode: Bool?
     var numberOfLinesForBody: Int
     var isInAnimationTransition: Bool?
@@ -27,22 +23,18 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
 
     // MARK: - Init
     init(caption: String?,
-         title: NSAttributedString?,
+         title: String?,
          body: String?, image: String?,
          detailsMode: Bool = false,
          numberOfLinesForBody: Int = 2,
          isInAnimationTransition: Bool = false,
          CTAType: ContentFormat = .unknown,
          domainModel: QDMDailyBriefBucket?) {
-        self.caption = caption
-        self.title = title
-        self.body = body
-        self.image = image
         self.detailsMode = detailsMode
         self.numberOfLinesForBody = numberOfLinesForBody
         self.isInAnimationTransition = isInAnimationTransition
         self.CTAType = CTAType
-        super.init(domainModel)
+        super.init(domainModel, caption: caption, title: title, body: body, image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
@@ -68,7 +60,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         titleSizingLabel.numberOfLines = 5
         titleSizingLabel.font = UIFont.sfProtextRegular(ofSize: 24.0)
         titleSizingLabel.lineBreakMode = .byTruncatingTail
-        titleSizingLabel.attributedText = title
+        titleSizingLabel.attributedText = ThemeText.dailyBriefTitle.attributedString(title)
 
         let bodySizingLabel = UILabel()
         bodySizingLabel.numberOfLines = isInAnimationTransition ?? false ? numberOfLinesForBody : 0

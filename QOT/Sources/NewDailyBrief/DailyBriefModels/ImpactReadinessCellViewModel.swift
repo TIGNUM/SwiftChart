@@ -13,7 +13,6 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var readinessIntro: String?
-    var title: String?
     var feedback: String?
     var feedbackRelatedLink: QDMAppLink?
     var linkCTA: String?
@@ -27,6 +26,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
     internal init(title: String?,
                   feedback: String?,
                   feedbackRelatedLink: QDMAppLink?,
+                  image: String?,
                   linkCTA: String?,
                   dailyCheckImageURL: URL?,
                   readinessScore: Int?,
@@ -34,7 +34,6 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
                   isCalculating: Bool,
                   enableButton: Bool,
                   domainModel: QDMDailyBriefBucket?) {
-        self.title = title
         self.feedback = feedback
         self.feedbackRelatedLink = feedbackRelatedLink
         self.linkCTA = linkCTA
@@ -43,7 +42,10 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         self.readinessIntro = readinessIntro
         self.isCalculating = isCalculating
         self.enableButton = enableButton
-        super.init(domainModel)
+        let body = feedback?.isEmpty ?? true ? readinessIntro : feedback
+        super.init(domainModel, caption: title, title: title, body: body, image: image)
+        self.attributedTitle = ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: self.readinessScore,
+                                                                                       impactReadinessNoDataTitle: title)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

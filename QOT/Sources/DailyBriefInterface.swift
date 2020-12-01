@@ -67,13 +67,13 @@ protocol DailyBriefViewControllerDelegate: class {
 
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]>)
     func scrollToSection(at: Int)
 }
 
 protocol DailyBriefPresenterInterface {
     func setupView()
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]>)
     func scrollToSection(at: Int)
 }
 
@@ -81,7 +81,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     var rowViewSectionCount: Int { get }
 
     func bucket(at row: Int) -> QDMDailyBriefBucket?
-    func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?
+    func bucketViewModelNew() -> [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]?
     func getDailyBriefBucketsForViewModel()
     func getToBeVisionImage(completion: @escaping (URL?) -> Void)
     func getTeamTBVPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
@@ -90,7 +90,7 @@ protocol DailyBriefInteractorInterface: Interactor {
 
     func saveTargetValue(value: Int?)
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
-    func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
+    func updateViewModelListNew(_ list: [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
     func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation)
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation)

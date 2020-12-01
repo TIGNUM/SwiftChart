@@ -12,16 +12,12 @@ import qot_dal
 final class NewDailyBriefGetStartedModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var title: String?
-    var image: String?
     var appLink: QDMAppLink?
 
     // MARK: - Init
     init(title: String?, image: String?, appLink: QDMAppLink?, domainModel: QDMDailyBriefBucket?) {
-        self.title = title
-        self.image = image
         self.appLink = appLink
-        super.init(domainModel)
+        super.init(domainModel, title: title, image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

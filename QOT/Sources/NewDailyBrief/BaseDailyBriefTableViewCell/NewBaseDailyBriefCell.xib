@@ -38,6 +38,7 @@
                     <constraint firstItem="Zfv-7c-ikK" firstAttribute="top" secondItem="2ig-6A-7QJ" secondAttribute="top" priority="999" constant="30" id="pK3-ZQ-Xq8"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="collectionView" destination="Zfv-7c-ikK" id="7oc-iv-3ov"/>
                 <outlet property="collectionViewBottomConstraint" destination="WIl-Z8-qo2" id="8JK-jf-31a"/>

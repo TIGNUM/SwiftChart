@@ -17,7 +17,6 @@ final class TeamNewsFeedDailyBriefViewModel: BaseDailyBriefViewModel, Hashable {
     }
     // MARK: - Properties
     let type: TeamNewsFeedDailyBriefViewModel.NewsFeedCellType
-    let title: String?
     let subtitle: String?
     let actionButtonTitle: String?
     let feed: QDMTeamNewsFeed?
@@ -30,11 +29,10 @@ final class TeamNewsFeedDailyBriefViewModel: BaseDailyBriefViewModel, Hashable {
          domainModel: QDMDailyBriefBucket?) {
         self.type = type
         self.team = team
-        self.title = title
         self.subtitle = subtitle
         self.feed = feed
         self.actionButtonTitle = buttonTitle
-        super.init(domainModel)
+        super.init(domainModel, title: title)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

@@ -12,7 +12,6 @@ import qot_dal
 final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var title: String?
     var subtitle: String?
     var description: String?
     var audioDuration: Double?
@@ -27,6 +26,7 @@ final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
     init(title: String?,
          subtitle: String?,
          description: String?,
+         image: String?,
          audioTitle: String?,
          audioDuration: Double?,
          audioLink: URL?,
@@ -35,7 +35,6 @@ final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
          durationString: String?,
          name: String?,
          domainModel: QDMDailyBriefBucket?) {
-        self.title = title
         self.subtitle = subtitle
         self.audioTitle = audioTitle
         self.description = description
@@ -45,6 +44,6 @@ final class ExpertThoughtsCellViewModel: BaseDailyBriefViewModel {
         self.durationString = durationString
         self.name = name
         self.format = format
-        super.init(domainModel)
+        super.init(domainModel, caption: title, title: name, body: description, image: image)
     }
 }

@@ -27,7 +27,7 @@ extension DailyBriefPresenter: DailyBriefPresenterInterface {
         viewController?.setupView()
     }
 
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]>) {
         viewController?.updateViewNew(differenceList)
     }
 
