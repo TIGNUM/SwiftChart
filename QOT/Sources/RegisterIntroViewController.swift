@@ -114,7 +114,7 @@ extension RegisterIntroViewController {
                 self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .LANDSCAPE, action: .ROTATE)
                 self.videoCell.playerController.removeFromParent()
                 self.view.fill(subview: self.videoCell.playerController.view)
-                self.addChild(self.videoCell.playerController)
+                self.present(self.videoCell.playerController, animated: true)
                 self.videoCell.playerController.showsPlaybackControls = true
                 self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                 self.updateBottomNavigation([], [])

@@ -298,14 +298,17 @@ extension QuestionnaireViewController {
                                                                               lineSpacing: nil, lineHeight: nil,
                                                                               alignment: .center)
             }
-        case .vision, .teamVision:
-            if let question = questionText {
-                let combined = NSMutableAttributedString()
-                combined.append(ThemeText.tbvQuestionLight.attributedString(AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself)))
-                combined.append(ThemeText.tbvQuestionMedium.attributedString(" \""))
-                combined.append(ThemeText.tbvQuestionMedium.attributedString(question))
-                combined.append(ThemeText.tbvQuestionMedium.attributedString("\""))
-                attributedQuestion = combined
+        case .vision:
+            if let sentence = questionText?.trimmingCharacters(in: .whitespaces) {
+                let personalQuestion = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself)
+                attributedQuestion = createQuestion(sentence: sentence,
+                                                    question: personalQuestion)
+            }
+        case .teamVision:
+            if let sentence = questionText?.trimmingCharacters(in: .whitespaces) {
+                let teamQuestion = AppTextService.get(.my_x_team_vision_tracker_question)
+                attributedQuestion = createQuestion(sentence: sentence,
+                                                    question: teamQuestion)
             }
         }
         questionLabel.attributedText = attributedQuestion
@@ -337,6 +340,16 @@ extension QuestionnaireViewController {
             index = self.items - 1
         }
         return index
+    }
+
+    func createQuestion(sentence: String, question: String) -> NSMutableAttributedString {
+        let combined = NSMutableAttributedString()
+        combined.append(ThemeText.tbvQuestionLight.attributedString(question))
+        combined.append(ThemeText.tbvQuestionMedium.attributedString(" \""))
+        combined.append(ThemeText.tbvQuestionMedium.attributedString(sentence))
+        combined.append(ThemeText.tbvQuestionMedium.attributedString("\""))
+        combined.append(ThemeText.tbvQuestionMedium.attributedString("?"))
+        return combined
     }
 
     func adjustSelectedAnswer(yPosition position: CGFloat) {

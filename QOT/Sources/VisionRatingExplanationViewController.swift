@@ -77,10 +77,24 @@ final class VisionRatingExplanationViewController: BaseViewController {
 // MARK: - Actions
 extension VisionRatingExplanationViewController {
     @objc func startRating() {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         guard let teamID = interactor.team?.remoteID else { return }
         trackUserEvent(.OPEN, value: teamID, valueType: .TEAM_TO_BE_VISION_RATING, action: .TAP)
-        interactor.startTeamTrackerPoll(sendPushNotification: checkButton.isSelected) { [weak self] (poll, team) in
-            self?.router.showRateScreen(trackerPoll: poll, team: team, delegate: self)
+        var tmpPoll: QDMTeamToBeVisionTrackerPoll?
+        var tmpTeam: QDMTeam?
+
+        interactor.startTeamTrackerPoll(sendPushNotification: checkButton.isSelected) { (poll, team) in
+            tmpPoll = poll
+            tmpTeam = team
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.router.showRateScreen(trackerPoll: tmpPoll,
+                                        team: tmpTeam,
+                                        delegate: self,
+                                        showBanner: self?.checkButton.isSelected,
+                                        showModal: true)
             self?.updateBottomNavigation([], [])
         }
     }
@@ -88,8 +102,8 @@ extension VisionRatingExplanationViewController {
     @objc func startTeamTBVGenerator() {
         guard let team = interactor.team else { return }
         trackUserEvent(.OPEN, value: team.remoteID, valueType: .TEAM_TBV_GENERATOR, action: .TAP)
-        interactor.startTeamTBVPoll(sendPushNotification: checkButton.isSelected) { [weak self] (poll) in
-            self?.router.showTeamTBVGenerator(poll: poll, team: team)
+        interactor.startTeamTBVPoll(sendPushNotification: self.checkButton.isSelected) { [weak self] (poll) in
+            self?.router.showTeamTBVGenerator(poll: poll, team: team, showBanner: self?.checkButton.isSelected)
             self?.updateBottomNavigation([], [])
         }
     }

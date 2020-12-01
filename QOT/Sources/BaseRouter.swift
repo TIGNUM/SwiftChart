@@ -33,21 +33,27 @@ protocol BaseRouterInterface {
     func showTracker(for team: QDMTeam?, showModal: Bool)
     func showTBVData(shouldShowNullState: Bool, visionId: Int?, showModal: Bool)
     func showRateScreen(with id: Int, delegate: TBVRateDelegate?, showModal: Bool)
-    func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?, showModal: Bool)
+    func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                        team: QDMTeam?,
+                        delegate: TBVRateDelegate?,
+                        showBanner: Bool?,
+                        showModal: Bool)
     func showTBVGenerator()
+
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func dismiss()
     func dismissChatBotFlow()
 
-    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam)
-
-    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?)
+    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam, showBanner: Bool?)
+    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?, showBanner: Bool?)
     func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types)
+
     func showBanner(message: String)
 }
 
 class BaseRouter: BaseRouterInterface {
+
     // MARK: - Properties
     weak var viewController: UIViewController?
 
@@ -232,10 +238,17 @@ class BaseRouter: BaseRouterInterface {
         visionController.present(controller, animated: true)
     }
 
-    func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?, delegate: TBVRateDelegate?, showModal: Bool = true) {
+    func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                        team: QDMTeam?,
+                        delegate: TBVRateDelegate?,
+                        showBanner: Bool?,
+                        showModal: Bool = true) {
         let showClosure: (UIViewController?) -> Void = { (presentingViewController) in
             if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
-                MyToBeVisionRateConfigurator.configure(controller: controller, trackerPoll: trackerPoll, team: team)
+                MyToBeVisionRateConfigurator.configure(controller: controller,
+                                                       trackerPoll: trackerPoll,
+                                                       team: team,
+                                                       showBanner: showBanner)
                 controller.delegate = delegate
                 showModal ? presentingViewController?.present(controller, animated: true, completion: nil) :
                             presentingViewController?.pushToStart(childViewController: controller)
@@ -252,14 +265,14 @@ class BaseRouter: BaseRouterInterface {
 
     func showRateScreen(with id: Int, delegate: TBVRateDelegate?, showModal: Bool = true) {
         if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
-            MyToBeVisionRateConfigurator.configure(controller: controller, visionId: id)
+            MyToBeVisionRateConfigurator.configure(controller: controller, visionId: id, showBanner: nil)
             controller.delegate = delegate
             showModal ? present(controller) : push(controller)
         }
     }
 
-    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam) {
-        let configurator = DTTeamTBVConfigurator.make(poll: poll, team: team)
+    func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam, showBanner: Bool?) {
+        let configurator = DTTeamTBVConfigurator.make(poll: poll, team: team, showBanner: showBanner)
         let controller = DTTeamTBVViewController(configure: configurator)
         present(controller)
     }
@@ -270,11 +283,12 @@ class BaseRouter: BaseRouterInterface {
         present(controller)
     }
 
-    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?) {
+    func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?, showBanner: Bool?) {
         if let vc = R.storyboard.teamToBeVisionOptions.teamToBeVisionOptionsViewController() {
             TeamToBeVisionOptionsConfigurator.make(viewController: vc,
                                                    type: type,
-                                                   team: team)
+                                                   team: team,
+                                                   showBanner: showBanner)
             self.viewController?.show(vc, sender: nil)
         }
     }

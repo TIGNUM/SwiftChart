@@ -47,10 +47,9 @@ final class NotificationBanner: UIView {
                                 height: frame.height)
             view.addSubview(self)
             UIView.animate(withDuration: 0.3, animations: {
-                self.frame.origin = CGPoint(x: 0, y: frame.origin.y + 10 + frame.height)
-            }) { (_) in
+                            self.frame.origin = CGPoint(x: 0, y: frame.origin.y + 10 + frame.height) }, completion: { (_) in
                 self.startTimer()
-            }
+            })
         }
     }
 }
@@ -65,14 +64,14 @@ private extension NotificationBanner {
                                 y: self.frame.origin.y - (self.frame.height + 60),
                                 width: self.frame.width,
                                 height: self.frame.height)
-        }) { (_) in
+        }, completion: { (_) in
             self.isEnabled.toggle()
             self.frame = CGRect(x: 0,
                                 y: self.frame.origin.y + 50,
                                 width: self.frame.width,
                                 height: self.frame.height)
             self.removeFromSuperview()
-        }
+        })
     }
 
     func startTimer() {

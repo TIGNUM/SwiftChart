@@ -104,21 +104,27 @@ extension TeamToBeVisionOptionsViewController: TeamAdminDelegate {
         case .rating:
             router.showRateScreen(trackerPoll: interactor.trackerPoll,
                                   team: interactor.team,
-                                  delegate: self)
+                                  delegate: self,
+                                  showBanner: interactor.showBanner,
+                                  showModal: true)
         case .voting:
             if let team = interactor.team {
-                router.showTeamTBVGenerator(poll: interactor.toBeVisionPoll, team: team)
+                router.showTeamTBVGenerator(poll: interactor.toBeVisionPoll,
+                                            team: team,
+                                            showBanner: interactor.showBanner)
             }
         }
     }
 
     func showAlert() {
         let cancel = QOTAlertAction(title: interactor.alertCancelTitle)
+        let hasRatings = interactor.trackerPoll?.qotTeamToBeVisionTrackers?.first?.qotTeamToBeVisionTrackerRatings?.isEmpty == false
         let end = QOTAlertAction(title: interactor.alertEndTitle) { [weak self] _ in
             switch self?.interactor.getType {
             case .rating:
                 self?.interactor.endRating { [weak self] in
                     self?.navigationController?.popViewController {
+                        guard hasRatings == true else { return }
                         self?.router.showTracker(for: self?.interactor.team)
                     }
                 }
