@@ -1267,11 +1267,6 @@
 		F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */; };
 		F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */; };
 		F96225752552FA68003FF235 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96225742552FA68003FF235 /* UINavigationController+Extension.swift */; };
-		F96B23AB23507FB900130EFF /* DepartureBespokeFeastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23AA23507FB900130EFF /* DepartureBespokeFeastCell.swift */; };
-		F96B23AD23507FD400130EFF /* DepartureBespokeFeastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96B23AC23507FD400130EFF /* DepartureBespokeFeastCell.xib */; };
-		F96B23AF23507FF900130EFF /* DepartureBespokeFeastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */; };
-		F96B23B12350BF1100130EFF /* DepartureBespokeFeastImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96B23B02350BF1100130EFF /* DepartureBespokeFeastImageCell.xib */; };
-		F96B23B32350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */; };
 		F96D75B4249CE88A00DFFB22 /* CustomizedShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75AC249CE88A00DFFB22 /* CustomizedShareViewController.swift */; };
 		F96D75B9249CF9C100DFFB22 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */; };
 		F96D75BD24A3671F00DFFB22 /* ContainerShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */; };
@@ -2703,11 +2698,6 @@
 		F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableViewCell.xib; sourceTree = "<group>"; };
 		F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableHeaderView.swift; sourceTree = "<group>"; };
 		F96225742552FA68003FF235 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
-		F96B23AA23507FB900130EFF /* DepartureBespokeFeastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastCell.swift; sourceTree = "<group>"; };
-		F96B23AC23507FD400130EFF /* DepartureBespokeFeastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureBespokeFeastCell.xib; sourceTree = "<group>"; };
-		F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastModel.swift; sourceTree = "<group>"; };
-		F96B23B02350BF1100130EFF /* DepartureBespokeFeastImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureBespokeFeastImageCell.xib; sourceTree = "<group>"; };
-		F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastImageCell.swift; sourceTree = "<group>"; };
 		F96D75AC249CE88A00DFFB22 /* CustomizedShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedShareViewController.swift; sourceTree = "<group>"; };
 		F96D75B8249CF9C100DFFB22 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		F96D75BC24A3671E00DFFB22 /* ContainerShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerShareViewController.swift; sourceTree = "<group>"; };
@@ -2946,7 +2936,6 @@
 				F9462248230C2C21000A3B42 /* Copyright */,
 				F902CF4D22DE0F8F00FFC836 /* Daily Insights */,
 				F98E2AC622C22037002550FF /* GoodToKnow */,
-				F96B23A923507F6800130EFF /* Multiple Images Bucket */,
 				F967269922BCD91A00B63FD7 /* RandomQuestion */,
 				9C24237A22F093E700B911E6 /* SolveReminder  */,
 				F9F70C1222F9A24000E85BF3 /* SprintChallenge */,
@@ -5797,18 +5786,6 @@
 			name = WhatsHotLatest;
 			sourceTree = "<group>";
 		};
-		F96B23A923507F6800130EFF /* Multiple Images Bucket */ = {
-			isa = PBXGroup;
-			children = (
-				F96B23AA23507FB900130EFF /* DepartureBespokeFeastCell.swift */,
-				F96B23AC23507FD400130EFF /* DepartureBespokeFeastCell.xib */,
-				F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */,
-				F96B23B02350BF1100130EFF /* DepartureBespokeFeastImageCell.xib */,
-				F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */,
-			);
-			name = "Multiple Images Bucket";
-			sourceTree = "<group>";
-		};
 		F96D75A6249CE86700DFFB22 /* CustomizedShareViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -6457,7 +6434,6 @@
 				B48B53AF2561C06600FC183D /* ImpactReadiness5DaysRollingTableViewCell.xib in Resources */,
 				F902CF5722DE10B800FFC836 /* DailyCheckinSHPICell.xib in Resources */,
 				75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */,
-				F96B23B12350BF1100130EFF /* DepartureBespokeFeastImageCell.xib in Resources */,
 				759AB41C22C4D2410091BFB8 /* TBVDataGraphBarViewCell.xib in Resources */,
 				8D8AA76922FDCB6700B59A81 /* RegistrationEmail.storyboard in Resources */,
 				383D5F2024212C25007F8C2A /* walkThrough_coach.mp4 in Resources */,
@@ -6511,7 +6487,6 @@
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
 				8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */,
 				381E9B7524F66E4900973916 /* NotificationBanner.xib in Resources */,
-				F96B23AD23507FD400130EFF /* DepartureBespokeFeastCell.xib in Resources */,
 				B80B2F0024DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib in Resources */,
 				B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */,
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
@@ -7018,7 +6993,6 @@
 				8D25327722EA0FF300FE4205 /* CtaItemDetailsItemCell.swift in Sources */,
 				DB086F3124C5E56100D4F64E /* BookMarkSelectionRouter.swift in Sources */,
 				B4BCE4A7255BD01600A1116F /* PresentCardAnimator.swift in Sources */,
-				F96B23AB23507FB900130EFF /* DepartureBespokeFeastCell.swift in Sources */,
 				8D13B8DF22FB1F4C00B776E8 /* CreateAccountInfoViewController.swift in Sources */,
 				B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */,
 				9115F701208DDFEB00EE5D1D /* ProfileSettingsWorker.swift in Sources */,
@@ -7248,7 +7222,6 @@
 				5FA66648229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift in Sources */,
 				F9207CE824B77BEB007B1AB6 /* MyXTeamMembersRouter.swift in Sources */,
 				36288A7123257EDD0036C8C0 /* DTPresentationModel.swift in Sources */,
-				F96B23B32350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift in Sources */,
 				DB5121622331945F009BFF22 /* PreparationWithMissingEventInteractor.swift in Sources */,
 				AC103E5E2289942100F426F0 /* NegativeToPositiveView.swift in Sources */,
 				8DC849B32326463900C4D4A3 /* Reachability.m in Sources */,
@@ -7710,7 +7683,6 @@
 				F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */,
 				36E4CF0C22BC51BD009A2DF7 /* ChoiceInterface.swift in Sources */,
 				36D2F2FC229E88FF004BA110 /* ExistingPreparationTableViewCell.swift in Sources */,
-				F96B23AF23507FF900130EFF /* DepartureBespokeFeastModel.swift in Sources */,
 				DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */,
 				BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */,
 				F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */,

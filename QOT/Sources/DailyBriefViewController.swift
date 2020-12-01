@@ -181,12 +181,6 @@ extension DailyBriefViewController {
                 return getSolveReminderTableCell(tableView, indexPath, bucketItem as? SolveReminderTableCellViewModel)
             }
             return UITableViewCell()
-        case .BESPOKE?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
-        case .DEPARTURE_INFO?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
-        case .FEAST_OF_YOUR_EYES?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .SPRINT_CHALLENGE?:
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .TEAM_TO_BE_VISION?:
@@ -305,16 +299,6 @@ private extension DailyBriefViewController {
 
 // MARK: - Get TableViewCells
 private extension DailyBriefViewController {
-    func getDepartureBespokeFeastCell(_ tableView: UITableView,
-                              _ indexPath: IndexPath,
-                              _ departureBespokeFeastModel: DepartureBespokeFeastModel?) -> UITableViewCell {
-        let cell: DepartureBespokeFeastCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: departureBespokeFeastModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
     func getSprints(_ tableView: UITableView,
                     _ indexPath: IndexPath,
                     _ sprintChallengeModel: SprintChallengeViewModel?) -> UITableViewCell {
@@ -434,7 +418,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(WeatherCell.self)
-        tableView.registerDequeueable(DepartureBespokeFeastCell.self)
         tableView.registerDequeueable(TeamToBeVisionCell.self)
         tableView.registerDequeueable(TeamVisionSuggestionCell.self)
         tableView.registerDequeueable(TeamInvitationCell.self)
