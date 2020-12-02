@@ -236,6 +236,12 @@ extension BaseDailyBriefDetailsViewController: UIAdaptivePresentationControllerD
     }
 }
 
+extension BaseDailyBriefDetailsViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        refreshBottomNavigationItems()
+    }
+}
+
 // MARK: - BottomNavigation
 extension BaseDailyBriefDetailsViewController {
     @objc override public func didTapDismissButton() {
