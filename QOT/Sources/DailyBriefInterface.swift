@@ -18,8 +18,6 @@ enum MyPeakPerformanceBucketType: String, CaseIterable {
 }
 
 protocol DailyBriefViewControllerDelegate: class {
-    func openTools(toolID: Int?)
-
     func presentStrategyList(strategyID: Int?)
 
     func showSolveResults(solve: QDMSolve)

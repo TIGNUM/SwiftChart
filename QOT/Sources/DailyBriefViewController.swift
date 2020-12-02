@@ -121,7 +121,7 @@ extension DailyBriefViewController {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
-        var standardModel: BaseDailyBriefViewModel?
+        var cellModels: [BaseDailyBriefViewModel] = []
 
         guard let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPath.section),
                 let domainModel = bucketModel.elements[indexPath.row].domainModel else {
@@ -136,43 +136,38 @@ extension DailyBriefViewController {
         case .GUIDE_TRACK?:
             if let guidedTrackViewModel = bucketItem as? GuidedTrackViewModel,
                let items = guidedTrackViewModel.items {
-                var models: [NewDailyBriefGetStartedModel] = []
                 for item in items {
                     let model = NewDailyBriefGetStartedModel.init(title: item.title,
                                                                   image: item.image,
                                                                   appLink: item.appLink,
                                                                   domainModel: guidedTrackViewModel.domainModel)
-                    models.append(model)
+                    cellModels.append(model)
                 }
-                cell.configure(with: models)
-
-                return cell
-
             }
         case .DAILY_CHECK_IN_1?:
             if let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
                 let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? 0 : 2
-                standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
                                                                 numberOfLinesForBody: numberOfLines,
-                                                                domainModel: bucketItem.domainModel)
+                                                                domainModel: bucketItem.domainModel))
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil {
-                standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
-                                                                domainModel: bucketItem.domainModel)
+                                                                domainModel: bucketItem.domainModel))
             }
         case .LEADERS_WISDOM?:
             if let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel {
-                standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
                                                                 CTAType: leadersWisdomViewModel.format,
-                                                                domainModel: bucketItem.domainModel)
+                                                                domainModel: bucketItem.domainModel))
             }
         case .SOLVE_REFLECTION?:
             if (bucketItem as? SolveReminderCellViewModel) != nil {
@@ -182,7 +177,16 @@ extension DailyBriefViewController {
             }
             return UITableViewCell()
         case .SPRINT_CHALLENGE?:
-            return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
+            if let bucket = bucketItem as? SprintsCollectionViewModel,
+               let items = bucket.items {
+                for item in items {
+                    cellModels.append(NewDailyBriefStandardModel.init(caption: item.caption,
+                                                                      title: item.title,
+                                                                      body: item.body,
+                                                                      image: item.image,
+                                                                      domainModel: item.domainModel))
+                }
+            }
         case .TEAM_TO_BE_VISION?:
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
         case .TEAM_VISION_SUGGESTION?:
@@ -205,16 +209,14 @@ extension DailyBriefViewController {
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         default:
-            standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
-                                                            title: bucketItem.title,
-                                                            body: bucketItem.body,
-                                                            image: bucketItem.image,
-                                                            domainModel: bucketItem.domainModel)
+            cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                                title: bucketItem.title,
+                                                                body: bucketItem.body,
+                                                                image: bucketItem.image,
+                                                                domainModel: bucketItem.domainModel))
         }
 
-        if let model = standardModel {
-            cell.configure(with: [model])
-        }
+        cell.configure(with: cellModels)
         cell.delegate = self
 
         return cell
@@ -299,16 +301,6 @@ private extension DailyBriefViewController {
 
 // MARK: - Get TableViewCells
 private extension DailyBriefViewController {
-    func getSprints(_ tableView: UITableView,
-                    _ indexPath: IndexPath,
-                    _ sprintChallengeModel: SprintChallengeViewModel?) -> UITableViewCell {
-        let cell: SprintChallengeCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: sprintChallengeModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
     func getSolveReminder(_ tableView: UITableView,
                           _ indexPath: IndexPath,
                           _ solveReminderViewModel: SolveReminderCellViewModel?) -> UITableViewCell {
@@ -416,7 +408,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
-        tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(TeamToBeVisionCell.self)
         tableView.registerDequeueable(TeamVisionSuggestionCell.self)
@@ -522,12 +513,6 @@ extension DailyBriefViewController {
         router.presentPopUp(copyrightURL: copyrightURL, description: description)
     }
 
-    func openTools(toolID: Int?) {
-        if let contentId = toolID {
-            router.presentContent(contentId)
-        }
-    }
-
     func showSolveResults(solve: QDMSolve) {
         router.presentSolveResults(solve: solve)
     }
@@ -542,10 +527,6 @@ extension DailyBriefViewController {
 
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?) {
         router.presentMindsetResults(mindsetShifter)
-    }
-
-    @objc func openStrategy(sender: UITapGestureRecognizer) {
-        presentStrategyList(strategyID: selectedStrategyID)
     }
 
     func presentStrategyList(strategyID: Int?) {
@@ -645,6 +626,12 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
         case .FROM_TIGNUM:
             guard let fromTignumCellModel = dailyBriefCellViewModel as? FromTignumCellViewModel else { return }
             fromTignumCellModel.link?.launch()
+        case .SPRINT_CHALLENGE:
+            guard let sprintCollectionCellModel = dailyBriefCellViewModel as? SprintsCollectionViewModel,
+                  let sprintCellModel = sprintCollectionCellModel.items?[indexPath.item] else { return }
+            performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
+                self?.router.presentDailyBriefDetailsScreen(model: sprintCellModel, transitioningDelegate: self?.transition)
+            }
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
