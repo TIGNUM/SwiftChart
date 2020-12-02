@@ -26,6 +26,12 @@ final class HorizontalHeaderView: UIView {
                                                    queue: .main) { [weak self] notification in
             self?.checkSelection(notification)
         }
+
+        _ = NotificationCenter.default.addObserver(forName: .didSelectMyX,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.scrollToItem(index: 0)
+        }
     }
 
     func configure(headerItems: [Team.Item], canDeselect: Bool = true) {
