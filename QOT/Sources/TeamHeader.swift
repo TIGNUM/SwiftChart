@@ -29,7 +29,7 @@ struct Team {
 
         var title: String {
             switch self {
-            case .myX: return AppTextService.get(.my_qot_section_header_title)
+            case .myX: return AppTextService.get(.my_qot_section_header_title).capitalized
             case .invite: return AppTextService.get(.team_invite_header_singular)
             case .team: return ""
             }
