@@ -85,6 +85,10 @@ private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
         log("itemSelected: ⚠️⚠️⚠️⚠️ \(itemSelected)", level: .debug)
         log("teamId: ⚠️⚠️⚠️⚠️ \(teamId)", level: .debug)
+        if teamId == Team.Header.myX.inviteId && itemSelected {
+            return
+        }
+
         if teamInvites.isEmpty {
             if !itemSelected || (itemSelected && canDeselect) {
                 NotificationCenter.default.post(name: .didSelectTeam,
