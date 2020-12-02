@@ -89,6 +89,13 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
         let cell: TeamHeaderCell = collectionView.dequeueCell(for: indexPath)
         if let item = headerItems.at(index: indexPath.row) {
             switch item.header {
+            case .myX:
+                cell.configure(teamId: item.teamId,
+                               title: item.title,
+                               hexColorString: item.color,
+                               selected: item.isSelected,
+                               canDeselect: canDeselect,
+                               newCount: item.batchCount)
             case .invite:
                 cell.configure(teamInvites: item.invites)
             case .team:

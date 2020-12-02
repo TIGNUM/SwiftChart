@@ -547,6 +547,10 @@ private extension WorkerTeam {
         teamHeaderItems.append(contentsOf: teams.compactMap { (team) -> Team.Item in
             return Team.Item(qdmTeam: team)
         })
+
+        if teams.isEmpty == false {
+            teamHeaderItems.insert(Team.Item(myX: .myX), at: 0)
+        }
         completion(teamHeaderItems)
     }
 }
