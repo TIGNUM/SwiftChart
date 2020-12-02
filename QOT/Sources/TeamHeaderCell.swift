@@ -91,6 +91,7 @@ private extension TeamHeaderCell {
 
         if teamInvites.isEmpty {
             if !itemSelected || (itemSelected && canDeselect) {
+                HorizontalHeaderView.setMyX = false
                 NotificationCenter.default.post(name: .didSelectTeam,
                                                 object: nil,
                                                 userInfo: [Team.KeyTeamId: teamId])
@@ -99,8 +100,6 @@ private extension TeamHeaderCell {
                     NotificationCenter.default.post(name: .didSelectMyX,
                                                     object: nil,
                                                     userInfo: [Team.KeyTeamId: Team.Header.myX.inviteId])
-                } else {
-                    HorizontalHeaderView.setMyX = false
                 }
             }
         } else {
