@@ -9,23 +9,20 @@
 import UIKit
 import qot_dal
 
-final class BaseDailyBriefDetailsRouter {
+final class BaseDailyBriefDetailsRouter: BaseRouter {
 
     // MARK: - Properties
-    private weak var viewController: BaseDailyBriefDetailsViewController?
+    private weak var dailyBriefDetailsViewController: BaseDailyBriefDetailsViewController?
 
     // MARK: - Init
     init(viewController: BaseDailyBriefDetailsViewController?) {
-        self.viewController = viewController
+        super.init(viewController: viewController)
+        self.dailyBriefDetailsViewController = viewController
     }
 }
 
 // MARK: - BaseDailyBriefDetailsRouterInterface
 extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-
     func showMyDataScreen() {
         if let controller = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
             let configurator = MyDataScreenConfigurator.make()
@@ -36,12 +33,13 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
     }
 
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
-        if let data = data,
+        guard let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
-                                                                        delegate: viewController,
-                                                                        controllerType: .customize) {
-            viewController?.pushToStart(childViewController: controller)
+                                                                        delegate: dailyBriefDetailsViewController,
+                                                                        controllerType: .customize) else {
+            return
         }
+        dailyBriefDetailsViewController?.pushToStart(childViewController: controller)
     }
 
     func showTBV() {

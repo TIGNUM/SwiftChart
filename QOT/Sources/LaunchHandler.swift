@@ -516,11 +516,20 @@ extension LaunchHandler {
     }
 
     func push(viewController: UIViewController) {
-        baseRootViewController?.pushToStart(childViewController: viewController, enableInteractivePop: true)
+        if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
+            detailsVC.pushToStart(childViewController: viewController)
+        } else {
+            baseRootViewController?.pushToStart(childViewController: viewController, enableInteractivePop: true)
+        }
     }
 
     func present(viewController: UIViewController) {
-        baseRootViewController?.present(viewController, animated: true, completion: nil)
+        if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
+            detailsVC.pushToStart(childViewController: viewController)
+        } else {
+            baseRootViewController?.present(viewController, animated: true, completion: nil)
+        }
+
     }
 }
 
