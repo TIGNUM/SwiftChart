@@ -21,7 +21,7 @@ struct Team {
 
         var inviteId: String {
             switch self {
-            case .myX: return UUID().uuidString
+            case .myX: return "team.key.myX.default"
             case .invite: return UUID().uuidString
             case .team: return ""
             }
@@ -72,7 +72,7 @@ struct Team {
             self.header = myX
             self.title = myX.title
             self.teamId = myX.inviteId
-            self.color = "#FFFFFF"
+            self.color = UIColor.accent.toHexString
         }
 
         var isSelected: Bool {

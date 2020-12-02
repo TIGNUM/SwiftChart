@@ -14,7 +14,7 @@ final class HorizontalHeaderView: UIView {
     @IBOutlet private weak var collectionView: UICollectionView!
     private var headerItems = [Team.Item]()
     private var canDeselect = true
-    static var selectedTeamId = ""
+    static var selectedTeamId = Team.Header.myX.inviteId
 
     override func awakeFromNib() {
         super.awakeFromNib()
