@@ -69,7 +69,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
                 collectionViewTrailingConstraint.constant = detailsMode ? 0 : 24.0
                 height = NewDailyStandardBriefCollectionViewCell.height(for: viewModel, forWidth: width)
                 collectionView.isPagingEnabled = true
-                flowLayout.minimumLineSpacing = detailsMode ? 0 : 8
+                flowLayout.minimumLineSpacing = 0
             }
         }
 

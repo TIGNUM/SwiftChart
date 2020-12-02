@@ -252,7 +252,13 @@ extension UIViewController {
         default: vc.modalPresentationStyle = .fullScreen
         }
 
-        baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
+        if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
+            vc.modalPresentationStyle = .overFullScreen
+            (vc as? UINavigationController)?.topViewController?.presentationController?.delegate = detailsVC
+            detailsVC.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
+        } else {
+            baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
+        }
     }
 
     @objc func dismissSwizzled(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -265,6 +271,9 @@ extension UIViewController {
                                                                      rightBarButtonItems: [],
                                                                      backgroundColor: .clear),
                                         userInfo: nil)
+        if #available(iOS 13.0, *) {
+            self.presentationController?.delegate?.presentationControllerDidDismiss?(self.presentationController!)
+        }
     }
 }
 

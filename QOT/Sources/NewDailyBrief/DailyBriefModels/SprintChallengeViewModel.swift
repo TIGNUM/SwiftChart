@@ -9,6 +9,15 @@
 import Foundation
 import qot_dal
 
+final class SprintsCollectionViewModel: BaseDailyBriefViewModel {
+    var items: [SprintChallengeViewModel]?
+
+    init(items: [SprintChallengeViewModel], domainModel: QDMDailyBriefBucket) {
+        super.init(domainModel)
+        self.items = items
+    }
+}
+
 final class SprintChallengeViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
@@ -54,6 +63,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
     init(bucketTitle: String?,
          sprintTitle: String?,
          sprintInfo: String?,
+         image: String?,
          sprintStepNumber: Int?,
          relatedStrategiesModels: [RelatedItemsModel],
          domainModel: QDMDailyBriefBucket?,
@@ -65,7 +75,12 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         self.sprint = sprint
         self.sprintStepNumber = sprintStepNumber
         self.relatedStrategiesModels = relatedStrategiesModels
-        super.init(domainModel)
+        let caption = AppTextService.get(.daily_brief_section_sprint_challenge_caption) + " \(sprintStepNumber ?? 0)"
+        super.init(domainModel,
+                   caption: caption,
+                   title: bucketTitle,
+                   body: sprintInfo,
+                   image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

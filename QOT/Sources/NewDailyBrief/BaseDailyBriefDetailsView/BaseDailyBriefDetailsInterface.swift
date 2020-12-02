@@ -20,6 +20,8 @@ protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
     func didUpdateLevel5(with model: Level5ViewModel)
     func didUpdateImpactReadiness(with model: ImpactReadinessCellViewModel)
+    func presentStrategyList(strategyID: Int?)
+    func openTools(toolID: Int?)
 }
 
 protocol BaseDailyBriefDetailsPresenterInterface {
@@ -35,8 +37,7 @@ protocol BaseDailyBriefDetailsInteractorInterface: Interactor {
     func saveAnswerValue(_ value: Int)
 }
 
-protocol BaseDailyBriefDetailsRouterInterface {
-    func dismiss()
+protocol BaseDailyBriefDetailsRouterInterface: BaseRouterInterface {
     func showMyDataScreen()
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
     func showTBV()

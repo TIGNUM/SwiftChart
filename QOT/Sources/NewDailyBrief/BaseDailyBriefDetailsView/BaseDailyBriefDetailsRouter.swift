@@ -9,45 +9,43 @@
 import UIKit
 import qot_dal
 
-final class BaseDailyBriefDetailsRouter {
+final class BaseDailyBriefDetailsRouter: BaseRouter {
 
     // MARK: - Properties
-    private weak var viewController: BaseDailyBriefDetailsViewController?
+    private weak var dailyBriefDetailsViewController: BaseDailyBriefDetailsViewController?
 
     // MARK: - Init
     init(viewController: BaseDailyBriefDetailsViewController?) {
-        self.viewController = viewController
+        super.init(viewController: viewController)
+        self.dailyBriefDetailsViewController = viewController
     }
 }
 
 // MARK: - BaseDailyBriefDetailsRouterInterface
 extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-
     func showMyDataScreen() {
         if let childViewController = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
             let configurator = MyDataScreenConfigurator.make()
             configurator(childViewController)
             childViewController.showStatusBar = false
-            viewController?.navigationController?.pushViewController(childViewController, animated: true)
+            dailyBriefDetailsViewController?.navigationController?.pushViewController(childViewController, animated: true)
         }
     }
 
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
-        if let data = data,
+        guard let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
-                                                                        delegate: viewController,
-                                                                        controllerType: .customize) {
-            viewController?.pushToStart(childViewController: controller)
+                                                                        delegate: dailyBriefDetailsViewController,
+                                                                        controllerType: .customize) else {
+            return
         }
+        dailyBriefDetailsViewController?.pushToStart(childViewController: controller)
     }
 
     func showTBV() {
         if let controller = R.storyboard.myToBeVision.myVisionViewController() {
             MyVisionConfigurator.configure(viewController: controller, showSubVCModal: false)
-            viewController?.pushToStart(childViewController: controller)
+            dailyBriefDetailsViewController?.pushToStart(childViewController: controller)
         }
     }
 
@@ -55,14 +53,14 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
          let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
                                                            resultType: .mindsetShifterBucket)
          let controller = ShifterResultViewController(configure: configurator)
-         viewController?.present(controller, animated: true)
+        dailyBriefDetailsViewController?.present(controller, animated: true)
      }
 
     func presentPrepareResults(for preparation: QDMUserPreparation?) {
         if let preparation = preparation {
             let configurator = ResultsPrepareConfigurator.make(preparation, resultType: .prepareDailyBrief)
             let controller = ResultsPrepareViewController(configure: configurator)
-            viewController?.present(controller, animated: true)
+            dailyBriefDetailsViewController?.present(controller, animated: true)
         }
     }
 }
