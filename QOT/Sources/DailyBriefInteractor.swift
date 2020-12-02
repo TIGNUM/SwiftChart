@@ -1253,7 +1253,13 @@ extension DailyBriefInteractor {
         invitationBucket.teamInvitations?.forEach {(invitation) in
             teamNames.append(invitation.team?.name ?? "")
         }
-        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, domainModel: invitationBucket)
+        let inviteCount = teamNames.count
+        let multipleInvitesTitle = AppTextService.get(.daily_brief_team_invitation_multiple_teams_title)
+            .replacingOccurrences(of: "${invitations_count}", with: String(describing: inviteCount))
+        let singleInviteTitle = AppTextService.get(.daily_brief_single_team_invitation_title)
+            .replacingOccurrences(of: "${team}", with: (String(describing: teamNames.first)))
+        let title = inviteCount > 1 ? multipleInvitesTitle : singleInviteTitle
+        let model = TeamInvitationModel(title: title, teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, image: invitationBucket.imageURL, domainModel: invitationBucket)
         invitationList.append(model)
         return invitationList
     }

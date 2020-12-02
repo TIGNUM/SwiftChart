@@ -4573,6 +4573,7 @@
 			children = (
 				B411ECCD25751E5200EB7A78 /* BaseDailyBriefViewModel.swift */,
 				B411ECA325751C5100EB7A78 /* GuidedTrackViewModel.swift */,
+				F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */,
 				B411ECA425751C5100EB7A78 /* MeAtMyBestCellViewModel.swift */,
 				B411ECA525751C5100EB7A78 /* LeaderWisdomCellViewModel.swift */,
 				B411ECA625751C5100EB7A78 /* Notification+Ext.swift */,
@@ -5844,7 +5845,6 @@
 			isa = PBXGroup;
 			children = (
 				F96D9F3724D85AB800188482 /* TeamInvitationCell.swift */,
-				F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */,
 				F96D9F3B24D85AE100188482 /* TeamInvitationCell.xib */,
 			);
 			name = TeamInvitation;

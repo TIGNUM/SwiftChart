@@ -193,8 +193,6 @@ extension DailyBriefViewController {
             return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
         case .TEAM_VISION_SUGGESTION?:
             return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
-        case .TEAM_INVITATION?:
-            return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
         case .TEAM_NEWS_FEED?:
             return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
@@ -376,16 +374,16 @@ private extension DailyBriefViewController {
         cell.clickableLinkDelegate = self
         return cell
     }
-
-    func getTeamInvitationCell(_ tableView: UITableView,
-                               _ indexPath: IndexPath,
-                               _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
-        let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: teamInvitationModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
+//
+//    func getTeamInvitationCell(_ tableView: UITableView,
+//                               _ indexPath: IndexPath,
+//                               _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
+//        let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
+//        cell.configure(model: teamInvitationModel)
+//        cell.delegate = self
+//        cell.clickableLinkDelegate = self
+//        return cell
+//    }
 
     func getOpenPollCell(_ tableView: UITableView,
                          _ indexPath: IndexPath,
