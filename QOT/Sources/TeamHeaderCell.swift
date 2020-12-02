@@ -95,9 +95,12 @@ private extension TeamHeaderCell {
                                                 object: nil,
                                                 userInfo: [Team.KeyTeamId: teamId])
                 if !itemSelected && canDeselect {
+                    HorizontalHeaderView.setMyX = true
                     NotificationCenter.default.post(name: .didSelectMyX,
                                                     object: nil,
                                                     userInfo: [Team.KeyTeamId: Team.Header.myX.inviteId])
+                } else {
+                    HorizontalHeaderView.setMyX = false
                 }
             }
         } else {
@@ -126,8 +129,13 @@ private extension TeamHeaderCell {
             itemButton.backgroundColor = UIColor(hex: hexColorString)
             itemButton.setTitleColor(.sand, for: .normal)
         } else {
-            itemButton.backgroundColor = .clear
-            itemButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
+            if HorizontalHeaderView.setMyX == true && teamId == Team.Header.myX.inviteId {
+                itemButton.backgroundColor = UIColor(hex: hexColorString)
+                itemButton.setTitleColor(.sand, for: .normal)
+            } else {
+                itemButton.backgroundColor = .clear
+                itemButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
+            }
         }
     }
 }
