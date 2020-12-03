@@ -181,16 +181,8 @@ extension DailyBriefViewController {
                 return getSolveReminderTableCell(tableView, indexPath, bucketItem as? SolveReminderTableCellViewModel)
             }
             return UITableViewCell()
-        case .BESPOKE?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
-        case .DEPARTURE_INFO?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
-        case .FEAST_OF_YOUR_EYES?:
-            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .SPRINT_CHALLENGE?:
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
-        case .TEAM_TO_BE_VISION?:
-            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
         case .TEAM_VISION_SUGGESTION?:
             return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
         case .TEAM_NEWS_FEED?:
@@ -303,15 +295,6 @@ private extension DailyBriefViewController {
 
 // MARK: - Get TableViewCells
 private extension DailyBriefViewController {
-    func getDepartureBespokeFeastCell(_ tableView: UITableView,
-                              _ indexPath: IndexPath,
-                              _ departureBespokeFeastModel: DepartureBespokeFeastModel?) -> UITableViewCell {
-        let cell: DepartureBespokeFeastCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: departureBespokeFeastModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
 
     func getSprints(_ tableView: UITableView,
                     _ indexPath: IndexPath,
@@ -374,16 +357,6 @@ private extension DailyBriefViewController {
         cell.clickableLinkDelegate = self
         return cell
     }
-//
-//    func getTeamInvitationCell(_ tableView: UITableView,
-//                               _ indexPath: IndexPath,
-//                               _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
-//        let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
-//        cell.configure(model: teamInvitationModel)
-//        cell.delegate = self
-//        cell.clickableLinkDelegate = self
-//        return cell
-//    }
 
     func getOpenPollCell(_ tableView: UITableView,
                          _ indexPath: IndexPath,

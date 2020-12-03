@@ -19,7 +19,7 @@ final class TeamToBeVisionCellViewModel: BaseDailyBriefViewModel {
     init(title: String?, teamVision: String?, team: QDMTeam?, domainModel: QDMDailyBriefBucket?) {
         self.teamVision = teamVision
         self.team = team
-        super.init(domainModel, title: title)
+        super.init(domainModel, caption: title, title: AppTextService.get(.daily_brief_team_to_be_vision_subtitle), body: teamVision)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
