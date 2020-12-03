@@ -1217,13 +1217,14 @@ extension DailyBriefInteractor {
         visionAndDates = visionAndDates.filter({ $0.1 > beginingOfDay })
         visionAndDates.sort(by: {$0.1 > $1.1})
         let latestVision = visionAndDates.first?.0
+        let imageURL = latestVision?.profileImageResource?.remoteURLString
         let visionText = latestVision?.text
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
-        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "")
+        let title = (team?.name ?? "") + " team"
         guard visionText?.isEmpty == false else {
             return visionList
         }
-        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, domainModel: teamVisionBucket)
+        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, imageURL: imageURL, domainModel: teamVisionBucket)
         visionList.append(model)
         return visionList
     }

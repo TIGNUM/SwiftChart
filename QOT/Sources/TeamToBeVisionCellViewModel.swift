@@ -14,12 +14,19 @@ final class TeamToBeVisionCellViewModel: BaseDailyBriefViewModel {
     // MARK: - Properties
     var teamVision: String?
     var team: QDMTeam?
+    var imageURL: String?
 
     // MARK: - Init
-    init(title: String?, teamVision: String?, team: QDMTeam?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, teamVision: String?, team: QDMTeam?, imageURL: String?, domainModel: QDMDailyBriefBucket?) {
         self.teamVision = teamVision
         self.team = team
-        super.init(domainModel, caption: title, title: AppTextService.get(.daily_brief_team_to_be_vision_subtitle), body: teamVision)
+        self.imageURL = imageURL
+        super.init(domainModel,
+                   caption: title,
+                   title: AppTextService.get(.daily_brief_team_to_be_vision_subtitle),
+                   body: teamVision,
+                   image: imageURL,
+                   titleColor: team?.teamColor)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
