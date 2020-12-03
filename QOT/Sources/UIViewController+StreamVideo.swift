@@ -47,6 +47,7 @@ final class MediaPlayerViewController: AVPlayerViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(.init(name: .willDismissPlayerController))
         AppCoordinator.orientationManager.regular()
+        self.player?.pause()
 
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
