@@ -35,6 +35,11 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
                                                    queue: .main) { [weak self] notification in
             self?.checkSelection(notification)
         }
+        _ = NotificationCenter.default.addObserver(forName: .didSelectMyX,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.setSelected(self?.teamId == Team.Header.myX.inviteId)
+        }
     }
 
     override func prepareForReuse() {
@@ -80,11 +85,22 @@ private extension TeamHeaderCell {
     @IBAction func didSelectTeam() {
         log("itemSelected: ⚠️⚠️⚠️⚠️ \(itemSelected)", level: .debug)
         log("teamId: ⚠️⚠️⚠️⚠️ \(teamId)", level: .debug)
+        if teamId == Team.Header.myX.inviteId && itemSelected {
+            return
+        }
+
         if teamInvites.isEmpty {
-            if !itemSelected || itemSelected && canDeselect {
+            if !itemSelected || (itemSelected && canDeselect) {
+                HorizontalHeaderView.setMyX = false
                 NotificationCenter.default.post(name: .didSelectTeam,
                                                 object: nil,
                                                 userInfo: [Team.KeyTeamId: teamId])
+                if !itemSelected && canDeselect {
+                    HorizontalHeaderView.setMyX = true
+                    NotificationCenter.default.post(name: .didSelectMyX,
+                                                    object: nil,
+                                                    userInfo: [Team.KeyTeamId: Team.Header.myX.inviteId])
+                }
             }
         } else {
             NotificationCenter.default.post(name: .didSelectTeamInvite,
@@ -96,7 +112,7 @@ private extension TeamHeaderCell {
     @objc func checkSelection(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if userInfo.keys.contains(Team.KeyTeamId), let teamId = userInfo[Team.KeyTeamId] {
-            itemSelected = self.teamId == teamId && !itemSelected
+            itemSelected = self.teamId == teamId && !itemSelected || teamId == Team.Header.myX.inviteId && itemSelected
             setSelected(itemSelected)
         }
         if itemSelected && userInfo.keys.contains(Team.KeyColor), let teamColor = userInfo[Team.KeyColor] {
@@ -112,8 +128,13 @@ private extension TeamHeaderCell {
             itemButton.backgroundColor = UIColor(hex: hexColorString)
             itemButton.setTitleColor(.sand, for: .normal)
         } else {
-            itemButton.backgroundColor = .clear
-            itemButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
+            if HorizontalHeaderView.setMyX == true && teamId == Team.Header.myX.inviteId {
+                itemButton.backgroundColor = UIColor(hex: hexColorString)
+                itemButton.setTitleColor(.sand, for: .normal)
+            } else {
+                itemButton.backgroundColor = .clear
+                itemButton.setTitleColor(UIColor(hex: hexColorString), for: .normal)
+            }
         }
     }
 }
