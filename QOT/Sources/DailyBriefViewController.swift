@@ -157,12 +157,14 @@ extension DailyBriefViewController {
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
                                                                 numberOfLinesForBody: numberOfLines,
+                                                                titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel)
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil {
                 standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
+                                                                titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel)
             }
         case .LEADERS_WISDOM?:
@@ -172,6 +174,7 @@ extension DailyBriefViewController {
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
                                                                 CTAType: leadersWisdomViewModel.format,
+                                                                titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel)
             }
         case .SOLVE_REFLECTION?:
@@ -205,6 +208,7 @@ extension DailyBriefViewController {
                                                             title: bucketItem.title,
                                                             body: bucketItem.body,
                                                             image: bucketItem.image,
+                                                            titleColor: bucketItem.titleColor,
                                                             domainModel: bucketItem.domainModel)
         }
 

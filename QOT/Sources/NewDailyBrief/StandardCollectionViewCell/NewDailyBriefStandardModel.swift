@@ -29,12 +29,13 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
          numberOfLinesForBody: Int = 2,
          isInAnimationTransition: Bool = false,
          CTAType: ContentFormat = .unknown,
+         titleColor: String?,
          domainModel: QDMDailyBriefBucket?) {
         self.detailsMode = detailsMode
         self.numberOfLinesForBody = numberOfLinesForBody
         self.isInAnimationTransition = isInAnimationTransition
         self.CTAType = CTAType
-        super.init(domainModel, caption: caption, title: title, body: body, image: image)
+        super.init(domainModel, caption: caption, title: title, body: body, image: image, titleColor: titleColor)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
@@ -45,7 +46,8 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
             caption == source.caption &&
             title == source.title &&
             body == source.body &&
-            image == source.image
+            image == source.image &&
+            titleColor == source.titleColor
     }
 
     // MARK: - Public
@@ -55,6 +57,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         captionSizingLabel.font = UIFont.sfProtextRegular(ofSize: 14.0)
         captionSizingLabel.lineBreakMode = .byTruncatingTail
         captionSizingLabel.text = caption
+        captionSizingLabel.textColor = UIColor(hex: titleColor ?? "")
 
         let titleSizingLabel = UILabel()
         titleSizingLabel.numberOfLines = 5

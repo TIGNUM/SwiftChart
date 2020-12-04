@@ -32,6 +32,7 @@ final class TeamInvitationModel: BaseDailyBriefViewModel {
             .replacingOccurrences(of: "${remaining_teams_count}", with: String((inviteCount ?? 0) - 1))
         let singleTeamBody = AppTextService.get(.daily_brief_single_team_invitation_subtitle)
             .replacingOccurrences(of: "${admin}", with: teamOwner ?? "")
+            .replacingOccurrences(of: "${team}", with: teamNames?.first ?? "")
 
         let body = (inviteCount ?? 0) > 1 ? multipleTeamsBody : singleTeamBody
         super.init(domainModel,

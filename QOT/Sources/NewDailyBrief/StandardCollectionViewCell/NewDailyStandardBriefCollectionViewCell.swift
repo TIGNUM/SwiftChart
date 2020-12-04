@@ -51,6 +51,7 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
         arrowButton.isHidden = (model.detailsMode ?? false) && hideCTAButton
         body.numberOfLines = (model.detailsMode ?? false) ? ((model.isInAnimationTransition ?? false) ? model.numberOfLinesForBody : 0) : model.numberOfLinesForBody
         titleTrailingConstraint.constant = 20
+        caption.textColor = UIColor(hex: model.titleColor ?? "")
         skeletonManager.hide()
         var CTAIcon = UIImage.init(named: "diagonal arrow")
 

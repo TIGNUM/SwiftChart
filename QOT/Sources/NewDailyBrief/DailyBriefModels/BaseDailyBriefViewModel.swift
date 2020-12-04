@@ -30,7 +30,7 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
          title: String? = "",
          body: String? = "",
          image: String? = "",
-         titleColor: String? = "9C9897") {
+         titleColor: String? = "#9C9897") {
         self.domainModel = domainModel
         self.subIdentifier = subIdentifier ?? ""
         self.caption = caption
@@ -48,6 +48,7 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
     func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
         return caption == source.caption &&
             title == source.title &&
+            titleColor == source.titleColor &&
             body == source.body &&
             image == source.image &&
             domainModel?.toBeVisionId == source.domainModel?.toBeVisionId &&

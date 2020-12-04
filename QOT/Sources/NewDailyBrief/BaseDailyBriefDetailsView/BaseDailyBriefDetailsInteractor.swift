@@ -68,6 +68,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                          body: model.body,
                                                          image: model.image,
                                                          detailsMode: true,
+                                                         titleColor: model.titleColor,
                                                          domainModel: model.domainModel)
             cell.configure(with: [standardModel])
             cell.collectionView.contentInsetAdjustmentBehavior = .never

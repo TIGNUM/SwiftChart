@@ -1217,7 +1217,7 @@ extension DailyBriefInteractor {
         visionAndDates = visionAndDates.filter({ $0.1 > beginingOfDay })
         visionAndDates.sort(by: {$0.1 > $1.1})
         let latestVision = visionAndDates.first?.0
-        let imageURL = latestVision?.profileImageResource?.remoteURLString
+        let imageURL = latestVision?.profileImageResource?.remoteURLString == "" ? teamVisionBucket.imageURL : latestVision?.profileImageResource?.remoteURLString
         let visionText = latestVision?.text
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
         let title = (team?.name ?? "") + " team"
@@ -1258,7 +1258,7 @@ extension DailyBriefInteractor {
         let multipleInvitesTitle = AppTextService.get(.daily_brief_team_invitation_multiple_teams_title)
             .replacingOccurrences(of: "${invitations_count}", with: String(describing: inviteCount))
         let singleInviteTitle = AppTextService.get(.daily_brief_single_team_invitation_title)
-            .replacingOccurrences(of: "${team}", with: (String(describing: teamNames.first)))
+            .replacingOccurrences(of: "${team}", with: teamNames.first?.uppercased() ?? "")
         let title = inviteCount > 1 ? multipleInvitesTitle : singleInviteTitle
         let model = TeamInvitationModel(title: title, teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, image: invitationBucket.imageURL, domainModel: invitationBucket)
         invitationList.append(model)
