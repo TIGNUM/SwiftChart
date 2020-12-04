@@ -193,7 +193,7 @@ private extension MyQotMainWorker {
     }
 
     func hasOwnerEmptyTeamTBV(for team: QDMTeam?, _ completion: @escaping (Bool) -> Void) {
-                    if team?.thisUserIsOwner == true, let team = team {
+        if team?.thisUserIsOwner == true, let team = team {
             getTeamToBeVision(for: team) { (teamVision) in
                 completion(teamVision == nil)
             }
