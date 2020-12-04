@@ -38,7 +38,7 @@ struct Team {
 
     final class Item {
         var invites: [QDMTeamInvitation] = []
-        var qdmTeam: QDMTeam = QDMTeam()
+        var qdmTeam: QDMTeam?
         var header: Team.Header
         var title: String
         var teamId: String
