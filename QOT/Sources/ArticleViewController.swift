@@ -415,11 +415,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video( _, let title, let description, _, _, _):
-            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title.uppercased(),
-                           durationString: description ?? "",
-                           icon: R.image.my_library_camera())
+        case .video( _, let title, _, let placeholderURL, _, _):
+            let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title,
+                           timeToWatch: item.type.durationString,
+                           imageURL: placeholderURL,
+                           forcedColorMode: .dark,
+                           isSeen: false)
             return cell
         case .pdf(let title, let description, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)

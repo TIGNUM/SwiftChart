@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dId-Vu-4Vl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dId-Vu-4Vl">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -93,9 +93,9 @@
                                     <action selector="didTapPlayPauseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="e0m-Vp-IGW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIV-Ry-r3t">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIV-Ry-r3t">
                                 <rect key="frame" x="24" y="722" width="40" height="40"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="33L-lk-fXg"/>
                                     <constraint firstAttribute="height" constant="40" id="eLA-So-qHk"/>
@@ -109,6 +109,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="CtA-66-Mx5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LHn-1J-XJa" firstAttribute="width" secondItem="Rtb-mS-eZN" secondAttribute="width" id="5nW-bt-H4i"/>
@@ -131,7 +132,6 @@
                             <constraint firstItem="LHn-1J-XJa" firstAttribute="top" secondItem="Rtb-mS-eZN" secondAttribute="bottom" constant="16" id="wOT-co-KAd"/>
                             <constraint firstItem="MOp-Dk-Bbn" firstAttribute="trailing" secondItem="CtA-66-Mx5" secondAttribute="trailing" constant="-24" id="wgv-NK-uWN"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="CtA-66-Mx5"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="mdM-co-qtU" appends="YES" id="VZo-e6-Tyw"/>
                         </connections>

@@ -39,7 +39,14 @@
                         <constraint firstAttribute="width" constant="12" id="Kre-Sf-v9A"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pending" translatesAutoresizingMaskIntoConstraints="NO" id="py4-0a-swi">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="yCg-kQ-EdP">
+                    <rect key="frame" x="24" y="26" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="gcz-I7-Z9G"/>
+                        <constraint firstAttribute="height" constant="20" id="rXM-aa-8AF"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="question_mark" translatesAutoresizingMaskIntoConstraints="NO" id="py4-0a-swi">
                     <rect key="frame" x="28" y="30" width="12" height="12"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="12" id="MGa-ZL-uzE"/>
@@ -152,29 +159,35 @@
                 <constraint firstAttribute="bottom" secondItem="Xi9-Dh-Doj" secondAttribute="bottom" id="YFL-c5-Xha"/>
                 <constraint firstItem="zWr-UA-74y" firstAttribute="top" secondItem="pIs-L3-VLg" secondAttribute="top" id="YTJ-d7-DHS"/>
                 <constraint firstItem="QY3-Q9-pWI" firstAttribute="leading" secondItem="Mfa-pw-UrH" secondAttribute="leading" id="bic-Yk-wMr"/>
+                <constraint firstItem="yCg-kQ-EdP" firstAttribute="centerX" secondItem="icP-Ok-rSo" secondAttribute="centerX" id="ekq-qm-2LC"/>
                 <constraint firstItem="QY3-Q9-pWI" firstAttribute="top" secondItem="pIs-L3-VLg" secondAttribute="top" id="gyz-fT-wX8"/>
                 <constraint firstItem="9ZP-Sd-Oqh" firstAttribute="centerY" secondItem="icP-Ok-rSo" secondAttribute="centerY" id="nwp-WF-i5s"/>
                 <constraint firstItem="bvt-Lt-GDD" firstAttribute="centerY" secondItem="icP-Ok-rSo" secondAttribute="centerY" id="oIv-BE-8uh"/>
                 <constraint firstItem="Hcn-mA-qsQ" firstAttribute="leading" secondItem="pIs-L3-VLg" secondAttribute="leading" constant="24" id="oKu-8W-E1T"/>
                 <constraint firstItem="Hcn-mA-qsQ" firstAttribute="top" secondItem="icP-Ok-rSo" secondAttribute="bottom" constant="19" id="pKa-fE-ZwP"/>
+                <constraint firstItem="yCg-kQ-EdP" firstAttribute="centerY" secondItem="icP-Ok-rSo" secondAttribute="centerY" id="tf5-Lk-Tul"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="demoBorder" destination="5Vr-9b-CnV" id="t1x-r7-PWd"/>
                 <outlet property="demoEmailLabel" destination="HTy-VN-eDU" id="LXt-Iy-4ib"/>
                 <outlet property="demoInviteView" destination="Xi9-Dh-Doj" id="I4X-nb-1jL"/>
                 <outlet property="demoJoinedIcon" destination="oTe-EA-PJg" id="T23-hR-ohM"/>
                 <outlet property="demoRemoveView" destination="zWr-UA-74y" id="NNB-03-BYC"/>
                 <outlet property="demoView" destination="QY3-Q9-pWI" id="RZi-tE-fYG"/>
                 <outlet property="emailLabel" destination="9ZP-Sd-Oqh" id="CFn-qr-S0J"/>
+                <outlet property="joinedBorder" destination="icP-Ok-rSo" id="bSi-Km-bi5"/>
                 <outlet property="joinedIcon" destination="bvt-Lt-GDD" id="JxM-6h-ezx"/>
+                <outlet property="pendingBorder" destination="yCg-kQ-EdP" id="WaM-lL-aAF"/>
                 <outlet property="pendingIcon" destination="py4-0a-swi" id="T88-KA-77x"/>
             </connections>
             <point key="canvasLocation" x="-194.20289855072465" y="114.50892857142857"/>
         </view>
     </objects>
     <resources>
+        <image name="circle" width="9" height="9"/>
         <image name="ic_checkmark_oval" width="18" height="18"/>
         <image name="ic_checkmark_sand" width="10" height="9"/>
-        <image name="ic_pending" width="6" height="10"/>
+        <image name="question_mark" width="3" height="5"/>
     </resources>
 </document>

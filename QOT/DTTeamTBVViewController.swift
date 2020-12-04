@@ -23,6 +23,9 @@ final class DTTeamTBVViewController: DTViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        showBlackBanner()
+    }
     override func didTapClose() {
         router?.dismissChatBotFlow()
     }
@@ -58,7 +61,16 @@ private extension DTTeamTBVViewController {
             }
         }
 
-        QOTAlert.show(title: title, message: message, bottomItems: [buttonGotIt])
+        QOTAlert.showWithoutDismiss(title: title, message: message, bottomItems: [buttonGotIt])
+    }
+
+    func showBlackBanner() {
+        if tbvTeamInteractor.showBanner == true {
+            let message = AppTextService.get(.banner_notification_sent)
+            let banner = NotificationBanner.shared
+            banner.configure(message: message, isDark: true)
+            banner.show(in: self.view)
+        }
     }
 }
 

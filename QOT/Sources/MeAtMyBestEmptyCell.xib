@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="cTn-sO-9V7" customClass="MeAtMyBestEmptyCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+        <view contentMode="scaleToFill" id="cTn-sO-9V7" customClass="MeAtMyBestEmptyCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="97"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPR-6J-8Dw" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="250" y="24" width="140" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPR-6J-8Dw" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                    <rect key="frame" x="251" y="17" width="139" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="FAB-QM-kfI"/>
                     </constraints>
@@ -28,30 +28,30 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="px0-52-ZLf">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                    <rect key="frame" x="0.0" y="-7" width="414" height="0.0"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" id="Lry-hc-htQ"/>
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="GFn-Ic-whM"/>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="GFn-Ic-whM" firstAttribute="trailing" secondItem="px0-52-ZLf" secondAttribute="trailing" id="Rxk-Zn-nTx"/>
                 <constraint firstItem="px0-52-ZLf" firstAttribute="leading" secondItem="GFn-Ic-whM" secondAttribute="leading" id="TBh-Bh-puL"/>
                 <constraint firstItem="GFn-Ic-whM" firstAttribute="trailing" secondItem="xPR-6J-8Dw" secondAttribute="trailing" constant="24" id="cH6-Ft-FgV"/>
                 <constraint firstItem="px0-52-ZLf" firstAttribute="top" secondItem="cTn-sO-9V7" secondAttribute="top" id="cRD-ll-kqd"/>
-                <constraint firstItem="GFn-Ic-whM" firstAttribute="bottom" secondItem="xPR-6J-8Dw" secondAttribute="bottom" constant="20" id="qE5-cT-1H7"/>
+                <constraint firstItem="GFn-Ic-whM" firstAttribute="bottom" secondItem="xPR-6J-8Dw" secondAttribute="bottom" constant="40" id="qE5-cT-1H7"/>
                 <constraint firstItem="xPR-6J-8Dw" firstAttribute="top" secondItem="px0-52-ZLf" secondAttribute="bottom" constant="24" id="uPc-qU-erJ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="GFn-Ic-whM"/>
             <connections>
                 <outlet property="buttonText" destination="xPR-6J-8Dw" id="bkk-X6-M2Q"/>
                 <outlet property="headerView" destination="px0-52-ZLf" id="zzJ-l4-YRT"/>
                 <outlet property="headerViewHeightConstraint" destination="Lry-hc-htQ" id="fR1-B0-p6r"/>
             </connections>
-            <point key="canvasLocation" x="-1376.8115942028987" y="-30.803571428571427"/>
+            <point key="canvasLocation" x="-1376.8115942028987" y="-26.450892857142858"/>
         </view>
     </objects>
 </document>

@@ -20,6 +20,8 @@ final class VisionRatingExplanationWorker: WorkerTeam {
             ContentService.main.getContentItemById(110114, completion)
         case .tbvPollOwner, .tbvPollUser:
             ContentService.main.getContentItemById(110113, completion)
+        case .createTeam:
+            ContentService.main.getContentItemById(110402, completion)
         }
     }
 }

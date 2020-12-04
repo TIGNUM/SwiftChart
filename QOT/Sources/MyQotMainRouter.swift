@@ -76,16 +76,6 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         }
     }
 
-    func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?) {
-        let identifier = R.storyboard.team.teamEditViewControllerID.identifier
-        let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamEditViewController
-        if let controller = controller {
-            let configurator = TeamEditConfigurator.make(type: type, team: team)
-            configurator(controller)
-            viewController?.present(controller, animated: true)
-        }
-    }
-
     func presentTeamPendingInvites() {
         if let launchURL = URLScheme.teamInvitations.launchURLWithParameterValue("") {
             AppDelegate.current.launchHandler.process(url: launchURL)

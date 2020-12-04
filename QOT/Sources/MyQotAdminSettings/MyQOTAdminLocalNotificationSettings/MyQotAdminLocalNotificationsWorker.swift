@@ -10,7 +10,13 @@ import UIKit
 
 final class MyQotAdminLocalNotificationsWorker {
 
-    var datasource: [String: String] = ["tignumx://daily-brief": "Daily brief",
+    var datasource: [String: String] = [
+                                        "tignumx://team-invitations": "Open pending Team invitations",
+                                        "tignumx://tbv-tracker-poll-opened?teamId=101674": "Open Team Tracker Poll",
+                                        "tignumx://tbv-tracker-closed?teamId=101674": "Open Team TBV Trends",
+                                        "tignumx://tbv-generator-poll-opened?teamId=101674": "Open Team TBV Generator",
+                                        "tignumx://tbv-generator-poll-closed?teamId=101674": "Open TeamTBV",
+                                        "tignumx://daily-brief": "Daily brief",
                                         "tignumx://daily-brief?bucketName=WEATHER": "Weather",
                                         "tignumx://daily-brief?bucketName=LATEST_WHATS_HOT": "Whats Hot",
                                         "tignumx://daily-brief?bucketName=MY_PEAK_PERFORMANCE": "Peak performance",
@@ -58,8 +64,7 @@ final class MyQotAdminLocalNotificationsWorker {
                                         "tignumx://qrcode-open-0001": "QRCode 1",
                                         "tignumx://qrcode-open-0002": "QRCode 2",
                                         "tignumx://qrcode-open-0003": "QRCode 3",
-                                        "tignumx://qrcode-open-0004": "QRCode 4",
-                                        "tignumx://team-invitations": "Open pending Team invitations"]
+                                        "tignumx://qrcode-open-0004": "QRCode 4"]
     // MARK: - Init
     init() { /* */ }
 }

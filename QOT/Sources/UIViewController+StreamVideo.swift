@@ -47,6 +47,7 @@ final class MediaPlayerViewController: AVPlayerViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(.init(name: .willDismissPlayerController))
         AppCoordinator.orientationManager.regular()
+        self.player?.pause()
 
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
@@ -61,6 +62,14 @@ final class MediaPlayerViewController: AVPlayerViewController {
         }
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if overlayControls?.buttonsHidden == true {
+            self.overlayControls?.buttonsAnimate()
+        } else {
+            self.overlayControls?.buttonsHide()
+        }
+    }
+
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
         pageTrack.pageId = 0
@@ -72,7 +81,7 @@ final class MediaPlayerViewController: AVPlayerViewController {
 
     func addVideoGravityObserver() {
         videoGravityObserver = self.observe(\.videoGravity) { [weak self] (_, _) in
-            self?.overlayControls?.buttonsShowHide()
+            self?.overlayControls?.buttonsForScreen()
         }
     }
 
@@ -208,9 +217,11 @@ extension UIViewController {
         controller.avPlayerObserver?.onChanges { [weak self] (player) in
             if player.timeControlStatus == .paused {
                 self?.trackUserEvent(.PAUSE, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
+                controller.overlayControls?.buttonsShow()
             }
             if player.timeControlStatus == .playing {
                 self?.trackUserEvent(.PLAY, value: contentItem?.remoteID, valueType: .VIDEO, action: .TAP)
+                controller.overlayControls?.buttonsHide()
             }
         }
     }

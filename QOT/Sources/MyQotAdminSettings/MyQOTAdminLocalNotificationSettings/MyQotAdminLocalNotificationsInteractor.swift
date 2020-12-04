@@ -71,7 +71,9 @@ extension MyQotAdminLocalNotificationsInteractor: MyQotAdminLocalNotificationsIn
                     let identifier = QDMGuideItemNotification.notificationIdentifier(with: DEBUG_LOCAL_NOTIFICATION_IDENTIFIER,
                                                                                     date: triggerDate,
                                                                                     link: link)
-                    UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)) { (_) in
+                    UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: identifier,
+                                                                                 content: content,
+                                                                                 trigger: trigger)) { (_) in
                         completionHandler()
                     }
                 })

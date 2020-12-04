@@ -11,13 +11,16 @@ import UIKit
 final class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var joinedIcon: UIImageView!
+    @IBOutlet private weak var joinedBorder: UIImageView!
     @IBOutlet private weak var pendingIcon: UIImageView!
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var demoView: UIView!
     @IBOutlet private weak var demoJoinedIcon: UIImageView!
+    @IBOutlet private weak var demoBorder: UIImageView!
     @IBOutlet private weak var demoEmailLabel: UILabel!
     @IBOutlet private weak var demoRemoveView: UIView!
     @IBOutlet private weak var demoInviteView: UIView!
+    @IBOutlet private weak var pendingBorder: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +36,8 @@ final class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
         ThemeView.level2.apply(backgroundView!)
         pendingIcon.isHidden = memberStatus == .joined
         joinedIcon.isHidden = memberStatus == .pending
+        joinedBorder.isHidden = memberStatus == .pending
+        pendingBorder.isHidden = memberStatus == .joined
     }
 }
 
@@ -42,6 +47,7 @@ private extension TeamMemberTableViewCell {
         demoInviteView.isHidden = isHidden
         demoRemoveView.isHidden = isHidden
         demoJoinedIcon.isHidden = isHidden
+        demoBorder.isHidden = isHidden
         demoEmailLabel.isHidden = isHidden
     }
 }

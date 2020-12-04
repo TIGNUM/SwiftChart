@@ -205,7 +205,10 @@ final class LaunchHandler {
         case .recovery3DPlanner: show3DRecoveryDecisionTree()
         case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         case .teamInvitations: showPendingInvitations()
-        case .tbvGeneratorPollClosed, .tbvTrackerPollClosed:
+        case .tbvTrackerPollClosed:
+            guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
+            showTeamTBVTrends(teamId)
+        case .tbvGeneratorPollClosed:
             guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
             showTeamTBV(teamId)
         case .tbvGeneratorPollOpened:
@@ -261,35 +264,46 @@ extension LaunchHandler {
         }
     }
 
+    func showTeamTBVTrends(_ teamId: Int) {
+        getTeam(teamId) { (team) in
+            if let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() {
+                TBVRateHistoryConfigurator.configure(viewController: controller,
+                                                     displayType: .tracker,
+                                                     team: team)
+                AppDelegate.topViewController()?.present(controller, animated: true)
+            }
+        }
+    }
+
     func showTeamTBV(_ teamId: Int) {
-        getTeam(teamId) { [weak self] (team) in
+        getTeam(teamId) { (team) in
             if let team = team {
                 if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
                     let configurator = TeamToBeVisionConfigurator.make(team: team)
                     configurator(controller)
-                    self?.present(viewController: controller)
+                    AppDelegate.topViewController()?.show(controller, sender: nil)
                 }
             }
         }
     }
 
     func showTBVRating(_ teamId: Int) {
-        getTeam(teamId) { [weak self] (team) in
+        getTeam(teamId) { (team) in
             if let team = team {
                 if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
-                    VisionRatingExplanationConfigurator.make(team: team, type: .tbvPollUser)(controller)
-                    self?.present(viewController: controller)
+                    VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
+                    AppDelegate.topViewController()?.present(controller, animated: true)
                 }
             }
         }
     }
 
     func showTBVPoll(_ teamId: Int) {
-        getTeam(teamId) { [weak self] (team) in
+        getTeam(teamId) { (team) in
             if let team = team {
                 if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
-                    VisionRatingExplanationConfigurator.make(team: team, type: .ratingUser)(controller)
-                    self?.present(viewController: controller)
+                    VisionRatingExplanationConfigurator.make(team: team, type: .tbvPollUser)(controller)
+                    AppDelegate.topViewController()?.present(controller, animated: true)
                 }
             }
         }

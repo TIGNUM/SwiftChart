@@ -615,6 +615,7 @@ public extension AppTextKey {
     static let team_invite_banner_message_decline = AppTextKey("team_invite.banner_message.decline")
     static let team_invite_banner_message_join = AppTextKey("team_invite.banner_meesage.join")
     static let team_invite_header_plural = AppTextKey("team_invite.header_title.plural")
+    static let banner_notification_sent = AppTextKey("banner.notification.sent")
     static let team_invite_header_singular = AppTextKey("team_invite.header_title.singular")
     static let team_invite_content_info = AppTextKey("team_invite.content.info")
     static let team_invite_content_count = AppTextKey("team_invite.content.count")
@@ -858,7 +859,7 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.body_rate_yourself")
     static let my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire.section_body.label_rate_never")
     static let my_x_my_tbv_tbv_tracker_data_section_team_header = AppTextKey("my_x.my_tbv.tbv_tracker_data_section.team_header")
-
+    static let my_x_team_vision_tracker_question = AppTextKey("my_x.team_vision.tracker.question")
     static let alert_tracker_poll_answers_submitted_title = AppTextKey("alert.tracker_poll.answers_submitted.title")
     static let alert_tracker_poll_answers_submitted_message = AppTextKey("alert.tracker_poll.answers_submitted.message")
     static let alert_tracker_poll_answers_submitted_cta = AppTextKey("alert.tracker_poll.answers_submitted.cta")
@@ -1063,6 +1064,9 @@ public extension AppTextKey {
     static let generic_event_date_format_prefix_at = AppTextKey("generic_event_date.format_prefix.at")
 
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
+
+    static let create_team_explanation_title = AppTextKey("create_team.explanation.title")
+    static let create_team_explanation_subtitle = AppTextKey("create_team.explanation.subtitle")
 
     // MARK: - Results Prepare
     static let results_prepare_header_title = AppTextKey("results_prepare.header.title")

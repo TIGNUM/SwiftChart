@@ -23,6 +23,8 @@ final class KnowingWorker {
     }
 
     func loadData() {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         ContentService.main.getContentCategories(StrategyContentCategories) { [weak self] (categories) in
             var strategyItems: [Knowing.StrategyItem] = []
             for strategy in categories ?? [] {
@@ -43,8 +45,9 @@ final class KnowingWorker {
             self?.strategies = strategyItems.sorted(by: { (lhs, rhs) -> Bool in
                 lhs.sortOrder < rhs.sortOrder
             })
+            dispatchGroup.leave()
         }
-
+        dispatchGroup.enter()
         ContentService.main.getContentCategory(.WhatsHot) { [weak self] (category) in
             guard let strongSelf = self else {
                 return
@@ -69,7 +72,10 @@ final class KnowingWorker {
             strongSelf.whatsHotItems = whatsHotItems.sorted(by: { (first, second) -> Bool in
                 first.publishDate ?? Date() > second.publishDate ?? Date()
             })
-            strongSelf.interactor?.reload()
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.interactor?.reload()
         }
     }
 

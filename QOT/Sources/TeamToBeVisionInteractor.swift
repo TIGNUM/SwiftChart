@@ -34,7 +34,6 @@ final class TeamToBeVisionInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        presenter.setSelectionBarButtonItems()
         didUpdateTBVRelatedData()
 
         let notificationCenter = NotificationCenter.default
@@ -70,6 +69,7 @@ final class TeamToBeVisionInteractor {
 
     func viewWillAppear() {
         didUpdateTBVRelatedData()
+        presenter.setSelectionBarButtonItems()
     }
 
     private func didUpdateTBVRelatedData() {
@@ -151,6 +151,25 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         }
     }
 
+    func isEditBlocked(_ completion: @escaping (Bool) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        var tmpHasTracker: Bool?
+        var tmpHasPoll: Bool?
+        dispatchGroup.enter()
+        worker.hasOpenRatingPoll(for: team) { (hasTracker) in
+            tmpHasTracker = hasTracker
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        worker.hasOpenGeneratorPoll(for: team) { (hasPoll) in
+            tmpHasPoll = hasPoll
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion(tmpHasTracker == true  || tmpHasPoll == true)
+        }
+    }
+
     func saveToBeVision(image: UIImage?) {
         let tmpTeam = team
         worker.getTeamToBeVision(for: team) { [weak self] (teamVision) in
@@ -224,7 +243,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
         if team.thisUserIsOwner {
             worker.hasOpenRatingPoll(for: team) { [weak self] (open) in
                 if open {
-                    self?.router.showTeamAdmin(type: .rating, team: tmpTeam)
+                    self?.router.showTeamAdmin(type: .rating, team: tmpTeam, showBanner: false)
                 } else {
                     self?.router.showTeamRatingExplanation(tmpTeam)
                 }

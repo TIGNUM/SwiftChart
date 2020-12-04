@@ -41,16 +41,16 @@ final class NotificationBanner: UIView {
         if isEnabled {
             isEnabled.toggle()
             let frame = self.frame
-            self.frame = CGRect(x: frame.origin.x,
-                                y: frame.origin.y,
+            self.frame = CGRect(x: 0,
+                                y: frame.origin.y + frame.height/2,
                                 width: UIScreen.main.bounds.width,
                                 height: frame.height)
+            self.alpha = 0
             view.addSubview(self)
             UIView.animate(withDuration: 0.3, animations: {
-                self.frame.origin = CGPoint(x: 0, y: frame.origin.y + 10 + frame.height)
-            }) { (_) in
+                self.alpha = 1 }, completion: { (_) in
                 self.startTimer()
-            }
+            })
         }
     }
 }
@@ -61,18 +61,12 @@ private extension NotificationBanner {
         timer?.invalidate()
         timer = nil
         UIView.animate(withDuration: 0.3, animations: {
-            self.frame = CGRect(x: 0,
-                                y: self.frame.origin.y - (self.frame.height + 60),
-                                width: self.frame.width,
-                                height: self.frame.height)
-        }) { (_) in
+            self.alpha = 1
+        }, completion: { (_) in
             self.isEnabled.toggle()
-            self.frame = CGRect(x: 0,
-                                y: self.frame.origin.y + 50,
-                                width: self.frame.width,
-                                height: self.frame.height)
+            self.alpha = 0
             self.removeFromSuperview()
-        }
+        })
     }
 
     func startTimer() {
