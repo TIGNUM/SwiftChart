@@ -742,7 +742,7 @@ extension DailyBriefInteractor {
             let model = MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle,
                                                      intro: tbvEmptyIntro,
                                                      buttonText: ctaTBVButtonText,
-                                                     image: meAtMyBest.imageURL,
+                                                     image: meAtMyBest.toBeVision?.profileImageResource?.urlString() ?? meAtMyBest.imageURL,
                                                      domainModel: meAtMyBest)
             meAtMyBestList.append(model)
             return meAtMyBestList

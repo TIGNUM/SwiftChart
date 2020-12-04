@@ -640,7 +640,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                     self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
                 }
             } else {
-                router.showTBV(showModal: false)
+                router.showTBVGenerator()
             }
         case .FROM_TIGNUM:
             guard let fromTignumCellModel = dailyBriefCellViewModel as? FromTignumCellViewModel else { return }
