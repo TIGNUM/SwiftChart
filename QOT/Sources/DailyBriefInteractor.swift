@@ -1217,10 +1217,10 @@ extension DailyBriefInteractor {
         visionAndDates = visionAndDates.filter({ $0.1 > beginingOfDay })
         visionAndDates.sort(by: {$0.1 > $1.1})
         let latestVision = visionAndDates.first?.0
-        let imageURL = latestVision?.profileImageResource?.remoteURLString == "" ? teamVisionBucket.imageURL : latestVision?.profileImageResource?.remoteURLString
+        let imageURL = latestVision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.imageURL : latestVision?.profileImageResource?.remoteURLString
         let visionText = latestVision?.text
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
-        let title = (team?.name ?? "") + " team"
+        let title = AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? "")
         guard visionText?.isEmpty == false else {
             return visionList
         }
@@ -1237,11 +1237,12 @@ extension DailyBriefInteractor {
         }
         let vision = teamVisionBucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
         guard vision != nil else { return teamVisionList }
+        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.imageURL : vision?.profileImageResource?.remoteURLString
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
         let visionSentence = vision?.sentences.first?.sentence
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "").uppercased()
         let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? " ")
-        let model = TeamVisionSuggestionModel(title: title, team: team, tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        let model = TeamVisionSuggestionModel(title: title, team: team, tbvSentence: visionSentence, adviceText: suggestion, imageURL: imageURL, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
     }

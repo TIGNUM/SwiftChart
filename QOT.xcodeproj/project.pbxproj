@@ -4572,6 +4572,7 @@
 			isa = PBXGroup;
 			children = (
 				B411ECCD25751E5200EB7A78 /* BaseDailyBriefViewModel.swift */,
+				F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */,
 				B411ECA325751C5100EB7A78 /* GuidedTrackViewModel.swift */,
 				F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */,
 				B411ECA425751C5100EB7A78 /* MeAtMyBestCellViewModel.swift */,
@@ -5825,7 +5826,6 @@
 			isa = PBXGroup;
 			children = (
 				F96D9F2924D2DC3200188482 /* TeamToBeVisionCell.swift */,
-				F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */,
 				F96D9F2D24D2DC6900188482 /* TeamToBeVisionCell.xib */,
 			);
 			name = TeamToBeVision;

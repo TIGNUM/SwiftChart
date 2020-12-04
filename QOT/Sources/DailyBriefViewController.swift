@@ -186,8 +186,6 @@ extension DailyBriefViewController {
             return UITableViewCell()
         case .SPRINT_CHALLENGE?:
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
-        case .TEAM_VISION_SUGGESTION?:
-            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
         case .TEAM_NEWS_FEED?:
             return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
@@ -347,16 +345,6 @@ private extension DailyBriefViewController {
                                _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
         let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: teamVisionModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getTeamVisionSuggestionCell(_ tableView: UITableView,
-                                     _ indexPath: IndexPath,
-                                     _ teamVisionSuggestionModel: TeamVisionSuggestionModel?) -> UITableViewCell {
-        let cell: TeamVisionSuggestionCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: teamVisionSuggestionModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell

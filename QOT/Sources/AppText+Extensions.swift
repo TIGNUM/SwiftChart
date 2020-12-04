@@ -376,7 +376,6 @@ public extension AppTextKey {
     static let daily_brief_section_mindset_shifter_card_title = AppTextKey("daily_brief.section_mindset_shifter_card.title")
     static let daily_brief_section_mindset_shifter_card_body = AppTextKey("daily_brief.section_mindset_shifter_card.body")
 
-
     static let daily_brief_section_impact_readiness_intro = AppTextKey("daily_brief.section_impact_readiness.intro")
 
     static let daily_brief_section_impact_readiness_sleep_quantity_description = AppTextKey("daily_brief.section_impact_readiness.sleep_quantity_description")
@@ -389,6 +388,8 @@ public extension AppTextKey {
     static let daily_brief_team_vision_suggestion_subtitle = AppTextKey("daily_brief.team_vision_suggestion.subtitle")
     static let daily_brief_team_vision_suggestion_cta = AppTextKey("daily_brief.team_vision_suggestion.cta")
     static let daily_brief_team_vision_suggestion_suggestion_title = AppTextKey("daily_brief.team_vision_suggestion.suggestion_title")
+    static let daily_brief_vision_suggestion_title = AppTextKey("daily_brief.vision_suggestion.title")
+    static let daily_brief_vision_suggestion_caption = AppTextKey("daily_brief.vision_suggestion.caption") // {team} team
 
     static let daily_brief_team_invitation_one_team_statement = AppTextKey("daily_brief.team_invitation.one_team_statement")
     static let daily_brief_team_invitation_several_teams_statement = AppTextKey("daily_brief.team_invitation.several_teams_statement")
@@ -412,10 +413,10 @@ public extension AppTextKey {
     static let daily_brief_team_invitation_and_label = AppTextKey("daily_brief.team_invitation.and_label")
     static let daily_brief_team_invitation_other_teams_label = AppTextKey("daily_brief.team_invitation.other_teams_label")
 
-    static let daily_brief_team_invitation_multiple_teams_title = AppTextKey("daily_brief.team_invitation.multiple_teams.title") // ${invitations_count} pending team invitations
-    static let daily_brief_team_invitation_multiple_teams_subtitle = AppTextKey("daily_brief.team_invitation.multiple_teams.subtitle") // You have been invited to join ${first_team} team and ${remaining_teams_count}
-    static let daily_brief_single_team_invitation_title = AppTextKey("daily_brief.single_team_invitation.title") // Join ${team}
-    static let daily_brief_single_team_invitation_subtitle = AppTextKey("daily_brief.single_team_invitation.subtitle") //${admin} has invited you to be part of ${team}.
+    static let daily_brief_team_invitation_multiple_teams_title = AppTextKey("daily_brief.team_invitation.multiple_teams.title")
+    static let daily_brief_team_invitation_multiple_teams_subtitle = AppTextKey("daily_brief.team_invitation.multiple_teams.subtitle")
+    static let daily_brief_single_team_invitation_title = AppTextKey("daily_brief.single_team_invitation.title")
+    static let daily_brief_single_team_invitation_subtitle = AppTextKey("daily_brief.single_team_invitation.subtitle")
 
     static let daily_brief_section_team_news_feed_subtitle_for_one_item = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_one_item")
     static let daily_brief_section_team_news_feed_subtitle_for_multiple_items = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_multiple_items")
