@@ -210,7 +210,7 @@ private extension AppDelegate {
 
     func setupAppCenter() {
         if let appCenterID = Bundle.main.object(forInfoDictionaryKey: "APP_CENTER_ID") as? String {
-            MSAppCenter.start(appCenterID, withServices: [MSAnalytics.self, MSCrashes.self])
+            AppCenter.start(withAppSecret: appCenterID, services: [Analytics.self, Crashes.self])
         }
     }
 
