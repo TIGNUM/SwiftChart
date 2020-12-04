@@ -471,7 +471,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func showTeamTBV(_ team: QDMTeam) {
         interactor.getTeamTBVPoll(for: team) { [weak self] (poll) in
-            self?.router.showTeamTBV(team, poll)
+            self?.router.showTeamTBV(team)
         }
     }
 
@@ -637,6 +637,12 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
         case .FROM_TIGNUM:
             guard let fromTignumCellModel = dailyBriefCellViewModel as? FromTignumCellViewModel else { return }
             fromTignumCellModel.link?.launch()
+        case .TEAM_TO_BE_VISION:
+            guard let viewModel = bucketItem as? TeamToBeVisionCellViewModel else { break }
+            guard let team = viewModel.team else { break }
+            router.showTeamTBV(team)
+        case .TEAM_INVITATION:
+            presentTeamPendingInvites()
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)

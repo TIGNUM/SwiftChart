@@ -260,12 +260,12 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                         router.showTeamTBVPollEXplanation(team, showModal: false)
                     case (false, false, false, true),
                          (false, false, true, true):
-                        router.showTeamTBV(team, poll)
+                        router.showTeamTBV(team)
 
                     /// admin
                     case (_, true, _, false),
                          (false, true, _, true):
-                        router.showTeamTBV(team, poll)
+                        router.showTeamTBV(team)
                     case (true, true, _, true):
                         router.showTeamAdmin(type: .voting,
                                              team: team,
@@ -275,7 +275,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                     }
 
                 } else {
-                    router.showTeamTBV(team, teamTBVPoll)
+                    router.showTeamTBV(team)
                 }
             }
         default: return
