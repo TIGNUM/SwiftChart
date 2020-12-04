@@ -37,6 +37,7 @@ final class WhatsHotLatestCellViewModel: BaseDailyBriefViewModel {
         self.isNew = isNew
         self.remoteID = remoteID
         super.init(domainModel, title: title, image: image)
+        setupStrings()
     }
 
     func setupStrings() {
