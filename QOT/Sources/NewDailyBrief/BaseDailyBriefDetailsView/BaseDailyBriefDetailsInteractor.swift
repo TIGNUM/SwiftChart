@@ -63,16 +63,36 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return UITableViewCell.init()
             }
 
-            let standardModel = NewDailyBriefStandardModel.init(caption: model.caption,
-                                                         title: model.title,
-                                                         body: model.body,
-                                                         image: model.image,
-                                                         detailsMode: true,
-                                                         domainModel: model.domainModel)
-            cell.configure(with: [standardModel])
-            cell.collectionView.contentInsetAdjustmentBehavior = .never
+            switch model.domainModel?.bucketName {
+            case DailyBriefBucketName.GET_TO_LEVEL_5:
+                guard let level5Model = model as? Level5ViewModel else {
+                    return UITableViewCell.init()
+                }
 
-            return cell
+                let selectedValue = level5Model.domainModel?.currentGetToLevel5Value
+
+                let standardModel = NewDailyBriefStandardModel.init(caption: level5Model.caption,
+                                                                     title: level5Model.levelMessages[selectedValue ?? 0].levelTitle ?? "",
+                                                                     body: level5Model.levelMessages[selectedValue ?? 0].levelContent,
+                                                                     image: level5Model.image,
+                                                                     detailsMode: true,
+                                                                     domainModel: level5Model.domainModel)
+
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            default:
+                let standardModel = NewDailyBriefStandardModel.init(caption: model.caption,
+                                                             title: model.title,
+                                                             body: model.body,
+                                                             image: model.image,
+                                                             detailsMode: true,
+                                                             domainModel: model.domainModel)
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+
+                return cell
+            }
         default:
             switch model.domainModel?.bucketName {
             case DailyBriefBucketName.DAILY_CHECK_IN_1:
