@@ -27,11 +27,11 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
     }
 
     func showMyDataScreen() {
-        if let childViewController = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
+        if let controller = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
             let configurator = MyDataScreenConfigurator.make()
-            configurator(childViewController)
-            childViewController.showStatusBar = false
-            viewController?.navigationController?.pushViewController(childViewController, animated: true)
+            configurator(controller)
+            controller.modalPresentationStyle = .overFullScreen
+            viewController?.present(controller, animated: true)
         }
     }
 
@@ -46,8 +46,9 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
 
     func showTBV() {
         if let controller = R.storyboard.myToBeVision.myVisionViewController() {
-            MyVisionConfigurator.configure(viewController: controller, showSubVCModal: false)
-            viewController?.pushToStart(childViewController: controller)
+            MyVisionConfigurator.configure(viewController: controller, showSubVCModal: true)
+            controller.modalPresentationStyle = .overFullScreen
+            viewController?.present(controller, animated: true)
         }
     }
 
@@ -55,6 +56,7 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
          let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
                                                            resultType: .mindsetShifterBucket)
          let controller = ShifterResultViewController(configure: configurator)
+         controller.modalPresentationStyle = .overFullScreen
          viewController?.present(controller, animated: true)
      }
 
@@ -62,6 +64,7 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
         if let preparation = preparation {
             let configurator = ResultsPrepareConfigurator.make(preparation, resultType: .prepareDailyBrief)
             let controller = ResultsPrepareViewController(configure: configurator)
+            controller.modalPresentationStyle = .overFullScreen
             viewController?.present(controller, animated: true)
         }
     }

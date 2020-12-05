@@ -11,7 +11,7 @@ import qot_dal
 
 class ImpactReadinessTableViewCell: BaseDailyBriefCell {
     @IBOutlet weak var linkTitle: UILabel!
-    @IBOutlet weak var ctaButton: AnimatedButton!
+    @IBOutlet weak var ctaButton: RoundedButton!
 
     weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
     var feedbackRelatedLink: QDMAppLink?
@@ -19,8 +19,7 @@ class ImpactReadinessTableViewCell: BaseDailyBriefCell {
     func configure(viewModel: ImpactReadinessCellViewModel?) {
         linkTitle.text = AppTextService.get(AppTextKey.daily_brief_section_my_best_suggestion_body)
         feedbackRelatedLink = viewModel?.feedbackRelatedLink
-        ctaButton.setTitle(viewModel?.linkCTA, for: .normal)
-        ThemeButton.newBlueButton.apply(ctaButton)
+        ThemableButton.newBlueButton.apply(ctaButton, title: viewModel?.linkCTA)
     }
 
     @IBAction func didTapCTAButton(_ sender: Any) {

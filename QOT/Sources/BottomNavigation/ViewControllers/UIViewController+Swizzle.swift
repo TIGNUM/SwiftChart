@@ -265,6 +265,9 @@ extension UIViewController {
                                                                      rightBarButtonItems: [],
                                                                      backgroundColor: .clear),
                                         userInfo: nil)
+        if let parentVC = (self.presentingViewController as? UINavigationController)?.topViewController as? BaseViewController {
+            parentVC.refreshBottomNavigationItems()
+        }
     }
 }
 

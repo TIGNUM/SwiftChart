@@ -78,7 +78,9 @@ extension UINavigationController {
             }
         }
 
-        if (leveledViewController is ScreenZLevel1 || viewController is ScreenZLevel2) && (leveledViewController as? BaseDailyBriefDetailsViewController) == nil {
+        if (leveledViewController is ScreenZLevel1 || viewController is ScreenZLevel2) &&
+            (leveledViewController != nil && (leveledViewController as? BaseDailyBriefDetailsViewController) == nil) {
+            
             navigationController.pushViewControllerSwizzled(viewController: viewController, animated: animated)
             // TODO: Dismiss all Presented ViewControllers
             if let presentedViewController = currentPresentedViewController {

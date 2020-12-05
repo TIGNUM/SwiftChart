@@ -417,7 +417,7 @@ enum ThemableButton {
         case .poll:
             return ButtonTheme(foreground: .accent, background: .carbon90, border: .accent40)
         case .newBlueButton:
-            return ButtonTheme(foreground: .actionBlue, background: .actionBlue, border: .clear)
+            return ButtonTheme(foreground: .white, background: .actionBlue, border: .clear)
         }
     }
 
@@ -449,7 +449,7 @@ enum ThemableButton {
              .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .newBlueButton:
-            return ButtonTheme(foreground: .actionBlue, background: .actionBlue, border: .clear)
+            return ButtonTheme(foreground: .white40, background: .actionBlue75, border: .clear)
         default:
             return nil
         }
@@ -465,7 +465,7 @@ enum ThemableButton {
         case .poll:
             return ButtonTheme(foreground: .sand40, background: .sand10, border: .clear)
         case .newBlueButton:
-            return ButtonTheme(foreground: .actionBlue, background: .actionBlue, border: .clear)
+            return ButtonTheme(foreground: .white, background: .actionBlue, border: .clear)
         default:
             return nil
         }
@@ -484,7 +484,7 @@ enum ThemableButton {
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         case .newBlueButton:
-            return ButtonTheme(foreground: .actionBlue40, background: .actionBlue40, border: .clear)
+            return ButtonTheme(foreground: .white40, background: .lightGray, border: .clear)
         default:
             return nil
         }

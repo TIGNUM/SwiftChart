@@ -415,7 +415,8 @@ extension LaunchHandler {
                 if let controller = R.storyboard.main.tignum_XArticleViewController() {
                     ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
                     if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
-                        detailsVC.pushToStart(childViewController: controller)
+                        controller.modalPresentationStyle = .overFullScreen
+                        detailsVC.present(controller, animated: true, completion: nil)
                     } else {
                         self?.present(viewController: controller)
                     }
