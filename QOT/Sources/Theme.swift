@@ -925,6 +925,8 @@ enum ThemeText {
     case registerIntroBody
     case optionPage
     case optionPageDisabled
+    case tbvQuestionLow
+    case tbvQuestionHigh
 
     // MARK: - New Approach
     case H01Light
@@ -984,7 +986,7 @@ enum ThemeText {
             case .scale: return Fonts.fontMedium14
             case .scaleNot: return Fonts.fontMedium12
             }
-        case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder, .trends:
+        case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder, .trends, .tbvQuestionLow:
             return Fonts.fontRegular18
         case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader, .dailyQuestion, .dailyBriefFromTignumTitle:
             return Fonts.fontMedium16
@@ -1016,6 +1018,7 @@ enum ThemeText {
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .tbvTrackerAnswerTeam, .accountHeaderTitle,
              .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .strategySubHeader, .tbvQuestionLight,
+             .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .strategySubHeader,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .resultClosingText,
              .myLibraryItemsItemName, .myLibraryItemsItemNameGrey, .mySprintsCellTitle, .mySprintDetailsDescription,
@@ -1110,6 +1113,8 @@ enum ThemeText {
             return Fonts.fontDisplayRegular34
         case .dailyBriefLevelTitle:
             return Fonts.fontDisplayRegular24
+        case .tbvQuestionHigh:
+            return Fonts.fontMedium18
         // MARK: - .fontRegular20
         default:
             return Fonts.fontRegular20
@@ -1261,7 +1266,10 @@ enum ThemeText {
             return .white
         case .level5Question:
             return .lightGray
-
+        case .tbvQuestionHigh:
+            return .mindsetShifterGreen
+        case .tbvQuestionLow:
+            return .mindsetShifterRed
         }
     }
 
@@ -1628,6 +1636,7 @@ private struct Fonts {
     static let fontMedium12 = UIFont.sfProtextMedium(ofSize: 12.0)
     static let fontMedium14 = UIFont.sfProtextMedium(ofSize: 14.0)
     static let fontMedium16 = UIFont.sfProtextMedium(ofSize: 16.0)
+    static let fontMedium18 = UIFont.sfProtextMedium(ofSize: 18.0)
 
     static let fontLight11 = UIFont.sfProtextLight(ofSize: 11.0)
     static let fontLight12 = UIFont.sfProtextLight(ofSize: 12.0)
@@ -1870,6 +1879,14 @@ private struct Palette {
 
     static var heatMapBrightRed: UIColor {
         return UIColor.heatMapBrightRed
+    }
+
+    static var mindsetShifterGreen: UIColor {
+        return UIColor.mindsetShifterGreen
+    }
+
+    static var mindsetShifterRed: UIColor {
+        return UIColor.mindsetShifterRed
     }
 
     static func light(_ lightColor: UIColor, or darkColor: UIColor, forcedColorMode: ThemeColorMode? = nil) -> UIColor {

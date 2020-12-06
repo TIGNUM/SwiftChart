@@ -21,7 +21,7 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
     @IBOutlet weak var lowFirstStatement: UILabel!
     @IBOutlet weak var lowSecondStatement: UILabel!
     @IBOutlet weak var lowThirdStatement: UILabel!
-    @IBOutlet weak var seeMyPlanButton: UIButton!
+    @IBOutlet weak var seeMyPlanButton: RoundedButton!
 
     weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
     private var mindsetShifter: QDMMindsetShifter?
@@ -44,28 +44,28 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         let lowItems = viewModel.mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? "" } ?? []
         let highTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high).lowercased().capitalizingFirstLetter()
         let highItems = viewModel.mindsetShifter?.highPerformanceContentItems.compactMap { $0.valueText } ?? []
+        ThemableButton.newBlueButton.apply(seeMyPlanButton, title: AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_button_title))
 
+        ThemeText.tbvQuestionLow.apply(lowTitle, to: lowTitleLabel)
+        ThemeText.tbvQuestionLow.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowFirstStatement)
+        ThemeText.tbvQuestionLow.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowSecondStatement)
+        ThemeText.tbvQuestionLow.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowThirdStatement)
 
-        ThemeText.tbvQuestionLight.apply(lowTitle, to: lowTitleLabel)
-        ThemeText.tbvQuestionLight.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowFirstStatement)
-        ThemeText.tbvQuestionLight.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowSecondStatement)
-        ThemeText.tbvQuestionLight.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowThirdStatement)
-
-        ThemeText.resultTitleTheme(.dark).apply(highTitle, to: highTitleLabel)
-        ThemeText.resultHeaderTheme2(.dark).apply(highItems[0, default: "highItem_\(0) not set"], to: highFirstStatement)
-        ThemeText.resultHeaderTheme2(.dark).apply(highItems[1, default: "highItem_\(1) not set"], to: highSecondStatement)
-        ThemeText.resultHeaderTheme2(.dark).apply(highItems[2, default: "highItem_\(2) not set"], to: highThirdStatement)
+        ThemeText.tbvQuestionLow.apply(highTitle, to: highTitleLabel)
+        ThemeText.tbvQuestionHigh.apply(highItems[0, default: "highItem_\(0) not set"], to: highFirstStatement)
+        ThemeText.tbvQuestionHigh.apply(highItems[1, default: "highItem_\(1) not set"], to: highSecondStatement)
+        ThemeText.tbvQuestionHigh.apply(highItems[2, default: "highItem_\(2) not set"], to: highThirdStatement)
         self.mindsetShifter = viewModel.mindsetShifter
     }
 
     func setupGradients() {
         let highGradientLayer = CAGradientLayer()
         let lowGradientLayer = CAGradientLayer()
-        let highGradientColor1 = UIColor(red: 0.604, green: 0.851, blue: 0.514, alpha: 0.1).cgColor
-        let highGradientColor2 = UIColor(red: 0.604, green: 0.847, blue: 0.514, alpha: 0).cgColor
+        let highGradientColor1 = UIColor.mindsetShifterGreen.withAlphaComponent(0.3).cgColor
+        let highGradientColor2 = UIColor.mindsetShifterGreen.withAlphaComponent(0).cgColor
 
-        let lowGradientColor1 = UIColor(red: 0.816, green: 0.408, blue: 0.306, alpha: 0.1).cgColor
-        let lowGradientColor2 = UIColor(red: 0.816, green: 0.408, blue: 0.306, alpha: 0).cgColor
+        let lowGradientColor1 = UIColor.mindsetShifterRed.withAlphaComponent(0.3).cgColor
+        let lowGradientColor2 = UIColor.mindsetShifterRed.withAlphaComponent(0).cgColor
 
         highGradientLayer.colors = [highGradientColor1, highGradientColor2]
         highGradientLayer.locations = [0.0, 1.0]

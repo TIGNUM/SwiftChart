@@ -144,7 +144,6 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
                 cell.configure(with: mindsetShifterModel)
                 cell.delegate = owner
-
                 return cell
             case DailyBriefBucketName.MY_PEAK_PERFORMANCE:
                 guard let peakPerformanceModel = model as? PeakPerformanceViewModel,
@@ -154,7 +153,6 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
                 cell.configure(with: peakPerformanceModel)
                 cell.delegate = owner
-
                 return cell
             case DailyBriefBucketName.GET_TO_LEVEL_5:
                 guard let level5Model = model as? Level5ViewModel,
@@ -164,7 +162,6 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
                 cell.configure(with: level5Model)
                 cell.delegate = owner
-
                 return cell
             case DailyBriefBucketName.FROM_MY_COACH:
                 guard let fromMyCoachModel = model as? FromMyCoachCellViewModel,
