@@ -887,7 +887,7 @@ extension DailyBriefInteractor {
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
         let yesterday = -1, tomorrow = 1, threeDays = 3
-        let tags: [MyPeakPerformanceBucketType] = [.IN_THREE_DAYS, .TOMORROW, .TODAY, .REFLECT]
+        let tags: [MyPeakPerformanceBucketType] = [.TODAY, .TOMORROW, .IN_THREE_DAYS, .REFLECT]
         for tag in tags {
             var localPreparationList = [QDMUserPreparation]()
             switch tag {
