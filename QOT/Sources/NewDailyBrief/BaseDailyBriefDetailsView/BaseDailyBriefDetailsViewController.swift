@@ -67,6 +67,10 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
         // Do any additional setup after loading the view.
     }
 
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+
     func showAlert(message: String?) {
         let closeButtonItem = createCloseButton(#selector(dismissAlert))
         QOTAlert.show(title: nil, message: message, bottomItems: [closeButtonItem])
@@ -167,6 +171,10 @@ extension BaseDailyBriefDetailsViewController: QuestionnaireAnswer {
             let answers = question?.answers?.count ?? 0
             question?.selectedAnswerIndex = (answers - 1) - answer
         }
+    }
+
+    func saveTargetValue(value: Int?) {
+        interactor.saveTargetValue(value: value)
     }
 }
 

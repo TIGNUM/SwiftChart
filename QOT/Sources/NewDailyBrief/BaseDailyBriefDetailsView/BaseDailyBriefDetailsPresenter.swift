@@ -24,4 +24,8 @@ extension BaseDailyBriefDetailsPresenter: BaseDailyBriefDetailsPresenterInterfac
     func setupView() {
         viewController?.setupView()
     }
+
+    func reloadTableView() {
+        viewController?.reloadTableView()
+    }
 }

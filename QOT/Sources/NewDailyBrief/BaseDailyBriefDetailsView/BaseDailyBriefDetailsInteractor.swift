@@ -25,6 +25,23 @@ final class BaseDailyBriefDetailsInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        addObservers()
+    }
+
+    func addObservers() {
+        _ = NotificationCenter.default.addObserver(forName: .didPickTarget,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.updateForSleepTargetChange(notification)
+        }
+    }
+
+    @objc func updateForSleepTargetChange(_ notification: Notification) {
+        guard let value = notification.object as? Double,
+              let scoreModel = model as? ImpactReadinessScoreViewModel else { return }
+        let targetValue = (value + 2) / 2
+        scoreModel.targetSleepQuantity = targetValue
+        presenter.reloadTableView()
     }
 }
 
@@ -193,5 +210,9 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
     func saveAnswerValue(_ value: Int) {
         worker.saveAnswerValue(value)
+    }
+
+    func saveTargetValue(value: Int?) {
+        worker.saveTargetValue(value: value)
     }
 }

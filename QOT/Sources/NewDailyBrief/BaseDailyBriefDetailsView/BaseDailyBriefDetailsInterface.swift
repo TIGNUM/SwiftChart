@@ -11,6 +11,7 @@ import qot_dal
 
 protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func setupView()
+    func reloadTableView()
     func showAlert(message: String?)
     func presentMyDataScreen()
     func showCustomizeTarget()
@@ -24,6 +25,7 @@ protocol BaseDailyBriefDetailsViewControllerInterface: class {
 
 protocol BaseDailyBriefDetailsPresenterInterface {
     func setupView()
+    func reloadTableView()
 }
 
 protocol BaseDailyBriefDetailsInteractorInterface: Interactor {
@@ -33,6 +35,7 @@ protocol BaseDailyBriefDetailsInteractorInterface: Interactor {
     func getDetailsTableViewCell(for indexPath: IndexPath, owner: BaseDailyBriefDetailsViewController) -> UITableViewCell
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func saveAnswerValue(_ value: Int)
+    func saveTargetValue(value: Int?)
 }
 
 protocol BaseDailyBriefDetailsRouterInterface {
