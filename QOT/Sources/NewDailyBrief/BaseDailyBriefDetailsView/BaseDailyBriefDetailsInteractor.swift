@@ -81,6 +81,19 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 cell.configure(with: [standardModel])
                 cell.collectionView.contentInsetAdjustmentBehavior = .never
                 return cell
+            case DailyBriefBucketName.MY_PEAK_PERFORMANCE:
+                guard let peakPerformanceModel = model as? PeakPerformanceViewModel else {
+                    return UITableViewCell.init()
+                }
+                let standardModel = NewDailyBriefStandardModel.init(caption: peakPerformanceModel.caption,
+                                                                     title: peakPerformanceModel.title,
+                                                                     body: peakPerformanceModel.contentSentence,
+                                                                     image: peakPerformanceModel.image,
+                                                                     detailsMode: true,
+                                                                     domainModel: peakPerformanceModel.domainModel)
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
             default:
                 let standardModel = NewDailyBriefStandardModel.init(caption: model.caption,
                                                              title: model.title,

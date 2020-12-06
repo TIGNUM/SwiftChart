@@ -376,6 +376,7 @@ enum ThemableButton {
     case tbvOption(disabled: Bool)
     case dateButtonsSelected
     case poll
+    case newBlueButton
 
     var titleAttributes: [NSAttributedString.Key: Any]? {
         return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
@@ -415,6 +416,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .accent40, border: .clear)
         case .poll:
             return ButtonTheme(foreground: .accent, background: .carbon90, border: .accent40)
+        case .newBlueButton:
+            return ButtonTheme(foreground: .actionBlue, background: .actionBlue, border: .clear)
         }
     }
 
@@ -445,6 +448,8 @@ enum ThemableButton {
         case .level5,
              .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
+        case .newBlueButton:
+            return ButtonTheme(foreground: .actionBlue, background: .actionBlue, border: .clear)
         default:
             return nil
         }
@@ -459,6 +464,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         case .poll:
             return ButtonTheme(foreground: .sand40, background: .sand10, border: .clear)
+        case .newBlueButton:
+            return ButtonTheme(foreground: .actionBlue, background: .actionBlue, border: .clear)
         default:
             return nil
         }
@@ -476,6 +483,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+        case .newBlueButton:
+            return ButtonTheme(foreground: .actionBlue40, background: .actionBlue40, border: .clear)
         default:
             return nil
         }

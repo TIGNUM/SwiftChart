@@ -900,7 +900,7 @@ extension DailyBriefInteractor {
                     let remainingDays = beginingOfToday.days(to: date)
                     return remainingDays == threeDays
                     } ?? [QDMUserPreparation]()
-                contentSubtitle = AppTextService.get(.daily_brief_section_my_peak_performances_section_in_three_days_label)
+                contentSubtitle = AppTextService.get(.daily_brief_section_my_peak_performances_section_in_three_days_card_subtitle)
             case .TOMORROW:
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_BEFORE")

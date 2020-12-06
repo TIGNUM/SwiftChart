@@ -620,6 +620,10 @@ extension UIColor {
     public class var actionBlue: UIColor {
         return UIColor(red: 0 / 255.0, green: 98.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
+
+    public class var actionBlue40: UIColor {
+        return UIColor(red: 0 / 255.0, green: 98.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.4)
+    }
     //Solid Colors
 
     public class var skeletonTitleColor: UIColor {
