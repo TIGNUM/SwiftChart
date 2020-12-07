@@ -13,7 +13,7 @@ final class MyQotSupportDetailsViewController: BaseViewController, ScreenZLevel3
 
     // MARK: - Properties
 
-    var interactor: MyQotSupportDetailsInteractorInterface?
+    var interactor: MyQotSupportDetailsInteractorInterface!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
@@ -24,7 +24,7 @@ final class MyQotSupportDetailsViewController: BaseViewController, ScreenZLevel3
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(view)
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -45,7 +45,7 @@ extension MyQotSupportDetailsViewController: MyQotSupportDetailsViewControllerIn
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
-        baseHeaderView?.configure(title: interactor?.headerText, subtitle: nil)
+        baseHeaderView?.configure(title: interactor.headerText, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         tableView.reloadData()
     }
@@ -56,21 +56,21 @@ extension MyQotSupportDetailsViewController: MyQotSupportDetailsViewControllerIn
 extension MyQotSupportDetailsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.itemCount ?? 0
+        return interactor.itemCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: interactor?.title(at: indexPath) ?? "",
+        cell.configure(title: interactor.title(at: indexPath),
                        bkgdTheme: .level3, titleTheme: .myQOTTitle, arrowHidden: true)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let contentID = interactor?.item(at: indexPath).remoteID else { return }
-        let key = interactor?.trackingID(at: indexPath)
+        guard let contentID = interactor.item(at: indexPath).remoteID else { return }
+        let key = interactor.trackingID(at: indexPath)
         trackUserEvent(.OPEN, value: key, valueType: .CONTENT_ITEM, action: .TAP)
-        interactor?.presentContentItemSettings(contentID: contentID)
+        interactor.presentContentItemSettings(contentID: contentID)
     }
 }
