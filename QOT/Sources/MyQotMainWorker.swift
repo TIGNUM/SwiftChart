@@ -127,7 +127,7 @@ extension MyQotMainWorker {
     func getToBeVisionData(item: MyX.Item,
                            teamItem: Team.Item?, _ completion: @escaping (String, QDMTeamToBeVisionPoll?, QDMTeamToBeVisionTrackerPoll?) -> Void) {
         guard let team = teamItem?.qdmTeam, team.name != nil else {
-            completion("", nil, nil)
+            completion(item.title(isTeam: false, isPollInProgress: false), nil, nil)
             return
         }
 

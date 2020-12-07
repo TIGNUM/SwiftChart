@@ -143,12 +143,12 @@ extension WorkerTeam {
         getTeams { (teams) in
             if showNewRedDot {
                 self.getTeamInvitations { (invites) in
-                    self.createTeamHeaderItems(invites: invites, teams: teams) { (headerItems) in
+                    self.createTeamHeaderItems(invites: invites, isMyX: true, teams: teams) { (headerItems) in
                         completion(headerItems)
                     }
                 }
             } else {
-                self.createTeamHeaderItems(invites: [], teams: teams) { (headerItems) in
+                self.createTeamHeaderItems(invites: [], isMyX: false, teams: teams) { (headerItems) in
                     completion(headerItems)
                 }
             }
@@ -538,6 +538,7 @@ private extension WorkerTeam {
     }
 
     func createTeamHeaderItems(invites: [QDMTeamInvitation],
+                               isMyX: Bool,
                                teams: [QDMTeam],
                                _ completion: @escaping ([Team.Item]) -> Void) {
         var teamHeaderItems = [Team.Item]()
@@ -547,6 +548,10 @@ private extension WorkerTeam {
         teamHeaderItems.append(contentsOf: teams.compactMap { (team) -> Team.Item in
             return Team.Item(qdmTeam: team)
         })
+
+        if teams.isEmpty == false && isMyX {
+            teamHeaderItems.insert(Team.Item(myX: .myX), at: 0)
+        }
         completion(teamHeaderItems)
     }
 }

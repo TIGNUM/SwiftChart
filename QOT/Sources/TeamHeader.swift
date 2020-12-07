@@ -15,11 +15,13 @@ struct Team {
     static let KeyInvite = "team.key.invite"
 
     enum Header: Int, CaseIterable {
-        case invite = 0
+        case myX = 0
+        case invite
         case team
 
         var inviteId: String {
             switch self {
+            case .myX: return "team.key.myX.default"
             case .invite: return UUID().uuidString
             case .team: return ""
             }
@@ -27,6 +29,7 @@ struct Team {
 
         var title: String {
             switch self {
+            case .myX: return AppTextService.get(.my_qot_section_header_title).capitalized
             case .invite: return AppTextService.get(.team_invite_header_singular)
             case .team: return ""
             }
@@ -35,7 +38,7 @@ struct Team {
 
     final class Item {
         var invites: [QDMTeamInvitation] = []
-        var qdmTeam: QDMTeam = QDMTeam()
+        var qdmTeam: QDMTeam?
         var header: Team.Header
         var title: String
         var teamId: String
@@ -60,6 +63,16 @@ struct Team {
             self.teamId = Team.Header.invite.inviteId
             self.invites = invites
             self.batchCount = newItemCount ?? 0
+        }
+
+        init(myX: Team.Header) {
+            guard myX == Team.Header.myX else {
+                fatalError("This header item is not myX.")
+            }
+            self.header = myX
+            self.title = myX.title
+            self.teamId = myX.inviteId
+            self.color = UIColor.accent.toHexString
         }
 
         var isSelected: Bool {
