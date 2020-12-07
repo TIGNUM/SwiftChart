@@ -400,7 +400,9 @@ public extension AppTextKey {
     static let daily_brief_team_invitation_title = AppTextKey("daily_brief.team_invitation.title")
 
     static let daily_brief_team_open_poll_cta = AppTextKey("daily_brief.team_open_poll.cta")
-    static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+
+    static let daily_brief_open_poll_text = AppTextKey("daily_brief.open_poll.text")
+    static let daily_brief_open_poll_title = AppTextKey("daily_brief.open_poll.title")
     static let daily_brief_team_open_poll_title = AppTextKey("daily_brief.team_open_poll.title")
 
     static let daily_brief_rate_open_cta = AppTextKey("daily_brief.rate_open.cta")
@@ -1211,3 +1213,9 @@ public extension AppTextKey {
     static let banner_tbv_poll_ends_days = AppTextKey("tbv.poll.ends")
     static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
 }
+
+@available(*, unavailable, message: "Unavailable from QOT v3.3.0")
+public extension AppTextKey {
+    static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+}
+

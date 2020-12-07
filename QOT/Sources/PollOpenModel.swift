@@ -24,7 +24,7 @@ final class PollOpenModel: BaseDailyBriefViewModel {
         super.init(domainModel,
                    caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? ""),
                    title: "Create your Team ToBeVision",
-                   body: (teamAdmin ?? "") + AppTextService.get(.daily_brief_team_open_poll_text),
+                   body: AppTextService.get(.daily_brief_open_poll_text).replacingOccurrences(of: "${admin}", with: teamAdmin ?? ""),
                    image: imageURL)
     }
 
