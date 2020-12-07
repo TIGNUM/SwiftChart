@@ -524,12 +524,7 @@ extension LaunchHandler {
     }
 
     func present(viewController: UIViewController) {
-        if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
-            detailsVC.pushToStart(childViewController: viewController)
-        } else {
-            baseRootViewController?.present(viewController, animated: true, completion: nil)
-        }
-
+        baseRootViewController?.present(viewController, animated: true, completion: nil)
     }
 }
 

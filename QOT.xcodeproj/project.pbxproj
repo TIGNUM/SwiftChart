@@ -3687,12 +3687,12 @@
 		5F62BE8A228AB57F00852F7E /* MyQotSupportFAQ */ = {
 			isa = PBXGroup;
 			children = (
-				5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */,
-				5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */,
 				5F62BE91228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift */,
+				5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */,
 				5F62BE93228AB61100852F7E /* MyQotSupportDetailsInterface.swift */,
 				5F62BE95228AB63A00852F7E /* MyQotSupportDetailsPresenter.swift */,
 				5F62BE97228AB64E00852F7E /* MyQotSupportDetailsRouter.swift */,
+				5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */,
 				5F62BE99228AB66100852F7E /* MyQotSupportDetailsWorker.swift */,
 			);
 			name = MyQotSupportFAQ;

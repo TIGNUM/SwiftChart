@@ -14,7 +14,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
     // MARK: - Properties
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
-    private weak var selectedTeamItem: Team.Item?
+    private var selectedTeamItem: Team.Item?
     private var eventType: String?
     private weak var teamSelectionObserver: NSObjectProtocol?
     private weak var synchronizationObserver: NSObjectProtocol?
@@ -87,7 +87,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
                 }
             case .preps:
                 dispatchGroup.enter()
-                getPreparationSubtitle { subtitle in
+                    getPreparationSubtitle { subtitle in
                     tmpSubtitles[MyX.Item.preps.rawValue] = subtitle
                     dispatchGroup.leave()
                 }
@@ -159,18 +159,18 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func itemCount(in section: Int) -> Int {
-        return MyX.Section.allCases[section].itemCount(selectedTeamItem != nil)
+        return MyX.Section.allCases[section].itemCount(isTeam())
     }
 
     func getItem(at indexPath: IndexPath) -> MyX.Item? {
-        return MyX.Item.items(selectedTeamItem != nil).at(index: indexPath.row)
+        return MyX.Item.items(isTeam()).at(index: indexPath.row)
     }
 
     func getTitle(for item: MyX.Item?) -> String? {
         if item == .toBeVision && selectedTeamItem != nil {
             return tbvTitle
         }
-        return item?.title(isTeam: selectedTeamItem != nil, isPollInProgress: false)
+        return item?.title(isTeam: isTeam(), isPollInProgress: false)
     }
 
     func getSubtitle(for item: MyX.Item?) -> (String?, Bool) {
@@ -231,7 +231,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func handleSelection(at indexPath: IndexPath) {
-        switch MyX.Item.items(selectedTeamItem != nil).at(index: indexPath.row) {
+        switch MyX.Item.items(isTeam()).at(index: indexPath.row) {
         case .teamCreate:
             router.showExplanation(nil, .createTeam)
         case .library:
@@ -353,6 +353,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
 // MARK: - Private
 private extension MyQotMainInteractor {
+    func isTeam() -> Bool {
+        return selectedTeamItem?.teamId == Team.Header.myX.inviteId ? false : selectedTeamItem != nil
+    }
+
     func canSelectTBV(for teamItem: Team.Item?, _ completion: @escaping (Bool) -> Void) {
         guard let team = teamItem?.qdmTeam, team.thisUserIsOwner == false else {
             completion(true)
@@ -395,6 +399,8 @@ private extension MyQotMainInteractor {
     }
 
     func updateSelectedTeam(teamId: String) {
+        let personalPrefixes: [String] = MyX.Item.allCases.compactMap({ $0.rawValue })
+        let teamPrefixes: [String] = [MyX.Item.library.rawValue, MyX.Item.toBeVision.rawValue]
         let teamItem = headerItems.filter { $0.teamId == teamId }.first
         if selectedTeamItem != nil, teamItem != nil, teamItem?.teamId != selectedTeamItem?.teamId { // changing team
             selectedTeamItem = teamItem
@@ -402,21 +408,20 @@ private extension MyQotMainInteractor {
                 self?.presenter.reload()
             }
             return
-        } else if selectedTeamItem != nil, teamItem != nil, teamItem?.teamId == selectedTeamItem?.teamId { // delselect team
+        } else if selectedTeamItem != nil, teamItem != nil, teamItem?.teamId != selectedTeamItem?.teamId { // delselect team
             selectedTeamItem = nil
         } else if selectedTeamItem == nil, teamItem != nil { // select team
             selectedTeamItem = teamItem // select item
         } else { // if selected item is not available any more
-            selectedTeamItem = nil
+            selectedTeamItem = Team.Item(myX: .myX)
             loadAllData { [weak self] in
                 self?.presenter.reload()
             }
             return
         }
         loadAllData { [weak self] in
-            let personalPrefixes: [String] = MyX.Item.allCases.compactMap({ $0.rawValue })
-            let teamPrefixes: [String] = [MyX.Item.library.rawValue, MyX.Item.toBeVision.rawValue]
-            self?.presenter.presentItemsWith(identifiers: self?.selectedTeamItem == nil ? personalPrefixes : teamPrefixes,
+            let isPersonal = self?.selectedTeamItem == nil || self?.selectedTeamItem?.teamId == Team.Header.myX.inviteId
+            self?.presenter.presentItemsWith(identifiers: isPersonal ? personalPrefixes : teamPrefixes,
                                              maxCount: MyX.Item.allCases.count)
         }
     }

@@ -1123,11 +1123,14 @@ public extension AppTextKey {
     static let qot_alert_message_team_tbv_poll_submitted = AppTextKey("qot_alert.message.team_tbv_poll_submitted")
 
     // MARK: - Banner
-
     static let team_tbv_poll_ends = AppTextKey("team_tbv.poll.ends")
     static let team_tbv_rate_ends = AppTextKey("team_tbv.rate.ends")
     static let banner_unavailable_while_poll_active = AppTextKey("unavailable.while_poll.active")
     static let banner_unavailable_while_rate_active = AppTextKey("unavailable.while_rate.active")
+
+    // MARK: Team
+    static let faq_teams_title = AppTextKey("faq.teams.title")
+    static let faq_teams_subtitle = AppTextKey("faq.teams.subtitle")
 }
 
 @available(*, unavailable, message: "Unavailable from QOT v3.1.3")

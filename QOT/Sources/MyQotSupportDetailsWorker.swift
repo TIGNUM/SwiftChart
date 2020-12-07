@@ -60,6 +60,8 @@ extension MyQotSupportDetailsWorker {
         switch category {
         case .UsingQOT:
             return AppTextService.get(.my_qot_my_profile_support_section_using_qot_title)
+        case .FAQTeam:
+            return AppTextService.get(.faq_teams_title)
         default:
             return AppTextService.get(.my_qot_my_profile_support_faq_section_header_title)
         }
