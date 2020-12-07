@@ -179,11 +179,13 @@ extension DailyBriefViewController {
         case .SPRINT_CHALLENGE?:
             if let bucket = bucketItem as? SprintsCollectionViewModel,
                let items = bucket.items {
-                for item in items {
+                for index in 0...items.count - 1 {
+                    let item = items[index]
                     cellModels.append(NewDailyBriefStandardModel.init(caption: item.caption,
                                                                       title: item.title,
                                                                       body: item.body,
                                                                       image: item.image,
+                                                                      enabled: index <= item.sprint.currentDay,
                                                                       domainModel: item.domainModel))
                 }
             }

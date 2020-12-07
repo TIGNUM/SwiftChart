@@ -6,7 +6,7 @@
 //  Copyright © 2020 Tignum. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import qot_dal
 
 protocol NewBaseDailyBriefCellProtocol: class {
@@ -15,7 +15,7 @@ protocol NewBaseDailyBriefCellProtocol: class {
 
 class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet var flowLayout: MyCollectionViewFlowLayout!
     @IBOutlet var collectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet var collectionViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var collectionViewLeadingConstraint: NSLayoutConstraint!
@@ -51,6 +51,8 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     private func setupCollectionView() {
         var width = self.frame.width
         var height: CGFloat = 463
+        collectionView.bounces = datasource?.count ?? 0 > 1
+        collectionView.decelerationRate = .fast
 
         if datasource?.first as? NewDailyBriefGetStartedModel != nil {
             width = 183
@@ -65,13 +67,13 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
                 detailsMode = viewModel.detailsMode ?? false
                 width = detailsMode ? width : (width - 48)
                 collectionViewTopConstraint.constant  = detailsMode ? 0 : 30.0
-                collectionViewLeadingConstraint.constant  = detailsMode ? 0 : 24.0
-                collectionViewTrailingConstraint.constant = detailsMode ? 0 : 24.0
                 height = NewDailyStandardBriefCollectionViewCell.height(for: viewModel, forWidth: width)
-                collectionView.isPagingEnabled = true
-                flowLayout.minimumLineSpacing = 0
+                collectionView.isPagingEnabled = false
+                flowLayout.minimumLineSpacing = detailsMode ? 0 : 8.0
             }
         }
+        flowLayout.sectionInset.left = detailsMode ? 0 : 24.0
+        flowLayout.sectionInset.right = detailsMode ? 0 : 24.0
 
         flowLayout.itemSize = CGSize(width: width, height: height)
         collectionViewHeightConstraint.constant = height
@@ -106,6 +108,8 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
             }
             cell.layer.borderWidth = detailsMode ? 0 :  0.5
             cell.layer.borderColor = UIColor.lightGray.cgColor
+            cell.contentView.alpha = model.enabled ? 1.0 : 0.2
+            cell.isUserInteractionEnabled = model.enabled
             return cell
         } else if let model = datasource?[indexPath.row] as? NewDailyBriefGetStartedModel {
             let cell: NewDailyBriefGetStartedCollectionViewCell = collectionView.dequeueCell(for: indexPath)
@@ -124,5 +128,34 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
             model.appLink?.launch()
         }
         delegate?.didTapOnCollectionViewCell(at: indexPath, sender: self)
+    }
+}
+
+class MyCollectionViewFlowLayout: UICollectionViewFlowLayout {
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        guard let collectionView = self.collectionView else {
+                let latestOffset = super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
+                return latestOffset
+            }
+
+        // Page width used for estimating and calculating paging.
+        let pageWidth = self.itemSize.width + self.minimumInteritemSpacing
+
+        // Make an estimation of the current page position.
+        let approximatePage = collectionView.contentOffset.x/pageWidth
+
+        // Determine the current page based on velocity.
+        let currentPage = velocity.x == 0 ? round(approximatePage) : (velocity.x < 0.0 ? floor(approximatePage) : ceil(approximatePage))
+
+        // Create custom flickVelocity.
+        let flickVelocity = velocity.x * 0.3
+
+        // Check how many pages the user flicked, if <= 1 then flickedPages should return 0.
+        let flickedPages = (abs(round(flickVelocity)) <= 1) ? 0 : round(flickVelocity)
+
+        // Calculate newHorizontalOffset.
+        let newHorizontalOffset = ((currentPage + flickedPages) * pageWidth) - collectionView.contentInset.left
+
+        return CGPoint(x: newHorizontalOffset, y: proposedContentOffset.y)
     }
 }

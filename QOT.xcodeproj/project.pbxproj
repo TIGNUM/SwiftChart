@@ -990,6 +990,8 @@
 		B4BCE4A8255BD01600A1116F /* DismissCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE49D255BD01600A1116F /* DismissCardAnimator.swift */; };
 		B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */; };
 		B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */; };
+		B4D2E286257EB06A00928219 /* SprintChallengeDay0VideoTavleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTavleViewCell.swift */; };
+		B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTavleViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTavleViewCell.xib */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
 		B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */; };
 		B4ECF255235DB81E00529C66 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */; };
@@ -2412,6 +2414,8 @@
 		B4BCE49D255BD01600A1116F /* DismissCardAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissCardAnimator.swift; sourceTree = "<group>"; };
 		B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQOTAdminEditSprintsDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTavleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeDay0VideoTavleViewCell.swift; sourceTree = "<group>"; };
+		B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTavleViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeDay0VideoTavleViewCell.xib; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleContactSupportTableViewCell.xib; sourceTree = "<group>"; };
 		B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
@@ -4691,6 +4695,8 @@
 				B4792C9F256BABF200D24E7F /* Level5TableViewCell.xib */,
 				B4792D38256CFB4000D24E7F /* FromMyCoachTableViewCell.swift */,
 				B4792D46256CFB5900D24E7F /* FromMyCoachTableViewCell.xib */,
+				B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTavleViewCell.xib */,
+				B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTavleViewCell.swift */,
 				F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */,
 				F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */,
 			);
@@ -6397,6 +6403,7 @@
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
+				B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTavleViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
@@ -7021,6 +7028,7 @@
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
 				B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */,
 				367A58652326B85B0089A082 /* DTWorker.swift in Sources */,
+				B4D2E286257EB06A00928219 /* SprintChallengeDay0VideoTavleViewCell.swift in Sources */,
 				F95B923A228EAE96000DEAEC /* ToolsInteractor.swift in Sources */,
 				F99DF6082292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift in Sources */,
 				386C279F2418EBFF00184EC9 /* ResultsPrepareInteractor.swift in Sources */,

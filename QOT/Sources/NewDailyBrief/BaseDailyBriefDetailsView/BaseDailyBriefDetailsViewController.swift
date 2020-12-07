@@ -169,8 +169,7 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard interactor?.getDetailsTableViewCell(for: indexPath, owner: self) as? SprintChallengeTableViewCell != nil,
-              let model = interactor?.getModel() as? SprintChallengeViewModel ,
+        guard let model = interactor?.getModel() as? SprintChallengeViewModel,
               indexPath.row > 0 else {
             return
         }
@@ -179,7 +178,10 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
     }
 
     func handleActionForRelatedItem(_ relatedItem: SprintChallengeViewModel.RelatedItemsModel) {
-        if let contentItemId = relatedItem.contentItemId,
+        if let videoUrlString = relatedItem.videoUrl,
+           let videoUrl = URL.init(string: videoUrlString) {
+            stream(videoURL: videoUrl, contentItem: nil)
+        } else if let contentItemId = relatedItem.contentItemId,
             let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             switch relatedItem.format {

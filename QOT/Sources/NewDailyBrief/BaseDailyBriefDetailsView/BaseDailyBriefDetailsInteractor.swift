@@ -200,6 +200,16 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                       let cell = R.nib.sprintChallengeTableViewCell(owner: owner) else {
                     return UITableViewCell.init()
                 }
+
+                if relatedItem.videoUrl != nil {
+                    guard let cell = R.nib.sprintChallengeDay0VideoTavleViewCell(owner: owner) else {
+                        return UITableViewCell.init()
+                    }
+
+                    cell.configure(model: relatedItem)
+                    return cell
+                }
+
                 cell.configure(title: relatedItem.title,
                                durationString: relatedItem.durationString,
                                remoteID: relatedItem.contentId ?? relatedItem.contentItemId,
