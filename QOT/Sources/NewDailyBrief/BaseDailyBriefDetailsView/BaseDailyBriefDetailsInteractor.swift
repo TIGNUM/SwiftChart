@@ -51,6 +51,8 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             return 1
         case DailyBriefBucketName.MINDSET_SHIFTER:
             return model as? MindsetShifterViewModel != nil ? 2 : 1
+        case DailyBriefBucketName.TEAM_VISION_SUGGESTION:
+            return 2
         default:
             return 1
         }
@@ -104,6 +106,14 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                     cell.delegate = owner
                     return cell
                 }
+            case DailyBriefBucketName.TEAM_VISION_SUGGESTION:
+                guard let teamVisionSuggestionModel = model as? TeamVisionSuggestionModel,
+                      let cell: TeamVisionSuggestionTableViewCell = R.nib.teamVisionSuggestionTableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+                cell.configure(with: teamVisionSuggestionModel)
+                cell.delegate = owner
+                return cell
             case DailyBriefBucketName.MINDSET_SHIFTER:
                 guard let mindsetShifterModel = model as? MindsetShifterViewModel,
                       let cell: MindsetShifterTableViewCell = R.nib.mindsetShifterTableViewCell(owner: owner) else {

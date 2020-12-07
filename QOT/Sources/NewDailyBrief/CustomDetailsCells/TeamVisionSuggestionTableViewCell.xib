@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="259" id="awT-B2-i8n" customClass="TeamVisionSuggestionTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="426" height="215"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="awT-B2-i8n" id="HcO-uT-8ce">
+                <rect key="frame" x="0.0" y="0.0" width="426" height="215"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="AZ9-Bc-gK7">
+                        <rect key="frame" x="0.0" y="0.0" width="426" height="215"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caP-1O-zSs" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                                <rect key="frame" x="338" y="145" width="64" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="u7w-i6-TjL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                <state key="normal" title="Rate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapCta:" destination="awT-B2-i8n" eventType="touchUpInside" id="IPc-5G-Jq7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="753" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4j-fq-NYm">
+                                <rect key="frame" x="24" y="10" width="378" height="85"/>
+                                <string key="text">What could you do today to become 
+that statement statement?</string>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VUI-vu-kzh"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Y4j-fq-NYm" firstAttribute="leading" secondItem="VUI-vu-kzh" secondAttribute="leading" constant="24" id="623-HI-4Kf"/>
+                            <constraint firstItem="Y4j-fq-NYm" firstAttribute="top" secondItem="VUI-vu-kzh" secondAttribute="top" constant="10" id="BAE-rH-p5R"/>
+                            <constraint firstItem="caP-1O-zSs" firstAttribute="top" secondItem="Y4j-fq-NYm" secondAttribute="bottom" constant="50" id="CYX-vw-U6F"/>
+                            <constraint firstAttribute="trailing" secondItem="Y4j-fq-NYm" secondAttribute="trailing" constant="24" id="KHO-sa-mcy"/>
+                            <constraint firstItem="VUI-vu-kzh" firstAttribute="trailing" secondItem="caP-1O-zSs" secondAttribute="trailing" constant="24" id="kU4-9K-nu0"/>
+                            <constraint firstItem="VUI-vu-kzh" firstAttribute="bottom" secondItem="caP-1O-zSs" secondAttribute="bottom" constant="30" id="xUS-HS-GYq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="AZ9-Bc-gK7" firstAttribute="top" secondItem="HcO-uT-8ce" secondAttribute="top" id="37i-ps-NY9"/>
+                    <constraint firstAttribute="trailing" secondItem="AZ9-Bc-gK7" secondAttribute="trailing" id="84H-4P-6yT"/>
+                    <constraint firstAttribute="bottom" secondItem="AZ9-Bc-gK7" secondAttribute="bottom" id="PxK-Uk-25T"/>
+                    <constraint firstItem="AZ9-Bc-gK7" firstAttribute="leading" secondItem="HcO-uT-8ce" secondAttribute="leading" id="jzn-6u-iRT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="ctaButton" destination="caP-1O-zSs" id="Xr5-Cx-Iae"/>
+                <outlet property="suggestionBody" destination="Y4j-fq-NYm" id="Ge9-hx-VwY"/>
+            </connections>
+            <point key="canvasLocation" x="979.71014492753636" y="-296.31696428571428"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -115,6 +115,10 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
             tableView.reloadData()
         }
     }
+
+    func showTeamTBV(_ team: QDMTeam) {
+        router.showTeamTBV(team)
+    }
 }
 
 // MARK: - BaseDailyBriefDetailsViewControllerInterface
