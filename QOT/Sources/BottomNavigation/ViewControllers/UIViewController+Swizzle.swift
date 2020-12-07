@@ -254,7 +254,6 @@ extension UIViewController {
 
         if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
             vc.modalPresentationStyle = .overFullScreen
-            (vc as? UINavigationController)?.topViewController?.presentationController?.delegate = detailsVC
             detailsVC.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
         } else {
             baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
