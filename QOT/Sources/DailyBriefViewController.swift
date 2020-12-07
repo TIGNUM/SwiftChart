@@ -188,6 +188,16 @@ extension DailyBriefViewController {
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .TEAM_NEWS_FEED?:
             return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
+        case .TEAM_TOBEVISION_GENERATOR_POLL?:
+            let numberOfLines = 6
+            standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                            title: bucketItem.title,
+                                                            body: bucketItem.body,
+                                                            image: bucketItem.image,
+                                                            numberOfLinesForBody: numberOfLines,
+                                                            titleColor: bucketItem.titleColor,
+                                                            domainModel: bucketItem.domainModel)
+
         case .TEAM_TOBEVISION_TRACKER_POLL?:
             if (bucketItem as? RateOpenModel) != nil,
                let rateViewModel = bucketItem as? RateOpenModel {
@@ -619,6 +629,10 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
             router.showTeamTBV(team)
         case .TEAM_INVITATION:
             presentTeamPendingInvites()
+        case .TEAM_TOBEVISION_GENERATOR_POLL:
+            guard let pollModel = dailyBriefCellViewModel as? PollOpenModel else { return }
+            guard let team = pollModel.team else { return }
+            router.showExplanation(team, type: .tbvPollUser)
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)

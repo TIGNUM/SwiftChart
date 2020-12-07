@@ -23,9 +23,10 @@ final class PollOpenModel: BaseDailyBriefViewModel {
         self.imageURL = imageURL
         super.init(domainModel,
                    caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? ""),
-                   title: "Create your Team ToBeVision",
+                   title: AppTextService.get(.daily_brief_open_poll_title),
                    body: AppTextService.get(.daily_brief_open_poll_text).replacingOccurrences(of: "${admin}", with: teamAdmin ?? ""),
-                   image: imageURL)
+                   image: imageURL,
+                   titleColor: team?.teamColor)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
