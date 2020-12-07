@@ -1275,7 +1275,10 @@ extension DailyBriefInteractor {
                   openPoll.userDidVote == false,
                   let team = pollBucket.myTeams?.filter({ $0.qotId == openPoll.teamQotId }).first else { return }
             let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
-            let model = PollOpenModel(team: team, teamAdmin: teamOwner?.email, domainModel: pollBucket)
+            let teamVision = pollBucket.teamToBeVisions?.filter { $0.teamQotId == openPoll.teamQotId }
+            let teamImage = teamVision?.first?.profileImageResource?.remoteURLString
+            let image = teamImage == nil ? pollBucket.imageURL : teamImage
+            let model = PollOpenModel(team: team, teamAdmin: teamOwner?.email, imageURL: image, domainModel: pollBucket)
             openPollList.append(model)
         }
         return openPollList

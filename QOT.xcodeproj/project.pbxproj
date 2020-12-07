@@ -4571,6 +4571,7 @@
 		B411ECA225751C5100EB7A78 /* DailyBriefModels */ = {
 			isa = PBXGroup;
 			children = (
+				F96D9F3224D4494400188482 /* TeamVisionSuggestionModel.swift */,
 				B411ECCD25751E5200EB7A78 /* BaseDailyBriefViewModel.swift */,
 				F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */,
 				B411ECA325751C5100EB7A78 /* GuidedTrackViewModel.swift */,
@@ -5835,7 +5836,6 @@
 			isa = PBXGroup;
 			children = (
 				F96D9F3024D4493100188482 /* TeamVisionSuggestionCell.swift */,
-				F96D9F3224D4494400188482 /* TeamVisionSuggestionModel.swift */,
 				F96D9F3424D449A600188482 /* TeamVisionSuggestionCell.xib */,
 			);
 			name = TeamVisionSuggestion;

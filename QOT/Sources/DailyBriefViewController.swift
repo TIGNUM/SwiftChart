@@ -188,8 +188,6 @@ extension DailyBriefViewController {
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .TEAM_NEWS_FEED?:
             return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
-        case .TEAM_TOBEVISION_GENERATOR_POLL?:
-            return getOpenPollCell(tableView, indexPath, bucketItem as? PollOpenModel)
         case .TEAM_TOBEVISION_TRACKER_POLL?:
             if (bucketItem as? RateOpenModel) != nil,
                let rateViewModel = bucketItem as? RateOpenModel {
@@ -345,16 +343,6 @@ private extension DailyBriefViewController {
                                _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
         let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: teamVisionModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getOpenPollCell(_ tableView: UITableView,
-                         _ indexPath: IndexPath,
-                         _ pollOpenModel: PollOpenModel?) -> UITableViewCell {
-        let cell: PollOpenCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: pollOpenModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell
