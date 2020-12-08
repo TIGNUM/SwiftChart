@@ -1061,9 +1061,11 @@ extension DailyBriefInteractor {
         for index in 0...5 {
             let searchTag: String = "SPRINT_BUCKET_DAY_" + String(index)
             let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
-            let sprintContentItems = sprintBucket.contentCollections?.filter {
+            let sprintContentCollections = sprintBucket.contentCollections?.filter {
                 $0.searchTags.contains(searchTag) && $0.searchTags.contains(sprintTag)
-            }.first?.contentItems
+            }
+            let sprintContentItems = sprintContentCollections?.first?.contentItems
+            let sprintLinksItems = sprintContentCollections?.first?.links
             let sprintInfo = sprintContentItems?.first?.valueText ?? ""
             var relatedItemsModels: [SprintChallengeViewModel.RelatedItemsModel] = []
             if sprintContentItems?.count ?? 0 > 1 {
@@ -1090,8 +1092,7 @@ extension DailyBriefInteractor {
                                                                                          nil))
                 }
                 //        adding applinks
-                sprintBucket.contentCollections?.filter { $0.searchTags.contains(sprintTag) && $0.searchTags.contains(searchTag)
-                }.first?.links.forEach {(link) in
+                sprintLinksItems?.forEach {(link) in
                     relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(link.description,
                                                                                          nil,
                                                                                          link.remoteID,
