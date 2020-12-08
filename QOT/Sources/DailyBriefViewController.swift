@@ -186,8 +186,8 @@ extension DailyBriefViewController {
             return UITableViewCell()
         case .SPRINT_CHALLENGE?:
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
-        case .TEAM_NEWS_FEED?:
-            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
+//        case .TEAM_NEWS_FEED?:
+//            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
             let numberOfLines = 6
             standardModel = NewDailyBriefStandardModel.init(caption: bucketItem.caption,
