@@ -14,7 +14,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    weak var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
     @IBOutlet private weak var iconRead: UIImageView!
     @IBOutlet private weak var iconAudio: UIImageView!
     @IBOutlet private weak var iconVideo: UIImageView!
@@ -24,6 +24,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         iconRead.isHidden = true
         iconVideo.isHidden = true
         iconFiles.isHidden = true
@@ -53,21 +54,5 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
         } else { duration = ( durationString ?? "")
         }
         ThemeText.durationString.apply(duration, to: durationLabel)
-    }
-
-    @objc func openStrategy(sender: UITapGestureRecognizer) {
-        openStrategyFromSprint()
-    }
-
-    @objc func openTool(sender: UITapGestureRecognizer) {
-         openToolFromSprint()
-    }
-
-    func openStrategyFromSprint() {
-        delegate?.presentStrategyList(strategyID: selectedStrategyID)
-    }
-
-    func openToolFromSprint() {
-        delegate?.openTools(toolID: selectedToolID)
     }
 }

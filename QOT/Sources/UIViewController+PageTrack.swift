@@ -124,6 +124,7 @@ private extension UIViewController {
     var myQOTSupportDetailsViewControllerPageKey: String {
         switch (self as? MyQotSupportDetailsViewController)?.interactor?.category {
         case .FAQ?: return "myprofile.support.faq"
+        case .FAQTeam?: return "myprofile.support.faq.team"
         case .FAQBeforeLogin?: return "myprofile.support.faqbeforelogin"
         case .UsingQOT?: return "myprofile.support.using.tignumx"
         default: preconditionFailure()

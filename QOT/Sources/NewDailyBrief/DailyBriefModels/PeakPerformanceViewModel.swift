@@ -35,7 +35,7 @@ final class PeakPerformanceViewModel: BaseDailyBriefViewModel {
         super.init(domainModel,
                    caption: title,
                    title: eventTitle,
-                   body: eventSubtitle,
+                   body: contentSubtitle,
                    image: image)
     }
 

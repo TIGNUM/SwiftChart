@@ -252,7 +252,12 @@ extension UIViewController {
         default: vc.modalPresentationStyle = .fullScreen
         }
 
-        baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
+        if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
+            vc.modalPresentationStyle = .overFullScreen
+            detailsVC.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
+        } else {
+            baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
+        }
     }
 
     @objc func dismissSwizzled(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -265,6 +270,9 @@ extension UIViewController {
                                                                      rightBarButtonItems: [],
                                                                      backgroundColor: .clear),
                                         userInfo: nil)
+        if let parentVC = (self.presentingViewController as? UINavigationController)?.topViewController as? BaseViewController {
+            parentVC.refreshBottomNavigationItems()
+        }
     }
 }
 

@@ -26,10 +26,11 @@ final class BaseDailyBriefDetailsViewController: BaseViewController, ScreenZLeve
         super.init(coder: aDecoder)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshBottomNavigationItems()
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeView.level1.apply(self.view)
@@ -65,6 +66,10 @@ private extension BaseDailyBriefDetailsViewController {
 extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControllerInterface {
     func setupView() {
         // Do any additional setup after loading the view.
+    }
+
+    func reloadTableView() {
+        tableView.reloadData()
     }
 
     func showAlert(message: String?) {
@@ -119,6 +124,18 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
     func showTeamTBV(_ team: QDMTeam) {
         router.showTeamTBV(team)
     }
+
+    func presentStrategyList(strategyID: Int?) {
+        if let contentId = strategyID {
+            router.presentContent(contentId)
+        }
+    }
+
+    func openTools(toolID: Int?) {
+        if let contentId = toolID {
+            router.presentContent(contentId)
+        }
+    }
 }
 
 // MARK: - BaseDailyBriefDetailsViewControllerInterface
@@ -152,7 +169,48 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
+        return 150
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let model = interactor?.getModel() as? SprintChallengeViewModel,
+              indexPath.row > 0 else {
+            return
+        }
+        let relatedItem = model.relatedStrategiesModels[indexPath.row - 1]
+        handleActionForRelatedItem(relatedItem)
+    }
+
+    func handleActionForRelatedItem(_ relatedItem: SprintChallengeViewModel.RelatedItemsModel) {
+        if let videoUrlString = relatedItem.videoUrl,
+           let videoUrl = URL.init(string: videoUrlString) {
+            stream(videoURL: videoUrl, contentItem: nil)
+        } else if let contentItemId = relatedItem.contentItemId,
+            let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
+            UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            switch relatedItem.format {
+            case .video:
+                var userEventTrack = QDMUserEventTracking()
+                userEventTrack.name = .PLAY
+                userEventTrack.value = relatedItem.contentItemId
+                userEventTrack.valueType = .VIDEO
+                userEventTrack.action = .TAP
+                NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+            default:
+                break
+            }
+        } else if let contentCollectionId = relatedItem.contentId {
+            if relatedItem.section == .LearnStrategies {
+                presentStrategyList(strategyID: contentCollectionId)
+            } else if relatedItem.section == .QOTLibrary {
+                openTools(toolID: contentCollectionId)
+            } else if relatedItem.link !=  nil {
+                relatedItem.link?.launch()
+            } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionId)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            }
+        }
+
     }
 }
 
@@ -171,6 +229,10 @@ extension BaseDailyBriefDetailsViewController: QuestionnaireAnswer {
             let answers = question?.answers?.count ?? 0
             question?.selectedAnswerIndex = (answers - 1) - answer
         }
+    }
+
+    func saveTargetValue(value: Int?) {
+        interactor.saveTargetValue(value: value)
     }
 }
 

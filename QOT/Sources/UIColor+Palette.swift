@@ -620,6 +620,18 @@ extension UIColor {
     public class var actionBlue: UIColor {
         return UIColor(red: 0 / 255.0, green: 98.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
+
+    public class var actionBlue75: UIColor {
+        return UIColor(red: 0 / 255.0, green: 98.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.75)
+    }
+
+    public class var mindsetShifterGreen: UIColor {
+        return UIColor(red: 0.604, green: 0.851, blue: 0.514, alpha: 1.0)
+    }
+
+    public class var mindsetShifterRed: UIColor {
+        return UIColor(red: 0.816, green: 0.408, blue: 0.306, alpha: 1.0)
+    }
     //Solid Colors
 
     public class var skeletonTitleColor: UIColor {

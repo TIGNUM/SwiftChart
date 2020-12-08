@@ -220,7 +220,7 @@ class BaseRouter: BaseRouterInterface {
             guard let viewController = R.storyboard.myToBeVisionRate.tbvRateHistoryNullStateViewController() else { return }
             viewController.delegate = self.viewController as? MyVisionViewController
             viewController.visionId = visionId
-            push(viewController)
+            showModal ? present(viewController) : push(viewController)
         } else {
             showRateHistory(for: nil, .data, showModal: showModal)
         }

@@ -25,6 +25,23 @@ final class BaseDailyBriefDetailsInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        addObservers()
+    }
+
+    func addObservers() {
+        _ = NotificationCenter.default.addObserver(forName: .didPickTarget,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.updateForSleepTargetChange(notification)
+        }
+    }
+
+    @objc func updateForSleepTargetChange(_ notification: Notification) {
+        guard let value = notification.object as? Double,
+              let scoreModel = model as? ImpactReadinessScoreViewModel else { return }
+        let targetValue = (value + 2) / 2
+        scoreModel.targetSleepQuantity = targetValue
+        presenter.reloadTableView()
     }
 }
 
@@ -53,6 +70,12 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             return model as? MindsetShifterViewModel != nil ? 2 : 1
         case DailyBriefBucketName.TEAM_VISION_SUGGESTION:
             return 2
+        case DailyBriefBucketName.SPRINT_CHALLENGE:
+            if let sprintModel = model as? SprintChallengeViewModel {
+                return sprintModel.relatedStrategiesModels.count + 1
+            }
+            return 1
+
         default:
             return 1
         }
@@ -64,18 +87,48 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
                 return UITableViewCell.init()
             }
+            switch model.domainModel?.bucketName {
+            case DailyBriefBucketName.GET_TO_LEVEL_5:
+                guard let level5Model = model as? Level5ViewModel else {
+                    return UITableViewCell.init()
+                }
 
-            let standardModel = NewDailyBriefStandardModel.init(caption: model.caption,
-                                                         title: model.title,
-                                                         body: model.body,
-                                                         image: model.image,
-                                                         detailsMode: true,
-                                                         titleColor: model.titleColor,
-                                                         domainModel: model.domainModel)
-            cell.configure(with: [standardModel])
-            cell.collectionView.contentInsetAdjustmentBehavior = .never
+                let selectedValue = level5Model.domainModel?.currentGetToLevel5Value
 
-            return cell
+                let standardModel = NewDailyBriefStandardModel.init(caption: level5Model.caption,
+                                                                     title: level5Model.levelMessages[selectedValue ?? 0].levelTitle ?? "",
+                                                                     body: level5Model.levelMessages[selectedValue ?? 0].levelContent,
+                                                                     image: level5Model.image,
+                                                                     detailsMode: true,
+                                                                     domainModel: level5Model.domainModel)
+
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            case DailyBriefBucketName.MY_PEAK_PERFORMANCE:
+                guard let peakPerformanceModel = model as? PeakPerformanceViewModel else {
+                    return UITableViewCell.init()
+                }
+                let standardModel = NewDailyBriefStandardModel.init(caption: peakPerformanceModel.caption,
+                                                                     title: peakPerformanceModel.title,
+                                                                     body: peakPerformanceModel.contentSentence,
+                                                                     image: peakPerformanceModel.image,
+                                                                     detailsMode: true,
+                                                                     domainModel: peakPerformanceModel.domainModel)
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            default:
+                let standardModel = NewDailyBriefStandardModel.init(caption: model.caption,
+                                                             title: model.title,
+                                                             body: model.body,
+                                                             image: model.image,
+                                                             detailsMode: true,
+                                                             domainModel: model.domainModel)
+                cell.configure(with: [standardModel])
+                cell.collectionView.contentInsetAdjustmentBehavior = .never
+                return cell
+            }
         default:
             switch model.domainModel?.bucketName {
             case DailyBriefBucketName.DAILY_CHECK_IN_1:
@@ -122,7 +175,6 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
                 cell.configure(with: mindsetShifterModel)
                 cell.delegate = owner
-
                 return cell
             case DailyBriefBucketName.MY_PEAK_PERFORMANCE:
                 guard let peakPerformanceModel = model as? PeakPerformanceViewModel,
@@ -132,7 +184,6 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
                 cell.configure(with: peakPerformanceModel)
                 cell.delegate = owner
-
                 return cell
             case DailyBriefBucketName.GET_TO_LEVEL_5:
                 guard let level5Model = model as? Level5ViewModel,
@@ -142,7 +193,6 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
                 cell.configure(with: level5Model)
                 cell.delegate = owner
-
                 return cell
             case DailyBriefBucketName.FROM_MY_COACH:
                 guard let fromMyCoachModel = model as? FromMyCoachCellViewModel,
@@ -152,6 +202,31 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
                 cell.configure(with: fromMyCoachModel.messages[indexPath.row - 1], hideSeparatorView: indexPath.row == fromMyCoachModel.messages.count)
 
+                return cell
+            case DailyBriefBucketName.SPRINT_CHALLENGE:
+                guard let sprintCellModel = model as? SprintChallengeViewModel,
+                      let relatedItem = sprintCellModel.relatedStrategiesModels.at(index: indexPath.row - 1),
+                      let cell = R.nib.sprintChallengeTableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+
+                if relatedItem.videoUrl != nil {
+                    guard let cell = R.nib.sprintChallengeDay0VideoTableViewCell(owner: owner) else {
+                        return UITableViewCell.init()
+                    }
+
+                    cell.configure(model: relatedItem)
+                    return cell
+                }
+
+                cell.configure(title: relatedItem.title,
+                               durationString: relatedItem.durationString,
+                               remoteID: relatedItem.contentId ?? relatedItem.contentItemId,
+                               section: relatedItem.section,
+                               format: relatedItem.format,
+                               numberOfItems: relatedItem.numberOfItems ?? 0)
+                cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+                cell.delegate = owner
                 return cell
             default:
                 return UITableViewCell.init()
@@ -174,5 +249,9 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
     func saveAnswerValue(_ value: Int) {
         worker.saveAnswerValue(value)
+    }
+
+    func saveTargetValue(value: Int?) {
+        worker.saveTargetValue(value: value)
     }
 }

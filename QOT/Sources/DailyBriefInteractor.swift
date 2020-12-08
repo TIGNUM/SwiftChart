@@ -193,6 +193,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var sectionDataList: [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>] = []
         sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: 0),
                                                  elements: []))
+        sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: 1),
+                                                 elements: []))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -337,26 +339,14 @@ extension DailyBriefInteractor {
                 dailyBriefViewModels.append(contentsOf: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket))
             case .FROM_TIGNUM:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createFromTignum(fromTignum: bucket))
-            case .BESPOKE:
-                dailyBriefViewModels.append(contentsOf: strongSelf.createProductsWeLove(productsBucket: bucket))
-            case .DEPARTURE_INFO:
-                dailyBriefViewModels.append(contentsOf: strongSelf.createOnTheRoad(onTheRoadBucket: bucket))
             case .LEADERS_WISDOM:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket))
             case .EXPERT_THOUGHTS:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createExpertThoughts(createExpertThoughts: bucket))
-            case .FEAST_OF_YOUR_EYES:
-                let elements = strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)
-                guard elements.isEmpty == false else { break }
-                dailyBriefViewModels.append(contentsOf: elements)
             case .FROM_MY_COACH:
-                let elements = strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)
-                guard elements.isEmpty == false else { break }
-                dailyBriefViewModels.append(contentsOf: elements)
+                dailyBriefViewModels.append(contentsOf: strongSelf.createFromMyCoachModel(fromCoachBucket: bucket))
             case .MY_PEAK_PERFORMANCE:
-                let elements = strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)
-                guard elements.isEmpty == false else { break }
-                dailyBriefViewModels.append(contentsOf: elements)
+                dailyBriefViewModels.append(contentsOf: strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket))
             case .SPRINT_CHALLENGE:
                 guard bucket.sprint != nil else { break }
                 dailyBriefViewModels.append(contentsOf: strongSelf.createSprintChallenge(bucket: bucket))
@@ -365,13 +355,9 @@ extension DailyBriefInteractor {
             case .SOLVE_REFLECTION:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createSolveViewModel(bucket: bucket))
             case .WEATHER:
-                let elements = strongSelf.createWeatherViewModel(weatherBucket: bucket)
-                guard elements.isEmpty == false else { break }
-                dailyBriefViewModels.append(contentsOf: elements)
+                dailyBriefViewModels.append(contentsOf: strongSelf.createWeatherViewModel(weatherBucket: bucket))
             case .GUIDE_TRACK:
-                let elements = strongSelf.createGuidedTrack(guidedTrackBucket: bucket)
-                guard elements.isEmpty == false else { break }
-                dailyBriefViewModels.append(contentsOf: elements)
+                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket))
             case .MINDSET_SHIFTER:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket))
             case .TEAM_TO_BE_VISION:
@@ -393,12 +379,6 @@ extension DailyBriefInteractor {
             }
         }
         return dailyBriefViewModels
-    }
-
-    func getSprintInfo(_ bucket: QDMDailyBriefBucket, _ tag1: String, _ tag2: String) -> String {
-        return bucket.contentCollections?.filter {
-            $0.searchTags.contains(tag1) && $0.searchTags.contains(tag2)
-        }.first?.contentItems.first?.valueText ?? ""
     }
 
     func isNew(_ collection: QDMContentCollection) -> Bool {
@@ -699,7 +679,7 @@ extension DailyBriefInteractor {
     func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createLevel5List: [BaseDailyBriefViewModel] = []
         var levelMessageModels: [Level5ViewModel.LevelDetail] = []
-        let title = AppTextService.get(.daily_brief_section_level_5_title)
+        let caption = AppTextService.get(.daily_brief_section_level_5_title)
         let intro = AppTextService.get(.daily_brief_section_level_5_body)
         let question = AppTextService.get(.daily_brief_section_level_5_question)
         let youRatedPart1 = AppTextService.get(.daily_brief_section_level_5_question_with_data_one)
@@ -714,6 +694,8 @@ extension DailyBriefInteractor {
         } else {
             questionLevel = question
         }
+
+        levelMessageModels.append(Level5ViewModel.LevelDetail.init(levelTitle: question, levelContent: intro))
         levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level1Title, levelContent: level1Text))
 
         let level2Title = AppTextService.get(.daily_brief_section_level_5_level_2_title)
@@ -732,7 +714,7 @@ extension DailyBriefInteractor {
         let level5Text =  AppTextService.get(.daily_brief_section_level_5_level_5_body)
         levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level5Title, levelContent: level5Text))
 
-        createLevel5List.append(Level5ViewModel(title: title,
+        createLevel5List.append(Level5ViewModel(caption: caption,
                                                 intro: intro,
                                                 question: questionLevel,
                                                 image: level5.imageURL,
@@ -758,7 +740,7 @@ extension DailyBriefInteractor {
             let model = MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle,
                                                      intro: tbvEmptyIntro,
                                                      buttonText: ctaTBVButtonText,
-                                                     image: meAtMyBest.imageURL,
+                                                     image: meAtMyBest.toBeVision?.profileImageResource?.urlString() ?? meAtMyBest.imageURL,
                                                      domainModel: meAtMyBest)
             meAtMyBestList.append(model)
             return meAtMyBestList
@@ -901,7 +883,7 @@ extension DailyBriefInteractor {
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
         let yesterday = -1, tomorrow = 1, threeDays = 3
-        let tags: [MyPeakPerformanceBucketType] = [.IN_THREE_DAYS, .TOMORROW, .TODAY, .REFLECT]
+        let tags: [MyPeakPerformanceBucketType] = [.TODAY, .TOMORROW, .IN_THREE_DAYS, .REFLECT]
         for tag in tags {
             var localPreparationList = [QDMUserPreparation]()
             switch tag {
@@ -914,7 +896,7 @@ extension DailyBriefInteractor {
                     let remainingDays = beginingOfToday.days(to: date)
                     return remainingDays == threeDays
                     } ?? [QDMUserPreparation]()
-                contentSubtitle = AppTextService.get(.daily_brief_section_my_peak_performances_section_in_three_days_label)
+                contentSubtitle = AppTextService.get(.daily_brief_section_my_peak_performances_section_in_three_days_card_subtitle)
             case .TOMORROW:
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_BEFORE")
@@ -1069,133 +1051,78 @@ extension DailyBriefInteractor {
         return createFromTignumList
     }
 
-    // MARK: - Visual delights
-    func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureBespokeFeast: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var departureBespokeFeastList: [BaseDailyBriefViewModel] = []
-        guard let collection = depatureBespokeFeast.contentCollections?.first else {
-            return departureBespokeFeastList
-        }
-        let title = AppTextService.get(.daily_brief_section_on_the_road_title)
-        let subtitle = collection.contentItems.filter { $0.format == .title }.first?.valueText
-        let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
-        var copyrights: [String?] = []
-        var images: [String?] = []
-        collection.contentItems.filter { $0.format == .image }.forEach { (image) in
-            images.append(image.valueMediaURL)
-            copyrights.append(image.copyrightURLString)
-        }
-        let model = DepartureBespokeFeastModel(title: title,
-                                               subtitle: subtitle,
-                                               text: text,
-                                               images: images,
-                                               copyrights: copyrights,
-                                               domainModel: depatureBespokeFeast)
-        departureBespokeFeastList.append(model)
-        return departureBespokeFeastList
-    }
-
-    // MARK: - Products we love
-    func createProductsWeLove(productsBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var productsList: [BaseDailyBriefViewModel] = []
-        guard let collection = productsBucket.contentCollections?.first else {
-            return productsList
-        }
-        let title = AppTextService.get(.daily_brief_section_products_we_love_title)
-        let subtitle = collection.contentItems.filter { $0.format == .title }.first?.valueText
-        let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
-        var copyrights: [String?] = []
-        var images: [String?] = []
-        collection.contentItems.filter { $0.format == .image }.forEach { (image) in
-            images.append(image.valueMediaURL)
-            copyrights.append(image.copyrightURLString)
-        }
-        let model = DepartureBespokeFeastModel(title: title,
-                                               subtitle: subtitle,
-                                               text: text,
-                                               images: images,
-                                               copyrights: copyrights,
-                                               domainModel: productsBucket)
-        productsList.append(model)
-        return productsList
-    }
-
-    // MARK: - On the Road
-     func createOnTheRoad(onTheRoadBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-         var onTheRoadList: [BaseDailyBriefViewModel] = []
-         guard let collection = onTheRoadBucket.contentCollections?.first else {
-             return onTheRoadList
-         }
-         let title = AppTextService.get(.daily_brief_section_on_the_road_title)
-         let subtitle = collection.contentItems.filter { $0.format == .title }.first?.valueText
-         let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
-         var copyrights: [String?] = []
-         var images: [String?] = []
-         collection.contentItems.filter { $0.format == .image }.forEach { (image) in
-             images.append(image.valueMediaURL)
-             copyrights.append(image.copyrightURLString)
-         }
-         let model = DepartureBespokeFeastModel(title: title,
-                                                subtitle: subtitle,
-                                                text: text,
-                                                images: images,
-                                                copyrights: copyrights,
-                                                domainModel: onTheRoadBucket)
-         onTheRoadList.append(model)
-         return onTheRoadList
-     }
-
     // MARK: - My sprints
     func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createSprintChallengeList: [BaseDailyBriefViewModel] = []
+        var createSprintChallengeList: [SprintChallengeViewModel] = []
 
         guard sprintBucket.sprint != nil else {
             return createSprintChallengeList
         }
-        let searchTag: String = "SPRINT_BUCKET_DAY_" + String(sprintBucket.sprint?.currentDay ?? 0)
-        let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
-        let sprintInfo = getSprintInfo(sprintBucket, sprintTag, searchTag)
-        var relatedItemsModels: [SprintChallengeViewModel.RelatedItemsModel] = []
-        sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
-            relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(content.title,
-                                                                                 content.durationString,
-                                                                                 content.remoteID ?? 0,
-                                                                                 nil,
-                                                                                 content.section,
-                                                                                 content.contentItems.first?.format,
-                                                                                 content.contentItems.count,
-                                                                                 nil))
+        for index in 0...5 {
+            let searchTag: String = "SPRINT_BUCKET_DAY_" + String(index)
+            let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
+            let sprintContentCollections = sprintBucket.contentCollections?.filter {
+                $0.searchTags.contains(searchTag) && $0.searchTags.contains(sprintTag)
+            }
+            let sprintContentItems = sprintContentCollections?.first?.contentItems
+            let sprintLinksItems = sprintContentCollections?.first?.links
+            let sprintInfo = sprintContentItems?.first?.valueText ?? ""
+            var relatedItemsModels: [SprintChallengeViewModel.RelatedItemsModel] = []
+            if sprintContentItems?.count ?? 0 > 1 {
+                let sprintMedia = sprintContentItems?[1]
+                relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(sprintMedia?.valueText,
+                                                                                     sprintMedia?.durationString,
+                                                                                     sprintMedia?.remoteID,
+                                                                                     nil,
+                                                                                     nil,
+                                                                                     sprintMedia?.format,
+                                                                                     1,
+                                                                                     nil,
+                                                                                     sprintMedia?.valueImageURL,
+                                                                                     sprintMedia?.valueMediaURL))
+            } else {
+                sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
+                    relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(content.title,
+                                                                                         content.durationString,
+                                                                                         content.remoteID ?? 0,
+                                                                                         nil,
+                                                                                         content.section,
+                                                                                         content.contentItems.first?.format,
+                                                                                         content.contentItems.count,
+                                                                                         nil))
+                }
+                //        adding applinks
+                sprintLinksItems?.forEach {(link) in
+                    relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(link.description,
+                                                                                         nil,
+                                                                                         link.remoteID,
+                                                                                         nil,
+                                                                                         .Unkown,
+                                                                                         .unknown,
+                                                                                         1,
+                                                                                         link))
+                }
+                sprintBucket.sprint?.dailyBriefRelatedContentItems.forEach { (contentItem) in
+                    relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(contentItem.valueText,
+                                                                                         contentItem.durationString,
+                                                                                         nil,
+                                                                                         contentItem.remoteID,
+                                                                                         .Unkown,
+                                                                                         contentItem.format,
+                                                                                         1,
+                                                                                         nil))
+                }
+            }
+            createSprintChallengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(.daily_brief_section_sprint_challenge_title),
+                                                                      sprintTitle: sprintBucket.sprint?.title,
+                                                                      sprintInfo: sprintInfo,
+                                                                      image: sprintBucket.imageURL,
+                                                                      sprintStepNumber: index,
+                                                                      relatedStrategiesModels: relatedItemsModels,
+                                                                      domainModel: sprintBucket,
+                                                                      sprint: sprintBucket.sprint!))
         }
-        //        adding applinks
-        sprintBucket.contentCollections?.filter { $0.searchTags.contains(sprintTag) && $0.searchTags.contains(searchTag)
-        }.first?.links.forEach {(link) in
-            relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(link.description,
-                                                                                 nil,
-                                                                                 link.remoteID,
-                                                                                 nil,
-                                                                                 .Unkown,
-                                                                                 .unknown,
-                                                                                 1,
-                                                                                 link))
-        }
-        sprintBucket.sprint?.dailyBriefRelatedContentItems.forEach { (contentItem) in
-            relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(contentItem.valueText,
-                                                                                 contentItem.durationString,
-                                                                                 nil,
-                                                                                 contentItem.remoteID,
-                                                                                 .Unkown,
-                                                                                 contentItem.format,
-                                                                                 1,
-                                                                                 nil))
-        }
-
-        createSprintChallengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(.daily_brief_section_sprint_challenge_title),
-                                                                  sprintTitle: sprintBucket.sprint?.title,
-                                                                  sprintInfo: sprintInfo,
-                                                                  sprintStepNumber: sprintBucket.sprint?.currentDay,
-                                                                  relatedStrategiesModels: relatedItemsModels,
-                                                                  domainModel: sprintBucket,
-                                                                  sprint: sprintBucket.sprint!))
-        return createSprintChallengeList
+        return [SprintsCollectionViewModel.init(items: createSprintChallengeList, domainModel: sprintBucket)]
     }
 
     // MARK: - New TeamToBeVision

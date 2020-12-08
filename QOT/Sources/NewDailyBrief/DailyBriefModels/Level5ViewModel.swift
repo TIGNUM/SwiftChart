@@ -27,8 +27,8 @@ class Level5ViewModel: BaseDailyBriefViewModel {
     var confirmationMessage: String?
     var latestSavedValue: Int?
     var levelMessages: [LevelDetail]
-    
-    internal init(title: String?,
+
+    internal init(caption: String?,
                   intro: String?,
                   question: String?,
                   image: String?,
@@ -47,21 +47,13 @@ class Level5ViewModel: BaseDailyBriefViewModel {
         self.levelMessages = levelMessages
         self.confirmationMessage = confirmationMessage
         self.latestSavedValue = latestSavedValue
-        super.init(domainModel, caption: title, image: image)
+        super.init(domainModel, caption: caption, image: image)
         setupStrings()
     }
 
     func setupStrings() {
-        if let question = question {
-             let messages = levelMessages
-             let levelDetailZero = Level5ViewModel.LevelDetail.init(levelTitle: question, levelContent: intro)
-             var levelMessages: [Level5ViewModel.LevelDetail] = []
-             levelMessages.append(levelDetailZero)
-             levelMessages.append(contentsOf: messages)
-
             title = levelMessages[domainModel?.currentGetToLevel5Value ?? 0].levelTitle ?? ""
             body = levelMessages[domainModel?.currentGetToLevel5Value ?? 0].levelContent
-        }
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

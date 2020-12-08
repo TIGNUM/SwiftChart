@@ -7,8 +7,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-Pro-Text-Regular.otf">
-            <string>SFProText-Regular</string>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
         </array>
     </customFonts>
     <objects>
@@ -21,9 +21,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxa-4i-D3K">
-                        <rect key="frame" x="309" y="50" width="81" height="29"/>
-                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxa-4i-D3K" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                        <rect key="frame" x="306" y="50" width="84" height="29"/>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                         <state key="normal" title="See my plan">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
@@ -34,6 +34,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="gxa-4i-D3K" secondAttribute="trailing" constant="24" id="XSJ-fx-Ym2"/>
+                    <constraint firstAttribute="bottom" secondItem="gxa-4i-D3K" secondAttribute="bottom" constant="49" id="gSR-et-Thw"/>
                     <constraint firstItem="gxa-4i-D3K" firstAttribute="top" secondItem="D7c-sU-mQa" secondAttribute="top" constant="50" id="pkh-Lq-qMV"/>
                 </constraints>
             </tableViewCellContentView>

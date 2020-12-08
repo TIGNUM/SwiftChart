@@ -10,13 +10,17 @@ import UIKit
 import qot_dal
 
 class PeakPerformanceTableViewCell: BaseDailyBriefCell {
-    @IBOutlet weak var ctaButton: UIButton!
+    @IBOutlet weak var ctaButton: RoundedButton!
     weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
     private var model: PeakPerformanceViewModel?
 
     func configure(with model: PeakPerformanceViewModel) {
+        let buttonTitle = AppTextService.get(.daily_brief_section_my_peak_performances_button_title).uppercased()
+        if !buttonTitle.isEmpty {
+            ctaButton.setTitle(buttonTitle, for: .normal)
+        }
         ThemeButton.newBlueButton.apply(ctaButton)
-        ctaButton.setTitle(AppTextService.get(.daily_brief_section_my_peak_performances_button_title).uppercased(), for: .normal)
+        ThemableButton.newBlueButton.apply(ctaButton, title: buttonTitle)
         self.model = model
     }
 

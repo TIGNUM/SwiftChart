@@ -14,7 +14,8 @@ final class HorizontalHeaderView: UIView {
     @IBOutlet private weak var collectionView: UICollectionView!
     private var headerItems = [Team.Item]()
     private var canDeselect = true
-    static var selectedTeamId = ""
+    static var selectedTeamId = Team.Header.myX.inviteId
+    static var setMyX = true
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +25,12 @@ final class HorizontalHeaderView: UIView {
                                                    object: nil,
                                                    queue: .main) { [weak self] notification in
             self?.checkSelection(notification)
+        }
+
+        _ = NotificationCenter.default.addObserver(forName: .didSelectMyX,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.scrollToItem(index: 0)
         }
     }
 
@@ -89,6 +96,13 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
         let cell: TeamHeaderCell = collectionView.dequeueCell(for: indexPath)
         if let item = headerItems.at(index: indexPath.row) {
             switch item.header {
+            case .myX:
+                cell.configure(teamId: item.teamId,
+                               title: item.title,
+                               hexColorString: item.color,
+                               selected: item.isSelected,
+                               canDeselect: canDeselect,
+                               newCount: item.batchCount)
             case .invite:
                 cell.configure(teamInvites: item.invites)
             case .team:

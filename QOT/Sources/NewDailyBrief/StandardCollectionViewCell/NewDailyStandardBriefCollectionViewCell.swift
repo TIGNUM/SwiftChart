@@ -48,8 +48,8 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
         title.attributedText = model.attributedTitle
         ThemeText.bodyText.apply(model.body, to: body)
         imageView.kf.setImage(with: URL.init(string: model.image ?? ""))
-        arrowButton.isHidden = (model.detailsMode ?? false) && hideCTAButton
-        body.numberOfLines = (model.detailsMode ?? false) ? ((model.isInAnimationTransition ?? false) ? model.numberOfLinesForBody : 0) : model.numberOfLinesForBody
+        arrowButton.isHidden = model.detailsMode && hideCTAButton
+        body.numberOfLines = model.detailsMode ? ((model.isInAnimationTransition ?? false) ? model.numberOfLinesForBody : 0) : model.numberOfLinesForBody
         titleTrailingConstraint.constant = 20
         caption.textColor = UIColor(hex: model.titleColor ?? "")
         skeletonManager.hide()

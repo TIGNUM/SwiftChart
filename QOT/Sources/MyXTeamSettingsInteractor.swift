@@ -196,18 +196,22 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
     func deleteTeam(teamItem: Team.Item) {
-        worker.deleteTeam(teamItem.qdmTeam) { [weak self] (teams, _, _) in
-            if teams?.isEmpty == true {
-                self?.presenter.dismiss()
-            } else {
-                self?.update()
+        if let team = teamItem.qdmTeam {
+            worker.deleteTeam(team) { [weak self] (teams, _, _) in
+                if teams?.isEmpty == true {
+                    self?.presenter.dismiss()
+                } else {
+                    self?.update()
+                }
             }
         }
     }
 
     func leaveTeam(teamItem: Team.Item) {
-        worker.leaveTeam(team: teamItem.qdmTeam) { [weak self] _ in
-            self?.update()
+        if let team = teamItem.qdmTeam {
+            worker.leaveTeam(team: team) { [weak self] _ in
+                self?.update()
+            }
         }
     }
 }
