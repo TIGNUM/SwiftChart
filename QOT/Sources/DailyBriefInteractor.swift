@@ -1219,8 +1219,10 @@ extension DailyBriefInteractor {
             if openRatings.didVote == false {
                 guard openRatings.creator == false,
                       let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
+                let teamVision = rateBucket.teamToBeVisions?.filter { $0.teamQotId == openRatings.teamQotId }.first
+                let imageURL = teamVision?.profileImageResource?.remoteURLString == nil ? rateBucket.imageURL : teamVision?.profileImageResource?.remoteURLString
                 let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
-                let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, domainModel: rateBucket)
+                let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, imageURL: imageURL, domainModel: rateBucket)
                 ratingBucketList.append(openRateModel)
             }
         }

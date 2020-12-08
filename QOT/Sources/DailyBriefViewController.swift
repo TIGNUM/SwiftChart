@@ -215,14 +215,17 @@ extension DailyBriefViewController {
                                                             domainModel: bucketItem.domainModel))
 
         case .TEAM_TOBEVISION_TRACKER_POLL?:
-            if (bucketItem as? RateOpenModel) != nil,
-               let rateViewModel = bucketItem as? RateOpenModel {
-                return getOpenRateCell(tableView, indexPath, rateViewModel)
+            if (bucketItem as? RateOpenModel) != nil {
+                cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                                title: bucketItem.title,
+                                                                body: bucketItem.body,
+                                                                image: bucketItem.image,
+                                                                titleColor: bucketItem.titleColor,
+                                                                domainModel: bucketItem.domainModel))
             } else if (bucketItem as? RatingFeedbackModel ) != nil,
                       let feedbackModel = bucketItem as? RatingFeedbackModel {
                 return getRatingFeedbackCell(tableView, indexPath, feedbackModel)
             }
-            return UITableViewCell()
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         default:
@@ -341,26 +344,6 @@ private extension DailyBriefViewController {
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getTeamToBeVisionCell(_ tableView: UITableView,
-                               _ indexPath: IndexPath,
-                               _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
-        let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: teamVisionModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getOpenRateCell(_ tableView: UITableView,
-                         _ indexPath: IndexPath,
-                         _ rateOpenModel: RateOpenModel?) -> UITableViewCell {
-        let cell: RateOpenCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: rateOpenModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell

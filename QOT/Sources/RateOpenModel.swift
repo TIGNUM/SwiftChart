@@ -16,9 +16,23 @@ final class RateOpenModel: BaseDailyBriefViewModel {
     let ownerEmail: String?
 
     // MARK: - Init
-    init(team: QDMTeam?, ownerEmail: String?, domainModel: QDMDailyBriefBucket?) {
+    init(team: QDMTeam?, ownerEmail: String?, imageURL: String?, domainModel: QDMDailyBriefBucket?) {
         self.team = team
         self.ownerEmail = ownerEmail
-        super.init(domainModel)
+        super.init(domainModel,
+                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? ""),
+                   title: "Team ToBeVision rating",
+                   body: (ownerEmail ?? "") + " is requesting blablabla",
+                   image: imageURL,
+                   titleColor: team?.teamColor)
+    }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? RateOpenModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            ownerEmail == source.ownerEmail &&
+            team?.qotId == source.team?.qotId
     }
 }
