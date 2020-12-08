@@ -100,6 +100,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                                      body: level5Model.levelMessages[selectedValue ?? 0].levelContent,
                                                                      image: level5Model.image,
                                                                      detailsMode: true,
+                                                                     titleColor: level5Model.titleColor,
                                                                      domainModel: level5Model.domainModel)
 
                 cell.configure(with: [standardModel])
@@ -114,6 +115,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                                      body: peakPerformanceModel.contentSentence,
                                                                      image: peakPerformanceModel.image,
                                                                      detailsMode: true,
+                                                                     titleColor: peakPerformanceModel.titleColor,
                                                                      domainModel: peakPerformanceModel.domainModel)
                 cell.configure(with: [standardModel])
                 cell.collectionView.contentInsetAdjustmentBehavior = .never
@@ -124,6 +126,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                              body: model.body,
                                                              image: model.image,
                                                              detailsMode: true,
+                                                             titleColor: model.titleColor,
                                                              domainModel: model.domainModel)
                 cell.configure(with: [standardModel])
                 cell.collectionView.contentInsetAdjustmentBehavior = .never

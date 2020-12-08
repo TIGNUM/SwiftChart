@@ -163,7 +163,7 @@ extension DailyBriefViewController {
                                                                 image: bucketItem.image,
                                                                 numberOfLinesForBody: numberOfLines,
                                                                 titleColor: bucketItem.titleColor,
-                                                                domainModel: bucketItem.domainModel)
+                                                                domainModel: bucketItem.domainModel))
 
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil {
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
@@ -171,7 +171,7 @@ extension DailyBriefViewController {
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
                                                                 titleColor: bucketItem.titleColor,
-                                                                domainModel: bucketItem.domainModel)
+                                                                domainModel: bucketItem.domainModel))
             }
         case .LEADERS_WISDOM?:
             if let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel {
@@ -181,7 +181,7 @@ extension DailyBriefViewController {
                                                                 image: bucketItem.image,
                                                                 CTAType: leadersWisdomViewModel.format,
                                                                 titleColor: bucketItem.titleColor,
-                                                                domainModel: bucketItem.domainModel)
+                                                                domainModel: bucketItem.domainModel))
             }
         case .SOLVE_REFLECTION?:
             if (bucketItem as? SolveReminderCellViewModel) != nil {
@@ -200,15 +200,10 @@ extension DailyBriefViewController {
                                                                       body: item.body,
                                                                       image: item.image,
                                                                       enabled: index <= item.sprint.currentDay,
+                                                                      titleColor: bucketItem.titleColor,
                                                                       domainModel: item.domainModel))
                 }
             }
-        case .TEAM_TO_BE_VISION?:
-            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
-        case .TEAM_VISION_SUGGESTION?:
-            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
-        case .TEAM_INVITATION?:
-            return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
 //        case .TEAM_NEWS_FEED?:
 //            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         case .TEAM_TOBEVISION_GENERATOR_POLL?:

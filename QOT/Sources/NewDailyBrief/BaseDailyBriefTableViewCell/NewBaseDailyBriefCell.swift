@@ -76,6 +76,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
                                                              title: "Label",
                                                              body: "Label label label label",
                                                              image: nil,
+                                                             titleColor: "#FFFFFF",
                                                              domainModel: nil)
             detailsMode = viewModel?.detailsMode ?? false
             collectionViewTopConstraint.constant  = detailsMode ? 0 : 30.0

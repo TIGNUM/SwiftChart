@@ -66,12 +66,4 @@ extension BaseDailyBriefDetailsRouter: BaseDailyBriefDetailsRouterInterface {
             viewController?.present(controller, animated: true)
         }
     }
-
-    func showTeamTBV(_ team: QDMTeam) {
-        if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
-            let configurator = TeamToBeVisionConfigurator.make(team: team)
-            configurator(controller)
-            viewController?.show(controller, sender: nil)
-        }
-    }
 }
