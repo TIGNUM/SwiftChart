@@ -4833,8 +4833,8 @@
 			isa = PBXGroup;
 			children = (
 				B4BCE453255BCEC500A1116F /* NewDailyStandardBriefCollectionViewCell.swift */,
-				B4BCE454255BCEC500A1116F /* NewDailyStandardBriefCollectionViewCell.xib */,
 				B4BCE455255BCEC500A1116F /* NewDailyBriefStandardModel.swift */,
+				B4BCE454255BCEC500A1116F /* NewDailyStandardBriefCollectionViewCell.xib */,
 			);
 			path = StandardCollectionViewCell;
 			sourceTree = "<group>";

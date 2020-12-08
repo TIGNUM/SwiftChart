@@ -317,6 +317,8 @@ extension DailyBriefInteractor {
             }
             guard let bucketName = bucket.bucketName else { return }
             switch bucketName {
+            case .GUIDE_TRACK:
+                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket))
             case .DAILY_CHECK_IN_1:
                 strongSelf.hasToBeVision = (bucket.toBeVision != nil)
                 strongSelf.didDailyCheckIn = (bucket.dailyCheckInAnswerIds?.isEmpty == false)
@@ -356,8 +358,6 @@ extension DailyBriefInteractor {
                 dailyBriefViewModels.append(contentsOf: strongSelf.createSolveViewModel(bucket: bucket))
             case .WEATHER:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createWeatherViewModel(weatherBucket: bucket))
-            case .GUIDE_TRACK:
-                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket))
             case .MINDSET_SHIFTER:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket))
             case .TEAM_TO_BE_VISION:
