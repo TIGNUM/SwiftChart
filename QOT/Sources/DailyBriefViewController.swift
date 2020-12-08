@@ -204,8 +204,6 @@ extension DailyBriefViewController {
                                                                       domainModel: item.domainModel))
                 }
             }
-//        case .TEAM_NEWS_FEED?:
-//            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
             let numberOfLines = 6
             cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,

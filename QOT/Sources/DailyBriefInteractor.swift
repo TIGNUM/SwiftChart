@@ -366,10 +366,10 @@ extension DailyBriefInteractor {
                 dailyBriefViewModels.append(contentsOf: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket))
             case .TEAM_INVITATION:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createTeamInvitation(invitationBucket: bucket))
-//            case .TEAM_NEWS_FEED:
-//                let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
-//                guard elements.isEmpty == false else { break }
-//                dailyBriefViewModels.append(contentsOf: elements)
+            case .TEAM_NEWS_FEED:
+                let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
+                guard elements.isEmpty == false else { break }
+                dailyBriefViewModels.append(contentsOf: elements)
             case .TEAM_TOBEVISION_GENERATOR_POLL:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createPollOpen(pollBucket: bucket))
             case .TEAM_TOBEVISION_TRACKER_POLL :

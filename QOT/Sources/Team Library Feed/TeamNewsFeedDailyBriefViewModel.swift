@@ -24,15 +24,24 @@ final class TeamNewsFeedDailyBriefViewModel: BaseDailyBriefViewModel, Hashable {
     var libraryCellViewModel: MyLibraryCellViewModel?
 
     // MARK: - Init
-    init(type: TeamNewsFeedDailyBriefViewModel.NewsFeedCellType, team: QDMTeam,
-         title: String?, subtitle: String?, feed: QDMTeamNewsFeed?, buttonTitle: String?,
+    init(type: TeamNewsFeedDailyBriefViewModel.NewsFeedCellType,
+         team: QDMTeam,
+         title: String?,
+         subtitle: String?,
+         feed: QDMTeamNewsFeed?,
+         buttonTitle: String?,
+         imageURL: String?,
          domainModel: QDMDailyBriefBucket?) {
         self.type = type
         self.team = team
         self.subtitle = subtitle
         self.feed = feed
         self.actionButtonTitle = buttonTitle
-        super.init(domainModel, title: title)
+        super.init(domainModel,
+                   title: title,
+                   body: "You have ${numberOfItems} new item(s) shared in ${team} library.",
+                   image: imageURL,
+                   titleColor: team.teamColor)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
