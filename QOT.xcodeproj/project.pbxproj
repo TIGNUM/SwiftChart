@@ -1003,10 +1003,6 @@
 		B4F9763C2359EBA20071F7EC /* QOTBaseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */; };
 		B80B2EF124D9B26C00C6FD85 /* DailyBriefInteractor+TeamBuckets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EF024D9B26C00C6FD85 /* DailyBriefInteractor+TeamBuckets.swift */; };
 		B80B2EF424DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */; };
-		B80B2EFB24DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EF924DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.swift */; };
-		B80B2EFC24DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B80B2EFA24DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.xib */; };
-		B80B2EFF24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EFD24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.swift */; };
-		B80B2F0024DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B80B2EFE24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib */; };
 		B80B2F0224DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B2F0124DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift */; };
 		B80FB0DD23E3200F0040D034 /* Date+EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */; };
 		B816F2BA24E1553300AE90C9 /* QDMUserStorage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */; };
@@ -2429,10 +2425,6 @@
 		B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QOTBaseHeaderView.xib; sourceTree = "<group>"; };
 		B80B2EF024D9B26C00C6FD85 /* DailyBriefInteractor+TeamBuckets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyBriefInteractor+TeamBuckets.swift"; sourceTree = "<group>"; };
 		B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNewsFeedDailyBriefViewModel.swift; sourceTree = "<group>"; };
-		B80B2EF924DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefTeamNewsFeedHeaderCell.swift; sourceTree = "<group>"; };
-		B80B2EFA24DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyBriefTeamNewsFeedHeaderCell.xib; sourceTree = "<group>"; };
-		B80B2EFD24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefTeamNewsFeedFooterCell.swift; sourceTree = "<group>"; };
-		B80B2EFE24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyBriefTeamNewsFeedFooterCell.xib; sourceTree = "<group>"; };
 		B80B2F0124DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyVriefViewController+TeamBuckets.swift"; sourceTree = "<group>"; };
 		B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+EventDate.swift"; sourceTree = "<group>"; };
 		B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserStorage+Extension.swift"; sourceTree = "<group>"; };
@@ -4904,10 +4896,6 @@
 			isa = PBXGroup;
 			children = (
 				B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */,
-				B80B2EF924DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.swift */,
-				B80B2EFA24DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.xib */,
-				B80B2EFD24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.swift */,
-				B80B2EFE24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib */,
 			);
 			path = "Team Library Feed";
 			sourceTree = "<group>";
@@ -6487,7 +6475,6 @@
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
 				8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */,
 				381E9B7524F66E4900973916 /* NotificationBanner.xib in Resources */,
-				B80B2F0024DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.xib in Resources */,
 				B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */,
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
 				B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */,
@@ -6516,7 +6503,6 @@
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */,
 				F9E330362424A75800967C28 /* MyPlansHeaderView.xib in Resources */,
-				B80B2EFC24DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.xib in Resources */,
 				ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */,
 				8D6270AD23153D1B00B68DB1 /* QOTAlert.storyboard in Resources */,
 				F9D2BC1D22D48DE600DBF2CC /* GoodToKnowCell.xib in Resources */,
@@ -6786,7 +6772,6 @@
 				8D5668B922DCAD4800AA172F /* MySprintsListInterface.swift in Sources */,
 				AC1A40DC22A54EB70022156C /* SolveResultsRouter.swift in Sources */,
 				F99DF60F2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift in Sources */,
-				B80B2EFB24DC07BB00C6FD85 /* DailyBriefTeamNewsFeedHeaderCell.swift in Sources */,
 				B4AB48BB230BF891003B3C1F /* MyDataSelectionModel.swift in Sources */,
 				B856B47E22B0E29D0017A249 /* MyLibraryCellViewModel.swift in Sources */,
 				8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */,
@@ -7710,7 +7695,6 @@
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
 				B4AB48B9230BF891003B3C1F /* MyDataSelectionViewController.swift in Sources */,
 				75DC686E22C11D4800FF183D /* MyToBeVisionRatePresenter.swift in Sources */,
-				B80B2EFF24DC22EC00C6FD85 /* DailyBriefTeamNewsFeedFooterCell.swift in Sources */,
 				5F360733228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift in Sources */,
 				B4AB48BC230BF891003B3C1F /* MyDataSelectionConfigurator.swift in Sources */,
 				B411ECC025751C5100EB7A78 /* ImpactReadinessScoreViewModel.swift in Sources */,
