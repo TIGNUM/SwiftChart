@@ -162,12 +162,15 @@ extension DailyBriefViewController {
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
                                                                 numberOfLinesForBody: numberOfLines,
+                                                                titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
+
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil {
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
+                                                                titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
             }
         case .LEADERS_WISDOM?:
@@ -177,6 +180,7 @@ extension DailyBriefViewController {
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
                                                                 CTAType: leadersWisdomViewModel.format,
+                                                                titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
             }
         case .SOLVE_REFLECTION?:
@@ -196,19 +200,22 @@ extension DailyBriefViewController {
                                                                       body: item.body,
                                                                       image: item.image,
                                                                       enabled: index <= item.sprint.currentDay,
+                                                                      titleColor: bucketItem.titleColor,
                                                                       domainModel: item.domainModel))
                 }
             }
-        case .TEAM_TO_BE_VISION?:
-            return getTeamToBeVisionCell(tableView, indexPath, bucketItem as? TeamToBeVisionCellViewModel)
-        case .TEAM_VISION_SUGGESTION?:
-            return getTeamVisionSuggestionCell(tableView, indexPath, bucketItem as? TeamVisionSuggestionModel)
-        case .TEAM_INVITATION?:
-            return getTeamInvitationCell(tableView, indexPath, bucketItem as? TeamInvitationModel)
-        case .TEAM_NEWS_FEED?:
-            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
+//        case .TEAM_NEWS_FEED?:
+//            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
-            return getOpenPollCell(tableView, indexPath, bucketItem as? PollOpenModel)
+            let numberOfLines = 6
+            cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                            title: bucketItem.title,
+                                                            body: bucketItem.body,
+                                                            image: bucketItem.image,
+                                                            numberOfLinesForBody: numberOfLines,
+                                                            titleColor: bucketItem.titleColor,
+                                                            domainModel: bucketItem.domainModel))
+
         case .TEAM_TOBEVISION_TRACKER_POLL?:
             if (bucketItem as? RateOpenModel) != nil,
                let rateViewModel = bucketItem as? RateOpenModel {
@@ -225,6 +232,7 @@ extension DailyBriefViewController {
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
+                                                                titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
         }
 
@@ -313,6 +321,7 @@ private extension DailyBriefViewController {
 
 // MARK: - Get TableViewCells
 private extension DailyBriefViewController {
+
     func getSolveReminder(_ tableView: UITableView,
                           _ indexPath: IndexPath,
                           _ solveReminderViewModel: SolveReminderCellViewModel?) -> UITableViewCell {
@@ -350,36 +359,6 @@ private extension DailyBriefViewController {
                                _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
         let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: teamVisionModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getTeamVisionSuggestionCell(_ tableView: UITableView,
-                                     _ indexPath: IndexPath,
-                                     _ teamVisionSuggestionModel: TeamVisionSuggestionModel?) -> UITableViewCell {
-        let cell: TeamVisionSuggestionCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: teamVisionSuggestionModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getTeamInvitationCell(_ tableView: UITableView,
-                               _ indexPath: IndexPath,
-                               _ teamInvitationModel: TeamInvitationModel?) -> UITableViewCell {
-        let cell: TeamInvitationCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: teamInvitationModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getOpenPollCell(_ tableView: UITableView,
-                         _ indexPath: IndexPath,
-                         _ pollOpenModel: PollOpenModel?) -> UITableViewCell {
-        let cell: PollOpenCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: pollOpenModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell
@@ -482,7 +461,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func showTeamTBV(_ team: QDMTeam) {
         interactor.getTeamTBVPoll(for: team) { [weak self] (poll) in
-            self?.router.showTeamTBV(team, poll)
+            self?.router.showTeamTBV(team)
         }
     }
 
@@ -638,6 +617,16 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
         case .FROM_TIGNUM:
             guard let fromTignumCellModel = dailyBriefCellViewModel as? FromTignumCellViewModel else { return }
             fromTignumCellModel.link?.launch()
+        case .TEAM_TO_BE_VISION:
+            guard let viewModel = bucketItem as? TeamToBeVisionCellViewModel else { break }
+            guard let team = viewModel.team else { break }
+            router.showTeamTBV(team)
+        case .TEAM_INVITATION:
+            presentTeamPendingInvites()
+        case .TEAM_TOBEVISION_GENERATOR_POLL:
+            guard let pollModel = dailyBriefCellViewModel as? PollOpenModel else { return }
+            guard let team = pollModel.team else { return }
+            router.showExplanation(team, type: .tbvPollUser)
         case .SPRINT_CHALLENGE:
             guard let sprintCollectionCellModel = dailyBriefCellViewModel as? SprintsCollectionViewModel,
                   let sprintCellModel = sprintCollectionCellModel.items?[indexPath.item] else { return }

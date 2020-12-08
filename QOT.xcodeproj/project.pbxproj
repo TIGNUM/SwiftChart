@@ -1293,6 +1293,8 @@
 		F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */; };
 		F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */; };
 		F98D8ECE22D3742F0072FC73 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */; };
+		F9925235257E408D00DD5AD5 /* TeamVisionSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9925234257E408D00DD5AD5 /* TeamVisionSuggestionTableViewCell.swift */; };
+		F992523D257E409F00DD5AD5 /* TeamVisionSuggestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F992523C257E409F00DD5AD5 /* TeamVisionSuggestionTableViewCell.xib */; };
 		F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9999DDB24B3315500DB05CA /* Notification+Team.swift */; };
 		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
 		F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */; };
@@ -2724,6 +2726,8 @@
 		F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		F9925234257E408D00DD5AD5 /* TeamVisionSuggestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionSuggestionTableViewCell.swift; sourceTree = "<group>"; };
+		F992523C257E409F00DD5AD5 /* TeamVisionSuggestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamVisionSuggestionTableViewCell.xib; sourceTree = "<group>"; };
 		F9999DDB24B3315500DB05CA /* Notification+Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Team.swift"; sourceTree = "<group>"; };
 		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
 		F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsPresenter.swift; sourceTree = "<group>"; };
@@ -4559,8 +4563,11 @@
 		B411ECA225751C5100EB7A78 /* DailyBriefModels */ = {
 			isa = PBXGroup;
 			children = (
+				F96D9F3224D4494400188482 /* TeamVisionSuggestionModel.swift */,
 				B411ECCD25751E5200EB7A78 /* BaseDailyBriefViewModel.swift */,
+				F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */,
 				B411ECA325751C5100EB7A78 /* GuidedTrackViewModel.swift */,
+				F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */,
 				B411ECA425751C5100EB7A78 /* MeAtMyBestCellViewModel.swift */,
 				B411ECA525751C5100EB7A78 /* LeaderWisdomCellViewModel.swift */,
 				B411ECA625751C5100EB7A78 /* Notification+Ext.swift */,
@@ -4695,6 +4702,8 @@
 				B4792C9F256BABF200D24E7F /* Level5TableViewCell.xib */,
 				B4792D38256CFB4000D24E7F /* FromMyCoachTableViewCell.swift */,
 				B4792D46256CFB5900D24E7F /* FromMyCoachTableViewCell.xib */,
+				F9925234257E408D00DD5AD5 /* TeamVisionSuggestionTableViewCell.swift */,
+				F992523C257E409F00DD5AD5 /* TeamVisionSuggestionTableViewCell.xib */,
 				B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib */,
 				B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift */,
 				F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */,
@@ -5805,7 +5814,6 @@
 			isa = PBXGroup;
 			children = (
 				F96D9F2924D2DC3200188482 /* TeamToBeVisionCell.swift */,
-				F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */,
 				F96D9F2D24D2DC6900188482 /* TeamToBeVisionCell.xib */,
 			);
 			name = TeamToBeVision;
@@ -5815,7 +5823,6 @@
 			isa = PBXGroup;
 			children = (
 				F96D9F3024D4493100188482 /* TeamVisionSuggestionCell.swift */,
-				F96D9F3224D4494400188482 /* TeamVisionSuggestionModel.swift */,
 				F96D9F3424D449A600188482 /* TeamVisionSuggestionCell.xib */,
 			);
 			name = TeamVisionSuggestion;
@@ -5825,7 +5832,6 @@
 			isa = PBXGroup;
 			children = (
 				F96D9F3724D85AB800188482 /* TeamInvitationCell.swift */,
-				F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */,
 				F96D9F3B24D85AE100188482 /* TeamInvitationCell.xib */,
 			);
 			name = TeamInvitation;
@@ -6358,6 +6364,7 @@
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				38E84B7D241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib in Resources */,
 				383D5F2124212C25007F8C2A /* walkThrough_myQOT.mp4 in Resources */,
+				F992523D257E409F00DD5AD5 /* TeamVisionSuggestionTableViewCell.xib in Resources */,
 				BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */,
 				F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */,
 				B4BCE47B255BCEC500A1116F /* NewBaseDailyBriefCell.xib in Resources */,
@@ -7462,6 +7469,7 @@
 				F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */,
 				8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */,
 				F91087A024C5A6BD00CA343A /* TeamToBeVisionPresenter.swift in Sources */,
+				F9925235257E408D00DD5AD5 /* TeamVisionSuggestionTableViewCell.swift in Sources */,
 				B430D7C823A911DE00C75C9C /* MyQotAdminSettingsListRouter.swift in Sources */,
 				8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */,
 				F9207CEA24B77BEB007B1AB6 /* MyXTeamMembersViewController.swift in Sources */,

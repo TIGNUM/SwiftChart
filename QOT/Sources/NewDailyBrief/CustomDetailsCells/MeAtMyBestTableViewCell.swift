@@ -30,5 +30,4 @@ class MeAtMyBestTableViewCell: BaseDailyBriefCell {
         ctaButton.setTitle(model.buttonText?.uppercased(), for: .normal)
         ThemeButton.whiteRounded.apply(ctaButton)
     }
-
 }

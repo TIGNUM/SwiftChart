@@ -26,7 +26,7 @@ protocol BaseRouterInterface {
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
 
     func showTBV(showModal: Bool)
-    func showTeamTBV(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?)
+    func showTeamTBV(_ team: QDMTeam)
     func showTeamTBVPollEXplanation(_ team: QDMTeam, showModal: Bool)
     func showTeamRatingExplanation(_ team: QDMTeam, showModal: Bool)
 
@@ -123,7 +123,7 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showTeamTBV(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?) {
+    func showTeamTBV(_ team: QDMTeam) {
         if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
             let configurator = TeamToBeVisionConfigurator.make(team: team)
             configurator(controller)

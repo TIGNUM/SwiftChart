@@ -21,6 +21,7 @@ protocol BaseDailyBriefDetailsViewControllerInterface: class {
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
     func didUpdateLevel5(with model: Level5ViewModel)
     func didUpdateImpactReadiness(with model: ImpactReadinessCellViewModel)
+    func showTeamTBV(_ team: QDMTeam)
     func presentStrategyList(strategyID: Int?)
     func openTools(toolID: Int?)
 }
@@ -46,4 +47,5 @@ protocol BaseDailyBriefDetailsRouterInterface: BaseRouterInterface {
     func showTBV()
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
+    func showTeamTBV(_ team: QDMTeam)
 }

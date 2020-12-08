@@ -591,6 +591,7 @@ enum ThemeText {
     case ratingExplanationVideoTitle
     case whiteBanner
     case darkBanner
+    case bodyText
 
     case baseHeaderTitle(ThemeColorMode?)
     case baseHeaderSubtitle(ThemeColorMode?)
@@ -1105,7 +1106,7 @@ enum ThemeText {
         case .registerIntroTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle:
             return Fonts.fontDisplayBold30
-        case .customizeQuestion, .suggestionMyBest, .tbvStatement:
+        case .customizeQuestion, .suggestionMyBest, .tbvStatement, .bodyText:
             return Fonts.fontRegular16
         case .teamVisionSentence:
             return Fonts.fontRegular24
@@ -1125,6 +1126,8 @@ enum ThemeText {
         switch self {
 
         // MARK: - .sand
+        case .bodyText:
+            return Palette.grey
         case .quotation, .iRscore, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .bucketTitle, .solveQuestions,
@@ -1289,7 +1292,7 @@ enum ThemeText {
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
              .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
-             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled:
+             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1673,6 +1676,11 @@ private struct Fonts {
 
 // MARK: - Color Palette
 private struct Palette {
+
+    static var grey: UIColor {
+        return UIColor(red: 156/255, green: 152/255, blue: 151/255, alpha: 1)
+    }
+
     static var accent: UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
     }

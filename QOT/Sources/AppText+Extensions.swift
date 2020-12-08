@@ -392,6 +392,8 @@ public extension AppTextKey {
     static let daily_brief_team_vision_suggestion_subtitle = AppTextKey("daily_brief.team_vision_suggestion.subtitle")
     static let daily_brief_team_vision_suggestion_cta = AppTextKey("daily_brief.team_vision_suggestion.cta")
     static let daily_brief_team_vision_suggestion_suggestion_title = AppTextKey("daily_brief.team_vision_suggestion.suggestion_title")
+    static let daily_brief_vision_suggestion_title = AppTextKey("daily_brief.vision_suggestion.title")
+    static let daily_brief_vision_suggestion_caption = AppTextKey("daily_brief.vision_suggestion.caption") // {team} team
 
     static let daily_brief_team_invitation_one_team_statement = AppTextKey("daily_brief.team_invitation.one_team_statement")
     static let daily_brief_team_invitation_several_teams_statement = AppTextKey("daily_brief.team_invitation.several_teams_statement")
@@ -402,7 +404,9 @@ public extension AppTextKey {
     static let daily_brief_team_invitation_title = AppTextKey("daily_brief.team_invitation.title")
 
     static let daily_brief_team_open_poll_cta = AppTextKey("daily_brief.team_open_poll.cta")
-    static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+
+    static let daily_brief_open_poll_text = AppTextKey("daily_brief.open_poll.text")
+    static let daily_brief_open_poll_title = AppTextKey("daily_brief.open_poll.title")
     static let daily_brief_team_open_poll_title = AppTextKey("daily_brief.team_open_poll.title")
 
     static let daily_brief_rate_open_cta = AppTextKey("daily_brief.rate_open.cta")
@@ -414,6 +418,11 @@ public extension AppTextKey {
 
     static let daily_brief_team_invitation_and_label = AppTextKey("daily_brief.team_invitation.and_label")
     static let daily_brief_team_invitation_other_teams_label = AppTextKey("daily_brief.team_invitation.other_teams_label")
+
+    static let daily_brief_team_invitation_multiple_teams_title = AppTextKey("daily_brief.team_invitation.multiple_teams.title")
+    static let daily_brief_team_invitation_multiple_teams_subtitle = AppTextKey("daily_brief.team_invitation.multiple_teams.subtitle")
+    static let daily_brief_single_team_invitation_title = AppTextKey("daily_brief.single_team_invitation.title")
+    static let daily_brief_single_team_invitation_subtitle = AppTextKey("daily_brief.single_team_invitation.subtitle")
 
     static let daily_brief_section_team_news_feed_subtitle_for_one_item = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_one_item")
     static let daily_brief_section_team_news_feed_subtitle_for_multiple_items = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_multiple_items")
@@ -1211,3 +1220,9 @@ public extension AppTextKey {
     static let banner_tbv_poll_ends_days = AppTextKey("tbv.poll.ends")
     static let alert_message_team_tbv_poll_submitted = AppTextKey("alert.message.team_tbv_poll_submitted")
 }
+
+@available(*, unavailable, message: "Unavailable from QOT v3.3.0")
+public extension AppTextKey {
+    static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+}
+

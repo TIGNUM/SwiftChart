@@ -366,10 +366,10 @@ extension DailyBriefInteractor {
                 dailyBriefViewModels.append(contentsOf: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket))
             case .TEAM_INVITATION:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createTeamInvitation(invitationBucket: bucket))
-            case .TEAM_NEWS_FEED:
-                let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
-                guard elements.isEmpty == false else { break }
-                dailyBriefViewModels.append(contentsOf: elements)
+//            case .TEAM_NEWS_FEED:
+//                let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
+//                guard elements.isEmpty == false else { break }
+//                dailyBriefViewModels.append(contentsOf: elements)
             case .TEAM_TOBEVISION_GENERATOR_POLL:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createPollOpen(pollBucket: bucket))
             case .TEAM_TOBEVISION_TRACKER_POLL :
@@ -1144,13 +1144,14 @@ extension DailyBriefInteractor {
         visionAndDates = visionAndDates.filter({ $0.1 > beginingOfDay })
         visionAndDates.sort(by: {$0.1 > $1.1})
         let latestVision = visionAndDates.first?.0
+        let imageURL = latestVision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.imageURL : latestVision?.profileImageResource?.remoteURLString
         let visionText = latestVision?.text
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
-        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "")
+        let title = AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? "")
         guard visionText?.isEmpty == false else {
             return visionList
         }
-        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, domainModel: teamVisionBucket)
+        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, imageURL: imageURL, domainModel: teamVisionBucket)
         visionList.append(model)
         return visionList
     }
@@ -1163,11 +1164,12 @@ extension DailyBriefInteractor {
         }
         let vision = teamVisionBucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
         guard vision != nil else { return teamVisionList }
+        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.imageURL : vision?.profileImageResource?.remoteURLString
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
         let visionSentence = vision?.sentences.first?.sentence
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "").uppercased()
         let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? " ")
-        let model = TeamVisionSuggestionModel(title: title, team: team, tbvSentence: visionSentence, adviceText: suggestion, domainModel: teamVisionBucket)
+        let model = TeamVisionSuggestionModel(title: title, team: team, tbvSentence: visionSentence, adviceText: suggestion, imageURL: imageURL, domainModel: teamVisionBucket)
         teamVisionList.append(model)
         return teamVisionList
     }
@@ -1180,7 +1182,13 @@ extension DailyBriefInteractor {
         invitationBucket.teamInvitations?.forEach {(invitation) in
             teamNames.append(invitation.team?.name ?? "")
         }
-        let model = TeamInvitationModel(teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, domainModel: invitationBucket)
+        let inviteCount = teamNames.count
+        let multipleInvitesTitle = AppTextService.get(.daily_brief_team_invitation_multiple_teams_title)
+            .replacingOccurrences(of: "${invitations_count}", with: String(describing: inviteCount))
+        let singleInviteTitle = AppTextService.get(.daily_brief_single_team_invitation_title)
+            .replacingOccurrences(of: "${team}", with: teamNames.first?.uppercased() ?? "")
+        let title = inviteCount > 1 ? multipleInvitesTitle : singleInviteTitle
+        let model = TeamInvitationModel(title: title, teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, image: invitationBucket.imageURL, domainModel: invitationBucket)
         invitationList.append(model)
         return invitationList
     }
@@ -1194,7 +1202,10 @@ extension DailyBriefInteractor {
                   openPoll.userDidVote == false,
                   let team = pollBucket.myTeams?.filter({ $0.qotId == openPoll.teamQotId }).first else { return }
             let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
-            let model = PollOpenModel(team: team, teamAdmin: teamOwner?.email, domainModel: pollBucket)
+            let teamVision = pollBucket.teamToBeVisions?.filter { $0.teamQotId == openPoll.teamQotId }
+            let teamImage = teamVision?.first?.profileImageResource?.remoteURLString
+            let image = teamImage == nil ? pollBucket.imageURL : teamImage
+            let model = PollOpenModel(team: team, teamAdmin: teamOwner?.email, imageURL: image, domainModel: pollBucket)
             openPollList.append(model)
         }
         return openPollList

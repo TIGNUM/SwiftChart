@@ -68,11 +68,14 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             return 1
         case DailyBriefBucketName.MINDSET_SHIFTER:
             return model as? MindsetShifterViewModel != nil ? 2 : 1
+        case DailyBriefBucketName.TEAM_VISION_SUGGESTION:
+            return 2
         case DailyBriefBucketName.SPRINT_CHALLENGE:
             if let sprintModel = model as? SprintChallengeViewModel {
                 return sprintModel.relatedStrategiesModels.count + 1
             }
             return 1
+
         default:
             return 1
         }
@@ -84,7 +87,6 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             guard let cell: NewBaseDailyBriefCell = R.nib.newBaseDailyBriefCell(owner: owner) else {
                 return UITableViewCell.init()
             }
-
             switch model.domainModel?.bucketName {
             case DailyBriefBucketName.GET_TO_LEVEL_5:
                 guard let level5Model = model as? Level5ViewModel else {
@@ -98,6 +100,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                                      body: level5Model.levelMessages[selectedValue ?? 0].levelContent,
                                                                      image: level5Model.image,
                                                                      detailsMode: true,
+                                                                     titleColor: level5Model.titleColor,
                                                                      domainModel: level5Model.domainModel)
 
                 cell.configure(with: [standardModel])
@@ -112,6 +115,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                                      body: peakPerformanceModel.contentSentence,
                                                                      image: peakPerformanceModel.image,
                                                                      detailsMode: true,
+                                                                     titleColor: peakPerformanceModel.titleColor,
                                                                      domainModel: peakPerformanceModel.domainModel)
                 cell.configure(with: [standardModel])
                 cell.collectionView.contentInsetAdjustmentBehavior = .never
@@ -122,10 +126,10 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                                              body: model.body,
                                                              image: model.image,
                                                              detailsMode: true,
+                                                             titleColor: model.titleColor,
                                                              domainModel: model.domainModel)
                 cell.configure(with: [standardModel])
                 cell.collectionView.contentInsetAdjustmentBehavior = .never
-
                 return cell
             }
         default:
@@ -158,6 +162,14 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                     cell.delegate = owner
                     return cell
                 }
+            case DailyBriefBucketName.TEAM_VISION_SUGGESTION:
+                guard let teamVisionSuggestionModel = model as? TeamVisionSuggestionModel,
+                      let cell: TeamVisionSuggestionTableViewCell = R.nib.teamVisionSuggestionTableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+                cell.configure(with: teamVisionSuggestionModel)
+                cell.delegate = owner
+                return cell
             case DailyBriefBucketName.MINDSET_SHIFTER:
                 guard let mindsetShifterModel = model as? MindsetShifterViewModel,
                       let cell: MindsetShifterTableViewCell = R.nib.mindsetShifterTableViewCell(owner: owner) else {

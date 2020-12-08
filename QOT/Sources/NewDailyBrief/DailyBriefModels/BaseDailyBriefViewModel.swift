@@ -21,6 +21,7 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
     var image: String?
     var domainModel: QDMDailyBriefBucket?
     var subIdentifier = ""
+    var titleColor: String? = "9C9897"
 
     // MARK: - Init
     init(_ domainModel: QDMDailyBriefBucket?,
@@ -28,7 +29,8 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
          caption: String? = "",
          title: String? = "",
          body: String? = "",
-         image: String? = "") {
+         image: String? = "",
+         titleColor: String? = "#9C9897") {
         self.domainModel = domainModel
         self.subIdentifier = subIdentifier ?? ""
         self.caption = caption
@@ -36,6 +38,7 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
         self.attributedTitle = ThemeText.dailyBriefTitle.attributedString(title)
         self.body = body
         self.image = image
+        self.titleColor = titleColor
     }
 
     var differenceIdentifier: DifferenceIdentifier {
@@ -45,6 +48,7 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
     func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
         return caption == source.caption &&
             title == source.title &&
+            titleColor == source.titleColor &&
             body == source.body &&
             image == source.image &&
             domainModel?.toBeVisionId == source.domainModel?.toBeVisionId &&

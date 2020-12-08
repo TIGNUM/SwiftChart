@@ -121,6 +121,10 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
         }
     }
 
+    func showTeamTBV(_ team: QDMTeam) {
+        router.showTeamTBV(team)
+    }
+
     func presentStrategyList(strategyID: Int?) {
         if let contentId = strategyID {
             router.presentContent(contentId)
