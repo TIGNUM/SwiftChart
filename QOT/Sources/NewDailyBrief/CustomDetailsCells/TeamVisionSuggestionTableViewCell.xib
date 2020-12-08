@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="753" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4j-fq-NYm">
-                                <rect key="frame" x="24" y="10" width="378" height="85"/>
+                                <rect key="frame" x="24" y="0.0" width="378" height="95"/>
                                 <string key="text">What could you do today to become 
 that statement statement?</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
@@ -55,7 +55,7 @@ that statement statement?</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Y4j-fq-NYm" firstAttribute="leading" secondItem="VUI-vu-kzh" secondAttribute="leading" constant="24" id="623-HI-4Kf"/>
-                            <constraint firstItem="Y4j-fq-NYm" firstAttribute="top" secondItem="VUI-vu-kzh" secondAttribute="top" constant="10" id="BAE-rH-p5R"/>
+                            <constraint firstItem="Y4j-fq-NYm" firstAttribute="top" secondItem="VUI-vu-kzh" secondAttribute="top" id="BAE-rH-p5R"/>
                             <constraint firstItem="caP-1O-zSs" firstAttribute="top" secondItem="Y4j-fq-NYm" secondAttribute="bottom" constant="50" id="CYX-vw-U6F"/>
                             <constraint firstAttribute="trailing" secondItem="Y4j-fq-NYm" secondAttribute="trailing" constant="24" id="KHO-sa-mcy"/>
                             <constraint firstItem="VUI-vu-kzh" firstAttribute="trailing" secondItem="caP-1O-zSs" secondAttribute="trailing" constant="24" id="kU4-9K-nu0"/>
