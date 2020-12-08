@@ -1,5 +1,5 @@
 //
-//  SprintChallengeDay0VideoTavleViewCell.swift
+//  SprintChallengeDay0VideoTableViewCell.swift
 //  QOT
 //
 //  Created by Simu Voicu-Mircea on 07.12.2020.
@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 import AVKit
 
-class SprintChallengeDay0VideoTavleViewCell: UITableViewCell, Dequeueable {
+class SprintChallengeDay0VideoTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var videoThumbnailImageView: UIImageView!
     @IBOutlet weak var videoTitleLabel: UILabel!
     @IBOutlet weak var videoDurationLabel: UILabel!

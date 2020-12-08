@@ -202,7 +202,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 }
 
                 if relatedItem.videoUrl != nil {
-                    guard let cell = R.nib.sprintChallengeDay0VideoTavleViewCell(owner: owner) else {
+                    guard let cell = R.nib.sprintChallengeDay0VideoTableViewCell(owner: owner) else {
                         return UITableViewCell.init()
                     }
 
