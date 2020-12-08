@@ -32,7 +32,7 @@ extension UIViewController {
         return roundedBarButtonItem(title: AppTextService.get(.generic_view_button_done),
                                     buttonWidth: .Done,
                                     action: action,
-                                    backgroundColor: .carbon,
+                                    backgroundColor: .black,
                                     borderColor: borderColor ?? .clear)
     }
 

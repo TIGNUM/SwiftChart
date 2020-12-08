@@ -50,11 +50,12 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NewThemeView.dark.apply(view)
         interactor?.viewDidLoad()
         textViewBottomConstraint.constant = BottomNavigationContainer.height
         initialBottomOffset = textViewBottomConstraint.constant
         startObservingKeyboard()
-        textView.tintColor = .sand
+        textView.tintColor = .white
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
     }

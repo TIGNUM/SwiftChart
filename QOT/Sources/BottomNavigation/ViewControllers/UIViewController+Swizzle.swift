@@ -433,7 +433,7 @@ extension UIViewController {
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
                                          textColor: UIColor = .accent,
-                                         backgroundColor: UIColor = .carbonNew,
+                                         backgroundColor: UIColor = .black,
                                          borderColor: UIColor = .clear) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: .Default))

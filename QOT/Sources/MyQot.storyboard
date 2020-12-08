@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CRw-Qf-58k">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -57,6 +58,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Zel-MW-Fy7"/>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8F6-JV-u3a" firstAttribute="leading" secondItem="UGX-qY-m7r" secondAttribute="leading" id="2vS-Ja-ZDV"/>
@@ -67,7 +69,6 @@
                             <constraint firstItem="8F6-JV-u3a" firstAttribute="top" secondItem="Zel-MW-Fy7" secondAttribute="top" id="gPa-Mh-2em"/>
                             <constraint firstItem="vYv-fI-E11" firstAttribute="trailing" secondItem="Zel-MW-Fy7" secondAttribute="trailing" id="l86-Np-KN4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Zel-MW-Fy7"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="8F6-JV-u3a" id="AfZ-7j-zs4"/>
@@ -111,6 +112,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Yiu-Fq-LdS"/>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="HaD-Tj-e87" firstAttribute="top" secondItem="WnK-Qq-TvP" secondAttribute="bottom" id="Agw-rw-tcC"/>
@@ -121,7 +123,6 @@
                             <constraint firstItem="HaD-Tj-e87" firstAttribute="leading" secondItem="Yiu-Fq-LdS" secondAttribute="leading" id="dcW-HJ-B1G"/>
                             <constraint firstItem="WnK-Qq-TvP" firstAttribute="top" secondItem="Yiu-Fq-LdS" secondAttribute="top" id="nWM-vi-xri"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Yiu-Fq-LdS"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="WnK-Qq-TvP" id="AKp-Pj-BjC"/>
@@ -156,6 +157,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="U47-0W-7kg"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="U47-0W-7kg" firstAttribute="bottom" secondItem="9Bv-Xc-r1E" secondAttribute="bottom" id="2XU-Iv-I0n"/>
@@ -166,7 +168,6 @@
                             <constraint firstItem="U47-0W-7kg" firstAttribute="trailing" secondItem="kxx-ZA-ueu" secondAttribute="trailing" id="fkd-NC-Uoa"/>
                             <constraint firstItem="kxx-ZA-ueu" firstAttribute="top" secondItem="U47-0W-7kg" secondAttribute="top" id="tj7-ZG-h9V"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="U47-0W-7kg"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="kxx-ZA-ueu" id="Cuk-dg-04M"/>
@@ -214,6 +215,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="lig-SH-6xX"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="oXZ-aP-5Xc" secondAttribute="trailing" id="73u-Hk-iZA"/>
@@ -224,7 +226,6 @@
                             <constraint firstAttribute="bottom" secondItem="c3R-At-CuN" secondAttribute="bottom" id="iOm-tI-dsi"/>
                             <constraint firstItem="c3R-At-CuN" firstAttribute="top" secondItem="oXZ-aP-5Xc" secondAttribute="bottom" id="lZQ-fZ-KVI"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="lig-SH-6xX"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="oXZ-aP-5Xc" id="cDW-md-y2C"/>
@@ -285,7 +286,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HTS-fj-Ieu">
                                 <rect key="frame" x="0.0" y="158" width="375" height="489"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
@@ -294,6 +295,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="P4L-d4-E25"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="HTS-fj-Ieu" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="00o-S2-Wub"/>
@@ -307,7 +309,6 @@
                             <constraint firstItem="Fbz-7Z-v9W" firstAttribute="leading" secondItem="P4L-d4-E25" secondAttribute="leading" id="uHO-Q4-0w1"/>
                             <constraint firstItem="che-KX-sGX" firstAttribute="top" secondItem="Fbz-7Z-v9W" secondAttribute="bottom" id="uOw-K4-Fuh"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="P4L-d4-E25"/>
                     </view>
                     <navigationItem key="navigationItem" id="aI7-da-IlH"/>
                     <connections>
@@ -377,6 +378,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="2gd-3H-ucj"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ZTy-cF-ftL" firstAttribute="trailing" secondItem="2gd-3H-ucj" secondAttribute="trailing" id="20g-Ea-lfM"/>
@@ -390,7 +392,6 @@
                             <constraint firstItem="2gd-3H-ucj" firstAttribute="trailing" secondItem="6Ds-K0-zKL" secondAttribute="trailing" id="lIE-cf-biR"/>
                             <constraint firstItem="ZTy-cF-ftL" firstAttribute="leading" secondItem="2gd-3H-ucj" secondAttribute="leading" id="rwv-nA-xid"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2gd-3H-ucj"/>
                     </view>
                     <navigationItem key="navigationItem" id="fhy-dW-brz"/>
                     <connections>
@@ -603,6 +604,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="EtW-Sh-ZcZ"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="TXt-yI-aHN" firstAttribute="leading" secondItem="EtW-Sh-ZcZ" secondAttribute="leading" id="9mF-66-IGO"/>
@@ -613,7 +615,6 @@
                             <constraint firstItem="h9m-7y-fjS" firstAttribute="leading" secondItem="EtW-Sh-ZcZ" secondAttribute="leading" id="cdx-LK-3Xe"/>
                             <constraint firstItem="TXt-yI-aHN" firstAttribute="top" secondItem="h9m-7y-fjS" secondAttribute="bottom" id="jbZ-lm-N2M"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="EtW-Sh-ZcZ"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="h9m-7y-fjS" id="bq4-1C-GCE"/>
@@ -658,6 +659,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Mrh-rq-4NM"/>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="PS2-XQ-MGC" firstAttribute="trailing" secondItem="Mrh-rq-4NM" secondAttribute="trailing" id="BOj-vj-3gy"/>
@@ -668,7 +670,6 @@
                             <constraint firstItem="Kkv-Ez-GPe" firstAttribute="top" secondItem="Mrh-rq-4NM" secondAttribute="top" id="m9H-7v-VL6"/>
                             <constraint firstAttribute="trailing" secondItem="Kkv-Ez-GPe" secondAttribute="trailing" id="uof-6S-HEO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Mrh-rq-4NM"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="Kkv-Ez-GPe" id="2Iw-ca-YW3"/>
@@ -695,6 +696,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="fx3-IO-VCp"/>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Wtz-Lk-3vy" firstAttribute="leading" secondItem="fx3-IO-VCp" secondAttribute="leading" id="SrA-FD-WE5"/>
@@ -702,7 +704,6 @@
                             <constraint firstItem="Wtz-Lk-3vy" firstAttribute="top" secondItem="fx3-IO-VCp" secondAttribute="top" id="vtl-nv-9te"/>
                             <constraint firstItem="fx3-IO-VCp" firstAttribute="bottom" secondItem="Wtz-Lk-3vy" secondAttribute="bottom" id="w7v-Ax-IzY"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="fx3-IO-VCp"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="Wtz-Lk-3vy" id="TBO-TZ-MQH"/>
@@ -732,6 +733,7 @@
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="hAH-Rs-cj9"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hAH-Rs-cj9" firstAttribute="trailing" secondItem="Fj7-xc-JhP" secondAttribute="trailing" id="0bq-82-87g"/>
@@ -742,7 +744,6 @@
                             <constraint firstItem="bay-2P-5bs" firstAttribute="top" secondItem="Fj7-xc-JhP" secondAttribute="bottom" id="m1p-Ra-Dgj"/>
                             <constraint firstItem="bay-2P-5bs" firstAttribute="leading" secondItem="hex-a7-A1f" secondAttribute="leading" id="mO5-JK-aaM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hAH-Rs-cj9"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="Fj7-xc-JhP" id="Rql-PC-8XP"/>
@@ -778,6 +779,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="rWN-g3-sy8"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Rr4-Bz-KZ6" secondAttribute="trailing" id="D5M-wR-IsP"/>
@@ -788,7 +790,6 @@
                             <constraint firstItem="Rr4-Bz-KZ6" firstAttribute="leading" secondItem="rWN-g3-sy8" secondAttribute="leading" id="sh5-CY-1y7"/>
                             <constraint firstItem="Jqo-D8-VGt" firstAttribute="leading" secondItem="6GP-dy-akx" secondAttribute="leading" id="ywk-TN-l2B"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="rWN-g3-sy8"/>
                     </view>
                     <connections>
                         <outlet property="headerView" destination="Rr4-Bz-KZ6" id="xxz-t0-Jci"/>
@@ -1034,6 +1035,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="KsP-nG-Tzp"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bz7-sK-FQx" firstAttribute="leading" secondItem="KsP-nG-Tzp" secondAttribute="leading" id="3MB-bw-HAO"/>
@@ -1046,7 +1048,6 @@
                             <constraint firstItem="F3h-dp-pkH" firstAttribute="bottom" secondItem="bz7-sK-FQx" secondAttribute="bottom" constant="-10" id="uZm-fM-hFm"/>
                             <constraint firstItem="F3h-dp-pkH" firstAttribute="leading" secondItem="bz7-sK-FQx" secondAttribute="trailing" id="xuA-QI-INe"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="KsP-nG-Tzp"/>
                     </view>
                     <size key="freeformSize" width="375" height="850"/>
                     <connections>
@@ -1134,6 +1135,7 @@
                             </connections>
                         </button>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="UgH-Je-U41"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Cfu-v4-9VS" secondAttribute="bottom" id="6S2-ho-CCD"/>
@@ -1145,7 +1147,6 @@
                         <constraint firstItem="nfP-w2-Uuv" firstAttribute="top" secondItem="en4-EL-HQu" secondAttribute="top" id="lgh-VC-uSW"/>
                         <constraint firstItem="en4-EL-HQu" firstAttribute="leading" secondItem="nfP-w2-Uuv" secondAttribute="trailing" constant="16" id="yd9-Hr-nSk"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="UgH-Je-U41"/>
                     <connections>
                         <outlet property="closeButton" destination="nfP-w2-Uuv" id="c0d-Od-R0i"/>
                         <outlet property="fadeView" destination="Cfu-v4-9VS" id="DOh-nE-IZk"/>
@@ -1177,6 +1178,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Vis-oX-hEG"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ywj-fm-jGd" firstAttribute="leading" secondItem="JCO-W1-yh2" secondAttribute="leading" id="4e9-mP-DOQ"/>
@@ -1187,7 +1189,6 @@
                             <constraint firstItem="JAf-sZ-nEW" firstAttribute="trailing" secondItem="Vis-oX-hEG" secondAttribute="trailing" id="kjC-lH-ICM"/>
                             <constraint firstItem="Vis-oX-hEG" firstAttribute="bottom" secondItem="JAf-sZ-nEW" secondAttribute="bottom" constant="80" id="q40-ox-nTi"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Vis-oX-hEG"/>
                     </view>
                     <navigationItem key="navigationItem" id="pm6-m8-PfI"/>
                     <connections>
@@ -1227,6 +1228,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Sxp-t8-Wyb"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JOH-oi-kQi" firstAttribute="top" secondItem="0V1-QC-WhS" secondAttribute="bottom" id="Axy-Tf-WXq"/>
@@ -1237,7 +1239,6 @@
                             <constraint firstItem="Sxp-t8-Wyb" firstAttribute="bottom" secondItem="JOH-oi-kQi" secondAttribute="bottom" constant="80" id="zHv-ui-4HE"/>
                             <constraint firstItem="0V1-QC-WhS" firstAttribute="leading" secondItem="3or-De-2q5" secondAttribute="leading" id="zrY-ml-Str"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Sxp-t8-Wyb"/>
                     </view>
                     <navigationItem key="navigationItem" id="XKb-1a-aJ8"/>
                     <connections>
@@ -1272,6 +1273,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="4KU-A1-1Vf"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XbQ-aa-XOh" firstAttribute="top" secondItem="4KU-A1-1Vf" secondAttribute="top" id="Aej-1K-a7d"/>
@@ -1282,7 +1284,6 @@
                             <constraint firstItem="4KU-A1-1Vf" firstAttribute="bottom" secondItem="dCK-DN-fSK" secondAttribute="bottom" constant="80" id="eag-Il-Xma"/>
                             <constraint firstItem="dCK-DN-fSK" firstAttribute="trailing" secondItem="4KU-A1-1Vf" secondAttribute="trailing" id="z2F-QG-STK"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="4KU-A1-1Vf"/>
                     </view>
                     <navigationItem key="navigationItem" id="e1w-pH-Nx9"/>
                     <connections>
@@ -1317,6 +1318,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="S54-An-Agz"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lDB-hZ-Beh" firstAttribute="trailing" secondItem="S54-An-Agz" secondAttribute="trailing" id="0Jv-iI-7Nc"/>
@@ -1327,7 +1329,6 @@
                             <constraint firstItem="lDB-hZ-Beh" firstAttribute="top" secondItem="vUI-xC-Eh2" secondAttribute="bottom" id="o9f-B7-fiO"/>
                             <constraint firstItem="vUI-xC-Eh2" firstAttribute="leading" secondItem="Yc0-M9-iWo" secondAttribute="leading" id="sFT-qX-Xed"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="S54-An-Agz"/>
                     </view>
                     <navigationItem key="navigationItem" id="qeC-gz-9Q4"/>
                     <connections>
@@ -1362,6 +1363,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Sjs-N0-xO7"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Sjs-N0-xO7" firstAttribute="trailing" secondItem="A3f-Cu-JWz" secondAttribute="trailing" id="36z-hd-adO"/>
@@ -1372,7 +1374,6 @@
                             <constraint firstItem="ZXs-lp-Cwx" firstAttribute="top" secondItem="A3f-Cu-JWz" secondAttribute="bottom" id="nmH-bt-MWQ"/>
                             <constraint firstItem="Sjs-N0-xO7" firstAttribute="bottom" secondItem="ZXs-lp-Cwx" secondAttribute="bottom" constant="80" id="yz0-xW-Cte"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Sjs-N0-xO7"/>
                     </view>
                     <navigationItem key="navigationItem" id="jA4-bQ-MtR"/>
                     <connections>
@@ -1407,6 +1408,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ifo-7E-gEl"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="a3l-Dd-KZI" firstAttribute="top" secondItem="ifo-7E-gEl" secondAttribute="top" id="0bH-2d-mEM"/>
@@ -1417,7 +1419,6 @@
                             <constraint firstItem="Uin-U0-zS8" firstAttribute="trailing" secondItem="ifo-7E-gEl" secondAttribute="trailing" id="d58-h5-fon"/>
                             <constraint firstItem="a3l-Dd-KZI" firstAttribute="leading" secondItem="2mA-cP-fZh" secondAttribute="leading" id="ro4-TO-tPo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ifo-7E-gEl"/>
                     </view>
                     <navigationItem key="navigationItem" id="B5b-cX-8E7"/>
                     <connections>
@@ -1453,6 +1454,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="e0X-XM-k6c"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="e0X-XM-k6c" firstAttribute="bottom" secondItem="VnR-ns-P2y" secondAttribute="bottom" constant="80" id="MBz-L2-NAK"/>
@@ -1463,7 +1465,6 @@
                             <constraint firstItem="hJg-bH-jkg" firstAttribute="top" secondItem="e0X-XM-k6c" secondAttribute="top" id="jIJ-0H-lne"/>
                             <constraint firstItem="VnR-ns-P2y" firstAttribute="trailing" secondItem="e0X-XM-k6c" secondAttribute="trailing" id="kVD-XO-BuW"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="e0X-XM-k6c"/>
                     </view>
                     <navigationItem key="navigationItem" id="Gjb-Md-WPV"/>
                     <connections>
@@ -1480,5 +1481,8 @@
     <resources>
         <image name="arrowDown" width="16" height="16"/>
         <image name="ic_edit" width="16" height="16"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

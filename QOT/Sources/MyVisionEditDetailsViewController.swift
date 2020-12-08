@@ -80,6 +80,13 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsControllerInterf
         guard let interactor = self.interactor else {
             return
         }
+        NewThemeView.dark.apply(view)
+        NewThemeView.dark.apply(scrollView)
+        NewThemeView.dark.apply(titleTextField)
+        NewThemeView.dark.apply(descriptionTextView)
+        NewThemeView.dark.apply(titleTextView)
+        NewThemeView.dark.apply(visionTextField)
+
         enableSaveButton(!interactor.isFromNullState)
         originalVisionTitle = title
         originalVisionSubtitle = vision
