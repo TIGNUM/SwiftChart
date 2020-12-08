@@ -424,11 +424,9 @@ public extension AppTextKey {
     static let daily_brief_single_team_invitation_title = AppTextKey("daily_brief.single_team_invitation.title")
     static let daily_brief_single_team_invitation_subtitle = AppTextKey("daily_brief.single_team_invitation.subtitle")
 
-    static let daily_brief_section_team_news_feed_subtitle_for_one_item = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_one_item")
-    static let daily_brief_section_team_news_feed_subtitle_for_multiple_items = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_multiple_items")
+    static let daily_brief_news_feed_body = AppTextKey("daily_brief.news_feed.body")
+    static let daily_brief_news_feed_title = AppTextKey("daily_brief.news_feed.title")
     static let daily_brief_section_team_news_feed_creation_info = AppTextKey("daily_brief.section_team_news_feed.creation_info")
-    static let daily_brief_section_team_news_feed_open_library_button_title = AppTextKey("daily_brief.section_team_news_feed.open_library_button_title")
-    static let daily_brief_section_team_news_feed_library = AppTextKey("daily_brief.section_team_news_feed.library")
 
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
@@ -1224,5 +1222,8 @@ public extension AppTextKey {
 @available(*, unavailable, message: "Unavailable from QOT v3.3.0")
 public extension AppTextKey {
     static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+    static let daily_brief_section_team_news_feed_subtitle_for_one_item = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_one_item")
+    static let daily_brief_section_team_news_feed_subtitle_for_multiple_items = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_multiple_items")
+    static let daily_brief_section_team_news_feed_open_library_button_title = AppTextKey("daily_brief.section_team_news_feed.open_library_button_title")
+    static let daily_brief_section_team_news_feed_library = AppTextKey("daily_brief.section_team_news_feed.library")
 }
-

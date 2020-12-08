@@ -619,6 +619,9 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
             guard let viewModel = bucketItem as? TeamToBeVisionCellViewModel else { break }
             guard let team = viewModel.team else { break }
             router.showTeamTBV(team)
+        case .TEAM_NEWS_FEED:
+            guard let viewModel = bucketItem as? TeamNewsFeedDailyBriefViewModel else { break }
+            router.presentMyLibrary(with: viewModel.team)
         case .TEAM_INVITATION:
             presentTeamPendingInvites()
         case .TEAM_TOBEVISION_GENERATOR_POLL:

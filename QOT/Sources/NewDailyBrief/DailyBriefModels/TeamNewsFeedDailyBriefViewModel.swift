@@ -12,10 +12,6 @@ import qot_dal
 final class TeamNewsFeedDailyBriefViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-//    let type: TeamNewsFeedDailyBriefViewModel.NewsFeedCellType
-//    let subtitle: String?
-//    let actionButtonTitle: String?
-//    let feed: QDMTeamNewsFeed?
     let team: QDMTeam
     var libraryCellViewModel: MyLibraryCellViewModel?
 
@@ -28,8 +24,11 @@ final class TeamNewsFeedDailyBriefViewModel: BaseDailyBriefViewModel {
          domainModel: QDMDailyBriefBucket?) {
         self.team = team
         super.init(domainModel,
+                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team.name ?? ""),
                    title: title,
-                   body: "You have ${numberOfItems} new item(s) shared in ${team} library.",
+                   body: AppTextService.get(.daily_brief_news_feed_body)
+                    .replacingOccurrences(of: "${numberOfItems}", with: String(describing: itemsAdded ?? 1))
+                    .replacingOccurrences(of: "${team}", with: team.name ?? ""),
                    image: imageURL,
                    titleColor: team.teamColor)
     }

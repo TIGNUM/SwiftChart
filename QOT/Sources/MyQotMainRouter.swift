@@ -54,17 +54,6 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         viewController?.pushToStart(childViewController: mySprintsController)
     }
 
-    func presentMyLibrary(with team: QDMTeam?) {
-        let storyboardId = R.storyboard.myLibrary.myLibraryCategoryListViewController.identifier
-        let myLibraryController = R.storyboard.myLibrary()
-            .instantiateViewController(withIdentifier: storyboardId) as? MyLibraryCategoryListViewController
-        if let myLibraryController = myLibraryController {
-            let configurator = MyLibraryCategoryListConfigurator.make(with: team)
-            configurator(myLibraryController)
-            viewController?.pushToStart(childViewController: myLibraryController)
-        }
-    }
-
     func presentMyDataScreen() {
         let storyboardID = R.storyboard.myDataScreen.myDataScreenViewControllerID.identifier
         let myDataScreenViewController = R.storyboard

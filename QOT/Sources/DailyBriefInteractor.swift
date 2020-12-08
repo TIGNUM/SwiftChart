@@ -1262,6 +1262,32 @@ extension DailyBriefInteractor {
         return weatherList
     }
 
+    // MARK: - Team News Feed
+    func createTeamNewsFeedViewModel(with bucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        let libraryFeeds = bucket.teamNewsFeeds?.filter({
+            $0.teamNewsFeedActionType == .STORAGE_ADDED && $0.teamStorage?.isMine == false
+        }) ?? []
+        guard libraryFeeds.isEmpty == false else { return [] }
+        let teamQotIds = Set(libraryFeeds.compactMap({ $0.teamStorage?.teamQotId })).sorted()
+        var models: [BaseDailyBriefViewModel] = []
+        let vision = bucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
+        guard vision != nil else { return models }
+        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? bucket.imageURL : vision?.profileImageResource?.remoteURLString
+        for teamQotId in teamQotIds {
+            let filteredFeeds = libraryFeeds.filter({ $0.teamQotId == teamQotId })
+            guard let firstFeed = filteredFeeds.first, let team = firstFeed.team,
+                firstFeed.teamStorage != nil else {
+                    continue
+            }
+            models.append(TeamNewsFeedDailyBriefViewModel(team: team,
+                                                          title: AppTextService.get(.daily_brief_news_feed_title),
+                                                          itemsAdded: filteredFeeds.count,
+                                                          imageURL: imageURL,
+                                                          domainModel: bucket))
+        }
+        return models
+    }
+
     func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {
         worker.declineTeamInvite(invitation) {(teams) in
         }

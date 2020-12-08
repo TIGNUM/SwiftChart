@@ -1001,9 +1001,7 @@
 		B4F3950B232FF1930007AC51 /* UIStackView+RemoveAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */; };
 		B4F9763A2359EB090071F7EC /* QOTBaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */; };
 		B4F9763C2359EBA20071F7EC /* QOTBaseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */; };
-		B80B2EF124D9B26C00C6FD85 /* DailyBriefInteractor+TeamBuckets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EF024D9B26C00C6FD85 /* DailyBriefInteractor+TeamBuckets.swift */; };
 		B80B2EF424DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */; };
-		B80B2F0224DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B2F0124DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift */; };
 		B80FB0DD23E3200F0040D034 /* Date+EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */; };
 		B816F2BA24E1553300AE90C9 /* QDMUserStorage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */; };
 		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
@@ -2423,9 +2421,7 @@
 		B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveAll.swift"; sourceTree = "<group>"; };
 		B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTBaseHeaderView.swift; sourceTree = "<group>"; };
 		B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QOTBaseHeaderView.xib; sourceTree = "<group>"; };
-		B80B2EF024D9B26C00C6FD85 /* DailyBriefInteractor+TeamBuckets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyBriefInteractor+TeamBuckets.swift"; sourceTree = "<group>"; };
 		B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNewsFeedDailyBriefViewModel.swift; sourceTree = "<group>"; };
-		B80B2F0124DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyVriefViewController+TeamBuckets.swift"; sourceTree = "<group>"; };
 		B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+EventDate.swift"; sourceTree = "<group>"; };
 		B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserStorage+Extension.swift"; sourceTree = "<group>"; };
 		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
@@ -2927,7 +2923,6 @@
 				F96D9F2F24D448F500188482 /* TeamVisionSuggestion */,
 				F96D9F2824D2DAB600188482 /* TeamToBeVision */,
 				F9D2BC1E22D4966B00DBF2CC /* FromTignum */,
-				B80B2EF224DAC4C900C6FD85 /* Team Library Feed */,
 				9C24237022F0817F00B911E6 /* AboutMe */,
 				F9462248230C2C21000A3B42 /* Copyright */,
 				F902CF4D22DE0F8F00FFC836 /* Daily Insights */,
@@ -3170,12 +3165,10 @@
 				3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */,
 				36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */,
 				B855C53923EADAC600A5F6A3 /* DailyBriefInteractor+BucketValidation.swift */,
-				B80B2EF024D9B26C00C6FD85 /* DailyBriefInteractor+TeamBuckets.swift */,
 				36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */,
 				36376603223A4BEC00C2C429 /* DailyBriefPresenter.swift */,
 				36376605223A4BEC00C2C429 /* DailyBriefRouter.swift */,
 				36376607223A4BEC00C2C429 /* DailyBriefViewController.swift */,
-				B80B2F0124DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift */,
 				9CE28A2222E1C78C00013C44 /* DailyBriefSectionModel.swift */,
 				36376604223A4BEC00C2C429 /* DailyBriefWorker.swift */,
 				BB8807282372B627001D61CE /* DailyBriefAtMyBestWorker.swift */,
@@ -4555,6 +4548,7 @@
 		B411ECA225751C5100EB7A78 /* DailyBriefModels */ = {
 			isa = PBXGroup;
 			children = (
+				B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */,
 				F96D9F3224D4494400188482 /* TeamVisionSuggestionModel.swift */,
 				B411ECCD25751E5200EB7A78 /* BaseDailyBriefViewModel.swift */,
 				F96D9F2B24D2DC4D00188482 /* TeamToBeVisionCellViewModel.swift */,
@@ -4890,14 +4884,6 @@
 				B4BCE497255BD01600A1116F /* GlobalConstants.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		B80B2EF224DAC4C900C6FD85 /* Team Library Feed */ = {
-			isa = PBXGroup;
-			children = (
-				B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */,
-			);
-			path = "Team Library Feed";
 			sourceTree = "<group>";
 		};
 		B83B33DA22C21D6E002AFED7 /* BottomNavigation */ = {
@@ -7054,7 +7040,6 @@
 				75423EF822CE242B008EE726 /* TBVRateHistoryPresenter.swift in Sources */,
 				BB15775C233A1D1D00202978 /* ArticleTopNavBar.swift in Sources */,
 				7F6567441FE28FBC00A6CB7F /* Clean.swift in Sources */,
-				B80B2F0224DC256700C6FD85 /* DailyVriefViewController+TeamBuckets.swift in Sources */,
 				754EBEE622C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift in Sources */,
 				36EC23032323F45700DB5696 /* DTSprintRouter.swift in Sources */,
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
@@ -7674,7 +7659,6 @@
 				9C24237622F0869700B911E6 /* AboutMeViewModel.swift in Sources */,
 				ACA4B18E2211D1EA00552A54 /* NSUserActivity+Keys.swift in Sources */,
 				8D8AA76122FDCB6700B59A81 /* RegistrationInterface.swift in Sources */,
-				B80B2EF124D9B26C00C6FD85 /* DailyBriefInteractor+TeamBuckets.swift in Sources */,
 				5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */,
 				5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */,
 				75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */,
