@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NewDailyBriefTableViewSectionHeader: UIView {
+class NewDailyBriefTableViewSectionHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
     let skeletonManager = SkeletonManager()
 

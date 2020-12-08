@@ -16,7 +16,8 @@ enum CTAType {
 final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var detailsMode: Bool?
+    var enabled: Bool
+    var detailsMode: Bool
     var numberOfLinesForBody: Int
     var isInAnimationTransition: Bool?
     var CTAType: ContentFormat
@@ -24,13 +25,16 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
     // MARK: - Init
     init(caption: String?,
          title: String?,
-         body: String?, image: String?,
+         body: String?,
+         image: String?,
+         enabled: Bool = true,
          detailsMode: Bool = false,
          numberOfLinesForBody: Int = 2,
          isInAnimationTransition: Bool = false,
          CTAType: ContentFormat = .unknown,
          domainModel: QDMDailyBriefBucket?) {
         self.detailsMode = detailsMode
+        self.enabled = enabled
         self.numberOfLinesForBody = numberOfLinesForBody
         self.isInAnimationTransition = isInAnimationTransition
         self.CTAType = CTAType

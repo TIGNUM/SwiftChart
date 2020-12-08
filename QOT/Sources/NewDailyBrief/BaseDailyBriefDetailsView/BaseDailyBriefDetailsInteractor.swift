@@ -68,6 +68,11 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             return 1
         case DailyBriefBucketName.MINDSET_SHIFTER:
             return model as? MindsetShifterViewModel != nil ? 2 : 1
+        case DailyBriefBucketName.SPRINT_CHALLENGE:
+            if let sprintModel = model as? SprintChallengeViewModel {
+                return sprintModel.relatedStrategiesModels.count + 1
+            }
+            return 1
         default:
             return 1
         }
@@ -188,6 +193,31 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
 
                 cell.configure(with: fromMyCoachModel.messages[indexPath.row - 1], hideSeparatorView: indexPath.row == fromMyCoachModel.messages.count)
 
+                return cell
+            case DailyBriefBucketName.SPRINT_CHALLENGE:
+                guard let sprintCellModel = model as? SprintChallengeViewModel,
+                      let relatedItem = sprintCellModel.relatedStrategiesModels.at(index: indexPath.row - 1),
+                      let cell = R.nib.sprintChallengeTableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+
+                if relatedItem.videoUrl != nil {
+                    guard let cell = R.nib.sprintChallengeDay0VideoTableViewCell(owner: owner) else {
+                        return UITableViewCell.init()
+                    }
+
+                    cell.configure(model: relatedItem)
+                    return cell
+                }
+
+                cell.configure(title: relatedItem.title,
+                               durationString: relatedItem.durationString,
+                               remoteID: relatedItem.contentId ?? relatedItem.contentItemId,
+                               section: relatedItem.section,
+                               format: relatedItem.format,
+                               numberOfItems: relatedItem.numberOfItems ?? 0)
+                cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+                cell.delegate = owner
                 return cell
             default:
                 return UITableViewCell.init()

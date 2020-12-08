@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Zfv-7c-ikK">
-                        <rect key="frame" x="24" y="30" width="357" height="100"/>
+                        <rect key="frame" x="0.0" y="30" width="405" height="100"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="QHq-4S-avz"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="NyA-vs-UEG">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="NyA-vs-UEG" customClass="MyCollectionViewFlowLayout" customModule="TIGNUM_X" customModuleProvider="target">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -32,8 +32,8 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Zfv-7c-ikK" firstAttribute="leading" secondItem="2ig-6A-7QJ" secondAttribute="leading" constant="24" id="650-eC-bqo"/>
-                    <constraint firstAttribute="trailing" secondItem="Zfv-7c-ikK" secondAttribute="trailing" constant="24" id="MhS-KJ-r9P"/>
+                    <constraint firstItem="Zfv-7c-ikK" firstAttribute="leading" secondItem="2ig-6A-7QJ" secondAttribute="leading" id="650-eC-bqo"/>
+                    <constraint firstAttribute="trailing" secondItem="Zfv-7c-ikK" secondAttribute="trailing" id="MhS-KJ-r9P"/>
                     <constraint firstAttribute="bottom" secondItem="Zfv-7c-ikK" secondAttribute="bottom" priority="998" constant="20" id="WIl-Z8-qo2"/>
                     <constraint firstItem="Zfv-7c-ikK" firstAttribute="top" secondItem="2ig-6A-7QJ" secondAttribute="top" priority="999" constant="30" id="pK3-ZQ-Xq8"/>
                 </constraints>

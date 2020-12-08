@@ -11,13 +11,13 @@ PODS:
     - Airship/Core
   - Airship/MessageCenter (14.1.3):
     - Airship/Core
-  - AppCenter (3.3.4):
-    - AppCenter/Analytics (= 3.3.4)
-    - AppCenter/Crashes (= 3.3.4)
-  - AppCenter/Analytics (3.3.4):
+  - AppCenter (4.0.0):
+    - AppCenter/Analytics (= 4.0.0)
+    - AppCenter/Crashes (= 4.0.0)
+  - AppCenter/Analytics (4.0.0):
     - AppCenter/Core
-  - AppCenter/Core (3.3.4)
-  - AppCenter/Crashes (3.3.4):
+  - AppCenter/Core (4.0.0)
+  - AppCenter/Crashes (4.0.0):
     - AppCenter/Core
   - Buglife (2.10.1)
   - DifferenceKit (1.1.5):
@@ -28,9 +28,9 @@ PODS:
     - DifferenceKit/Core
   - JTAppleCalendar (7.1.6)
   - KeychainAccess (4.2.1)
-  - Kingfisher (5.15.7):
-    - Kingfisher/Core (= 5.15.7)
-  - Kingfisher/Core (5.15.7)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
   - qot_dal (1.0):
     - KeychainAccess
     - RealmSwift (~> 10.0.0)
@@ -88,7 +88,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: f2190c2608b24911f5357de0c3d0f68cc3bf86bc
+    :commit: 3154bae547cd3ba5ff80864140b6d498020c1269
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -96,12 +96,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Airship: bb8fc010450ebb2c33314af9761bb79df4950dbc
-  AppCenter: 0487be185c038ed2ecc5ed38219af1dcd280af23
+  AppCenter: 51351e0121e40ba75e28ecb7de5c2e69d480df5e
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
-  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   qot_dal: 216928abdf5f62ca79cd77f0e3b4b95847982683
   R.swift: 4170fb7161c67be3bc1a847040b79367d69c419f
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962

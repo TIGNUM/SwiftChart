@@ -14,16 +14,10 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var arrowButton: UIButton!
+    let skeletonManager = SkeletonManager()
 
     private static let sizingCell = UINib(nibName: "NewDailyBriefGetStartedCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyBriefGetStartedCollectionViewCell
-
-    // MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        upperContentView.layer.borderWidth = 0.5
-        upperContentView.layer.borderColor = UIColor.lightGray.cgColor
-    }
-
+    
     // MARK: - Actions
     @IBAction func didTapArrowButton(_ sender: Any) {
 
@@ -31,8 +25,18 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
 
     // MARK: - Public
     public func configure(with viewModel: NewDailyBriefGetStartedModel?) {
-        title.text = viewModel?.title
-        imageView.image = UIImage.init(named: viewModel?.image ?? "")
+        guard let model = viewModel else {
+            skeletonManager.addOtherView(upperContentView)
+            skeletonManager.addTitle(title)
+            arrowButton.isHidden = true
+            return
+        }
+        skeletonManager.hide()
+        upperContentView.layer.borderWidth = 0.5
+        upperContentView.layer.borderColor = UIColor.lightGray.cgColor
+        arrowButton.isHidden = false
+        title.text = model.title
+        imageView.image = UIImage.init(named: model.image ?? "")
     }
 
     public static func height(for viewModel: NewDailyBriefGetStartedModel, forWidth width: CGFloat) -> CGFloat {

@@ -990,6 +990,8 @@
 		B4BCE4A8255BD01600A1116F /* DismissCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE49D255BD01600A1116F /* DismissCardAnimator.swift */; };
 		B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */; };
 		B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */; };
+		B4D2E286257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift */; };
+		B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
 		B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */; };
 		B4ECF255235DB81E00529C66 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */; };
@@ -1367,8 +1369,6 @@
 		F9F4707D2510C51D002331F4 /* TeamToBeVisionOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9F4707C2510C51D002331F4 /* TeamToBeVisionOptions.storyboard */; };
 		F9F4707F2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4707E2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift */; };
 		F9F470812510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F470802510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib */; };
-		F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70C1322F9A26200E85BF3 /* SprintChallengeCell.swift */; };
-		F9F70C1622F9A2D300E85BF3 /* SprintChallengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F70C1522F9A2D300E85BF3 /* SprintChallengeCell.xib */; };
 		F9F70C1822F9A31E00E85BF3 /* SprintChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F70C1722F9A31E00E85BF3 /* SprintChallengeViewModel.swift */; };
 		F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */; };
 		F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */; };
@@ -2414,6 +2414,8 @@
 		B4BCE49D255BD01600A1116F /* DismissCardAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissCardAnimator.swift; sourceTree = "<group>"; };
 		B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQOTAdminEditSprintsDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeDay0VideoTableViewCell.swift; sourceTree = "<group>"; };
+		B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeDay0VideoTableViewCell.xib; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleContactSupportTableViewCell.xib; sourceTree = "<group>"; };
 		B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
@@ -2797,8 +2799,6 @@
 		F9F4707C2510C51D002331F4 /* TeamToBeVisionOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamToBeVisionOptions.storyboard; sourceTree = "<group>"; };
 		F9F4707E2510E72F002331F4 /* TeamToBeVisionOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionOptionTableViewCell.swift; sourceTree = "<group>"; };
 		F9F470802510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamToBeVisionOptionTableViewCell.xib; sourceTree = "<group>"; };
-		F9F70C1322F9A26200E85BF3 /* SprintChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeCell.swift; sourceTree = "<group>"; };
-		F9F70C1522F9A2D300E85BF3 /* SprintChallengeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeCell.xib; sourceTree = "<group>"; };
 		F9F70C1722F9A31E00E85BF3 /* SprintChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeViewModel.swift; sourceTree = "<group>"; };
 		F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableViewCell.swift; sourceTree = "<group>"; };
 		F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableViewCell.xib; sourceTree = "<group>"; };
@@ -2938,7 +2938,6 @@
 				F98E2AC622C22037002550FF /* GoodToKnow */,
 				F967269922BCD91A00B63FD7 /* RandomQuestion */,
 				9C24237A22F093E700B911E6 /* SolveReminder  */,
-				F9F70C1222F9A24000E85BF3 /* SprintChallenge */,
 				F9EB5E6922C104A00085A03F /* ThoughtsToPonder */,
 				B49EACCB2328EA47006BA566 /* Weather */,
 				F96A4BCF22C4F16D0021C415 /* WhatsHotLatest */,
@@ -4576,6 +4575,7 @@
 				B411ECAF25751C5100EB7A78 /* MeAtMyBestEmptyViewModel.swift */,
 				B411ECB025751C5100EB7A78 /* Level5ViewModel.swift */,
 				B411ECB125751C5100EB7A78 /* ImpactReadinessScoreViewModel.swift */,
+				F9F70C1722F9A31E00E85BF3 /* SprintChallengeViewModel.swift */,
 			);
 			path = DailyBriefModels;
 			sourceTree = "<group>";
@@ -4695,6 +4695,10 @@
 				B4792C9F256BABF200D24E7F /* Level5TableViewCell.xib */,
 				B4792D38256CFB4000D24E7F /* FromMyCoachTableViewCell.swift */,
 				B4792D46256CFB5900D24E7F /* FromMyCoachTableViewCell.xib */,
+				B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib */,
+				B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift */,
+				F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */,
+				F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */,
 			);
 			path = CustomDetailsCells;
 			sourceTree = "<group>";
@@ -5971,18 +5975,6 @@
 			name = AdminOptions;
 			sourceTree = "<group>";
 		};
-		F9F70C1222F9A24000E85BF3 /* SprintChallenge */ = {
-			isa = PBXGroup;
-			children = (
-				F9F70C1322F9A26200E85BF3 /* SprintChallengeCell.swift */,
-				F9F70C1522F9A2D300E85BF3 /* SprintChallengeCell.xib */,
-				F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */,
-				F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */,
-				F9F70C1722F9A31E00E85BF3 /* SprintChallengeViewModel.swift */,
-			);
-			name = SprintChallenge;
-			sourceTree = "<group>";
-		};
 		F9FEA8CD25344F34009BF786 /* OpenTBVPoll */ = {
 			isa = PBXGroup;
 			children = (
@@ -6411,6 +6403,7 @@
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
+				B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
@@ -6506,7 +6499,6 @@
 				DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */,
 				386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */,
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
-				F9F70C1622F9A2D300E85BF3 /* SprintChallengeCell.xib in Resources */,
 				AC103E532289621900F426F0 /* TriggerTableViewCell.xib in Resources */,
 				3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */,
 				B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */,
@@ -7036,6 +7028,7 @@
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
 				B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */,
 				367A58652326B85B0089A082 /* DTWorker.swift in Sources */,
+				B4D2E286257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift in Sources */,
 				F95B923A228EAE96000DEAEC /* ToolsInteractor.swift in Sources */,
 				F99DF6082292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift in Sources */,
 				386C279F2418EBFF00184EC9 /* ResultsPrepareInteractor.swift in Sources */,
@@ -7532,7 +7525,6 @@
 				363B9CC9232D0B7D00C1A29E /* WorkerTBV.swift in Sources */,
 				B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */,
 				F947EA252521F4DA004C7076 /* BarChartView.swift in Sources */,
-				F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
 				9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */,
 				B4AB48D5230D3A9B003B3C1F /* MyDataChartTableViewCell.swift in Sources */,
