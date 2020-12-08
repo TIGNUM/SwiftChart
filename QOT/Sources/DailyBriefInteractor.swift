@@ -193,6 +193,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var sectionDataList: [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>] = []
         sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: 0),
                                                  elements: []))
+        sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: 1),
+                                                 elements: []))
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
@@ -347,7 +349,7 @@ extension DailyBriefInteractor {
                 dailyBriefViewModels.append(contentsOf: strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket))
             case .SPRINT_CHALLENGE:
                 guard bucket.sprint != nil else { break }
-                let sprints = dailyBriefViewModels.append(contentsOf: strongSelf.createSprintChallenge(bucket: bucket))
+                dailyBriefViewModels.append(contentsOf: strongSelf.createSprintChallenge(bucket: bucket))
             case .ABOUT_ME:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createAboutMe(aboutMeBucket: bucket))
             case .SOLVE_REFLECTION:

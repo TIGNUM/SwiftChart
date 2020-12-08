@@ -81,7 +81,11 @@ extension DailyBriefViewController {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor.bucketViewModelNew()?.at(index: section)?.elements.count ?? 0
+        if interactor.bucketViewModelNew()?.at(index: section)?.model.title == nil {
+            return 1
+        } else {
+            return interactor.bucketViewModelNew()?.at(index: section)?.elements.count ?? 0
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -123,9 +127,15 @@ extension DailyBriefViewController {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
         var cellModels: [BaseDailyBriefViewModel] = []
 
-        guard let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPath.section),
-                let domainModel = bucketModel.elements[indexPath.row].domainModel else {
-            cell.configure(with: nil)
+        guard indexPath.row < interactor.bucketViewModelNew()?.at(index: indexPath.section)?.elements.count ?? 0,
+              let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPath.section),
+              let domainModel = bucketModel.elements[indexPath.row].domainModel else {
+            switch indexPath.section {
+            case 0:
+                cell.configure(with: nil, skeletonMode: .getStarted)
+            default:
+                cell.configure(with: nil)
+            }
             return cell
         }
 
