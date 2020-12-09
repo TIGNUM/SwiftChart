@@ -44,7 +44,8 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         let lowItems = viewModel.mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? "" } ?? []
         let highTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high).lowercased().capitalizingFirstLetter()
         let highItems = viewModel.mindsetShifter?.highPerformanceContentItems.compactMap { $0.valueText } ?? []
-        ThemableButton.newBlueButton.apply(seeMyPlanButton, title: AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_button_title))
+        seeMyPlanButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_button_title), for: .normal)
+        ThemeButton.whiteRounded.apply(seeMyPlanButton)
 
         ThemeText.tbvQuestionLow.apply(lowTitle, to: lowTitleLabel)
         ThemeText.tbvQuestionLow.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowFirstStatement)
