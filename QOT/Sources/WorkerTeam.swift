@@ -388,9 +388,7 @@ extension WorkerTeam {
                 // TODO handle error
             }
             var closedPolls = allPolls?.filter { $0.open == false &&
-                $0.qotTeamToBeVisionTrackers?.isEmpty == false &&
-                $0.averageValue != nil &&
-                $0.feedback != nil } ?? []
+                $0.qotTeamToBeVisionTrackers?.isEmpty == false } ?? []
             closedPolls.sort(by: { $0.createdAt ?? Date() < $1.createdAt ?? Date() })
             var lastPolls: [QDMTeamToBeVisionTrackerPoll] = []
 
@@ -498,6 +496,11 @@ extension WorkerTeam {
     // If user tries to vote on the poll which user alreay voted, it will return 'UserDidVoteTeamToBeVisionTrackerPoll'
     func voteTeamToBeVisionTrackerPoll(_ votes: [QDMTeamToBeVisionTrackerVote],
                                        _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        guard !votes.isEmpty else {
+            completion(nil)
+            return
+        }
+
         TeamService.main.voteTeamToBeVisionTrackerPoll(votes) { (poll, error) in
             if let error = error {
                 log("Error voteTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)

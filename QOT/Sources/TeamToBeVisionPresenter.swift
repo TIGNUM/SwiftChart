@@ -58,8 +58,12 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
                                                                           tbv: teamToBeVision))
     }
 
-    func hideTrends(_ hide: Bool) {
-        viewController?.hideTrends(hide)
+    func hideTrends() {
+        viewController?.hideTrends()
+    }
+
+    func showTrends() {
+        viewController?.showTrends()
     }
 
     func hideSelectionBar(_ hide: Bool) {
