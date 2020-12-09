@@ -216,10 +216,12 @@ extension DailyBriefViewController {
 
         case .TEAM_TOBEVISION_TRACKER_POLL?:
             if (bucketItem as? RateOpenModel) != nil {
+                let numberOfLines = 7
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
+                                                                numberOfLinesForBody: numberOfLines,
                                                                 titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
             } else if (bucketItem as? RatingFeedbackModel ) != nil,
@@ -602,9 +604,13 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
         case .TEAM_INVITATION:
             presentTeamPendingInvites()
         case .TEAM_TOBEVISION_GENERATOR_POLL:
-            guard let pollModel = dailyBriefCellViewModel as? PollOpenModel else { return }
-            guard let team = pollModel.team else { return }
+            guard let pollModel = dailyBriefCellViewModel as? PollOpenModel,
+                  let team = pollModel.team else { return }
             router.showExplanation(team, type: .tbvPollUser)
+        case .TEAM_TOBEVISION_TRACKER_POLL:
+            guard let rateModel = dailyBriefCellViewModel as? RateOpenModel,
+                  let team = rateModel.team else { return }
+            router.showExplanation(team, type: .ratingUser)
         case .SPRINT_CHALLENGE:
             guard let sprintCollectionCellModel = dailyBriefCellViewModel as? SprintsCollectionViewModel,
                   let sprintCellModel = sprintCollectionCellModel.items?[indexPath.item] else { return }

@@ -21,8 +21,8 @@ final class RateOpenModel: BaseDailyBriefViewModel {
         self.ownerEmail = ownerEmail
         super.init(domainModel,
                    caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? ""),
-                   title: "Team ToBeVision rating",
-                   body: (ownerEmail ?? "") + " is requesting blablabla",
+                   title: AppTextService.get(.daily_brief_open_rate_title),
+                   body: AppTextService.get(.daily_brief_open_rate_body).replacingOccurrences(of: "${admin}", with: ownerEmail ?? ""),
                    image: imageURL,
                    titleColor: team?.teamColor)
     }

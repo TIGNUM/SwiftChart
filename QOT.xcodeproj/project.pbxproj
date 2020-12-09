@@ -4548,6 +4548,7 @@
 		B411ECA225751C5100EB7A78 /* DailyBriefModels */ = {
 			isa = PBXGroup;
 			children = (
+				F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */,
 				B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */,
 				F96D9F3224D4494400188482 /* TeamVisionSuggestionModel.swift */,
 				B411ECCD25751E5200EB7A78 /* BaseDailyBriefViewModel.swift */,
@@ -5980,7 +5981,6 @@
 			children = (
 				F9FEA94B2534A6BB009BF786 /* RatingFeedbackCell.swift */,
 				F9FEA9532534A6CB009BF786 /* RatingFeedbackCell.xib */,
-				F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */,
 			);
 			name = RatingFeedback;
 			sourceTree = "<group>";
