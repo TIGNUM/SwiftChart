@@ -42,7 +42,7 @@ final class NotificationBanner: UIView {
             isEnabled.toggle()
             let frame = self.frame
             self.frame = CGRect(x: 0,
-                                y: frame.origin.y + frame.height/2,
+                                y: frame.origin.y + frame.height,
                                 width: UIScreen.main.bounds.width,
                                 height: frame.height)
             self.alpha = 0
