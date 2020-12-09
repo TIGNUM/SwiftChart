@@ -29,6 +29,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
          image: String?,
          enabled: Bool = true,
          detailsMode: Bool = false,
+         attributedTitle: NSAttributedString? = nil,
          numberOfLinesForBody: Int = 2,
          isInAnimationTransition: Bool = false,
          CTAType: ContentFormat = .unknown,
@@ -40,6 +41,9 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         self.isInAnimationTransition = isInAnimationTransition
         self.CTAType = CTAType
         super.init(domainModel, caption: caption, title: title, body: body, image: image, titleColor: titleColor)
+        if let attrTitle = attributedTitle {
+            self.attributedTitle = attrTitle
+        }
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

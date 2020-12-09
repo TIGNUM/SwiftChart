@@ -122,12 +122,13 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return cell
             default:
                 let standardModel = NewDailyBriefStandardModel.init(caption: model.caption,
-                                                             title: model.title,
-                                                             body: model.body,
-                                                             image: model.image,
-                                                             detailsMode: true,
-                                                             titleColor: model.titleColor,
-                                                             domainModel: model.domainModel)
+                                                                    title: model.title,
+                                                                    body: model.body,
+                                                                    image: model.image,
+                                                                    detailsMode: true,
+                                                                    attributedTitle: model.attributedTitle,
+                                                                    titleColor: model.titleColor,
+                                                                    domainModel: model.domainModel)
                 cell.configure(with: [standardModel])
                 cell.collectionView.contentInsetAdjustmentBehavior = .never
                 return cell

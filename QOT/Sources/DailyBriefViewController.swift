@@ -158,30 +158,31 @@ extension DailyBriefViewController {
             if let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
                 let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? 0 : 2
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
-                                                                title: bucketItem.title,
-                                                                body: bucketItem.body,
-                                                                image: bucketItem.image,
-                                                                numberOfLinesForBody: numberOfLines,
-                                                                titleColor: bucketItem.titleColor,
-                                                                domainModel: bucketItem.domainModel))
+                                                                  title: bucketItem.title,
+                                                                  body: bucketItem.body,
+                                                                  image: bucketItem.image,
+                                                                  attributedTitle: impactReadinessCellViewModel.attributedTitle,
+                                                                  numberOfLinesForBody: numberOfLines,
+                                                                  titleColor: bucketItem.titleColor,
+                                                                  domainModel: bucketItem.domainModel))
 
             } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil {
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
-                                                                title: bucketItem.title,
-                                                                body: bucketItem.body,
-                                                                image: bucketItem.image,
-                                                                titleColor: bucketItem.titleColor,
-                                                                domainModel: bucketItem.domainModel))
+                                                                  title: bucketItem.title,
+                                                                  body: bucketItem.body,
+                                                                  image: bucketItem.image,
+                                                                  titleColor: bucketItem.titleColor,
+                                                                  domainModel: bucketItem.domainModel))
             }
         case .LEADERS_WISDOM?:
             if let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel {
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
-                                                                title: bucketItem.title,
-                                                                body: bucketItem.body,
-                                                                image: bucketItem.image,
-                                                                CTAType: leadersWisdomViewModel.format,
-                                                                titleColor: bucketItem.titleColor,
-                                                                domainModel: bucketItem.domainModel))
+                                                                  title: bucketItem.title,
+                                                                  body: bucketItem.body,
+                                                                  image: bucketItem.image,
+                                                                  CTAType: leadersWisdomViewModel.format,
+                                                                  titleColor: bucketItem.titleColor,
+                                                                  domainModel: bucketItem.domainModel))
             }
         case .SOLVE_REFLECTION?:
             if (bucketItem as? SolveReminderCellViewModel) != nil {
