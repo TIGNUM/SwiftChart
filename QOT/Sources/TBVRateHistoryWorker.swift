@@ -11,12 +11,14 @@ import qot_dal
 
 final class TBVRateHistoryWorker: WorkerTeam {
 
-    lazy var isDataType = displayType == .data
     lazy var title = isDataType ? AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_header_title) :
                                   AppTextService.get(.my_qot_my_tbv_tbv_tracker_result_section_header_title)
-    lazy var teamHeader = AppTextService.get(.my_x_team_tbv_tracker_data_header_title)
+
     lazy var subtitle = isDataType ? AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_header_subtitle) :
                                      AppTextService.get(.my_qot_my_tbv_tbv_tracker_result_section_header_body)
+
+    lazy var isDataType = displayType == .data
+    lazy var teamHeader = AppTextService.get(.my_x_team_tbv_tracker_data_header_title)
     lazy var teamSubtitle = AppTextService.get(.my_x_my_tbv_tbv_tracker_data_section_team_header)
     lazy var teamTitle = AppTextService.get(.my_x_team_tbv_tracker_data_title)
     lazy var graphTitle = AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_title)
