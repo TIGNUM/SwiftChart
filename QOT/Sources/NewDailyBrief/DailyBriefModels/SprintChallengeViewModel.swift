@@ -39,6 +39,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         var link: QDMAppLink?
         var videoThumbnailImageUrl: String?
         var videoUrl: String?
+        var sprintDay: String?
 
         init() {}
 
@@ -51,7 +52,8 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
              _ numberOfItems: Int?,
              _ link: QDMAppLink?,
              _ videoThumbnailImageUrl: String? = nil,
-             _ videoUrl: String? = nil) {
+             _ videoUrl: String? = nil,
+             _ sprintDay: String?) {
             self.title = title
             self.durationString = durationString
             self.contentId = contentId
@@ -62,6 +64,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
             self.link = link
             self.videoThumbnailImageUrl = videoThumbnailImageUrl
             self.videoUrl = videoUrl
+            self.sprintDay = sprintDay
         }
     }
 

@@ -47,6 +47,12 @@ final class DailyBriefWorker: WorkerTeam {
         })
     }
 
+    func getContent(id: Int, completion: @escaping (QDMContentCollection?) -> Void) {
+        ContentService.main.getContentCollectionById(id) { (contentCollection) in
+            completion(contentCollection)
+        }
+    }
+
     func getDailyBriefClusterConfig(completion: @escaping ([QDMDailyBriefClusterConfig]) -> Void) {
         DailyBriefService.main.getDailyBriefClusterConfig { (config, error) in
             if let error = error {
