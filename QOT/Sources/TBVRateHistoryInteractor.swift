@@ -30,7 +30,11 @@ final class TBVRateHistoryInteractor {
 
     func viewDidLoad() {
         worker.getData { [weak self] (report) in
-            self?.presenter.setupView(with: report)
+            if let report = report {
+                self?.presenter.setupView(with: report)
+            } else {
+                self?.presenter.showErrorNoReportAvailable()
+            }
         }
     }
 }
@@ -99,7 +103,11 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
         switch result.dataType {
         case .TEAM_TO_BE_VISION_TRACKER_POLL:
             worker.getData { [weak self] (report) in
-                self?.presenter.setupView(with: report)
+                if let report = report {
+                    self?.presenter.setupView(with: report)
+                } else {
+                    self?.presenter.showErrorNoReportAvailable()
+                }
             }
         default: break
         }

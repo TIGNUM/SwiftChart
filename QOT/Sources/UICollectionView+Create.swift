@@ -58,6 +58,6 @@ extension UICollectionView {
             return (
                 frame.height
                 - (layout.minimumLineSpacing + layout.sectionInset.top + layout.sectionInset.bottom) * 2
-                - ThemeView.level1.headerBarHeight)
+                    - .HeaderBarHeight)
     }
 }

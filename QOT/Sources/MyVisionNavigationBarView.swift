@@ -20,7 +20,7 @@ final class MyVisionNavigationBarView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .carbon
+        NewThemeView.dark.apply(self)
         title.text = AppTextService.get(.my_qot_my_tbv_section_navigation_bar_title)
     }
 

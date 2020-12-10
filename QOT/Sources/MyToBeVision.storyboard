@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D5c-1q-rLE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D5c-1q-rLE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -128,7 +128,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tbv_edit_toolbar_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="avt-4O-Pjt" userLabel="Fade View">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_dark" translatesAutoresizingMaskIntoConstraints="NO" id="avt-4O-Pjt" userLabel="Fade View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SR8-I3-nOj">
@@ -994,11 +994,11 @@
         <image name="arrowFront" width="16" height="16"/>
         <image name="circlesWarning" width="232" height="232"/>
         <image name="close" width="16" height="16"/>
+        <image name="gradient_dark" width="375" height="100"/>
         <image name="ic_warning_circle" width="16" height="16"/>
         <image name="ic_warning_circles" width="136" height="136"/>
         <image name="photo" width="16" height="16"/>
         <image name="share" width="16" height="16"/>
-        <image name="tbv_edit_toolbar_gradient" width="375" height="100"/>
         <image name="teamTBVPlaceholder" width="375" height="332"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

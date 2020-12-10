@@ -74,6 +74,7 @@ extension CGFloat.Radius {
 
 extension CGFloat.View.Height {
     static let Default: CGFloat = 40
+    static let HeaderBarHeight: CGFloat = 44
     static let ParentNode: CGFloat = 64
     static let ChildNode: CGFloat = 95
     static let Footer: CGFloat = 20

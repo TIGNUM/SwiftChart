@@ -24,7 +24,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
 
     private lazy var headerSize: CGSize = {
         return CGSize(width: collectionView.updatedCollectionViewHeaderWidth(),
-                      height: ThemeView.level1.headerBarHeight)
+                      height: .HeaderBarHeight)
     }()
 
     private lazy var teamHeaderSize: CGSize = {

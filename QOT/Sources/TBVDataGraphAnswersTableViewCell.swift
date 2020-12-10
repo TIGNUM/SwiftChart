@@ -33,7 +33,7 @@ private extension TBVDataGraphAnswersTableViewCell {
         let sortedDict = sentence.last3Ratings.sorted(by: { $0.key < $1.key })
         var index = 0
 
-        for (date, rating) in sortedDict {  
+        for (date, rating) in sortedDict where !rating.isNaN {
             let isLow = lowRange.contains(Int(rating))
             let text = rating <= 0 ? "-" : String(describing: rating)
             var theme: ThemeText = .tbvTrackerRatingDigits(isLow)

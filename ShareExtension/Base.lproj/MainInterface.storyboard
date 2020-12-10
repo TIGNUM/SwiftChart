@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -113,6 +113,7 @@
                                                 </button>
                                                 <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5L4-X3-P4V">
                                                     <rect key="frame" x="12" y="72.5" width="402" height="1"/>
+                                                    <viewLayoutGuide key="safeArea" id="LmK-cP-IyG"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="6GX-mC-j4H"/>
@@ -120,7 +121,6 @@
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="fzv-NQ-ogw"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="sbq-d0-eBV"/>
                                                     </constraints>
-                                                    <viewLayoutGuide key="safeArea" id="LmK-cP-IyG"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -157,14 +157,14 @@
                                     <outlet property="delegate" destination="yfg-Pb-uhD" id="FRO-d8-fRD"/>
                                 </connections>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightGrAdient" translatesAutoresizingMaskIntoConstraints="NO" id="FgR-1s-pLJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_dark" translatesAutoresizingMaskIntoConstraints="NO" id="FgR-1s-pLJ">
                                 <rect key="frame" x="0.0" y="762" width="414" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="YQj-8G-Zr5"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBq-KJ-BOY">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBq-KJ-BOY">
                                 <rect key="frame" x="334" y="796" width="56" height="38"/>
                                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="14" minY="10" maxX="14" maxY="10"/>
@@ -176,6 +176,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="4bH-06-o9a"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ub3-Ni-sD8" firstAttribute="bottom" secondItem="4bH-06-o9a" secondAttribute="bottom" constant="-30" id="1Io-wd-fNh"/>
@@ -188,7 +189,6 @@
                             <constraint firstItem="FgR-1s-pLJ" firstAttribute="leading" secondItem="SZe-Qh-Y3l" secondAttribute="leading" id="sQA-FG-yKs"/>
                             <constraint firstItem="4bH-06-o9a" firstAttribute="trailing" secondItem="aBq-KJ-BOY" secondAttribute="trailing" constant="24" id="u32-Q1-NHf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="4bH-06-o9a"/>
                     </view>
                     <navigationItem key="navigationItem" id="E1x-w2-qCv"/>
                     <connections>
@@ -202,8 +202,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gradient_dark" width="375" height="100"/>
         <image name="ic_radio_selected" width="32" height="32"/>
         <image name="ic_radio_unselected" width="32" height="32"/>
-        <image name="lightGrAdient" width="375" height="153"/>
     </resources>
 </document>

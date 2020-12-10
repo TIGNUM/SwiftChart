@@ -23,6 +23,7 @@ final class KeyboardInputView: UIView {
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        NewThemeView.dark.apply(self)
         rightButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         leftButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         updateRightButton(false)

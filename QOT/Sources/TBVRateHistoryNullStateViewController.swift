@@ -37,6 +37,7 @@ final class TBVRateHistoryNullStateViewController: BaseViewController, ScreenZLe
         getVisionTracks()
         refreshBottomNavigationItems()
         setupEmptySate()
+        setupThemeView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -72,6 +73,10 @@ private extension TBVRateHistoryNullStateViewController {
             to: titleLabel)
         ThemeText.tbvBody.apply(AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_null_state_section_my_tbv_title_description),
             to: titleDescriptionLabel)
+    }
+
+    func setupThemeView() {
+        NewThemeView.dark.apply(view)
     }
 }
 

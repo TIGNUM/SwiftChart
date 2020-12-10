@@ -35,44 +35,58 @@ final class TeamToBeVisionInteractor {
     func viewDidLoad() {
         presenter.setupView()
         didUpdateTBVRelatedData()
-
-        let notificationCenter = NotificationCenter.default
-        downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization,
-                                                          object: nil,
-                                                          queue: nil) { [weak self ] (notification) in
-            guard let strongSelf = self else {
-                return
-            }
-            guard let syncResult = notification.object as? SyncResultContext,
-                  syncResult.syncRequestType == .DOWN_SYNC,
-                  syncResult.hasUpdatedContent else { return }
-            switch syncResult.dataType {
-            case .TEAM_TO_BE_VISION:
-                strongSelf.didUpdateTBVRelatedData()
-            default:
-                break
-            }
-        }
-        upSyncObserver = notificationCenter.addObserver(forName: .requestSynchronization,
-                                                        object: nil,
-                                                        queue: nil) { [weak self ] (notification) in
-            guard let strongSelf = self else {
-                return
-            }
-            guard let syncResult = notification.object as? SyncRequestContext else { return }
-            if syncResult.dataType == .TEAM_TO_BE_VISION,
-               syncResult.syncRequestType == .UP_SYNC {
-                strongSelf.didUpdateTBVRelatedData()
-            }
-        }
+        addSynchronizationObservers()
     }
 
     func viewWillAppear() {
         didUpdateTBVRelatedData()
         presenter.setSelectionBarButtonItems()
     }
+}
 
-    private func didUpdateTBVRelatedData() {
+private extension TeamToBeVisionInteractor {
+    func addSynchronizationObservers() {
+        addDownSyncObserver()
+        addUpSyncObserver()
+    }
+
+    func addDownSyncObserver() {
+        downSyncObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                  object: nil,
+                                                                  queue: nil) { [weak self] (notification) in
+            self?.handleDownSyncNotificationResult(notification)
+        }
+    }
+
+    func addUpSyncObserver() {
+        upSyncObserver = NotificationCenter.default.addObserver(forName: .requestSynchronization,
+                                                                object: nil,
+                                                                queue: nil) { [weak self] (notification) in
+            self?.handleUpSyncNotificationResult(notification)
+        }
+    }
+
+    func handleDownSyncNotificationResult(_ notification: Notification) {
+        guard let syncResult = notification.object as? SyncResultContext,
+              syncResult.syncRequestType == .DOWN_SYNC,
+              syncResult.hasUpdatedContent else { return }
+        switch syncResult.dataType {
+        case .TEAM_TO_BE_VISION:
+            didUpdateTBVRelatedData()
+        default:
+            break
+        }
+    }
+
+    func handleUpSyncNotificationResult(_ notification: Notification) {
+        guard let syncResult = notification.object as? SyncRequestContext else { return }
+        if syncResult.dataType == .TEAM_TO_BE_VISION,
+           syncResult.syncRequestType == .UP_SYNC {
+            didUpdateTBVRelatedData()
+        }
+    }
+
+    func didUpdateTBVRelatedData() {
         let dispatchGroup = DispatchGroup()
         var tmpTeamTBV: QDMTeamToBeVision?
         var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
@@ -133,8 +147,12 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                 self?.presenter.hideSelectionBar(hidden)
             }
         }
-        isTrendsHidden { [weak self] (hide) in
-            self?.presenter.hideTrends(hide)
+        isTrendsHidden { [weak self] (isHidden) in
+            if isHidden == true {
+                self?.presenter.hideTrends()
+            } else {
+                self?.presenter.showTrends()
+            }
         }
 
     }

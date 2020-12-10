@@ -25,8 +25,6 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
     private var shareExtensionStrings : ExtensionModel.ShareExtensionStrings?
     private var rowsForSelected: [Int]? = []
     @IBOutlet private weak var addButton: UIButton!
-    private let accent = UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
-    private let carbon = UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 1)
     private var addPressed = false
 
     // MARK: - Init
@@ -40,7 +38,7 @@ final class CustomizedShareViewController: UIViewController,  UITableViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = carbon
+        view.backgroundColor = .black
         fetchData()
         setupTableview()
         setupView()
@@ -163,16 +161,16 @@ private extension CustomizedShareViewController{
         let backButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 15, height: 15)))
         backButton.setImage(closeIcon, for: .normal)
         backButton.addTarget(self, action: #selector(UIWebView.goBack), for: .touchUpInside)
-        backButton.tintColor = accent
+        backButton.tintColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        addButton.layer.borderColor = accent.withAlphaComponent(0.6).cgColor
+        addButton.layer.borderColor = UIColor.white.withAlphaComponent(0.6).cgColor
         addButton.layer.cornerRadius = addButton.frame.size.height/2
         addButton.layer.borderWidth = 1
     }
 
     func setupNavBar() {
         let navBar = navigationController?.navigationBar
-        navBar?.barTintColor = carbon
+        navBar?.barTintColor = .black
         navBar?.isTranslucent = false
         navBar?.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBar?.topItem?.title = shareExtensionStrings?.addTo

@@ -178,7 +178,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case Knowing.Section.header.rawValue:
-            return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
+            return CGSize(width: view.frame.width, height: .HeaderBarHeight)
         case Knowing.Section.strategies.rawValue:
             if indexPath.item == 0 {
                 return CGSize(width: view.frame.width, height: 96)

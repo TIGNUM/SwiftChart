@@ -126,7 +126,7 @@ private extension DTQuestionnaireViewController {
 
     func attachBottomShadow() {
         let isDark = interactor.isDark
-        let imageView = UIImageView(image: isDark ? R.image.darkBottomGradient() : R.image.lightBottomGradient())
+        let imageView = UIImageView(image: isDark ? R.image.gradient_dark() : R.image.gradient_light())
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
