@@ -1059,7 +1059,6 @@ extension DailyBriefInteractor {
             return createSprintChallengeList
         }
         var relatedItemsModels: [SprintChallengeViewModel.RelatedItemsModel] = []
-        let dispatchGroup = DispatchGroup()
         for index in 0...5 {
             let searchTag: String = "SPRINT_BUCKET_DAY_" + String(index)
             let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
