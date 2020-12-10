@@ -216,7 +216,6 @@ private extension TeamToBeVisionViewController {
             router.showTeamTBVGenerator(poll: interactor.teamVisionPoll,
                                         team: interactor.team,
                                         showBanner: false)
-
         case .undefined,
              .none: break
         }
