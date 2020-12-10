@@ -596,9 +596,6 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
             } else {
                 router.showTBVGenerator()
             }
-        case .FROM_TIGNUM:
-            guard let fromTignumCellModel = dailyBriefCellViewModel as? FromTignumCellViewModel else { return }
-            fromTignumCellModel.link?.launch()
         case .TEAM_TO_BE_VISION:
             guard let viewModel = bucketItem as? TeamToBeVisionCellViewModel else { break }
             guard let team = viewModel.team else { break }

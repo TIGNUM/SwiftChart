@@ -867,6 +867,8 @@
 		B44D445A256B1B0500B3B4F6 /* PeakPerformanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44D4459256B1B0500B3B4F6 /* PeakPerformanceTableViewCell.swift */; };
 		B44D4462256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B44D4461256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib */; };
 		B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */; };
+		B45CEB232582834300CC6863 /* FromTignumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45CEB212582834300CC6863 /* FromTignumTableViewCell.xib */; };
+		B45CEB242582834300CC6863 /* FromTignumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45CEB222582834300CC6863 /* FromTignumTableViewCell.swift */; };
 		B45DA6BC23AA6316006E7E33 /* MyQOTAdminChooseBucketsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DA6B423AA6316006E7E33 /* MyQOTAdminChooseBucketsPresenter.swift */; };
 		B45DA6BD23AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DA6B523AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift */; };
 		B45DA6BE23AA6316006E7E33 /* MyQOTAdminChooseBucketsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DA6B623AA6316006E7E33 /* MyQOTAdminChooseBucketsRouter.swift */; };
@@ -2287,6 +2289,8 @@
 		B44D4459256B1B0500B3B4F6 /* PeakPerformanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakPerformanceTableViewCell.swift; sourceTree = "<group>"; };
 		B44D4461256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeakPerformanceTableViewCell.xib; sourceTree = "<group>"; };
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
+		B45CEB212582834300CC6863 /* FromTignumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FromTignumTableViewCell.xib; sourceTree = "<group>"; };
+		B45CEB222582834300CC6863 /* FromTignumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromTignumTableViewCell.swift; sourceTree = "<group>"; };
 		B45DA6B423AA6316006E7E33 /* MyQOTAdminChooseBucketsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminChooseBucketsPresenter.swift; sourceTree = "<group>"; };
 		B45DA6B523AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminChooseBucketsWorker.swift; sourceTree = "<group>"; };
 		B45DA6B623AA6316006E7E33 /* MyQOTAdminChooseBucketsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminChooseBucketsRouter.swift; sourceTree = "<group>"; };
@@ -4685,6 +4689,8 @@
 				B44D44432568418000B3B4F6 /* MindsetShifterTableViewCell.xib */,
 				B44D4459256B1B0500B3B4F6 /* PeakPerformanceTableViewCell.swift */,
 				B44D4461256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib */,
+				B45CEB222582834300CC6863 /* FromTignumTableViewCell.swift */,
+				B45CEB212582834300CC6863 /* FromTignumTableViewCell.xib */,
 				B4792CA7256BABF900D24E7F /* Level5TableViewCell.swift */,
 				B4792C9F256BABF200D24E7F /* Level5TableViewCell.xib */,
 				B4792D38256CFB4000D24E7F /* FromMyCoachTableViewCell.swift */,
@@ -6473,6 +6479,7 @@
 				B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */,
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
 				B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */,
+				B45CEB232582834300CC6863 /* FromTignumTableViewCell.xib in Resources */,
 				754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */,
 				B4792D75256D136200D24E7F /* ImpactReadinessTableViewCell.xib in Resources */,
 				383D5F1F24212C25007F8C2A /* walkThrough_search.mp4 in Resources */,
@@ -6999,6 +7006,7 @@
 				B855C53A23EADAC600A5F6A3 /* DailyBriefInteractor+BucketValidation.swift in Sources */,
 				366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */,
 				8D6E058A22D7466E00EC2AEF /* MyLibraryNotesRouter.swift in Sources */,
+				B45CEB242582834300CC6863 /* FromTignumTableViewCell.swift in Sources */,
 				5F62BEA8228AE75400852F7E /* MyQotSiriShortcutsWorker.swift in Sources */,
 				38095D2A24BDC4EA0077EE86 /* TeamInvitesConfigurator.swift in Sources */,
 				5FF1A0E9228561C800D76D55 /* TitleTableHeaderView.swift in Sources */,
@@ -8134,13 +8142,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -8166,7 +8174,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -8191,9 +8199,9 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8216,9 +8224,9 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8241,10 +8249,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8267,10 +8275,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = QOTWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -8882,12 +8890,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -9033,7 +9041,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
@@ -9065,12 +9073,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -9165,11 +9173,11 @@
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (

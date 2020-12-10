@@ -75,7 +75,11 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 return sprintModel.relatedStrategiesModels.count + 1
             }
             return 1
-
+        case DailyBriefBucketName.FROM_TIGNUM:
+            if let fromTignumModel = model as? FromTignumCellViewModel {
+                return fromTignumModel.link != nil ? 1 : 2
+            }
+            return 1
         default:
             return 1
         }
@@ -231,6 +235,13 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                numberOfItems: relatedItem.numberOfItems ?? 0)
                 cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
                 cell.delegate = owner
+                return cell
+            case DailyBriefBucketName.FROM_TIGNUM:
+                guard let fromTignumModel = model as? FromTignumCellViewModel,
+                      let cell = R.nib.fromTignumTableViewCell(owner: owner) else {
+                    return UITableViewCell.init()
+                }
+                cell.configure(with: fromTignumModel)
                 return cell
             default:
                 return UITableViewCell.init()
