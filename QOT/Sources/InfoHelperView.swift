@@ -68,9 +68,9 @@ private extension InfoHelperView {
         iconImageView.tintColor = .sand
 
         titleLabel.font = .sfProDisplayLight(ofSize: 20)
-        titleLabel.textColor = .sand
+        titleLabel.textColor = .white
         textLabel.font = .sfProtextLight(ofSize: 16)
-        textLabel.textColor = .sand70
+        textLabel.textColor = .lightGrey
     }
 
     private func addDisplayAttributes(to text: NSAttributedString, type: TextType = .regular) -> NSAttributedString {

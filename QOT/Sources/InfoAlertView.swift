@@ -136,12 +136,12 @@ class InfoAlertView: UIView {
                            CircleInfo(color: UIColor.sand.withAlphaComponent(0.05), radiusRate: 1)]
 
         iconImageView.alpha = 0.4
-        iconImageView.tintColor = .sand
+        iconImageView.tintColor = .white
 
         titleLabel.font = .sfProDisplayLight(ofSize: 20)
-        titleLabel.textColor = .sand
+        titleLabel.textColor = .white
         textLabel.font = .sfProtextLight(ofSize: 16)
-        textLabel.textColor = .sand70
+        textLabel.textColor = .lightGrey
     }
 }
 

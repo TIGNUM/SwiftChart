@@ -50,21 +50,21 @@ private extension DailyCheckinSHPICell {
         resetChart()
         let selectedIndex = max(0, rating - 1)
         labels?.at(index: selectedIndex)?.font.withSize(16)
-        labels?.at(index: selectedIndex)?.textColor = .sand
+        labels?.at(index: selectedIndex)?.textColor = .white
         heights?.at(index: selectedIndex)?.constant = 56
-        bars?.at(index: selectedIndex)?.backgroundColor = .sand
+        bars?.at(index: selectedIndex)?.backgroundColor = .white
         bars?.at(index: selectedIndex)?.setNeedsUpdateConstraints()
         minLabel?.text = AppTextService.get(.daily_brief_section_daily_insights_shpi_label_never)
         maxLabel?.text = AppTextService.get(.daily_brief_section_daily_insights_shpi_label_always)
-        minLabel?.textColor = selectedIndex == 0 ? .sand : .sand40
-        maxLabel?.textColor = selectedIndex + 1 == (labels?.count ?? 0) ? .sand : .sand40
+        minLabel?.textColor = selectedIndex == 0 ? .white : .lightGrey
+        maxLabel?.textColor = selectedIndex + 1 == (labels?.count ?? 0) ? .white : .lightGrey
     }
 
     func resetChart() {
         bars?.forEach { ThemeView.dailyInsightsChartBarUnselected.apply($0) }
         labels?.forEach {
             $0.font.withSize(16)
-            $0.textColor = .sand40
+            $0.textColor = .lightGrey
         }
         heights?.forEach({ $0.constant = 35 })
     }

@@ -79,7 +79,7 @@ final class MyVisionEditDetailsWorker {
                                   letterSpacing: 0.2,
                                   font: .sfProDisplayLight(ofSize: 34) ,
                                   lineSpacing: 3,
-                                  textColor: .sand40)
+                                  textColor: .lightGrey)
     }
 
     func format(title: String) -> NSAttributedString? {
@@ -87,7 +87,7 @@ final class MyVisionEditDetailsWorker {
                                   letterSpacing: 0.2,
                                   font: .sfProDisplayLight(ofSize: 34) ,
                                   lineSpacing: 3,
-                                  textColor: .sand)
+                                  textColor: .white)
     }
 
     func formatPlaceholder(vision: String) -> NSAttributedString? {
@@ -95,7 +95,7 @@ final class MyVisionEditDetailsWorker {
                                   letterSpacing: 0.5,
                                   font: .sfProtextRegular(ofSize: 16) ,
                                   lineSpacing: 10.0,
-                                  textColor: .sand40)
+                                  textColor: .lightGrey)
     }
 
     func format(vision: String) -> NSAttributedString? {
@@ -103,7 +103,7 @@ final class MyVisionEditDetailsWorker {
                                   letterSpacing: 0.5,
                                   font: .sfProtextRegular(ofSize: 16) ,
                                   lineSpacing: 10.0,
-                                  textColor: .sand)
+                                  textColor: .white)
     }
 
     func updateWidget() {
