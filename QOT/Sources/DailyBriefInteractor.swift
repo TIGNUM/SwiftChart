@@ -1231,7 +1231,9 @@ extension DailyBriefInteractor {
         finishedRatings?.forEach {(closedRating) in
             guard let team = rateBucket.myTeams?.filter({ $0.qotId == closedRating.teamQotId }).first else { return }
             guard let ratingFeedback = closedRating.feedback, let averageValue = closedRating.averageValue else { return }
-            let feedbackModel = RatingFeedbackModel(team: team, feedback: ratingFeedback, averageValue: averageValue, domainModel: rateBucket)
+            let teamVision = rateBucket.teamToBeVisions?.filter { $0.teamQotId == closedRating.teamQotId }.first
+            let imageURL = teamVision?.profileImageResource?.remoteURLString == nil ? rateBucket.imageURL : teamVision?.profileImageResource?.remoteURLString
+            let feedbackModel = RatingFeedbackModel(team: team, feedback: ratingFeedback, averageValue: averageValue, imageURL: imageURL, domainModel: rateBucket)
             ratingBucketList.append(feedbackModel)
         }
         return ratingBucketList

@@ -17,10 +17,27 @@ final class RatingFeedbackModel: BaseDailyBriefViewModel {
     let team: QDMTeam?
 
     // MARK: - Init
-    init(team: QDMTeam?, feedback: String?, averageValue: String?, domainModel: QDMDailyBriefBucket?) {
+    internal init(team: QDMTeam?, feedback: String?, averageValue: String?, imageURL: String?, domainModel: QDMDailyBriefBucket?) {
         self.feedback = feedback
         self.averageValue = averageValue
         self.team = team
-        super.init(domainModel)
+        super.init(domainModel,
+                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? ""),
+                   title: "Team ToBeVision rating result",
+                   body: feedback,
+                   image: imageURL,
+                   titleColor: team?.teamColor)
+        self.attributedBody = RatingFeedbackModel.createAttributedBody(for: averageValue, feedback: feedback)
+    }
+
+    static func createAttributedBody(for average: String?, feedback: String?) -> NSAttributedString {
+        let firstAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.grey]
+        let secondAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        let bodyText = NSMutableAttributedString(string: "Average: ", attributes: firstAttributes)
+        let averageValue = NSAttributedString(string: average ?? "", attributes: secondAttributes)
+        let feedbackText = NSAttributedString(string: feedback ?? "", attributes: firstAttributes)
+        bodyText.append(averageValue)
+        bodyText.append(feedbackText)
+        return bodyText
     }
 }
