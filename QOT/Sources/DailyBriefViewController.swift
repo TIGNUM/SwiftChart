@@ -220,8 +220,8 @@ extension DailyBriefViewController {
                                                             domainModel: bucketItem.domainModel))
 
         case .TEAM_TOBEVISION_TRACKER_POLL?:
-            let numberOfLines = 7
             if (bucketItem as? RateOpenModel) != nil {
+                let numberOfLines = 7
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
@@ -229,12 +229,13 @@ extension DailyBriefViewController {
                                                                 numberOfLinesForBody: numberOfLines,
                                                                 titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
-            } else if (bucketItem as? RatingFeedbackModel ) != nil,
-                      let feedbackModel = bucketItem as? RatingFeedbackModel {
+            } else if (bucketItem as? RatingFeedbackModel ) != nil {
+                let numberOfLines = 8
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
                                                                 body: bucketItem.body,
                                                                 image: bucketItem.image,
+                                                                attributedBody: bucketItem.attributedBody,
                                                                 numberOfLinesForBody: numberOfLines,
                                                                 titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))

@@ -23,7 +23,7 @@ final class RatingFeedbackModel: BaseDailyBriefViewModel {
         self.team = team
         super.init(domainModel,
                    caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? ""),
-                   title: "Team ToBeVision rating result",
+                   title: AppTextService.get(.daily_brief_rating_feedback_title),
                    body: feedback,
                    image: imageURL,
                    titleColor: team?.teamColor)
@@ -33,8 +33,8 @@ final class RatingFeedbackModel: BaseDailyBriefViewModel {
     static func createAttributedBody(for average: String?, feedback: String?) -> NSAttributedString {
         let firstAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.grey]
         let secondAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        let bodyText = NSMutableAttributedString(string: "Average: ", attributes: firstAttributes)
-        let averageValue = NSAttributedString(string: average ?? "", attributes: secondAttributes)
+        let bodyText = NSMutableAttributedString(string: AppTextService.get(.daily_brief_rating_feedback_body) + " ", attributes: firstAttributes)
+        let averageValue = NSAttributedString(string: (average ?? "") + "\n", attributes: secondAttributes)
         let feedbackText = NSAttributedString(string: feedback ?? "", attributes: firstAttributes)
         bodyText.append(averageValue)
         bodyText.append(feedbackText)
