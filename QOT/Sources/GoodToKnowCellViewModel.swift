@@ -23,10 +23,11 @@ final class GoodToKnowCellViewModel: BaseDailyBriefViewModel {
          domainModel: QDMDailyBriefBucket?) {
         self.fact = fact
         self.copyright = copyright
+        let body = AppTextService.get(AppTextKey.daily_brief_section_good_to_know_body)
         super.init(domainModel,
                    caption: title,
                    title: fact,
-                   body: copyright,
+                   body: body,
                    image: image)
     }
 
