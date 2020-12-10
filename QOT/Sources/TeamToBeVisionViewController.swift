@@ -325,10 +325,16 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         }
     }
 
-    func hideTrends(_ hide: Bool) {
-        trendsBarView.isHidden = hide
-        trendsButton.isHidden = hide
-        trendsLabel.isHidden = hide
+    func hideTrends() {
+        trendsBarView.isHidden = true
+        trendsButton.isHidden = true
+        trendsLabel.isHidden = true
+    }
+
+    func showTrends() {
+        trendsBarView.isHidden = false
+        trendsButton.isHidden = false
+        trendsLabel.isHidden = false
     }
 
     func hideSelectionBar(_ hide: Bool) {
