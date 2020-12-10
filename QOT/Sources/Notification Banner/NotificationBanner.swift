@@ -48,9 +48,9 @@ final class NotificationBanner: UIView {
             self.alpha = 0
             view.addSubview(self)
             UIView.animate(withDuration: 0.3, animations: {
-                self.alpha = 1 }, completion: { (_) in
-                self.startTimer()
-            })
+                            self.alpha = 1 }, completion: { (_) in
+                                self.startTimer()
+                            })
         }
     }
 }
@@ -66,6 +66,10 @@ private extension NotificationBanner {
             self.isEnabled.toggle()
             self.alpha = 0
             self.removeFromSuperview()
+            self.frame = CGRect(x: 0,
+                                y: self.frame.origin.y - self.frame.height,
+                                width: UIScreen.main.bounds.width,
+                                height: self.frame.height)
         })
     }
 
