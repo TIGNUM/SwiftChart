@@ -161,19 +161,66 @@ enum ThemeView {
     }
 
     func apply(_ view: UIView) {
+        var radius = NewThemeView.Radius.none
         switch self {
         case .audioBar:
-            view.corner(radius: 20)
+            radius = .round20
         case .accentBackground:
-            view.corner(radius: view.frame.size.height / 2)
+            radius = .circle
         default:
             break
         }
-        view.backgroundColor = color
-    }
 
-    var headerBarHeight: CGFloat {
-        return 44.0
+        switch color {
+        // MARK: - Carbon
+        case .carbon,
+             .carbonDark,
+             .carbonNew:
+            NewThemeView.dark.apply(view, with: radius)
+        case .carbon90:
+            NewThemeView.dark.apply(view, alpha: 0.9, with: radius)
+        case .carbon80,
+             .carbonNew80,
+             .carbonDark80:
+            NewThemeView.dark.apply(view, alpha: 0.8, with: radius)
+        case .carbon70:
+            NewThemeView.dark.apply(view, alpha: 0.7, with: radius)
+        case .carbon60:
+            NewThemeView.dark.apply(view, alpha: 0.6, with: radius)
+        case .carbon40:
+            NewThemeView.dark.apply(view, alpha: 0.4, with: radius)
+        case .carbon30,
+             .carbonNew30,
+             .carbonDark30:
+            NewThemeView.dark.apply(view, alpha: 0.3, with: radius)
+        case .carbonDark20:
+            NewThemeView.dark.apply(view, alpha: 0.2, with: radius)
+        case .carbon05:
+            NewThemeView.dark.apply(view, alpha: 0.5, with: radius)
+        case .carbonNew08,
+             .carbonDark08:
+            NewThemeView.dark.apply(view, alpha: 0.08, with: radius)
+        // MARK: - Sand
+        case .sand,
+             .white:
+            NewThemeView.light.apply(view, with: radius)
+        case .sand03:
+            NewThemeView.light.apply(view, alpha: 0.03, with: radius)
+        case .sand10:
+            NewThemeView.light.apply(view, alpha: 0.1, with: radius)
+        case .sand30:
+            NewThemeView.light.apply(view, alpha: 0.3, with: radius)
+        case .sand40,
+             .white40:
+            NewThemeView.light.apply(view, alpha: 0.4, with: radius)
+        case .sand60:
+            NewThemeView.light.apply(view, alpha: 0.6, with: radius)
+        case .sand70:
+            NewThemeView.light.apply(view, alpha: 0.7, with: radius)
+        default:
+            print("ThemeView----------\(self)-----------")
+            view.backgroundColor = color
+        }
     }
 }
 
@@ -528,20 +575,20 @@ enum ThemeSearchBar {
         switch self {
         case .accent:
             UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).isEnabled = true
-            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = Palette.accent
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
 
-            view.tintColor = Palette.accent
+            view.tintColor = .white
             view.keyboardAppearance = .dark
             if #available(iOS 13, *) {
                 let searchField = view.searchTextField
                 searchField.corner(radius: 20)
-                searchField.backgroundColor = Palette.sand10
-                searchField.textColor = Palette.sand
+                searchField.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+                searchField.textColor = .white
             } else {
                 if let searchField = view.value(forKey: "_searchField") as? UITextField {
                     searchField.corner(radius: 20)
-                    searchField.backgroundColor = Palette.sand10
-                    searchField.textColor = Palette.sand
+                    searchField.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+                    searchField.textColor = .white
                 }
             }
             view.setShowsCancelButton(true, animated: false)

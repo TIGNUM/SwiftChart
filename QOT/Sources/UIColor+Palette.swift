@@ -114,6 +114,10 @@ extension UIColor {
         return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.08)
     }
 
+    public class var sand03: UIColor {
+        return UIColor.sand.withAlphaComponent(0.3)
+    }
+
     public class var sand10: UIColor {
         return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.1)
     }

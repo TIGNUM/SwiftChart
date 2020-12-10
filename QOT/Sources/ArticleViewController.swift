@@ -35,15 +35,15 @@ enum ColorMode {
 
     var background: UIColor {
         switch self {
-        case .dark: return .carbon
-        case .darkNot: return .sand
+        case .dark: return .black
+        case .darkNot: return .white
         }
     }
 
     var fade: UIColor {
         switch self {
-        case .dark: return UIColor.carbon.withAlphaComponent(0.1)
-        case .darkNot: return UIColor.sand.withAlphaComponent(0.1)
+        case .dark: return UIColor.black.withAlphaComponent(0.1)
+        case .darkNot: return UIColor.white.withAlphaComponent(0.1)
         }
     }
 

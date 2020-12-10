@@ -22,6 +22,7 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        NewThemeView.dark.apply(self)
         layoutButton(declineButton, keyDecline, true)
         layoutButton(joinButton, keyJoin, true)
     }

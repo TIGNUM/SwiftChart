@@ -39,8 +39,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         notificationCenter.addObserver(self, selector: #selector(didUpdateDownloadStatus(_:)),
                                        name: .didUpdateDownloadStatus, object: nil)
 
-        // FIXME : change color with color mode
-        view.backgroundColor = (colorMode == .dark) ? .carbon : .sand
+        (colorMode == .dark) ? NewThemeView.dark.apply(view) : NewThemeView.light.apply(view)
         setupButtons()
         updateLabel()
         setupFullScreenCircles(colorMode: self.colorMode)

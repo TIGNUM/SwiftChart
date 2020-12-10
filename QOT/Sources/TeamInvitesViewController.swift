@@ -76,6 +76,8 @@ private extension TeamInvitesViewController {
 // MARK: - TeamInvitesViewControllerInterface
 extension TeamInvitesViewController: TeamInvitesViewControllerInterface {
     func setupView() {
+        NewThemeView.dark.apply(view)
+        NewThemeView.dark.apply(tableView)
         tableView.registerDequeueable(TeamInviteHeaderTableViewCell.self)
         tableView.registerDequeueable(TeamInvitePendingTableViewCell.self)
         tableView.tableFooterView = UIView()

@@ -18,6 +18,7 @@ final class TeamInviteHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        NewThemeView.dark.apply(self)
         noteLabel.isHidden = true
         teamCountLabel.isHidden = true
         skeletonManager.addTitle(headerLabel)
