@@ -1162,7 +1162,8 @@ extension DailyBriefInteractor {
         guard let collections = teamVisionBucket.contentCollections else {
             return teamVisionList
         }
-        let vision = teamVisionBucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
+        let date = Date(timeIntervalSince1970: 0)
+        let vision = teamVisionBucket.teamToBeVisions?.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first
         guard vision != nil else { return teamVisionList }
         let imageURL = vision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.imageURL : vision?.profileImageResource?.remoteURLString
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
@@ -1272,20 +1273,20 @@ extension DailyBriefInteractor {
         guard libraryFeeds.isEmpty == false else { return [] }
         let teamQotIds = Set(libraryFeeds.compactMap({ $0.teamStorage?.teamQotId })).sorted()
         var models: [BaseDailyBriefViewModel] = []
-        let vision = bucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
-        guard vision != nil else { return models }
+        let date = Date(timeIntervalSince1970: 0)
+        let vision = bucket.teamToBeVisions?.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first
         let imageURL = vision?.profileImageResource?.remoteURLString == nil ? bucket.imageURL : vision?.profileImageResource?.remoteURLString
         for teamQotId in teamQotIds {
             let filteredFeeds = libraryFeeds.filter({ $0.teamQotId == teamQotId })
-            guard let firstFeed = filteredFeeds.first, let team = firstFeed.team,
-                firstFeed.teamStorage != nil else {
-                    continue
+            if let firstFeed = filteredFeeds.first,
+               let team = firstFeed.team,
+               firstFeed.teamStorage != nil {
+                models.append(TeamNewsFeedDailyBriefViewModel(team: team,
+                                                              title: AppTextService.get(.daily_brief_news_feed_title),
+                                                              itemsAdded: filteredFeeds.count,
+                                                              imageURL: imageURL,
+                                                              domainModel: bucket))
             }
-            models.append(TeamNewsFeedDailyBriefViewModel(team: team,
-                                                          title: AppTextService.get(.daily_brief_news_feed_title),
-                                                          itemsAdded: filteredFeeds.count,
-                                                          imageURL: imageURL,
-                                                          domainModel: bucket))
         }
         return models
     }
