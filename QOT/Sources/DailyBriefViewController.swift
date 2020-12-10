@@ -205,8 +205,6 @@ extension DailyBriefViewController {
                                                                       domainModel: item.domainModel))
                 }
             }
-//        case .TEAM_NEWS_FEED?:
-//            return getTeamNewsFeed(tableView, indexPath, bucketItem as? TeamNewsFeedDailyBriefViewModel)
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
             let numberOfLines = 6
             cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
@@ -218,14 +216,19 @@ extension DailyBriefViewController {
                                                             domainModel: bucketItem.domainModel))
 
         case .TEAM_TOBEVISION_TRACKER_POLL?:
-            if (bucketItem as? RateOpenModel) != nil,
-               let rateViewModel = bucketItem as? RateOpenModel {
-                return getOpenRateCell(tableView, indexPath, rateViewModel)
+            if (bucketItem as? RateOpenModel) != nil {
+                let numberOfLines = 7
+                cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                                title: bucketItem.title,
+                                                                body: bucketItem.body,
+                                                                image: bucketItem.image,
+                                                                numberOfLinesForBody: numberOfLines,
+                                                                titleColor: bucketItem.titleColor,
+                                                                domainModel: bucketItem.domainModel))
             } else if (bucketItem as? RatingFeedbackModel ) != nil,
                       let feedbackModel = bucketItem as? RatingFeedbackModel {
                 return getRatingFeedbackCell(tableView, indexPath, feedbackModel)
             }
-            return UITableViewCell()
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
         default:
@@ -261,12 +264,6 @@ extension DailyBriefViewController {
                 let model = bucketItem as? SolveReminderTableCellViewModel
                 guard let solve = model?.solve else { break }
                 showSolveResults(solve: solve)
-            }
-        case .TEAM_NEWS_FEED:
-            guard let viewModel = bucketItem as? TeamNewsFeedDailyBriefViewModel else { break }
-            handleTableViewRowSelection(with: viewModel, at: indexPath)
-            if let cell = tableView.cellForRow(at: indexPath) {
-                cell.setSelected(false, animated: true)
             }
         default:
             break
@@ -350,26 +347,6 @@ private extension DailyBriefViewController {
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getTeamToBeVisionCell(_ tableView: UITableView,
-                               _ indexPath: IndexPath,
-                               _ teamVisionModel: TeamToBeVisionCellViewModel?) -> UITableViewCell {
-        let cell: TeamToBeVisionCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: teamVisionModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getOpenRateCell(_ tableView: UITableView,
-                         _ indexPath: IndexPath,
-                         _ rateOpenModel: RateOpenModel?) -> UITableViewCell {
-        let cell: RateOpenCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: rateOpenModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell
@@ -622,12 +599,19 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
             guard let viewModel = bucketItem as? TeamToBeVisionCellViewModel else { break }
             guard let team = viewModel.team else { break }
             router.showTeamTBV(team)
+        case .TEAM_NEWS_FEED:
+            guard let viewModel = bucketItem as? TeamNewsFeedDailyBriefViewModel else { break }
+            router.presentMyLibrary(with: viewModel.team)
         case .TEAM_INVITATION:
             presentTeamPendingInvites()
         case .TEAM_TOBEVISION_GENERATOR_POLL:
-            guard let pollModel = dailyBriefCellViewModel as? PollOpenModel else { return }
-            guard let team = pollModel.team else { return }
+            guard let pollModel = dailyBriefCellViewModel as? PollOpenModel,
+                  let team = pollModel.team else { return }
             router.showExplanation(team, type: .tbvPollUser)
+        case .TEAM_TOBEVISION_TRACKER_POLL:
+            guard let rateModel = dailyBriefCellViewModel as? RateOpenModel,
+                  let team = rateModel.team else { return }
+            router.showExplanation(team, type: .ratingUser)
         case .SPRINT_CHALLENGE:
             guard let sprintCollectionCellModel = dailyBriefCellViewModel as? SprintsCollectionViewModel,
                   let sprintCellModel = sprintCollectionCellModel.items?[indexPath.item] else { return }

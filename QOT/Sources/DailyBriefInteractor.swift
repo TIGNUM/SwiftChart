@@ -366,10 +366,10 @@ extension DailyBriefInteractor {
                 dailyBriefViewModels.append(contentsOf: strongSelf.createTeamVisionSuggestionModel(teamVisionBucket: bucket))
             case .TEAM_INVITATION:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createTeamInvitation(invitationBucket: bucket))
-//            case .TEAM_NEWS_FEED:
-//                let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
-//                guard elements.isEmpty == false else { break }
-//                dailyBriefViewModels.append(contentsOf: elements)
+            case .TEAM_NEWS_FEED:
+                let elements = strongSelf.createTeamNewsFeedViewModel(with: bucket)
+                guard elements.isEmpty == false else { break }
+                dailyBriefViewModels.append(contentsOf: elements)
             case .TEAM_TOBEVISION_GENERATOR_POLL:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createPollOpen(pollBucket: bucket))
             case .TEAM_TOBEVISION_TRACKER_POLL :
@@ -1162,7 +1162,8 @@ extension DailyBriefInteractor {
         guard let collections = teamVisionBucket.contentCollections else {
             return teamVisionList
         }
-        let vision = teamVisionBucket.teamToBeVisions?.filter { !$0.sentences.isEmpty }.first
+        let date = Date(timeIntervalSince1970: 0)
+        let vision = teamVisionBucket.teamToBeVisions?.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first
         guard vision != nil else { return teamVisionList }
         let imageURL = vision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.imageURL : vision?.profileImageResource?.remoteURLString
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
@@ -1219,8 +1220,10 @@ extension DailyBriefInteractor {
             if openRatings.didVote == false {
                 guard openRatings.creator == false,
                       let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
+                let teamVision = rateBucket.teamToBeVisions?.filter { $0.teamQotId == openRatings.teamQotId }.first
+                let imageURL = teamVision?.profileImageResource?.remoteURLString == nil ? rateBucket.imageURL : teamVision?.profileImageResource?.remoteURLString
                 let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
-                let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, domainModel: rateBucket)
+                let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, imageURL: imageURL, domainModel: rateBucket)
                 ratingBucketList.append(openRateModel)
             }
         }
@@ -1260,6 +1263,32 @@ extension DailyBriefInteractor {
                                             domain: weatherBucket))
 
         return weatherList
+    }
+
+    // MARK: - Team News Feed
+    func createTeamNewsFeedViewModel(with bucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        let libraryFeeds = bucket.teamNewsFeeds?.filter({
+            $0.teamNewsFeedActionType == .STORAGE_ADDED && $0.teamStorage?.isMine == false
+        }) ?? []
+        guard libraryFeeds.isEmpty == false else { return [] }
+        let teamQotIds = Set(libraryFeeds.compactMap({ $0.teamStorage?.teamQotId })).sorted()
+        var models: [BaseDailyBriefViewModel] = []
+        let date = Date(timeIntervalSince1970: 0)
+        let vision = bucket.teamToBeVisions?.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first
+        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? bucket.imageURL : vision?.profileImageResource?.remoteURLString
+        for teamQotId in teamQotIds {
+            let filteredFeeds = libraryFeeds.filter({ $0.teamQotId == teamQotId })
+            if let firstFeed = filteredFeeds.first,
+               let team = firstFeed.team,
+               firstFeed.teamStorage != nil {
+                models.append(TeamNewsFeedDailyBriefViewModel(team: team,
+                                                              title: AppTextService.get(.daily_brief_news_feed_title),
+                                                              itemsAdded: filteredFeeds.count,
+                                                              imageURL: imageURL,
+                                                              domainModel: bucket))
+            }
+        }
+        return models
     }
 
     func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation) {

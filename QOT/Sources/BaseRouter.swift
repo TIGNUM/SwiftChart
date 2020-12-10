@@ -48,6 +48,7 @@ protocol BaseRouterInterface {
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam, showBanner: Bool?)
     func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?, showBanner: Bool?)
     func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types)
+    func presentMyLibrary(with team: QDMTeam?)
 
     func showBanner(message: String)
 }
@@ -298,6 +299,17 @@ class BaseRouter: BaseRouterInterface {
             let banner = NotificationBanner.shared
             banner.configure(message: message, isDark: false)
             banner.show(in: view)
+        }
+    }
+
+    func presentMyLibrary(with team: QDMTeam?) {
+        let storyboardId = R.storyboard.myLibrary.myLibraryCategoryListViewController.identifier
+        let myLibraryController = R.storyboard.myLibrary()
+            .instantiateViewController(withIdentifier: storyboardId) as? MyLibraryCategoryListViewController
+        if let myLibraryController = myLibraryController {
+            let configurator = MyLibraryCategoryListConfigurator.make(with: team)
+            configurator(myLibraryController)
+            viewController?.pushToStart(childViewController: myLibraryController)
         }
     }
 }
