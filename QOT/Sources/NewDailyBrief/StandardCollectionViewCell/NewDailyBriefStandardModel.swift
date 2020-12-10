@@ -31,6 +31,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
          detailsMode: Bool = false,
          attributedTitle: NSAttributedString? = nil,
          attributedBody: NSAttributedString? = nil,
+
          numberOfLinesForBody: Int = 2,
          isInAnimationTransition: Bool = false,
          CTAType: ContentFormat = .unknown,

@@ -7,17 +7,22 @@
 //
 
 import Foundation
+import DifferenceKit
 import qot_dal
 
-class GuidedTrackItem: NSObject {
+struct GuidedTrackItem: Equatable {
     var title: String?
     var image: String?
     var appLink: QDMAppLink?
+    var subIdentifier = ""
 
     init(title: String?, image: String?, appLink: QDMAppLink) {
-        super.init()
         self.title = title
         self.image = image
         self.appLink = appLink
+    }
+
+    static func == (lhs: GuidedTrackItem, rhs: GuidedTrackItem) -> Bool {
+        return lhs.appLink?.appLink == rhs.appLink?.appLink
     }
 }

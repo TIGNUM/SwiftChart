@@ -317,6 +317,8 @@ extension DailyBriefInteractor {
             }
             guard let bucketName = bucket.bucketName else { return }
             switch bucketName {
+            case .GUIDE_TRACK:
+                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket))
             case .DAILY_CHECK_IN_1:
                 strongSelf.hasToBeVision = (bucket.toBeVision != nil)
                 strongSelf.didDailyCheckIn = (bucket.dailyCheckInAnswerIds?.isEmpty == false)
@@ -356,8 +358,6 @@ extension DailyBriefInteractor {
                 dailyBriefViewModels.append(contentsOf: strongSelf.createSolveViewModel(bucket: bucket))
             case .WEATHER:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createWeatherViewModel(weatherBucket: bucket))
-            case .GUIDE_TRACK:
-                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket))
             case .MINDSET_SHIFTER:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createMindsetShifterViewModel(mindsetBucket: bucket))
             case .TEAM_TO_BE_VISION:
@@ -1058,6 +1058,7 @@ extension DailyBriefInteractor {
         guard sprintBucket.sprint != nil else {
             return createSprintChallengeList
         }
+        var relatedItemsModels: [SprintChallengeViewModel.RelatedItemsModel] = []
         for index in 0...5 {
             let searchTag: String = "SPRINT_BUCKET_DAY_" + String(index)
             let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
@@ -1065,9 +1066,7 @@ extension DailyBriefInteractor {
                 $0.searchTags.contains(searchTag) && $0.searchTags.contains(sprintTag)
             }
             let sprintContentItems = sprintContentCollections?.first?.contentItems
-            let sprintLinksItems = sprintContentCollections?.first?.links
             let sprintInfo = sprintContentItems?.first?.valueText ?? ""
-            var relatedItemsModels: [SprintChallengeViewModel.RelatedItemsModel] = []
             if sprintContentItems?.count ?? 0 > 1 {
                 let sprintMedia = sprintContentItems?[1]
                 relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(sprintMedia?.valueText,
@@ -1079,48 +1078,64 @@ extension DailyBriefInteractor {
                                                                                      1,
                                                                                      nil,
                                                                                      sprintMedia?.valueImageURL,
-                                                                                     sprintMedia?.valueMediaURL))
+                                                                                     sprintMedia?.valueMediaURL,
+                                                                                     searchTag))
             } else {
-                sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
-                    relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(content.title,
-                                                                                         content.durationString,
-                                                                                         content.remoteID ?? 0,
-                                                                                         nil,
-                                                                                         content.section,
-                                                                                         content.contentItems.first?.format,
-                                                                                         content.contentItems.count,
-                                                                                         nil))
+
+                sprintContentCollections?.forEach {(collection) in
+                    //                Related ContentItems
+                    collection.relatedContentItems.forEach {(contentItem) in
+                        relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(contentItem.valueText,
+                                                                                             contentItem.durationString,
+                                                                                             nil,
+                                                                                             contentItem.remoteID,
+                                                                                             .Unkown,
+                                                                                             contentItem.format,
+                                                                                             1,
+                                                                                             nil,
+                                                                                             nil,
+                                                                                             nil,
+                                                                                             searchTag))
+                    }
+                    //                Related Applinks
+                    collection.links.forEach {(link) in
+                        relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(link.description,
+                                                                                             nil,
+                                                                                             link.remoteID,
+                                                                                             nil,
+                                                                                             .Unkown,
+                                                                                             .unknown,
+                                                                                             1,
+                                                                                             link,
+                                                                                             nil,
+                                                                                             nil,
+                                                                                             searchTag))
+                    }
+                    //                Related Contents
+                    sprintBucket.sprint?.dailyBriefRelatedContent[index]?.forEach {(relatedContent) in
+                        relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(relatedContent.title,
+                                                                                             relatedContent.durationString,
+                                                                                             relatedContent.remoteID ?? 0,
+                                                                                             nil,
+                                                                                             relatedContent.section,
+                                                                                             relatedContent.contentItems.first?.format,
+                                                                                             relatedContent.contentItems.count,
+                                                                                             nil,
+                                                                                             nil,
+                                                                                             nil,
+                                                                                             searchTag))
+
+                    }
                 }
-                //        adding applinks
-                sprintLinksItems?.forEach {(link) in
-                    relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(link.description,
-                                                                                         nil,
-                                                                                         link.remoteID,
-                                                                                         nil,
-                                                                                         .Unkown,
-                                                                                         .unknown,
-                                                                                         1,
-                                                                                         link))
-                }
-                sprintBucket.sprint?.dailyBriefRelatedContentItems.forEach { (contentItem) in
-                    relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(contentItem.valueText,
-                                                                                         contentItem.durationString,
-                                                                                         nil,
-                                                                                         contentItem.remoteID,
-                                                                                         .Unkown,
-                                                                                         contentItem.format,
-                                                                                         1,
-                                                                                         nil))
-                }
+                createSprintChallengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(.daily_brief_section_sprint_challenge_title),
+                                                                          sprintTitle: sprintBucket.sprint?.title,
+                                                                          sprintInfo: sprintInfo,
+                                                                          image: sprintBucket.imageURL,
+                                                                          sprintStepNumber: index,
+                                                                          relatedStrategiesModels: relatedItemsModels,
+                                                                          domainModel: sprintBucket,
+                                                                          sprint: sprintBucket.sprint!))
             }
-            createSprintChallengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(.daily_brief_section_sprint_challenge_title),
-                                                                      sprintTitle: sprintBucket.sprint?.title,
-                                                                      sprintInfo: sprintInfo,
-                                                                      image: sprintBucket.imageURL,
-                                                                      sprintStepNumber: index,
-                                                                      relatedStrategiesModels: relatedItemsModels,
-                                                                      domainModel: sprintBucket,
-                                                                      sprint: sprintBucket.sprint!))
         }
         return [SprintsCollectionViewModel.init(items: createSprintChallengeList, domainModel: sprintBucket)]
     }

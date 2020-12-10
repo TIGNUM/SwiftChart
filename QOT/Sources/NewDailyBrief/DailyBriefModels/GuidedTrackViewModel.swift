@@ -27,7 +27,7 @@ final class GuidedTrackViewModel: BaseDailyBriefViewModel {
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
         guard let source = source as? GuidedTrackViewModel else { return false }
         return super.isContentEqual(to: source) &&
-        title == source.title &&
-        items == source.items
+                title == source.title &&
+                items == source.items
     }
 }
