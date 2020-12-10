@@ -97,6 +97,10 @@ extension DailyBriefViewController {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        //last section shouldn't have a headerView
+        guard section < (interactor.bucketViewModelNew()?.count ?? 0) - 1 else {
+            return nil
+        }
         let sectionHeader = R.nib.newDailyBriefTableViewSectionHeader(owner: self)
         sectionHeader?.configure(title: interactor.bucketViewModelNew()?.at(index: section)?.model.title)
 

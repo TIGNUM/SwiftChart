@@ -946,7 +946,7 @@ enum ThemeText {
         case .asterix, .weatherLocation:
             return Fonts.fontRegular13
         case .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
-          .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
+          .askPermissionTitle, .syncedCalendarTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .registerIntroNoteTitle, .optionPage, .optionPageDisabled:
             return Fonts.fontRegular20
@@ -1116,6 +1116,9 @@ enum ThemeText {
             return Fonts.fontDisplayRegular24
         case .tbvQuestionHigh:
             return Fonts.fontMedium18
+        // MARK: - .fontDisplayRegular24
+        case .weatherTitle:
+            return Fonts.fontDisplayRegular24
         // MARK: - .fontRegular20
         default:
             return Fonts.fontRegular20
@@ -1138,7 +1141,7 @@ enum ThemeText {
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle, .searchSuggestion, .myRating,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
-             .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle, .myDataParameterSelectionSubtitle,
+             .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherHourlyLabelNow, .accountUserName, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle, .myDataParameterSelectionSubtitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle, .customizeQuestion,
              .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle, .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence:
@@ -1265,7 +1268,7 @@ enum ThemeText {
             return lowValue ? Palette.redOrange : Palette.sand
         case .myLibraryItemsItemNameGrey:
             return Palette.sand70
-        case .navigationBarHeader, .suggestionMyBest, .dailyBriefLevelTitle:
+        case .navigationBarHeader, .suggestionMyBest, .dailyBriefLevelTitle, .weatherTitle:
             return .white
         case .level5Question:
             return .lightGray

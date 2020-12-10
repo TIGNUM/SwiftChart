@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,14 +22,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="placeholder_large" translatesAutoresizingMaskIntoConstraints="NO" id="j1u-DS-AeZ">
-                        <rect key="frame" x="324" y="57" width="82" height="82"/>
+                        <rect key="frame" x="324" y="40" width="82" height="82"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="82" id="Ivn-0U-9pW"/>
                             <constraint firstAttribute="width" constant="82" id="JnZ-cQ-GOJ"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-Se-GqU">
-                        <rect key="frame" x="24" y="129" width="300" height="0.0"/>
+                        <rect key="frame" x="24" y="112" width="300" height="0.0"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -72,15 +72,8 @@
                             <constraint firstItem="WZQ-cb-dX0" firstAttribute="leading" secondItem="349-bm-c0Q" secondAttribute="leading" constant="16" id="vu6-6n-clz"/>
                         </constraints>
                     </scrollView>
-                    <view contentMode="scaleToFill" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="TQ7-Xc-Qoc" userLabel="HeaderView">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="0.0"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" id="nZW-Hd-UsM"/>
-                        </constraints>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="-- °C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-Qf-wzT">
-                        <rect key="frame" x="24" y="139" width="300" height="262"/>
+                        <rect key="frame" x="24" y="122" width="300" height="279"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -92,10 +85,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV6-1Z-gcH">
-                        <rect key="frame" x="0.0" y="57" width="430" height="515.33333333333337"/>
+                        <rect key="frame" x="0.0" y="40" width="430" height="532.33333333333337"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_permission" translatesAutoresizingMaskIntoConstraints="NO" id="mGO-3j-huH">
-                                <rect key="frame" x="55" y="0.0" width="320" height="515.33333333333337"/>
+                                <rect key="frame" x="55" y="0.0" width="320" height="532.33333333333337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
@@ -131,7 +124,6 @@ using the app?</string>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="TQ7-Xc-Qoc" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" id="0Tq-Cw-2et"/>
                     <constraint firstItem="qCH-Qf-wzT" firstAttribute="trailing" secondItem="j3g-Se-GqU" secondAttribute="trailing" id="26L-xP-DKE"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" constant="24" id="48g-Rp-swp"/>
                     <constraint firstItem="uV6-1Z-gcH" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="4sc-fu-Ia0"/>
@@ -139,7 +131,7 @@ using the app?</string>
                     <constraint firstItem="ZlO-AQ-5eT" firstAttribute="bottom" secondItem="O3R-Xj-mOD" secondAttribute="top" constant="-7" id="94E-Av-Tm4"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="width" relation="lessThanOrEqual" secondItem="Auc-IE-jDT" secondAttribute="width" multiplier="0.5" id="9Sg-c1-Xg1"/>
                     <constraint firstItem="CmA-Lc-aRn" firstAttribute="top" secondItem="O3R-Xj-mOD" secondAttribute="bottom" constant="20" id="9eB-VA-x0I"/>
-                    <constraint firstItem="j1u-DS-AeZ" firstAttribute="top" secondItem="TQ7-Xc-Qoc" secondAttribute="bottom" constant="57" id="Ah8-90-gDy"/>
+                    <constraint firstItem="j1u-DS-AeZ" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" constant="40" id="Ah8-90-gDy"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="trailing" secondItem="CmA-Lc-aRn" secondAttribute="trailing" id="ERY-4e-bAg"/>
                     <constraint firstAttribute="bottom" secondItem="vv6-KQ-XPa" secondAttribute="bottom" constant="30" id="PKG-0a-IRF"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Auc-IE-jDT" secondAttribute="width" multiplier="0.3" id="TOz-Cc-jif"/>
@@ -158,11 +150,9 @@ using the app?</string>
                     <constraint firstAttribute="trailing" secondItem="Vjm-ra-cbt" secondAttribute="trailing" constant="24" id="oQr-Ju-2AW"/>
                     <constraint firstItem="vv6-KQ-XPa" firstAttribute="trailing" secondItem="O3R-Xj-mOD" secondAttribute="trailing" id="rFg-rP-QEi"/>
                     <constraint firstItem="ZlO-AQ-5eT" firstAttribute="top" secondItem="qCH-Qf-wzT" secondAttribute="bottom" constant="10" id="rTb-UP-PIQ"/>
-                    <constraint firstAttribute="trailing" secondItem="TQ7-Xc-Qoc" secondAttribute="trailing" id="uUi-kX-QCV"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="v9Z-tV-1uN"/>
                     <constraint firstItem="vv6-KQ-XPa" firstAttribute="top" secondItem="349-bm-c0Q" secondAttribute="bottom" constant="16" id="vAD-QX-RqB"/>
                     <constraint firstAttribute="bottom" secondItem="HOh-es-4Cw" secondAttribute="bottom" constant="38" id="x2U-tK-5nU"/>
-                    <constraint firstItem="TQ7-Xc-Qoc" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" id="yyl-UY-hwO"/>
                     <constraint firstItem="j1u-DS-AeZ" firstAttribute="leading" secondItem="j3g-Se-GqU" secondAttribute="trailing" id="zs5-h3-Y9W"/>
                 </constraints>
             </tableViewCellContentView>
@@ -183,8 +173,6 @@ using the app?</string>
                 <outlet property="accessImageContainerView" destination="uV6-1Z-gcH" id="eA6-sI-P4X"/>
                 <outlet property="accessImageView" destination="mGO-3j-huH" id="7ya-Yl-i96"/>
                 <outlet property="accessLabel" destination="HOh-es-4Cw" id="df4-Up-iaF"/>
-                <outlet property="headerHeightConstraint" destination="nZW-Hd-UsM" id="Qho-KP-2fK"/>
-                <outlet property="headerView" destination="TQ7-Xc-Qoc" id="mUv-Gx-OTO"/>
                 <outlet property="hourlyStackView" destination="WZQ-cb-dX0" id="DKt-fC-weI"/>
                 <outlet property="lastUpdateLabel" destination="vv6-KQ-XPa" id="A3g-hC-bRq"/>
                 <outlet property="locationLabel" destination="j3g-Se-GqU" id="FH5-Be-jJp"/>
