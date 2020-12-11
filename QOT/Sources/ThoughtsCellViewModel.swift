@@ -16,7 +16,7 @@ final class ThoughtsCellViewModel: BaseDailyBriefViewModel {
     var author: String?
 
     // MARK: - Init
-    init(title: String?,
+    init(caption: String?,
          thought: String?,
          author: String?,
          image: String?,
@@ -24,7 +24,7 @@ final class ThoughtsCellViewModel: BaseDailyBriefViewModel {
         self.thought = thought
         self.author = author
         super.init(domainModel,
-                   caption: title,
+                   caption: caption,
                    title: thought,
                    body: author,
                    image: image)
