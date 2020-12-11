@@ -104,7 +104,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         let textColor: UIColor = viewModel?.hasFiveDaySleepQuantityValues == true &&
                                         viewModel?.sleepQuantityValue?.isLess(than: targetSleepQuantityInFiveDays) == true ?
-                                            .redOrange : .sand
+                                            .redOrange : .white
         sleepQuantityScoreButton.setTitleColor(textColor, for: .normal)
         sleepQuantityScoreButton.setTitle(String(viewModel?.sleepQuantityValue ?? 0) + hour, for: .normal)
         sleepQuantityTarget.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_customize_button), for: .normal)

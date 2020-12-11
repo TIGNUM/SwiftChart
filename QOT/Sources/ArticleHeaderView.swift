@@ -32,7 +32,7 @@ final class ArticleHeaderView: UIView {
         categoryTitleLabel.attributedText = NSAttributedString(string: articleHeader.categoryTitle,
                                                                letterSpacing: 0.4,
                                                                font: .apercuMedium(ofSize: 12),
-                                                               textColor: .sand30,
+                                                               textColor: .lightGrey,
                                                                alignment: .left)
         titleLabel.attributedText = NSAttributedString(string: articleHeader.title.uppercased(),
                                                        letterSpacing: 0.2,

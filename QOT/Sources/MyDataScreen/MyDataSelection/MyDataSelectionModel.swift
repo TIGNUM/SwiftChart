@@ -49,7 +49,7 @@ struct MyDataSelectionModel {
          case .SQN:
              return .sleepQuantity
          case .IR:
-             return .sand
+             return .white
          }
      }
 }

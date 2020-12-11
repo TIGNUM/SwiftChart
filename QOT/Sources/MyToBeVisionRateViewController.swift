@@ -49,7 +49,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .carbon
+        NewThemeView.dark.apply(view)
         interactor?.viewDidLoad()
     }
 

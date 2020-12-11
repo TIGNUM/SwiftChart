@@ -57,7 +57,7 @@ final class InfoHelperView: UIView {
 private extension InfoHelperView {
     private func setupView() {
         self.clipsToBounds = true
-        self.backgroundColor = .carbon
+        NewThemeView.dark.apply(self)
         contentView.backgroundColor = .accent04
 
         circles.circles = [CircleInfo(color: UIColor.sand.withAlphaComponent(0.2), radiusRate: 0.3),

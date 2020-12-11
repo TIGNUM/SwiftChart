@@ -1727,10 +1727,6 @@ private struct Palette {
         return UIColor.sand.withAlphaComponent(0.7)
     }
 
-    static var sand80: UIColor {
-        return UIColor.sand.withAlphaComponent(0.8)
-    }
-
     static var carbon: UIColor {
         return UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 1)
     }
@@ -1841,10 +1837,6 @@ private struct Palette {
 
     static var nightModeBlackTwo: UIColor {
         return Date().isNight ? Palette.sand : Palette.blackTwo
-    }
-
-    static var nightModeBlack15: UIColor {
-        return Date().isNight ? Palette.sand80 : Palette.carbon10
     }
 
     static var nightModeBlue: UIColor {

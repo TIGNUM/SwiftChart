@@ -28,7 +28,7 @@ import UIKit
  infoAlertView?.set(icon: icon, title: title, text: text)
  infoAlertView?.topInset = 64
  infoAlertView?.bottomInset = BottomNavigationContainer.height
- infoAlertView?.setBackgroundColor(UIColor.carbon.withAlphaComponent(95))
+ infoAlertView?.setBackgroundColor(UIColor.black.withAlphaComponent(95))
  infoAlertView?.style = .halfScreenBlur
  infoAlertView?.onDismiss = {
     self.infoAlertView = nil
@@ -127,8 +127,7 @@ class InfoAlertView: UIView {
         Bundle.main.loadNibNamed(String(describing: type(of: self)), owner: self, options: nil)
         fill(subview: containerView)
         dragIndicator.layer.cornerRadius = dragIndicator.frame.size.height/2.0
-
-        infoView.backgroundColor = .carbon
+        NewThemeView.dark.apply(infoView)
         contentView.backgroundColor = .accent04
 
         circles.circles = [CircleInfo(color: UIColor.sand.withAlphaComponent(0.2), radiusRate: 0.3),

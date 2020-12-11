@@ -90,7 +90,7 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsControllerInterf
         enableSaveButton(!interactor.isFromNullState)
         originalVisionTitle = title
         originalVisionSubtitle = vision
-        view.backgroundColor = .carbon
+        NewThemeView.dark.apply(view)
         titleTextView.returnKeyType = .next
         didChangeTitle = !title.isEmpty
         didChangeVision = !vision.isEmpty

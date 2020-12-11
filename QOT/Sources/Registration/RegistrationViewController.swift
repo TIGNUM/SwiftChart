@@ -62,8 +62,7 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - RegistrationViewControllerInterface
 extension RegistrationViewController: RegistrationViewControllerInterface {
     func setupView() {
-        view.backgroundColor = .carbon
-
+        NewThemeView.dark.apply(view)
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)

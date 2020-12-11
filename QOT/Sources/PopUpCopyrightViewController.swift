@@ -81,8 +81,8 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
     }
 
     private func setupView() {
-        containerView.backgroundColor = .carbon
-        backgroundView.backgroundColor = UIColor.carbon.withAlphaComponent(0.95)
+        NewThemeView.dark.apply(containerView)
+        NewThemeView.dark.apply(backgroundView)
         descriptionLabel.text = (descriptionText ?? "") + (copyrightURL ?? "")
     }
 

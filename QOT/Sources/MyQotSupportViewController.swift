@@ -28,7 +28,7 @@ final class MyQotSupportViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(color: .carbon)
+        setStatusBar(color: .black)
     }
 
     override func viewDidAppear(_ animated: Bool) {

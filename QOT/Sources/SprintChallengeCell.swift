@@ -37,7 +37,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         super.awakeFromNib()
         tableView.tableFooterView = UIView()
         self.sprintInfo?.numberOfLines = 3
-        contentView.backgroundColor = .carbon
+        NewThemeView.dark.apply(contentView)
         tableView.registerDequeueable(SprintChallengeTableViewCell.self)
         self.sprintInfo?.lineBreakMode = .byWordWrapping
         tableView.setNeedsLayout()

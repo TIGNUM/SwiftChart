@@ -566,10 +566,6 @@ extension UIColor {
         return Date().isNight ? .white : .blackTwo
     }
 
-    public class var nightModeBlack15: UIColor {
-        return Date().isNight ? .white80 : .black15
-    }
-
     public class var nightModeBlue: UIColor {
         return Date().isNight ? .azure : .blue
     }
