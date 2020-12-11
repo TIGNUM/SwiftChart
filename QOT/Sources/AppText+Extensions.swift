@@ -358,6 +358,7 @@ public extension AppTextKey {
     static let daily_brief_section_visual_delights_title = AppTextKey("daily_brief.section_visual_delights.title")
 
     static let daily_brief_section_weather_empty_body = AppTextKey("daily_brief.section_weather.empty.body")
+    static let daily_brief_section_weather_card_title = AppTextKey("daily_brief.section_weather_card.title")
     static let daily_brief_section_weather_empty_body_under_pic = AppTextKey("daily_brief.section_weather.empty.body_under_pic")
     static let daily_brief_section_weather_empty_button_allow = AppTextKey("daily_brief.section_weather.empty.button_allow")
     static let daily_brief_section_weather_empty_button_open_settings = AppTextKey("daily_brief.section_weather.empty.button_open_settings")

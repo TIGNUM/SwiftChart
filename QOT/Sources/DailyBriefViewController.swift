@@ -241,7 +241,28 @@ extension DailyBriefViewController {
                                                                 domainModel: bucketItem.domainModel))
             }
         case .WEATHER?:
-            return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
+            guard let weatherModel = bucketItem as? WeatherViewModel else {
+                return UITableViewCell()
+            }
+            var accessBody = ""
+            switch weatherModel.locationPermissionStatus {
+            case .granted, .grantedWhileInForeground:
+                return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
+            case .denied:
+                accessBody = weatherModel.deniedLocationPermissionDescription ?? ""
+            default:
+                accessBody = weatherModel.requestLocationPermissionDescription ?? ""
+            }
+            cellModels.append(NewDailyBriefStandardModel.init(caption: weatherModel.title,
+                                                                title: weatherModel.accessLocationPermissionTitle,
+                                                                body: accessBody,
+                                                                image: bucketItem.image,
+                                                                titleColor: bucketItem.titleColor,
+                                                                domainModel: bucketItem.domainModel))
+            cell.configure(with: cellModels)
+            cell.delegate = self
+
+            return cell
         default:
             cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,
@@ -619,6 +640,23 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                   let sprintCellModel = sprintCollectionCellModel.items?[indexPath.item] else { return }
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: sprintCellModel, transitioningDelegate: self?.transition)
+            }
+        case .WEATHER:
+            guard let weatherModel = dailyBriefCellViewModel as? WeatherViewModel,
+                  let weatherCell = sender.collectionView.cellForItem(at: indexPath) as? NewDailyStandardBriefCollectionViewCell else { return }
+            if weatherModel.locationPermissionStatus != .granted ||
+                weatherModel.locationPermissionStatus != .grantedWhileInForeground {
+                AppCoordinator.permissionsManager?.askPermission(for: .location) { [weak self] (status) in
+                    guard let status = status[.location] else { return }
+                    switch status {
+                    case .denied:
+                        UIApplication.openAppSettings()
+                    default:
+                        let granted = (status == .granted)
+                        self?.didChangeLocationPermission(granted: granted)
+                        weatherCell.startSkeleton()
+                    }
+                }
             }
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in

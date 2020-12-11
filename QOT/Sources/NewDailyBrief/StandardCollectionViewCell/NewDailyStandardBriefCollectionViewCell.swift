@@ -36,12 +36,7 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
     // MARK: - Public
     public func configure(with viewModel: NewDailyBriefStandardModel?) {
         guard let model = viewModel else {
-            skeletonManager.addTitle(title)
-            skeletonManager.addSubtitle(caption)
-            skeletonManager.addOtherView(body)
-            skeletonManager.addOtherView(body)
-            skeletonManager.addOtherView(imageView)
-            arrowButton.isHidden = true
+            startSkeleton()
             return
         }
         caption.text = model.caption
@@ -66,6 +61,15 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
 
         arrowButton.setImage(CTAIcon, for: .normal)
         arrowButton.imageView?.tintColor = .white
+    }
+
+    public func startSkeleton() {
+        skeletonManager.addTitle(title)
+        skeletonManager.addSubtitle(caption)
+        skeletonManager.addOtherView(body)
+        skeletonManager.addOtherView(imageView)
+        self.layer.borderWidth = 0
+        arrowButton.isHidden = true
     }
 
     public func resetTransform() {

@@ -1267,16 +1267,14 @@ extension DailyBriefInteractor {
         }).first?.valueText ?? "BUCKET_INTRO"
 
         let requestLocationPermissionDescription = AppTextService.get(.daily_brief_section_weather_empty_body_under_pic)
-        let requestLocationPermissionButtonTitle = AppTextService.get(.daily_brief_section_weather_empty_button_allow)
         let deniedLocationPermissionDescription = AppTextService.get(.daily_brief_section_weather_empty_body_under_pic)
-        let deniedLocationPermissionButtonTitle = AppTextService.get(.daily_brief_section_weather_empty_button_open_settings)
+        let accessLocationPermissionTitle = AppTextService.get(.daily_brief_section_weather_card_title)
         let locationPermission = AppCoordinator.permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
         weatherList.append(WeatherViewModel(bucketTitle: title,
                                             intro: intro,
                                             requestLocationPermissionDescription: requestLocationPermissionDescription,
-                                            requestLocationPermissionButtonTitle: requestLocationPermissionButtonTitle,
                                             deniedLocationPermissionDescription: deniedLocationPermissionDescription,
-                                            deniedLocationPermissionButtonTitle: deniedLocationPermissionButtonTitle,
+                                            accessLocationPermissionTitle: accessLocationPermissionTitle,
                                             locationName: weatherBucket?.weather?.locationName,
                                             locationPermissionStatus: locationPermission,
                                             domain: weatherBucket))

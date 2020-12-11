@@ -38,8 +38,6 @@ protocol DailyBriefViewControllerDelegate: class {
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
 
-    func didChangeLocationPermission(granted: Bool)
-
     func showDailyCheckInQuestions()
 
     func showAlert(message: String?)

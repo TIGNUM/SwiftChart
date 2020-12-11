@@ -21,14 +21,6 @@ final class WeatherCell: BaseDailyBriefCell {
     @IBOutlet weak var weatherBodyLabel: UILabel!
     @IBOutlet weak var hourlyStackView: UIStackView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
-    @IBOutlet weak var weatherImageViewTopConstraint: NSLayoutConstraint!
-
-    //Allow access section
-    @IBOutlet weak var accessLabel: UILabel!
-    @IBOutlet weak var accessImageContainerView: UIView!
-    @IBOutlet weak var accessImageView: UIImageView!
-    @IBOutlet weak var accessButton: UIButton!
-    @IBOutlet weak var accessButtonHeightConstraint: NSLayoutConstraint!
 
     private var viewModel: WeatherViewModel?
     weak var delegate: DailyBriefViewControllerDelegate?
@@ -38,12 +30,10 @@ final class WeatherCell: BaseDailyBriefCell {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         startSkeleton()
         for arrangedView in hourlyStackView.arrangedSubviews {
             arrangedView.isHidden = true
         }
-        ThemeView.level1.apply(accessImageContainerView)
     }
 
     override func prepareForReuse() {
@@ -51,21 +41,6 @@ final class WeatherCell: BaseDailyBriefCell {
         hourlyStackView.removeAllArrangedSubviews()
         numberFormatter.maximumFractionDigits = 1
         numberFormatter.minimumFractionDigits = 1
-    }
-
-    // MARK: - Actions
-    @IBAction func didTapAllowAccessButton(_ sender: Any) {
-        AppCoordinator.permissionsManager?.askPermission(for: .location) { [weak self] (status) in
-            guard let status = status[.location] else { return }
-            switch status {
-            case .denied:
-                UIApplication.openAppSettings()
-            default:
-                let granted = (status == .granted)
-                self?.delegate?.didChangeLocationPermission(granted: granted)
-                granted ? self?.startSkeleton() : self?.setupUIAccordingToLocationPermissions()
-            }
-        }
     }
 
     // MARK: - Public
@@ -122,7 +97,7 @@ final class WeatherCell: BaseDailyBriefCell {
                                         to: weatherBodyLabel)
             weatherImageView.image = UIImage(named: "placeholder_large")
         }
-        setupUIAccordingToLocationPermissions()
+//        setupUIAccordingToLocationPermissions()
         populateHourlyViews(relevantForecastModels: relevantForecastModels)
     }
 
@@ -138,9 +113,6 @@ final class WeatherCell: BaseDailyBriefCell {
         skeletonManager.addSubtitle(weatherBodyLabel)
         skeletonManager.addOtherView(hourlyStackView)
         skeletonManager.addOtherView(weatherImageView)
-        skeletonManager.addSubtitle(accessLabel)
-        skeletonManager.addOtherView(accessImageView)
-        skeletonManager.addOtherView(accessButton)
     }
 
     // MARK: Helpers
@@ -191,34 +163,34 @@ final class WeatherCell: BaseDailyBriefCell {
         }
     }
 
-    private func setupUIAccordingToLocationPermissions() {
-        let isCelsius = self.checkIfCelsius()
-        self.accessImageView.image = isCelsius ? R.image.location_permission_C() : R.image.location_permission()
-        var accessTitle = ""
-        var accessButtonTitle = ""
-        var accessButtonHeight: CGFloat = 0
-        var shouldHideHeader = false
-        switch viewModel?.locationPermissionStatus {
-        case .granted?, .grantedWhileInForeground?:
-            shouldHideHeader = true
-            accessImageView.image = nil
-        case .denied?:
-            accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
-            accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
-            accessButtonHeight = ThemeButton.accent40.defaultHeight
-        default:
-            accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
-            accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
-            accessButtonHeight = ThemeButton.accent40.defaultHeight
-        }
-        ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
-        accessButton.setTitle(accessButtonTitle, for: .normal)
-        accessButtonHeightConstraint.constant = accessButtonHeight
-        accessImageView.isHidden = shouldHideHeader
-        accessImageContainerView.isHidden = shouldHideHeader
-        lastUpdateLabel.isHidden = !shouldHideHeader
-        layoutIfNeeded()
-    }
+//    private func setupUIAccordingToLocationPermissions() {
+//        let isCelsius = self.checkIfCelsius()
+//        self.accessImageView.image = isCelsius ? R.image.location_permission_C() : R.image.location_permission()
+//        var accessTitle = ""
+//        var accessButtonTitle = ""
+//        var accessButtonHeight: CGFloat = 0
+//        var shouldHideHeader = false
+//        switch viewModel?.locationPermissionStatus {
+//        case .granted?, .grantedWhileInForeground?:
+//            shouldHideHeader = true
+//            accessImageView.image = nil
+//        case .denied?:
+//            accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
+//            accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
+//            accessButtonHeight = ThemeButton.accent40.defaultHeight
+//        default:
+//            accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
+//            accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
+//            accessButtonHeight = ThemeButton.accent40.defaultHeight
+//        }
+//        ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
+//        accessButton.setTitle(accessButtonTitle, for: .normal)
+//        accessButtonHeightConstraint.constant = accessButtonHeight
+//        accessImageView.isHidden = shouldHideHeader
+//        accessImageContainerView.isHidden = shouldHideHeader
+//        lastUpdateLabel.isHidden = !shouldHideHeader
+//        layoutIfNeeded()
+//    }
 
     private func setupHourlyImage(for hourlyView: WeatherHourlyView,
                                   isNight: Bool,
