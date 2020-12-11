@@ -14,7 +14,6 @@ protocol TBVRateDelegate: class {
 }
 
 final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
-
     @IBOutlet private weak var pageContainerView: UIView!
     @IBOutlet private weak var pageIndicatorView: UIView!
     @IBOutlet private weak var backButton: UIButton!
@@ -28,7 +27,6 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     private var pageController: UIPageViewController?
 
     private var tracks: [RatingQuestionViewModel.Question] = []
-
     weak var delegate: TBVRateDelegate?
     var interactor: MyToBeVisionRateInteracorInterface?
 
@@ -51,6 +49,11 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         super.viewDidLoad()
         view.backgroundColor = .carbon
         interactor?.viewDidLoad()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideScreenLoader()
     }
 
     override func viewDidLayoutSubviews() {
@@ -175,12 +178,13 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 }
 
 extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterface {
-
     func showScreenLoader() {
+        presentActivity(state: .inProgress)
         loaderView.isHidden = false
     }
 
     func hideScreenLoader() {
+        dismissActivity(with: nil)
         loaderView.isHidden = true
     }
 
@@ -197,9 +201,7 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
 }
 
 // MARK: UIPageViewControllerDelegate, UIPageViewControllerDataSource
-
 extension MyToBeVisionRateViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let previous = previous(from: viewController) else { return nil }
@@ -224,7 +226,6 @@ extension MyToBeVisionRateViewController: UIPageViewControllerDelegate, UIPageVi
 }
 
 extension MyToBeVisionRateViewController: QuestionnaireAnswer {
-
     func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
         pageIndicator.currentPageIndex = index

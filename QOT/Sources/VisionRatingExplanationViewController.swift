@@ -90,7 +90,10 @@ extension VisionRatingExplanationViewController {
             dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) { [weak self] in
-            self?.router.showRateScreen(trackerPoll: tmpPoll, team: tmpTeam, showBanner: self?.checkButton.isSelected, delegate: self)
+            self?.router.showRateScreen(trackerPoll: tmpPoll,
+                                        team: tmpTeam,
+                                        showBanner: self?.checkButton.isSelected,
+                                        delegate: self)
             self?.updateBottomNavigation([], [])
         }
     }
