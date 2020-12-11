@@ -61,6 +61,11 @@ extension UIColor {
 }
 
 extension UIColor {
+
+    public class var grey: UIColor {
+        return UIColor(red: 156/255, green: 152/255, blue: 151/255, alpha: 1)
+    }
+
     public class var redOrange40: UIColor {
         return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 0.4)
     }

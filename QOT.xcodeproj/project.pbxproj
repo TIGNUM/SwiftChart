@@ -4558,6 +4558,7 @@
 		B411ECA225751C5100EB7A78 /* DailyBriefModels */ = {
 			isa = PBXGroup;
 			children = (
+				F9FEA92B25348D42009BF786 /* RateOpenModel.swift */,
 				F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */,
 				B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */,
 				F96D9F3224D4494400188482 /* TeamVisionSuggestionModel.swift */,
@@ -5983,7 +5984,6 @@
 			children = (
 				F9FEA91B25348D1E009BF786 /* RateOpenCell.swift */,
 				F9FEA92325348D2C009BF786 /* RateOpenCell.xib */,
-				F9FEA92B25348D42009BF786 /* RateOpenModel.swift */,
 			);
 			name = OpenTBVRate;
 			sourceTree = "<group>";
