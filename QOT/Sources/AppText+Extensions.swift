@@ -420,6 +420,9 @@ public extension AppTextKey {
     static let daily_brief_rating_ready_average_title = AppTextKey("daily_brief.rating_ready.average_title")
     static let daily_brief_rating_ready_cta = AppTextKey("daily_brief.rating_ready.cta")
 
+    static let daily_brief_rating_feedback_title = AppTextKey("daily_brief.rating_feedback.title")
+    static let daily_brief_rating_feedback_body = AppTextKey("daily_brief.rating_feedback.body")
+
     static let daily_brief_team_invitation_and_label = AppTextKey("daily_brief.team_invitation.and_label")
     static let daily_brief_team_invitation_other_teams_label = AppTextKey("daily_brief.team_invitation.other_teams_label")
 

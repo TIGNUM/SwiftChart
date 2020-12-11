@@ -229,9 +229,16 @@ extension DailyBriefViewController {
                                                                 numberOfLinesForBody: numberOfLines,
                                                                 titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
-            } else if (bucketItem as? RatingFeedbackModel ) != nil,
-                      let feedbackModel = bucketItem as? RatingFeedbackModel {
-                return getRatingFeedbackCell(tableView, indexPath, feedbackModel)
+            } else if (bucketItem as? RatingFeedbackModel ) != nil {
+                let numberOfLines = 8
+                cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                                title: bucketItem.title,
+                                                                body: bucketItem.body,
+                                                                image: bucketItem.image,
+                                                                attributedBody: bucketItem.attributedBody,
+                                                                numberOfLinesForBody: numberOfLines,
+                                                                titleColor: bucketItem.titleColor,
+                                                                domainModel: bucketItem.domainModel))
             }
         case .WEATHER?:
             return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
@@ -351,16 +358,6 @@ private extension DailyBriefViewController {
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getRatingFeedbackCell(_ tableView: UITableView,
-                               _ indexPath: IndexPath,
-                               _ ratingFeedbackModel: RatingFeedbackModel?) -> UITableViewCell {
-        let cell: RatingFeedbackCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(model: ratingFeedbackModel)
         cell.delegate = self
         cell.clickableLinkDelegate = self
         return cell
@@ -610,9 +607,13 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                   let team = pollModel.team else { return }
             router.showExplanation(team, type: .tbvPollUser)
         case .TEAM_TOBEVISION_TRACKER_POLL:
-            guard let rateModel = dailyBriefCellViewModel as? RateOpenModel,
-                  let team = rateModel.team else { return }
-            router.showExplanation(team, type: .ratingUser)
+            if let rateModel = dailyBriefCellViewModel as? RateOpenModel,
+               let team = rateModel.team {
+                router.showExplanation(team, type: .ratingUser)
+            } else if let feedbackModel = dailyBriefCellViewModel as? RatingFeedbackModel,
+                      let team = feedbackModel.team {
+                router.showTracker(for: team)
+            }
         case .SPRINT_CHALLENGE:
             guard let sprintCollectionCellModel = dailyBriefCellViewModel as? SprintsCollectionViewModel,
                   let sprintCellModel = sprintCollectionCellModel.items?[indexPath.item] else { return }

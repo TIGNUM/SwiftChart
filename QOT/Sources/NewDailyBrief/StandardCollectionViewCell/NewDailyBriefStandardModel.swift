@@ -30,6 +30,8 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
          enabled: Bool = true,
          detailsMode: Bool = false,
          attributedTitle: NSAttributedString? = nil,
+         attributedBody: NSAttributedString? = nil,
+
          numberOfLinesForBody: Int = 2,
          isInAnimationTransition: Bool = false,
          CTAType: ContentFormat = .unknown,
@@ -43,6 +45,9 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         super.init(domainModel, caption: caption, title: title, body: body, image: image, titleColor: titleColor)
         if let attrTitle = attributedTitle {
             self.attributedTitle = attrTitle
+        }
+        if let attrBody = attributedBody {
+            self.attributedBody = attrBody
         }
     }
 
@@ -78,6 +83,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         bodySizingLabel.font = UIFont.sfProtextRegular(ofSize: 16.0)
         bodySizingLabel.lineBreakMode = .byTruncatingTail
         bodySizingLabel.text = body
+        bodySizingLabel.attributedText = ThemeText.bodyText.attributedString(body)
 
         let maxCaptionSize = CGSize(width: width, height: .greatestFiniteMagnitude)
         let maxTitleSize = CGSize(width: width, height: .greatestFiniteMagnitude)

@@ -17,6 +17,7 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
     var caption: String?
     var title: String?
     var attributedTitle: NSAttributedString?
+    var attributedBody: NSAttributedString?
     var body: String?
     var image: String?
     var domainModel: QDMDailyBriefBucket?
@@ -35,8 +36,9 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
         self.subIdentifier = subIdentifier ?? ""
         self.caption = caption
         self.title = title
-        self.attributedTitle = ThemeText.dailyBriefTitle.attributedString(title)
         self.body = body
+        self.attributedTitle = ThemeText.dailyBriefTitle.attributedString(title)
+        self.attributedBody = ThemeText.bodyText.attributedString(body)
         self.image = image
         self.titleColor = titleColor
     }

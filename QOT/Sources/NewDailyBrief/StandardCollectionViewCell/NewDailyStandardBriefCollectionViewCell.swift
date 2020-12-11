@@ -46,7 +46,7 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
         }
         caption.text = model.caption
         title.attributedText = model.attributedTitle
-        ThemeText.bodyText.apply(model.body, to: body)
+        body.attributedText = model.attributedBody
         imageView.kf.setImage(with: URL.init(string: model.image ?? ""))
         arrowButton.isHidden = model.detailsMode && hideCTAButton
         body.numberOfLines = model.detailsMode ? ((model.isInAnimationTransition ?? false) ? model.numberOfLinesForBody : 0) : model.numberOfLinesForBody
