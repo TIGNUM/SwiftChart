@@ -29,8 +29,10 @@ final class CoachInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        presenter.present(for: worker.coachSections())
-        presenter.setupView()
+        worker.getData {[weak self] coachModel in
+            self?.presenter.present(for: coachModel)
+            self?.presenter.setupView()
+        }
     }
 }
 

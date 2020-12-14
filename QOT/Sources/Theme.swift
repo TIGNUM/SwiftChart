@@ -994,10 +994,12 @@ enum ThemeText {
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .registerIntroNoteTitle, .optionPage, .optionPageDisabled, .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
-        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .coachTitle:
+        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader:
             return Fonts.fontDisplayRegular20
         case .teamVisionSentence:
             return Fonts.fontRegular24
+        case .coachTitle:
+            return Fonts.fontDisplayRegular23
         case .articleBody:
             switch textScale {
             case .scale: return Fonts.fontRegular24
@@ -1024,13 +1026,13 @@ enum ThemeText {
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .tbvTrackerAnswerTeam, .accountHeaderTitle,
              .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
-             .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
+             .coachSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .resultClosingText,
              .myLibraryItemsItemName, .myLibraryItemsItemNameGrey, .mySprintsCellTitle, .mySprintDetailsDescription,
              .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
              .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
              .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle, .suggestionMyBest,
-             .H02Light, .Text01Light, .Text01LightCarbon100:
+             .H02Light, .Text01Light, .Text01LightCarbon100, .coachHeaderSubtitle:
             return Fonts.fontLight16
         case .articleSub:
             return Fonts.fontLight18
@@ -1178,21 +1180,24 @@ enum ThemeText {
         // MARK: - .darkGrey
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle, .H03Light, .Text03Light, .performanceSectionText,
-             .qotToolsSectionSubtitle, .resultHeader2, .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle,
+             .qotToolsSectionSubtitle, .resultHeader2, .audioPlayerTitleDark, .qotToolsSubtitle,
              .paymentReminderCellSubtitle, .Text01Light, .performanceSubtitle, .resultDate, .audioFullScreenCategory:
             return Palette.darkGrey
 
+        // MARK: - .blue
+        case .coachTitle:
+            return Palette.tignumBlue
         // MARK: - .black
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
              .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation,
-             .featureLabel, .whiteBanner:
+             .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle:
             return .black
 
         // MARK: - .accent
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
-             .articleAudioBar, .coachTitle, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
+             .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
              .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage, .tbvTrackerAnswerTeam:
             return Palette.accent
         case .mySprintDetailsCtaHighlight:
@@ -1638,6 +1643,7 @@ private struct Fonts {
 
     static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
     static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
+    static let fontDisplayRegular23 = UIFont.sfProDisplayRegular(ofSize: 23.0)
     static let fontDisplayRegular34 = UIFont.sfProDisplayRegular(ofSize: 34.0)
     static let fontDisplayRegular40 = UIFont.sfProDisplayRegular(ofSize: 40.0)
     static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
@@ -1658,6 +1664,10 @@ private struct Palette {
 
     static var darkGrey: UIColor {
         return UIColor(red: 83/255, green: 83/255, blue: 83/255, alpha: 1)
+    }
+
+    static var tignumBlue: UIColor {
+        return UIColor(red: 0/255, green: 98/255, blue: 255/255, alpha: 1)
     }
 
     static var accent: UIColor {
