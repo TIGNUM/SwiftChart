@@ -996,6 +996,7 @@
 		B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */; };
 		B4D2E286257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift */; };
 		B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib */; };
+		B4D6804125874E0D0003410F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B4D6804025874DBA0003410F /* SF-Pro-Display-Bold.otf */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
 		B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */; };
 		B4ECF255235DB81E00529C66 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */; };
@@ -2420,6 +2421,7 @@
 		B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeDay0VideoTableViewCell.swift; sourceTree = "<group>"; };
 		B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeDay0VideoTableViewCell.xib; sourceTree = "<group>"; };
+		B4D6804025874DBA0003410F /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleContactSupportTableViewCell.xib; sourceTree = "<group>"; };
 		B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
@@ -5407,6 +5409,7 @@
 				366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */,
 				368A125B2277386200866DB0 /* SF-Pro-Display-Light.otf */,
 				368A12572277386100866DB0 /* SF-Pro-Display-Regular.otf */,
+				B4D6804025874DBA0003410F /* SF-Pro-Display-Bold.otf */,
 				368A12592277386200866DB0 /* SF-Pro-Display-Thin.otf */,
 				368A125C2277386200866DB0 /* SF-Pro-Display-Ultralight.otf */,
 				368A12582277386200866DB0 /* SF-Pro-Text-Light.otf */,
@@ -6472,6 +6475,7 @@
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
 				8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */,
+				B4D6804125874E0D0003410F /* SF-Pro-Display-Bold.otf in Resources */,
 				381E9B7524F66E4900973916 /* NotificationBanner.xib in Resources */,
 				B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */,
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,

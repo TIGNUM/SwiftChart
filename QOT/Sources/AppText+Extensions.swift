@@ -554,6 +554,10 @@ public extension AppTextKey {
     static let my_qot_section_team_library_subtitle_added_today = AppTextKey("my_qot.section_team_library.subtitle_added_today")
     static let my_qot_section_team_library_subtitle_added_yesterday = AppTextKey("my_qot.section_team_library.subtitle_added_yesterday")
     static let my_qot_section_team_library_subtitle_added_days_ago = AppTextKey("my_qot.section_team_library.subtitle_added_days_ago")
+    static let my_x_section_preps_title = AppTextKey("my_x.section_preps.title")
+    static let my_x_section_sprints_title = AppTextKey("my_x.section_sprints.title")
+    static let my_x_section_my_data_title = AppTextKey("my_x.section_my_data.title")
+    static let my_x_section_tbv_title = AppTextKey("my_x.section_tbv.title")
 
       // MARK: - Team ToBeVision
     static let my_x_team_tbv_not_created = AppTextKey("myX.teamTBV.not.created.title")
@@ -965,7 +969,9 @@ public extension AppTextKey {
     static let my_qot_my_plans_section_header_critical = AppTextKey("my_qot.my_plans_section.header_critical")
     static let my_qot_my_plans_section_header_everyday = AppTextKey("my_qot.my_plans_section.header_everyday")
     static let my_x_section_team_tbv_title = AppTextKey("my_x.section_team_tbv.title")
+    static let my_x_section_library_title = AppTextKey("my_x.section_library.title")
     static let my_x_section_team_library_title = AppTextKey("my_x.section_team_library.title")
+    static let my_x_section_team_tbv_new_title = AppTextKey("my_x.section_team_tbv_new.title")
 
     static let my_qot_my_plans_mindset_shifts_null_state_cta = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.cta")
     static let my_qot_my_plans_event_preps_null_state_cta = AppTextKey("my_qot.my_plans.event_preps.null_state.cta")
