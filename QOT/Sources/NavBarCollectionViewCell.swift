@@ -54,10 +54,10 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
         buttonRight.setImage(nil, for: .normal)
         buttonRight.setAttributedTitle(NSAttributedString(string: title.uppercased(),
                                                           attributes: [.foregroundColor: UIColor.carbon,
-                                                                       .font: UIFont.sfProtextSemibold(ofSize: 17)]),
+                                                                       .font: UIFont.sfProDisplayBold(ofSize: 17.0)]),
                                        for: .normal)
         buttonRight.circle()
-        buttonRight.backgroundColor = .accent
+        buttonRight.backgroundColor = .white
         buttonRight.layoutIfNeeded()
         layoutIfNeeded()
     }

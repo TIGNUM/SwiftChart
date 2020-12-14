@@ -24,7 +24,6 @@ final class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         contentView.backgroundColor = .clear
         selectedBackgroundView = nil
         background.layer.borderColor = UIColor.sand40.cgColor
-        background.layer.cornerRadius = 15
         background.layer.borderWidth = 1
         redDotLabel.circle()
         redDotLabel.isHidden = true
