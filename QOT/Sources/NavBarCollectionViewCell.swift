@@ -53,7 +53,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
         skeletonManager.hide()
         buttonRight.setImage(nil, for: .normal)
         buttonRight.setAttributedTitle(NSAttributedString(string: title.uppercased(),
-                                                          attributes: [.foregroundColor: UIColor.carbon,
+                                                          attributes: [.foregroundColor: UIColor.black,
                                                                        .font: UIFont.sfProtextSemibold(ofSize: 17)]),
                                        for: .normal)
         buttonRight.circle()

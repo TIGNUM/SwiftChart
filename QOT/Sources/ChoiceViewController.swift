@@ -121,7 +121,7 @@ extension ChoiceViewController: UITableViewDataSource {
 // MARK: - ChoiceViewControllerInterface
 extension ChoiceViewController: ChoiceViewControllerInterface {
     func setupView() {
-        view.backgroundColor = .sand
+        NewThemeView.light.apply(view)
         setupTableView()
     }
 

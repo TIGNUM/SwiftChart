@@ -32,13 +32,13 @@ final class ArticleHeaderView: UIView {
         categoryTitleLabel.attributedText = NSAttributedString(string: articleHeader.categoryTitle,
                                                                letterSpacing: 0.4,
                                                                font: .apercuMedium(ofSize: 12),
-                                                               textColor: .sand30,
+                                                               textColor: .lightGrey,
                                                                alignment: .left)
         titleLabel.attributedText = NSAttributedString(string: articleHeader.title.uppercased(),
                                                        letterSpacing: 0.2,
                                                        font: .apercuLight(ofSize: 34),
                                                        lineSpacing: 4,
-                                                       textColor: .sand,
+                                                       textColor: .white,
                                                        alignment: .left)
         setAuthor(author: articleHeader.author)
         setDetails(publishDate: articleHeader.publishDate, timeToRead: articleHeader.timeToRead)
@@ -54,7 +54,7 @@ private extension ArticleHeaderView {
             authorLabel.attributedText = NSAttributedString(string: author,
                                                             letterSpacing: 0.2,
                                                             font: .apercuMedium(ofSize: 12),
-                                                            textColor: .sand60,
+                                                            textColor: .lightGrey,
                                                             alignment: .left)
         } else {
             authorLabel.isHidden = true
@@ -69,7 +69,7 @@ private extension ArticleHeaderView {
             detailLabel.attributedText = NSAttributedString(string: detailText,
                                                             letterSpacing: 0.4,
                                                             font: .apercuRegular(ofSize: 12),
-                                                            textColor: .sand30,
+                                                            textColor: .lightGrey,
                                                             alignment: .left)
         } else {
             detailLabel.isHidden = true

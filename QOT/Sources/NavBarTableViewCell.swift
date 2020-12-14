@@ -25,7 +25,7 @@ final class NavBarTableViewCell: UIView {
         guard let navBar = R.nib.navBarTableViewCell.instantiate(withOwner: self).first as? NavBarTableViewCell else {
             fatalError("Cannot load nav bar")
         }
-        navBar.backgroundColor = .carbon
+        NewThemeView.dark.apply(navBar)
         navBar.configure(title: title, tapLeft: tapLeft, tapRight: tapRight)
         return navBar
     }

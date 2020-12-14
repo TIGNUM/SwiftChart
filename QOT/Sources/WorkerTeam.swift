@@ -452,12 +452,12 @@ extension WorkerTeam {
     }
 
     func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString {
-        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
-                                                              .foregroundColor: UIColor.sand70]
+        let greyAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
+                                                              .foregroundColor: UIColor.lightGrey]
         let redAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
                                                              .foregroundColor: UIColor.redOrange]
         let prefix = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends),
-                                               attributes: sandAttributes)
+                                               attributes: greyAttributes)
         var string = ""
         switch remainingDays {
         case 0:

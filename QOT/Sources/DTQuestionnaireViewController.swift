@@ -173,7 +173,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
             cell.configure(with: viewModel.question.title,
                            html: viewModel.question.htmlTitleString,
                            questionUpdate: nil,
-                           textColor: (interactor.isDark) ? .sand : .carbon)
+                           textColor: (interactor.isDark) ? .white : .black)
             return cell
         case .answer:
             switch viewModel.question.answerType {
@@ -197,7 +197,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 }
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(with: viewModel.tbvText ?? "",
-                               textColor: (interactor.isDark) ? .sand : .carbon)
+                               textColor: (interactor.isDark) ? .white : .black)
                 return cell
 
             case .noAnswerRequired,
@@ -233,7 +233,7 @@ private extension DTQuestionnaireViewController {
         cell.configure(with: title ?? "",
                        html: nil,
                        questionUpdate: nil,
-                       textColor: (interactor.isDark) ? .sand : .carbon,
+                       textColor: (interactor.isDark) ? .white : .black,
                        animateTextDuration: viewModel.typingAnimationDuration)
         cell.delegate = self
         return cell

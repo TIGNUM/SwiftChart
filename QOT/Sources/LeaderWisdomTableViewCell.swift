@@ -101,7 +101,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
 private extension LeaderWisdomTableViewCell {
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
-        audioView.backgroundColor = .carbon
+        NewThemeView.dark.apply(audioView)
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
             audioView.backgroundColor = .accent40
         }

@@ -57,7 +57,7 @@ final class InfoHelperView: UIView {
 private extension InfoHelperView {
     private func setupView() {
         self.clipsToBounds = true
-        self.backgroundColor = .carbon
+        NewThemeView.dark.apply(self)
         contentView.backgroundColor = .accent04
 
         circles.circles = [CircleInfo(color: UIColor.sand.withAlphaComponent(0.2), radiusRate: 0.3),
@@ -68,9 +68,9 @@ private extension InfoHelperView {
         iconImageView.tintColor = .sand
 
         titleLabel.font = .sfProDisplayLight(ofSize: 20)
-        titleLabel.textColor = .sand
+        titleLabel.textColor = .white
         textLabel.font = .sfProtextLight(ofSize: 16)
-        textLabel.textColor = .sand70
+        textLabel.textColor = .lightGrey
     }
 
     private func addDisplayAttributes(to text: NSAttributedString, type: TextType = .regular) -> NSAttributedString {

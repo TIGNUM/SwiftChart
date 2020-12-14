@@ -51,20 +51,20 @@ final class TeamInvitationCell: BaseDailyBriefCell {
         seePendingButton.setTitle(pendingCta, for: .normal)
         seePendingButton.isHidden = model?.teamNames?.count == 1
         guard let count = model?.teamNames?.count else { return }
-        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 16), .foregroundColor: UIColor.sand]
-        let sand70Attributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.sand70]
+        let whiteAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 16), .foregroundColor: UIColor.white]
+        let greyAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.lightGrey]
         ThemeButton.dailyBriefButtons.apply(joinButton)
         if count > 1 {
             joinButton.isHidden = true
             declineButton.isHidden = true
             guard let teamNames = model?.teamNames else { return }
-            let attributedString = NSMutableAttributedString(string: text2 + " ", attributes: sand70Attributes)
-            let firstTeamString = NSMutableAttributedString(string: (teamNames.first ?? "") + " ", attributes: sandAttributes)
+            let attributedString = NSMutableAttributedString(string: text2 + " ", attributes: greyAttributes)
+            let firstTeamString = NSMutableAttributedString(string: (teamNames.first ?? "") + " ", attributes: whiteAttributes)
             let andText = AppTextService.get(.daily_brief_team_invitation_and_label) + " "
-            let andString = NSMutableAttributedString(string: andText, attributes: sand70Attributes)
+            let andString = NSMutableAttributedString(string: andText, attributes: greyAttributes)
             let otherTeamsText = AppTextService.get(.daily_brief_team_invitation_other_teams_label)
             let teamCount = String(teamNames.count - 1) + " "
-            let otherTeamsString = NSMutableAttributedString(string: teamCount + otherTeamsText, attributes: sandAttributes)
+            let otherTeamsString = NSMutableAttributedString(string: teamCount + otherTeamsText, attributes: whiteAttributes)
             attributedString.append(firstTeamString)
             attributedString.append(andString)
             attributedString.append(otherTeamsString)
@@ -73,10 +73,10 @@ final class TeamInvitationCell: BaseDailyBriefCell {
             self.teamInvitation = model?.teamInvitations?.first
             guard let teamOwner = model?.teamOwner else { return }
             guard let teamNames = model?.teamNames else { return }
-            let attributedString = NSMutableAttributedString(string: teamOwner + " ", attributes: sandAttributes)
-            let teamNameString = NSMutableAttributedString(string: (teamNames.first ?? "" + " "), attributes: sandAttributes)
-            let textString =  NSMutableAttributedString(string: text1 + " ", attributes: sand70Attributes)
-            let belongingTextString = NSMutableAttributedString(string: "\n" + belongingText, attributes: sand70Attributes)
+            let attributedString = NSMutableAttributedString(string: teamOwner + " ", attributes: whiteAttributes)
+            let teamNameString = NSMutableAttributedString(string: (teamNames.first ?? "" + " "), attributes: whiteAttributes)
+            let textString =  NSMutableAttributedString(string: text1 + " ", attributes: greyAttributes)
+            let belongingTextString = NSMutableAttributedString(string: "\n" + belongingText, attributes: greyAttributes)
             attributedString.append(textString)
             attributedString.append(teamNameString)
             attributedString.append(belongingTextString)
