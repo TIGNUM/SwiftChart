@@ -68,6 +68,7 @@ extension CoachViewController: CoachViewControllerInterface {
 
     func setup(for coachSection: CoachModel) {
         coachModel = coachSection
+        tableView.reloadData()
     }
 }
 
@@ -81,21 +82,23 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return CoachTableHeaderView.init(title: coachModel?.headerTitle ?? "")
+            return CoachTableHeaderView.init(title: "/" + (coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? ""),
+                                             subtitle: coachModel?.headerSubtitle ?? "")
         default: return nil
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CoachTableHeaderView.init(title: coachModel?.headerTitle ?? "").calculateHeight(for: tableView.frame.size.width)
+        return CoachTableHeaderView.init(title: coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? "",
+                                         subtitle: coachModel?.headerSubtitle ?? "").calculateHeight(for: tableView.frame.size.width)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CoachTableViewCell = tableView.dequeueCell(for: indexPath)
         let item = coachModel?.coachItems[indexPath.row]
         cell.configure(title: item?.title ?? "", subtitle: item?.subtitle ?? "")
-        cell.setSelectedColor(.accent, alphaComponent: 0.1)
-        cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+        cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
+        addDisclosure(to: cell)
         cell.addTopLine(for: indexPath.row)
         return cell
     }
@@ -110,5 +113,13 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         didDeselectRow(at: indexPath)
+    }
+}
+
+private extension CoachViewController {
+
+    func addDisclosure(to cell: UITableViewCell) {
+        cell.accessoryView = UIImageView(image: R.image.ic_disclosure_blue())
+        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
     }
 }
