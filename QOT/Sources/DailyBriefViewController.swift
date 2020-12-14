@@ -643,7 +643,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
             }
         case .WEATHER:
             guard let weatherModel = dailyBriefCellViewModel as? WeatherViewModel,
-                  let weatherCell = sender.collectionView.cellForItem(at: indexPath) as? NewDailyStandardBriefCollectionViewCell else { return }
+                  let weatherCell = sender.collectionView.cellForItem(at: indexPath) as? NewDailyBriefStandardCollectionViewCell else { return }
             if weatherModel.locationPermissionStatus != .granted ||
                 weatherModel.locationPermissionStatus != .grantedWhileInForeground {
                 AppCoordinator.permissionsManager?.askPermission(for: .location) { [weak self] (status) in
@@ -666,7 +666,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
     }
 
     func performExpandAnimation(for cell: NewBaseDailyBriefCell, withInsideIndexPath: IndexPath, model: BaseDailyBriefViewModel, completionHandler: (@escaping () -> Void)) {
-        guard let collectionViewCell = cell.collectionView.cellForItem(at: withInsideIndexPath) as? NewDailyStandardBriefCollectionViewCell else { return }
+        guard let collectionViewCell = cell.collectionView.cellForItem(at: withInsideIndexPath) as? NewDailyBriefStandardCollectionViewCell else { return }
         collectionViewCell.freezeAnimations()
 
         guard let currentCellFrame = collectionViewCell.layer.presentation()?.frame else { return }

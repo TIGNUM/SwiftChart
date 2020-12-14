@@ -12,7 +12,7 @@ final class CardTransition: NSObject, UIViewControllerTransitioningDelegate {
     struct Params {
         let fromCardFrame: CGRect
         let fromCardFrameWithoutTransform: CGRect
-        let fromCell: NewDailyStandardBriefCollectionViewCell
+        let fromCell: NewDailyBriefStandardCollectionViewCell
     }
 
     let params: Params

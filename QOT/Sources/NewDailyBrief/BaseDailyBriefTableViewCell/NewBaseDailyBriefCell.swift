@@ -37,7 +37,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
         ThemeView.level1.apply(self)
         selectionStyle = .none
-        collectionView.registerDequeueable(NewDailyStandardBriefCollectionViewCell.self)
+        collectionView.registerDequeueable(NewDailyBriefStandardCollectionViewCell.self)
         collectionView.registerDequeueable(NewDailyBriefGetStartedCollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -80,7 +80,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
                                                              domainModel: nil)
             detailsMode = viewModel?.detailsMode ?? false
             collectionViewTopConstraint.constant  = detailsMode ? 0 : 30.0
-            height = NewDailyStandardBriefCollectionViewCell.height(for: viewModel ?? dummyModel, forWidth: width)
+            height = NewDailyBriefStandardCollectionViewCell.height(for: viewModel ?? dummyModel, forWidth: width)
             collectionView.isPagingEnabled = false
             flowLayout.minimumLineSpacing = detailsMode ? 0 : 8.0
         }
@@ -117,7 +117,7 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let model = datasource?[indexPath.row] as? NewDailyBriefStandardModel {
-            let cell: NewDailyStandardBriefCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+            let cell: NewDailyBriefStandardCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             cell.configure(with: model)
             if let tbvStatement = cell.body.text,
                model.domainModel?.bucketName == DailyBriefBucketName.ME_AT_MY_BEST {
@@ -136,7 +136,7 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
         } else {
             switch skeletonMode {
             case .standard:
-                let cell: NewDailyStandardBriefCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                let cell: NewDailyBriefStandardCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 cell.configure(with: nil)
 
                 return cell

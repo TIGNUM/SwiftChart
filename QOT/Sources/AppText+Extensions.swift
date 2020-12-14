@@ -460,11 +460,13 @@ public extension AppTextKey {
     static let generic_long_press_shortcut_title_tools = AppTextKey("generic.long_press_shortcut.title_tools")
 
     static let know_section_strategies_title = AppTextKey("know.section_strategies.title")
+    static let know_new_section_strategies_title = AppTextKey("know_new.section_strategies.title")
     static let know_section_wh_articles_subtitle = AppTextKey("know.section_wh_articles.subtitle")
     static let know_section_strategies_title_foundation = AppTextKey("know.section_strategies.title_foundation")
     static let know_section_header_title = AppTextKey("know.section_header.title")
     static let know_section_strategies_subtitle = AppTextKey("know.section_strategies.subtitle")
     static let know_section_wh_articles_title = AppTextKey("know.section_wh_articles.title")
+    static let know_new_section_wh_articles_title = AppTextKey("know_new.section_wh_articles.title")
     static let know_section_strategies_title_performance = AppTextKey("know.section_strategies.title_performance")
     static let know_strategy_list_strategy_section_body_button_mark_as_read = AppTextKey("know.strategy_list.strategy.section_body.button_mark_as_read")
     static let know_strategy_list_strategy_section_body_button_mark_as_unread = AppTextKey("know.strategy_list.strategy.section_body.button_mark_as_unread")

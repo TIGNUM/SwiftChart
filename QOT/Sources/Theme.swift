@@ -1017,7 +1017,7 @@ enum ThemeText {
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .myDataChartValueLabels,
              .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus, .Text03Light, .myPlansHeader:
             return Fonts.fontMedium12
-        case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle,
+        case .myQOTBoxTitle, .myQOTPrepTitle,
              .myLibraryGroupName, .myQOTBoxTitleDisabled:
             return Fonts.fontLight20
         case .readinessScore:
@@ -1061,12 +1061,11 @@ enum ThemeText {
             return Fonts.fontLight24
         // MARK: - .fontLight16
         case .articleRelatedTitle, .articleRelatedTitleInStrategy, .myQOTTitle, .whatsHotHeader, .sprintText,
-            .bucketTitle, .solveQuestions, .impactBucket, .articleStrategyTitle, .articleStrategyRead,
+             .bucketTitle, .solveQuestions, .impactBucket, .articleStrategyTitle, .articleStrategyRead,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .tbvTrackerAnswerTeam, .accountHeaderTitle,
              .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .strategySubHeader, .tbvQuestionLight,
-             .resultTitle, .resultTitleTheme, .resultHeader2, .resultHeaderTheme2, .strategySubHeader,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .resultClosingText,
              .myLibraryItemsItemName, .myLibraryItemsItemNameGrey, .mySprintsCellTitle, .mySprintDetailsDescription,
@@ -1076,11 +1075,11 @@ enum ThemeText {
              .H02Light, .Text01Light, .Text01LightCarbon100:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
-             .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
+             .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .resultList,
              .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .onboardingInfoBody, .paymentReminderHeaderSubtitle,
              .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader, .mySensorsTitle, .H03Light,
-             .MediumBodySand:
+             .MediumBodySand, .performanceStaticTitle:
             return Fonts.fontMedium14
         case .articlePostTitle, .articlePostTitleNight:
             return Fonts.fontLight36
@@ -1195,7 +1194,7 @@ enum ThemeText {
             return Palette.sand
 
         // MARK: - .sand40
-        case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
+        case .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
              .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .myDataChartIRAverageLabel,
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
@@ -1317,7 +1316,7 @@ enum ThemeText {
             return Palette.sand70
         case .navigationBarHeader, .suggestionMyBest, .dailyBriefLevelTitle, .weatherTitle:
             return .white
-        case .level5Question:
+        case .level5Question, .performanceStaticTitle, .datestamp:
             return .lightGray
         case .tbvQuestionHigh:
             return .mindsetShifterGreen

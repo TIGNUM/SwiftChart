@@ -13,7 +13,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
     struct Params {
         let fromCardFrame: CGRect
         let fromCardFrameWithoutTransform: CGRect
-        let fromCell: NewDailyStandardBriefCollectionViewCell
+        let fromCell: NewDailyBriefStandardCollectionViewCell
     }
 
     struct Constants {
@@ -48,7 +48,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         }
 
         if let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewBaseDailyBriefCell,
-           let standardCell = dailyBriefCell.collectionView.cellForItem(at: IndexPath.init(item: 0, section: 0)) as? NewDailyStandardBriefCollectionViewCell,
+           let standardCell = dailyBriefCell.collectionView.cellForItem(at: IndexPath.init(item: 0, section: 0)) as? NewDailyBriefStandardCollectionViewCell,
            let viewModel = dailyBriefCell.datasource?.first as? NewDailyBriefStandardModel {
             viewModel.isInAnimationTransition = true
             standardCell.hideCTAButton = false
