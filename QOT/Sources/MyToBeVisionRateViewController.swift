@@ -20,6 +20,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var loaderView: UIView!
     @IBOutlet private weak var timerView: UIView!
 
+    private var loadingDots: DotsLoadingView?
     private var isLastPage: Bool = false
     private var currentPageIndex: Int = 0
     private var nextPageTimer: Timer?
@@ -51,11 +52,6 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         interactor?.viewDidLoad()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        hideScreenLoader()
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pageController?.view.frame = pageContainerView.frame
@@ -64,9 +60,13 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     func questionnaireViewController(with question: RatingQuestionViewModel.Question?) -> UIViewController? {
         guard let questionnaire = question else { return nil }
         guard interactor?.team != nil else {
-            return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .vision)
+            return QuestionnaireViewController.viewController(with: questionnaire,
+                                                              delegate: self,
+                                                              controllerType: .vision)
         }
-        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self, controllerType: .teamVision)
+        return QuestionnaireViewController.viewController(with: questionnaire,
+                                                          delegate: self,
+                                                          controllerType: .teamVision)
     }
 
     func indexOf(_ viewController: UIViewController?) -> Int {
@@ -164,6 +164,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc private func dismissAction() {
+        hideScreenLoader()
         dismiss(animated: true)
     }
 
@@ -179,17 +180,18 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
 extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterface {
     func showScreenLoader() {
-        presentActivity(state: .inProgress)
+        showLoadingDots()
         loaderView.isHidden = false
     }
 
     func hideScreenLoader() {
-        dismissActivity(with: nil)
         loaderView.isHidden = true
+        hideLoadingDots()
     }
 
     func setupView(questions: [RatingQuestionViewModel.Question]) {
         ThemeView.level3.apply(view)
+        NewThemeView.dark.apply(loaderView)
         setupPageViewContollerOnce()
         self.tracks = questions
         pageIndicator.pageCount = questions.count
@@ -197,6 +199,24 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
         if let viewController = questionnaireViewController(with: self.tracks.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
+    }
+
+    func showLoadingDots() {
+        let dots = DotsLoadingView(frame: CGRect(origin: view.center,
+                                                 size: CGSize(width: .Default, height: .Default)))
+        dots.configure(dotsColor: .lightGray)
+        dots.translatesAutoresizingMaskIntoConstraints = false
+        loaderView.addSubview(dots)
+        dots.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        dots.widthAnchor.constraint(equalToConstant: .Default).isActive = true
+        dots.heightAnchor.constraint(equalToConstant: .Default  ).isActive = true
+        dots.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        loadingDots = dots
+        loadingDots?.animate()
+    }
+
+    func hideLoadingDots() {
+        loadingDots?.stopAnimation()
     }
 }
 
