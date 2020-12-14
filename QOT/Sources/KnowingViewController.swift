@@ -187,7 +187,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             }
         default:
             guard let whatsHotArticle = interactor?.whatsHotArticles().at(index: indexPath.item) else {
-                return CGSize.zero
+                return CGSize(width: view.frame.width, height: 196)
             }
             let height = WhatsHotCollectionViewCell.height(title: whatsHotArticle.title,
                                                            publishDate: whatsHotArticle.publishDate,
