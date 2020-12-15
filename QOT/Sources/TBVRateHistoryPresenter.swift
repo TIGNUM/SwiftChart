@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TBVRateHistoryPresenter {
 
@@ -26,7 +27,7 @@ extension TBVRateHistoryPresenter: TBVRateHistoryPresenterInterface {
     }
 
     func showErrorNoReportAvailable() {
-        viewController?.showErrorNoReportAvailable(title: "Something went wrong…",
-                                                   message: "No Rate History Available")
+        viewController?.showErrorNoReportAvailable(title: AppTextService.get(.my_x_tbv_rate_history_title),
+                                                   message: AppTextService.get(.my_x_tbv_rate_history_message))
     }
 }
