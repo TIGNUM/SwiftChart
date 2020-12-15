@@ -984,6 +984,7 @@
                         <outlet property="toBeVisionSelectionBar" destination="LJj-4A-isB" id="9BH-gK-MVl"/>
                         <outlet property="trackerBatchLabel" destination="avp-8R-gw7" id="2PH-ZN-vl3"/>
                         <outlet property="trackerButton" destination="8YT-VH-eyH" id="SZV-MA-VQT"/>
+                        <outlet property="trendsBarButton" destination="5lz-yT-Fm3" id="e5o-fc-3Uo"/>
                         <outlet property="trendsBarView" destination="6KI-JU-mMr" id="xoa-Ai-2eb"/>
                         <outlet property="trendsButton" destination="xhJ-oq-iqI" id="VMJ-eB-il9"/>
                         <outlet property="trendsLabel" destination="y1f-M1-asf" id="Cbs-Oo-Lgo"/>

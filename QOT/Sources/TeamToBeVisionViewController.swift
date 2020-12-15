@@ -33,6 +33,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var trendsBarView: UIView!
     @IBOutlet private weak var pollBatchLabel: UILabel!
     @IBOutlet private weak var trackerBatchLabel: UILabel!
+    @IBOutlet private weak var trendsBarButton: UIButton!
 
     @IBOutlet private weak var lastModifiedLabel: UILabel!
     private var didShowNullStateView = false
@@ -325,12 +326,14 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     }
 
     func hideTrends() {
+        trendsBarButton.isHidden = true
         trendsBarView.isHidden = true
         trendsButton.isHidden = true
         trendsLabel.isHidden = true
     }
 
     func showTrends() {
+        trendsBarButton.isHidden = false
         trendsBarView.isHidden = false
         trendsButton.isHidden = false
         trendsLabel.isHidden = false
