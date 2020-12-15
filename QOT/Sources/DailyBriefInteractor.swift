@@ -1306,7 +1306,7 @@ extension DailyBriefInteractor {
         let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
         let sprintInfo = getSprintInfo(sprintBucket, sprintTag, searchTag)
         var relatedItemsModels: [SprintChallengeViewModel.RelatedItemsModel] = []
-        sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
+        sprintBucket.sprint?.dailyBriefRelatedContent.first??.forEach {(content) in
             relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(content.title,
                                                                                  content.durationString,
                                                                                  content.remoteID ?? 0,
