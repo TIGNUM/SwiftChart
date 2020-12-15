@@ -11,16 +11,22 @@ import qot_dal
 
 final class AboutMeViewModel: BaseDailyBriefViewModel {
     // MARK: - Properties
-    let title: String?
     let aboutMeContent: String?
     let aboutMeMoreInfo: String?
 
     // MARK: - Init
-   init(title: String?, aboutMeContent: String?, aboutMeMoreInfo: String?, domainModel: QDMDailyBriefBucket?) {
-        self.title = title
+    init(title: String?,
+         aboutMeContent: String?,
+         aboutMeMoreInfo: String?,
+         image: String?,
+         domainModel: QDMDailyBriefBucket?) {
         self.aboutMeContent = aboutMeContent
         self.aboutMeMoreInfo = aboutMeMoreInfo
-        super.init(domainModel)
+    super.init(domainModel,
+               caption: title,
+               title: aboutMeContent,
+               body: aboutMeMoreInfo,
+               image: image)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

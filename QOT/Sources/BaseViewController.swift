@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-class BaseViewController: UIViewController {
+class BaseViewController: StatusBarAnimatableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -93,7 +93,6 @@ extension KnowingViewController: KnowingViewControllerInterface {
         collectionView.registerDequeueable(NavBarCollectionViewCell.self)
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyCategoryCollectionViewCell.self)
-        collectionView.registerDequeueable(StrategyFoundationCollectionViewCell.self)
         collectionView.register(UINib(resource: R.nib.componentHeaderView),
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: headerViewID)
@@ -137,15 +136,16 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             })
             return cell
         case Knowing.Section.strategies.rawValue:
+            let cell: StrategyCategoryCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             if indexPath.item == 0 {
-                let cell: StrategyFoundationCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 let strategy = interactor?.foundationStrategy()
                 cell.configure(categoryTitle: strategy?.title,
                                viewCount: strategy?.viewedCount,
-                               itemCount: strategy?.itemCount)
+                               itemCount: strategy?.itemCount,
+                               contentType: .video,
+                               shouldShowSeparator: true)
                 return cell
             } else {
-                let cell: StrategyCategoryCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 guard
                     interactor?.fiftyFiveStrategies().count ?? 0 > indexPath.item - 1,
                     let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1] else {
@@ -181,22 +181,20 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             return CGSize(width: view.frame.width, height: .HeaderBarHeight)
         case Knowing.Section.strategies.rawValue:
             if indexPath.item == 0 {
-                return CGSize(width: view.frame.width, height: 96)
+                return CGSize(width: view.frame.width, height: 126)
             } else {
                 return CGSize(width: view.frame.width * 0.5, height: 96)
             }
         default:
-            let whatsHotArticle = interactor?.whatsHotArticles().at(index: indexPath.item)?.title ?? ""
-            let label = UILabel(frame: CGRect(x: 24,
-                                              y: 0,
-                                              width: view.frame.width,
-                                              height: CGFloat.greatestFiniteMagnitude))
-            label.numberOfLines = 0
-            label.lineBreakMode = .byWordWrapping
-            label.font = UIFont.sfProtextLight(ofSize: 16.0)
-            label.text = whatsHotArticle.uppercased()
-            label.sizeToFit()
-            return CGSize(width: view.frame.width, height: 214 + label.frame.height)
+            guard let whatsHotArticle = interactor?.whatsHotArticles().at(index: indexPath.item) else {
+                return CGSize(width: view.frame.width, height: 196)
+            }
+            let height = WhatsHotCollectionViewCell.height(title: whatsHotArticle.title,
+                                                           publishDate: whatsHotArticle.publishDate,
+                                                           author: whatsHotArticle.author,
+                                                           timeToRead: whatsHotArticle.timeToRead,
+                                                           forWidth: view.frame.width)
+            return CGSize(width: view.frame.width, height: height)
         }
     }
 
@@ -212,8 +210,13 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                                                          at: IndexPath(row: 0, section: section)) as? ComponentHeaderView,
                 let sectionType = Knowing.Section(rawValue: section),
                 let header = interactor?.header(for: sectionType) {
-                componentHeader.configure(title: header.title, subtitle: header.subtitle, secondary: true)
-                return CGSize(width: view.frame.width, height: componentHeader.calculateHeight(for: self.collectionView.frame.size.width))
+                componentHeader.configure(title: header.title,
+                                          subtitle: header.subtitle,
+                                          showSeparatorView: section != 0,
+                                          secondary: true)
+                return CGSize(width: view.frame.width, height: ComponentHeaderView.height(title: header.title ?? "",
+                                                                                          subtitle: header.subtitle ?? "",
+                                                                                          forWidth: view.frame.width))
             }
             return CGSize(width: view.frame.width, height: 155)
         }
@@ -238,7 +241,10 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                                                                                     withReuseIdentifier: headerViewID,
                                                                                     for: indexPath as IndexPath) as? ComponentHeaderView {
                     let header = interactor?.header(for: Knowing.Section.strategies)
-                    headerView.configure(title: header?.title, subtitle: header?.subtitle, secondary: false)
+                    headerView.configure(title: header?.title,
+                                         subtitle: header?.subtitle,
+                                         showSeparatorView: false,
+                                         secondary: false)
                     return headerView
                 }
             default:
@@ -246,7 +252,10 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                                                                                     withReuseIdentifier: headerViewID,
                                                                                     for: indexPath as IndexPath) as? ComponentHeaderView {
                     let header = interactor?.header(for: Knowing.Section.whatsHot)
-                    headerView.configure(title: header?.title, subtitle: header?.subtitle, secondary: true)
+                    headerView.configure(title: header?.title,
+                                         subtitle: header?.subtitle,
+                                         showSeparatorView: true,
+                                         secondary: true)
                     return headerView
                 }
             }

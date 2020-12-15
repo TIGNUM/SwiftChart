@@ -62,6 +62,10 @@ extension UIColor {
 
 extension UIColor {
 
+    public class var grey: UIColor {
+        return UIColor(red: 156/255, green: 152/255, blue: 151/255, alpha: 1)
+    }
+
     static var lightGrey: UIColor {
         return UIColor(red: 156/255, green: 152/255, blue: 151/255, alpha: 1)
     }
@@ -634,30 +638,45 @@ extension UIColor {
         return UIColor(red: 180.0 / 255.0, green: 201.0 / 255.0, blue: 206.0 / 255.0, alpha: 1.0)
     }
 
+    public class var actionBlue: UIColor {
+        return UIColor(red: 0 / 255.0, green: 98.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var actionBlue75: UIColor {
+        return UIColor(red: 0 / 255.0, green: 98.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.75)
+    }
+
+    public class var mindsetShifterGreen: UIColor {
+        return UIColor(red: 0.604, green: 0.851, blue: 0.514, alpha: 1.0)
+    }
+
+    public class var mindsetShifterRed: UIColor {
+        return UIColor(red: 0.816, green: 0.408, blue: 0.306, alpha: 1.0)
+    }
     //Solid Colors
 
     public class var skeletonTitleColor: UIColor {
-        return UIColor(red: (80.0 / 255.0) * UIColor.skeletonIntensityFactor,
-                       green: (68.0 / 255.0) * UIColor.skeletonIntensityFactor,
-                       blue: (58.0 / 255.0) * UIColor.skeletonIntensityFactor,
+        return UIColor(red: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       green: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       blue: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
                        alpha: 1.0)
     }
 
     public class var skeletonSubtitleColor: UIColor {
-        return UIColor(red: (62.0 / 255.0) * UIColor.skeletonIntensityFactor,
-                       green: (53.0 / 255.0) * UIColor.skeletonIntensityFactor,
-                       blue: (46.0 / 255.0) * UIColor.skeletonIntensityFactor,
+        return UIColor(red: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       green: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       blue: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
                        alpha: 1.0)
     }
 
     public class var skeletonOtherViewsColor: UIColor {
-        return UIColor(red: (45.0 / 255.0) * UIColor.skeletonIntensityFactor,
-                       green: (39.0 / 255.0) * UIColor.skeletonIntensityFactor,
-                       blue: (34.0 / 255.0) * UIColor.skeletonIntensityFactor,
+        return UIColor(red: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       green: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       blue: (24.0 / 255.0) * UIColor.skeletonIntensityFactor,
                        alpha: 1.0)
     }
 
-    static let skeletonIntensityFactor: CGFloat = 0.5
+    static let skeletonIntensityFactor: CGFloat = 1
 
     func isLightColor() -> Bool {
         var grayscale: CGFloat = 0

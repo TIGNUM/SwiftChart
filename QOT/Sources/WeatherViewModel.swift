@@ -25,9 +25,8 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
     var bucketTitle: String?
     var intro: String?
     var requestLocationPermissionDescription: String?
-    var requestLocationPermissionButtonTitle: String?
     var deniedLocationPermissionDescription: String?
-    var deniedLocationPermissionButtonTitle: String?
+    var accessLocationPermissionTitle: String?
     var locationPermissionStatus: PermissionsManager.AuthorizationStatus
     var locationName: String?
 
@@ -35,18 +34,16 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
     internal init(bucketTitle: String = "",
                   intro: String?,
                   requestLocationPermissionDescription: String?,
-                  requestLocationPermissionButtonTitle: String?,
                   deniedLocationPermissionDescription: String?,
-                  deniedLocationPermissionButtonTitle: String?,
+                  accessLocationPermissionTitle: String?,
                   locationName: String?,
                   locationPermissionStatus: PermissionsManager.AuthorizationStatus,
                   domain: QDMDailyBriefBucket?) {
         self.bucketTitle = bucketTitle
         self.intro = intro
         self.requestLocationPermissionDescription = requestLocationPermissionDescription
-        self.requestLocationPermissionButtonTitle = requestLocationPermissionButtonTitle
         self.deniedLocationPermissionDescription = deniedLocationPermissionDescription
-        self.deniedLocationPermissionButtonTitle = deniedLocationPermissionButtonTitle
+        self.accessLocationPermissionTitle = accessLocationPermissionTitle
         self.locationName = locationName
         self.locationPermissionStatus = locationPermissionStatus
         super.init(domain)
@@ -60,9 +57,8 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
             bucketTitle == source.bucketTitle &&
             intro == source.intro &&
             requestLocationPermissionDescription == source.requestLocationPermissionDescription &&
-            requestLocationPermissionButtonTitle == source.requestLocationPermissionButtonTitle &&
             deniedLocationPermissionDescription == source.deniedLocationPermissionDescription &&
-            deniedLocationPermissionButtonTitle == source.deniedLocationPermissionButtonTitle &&
+            accessLocationPermissionTitle == source.accessLocationPermissionTitle &&
             locationPermissionStatus == source.locationPermissionStatus &&
             domainModel?.weather?.currentDate == source.domainModel?.weather?.currentDate &&
             domainModel?.weather?.updatedTimeString == source.domainModel?.weather?.updatedTimeString &&

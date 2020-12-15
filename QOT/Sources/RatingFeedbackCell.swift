@@ -52,6 +52,6 @@ final class RatingFeedbackCell: BaseDailyBriefCell {
 
     @IBAction func showResults(_ sender: Any) {
         guard let team = team else { return }
-        delegate?.presentRateHistory(for: team)
+        delegate?.showRateHistory(for: team)
     }
 }

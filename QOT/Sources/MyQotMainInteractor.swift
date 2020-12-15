@@ -168,7 +168,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     func getTitle(for item: MyX.Item?) -> String? {
         if item == .toBeVision && selectedTeamItem != nil {
-            return tbvTitle
+            return tbvTitle.lowercased().capitalizingFirstLetter()
         }
         return item?.title(isTeam: isTeam(), isPollInProgress: false)
     }
@@ -246,7 +246,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             let team = selectedTeamItem?.qdmTeam
 
             if teamTBVPoll == nil && team == nil {
-                router.showTBV()
+                router.showTBV(showModal: false)
             }
 
             if let team = team {
@@ -257,15 +257,15 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                     case (true, false, true, true):
                         showBanner(poll: poll)
                     case (true, false, false, true):
-                        router.showTeamTBVPollEXplanation(team)
+                        router.showTeamTBVPollEXplanation(team, showModal: false)
                     case (false, false, false, true),
                          (false, false, true, true):
-                        router.showTeamTBV(team, poll)
+                        router.showTeamTBV(team)
 
                     /// admin
                     case (_, true, _, false),
                          (false, true, _, true):
-                        router.showTeamTBV(team, poll)
+                        router.showTeamTBV(team)
                     case (true, true, _, true):
                         router.showTeamAdmin(type: .voting,
                                              team: team,
@@ -275,7 +275,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                     }
 
                 } else {
-                    router.showTeamTBV(team, teamTBVPoll)
+                    router.showTeamTBV(team)
                 }
             }
         default: return

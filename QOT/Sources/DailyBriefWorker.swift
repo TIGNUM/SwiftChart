@@ -47,6 +47,21 @@ final class DailyBriefWorker: WorkerTeam {
         })
     }
 
+    func getDailyBriefClusterConfig(completion: @escaping ([QDMDailyBriefClusterConfig]) -> Void) {
+        DailyBriefService.main.getDailyBriefClusterConfig { (config, error) in
+            if let error = error {
+                log("Error while trying to fetch cluster config:\(error.localizedDescription)", level: .error)
+                completion([])
+                return
+            }
+            if let clusterConfig = config?.sorted(by: { $0.sortOrder < $1.sortOrder }) {
+                completion(clusterConfig)
+            } else {
+                completion([])
+            }
+        }
+    }
+
     func hasConnectedWearable(_ completion: @escaping (Bool) -> Void) {
         HealthService.main.ouraRingAuthStatus { (tracker, config) in
             if tracker != nil {
@@ -156,24 +171,6 @@ extension DailyBriefWorker {
             isNewArticle = collection.viewedAt == nil && collection.modifiedAt ?? collection.createdAt ?? Date() > firstInstallTimeStamp
         }
         return isNewArticle
-    }
-}
-
-// MARK: - Get to level 5
-extension DailyBriefWorker {
-    func saveAnswerValue(_ value: Int) {
-        getDailyBriefBucketsForViewModel(completion: {(buckets) in
-            var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
-            level5Bucket?.currentGetToLevel5Value = value
-            if let level5Bucket = level5Bucket {
-                DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
-                    if let error = error {
-                        log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
-                    }
-                    requestSynchronization(.BUCKET_RECORD, .UP_SYNC)
-                })
-            }
-        })
     }
 }
 

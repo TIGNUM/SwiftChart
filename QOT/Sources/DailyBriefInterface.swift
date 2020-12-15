@@ -18,15 +18,9 @@ enum MyPeakPerformanceBucketType: String, CaseIterable {
 }
 
 protocol DailyBriefViewControllerDelegate: class {
-    func openTools(toolID: Int?)
-
     func presentStrategyList(strategyID: Int?)
 
     func showSolveResults(solve: QDMSolve)
-
-    func showCustomizeTarget()
-
-    func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
 
     func saveTargetValue(value: Int?)
 
@@ -40,15 +34,9 @@ protocol DailyBriefViewControllerDelegate: class {
 
     func reloadSprintCell(cell: UITableViewCell)
 
-    func didUpdateLevel5()
-
     func displayCoachPreparationScreen()
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
-
-    func presentMyDataScreen()
-
-    func didChangeLocationPermission(granted: Bool)
 
     func showDailyCheckInQuestions()
 
@@ -70,18 +58,18 @@ protocol DailyBriefViewControllerDelegate: class {
 
     func presentToBeVisionRate(for team: QDMTeam)
 
-    func presentRateHistory(for team: QDMTeam)
+    func showRateHistory(for team: QDMTeam)
 }
 
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]>)
     func scrollToSection(at: Int)
 }
 
 protocol DailyBriefPresenterInterface {
     func setupView()
-    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]>)
     func scrollToSection(at: Int)
 }
 
@@ -89,33 +77,31 @@ protocol DailyBriefInteractorInterface: Interactor {
     var rowViewSectionCount: Int { get }
 
     func bucket(at row: Int) -> QDMDailyBriefBucket?
-    func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?
+    func bucketViewModelNew() -> [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]?
     func getDailyBriefBucketsForViewModel()
     func getToBeVisionImage(completion: @escaping (URL?) -> Void)
     func getTeamTBVPoll(for team: QDMTeam, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
 
-    func saveAnswerValue(_ value: Int)
     func saveTargetValue(value: Int?)
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
-    func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
+    func updateViewModelListNew(_ list: [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
     func didSelectDeclineTeamInvite(invitation: QDMTeamInvitation)
     func didSelectJoinTeamInvite(invitation: QDMTeamInvitation)
 
     func markAsRead(teamNewsFeed: QDMTeamNewsFeed?, _ completion: @escaping() -> Void)
+    func setDetailsDelegate(_ delegate: BaseDailyBriefDetailsViewControllerInterface)
 }
 
 protocol DailyBriefRouterInterface: BaseRouterInterface {
-    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
     func presentPopUp(copyrightURL: String?, description: String?)
     func presentSolveResults(solve: QDMSolve)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
     func presentDailyCheckInQuestions()
     func presentCoachPreparation()
     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?)
-    func showMyDataScreen()
     func presentTeamPendingInvites()
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)
     func showExplanation(_ team: QDMTeam, type: Explanation.Types)

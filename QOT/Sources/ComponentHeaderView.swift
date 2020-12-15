@@ -9,28 +9,44 @@
 import UIKit
 
 class ComponentHeaderView: UICollectionReusableView {
+    private static let sizingCell = UINib(nibName: "ComponentHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? ComponentHeaderView
 
     // MARK: - Properties
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView!
 
-    private var baseHeaderView: QOTBaseHeaderView?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
-    }
-
-    func configure(title: String?, subtitle: String?, secondary: Bool) {
+    func configure(title: String?,
+                   subtitle: String?,
+                   showSeparatorView: Bool = false,
+                   secondary: Bool) {
         guard let title = title, let subtitle = subtitle else { return }
         let theme = secondary ? ThemeView.level1Secondary : ThemeView.level1
-        baseHeaderView?.configure(title: title.uppercased(), subtitle: subtitle)
-        ThemeText.strategyHeader.apply(title.uppercased(), to: baseHeaderView?.titleLabel)
-        ThemeText.strategySubHeader.apply(subtitle, to: baseHeaderView?.subtitleTextView)
+
+        titleLabel.text = "/" + title
+        subtitleLabel.text = subtitle
+        separatorView.isHidden = !showSeparatorView
         theme.apply(self)
     }
 
     // MARK: Public
 
-    func calculateHeight(for cellWidth: CGFloat) -> CGFloat {
-        return baseHeaderView?.calculateHeight(for: cellWidth) ?? 0
+    public static func height(title: String, subtitle: String, forWidth width: CGFloat) -> CGFloat {
+        sizingCell?.prepareForReuse()
+        sizingCell?.configure(title: title, subtitle: subtitle, secondary: false)
+        sizingCell?.layoutIfNeeded()
+        var fittingSize = UIView.layoutFittingCompressedSize
+        fittingSize.width = width
+        guard let size = sizingCell?.systemLayoutSizeFitting(fittingSize,
+                                                             withHorizontalFittingPriority: .required,
+                                                             verticalFittingPriority: .defaultLow) else {
+            return 0
+        }
+
+        guard size.height < maximumHeight else {
+            return maximumHeight
+        }
+
+        return size.height
     }
 }

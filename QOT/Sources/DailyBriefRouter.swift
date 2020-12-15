@@ -23,16 +23,6 @@ final class DailyBriefRouter: BaseRouter {
 
 // MARK: - DailyBriefRouterInterface
 extension DailyBriefRouter: DailyBriefRouterInterface {
-
-    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
-        if let data = data,
-            let controller = QuestionnaireViewController.viewController(with: data,
-                                                                        delegate: dailyBriefViewController,
-                                                                        controllerType: .customize) {
-            viewController?.present(controller, animated: true)
-        }
-    }
-
     func presentPopUp(copyrightURL: String?, description: String?) {
         let popUpController = PopUpCopyrightViewController(delegate: dailyBriefViewController,
                                                            copyrightURL: copyrightURL,
@@ -70,14 +60,6 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func showMyDataScreen() {
-        if let childViewController = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
-            let configurator = MyDataScreenConfigurator.make()
-            configurator(childViewController)
-            viewController?.pushToStart(childViewController: childViewController)
-        }
-    }
-
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?) {
         appLink?.launch()
     }
@@ -102,6 +84,17 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
                                                                         type: type)
             configurator(controller)
             viewController?.present(controller, animated: true)
+        }
+    }
+
+    func presentDailyBriefDetailsScreen(model: BaseDailyBriefViewModel, transitioningDelegate: UIViewControllerTransitioningDelegate?) {
+        if let controller = R.storyboard.main.baseDailyBriefDetailsViewController() {
+            BaseDailyBriefDetailsConfigurator.configure(model: model, viewController: controller)
+            dailyBriefViewController?.interactor.setDetailsDelegate(controller)
+            controller.modalPresentationCapturesStatusBarAppearance = true
+            controller.modalPresentationStyle = .custom
+            controller.transitioningDelegate = transitioningDelegate
+            dailyBriefViewController?.present(controller, animated: true, completion: nil)
         }
     }
 }

@@ -624,7 +624,15 @@ extension QuestionnaireViewController {
         // WARNING: This is valid only for daily brief check in Set Sleep Target
         self.answerDelegate?.saveTargetValue(value: value)
         NotificationCenter.default.post(name: .didPickTarget, object: Double(value))
-        dismiss(animated: true)
+        switch controllerType {
+        case .customize:
+            navigationController?.popViewController(animated: true)
+        case .dailyCheckin:
+            dismiss(animated: true)
+        default:
+            break
+        }
+
     }
 }
 
@@ -632,7 +640,7 @@ extension QuestionnaireViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         switch controllerType {
         case .customize:
-            return [dismissNavigationItem()]
+            return [backNavigationItem()]
         case .dailyCheckin:
             guard let pageController = parent as? UIPageViewController, let targetVC = pageController.parent else {
                 return nil
