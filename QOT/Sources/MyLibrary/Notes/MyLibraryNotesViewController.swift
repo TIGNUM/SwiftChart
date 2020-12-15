@@ -50,11 +50,12 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NewThemeView.dark.apply(view)
         interactor?.viewDidLoad()
         textViewBottomConstraint.constant = BottomNavigationContainer.height
         initialBottomOffset = textViewBottomConstraint.constant
         startObservingKeyboard()
-        textView.tintColor = .sand
+        textView.tintColor = .white
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
     }
@@ -99,12 +100,12 @@ private extension MyLibraryNotesViewController {
         let attributedText: NSAttributedString
         if let text = interactor?.noteText {
             attributedText = NSAttributedString(string: text,
-                                                attributes: [.foregroundColor: UIColor.sand,
+                                                attributes: [.foregroundColor: UIColor.white,
                                                              .font: UIFont.sfProtextLight(ofSize: 16),
                                                              .kern: CharacterSpacing.kern05])
         } else {
             attributedText = NSAttributedString(string: interactor?.placeholderText ?? "",
-                                                attributes: [.foregroundColor: UIColor.sand40,
+                                                attributes: [.foregroundColor: UIColor.lightGrey,
                                                              .font: UIFont.sfProtextLight(ofSize: 16),
                                                              .kern: CharacterSpacing.kern05])
         }
@@ -152,7 +153,7 @@ extension MyLibraryNotesViewController: UITextViewDelegate {
         saveButton?.isEnabled = interactor?.isSaveButtonEnabled ?? false
         if textView.text == interactor?.placeholderText {
             textView.text = nil
-            textView.textColor = .sand
+            textView.textColor = .white
         }
     }
 

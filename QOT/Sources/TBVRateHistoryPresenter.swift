@@ -20,9 +20,13 @@ final class TBVRateHistoryPresenter {
 }
 
 // MARK: - MyToBeVisionTrackerInterface
-
 extension TBVRateHistoryPresenter: TBVRateHistoryPresenterInterface {
     func setupView(with data: ToBeVisionReport) {
         viewController?.setupView(with: data)
+    }
+
+    func showErrorNoReportAvailable() {
+        viewController?.showErrorNoReportAvailable(title: "Something went wrong…",
+                                                   message: "No Rate History Available")
     }
 }

@@ -120,6 +120,8 @@ private extension SolveResultsViewController {
 // MARK: - SolveResultsViewControllerInterface
 extension SolveResultsViewController: SolveResultsViewControllerInterface {
     func setupView() {
+        NewThemeView.light.apply(tableView)
+        NewThemeView.light.apply(view)
         tableView.registerDequeueable(SolveHeaderTableViewCell.self)
         tableView.registerDequeueable(SolveStrategyTableViewCell.self)
         tableView.registerDequeueable(SolveTriggerTableViewCell.self)

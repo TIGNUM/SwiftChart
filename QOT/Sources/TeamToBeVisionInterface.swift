@@ -18,7 +18,8 @@ protocol TeamToBeVisionViewControllerInterface: class {
     func updatePollButton(poll: ButtonTheme.Poll)
     func updateTrackerButton(poll: ButtonTheme.Poll)
     func hideSelectionBar(_ hide: Bool)
-    func hideTrends(_ hide: Bool)
+    func hideTrends()
+    func showTrends()
 }
 
 protocol TeamToBeVisionPresenterInterface {
@@ -28,7 +29,8 @@ protocol TeamToBeVisionPresenterInterface {
     func load(_ teamVision: QDMTeamToBeVision?)
     func setSelectionBarButtonItems()
     func hideSelectionBar(_ hide: Bool)
-    func hideTrends(_ hide: Bool)
+    func hideTrends()
+    func showTrends()
     func updatePoll(visionPoll: QDMTeamToBeVisionPoll?,
                     trackerPoll: QDMTeamToBeVisionTrackerPoll?,
                     team: QDMTeam?,

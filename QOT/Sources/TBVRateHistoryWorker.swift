@@ -11,12 +11,14 @@ import qot_dal
 
 final class TBVRateHistoryWorker: WorkerTeam {
 
-    lazy var isDataType = displayType == .data
     lazy var title = isDataType ? AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_header_title) :
                                   AppTextService.get(.my_qot_my_tbv_tbv_tracker_result_section_header_title)
-    lazy var teamHeader = AppTextService.get(.my_x_team_tbv_tracker_data_header_title)
+
     lazy var subtitle = isDataType ? AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_header_subtitle) :
                                      AppTextService.get(.my_qot_my_tbv_tbv_tracker_result_section_header_body)
+
+    lazy var isDataType = displayType == .data
+    lazy var teamHeader = AppTextService.get(.my_x_team_tbv_tracker_data_header_title)
     lazy var teamSubtitle = AppTextService.get(.my_x_my_tbv_tbv_tracker_data_section_team_header)
     lazy var teamTitle = AppTextService.get(.my_x_team_tbv_tracker_data_title)
     lazy var graphTitle = AppTextService.get(.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_title)
@@ -29,7 +31,7 @@ final class TBVRateHistoryWorker: WorkerTeam {
         self.team = team
     }
 
-    func getData(_ completion: @escaping (ToBeVisionReport) -> Void) {
+    func getData(_ completion: @escaping (ToBeVisionReport?) -> Void) {
         if let team = team {
             getTeamReport(team, completion)
         } else {
@@ -74,17 +76,23 @@ private extension TBVRateHistoryWorker {
         }
     }
 
-    func getTeamReport(_ team: QDMTeam, _ completion: @escaping (ToBeVisionReport) -> Void) {
+    func getTeamReport(_ team: QDMTeam, _ completion: @escaping (ToBeVisionReport?) -> Void) {
         getLatestClosedPolls(for: team) { [weak self] (polls) in
             if let polls = polls, polls.isEmpty == false {
                 UserService.main.getTeamToBeVisionTrackingReport(polls: polls) { (report) in
-                    guard let strongSelf = self, let date = report.dates.sorted(by: <).last else { return }
-                    strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
-                                                            subtitle: strongSelf.subtitle,
-                                                            selectedDate: date,
-                                                            report: report)
-                    completion(strongSelf.dataModel!)
+                    if let strongSelf = self,
+                       let date = report.dates.sorted(by: <).last {
+                        strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
+                                                                subtitle: strongSelf.subtitle,
+                                                                selectedDate: date,
+                                                                report: report)
+                        completion(strongSelf.dataModel)
+                    } else {
+                        completion(nil)
+                    }
                 }
+            } else {
+                completion(nil)
             }
         }
     }

@@ -13,18 +13,35 @@ final class CoachWorker {
 
     // MARK: - Init
 
+    private var user: QDMUser?
+    private let dispatchGroup = DispatchGroup()
+
     init() {
     }
 
     // MARK: - Functions
-
-    func coachSections() -> CoachModel {
+    func coachSections(for user: QDMUser?) -> CoachModel {
         let headerTitle = AppTextService.get(.coach_section_header_title)
+        let headerString = AppTextService.get(.coach_section_header_subtitle)
+        let headerSubtitle = headerString.replacingOccurrences(of: "${username}", with: String(user?.givenName ?? ""))
         let coachItems =  CoachSection.allCases.map {
             return CoachModel.Item(coachSections: $0,
                                    title: coachSectionTitles(for: $0),
-                                   subtitle: coachSectionSubtitles(for: $0)) }
-        return CoachModel(headerTitle: headerTitle, coachItems: coachItems)
+                                   subtitle: coachSectionSubtitles(for: $0))
+        }
+        return CoachModel(headerTitle: headerTitle, headerSubtitle: headerSubtitle, coachItems: coachItems)
+    }
+
+    func getData(_ completion: @escaping (_ coachModel: CoachModel) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        UserService.main.getUserData { (user) in
+            self.user = user
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion(self.coachSections(for: self.user))
+        }
     }
 
     func coachSectionTitles(for coachItem: CoachSection) -> String? {

@@ -39,7 +39,7 @@ final class RatingFeedbackCell: BaseDailyBriefCell {
         ThemeText.iRscore.apply(model?.averageValue ?? "", to: averageValueLabel)
         let subtitle = AppTextService.get(.daily_brief_rating_ready_subtitle)
         baseHeaderView?.configure(title: title, subtitle: subtitle)
-        baseHeaderView?.setColor(dashColor: UIColor(hex: model?.team?.teamColor ?? ""), titleColor: UIColor(hex: model?.team?.teamColor ?? ""), subtitleColor: .sand)
+        baseHeaderView?.setColor(dashColor: UIColor(hex: model?.team?.teamColor ?? ""), titleColor: UIColor(hex: model?.team?.teamColor ?? ""), subtitleColor: .white)
         ThemeText.baseHeaderSubtitleBold.apply(AppTextService.get(.daily_brief_rating_ready_average_title), to: averageLabel)
         ThemeText.baseHeaderSubtitleBold.apply(subtitle, to: baseHeaderView?.subtitleTextView)
         self.team = model?.team

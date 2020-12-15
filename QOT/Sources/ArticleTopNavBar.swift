@@ -159,8 +159,12 @@ extension ArticleTopNavBar {
         gradientShadow.removeFromSuperlayer()
         gradientShadow.frame = bounds
         gradientShadow.locations = [0, 0.8, 1.0]
-        gradientShadow.colors = colorMode == .dark ? [UIColor.carbon.cgColor, UIColor.carbon.cgColor, UIColor.carbon05.cgColor] :
-            [UIColor.sand.cgColor, UIColor.sand.cgColor, UIColor.sand08.cgColor]
+        gradientShadow.colors = colorMode == .dark ? [UIColor.black.cgColor,
+                                                      UIColor.black.cgColor,
+                                                      UIColor.black.withAlphaComponent(05).cgColor] :
+            [UIColor.white.cgColor,
+             UIColor.white.cgColor,
+             UIColor.white.withAlphaComponent(0.8).cgColor]
         layer.insertSublayer(gradientShadow, at: 0)
     }
 

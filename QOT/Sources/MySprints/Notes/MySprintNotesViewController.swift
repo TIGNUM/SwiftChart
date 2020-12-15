@@ -40,7 +40,7 @@ final class MySprintNotesViewController: BaseViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        textView.tintColor = .sand
+        textView.tintColor = .white
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
         showDefaultBottomButtons()
@@ -108,7 +108,7 @@ private extension MySprintNotesViewController {
 
     private func updateTextViewText() {
         textView.attributedText = NSAttributedString(string: interactor?.noteText ?? "",
-                                                     attributes: [.foregroundColor: UIColor.sand,
+                                                     attributes: [.foregroundColor: UIColor.white,
                                                                   .font: UIFont.sfProtextLight(ofSize: 16),
                                                                   .kern: CharacterSpacing.kern05])
     }

@@ -47,7 +47,7 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewWillAppear(_ animated: Bool) {
         updateBottomNavigation([backNavigationItem()], rightBarButtonItem)
-        setStatusBar(color: .carbon)
+        setStatusBar(color: .black)
         interactor.refreshView()
     }
 

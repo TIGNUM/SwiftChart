@@ -321,8 +321,10 @@
 		386C27BB241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */; };
 		386C27BE241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27BC241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift */; };
 		386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */; };
+		386C398825816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */; };
 		3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
+		3877862D257ECE3900F4B5ED /* NewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877862C257ECE3900F4B5ED /* NewTheme.swift */; };
 		388249442536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */; };
 		389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */; };
 		3898280D2502A89900A37C25 /* PollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3898280C2502A89900A37C25 /* PollButton.swift */; };
@@ -1769,8 +1771,10 @@
 		386C27B9241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareEventTableViewCell.xib; sourceTree = "<group>"; };
 		386C27BC241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareQuestionTableViewCell.xib; sourceTree = "<group>"; };
+		386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMToBeVisionRatingReport+Ext.swift"; sourceTree = "<group>"; };
 		3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamHeaderCell.xib; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		3877862C257ECE3900F4B5ED /* NewTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTheme.swift; sourceTree = "<group>"; };
 		388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMTeamToBeVisionTrackerPoll+Ext.swift"; sourceTree = "<group>"; };
 		389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveView.xib; sourceTree = "<group>"; };
 		3898280C2502A89900A37C25 /* PollButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollButton.swift; sourceTree = "<group>"; };
@@ -3219,6 +3223,7 @@
 			children = (
 				8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */,
 				BB667EF72313D76A007C2AC8 /* Theme.swift */,
+				3877862C257ECE3900F4B5ED /* NewTheme.swift */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -3444,6 +3449,7 @@
 				B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */,
 				38406DAB2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift */,
 				388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */,
+				386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -3717,12 +3723,12 @@
 		5F62BE8A228AB57F00852F7E /* MyQotSupportFAQ */ = {
 			isa = PBXGroup;
 			children = (
-				5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */,
-				5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */,
 				5F62BE91228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift */,
+				5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */,
 				5F62BE93228AB61100852F7E /* MyQotSupportDetailsInterface.swift */,
 				5F62BE95228AB63A00852F7E /* MyQotSupportDetailsPresenter.swift */,
 				5F62BE97228AB64E00852F7E /* MyQotSupportDetailsRouter.swift */,
+				5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */,
 				5F62BE99228AB66100852F7E /* MyQotSupportDetailsWorker.swift */,
 			);
 			name = MyQotSupportFAQ;
@@ -6956,6 +6962,7 @@
 				5F8A89992296DEF70011A05C /* MyVisionPresenter.swift in Sources */,
 				3655F2DE2326FCA800334719 /* DTPresenter.swift in Sources */,
 				3655F2D72326EBD600334719 /* DTMindsetViewController.swift in Sources */,
+				3877862D257ECE3900F4B5ED /* NewTheme.swift in Sources */,
 				367A58532326A15D0089A082 /* DTSolvePresenter.swift in Sources */,
 				8D25327322E9DD0200FE4205 /* HeaderDetailsItemCell.swift in Sources */,
 				CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */,
@@ -6971,6 +6978,7 @@
 				B86E744922A9519900B0AE75 /* MyLibraryCategoryListPresenter.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */,
+				386C398825816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift in Sources */,
 				7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */,
 				5F62BE90228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift in Sources */,
 				F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */,

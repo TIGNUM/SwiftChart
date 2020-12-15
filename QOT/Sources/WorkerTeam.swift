@@ -387,14 +387,11 @@ extension WorkerTeam {
                 log("Error allTeamToBeVisionTrackerPol: \(error.localizedDescription)", level: .error)
                 // TODO handle error
             }
-            var closedPolls = allPolls?.filter { $0.open == false &&
-                $0.qotTeamToBeVisionTrackers?.isEmpty == false &&
-                $0.averageValue != nil &&
-                $0.feedback != nil } ?? []
-            closedPolls.sort(by: { $0.createdAt ?? Date() < $1.createdAt ?? Date() })
+            var filteredPolls = self.getSortedClosedPollsWithRatings(allPolls: allPolls)
+            filteredPolls.sort(by: { $0.createdAt ?? Date() < $1.createdAt ?? Date() })
             var lastPolls: [QDMTeamToBeVisionTrackerPoll] = []
 
-            for (index, poll) in closedPolls.reversed().enumerated() {
+            for (index, poll) in filteredPolls.reversed().enumerated() {
                 if index == 3 {
                     break
                 }
@@ -402,6 +399,18 @@ extension WorkerTeam {
             }
             completion(lastPolls)
         }
+    }
+
+    func getSortedClosedPollsWithRatings(allPolls: [QDMTeamToBeVisionTrackerPoll]?) -> [QDMTeamToBeVisionTrackerPoll] {
+        let openPolls = allPolls?.filter { !$0.open } ?? []
+        var openPollsWithRating = [QDMTeamToBeVisionTrackerPoll]()
+
+        for openPoll in openPolls {
+            if openPoll.qotTeamToBeVisionTrackers?.filter({ $0.qotTeamToBeVisionTrackerRatings?.isEmpty == false }).isEmpty == false {
+                openPollsWithRating.append(openPoll)
+            }
+        }
+        return openPollsWithRating
     }
 }
 
@@ -443,12 +452,12 @@ extension WorkerTeam {
     }
 
     func getTeamTBVPollRemainingDays(_ remainingDays: Int) -> NSAttributedString {
-        let sandAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
-                                                              .foregroundColor: UIColor.sand70]
+        let greyAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
+                                                              .foregroundColor: UIColor.lightGrey]
         let redAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16),
                                                              .foregroundColor: UIColor.redOrange]
         let prefix = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends),
-                                               attributes: sandAttributes)
+                                               attributes: greyAttributes)
         var string = ""
         switch remainingDays {
         case 0:
@@ -498,6 +507,11 @@ extension WorkerTeam {
     // If user tries to vote on the poll which user alreay voted, it will return 'UserDidVoteTeamToBeVisionTrackerPoll'
     func voteTeamToBeVisionTrackerPoll(_ votes: [QDMTeamToBeVisionTrackerVote],
                                        _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        guard !votes.isEmpty else {
+            completion(nil)
+            return
+        }
+
         TeamService.main.voteTeamToBeVisionTrackerPoll(votes) { (poll, error) in
             if let error = error {
                 log("Error voteTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)

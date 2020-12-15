@@ -423,7 +423,7 @@ extension UIViewController {
         button.frame.size.height = .Default
         button.frame.size.width = .Default
         button.layer.cornerRadius =  button.frame.size.height/2
-        button.layer.backgroundColor = UIColor.sand.cgColor
+        button.layer.backgroundColor = UIColor.white.cgColor
         button.imageView?.contentMode = .center
         return UIBarButtonItem(customView: button)
     }
@@ -433,7 +433,7 @@ extension UIViewController {
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
                                          textColor: UIColor = .accent,
-                                         backgroundColor: UIColor = .carbonNew,
+                                         backgroundColor: UIColor = .black,
                                          borderColor: UIColor = .clear) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: .Default))

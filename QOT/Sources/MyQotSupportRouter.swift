@@ -14,6 +14,7 @@ final class MyQotSupportRouter: BaseRouter, MyQotSupportRouterInterface {
         switch item {
         case .usingQOT: presentUsingQOT()
         case .faq: showFAQScreen(category: .FAQ)
+        case .faqTeam: showFAQScreen(category: .FAQTeam)
         case .contactSupport: presentMailComposer(recipients: [Defaults.firstLevelSupportEmail],
                                                   subject: "ID: Support")
         case .contactSupportNovartis: break

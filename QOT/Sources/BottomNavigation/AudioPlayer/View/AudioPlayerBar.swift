@@ -86,8 +86,8 @@ final class AudioPlayerBar: UIView {
     func refreshColorMode(isLight: Bool) {
         isLightMode = isLight
         setTitleLabel(title: titleLabel.text ?? "", isLight: isLight)
-        contentView.backgroundColor = (isLight) ? .carbon : .sand
-        progressModeContentView.backgroundColor = (isLight) ? .carbon : .sand
+        isLight ? NewThemeView.dark.apply(contentView) : NewThemeView.light.apply(contentView)
+        isLight ? NewThemeView.dark.apply(progressModeContentView) : NewThemeView.light.apply(progressModeContentView)
         verticalDivider.backgroundColor = (isLight) ? .sand60 : .carbon60
     }
 }

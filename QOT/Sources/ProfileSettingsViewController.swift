@@ -41,7 +41,7 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(color: .carbon)
+        setStatusBar(color: .black)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -65,12 +65,12 @@ private extension ProfileSettingsViewController {
     }
 
     func setupView() {
+        NewThemeView.dark.apply(view)
         tableView.tableFooterView = UIView()
         registerCells()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         baseHeaderView?.configure(title: interactor?.editAccountTitle, subtitle: nil)
-        view.backgroundColor = .carbon
         keyboardInputView.delegate = self
     }
 
@@ -231,7 +231,7 @@ extension ProfileSettingsViewController {
         let cancelItem = roundedBarButtonItem(title: AppTextService.get(.generic_view_button_cancel),
                                               buttonWidth: .Cancel,
                                               action: #selector(didCancel),
-                                              backgroundColor: .carbon,
+                                              backgroundColor: .black,
                                               borderColor: .accent40)
         let saveItem = saveButtonItem(#selector(didSave))
         return [saveItem, cancelItem]

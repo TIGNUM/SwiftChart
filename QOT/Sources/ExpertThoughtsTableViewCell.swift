@@ -80,7 +80,7 @@ final class ExpertThoughtsTableViewCell: BaseDailyBriefCell {
 private extension ExpertThoughtsTableViewCell {
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
-        audioButton.backgroundColor = .carbon
+        NewThemeView.dark.apply(audioButton)
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
             audioButton.backgroundColor = .accent40
         }

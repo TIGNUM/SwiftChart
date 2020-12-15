@@ -50,6 +50,15 @@ extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterfa
         tableView.delegate = self
         tableView.reloadData()
     }
+
+    func showErrorNoReportAvailable(title: String, message: String) {
+        let closeButtonItem = createCloseButton(#selector(dismissAlert))
+        QOTAlert.show(title: title, message: message, bottomItems: [closeButtonItem])
+    }
+
+    @objc func dismissAlert() {
+        QOTAlert.dismiss()
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource

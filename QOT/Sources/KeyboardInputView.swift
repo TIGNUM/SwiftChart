@@ -23,6 +23,7 @@ final class KeyboardInputView: UIView {
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        NewThemeView.dark.apply(self)
         rightButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         leftButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         updateRightButton(false)
@@ -32,7 +33,7 @@ final class KeyboardInputView: UIView {
         rightButton.isUserInteractionEnabled = isEnabled
         UIView.animate(withDuration: Animation.duration_02) { [weak self] in
             self?.rightButton.setTitleColor(isEnabled ? .accent : .sand30, for: .normal)
-            self?.rightButton.backgroundColor = isEnabled ? .carbon : .sand08
+            self?.rightButton.backgroundColor = isEnabled ? .black : .sand08
             self?.rightButton.layer.borderWidth = isEnabled ? 1 : 0
         }
     }

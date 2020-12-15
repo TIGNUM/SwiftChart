@@ -11,10 +11,12 @@ import qot_dal
 
 protocol TBVRateHistoryViewControllerInterface: class {
     func setupView(with data: ToBeVisionReport)
+    func showErrorNoReportAvailable(title: String, message: String)
 }
 
 protocol TBVRateHistoryPresenterInterface {
     func setupView(with data: ToBeVisionReport)
+    func showErrorNoReportAvailable()
 }
 
 protocol TBVRateHistoryInteractorInterface: Interactor {
