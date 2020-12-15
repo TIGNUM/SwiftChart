@@ -18,7 +18,7 @@ final class CoachTableViewCell: BaseToolsTableViewCell, Dequeueable {
     // MARK: - Lifecycle
 
     func configure(title: String, subtitle: String) {
-        ThemeText.coachTitle.apply(title.uppercased(), to: titleLabel)
+        ThemeText.coachTitle.apply(title, to: titleLabel)
         ThemeText.coachSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }

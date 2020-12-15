@@ -49,7 +49,7 @@ final class ToolsCollectionsGroupTableViewCell: BaseToolsTableViewCell, Dequeuea
         counterLabel.attributedText = NSAttributedString(string: "\(numberOfItems)",
                                                        letterSpacing: 0.4,
                                                        font: .apercuMedium(ofSize: 12),
-                                                       textColor: .carbon,
+                                                       textColor: .black,
                                                        alignment: .center)
     }
 }

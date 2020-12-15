@@ -86,8 +86,8 @@ private extension RegistrationCodeViewController {
         codeErrorLabel.attributedText = nil
         digitTextFields.forEach {
             $0.text = ""
-            $0.textColor = .sand
-            $0.layer.borderColor = UIColor.sand20.cgColor
+            $0.textColor = .white
+            $0.layer.borderColor = UIColor.white20.cgColor
         }
     }
 

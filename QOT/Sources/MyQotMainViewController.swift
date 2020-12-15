@@ -55,7 +55,7 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         log("🔅🔅🔆🔮🔮", level: .debug)
-        setStatusBar(color: .carbon)
+        setStatusBar(color: .black)
         interactor.viewWillAppear()
     }
 

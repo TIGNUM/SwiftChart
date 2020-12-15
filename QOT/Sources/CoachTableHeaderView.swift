@@ -13,11 +13,13 @@ final class CoachTableHeaderView: UIView {
     // MARK: - Properties
     private var baseHeaderView: QOTBaseHeaderView?
 
-    convenience init(title: String) {
+    convenience init(title: String, subtitle: String) {
         self.init(frame: .zero)
         baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
-        baseHeaderView?.configure(title: title, subtitle: nil)
-        ThemeText.coachHeader.apply(title.uppercased(), to: baseHeaderView?.titleLabel)
+        baseHeaderView?.configure(title: title, subtitle: subtitle)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        ThemeText.coachHeader.apply(title, to: baseHeaderView?.titleLabel)
+        ThemeText.coachHeaderSubtitle.apply(subtitle, to: baseHeaderView?.subtitleTextView)
     }
 
     override init(frame: CGRect) {

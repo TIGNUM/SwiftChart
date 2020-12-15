@@ -41,7 +41,7 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
 private extension TeamInvitePendingTableViewCell {
     func layoutButton(_ button: UIButton, _ key: AppTextKey, _ canJoin: Bool) {
         button.corner(radius: 20, borderColor: canJoin ? .accent40 : .sand10, borderWidth: canJoin ? 1 : 0)
-        button.setTitleColor(canJoin ? .accent : .sand40, for: .normal)
+        button.setTitleColor(canJoin ? .accent : .lightGrey, for: .normal)
         button.setTitle(AppTextService.get(key), for: .normal)
         button.backgroundColor = canJoin ? .carbon90 : .sand10
         button.isEnabled = canJoin

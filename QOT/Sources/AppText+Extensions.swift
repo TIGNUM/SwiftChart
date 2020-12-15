@@ -53,6 +53,7 @@ public extension AppTextKey {
     static let coach_section_sprint_title = AppTextKey("coach.section_sprint.title")
     static let coach_section_prepare_title = AppTextKey("coach.section_prepare.title")
     static let coach_section_header_title = AppTextKey("coach.section_header.title")
+    static let coach_section_header_subtitle = AppTextKey("coach_section.header.subtitle")
     static let coach_section_sprint_subtitle = AppTextKey("coach.section_sprint.subtitle")
     static let coach_section_search_title = AppTextKey("coach.section_search.title")
     static let coach_section_solve_title = AppTextKey("coach.section_solve.title")
@@ -1176,7 +1177,6 @@ public extension AppTextKey {
     static let daily_brief_sprint_challenge_alert_body = AppTextKey("daily_brief.sprint_challenge.alert_body")
     static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
     static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
-    static let coach_section_header_subtitle = AppTextKey("coach.section_header.subtitle")
 
     static let daily_brief_section_impact_readiness_section_future_load_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_future_load.subtitle")
     static let daily_brief_section_impact_readiness_section_load_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_load.subtitle")

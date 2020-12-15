@@ -58,12 +58,10 @@ enum ControllerType {
 
     var color: UIColor {
         switch self {
-        case .vision, .teamVision:
-            return .sand
+        case .vision, .teamVision, .customize:
+            return .white
         case .dailyCheckin:
-            return .carbon
-        case .customize:
-            return .sand
+            return .black
         }
     }
 }

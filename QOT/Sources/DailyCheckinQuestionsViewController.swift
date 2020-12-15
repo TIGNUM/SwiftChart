@@ -31,7 +31,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor?.viewWillAppear()
-        setStatusBar(color: .sand)
+        setStatusBar(color: .white)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -163,7 +163,7 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         pageIndicator.addConstraints(to: pageIndicatorView)
         pageIndicator.pageColor = .carbon
         pageIndicator.pageCount = 0
-        view.backgroundColor = .sand
+        NewThemeView.light.apply(view)
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageController.delegate = self
         pageController.dataSource = self

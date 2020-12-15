@@ -25,7 +25,7 @@ final class PrepareResultsAddToCalendarTableViewCell: UITableViewCell, Dequeueab
         //FIXME: https://tignum.atlassian.net/browse/QOT-2688
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        font: UIFont.sfProtextMedium(ofSize: 24),
-                                                       textColor: .carbon,
+                                                       textColor: .black,
                                                        alignment: .left)
         subtitleLabel.attributedText = NSAttributedString(string: subtitle,
                                                           font: UIFont.sfProtextRegular(ofSize: 12),

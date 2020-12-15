@@ -41,7 +41,7 @@ final class TeamToBeVisionOptionsViewController: BaseViewController, ScreenZLeve
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor.viewWillAppear()
-        setStatusBar(color: .carbon)
+        setStatusBar(color: .black)
         updateBottomNavigation(bottomNavigationLeftBarItems(), [])
     }
 

@@ -18,8 +18,8 @@ final class ArticleRelatedWhatsHotTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .carbon
-        contentView.backgroundColor = .carbon
+        NewThemeView.dark.apply(self)
+        NewThemeView.dark.apply(contentView)
     }
 
     // MARK: - Cell configuration

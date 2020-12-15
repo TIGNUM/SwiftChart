@@ -96,7 +96,7 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         let textColor: UIColor = viewModel?.hasFiveDaySleepQuantityValues == true &&
                                         viewModel?.sleepQuantityValue?.isLess(than: targetSleepQuantityInFiveDays) == true ?
-                                            .redOrange : .sand
+                                            .redOrange : .white
         sleepQuantityScoreButton.setTitleColor(textColor, for: .normal)
         sleepQuantityScoreButton.setTitle(String(viewModel?.sleepQuantityValue ?? 0) + hour, for: .normal)
         sleepQuantityTarget.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_customize_button), for: .normal)
@@ -108,7 +108,7 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
         let qualityReference = Double(AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_number_ref))
         let qualityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_new_title)
         sleepQualityButton.setTitle(qualityTitle, for: .normal)
-        let qualityTextColor: UIColor = qualityReference?.isLess(than: viewModel?.sleepQualityValue ?? 0) == true ? .sand : .redOrange
+        let qualityTextColor: UIColor = qualityReference?.isLess(than: viewModel?.sleepQualityValue ?? 0) == true ? .white : .redOrange
         sleepQualityScoreButton.setTitleColor(qualityTextColor, for: .normal)
         sleepQualityScoreButton.setTitle(String(viewModel?.sleepQualityValue ?? 0) + asteriskQuality, for: .normal)
 
@@ -117,7 +117,7 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
         let loadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_new_title)
         loadButton.setTitle(loadTitle, for: .normal)
 
-        let loadTextColor: UIColor = viewModel?.loadValue?.isLess(than: loadReference ?? 0) == true ? .sand : .redOrange
+        let loadTextColor: UIColor = viewModel?.loadValue?.isLess(than: loadReference ?? 0) == true ? .white : .redOrange
         loadScoreButton.setTitleColor(loadTextColor, for: .normal)
         loadScoreButton.setTitle(String(viewModel?.loadValue ?? 0) + asteriskLoad, for: .normal)
 
@@ -126,7 +126,7 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
         let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_new_title)
         futureLoadButton.setTitle(futureLoadTitle, for: .normal)
 
-        let futureLoadTextColor: UIColor = viewModel?.futureLoadValue?.isLess(than: futureLoadReference ?? 0) == true ? .sand : .redOrange
+        let futureLoadTextColor: UIColor = viewModel?.futureLoadValue?.isLess(than: futureLoadReference ?? 0) == true ? .white : .redOrange
         futureLoadScoreButton.setTitleColor(futureLoadTextColor, for: .normal)
         futureLoadScoreButton.setTitle(String(viewModel?.futureLoadValue ?? 0) + asteriskLoad, for: .normal)
         // Tracked days

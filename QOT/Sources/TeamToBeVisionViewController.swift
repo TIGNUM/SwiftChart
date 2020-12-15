@@ -70,7 +70,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(color: .carbon)
+        setStatusBar(color: .black)
         interactor.viewWillAppear()
     }
 
@@ -216,7 +216,6 @@ private extension TeamToBeVisionViewController {
             router.showTeamTBVGenerator(poll: interactor.teamVisionPoll,
                                         team: interactor.team,
                                         showBanner: false)
-
         case .undefined,
              .none: break
         }
@@ -263,7 +262,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         toBeVisionSelectionBar.allOff()
         toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner, self)
         navigationBarView.configure(isOwner: interactor.team.thisUserIsOwner, self)
-        navigationBarView.backgroundColor = .carbon
+        NewThemeView.dark.apply(navigationBarView)
     }
 
     func setupView() {
