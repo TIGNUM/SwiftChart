@@ -357,6 +357,7 @@ public extension AppTextKey {
     static let daily_brief_section_sprint_challenge_title = AppTextKey("daily_brief.section_sprint_challenge.title")
     static let daily_brief_section_sprint_challenge_caption = AppTextKey("daily_brief.section_sprint_challenge.caption")
     static let daily_brief_section_visual_delights_title = AppTextKey("daily_brief.section_visual_delights.title")
+    static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
 
     static let daily_brief_section_weather_empty_body = AppTextKey("daily_brief.section_weather.empty.body")
     static let daily_brief_section_weather_card_title = AppTextKey("daily_brief.section_weather_card.title")
@@ -1237,7 +1238,7 @@ public extension AppTextKey {
 
 @available(*, unavailable, message: "Unavailable from QOT v3.3.0")
 public extension AppTextKey {
-    static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+
     static let daily_brief_section_team_news_feed_subtitle_for_one_item = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_one_item")
     static let daily_brief_section_team_news_feed_subtitle_for_multiple_items = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_multiple_items")
     static let daily_brief_section_team_news_feed_open_library_button_title = AppTextKey("daily_brief.section_team_news_feed.open_library_button_title")
