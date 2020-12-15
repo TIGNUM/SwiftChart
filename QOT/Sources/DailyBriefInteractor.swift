@@ -516,7 +516,7 @@ extension DailyBriefInteractor {
         let impactReadinessModel = ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      feedback: feedback,
                                                                      feedbackRelatedLink: impactReadiness.dailyCheckInResult?.feedbackContentItem?.links.first,
-                                                                     image: impactReadiness.imageURL,
+                                                                     image: impactReadiness.bucketImages?.first?.mediaUrl,
                                                                      linkCTA: impactReadiness.dailyCheckInResult?.feedbackContentItem?.links.first?.description,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
                                                                      readinessScore: readinessscore,
@@ -547,7 +547,7 @@ extension DailyBriefInteractor {
 
             impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
                                                                           asteriskText: asteriskText,
-                                                                          image: impactReadiness.imageURL,
+                                                                          image: impactReadiness.bucketImages?.first?.mediaUrl,
                                                                           sleepQuantityValue: roundedSleepQuantity,
                                                                           hasFiveDaySleepQuantityValues: hasFullSleepQuantityData,
                                                                           sleepQualityValue: sleepQuality,
@@ -580,7 +580,7 @@ extension DailyBriefInteractor {
             dailyCheckIn2ViewModel.caption = title
             dailyCheckIn2ViewModel.title = tbvSentence
             dailyCheckIn2ViewModel.body = intro
-            dailyCheckIn2ViewModel.image = dailyCheckIn2.imageURL
+            dailyCheckIn2ViewModel.image = dailyCheckIn2.bucketImages?.first?.mediaUrl
             dailyCheckIn2ViewModel.dailyCheckIn2TBVModel = DailyCheckIn2TBVModel(title: title,
                                                                                  introText: intro,
                                                                                  tbvSentence: tbvSentence,
@@ -596,7 +596,7 @@ extension DailyBriefInteractor {
             dailyCheckIn2ViewModel.caption = shpiTitle
             dailyCheckIn2ViewModel.title = question
             dailyCheckIn2ViewModel.body = shpiContent
-            dailyCheckIn2ViewModel.image = dailyCheckIn2.imageURL
+            dailyCheckIn2ViewModel.image = dailyCheckIn2.bucketImages?.first?.mediaUrl
             dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating, shpiQuestion: question)
         } else {
             // Peak Performance
@@ -615,7 +615,7 @@ extension DailyBriefInteractor {
             dailyCheckIn2ViewModel.caption = peakPerformanceTitle
             dailyCheckIn2ViewModel.title = performanceString
             dailyCheckIn2ViewModel.body = performanceBody
-            dailyCheckIn2ViewModel.image = dailyCheckIn2.imageURL
+            dailyCheckIn2ViewModel.image = dailyCheckIn2.bucketImages?.first?.mediaUrl
             let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: performanceBody, hasNoPerformance: hasNoPerformance)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.PEAKPERFORMANCE
@@ -640,7 +640,7 @@ extension DailyBriefInteractor {
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.first?.remoteID,
                                                              duration: exploreContentCollections.first?.durationString,
-                                                             image: explore.imageURL,
+                                                             image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.first?.section ?? ContentSection.Unkown))
                 return exploreModelList
@@ -650,7 +650,7 @@ extension DailyBriefInteractor {
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.at(index: 1)?.remoteID,
                                                              duration: exploreContentCollections.first?.durationString,
-                                                             image: explore.imageURL,
+                                                             image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unkown))
                 return exploreModelList
@@ -660,7 +660,7 @@ extension DailyBriefInteractor {
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.last?.remoteID,
                                                              duration: exploreContentCollections.first?.durationString,
-                                                             image: explore.imageURL,
+                                                             image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.last?.section ?? ContentSection.Unkown))
                 return exploreModelList }
@@ -669,7 +669,7 @@ extension DailyBriefInteractor {
                                                      title: "", introText: "",
                                                      remoteID: 666,
                                                      duration: exploreContentCollections.first?.durationString,
-                                                     image: explore.imageURL,
+                                                     image: explore.bucketImages?.first?.mediaUrl,
                                                      domainModel: explore,
                                                      section: ContentSection.Unkown))
         return exploreModelList
@@ -717,7 +717,7 @@ extension DailyBriefInteractor {
         createLevel5List.append(Level5ViewModel(caption: caption,
                                                 intro: intro,
                                                 question: questionLevel,
-                                                image: level5.imageURL,
+                                                image: level5.bucketImages?.first?.mediaUrl,
                                                 youRatedPart1: youRatedPart1,
                                                 youRatedPart2: youRatedPart2,
                                                 comeBackText: comeBackText,
@@ -740,7 +740,7 @@ extension DailyBriefInteractor {
             let model = MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle,
                                                      intro: tbvEmptyIntro,
                                                      buttonText: ctaTBVButtonText,
-                                                     image: meAtMyBest.toBeVision?.profileImageResource?.urlString() ?? meAtMyBest.imageURL,
+                                                     image: meAtMyBest.toBeVision?.profileImageResource?.urlString() ?? meAtMyBest.bucketImages?.first?.mediaUrl,
                                                      domainModel: meAtMyBest)
             meAtMyBestList.append(model)
             return meAtMyBestList
@@ -757,7 +757,7 @@ extension DailyBriefInteractor {
                                                           tbvStatement: "”" + tbvSentence + "”",
                                                           intro2: tbvIntro2,
                                                           buttonText: ctaTBVButtonText,
-                                                          image: meAtMyBest.toBeVision?.profileImageResource?.urlString() ?? meAtMyBest.imageURL,
+                                                          image: meAtMyBest.toBeVision?.profileImageResource?.urlString() ?? meAtMyBest.bucketImages?.first?.mediaUrl,
                                                           domainModel: meAtMyBest))
             return meAtMyBestList
         }
@@ -773,7 +773,7 @@ extension DailyBriefInteractor {
         }
         latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "test",
                                                               title: collection.title,
-                                                              image: collection.thumbnailURLString ?? whatsHotLatest.imageURL,
+                                                              image: collection.thumbnailURLString ?? whatsHotLatest.bucketImages?.first?.mediaUrl,
                                                               author: collection.author ?? "",
                                                               publisheDate: collection.publishedDate ?? Date(),
                                                               timeToRead: collection.durationString,
@@ -800,7 +800,7 @@ extension DailyBriefInteractor {
             let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
             let model = FromMyCoachCellViewModel(detail: detail,
                                                  messages: messageModels,
-                                                 image: fromCoach.imageURL,
+                                                 image: fromCoach.bucketImages?.first?.mediaUrl,
                                                  domainModel: fromCoach)
             modelList.append(model)
         }
@@ -816,7 +816,7 @@ extension DailyBriefInteractor {
         leadersWisdomList.append(LeaderWisdomCellViewModel(title: AppTextService.get(.daily_brief_section_leader_wisdom_title),
                                                            subtitle: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "",
             description: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_TRANSCRIPT")}.first?.valueText ?? "",
-            image: leadersWisdom.imageURL,
+            image: leadersWisdom.bucketImages?.first?.mediaUrl,
             audioDuration: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDuration,
             audioLink: URL(string: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.link ?? ""),
             videoTitle: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDescription ?? "",
@@ -839,7 +839,7 @@ extension DailyBriefInteractor {
         expertThoughtsList.append(ExpertThoughtsCellViewModel(title: AppTextService.get(.daily_brief_section_expert_thoughts_title),
                                                               subtitle: "",
             description: collection.contentItems.filter {$0.searchTags.contains("EXPERT_TRANSCRIPT")}.first?.valueText ?? "",
-            image: expertThoughts.imageURL,
+            image: expertThoughts.bucketImages?.first?.mediaUrl,
             audioTitle: collection.contentItems.filter {$0.searchTags.contains("EXPERT_FILE")}.first?.valueText ?? "",
             audioDuration: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.valueDuration,
             audioLink: URL(string: collection.contentItems.filter {$0.searchTags.contains("EXPERT_FILE")}.first?.valueMediaURL ?? ""),
@@ -866,7 +866,7 @@ extension DailyBriefInteractor {
         let model = MindsetShifterViewModel(caption: AppTextService.get(.daily_brief_section_mindset_shifter_card_caption),
                                             title: AppTextService.get(.daily_brief_section_mindset_shifter_card_title),
                                             body: AppTextService.get(.daily_brief_section_mindset_shifter_card_body),
-                                            image: mindsetBucket.imageURL,
+                                            image: mindsetBucket.bucketImages?.first?.mediaUrl,
                                             subtitle: AppTextService.get(.daily_brief_section_mindset_shifter_subtitle),
                                             mindsetShifter: mindsetShifter,
                                             domainModel: mindsetBucket)
@@ -933,7 +933,7 @@ extension DailyBriefInteractor {
                                                                                      contentSentence: contentSentence,
                                                                                      eventTitle: prepareItem.eventTitle ?? prepareItem.name,
                                                                                      eventSubtitle: subtitle,
-                                                                                     image: myPeakperformance.imageURL,
+                                                                                     image: myPeakperformance.bucketImages?.first?.mediaUrl,
                                                                                      qdmUserPreparation: prepareItem,
                                                                                      domainModel: myPeakperformance))
                 })
@@ -952,7 +952,7 @@ extension DailyBriefInteractor {
         aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle,
                                             aboutMeContent: aboutMeContent,
                                             aboutMeMoreInfo: aboutMeAdditionalContent,
-                                            image: aboutMeModel.imageURL,
+                                            image: aboutMeModel.bucketImages?.first?.mediaUrl,
                                             domainModel: aboutMeModel))
         return aboutMeList
     }
@@ -992,7 +992,7 @@ extension DailyBriefInteractor {
         createGoodToKnowList.append(GoodToKnowCellViewModel(title: AppTextService.get(.daily_brief_section_good_to_know_title),
                                                             fact: collection.contentItems.first?.valueText,
                                                             copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
-                                                            image: createGoodToKnow.imageURL,
+                                                            image: createGoodToKnow.bucketImages?.first?.mediaUrl,
                                                             domainModel: createGoodToKnow))
         return createGoodToKnowList
     }
@@ -1007,7 +1007,7 @@ extension DailyBriefInteractor {
         }
         createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: AppTextService.get(.daily_brief_section_big_questions_title),
                                                                      text: collection.contentItems.first?.valueText,
-                                                                     image: questionsWithoutAnswer.imageURL,
+                                                                     image: questionsWithoutAnswer.bucketImages?.first?.mediaUrl,
                                                                      domainModel: questionsWithoutAnswer))
         return createQuestionWithoutAnswerList
     }
@@ -1020,7 +1020,7 @@ extension DailyBriefInteractor {
             createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title).lowercased().capitalizingFirstLetter(),
                                                                     thought: "",
                                                                     author: "",
-                                                                    image: thoughtsToPonder.imageURL,
+                                                                    image: thoughtsToPonder.bucketImages?.first?.mediaUrl,
                                                                     domainModel: thoughtsToPonder))
             return createThoughtsToPonderList
 
@@ -1028,7 +1028,7 @@ extension DailyBriefInteractor {
         createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title).lowercased().capitalizingFirstLetter(),
                                                                 thought: collection.contentItems.first?.valueText ?? "",
                                                                 author: collection.author ?? "",
-                                                                image: thoughtsToPonder.imageURL,
+                                                                image: thoughtsToPonder.bucketImages?.first?.mediaUrl,
                                                                 domainModel: thoughtsToPonder))
         return createThoughtsToPonderList
     }
@@ -1045,7 +1045,7 @@ extension DailyBriefInteractor {
             createFromTignumList.append(FromTignumCellViewModel(title: bucketTitle,
                                                                 text: fromTignumModel.contentItems.first?.valueText ?? "",
                                                                 subtitle: fromTignumModel.title,
-                                                                image: fromTignum.imageURL,
+                                                                image: fromTignum.bucketImages?.first?.mediaUrl,
                                                                 cta: fromTignumModel.contentItems.first?.links.first?.description,
                                                                 link: fromTignumModel.contentItems.first?.links.first,
                                                                 domainModel: fromTignum))
@@ -1129,10 +1129,12 @@ extension DailyBriefInteractor {
 
                     }
                 }
+                let imageTag = "DAY_" + String(index)
+                let image = sprintBucket.bucketImages?.filter({ $0.label == imageTag }).first?.mediaUrl
                 createSprintChallengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(.daily_brief_section_sprint_challenge_title),
                                                                           sprintTitle: sprintBucket.sprint?.title,
                                                                           sprintInfo: sprintInfo,
-                                                                          image: sprintBucket.imageURL,
+                                                                          image: image,
                                                                           sprintStepNumber: index,
                                                                           relatedStrategiesModels: relatedItemsModels,
                                                                           domainModel: sprintBucket,
@@ -1161,7 +1163,7 @@ extension DailyBriefInteractor {
         visionAndDates = visionAndDates.filter({ $0.1 > beginingOfDay })
         visionAndDates.sort(by: {$0.1 > $1.1})
         let latestVision = visionAndDates.first?.0
-        let imageURL = latestVision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.imageURL : latestVision?.profileImageResource?.remoteURLString
+        let imageURL = latestVision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.bucketImages?.first?.mediaUrl : latestVision?.profileImageResource?.remoteURLString
         let visionText = latestVision?.text
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == latestVision?.teamQotId }.first
         let title = AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? "")
@@ -1182,7 +1184,7 @@ extension DailyBriefInteractor {
         let date = Date(timeIntervalSince1970: 0)
         let vision = teamVisionBucket.teamToBeVisions?.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first
         guard vision != nil else { return teamVisionList }
-        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.imageURL : vision?.profileImageResource?.remoteURLString
+        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? teamVisionBucket.bucketImages?.first?.mediaUrl : vision?.profileImageResource?.remoteURLString
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
         let visionSentence = vision?.sentences.first?.sentence
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? "").uppercased()
@@ -1206,7 +1208,7 @@ extension DailyBriefInteractor {
         let singleInviteTitle = AppTextService.get(.daily_brief_single_team_invitation_title)
             .replacingOccurrences(of: "${team}", with: teamNames.first?.uppercased() ?? "")
         let title = inviteCount > 1 ? multipleInvitesTitle : singleInviteTitle
-        let model = TeamInvitationModel(title: title, teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, image: invitationBucket.imageURL, domainModel: invitationBucket)
+        let model = TeamInvitationModel(title: title, teamOwner: teamOwner, teamNames: teamNames, teamInvitations: invitationBucket.teamInvitations, image: invitationBucket.bucketImages?.first?.mediaUrl, domainModel: invitationBucket)
         invitationList.append(model)
         return invitationList
     }
@@ -1222,7 +1224,7 @@ extension DailyBriefInteractor {
             let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
             let teamVision = pollBucket.teamToBeVisions?.filter { $0.teamQotId == openPoll.teamQotId }
             let teamImage = teamVision?.first?.profileImageResource?.remoteURLString
-            let image = teamImage == nil ? pollBucket.imageURL : teamImage
+            let image = teamImage == nil ? pollBucket.bucketImages?.first?.mediaUrl : teamImage
             let model = PollOpenModel(team: team, teamAdmin: teamOwner?.email, imageURL: image, domainModel: pollBucket)
             openPollList.append(model)
         }
@@ -1238,7 +1240,7 @@ extension DailyBriefInteractor {
                 guard openRatings.creator == false,
                       let team = rateBucket.myTeams?.filter({ $0.qotId == openRatings.teamQotId }).first else { return }
                 let teamVision = rateBucket.teamToBeVisions?.filter { $0.teamQotId == openRatings.teamQotId }.first
-                let imageURL = teamVision?.profileImageResource?.remoteURLString == nil ? rateBucket.imageURL : teamVision?.profileImageResource?.remoteURLString
+                let imageURL = teamVision?.profileImageResource?.remoteURLString == nil ? rateBucket.bucketImages?.first?.mediaUrl : teamVision?.profileImageResource?.remoteURLString
                 let teamOwner = team.members?.filter { $0.isTeamOwner == true }.first
                 let openRateModel = RateOpenModel(team: team, ownerEmail: teamOwner?.email, imageURL: imageURL, domainModel: rateBucket)
                 ratingBucketList.append(openRateModel)
@@ -1292,7 +1294,7 @@ extension DailyBriefInteractor {
         var models: [BaseDailyBriefViewModel] = []
         let date = Date(timeIntervalSince1970: 0)
         let vision = bucket.teamToBeVisions?.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first
-        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? bucket.imageURL : vision?.profileImageResource?.remoteURLString
+        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? bucket.bucketImages?.first?.mediaUrl : vision?.profileImageResource?.remoteURLString
         for teamQotId in teamQotIds {
             let filteredFeeds = libraryFeeds.filter({ $0.teamQotId == teamQotId })
             if let firstFeed = filteredFeeds.first,
