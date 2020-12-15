@@ -1,5 +1,5 @@
 //
-//  NewDailyBriefCollectionViewCell.swift
+//  NewDailyBriefStandardCollectionViewCell.swift
 //  QOT
 //
 //  Created by Simu Voicu-Mircea on 03/11/2020.
@@ -11,7 +11,7 @@ import Kingfisher
 
 let maximumHeight: CGFloat = 1000.0
 
-class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable {
+class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var title: UILabel!
@@ -21,7 +21,7 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
     let skeletonManager = SkeletonManager()
     var disabledHighlightedAnimation = false
     public var hideCTAButton = true
-    private static let sizingCell = UINib(nibName: "NewDailyStandardBriefCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyStandardBriefCollectionViewCell
+    private static let sizingCell = UINib(nibName: "NewDailyBriefStandardCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyBriefStandardCollectionViewCell
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -92,8 +92,8 @@ class NewDailyStandardBriefCollectionViewCell: UICollectionViewCell, Dequeueable
         var fittingSize = UIView.layoutFittingCompressedSize
         fittingSize.width = width
         guard let size = sizingCell?.contentView.systemLayoutSizeFitting(fittingSize,
-                                                                  withHorizontalFittingPriority: .required,
-                                                                  verticalFittingPriority: .defaultLow) else {
+                                                                         withHorizontalFittingPriority: .required,
+                                                                         verticalFittingPriority: .defaultLow) else {
             return 0
         }
 

@@ -14,7 +14,7 @@ final class PresentCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
 
     struct Params {
         let fromCardFrame: CGRect
-        let fromCell: NewDailyStandardBriefCollectionViewCell
+        let fromCell: NewDailyBriefStandardCollectionViewCell
     }
 
     private let presentAnimationDuration: TimeInterval
