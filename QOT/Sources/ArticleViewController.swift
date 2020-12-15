@@ -119,12 +119,9 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 
-    override var prefersStatusBarHidden: Bool {
-        return statusbBarIsHidden
-    }
-
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-      return .slide
+    override var statusBarAnimatableConfig: StatusBarAnimatableConfig {
+        return StatusBarAnimatableConfig(prefersHidden: true,
+                                         animation: .slide)
     }
 }
 

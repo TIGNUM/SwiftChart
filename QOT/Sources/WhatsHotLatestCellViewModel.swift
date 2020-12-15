@@ -14,8 +14,6 @@ final class WhatsHotLatestCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var bucketTitle: String?
-    var title: String
-    let image: URL?
     let author: String
     let publisheDate: Date
     let timeToRead: String
@@ -24,22 +22,27 @@ final class WhatsHotLatestCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Init
     init(bucketTitle: String?,
-                  title: String,
-                  image: URL?,
-                  author: String,
-                  publisheDate: Date,
-                  timeToRead: String,
-                  isNew: Bool,
-                  remoteID: Int,
-                  domainModel: QDMDailyBriefBucket?) {
+         title: String,
+         image: String?,
+         author: String,
+         publisheDate: Date,
+         timeToRead: String,
+         isNew: Bool,
+         remoteID: Int,
+         domainModel: QDMDailyBriefBucket?) {
         self.bucketTitle = bucketTitle
-        self.title = title
-        self.image = image
         self.author = author
         self.publisheDate = publisheDate
         self.timeToRead = timeToRead
         self.isNew = isNew
         self.remoteID = remoteID
-        super.init(domainModel)
+        super.init(domainModel, title: title, image: image)
+        setupStrings()
+    }
+
+    func setupStrings() {
+        let dateAndDurationText = DateFormatter.whatsHotBucket.string(from: publisheDate) + " | " + timeToRead
+        caption = AppTextService.get(.daily_brief_section_whats_hot_title)
+        body = dateAndDurationText
     }
 }

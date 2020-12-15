@@ -57,7 +57,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
                                                                        .font: UIFont.sfProtextSemibold(ofSize: 17)]),
                                        for: .normal)
         buttonRight.circle()
-        buttonRight.backgroundColor = .accent
+        buttonRight.backgroundColor = .white
         buttonRight.layoutIfNeeded()
         layoutIfNeeded()
     }

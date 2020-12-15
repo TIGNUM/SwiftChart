@@ -414,7 +414,12 @@ extension LaunchHandler {
             default:
                 if let controller = R.storyboard.main.tignum_XArticleViewController() {
                     ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
-                    self?.present(viewController: controller)
+                    if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
+                        controller.modalPresentationStyle = .overFullScreen
+                        detailsVC.present(controller, animated: true, completion: nil)
+                    } else {
+                        self?.present(viewController: controller)
+                    }
                 }
             }
         })
@@ -511,10 +516,14 @@ extension LaunchHandler {
     }
 
     func push(viewController: UIViewController) {
-        baseRootViewController?.pushToStart(childViewController: viewController, enableInteractivePop: true)
+        if let detailsVC = AppDelegate.topViewController() as? BaseDailyBriefDetailsViewController {
+            detailsVC.pushToStart(childViewController: viewController)
+        } else {
+            baseRootViewController?.pushToStart(childViewController: viewController, enableInteractivePop: true)
+        }
     }
 
-        func present(viewController: UIViewController) {
+    func present(viewController: UIViewController) {
         baseRootViewController?.present(viewController, animated: true, completion: nil)
     }
 }

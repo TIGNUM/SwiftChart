@@ -302,6 +302,9 @@ enum ThemeButton {
     case audioButtonGrey
     case audioButtonStrategy
     case dateButtons
+    case newBlueButton
+    case whiteRounded
+    case level5Button
 
     var defaultHeight: CGFloat {
         return 40.0
@@ -345,6 +348,18 @@ enum ThemeButton {
             colorSelected = .accent40
             colorUnselected = .carbon
             colorBorder = .accent40
+        case .newBlueButton:
+            colorSelected = .actionBlue
+            colorUnselected = .actionBlue
+            colorBorder = .clear
+        case .whiteRounded:
+            colorSelected = .white30
+            colorBorder = .white
+            colorUnselected = .clear
+        case .level5Button:
+            colorSelected = .actionBlue
+            colorUnselected = .clear
+            colorBorder = .actionBlue
         }
 
         if let color = colorBorder {
@@ -408,6 +423,7 @@ enum ThemableButton {
     case tbvOption(disabled: Bool)
     case dateButtonsSelected
     case poll
+    case newBlueButton
 
     var titleAttributes: [NSAttributedString.Key: Any]? {
         return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
@@ -447,6 +463,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .accent40, border: .clear)
         case .poll:
             return ButtonTheme(foreground: .accent, background: .carbon90, border: .accent40)
+        case .newBlueButton:
+            return ButtonTheme(foreground: .white, background: .actionBlue, border: .clear)
         }
     }
 
@@ -477,6 +495,8 @@ enum ThemableButton {
         case .level5,
              .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
+        case .newBlueButton:
+            return ButtonTheme(foreground: .white40, background: .actionBlue75, border: .clear)
         default:
             return nil
         }
@@ -491,6 +511,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         case .poll:
             return ButtonTheme(foreground: .sand40, background: .sand10, border: .clear)
+        case .newBlueButton:
+            return ButtonTheme(foreground: .white, background: .actionBlue, border: .clear)
         default:
             return nil
         }
@@ -508,6 +530,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+        case .newBlueButton:
+            return ButtonTheme(foreground: .white40, background: .lightGray, border: .clear)
         default:
             return nil
         }
@@ -631,6 +655,7 @@ enum ThemeText {
     case articleAudioBar
 
     case segmentHeading
+    case bodyText
 
     case articleCategory
     case articleCategoryNotScaled
@@ -948,6 +973,8 @@ enum ThemeText {
     case registerIntroBody
     case optionPage
     case optionPageDisabled
+    case tbvQuestionHigh
+    case tbvQuestionLow
 
     // MARK: - New Approach
     case H01Light
@@ -984,9 +1011,9 @@ enum ThemeText {
              .weatherIntro, .weatherBody, .dailyBriefSubtitle, .dailyBriefSand, .paymentReminderCellTitle, .averageRating, .myRating, .totalVotes,
              .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .featureExplanation,
              .coachMarkSubtitle, .registerIntroBody, .memberEmail, .ratingExplanationText, .ratingExplanationVideoTitle, .whiteBanner, .darkBanner,
-             .baseHeaderSubtitleBold:
+             .baseHeaderSubtitleBold, .bodyText:
             return Fonts.fontRegular16
-        case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder, .trends:
+        case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder, .trends, .tbvQuestionLow:
             return Fonts.fontRegular18
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader,
              .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
@@ -1089,6 +1116,8 @@ enum ThemeText {
         case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader,
              .dailyQuestion, .dailyBriefFromTignumTitle:
             return Fonts.fontMedium16
+        case .tbvQuestionHigh:
+            return Fonts.fontMedium18
 
         // MARK: - fontBold
         case .audioLabel, .myDataChartIRAverageLabel, .resultCounter, .audioPlayerTime, .audioPlayerTimeLight:
@@ -1174,7 +1203,7 @@ enum ThemeText {
              .articleHeadlineSmallFade, .articleTagSelected, .articleStrategyRead, .articleRelatedDetailInStrategyRead,
              .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail,
              .dailyBriefSubtitle, .registerIntroBody, .version, .weatherLastUpdate, .articleRelatedDetailInStrategy,
-             .myLibraryItemsItemNameGrey, .calendarNoAccess, .articleTag:
+             .myLibraryItemsItemNameGrey, .calendarNoAccess, .articleTag, .bodyText:
             return Palette.lightGrey
 
         // MARK: - .darkGrey
@@ -1200,6 +1229,13 @@ enum ThemeText {
              .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
              .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage, .tbvTrackerAnswerTeam:
             return Palette.accent
+
+        // MARK: - .mindsetShifter Green
+        case .tbvQuestionHigh:
+            return .mindsetShifterGreen
+        // MARK: - .mindsetShifter Red
+        case .tbvQuestionLow:
+            return .mindsetShifterRed
         case .mySprintDetailsCtaHighlight:
             return Palette.accent30
         case .resultHeaderTheme2(let mode):
@@ -1269,7 +1305,7 @@ enum ThemeText {
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
              .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
-             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled:
+             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1622,6 +1658,7 @@ private struct Fonts {
     static let fontMedium12 = UIFont.sfProtextMedium(ofSize: 12.0)
     static let fontMedium14 = UIFont.sfProtextMedium(ofSize: 14.0)
     static let fontMedium16 = UIFont.sfProtextMedium(ofSize: 16.0)
+    static let fontMedium18 = UIFont.sfProtextMedium(ofSize: 18.0)
 
     static let fontLight11 = UIFont.sfProtextLight(ofSize: 11.0)
     static let fontLight12 = UIFont.sfProtextLight(ofSize: 12.0)
@@ -1919,3 +1956,4 @@ convenience init?(color: UIColor, size: CGSize) {
     self.init(data: imagePNGData)
    }
 }
+

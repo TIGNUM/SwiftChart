@@ -35,20 +35,20 @@ enum MyX {
         func title(isTeam: Bool, isPollInProgress: Bool) -> String {
             switch self {
             case .teamCreate:
-                return AppTextService.get(.my_x_team_create_header)
+                return AppTextService.get(.my_x_team_create_header).lowercased().capitalizingFirstLetter()
             case .library:
-                return AppTextService.get(isTeam ? .my_x_section_team_library_title : .my_qot_section_my_library_title)
+                return AppTextService.get(isTeam ? .my_x_section_team_library_title : .my_x_section_library_title).lowercased().capitalizingFirstLetter()
             case .preps:
-                return AppTextService.get(.my_qot_section_my_plans_title)
+                return AppTextService.get(.my_x_section_preps_title)
             case .sprints:
-                return AppTextService.get(.my_qot_section_my_sprints_title)
+                return AppTextService.get(.my_x_section_sprints_title)
             case .data:
-                return AppTextService.get(.my_qot_section_my_data_title)
+                return AppTextService.get(.my_x_section_my_data_title)
             case .toBeVision:
                 if isPollInProgress {
-                    return AppTextService.get(.team_tbv_poll_in_progress)
+                    return AppTextService.get(.team_tbv_poll_in_progress).lowercased().capitalizingFirstLetter()
                 } else {
-                    return AppTextService.get(isTeam ? .my_x_section_team_tbv_title : .my_qot_section_my_tbv_title)
+                    return AppTextService.get(isTeam ? .my_x_section_team_tbv_new_title : .my_x_section_tbv_title)
                 }
             }
         }

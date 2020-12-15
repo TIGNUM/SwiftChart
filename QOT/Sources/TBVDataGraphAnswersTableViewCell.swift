@@ -18,7 +18,7 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private var ratingLabels: [UILabel]!
     @IBOutlet private var ratingContainerViews: [UIView]!
 
-    func  configure(_ sentence: QDMToBeVisionSentence, selectedDate: Date, isTeam: Bool) {
+    func configure(_ sentence: QDMToBeVisionSentence, selectedDate: Date, isTeam: Bool) {
         removeAllLayers()
         setupTheme(sentence, isTeam: isTeam)
         setupView(sentence)
@@ -35,7 +35,7 @@ private extension TBVDataGraphAnswersTableViewCell {
 
         for (date, rating) in sortedDict where !rating.isNaN {
             let isLow = lowRange.contains(Int(rating))
-            let text = rating <= 0 ? "-" : String(format: "%.1f", rating)
+            let text = rating <= 0 ? "-" : String(describing: rating)
             var theme: ThemeText = .tbvTrackerRatingDigits(isLow)
 
             if date == selectedDate {

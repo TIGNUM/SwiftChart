@@ -25,14 +25,21 @@ protocol BaseRouterInterface {
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
 
-    func showTBV()
-    func showTeamTBV(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?)
-    func showTeamTBVPollEXplanation(_ team: QDMTeam)
-    func showTeamRatingExplanation(_ team: QDMTeam)
+    func showTBV(showModal: Bool)
+    func showTeamTBV(_ team: QDMTeam)
+    func showTeamTBVPollEXplanation(_ team: QDMTeam, showModal: Bool)
+    func showTeamRatingExplanation(_ team: QDMTeam, showModal: Bool)
 
-    func showTracker(for team: QDMTeam?)
-    func showTBVData(shouldShowNullState: Bool, visionId: Int?)
-    func showRateScreen(with id: Int, delegate: TBVRateDelegate?)
+    func showTracker(for team: QDMTeam?, showModal: Bool)
+    func showTBVData(shouldShowNullState: Bool, visionId: Int?, showModal: Bool)
+    func showRateScreen(with id: Int, delegate: TBVRateDelegate?, showModal: Bool)
+    func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?,
+                        team: QDMTeam?,
+                        delegate: TBVRateDelegate?,
+                        showBanner: Bool?,
+                        showModal: Bool)
+    func showTBVGenerator()
+
     func showEditVision(title: String, vision: String, isFromNullState: Bool, team: QDMTeam?)
     func presentEditTeam(_ type: TeamEdit.View, team: QDMTeam?)
     func dismiss()
@@ -41,11 +48,8 @@ protocol BaseRouterInterface {
     func showTeamTBVGenerator(poll: QDMTeamToBeVisionPoll?, team: QDMTeam, showBanner: Bool?)
     func showTeamAdmin(type: TeamAdmin.Types, team: QDMTeam?, showBanner: Bool?)
     func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types)
+    func presentMyLibrary(with team: QDMTeam?)
 
-    func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?,
-                        team: QDMTeam?,
-                        showBanner: Bool?,
-                        delegate: TBVRateDelegate?)
     func showBanner(message: String)
 }
 
@@ -113,14 +117,14 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showTBV() {
+    func showTBV(showModal: Bool = true) {
         if let controller = R.storyboard.myToBeVision.myVisionViewController() {
             MyVisionConfigurator.configure(viewController: controller)
-            push(controller)
+            showModal ? present(controller) : push(controller)
         }
     }
 
-    func showTeamTBV(_ team: QDMTeam, _ poll: QDMTeamToBeVisionPoll?) {
+    func showTeamTBV(_ team: QDMTeam) {
         if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
             let configurator = TeamToBeVisionConfigurator.make(team: team)
             configurator(controller)
@@ -186,8 +190,8 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showTracker(for team: QDMTeam?) {
-        presentRateHistory(for: team, .tracker)
+    func showTracker(for team: QDMTeam?, showModal: Bool = true) {
+        showRateHistory(for: team, .tracker, showModal: showModal)
     }
 
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
@@ -198,24 +202,28 @@ class BaseRouter: BaseRouterInterface {
         present(viewController, completion: completion)
     }
 
-    func showTeamTBVPollEXplanation(_ team: QDMTeam) {
+    func showTeamTBVPollEXplanation(_ team: QDMTeam, showModal: Bool = true) {
         let type: Explanation.Types = team.thisUserIsOwner ? .tbvPollOwner : .tbvPollUser
-        showExplanation(team, type)
+        showExplanation(team, type, showModal: showModal)
     }
 
-    func showTeamRatingExplanation(_ team: QDMTeam) {
+    func showTeamRatingExplanation(_ team: QDMTeam, showModal: Bool = true) {
         let type: Explanation.Types = team.thisUserIsOwner ? .ratingOwner : .ratingUser
-        showExplanation(team, type)
+        showExplanation(team, type, showModal: showModal)
     }
 
-    func showTBVData(shouldShowNullState: Bool, visionId: Int?) {
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types) {
+        showExplanation(team, type, showModal: true)
+    }
+
+    func showTBVData(shouldShowNullState: Bool, visionId: Int?, showModal: Bool = true) {
         if shouldShowNullState {
             guard let viewController = R.storyboard.myToBeVisionRate.tbvRateHistoryNullStateViewController() else { return }
             viewController.delegate = self.viewController as? MyVisionViewController
             viewController.visionId = visionId
-            present(viewController)
+            showModal ? present(viewController) : push(viewController)
         } else {
-            presentRateHistory(for: nil, .data)
+            showRateHistory(for: nil, .data, showModal: showModal)
         }
     }
 
@@ -233,8 +241,9 @@ class BaseRouter: BaseRouterInterface {
 
     func showRateScreen(trackerPoll: QDMTeamToBeVisionTrackerPoll?,
                         team: QDMTeam?,
+                        delegate: TBVRateDelegate?,
                         showBanner: Bool?,
-                        delegate: TBVRateDelegate?) {
+                        showModal: Bool = true) {
         let showClosure: (UIViewController?) -> Void = { (presentingViewController) in
             if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
                 MyToBeVisionRateConfigurator.configure(controller: controller,
@@ -242,7 +251,8 @@ class BaseRouter: BaseRouterInterface {
                                                        team: team,
                                                        showBanner: showBanner)
                 controller.delegate = delegate
-                presentingViewController?.present(controller, animated: true, completion: nil)
+                showModal ? presentingViewController?.present(controller, animated: true, completion: nil) :
+                            presentingViewController?.pushToStart(childViewController: controller)
             }
         }
         if let presentingViewController = viewController?.presentingViewController {
@@ -254,11 +264,11 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showRateScreen(with id: Int, delegate: TBVRateDelegate?) {
+    func showRateScreen(with id: Int, delegate: TBVRateDelegate?, showModal: Bool = true) {
         if let controller = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() {
             MyToBeVisionRateConfigurator.configure(controller: controller, visionId: id, showBanner: nil)
             controller.delegate = delegate
-            present(controller)
+            showModal ? present(controller) : push(controller)
         }
     }
 
@@ -292,23 +302,34 @@ class BaseRouter: BaseRouterInterface {
         }
     }
 
-    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types) {
-        if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
-            VisionRatingExplanationConfigurator.make(team: team, type: type)(controller)
-            present(controller)
+    func presentMyLibrary(with team: QDMTeam?) {
+        let storyboardId = R.storyboard.myLibrary.myLibraryCategoryListViewController.identifier
+        let myLibraryController = R.storyboard.myLibrary()
+            .instantiateViewController(withIdentifier: storyboardId) as? MyLibraryCategoryListViewController
+        if let myLibraryController = myLibraryController {
+            let configurator = MyLibraryCategoryListConfigurator.make(with: team)
+            configurator(myLibraryController)
+            viewController?.pushToStart(childViewController: myLibraryController)
         }
     }
 }
 
 // MARK: - Private
 private extension BaseRouter {
+    func showExplanation(_ team: QDMTeam?, _ type: Explanation.Types, showModal: Bool = true) {
+        if let team = team,
+           let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
+            VisionRatingExplanationConfigurator.make(team: team, type: type)(controller)
+            showModal ? present(controller) : push(controller)
+        }
+    }
 
-    func presentRateHistory(for team: QDMTeam?, _ displayType: TBVGraph.DisplayType) {
+    func showRateHistory(for team: QDMTeam?, _ displayType: TBVGraph.DisplayType, showModal: Bool = true) {
         guard let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
         TBVRateHistoryConfigurator.configure(viewController: controller,
                                              displayType: displayType,
                                              team: team)
-        present(controller)
+        showModal ? present(controller) : push(controller)
     }
 
     func push(_ childViewController: UIViewController) {

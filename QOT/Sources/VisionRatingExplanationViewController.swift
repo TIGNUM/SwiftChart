@@ -92,8 +92,9 @@ extension VisionRatingExplanationViewController {
         dispatchGroup.notify(queue: .main) { [weak self] in
             self?.router.showRateScreen(trackerPoll: tmpPoll,
                                         team: tmpTeam,
+                                        delegate: self,
                                         showBanner: self?.checkButton.isSelected,
-                                        delegate: self)
+                                        showModal: true)
             self?.updateBottomNavigation([], [])
         }
     }

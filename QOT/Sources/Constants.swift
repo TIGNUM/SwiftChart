@@ -47,6 +47,7 @@ enum FontName: String {
     case sfProTextHeavy = "SFProText-Heavy"
     case sfProDisplayLight = "SFProDisplay-Light"
     case sfProDisplayRegular = "SFProDisplay-Regular"
+    case sfProDisplayBold = "SFProDisplay-Bold"
     case sfProDisplayThin = "SFProDisplay-Thin"
     case sfProDisplayUltralight = "SFProDisplay-Ultralight"
 
