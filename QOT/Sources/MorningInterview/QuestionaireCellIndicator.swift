@@ -14,7 +14,7 @@ final class QuestionaireCellIndicator: UIView {
     @IBOutlet weak private var separatorWidth: NSLayoutConstraint!
     @IBOutlet weak private var separatorViewHeight: NSLayoutConstraint!
 
-    var config = ControllerType.Config.myVision()
+    var config = ControllerType.Config.newQuestionaireConfig()
 
     var isCurrentIndex: Bool = false {
         willSet {
@@ -25,12 +25,19 @@ final class QuestionaireCellIndicator: UIView {
 
     var isAboveCurrentIndex: Bool = false {
         willSet {
-            separatorViewHeight.constant = 1.0
-            separatorView.backgroundColor = config.aboveCurrentIndexColor
+            separatorViewHeight.constant = isTimeAmountSecondaryIndex ? 1.0 : 2.0
+            separatorView.backgroundColor = isTimeAmountSecondaryIndex ? config.belowCurrentIndexColor : config.aboveCurrentIndexColor
         }
     }
 
     var isBelowCurrentIndex: Bool = false {
+        willSet {
+            separatorViewHeight.constant = 1.0
+            separatorView.backgroundColor = config.belowCurrentIndexColor
+        }
+    }
+
+    var isTimeAmountSecondaryIndex: Bool = false {
         willSet {
             separatorViewHeight.constant = 1.0
             separatorView.backgroundColor = config.belowCurrentIndexColor

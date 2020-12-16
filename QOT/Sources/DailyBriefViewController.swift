@@ -208,6 +208,10 @@ extension DailyBriefViewController {
                                                                       titleColor: bucketItem.titleColor,
                                                                       domainModel: item.domainModel))
                 }
+                cell.configure(with: cellModels, selectedIndex: bucket.domainModel?.sprint?.currentDay ?? 0)
+                cell.delegate = self
+
+                return cell
             }
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
             let numberOfLines = 6

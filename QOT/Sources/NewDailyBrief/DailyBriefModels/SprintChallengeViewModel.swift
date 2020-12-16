@@ -87,7 +87,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         let caption = AppTextService.get(.daily_brief_section_sprint_challenge_caption) + " \(sprintStepNumber ?? 0)"
         super.init(domainModel,
                    caption: caption,
-                   title: bucketTitle,
+                   title: sprintTitle,
                    body: sprintInfo,
                    image: image)
     }
