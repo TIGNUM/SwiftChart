@@ -77,7 +77,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
             return 1
         case DailyBriefBucketName.FROM_TIGNUM:
             if let fromTignumModel = model as? FromTignumCellViewModel {
-                return fromTignumModel.link != nil ? 1 : 2
+                return fromTignumModel.link != nil ? 2 : 1
             }
             return 1
         default:
