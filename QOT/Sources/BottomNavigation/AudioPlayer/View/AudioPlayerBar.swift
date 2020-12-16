@@ -50,7 +50,7 @@ final class AudioPlayerBar: UIView {
         progressView.corner(radius: 20)
         progressModeContentView.corner(radius: 20)
         progressModeProgressView.corner(radius: 20)
-        progressModeSlider.setThumbImage(R.image.ic_audio_slider(), for: .normal)
+        progressModeSlider.setThumbImage(R.image.ic_audio_slider_white(), for: .normal)
         let thumbImageWidth: CGFloat = progressModeSlider.thumbImage(for: .normal)?.size.width ?? 0
         sliderLeading.constant = -(thumbImageWidth/2)
         sliderTrailing.constant = -(thumbImageWidth/2)
@@ -74,21 +74,27 @@ final class AudioPlayerBar: UIView {
         if let titleColor = titleColor {
             titleLabel.textColor = titleColor.withAlphaComponent(0.7)
         }
-
-        progressModeSlider.setThumbImage(R.image.ic_audio_slider(), for: .normal)
+        progressModeSlider.setThumbImage(isLightMode ? R.image.ic_audio_slider_black() : R.image.ic_audio_slider_white(), for: .normal)
     }
 
     func updateView() {
         audioPlayer.delegate = self
-        playPauseButton.setImage(audioPlayer.isPlaying ? R.image.ic_pause_sand() : R.image.ic_play_sand(), for: .normal)
+        playPauseButton.setImage(audioPlayer.isPlaying ? R.image.ic_pause_blue() : R.image.ic_play_blue(), for: .normal)
     }
 
     func refreshColorMode(isLight: Bool) {
         isLightMode = isLight
         setTitleLabel(title: titleLabel.text ?? "", isLight: isLight)
-        isLight ? NewThemeView.dark.apply(contentView) : NewThemeView.light.apply(contentView)
-        isLight ? NewThemeView.dark.apply(progressModeContentView) : NewThemeView.light.apply(progressModeContentView)
-        verticalDivider.backgroundColor = (isLight) ? .sand60 : .carbon60
+        if isLight {
+            NewThemeView.dark.apply(contentView)
+            NewThemeView.dark.apply(progressModeContentView)
+            progressModeSlider.setThumbImage(R.image.ic_audio_slider_white(), for: .normal)
+        } else {
+            NewThemeView.light.apply(contentView)
+            NewThemeView.light.apply(progressModeContentView)
+            progressModeSlider.setThumbImage(R.image.ic_audio_slider_black(), for: .normal)
+        }
+        verticalDivider.backgroundColor = (isLight) ? .white : .black
     }
 }
 

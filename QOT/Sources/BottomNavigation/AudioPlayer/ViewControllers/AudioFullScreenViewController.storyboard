@@ -37,7 +37,7 @@
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                                 <inset key="contentEdgeInsets" minX="26" minY="0.0" maxX="24" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="ic_save"/>
+                                <state key="normal" image="ic_download_black"/>
                                 <state key="disabled" image="ic_saved"/>
                                 <connections>
                                     <action selector="didTapDownloadButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="sHf-1I-WjR"/>
@@ -50,7 +50,7 @@
                                     <constraint firstAttribute="height" constant="40" id="O4L-Yl-7T2"/>
                                     <constraint firstAttribute="width" constant="40" id="YV2-oK-s6D"/>
                                 </constraints>
-                                <state key="normal" image="ic_bookmark"/>
+                                <state key="normal" image="ic_bookmark_black"/>
                                 <state key="selected" image="ic_bookmark_fill"/>
                                 <connections>
                                     <action selector="didTapBookmarkButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="Hff-9I-4YT"/>
@@ -62,7 +62,7 @@
                                     <constraint firstAttribute="height" constant="40" id="20e-6x-y5X"/>
                                     <constraint firstAttribute="width" constant="40" id="OMp-w5-z7d"/>
                                 </constraints>
-                                <state key="normal" image="arrowDown"/>
+                                <state key="normal" image="ic_arrowDown_black"/>
                                 <connections>
                                     <action selector="didTapCloseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="bmT-OD-KBI"/>
                                 </connections>
@@ -87,8 +87,8 @@
                                     <constraint firstAttribute="width" constant="40" id="QL5-22-SQ3"/>
                                     <constraint firstAttribute="height" constant="40" id="yGg-v5-1wv"/>
                                 </constraints>
-                                <state key="normal" image="ic_play_sand"/>
-                                <state key="selected" image="ic_pause_sand"/>
+                                <state key="normal" image="ic_play_blue"/>
+                                <state key="selected" image="ic_pause_blue"/>
                                 <connections>
                                     <action selector="didTapPlayPauseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="e0m-Vp-IGW"/>
                                 </connections>
@@ -158,12 +158,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrowDown" width="16" height="16"/>
-        <image name="ic_bookmark" width="14" height="16"/>
+        <image name="ic_arrowDown_black" width="16" height="16"/>
+        <image name="ic_bookmark_black" width="13.5" height="15"/>
         <image name="ic_bookmark_fill" width="16" height="16"/>
-        <image name="ic_pause_sand" width="16" height="16"/>
-        <image name="ic_play_sand" width="16" height="16"/>
-        <image name="ic_save" width="16" height="16"/>
+        <image name="ic_download_black" width="16" height="16"/>
+        <image name="ic_pause_blue" width="40" height="46"/>
+        <image name="ic_play_blue" width="8" height="10.5"/>
         <image name="ic_saved" width="16" height="16"/>
     </resources>
 </document>

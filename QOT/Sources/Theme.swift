@@ -382,17 +382,17 @@ enum ThemeCircles {
         switch self {
         case .fullScreenAudioDark:
             return [
-                CircleInfo(color: .sand70, radiusRate: 0.2),
-                CircleInfo(color: .sand60, radiusRate: 0.4),
-                CircleInfo(color: .sand40, radiusRate: 0.7),
-                CircleInfo(color: .sand20, radiusRate: 0.99)
+                CircleInfo(color: .white30, radiusRate: 0.2),
+                CircleInfo(color: .white20, radiusRate: 0.4),
+                CircleInfo(color: .white10, radiusRate: 0.7),
+                CircleInfo(color: .white10, radiusRate: 0.99)
             ]
         case .fullScreenAudioLight:
             return [
-                CircleInfo(color: .accent70, radiusRate: 0.2),
-                CircleInfo(color: .accent60, radiusRate: 0.4),
-                CircleInfo(color: .accent40, radiusRate: 0.7),
-                CircleInfo(color: .accent20, radiusRate: 0.99)
+                CircleInfo(color: .black30, radiusRate: 0.2),
+                CircleInfo(color: .black20, radiusRate: 0.4),
+                CircleInfo(color: .black10, radiusRate: 0.7),
+                CircleInfo(color: .black10, radiusRate: 0.99)
             ]
         }
     }
@@ -448,9 +448,9 @@ enum ThemableButton {
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload,
              .paymentReminder:
-            return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
+            return ButtonTheme(foreground: .white, background: .black, border: .white)
         case .fullscreenAudioPlayerDownloadLight:
-            return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
+            return ButtonTheme(foreground: .black, background: .white, border: .black)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent,
                                background: (selected ? .accent40 : nil),

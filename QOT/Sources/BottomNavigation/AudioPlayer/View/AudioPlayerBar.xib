@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" contentMode="scaleToFill" id="ajf-Ym-YFW" customClass="AudioPlayerBar" customModule="QOT" customModuleProvider="target">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="ajf-Ym-YFW" customClass="AudioPlayerBar" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -20,7 +20,7 @@
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FY6-8m-hnG">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="progressTintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <color key="progressTintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.5" colorSpace="calibratedRGB"/>
                             <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </progressView>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qju-MR-d3a">
@@ -51,7 +51,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc6-X4-V5r">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rc6-X4-V5r">
                             <rect key="frame" x="0.0" y="0.0" width="287" height="40"/>
                             <connections>
                                 <action selector="didTapFullScreenButton" destination="ajf-Ym-YFW" eventType="touchUpInside" id="SfA-qv-g0y"/>
@@ -83,7 +83,7 @@
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vdQ-86-xsw">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="progressTintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            <color key="progressTintColor" white="0.33333333333333331" alpha="0.91620291095890416" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </progressView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyb-ha-aRC">
@@ -116,6 +116,7 @@
                             </connections>
                         </slider>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="X6C-YW-UTr"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="vdQ-86-xsw" firstAttribute="leading" secondItem="jZO-58-R5a" secondAttribute="leading" id="461-3Q-eIL"/>
@@ -137,9 +138,9 @@
                         <constraint firstAttribute="trailing" secondItem="lpW-LQ-glF" secondAttribute="trailing" id="voe-CA-wjs"/>
                         <constraint firstAttribute="height" constant="40" id="ySz-dA-JLk"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="X6C-YW-UTr"/>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="pLb-ue-hWx"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="jZO-58-R5a" firstAttribute="centerY" secondItem="599-bu-Tcd" secondAttribute="centerY" id="14J-oJ-o4F"/>
@@ -152,7 +153,6 @@
                 <constraint firstItem="jZO-58-R5a" firstAttribute="width" secondItem="599-bu-Tcd" secondAttribute="width" id="Wog-nX-htW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="pLb-ue-hWx"/>
             <connections>
                 <outlet property="closeButton" destination="qju-MR-d3a" id="hG4-zb-XWK"/>
                 <outlet property="contentView" destination="599-bu-Tcd" id="BU7-CE-WDi"/>
