@@ -66,10 +66,18 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         switch colorMode {
         case .dark:
             closeButton.setImage(R.image.ic_arrowDown_white(), for: .normal)
+            downloadButton.setImage(R.image.ic_downloaded_black(), for: .disabled)
+            downloadButton.setImage(R.image.ic_download_white(), for: .normal)
+            bookmarkButton.setImage( R.image.ic_bookmark_white(), for: .normal)
+            bookmarkButton.setImage(R.image.ic_bookmark_black_fill(), for: .selected)
             ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: nil)
         case .darkNot:
+            downloadButton.setImage( R.image.ic_download_black(), for: .normal)
+            downloadButton.setImage(R.image.ic_downloaded_white(), for: .disabled)
             closeButton.setImage(R.image.ic_arrowDown_black(), for: .normal)
+            bookmarkButton.setImage(R.image.ic_bookmark_black(), for: .normal)
+            bookmarkButton.setImage(R.image.ic_bookmark_white_fill(), for: .selected)
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(downloadButton, title: nil)
         }
@@ -132,9 +140,12 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     func updateDownloadButtonState(_ state: UserStorageDownloadStatus) {
         var title = AppTextService.get(.generic_download_status_audio_button_download)
         switch state {
-        case .NONE: title = AppTextService.get(.generic_download_status_audio_button_download)
-        case .WAITING: title = AppTextService.get(.my_qot_my_library_downloads_download_status_button_waiting)
-        case .DOWNLOADING: title = AppTextService.get(.generic_download_status_audio_button_downloading)
+        case .NONE:
+            title = AppTextService.get(.generic_download_status_audio_button_download)
+        case .WAITING:
+            title = AppTextService.get(.my_qot_my_library_downloads_download_status_button_waiting)
+        case .DOWNLOADING:
+            title = AppTextService.get(.generic_download_status_audio_button_downloading)
         case .DONE:
             title = AppTextService.get(.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
