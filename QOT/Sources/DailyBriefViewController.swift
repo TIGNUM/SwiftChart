@@ -256,7 +256,7 @@ extension DailyBriefViewController {
             cellModels.append(NewDailyBriefStandardModel.init(caption: weatherModel.title,
                                                                 title: weatherModel.accessLocationPermissionTitle,
                                                                 body: accessBody,
-                                                                image: bucketItem.image,
+                                                                image: weatherModel.weatherImage,
                                                                 titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
             cell.configure(with: cellModels)
