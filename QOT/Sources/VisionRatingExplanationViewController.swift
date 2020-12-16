@@ -18,16 +18,32 @@ final class VisionRatingExplanationViewController: BaseViewController {
     @IBOutlet private weak var checkmarkLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet private weak var syncingLabel: UILabel!
     @IBOutlet private weak var videoView: UIView!
     @IBOutlet private weak var videoTitleLabel: UILabel!
     @IBOutlet private weak var videoDescriptionLabel: UILabel!
     @IBOutlet private weak var playIconBackgroundView: UIView!
     @IBOutlet private weak var videoImageView: UIImageView!
     @IBOutlet private weak var checkButton: UIButton!
+    @IBOutlet private weak var loadingDotsContainer: UIView?
+    private var downSyncObserver: NSObjectProtocol?
     private var skeletonManager = SkeletonManager()
     private var videoID: Int?
     private var rightBarButtonTitle = ""
     private var rightBarButtonAction = #selector(startRating)
+    private var loadingDots: DotsLoadingView?
+
+    private lazy var rightBarButtonItems: [UIBarButtonItem] = {
+        return [roundedBarButtonItem(title: rightBarButtonTitle,
+                                     buttonWidth: .Save,
+                                     action: rightBarButtonAction,
+                                     backgroundColor: .clear,
+                                     borderColor: .accent40)]
+    }()
+
+    private lazy var leftBarButtonItems: [UIBarButtonItem] = {
+        return [dismissNavigationItemBlack(action: #selector(didTapDismissButton))]
+    }()
 
     // MARK: - Init
     init(configure: Configurator<VisionRatingExplanationViewController>) {
@@ -61,16 +77,15 @@ final class VisionRatingExplanationViewController: BaseViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: rightBarButtonTitle,
-                                     buttonWidth: .Save,
-                                     action: rightBarButtonAction,
-                                     backgroundColor: .clear,
-                                     borderColor: .accent40)]
+        if interactor.team?.thisUserIsOwner == true || interactor.type == .createTeam {
+            return rightBarButtonItems
+        }
+        fetchMemberPoll()
+        return []
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem] {
-        let blackButton = dismissNavigationItemBlack(action: #selector(didTapDismissButton))
-        return [blackButton]
+        return leftBarButtonItems
     }
 }
 
@@ -96,6 +111,7 @@ extension VisionRatingExplanationViewController {
                                         showBanner: self?.checkButton.isSelected,
                                         showModal: true)
             self?.updateBottomNavigation([], [])
+            self?.removeObserver()
         }
     }
 
@@ -105,12 +121,14 @@ extension VisionRatingExplanationViewController {
         interactor.startTeamTBVPoll(sendPushNotification: self.checkButton.isSelected) { [weak self] (poll) in
             self?.router.showTeamTBVGenerator(poll: poll, team: team, showBanner: self?.checkButton.isSelected)
             self?.updateBottomNavigation([], [])
+            self?.removeObserver()
         }
     }
 
     @objc func createTeam() {
         router.presentEditTeam(.create, team: nil)
         updateBottomNavigation([], [])
+        removeObserver()
     }
 
     @objc func videoTapped(_ sender: UITapGestureRecognizer) {
@@ -174,5 +192,83 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
 extension VisionRatingExplanationViewController: TBVRateDelegate {
     func doneAction() {
 
+    }
+}
+
+private extension VisionRatingExplanationViewController {
+    func addNotificationObservers() {
+        downSyncObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
+                                                                  object: nil,
+                                                                  queue: .main) { [weak self] notification in
+            if self?.downSyncObserver != nil {
+                self?.didFinishDownSynchronization(notification)
+            }
+        }
+    }
+
+    func removeObserver() {
+        if let downSyncObserver = downSyncObserver {
+            NotificationCenter.default.removeObserver(downSyncObserver)
+            self.downSyncObserver = nil
+        }
+    }
+
+    @objc func didFinishDownSynchronization(_ notification: Notification) {
+        guard let syncResult = notification.object as? SyncResultContext,
+              syncResult.syncRequestType == .DOWN_SYNC,
+              syncResult.hasUpdatedContent,
+              downSyncObserver != nil else { return }
+        if interactor.type == .ratingUser && syncResult.dataType == .TEAM_TO_BE_VISION_TRACKER_POLL {
+            hideSyncAnimationAndShowStartButton()
+        }
+        if interactor.type == .tbvPollUser && syncResult.dataType == .TEAM_TO_BE_VISION_GENERATOR_POLL {
+            hideSyncAnimationAndShowStartButton()
+        }
+    }
+
+    func hideSyncAnimationAndShowStartButton() {
+        hideLoadingDots()
+        updateBottomNavigation(leftBarButtonItems, rightBarButtonItems)
+        removeObserver()
+    }
+
+    func showLoadingDots() {
+        guard let loadingDotsContainer = loadingDotsContainer, loadingDots == nil else { return }
+        let dots = DotsLoadingView(with: CGRect(x: 0, y: 0, width: .LoadingDots, height: .LoadingDots),
+                                   parentView: loadingDotsContainer,
+                                   dotsColor: .lightGrey)
+        loadingDots = dots
+        loadingDots?.animate()
+        syncingLabel.isHidden = false
+    }
+
+    func hideLoadingDots() {
+        loadingDots?.stopAnimation()
+        syncingLabel.isHidden = true
+    }
+
+    func fetchMemberPoll() {
+        if interactor.type == .ratingUser {
+            showLoadingDots()
+            interactor.getOpenTeamTrackerPoll { [weak self] (trackerPoll) in
+                if trackerPoll != nil {
+                    self?.hideSyncAnimationAndShowStartButton()
+                } else {
+                    self?.addNotificationObservers()
+                }
+
+            }
+        }
+
+        if interactor.type == .tbvPollUser {
+            showLoadingDots()
+            interactor.getOpenTeamGeneratorPoll { [weak self] (generatorPoll) in
+                if generatorPoll != nil {
+                    self?.hideSyncAnimationAndShowStartButton()
+                } else {
+                    self?.addNotificationObservers()
+                }
+            }
+        }
     }
 }

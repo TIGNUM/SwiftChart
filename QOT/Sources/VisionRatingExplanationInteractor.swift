@@ -14,9 +14,8 @@ final class VisionRatingExplanationInteractor {
     // MARK: - Properties
     private lazy var worker = VisionRatingExplanationWorker()
     private let presenter: VisionRatingExplanationPresenterInterface!
-    private var type = Explanation.Types.ratingOwner
     private weak var downSyncObserver: NSObjectProtocol?
-
+    var type = Explanation.Types.ratingOwner
     var team: QDMTeam?
 
     // MARK: - Init
@@ -40,10 +39,10 @@ final class VisionRatingExplanationInteractor {
 extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorInterface {
     func startTeamTBVPoll(sendPushNotification: Bool, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
         guard let team = self.team else { return }
-        worker.getCurrentTeamToBeVisionPoll(for: team) { [weak self] (poll) in
+        getOpenTeamGeneratorPoll { [weak self] (poll) in
             if let poll = poll {
                 completion(poll)
-            } else {
+            } else if team.thisUserIsOwner {
                 self?.worker.openNewTeamToBeVisionPoll(for: team,
                                                        sendPushNotification: sendPushNotification) { (poll) in
                     completion(poll)
@@ -55,12 +54,28 @@ extension VisionRatingExplanationInteractor: VisionRatingExplanationInteractorIn
     func startTeamTrackerPoll(sendPushNotification: Bool,
                               _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?, QDMTeam?) -> Void) {
         guard let team = self.team else { return }
-        worker.getCurrentRatingPoll(for: team) { [weak self] (currentPoll) in
+        getOpenTeamTrackerPoll { [weak self] (currentPoll) in
             if let currentPoll = currentPoll {
                 completion(currentPoll, team)
             } else {
                 self?.handleOpenNewTrackerPoll(team: team, sendPushNotification: sendPushNotification, completion)
             }
+        }
+    }
+
+    func getOpenTeamGeneratorPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void) {
+        if let team = team {
+            worker.getCurrentTeamToBeVisionPoll(for: team, completion)
+        } else {
+            completion(nil)
+        }
+    }
+
+    func getOpenTeamTrackerPoll(_ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void) {
+        if let team = team {
+            worker.getCurrentRatingPoll(for: team, completion)
+        } else {
+            completion(nil)
         }
     }
 }

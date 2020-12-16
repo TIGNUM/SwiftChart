@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -144,6 +144,20 @@
                                     <constraint firstItem="xD7-SA-2Cb" firstAttribute="leading" secondItem="v7n-DW-0dZ" secondAttribute="leading" id="rW6-IL-iey"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YpN-CO-J2S">
+                                <rect key="frame" x="310" y="778" width="80" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5Dp-Ac-mOk"/>
+                                    <constraint firstAttribute="width" constant="80" id="VF3-eC-9r2"/>
+                                </constraints>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Syncing" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KxJ-Ni-7eZ">
+                                <rect key="frame" x="256.5" y="793" width="45.5" height="14.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.4021297089041096" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ai0-eR-Lul"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -151,8 +165,12 @@
                             <constraint firstItem="v7n-DW-0dZ" firstAttribute="leading" secondItem="Ai0-eR-Lul" secondAttribute="leading" id="0Xl-Mc-krb"/>
                             <constraint firstItem="Df3-YA-u4i" firstAttribute="leading" secondItem="Ai0-eR-Lul" secondAttribute="leading" constant="24" id="3Tf-TB-Yz5"/>
                             <constraint firstItem="v7n-DW-0dZ" firstAttribute="top" secondItem="Df3-YA-u4i" secondAttribute="bottom" constant="30" id="HWp-ua-HfZ"/>
+                            <constraint firstItem="Ai0-eR-Lul" firstAttribute="bottom" secondItem="YpN-CO-J2S" secondAttribute="bottom" constant="40" id="SdT-mC-HYm"/>
+                            <constraint firstItem="Ai0-eR-Lul" firstAttribute="trailing" secondItem="YpN-CO-J2S" secondAttribute="trailing" constant="24" id="XFb-a4-Vhs"/>
                             <constraint firstItem="Df3-YA-u4i" firstAttribute="top" secondItem="3mT-FJ-dXm" secondAttribute="bottom" constant="24" id="YEE-R2-adj"/>
+                            <constraint firstItem="YpN-CO-J2S" firstAttribute="leading" secondItem="KxJ-Ni-7eZ" secondAttribute="trailing" constant="8" id="a4P-4c-ucf"/>
                             <constraint firstItem="3mT-FJ-dXm" firstAttribute="leading" secondItem="Ai0-eR-Lul" secondAttribute="leading" constant="24" id="ev3-d3-F9b"/>
+                            <constraint firstItem="YpN-CO-J2S" firstAttribute="centerY" secondItem="KxJ-Ni-7eZ" secondAttribute="centerY" id="ke9-9f-69g"/>
                             <constraint firstItem="v7n-DW-0dZ" firstAttribute="trailing" secondItem="Ai0-eR-Lul" secondAttribute="trailing" id="nRD-Z1-IoP"/>
                             <constraint firstItem="Ai0-eR-Lul" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="v7n-DW-0dZ" secondAttribute="bottom" constant="60" id="tSI-Mm-JBv"/>
                             <constraint firstItem="Ai0-eR-Lul" firstAttribute="trailing" secondItem="3mT-FJ-dXm" secondAttribute="trailing" constant="24" id="trp-9T-VQv"/>
@@ -164,7 +182,9 @@
                         <outlet property="checkButton" destination="eKU-xu-bFb" id="iOW-IM-iFa"/>
                         <outlet property="checkMarkView" destination="iy2-aX-baP" id="AkH-3g-wsq"/>
                         <outlet property="checkmarkLabel" destination="6fb-xL-iqZ" id="tmm-2i-wfO"/>
+                        <outlet property="loadingDotsContainer" destination="YpN-CO-J2S" id="VSu-Pr-Kit"/>
                         <outlet property="playIconBackgroundView" destination="g5p-72-3G8" id="sZE-ee-w51"/>
+                        <outlet property="syncingLabel" destination="KxJ-Ni-7eZ" id="PMe-uf-KOa"/>
                         <outlet property="textLabel" destination="Df3-YA-u4i" id="u0o-7V-ygH"/>
                         <outlet property="titleLabel" destination="3mT-FJ-dXm" id="WhH-cI-p6w"/>
                         <outlet property="videoDescriptionLabel" destination="Fsu-oD-KcD" id="xou-sy-N9E"/>

@@ -22,6 +22,9 @@ protocol VisionRatingExplanationPresenterInterface {
 
 protocol VisionRatingExplanationInteractorInterface: Interactor {
     var team: QDMTeam? { get }
+    var type: Explanation.Types { get }
+    func getOpenTeamTrackerPoll(_ completion: @escaping (QDMTeamToBeVisionTrackerPoll?) -> Void)
+    func getOpenTeamGeneratorPoll(_ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
     func startTeamTBVPoll(sendPushNotification: Bool, _ completion: @escaping (QDMTeamToBeVisionPoll?) -> Void)
     func startTeamTrackerPoll(sendPushNotification: Bool, _ completion: @escaping (QDMTeamToBeVisionTrackerPoll?,
                                                                                    QDMTeam?) -> Void)
