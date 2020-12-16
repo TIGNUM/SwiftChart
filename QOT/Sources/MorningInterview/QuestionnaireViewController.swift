@@ -34,35 +34,19 @@ enum ControllerType {
         let aboveCurrentIndexColor: UIColor
         let belowCurrentIndexColor: UIColor
 
-        static func myVision() -> Config {
-            return Config(currentIndexColor: .redOrange,
-                          aboveCurrentIndexColor: .redOrange40,
-                          belowCurrentIndexColor: .accent40)
-        }
-
-        static func dailyCheckin() -> Config {
-            return Config(currentIndexColor: .accent,
-                          aboveCurrentIndexColor: .accent70,
-                          belowCurrentIndexColor: .accent70)
+        static func newQuestionaireConfig() -> Config {
+            return Config(currentIndexColor: .white,
+                          aboveCurrentIndexColor: .white,
+                          belowCurrentIndexColor: .white40)
         }
     }
 
     var config: Config {
-        switch self {
-        case .vision, .teamVision:
-            return Config.myVision()
-        case .dailyCheckin, .customize:
-            return Config.dailyCheckin()
-        }
+        return Config.newQuestionaireConfig()
     }
 
     var color: UIColor {
-        switch self {
-        case .vision, .teamVision, .customize:
-            return .white
-        case .dailyCheckin:
-            return .black
-        }
+        return .white
     }
 }
 
@@ -78,12 +62,12 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var progressDownArrowImage: UIImageView!
     @IBOutlet private weak var downArrowTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var upArrowBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var questionLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var fillView: UIView!
     @IBOutlet private weak var bottomImageView: UIImageView!
     @IBOutlet private weak var topIndex: UILabel!
     @IBOutlet private weak var bottomIndex: UILabel!
-    @IBOutlet private weak var lineView: UIView!
-    @IBOutlet private weak var indexLabel: UILabel!
+    @IBOutlet private weak var indexLabel: PaddingLabel!
     static var hasArrowsAnimated: Bool = false
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
@@ -193,11 +177,8 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
 // MARK: Animation
 extension QuestionnaireViewController {
     func adjustUI() {
-        switch controllerType {
-        case .customize:
-            ThemeView.level3.apply(view)
-        default: break
-        }
+        ThemeView.level3.apply(view)
+        questionLabelTopConstraint.constant = controllerType == .customize ? 59.0 : 15.0
     }
 
     func animateArrows() {
@@ -246,8 +227,9 @@ extension QuestionnaireViewController {
     private func setupView() {
         let color = controllerType.color
         totalHoursLabel.isHidden = true
-        lineView.backgroundColor = color
         indexLabel.textColor = color
+        indexLabel.layer.borderColor = color.cgColor
+        indexLabel.layer.borderWidth = 0.0
         bottomIndex.textColor = color
         topIndex.textColor = color
         questionLabel.textColor = color
@@ -282,34 +264,26 @@ extension QuestionnaireViewController {
         progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
         questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
         fillView.setNeedsUpdateConstraints()
-        var attributedQuestion: NSAttributedString = NSAttributedString.init()
+        var questionString = ""
         switch controllerType {
         case .customize:
-            attributedQuestion = ThemeText.customizeQuestion.attributedString(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question))
+            questionString = AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question)
         case .dailyCheckin:
-            if let question = questionHtml {
-                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed,
-                                                                              lineSpacing: nil, lineHeight: nil,
-                                                                              alignment: .center)
-            } else if let question = questionText {
-                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.trimmed,
-                                                                              lineSpacing: nil, lineHeight: nil,
-                                                                              alignment: .center)
-            }
+            questionString = (questionHtml == nil ? questionText : questionHtml?.string) ?? ""
         case .vision:
             if let sentence = questionText?.trimmingCharacters(in: .whitespaces) {
                 let personalQuestion = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself)
-                attributedQuestion = createQuestion(sentence: sentence,
-                                                    question: personalQuestion)
+                questionString = createQuestion(sentence: sentence,
+                                                question: personalQuestion)
             }
         case .teamVision:
             if let sentence = questionText?.trimmingCharacters(in: .whitespaces) {
                 let teamQuestion = AppTextService.get(.my_x_team_vision_tracker_question)
-                attributedQuestion = createQuestion(sentence: sentence,
-                                                    question: teamQuestion)
+                questionString = createQuestion(sentence: sentence,
+                                                question: teamQuestion)
             }
         }
-        questionLabel.attributedText = attributedQuestion
+        questionLabel.text = questionString
         UIView.animate(withDuration: Animation.duration_01,
                        delay: Animation.duration_01,
                        options: [.curveEaseInOut],
@@ -322,7 +296,7 @@ extension QuestionnaireViewController {
             self?.questionLabel.alpha = 1
             self?.questionLabel.isHidden = false
             self?.tableView.isHidden = false
-            self?.questionLabel.attributedText = attributedQuestion
+            self?.questionLabel.text = questionString
             self?.tableView.reloadData()
         })
 
@@ -340,13 +314,9 @@ extension QuestionnaireViewController {
         return index
     }
 
-    func createQuestion(sentence: String, question: String) -> NSMutableAttributedString {
-        let combined = NSMutableAttributedString()
-        combined.append(ThemeText.tbvQuestionLight.attributedString(question))
-        combined.append(ThemeText.tbvQuestionMedium.attributedString(" \""))
-        combined.append(ThemeText.tbvQuestionMedium.attributedString(sentence))
-        combined.append(ThemeText.tbvQuestionMedium.attributedString("\""))
-        combined.append(ThemeText.tbvQuestionMedium.attributedString("?"))
+    func createQuestion(sentence: String, question: String) -> String {
+        let combined = question + " \"" + sentence + "\"" + "?"
+
         return combined
     }
 
@@ -429,8 +399,10 @@ extension QuestionnaireViewController {
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
                  }
             }
+            indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count == 1 ? 1.0 : 0.0
         } else {
             indexLabel.text = String(items - index)
+            indexLabel.layer.borderWidth = 1.0
         }
 
         if isTouch == true {
@@ -501,6 +473,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
 
         if questionkey == .amount {
             if indexPath.row % 2 != 0 {
+                cell.cellIndicatorView.isTimeAmountSecondaryIndex = true
                 cell.cellIndicatorView.indicatorWidth = CGFloat(6)
             } else {
                 let multiplierValue = CGFloat(barWidth * multiplier)

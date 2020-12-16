@@ -16,6 +16,7 @@ protocol TBVRateDelegate: class {
 final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var pageContainerView: UIView!
     @IBOutlet private weak var pageIndicatorView: UIView!
+    @IBOutlet private weak var pageIndicatorLabel: UILabel!
     @IBOutlet private weak var backButton: UIButton!
     @IBOutlet private weak var loaderView: UIView!
     @IBOutlet private weak var timerView: UIView!
@@ -24,7 +25,6 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     private var isLastPage: Bool = false
     private var currentPageIndex: Int = 0
     private var nextPageTimer: Timer?
-    private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
 
     private var tracks: [RatingQuestionViewModel.Question] = []
@@ -32,10 +32,6 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     var interactor: MyToBeVisionRateInteracorInterface?
 
     lazy var setupPageViewContollerOnce: () -> Void = {
-        pageIndicator.translatesAutoresizingMaskIntoConstraints = false
-        pageIndicatorView?.addSubview(pageIndicator)
-        pageIndicator.addConstraints(to: pageIndicatorView)
-        pageIndicator.pageColor = .sand
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageController.delegate = self
         pageController.dataSource = self
@@ -194,11 +190,22 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
         NewThemeView.dark.apply(loaderView)
         setupPageViewContollerOnce()
         self.tracks = questions
-        pageIndicator.pageCount = questions.count
+        setupPageIndicatorLabel(index: 0)
         showWhiteBanner()
         if let viewController = questionnaireViewController(with: self.tracks.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
+    }
+
+    func setupPageIndicatorLabel(index: Int) {
+        pageIndicatorLabel.isHidden = false
+        let total = interactor?.questions.count ?? 0
+        let attrString = NSMutableAttributedString.init()
+        let currentAttrString = ThemeText.questionairePageCurrent.attributedString("\(index + 1)")
+        let totalAttrString = ThemeText.questionairePageTotal.attributedString("/\(total)")
+        attrString.append(currentAttrString)
+        attrString.append(totalAttrString)
+        pageIndicatorLabel.attributedText = attrString
     }
 
     func showLoadingDots() {
@@ -248,7 +255,7 @@ extension MyToBeVisionRateViewController: UIPageViewControllerDelegate, UIPageVi
 extension MyToBeVisionRateViewController: QuestionnaireAnswer {
     func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
-        pageIndicator.currentPageIndex = index
+        setupPageIndicatorLabel(index: index)
         backButton.isHidden = index < 1
         isLastPage = index == (tracks.count - 1)
 

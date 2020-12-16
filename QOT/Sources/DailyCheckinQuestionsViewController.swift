@@ -14,13 +14,12 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     // MARK: - Properties
     @IBOutlet private weak var topNavigationView: UIView!
     @IBOutlet private weak var pageContainerView: UIView!
-    @IBOutlet private weak var pageIndicatorView: UIView!
+    @IBOutlet private weak var pageIndicatorLabel: UILabel!
     @IBOutlet private weak var backButton: UIButton!
 
     var isDoneButtonEnabled: Bool = false
     var interactor: DailyCheckinQuestionsInteractorInterface?
     private var pageController: UIPageViewController?
-    private let pageIndicator = MyToBeVisionPageComponentView()
     private var loadingDots: DotsLoadingView?
 
     override func viewDidLoad() {
@@ -31,7 +30,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor?.viewWillAppear()
-        setStatusBar(color: .white)
+        setStatusBar(colorMode: .dark)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -49,25 +48,27 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        var backgroundColor = UIColor.carbon.withAlphaComponent(0.5)
+        var backgroundColor = UIColor.black
         var currentIndex = NSNotFound
         if let vc = pageController?.viewControllers?.first as? QuestionnaireViewController {
             currentIndex = indexOf(vc)
         }
 
-        backgroundColor = .carbon
+        backgroundColor = .black
         if isDoneButtonEnabled {
             return [roundedBarButtonItem(title: AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_footer_button_done),
             buttonWidth: .Done,
             action: #selector(doneAction),
+            textColor: .white,
             backgroundColor: backgroundColor,
-            borderColor: .clear)]
+            borderColor: .white)]
         } else if currentIndex != NSNotFound {
             return [roundedBarButtonItem(title: AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_footer_button_next),
             buttonWidth: .Done,
             action: #selector(nextAction),
+            textColor: .white,
             backgroundColor: backgroundColor,
-            borderColor: .clear)]
+            borderColor: .white)]
         }
         return []
     }
@@ -158,12 +159,8 @@ private extension DailyCheckinQuestionsViewController {
 // MARK: - DailyCheckinQuestionsViewControllerInterface
 extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControllerInterface {
     func setupView() {
-        pageIndicator.translatesAutoresizingMaskIntoConstraints = false
-        pageIndicatorView?.addSubview(pageIndicator)
-        pageIndicator.addConstraints(to: pageIndicatorView)
-        pageIndicator.pageColor = .carbon
-        pageIndicator.pageCount = 0
-        NewThemeView.light.apply(view)
+        pageIndicatorLabel.isHidden = true
+        NewThemeView.dark.apply(view)
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageController.delegate = self
         pageController.dataSource = self
@@ -174,7 +171,7 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
     }
 
     func showQuestions() {
-        pageIndicator.pageCount = interactor?.questions.count ?? 0
+        setupPageIndicatorLabel(index: 0)
         if let viewController = questionnaireViewController(with: interactor?.questions.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
@@ -182,7 +179,7 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
 
     func showLoadingDots() {
         let dots = DotsLoadingView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
-        dots.configure(dotsColor: .carbon60)
+        dots.configure(dotsColor: .white)
         dots.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(dots)
         dots.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -239,7 +236,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
     func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
         if index == NSNotFound { return }
-        pageIndicator.currentPageIndex = index
+        setupPageIndicatorLabel(index: index)
         backButton.isHidden = index < 1
         let isLastQuestion = index == ((interactor?.questions.count ?? 0) - 1)
         if isLastQuestion, let interactor = self.interactor {
@@ -257,5 +254,16 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         trackUserEvent(.SELECT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .SWIPE)
         isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
         refreshBottomNavigationItems()
+    }
+
+    func setupPageIndicatorLabel(index: Int) {
+        pageIndicatorLabel.isHidden = false
+        let total = interactor?.questions.count ?? 0
+        let attrString = NSMutableAttributedString.init()
+        let currentAttrString = ThemeText.questionairePageCurrent.attributedString("\(index + 1)")
+        let totalAttrString = ThemeText.questionairePageTotal.attributedString("/\(total)")
+        attrString.append(currentAttrString)
+        attrString.append(totalAttrString)
+        pageIndicatorLabel.attributedText = attrString
     }
 }

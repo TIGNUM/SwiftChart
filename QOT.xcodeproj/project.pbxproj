@@ -828,6 +828,7 @@
 		B411ECCE25751E5200EB7A78 /* BaseDailyBriefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411ECCD25751E5200EB7A78 /* BaseDailyBriefViewModel.swift */; };
 		B411ECE22575837C00EB7A78 /* NewDailyBriefTableViewSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B411ECE12575837C00EB7A78 /* NewDailyBriefTableViewSectionHeader.xib */; };
 		B411ECEA2575838500EB7A78 /* NewDailyBriefTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411ECE92575838500EB7A78 /* NewDailyBriefTableViewSectionHeader.swift */; };
+		B42A5B882589F9F200DBD0DB /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42A5B872589F9F200DBD0DB /* PaddingLabel.swift */; };
 		B430D7C623A911DE00C75C9C /* MyQotAdminSettingsListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7B123A911DD00C75C9C /* MyQotAdminSettingsListWorker.swift */; };
 		B430D7C723A911DE00C75C9C /* MyQotAdminSettingsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7B223A911DD00C75C9C /* MyQotAdminSettingsListInteractor.swift */; };
 		B430D7C823A911DE00C75C9C /* MyQotAdminSettingsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7B323A911DD00C75C9C /* MyQotAdminSettingsListRouter.swift */; };
@@ -2251,6 +2252,7 @@
 		B411ECCD25751E5200EB7A78 /* BaseDailyBriefViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefViewModel.swift; sourceTree = "<group>"; };
 		B411ECE12575837C00EB7A78 /* NewDailyBriefTableViewSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDailyBriefTableViewSectionHeader.xib; sourceTree = "<group>"; };
 		B411ECE92575838500EB7A78 /* NewDailyBriefTableViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyBriefTableViewSectionHeader.swift; sourceTree = "<group>"; };
+		B42A5B872589F9F200DBD0DB /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		B430D7B123A911DD00C75C9C /* MyQotAdminSettingsListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListWorker.swift; sourceTree = "<group>"; };
 		B430D7B223A911DD00C75C9C /* MyQotAdminSettingsListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListInteractor.swift; sourceTree = "<group>"; };
 		B430D7B323A911DD00C75C9C /* MyQotAdminSettingsListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListRouter.swift; sourceTree = "<group>"; };
@@ -5307,6 +5309,7 @@
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */,
 				7F47E83F1F8E4FE000ED4446 /* UIDevice+Utility.swift */,
+				B42A5B872589F9F200DBD0DB /* PaddingLabel.swift */,
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
 				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 				7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */,
@@ -7216,6 +7219,7 @@
 				B430D7D423A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsPresenter.swift in Sources */,
 				386C27A12418EBFF00184EC9 /* ResultsPrepareConfigurator.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
+				B42A5B882589F9F200DBD0DB /* PaddingLabel.swift in Sources */,
 				75423EFB22CE242B008EE726 /* TBVRateHistoryInterface.swift in Sources */,
 				AC1A40DF22A54EB70022156C /* SolveResultsInteractor.swift in Sources */,
 				3655F2DC2326F1E400334719 /* DTInteractor.swift in Sources */,

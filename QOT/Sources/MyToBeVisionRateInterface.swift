@@ -26,6 +26,7 @@ protocol MyToBeVisionRatePresenterInterface {
 }
 
 protocol MyToBeVisionRateInteracorInterface: Interactor {
+    var questions: [RatingQuestionViewModel.Question] { get }
     func addRating(for questionId: Int, value: Int)
     func saveQuestions()
     func showScreenLoader()

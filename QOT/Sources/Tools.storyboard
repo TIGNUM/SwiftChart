@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,6 +25,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="amN-j4-rmu"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="amN-j4-rmu" firstAttribute="bottom" secondItem="K8d-Oz-j85" secondAttribute="bottom" id="7ai-Qc-cno"/>
@@ -32,7 +33,6 @@
                             <constraint firstItem="K8d-Oz-j85" firstAttribute="top" secondItem="amN-j4-rmu" secondAttribute="top" id="HZ1-qr-a9p"/>
                             <constraint firstItem="amN-j4-rmu" firstAttribute="trailing" secondItem="K8d-Oz-j85" secondAttribute="trailing" id="JpP-2R-1Ci"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="amN-j4-rmu"/>
                     </view>
                     <navigationItem key="navigationItem" id="fVa-z6-HhY"/>
                     <connections>
@@ -66,12 +66,14 @@
                                     <constraint firstAttribute="width" constant="40" id="sUL-3T-EV6"/>
                                     <constraint firstAttribute="height" constant="40" id="xNK-bf-4hM"/>
                                 </constraints>
+                                <color key="tintColor" red="0.0" green="0.38431372549999998" blue="1" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="ic_arrow_left"/>
                                 <connections>
                                     <action selector="backButton:" destination="t5Z-7w-Qad" eventType="touchUpInside" id="oPB-vT-l8X"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="YVN-Tw-bnZ"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="xRI-V9-qF2" firstAttribute="top" secondItem="Cti-Zd-6jD" secondAttribute="bottom" id="JV4-Ic-ILe"/>
@@ -81,7 +83,6 @@
                             <constraint firstItem="xRI-V9-qF2" firstAttribute="leading" secondItem="YVN-Tw-bnZ" secondAttribute="leading" id="diI-wV-4pZ"/>
                             <constraint firstItem="xRI-V9-qF2" firstAttribute="bottom" secondItem="YVN-Tw-bnZ" secondAttribute="bottom" id="nq0-UT-ht1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="YVN-Tw-bnZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="BQB-8Y-mMd"/>
                     <connections>
@@ -117,6 +118,7 @@
                                     <constraint firstAttribute="width" constant="40" id="1mf-Zj-O4u"/>
                                     <constraint firstAttribute="height" constant="40" id="BoG-Yw-oAb"/>
                                 </constraints>
+                                <color key="tintColor" red="0.0" green="0.38431372549999998" blue="1" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="ic_arrow_left"/>
                                 <connections>
                                     <action selector="backButton:" destination="t5Z-7w-Qad" eventType="touchUpInside" id="hP7-JP-cQp"/>
@@ -124,6 +126,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="LOp-pi-FKS"/>
                         <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Asb-IU-eEH" firstAttribute="top" secondItem="WZi-Yw-SDe" secondAttribute="bottom" id="HTL-xX-Oi3"/>
@@ -133,7 +136,6 @@
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="trailing" secondItem="Asb-IU-eEH" secondAttribute="trailing" id="iA6-Mb-3Bz"/>
                             <constraint firstItem="WZi-Yw-SDe" firstAttribute="leading" secondItem="LOp-pi-FKS" secondAttribute="leading" constant="10" id="oQ7-MW-u1A"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="LOp-pi-FKS"/>
                     </view>
                     <navigationItem key="navigationItem" id="4sg-76-C2W"/>
                     <connections>
