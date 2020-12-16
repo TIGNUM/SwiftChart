@@ -65,9 +65,11 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         styleVelocityButton()
         switch colorMode {
         case .dark:
+            closeButton.setImage(R.image.ic_arrowDown_white(), for: .normal)
             ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: nil)
         case .darkNot:
+            closeButton.setImage(R.image.ic_arrowDown_black(), for: .normal)
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(downloadButton, title: nil)
         }
