@@ -256,7 +256,7 @@ extension DailyBriefViewController {
             cellModels.append(NewDailyBriefStandardModel.init(caption: weatherModel.title,
                                                                 title: weatherModel.accessLocationPermissionTitle,
                                                                 body: accessBody,
-                                                                image: bucketItem.image,
+                                                                image: weatherModel.weatherImage,
                                                                 titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
             cell.configure(with: cellModels)
@@ -524,6 +524,14 @@ extension DailyBriefViewController {
         if let contentId = strategyID {
             router.presentContent(contentId)
         }
+    }
+
+    private func isCelsius() -> Bool {
+        let formatter = MeasurementFormatter()
+        let measurement = Measurement(value: 911, unit: UnitTemperature.celsius)
+        let localTemperature = formatter.string(from: measurement)
+        let isCelsius =  localTemperature.uppercased().contains("C") ? true : false
+        return isCelsius
     }
 }
 

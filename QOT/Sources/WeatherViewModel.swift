@@ -29,6 +29,7 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
     var accessLocationPermissionTitle: String?
     var locationPermissionStatus: PermissionsManager.AuthorizationStatus
     var locationName: String?
+    var weatherImage: String?
 
     // MARK: - Init
     internal init(bucketTitle: String = "",
@@ -38,9 +39,11 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
                   accessLocationPermissionTitle: String?,
                   locationName: String?,
                   locationPermissionStatus: PermissionsManager.AuthorizationStatus,
+                  weatherImage: String?,
                   domain: QDMDailyBriefBucket?) {
         self.bucketTitle = bucketTitle
         self.intro = intro
+        self.weatherImage = weatherImage
         self.requestLocationPermissionDescription = requestLocationPermissionDescription
         self.deniedLocationPermissionDescription = deniedLocationPermissionDescription
         self.accessLocationPermissionTitle = accessLocationPermissionTitle
@@ -58,11 +61,11 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
             intro == source.intro &&
             requestLocationPermissionDescription == source.requestLocationPermissionDescription &&
             deniedLocationPermissionDescription == source.deniedLocationPermissionDescription &&
+            weatherImage == source.weatherImage &&
             accessLocationPermissionTitle == source.accessLocationPermissionTitle &&
             locationPermissionStatus == source.locationPermissionStatus &&
             domainModel?.weather?.currentDate == source.domainModel?.weather?.currentDate &&
             domainModel?.weather?.updatedTimeString == source.domainModel?.weather?.updatedTimeString &&
             domainModel?.weather?.currentTempInCelcius == source.domainModel?.weather?.currentTempInCelcius
-
     }
 }
