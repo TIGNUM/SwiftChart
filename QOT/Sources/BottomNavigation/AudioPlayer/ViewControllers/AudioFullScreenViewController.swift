@@ -96,12 +96,12 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         velocityButton.circle()
         switch colorMode {
         case .dark:
-            velocityButton.backgroundColor = .clear
+            velocityButton.backgroundColor = .black
             velocityButton.layer.borderWidth = 1
             velocityButton.setTitleColor(.white, for: .normal)
             velocityButton.layer.borderColor = UIColor.white.cgColor
         case .darkNot:
-            velocityButton.backgroundColor = .clear
+            velocityButton.backgroundColor = .white
             velocityButton.layer.borderWidth = 1
             velocityButton.setTitleColor(.black, for: .normal)
             velocityButton.layer.borderColor = UIColor.black.cgColor
@@ -272,10 +272,19 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapVelocity() {
-        velocityButton.backgroundColor = .white
-        velocityButton.layer.borderWidth = 1
-        velocityButton.layer.borderColor = UIColor.black.cgColor
-        velocityButton.setTitleColor(.black, for: .normal)
+        switch colorMode {
+        case .dark:
+            velocityButton.backgroundColor = .white
+            velocityButton.layer.borderWidth = 1
+            velocityButton.layer.borderColor = UIColor.black.cgColor
+            velocityButton.setTitleColor(.black, for: .normal)
+        case .darkNot:
+            velocityButton.backgroundColor = .black
+            velocityButton.layer.borderWidth = 1
+            velocityButton.layer.borderColor = UIColor.white.cgColor
+            velocityButton.setTitleColor(.white, for: .normal)
+        }
+
         var title = ""
         switch velocity {
         case 0.5:

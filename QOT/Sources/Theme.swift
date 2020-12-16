@@ -487,7 +487,7 @@ enum ThemableButton {
              .paymentReminder:
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight:
-            return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
+            return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent70,
                                background: (selected ? .accent40 : nil),
@@ -506,9 +506,9 @@ enum ThemableButton {
         switch self {
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload:
-            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+            return ButtonTheme(foreground: .black, background: .white, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
-            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+            return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .poll:
             return ButtonTheme(foreground: .sand40, background: .sand10, border: .clear)
         case .newBlueButton:
@@ -527,9 +527,9 @@ enum ThemableButton {
         case .myLibraryNotes:
             return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
-            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+            return ButtonTheme(foreground: .black, background: .white, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
-            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+            return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .newBlueButton:
             return ButtonTheme(foreground: .white40, background: .lightGray, border: .clear)
         default:

@@ -38,7 +38,7 @@
                                 <inset key="contentEdgeInsets" minX="26" minY="0.0" maxX="24" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="ic_download_black"/>
-                                <state key="disabled" image="ic_saved"/>
+                                <state key="disabled" image="ic_downloaded_black"/>
                                 <connections>
                                     <action selector="didTapDownloadButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="sHf-1I-WjR"/>
                                 </connections>
@@ -51,7 +51,7 @@
                                     <constraint firstAttribute="width" constant="40" id="YV2-oK-s6D"/>
                                 </constraints>
                                 <state key="normal" image="ic_bookmark_black"/>
-                                <state key="selected" image="ic_bookmark_fill"/>
+                                <state key="selected" image="ic_bookmark_black_fill"/>
                                 <connections>
                                     <action selector="didTapBookmarkButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="Hff-9I-4YT"/>
                                 </connections>
@@ -160,10 +160,10 @@
     <resources>
         <image name="ic_arrowDown_black" width="16" height="16"/>
         <image name="ic_bookmark_black" width="13.5" height="15"/>
-        <image name="ic_bookmark_fill" width="16" height="16"/>
+        <image name="ic_bookmark_black_fill" width="13.5" height="15"/>
         <image name="ic_download_black" width="16" height="16"/>
+        <image name="ic_downloaded_black" width="16" height="16"/>
         <image name="ic_pause_blue" width="40" height="46"/>
         <image name="ic_play_blue" width="8" height="10.5"/>
-        <image name="ic_saved" width="16" height="16"/>
     </resources>
 </document>
