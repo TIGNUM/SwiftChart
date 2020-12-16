@@ -94,10 +94,19 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     }
 
     // MARK: - Public
-    func configure(with models: [BaseDailyBriefViewModel]?, skeletonMode: SkeletonMode = .standard) {
+    func configure(with models: [BaseDailyBriefViewModel]?, selectedIndex: Int = 0, skeletonMode: SkeletonMode = .standard) {
         datasource = models
         self.skeletonMode = skeletonMode
         setupCollectionView()
+        if selectedIndex < models?.count ?? 0 {
+            scrollToCard(at: selectedIndex)
+        }
+    }
+
+    func scrollToCard(at index: Int) {
+        let pageWidth = self.flowLayout.itemSize.width + self.flowLayout.minimumInteritemSpacing
+        let offsetX: CGFloat = CGFloat(index) * pageWidth
+        collectionView?.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
     }
 }
 

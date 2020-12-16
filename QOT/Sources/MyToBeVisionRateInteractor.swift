@@ -17,6 +17,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     var showBanner: Bool?
     private weak var synchronizationObserver: NSObjectProtocol?
     private lazy var isoDate = worker.trackerPoll?.createdAt ?? Date()
+    private var _questions = [RatingQuestionViewModel.Question]()
 
     init(presenter: MyToBeVisionRatePresenterInterface,
          worker: MyToBeVisionRateWorker,
@@ -31,6 +32,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
     func viewDidLoad() {
         addObserver()
         getQuestions { [weak self] (questions) in
+            self?._questions = questions
             self?.presenter.setupView(questions: questions)
         }
     }
@@ -82,6 +84,10 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
 }
 
 extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
+    var questions: [RatingQuestionViewModel.Question] {
+        return _questions
+    }
+
     func addRating(for questionId: Int, value: Int) {
         worker.addRating(for: questionId, value: value, isoDate: isoDate)
     }

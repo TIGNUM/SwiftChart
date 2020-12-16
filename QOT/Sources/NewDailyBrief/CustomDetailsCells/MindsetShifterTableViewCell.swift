@@ -39,6 +39,7 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         guard let viewModel = viewModel else {
             return
         }
+        self.mindsetShifter = viewModel.mindsetShifter
         skeletonManager.hide()
         let lowTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_low).lowercased().capitalizingFirstLetter()
         let lowItems = viewModel.mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? "" } ?? []
@@ -48,15 +49,28 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         ThemeButton.whiteRounded.apply(seeMyPlanButton)
 
         ThemeText.tbvQuestionLow.apply(lowTitle, to: lowTitleLabel)
-        ThemeText.tbvQuestionLow.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowFirstStatement)
-        ThemeText.tbvQuestionLow.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowSecondStatement)
-        ThemeText.tbvQuestionLow.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowThirdStatement)
+        ThemeText.tbvQuestionHigh.apply(highTitle, to: highTitleLabel)
 
-        ThemeText.tbvQuestionLow.apply(highTitle, to: highTitleLabel)
-        ThemeText.tbvQuestionHigh.apply(highItems[0, default: "highItem_\(0) not set"], to: highFirstStatement)
-        ThemeText.tbvQuestionHigh.apply(highItems[1, default: "highItem_\(1) not set"], to: highSecondStatement)
-        ThemeText.tbvQuestionHigh.apply(highItems[2, default: "highItem_\(2) not set"], to: highThirdStatement)
-        self.mindsetShifter = viewModel.mindsetShifter
+        if lowItems.count > 0 {
+            ThemeText.tbvQuestionLow.apply(lowItems[0], to: lowFirstStatement)
+        }
+        if lowItems.count > 1 {
+            ThemeText.tbvQuestionLow.apply(lowItems[1], to: lowSecondStatement)
+        }
+        if lowItems.count > 2 {
+            ThemeText.tbvQuestionLow.apply(lowItems[1], to: lowThirdStatement)
+        }
+
+        if highItems.count > 0 {
+            ThemeText.tbvQuestionHigh.apply(highItems[0], to: highFirstStatement)
+        }
+        if highItems.count > 1 {
+            ThemeText.tbvQuestionHigh.apply(highItems[1], to: highSecondStatement)
+        }
+        if highItems.count > 2 {
+            ThemeText.tbvQuestionHigh.apply(highItems[1], to: highThirdStatement)
+        }
+
     }
 
     func setupGradients() {

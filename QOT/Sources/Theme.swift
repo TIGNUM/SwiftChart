@@ -975,6 +975,8 @@ enum ThemeText {
     case optionPageDisabled
     case tbvQuestionHigh
     case tbvQuestionLow
+    case questionairePageCurrent
+    case questionairePageTotal
 
     // MARK: - New Approach
     case H01Light
@@ -1111,10 +1113,10 @@ enum ThemeText {
              .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription,
              .dailyBriefImpactReadinessRolling, .onboardingInfoBody, .paymentReminderHeaderSubtitle,
              .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader, .mySensorsTitle, .H03Light,
-             .MediumBodySand:
+             .MediumBodySand, .questionairePageCurrent, .questionairePageTotal:
             return Fonts.fontMedium14
         case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader,
-             .dailyQuestion, .dailyBriefFromTignumTitle:
+             .dailyBriefFromTignumTitle:
             return Fonts.fontMedium16
         case .tbvQuestionHigh:
             return Fonts.fontMedium18
@@ -1137,7 +1139,7 @@ enum ThemeText {
 
         // MARK: - fontDisplayThin
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
-             .mySprintDetailsTitle, .H01Light:
+             .mySprintDetailsTitle, .H01Light, .dailyQuestion:
             return Fonts.fontDisplayLight24
         case .iRscore:
             return Fonts.fontDisplayThin30
@@ -1178,7 +1180,7 @@ enum ThemeText {
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence,
              .strategyTitle, .customizeQuestion, .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle,
              .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle,
-             .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence:
+             .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence, .dailyQuestion, .questionairePageCurrent:
             return UIColor.white
 
         // MARK: - .lightGrey
@@ -1203,7 +1205,7 @@ enum ThemeText {
              .articleHeadlineSmallFade, .articleTagSelected, .articleStrategyRead, .articleRelatedDetailInStrategyRead,
              .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail,
              .dailyBriefSubtitle, .registerIntroBody, .version, .weatherLastUpdate, .articleRelatedDetailInStrategy,
-             .myLibraryItemsItemNameGrey, .calendarNoAccess, .articleTag, .bodyText:
+             .myLibraryItemsItemNameGrey, .calendarNoAccess, .articleTag, .bodyText, .questionairePageTotal:
             return Palette.lightGrey
 
         // MARK: - .darkGrey
@@ -1219,7 +1221,7 @@ enum ThemeText {
         // MARK: - .black
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
-             .dailyQuestion, .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation,
+            .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation,
              .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle:
             return .black
 
@@ -1305,7 +1307,7 @@ enum ThemeText {
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
              .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
-             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText:
+             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText, .questionairePageCurrent, .questionairePageTotal, .tbvQuestionLow, .tbvQuestionHigh:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
@@ -1956,4 +1958,3 @@ convenience init?(color: UIColor, size: CGSize) {
     self.init(data: imagePNGData)
    }
 }
-
