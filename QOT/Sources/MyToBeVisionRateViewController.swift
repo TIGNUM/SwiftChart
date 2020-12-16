@@ -117,7 +117,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
                                      buttonWidth: .Done,
                                      action: #selector(doneAction),
                                      backgroundColor: .carbon,
-                                     borderColor: .accent40)]
+                                     borderColor: .white)]
     }
 
     @objc private func doneAction() {

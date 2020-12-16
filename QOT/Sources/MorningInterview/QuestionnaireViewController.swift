@@ -632,7 +632,7 @@ extension QuestionnaireViewController {
                                              buttonWidth: .Done,
                                              action: #selector(didTapSave),
                                              backgroundColor: .clear,
-                                             borderColor: .accent)]
+                                             borderColor: .white)]
             }
         case .dailyCheckin:
             guard let pageController = parent as? UIPageViewController, let targetVC = pageController.parent else {

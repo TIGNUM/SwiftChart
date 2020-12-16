@@ -443,7 +443,7 @@ extension UIViewController {
                                          image: UIImage? = nil,
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
-                                         textColor: UIColor = .accent,
+                                         textColor: UIColor = .white,
                                          backgroundColor: UIColor = .black,
                                          borderColor: UIColor = .clear) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
