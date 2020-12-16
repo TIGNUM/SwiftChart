@@ -1261,7 +1261,6 @@ extension DailyBriefInteractor {
     // MARK: - Weather
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
-
         let title = AppTextService.get(.daily_brief_section_weather_empty_title)
 
         let intro = weatherBucket?.bucketText?.contentItems.filter({

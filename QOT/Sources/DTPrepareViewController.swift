@@ -130,7 +130,7 @@ private extension DTPrepareViewController {
                                                                                                   newTargetId: targetId,
                                                                                                   votes: 0)
                                                             self?.setAnswerNeedsSelection(targetAnswer)
-                                                            self?.loadNextQuestion()
+                                                            self?.loadNextQuestion(answerFilter: self?.answerFilter)
                 }
             }
         }
