@@ -1307,7 +1307,7 @@ enum ThemeText {
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
              .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
-             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText, .questionairePageCurrent, .questionairePageTotal:
+             .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText, .questionairePageCurrent, .questionairePageTotal, .tbvQuestionLow, .tbvQuestionHigh:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)

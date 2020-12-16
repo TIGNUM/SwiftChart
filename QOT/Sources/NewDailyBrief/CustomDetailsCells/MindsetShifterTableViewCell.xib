@@ -116,7 +116,9 @@
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ui-Zc-Nkf" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                         <rect key="frame" x="306" y="632" width="84" height="30"/>
-                        <state key="normal" title="See my plan"/>
+                        <state key="normal" title="See my plan">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
                         <connections>
                             <action selector="mindsetButtonTapped:" destination="Zzg-wh-1JB" eventType="touchUpInside" id="J3Q-RU-IfY"/>
                         </connections>
