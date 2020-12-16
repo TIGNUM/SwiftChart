@@ -53,7 +53,7 @@ final class DTPrepareInteractor: DTInteractor {
         }
 
         // PERCEIVED
-        if targetQuestionId == 100393 {
+        if targetQuestionId == 100393 || targetQuestionId == 100326 {
             targetQuestionId = 100390
         }
 

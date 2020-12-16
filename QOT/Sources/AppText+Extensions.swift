@@ -358,6 +358,8 @@ public extension AppTextKey {
     static let daily_brief_section_sprint_challenge_caption = AppTextKey("daily_brief.section_sprint_challenge.caption")
     static let daily_brief_section_visual_delights_title = AppTextKey("daily_brief.section_visual_delights.title")
     static let daily_brief_team_open_poll_text = AppTextKey("daily_brief.team_open_poll.text")
+    static let my_x_tbv_rate_history_title = AppTextKey("my_x.tbv_rate_history.title")
+    static let my_x_tbv_rate_history_message = AppTextKey("my_x.tbv_rate_history.message")
 
     static let daily_brief_section_weather_empty_body = AppTextKey("daily_brief.section_weather.empty.body")
     static let daily_brief_section_weather_card_title = AppTextKey("daily_brief.section_weather_card.title")

@@ -104,10 +104,11 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         return nil
     }
 
-    func loadNextQuestion() {
+    func loadNextQuestion(answerFilter: String? = nil) {
         guard let viewModel = viewModel else { return }
         let selectedAnswers = viewModel.selectedAnswers
-        let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel.question.key)
+        let filter = answerFilter != nil ? answerFilter : getAnswerFilter(selectedAnswers: selectedAnswers,
+                                                                          questionKey: viewModel.question.key)
         let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel.question.key)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
                                               question: viewModel.question,

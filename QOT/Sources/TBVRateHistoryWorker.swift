@@ -45,7 +45,7 @@ final class TBVRateHistoryWorker: WorkerTeam {
 
     var sentences: [QDMToBeVisionSentence] {
         if let dataModel = dataModel {
-            return dataModel.report.sentences.filter { ($0.ratings[dataModel.selectedDate] ?? -1) > 0 }.sorted(by: { $0.sortOrder > $1.sortOrder })
+            return dataModel.report.sentences.filter { ($0.ratings[dataModel.selectedDate] ?? -1) > 0 }.sorted(by: { $0.sortOrder < $1.sortOrder })
         }
         return []
     }

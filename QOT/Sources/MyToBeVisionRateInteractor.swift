@@ -45,7 +45,7 @@ final class MyToBeVisionRateInteractor: WorkerTeam {
                     self?.removeObserver()
                     self?.hideScreenLoader()
                 }
-                completion(questions)
+                completion(questions.reversed())
             }
         }
     }
