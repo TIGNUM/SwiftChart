@@ -42,8 +42,8 @@ enum ColorMode {
 
     var fade: UIColor {
         switch self {
-        case .dark: return UIColor.black.withAlphaComponent(0.1)
-        case .darkNot: return UIColor.white.withAlphaComponent(0.1)
+        case .dark: return .black10
+        case .darkNot: return .white10
         }
     }
 

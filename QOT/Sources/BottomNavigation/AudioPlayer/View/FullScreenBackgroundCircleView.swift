@@ -15,10 +15,10 @@ struct CircleInfo {
 
 class FullScreenBackgroundCircleView: UIView {
     var circles: [CircleInfo] = [
-        CircleInfo(color: .sand70, radiusRate: 0.2),
-        CircleInfo(color: .sand60, radiusRate: 0.4),
-        CircleInfo(color: .sand40, radiusRate: 0.7),
-        CircleInfo(color: .sand20, radiusRate: 0.99)
+        CircleInfo(color: .white30, radiusRate: 0.2),
+        CircleInfo(color: .white20, radiusRate: 0.4),
+        CircleInfo(color: .white10, radiusRate: 0.7),
+        CircleInfo(color: .white10, radiusRate: 0.99)
         ] {
         didSet {
             setNeedsDisplay()

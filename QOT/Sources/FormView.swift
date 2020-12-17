@@ -145,7 +145,7 @@ private extension FormView {
     func setupBackgrounds() {
         backgroundColor = .clear
         textField.backgroundColor = .clear
-        bottomStatusLine.backgroundColor = .white60
+        bottomStatusLine.backgroundColor = UIColor.white60
     }
 
     func setupLabels(placeholder: String) {

@@ -46,7 +46,7 @@ enum MyX {
                 return AppTextService.get(.my_x_section_my_data_title)
             case .toBeVision:
                 if isPollInProgress {
-                    return AppTextService.get(.team_tbv_poll_in_progress).lowercased().capitalizingFirstLetter()
+                    return AppTextService.get(.team_tbv_poll_in_progress_new)
                 } else {
                     return AppTextService.get(isTeam ? .my_x_section_team_tbv_new_title : .my_x_section_tbv_title)
                 }
