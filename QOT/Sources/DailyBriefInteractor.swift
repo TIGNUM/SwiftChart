@@ -460,7 +460,7 @@ extension DailyBriefInteractor {
             readinessIntro = AppTextService.get(.daily_brief_section_impact_readiness_empty_body)
         }
 
-        let bucketTitle = AppTextService.get(.daily_brief_section_impact_readiness_title)
+        let bucketTitle = AppTextService.get(.daily_brief_section_impact_readiness_title).lowercased().capitalizingFirstLetter()
         var show5DaysImpactReadiness = true
         //If the daily check in completed update the ImpactReadinessCellViewModel
         let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? -1)
@@ -795,7 +795,7 @@ extension DailyBriefInteractor {
         }
 
         if !messageModels.isEmpty {
-            let detailTitle = AppTextService.get(.daily_brief_section_from_my_tignum_coach_title)
+            let detailTitle = AppTextService.get(.daily_brief_section_from_my_tignum_coach_title).lowercased().capitalizingFirstLetter()
             let url = URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? "")
             let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
             let model = FromMyCoachCellViewModel(detail: detail,
@@ -1017,7 +1017,7 @@ extension DailyBriefInteractor {
         var createThoughtsToPonderList: [BaseDailyBriefViewModel] = []
 
         guard let collection = thoughtsToPonder.contentCollections?.first else {
-            createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title).lowercased().capitalizingFirstLetter(),
+            createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title),
                                                                     thought: "",
                                                                     author: "",
                                                                     image: thoughtsToPonder.bucketImages?.first?.mediaUrl,
@@ -1025,7 +1025,7 @@ extension DailyBriefInteractor {
             return createThoughtsToPonderList
 
         }
-        createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title).lowercased().capitalizingFirstLetter(),
+        createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title),
                                                                 thought: collection.contentItems.first?.valueText ?? "",
                                                                 author: collection.author ?? "",
                                                                 image: thoughtsToPonder.bucketImages?.first?.mediaUrl,
@@ -1262,7 +1262,7 @@ extension DailyBriefInteractor {
     // MARK: - Weather
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
-        let title = AppTextService.get(.daily_brief_section_weather_empty_title)
+        let title = weatherBucket?.bucketName ?? ""
 
         let intro = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_INTRO")

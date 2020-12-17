@@ -51,25 +51,13 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         ThemeText.tbvQuestionLow.apply(lowTitle, to: lowTitleLabel)
         ThemeText.tbvQuestionHigh.apply(highTitle, to: highTitleLabel)
 
-        if lowItems.count > 0 {
-            ThemeText.tbvQuestionLow.apply(lowItems[0], to: lowFirstStatement)
-        }
-        if lowItems.count > 1 {
-            ThemeText.tbvQuestionLow.apply(lowItems.at(index: 1), to: lowSecondStatement)
-        }
-        if lowItems.count > 2 {
-            ThemeText.tbvQuestionLow.apply(lowItems[2], to: lowThirdStatement)
-        }
+        ThemeText.tbvQuestionLow.apply(lowItems.at(index: 0), to: lowFirstStatement)
+        ThemeText.tbvQuestionLow.apply(lowItems.at(index: 1), to: lowSecondStatement)
+        ThemeText.tbvQuestionLow.apply(lowItems.at(index: 2), to: lowThirdStatement)
 
-        if highItems.count > 0 {
-            ThemeText.tbvQuestionHigh.apply(highItems[0], to: highFirstStatement)
-        }
-        if highItems.count > 1 {
-            ThemeText.tbvQuestionHigh.apply(highItems[1], to: highSecondStatement)
-        }
-        if highItems.count > 2 {
-            ThemeText.tbvQuestionHigh.apply(highItems[2], to: highThirdStatement)
-        }
+        ThemeText.tbvQuestionHigh.apply(highItems.at(index: 0), to: highFirstStatement)
+        ThemeText.tbvQuestionHigh.apply(highItems.at(index: 1), to: highSecondStatement)
+        ThemeText.tbvQuestionHigh.apply(highItems.at(index: 2), to: highThirdStatement)
 
     }
 
