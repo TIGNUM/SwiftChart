@@ -16,7 +16,6 @@ enum LaunchOption: String {
 }
 
 final class LaunchHandler {
-
     private var appDelegate: AppDelegate {
         return AppDelegate.current
     }
@@ -247,9 +246,7 @@ final class LaunchHandler {
 }
 
 // MARK: - Show Screen
-
 extension LaunchHandler {
-
     func showPendingInvitations() {
         let identifier = R.storyboard.team.teamInviteViewControllerID.identifier
         let controller = R.storyboard.team().instantiateViewController(withIdentifier: identifier) as? TeamInvitesViewController
@@ -265,6 +262,7 @@ extension LaunchHandler {
     }
 
     func showTeamTBVTrends(_ teamId: Int) {
+        requestSynchronization(.TEAM_TO_BE_VISION_TRACKER_POLL, .DOWN_SYNC)
         getTeam(teamId) { (team) in
             if let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() {
                 TBVRateHistoryConfigurator.configure(viewController: controller,

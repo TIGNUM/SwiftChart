@@ -80,8 +80,11 @@ private extension TBVDataGraphCollectionView {
         case .range:
             return rangeCell(with: range, for: collectionView, at: indexPath)
         case .first:
-            let date = getDates[barType.index]
-            return graphCell(getRating(date), date, for: collectionView, at: indexPath)
+            if getDates.count > barType.index {
+                let date = getDates[barType.index]
+                return graphCell(getRating(date), date, for: collectionView, at: indexPath)
+            }
+            return durationCell(for: collectionView, at: indexPath)
         case .second:
             if getDates.count > barType.index {
                 let date = getDates[barType.index]

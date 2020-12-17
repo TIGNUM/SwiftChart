@@ -13,9 +13,9 @@ final class MyQotAdminLocalNotificationsWorker {
     var datasource: [String: String] = [
                                         "tignumx://team-invitations": "Open pending Team invitations",
                                         "tignumx://tbv-tracker-poll-opened?teamId=100697": "Open Team Tracker Poll",
-                                        "tignumx://tbv-tracker-closed?teamId=100697": "Open Team TBV Trends",
                                         "tignumx://tbv-generator-poll-opened?teamId=100697": "Open Team TBV Generator",
                                         "tignumx://tbv-generator-poll-closed?teamId=100697": "Open TeamTBV",
+                                        "tignumx://tbv-tracker-closed?teamId=100697": "Open Team TBV Trends",
                                         "tignumx://daily-brief": "Daily brief",
                                         "tignumx://daily-brief?bucketName=WEATHER": "Weather",
                                         "tignumx://daily-brief?bucketName=LATEST_WHATS_HOT": "Whats Hot",

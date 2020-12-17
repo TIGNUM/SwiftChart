@@ -11,8 +11,17 @@ import UIKit
 final class TBVDataGraphSubHeadingTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var title: UILabel!
+    private var skeletonManager = SkeletonManager()
 
-    func configure(subHeading: String?) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addTitle(title)
+    }
+
+    func configure(subHeading: String?, showSkeleton: Bool) {
         ThemeText.tbvTrackerBody.apply(subHeading, to: title)
+        if !showSkeleton {
+            skeletonManager.hide()
+        }
     }
 }

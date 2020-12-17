@@ -119,7 +119,7 @@ extension SyncedCalendarsViewController: UITableViewDelegate, UITableViewDataSou
         if section == 0 {
             let title = AppTextService.get(.my_qot_my_profile_app_settings_synced_calendars_section_footer_title_calendars_you_own)
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
-            headerView.configure(title: title, theme: .level3, themeText: .syncedCalendarTableHeader)
+            headerView.configure(title: title, theme: .level3, themeText: .syncedCalendarTableHeader, showSkeleton: false)
             return headerView
         }
         return nil
@@ -128,7 +128,7 @@ extension SyncedCalendarsViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionItem = SyncedCalendarsViewModel.Section(rawValue: section) ?? .onDevice
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
-        headerView.configure(title: sectionItem.title, theme: .level3, themeText: .syncedCalendarTableHeader)
+        headerView.configure(title: sectionItem.title, theme: .level3, themeText: .syncedCalendarTableHeader, showSkeleton: false)
         return headerView
     }
 
