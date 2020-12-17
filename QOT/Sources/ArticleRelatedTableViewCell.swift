@@ -25,6 +25,7 @@ class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
         ThemeText.articleRelatedTitle(nil).apply(title.uppercased(), to: titleLabel)
         ThemeText.articleRelatedDetail(nil).apply(durationString, to: detailLabel)
         iconImageView.image = icon
+        iconImageView.tintColor = colorMode == .dark ? .darkGray : .lightGray
         contentView.backgroundColor = colorMode.background
         selectedBackgroundView?.backgroundColor = colorMode.cellHighlight
     }
