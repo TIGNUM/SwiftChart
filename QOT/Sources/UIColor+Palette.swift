@@ -62,11 +62,7 @@ extension UIColor {
 
 extension UIColor {
 
-    public class var grey: UIColor {
-        return UIColor(red: 156/255, green: 152/255, blue: 151/255, alpha: 1)
-    }
-
-    static var lightGrey: UIColor {
+    public class var lightGrey: UIColor {
         return UIColor(red: 156/255, green: 152/255, blue: 151/255, alpha: 1)
     }
 
@@ -80,18 +76,6 @@ extension UIColor {
 
     static var tignumPink40: UIColor {
         return UIColor(red: 255/255, green: 221/255, blue: 238/255, alpha: 0.4)
-    }
-
-    static var white10: UIColor {
-        return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1)
-    }
-
-    static var black10: UIColor {
-        return UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
-    }
-
-    static var black20: UIColor {
-        return UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.2)
     }
 
     public class var redOrange40: UIColor {
@@ -255,17 +239,7 @@ extension UIColor {
     public class var whiteLight: UIColor {
         return UIColor(white: 255/255, alpha: 0.1)
     }
-
-    /// UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
-    public class var navy: UIColor {
-        return UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
-    }
-
-    /// UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 0.2)
-    public class var navy20: UIColor {
-        return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 0.2)
-    }
-
+    
     /// UIColor(white: 91/255, alpha: 1)
     public class var brownishGrey: UIColor {
         return UIColor(white: 91/255, alpha: 1)
@@ -284,36 +258,6 @@ extension UIColor {
     /// UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 0.6)
     public class var blackTwo: UIColor {
         return UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 1)
-    }
-
-    /// UIColor.black.withAlphaComponent(0.15)
-    public class var black15: UIColor {
-        return UIColor.black.withAlphaComponent(0.15)
-    }
-
-    /// UIColor.black.withAlphaComponent(0.3)
-    public class var black30: UIColor {
-        return UIColor.black.withAlphaComponent(0.3)
-    }
-
-    /// UIColor.black.withAlphaComponent(0.4)
-    public class var black40: UIColor {
-        return UIColor.black.withAlphaComponent(0.6)
-    }
-
-    /// UIColor.black.withAlphaComponent(0.6)
-    public class var black60: UIColor {
-        return UIColor.black.withAlphaComponent(0.6)
-    }
-
-    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
-    public class var black70: UIColor {
-        return UIColor.black.withAlphaComponent(0.7)
-    }
-
-    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
-    public class var black80: UIColor {
-        return UIColor.black.withAlphaComponent(0.8)
     }
 
     /// UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 1)
@@ -394,16 +338,6 @@ extension UIColor {
         return UIColor(white: 1, alpha: 0.14)
     }
 
-    /// UIColor(white: 255/255, alpha: 0.15)
-    public class var white15: UIColor {
-        return UIColor(white: 1, alpha: 0.15)
-    }
-
-    /// UIColor(white: 255/255, alpha: 0.2)
-    public class var white20: UIColor {
-        return UIColor(white: 1, alpha: 0.2)
-    }
-
     /// UIColor(white: 255/255, alpha: 0.3)
     public class var white30: UIColor {
         return UIColor(white: 1, alpha: 0.3)
@@ -417,26 +351,6 @@ extension UIColor {
     /// UIColor(white: 255/255, alpha: 0.4)
     public class var white40: UIColor {
         return UIColor(white: 1, alpha: 0.4)
-    }
-
-    /// UIColor(white: 255/255, alpha: 0.5)
-    public class var white50: UIColor {
-        return UIColor(white: 1, alpha: 0.5)
-    }
-
-    /// UIColor(white: 255/255, alpha: 0.6)
-    public class var white60: UIColor {
-        return UIColor(white: 1, alpha: 0.6)
-    }
-
-    /// UIColor(white: 255/255, alpha: 0.7)
-    public class var white70: UIColor {
-        return UIColor(white: 1, alpha: 0.7)
-    }
-
-    /// UIColor(white: 255/255, alpha: 0.8)
-    public class var white80: UIColor {
-        return UIColor(white: 255/255, alpha: 0.8)
     }
 
     /// UIColor(white: 179/255, alpha: 0.2)
@@ -562,16 +476,8 @@ extension UIColor {
         return UIColor(red: 92/255, green: 109/255, blue: 122/255, alpha: 0.7)
     }
 
-    public class var nightModeBackground: UIColor {
-        return Date().isNight ? .navy : .white
-    }
-
-    public class var nightModeMainFont: UIColor {
-        return Date().isNight ? .white : .darkIndigo
-    }
-
     public class var nightModeSubFont: UIColor {
-        return Date().isNight ? .white : .black30
+        return Date().isNight ? .white : UIColor.black.withAlphaComponent(0.3)
     }
 
     public class var nightModeBlack: UIColor {
@@ -579,11 +485,11 @@ extension UIColor {
     }
 
     public class var nightModeBlack30: UIColor {
-        return Date().isNight ? .white70 : .black30
+        return Date().isNight ? UIColor.white.withAlphaComponent(0.7) : UIColor.black.withAlphaComponent(0.3)
     }
 
     public class var nightModeBlack40: UIColor {
-        return Date().isNight ? .white : .black40
+        return Date().isNight ? .white : UIColor.black.withAlphaComponent(0.4)
     }
 
     public class var nightModeBlackTwo: UIColor {

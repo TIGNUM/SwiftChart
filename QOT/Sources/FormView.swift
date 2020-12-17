@@ -145,11 +145,11 @@ private extension FormView {
     func setupBackgrounds() {
         backgroundColor = .clear
         textField.backgroundColor = .clear
-        bottomStatusLine.backgroundColor = .white60
+        bottomStatusLine.backgroundColor = UIColor.white.withAlphaComponent(0.6)
     }
 
     func setupLabels(placeholder: String) {
-        placeholderLabel.attributedText = attributedString(textColor: .white50, string: placeholder)
+        placeholderLabel.attributedText = attributedString(textColor: UIColor.white.withAlphaComponent(0.5), string: placeholder)
         errorLabel.isHidden = true
     }
 
