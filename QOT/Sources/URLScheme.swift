@@ -65,7 +65,7 @@ enum URLScheme: String {
     case recovery3DPlanner = "3d-recovery-planner"
     case mindsetShifterPlanner = "mindset-shifter-planner"
     case tbvTrackerPollOpened = "tbv-tracker-poll-opened"
-    case tbvTrackerPollClosed = "tbv-tracker-closed"
+    case tbvTrackerPollClosed = "tbv-tracker-poll-closed"
     case tbvGeneratorPollOpened = "tbv-generator-poll-opened"
     case tbvGeneratorPollClosed = "tbv-generator-poll-closed"
 
