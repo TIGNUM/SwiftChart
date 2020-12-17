@@ -158,7 +158,7 @@ extension MyQotMainWorker {
             } else if tmpTrackerPoll != nil {
                 completion(item.title(isTeam: true, isPollInProgress: false), nil, tmpTrackerPoll)
             } else if tmpHasOwnerEmptyTeamTBV == true {
-                completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision), tmpPoll, tmpTrackerPoll)
+                completion(AppTextService.get(.myx_team_tbv_empty_subtitle_vision_new), tmpPoll, tmpTrackerPoll)
             } else {
                 completion(item.title(isTeam: true, isPollInProgress: false), tmpPoll, tmpTrackerPoll)
             }
