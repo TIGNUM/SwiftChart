@@ -16,13 +16,25 @@ final class TBVDataGraphTableViewCell: UITableViewCell, Dequeueable, TBVDataGrap
 
     @IBOutlet weak var collectionView: TBVDataGraphCollectionView!
     weak var delegate: TBVDataGraphProtocol?
+    private var skeletonManager = SkeletonManager()
 
-    func setup(report: ToBeVisionReport?, config: TBVGraph.BarGraphConfig, range: TBVGraph.Range) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addOtherView(self)
+    }
+
+    func setup(report: ToBeVisionReport?,
+               config: TBVGraph.BarGraphConfig,
+               range: TBVGraph.Range,
+               showSkeleton: Bool) {
         collectionView.tbvReport = report
         collectionView.config = config
         collectionView.range = range
         collectionView.graphDelegate = self
         collectionView.reloadData()
+        if !showSkeleton {
+            skeletonManager.hide()
+        }
     }
 
     func didSelect(date: Date) {

@@ -196,6 +196,13 @@ private extension VisionRatingExplanationViewController {
         return [dismissNavigationItemBlack(action: #selector(didTapDismissButton))]
     }
 
+    func removeObserver() {
+        if let downSyncObserver = downSyncObserver {
+            NotificationCenter.default.removeObserver(downSyncObserver)
+            self.downSyncObserver = nil
+        }
+    }
+
     func addNotificationObservers() {
         downSyncObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
                                                                   object: nil,
@@ -203,13 +210,6 @@ private extension VisionRatingExplanationViewController {
             if self?.downSyncObserver != nil {
                 self?.didFinishDownSynchronization(notification)
             }
-        }
-    }
-
-    func removeObserver() {
-        if let downSyncObserver = downSyncObserver {
-            NotificationCenter.default.removeObserver(downSyncObserver)
-            self.downSyncObserver = nil
         }
     }
 

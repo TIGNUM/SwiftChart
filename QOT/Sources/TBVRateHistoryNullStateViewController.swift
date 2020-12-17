@@ -84,7 +84,8 @@ private extension TBVRateHistoryNullStateViewController {
 extension TBVRateHistoryNullStateViewController {
     @objc func didFinishSynchronization(_ notification: Notification) {
         guard let syncResult = notification.object as? SyncResultContext else { return }
-        if syncResult.dataType == .MY_TO_BE_VISION_TRACKER, syncResult.syncRequestType == .DOWN_SYNC {
+        if syncResult.dataType == .TEAM_TO_BE_VISION_TRACKER_POLL,
+           syncResult.syncRequestType == .DOWN_SYNC {
             getVisionTracks()
         }
     }
