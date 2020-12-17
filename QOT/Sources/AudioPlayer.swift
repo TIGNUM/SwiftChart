@@ -107,7 +107,7 @@ class AudioPlayer {
             player?.play()
             _isPlaying = true
             _isReset = false
-            delegate?.updateControllButton(with: R.image.ic_pause_blue())
+            delegate?.updateControllButton(with: R.image.ic_pause())
             updater?.isPaused = false
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .didStartAudio, object: self.media)
@@ -143,7 +143,7 @@ class AudioPlayer {
             let playerItem = AVPlayerItem(url: audioURL)
             self.playerItem = playerItem
             player = AVPlayer(playerItem: playerItem)
-            delegate?.updateControllButton(with: R.image.ic_pause_blue())
+            delegate?.updateControllButton(with: R.image.ic_pause())
             _isReset = false
             try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback,
                                                              mode: AVAudioSession.Mode.default,

@@ -79,7 +79,7 @@ final class AudioPlayerBar: UIView {
 
     func updateView() {
         audioPlayer.delegate = self
-        playPauseButton.setImage(audioPlayer.isPlaying ? R.image.ic_pause_blue() : R.image.ic_play_blue(), for: .normal)
+        playPauseButton.setImage(audioPlayer.isPlaying ? R.image.ic_pause() : R.image.ic_play(), for: .normal)
     }
 
     func refreshColorMode(isLight: Bool) {

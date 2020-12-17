@@ -82,8 +82,8 @@
                                     <constraint firstAttribute="width" constant="40" id="QL5-22-SQ3"/>
                                     <constraint firstAttribute="height" constant="40" id="yGg-v5-1wv"/>
                                 </constraints>
-                                <state key="normal" image="ic_play_blue"/>
-                                <state key="selected" image="ic_pause_blue"/>
+                                <state key="normal" image="ic_play"/>
+                                <state key="selected" image="ic_pause"/>
                                 <connections>
                                     <action selector="didTapPlayPauseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="e0m-Vp-IGW"/>
                                 </connections>
@@ -156,7 +156,7 @@
         <image name="ic_bookmark_black_fill" width="13.5" height="15"/>
         <image name="ic_download_black" width="16" height="16"/>
         <image name="ic_downloaded_black" width="16" height="16"/>
-        <image name="ic_pause_blue" width="40" height="46"/>
-        <image name="ic_play_blue" width="8" height="10.5"/>
+        <image name="ic_pause" width="40" height="46"/>
+        <image name="ic_play" width="8" height="10.5"/>
     </resources>
 </document>
