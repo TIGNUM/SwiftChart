@@ -65,7 +65,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         styleVelocityButton()
         downloadButton.setImage(R.image.ic_save(), for: .normal)
         downloadButton.setImage(R.image.ic_download(), for: .disabled)
-        bookmarkButton.setImage( R.image.ic_bookmark_white(), for: .normal)
+        bookmarkButton.setImage(R.image.ic_bookmark(), for: .normal)
         bookmarkButton.setImage(R.image.ic_bookmark_fill(), for: .selected)
 
         switch colorMode {

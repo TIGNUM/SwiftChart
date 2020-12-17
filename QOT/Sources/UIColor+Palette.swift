@@ -78,6 +78,30 @@ extension UIColor {
         return UIColor(red: 255/255, green: 221/255, blue: 238/255, alpha: 0.4)
     }
 
+    static var white10: UIColor {
+           return UIColor.white.withAlphaComponent(0.1)
+    }
+
+    static var white20: UIColor {
+        return UIColor.white.withAlphaComponent(0.2)
+    }
+
+    static var white70: UIColor {
+        return UIColor.white.withAlphaComponent(0.7)
+    }
+
+    static var black10: UIColor {
+        return UIColor.black.withAlphaComponent(0.1)
+    }
+
+    static var black20: UIColor {
+        return UIColor.black.withAlphaComponent(0.2)
+    }
+
+    static var black30: UIColor {
+        return UIColor.black.withAlphaComponent(0.3)
+    }
+
     public class var redOrange40: UIColor {
         return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 0.4)
     }
@@ -243,6 +267,11 @@ extension UIColor {
     /// UIColor(white: 91/255, alpha: 1)
     public class var brownishGrey: UIColor {
         return UIColor(white: 91/255, alpha: 1)
+    }
+    
+    /// UIColor(white: 255/255, alpha: 0.6)
+    public class var white60: UIColor {
+        return UIColor(white: 255/255, alpha: 0.6)
     }
 
     /// UIColor(white: 255/255, alpha: 0.9)
@@ -477,7 +506,7 @@ extension UIColor {
     }
 
     public class var nightModeSubFont: UIColor {
-        return Date().isNight ? .white : UIColor.black.withAlphaComponent(0.3)
+        return Date().isNight ? .white : .black30
     }
 
     public class var nightModeBlack: UIColor {
@@ -485,7 +514,7 @@ extension UIColor {
     }
 
     public class var nightModeBlack30: UIColor {
-        return Date().isNight ? UIColor.white.withAlphaComponent(0.7) : UIColor.black.withAlphaComponent(0.3)
+        return Date().isNight ? .white70 : .black30
     }
 
     public class var nightModeBlack40: UIColor {

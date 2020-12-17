@@ -382,17 +382,17 @@ enum ThemeCircles {
         switch self {
         case .fullScreenAudioDark:
             return [
-                CircleInfo(color: UIColor.white.withAlphaComponent(0.3), radiusRate: 0.2),
-                CircleInfo(color: UIColor.white.withAlphaComponent(0.2), radiusRate: 0.4),
-                CircleInfo(color: UIColor.white.withAlphaComponent(0.1), radiusRate: 0.7),
-                CircleInfo(color: UIColor.white.withAlphaComponent(0.1), radiusRate: 0.99)
+                CircleInfo(color: .white30, radiusRate: 0.2),
+                CircleInfo(color: .white20, radiusRate: 0.4),
+                CircleInfo(color: .white10, radiusRate: 0.7),
+                CircleInfo(color: .white10, radiusRate: 0.99)
             ]
         case .fullScreenAudioLight:
             return [
-                CircleInfo(color: UIColor.black.withAlphaComponent(0.3), radiusRate: 0.2),
-                CircleInfo(color: UIColor.black.withAlphaComponent(0.2), radiusRate: 0.4),
-                CircleInfo(color: UIColor.black.withAlphaComponent(0.1), radiusRate: 0.7),
-                CircleInfo(color: UIColor.black.withAlphaComponent(0.1), radiusRate: 0.99)
+                CircleInfo(color: .black30, radiusRate: 0.2),
+                CircleInfo(color: .black20, radiusRate: 0.4),
+                CircleInfo(color: .black10, radiusRate: 0.7),
+                CircleInfo(color: .black10, radiusRate: 0.99)
             ]
         }
     }
@@ -606,12 +606,12 @@ enum ThemeSearchBar {
             if #available(iOS 13, *) {
                 let searchField = view.searchTextField
                 searchField.corner(radius: 20)
-                searchField.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+                searchField.backgroundColor = UIColor.white10
                 searchField.textColor = .white
             } else {
                 if let searchField = view.value(forKey: "_searchField") as? UITextField {
                     searchField.corner(radius: 20)
-                    searchField.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+                    searchField.backgroundColor = UIColor.white10
                     searchField.textColor = .white
                 }
             }
