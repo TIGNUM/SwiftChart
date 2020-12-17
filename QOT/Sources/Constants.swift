@@ -89,6 +89,7 @@ extension CGFloat.Button.Height {
 }
 
 extension CGFloat.Button.Width {
+    static let LoadingDots: CGFloat = 28
     static let DoItLater: CGFloat = 104
     static let TrackTBV: CGFloat = 135
     static let SaveChanges: CGFloat = .TrackTBV

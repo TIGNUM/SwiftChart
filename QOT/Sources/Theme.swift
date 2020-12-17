@@ -382,17 +382,17 @@ enum ThemeCircles {
         switch self {
         case .fullScreenAudioDark:
             return [
-                CircleInfo(color: .sand70, radiusRate: 0.2),
-                CircleInfo(color: .sand60, radiusRate: 0.4),
-                CircleInfo(color: .sand40, radiusRate: 0.7),
-                CircleInfo(color: .sand20, radiusRate: 0.99)
+                CircleInfo(color: .white30, radiusRate: 0.2),
+                CircleInfo(color: .white20, radiusRate: 0.4),
+                CircleInfo(color: .white10, radiusRate: 0.7),
+                CircleInfo(color: .white10, radiusRate: 0.99)
             ]
         case .fullScreenAudioLight:
             return [
-                CircleInfo(color: .accent70, radiusRate: 0.2),
-                CircleInfo(color: .accent60, radiusRate: 0.4),
-                CircleInfo(color: .accent40, radiusRate: 0.7),
-                CircleInfo(color: .accent20, radiusRate: 0.99)
+                CircleInfo(color: .black30, radiusRate: 0.2),
+                CircleInfo(color: .black20, radiusRate: 0.4),
+                CircleInfo(color: .black10, radiusRate: 0.7),
+                CircleInfo(color: .black10, radiusRate: 0.99)
             ]
         }
     }
@@ -448,9 +448,9 @@ enum ThemableButton {
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload,
              .paymentReminder:
-            return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
+            return ButtonTheme(foreground: .white, background: .black, border: .white)
         case .fullscreenAudioPlayerDownloadLight:
-            return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
+            return ButtonTheme(foreground: .black, background: .white, border: .black)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent,
                                background: (selected ? .accent40 : nil),
@@ -487,7 +487,7 @@ enum ThemableButton {
              .paymentReminder:
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight:
-            return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
+            return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent70,
                                background: (selected ? .accent40 : nil),
@@ -506,9 +506,9 @@ enum ThemableButton {
         switch self {
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload:
-            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+            return ButtonTheme(foreground: .black, background: .white, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
-            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+            return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .poll:
             return ButtonTheme(foreground: .sand40, background: .sand10, border: .clear)
         case .newBlueButton:
@@ -527,9 +527,9 @@ enum ThemableButton {
         case .myLibraryNotes:
             return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
-            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+            return ButtonTheme(foreground: .black, background: .white, border: nil)
         case .fullscreenAudioPlayerDownloadLight:
-            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+            return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .newBlueButton:
             return ButtonTheme(foreground: .white40, background: .lightGray, border: .clear)
         default:
@@ -606,12 +606,12 @@ enum ThemeSearchBar {
             if #available(iOS 13, *) {
                 let searchField = view.searchTextField
                 searchField.corner(radius: 20)
-                searchField.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+                searchField.backgroundColor = UIColor.white10
                 searchField.textColor = .white
             } else {
                 if let searchField = view.value(forKey: "_searchField") as? UITextField {
                     searchField.corner(radius: 20)
-                    searchField.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+                    searchField.backgroundColor = UIColor.white10
                     searchField.textColor = .white
                 }
             }
@@ -683,7 +683,6 @@ enum ThemeText {
     case audioPlayerTimeLight
 
     case articlePostTitle
-    case articlePostTitleNight
     case articleSecondaryTitle
     case articleSubTitle
     case articleHeadline
@@ -1076,7 +1075,7 @@ enum ThemeText {
             return Fonts.fontLight32
         case .articleTitleNotScaled, .tbvHeader, .tbvVisionHeader, .audioFullScreenTitle, .audioFullScreenTitleDark:
             return Fonts.fontLight34
-        case .articlePostTitle, .articlePostTitleNight:
+        case .articlePostTitle:
             return Fonts.fontLight36
         case .articleNum:
             return Fonts.fontLight72
@@ -1263,8 +1262,6 @@ enum ThemeText {
             return Palette.cherryRed
         case .articleTagNight:
             return Palette.nightModeSubFont
-        case .articlePostTitleNight:
-            return Palette.nightModeMainFont
         case .learnVideo:
             return Palette.nightModeBlack40
         case .learnImage, .learnPDF:
@@ -1390,7 +1387,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
         case .articleBody, .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline,
-             .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent, .tbvQuestionLight,
+             .articleParagraph, .articleSector, .searchContent, .tbvQuestionLight,
              .dailyQuestion, .tbvQuestionMedium:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
@@ -1713,6 +1710,10 @@ private struct Palette {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
     }
 
+    static var white40: UIColor {
+        return UIColor.white.withAlphaComponent(0.4)
+    }
+
     static var accent04: UIColor {
         return UIColor.accent.withAlphaComponent(0.04)
     }
@@ -1833,10 +1834,6 @@ private struct Palette {
         return UIColor(red: 1/255, green: 148/255, blue: 255/255, alpha: 1)
     }
 
-    static var navy: UIColor {
-        return UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
-    }
-
     static var blackTwo: UIColor {
         return UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 1)
     }
@@ -1865,14 +1862,6 @@ private struct Palette {
         return UIColor.fiveDayImpactReadiness
     }
 
-    static var nightModeBackground: UIColor {
-        return Date().isNight ? Palette.navy : Palette.sand
-    }
-
-    static var nightModeMainFont: UIColor {
-        return Date().isNight ? Palette.sand : Palette.darkIndigo
-    }
-
     static var nightModeSubFont: UIColor {
         return Date().isNight ? Palette.sand : Palette.carbon30
     }
@@ -1895,10 +1884,6 @@ private struct Palette {
 
     static var nightModeBlue: UIColor {
         return Date().isNight ? Palette.azure : .blue
-    }
-
-    static var white40: UIColor {
-        return UIColor.white.withAlphaComponent(0.4)
     }
 
     static var heatMapDarkBlue: UIColor {

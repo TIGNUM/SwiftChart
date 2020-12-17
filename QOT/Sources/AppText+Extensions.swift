@@ -677,6 +677,7 @@ public extension AppTextKey {
     static let team_tbv_poll_video = AppTextKey("team-tbv.poll.video-title")
     static let team_tbv_poll_button = AppTextKey("team-tbv.poll.button")
     static let team_tbv_poll_in_progress = AppTextKey("team_tbv.poll.in_progress")
+    static let team_tbv_poll_in_progress_new = AppTextKey("team_tbv.poll.in_progress_new")
     static let team_tbv_poll_ends_in_days = AppTextKey("team.tbv_poll.ends_in")
 
     // MARK: - Button Titles
@@ -850,6 +851,7 @@ public extension AppTextKey {
     static let my_qot_my_tbv_alert_update_create = AppTextKey("my_qot.my_tbv.alert.update.create")
     static let my_qot_my_tbv_empty_subtitle_vision = AppTextKey("my_qot.my_tbv.empty.subtitle_vision")
     static let myx_team_tbv_empty_subtitle_vision = AppTextKey("myx.team_tbv.empty_subtitle_vision")
+    static let myx_team_tbv_empty_subtitle_vision_new = AppTextKey("myx.team_tbv.empty_subtitle_vision_new")
     static let my_qot_my_tbv_null_state_title = AppTextKey("my_qot.my_tbv.null_state.title")
     static let myx_team_tbv_null_state_title = AppTextKey("my_x.team_tbv_null_state.title")
     static let myx_team_tbv_null_state_subtitle = AppTextKey("my_x.team_tbv_null_state.subtitle")

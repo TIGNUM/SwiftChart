@@ -1056,7 +1056,7 @@ extension DailyBriefInteractor {
     // MARK: - My sprints
     func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createSprintChallengeList: [SprintChallengeViewModel] = []
-
+        
         guard sprintBucket.sprint != nil else {
             return createSprintChallengeList
         }
@@ -1083,7 +1083,7 @@ extension DailyBriefInteractor {
                                                                                      sprintMedia?.valueMediaURL,
                                                                                      searchTag))
             } else {
-
+                
                 sprintContentCollections?.forEach {(collection) in
                     //                Related ContentItems
                     collection.relatedContentItems.forEach {(contentItem) in
@@ -1126,20 +1126,20 @@ extension DailyBriefInteractor {
                                                                                              nil,
                                                                                              nil,
                                                                                              searchTag))
-
+                        
                     }
                 }
-                let imageTag = "DAY_" + String(index)
-                let image = sprintBucket.bucketImages?.filter({ $0.label == imageTag }).first?.mediaUrl
-                createSprintChallengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(.daily_brief_section_sprint_challenge_title),
-                                                                          sprintTitle: sprintBucket.sprint?.title,
-                                                                          sprintInfo: sprintInfo,
-                                                                          image: image,
-                                                                          sprintStepNumber: index,
-                                                                          relatedStrategiesModels: relatedItemsModels,
-                                                                          domainModel: sprintBucket,
-                                                                          sprint: sprintBucket.sprint!))
             }
+            let imageTag = "DAY_" + String(index)
+            let image = sprintBucket.bucketImages?.filter({ $0.label == imageTag }).first?.mediaUrl
+            createSprintChallengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(.daily_brief_section_sprint_challenge_title),
+                                                                      sprintTitle: sprintBucket.sprint?.title,
+                                                                      sprintInfo: sprintInfo,
+                                                                      image: image,
+                                                                      sprintStepNumber: index,
+                                                                      relatedStrategiesModels: relatedItemsModels,
+                                                                      domainModel: sprintBucket,
+                                                                      sprint: sprintBucket.sprint!))
         }
         return [SprintsCollectionViewModel.init(items: createSprintChallengeList, domainModel: sprintBucket)]
     }
@@ -1170,7 +1170,8 @@ extension DailyBriefInteractor {
         guard visionText?.isEmpty == false else {
             return visionList
         }
-        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, imageURL: imageURL, domainModel: teamVisionBucket)
+        let quotesVision = "\"" + (visionText ?? "") + "\""
+        let model = TeamToBeVisionCellViewModel(title: title, teamVision: quotesVision, team: team, imageURL: imageURL, domainModel: teamVisionBucket)
         visionList.append(model)
         return visionList
     }

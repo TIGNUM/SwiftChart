@@ -430,7 +430,7 @@ extension UIViewController {
         }
         let button = UIButton(type: .custom)
         button.addTarget(self, action: buttonAction, for: .touchUpInside)
-        button.setImage(R.image.ic_close_sand(), for: .normal)
+        button.setImage(R.image.ic_close_black_rounded(), for: .normal)
         button.frame.size.height = .Default
         button.frame.size.width = .Default
         button.layer.cornerRadius =  button.frame.size.height/2

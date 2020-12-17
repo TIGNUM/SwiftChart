@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class DotsLoadingView: UIView {
 
@@ -14,6 +15,17 @@ final class DotsLoadingView: UIView {
 
     private var dotsColor: UIColor? = .carbonDark
     private var size: CGSize?
+
+    convenience init(with frame: CGRect, parentView: UIView, dotsColor: UIColor) {
+        self.init(frame: frame)
+        configure(dotsColor: dotsColor)
+        translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(self)
+        centerXAnchor.constraint(equalTo: parentView.centerXAnchor).isActive = true
+        widthAnchor.constraint(equalToConstant: 20).isActive = true
+        heightAnchor.constraint(equalToConstant: 20).isActive = true
+        centerYAnchor.constraint(equalTo: parentView.centerYAnchor).isActive = true
+    }
 
     // MARK: - Configuration
     func configure(dotsColor: UIColor?, size: CGSize? = nil) {

@@ -168,7 +168,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     func getTitle(for item: MyX.Item?) -> String? {
         if item == .toBeVision && selectedTeamItem != nil {
-            return tbvTitle.lowercased().capitalizingFirstLetter()
+            return tbvTitle
         }
         return item?.title(isTeam: isTeam(), isPollInProgress: false)
     }

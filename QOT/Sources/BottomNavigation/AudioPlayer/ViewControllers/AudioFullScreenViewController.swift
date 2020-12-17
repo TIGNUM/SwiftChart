@@ -63,11 +63,24 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
 
     func setupButtons() {
         styleVelocityButton()
+        downloadButton.setImage(R.image.ic_save(), for: .normal)
+        downloadButton.setImage(R.image.ic_download(), for: .disabled)
+        bookmarkButton.setImage(R.image.ic_bookmark(), for: .normal)
+        bookmarkButton.setImage(R.image.ic_bookmark_fill(), for: .selected)
+
         switch colorMode {
         case .dark:
+            closeButton.setImage(R.image.arrowDown(), for: .normal)
+            closeButton.imageView?.tintColor = .white
+            downloadButton.imageView?.tintColor = .white
+            bookmarkButton.imageView?.tintColor = .white
             ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: nil)
         case .darkNot:
+            closeButton.setImage(R.image.arrowDown(), for: .normal)
+            closeButton.imageView?.tintColor = .black
+            downloadButton.imageView?.tintColor = .black
+            bookmarkButton.imageView?.tintColor = .black
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(downloadButton, title: nil)
         }
@@ -94,9 +107,18 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
 
     func styleVelocityButton() {
         velocityButton.circle()
-        velocityButton.backgroundColor = .clear
-        velocityButton.layer.borderWidth = 1
-        velocityButton.layer.borderColor = UIColor.accent40.cgColor
+        switch colorMode {
+        case .dark:
+            velocityButton.backgroundColor = .black
+            velocityButton.layer.borderWidth = 1
+            velocityButton.setTitleColor(.white, for: .normal)
+            velocityButton.layer.borderColor = UIColor.white.cgColor
+        case .darkNot:
+            velocityButton.backgroundColor = .white
+            velocityButton.layer.borderWidth = 1
+            velocityButton.setTitleColor(.black, for: .normal)
+            velocityButton.layer.borderColor = UIColor.black.cgColor
+        }
     }
 
     func configureMedia(_ media: MediaPlayerModel, isPlaying: Bool = true) {
@@ -121,13 +143,22 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     func updateDownloadButtonState(_ state: UserStorageDownloadStatus) {
         var title = AppTextService.get(.generic_download_status_audio_button_download)
         switch state {
-        case .NONE: title = AppTextService.get(.generic_download_status_audio_button_download)
-        case .WAITING: title = AppTextService.get(.my_qot_my_library_downloads_download_status_button_waiting)
-        case .DOWNLOADING: title = AppTextService.get(.generic_download_status_audio_button_downloading)
+        case .NONE:
+            title = AppTextService.get(.generic_download_status_audio_button_download)
+        case .WAITING:
+            title = AppTextService.get(.my_qot_my_library_downloads_download_status_button_waiting)
+        case .DOWNLOADING:
+            title = AppTextService.get(.generic_download_status_audio_button_downloading)
         case .DONE:
             title = AppTextService.get(.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
             downloadButton.layer.borderWidth = 0
+            switch colorMode {
+            case .dark:
+                downloadButton.imageView?.tintColor = .black
+            case .darkNot:
+                downloadButton.imageView?.tintColor = .white
+            }
         }
 
         switch colorMode {
@@ -239,6 +270,14 @@ extension AudioFullScreenViewController {
                 storage.userStorageType == .BOOKMARK
             })
             self?.bookmarkButton.isSelected = self?.bookmarks?.first != nil
+            if self?.bookmarkButton.isSelected == true {
+                switch self?.colorMode {
+                case .dark:
+                    self?.bookmarkButton.imageView?.tintColor = .black
+                default:
+                    self?.bookmarkButton.imageView?.tintColor = .white
+                }
+            }
             if self?.bookmarkButton.isSelected == true, self?.wasBookmarked == false {
                 self?.wasBookmarked = true
                 self?.showDestinationAlert()
@@ -263,8 +302,19 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapVelocity() {
-        velocityButton.backgroundColor = .accent40
-        velocityButton.layer.borderWidth = 0
+        switch colorMode {
+        case .dark:
+            velocityButton.backgroundColor = .white
+            velocityButton.layer.borderWidth = 1
+            velocityButton.layer.borderColor = UIColor.black.cgColor
+            velocityButton.setTitleColor(.black, for: .normal)
+        case .darkNot:
+            velocityButton.backgroundColor = .black
+            velocityButton.layer.borderWidth = 1
+            velocityButton.layer.borderColor = UIColor.white.cgColor
+            velocityButton.setTitleColor(.white, for: .normal)
+        }
+
         var title = ""
         switch velocity {
         case 0.5:
