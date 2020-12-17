@@ -33,18 +33,6 @@ final class VisionRatingExplanationViewController: BaseViewController {
     private var rightBarButtonAction = #selector(startRating)
     private var loadingDots: DotsLoadingView?
 
-    private lazy var rightBarButtonItems: [UIBarButtonItem] = {
-        return [roundedBarButtonItem(title: rightBarButtonTitle,
-                                     buttonWidth: .Save,
-                                     action: rightBarButtonAction,
-                                     backgroundColor: .clear,
-                                     borderColor: .accent40)]
-    }()
-
-    private lazy var leftBarButtonItems: [UIBarButtonItem] = {
-        return [dismissNavigationItemBlack(action: #selector(didTapDismissButton))]
-    }()
-
     // MARK: - Init
     init(configure: Configurator<VisionRatingExplanationViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -77,15 +65,15 @@ final class VisionRatingExplanationViewController: BaseViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
-        if interactor.team?.thisUserIsOwner == true || interactor.type == .createTeam {
-            return rightBarButtonItems
+        if interactor.team?.thisUserIsOwner == true {
+            return getRightBarButtonItems()
         }
         fetchMemberPoll()
         return []
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem] {
-        return leftBarButtonItems
+        return getLeftBarButtonItems()
     }
 }
 
@@ -196,6 +184,18 @@ extension VisionRatingExplanationViewController: TBVRateDelegate {
 }
 
 private extension VisionRatingExplanationViewController {
+    func getRightBarButtonItems() -> [UIBarButtonItem] {
+        return [roundedBarButtonItem(title: rightBarButtonTitle,
+                                     buttonWidth: .Save,
+                                     action: rightBarButtonAction,
+                                     backgroundColor: .clear,
+                                     borderColor: .white40)]
+    }
+
+    func getLeftBarButtonItems() -> [UIBarButtonItem] {
+        return [dismissNavigationItemBlack(action: #selector(didTapDismissButton))]
+    }
+
     func addNotificationObservers() {
         downSyncObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,
                                                                   object: nil,
@@ -228,7 +228,7 @@ private extension VisionRatingExplanationViewController {
 
     func hideSyncAnimationAndShowStartButton() {
         hideLoadingDots()
-        updateBottomNavigation(leftBarButtonItems, rightBarButtonItems)
+        updateBottomNavigation(getLeftBarButtonItems(), getRightBarButtonItems())
         removeObserver()
     }
 
