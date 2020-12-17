@@ -37,7 +37,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
         backgroundColor = .clear
         if bottomSeperatorView != nil {
-            bottomSeperatorView.backgroundColor = UIColor.white.withAlphaComponent(0.15)
+            bottomSeperatorView.backgroundColor = .white15
             bottomSeperatorView.isHidden = true
         }
     }

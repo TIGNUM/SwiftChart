@@ -134,7 +134,7 @@ enum ThemeView {
         case .askPermissions:
             return Palette.carbon
         case .resultWhite:
-            return UIColor.white.withAlphaComponent(0.4)
+            return Palette.white40
         case .guidedTrackBackground:
             return Palette.sand03
 
@@ -146,7 +146,7 @@ enum ThemeView {
         case .barViews(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand70, forcedColorMode: mode)
         case .tbvHighPerformance(let mode):
-            return Palette.light(UIColor.white.withAlphaComponent(0.4), or: Palette.carbon90, forcedColorMode: mode)
+            return Palette.light(Palette.white40, or: Palette.carbon90, forcedColorMode: mode)
         case .myDataHeatMapLegendHigh:
             return Palette.heatMapBrightRed
         case .myDataHeatMapLegendLow:
@@ -280,9 +280,9 @@ enum ThemeSwitch {
             view.onTintColor = Palette.accent70
             view.layer.borderColor = Palette.accent70.cgColor
         case .white:
-            view.tintColor = UIColor.white.withAlphaComponent(0.4)
+            view.tintColor = Palette.white40
             view.onTintColor = .clear
-            view.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
+            view.layer.borderColor = Palette.white40.cgColor
         }
     }
 }
@@ -353,7 +353,7 @@ enum ThemeButton {
             colorUnselected = .actionBlue
             colorBorder = .clear
         case .whiteRounded:
-            colorSelected = UIColor.white.withAlphaComponent(0.3)
+            colorSelected = .white30
             colorBorder = .white
             colorUnselected = .clear
         case .level5Button:
@@ -1708,6 +1708,10 @@ private struct Palette {
 
     static var accent: UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
+    }
+
+    static var white40: UIColor {
+        return UIColor.white.withAlphaComponent(0.4)
     }
 
     static var accent04: UIColor {

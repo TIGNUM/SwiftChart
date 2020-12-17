@@ -149,7 +149,7 @@ private extension FormView {
     }
 
     func setupLabels(placeholder: String) {
-        placeholderLabel.attributedText = attributedString(textColor: UIColor.white.withAlphaComponent(0.5), string: placeholder)
+        placeholderLabel.attributedText = attributedString(textColor: .white50, string: placeholder)
         errorLabel.isHidden = true
     }
 
