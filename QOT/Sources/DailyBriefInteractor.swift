@@ -1170,7 +1170,8 @@ extension DailyBriefInteractor {
         guard visionText?.isEmpty == false else {
             return visionList
         }
-        let model = TeamToBeVisionCellViewModel(title: title, teamVision: visionText, team: team, imageURL: imageURL, domainModel: teamVisionBucket)
+        let quotesVision = "\"" + (visionText ?? "") + "\""
+        let model = TeamToBeVisionCellViewModel(title: title, teamVision: quotesVision, team: team, imageURL: imageURL, domainModel: teamVisionBucket)
         visionList.append(model)
         return visionList
     }

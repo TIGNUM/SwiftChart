@@ -222,7 +222,15 @@ extension DailyBriefViewController {
                                                             numberOfLinesForBody: numberOfLines,
                                                             titleColor: bucketItem.titleColor,
                                                             domainModel: bucketItem.domainModel))
-
+        case.TEAM_TO_BE_VISION?:
+            let numberOfLines = 6
+            cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                            title: bucketItem.title,
+                                                            body: bucketItem.body,
+                                                            image: bucketItem.image,
+                                                            numberOfLinesForBody: numberOfLines,
+                                                            titleColor: bucketItem.titleColor,
+                                                            domainModel: bucketItem.domainModel))
         case .TEAM_TOBEVISION_TRACKER_POLL?:
             if (bucketItem as? RateOpenModel) != nil {
                 let numberOfLines = 7
