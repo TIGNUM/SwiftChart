@@ -376,6 +376,7 @@ extension UIViewController {
         let widthConstraint = getLayoutConstraint(item: button, attribute: .width)
         button.addConstraints([heightConstraint, widthConstraint])
         button.setImage(R.image.ic_arrow_left(), for: .normal)
+        button.imageView?.tintColor = .white
         ThemeButton.backButton.apply(button)
         return UIBarButtonItem(customView: button)
     }
@@ -386,6 +387,7 @@ extension UIViewController {
          let widthConstraint = getLayoutConstraint(item: button, attribute: .width)
          button.addConstraints([heightConstraint, widthConstraint])
          button.setImage(R.image.arrowBack(), for: .normal)
+         button.imageView?.tintColor = .actionBlue
          ThemeButton.backButtonLight.apply(button)
          return UIBarButtonItem(customView: button)
      }
@@ -441,7 +443,7 @@ extension UIViewController {
                                          image: UIImage? = nil,
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
-                                         textColor: UIColor = .accent,
+                                         textColor: UIColor = .white,
                                          backgroundColor: UIColor = .black,
                                          borderColor: UIColor = .clear) -> UIBarButtonItem {
         let button = UIButton(type: .custom)

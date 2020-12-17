@@ -208,6 +208,10 @@ extension DailyBriefViewController {
                                                                       titleColor: bucketItem.titleColor,
                                                                       domainModel: item.domainModel))
                 }
+                cell.configure(with: cellModels, selectedIndex: bucket.domainModel?.sprint?.currentDay ?? 0)
+                cell.delegate = self
+
+                return cell
             }
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
             let numberOfLines = 6
@@ -256,7 +260,7 @@ extension DailyBriefViewController {
             cellModels.append(NewDailyBriefStandardModel.init(caption: weatherModel.title,
                                                                 title: weatherModel.accessLocationPermissionTitle,
                                                                 body: accessBody,
-                                                                image: bucketItem.image,
+                                                                image: weatherModel.weatherImage,
                                                                 titleColor: bucketItem.titleColor,
                                                                 domainModel: bucketItem.domainModel))
             cell.configure(with: cellModels)

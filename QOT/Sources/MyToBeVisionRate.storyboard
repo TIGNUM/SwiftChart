@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
         <array key="SF-Pro-Text-Regular.otf">
             <string>SFProText-Regular</string>
         </array>
@@ -22,39 +25,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CnS-Zk-4Pd">
-                                <rect key="frame" x="0.0" y="94" width="375" height="684"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="669"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvS-bY-OaM">
-                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lu5-m4-CaO">
-                                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="10" y="0.0" width="50" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="cJk-dE-hSV"/>
-                                            <constraint firstAttribute="height" constant="40" id="nCE-db-4sO"/>
+                                            <constraint firstAttribute="width" constant="50" id="cJk-dE-hSV"/>
+                                            <constraint firstAttribute="height" constant="50" id="nCE-db-4sO"/>
                                         </constraints>
                                         <state key="normal" image="arrowBack"/>
                                         <connections>
                                             <action selector="backAction" destination="6pX-a7-Wiu" eventType="touchUpInside" id="5Rq-Bz-fhN"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hA3-AW-qga">
-                                        <rect key="frame" x="296" y="29" width="0.0" height="2"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="4hc-WT-8C5"/>
-                                            <constraint firstAttribute="height" constant="2" id="cwM-Mq-fUh"/>
-                                        </constraints>
-                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8x-JE-IyN">
+                                        <rect key="frame" x="24" y="50" width="37" height="17"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="hA3-AW-qga" secondAttribute="trailing" constant="24" id="0f5-bU-IrE"/>
-                                    <constraint firstAttribute="bottom" secondItem="Lu5-m4-CaO" secondAttribute="bottom" id="8AU-AG-phN"/>
                                     <constraint firstItem="Lu5-m4-CaO" firstAttribute="leading" secondItem="gvS-bY-OaM" secondAttribute="leading" constant="10" id="CuL-ct-gzF"/>
-                                    <constraint firstItem="hA3-AW-qga" firstAttribute="centerY" secondItem="Lu5-m4-CaO" secondAttribute="centerY" id="HXc-Dw-ob0"/>
-                                    <constraint firstAttribute="height" constant="50" id="qNX-Bj-O29"/>
+                                    <constraint firstItem="Y8x-JE-IyN" firstAttribute="top" secondItem="Lu5-m4-CaO" secondAttribute="bottom" id="cPZ-lI-PiM"/>
+                                    <constraint firstItem="Y8x-JE-IyN" firstAttribute="leading" secondItem="gvS-bY-OaM" secondAttribute="leading" constant="24" id="f9v-CS-sGl"/>
+                                    <constraint firstItem="Lu5-m4-CaO" firstAttribute="top" secondItem="gvS-bY-OaM" secondAttribute="top" id="icR-Xg-VjH"/>
+                                    <constraint firstAttribute="height" constant="65" id="qNX-Bj-O29"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Mh-1H-M6T">
@@ -90,7 +91,8 @@
                         <outlet property="backButton" destination="Lu5-m4-CaO" id="A0n-30-wAc"/>
                         <outlet property="loaderView" destination="7Mh-1H-M6T" id="UiS-vi-jPA"/>
                         <outlet property="pageContainerView" destination="CnS-Zk-4Pd" id="ROc-1M-Qv7"/>
-                        <outlet property="pageIndicatorView" destination="hA3-AW-qga" id="HEI-bg-yYi"/>
+                        <outlet property="pageIndicatorLabel" destination="Y8x-JE-IyN" id="cRN-Lr-b6U"/>
+                        <outlet property="pageIndicatorView" destination="gvS-bY-OaM" id="T5t-rW-laB"/>
                         <outlet property="timerView" destination="vMf-sO-yh3" id="37a-eh-Uhg"/>
                     </connections>
                 </viewController>

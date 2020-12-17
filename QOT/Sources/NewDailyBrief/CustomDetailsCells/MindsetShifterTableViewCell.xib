@@ -24,28 +24,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="707"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DgF-K5-GFv">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgF-K5-GFv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="High Impact" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZY2-qe-v9Q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Impact" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZY2-qe-v9Q">
                                 <rect key="frame" x="24" y="32" width="366" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" red="0.60392156862745094" green="0.85098039215686272" blue="0.51764705882352935" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I can’t control others, but I can control myself." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qlj-8n-bAi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High label 1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qlj-8n-bAi">
                                 <rect key="frame" x="24" y="101.5" width="366" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" red="0.60392156860000001" green="0.85098039219999999" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I can move somewhere else that is quiter" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJn-Ma-UVt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High label 2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJn-Ma-UVt">
                                 <rect key="frame" x="24" y="159" width="366" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" red="0.60392156860000001" green="0.85098039219999999" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Breath and stay focused" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uf4-Uw-6ei">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High label 3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uf4-Uw-6ei">
                                 <rect key="frame" x="24" y="216.5" width="366" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" red="0.60392156860000001" green="0.85098039219999999" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,33 +69,29 @@
                             <constraint firstItem="Uf4-Uw-6ei" firstAttribute="leading" secondItem="hJn-Ma-UVt" secondAttribute="leading" id="wyk-lR-rKh"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hHs-5b-rUv">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHs-5b-rUv">
                         <rect key="frame" x="0.0" y="318" width="414" height="270"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Low Impact" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUE-I8-GDc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low Impact" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUE-I8-GDc">
                                 <rect key="frame" x="24" y="32" width="366" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" red="0.81960784313725488" green="0.40784313725490196" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wx-gZ-h5a">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low label 1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wx-gZ-h5a">
                                 <rect key="frame" x="24" y="101.5" width="366" height="21.5"/>
-                                <string key="text">Why should I try when 
-no one else is?</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" red="0.81960784313725488" green="0.40784313725490196" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I can’t start a project in these conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jl-w0-XTf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low label 2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jl-w0-XTf">
                                 <rect key="frame" x="24" y="159" width="366" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" red="0.81960784313725488" green="0.40784313725490196" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1R-f0-4mm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low label 3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1R-f0-4mm">
                                 <rect key="frame" x="24" y="216.5" width="366" height="21.5"/>
-                                <string key="text">Am I the only person who 
-can get things done here?</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                 <color key="textColor" red="0.81960784313725488" green="0.40784313725490196" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -118,9 +114,11 @@ can get things done here?</string>
                             <constraint firstItem="2Jl-w0-XTf" firstAttribute="top" secondItem="2wx-gZ-h5a" secondAttribute="bottom" constant="36" id="vZt-uw-tdA"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ui-Zc-Nkf" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
-                        <rect key="frame" x="272" y="632" width="84" height="30"/>
-                        <state key="normal" title="See my plan"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ui-Zc-Nkf" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                        <rect key="frame" x="306" y="632" width="84" height="30"/>
+                        <state key="normal" title="See my plan">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
                         <connections>
                             <action selector="mindsetButtonTapped:" destination="Zzg-wh-1JB" eventType="touchUpInside" id="J3Q-RU-IfY"/>
                         </connections>
@@ -131,7 +129,7 @@ can get things done here?</string>
                     <constraint firstItem="6ui-Zc-Nkf" firstAttribute="top" secondItem="hHs-5b-rUv" secondAttribute="bottom" constant="44" id="5AP-bZ-D16"/>
                     <constraint firstItem="DgF-K5-GFv" firstAttribute="leading" secondItem="bxm-nV-shH" secondAttribute="leading" id="Ad3-GM-mUl"/>
                     <constraint firstItem="DgF-K5-GFv" firstAttribute="top" secondItem="bxm-nV-shH" secondAttribute="top" id="J4U-ga-2IN"/>
-                    <constraint firstAttribute="trailing" secondItem="6ui-Zc-Nkf" secondAttribute="trailing" constant="58" id="KYk-8H-dgG"/>
+                    <constraint firstAttribute="trailing" secondItem="6ui-Zc-Nkf" secondAttribute="trailing" constant="24" id="KYk-8H-dgG"/>
                     <constraint firstAttribute="trailing" secondItem="DgF-K5-GFv" secondAttribute="trailing" id="MOI-xe-GxP"/>
                     <constraint firstAttribute="bottom" secondItem="6ui-Zc-Nkf" secondAttribute="bottom" constant="45" id="Wat-zP-oaj"/>
                     <constraint firstAttribute="trailing" secondItem="hHs-5b-rUv" secondAttribute="trailing" id="j2T-7v-vZt"/>
