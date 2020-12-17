@@ -389,11 +389,6 @@ extension UIColor {
         return UIColor(white: 1, alpha: 0.36)
     }
 
-    /// UIColor(white: 255/255, alpha: 0.4)
-    public class var white40: UIColor {
-        return UIColor(white: 1, alpha: 0.4)
-    }
-
     /// UIColor(white: 179/255, alpha: 0.2)
     public class var greyish20: UIColor {
         return UIColor(white: 179/255, alpha: 0.2)
