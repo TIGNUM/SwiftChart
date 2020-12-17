@@ -63,21 +63,24 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
 
     func setupButtons() {
         styleVelocityButton()
+        downloadButton.setImage(R.image.ic_save(), for: .normal)
+        downloadButton.setImage(R.image.ic_download(), for: .disabled)
+        bookmarkButton.setImage( R.image.ic_bookmark_white(), for: .normal)
+        bookmarkButton.setImage(R.image.ic_bookmark_fill(), for: .selected)
+
         switch colorMode {
         case .dark:
-            closeButton.setImage(R.image.ic_arrowDown_white(), for: .normal)
-            downloadButton.setImage(R.image.ic_downloaded_black(), for: .disabled)
-            downloadButton.setImage(R.image.ic_download_white(), for: .normal)
-            bookmarkButton.setImage( R.image.ic_bookmark_white(), for: .normal)
-            bookmarkButton.setImage(R.image.ic_bookmark_black_fill(), for: .selected)
+            closeButton.setImage(R.image.arrowDown(), for: .normal)
+            closeButton.imageView?.tintColor = .white
+            downloadButton.imageView?.tintColor = .white
+            bookmarkButton.imageView?.tintColor = .white
             ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: nil)
         case .darkNot:
-            downloadButton.setImage( R.image.ic_download_black(), for: .normal)
-            downloadButton.setImage(R.image.ic_downloaded_white(), for: .disabled)
-            closeButton.setImage(R.image.ic_arrowDown_black(), for: .normal)
-            bookmarkButton.setImage(R.image.ic_bookmark_black(), for: .normal)
-            bookmarkButton.setImage(R.image.ic_bookmark_white_fill(), for: .selected)
+            closeButton.setImage(R.image.arrowDown(), for: .normal)
+            closeButton.imageView?.tintColor = .black
+            downloadButton.imageView?.tintColor = .black
+            bookmarkButton.imageView?.tintColor = .black
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(downloadButton, title: nil)
         }
@@ -150,6 +153,12 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
             title = AppTextService.get(.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
             downloadButton.layer.borderWidth = 0
+            switch colorMode {
+            case .dark:
+                downloadButton.imageView?.tintColor = .black
+            case .darkNot:
+                downloadButton.imageView?.tintColor = .white
+            }
         }
 
         switch colorMode {
@@ -261,6 +270,14 @@ extension AudioFullScreenViewController {
                 storage.userStorageType == .BOOKMARK
             })
             self?.bookmarkButton.isSelected = self?.bookmarks?.first != nil
+            if self?.bookmarkButton.isSelected == true {
+                switch self?.colorMode {
+                case .dark:
+                    self?.bookmarkButton.imageView?.tintColor = .black
+                default:
+                    self?.bookmarkButton.imageView?.tintColor = .white
+                }
+            }
             if self?.bookmarkButton.isSelected == true, self?.wasBookmarked == false {
                 self?.wasBookmarked = true
                 self?.showDestinationAlert()
