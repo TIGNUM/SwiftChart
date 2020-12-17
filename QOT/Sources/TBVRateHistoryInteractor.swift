@@ -29,11 +29,12 @@ final class TBVRateHistoryInteractor {
     }
 
     func viewDidLoad() {
-        worker.getData { [weak self] (report) in
+        presenter.setupView()
+        presenter.showSkeleton()
+        worker.getReport { [weak self] (report) in
             if let report = report {
-                self?.presenter.setupView(with: report)
-            } else {
-                self?.presenter.showErrorNoReportAvailable()
+                self?.presenter.hideSkeleton()
+                self?.presenter.showReport(report)
             }
         }
     }
@@ -99,23 +100,23 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
     }
 
     @objc func didUpdateTrackers(_ notification: Notification) {
-        guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent else { return }
-        switch result.dataType {
-        case .TEAM_TO_BE_VISION_TRACKER_POLL:
-            worker.getData { [weak self] (report) in
+        if let result = notification.object as? SyncResultContext,
+           result.dataType == .TEAM_TO_BE_VISION_TRACKER_POLL {
+            worker.getReport { [weak self] (report) in
+                self?.presenter.hideSkeleton()
                 if let report = report {
-                    self?.presenter.setupView(with: report)
+                    self?.presenter.showReport(report)
                 } else {
                     self?.presenter.showErrorNoReportAvailable()
                 }
             }
-        default: break
         }
     }
 
     func removeObserver() {
         if let synchronizationObserver = synchronizationObserver {
             NotificationCenter.default.removeObserver(synchronizationObserver)
+            self.synchronizationObserver = nil
         }
     }
 }
