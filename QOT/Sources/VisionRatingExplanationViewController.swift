@@ -65,7 +65,7 @@ final class VisionRatingExplanationViewController: BaseViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
-        if interactor.team?.thisUserIsOwner == true {
+        if interactor.team?.thisUserIsOwner == true || interactor.type == .createTeam {
             return getRightBarButtonItems()
         }
         fetchMemberPoll()

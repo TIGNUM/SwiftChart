@@ -31,7 +31,7 @@ final class RatingFeedbackModel: BaseDailyBriefViewModel {
     }
 
     static func createAttributedBody(for average: String?, feedback: String?) -> NSAttributedString {
-        let firstAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.grey]
+        let firstAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.lightGrey]
         let secondAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         let bodyText = NSMutableAttributedString(string: AppTextService.get(.daily_brief_rating_feedback_body) + " ", attributes: firstAttributes)
         let averageValue = NSAttributedString(string: (average ?? "") + "\n", attributes: secondAttributes)

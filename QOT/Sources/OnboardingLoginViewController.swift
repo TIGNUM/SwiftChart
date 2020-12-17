@@ -122,7 +122,7 @@ private extension OnboardingLoginViewController {
         digitTextFields.forEach {
             $0.text = ""
             $0.textColor = .white
-            $0.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
+            $0.layer.borderColor = UIColor.white20.cgColor
         }
         ThemeText.loginEmailCodeMessage.apply(interactor.digitDescription, to: digitDescriptionLabel)
     }

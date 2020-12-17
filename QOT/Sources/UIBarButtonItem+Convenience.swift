@@ -21,13 +21,13 @@ extension UIBarButtonItem {
 
     static var info: UIBarButtonItem {
         let button = UIBarButtonItem(withImage: R.image.explainer_ico()?.withRenderingMode(.alwaysTemplate))
-        button.tintColor = .white60
+        button.tintColor = UIColor.white60
         return button
     }
 
     static var close: UIBarButtonItem {
         let button = UIBarButtonItem(withImage: R.image.ic_close()?.withRenderingMode(.alwaysTemplate))
-        button.tintColor = .white60
+        button.tintColor = UIColor.white60
         return button
     }
 }
