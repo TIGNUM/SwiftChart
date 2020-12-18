@@ -18,13 +18,13 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        ThemeBorder.accentBackground.apply(markAsReadButton)
     }
 
     func configure(selected: Bool) {
         isRead = selected
         let text = isRead ? AppTextService.get(.know_strategy_list_strategy_section_body_button_mark_as_unread) : AppTextService.get(.know_strategy_list_strategy_section_body_button_mark_as_read)
-        ThemableButton.articleMarkAsRead(selected: !isRead).apply(markAsReadButton, title: text)
+        let mode: ThemeColorMode = colorMode == .dark ? .dark : .light
+        ThemableButton.articleMarkAsRead(selected: !isRead, colorMode: mode).apply(markAsReadButton, title: text)
     }
 }
 

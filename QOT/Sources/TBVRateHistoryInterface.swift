@@ -10,12 +10,18 @@ import Foundation
 import qot_dal
 
 protocol TBVRateHistoryViewControllerInterface: class {
-    func setupView(with data: ToBeVisionReport)
+    func setupView()
+    func showSkeleton()
+    func hideSkeleton()
+    func showReport(_ report: ToBeVisionReport)
     func showErrorNoReportAvailable(title: String, message: String)
 }
 
 protocol TBVRateHistoryPresenterInterface {
-    func setupView(with data: ToBeVisionReport)
+    func setupView()
+    func showSkeleton()
+    func hideSkeleton()
+    func showReport(_ report: ToBeVisionReport)
     func showErrorNoReportAvailable()
 }
 

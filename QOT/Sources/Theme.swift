@@ -45,7 +45,6 @@ enum ThemeView {
     case audioBar
     case fade
     case separator
-    case accentBackground
     case headerLine
     case prepsSegmentSelected
     case qotAlert
@@ -96,7 +95,7 @@ enum ThemeView {
         case .baseHeaderLineView(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
         case .audioPlaying, .selectedButton, .exploreButton:
-            return Palette.accent40
+            return Palette.lightGrey
         case .onboarding, .sprintsActive:
             return Palette.carbon
         case .toolSeparator:
@@ -104,11 +103,11 @@ enum ThemeView {
         case .article:
             return Palette.light(Palette.sand, or: Palette.carbon)
         case .articleBackground(let mode):
-            return Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
+            return Palette.light(.white, or: .black, forcedColorMode: mode)
         case .articleSeparator(let mode):
-            return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
+            return Palette.light(.black10, or: .white10, forcedColorMode: mode)
         case .articleAudioBar:
-            return Palette.light(Palette.carbon, or: Palette.sand)
+            return Palette.light(.black, or: .white)
         case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools, .paymentReminder, .peakPerformanceCell, .coachMarkPageIndicator:
             return Palette.sand
         case .chatbotDark:
@@ -125,7 +124,7 @@ enum ThemeView {
             return .white
         case .separator:
             return Palette.light(Palette.carbon10, or: Palette.sand10)
-        case .accentBackground, .prepsSegmentSelected:
+        case .prepsSegmentSelected:
             return Palette.accent30
         case .qotAlert, .sprints:
             return Palette.carbonDark80
@@ -165,8 +164,6 @@ enum ThemeView {
         switch self {
         case .audioBar:
             radius = .round20
-        case .accentBackground:
-            radius = .circle
         default:
             break
         }
@@ -226,21 +223,21 @@ enum ThemeView {
 
 enum ThemeBorder {
     case accent
-    case accentBackground
     case accent40
     case sand60
+    case white
 
     func apply(_ view: UIView) {
         var color: UIColor?
         switch self {
         case .accent:
             color = Palette.accent
-        case .accentBackground:
-            color = Palette.accent30
         case .accent40:
             color = Palette.accent40
         case .sand60:
             color = Palette.sand60
+        case .white:
+            color = .white
         }
 
         if let color = color {
@@ -323,16 +320,17 @@ enum ThemeButton {
             colorUnselected = colorSelected
             colorBorder = .accent30
         case .audioButtonGrey, .backButtonLight:
-            colorSelected = .accent40
+            colorSelected = .lightGrey
             colorUnselected = .clear
             colorBorder = .sand30
         case .closeButton(let mode):
-            colorSelected = Palette.light(Palette.accent, or: Palette.carbon, forcedColorMode: mode)
-            colorUnselected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
+            colorSelected = Palette.light(.white30, or: .black30, forcedColorMode: mode)
+            colorUnselected = Palette.light(.white, or: .black, forcedColorMode: mode)
+            colorBorder = Palette.light(.black, or: .white, forcedColorMode: mode)
         case .dailyBriefButtons, .audioButtonStrategy:
-            colorSelected = .accent40
+            colorSelected = .lightGrey
             colorUnselected = .clear
-            colorBorder = .accent30
+            colorBorder = .white
         case .dailyBriefWithoutBorder:
             colorSelected = .accent40
             colorUnselected = .clear
@@ -417,7 +415,7 @@ enum ThemableButton {
     case createAccountInfo
     case trackSelection
     case paymentReminder
-    case articleMarkAsRead(selected: Bool)
+    case articleMarkAsRead(selected: Bool, colorMode: ThemeColorMode)
     case level5
     case continueButton
     case tbvOption(disabled: Bool)
@@ -453,10 +451,10 @@ enum ThemableButton {
             return ButtonTheme(foreground: .white, background: .black, border: .white)
         case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .black, background: .white, border: .black)
-        case .articleMarkAsRead(let selected):
-            return ButtonTheme(foreground: .accent,
-                               background: (selected ? .accent40 : nil),
-                               border: (selected ? .clear : .accent30))
+        case .articleMarkAsRead(let selected, let colorMode):
+            return ButtonTheme(foreground: selected ? (colorMode == .dark ? .white : .black) : (colorMode == .dark ? .black : .white),
+                               background: selected ? .clear : (colorMode == .dark ? .white : .black),
+                               border: colorMode == .dark ? .white : .black)
         case .tbvOption(let disabled):
             return ButtonTheme(foreground: disabled ? .lightGrey : .white,
                                background: disabled ? .clear : .black,
@@ -490,10 +488,10 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .white, background: .black, border: nil)
-        case .articleMarkAsRead(let selected):
-            return ButtonTheme(foreground: .accent70,
-                               background: (selected ? .accent40 : nil),
-                               border: (selected ? .clear : .accent10))
+        case .articleMarkAsRead(let selected, let colorMode):
+            return ButtonTheme(foreground: selected ? (colorMode == .dark ? .white : .black) : (colorMode == .dark ? .black : .white),
+                               background: selected ? .clear : (colorMode == .dark ? .white : .black),
+                               border: colorMode == .dark ? .white : .black)
         case .level5,
              .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
@@ -1022,13 +1020,13 @@ enum ThemeText {
             return Fonts.fontRegular16
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder, .trends, .tbvQuestionLow:
             return Fonts.fontRegular18
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader,
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader,
              .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .registerIntroNoteTitle, .optionPage, .optionPageDisabled, .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
-        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader:
+        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .baseHeaderTitle:
             return Fonts.fontDisplayRegular20
         case .teamVisionSentence:
             return Fonts.fontRegular24
@@ -1079,7 +1077,7 @@ enum ThemeText {
             return Fonts.fontLight24
         case .articleSecondaryTitle:
             return Fonts.fontLight32
-        case .articleTitleNotScaled, .tbvHeader, .tbvVisionHeader, .audioFullScreenTitle, .audioFullScreenTitleDark:
+        case .tbvHeader, .tbvVisionHeader, .audioFullScreenTitle, .audioFullScreenTitleDark:
             return Fonts.fontLight34
         case .articlePostTitle:
             return Fonts.fontLight36
@@ -1090,10 +1088,12 @@ enum ThemeText {
             case .scale: return Fonts.fontLight20
             case .scaleNot: return Fonts.fontLight16
             }
+        case .articleTitleNotScaled:
+            return Fonts.fontDisplayLight34
         case .articleTitle:
             switch textScale {
-            case .scale: return Fonts.fontLight40
-            case .scaleNot: return Fonts.fontLight34
+            case .scale: return Fonts.fontDisplayLight40
+            case .scaleNot: return Fonts.fontDisplayLight34
             }
         case .articleBullet:
             switch textScale {
@@ -1234,8 +1234,8 @@ enum ThemeText {
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .articleContactSupportLink,
              .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
-             .mySprintDetailsCta, .Text02Light, .customAlertAction:
-            return Palette.accent
+             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage, .tbvTrackerAnswerTeam:
+            return Palette.light(.black, or: .white)
 
         // MARK: - .mindsetShifter Green
         case .tbvQuestionHigh:
@@ -1255,11 +1255,11 @@ enum ThemeText {
         case .questionHintLabelRed:
             return .red
         case .articleCategory, .articleCategoryNotScaled, .articleDatestamp:
-             return Palette.light(Palette.carbon30, or: Palette.sand30)
+             return Palette.light(.black30, or: .white30)
         case .articleNextTitle, .articleQuote, .articleMediaDescription, .articleBullet:
             return Palette.light(Palette.darkGrey, or: Palette.lightGrey)
         case .articleRelatedDetail(let mode):
-            return Palette.light(Palette.carbon30, or: Palette.sand30, forcedColorMode: mode)
+            return Palette.light(Palette.darkGrey, or: Palette.lightGrey, forcedColorMode: mode)
         case .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline, .articleHeadlineSmall,
              .articleNavigationTitle, .articleTagTitle, .articleParagraph, .article,
              .articleQuestion, .articleSub, .articleNum, .articleSector, .articleTitle, .articleTitleNotScaled, .articleBody:
@@ -1686,6 +1686,8 @@ private struct Fonts {
     static let fontSemiBold16 = UIFont.sfProtextSemibold(ofSize: 16.0)
 
     static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
+    static let fontDisplayLight34 = UIFont.sfProDisplayLight(ofSize: 34.0)
+    static let fontDisplayLight40 = UIFont.sfProDisplayLight(ofSize: 40.0)
     static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
     static let fontDisplayRegular23 = UIFont.sfProDisplayRegular(ofSize: 23.0)
     static let fontDisplayRegular34 = UIFont.sfProDisplayRegular(ofSize: 34.0)

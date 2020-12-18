@@ -15,6 +15,8 @@ final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var loaderView: UIView!
     private var report: ToBeVisionReport?
+    private var skeletonManager = SkeletonManager()
+    private var skeletonIsVisible = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +40,7 @@ private extension MyToBeVisionTrackerViewController {
 
 // MARK: - TBVRateHistoryViewControllerInterface
 extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterface {
-    func setupView(with data: ToBeVisionReport) {
-        self.report = data
+    func setupView() {
         ThemeView.level3.apply(view)
         tableView.registerDequeueable(TBVDataGraphTableViewCell.self)
         tableView.registerDequeueable(TBVDataGraphSubHeadingTableViewCell.self)
@@ -48,7 +49,6 @@ extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterfa
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.reloadData()
     }
 
     func showErrorNoReportAvailable(title: String, message: String) {
@@ -58,6 +58,22 @@ extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterfa
 
     @objc func dismissAlert() {
         QOTAlert.dismiss()
+    }
+
+    func showReport(_ report: ToBeVisionReport) {
+        self.report = report
+        tableView.reloadData()
+    }
+
+    func showSkeleton() {
+        skeletonIsVisible = true
+        tableView.reloadData()
+    }
+
+    func hideSkeleton() {
+        skeletonIsVisible = false
+        skeletonManager.hide()
+        tableView.reloadData()
     }
 }
 
@@ -79,19 +95,23 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         switch TBVGraph.Section.allCases[indexPath.section] {
         case .header:
             let cell: TBVDataGraphSubHeadingTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(subHeading: interactor.subtitle)
+            cell.configure(subHeading: interactor.subtitle, showSkeleton: skeletonIsVisible)
             return cell
         case .graph:
             let cell: TBVDataGraphTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.delegate = self
             cell.setup(report: interactor.getDataModel,
                        config: interactor.getDisplayType.config,
-                       range: .defaultRange())
+                       range: .defaultRange(),
+                       showSkeleton: skeletonIsVisible)
             return cell
         case .sentence:
             let cell: TBVDataGraphAnswersTableViewCell = tableView.dequeueCell(for: indexPath)
             if let sentence = interactor.sentence(in: indexPath.row) {
-                cell.configure(sentence, selectedDate: interactor.selectedDate, isTeam: interactor.isUserInteractionEnabled)
+                cell.configure(sentence,
+                               selectedDate: interactor.selectedDate,
+                               isTeam: interactor.isUserInteractionEnabled,
+                               showSkeleton: skeletonIsVisible)
                 let backgroundView = UIView()
                 backgroundView.backgroundColor = UIColor.lightGrey.withAlphaComponent(0.1)
                 cell.selectedBackgroundView = backgroundView
@@ -135,10 +155,16 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
             let title = interactor.title
             headerView?.configure(title: title, subtitle: nil)
             ThemeText.tbvTrackerHeader.apply(title.uppercased(), to: headerView?.titleLabel)
+            if let headerView = headerView,
+               skeletonIsVisible {
+                skeletonManager.addOtherView(headerView)
+            }
             return headerView
         case .sentence:
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
-            headerView.configure(title: interactor.graphTitle, theme: .level3)
+            headerView.configure(title: interactor.graphTitle,
+                                 theme: .level3,
+                                 showSkeleton: skeletonIsVisible)
             return headerView
         default:
             return nil

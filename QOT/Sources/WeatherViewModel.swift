@@ -49,7 +49,16 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
         self.accessLocationPermissionTitle = accessLocationPermissionTitle
         self.locationName = locationName
         self.locationPermissionStatus = locationPermissionStatus
-        super.init(domain)
+        var accessBody = ""
+        switch self.locationPermissionStatus {
+        case .granted, .grantedWhileInForeground:
+            break
+        case .denied:
+            accessBody = deniedLocationPermissionDescription ?? ""
+        default:
+            accessBody = requestLocationPermissionDescription ?? ""
+        }
+        super.init(domain, caption: bucketTitle, title: accessLocationPermissionTitle, body: accessBody)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

@@ -17,12 +17,32 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var secondDot: UILabel!
     @IBOutlet private var ratingLabels: [UILabel]!
     @IBOutlet private var ratingContainerViews: [UIView]!
+    private var skeletonManager = SkeletonManager()
 
-    func configure(_ sentence: QDMToBeVisionSentence, selectedDate: Date, isTeam: Bool) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addOtherView(answerLabel)
+        skeletonManager.addOtherView(lastRatingLabel)
+        skeletonManager.addOtherView(firstDot)
+        ratingLabels.forEach { label in
+            skeletonManager.addOtherView(label)
+        }
+        ratingContainerViews.forEach { container in
+            skeletonManager.addOtherView(container)
+        }
+    }
+
+    func configure(_ sentence: QDMToBeVisionSentence,
+                   selectedDate: Date,
+                   isTeam: Bool,
+                   showSkeleton: Bool) {
         removeAllLayers()
         setupTheme(sentence, isTeam: isTeam)
         setupView(sentence)
         setupRatingLabels(sentence, selectedDate: selectedDate)
+        if !showSkeleton {
+            skeletonManager.hide()
+        }
     }
 }
 

@@ -22,12 +22,24 @@ final class TBVRateHistoryPresenter {
 
 // MARK: - MyToBeVisionTrackerInterface
 extension TBVRateHistoryPresenter: TBVRateHistoryPresenterInterface {
-    func setupView(with data: ToBeVisionReport) {
-        viewController?.setupView(with: data)
+    func setupView() {
+        viewController?.setupView()
     }
 
     func showErrorNoReportAvailable() {
         viewController?.showErrorNoReportAvailable(title: AppTextService.get(.my_x_tbv_rate_history_title),
                                                    message: AppTextService.get(.my_x_tbv_rate_history_message))
+    }
+
+    func showReport(_ report: ToBeVisionReport) {
+        viewController?.showReport(report)
+    }
+
+    func showSkeleton() {
+        viewController?.showSkeleton()
+    }
+
+    func hideSkeleton() {
+        viewController?.hideSkeleton()
     }
 }

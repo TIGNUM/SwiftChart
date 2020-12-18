@@ -28,21 +28,22 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var warningImageView: UIImageView!
-    @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var cameraButton: UIButton!
     @IBOutlet private weak var singleMessageRatingView: UIView!
     @IBOutlet private weak var doubleMessageRatingView: UIView!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
-    @IBOutlet private weak var rateButton: UIButton!
-    @IBOutlet private weak var singleMessageRateButton: UIButton!
-    @IBOutlet private weak var updateButton: UIButton!
     @IBOutlet private weak var lastUpdatedLabel: UILabel!
     @IBOutlet private weak var lastUpdatedComment: UILabel!
     @IBOutlet private weak var lastRatedLabel: UILabel!
     @IBOutlet private weak var lastRatedComment: UILabel!
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
+    @IBOutlet private weak var rateButton: UIButton!
+    @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var singleMessageRateButton: UIButton!
+    @IBOutlet private weak var updateButton: UIButton!
+
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet weak var nullStateImageView: UIImageView!
     var didShowNullStateView = false
@@ -92,8 +93,8 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
         return [roundedBarButtonItem(title: title,
                                      buttonWidth: 160,
                                      action: #selector(myTBVData),
-                                     backgroundColor: .carbon,
-                                     borderColor: .accent40)]
+                                     backgroundColor: .black,
+                                     borderColor: .white)]
     }
 
     @objc func myTBVData() {
@@ -212,11 +213,13 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
                                          to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
-        ThemeBorder.accent40.apply(cameraButton)
-        ThemeBorder.accent40.apply(shareButton)
-        ThemeBorder.accent40.apply(rateButton)
-        ThemeBorder.accent40.apply(singleMessageRateButton)
-        ThemeBorder.accent40.apply(updateButton)
+        ThemeBorder.white.apply(cameraButton)
+        cameraButton.imageView?.tintColor = .white
+        ThemeBorder.white.apply(shareButton)
+        shareButton.imageView?.tintColor = .white
+        ThemeBorder.white.apply(rateButton)
+        ThemeBorder.white.apply(singleMessageRateButton)
+        ThemeBorder.white.apply(updateButton)
 
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,

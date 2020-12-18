@@ -45,7 +45,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         let body = feedback?.isEmpty ?? true ? readinessIntro : feedback
         super.init(domainModel, caption: title, title: title, body: body, image: image)
         self.attributedTitle = ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: self.readinessScore,
-                                                                                       impactReadinessNoDataTitle: title)
+                                                                                                 impactReadinessNoDataTitle: title)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

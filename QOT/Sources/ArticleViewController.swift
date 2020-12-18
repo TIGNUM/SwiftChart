@@ -56,8 +56,8 @@ enum ColorMode {
 
     var cellHighlight: UIColor {
         switch self {
-        case .dark: return .accent10
-        case .darkNot: return .accent10
+        case .dark: return .black10
+        case .darkNot: return .white10
         }
     }
 }
@@ -386,7 +386,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .audio( _, let title, let description, placeholderURL: _, _, duration: _, waveformData: _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title.uppercased(),
+            cell.configure(title: title,
                            durationString: description ?? "",
                            icon: R.image.ic_audio_grey_light())
             return cell

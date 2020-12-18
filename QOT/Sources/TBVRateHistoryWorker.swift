@@ -31,7 +31,7 @@ final class TBVRateHistoryWorker: WorkerTeam {
         self.team = team
     }
 
-    func getData(_ completion: @escaping (ToBeVisionReport?) -> Void) {
+    func getReport(_ completion: @escaping (ToBeVisionReport?) -> Void) {
         if let team = team {
             getTeamReport(team, completion)
         } else {
@@ -67,7 +67,8 @@ final class TBVRateHistoryWorker: WorkerTeam {
 private extension TBVRateHistoryWorker {
     func getPersonalReport(_ completion: @escaping (ToBeVisionReport) -> Void) {
         UserService.main.getToBeVisionTrackingReport(last: 3) { [weak self] (report) in
-            guard let strongSelf = self, let date = report.dates.sorted(by: <).last else { return }
+            guard let strongSelf = self,
+                  let date = report.dates.sorted(by: <).last else { return }
             strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
                                                     subtitle: strongSelf.subtitle,
                                                     selectedDate: date,
