@@ -1017,7 +1017,7 @@ extension DailyBriefInteractor {
         var createThoughtsToPonderList: [BaseDailyBriefViewModel] = []
 
         guard let collection = thoughtsToPonder.contentCollections?.first else {
-            createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title).lowercased().capitalizingFirstLetter(),
+            createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title),
                                                                     thought: "",
                                                                     author: "",
                                                                     image: thoughtsToPonder.bucketImages?.first?.mediaUrl,
@@ -1025,7 +1025,7 @@ extension DailyBriefInteractor {
             return createThoughtsToPonderList
 
         }
-        createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title).lowercased().capitalizingFirstLetter(),
+        createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title),
                                                                 thought: collection.contentItems.first?.valueText ?? "",
                                                                 author: collection.author ?? "",
                                                                 image: thoughtsToPonder.bucketImages?.first?.mediaUrl,
