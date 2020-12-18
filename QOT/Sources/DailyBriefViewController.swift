@@ -623,6 +623,11 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 router.showTBVGenerator()
             }
         case .TEAM_TO_BE_VISION:
+            var bucketsToMarkasSeen = [QDMDailyBriefBucket]()
+            if let teamVisionBucket = bucketItem?.domainModel {
+                bucketsToMarkasSeen.append(teamVisionBucket)
+                DailyBriefService.main.markAsSeenBuckets(bucketsToMarkasSeen)
+            }
             guard let viewModel = bucketItem as? TeamToBeVisionCellViewModel else { break }
             guard let team = viewModel.team else { break }
             router.showTeamTBV(team)
