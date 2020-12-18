@@ -101,8 +101,7 @@ private extension ArticleTopNavBar {
         UIView.animate(withDuration: 0.25) {
             self.labelTitle.alpha = 1 - alpha
         }
-
-        buttonMore.backgroundColor = isShowingAll ? .accent40 : .clear
+        refreshButtonMore()
     }
 }
 
@@ -150,7 +149,6 @@ extension ArticleTopNavBar {
     func refreshColor() {
         backgroundColor = .clear
         let tint = colorMode.tint
-        buttonMore.tintColor = tint
         buttonBookmark.tintColor = tint
         buttonNightMode.tintColor = tint
         buttonTextScale.tintColor = tint
@@ -166,12 +164,18 @@ extension ArticleTopNavBar {
              UIColor.white.cgColor,
              UIColor.white.withAlphaComponent(0.8).cgColor]
         layer.insertSublayer(gradientShadow, at: 0)
+        refreshButtonMore()
     }
 
     func allOff() {
         isShowingAll = false
         refreshColor()
         refresh()
+    }
+
+    func refreshButtonMore() {
+        buttonMore.backgroundColor = isShowingAll ? (colorMode == .dark ? .white : .black) : .clear
+        buttonMore.tintColor = isShowingAll ? (colorMode == .dark ? .black : .white) : (colorMode == .dark ? .white : .black)
     }
 }
 

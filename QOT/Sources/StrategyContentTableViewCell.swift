@@ -139,7 +139,7 @@ private extension StrategyContentTableViewCell {
             audioButton.layer.borderWidth = 0
             audioIcon.image = R.image.ic_audio_grey_light()
             readCheckMark.image?.withRenderingMode(.alwaysOriginal)
-            readCheckMark.tintColor = .sand30
+            readCheckMark.tintColor = .lightGrey
             readCheckMark.alpha = 1
         } else {
             ThemeText.articleStrategyTitle.apply(title, to: titleLabel)

@@ -23,9 +23,9 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
         if delegate?.section() == .About {
             ThemeText.articleCategory.apply("", to: categoryTitleLabel)
         } else {
-            ThemeText.articleCategory.apply(articleHeader.categoryTitle, to: categoryTitleLabel)
+            ThemeText.articleCategory.apply(articleHeader.categoryTitle.lowercased().capitalizingFirstLetter(), to: categoryTitleLabel)
         }
-        ThemeText.articleTitle.apply(articleHeader.title.uppercased(), to: titleLabel)
+        ThemeText.articleTitle.apply(articleHeader.title.lowercased().capitalizingFirstLetter(), to: titleLabel)
         setAuthor(author: articleHeader.author)
         setDetails(publishDate: articleHeader.publishDate, timeToRead: articleHeader.timeToRead)
     }
