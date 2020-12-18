@@ -124,11 +124,13 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
     func setButtons(button: UIButton) {
         let buttons = [firstDateButton, secondDateButton, thirdDateButton]
         buttons.forEach { (button) in
-            button?.corner(radius: 20, borderColor: .accent40)
-            button?.backgroundColor = .carbon
+            button?.corner(radius: 20, borderColor: .white)
+            button?.backgroundColor = .black
+            button?.isSelected = false
         }
-        button.layer.borderWidth = 0
-        button.backgroundColor = .accent40
+        button.setTitleColor(.black, for: .selected)
+        button.backgroundColor = .white
+        button.isSelected = true
     }
 
     func calculateAverage(_ data: [BarEntry]) -> Float {

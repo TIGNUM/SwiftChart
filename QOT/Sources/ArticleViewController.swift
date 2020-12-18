@@ -49,8 +49,8 @@ enum ColorMode {
 
     var tint: UIColor {
         switch self {
-        case .dark: return .accent
-        case .darkNot: return .accent
+        case .dark: return .white
+        case .darkNot: return .black
         }
     }
 

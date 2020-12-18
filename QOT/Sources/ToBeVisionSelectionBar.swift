@@ -76,7 +76,7 @@ private extension ToBeVisionSelectionBar {
 
     func setupButton(_ item: AnimatedButton?, image: UIImage?) {
         item?.setImage(image, for: .normal)
-        item?.tintColor = colorMode.tint
+        item?.imageView?.tintColor = colorMode.tint
         item?.heightAnchor.constraint(equalToConstant: 44).isActive = true
         item?.widthAnchor.constraint(equalToConstant: 44).isActive = true
         item?.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +144,8 @@ extension ToBeVisionSelectionBar {
         UIView.animate(withDuration: 0.25) {
             self.labelTitle.alpha = 1 - alpha
         }
-        buttonMore.backgroundColor = isShowingAll ? .accent40 : .clear
+        buttonMore.backgroundColor = isShowingAll ? .white : .clear
+        buttonMore.imageView?.tintColor = isShowingAll ? .black : .white
     }
 }
 

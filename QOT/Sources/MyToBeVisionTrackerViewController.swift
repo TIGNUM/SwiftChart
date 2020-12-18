@@ -93,10 +93,11 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
             if let sentence = interactor.sentence(in: indexPath.row) {
                 cell.configure(sentence, selectedDate: interactor.selectedDate, isTeam: interactor.isUserInteractionEnabled)
                 let backgroundView = UIView()
-                backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
+                backgroundView.backgroundColor = UIColor.lightGrey.withAlphaComponent(0.1)
                 cell.selectedBackgroundView = backgroundView
             }
-            cell.accessoryView = interactor.isUserInteractionEnabled ? UIImageView(image: R.image.ic_disclosure_accent()) : nil
+            cell.accessoryView = interactor.isUserInteractionEnabled ? UIImageView(image: R.image.ic_disclosure()) : nil
+            cell.accessoryView?.tintColor = .white
             cell.isUserInteractionEnabled = interactor.isUserInteractionEnabled
             return cell
         }

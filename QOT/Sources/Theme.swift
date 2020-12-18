@@ -458,13 +458,13 @@ enum ThemableButton {
                                background: (selected ? .accent40 : nil),
                                border: (selected ? .clear : .accent30))
         case .tbvOption(let disabled):
-            return ButtonTheme(foreground: disabled ? .sand40 : .accent,
-                               background: disabled ? .sand10 : .clear,
-                               border: disabled ? .clear : .accent40)
+            return ButtonTheme(foreground: disabled ? .lightGrey : .white,
+                               background: disabled ? .clear : .black,
+                               border: disabled ? .clear : .white)
         case .dateButtonsSelected:
             return ButtonTheme(foreground: .accent, background: .accent40, border: .clear)
         case .poll:
-            return ButtonTheme(foreground: .accent, background: .carbon90, border: .accent40)
+            return ButtonTheme(foreground: .white, background: .black, border: .white)
         case .newBlueButton:
             return ButtonTheme(foreground: .white, background: .actionBlue, border: .clear)
         }
@@ -515,7 +515,7 @@ enum ThemableButton {
         case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .poll:
-            return ButtonTheme(foreground: .sand40, background: .sand10, border: .clear)
+            return ButtonTheme(foreground: .lightGrey, background: .black, border: .clear)
         case .newBlueButton:
             return ButtonTheme(foreground: .white, background: .actionBlue, border: .clear)
         default:
@@ -1174,9 +1174,9 @@ enum ThemeText {
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
-             .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
+             .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .optionPage,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
-             .dailyBriefLevelTitle, .searchSuggestion, .myRating,
+             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
@@ -1185,7 +1185,7 @@ enum ThemeText {
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence,
              .strategyTitle, .customizeQuestion, .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle,
              .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle,
-             .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence, .dailyQuestion, .questionairePageCurrent, .chatbotButtonSelected:
+             .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence, .dailyQuestion, .questionairePageCurrent, .chatbotButtonSelected, .tbvTrackerAnswerTeam:
             return UIColor.white
 
         // MARK: - .lightGrey
@@ -1234,7 +1234,7 @@ enum ThemeText {
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .articleContactSupportLink,
              .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
-             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage, .tbvTrackerAnswerTeam:
+             .mySprintDetailsCta, .Text02Light, .customAlertAction:
             return Palette.accent
 
         // MARK: - .mindsetShifter Green
