@@ -18,7 +18,6 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-//        ThemeBorder.accentBackground.apply(markAsReadButton)
     }
 
     func configure(selected: Bool) {

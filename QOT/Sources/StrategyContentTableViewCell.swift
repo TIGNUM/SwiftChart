@@ -144,7 +144,7 @@ private extension StrategyContentTableViewCell {
         } else {
             ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
             ThemeButton.audioButtonStrategy.apply(audioButton)
-            ThemeBorder.accentBackground.apply(audioButton)
+            ThemeBorder.white.apply(audioButton)
             audioIcon.image = R.image.ic_audio()
             readCheckMark.alpha = 0
         }
