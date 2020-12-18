@@ -31,6 +31,7 @@ final class AudioButton: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         corner(radius: 20)
+        self.layer.borderWidth = 1.0
     }
 
     func configure(categoryTitle: String,
@@ -47,7 +48,10 @@ final class AudioButton: UIView {
     }
 
     func setColorMode() {
-        ThemeView.articleAudioBar.apply(self)
+        let color = ThemeView.articleAudioBar.color
+        self.layer.borderColor = color.cgColor
+        audioIcon?.tintColor = color
+        self.backgroundColor = colorMode == .dark ? .black : .white
         showDuration(duration)
     }
 }

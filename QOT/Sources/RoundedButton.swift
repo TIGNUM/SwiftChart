@@ -13,9 +13,9 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
     // Default values are for backwards compatibility until all instances get "Themed"
     var titleAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
     var normal: ButtonTheme? = ButtonTheme(foreground: .white, background: nil, border: .white)
-    var highlight: ButtonTheme? = ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
+    var highlight: ButtonTheme? = ButtonTheme(foreground: .white40, background: nil, border: .white40)
     var select: ButtonTheme?
-    var disabled: ButtonTheme? = ButtonTheme(foreground: .sand08, background: nil, border: .sand08)
+    var disabled: ButtonTheme? = ButtonTheme(foreground: .white10, background: nil, border: .white10)
     var ctaState: ButtonTheme.State?
     var ctaAction: ButtonTheme.Action?
 

@@ -404,7 +404,10 @@ extension UIViewController {
         button.addConstraints([heightConstraint, widthConstraint])
         ThemeButton.backButton.apply(button)
         button.setImage(R.image.ic_close(), for: .normal)
+        button.imageView?.tintColor = isLight ? .black : .white
         ThemeButton.closeButton(isLight ? .light : .dark).apply(button)
+        button.normal = isLight ? ButtonTheme(foreground: .black, background: nil, border: .black) :
+                                  ButtonTheme(foreground: .white, background: nil, border: .white)
         return UIBarButtonItem(customView: button)
     }
 
