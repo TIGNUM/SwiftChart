@@ -256,25 +256,21 @@ extension DailyBriefViewController {
             guard let weatherModel = bucketItem as? WeatherViewModel else {
                 return UITableViewCell()
             }
-            var accessBody = ""
             switch weatherModel.locationPermissionStatus {
             case .granted, .grantedWhileInForeground:
                 return getWeatherCell(tableView, indexPath, bucketItem as? WeatherViewModel)
-            case .denied:
-                accessBody = weatherModel.deniedLocationPermissionDescription ?? ""
             default:
-                accessBody = weatherModel.requestLocationPermissionDescription ?? ""
-            }
-            cellModels.append(NewDailyBriefStandardModel.init(caption: weatherModel.title,
-                                                                title: weatherModel.accessLocationPermissionTitle,
-                                                                body: accessBody,
-                                                                image: weatherModel.weatherImage,
-                                                                titleColor: bucketItem.titleColor,
-                                                                domainModel: bucketItem.domainModel))
-            cell.configure(with: cellModels)
-            cell.delegate = self
+                cellModels.append(NewDailyBriefStandardModel.init(caption: weatherModel.caption,
+                                                                    title: weatherModel.title,
+                                                                    body: weatherModel.body,
+                                                                    image: weatherModel.weatherImage,
+                                                                    titleColor: weatherModel.titleColor,
+                                                                    domainModel: weatherModel.domainModel))
+                cell.configure(with: cellModels)
+                cell.delegate = self
 
-            return cell
+                return cell
+            }
         default:
             cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                 title: bucketItem.title,

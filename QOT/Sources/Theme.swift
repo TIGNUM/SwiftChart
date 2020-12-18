@@ -45,7 +45,6 @@ enum ThemeView {
     case audioBar
     case fade
     case separator
-    case accentBackground
     case headerLine
     case prepsSegmentSelected
     case qotAlert
@@ -125,7 +124,7 @@ enum ThemeView {
             return .white
         case .separator:
             return Palette.light(Palette.carbon10, or: Palette.sand10)
-        case .accentBackground, .prepsSegmentSelected:
+        case .prepsSegmentSelected:
             return Palette.accent30
         case .qotAlert, .sprints:
             return Palette.carbonDark80
@@ -165,8 +164,6 @@ enum ThemeView {
         switch self {
         case .audioBar:
             radius = .round20
-        case .accentBackground:
-            radius = .circle
         default:
             break
         }
@@ -226,21 +223,21 @@ enum ThemeView {
 
 enum ThemeBorder {
     case accent
-    case accentBackground
     case accent40
     case sand60
+    case white
 
     func apply(_ view: UIView) {
         var color: UIColor?
         switch self {
         case .accent:
             color = Palette.accent
-        case .accentBackground:
-            color = Palette.accent30
         case .accent40:
             color = Palette.accent40
         case .sand60:
             color = Palette.sand60
+        case .white:
+            color = .white
         }
 
         if let color = color {
@@ -333,7 +330,7 @@ enum ThemeButton {
         case .dailyBriefButtons, .audioButtonStrategy:
             colorSelected = .lightGrey
             colorUnselected = .clear
-            colorBorder = .accent30
+            colorBorder = .white
         case .dailyBriefWithoutBorder:
             colorSelected = .accent40
             colorUnselected = .clear
