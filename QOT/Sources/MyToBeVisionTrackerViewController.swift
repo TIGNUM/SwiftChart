@@ -61,6 +61,7 @@ extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterfa
     }
 
     func showReport(_ report: ToBeVisionReport) {
+        self.report = report
         tableView.reloadData()
     }
 
