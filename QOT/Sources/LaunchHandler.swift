@@ -263,6 +263,7 @@ extension LaunchHandler {
 
     func showTeamTBVTrends(_ teamId: Int) {
         requestSynchronization(.TEAM_TO_BE_VISION_TRACKER_POLL, .DOWN_SYNC)
+        guard !(AppDelegate.topViewController() is MyToBeVisionTrackerViewController) else { return }
         getTeam(teamId) { (team) in
             if let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() {
                 TBVRateHistoryConfigurator.configure(viewController: controller,
@@ -274,6 +275,8 @@ extension LaunchHandler {
     }
 
     func showTeamTBV(_ teamId: Int) {
+        requestSynchronization(.TEAM_TO_BE_VISION, .DOWN_SYNC)
+        guard !(AppDelegate.topViewController() is TeamToBeVisionViewController) else { return }
         getTeam(teamId) { (team) in
             if let team = team {
                 if let controller = R.storyboard.myToBeVision.teamToBeVisionViewController() {
@@ -286,6 +289,8 @@ extension LaunchHandler {
     }
 
     func showTBVRating(_ teamId: Int) {
+        requestSynchronization(.TEAM_TO_BE_VISION_TRACKER_POLL, .DOWN_SYNC)
+        guard !(AppDelegate.topViewController() is VisionRatingExplanationViewController) else { return }
         getTeam(teamId) { (team) in
             if let team = team {
                 if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
@@ -297,6 +302,8 @@ extension LaunchHandler {
     }
 
     func showTBVPoll(_ teamId: Int) {
+        requestSynchronization(.TEAM_TO_BE_VISION_GENERATOR_POLL, .DOWN_SYNC)
+        guard !(AppDelegate.topViewController() is VisionRatingExplanationViewController) else { return }
         getTeam(teamId) { (team) in
             if let team = team {
                 if let controller = R.storyboard.visionRatingExplanation.visionRatingExplanationViewController() {
