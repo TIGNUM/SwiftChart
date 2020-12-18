@@ -18,7 +18,7 @@ final class StrategyListWorker {
 
     func headerTitle() -> String {
         if isFoundation == true {
-            return AppTextService.get(.know_section_strategies_title_foundation)
+            return AppTextService.get(.know_section_strategies_title_foundation).lowercased().capitalizingFirstLetter()
         }
         return selectedStrategy?.title ?? ""
     }
