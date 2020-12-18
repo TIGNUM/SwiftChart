@@ -39,10 +39,10 @@ final class AnswerButton: AbstractTreeButton {
     private var defaultBackgroundColor = UIColor.red
 
     func configure(title: String, isSelected: Bool) {
-        defaultBackgroundColor = isSelected ? .accent30 : .clear
-        selectedBackgroundColor = isSelected ? .clear : .accent30
-        setAttributedTitle(ThemeText.chatbotButton.attributedString(title), for: .normal)
-        corner(radius: .Twenty, borderColor: .accent30)
+        defaultBackgroundColor = isSelected ? .black : .clear
+        selectedBackgroundColor = isSelected ? .clear : .black
+        setAttributedTitle(ThemeText.chatbotButton(isSelected).attributedString(title), for: .normal)
+        corner(radius: .Twenty, borderColor: .black)
     }
 
     func switchBackgroundColor() {
@@ -54,19 +54,27 @@ class SelectionButton: AbstractTreeButton {
 
     @IBOutlet private weak var selectionLabel: UILabel!
     private var selectedBackgroundColor = UIColor.clear
+    private var selectedTextColor = UIColor.white
     private var defaultBackgroundColor = UIColor.red
     private var defaultBorderColor = UIColor.clear.cgColor
 
     func configure(title: String, isSelected: Bool) {
-        defaultBackgroundColor = isSelected ? .accent30 : .clear
-        selectedBackgroundColor = isSelected ? .clear : .accent30
-        selectionLabel.attributedText = ThemeText.chatbotButton.attributedString(title)
-        corner(radius: .Twenty, borderColor: .accent30)
+        defaultBackgroundColor = isSelected ? .black : .clear
+        selectedBackgroundColor = isSelected ? .clear : .black
+        selectedTextColor = isSelected ? .white : .black
+        selectionLabel.attributedText = ThemeText.chatbotButton(isSelected).attributedString(title)
+        corner(radius: .Twenty, borderColor: .black)
         switchBackgroundColor()
     }
 
     func switchBackgroundColor() {
-        backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
+        if backgroundColor == defaultBackgroundColor {
+            backgroundColor = selectedBackgroundColor
+            selectionLabel.textColor = .white
+        } else {
+            backgroundColor = defaultBackgroundColor
+            selectionLabel.textColor = .black
+        }
     }
 }
 

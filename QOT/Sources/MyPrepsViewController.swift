@@ -61,31 +61,31 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     lazy var cancelButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(cancelButton(_:)))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(.generic_view_button_cancel))
+        ThemableButton.darkButton.apply(button, title: AppTextService.get(.generic_view_button_cancel))
         return button.barButton
     }()
 
     lazy var prepareEventButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(addEventPrep))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(.my_qot_my_plans_event_preps_null_state_cta))
+        ThemableButton.darkButton.apply(button, title: AppTextService.get(.my_qot_my_plans_event_preps_null_state_cta))
         return button.barButton
     }()
 
     lazy var addMindsetShiftButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(addMindsetShift))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(.my_qot_my_plans_mindset_shifts_null_state_cta))
+        ThemableButton.darkButton.apply(button, title: AppTextService.get(.my_qot_my_plans_mindset_shifts_null_state_cta))
         return button.barButton
     }()
 
     lazy var planRecoveryButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(addRecovery))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(.my_qot_my_plans_recovery_plans_null_state_cta))
+        ThemableButton.darkButton.apply(button, title: AppTextService.get(.my_qot_my_plans_recovery_plans_null_state_cta))
         return button.barButton
     }()
 
     func getDeleteButton(isEnabled: Bool) -> UIBarButtonItem {
         let button = RoundedButton(title: nil, target: self, action: #selector(removeRows(_:)))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(.generic_view_button_delete))
+        ThemableButton.darkButton.apply(button, title: AppTextService.get(.generic_view_button_delete))
         button.isEnabled = isEnabled
         return button.barButton
     }
@@ -95,6 +95,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         super.viewDidLoad()
         baseHeaderView?.addTo(superview: headerView)
         ThemeButton.editButton.apply(editButton)
+        editButton.imageView?.tintColor = .white
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
