@@ -96,7 +96,7 @@ enum ThemeView {
         case .baseHeaderLineView(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
         case .audioPlaying, .selectedButton, .exploreButton:
-            return Palette.accent40
+            return Palette.lightGrey
         case .onboarding, .sprintsActive:
             return Palette.carbon
         case .toolSeparator:
@@ -323,7 +323,7 @@ enum ThemeButton {
             colorUnselected = colorSelected
             colorBorder = .accent30
         case .audioButtonGrey, .backButtonLight:
-            colorSelected = .accent40
+            colorSelected = .lightGrey
             colorUnselected = .clear
             colorBorder = .sand30
         case .closeButton(let mode):
@@ -331,7 +331,7 @@ enum ThemeButton {
             colorUnselected = Palette.light(.white, or: .black, forcedColorMode: mode)
             colorBorder = Palette.light(.black, or: .white, forcedColorMode: mode)
         case .dailyBriefButtons, .audioButtonStrategy:
-            colorSelected = .accent40
+            colorSelected = .lightGrey
             colorUnselected = .clear
             colorBorder = .accent30
         case .dailyBriefWithoutBorder:
@@ -1256,7 +1256,7 @@ enum ThemeText {
         case .articleNextTitle, .articleQuote, .articleMediaDescription, .articleBullet:
             return Palette.light(Palette.darkGrey, or: Palette.lightGrey)
         case .articleRelatedDetail(let mode):
-            return Palette.light(Palette.carbon30, or: Palette.sand30, forcedColorMode: mode)
+            return Palette.light(Palette.darkGrey, or: Palette.lightGrey, forcedColorMode: mode)
         case .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline, .articleHeadlineSmall,
              .articleNavigationTitle, .articleTagTitle, .articleParagraph, .article,
              .articleQuestion, .articleSub, .articleNum, .articleSector, .articleTitle, .articleTitleNotScaled, .articleBody:
