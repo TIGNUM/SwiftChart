@@ -17,8 +17,8 @@ final class DTPrepareStartViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var strategyTitleLabel: UILabel!
     @IBOutlet private weak var strategiesLabel: UILabel!
     @IBOutlet private weak var selectionTitleLabel: UILabel!
-    @IBOutlet private weak var criticalButton: UIButton!
-    @IBOutlet private weak var dailyButton: UIButton!
+    @IBOutlet private weak var criticalButton: RoundedButton!
+    @IBOutlet private weak var dailyButton: RoundedButton!
 
     var triggeredByLaunchHandler = false
     var interactor: DTPrepareStartInteractorInterface!
@@ -58,10 +58,8 @@ final class DTPrepareStartViewController: UIViewController, ScreenZLevel3 {
 // MARK: - Private
 private extension DTPrepareStartViewController {
     func setupButtons(viewModel: DTPrepareStartViewModel) {
-        criticalButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent)
-        criticalButton.setTitle(viewModel.buttonCritical, for: .normal)
-        dailyButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent)
-        dailyButton.setTitle(viewModel.buttonDaily, for: .normal)
+        ThemableButton.lightButton.apply(criticalButton, title: viewModel.buttonCritical)
+        ThemableButton.lightButton.apply(dailyButton, title: viewModel.buttonDaily)
     }
 }
 

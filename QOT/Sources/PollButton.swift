@@ -28,6 +28,7 @@ final class PollButton: SelectionButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         counterBackgroundView.circle()
+        counterBackgroundView.backgroundColor = .lightGray
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didVote(_:)),
                                                name: .didVoteTeamTBV, object: nil)
@@ -41,7 +42,7 @@ final class PollButton: SelectionButton {
         self.votes = votes
         self.answerId = answerId
         super.configure(title: title, isSelected: isSelected)
-        pollTitleLabel.attributedText = ThemeText.chatbotButton.attributedString(title, alignment: .center)
+        pollTitleLabel.attributedText = ThemeText.chatbotButton(isSelected).attributedString(title, alignment: .center)
         counterLabelTop.text = votes > 0 ? "\(votes)" : "\(votes + 1)"
         counterLabelBottom.text = "\(votes + 1)"
         backgroundWidthConstraint.constant = (votes == 0) ? 0 : 24
@@ -67,6 +68,7 @@ extension PollButton {
                     self.counterLabelTop.alpha = 0
                     self.counterLabelBottom.alpha = 1
                     self.counterBackgroundView.alpha = 1
+                    self.counterBackgroundView.backgroundColor = .lightGray
                 }
                 self.layoutIfNeeded()
             }

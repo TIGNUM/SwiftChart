@@ -115,9 +115,9 @@ enum ThemeView {
             return ThemeView.level1.color
         case .chatbotProgress(let active, let isDark):
             if isDark {
-                return active ? Palette.sand : Palette.sand30
+                return active ? .white : .clear
             } else {
-                return active ? Palette.carbon : Palette.carbon30
+                return active ? .black : .clear
             }
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
@@ -342,8 +342,8 @@ enum ThemeButton {
         case .onboarding:
             colorSelected = Palette.accent40
         case .backButton, .editButton, .carbonButton:
-            colorUnselected = Palette.carbon
-            colorBorder = Palette.accent40
+            colorUnselected = .black
+            colorBorder = .white
         case .dateButtons:
             colorSelected = .accent40
             colorUnselected = .carbon
@@ -425,6 +425,9 @@ enum ThemableButton {
     case poll
     case newBlueButton
 
+    case lightButton
+    case darkButton
+
     var titleAttributes: [NSAttributedString.Key: Any]? {
         return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
     }
@@ -434,7 +437,6 @@ enum ThemableButton {
         case .askPermissions,
              .syncedCalendar,
              .walkthroughGotIt,
-             .myPlans,
              .signinInfo,
              .myTbvDataRate,
              .createAccountInfo,
@@ -447,9 +449,9 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload,
-             .paymentReminder:
+             .paymentReminder, .myPlans, .darkButton:
             return ButtonTheme(foreground: .white, background: .black, border: .white)
-        case .fullscreenAudioPlayerDownloadLight:
+        case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .black, background: .white, border: .black)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent,
@@ -486,7 +488,7 @@ enum ThemableButton {
              .fullscreenVideoPlayerDownload,
              .paymentReminder:
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
-        case .fullscreenAudioPlayerDownloadLight:
+        case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent70,
@@ -497,6 +499,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .newBlueButton:
             return ButtonTheme(foreground: .white40, background: .actionBlue75, border: .clear)
+        case .darkButton:
+            return ButtonTheme(foreground: .black, background: .white, border: .black)
         default:
             return nil
         }
@@ -505,9 +509,10 @@ enum ThemableButton {
     var select: ButtonTheme? {
         switch self {
         case .fullscreenAudioPlayerDownload,
-             .fullscreenVideoPlayerDownload:
+             .fullscreenVideoPlayerDownload,
+             .darkButton:
             return ButtonTheme(foreground: .black, background: .white, border: nil)
-        case .fullscreenAudioPlayerDownloadLight:
+        case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .poll:
             return ButtonTheme(foreground: .sand40, background: .sand10, border: .clear)
@@ -526,9 +531,9 @@ enum ThemableButton {
             return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
-        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .darkButton:
             return ButtonTheme(foreground: .black, background: .white, border: nil)
-        case .fullscreenAudioPlayerDownloadLight:
+        case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .newBlueButton:
             return ButtonTheme(foreground: .white40, background: .lightGray, border: .clear)
@@ -890,7 +895,8 @@ enum ThemeText {
     case accountDetailEmail
     case teamVisionSentence
 
-    case chatbotButton
+    case chatbotButton(Bool)
+    case chatbotButtonSelected
     case chatbotProgress(Bool, Bool)
 
     case resultDate
@@ -1123,7 +1129,7 @@ enum ThemeText {
         // MARK: - fontBold
         case .audioLabel, .myDataChartIRAverageLabel, .resultCounter, .audioPlayerTime, .audioPlayerTimeLight:
             return Fonts.fontSemiBold12
-        case .chatbotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons,
+        case .chatbotButton, .chatbotButtonSelected, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons,
              .myDataWeekdaysHighlighted, .registrationCodeLink, .articleContactSupportLink,
              .loginSeparator, .chatbotProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
@@ -1179,7 +1185,7 @@ enum ThemeText {
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence,
              .strategyTitle, .customizeQuestion, .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle,
              .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle,
-             .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence, .dailyQuestion, .questionairePageCurrent:
+             .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence, .dailyQuestion, .questionairePageCurrent, .chatbotButtonSelected:
             return UIColor.white
 
         // MARK: - .lightGrey
@@ -1226,7 +1232,7 @@ enum ThemeText {
 
         // MARK: - .accent
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
-             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
+             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .articleContactSupportLink,
              .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
              .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage, .tbvTrackerAnswerTeam:
             return Palette.accent
@@ -1270,9 +1276,11 @@ enum ThemeText {
             return Palette.redOrange70
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
+        case .chatbotButton(let isSelected):
+            return isSelected ? .white : .black
         case .chatbotProgress(let active, let isDark):
             if active {
-                return Palette.accent
+                return.white
             } else {
                 return isDark ? Palette.lightGrey : Palette.darkGrey
             }
@@ -1493,7 +1501,7 @@ enum ThemeText {
             urlString.addAttributes([.font: self.font, .foregroundColor: self.color, .link: url],
                                     range: NSRange(location: 0, length: text.count))
             string = urlString
-        case .chatbotButton, .resultCounter, .resultCounterMax, .chatbotProgress:
+        case .chatbotButton, .chatbotButtonSelected, .resultCounter, .resultCounterMax, .chatbotProgress:
             string = NSAttributedString(string: text,
                                         font: self.font, textColor: self.color, alignment: alignment ?? .left)
         case .trackSelectionMessage:
