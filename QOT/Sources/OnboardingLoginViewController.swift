@@ -128,7 +128,7 @@ private extension OnboardingLoginViewController {
     }
 
     func setupButtons() {
-        buttonSendCode.cornerDefault()
+        ThemeButton.whiteRounded.apply(buttonSendCode)
         buttonSendCode2.cornerDefault()
         buttonGetHelp.cornerDefault()
         buttonChangeEmail.cornerDefault()

@@ -338,7 +338,7 @@ enum ThemeButton {
         case .clear:
             colorSelected = .clear
         case .onboarding:
-            colorSelected = Palette.accent40
+            colorSelected = Palette.white40
         case .backButton, .editButton, .carbonButton:
             colorUnselected = .black
             colorBorder = .white
@@ -1024,9 +1024,9 @@ enum ThemeText {
              .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
-          .mySprintsTitle, .registerIntroNoteTitle, .optionPage, .optionPageDisabled, .myDataParameterExplanationTitle:
+          .mySprintsTitle, .optionPage, .optionPageDisabled, .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
-        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .baseHeaderTitle:
+        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .registerIntroNoteTitle:
             return Fonts.fontDisplayRegular20
         case .teamVisionSentence:
             return Fonts.fontRegular24
@@ -1088,7 +1088,7 @@ enum ThemeText {
             case .scale: return Fonts.fontLight20
             case .scaleNot: return Fonts.fontLight16
             }
-        case .articleTitleNotScaled:
+        case .articleTitleNotScaled, .registerIntroTitle, .baseHeaderTitle:
             return Fonts.fontDisplayLight34
         case .articleTitle:
             switch textScale {
@@ -1136,11 +1136,11 @@ enum ThemeText {
         case .myDataHeatMapCellDateHighlighted, .registrationCodeDescriptionEmail, .walkthroughMessage,
              .coachMarkTitle, .weatherDescription:
             return Fonts.fontSemiBold16
-        case .registerIntroTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
+        case .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle:
             return Fonts.fontDisplayBold30
         case .onboardingInfoTitle:
-            return Fonts.fontDisplayBold60
+            return Fonts.fontApercuBold90
 
         // MARK: - fontDisplayThin
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
@@ -1185,7 +1185,8 @@ enum ThemeText {
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence,
              .strategyTitle, .customizeQuestion, .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle,
              .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle,
-             .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence, .dailyQuestion, .questionairePageCurrent, .chatbotButtonSelected:
+             .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence, .dailyQuestion,
+             .questionairePageCurrent, .chatbotButtonSelected, .registrationCodeTermsAndPrivacy, .registrationCodeLink:
             return UIColor.white
 
         // MARK: - .lightGrey
@@ -1200,7 +1201,7 @@ enum ThemeText {
              .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
-             .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
+             .registrationCodePreCode, .registrationCodeInfoActions, .registrationAgeDescription,
              .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights,
              .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
              .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
@@ -1232,7 +1233,7 @@ enum ThemeText {
 
         // MARK: - .accent
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
-             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .articleContactSupportLink,
+             .myDataSwitchButtons, .accountHeaderTitle, .articleContactSupportLink,
              .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
              .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage, .tbvTrackerAnswerTeam:
             return Palette.light(.black, or: .white)
@@ -1699,7 +1700,7 @@ private struct Fonts {
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
 
     static let fontDisplayBold30 = UIFont.apercuBold(ofSize: 30)
-    static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 90)
+    static let fontApercuBold90 = UIFont.apercuBold(ofSize: 90)
 }
 
 // MARK: - Color Palette
