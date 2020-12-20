@@ -17,6 +17,6 @@ final class SuggestionSearchTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Configuration
 
     func configrue(suggestion: String) {
-        ThemeText.searchSuggestion.apply(suggestion.uppercased(), to: suggestionLabel)
+        ThemeText.searchSuggestion.apply(suggestion.lowercased(), to: suggestionLabel)
     }
 }

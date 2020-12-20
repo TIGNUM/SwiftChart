@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -150,7 +150,8 @@
                                                     <constraint firstAttribute="width" constant="30" id="9fX-67-QmK"/>
                                                     <constraint firstAttribute="height" constant="30" id="iDN-I2-MkW"/>
                                                 </constraints>
-                                                <state key="selected" image="check"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="selected" image="check_grey"/>
                                                 <connections>
                                                     <action selector="didTapCheckboxButton" destination="oFf-ev-5tD" eventType="touchUpInside" id="YG8-ho-78K"/>
                                                 </connections>
@@ -243,6 +244,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="G8p-h2-5jF"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="G8p-h2-5jF" firstAttribute="bottom" secondItem="7xe-fK-tth" secondAttribute="bottom" id="HUp-AX-wZG"/>
@@ -252,7 +254,6 @@
                             <constraint firstItem="7xe-fK-tth" firstAttribute="top" secondItem="f2x-Wc-aAT" secondAttribute="top" id="tsx-kI-5Fw"/>
                             <constraint firstItem="7xe-fK-tth" firstAttribute="leading" secondItem="f2x-Wc-aAT" secondAttribute="leading" id="yso-mJ-i0X"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="G8p-h2-5jF"/>
                     </view>
                     <connections>
                         <outlet property="buttonCheckbox" destination="aPQ-XK-TD4" id="2yj-YQ-VJj"/>
@@ -276,6 +277,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="check" width="27" height="27"/>
+        <image name="check_grey" width="5" height="4.5"/>
     </resources>
 </document>

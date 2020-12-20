@@ -25,7 +25,7 @@ final class SearchTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Public
 
     func configure(title: String, contentType: Search.DisplayType?, duration: String?) {
-        ThemeText.searchResult.apply(title.uppercased(), to: titleLabel)
+        ThemeText.searchResult.apply(title, to: titleLabel)
         if let contentType = contentType {
             iconImage.image = contentType.mediaIcon()
         }
