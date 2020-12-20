@@ -295,7 +295,7 @@ private extension MyPrepsViewController {
 // MARK: - Actions
 private extension MyPrepsViewController {
     func setupSegementedControl() {
-        ThemeSegment.accent.apply(segmentedControl)
+        ThemeSegment.lightGray.apply(segmentedControl)
     }
 }
 

@@ -51,7 +51,6 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         ThemeView.level1.apply(suggestionsTableView)
         ThemeView.level1.apply(activeView)
         ThemeView.level1.apply(mySearchBar)
-        ThemeView.level1.apply(segmentedControl)
         ThemeView.level1.apply(masterView)
         ThemeView.level1.apply(bottomView)
         self.navigationItem.hidesBackButton = true
@@ -60,6 +59,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         suggestionsHeader.autoresizingMask = []
         suggestionsTableView.tableHeaderView = suggestionsHeader
         tableView.registerDequeueable(SearchTableViewCell.self)
+        tableView.registerDequeueable(SearchNoResultsTableviewCell.self)
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
         setupSearchBar()
         setAllControl(newAlpha: 1.0)
@@ -163,11 +163,11 @@ extension SearchViewController {
 // MARK: - Private
 private extension SearchViewController {
     func setupSegementedControl() {
-        ThemeSegment.accent.apply(segmentedControl)
+        ThemeSegment.lightGray.apply(segmentedControl)
     }
 
     func setupSearchBar() {
-        ThemeSearchBar.accent.apply(mySearchBar)
+        ThemeSearchBar.white.apply(mySearchBar)
         constraintSearch.constant = 0.0
         mySearchBar.setNeedsUpdateConstraints()
         mySearchBar.backgroundImage = UIImage()
@@ -183,6 +183,7 @@ private extension SearchViewController {
     func enableCancelButton() {
         if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
+            cancelButton.titleLabel?.font = UIFont.sfProtextSemibold(ofSize: 14)
             observers = [cancelButton.observe(\.isEnabled) { (cancelButton, value) in
                 if !cancelButton.isEnabled {
                     cancelButton.isEnabled = true
@@ -281,17 +282,19 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView {
         case self.tableView:
-            let searchCell: SearchTableViewCell = tableView.dequeueCell(for: indexPath)
             if searchResults.isEmpty == true && searchQuery.isEmpty == false {
-                searchCell.configure(title: AppTextService.get(.coach_search_null_state_body), contentType: nil, duration: nil)
+                let noResultsCell: SearchNoResultsTableviewCell = tableView.dequeueCell(for: indexPath)
+                noResultsCell.configure(title: AppTextService.get(.coach_search_null_state_body))
+                return noResultsCell
             } else {
+                let searchCell: SearchTableViewCell = tableView.dequeueCell(for: indexPath)
                 let result = searchResults[indexPath.row]
                 searchCell.configure(title: result.title,
                                      contentType: result.displayType,
                                      duration: result.duration)
+                searchCell.setSelectedColor(.white, alphaComponent: 0.15)
+                return searchCell
             }
-            searchCell.setSelectedColor(.accent, alphaComponent: 0.15)
-            return searchCell
         case self.suggestionsTableView:
             let suggestionCell: SuggestionSearchTableViewCell = tableView.dequeueCell(for: indexPath)
             suggestionCell.configrue(suggestion: searchSuggestions?.suggestions[indexPath.row] ?? "")
@@ -305,7 +308,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView {
         case self.tableView:
-            return 80
+            return UITableView.automaticDimension
         case self.suggestionsTableView:
             return UITableView.automaticDimension
         default:

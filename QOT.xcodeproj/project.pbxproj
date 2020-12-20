@@ -946,6 +946,8 @@
 		B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */; };
 		B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */; };
 		B4AB48DD230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */; };
+		B4B05CD7258F08C10076A2E9 /* SearchNoResultsTableviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B05CD6258F08C10076A2E9 /* SearchNoResultsTableviewCell.swift */; };
+		B4B05CDF258F08CB0076A2E9 /* SearchNoResultsTableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B05CDE258F08CB0076A2E9 /* SearchNoResultsTableviewCell.xib */; };
 		B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */; };
 		B4B0EBA1231533720029BB40 /* MyDataChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */; };
 		B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */; };
@@ -2370,6 +2372,8 @@
 		B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartLegendTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartLegendTableViewCell.swift; sourceTree = "<group>"; };
+		B4B05CD6258F08C10076A2E9 /* SearchNoResultsTableviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNoResultsTableviewCell.swift; sourceTree = "<group>"; };
+		B4B05CDE258F08CB0076A2E9 /* SearchNoResultsTableviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchNoResultsTableviewCell.xib; sourceTree = "<group>"; };
 		B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -5363,6 +5367,8 @@
 				360256ED205197AB00862B0E /* SearchViewController.xib */,
 				AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */,
 				AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */,
+				B4B05CD6258F08C10076A2E9 /* SearchNoResultsTableviewCell.swift */,
+				B4B05CDE258F08CB0076A2E9 /* SearchNoResultsTableviewCell.xib */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -6482,6 +6488,7 @@
 				B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */,
 				8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */,
 				B4792CA0256BABF200D24E7F /* Level5TableViewCell.xib in Resources */,
+				B4B05CDF258F08CB0076A2E9 /* SearchNoResultsTableviewCell.xib in Resources */,
 				B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */,
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
 				B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */,
@@ -7045,6 +7052,7 @@
 				B411ECB525751C5100EB7A78 /* Notification+Ext.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
+				B4B05CD7258F08C10076A2E9 /* SearchNoResultsTableviewCell.swift in Sources */,
 				B48B5469256468C400FC183D /* MeAtMyBestTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
