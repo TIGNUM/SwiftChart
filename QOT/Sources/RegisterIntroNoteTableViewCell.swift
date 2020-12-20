@@ -19,7 +19,7 @@ final class RegisterIntroNoteTableViewCell: UITableViewCell, Dequeueable {
     weak var delegate: RegisterIntroNoteTableViewCellDelegate?
 
     func configure(title: String?, body: String?, expanded: Bool = false) {
-        ThemeText.registerIntroNoteTitle.apply(title, to: titleLabel)
+        ThemeText.registerIntroNoteTitle.apply(title?.lowercased().capitalizingFirstLetter(), to: titleLabel)
         ThemeText.registerIntroBody.apply(body, to: bodyLabel)
         readMoreButton.isHidden = expanded
     }

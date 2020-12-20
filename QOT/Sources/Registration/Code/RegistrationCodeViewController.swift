@@ -103,7 +103,7 @@ private extension RegistrationCodeViewController {
 private extension RegistrationCodeViewController {
     @IBAction func didTapCheckboxButton() {
         buttonCheckbox.isSelected.toggle()
-        buttonCheckbox.backgroundColor = buttonCheckbox.isSelected ? .sand15 : .clear
+        buttonCheckbox.backgroundColor = buttonCheckbox.isSelected ? .white : .clear
         interactor.toggleTermsOfUse(accepted: buttonCheckbox.isSelected)
         trackUserEvent(.CHECK_TERMS_PRIVACY, valueType: buttonCheckbox.isSelected ? .SELECT : .DESELECT, action: .TAP)
         sendCodeIfPossible()
@@ -142,7 +142,7 @@ extension RegistrationCodeViewController: RegistrationCodeViewControllerInterfac
             buttonCheckbox.layer.borderColor = UIColor.redOrange70.cgColor
         } else {
             disclaimerErrorLabel.isHidden = true
-            buttonCheckbox.layer.borderColor = UIColor.sand40.cgColor
+            buttonCheckbox.layer.borderColor = UIColor.white.cgColor
         }
 
         if interactor.hasCodeError {

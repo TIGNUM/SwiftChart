@@ -34,7 +34,7 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, body: String?, videoURL: String?) {
-        ThemeText.registerIntroTitle.apply(title, to: titleLabel)
+        ThemeText.registerIntroTitle.apply(title?.lowercased().capitalizingFirstLetter(), to: titleLabel)
         ThemeText.registerIntroBody.apply(body, to: descriptionLabel)
         if let url = URL.init(string: videoURL ?? "") {
             embededableMediaPlayer(videoURL: url)

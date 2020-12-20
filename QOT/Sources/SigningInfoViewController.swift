@@ -125,10 +125,10 @@ private extension SigningInfoViewController {
         let attributedString = NSAttributedString(string: interactor?.startButtonText ?? "",
                                                   letterSpacing: 0.2,
                                                   font: .sfProtextSemibold(ofSize: 14),
-                                                  textColor: .accent,
+                                                  textColor: .white,
                                                   alignment: .center)
         startButton.setAttributedTitle(attributedString, for: .normal)
-        startButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        startButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
         startButtonItem = roundedBarButtonItem(title: "",
                                               buttonWidth: view.frame.width,
                                               action: #selector(didTapStart),
