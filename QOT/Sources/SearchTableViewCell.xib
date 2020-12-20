@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tks-mX-88Z" customClass="SearchTableViewCell" customModule="QOT" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tks-mX-88Z" customClass="SearchTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tks-mX-88Z" id="RNj-m0-ykG">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Da-lQ-OEi">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Da-lQ-OEi">
                         <rect key="frame" x="20" y="25.5" width="335" height="20.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -33,7 +31,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kR8-dA-x8Y">
-                        <rect key="frame" x="44" y="51.5" width="42" height="21"/>
+                        <rect key="frame" x="44" y="51.5" width="311" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -44,10 +42,11 @@
                     <constraint firstItem="kR8-dA-x8Y" firstAttribute="leading" secondItem="tit-ir-iSA" secondAttribute="trailing" constant="8" id="0TC-t7-dYS"/>
                     <constraint firstItem="tit-ir-iSA" firstAttribute="top" secondItem="9Da-lQ-OEi" secondAttribute="bottom" constant="8" id="8bE-e4-4in"/>
                     <constraint firstItem="9Da-lQ-OEi" firstAttribute="top" secondItem="RNj-m0-ykG" secondAttribute="top" constant="25.5" id="Dt6-hr-NL1"/>
+                    <constraint firstAttribute="bottom" secondItem="kR8-dA-x8Y" secondAttribute="bottom" constant="7.5" id="Jij-WJ-pMK"/>
                     <constraint firstItem="9Da-lQ-OEi" firstAttribute="leading" secondItem="RNj-m0-ykG" secondAttribute="leading" constant="20" id="LaJ-Ki-xqg"/>
                     <constraint firstAttribute="trailing" secondItem="9Da-lQ-OEi" secondAttribute="trailing" constant="20" id="UIn-Wm-sa4"/>
                     <constraint firstItem="tit-ir-iSA" firstAttribute="leading" secondItem="9Da-lQ-OEi" secondAttribute="leading" id="hgN-md-a6F"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kR8-dA-x8Y" secondAttribute="trailing" constant="20" id="lOm-il-B92"/>
+                    <constraint firstAttribute="trailing" secondItem="kR8-dA-x8Y" secondAttribute="trailing" constant="20" id="lOm-il-B92"/>
                     <constraint firstItem="kR8-dA-x8Y" firstAttribute="centerY" secondItem="tit-ir-iSA" secondAttribute="centerY" id="tqu-Jh-0ph"/>
                 </constraints>
             </tableViewCellContentView>
