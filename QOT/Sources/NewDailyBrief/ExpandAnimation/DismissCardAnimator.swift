@@ -37,15 +37,19 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         let container = ctx.containerView
 
         guard let fromVC = ctx.viewController(forKey: .from)?.children.first as? BaseDailyBriefDetailsViewController,
-              let toVC = (ctx.viewController(forKey: .to) as? UINavigationController)?.topViewController?.children.first?.children.last?.children.first as? DailyBriefViewController
-        else {
+              let cardDetailView = fromVC.view else {
             return
         }
 
-        let screens: (cardDetail: BaseDailyBriefDetailsViewController, home: DailyBriefViewController) = (fromVC, toVC)
-        guard let cardDetailView = fromVC.view else {
-            return
-        }
+        let toVC = (ctx.viewController(forKey: .to) as? UINavigationController)?
+            .topViewController?
+            .children
+            .first?
+            .children
+            .last?
+            .children
+            .first as? DailyBriefViewController
+        let screens: (cardDetail: BaseDailyBriefDetailsViewController, home: DailyBriefViewController?) = (fromVC, toVC)
 
         if let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewBaseDailyBriefCell,
            let standardCell = dailyBriefCell.collectionView.cellForItem(at: IndexPath.init(item: 0, section: 0)) as? NewDailyBriefStandardCollectionViewCell,

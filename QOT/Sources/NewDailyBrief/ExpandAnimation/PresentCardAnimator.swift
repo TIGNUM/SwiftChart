@@ -73,17 +73,24 @@ final class PresentCardTransitionDriver {
 
     var animator: UIViewPropertyAnimator = UIViewPropertyAnimator.init()
 
-    init(params: PresentCardAnimator.Params, transitionContext: UIViewControllerContextTransitioning, baseAnimator: UIViewPropertyAnimator) {
+    init(params: PresentCardAnimator.Params,
+         transitionContext: UIViewControllerContextTransitioning,
+         baseAnimator: UIViewPropertyAnimator) {
         let ctx = transitionContext
         let container = ctx.containerView
-        guard let fromVC = (ctx.viewController(forKey: .from) as? UINavigationController)?.topViewController?.children.first?.children.last?.children.first as? DailyBriefViewController,
-              let toVC = ctx.viewController(forKey: .to)?.children.first as? BaseDailyBriefDetailsViewController
-        else {
+        guard let toVC = ctx.viewController(forKey: .to)?.children.first as? BaseDailyBriefDetailsViewController else {
             return
         }
 
-        let screens: (home: DailyBriefViewController, cardDetail: BaseDailyBriefDetailsViewController) = (fromVC, toVC)
-
+        let fromVC = (ctx.viewController(forKey: .from) as?UINavigationController)?
+            .topViewController?
+            .children
+            .first?
+            .children
+            .last?
+            .children
+            .first as? DailyBriefViewController
+        let screens: (home: DailyBriefViewController?, cardDetail: BaseDailyBriefDetailsViewController) = (fromVC, toVC)
         let cardDetailView = ctx.view(forKey: .to)!
         let fromCardFrame = params.fromCardFrame
 
@@ -123,8 +130,6 @@ final class PresentCardTransitionDriver {
 
         animatedContainerView.addSubview(cardDetailView)
         cardDetailView.translatesAutoresizingMaskIntoConstraints = false
-
-        let weirdCardToAnimatedContainerTopAnchor: NSLayoutConstraint
 
         do /* Pin top (or center Y) and center X of the card, in animated container view */ {
             let verticalAnchor: NSLayoutConstraint = {
