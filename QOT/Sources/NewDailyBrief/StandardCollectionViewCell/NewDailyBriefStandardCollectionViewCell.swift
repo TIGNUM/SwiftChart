@@ -54,7 +54,7 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         case .audio:
             CTAIcon = UIImage.init(named: "ic_audio")
         case .video:
-            CTAIcon = UIImage.init(named: "ic_camera_tools")
+            CTAIcon = UIImage.init(named: "ic_camera_grey")
         default:
             break
         }

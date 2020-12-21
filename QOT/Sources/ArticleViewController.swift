@@ -388,7 +388,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
                            durationString: description ?? "",
-                           icon: R.image.ic_audio_grey_light())
+                           icon: R.image.ic_audio())
             return cell
         case .image(let title, _, let url):
             return imageTableViewCell(

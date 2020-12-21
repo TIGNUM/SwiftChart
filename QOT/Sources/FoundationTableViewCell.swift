@@ -50,7 +50,8 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         self.imageURL = imageURL
         ThemeText.articleRelatedDetail(forcedColorMode).apply(timeText, to: detailLabel)
         previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
-        mediaIconImageView.image = R.image.ic_camera_sand()
+        mediaIconImageView.image = R.image.ic_camera_grey()
+        mediaIconImageView.tintColor = .darkGrey
         checkIfSeen()
         skeletonManager.hide()
     }
