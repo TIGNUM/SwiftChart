@@ -54,15 +54,15 @@ extension ToolsWorker: ToolsWorkerInterface {
     func toolSectionTitles(for toolItem: ToolSection) -> String {
         switch toolItem {
         case .mindset:
-            return AppTextService.get(.coach_tools_section_mindset_title)
+            return AppTextService.get(.coach_tools_mindset_title)
         case .nutrition:
-            return AppTextService.get(.coach_tools_section_nutrition_title)
+            return AppTextService.get(.coach_tools_nutrition_title)
         case .movement:
-            return AppTextService.get(.coach_tools_section_movement_title)
+            return AppTextService.get(.coach_tools_movement_title)
         case .recovery:
-            return AppTextService.get(.coach_tools_section_recovery_title)
+            return AppTextService.get(.coach_tools_recovery_title)
         case .habituation:
-            return AppTextService.get(.coach_tools_section_habituation_title)
+            return AppTextService.get(.coach_tools_habituation_title)
         }
     }
 }

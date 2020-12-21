@@ -156,11 +156,14 @@ public extension AppTextKey {
     static let coach_tools_interactive_tool_minsdset_shifter_result = AppTextKey("coach.tools.interactive_tool.minsdset_shifter.result")
     static let coach_tools_tools_list = AppTextKey("coach.tools.tools_list")
     static let coach_tools_tools_list_tool_details = AppTextKey("coach.tools.tools_list.tool.details")
-    static let coach_tools_section_habituation_title = AppTextKey("coach.tools.section_habituation.title")
-    static let coach_tools_section_mindset_title = AppTextKey("coach.tools.section_mindset.title")
-    static let coach_tools_section_movement_title = AppTextKey("coach.tools.section_movement.title")
-    static let coach_tools_section_nutrition_title = AppTextKey("coach.tools.section_nutrition.title")
-    static let coach_tools_section_recovery_title = AppTextKey("coach.tools.section_recovery.title")
+
+
+    static let coach_tools_mindset_title = AppTextKey("coach.tools.mindset.title")
+    static let coach_tools_movement_title = AppTextKey("coach.tools.movement.title")
+    static let coach_tools_recovery_title = AppTextKey("coach.tools.recovery.title")
+    static let coach_tools_nutrition_title = AppTextKey("coach.tools.nutrition.title")
+    static let coach_tools_habituation_title = AppTextKey("coach.tools.habituation.title")
+
     static let coach_tools_section_header_title = AppTextKey("coach.tools.section_header.title")
     static let coach_tools_section_header_subtitle = AppTextKey("coach.tools.section_header.subtitle")
     static let coach_tools_labels_label_interactive = AppTextKey("coach.tools.labels.label_interactive")
@@ -1247,4 +1250,9 @@ public extension AppTextKey {
     static let daily_brief_section_team_news_feed_subtitle_for_multiple_items = AppTextKey("daily_brief.section_team_news_feed.subtitle_for_multiple_items")
     static let daily_brief_section_team_news_feed_open_library_button_title = AppTextKey("daily_brief.section_team_news_feed.open_library_button_title")
     static let daily_brief_section_team_news_feed_library = AppTextKey("daily_brief.section_team_news_feed.library")
+    static let coach_tools_section_habituation_title = AppTextKey("coach.tools.section_habituation.title")
+    static let coach_tools_section_mindset_title = AppTextKey("coach.tools.section_mindset.title")
+    static let coach_tools_section_movement_title = AppTextKey("coach.tools.section_movement.title")
+    static let coach_tools_section_nutrition_title = AppTextKey("coach.tools.section_nutrition.title")
+    static let coach_tools_section_recovery_title = AppTextKey("coach.tools.section_recovery.title")
 }
