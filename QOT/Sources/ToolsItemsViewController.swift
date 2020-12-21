@@ -102,6 +102,7 @@ private extension ToolsItemsViewController {
 // MARK: - ToolsItemsViewControllerInterface
 extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func setupView() {
+        backButton?.imageView?.tintColor = .black
         setupTableView()
     }
 
@@ -129,7 +130,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.init(title: interactor.headerTitle.uppercased(),
+            return ToolsTableHeaderView.init(title: interactor.headerTitle,
                                              subtitle: interactor.headerSubtitle)
         default: return nil
         }

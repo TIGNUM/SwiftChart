@@ -24,7 +24,7 @@ extension UITableViewCell {
 
     func setSelectedColor(_ color: UIColor, alphaComponent: CGFloat? = 1) {
         let backgroundView = UIView()
-        backgroundView.backgroundColor = color.withAlphaComponent(0.1)
+        backgroundView.backgroundColor = color.withAlphaComponent(alphaComponent ?? 1)
         selectedBackgroundView = backgroundView
     }
 }

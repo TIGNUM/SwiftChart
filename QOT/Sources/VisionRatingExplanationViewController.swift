@@ -61,7 +61,8 @@ final class VisionRatingExplanationViewController: BaseViewController {
 
     @IBAction func buttonChecked(_ sender: Any) {
         checkButton.isSelected.toggle()
-        checkButton.backgroundColor = checkButton.isSelected ? .accent70 : .clear
+        checkButton.backgroundColor = checkButton.isSelected ? .white : .clear
+        checkButton.imageView?.tintColor = .black
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem] {
@@ -127,7 +128,7 @@ extension VisionRatingExplanationViewController {
 
     func setupButtons() {
         checkButton.layer.borderWidth = 1
-        checkButton.layer.borderColor = UIColor.accent.cgColor
+        checkButton.layer.borderColor = UIColor.white.cgColor
         checkButton.corner(radius: 2)
     }
 }
