@@ -233,7 +233,8 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                                section: relatedItem.section,
                                format: relatedItem.format,
                                numberOfItems: relatedItem.numberOfItems ?? 0)
-                cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+                cell.accessoryView = UIImageView(image: R.image.ic_disclosure())
+                cell.accessoryView?.tintColor = .white
                 cell.delegate = owner
                 return cell
             case DailyBriefBucketName.FROM_TIGNUM:

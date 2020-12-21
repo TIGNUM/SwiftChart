@@ -302,6 +302,7 @@ enum ThemeButton {
     case newBlueButton
     case whiteRounded
     case level5Button
+    case darkButton
 
     var defaultHeight: CGFloat {
         return 40.0
@@ -315,6 +316,9 @@ enum ThemeButton {
         case .accent40:
             colorSelected = Palette.accent40
             colorBorder = Palette.accent30
+        case .darkButton:
+            colorSelected = .white
+            colorBorder = .white
         case .audioButton:
             colorSelected = Palette.light(Palette.sand, or: Palette.carbon)
             colorUnselected = colorSelected
