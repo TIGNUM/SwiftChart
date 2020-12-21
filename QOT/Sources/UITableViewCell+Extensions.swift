@@ -9,7 +9,6 @@
 import Foundation
 
 extension UITableViewCell {
-
     func bodyAttributedText(text: String,
                             font: UIFont,
                             lineSpacing: CGFloat = 10,
@@ -27,10 +26,19 @@ extension UITableViewCell {
         backgroundView.backgroundColor = color.withAlphaComponent(alphaComponent ?? 1)
         selectedBackgroundView = backgroundView
     }
+
+    func setThemeBackgroundDark() {
+        NewThemeView.dark.apply(contentView)
+        NewThemeView.dark.apply(self)
+    }
+
+    func setThemeBackgroundLight() {
+        NewThemeView.light.apply(contentView)
+        NewThemeView.light.apply(self)
+    }
 }
 
 extension UICollectionViewCell {
-
     func bodyAttributedText(text: String,
                             font: UIFont,
                             lineSpacing: CGFloat = 10,

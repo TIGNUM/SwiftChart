@@ -57,6 +57,8 @@ final class ColorPicker: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        NewThemeView.dark.apply(self)
+        NewThemeView.dark.apply(labelContainer)
         colorBlue.circle()
         colorPurple.circle()
         colorGreen.circle()

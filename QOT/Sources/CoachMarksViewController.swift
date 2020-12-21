@@ -128,6 +128,8 @@ private extension CoachMarksViewController {
 // MARK: - CoachMarksViewControllerInterface
 extension CoachMarksViewController: CoachMarksViewControllerInterface {
     func setupView() {
+        NewThemeView.dark.apply(view)
+        NewThemeView.dark.apply(collectionView)
         ThemeButton.accent40.apply(buttonBack)
         buttonBack.isHidden = true
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)

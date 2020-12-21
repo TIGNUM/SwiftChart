@@ -73,6 +73,11 @@ private extension TeamEditViewController {
         memberCounterLabel.isHidden = type != .memberInvite
         teamTextField.autocapitalizationType = type == .create ? .sentences : .none
     }
+
+    func setCellBackgroundTheme(cell: UITableViewCell) {
+        NewThemeView.dark.apply(cell.contentView)
+        NewThemeView.dark.apply(cell)
+    }
 }
 
 // MARK: - TeamEditViewControllerInterface
@@ -207,11 +212,13 @@ extension TeamEditViewController: UITableViewDelegate, UITableViewDataSource {
             let identifier = R.reuseIdentifier.teamMemberEmailHeaderTableViewCell_ID.identifier
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
             cell.textLabel?.text = subHeader
+            cell.setThemeBackgroundDark()
             return cell
         case .members:
             let identifier = R.reuseIdentifier.teamMemberEmailTableViewCell_ID.identifier
             let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
             cell.textLabel?.text = interactor.item(at: indexPath)
+            cell.setThemeBackgroundDark()
             return cell
         }
     }
