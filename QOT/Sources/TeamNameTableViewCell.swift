@@ -19,17 +19,17 @@ final class TeamNameTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Liefe cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView = UIView(frame: self.bounds)
-        ThemeView.level2Selected.apply(selectedBackgroundView!)
+        backgroundView = UIView(frame: bounds)
+        selectedBackgroundView = UIView(frame: bounds)
+        NewThemeView.dark.apply(selectedBackgroundView!)
+        NewThemeView.dark.apply(contentView)
+        NewThemeView.dark.apply(self)
     }
 
     func configure(teamId: String,
                    teamColors: [String],
                    selectedColor: String,
-                   title: String,
-                   themeCell: ThemeView = .level2) {
-        themeCell.apply(backgroundView!)
+                   title: String) {
         ThemeText.linkMenuItem.apply(title, to: nameLabel)
         nameLabel.text = title
         colorPicker.configure(teamId: teamId, teamColors: teamColors, selectedColor: UIColor(hex: selectedColor))
