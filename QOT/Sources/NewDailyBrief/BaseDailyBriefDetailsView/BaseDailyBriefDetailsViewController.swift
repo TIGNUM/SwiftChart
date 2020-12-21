@@ -33,7 +33,8 @@ final class BaseDailyBriefDetailsViewController: BaseViewController, ScreenZLeve
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ThemeView.level1.apply(self.view)
+        ThemeView.level1.apply(view)
+        NewThemeView.dark.apply(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerDequeueable(NewBaseDailyBriefCell.self)
@@ -165,7 +166,12 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView.init()
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 150)
+        let footer = UIView(frame: frame)
+        let gradientImageView = UIImageView(image: R.image.gradient_dark())
+        footer.addSubview(gradientImageView)
+        footer.fill(subview: gradientImageView)
+        return footer
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
