@@ -99,7 +99,7 @@ enum ThemeView {
         case .onboarding, .sprintsActive:
             return Palette.carbon
         case .toolSeparator:
-            return Palette.carbon10
+            return .black10
         case .article:
             return Palette.light(Palette.sand, or: Palette.carbon)
         case .articleBackground(let mode):
@@ -876,6 +876,7 @@ enum ThemeText {
     case qotToolsTitle
     case qotToolsSectionSubtitle
     case audioLabel
+    case audioLabelLight
     case dailyQuestion
     case trends
 
@@ -1139,7 +1140,7 @@ enum ThemeText {
             return Fonts.fontMedium18
 
         // MARK: - fontBold
-        case .audioLabel, .myDataChartIRAverageLabel, .resultCounter, .audioPlayerTime, .audioPlayerTimeLight:
+        case .audioLabel, .audioLabelLight, .myDataChartIRAverageLabel, .resultCounter, .audioPlayerTime, .audioPlayerTimeLight:
             return Fonts.fontSemiBold12
         case .chatbotButton, .chatbotButtonSelected, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons,
              .myDataWeekdaysHighlighted, .registrationCodeLink, .articleContactSupportLink,
@@ -1188,7 +1189,7 @@ enum ThemeText {
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
              .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .optionPage,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
-             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends,
+             .dailyBriefLevelTitle, .searchSuggestion, .myRating,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
@@ -1243,14 +1244,14 @@ enum ThemeText {
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
             .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation,
-             .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle:
+            .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight:
             return .black
 
         // MARK: - .accent
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .accountHeaderTitle, .articleContactSupportLink,
              .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
-             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends, .optionPage, .tbvTrackerAnswerTeam:
+             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends:
             return Palette.light(.black, or: .white)
 
         // MARK: - .mindsetShifter Green
@@ -1338,7 +1339,7 @@ enum ThemeText {
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .center)
         case .articleTitle, .articleTitleNotScaled, .audioFullScreenTitleDark, .audioFullScreenTitle, .performanceSections,
-             .myRating, .averageRating, .totalVotes, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight,
+             .myRating, .averageRating, .totalVotes, .audioLabel, .audioLabelLight, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight,
              .performanceSectionText, .teamTvbTimeSinceTitle, .trends, .ratingExplanationTitle:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color,

@@ -36,7 +36,6 @@ final class ToolsInteractor {
     func viewDidLoad() {
         presenter.present(for: worker.toolsSections())
         presenter.setupView()
-//        presenter.reload()
     }
 }
 

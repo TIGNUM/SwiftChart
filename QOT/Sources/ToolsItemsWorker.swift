@@ -34,7 +34,7 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
     var headerSubtitle: String {
         guard let categoryTitle = self.selectedTool?.contentCategoryTitle else { return "" }
         let headerSubtitle = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
-        return headerSubtitle.uppercased() + " TOOLS"
+        return headerSubtitle + " tools"
     }
 
     var tools: [Tool.Item] {

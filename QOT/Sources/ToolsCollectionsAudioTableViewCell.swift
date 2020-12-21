@@ -17,6 +17,7 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var mediaIconImageView: UIImageView!
     @IBOutlet private weak var audioButton: UIButton!
     @IBOutlet private weak var audioLabel: UILabel!
+    @IBOutlet private weak var labelIcon: UIImageView!
     private var mediaURL: URL?
     private var title: String?
     private var remoteID: Int = 0
@@ -27,19 +28,11 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkIfPlaying()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
-        checkIfPlaying()
-    }
-
-    private func checkIfPlaying() {
-        if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
-            isPlaying ? ThemeView.audioPlaying.apply(audioLabelView) : ThemeView.level1.apply(audioLabelView)
-        }
     }
 
     func configure(categoryTitle: String,
@@ -57,12 +50,13 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
         self.remoteID = remoteID
         self.duration = duration
         self.delegate = delegate
-        ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
+        ThemeText.qotTools.apply(title, to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
-        mediaIconImageView.image = R.image.ic_audio_grey()
-        checkIfPlaying()
+        mediaIconImageView.image = R.image.ic_audio()
+        mediaIconImageView.tintColor = .darkGrey
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60, Int(duration) % 60)
-        ThemeText.audioLabel.apply(mediaDescription, to: audioLabel)
+        ThemeText.audioLabelLight.apply(mediaDescription, to: audioLabel)
+        audioLabelView.corner(radius: 20, borderColor: .black, borderWidth: 1)
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
     }
 }
@@ -80,7 +74,8 @@ extension ToolsCollectionsAudioTableViewCell {
     }
 
     func makePDFCell() {
-        mediaIconImageView.image = R.image.ic_read_grey()
+        mediaIconImageView.image = R.image.ic_read()
+        mediaIconImageView.tintColor = .black
         audioLabelView.isHidden = true
         audioButton.isHidden = true
     }
@@ -90,9 +85,13 @@ extension ToolsCollectionsAudioTableViewCell {
 
 private extension ToolsCollectionsAudioTableViewCell {
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
-//        audioLabelView.isHidden = false
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
-            audioLabelView.backgroundColor = UIColor.accent.withAlphaComponent(0.4)
+            audioLabelView.corner(radius: 20, borderColor: .lightGrey, borderWidth: 1)
+            mediaIconImageView.tintColor = .lightGrey
+            labelIcon.tintColor = .lightGrey
+            audioLabel.textColor = .lightGrey
+            titleLabel.textColor = .lightGrey
+            detailLabel.textColor = .lightGrey
         }
     }
 }

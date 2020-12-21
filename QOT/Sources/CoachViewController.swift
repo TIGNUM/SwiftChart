@@ -97,7 +97,7 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: CoachTableViewCell = tableView.dequeueCell(for: indexPath)
         let item = coachModel?.coachItems[indexPath.row]
         cell.configure(title: item?.title ?? "", subtitle: item?.subtitle ?? "")
-        cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
+        cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
         addDisclosure(to: cell)
         cell.addTopLine(for: indexPath.row)
         return cell

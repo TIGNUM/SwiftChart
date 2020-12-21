@@ -157,7 +157,6 @@ public extension AppTextKey {
     static let coach_tools_tools_list = AppTextKey("coach.tools.tools_list")
     static let coach_tools_tools_list_tool_details = AppTextKey("coach.tools.tools_list.tool.details")
 
-
     static let coach_tools_mindset_title = AppTextKey("coach.tools.mindset.title")
     static let coach_tools_movement_title = AppTextKey("coach.tools.movement.title")
     static let coach_tools_recovery_title = AppTextKey("coach.tools.recovery.title")

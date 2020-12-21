@@ -28,10 +28,11 @@ final class ToolsCollectionsVideoTableViewCell: BaseToolsTableViewCell, Dequeuea
     }
 
     func configure(title: String, timeToWatch: String, imageURL: URL?) {
-        ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
+        ThemeText.qotTools.apply(title, to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
         skeletonManager.addOtherView(previewImageView)
         previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
-        mediaIconImageView.image = R.image.ic_camera_tools()?.withRenderingMode(.alwaysTemplate)
+        mediaIconImageView.image = R.image.ic_camera_grey()
+        mediaIconImageView.tintColor = .darkGrey
     }
 }

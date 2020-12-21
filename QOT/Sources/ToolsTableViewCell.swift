@@ -18,7 +18,7 @@ final class ToolsTableViewCell: BaseToolsTableViewCell, Dequeueable {
     // MARK: - Lifecycle
 
     func configure(title: String, subtitle: String) {
-        ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
+        ThemeText.qotTools.apply(title, to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "chevron_right.png",
+      "filename" : "Arrow front.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "chevron_right@2x.png",
+      "filename" : "Arrow front@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "chevron_right@3x.png",
+      "filename" : "Arrow front@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

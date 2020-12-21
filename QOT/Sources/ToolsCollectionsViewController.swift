@@ -111,6 +111,7 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
 
     func setupView() {
         setupTableView()
+        backButton.imageView?.tintColor = .black
     }
 
     func reload() {
@@ -139,8 +140,8 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         case .header:
             let headerTitle = interactor.headerTitle
             if headerTitle.count > 0 {
-                let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " TOOLS"
-                return ToolsTableHeaderView.init(title: title.uppercased(), subtitle: nil)
+                let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " tools"
+                return ToolsTableHeaderView.init(title: title.capitalizingFirstLetter(), subtitle: nil)
             }
         default:
             break
@@ -152,7 +153,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         let tool = interactor.tools[indexPath.item]
         if tool.isCollection == true {
             let cell: ToolsCollectionsGroupTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,
@@ -175,7 +176,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return cell
         } else if tool.type == "audio" {
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,
@@ -188,7 +189,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return cell
         } else if tool.type == "pdf" {
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,
@@ -198,15 +199,17 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            delegate: nil)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
-            cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+            cell.accessoryView = UIImageView(image: R.image.ic_disclosure())
+            cell.accessoryView?.tintColor = .black
             return cell
         } else {
             let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
-            cell.configure(title: tool.title,
+            cell.configure(title: tool.title.lowercased().capitalizingFirstLetter(),
                            subtitle: AppTextService.get(.coach_tools_labels_label_interactive))
             cell.addTopLine(for: indexPath.row)
-            cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+            cell.accessoryView = UIImageView(image: R.image.ic_disclosure())
+            cell.accessoryView?.tintColor = .black
             return cell
         }
     }
