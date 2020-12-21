@@ -133,7 +133,8 @@ extension MyXTeamSettingsViewController: UITableViewDelegate, UITableViewDataSou
             cell.configure(title: interactor.getTitleForItem(at: indexPath), themeCell: .level3)
             let subtitle = interactor.getSubtitleForItem(at: indexPath)
             cell.configure(subTitle: subtitle, isHidden: subtitle == "")
-            cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+            cell.accessoryView = UIImageView(image: R.image.ic_disclosure())
+            cell.accessoryView?.tintColor = .white
             return cell
         default:
             let cell: TeamSettingsTableViewCell = tableView.dequeueCell(for: indexPath)

@@ -14,8 +14,8 @@ final class MyQotSensorsViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
-    @IBOutlet private weak var ouraRingStatusButton: UIButton!
-    @IBOutlet private weak var healthKitStatusButton: UIButton!
+    @IBOutlet private weak var ouraRingStatusButton: RoundedButton!
+    @IBOutlet private weak var healthKitStatusButton: RoundedButton!
     @IBOutlet private weak var ouraRingLabel: UILabel!
     @IBOutlet private weak var healthKitLabel: UILabel!
     @IBOutlet private weak var healthKitDescriptionLabel: UILabel!
@@ -69,8 +69,8 @@ extension MyQotSensorsViewController {
 extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        ThemeButton.accent40.apply(healthKitStatusButton)
-        ThemeButton.accent40.apply(ouraRingStatusButton)
+        ThemeButton.darkButton.apply(ouraRingStatusButton)
+        ThemeButton.darkButton.apply(healthKitStatusButton)
     }
 
     func set(headerTitle: String, sensorTitle: String) {
@@ -81,11 +81,11 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
 
     func setHealthKit(title: String, status: String, showNoDataInfo: Bool) {
         ThemeText.mySensorsDescriptionTitle.apply(title, to: healthKitLabel)
-        healthKitStatusButton.setTitle(status, for: .normal)
+        ThemableButton.darkButton.apply(healthKitStatusButton, title: title)
     }
 
     func setOuraRing(title: String, status: String, labelStatus: String) {
-        ouraRingStatusButton.setTitle(status, for: .normal)
+        ThemableButton.darkButton.apply(ouraRingStatusButton, title: title)
         ThemeText.mySensorsDescriptionTitle.apply(title, to: ouraRingLabel)
     }
 
