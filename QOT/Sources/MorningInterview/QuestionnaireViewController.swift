@@ -397,9 +397,9 @@ extension QuestionnaireViewController {
                     }
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
+                    indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count ?? 0 > 0 ? 1.0 : 0.0
                  }
             }
-            indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count ?? 0 > 0 ? 1.0 : 0.0
         } else {
             indexLabel.text = String(items - index)
             indexLabel.layer.borderWidth = 1.0
