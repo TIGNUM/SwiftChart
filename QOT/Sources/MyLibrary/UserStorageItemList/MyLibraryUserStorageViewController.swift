@@ -156,8 +156,8 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         ThemeView.level3.apply(view)
         tableView.allowsSelection = false
         addButtonWidthConstraint.constant = interactor.showAddButton ? 80 : 0.0
-        addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
-        addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
+        addButton.setImage(R.image.ic_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        addButton.setImage(R.image.ic_note()?.withRenderingMode(.alwaysTemplate), for: .disabled)
         ThemableButton.myLibrary.apply(addButton, title: " " + interactor.addTitle)
         // (interactor.items == nil) means, need to show skeleton
         tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? 0) == 0

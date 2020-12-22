@@ -72,28 +72,28 @@ final class MyLibraryCategoryListWorker {
 
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_all_title),
                                                    items: sorted,
-                                                   icon: R.image.my_library_group(),
+                                                   icon: R.image.ic_group(),
                                                    type: .ALL,
                                                    newItemCount: allCounts))
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_bookmarks_title),
                                                    items: bookmarks,
-                                                   icon: R.image.my_library_bookmark(),
+                                                   icon: R.image.ic_bookmark(),
                                                    type: .BOOKMARK,
                                                    newItemCount: newBookmarkCount))
             if !isTeam {
                 let title = AppTextService.get(.my_qot_my_library_section_downloads_title)
                 userStorages.append(self.viewModelWith(title: title, items: downloads,
-                                                       icon: R.image.my_library_download(), type: .DOWNLOAD,
+                                                       icon: R.image.ic_download(), type: .DOWNLOAD,
                                                        newItemCount: 0))
             }
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_links_title),
                                                    items: links,
-                                                   icon: R.image.my_library_link(),
+                                                   icon: R.image.ic_link(),
                                                    type: .EXTERNAL_LINK,
                                                    newItemCount: newLinkCount))
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_notes_title),
                                                    items: notes,
-                                                   icon: R.image.my_library_note_light(),
+                                                   icon: R.image.ic_note(),
                                                    type: .NOTE,
                                                    newItemCount: newNoteCount))
             completion(initiated, userStorages)

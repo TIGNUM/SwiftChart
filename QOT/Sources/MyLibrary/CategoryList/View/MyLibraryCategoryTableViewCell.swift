@@ -30,13 +30,14 @@ class MyLibraryCategoryTableViewCell: UITableViewCell, Dequeueable {
         guard let model = withModel else {
             return
         }
+        ThemeText.librarySubtitle.apply(model.infoText(), to: infoText)
+        ThemeText.myLibraryItemsTitle.apply(model.title, to: categoryName)
         selectionStyle = .default
         self.selectedBackgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView?.backgroundColor = .accent10
+        self.selectedBackgroundView?.backgroundColor = .tignumPink10
         skeletonManager.hide()
-        self.categoryName.text = model.title
         self.iconView.image = model.icon
-        self.infoText.text = model.infoText()
+        ThemeTint.lightGrey.apply(iconView)
         newItemCountLabel.isHidden = (model.newItemCount == 0)
         categoryName.sizeToFit()
         newItemCountLeading.constant = categoryName.frame.size.width
