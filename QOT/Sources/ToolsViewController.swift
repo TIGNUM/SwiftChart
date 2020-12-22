@@ -126,7 +126,7 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(title: (toolModel?.toolItems[indexPath.row].title) ?? "", subtitle: "\(toolCount) tools")
         cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
         cell.accessoryView = UIImageView(image: R.image.ic_disclosure())
-        cell.accessoryView?.tintColor = .black
+        ThemeTint.black.apply(cell.accessoryView ?? UIView.init())
         cell.addTopLine(for: indexPath.row)
         return cell
     }

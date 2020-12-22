@@ -49,15 +49,15 @@ struct Search {
         func mediaIcon() -> UIImage? {
             switch self {
             case .files:
-                return R.image.ic_group()?.imageWithAlpha(alpha: 0.5)
+                return R.image.ic_group()
             case .video:
-                return R.image.ic_camera_sand()
+                return R.image.ic_camera_grey()
             case .audio:
-                return R.image.ic_audio_grey_light()
+                return R.image.ic_audio()
             case .pdf, .article:
-                return R.image.read()?.imageWithAlpha(alpha: 0.5)
+                return R.image.read()
             case .tool:
-                return R.image.ic_group()?.imageWithAlpha(alpha: 0.5)
+                return R.image.ic_group()
             }
         }
 

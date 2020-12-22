@@ -122,7 +122,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                 return cell
             }
             cell.configure(categoryTitle: strategy.categoryTitle,
-                           title: strategy.title.lowercased().capitalizingFirstLetter(),
+                           title: strategy.title,
                            timeToWatch: strategy.durationString,
                            mediaURL: strategy.mediaURL,
                            duration: strategy.duration,

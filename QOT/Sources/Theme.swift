@@ -249,16 +249,25 @@ enum ThemeBorder {
 }
 
 enum ThemeTint {
-    case accent
-    case sand60
+    case darkGrey
+    case lightGrey
+    case white
+    case black
+    case actionBlue
 
     func apply(_ view: UIView) {
         var color: UIColor?
         switch self {
-        case .accent:
-            color = Palette.accent
-        case .sand60:
-            color = Palette.sand60
+        case .darkGrey:
+            color = Palette.darkGrey
+        case .lightGrey:
+            color = Palette.lightGrey
+        case .white:
+            color = .white
+        case .black:
+            color = .black
+        case .actionBlue:
+            color = .actionBlue
         }
         if let color = color {
             view.tintColor = color

@@ -53,7 +53,7 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
         ThemeText.qotTools.apply(title, to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
         mediaIconImageView.image = R.image.ic_audio()
-        mediaIconImageView.tintColor = .darkGrey
+        ThemeTint.darkGrey.apply(mediaIconImageView)
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60, Int(duration) % 60)
         ThemeText.audioLabelLight.apply(mediaDescription, to: audioLabel)
         audioLabelView.corner(radius: 20, borderColor: .black, borderWidth: 1)
@@ -75,7 +75,7 @@ extension ToolsCollectionsAudioTableViewCell {
 
     func makePDFCell() {
         mediaIconImageView.image = R.image.ic_read()
-        mediaIconImageView.tintColor = .black
+        ThemeTint.black.apply(mediaIconImageView)
         audioLabelView.isHidden = true
         audioButton.isHidden = true
     }
@@ -87,8 +87,8 @@ private extension ToolsCollectionsAudioTableViewCell {
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
             audioLabelView.corner(radius: 20, borderColor: .lightGrey, borderWidth: 1)
-            mediaIconImageView.tintColor = .lightGrey
-            labelIcon.tintColor = .lightGrey
+            ThemeTint.lightGrey.apply(mediaIconImageView)
+            ThemeTint.lightGrey.apply(labelIcon)
             audioLabel.textColor = .lightGrey
             titleLabel.textColor = .lightGrey
             detailLabel.textColor = .lightGrey

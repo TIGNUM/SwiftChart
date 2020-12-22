@@ -94,7 +94,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
         ThemeView.level3.apply(headerView)
         subHeaderView.addHeader(with: .level3)
         ThemeButton.editButton.apply(editButton)
-        editButton.imageView?.tintColor = .white
+        ThemeTint.white.apply(editButton.imageView ?? UIView.init())
         setContentForView()
     }
 }

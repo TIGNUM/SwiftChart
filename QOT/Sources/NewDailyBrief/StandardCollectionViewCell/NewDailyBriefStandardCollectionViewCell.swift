@@ -54,13 +54,13 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         case .audio:
             CTAIcon = UIImage.init(named: "ic_audio")
         case .video:
-            CTAIcon = UIImage.init(named: "ic_camera_tools")
+            CTAIcon = UIImage.init(named: "ic_camera_grey")
         default:
             break
         }
 
         arrowButton.setImage(CTAIcon, for: .normal)
-        arrowButton.imageView?.tintColor = .white
+        ThemeTint.white.apply(arrowButton.imageView ?? UIView.init())
     }
 
     public func startSkeleton() {

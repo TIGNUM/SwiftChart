@@ -43,8 +43,9 @@
                             <constraint firstAttribute="height" constant="72" id="yDq-sO-BOL"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera_sand" translatesAutoresizingMaskIntoConstraints="NO" id="qDp-yF-1ih">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera_grey" translatesAutoresizingMaskIntoConstraints="NO" id="qDp-yF-1ih">
                         <rect key="frame" x="24" y="63.5" width="16" height="10"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="E8m-FV-RtS"/>
                             <constraint firstAttribute="height" constant="10" id="XFW-p4-7r4"/>
@@ -110,7 +111,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_camera_sand" width="17" height="10"/>
+        <image name="ic_camera_grey" width="16" height="16"/>
         <image name="ic_play_sand_hollow" width="16" height="16"/>
         <image name="my_sprints_completed" width="16" height="16"/>
         <systemColor name="systemGrayColor">

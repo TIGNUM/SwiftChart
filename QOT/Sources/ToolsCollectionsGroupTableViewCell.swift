@@ -46,8 +46,7 @@ final class ToolsCollectionsGroupTableViewCell: BaseToolsTableViewCell, Dequeuea
         ThemeText.qotTools.apply(title, to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply( "\(numberOfItems)" + " items", to: detailLabel)
         mediaIconImageView.image = R.image.ic_group()
-        mediaIconImageView.tintColor = .darkGrey
-        mediaIconImageView.tintColor = .black
+        ThemeTint.black.apply(mediaIconImageView)
         counterView.corner(radius: 20, borderColor: .black, borderWidth: 1)
         counterLabel.attributedText = NSAttributedString(string: "\(numberOfItems)",
                                                        letterSpacing: 0.4,

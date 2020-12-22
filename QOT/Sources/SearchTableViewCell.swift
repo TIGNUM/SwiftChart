@@ -28,6 +28,7 @@ final class SearchTableViewCell: UITableViewCell, Dequeueable {
         ThemeText.searchResult.apply(title, to: titleLabel)
         if let contentType = contentType {
             iconImage.image = contentType.mediaIcon()
+            ThemeTint.lightGrey.apply(iconImage)
         }
         if let duration = duration {
             ThemeText.datestamp.apply(duration, to: durationLabel)
