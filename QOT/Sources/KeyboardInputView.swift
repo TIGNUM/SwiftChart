@@ -24,16 +24,17 @@ final class KeyboardInputView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         NewThemeView.dark.apply(self)
-        rightButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        leftButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        rightButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
+        leftButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
+        leftButton.setTitleColor(.white, for: .normal)
         updateRightButton(false)
     }
 
     func updateRightButton(_ isEnabled: Bool) {
         rightButton.isUserInteractionEnabled = isEnabled
         UIView.animate(withDuration: Animation.duration_02) { [weak self] in
-            self?.rightButton.setTitleColor(isEnabled ? .accent : .sand30, for: .normal)
-            self?.rightButton.backgroundColor = isEnabled ? .black : .sand08
+            self?.rightButton.setTitleColor(isEnabled ? .white : .black, for: .normal)
+            self?.rightButton.backgroundColor = isEnabled ? .black : .white
             self?.rightButton.layer.borderWidth = isEnabled ? 1 : 0
         }
     }
