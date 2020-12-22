@@ -63,7 +63,7 @@ final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
 private extension AskPermissionViewController {
     func cancelButton(_ title: String) -> UIBarButtonItem {
         let button = RoundedButton(title: title, target: self, action: #selector(didTapCancelButton))
-        ThemableButton.darkButtons.apply(button, title: title)
+        ThemableButton.darkButton.apply(button, title: title)
         return button.barButton
     }
 
