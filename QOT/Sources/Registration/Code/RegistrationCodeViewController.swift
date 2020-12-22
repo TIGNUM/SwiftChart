@@ -122,7 +122,7 @@ extension RegistrationCodeViewController: RegistrationCodeViewControllerInterfac
 
         ThemeText.registrationCodePreCode.apply(interactor.preCode, to: preCodeLabel)
 
-        buttonCheckbox.corner(radius: .Three, borderColor: .sand40)
+        buttonCheckbox.corner(radius: .Three, borderColor: .white)
         buttonCheckbox.setImage(R.image.registration_checkmark(), for: .selected)
 
         ThemeText.registrationCodeDisclaimerError.apply(interactor.disclaimerError, to: disclaimerErrorLabel)

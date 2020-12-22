@@ -51,7 +51,7 @@ private extension FeatureExplainerViewController {
     func setupBottomNavigation(_ viewModel: FeatureExplainer.ViewModel) {
         let title = AppTextService.get(.generic_feature_explainer_button)
         let button = RoundedButton(title: title, target: self, action: #selector(didTapGetStartedButton))
-        ThemableButton.askPermissions.apply(button, title: title)
+        ThemableButton.darkButton.apply(button, title: title)
         rightBarButtonItems = [button.barButton]
         updateBottomNavigation([], rightBarButtonItems)
     }

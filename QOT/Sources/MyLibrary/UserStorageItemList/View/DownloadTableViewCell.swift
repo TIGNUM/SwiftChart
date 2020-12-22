@@ -24,7 +24,7 @@ class DownloadTableViewCell: BaseMyLibraryTableViewCell {
         activityView.stopRotating()
 
         if status == .waiting {
-            activityIcon.image = R.image.my_library_download()
+            activityIcon.image = R.image.ic_download()
         } else if status == .downloading {
             activityIcon.image = R.image.my_library_stop()
             activityView.isHidden = false
