@@ -1006,6 +1006,7 @@ enum ThemeText {
     case tbvQuestionLow
     case questionairePageCurrent
     case questionairePageTotal
+    case librarySubtitle
 
     // MARK: - New Approach
     case H01Light
@@ -1137,7 +1138,7 @@ enum ThemeText {
              .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .durationString, .resultDate,
              .resultFollowUp, .articleTagTitle, .settingsTitle, .settingsTitleFade, .myDataChartValueLabels,
              .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus, .Text03Light, .myPlansHeader,
-             .articleCategoryNotScaled, .qotToolsSectionSubtitle, .audioFullScreenCategory:
+             .articleCategoryNotScaled, .qotToolsSectionSubtitle, .audioFullScreenCategory, .librarySubtitle:
             return Fonts.fontMedium12
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
@@ -1227,7 +1228,7 @@ enum ThemeText {
              .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
-             .registrationCodePreCode, .registrationCodeInfoActions, .registrationAgeDescription,
+             .registrationCodePreCode, .registrationCodeInfoActions, .registrationAgeDescription, .librarySubtitle,
              .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights,
              .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
              .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
@@ -1260,7 +1261,6 @@ enum ThemeText {
             .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight:
             return .black
 
-        // MARK: - .accent
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .accountHeaderTitle, .articleContactSupportLink,
              .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
@@ -1343,7 +1343,7 @@ enum ThemeText {
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
              .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
              .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText, .questionairePageCurrent, .questionairePageTotal,
-             .tbvQuestionLow, .tbvQuestionHigh:
+             .tbvQuestionLow, .tbvQuestionHigh, .librarySubtitle:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)

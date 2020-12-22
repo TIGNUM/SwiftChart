@@ -106,15 +106,15 @@ final class MyLibraryUserStorageWorker {
         let image: UIImage?
         switch item.type {
         case .ALL:
-            image = R.image.my_library_group()
+            image = R.image.ic_group()
         case .BOOKMARK:
-            image = R.image.my_library_bookmark()
+            image = R.image.ic_bookmark()
         case .DOWNLOAD:
-            image = R.image.my_library_download()
+            image = R.image.ic_download()
         case .EXTERNAL_LINK:
-            image = R.image.my_library_link()
+            image = R.image.ic_link()
         case .NOTE:
-            image = R.image.my_library_note_light()
+            image = R.image.ic_note()
         }
         return image ?? UIImage()
     }()
@@ -123,15 +123,15 @@ final class MyLibraryUserStorageWorker {
         let image: UIImage?
         switch item.type {
         case .ALL:
-            image = R.image.my_library_group()
+            image = R.image.ic_group()
         case .BOOKMARK:
-            image = R.image.my_library_bookmark_text_icon()
+            image = R.image.ic_bookmark()
         case .DOWNLOAD:
-            image = R.image.my_library_download_text_icon()
+            image = R.image.ic_download()
         case .EXTERNAL_LINK:
-            image = R.image.my_library_link_text_icon()
+            image = R.image.ic_link()
         case .NOTE:
-            image = R.image.my_library_note_light()
+            image = R.image.ic_note()
         }
         return image ?? UIImage()
     }()
