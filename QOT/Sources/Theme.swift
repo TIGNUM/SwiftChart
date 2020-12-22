@@ -414,11 +414,9 @@ enum ThemeCircles {
 }
 
 enum ThemableButton {
-    case myLibrary
     case fullscreenAudioPlayerDownload
     case fullscreenAudioPlayerDownloadLight
     case fullscreenVideoPlayerDownload
-    case myLibraryNotes
     case syncedCalendar
     case walkthroughGotIt
     case myPlans
@@ -451,9 +449,6 @@ enum ThemableButton {
              .trackSelection,
              .level5:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
-        case .myLibraryNotes,
-             .myLibrary:
-            return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload,
              .paymentReminder, .myPlans, .darkButton:
@@ -479,8 +474,7 @@ enum ThemableButton {
 
     var highlight: ButtonTheme? {
         switch self {
-        case .myLibrary,
-             .syncedCalendar,
+        case .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
@@ -488,8 +482,6 @@ enum ThemableButton {
              .createAccountInfo,
              .trackSelection:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
-        case .myLibraryNotes:
-            return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload,
              .paymentReminder:
@@ -530,12 +522,9 @@ enum ThemableButton {
 
     var disabled: ButtonTheme? {
         switch self {
-        case .myLibrary,
-             .myPlans,
+        case .myPlans,
              .myTbvDataRate:
             return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
-        case .myLibraryNotes:
-            return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .darkButton:
             return ButtonTheme(foreground: .black, background: .white, border: nil)
         case .fullscreenAudioPlayerDownloadLight, .lightButton:
@@ -786,9 +775,7 @@ enum ThemeText {
     case tbvStatement
     case solveFuture
     case level5Question
-    case performanceBucketTitle
     case performanceSubtitle
-    case performanceSections
     case performanceSectionText
     case bespokeTitle
     case bespokeText
@@ -798,12 +785,10 @@ enum ThemeText {
     case insightsSHPIText
     case leaderVideoTitle
     case strategyTitle
-    case fromCoachTitle
     case goodToKnow
     case readinessScore
     case asterix
     case impactBucket
-    case sleepReference
     case reference
     case qotAlertTitle
     case qotAlertMessage
@@ -890,7 +875,6 @@ enum ThemeText {
     case myDataMonthYearTitle
     case myDataWeekdaysNotHighlighted(Bool)
     case myDataWeekdaysHighlighted(Bool)
-    case myDataSwitchButtons
     case myDataChartValueLabels
     case myDataChartIRAverageLabel
     case myDataParameterLegendText(MyDataParameter)
@@ -1021,7 +1005,7 @@ enum ThemeText {
         case .asterix, .weatherLocation:
             return Fonts.fontRegular13
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
-             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .tbvTrackerBody, .loginEmailMessage,
+             .performanceSubtitle, .quoteAuthor, .reference, .tbvTrackerBody, .loginEmailMessage,
              .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
              .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
              .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .articleContactSupportInfoTitle,
@@ -1041,7 +1025,7 @@ enum ThemeText {
             return Fonts.fontRegular16
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder, .trends, .tbvQuestionLow:
             return Fonts.fontRegular18
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader,
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .myQOTSectionHeader,
              .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
@@ -1134,14 +1118,14 @@ enum ThemeText {
              .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus, .Text03Light, .myPlansHeader,
              .articleCategoryNotScaled, .qotToolsSectionSubtitle, .audioFullScreenCategory, .librarySubtitle:
             return Fonts.fontMedium12
-        case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
+        case .articleNextTitle, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
              .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription,
              .dailyBriefImpactReadinessRolling, .onboardingInfoBody, .paymentReminderHeaderSubtitle,
              .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader, .mySensorsTitle, .H03Light,
              .MediumBodySand, .questionairePageCurrent, .questionairePageTotal:
             return Fonts.fontMedium14
-        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader,
+        case .sprintName, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader,
              .dailyBriefFromTignumTitle:
             return Fonts.fontMedium16
         case .tbvQuestionHigh:
@@ -1150,7 +1134,7 @@ enum ThemeText {
         // MARK: - fontBold
         case .audioLabel, .audioLabelLight, .myDataChartIRAverageLabel, .resultCounter, .audioPlayerTime, .audioPlayerTimeLight:
             return Fonts.fontSemiBold12
-        case .chatbotButton, .chatbotButtonSelected, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons,
+        case .chatbotButton, .chatbotButtonSelected, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton,
              .myDataWeekdaysHighlighted, .registrationCodeLink, .articleContactSupportLink,
              .loginSeparator, .chatbotProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
@@ -1191,13 +1175,13 @@ enum ThemeText {
         // MARK: - .white
         case .navigationBarHeader, .quotation, .iRscore, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
-             .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .bucketTitle, .solveQuestions,
-             .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
-             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
+             .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .bucketTitle, .solveQuestions, .customAlertAction,
+             .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle, .accountHeaderTitle,
+             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText, .myLibraryGroupName,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
-             .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .optionPage,
+             .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .optionPage, .linkMenuItem, .loginSeparator,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
-             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends, .articleStrategyTitle, .audioBar,
+             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends, .articleStrategyTitle, .audioBar, .tbvButton, .mySprintDetailsCta,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
@@ -1236,7 +1220,7 @@ enum ThemeText {
             return Palette.lightGrey
 
         // MARK: - .darkGrey
-        case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
+        case .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader, .Text02Light,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle, .H03Light, .Text03Light, .performanceSectionText,
              .qotToolsSectionSubtitle, .resultHeader2, .audioPlayerTitleDark, .qotToolsSubtitle, .durationString,
              .paymentReminderCellSubtitle, .Text01Light, .performanceSubtitle, .resultDate, .audioFullScreenCategory:
@@ -1249,17 +1233,11 @@ enum ThemeText {
         case .coachTitle:
             return Palette.tignumBlue
         // MARK: - .black
-        case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
+        case .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
             .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation,
             .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight:
             return .black
-
-        case .linkMenuItem, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
-             .myDataSwitchButtons, .accountHeaderTitle, .articleContactSupportLink,
-             .articleAudioBar, .audioLabel, .loginSeparator, .myLibraryGroupName,
-             .mySprintDetailsCta, .Text02Light, .customAlertAction:
-            return Palette.light(.black, or: .white)
 
         // MARK: - .mindsetShifter Green
         case .tbvQuestionHigh:
@@ -1285,8 +1263,10 @@ enum ThemeText {
         case .articleRelatedDetail(let mode):
             return Palette.light(Palette.darkGrey, or: Palette.lightGrey, forcedColorMode: mode)
         case .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline, .articleHeadlineSmall,
-             .articleNavigationTitle, .articleTagTitle, .articleParagraph, .article,
-             .articleQuestion, .articleSub, .articleNum, .articleSector, .articleTitle, .articleTitleNotScaled, .articleBody:
+             .articleNavigationTitle, .articleTagTitle, .articleParagraph, .article, .articleQuestion, .articleSub,
+             .articleNum, .articleSector, .articleTitle, .articleTitleNotScaled, .articleBody,
+             .articleToolBarTint, .articleContactSupportLink,
+             .articleAudioBar, .audioLabel:
             return Palette.light(.black, or: .white)
         case .articleHeadlineSmallRed:
             return Palette.cherryRed
@@ -1345,7 +1325,7 @@ enum ThemeText {
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.4, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .center)
-        case .articleTitle, .articleTitleNotScaled, .audioFullScreenTitleDark, .audioFullScreenTitle, .performanceSections,
+        case .articleTitle, .articleTitleNotScaled, .audioFullScreenTitleDark, .audioFullScreenTitle,
              .myRating, .averageRating, .totalVotes, .audioLabel, .audioLabelLight, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight,
              .performanceSectionText, .teamTvbTimeSinceTitle, .trends, .ratingExplanationTitle:
             string = NSAttributedString(string: text,
@@ -1359,7 +1339,7 @@ enum ThemeText {
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color,
                                         alignment: alignment ?? .left)
-        case .performanceStaticTitle, .fromCoachTitle, .resultDate:
+        case .performanceStaticTitle, .resultDate:
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
         case .bucketTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer,
@@ -1370,7 +1350,7 @@ enum ThemeText {
              .baseHeaderSubtitleBold:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .left)
-        case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
+        case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .goodToKnow, .readinessScore,
              .onboardingInputPlaceholder, .onboardingInputText, .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage,
              .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage, .registrationEmailTitle,
              .registrationEmailMessage, .registrationEmailError, .registrationCodeTitle, .registrationCodePreCode,
@@ -1392,8 +1372,7 @@ enum ThemeText {
              .mySprintDetailsProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
                                         alignment: alignment ?? .center)
-        case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle,
-              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription,
+        case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription,
               .dailyBriefImpactReadinessRolling, .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText,
               .featureLabel:
              string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,

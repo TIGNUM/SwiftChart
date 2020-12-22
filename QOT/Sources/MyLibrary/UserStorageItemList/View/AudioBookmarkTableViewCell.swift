@@ -9,7 +9,7 @@
 import UIKit
 
 class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell {
-    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var playButton: RoundedButton!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         if self.isEditing {
@@ -24,7 +24,7 @@ class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell {
 
     func configure(playButtonTitle: String?, playButtonTag: Int = 0) {
         configure()
-        playButton.setTitle(playButtonTitle, for: .normal)
+        ThemableButton.darkButton.apply(playButton, title: playButtonTitle)
         playButton.tag = playButtonTag
     }
 }
