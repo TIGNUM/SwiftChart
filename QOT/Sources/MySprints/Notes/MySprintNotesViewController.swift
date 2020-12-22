@@ -40,7 +40,7 @@ final class MySprintNotesViewController: BaseViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        textView.tintColor = .white
+        ThemeTint.white.apply(textView)
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
         showDefaultBottomButtons()

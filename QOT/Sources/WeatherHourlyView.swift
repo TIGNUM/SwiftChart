@@ -32,7 +32,7 @@ class WeatherHourlyView: UIView {
 
     public func set(image: UIImage, isNow: Bool = false) {
         imageView.image = image
-        imageView.tintColor = isNow ? .white : .lightGrey
+        isNow ? ThemeTint.white.apply(imageView) : ThemeTint.lightGrey.apply(imageView)
         imageView.isHidden = false
         fallbackWeatherLabel.isHidden = true
     }

@@ -139,7 +139,6 @@ private extension ArticleViewController {
         tableView.registerDequeueable(ArticleRelatedTableViewCell.self)
         tableView.registerDequeueable(ArticleNextUpTableViewCell.self)
         tableView.registerDequeueable(FoundationTableViewCell.self)
-        tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
         tableView.registerDequeueable(ArticleContactSupportTableViewCell.self)
         tableView.tableFooterView = UIView()
@@ -417,7 +416,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(title: title,
                            timeToWatch: item.type.durationString,
                            imageURL: placeholderURL,
-                           forcedColorMode: .dark,
+                           forcedColorMode: colorMode == .dark ? .dark : .light,
                            isSeen: false)
             return cell
         case .pdf(let title, let description, _, _):

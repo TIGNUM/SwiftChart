@@ -102,7 +102,7 @@ private extension ToolsItemsViewController {
 // MARK: - ToolsItemsViewControllerInterface
 extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func setupView() {
-        backButton?.imageView?.tintColor = .black
+        ThemeTint.black.apply(backButton?.imageView ?? UIView.init())
         setupTableView()
     }
 

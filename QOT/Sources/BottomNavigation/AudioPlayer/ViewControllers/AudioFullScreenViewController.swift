@@ -71,16 +71,16 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         switch colorMode {
         case .dark:
             closeButton.setImage(R.image.arrowDown(), for: .normal)
-            closeButton.imageView?.tintColor = .white
-            downloadButton.imageView?.tintColor = .white
-            bookmarkButton.imageView?.tintColor = .white
+            ThemeTint.white.apply(closeButton.imageView ?? UIImageView.init())
+            ThemeTint.white.apply(downloadButton.imageView ?? UIImageView.init())
+            ThemeTint.white.apply(bookmarkButton.imageView ?? UIImageView.init())
             ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: nil)
         case .darkNot:
             closeButton.setImage(R.image.arrowDown(), for: .normal)
-            closeButton.imageView?.tintColor = .black
-            downloadButton.imageView?.tintColor = .black
-            bookmarkButton.imageView?.tintColor = .black
+            ThemeTint.black.apply(closeButton.imageView ?? UIImageView.init())
+            ThemeTint.black.apply(downloadButton.imageView ?? UIImageView.init())
+            ThemeTint.black.apply(bookmarkButton.imageView ?? UIImageView.init())
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(bookmarkButton, title: nil)
             ThemableButton.fullscreenAudioPlayerDownloadLight.apply(downloadButton, title: nil)
         }
@@ -273,9 +273,9 @@ extension AudioFullScreenViewController {
             if self?.bookmarkButton.isSelected == true {
                 switch self?.colorMode {
                 case .dark:
-                    self?.bookmarkButton.imageView?.tintColor = .black
+                    ThemeTint.black.apply(self?.bookmarkButton.imageView ?? UIImageView.init())
                 default:
-                    self?.bookmarkButton.imageView?.tintColor = .white
+                    ThemeTint.white.apply(self?.bookmarkButton.imageView ?? UIImageView.init())
                 }
             }
             if self?.bookmarkButton.isSelected == true, self?.wasBookmarked == false {

@@ -65,7 +65,7 @@ private extension InfoHelperView {
                            CircleInfo(color: UIColor.sand.withAlphaComponent(0.05), radiusRate: 1)]
 
         iconImageView.alpha = 0.4
-        iconImageView.tintColor = .sand
+        ThemeTint.white.apply(iconImageView)
 
         titleLabel.font = .sfProDisplayLight(ofSize: 20)
         titleLabel.textColor = .white

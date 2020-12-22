@@ -207,7 +207,7 @@ extension UIViewController {
          let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
          button.addConstraints([heightConstraint, widthConstraint])
          button.setImage(R.image.ic_close(), for: .normal)
-         button.imageView?.tintColor = .white
+         ThemeTint.white.apply(button.imageView ?? UIImageView.init())
          ThemeButton.closeButton(.dark).apply(button)
          return UIBarButtonItem(customView: button)
      }

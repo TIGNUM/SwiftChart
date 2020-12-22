@@ -111,7 +111,7 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
 
     func setupView() {
         setupTableView()
-        backButton.imageView?.tintColor = .black
+        ThemeTint.black.apply(backButton?.imageView ?? UIView.init())
     }
 
     func reload() {
@@ -200,7 +200,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             cell.accessoryView = UIImageView(image: R.image.ic_disclosure())
-            cell.accessoryView?.tintColor = .black
+            ThemeTint.black.apply(cell.accessoryView ?? UIView.init())
             return cell
         } else {
             let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -209,7 +209,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            subtitle: AppTextService.get(.coach_tools_labels_label_interactive))
             cell.addTopLine(for: indexPath.row)
             cell.accessoryView = UIImageView(image: R.image.ic_disclosure())
-            cell.accessoryView?.tintColor = .black
+            ThemeTint.black.apply(cell.accessoryView ?? UIView.init())
             return cell
         }
     }

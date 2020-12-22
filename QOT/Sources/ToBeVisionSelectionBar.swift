@@ -145,7 +145,7 @@ extension ToBeVisionSelectionBar {
             self.labelTitle.alpha = 1 - alpha
         }
         buttonMore.backgroundColor = isShowingAll ? .white : .clear
-        buttonMore.imageView?.tintColor = isShowingAll ? .black : .white
+        isShowingAll ? ThemeTint.black.apply(buttonMore.imageView ?? UIView.init()) : ThemeTint.white.apply(buttonMore.imageView ?? UIView.init())
     }
 }
 

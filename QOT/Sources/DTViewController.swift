@@ -40,13 +40,13 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
 
         let image = R.image.ic_close()
         closeButton.setImage(image, for: .normal)
-        closeButton.imageView?.tintColor = .black
+        ThemeTint.black.apply(closeButton.imageView ?? UIView.init())
         closeButton.layer.borderWidth = 1
         closeButton.corner(radius: 20)
         closeButton.layer.borderColor = UIColor.black.cgColor
         let imageUp = R.image.ic_arrow_up()
         previousButton.setImage(imageUp, for: .normal)
-        previousButton.imageView?.tintColor = isDark ? .white : .black
+        isDark ? ThemeTint.white.apply(previousButton.imageView ?? UIView.init()) : ThemeTint.black.apply(previousButton.imageView ?? UIView.init())
 
         if isDark {
             ThemeBorder.accent.apply(previousButton)

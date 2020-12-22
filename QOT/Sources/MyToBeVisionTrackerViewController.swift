@@ -117,7 +117,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
                 cell.selectedBackgroundView = backgroundView
             }
             cell.accessoryView = interactor.isUserInteractionEnabled ? UIImageView(image: R.image.ic_disclosure()) : nil
-            cell.accessoryView?.tintColor = .white
+            ThemeTint.white.apply(cell.accessoryView ?? UIView.init())
             cell.isUserInteractionEnabled = interactor.isUserInteractionEnabled
             return cell
         }

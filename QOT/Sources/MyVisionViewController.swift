@@ -214,9 +214,9 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         ThemeBorder.white.apply(cameraButton)
-        cameraButton.imageView?.tintColor = .white
+        ThemeTint.white.apply(cameraButton.imageView ?? UIView.init())
         ThemeBorder.white.apply(shareButton)
-        shareButton.imageView?.tintColor = .white
+        ThemeTint.white.apply(shareButton.imageView ?? UIView.init())
         ThemeBorder.white.apply(rateButton)
         ThemeBorder.white.apply(singleMessageRateButton)
         ThemeBorder.white.apply(updateButton)

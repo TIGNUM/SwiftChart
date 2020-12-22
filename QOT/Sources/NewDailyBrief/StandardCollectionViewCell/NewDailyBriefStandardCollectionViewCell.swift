@@ -60,7 +60,7 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         }
 
         arrowButton.setImage(CTAIcon, for: .normal)
-        arrowButton.imageView?.tintColor = .white
+        ThemeTint.white.apply(arrowButton.imageView ?? UIView.init())
     }
 
     public func startSkeleton() {

@@ -55,7 +55,7 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
         textViewBottomConstraint.constant = BottomNavigationContainer.height
         initialBottomOffset = textViewBottomConstraint.constant
         startObservingKeyboard()
-        textView.tintColor = .white
+        ThemeTint.white.apply(textView)
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
     }

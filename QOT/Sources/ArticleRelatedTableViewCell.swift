@@ -22,10 +22,12 @@ class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String, durationString: String, icon: UIImage?) {
-        ThemeText.articleRelatedTitle(nil).apply(title.uppercased(), to: titleLabel)
-        ThemeText.articleRelatedDetail(nil).apply(durationString, to: detailLabel)
+        let isDark = colorMode == .dark
+        ThemeText.articleRelatedTitle(isDark ? .dark : .light).apply(title.uppercased(), to: titleLabel)
+        ThemeText.articleRelatedDetail(isDark ? .dark : .light).apply(durationString, to: detailLabel)
         iconImageView.image = icon
-        iconImageView.tintColor = colorMode == .dark ? .darkGray : .lightGray
+        isDark ? ThemeTint.lightGrey.apply(iconImageView) :
+                 ThemeTint.darkGrey.apply(iconImageView)
         contentView.backgroundColor = colorMode.background
         selectedBackgroundView?.backgroundColor = colorMode.cellHighlight
     }
