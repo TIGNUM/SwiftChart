@@ -54,5 +54,9 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
         } else { duration = ( durationString ?? "")
         }
         ThemeText.durationString.apply(duration, to: durationLabel)
+        ThemeTint.darkGrey.apply(iconFiles)
+        ThemeTint.darkGrey.apply(iconRead)
+        ThemeTint.darkGrey.apply(iconVideo)
+        ThemeTint.darkGrey.apply(iconAudio)
     }
 }
