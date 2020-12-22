@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,6 +45,7 @@
                                     <constraint firstAttribute="width" constant="40" id="Nxs-hY-7Jt"/>
                                     <constraint firstAttribute="height" constant="40" id="yGE-bG-bpM"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="ic_arrow_left"/>
                                 <connections>
                                     <action selector="didTapBack" destination="Ue7-uK-cjD" eventType="touchUpInside" id="Xd3-zt-2bZ"/>
@@ -60,6 +61,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="mqe-LI-IOR"/>
                         <color key="backgroundColor" red="0.074509803921568626" green="0.074509803921568626" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Wv0-5y-PdB" firstAttribute="top" secondItem="cs4-Rv-yhc" secondAttribute="bottom" constant="40" id="4T0-9w-rRl"/>
@@ -73,7 +75,6 @@
                             <constraint firstItem="cs4-Rv-yhc" firstAttribute="leading" secondItem="mqe-LI-IOR" secondAttribute="leading" id="osL-Mb-mJ6"/>
                             <constraint firstItem="mqe-LI-IOR" firstAttribute="bottom" secondItem="reM-N6-HQO" secondAttribute="bottom" constant="24" id="srT-V9-ptn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="mqe-LI-IOR"/>
                     </view>
                     <connections>
                         <outlet property="buttonBack" destination="reM-N6-HQO" id="QhT-E0-pE1"/>

@@ -419,7 +419,6 @@ enum ThemableButton {
     case fullscreenAudioPlayerDownloadLight
     case fullscreenVideoPlayerDownload
     case myLibraryNotes
-    case askPermissions
     case syncedCalendar
     case walkthroughGotIt
     case myPlans
@@ -430,7 +429,6 @@ enum ThemableButton {
     case paymentReminder
     case articleMarkAsRead(selected: Bool, colorMode: ThemeColorMode)
     case level5
-    case continueButton
     case tbvOption(disabled: Bool)
     case dateButtonsSelected
     case poll
@@ -445,15 +443,13 @@ enum ThemableButton {
 
     var normal: ButtonTheme? {
         switch self {
-        case .askPermissions,
-             .syncedCalendar,
+        case .syncedCalendar,
              .walkthroughGotIt,
              .signinInfo,
              .myTbvDataRate,
              .createAccountInfo,
              .trackSelection,
-             .level5,
-             .continueButton:
+             .level5:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes,
              .myLibrary:
@@ -484,7 +480,6 @@ enum ThemableButton {
     var highlight: ButtonTheme? {
         switch self {
         case .myLibrary,
-             .askPermissions,
              .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
@@ -505,8 +500,7 @@ enum ThemableButton {
             return ButtonTheme(foreground: selected ? (colorMode == .dark ? .white : .black) : (colorMode == .dark ? .black : .white),
                                background: selected ? .clear : (colorMode == .dark ? .white : .black),
                                border: colorMode == .dark ? .white : .black)
-        case .level5,
-             .continueButton:
+        case .level5:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .newBlueButton:
             return ButtonTheme(foreground: .white40, background: .actionBlue75, border: .clear)
@@ -1203,7 +1197,7 @@ enum ThemeText {
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
              .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .optionPage,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
-             .dailyBriefLevelTitle, .searchSuggestion, .myRating,
+             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
@@ -1264,7 +1258,7 @@ enum ThemeText {
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .accountHeaderTitle, .articleContactSupportLink,
              .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
-             .mySprintDetailsCta, .Text02Light, .customAlertAction, .trends:
+             .mySprintDetailsCta, .Text02Light, .customAlertAction:
             return Palette.light(.black, or: .white)
 
         // MARK: - .mindsetShifter Green
