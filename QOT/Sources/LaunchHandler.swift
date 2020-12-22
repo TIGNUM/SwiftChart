@@ -392,7 +392,7 @@ extension LaunchHandler {
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
             case .video:
                 guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }
-                baseRootViewController?.stream(videoURL: mediaURL, contentItem: contentItem)
+                AppDelegate.topViewController()?.stream(videoURL: mediaURL, contentItem: contentItem)
             default: break
             }
         }
