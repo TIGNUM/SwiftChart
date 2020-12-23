@@ -177,11 +177,11 @@ extension UIViewController {
             print(error.localizedDescription)
         }
 
-        present(playerController, animated: true) {
+        presentSwizzled(viewControllerToPresent: playerController, animated: true, completion: {
             playerController.trackPage()
             player.volume = 1
             player.play()
-        }
+        })
         if interactor?.isLoggedIn ?? false {
             addOverlay(to: playerController)
         }
