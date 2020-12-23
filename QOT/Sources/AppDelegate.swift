@@ -211,7 +211,7 @@ private extension AppDelegate {
                 UAirship.channel()?.addTags(["\(userId)"])
                 UAirship.channel()?.updateRegistration()
                 let channelID = UAirship.channel().identifier
-                print("UAirship Application Channel ID: \(String(describing: channelID))")
+                log("UAirship Application Channel ID: \(String(describing: channelID))", level: .info)
             }
         }
     }
