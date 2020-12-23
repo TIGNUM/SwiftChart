@@ -36,9 +36,9 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
 
     func receivedNotificationResponse(_ notificationResponse: UANotificationResponse,
                                       completionHandler: @escaping () -> Void) {
-        process(notificationResponse)
         if let identifier = notificationResponse.notificationContent.notification?.request.identifier {
-            appDelegate.appCoordinator.handlePushNotificationResponse(identifier: identifier, completionHandler: completionHandler)
+            appDelegate.appCoordinator.handlePushNotificationResponse(identifier: identifier,
+                                                                      completionHandler: completionHandler)
         } else {
             completionHandler()
         }
@@ -61,7 +61,6 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     }
 
     // MARK: - private
-
     private func process(_ notificationResponse: UANotificationResponse) {
         guard let deepLinkURL = notificationResponse.notificationContent.deepLinkURL  else { return }
         launchHandler.process(url: deepLinkURL)
@@ -69,11 +68,10 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
 }
 
 // MARK: Helpers
-
 private extension UANotificationContent {
-
     var deepLinkURL: URL? {
-        guard let deepLink = notificationInfo["^d"] as? String, let url = URL(string: deepLink) else { return nil }
+        guard let deepLink = notificationInfo["^d"] as? String,
+              let url = URL(string: deepLink) else { return nil }
         return url
     }
 }
