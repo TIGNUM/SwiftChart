@@ -3850,7 +3850,6 @@
 				F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */,
 				5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */,
 				5FF1A0E8228561C800D76D55 /* TitleTableHeaderView.swift */,
-				5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */,
 				75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */,
 				5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */,
 				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
@@ -3858,6 +3857,7 @@
 				F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */,
 				5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */,
 				5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */,
+				5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */,
 				5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */,
 			);
 			name = Components;
