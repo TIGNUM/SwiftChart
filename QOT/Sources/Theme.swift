@@ -1197,7 +1197,7 @@ enum ThemeText {
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
              .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .optionPage,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
-             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends,
+             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends, .articleStrategyTitle, .audioBar,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
@@ -1255,9 +1255,9 @@ enum ThemeText {
             .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight:
             return .black
 
-        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
+        case .linkMenuItem, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .accountHeaderTitle, .articleContactSupportLink,
-             .articleAudioBar, .audioLabel, .loginSeparator, .articleStrategyTitle, .myLibraryGroupName,
+             .articleAudioBar, .audioLabel, .loginSeparator, .myLibraryGroupName,
              .mySprintDetailsCta, .Text02Light, .customAlertAction:
             return Palette.light(.black, or: .white)
 
