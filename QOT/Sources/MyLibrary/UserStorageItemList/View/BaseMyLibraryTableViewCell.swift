@@ -61,7 +61,7 @@ extension BaseMyLibraryTableViewCell {
     func setTitle(_ title: String?, read: Bool) {
         skeletonManager.hide(.title)
         guard let titleText = title else { return }
-        ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
+        ThemeText.myLibraryItemsItemName.apply(titleText.lowercased().capitalizingFirstLetter(), to: contentTitle)
     }
 
     func setInfoText(_ text: String?) {
