@@ -1186,7 +1186,7 @@ enum ThemeText {
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
              .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .optionPage,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
-             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends, .articleStrategyTitle, .audioBar,
+             .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends, .articleStrategyTitle, .audioBar, .tbvButton,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
@@ -1244,7 +1244,7 @@ enum ThemeText {
             .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight:
             return .black
 
-        case .linkMenuItem, .performanceBucketTitle, .articleToolBarTint, .sleepReference, .tbvButton,
+        case .linkMenuItem, .performanceBucketTitle, .articleToolBarTint, .sleepReference,
              .myDataSwitchButtons, .accountHeaderTitle, .articleContactSupportLink,
              .articleAudioBar, .audioLabel, .loginSeparator, .myLibraryGroupName,
              .mySprintDetailsCta, .Text02Light, .customAlertAction:
