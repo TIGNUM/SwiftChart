@@ -76,7 +76,7 @@ private extension CoachMarksViewController {
     func setupButtons(_ hideBackButton: Bool, _ rightButtonTitle: String?) {
         buttonBack.isHidden = hideBackButton
         buttonContinue.isHidden = false
-        ThemableButton.continueButton.apply(buttonContinue, title: rightButtonTitle)
+        ThemableButton.darkButton.apply(buttonContinue, title: rightButtonTitle)
     }
 
     func viewModel(at indexPath: IndexPath) -> CoachMark.ViewModel? {

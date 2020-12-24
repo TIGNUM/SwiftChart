@@ -74,6 +74,10 @@ extension UIColor {
         return UIColor(red: 255/255, green: 221/255, blue: 238/255, alpha: 1)
     }
 
+    static var tignumPink10: UIColor {
+        return UIColor(red: 255/255, green: 221/255, blue: 238/255, alpha: 0.1)
+    }
+
     static var tignumPink40: UIColor {
         return UIColor(red: 255/255, green: 221/255, blue: 238/255, alpha: 0.4)
     }
