@@ -160,10 +160,12 @@ private extension CustomizedShareViewController{
         }
         let backButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 15, height: 15)))
         backButton.setImage(closeIcon, for: .normal)
+        backButton.imageView?.tintColor = .white
         backButton.addTarget(self, action: #selector(UIWebView.goBack), for: .touchUpInside)
         backButton.tintColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         addButton.layer.borderColor = UIColor.white.withAlphaComponent(0.6).cgColor
+        addButton.backgroundColor = .black
         addButton.layer.cornerRadius = addButton.frame.size.height/2
         addButton.layer.borderWidth = 1
     }

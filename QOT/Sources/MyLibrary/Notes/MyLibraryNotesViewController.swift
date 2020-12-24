@@ -21,8 +21,9 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
     lazy var deleteButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(didTapDeleteButton))
         button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-        button.setImage(R.image.my_library_delete(), for: .normal)
-        ThemableButton.myLibraryNotes.apply(button, title: nil)
+        button.setImage(R.image.ic_delete(), for: .normal)
+        ThemeTint.white.apply(button.imageView ?? UIImageView.init())
+        ThemableButton.darkButton.apply(button, title: nil)
         return button.barButton
     }()
 
@@ -90,7 +91,7 @@ private extension MyLibraryNotesViewController {
         }
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let save = RoundedButton(title: interactor?.saveTitle, target: self, action: #selector(didTapSaveButton))
-        ThemableButton.myLibraryNotes.apply(save, title: interactor?.saveTitle)
+        ThemableButton.darkButton.apply(save, title: interactor?.saveTitle)
         saveButton = save
         toolbar.items = [dismissButton, space, save.barButton]
         return toolbar

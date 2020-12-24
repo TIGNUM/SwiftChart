@@ -56,7 +56,7 @@ private extension BookMarkSelectionViewController {
     func setupView() {
         tableView?.registerDequeueable(BookMarkSelectionCell.self)
         ThemeText.myLibraryGroupName.apply(interactor?.headerTitle ?? "CHOOSE A LIBRARY", to: titleLabel)
-        ThemableButton.myLibrary.apply(saveButton, title: interactor?.saveButtonTitle ?? "Save")
+        ThemableButton.darkButton.apply(saveButton, title: interactor?.saveButtonTitle ?? "Save")
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: { () -> Void in
             UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 self.backgroundView.backgroundColor = UIColor.carbonDark80

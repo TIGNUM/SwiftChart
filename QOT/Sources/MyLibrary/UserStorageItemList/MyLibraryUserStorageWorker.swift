@@ -168,7 +168,7 @@ final class MyLibraryUserStorageWorker {
         } else {
             replacementText = NSAttributedString(string: addTitle,
                                                  attributes: [.font: UIFont.sfProtextSemibold(ofSize: 16),
-                                                              .foregroundColor: UIColor.accent])
+                                                              .foregroundColor: UIColor.white])
         }
         let nsRange = NSRange(range, in: text)
         attributedText.deleteCharacters(in: nsRange)

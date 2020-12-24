@@ -35,6 +35,7 @@ class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
         ThemeView.level2Selected.apply(selectedView)
         selectedBackgroundView = selectedView
         selectionStyle = .default
+        ThemeTint.lightGrey.apply(icon)
     }
 
     override func layoutSubviews() {
@@ -60,11 +61,7 @@ extension BaseMyLibraryTableViewCell {
     func setTitle(_ title: String?, read: Bool) {
         skeletonManager.hide(.title)
         guard let titleText = title else { return }
-        if read {
-            ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
-        } else {
-            ThemeText.myLibraryItemsItemNameGrey.apply(titleText.uppercased(), to: contentTitle)
-        }
+        ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
     }
 
     func setInfoText(_ text: String?) {

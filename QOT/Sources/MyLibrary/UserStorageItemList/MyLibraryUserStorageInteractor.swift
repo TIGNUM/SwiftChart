@@ -277,7 +277,7 @@ extension MyLibraryUserStorageInteractor {
         infoViewModel = MyLibraryUserStorageInfoViewModel(
             isFullscreen: false,
             icon: self.worker.emptyContentIcon,
-            title: self.worker.emtptyContentAlertTitle,
+            title: self.worker.emtptyContentAlertTitle.lowercased().capitalizingFirstLetter(),
             message: self.worker.emtptyContentAlertMessage)
         presenter.present()
     }

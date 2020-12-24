@@ -414,11 +414,9 @@ enum ThemeCircles {
 }
 
 enum ThemableButton {
-    case myLibrary
     case fullscreenAudioPlayerDownload
     case fullscreenAudioPlayerDownloadLight
     case fullscreenVideoPlayerDownload
-    case myLibraryNotes
     case syncedCalendar
     case walkthroughGotIt
     case myPlans
@@ -451,9 +449,6 @@ enum ThemableButton {
              .trackSelection,
              .level5:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
-        case .myLibraryNotes,
-             .myLibrary:
-            return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload,
              .paymentReminder, .myPlans, .darkButton:
@@ -479,8 +474,7 @@ enum ThemableButton {
 
     var highlight: ButtonTheme? {
         switch self {
-        case .myLibrary,
-             .syncedCalendar,
+        case .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
@@ -488,8 +482,6 @@ enum ThemableButton {
              .createAccountInfo,
              .trackSelection:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
-        case .myLibraryNotes:
-            return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
         case .fullscreenAudioPlayerDownload,
              .fullscreenVideoPlayerDownload,
              .paymentReminder:
@@ -530,12 +522,9 @@ enum ThemableButton {
 
     var disabled: ButtonTheme? {
         switch self {
-        case .myLibrary,
-             .myPlans,
+        case .myPlans,
              .myTbvDataRate:
             return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
-        case .myLibraryNotes:
-            return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .darkButton:
             return ButtonTheme(foreground: .black, background: .white, border: nil)
         case .fullscreenAudioPlayerDownloadLight, .lightButton:

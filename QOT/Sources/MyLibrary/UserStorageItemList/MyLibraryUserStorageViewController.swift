@@ -52,6 +52,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
 
         ThemeButton.editButton.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        ThemeTint.white.apply(editButton.imageView ?? UIImageView.init())
 
         interactor.viewDidLoad()
         tableView.registerDequeueable(ArticleBookmarkTableViewCell.self)
@@ -100,7 +101,7 @@ private extension MyLibraryUserStorageViewController {
         bottomNavigationItems.rightBarButtonItems = buttons.map {
             let button = RoundedButton(title: $0.title, target: $0.target, action: $0.action)
             button.isEnabled = $0.isEnabled
-            ThemableButton.myLibrary.apply(button, title: $0.title)
+            ThemableButton.darkButton.apply(button, title: $0.title)
             return button.barButton
         }
         refreshBottomNavigationItems()
@@ -125,8 +126,8 @@ private extension MyLibraryUserStorageViewController {
 
     private func setEditButton(enabled: Bool) {
         editButton.isEnabled = enabled
-        let color = enabled ? UIColor.accent : UIColor.sand08
-        let borderColor = enabled ? UIColor.accent40 : UIColor.sand08
+        let color = enabled ? UIColor.white : UIColor.lightGrey
+        let borderColor = enabled ? UIColor.white : UIColor.clear
         editButton.layer.borderColor = borderColor.cgColor
         editButton.tintColor = color
     }
@@ -157,8 +158,9 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         tableView.allowsSelection = false
         addButtonWidthConstraint.constant = interactor.showAddButton ? 80 : 0.0
         addButton.setImage(R.image.ic_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        ThemeTint.white.apply(addButton.imageView ?? UIImageView.init())
         addButton.setImage(R.image.ic_note()?.withRenderingMode(.alwaysTemplate), for: .disabled)
-        ThemableButton.myLibrary.apply(addButton, title: " " + interactor.addTitle)
+        ThemableButton.darkButton.apply(addButton, title: " " + interactor.addTitle)
         // (interactor.items == nil) means, need to show skeleton
         tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? 0) == 0
     }
@@ -166,7 +168,7 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     func update() {
         let isEditing = interactor.isEditing
         ThemeText.myLibraryItemsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
-        baseHeaderView?.configure(title: interactor.title, subtitle: interactor.subtitle)
+        baseHeaderView?.configure(title: interactor.title.lowercased().capitalizingFirstLetter(), subtitle: interactor.subtitle)
         headerViewHeightConstraint.constant = (baseHeaderView?.calculateHeight(for: view.frame.size.width) ?? 0) + 10
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         editButtonWidthConstraint.constant = interactor.showEditButton ? 40.0 : 0.0
