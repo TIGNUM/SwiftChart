@@ -1056,7 +1056,6 @@ extension DailyBriefInteractor {
     // MARK: - My sprints
     func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createSprintChallengeList: [SprintChallengeViewModel] = []
-        
         guard sprintBucket.sprint != nil else {
             return createSprintChallengeList
         }
@@ -1069,7 +1068,7 @@ extension DailyBriefInteractor {
             }
             let sprintContentItems = sprintContentCollections?.first?.contentItems
             let sprintInfo = sprintContentItems?.first?.valueText ?? ""
-            if sprintContentItems?.count ?? 0 > 1 {
+            if sprintContentItems?.count ?? 0 > 1, index == 0 {
                 let sprintMedia = sprintContentItems?[1]
                 relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(sprintMedia?.valueText,
                                                                                      sprintMedia?.durationString,
@@ -1083,9 +1082,8 @@ extension DailyBriefInteractor {
                                                                                      sprintMedia?.valueMediaURL,
                                                                                      searchTag))
             } else {
-                
                 sprintContentCollections?.forEach {(collection) in
-                    //                Related ContentItems
+                    // Related ContentItems
                     collection.relatedContentItems.forEach {(contentItem) in
                         relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(contentItem.valueText,
                                                                                              contentItem.durationString,
@@ -1099,7 +1097,7 @@ extension DailyBriefInteractor {
                                                                                              nil,
                                                                                              searchTag))
                     }
-                    //                Related Applinks
+                    // Related Applinks
                     collection.links.forEach {(link) in
                         relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(link.description,
                                                                                              nil,
@@ -1113,7 +1111,7 @@ extension DailyBriefInteractor {
                                                                                              nil,
                                                                                              searchTag))
                     }
-                    //                Related Contents
+                    // Related Contents
                     sprintBucket.sprint?.dailyBriefRelatedContent[index]?.forEach {(relatedContent) in
                         relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(relatedContent.title,
                                                                                              relatedContent.durationString,
@@ -1126,7 +1124,6 @@ extension DailyBriefInteractor {
                                                                                              nil,
                                                                                              nil,
                                                                                              searchTag))
-                        
                     }
                 }
             }
