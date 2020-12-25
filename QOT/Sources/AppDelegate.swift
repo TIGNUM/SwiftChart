@@ -206,6 +206,14 @@ private extension AppDelegate {
         UAirship.push()?.pushNotificationDelegate = remoteNotificationHandler
         UAirship.push()?.updateRegistration()
         UAirship.shared()?.analytics.isEnabled = true
+        UserService.main.getUserData { (user) in
+            if let userId = user?.remoteID {
+                UAirship.channel()?.addTags(["\(userId)"])
+                UAirship.channel()?.updateRegistration()
+                let channelID = UAirship.channel().identifier
+                log("UAirship Application Channel ID: \(String(describing: channelID))", level: .info)
+            }
+        }
     }
 
     func setupAppCenter() {
@@ -252,6 +260,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         if let linkString = notification.request.content.userInfo["link"] as? String {
             link = URL(string: linkString)
         } else if let urlString = notification.request.content.userInfo["url"] as? String {
+            link = URL(string: urlString)
+        } else if let urlString = notification.request.content.userInfo["^d"] as? String {
             link = URL(string: urlString)
         } else {
             let stringValues = notification.request.content.userInfo.values.filter { ($0 is String) } as? [String]
