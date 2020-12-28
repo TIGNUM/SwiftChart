@@ -28,6 +28,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     private lazy var router = DailyBriefRouter(viewController: self)
     private var isDragging = false
     private var transition: CardTransition?
+    private var scrollToSprintCard: Bool = false
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -36,15 +37,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         navigationController?.navigationBar.isHidden = true
         setupTableView()
         interactor.viewDidLoad()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateBuckets),
-                                               name: .didRateTBV, object: nil)
-        _ = NotificationCenter.default.addObserver(forName: .didUpdateDailyBriefBuckets,
-                                                   object: nil,
-                                                   queue: .main) { [weak self] notification in
-            self?.updateDailyBriefFromNotification(notification)
-
-        }
+        addObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +64,23 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 160
+    }
+
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateBuckets),
+                                               name: .didRateTBV, object: nil)
+        _ = NotificationCenter.default.addObserver(forName: .didUpdateDailyBriefBuckets,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.updateDailyBriefFromNotification(notification)
+
+        }
+        _ = NotificationCenter.default.addObserver(forName: .showSprintCards,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.scrollToSprintCard = true
+        }
     }
 }
 
@@ -398,6 +408,17 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]>) {
         tableView.reload(using: differenceList, with: .fade) { data in
             self.interactor.updateViewModelListNew(data)
+        }
+        if scrollToSprintCard {
+            var sectionIndex = 0
+            for index in 0...(interactor.bucketViewModelNew()?.count ?? 0) {
+                if interactor.bucketViewModelNew()?.at(index: index)?.model.title == AppTextService.get(AppTextKey.init("daily_brief.section_cluster_practice.title")) {
+                    sectionIndex = index
+                }
+            }
+            self.scrollToSection(at: sectionIndex)
+            self.delegate?.moveToCell(item: 1)
+            scrollToSprintCard = false
         }
     }
 

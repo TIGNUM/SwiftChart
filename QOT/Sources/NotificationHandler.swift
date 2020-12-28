@@ -21,6 +21,7 @@ enum UserInfo: String {
 extension Notification.Name {
     static let logoutNotification = Notification.Name(rawValue: "qot_logoutNotification")
     static let showSigningInfoView = Notification.Name(rawValue: "qot_show_signing_info_view_controller")
+    static let showSprintCards = Notification.Name(rawValue: "qot_show_daily_brief_sprint_cards")
     static let didUpdateSelectionCounter = Notification.Name(rawValue: "qot_decision_tree_multi_selection_counter")
 }
 
