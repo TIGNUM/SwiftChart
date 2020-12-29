@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-let maximumHeight: CGFloat = 1000.0
+let maximumHeight: CGFloat = 10000.0
 
 class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var imageView: UIImageView!
