@@ -996,6 +996,10 @@ enum ThemeText {
     case Text01LightCarbon100
     case Text02Light
     case Text03Light
+
+    case H01Medium
+    case H02Medium
+
     case MediumBodySand
 
     private var font: UIFont {
@@ -1014,7 +1018,7 @@ enum ThemeText {
              .registrationNamesMandatory, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark,
              .audioPlayerTitleLight, .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays, .asterixText,
              .shpiSubtitle, .featureLabel, .teamTvbTimeSinceTitle, .qotAlertMessage, .myDataParameterSelectionTitle,
-             .myDataParameterSelectionSubtitle, .mySprintDetailsProgress, .mySensorsDescriptionBody, .searchNoResults:
+             .myDataParameterSelectionSubtitle, .mySprintDetailsProgress, .mySensorsDescriptionBody, .searchNoResults, .H01Medium, .H02Medium:
             return Fonts.fontRegular14
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
              .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
@@ -1225,7 +1229,7 @@ enum ThemeText {
         case .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader, .Text02Light,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle, .H03Light, .Text03Light, .performanceSectionText,
              .qotToolsSectionSubtitle, .resultHeader2, .audioPlayerTitleDark, .qotToolsSubtitle, .durationString,
-             .paymentReminderCellSubtitle, .Text01Light, .performanceSubtitle, .resultDate, .audioFullScreenCategory:
+             .paymentReminderCellSubtitle, .Text01Light, .performanceSubtitle, .resultDate, .audioFullScreenCategory, .H02Medium:
             return Palette.darkGrey
 
         // MARK: - .white40
@@ -1238,7 +1242,7 @@ enum ThemeText {
         case .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
             .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation,
-            .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight:
+            .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight, .H01Medium:
             return .black
 
         // MARK: - .mindsetShifter Green
@@ -1317,7 +1321,7 @@ enum ThemeText {
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader, .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
-             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
+             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .H01Medium, .H02Medium, .myPlansHeader,
              .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText, .questionairePageCurrent, .questionairePageTotal,
              .tbvQuestionLow, .tbvQuestionHigh, .librarySubtitle:
             string = NSAttributedString(string: text,

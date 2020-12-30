@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,17 +18,18 @@
                     <rect key="frame" x="0.0" y="0.0" width="338" height="76"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swift Avengers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b00-lS-sGn">
-                            <rect key="frame" x="24" y="26" width="130.5" height="24"/>
+                            <rect key="frame" x="24" y="26" width="131" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQo-yv-JhS">
-                            <rect key="frame" x="166.5" y="18" width="40" height="40"/>
+                            <rect key="frame" x="167" y="18" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="DQT-k0-ONs"/>
                                 <constraint firstAttribute="height" constant="40" id="nVY-j5-qHH"/>
                             </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" image="ic_edit"/>
                         </button>
                     </subviews>
@@ -43,7 +45,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YJ3-k8-Wwe" userLabel="ColorContainerBlue">
                     <rect key="frame" x="338" y="0.0" width="76" height="76"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3f-ic-LBO">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I3f-ic-LBO">
                             <rect key="frame" x="26" y="26" width="24" height="24"/>
                             <color key="backgroundColor" red="0.023529411760000001" green="0.25098039220000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -53,7 +55,7 @@
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nJ-py-nU8">
                             <rect key="frame" x="26" y="54" width="24" height="2"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="d4k-Ai-OQH"/>
                                 <constraint firstAttribute="height" constant="2" id="qeq-K7-afz"/>
@@ -73,7 +75,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVf-Tj-hQZ" userLabel="ColorContainerYellow">
                     <rect key="frame" x="338" y="0.0" width="76" height="76"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNe-WE-STk">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNe-WE-STk">
                             <rect key="frame" x="26" y="26" width="24" height="24"/>
                             <color key="backgroundColor" red="0.023529411760000001" green="0.25098039220000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -83,7 +85,7 @@
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TmY-72-ufr">
                             <rect key="frame" x="26" y="54" width="24" height="2"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="em9-87-kYI"/>
                                 <constraint firstAttribute="width" constant="24" id="rG7-hC-mmh"/>
@@ -103,7 +105,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rf1-Qj-BZb" userLabel="ColorContainerGreen">
                     <rect key="frame" x="338" y="0.0" width="76" height="76"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpK-lV-dEl">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpK-lV-dEl">
                             <rect key="frame" x="26" y="26" width="24" height="24"/>
                             <color key="backgroundColor" red="0.023529411760000001" green="0.25098039220000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -113,7 +115,7 @@
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-X0-4Xg">
                             <rect key="frame" x="26" y="54" width="24" height="2"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="fAB-lr-Gxs"/>
                                 <constraint firstAttribute="width" constant="24" id="sns-Cr-3W4"/>
@@ -133,7 +135,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoZ-Zt-V3O" userLabel="ColorContainerPurple">
                     <rect key="frame" x="338" y="0.0" width="76" height="76"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zra-wl-bMp">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zra-wl-bMp">
                             <rect key="frame" x="26" y="26" width="24" height="24"/>
                             <color key="backgroundColor" red="0.023529411760000001" green="0.25098039220000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -143,7 +145,7 @@
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfn-FW-afw">
                             <rect key="frame" x="26" y="54" width="24" height="2"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="DAO-fZ-w1g"/>
                                 <constraint firstAttribute="height" constant="2" id="s3p-az-EDo"/>
@@ -163,7 +165,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xg-1O-QnH" userLabel="ColorContainerPink">
                     <rect key="frame" x="338" y="0.0" width="76" height="76"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8as-uA-rB3">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8as-uA-rB3">
                             <rect key="frame" x="26" y="26" width="24" height="24"/>
                             <color key="backgroundColor" red="0.023529411760000001" green="0.25098039220000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -173,7 +175,7 @@
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMf-fP-eJL">
                             <rect key="frame" x="26" y="54" width="24" height="2"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="NDJ-GF-Gdq"/>
                                 <constraint firstAttribute="width" constant="24" id="hUW-er-bRc"/>
@@ -191,6 +193,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="JOZ-tR-SM9"/>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="YJ3-k8-Wwe" firstAttribute="top" secondItem="Gm4-QQ-kLs" secondAttribute="top" id="064-DU-lCa"/>
@@ -215,11 +218,13 @@
                 <constraint firstAttribute="height" constant="76" id="zMK-0v-wEf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="JOZ-tR-SM9"/>
             <point key="canvasLocation" x="73.913043478260875" y="50.892857142857139"/>
         </view>
     </objects>
     <resources>
         <image name="ic_edit" width="16" height="16"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

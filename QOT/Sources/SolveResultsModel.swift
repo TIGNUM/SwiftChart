@@ -38,17 +38,17 @@ enum ButtonItem {
 
     var backgroundColor: UIColor {
         switch self {
-        case .cancel: return .sand
-        case .done: return .carbon
-        case .save: return .carbon
+        case .cancel: return .white
+        case .done: return .white
+        case .save: return .white
         }
     }
 
     var borderColor: UIColor {
         switch self {
-        case .cancel: return .accent40
-        case .done: return .carbon
-        case .save: return .carbon
+        case .cancel: return .black
+        case .done: return .black
+        case .save: return .black
         }
     }
 }

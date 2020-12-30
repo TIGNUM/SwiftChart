@@ -15,7 +15,9 @@ final class ResultsPrepareAddEventTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+        let disclosureImage = UIImageView(image: R.image.ic_arrow_right())
+        disclosureImage.tintColor = .black
+        accessoryView = disclosureImage
     }
 
     func configure(title: String, subtitle: String) {

@@ -133,7 +133,7 @@ class DTPresenter: DTPresenterInterface {
                                       selected: selected,
                                       backgroundColor: answerBackgroundColor(answer: answer),
                                       decisions: answer.getDTViewModelAnswerDecisions(),
-                                      votes: getVotes(answer: answer, poll: presentationModel.poll) )
+                                      votes: getVotes(answer: answer, poll: presentationModel.poll))
         }
     }
 

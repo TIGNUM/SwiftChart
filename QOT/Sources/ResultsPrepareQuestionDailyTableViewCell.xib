@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,15 +23,9 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Bd-6F-iax">
-                        <rect key="frame" x="24" y="56" width="296" height="1"/>
-                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.096944563356164429" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="9T4-aj-TYr"/>
-                        </constraints>
-                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit" translatesAutoresizingMaskIntoConstraints="NO" id="1Sp-lX-bdw">
                         <rect key="frame" x="280" y="14.5" width="16" height="16"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="D7o-Xv-yqG"/>
                             <constraint firstAttribute="height" constant="16" id="aDk-3t-ud4"/>
@@ -39,19 +33,16 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="6Bd-6F-iax" secondAttribute="bottom" id="FzT-mH-HVm"/>
                     <constraint firstAttribute="bottom" secondItem="HdE-Lj-zF4" secondAttribute="bottom" constant="24" id="OGE-5h-QEz"/>
                     <constraint firstItem="1Sp-lX-bdw" firstAttribute="leading" secondItem="HdE-Lj-zF4" secondAttribute="trailing" constant="6" id="VMT-ka-pnt"/>
                     <constraint firstAttribute="trailing" secondItem="1Sp-lX-bdw" secondAttribute="trailing" constant="24" id="WVu-FD-G6I"/>
-                    <constraint firstItem="6Bd-6F-iax" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="Xfd-7J-cuz"/>
-                    <constraint firstAttribute="trailing" secondItem="6Bd-6F-iax" secondAttribute="trailing" id="aKI-cr-2y0"/>
                     <constraint firstItem="HdE-Lj-zF4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="cCn-1d-But"/>
                     <constraint firstItem="1Sp-lX-bdw" firstAttribute="centerY" secondItem="HdE-Lj-zF4" secondAttribute="centerY" id="ma7-Qk-yPS"/>
                     <constraint firstItem="HdE-Lj-zF4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="zdk-jj-Sp5"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="editImageView" destination="1Sp-lX-bdw" id="LVa-9c-T59"/>
                 <outlet property="titleLabel" destination="HdE-Lj-zF4" id="6GP-id-Ddh"/>

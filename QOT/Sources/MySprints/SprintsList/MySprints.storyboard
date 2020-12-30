@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +19,7 @@
         <!--My Sprints View Controller-->
         <scene sceneID="SDr-Rc-eNa">
             <objects>
-                <viewController storyboardIdentifier="MySprintsListViewController" id="cqe-ib-GRW" userLabel="My Sprints View Controller" customClass="MySprintsListViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MySprintsListViewController" id="cqe-ib-GRW" userLabel="My Sprints View Controller" customClass="MySprintsListViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NtN-5u-Fph">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,15 +29,15 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MySprintListTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MySprintsListTableViewCell" rowHeight="120" id="O5z-xK-aS7" customClass="MySprintsListTableViewCell" customModule="QOT" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55" width="414" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MySprintListTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MySprintsListTableViewCell" rowHeight="120" id="O5z-xK-aS7" customClass="MySprintsListTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O5z-xK-aS7" id="X99-Mr-AUT">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-/-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xg1-pf-Ao5">
-                                                    <rect key="frame" x="370" y="50" width="21" height="20.5"/>
+                                                    <rect key="frame" x="371" y="50" width="20" height="20.5"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                     <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -124,13 +122,14 @@
                                     <outlet property="delegate" destination="cqe-ib-GRW" id="Pjo-PB-OYc"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWd-4v-A4c" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWd-4v-A4c" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                                 <rect key="frame" x="354" y="99" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="08B-Yc-foK"/>
                                     <constraint firstAttribute="width" constant="40" id="TkE-YE-Fya"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="ic_edit"/>
                                 <connections>
                                     <action selector="didTapEditButton" destination="cqe-ib-GRW" eventType="touchUpInside" id="7hX-pM-ZWk"/>
@@ -144,6 +143,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="akT-DL-HFB"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GEL-xa-iEh" firstAttribute="top" secondItem="akT-DL-HFB" secondAttribute="top" id="1tO-VS-0dM"/>
@@ -156,7 +156,6 @@
                             <constraint firstItem="iKy-XH-TT9" firstAttribute="top" secondItem="GEL-xa-iEh" secondAttribute="bottom" id="sUp-9W-h1b"/>
                             <constraint firstItem="JWd-4v-A4c" firstAttribute="leading" secondItem="GEL-xa-iEh" secondAttribute="trailing" id="tOu-W5-qC4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="akT-DL-HFB"/>
                     </view>
                     <connections>
                         <outlet property="editButton" destination="JWd-4v-A4c" id="D12-8S-ZoB"/>
