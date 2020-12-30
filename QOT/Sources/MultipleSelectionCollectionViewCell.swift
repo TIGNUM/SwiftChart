@@ -53,13 +53,13 @@ extension MultipleSelectionCollectionViewCell {
         if isAnswered == true {
             answer.setSelected(false)
             isAnswered = false
-            selectionButton?.switchBackgroundColor()
+            selectionButton?.switchBackgroundColor(isSelected: false)
             delegate?.didDeSelectAnswer(answer)
             NotificationCenter.default.post(name: .didUnVoteTeamTBV, object: answer.remoteId)
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
             answer.setSelected(true)
             isAnswered = true
-            selectionButton?.switchBackgroundColor()
+            selectionButton?.switchBackgroundColor(isSelected: true)
             delegate?.didSelectAnswer(answer)
             NotificationCenter.default.post(name: .didVoteTeamTBV, object: answer.remoteId)
         }
