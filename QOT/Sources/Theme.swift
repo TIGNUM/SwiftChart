@@ -112,12 +112,8 @@ enum ThemeView {
             return Palette.sand
         case .chatbotDark:
             return ThemeView.level1.color
-        case .chatbotProgress(let active, let isDark):
-            if isDark {
-                return active ? .white : .clear
-            } else {
-                return active ? .black : .clear
-            }
+        case .chatbotProgress:
+            return .clear
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
         case .whiteBanner:
@@ -222,14 +218,18 @@ enum ThemeView {
 }
 
 enum ThemeBorder {
+    case clear
     case accent
     case accent40
     case sand60
     case white
+    case black
 
     func apply(_ view: UIView) {
         var color: UIColor?
         switch self {
+        case .clear:
+            color = .clear
         case .accent:
             color = Palette.accent
         case .accent40:
@@ -238,6 +238,8 @@ enum ThemeBorder {
             color = Palette.sand60
         case .white:
             color = .white
+        case .black:
+            color = .black
         }
 
         if let color = color {
@@ -1284,7 +1286,7 @@ enum ThemeText {
             return isSelected ? .white : .black
         case .chatbotProgress(let active, let isDark):
             if active {
-                return.white
+                return isDark ? .white : .black
             } else {
                 return isDark ? Palette.lightGrey : Palette.darkGrey
             }

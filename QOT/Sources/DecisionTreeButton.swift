@@ -150,6 +150,12 @@ final class NavigationButton: AbstractTreeButton {
         let isEnough = count >= minCount
         counterButton.isUserInteractionEnabled = isEnough
 
+        if !isEnough {
+            ThemeBorder.clear.apply(containerView)
+        } else {
+            isDark ? ThemeBorder.white.apply(containerView) : ThemeBorder.black.apply(containerView)
+        }
+
         if count == 0 && !isEnough {
             title = substitute(titleFirst)
             ThemeText.chatbotProgress(false, isDark).apply(title, to: continueLabel)
@@ -162,6 +168,9 @@ final class NavigationButton: AbstractTreeButton {
             ThemeText.chatbotProgress(isEnough, isDark).apply(title, to: continueLabel)
             let counterText = maxCount <= 1 ? "" : "\(count)/\(maxCount)"
             ThemeText.chatbotProgress(isEnough, isDark).apply(counterText, to: counterLabel)
+            if isEnough {
+                isDark ? ThemeBorder.white.apply(containerView) : ThemeBorder.black.apply(containerView)
+            }
             constraintSpacerWidth.constant = counterText.isEmpty ? 0.0 : spacerWidth
         }
 
