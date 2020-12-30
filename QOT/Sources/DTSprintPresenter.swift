@@ -37,10 +37,6 @@ final class DTSprintPresenter: DTPresenter {
         return nil
     }
 
-    override func answerBackgroundColor(answer: QDMAnswer) -> UIColor {
-        return answer.keys.contains(Sprint.AnswerKey.AddToQueue) ? .carbonNew : .clear
-    }
-
     override func showNextQuestionAutomated(questionKey: String) -> Bool {
         return questionKey == Sprint.QuestionKey.Intro
     }
