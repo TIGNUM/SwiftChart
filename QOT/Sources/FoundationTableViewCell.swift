@@ -48,6 +48,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         self.titleText = titleText
         self.timeText = timeText
         self.imageURL = imageURL
+        ThemeText.articleRelatedTitle(forcedColorMode).apply(titleText, to: titleLabel)
         ThemeText.articleRelatedDetail(forcedColorMode).apply(timeText, to: detailLabel)
         previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
         mediaIconImageView.image = R.image.ic_camera_grey()
@@ -71,7 +72,8 @@ private extension FoundationTableViewCell {
             seenCheckMark.isHidden = false
             setToBlackAndWhite(image: previewImageView.image)
         } else {
-            ThemeText.articleStrategyTitle.apply(titleText, to: titleLabel)
+            let forcedMode: ThemeColorMode = colorMode == .dark ? .dark : .light
+            ThemeText.articleRelatedTitle(forcedMode).apply(titleText, to: titleLabel)
             seenCheckMark.isHidden = true
         }
     }
