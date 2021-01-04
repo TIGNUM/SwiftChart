@@ -278,15 +278,15 @@ enum ThemeTint {
 }
 
 enum ThemeSwitch {
-    case accent
+    case actionBlue
     case white
 
     func apply(_ view: UISwitch) {
         switch self {
-        case .accent:
-            view.tintColor = Palette.accent70
-            view.onTintColor = Palette.accent70
-            view.layer.borderColor = Palette.accent70.cgColor
+        case .actionBlue:
+            view.tintColor = Palette.actionBlue
+            view.onTintColor = Palette.actionBlue
+            view.layer.borderColor = UIColor.clear.cgColor
         case .white:
             view.tintColor = Palette.white40
             view.onTintColor = .clear
@@ -1037,7 +1037,7 @@ enum ThemeText {
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .optionPage, .optionPageDisabled, .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
-        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .registerIntroNoteTitle:
+        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .registerIntroNoteTitle, .baseHeaderTitle:
             return Fonts.fontDisplayRegular20
         case .teamVisionSentence:
             return Fonts.fontRegular24
@@ -1099,7 +1099,7 @@ enum ThemeText {
             case .scale: return Fonts.fontLight20
             case .scaleNot: return Fonts.fontLight16
             }
-        case .articleTitleNotScaled, .registerIntroTitle, .baseHeaderTitle:
+        case .articleTitleNotScaled, .registerIntroTitle:
             return Fonts.fontDisplayLight34
         case .articleTitle:
             switch textScale {
@@ -1236,8 +1236,8 @@ enum ThemeText {
         case .searchSuggestionHeader:
             return .white40
         // MARK: - .blue
-        case .coachTitle:
-            return Palette.tignumBlue
+        case .coachTitle, .articleContactSupportLink:
+            return .actionBlue
         // MARK: - .black
         case .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
@@ -1271,8 +1271,7 @@ enum ThemeText {
         case .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline, .articleHeadlineSmall,
              .articleNavigationTitle, .articleTagTitle, .articleParagraph, .article, .articleQuestion, .articleSub,
              .articleNum, .articleSector, .articleTitle, .articleTitleNotScaled, .articleBody,
-             .articleToolBarTint, .articleContactSupportLink,
-             .articleAudioBar, .audioLabel:
+             .articleToolBarTint, .articleAudioBar, .audioLabel:
             return Palette.light(.black, or: .white)
         case .articleHeadlineSmallRed:
             return Palette.cherryRed
@@ -1722,7 +1721,7 @@ private struct Palette {
         return UIColor(red: 83/255, green: 83/255, blue: 83/255, alpha: 1)
     }
 
-    static var tignumBlue: UIColor {
+    static var actionBlue: UIColor {
         return UIColor(red: 0/255, green: 98/255, blue: 255/255, alpha: 1)
     }
 
