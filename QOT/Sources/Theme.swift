@@ -571,7 +571,7 @@ enum ThemeSegment {
             normal = [NSAttributedString.Key.font: Fonts.fontRegular14,
                       NSAttributedString.Key.foregroundColor: Palette.lightGrey]
             selected = [NSAttributedString.Key.font: Fonts.fontRegular14,
-                        NSAttributedString.Key.foregroundColor: Palette.lightGrey]
+                        NSAttributedString.Key.foregroundColor: UIColor.white]
             view.tintColor = .clear
             view.backgroundColor = .clear
 

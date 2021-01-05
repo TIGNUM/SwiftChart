@@ -31,14 +31,14 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addSubtitle(subtitleLabel)
         skeletonManager.addOtherView(calendarIcon)
         ThemeView.level3.apply(self)
-        setSelectedColor(.carbon, alphaComponent: 1)
+        setSelectedColor(.clear, alphaComponent: 1)
         hasData = false
         selectionStyle = .none
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        editingOverlay.isHidden = !editing
+        editingOverlay.isHidden = true
     }
 
     override func layoutSubviews() {
@@ -59,7 +59,7 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String?, subtitle: String?) {
         guard let titleText = title else { return }
         hasData = true
-        selectionStyle = .default
+        selectionStyle = .gray
         skeletonManager.hide()
         ThemeText.myQOTPrepCellTitle.apply(titleText, to: titleLabel)
         ThemeText.datestamp.apply(subtitle, to: subtitleLabel)
