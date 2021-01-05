@@ -19,8 +19,8 @@ extension UIImage {
     }
 
     private static func drawImage(in context: CGContext) {
-        context.setFillColor(UIColor.accent75.cgColor)
-        context.setStrokeColor(UIColor.accent75.cgColor)
+        context.setFillColor(UIColor.white.cgColor)
+        context.setStrokeColor(UIColor.white.cgColor)
 
         let space = 3
         let dimension = 2

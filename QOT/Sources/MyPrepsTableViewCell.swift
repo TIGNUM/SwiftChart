@@ -10,14 +10,11 @@ import UIKit
 
 final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
 
-    private static let gradientIdentifier = "MyPrepsTableViewCell.gradient"
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var calendarIcon: UIImageView!
     @IBOutlet weak var subtitleView: UIView!
 
-    private var editingOverlay: UIView!
     var skeletonManager = SkeletonManager()
     var hasData = false
     var hasEvent = false
@@ -25,8 +22,6 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        editingOverlay = UIView()
-        self.addSubview(editingOverlay)
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(subtitleLabel)
         skeletonManager.addOtherView(calendarIcon)
@@ -38,15 +33,27 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        editingOverlay.isHidden = true
+        if editing {
+            setEditingAccesory(forState: false)
+        }
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if isEditing {
+            setEditingAccesory(forState: selected)
+        }
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        if isEditing {
+            setEditingAccesory(forState: highlighted)
+        }
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        editingOverlay.frame = self.bounds
-
-        removeGradient(from: editingOverlay)
-        addGradient(to: editingOverlay)
     }
 
     override func prepareForReuse() {
@@ -68,21 +75,19 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: - Private methods
 extension MyPrepsTableViewCell {
-    private func removeGradient(from view: UIView) {
-        view.layer.sublayers?.forEach {
-            if let name = $0.name, name == MyPrepsTableViewCell.gradientIdentifier {
-                $0.removeFromSuperlayer()
+    private func setEditingAccesory(forState selected: Bool) {
+        let image = selected ? R.image.ic_radio_selected_white() : R.image.ic_radio_unselected_white()
+        for subViewA in self.subviews {
+            if subViewA.classForCoder.description() == "UITableViewCellEditControl" {
+                if let subViewB = subViewA.subviews.last {
+                    if subViewB.isKind(of: UIImageView.classForCoder()) {
+                        if let imageView = subViewB as? UIImageView {
+                            imageView.contentMode = .scaleAspectFit
+                            imageView.image = image
+                        }
+                    }
+                }
             }
         }
-    }
-
-    private func addGradient(to view: UIView) {
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.name = MyPrepsTableViewCell.gradientIdentifier
-        gradient.colors = [UIColor.carbonNew.withAlphaComponent(0).cgColor, UIColor.carbonNew.cgColor]
-        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.endPoint = CGPoint(x: 0.8, y: 1.0)
-        gradient.frame = view.bounds
-        view.layer.insertSublayer(gradient, at: 0)
     }
 }
