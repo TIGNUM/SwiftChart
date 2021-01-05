@@ -29,17 +29,17 @@ extension DTSprintWorker {
         UserService.main.isSprintAlreadyInProgress(completion)
     }
 
-    func startSprintTomorrow(selectedSprintContentId: Int) {
-        createSprintAndStart(selectedSprintContentId)
+    func startSprintTomorrow(selectedSprintContentId: Int, completion: @escaping (QDMSprint?) -> Void) {
+        createSprintAndStart(selectedSprintContentId, completion: completion)
     }
 
-    func stopActiveSprintAndStartNewSprint(activeSprint: QDMSprint?, newSprintContentId: Int?) {
+    func stopActiveSprintAndStartNewSprint(activeSprint: QDMSprint?, newSprintContentId: Int?, completion: @escaping (QDMSprint?) -> Void) {
         guard let activeSprint = activeSprint, let newSprintContentId = newSprintContentId else { return }
         UserService.main.pauseSprint(activeSprint) { [weak self]  (sprint, error) in
             if let error = error {
                 log("Error while trying to pause sprint: \(error.localizedDescription)", level: .error)
             }
-            self?.createSprintAndStart(newSprintContentId)
+            self?.createSprintAndStart(newSprintContentId, completion: completion)
         }
     }
 
@@ -98,10 +98,11 @@ extension DTSprintWorker {
 
 // MARK: - Private Sprint Managing
 private extension DTSprintWorker {
-    func createSprintAndStart(_ targetContentId: Int) {
+    func createSprintAndStart(_ targetContentId: Int, completion: @escaping (QDMSprint?) -> Void) {
         createSprint(targetContentId) { (sprint) in
             if let sprint = sprint {
                 UserService.main.startSprint(sprint) { (sprint, error) in
+                    completion(sprint)
                 }
             } else {
                 log("Error while trying to create sprint: \(targetContentId)", level: .error)

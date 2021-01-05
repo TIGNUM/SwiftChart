@@ -14,6 +14,7 @@ final class RelatedStrategyTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView!
 
     func configure(title: String?, duration: String?) {
         ThemeText.resultTitle.apply(title?.uppercased(), to: titleLabel)

@@ -11,13 +11,13 @@ PODS:
     - Airship/Core
   - Airship/MessageCenter (14.2.0):
     - Airship/Core
-  - AppCenter (4.0.0):
-    - AppCenter/Analytics (= 4.0.0)
-    - AppCenter/Crashes (= 4.0.0)
-  - AppCenter/Analytics (4.0.0):
+  - AppCenter (4.1.0):
+    - AppCenter/Analytics (= 4.1.0)
+    - AppCenter/Crashes (= 4.1.0)
+  - AppCenter/Analytics (4.1.0):
     - AppCenter/Core
-  - AppCenter/Core (4.0.0)
-  - AppCenter/Crashes (4.0.0):
+  - AppCenter/Core (4.1.0)
+  - AppCenter/Crashes (4.1.0):
     - AppCenter/Core
   - Buglife (2.10.1)
   - DifferenceKit (1.1.5):
@@ -87,7 +87,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: b45bc6631bce2daeb63f681e4c9d4d857bff27cb
+    :commit: 703f90548d2f73c091d09d88068bdc83ff2fb5ea
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -95,7 +95,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Airship: 02ad73780f9eed21870e36b0aaab327acda6a102
-  AppCenter: 51351e0121e40ba75e28ecb7de5c2e69d480df5e
+  AppCenter: 8832b158d17e54845c3b88a91076218f0b07174d
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2

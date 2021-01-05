@@ -105,7 +105,9 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
                 let message = String(format: updatedMessageFormat ?? "", dateString, self?.selectedSprintTitle ?? "")
                 self?.presenter?.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
             } else {
-                self?.sprintWorker?.startSprintTomorrow(selectedSprintContentId: self?.selectedSprintContentId ?? 0)
+                self?.sprintWorker?.startSprintTomorrow(selectedSprintContentId: self?.selectedSprintContentId ?? 0, completion: { [weak self] (sprint) in
+                    self?.activeSprint = sprint
+                })
                 if let selection = self?.lastQuestionSelection {
                     self?.loadNextQuestion(selection: selection)
                 }
@@ -119,7 +121,9 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
     }
 
     func stopActiveSprintAndStartNewSprint() {
-        sprintWorker?.stopActiveSprintAndStartNewSprint(activeSprint: activeSprint, newSprintContentId: newSprintContentId)
+        sprintWorker?.stopActiveSprintAndStartNewSprint(activeSprint: activeSprint, newSprintContentId: newSprintContentId, completion: { [weak self] (sprint) in
+            self?.activeSprint = sprint
+        })
         if let selection = lastQuestionSelection {
             self.loadNextQuestion(selection: selection)
         }
@@ -127,6 +131,10 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
 
     func getSelectedSprintTitle() -> String? {
         return selectedSprintTitle
+    }
+
+    func getActiveSprint() -> QDMSprint? {
+        return activeSprint
     }
 }
 

@@ -20,6 +20,7 @@ final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UIT
         textView.isUserInteractionEnabled = false
         textView.textContainer.maximumNumberOfLines = 2
         editButton.isEnabled = true
+        ThemeTint.black.apply(editButton.imageView ?? UIImageView.init())
         textView.delegate = self
         editButton.isHidden = hideEdit
     }

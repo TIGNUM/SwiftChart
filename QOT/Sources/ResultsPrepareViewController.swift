@@ -71,6 +71,8 @@ private extension ResultsPrepareViewController {
         tableView.registerDequeueable(ResultsPrepareQuestionTableViewCell.self)
         tableView.registerDequeueable(ResultsPrepareQuestionDailyTableViewCell.self)
         tableView.registerDequeueable(ResultsPrepareHeaderTableViewCell.self)
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
     }
 
     func getQuestionCell(title: String,
@@ -145,6 +147,7 @@ extension ResultsPrepareViewController: ResultsPrepareViewControllerInterface {
             rightBarItems.append(roundedBarButtonItem(title: buttonItem.title,
                                                       buttonWidth: buttonItem.width,
                                                       action: getSelector(buttonItem),
+                                                      textColor: .black,
                                                       backgroundColor: buttonItem.backgroundColor,
                                                       borderColor: buttonItem.borderColor))
         }
@@ -256,6 +259,7 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
             let strategy = strategies.at(index: indexPath.row)
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title.uppercased(), duration: strategy?.durationString)
+            cell.layoutMargins = UIEdgeInsets.zero
             cell.selectedBackgroundView = backgroundView
             return cell
         case .strategyItems(let strategyItems):

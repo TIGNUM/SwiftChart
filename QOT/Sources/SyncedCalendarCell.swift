@@ -20,7 +20,7 @@ final class SyncedCalendarCell: UITableViewCell, Dequeueable {
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        switchControl.corner(radius: Layout.cornerRadius08*2, borderColor: .accent40)
+        switchControl.corner(radius: Layout.cornerRadius08*2, borderColor: .clear)
     }
 
     override func prepareForReuse() {

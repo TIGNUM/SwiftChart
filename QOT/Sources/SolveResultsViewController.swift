@@ -102,6 +102,7 @@ private extension SolveResultsViewController {
             rightBarItems.append(roundedBarButtonItem(title: buttonItem.title,
                                                       buttonWidth: buttonItem.width,
                                                       action: getSelector(buttonItem),
+                                                      textColor: .black,
                                                       backgroundColor: buttonItem.backgroundColor,
                                                       borderColor: buttonItem.borderColor))
         }

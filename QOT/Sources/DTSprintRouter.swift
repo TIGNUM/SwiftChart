@@ -30,4 +30,20 @@ final class DTSprintRouter: DTRouter {
             viewController?.navigationController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
+
+    func showMySprintsCards(_ isPresentedFromCoach: Bool) {
+        if isPresentedFromCoach, let coachVC = (viewController?.presentingViewController as? UINavigationController)?.viewControllers.first as? CoachViewController {
+            viewController?.presentingViewController?.dismiss(animated: true, completion: {
+                NotificationHandler.postNotification(withName: .showSprintCards)
+                coachVC.dismiss(animated: true) {
+
+                }
+            })
+        } else if let navigationController = (viewController?.parent?.presentingViewController as? UINavigationController) {
+            viewController?.presentingViewController?.dismiss(animated: true, completion: {
+                navigationController.popToRootViewController(animated: true)
+                NotificationHandler.postNotification(withName: .showSprintCards)
+            })
+        }
+    }
 }

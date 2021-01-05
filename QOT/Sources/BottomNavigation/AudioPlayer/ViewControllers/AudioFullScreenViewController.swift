@@ -133,6 +133,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
                 storage.userStorageType == .BOOKMARK
             })
             self?.bookmarkButton.isSelected = self?.bookmarks?.first != nil
+            self?.updateBookmarkButtonUI(self?.bookmarkButton.isSelected ?? false)
             self?.download = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
                 storage.userStorageType == .DOWNLOAD
             }).first
@@ -270,18 +271,22 @@ extension AudioFullScreenViewController {
                 storage.userStorageType == .BOOKMARK
             })
             self?.bookmarkButton.isSelected = self?.bookmarks?.first != nil
-            if self?.bookmarkButton.isSelected == true {
-                switch self?.colorMode {
-                case .dark:
-                    ThemeTint.black.apply(self?.bookmarkButton.imageView ?? UIImageView.init())
-                default:
-                    ThemeTint.white.apply(self?.bookmarkButton.imageView ?? UIImageView.init())
-                }
-            }
+            self?.updateBookmarkButtonUI(self?.bookmarkButton.isSelected ?? false)
             if self?.bookmarkButton.isSelected == true, self?.wasBookmarked == false {
                 self?.wasBookmarked = true
                 self?.showDestinationAlert()
             }
+        }
+    }
+
+    private func updateBookmarkButtonUI(_ selected: Bool) {
+        switch self.colorMode {
+        case .dark:
+            selected ? ThemeTint.black.apply(self.bookmarkButton.imageView ?? UIImageView.init()) :
+                       ThemeTint.white.apply(self.bookmarkButton.imageView ?? UIImageView.init())
+        default:
+            selected ? ThemeTint.white.apply(self.bookmarkButton.imageView ?? UIImageView.init()) :
+                       ThemeTint.black.apply(self.bookmarkButton.imageView ?? UIImageView.init())
         }
     }
 

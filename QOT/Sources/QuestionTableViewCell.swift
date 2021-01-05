@@ -31,6 +31,7 @@ extension QuestionTableViewCell {
         paragraphStyle.lineSpacing = 4
         attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
         attributedString.addAttribute(.foregroundColor, value: textColor, range: range)
+        attributedString.addAttribute(.font, value: UIFont.sfProtextLight(ofSize: 16.0), range: range)
         questionLabel.attributedText = attributedString
     }
 }

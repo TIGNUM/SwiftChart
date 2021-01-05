@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DTSprintViewControllerInterface: class {
     func presentPermissionView(_ permissionType: AskPermission.Kind)
@@ -22,9 +23,11 @@ protocol DTSprintInteractorInterface: Interactor {
     func stopActiveSprintAndStartNewSprint()
     func addSprintToQueue(selection: DTSelectionModel)
     func getSelectedSprintTitle() -> String?
+    func getActiveSprint() -> QDMSprint?
 }
 
 protocol DTSprintRouterInterface {
     func openPermissionView(_ permissionType: AskPermission.Kind)
     func presentMySprintsViewController()
+    func showMySprintsCards()
 }

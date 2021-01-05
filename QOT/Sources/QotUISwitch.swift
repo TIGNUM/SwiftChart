@@ -20,6 +20,6 @@ class QotUISwitch: UISwitch {
     }
 
     private func configure() {
-        ThemeSwitch.accent.apply(self)
+        ThemeSwitch.actionBlue.apply(self)
     }
 }

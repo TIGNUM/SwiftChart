@@ -44,10 +44,6 @@ final class AnswerButton: AbstractTreeButton {
         setAttributedTitle(ThemeText.chatbotButton(isSelected).attributedString(title), for: .normal)
         corner(radius: .Twenty, borderColor: .black)
     }
-
-    func switchBackgroundColor() {
-        backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
-    }
 }
 
 class SelectionButton: AbstractTreeButton {
@@ -55,26 +51,23 @@ class SelectionButton: AbstractTreeButton {
     @IBOutlet private weak var selectionLabel: UILabel!
     private var selectedBackgroundColor = UIColor.clear
     private var selectedTextColor = UIColor.white
+    private var defaultTextColor = UIColor.white
     private var defaultBackgroundColor = UIColor.red
     private var defaultBorderColor = UIColor.clear.cgColor
 
     func configure(title: String, isSelected: Bool) {
-        defaultBackgroundColor = isSelected ? .black : .clear
-        selectedBackgroundColor = isSelected ? .clear : .black
-        selectedTextColor = isSelected ? .white : .black
+        defaultBackgroundColor = .clear
+        selectedBackgroundColor = .black
+        selectedTextColor = .white
+        defaultTextColor = .black
         selectionLabel.attributedText = ThemeText.chatbotButton(isSelected).attributedString(title)
         corner(radius: .Twenty, borderColor: .black)
-        switchBackgroundColor()
+        switchBackgroundColor(isSelected: isSelected)
     }
 
-    func switchBackgroundColor() {
-        if backgroundColor == defaultBackgroundColor {
-            backgroundColor = selectedBackgroundColor
-            selectionLabel.textColor = .white
-        } else {
-            backgroundColor = defaultBackgroundColor
-            selectionLabel.textColor = .black
-        }
+    func switchBackgroundColor(isSelected: Bool) {
+        backgroundColor = isSelected ? selectedBackgroundColor : defaultBackgroundColor
+        selectionLabel.textColor = isSelected ? selectedTextColor : defaultTextColor
     }
 }
 
@@ -150,6 +143,12 @@ final class NavigationButton: AbstractTreeButton {
         let isEnough = count >= minCount
         counterButton.isUserInteractionEnabled = isEnough
 
+        if !isEnough {
+            ThemeBorder.clear.apply(containerView)
+        } else {
+            isDark ? ThemeBorder.white.apply(containerView) : ThemeBorder.black.apply(containerView)
+        }
+
         if count == 0 && !isEnough {
             title = substitute(titleFirst)
             ThemeText.chatbotProgress(false, isDark).apply(title, to: continueLabel)
@@ -162,6 +161,9 @@ final class NavigationButton: AbstractTreeButton {
             ThemeText.chatbotProgress(isEnough, isDark).apply(title, to: continueLabel)
             let counterText = maxCount <= 1 ? "" : "\(count)/\(maxCount)"
             ThemeText.chatbotProgress(isEnough, isDark).apply(counterText, to: counterLabel)
+            if isEnough {
+                isDark ? ThemeBorder.white.apply(containerView) : ThemeBorder.black.apply(containerView)
+            }
             constraintSpacerWidth.constant = counterText.isEmpty ? 0.0 : spacerWidth
         }
 

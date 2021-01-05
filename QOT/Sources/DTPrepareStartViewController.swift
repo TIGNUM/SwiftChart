@@ -79,10 +79,10 @@ extension DTPrepareStartViewController: DTPrepareStartViewControllerInterface {
     func setupView(viewModel: DTPrepareStartViewModel) {
         NewThemeView.light.apply(view)
         setupButtons(viewModel: viewModel)
-        ThemeText.H02Light.apply(viewModel.header, to: headerLabel)
-        ThemeText.Text02Light.apply(viewModel.intentionTitle, to: intentionTitleLabel)
+        ThemeText.H01Medium.apply(viewModel.header, to: headerLabel)
+        ThemeText.H02Medium.apply(viewModel.intentionTitle, to: intentionTitleLabel)
         ThemeText.Text01Light.apply(viewModel.intentions, to: intentionsLabel)
-        ThemeText.Text02Light.apply(viewModel.strategyTitle, to: strategyTitleLabel)
+        ThemeText.H02Medium.apply(viewModel.strategyTitle, to: strategyTitleLabel)
         ThemeText.Text01Light.apply(viewModel.strategies, to: strategiesLabel)
         ThemeText.H02Light.apply(viewModel.selectionTitle, to: selectionTitleLabel)
     }

@@ -112,12 +112,8 @@ enum ThemeView {
             return Palette.sand
         case .chatbotDark:
             return ThemeView.level1.color
-        case .chatbotProgress(let active, let isDark):
-            if isDark {
-                return active ? .white : .clear
-            } else {
-                return active ? .black : .clear
-            }
+        case .chatbotProgress:
+            return .clear
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
         case .whiteBanner:
@@ -222,14 +218,18 @@ enum ThemeView {
 }
 
 enum ThemeBorder {
+    case clear
     case accent
     case accent40
     case sand60
     case white
+    case black
 
     func apply(_ view: UIView) {
         var color: UIColor?
         switch self {
+        case .clear:
+            color = .clear
         case .accent:
             color = Palette.accent
         case .accent40:
@@ -238,6 +238,8 @@ enum ThemeBorder {
             color = Palette.sand60
         case .white:
             color = .white
+        case .black:
+            color = .black
         }
 
         if let color = color {
@@ -276,15 +278,15 @@ enum ThemeTint {
 }
 
 enum ThemeSwitch {
-    case accent
+    case actionBlue
     case white
 
     func apply(_ view: UISwitch) {
         switch self {
-        case .accent:
-            view.tintColor = Palette.accent70
-            view.onTintColor = Palette.accent70
-            view.layer.borderColor = Palette.accent70.cgColor
+        case .actionBlue:
+            view.tintColor = Palette.actionBlue
+            view.onTintColor = Palette.actionBlue
+            view.layer.borderColor = UIColor.clear.cgColor
         case .white:
             view.tintColor = Palette.white40
             view.onTintColor = .clear
@@ -994,6 +996,10 @@ enum ThemeText {
     case Text01LightCarbon100
     case Text02Light
     case Text03Light
+
+    case H01Medium
+    case H02Medium
+
     case MediumBodySand
 
     private var font: UIFont {
@@ -1012,7 +1018,7 @@ enum ThemeText {
              .registrationNamesMandatory, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark,
              .audioPlayerTitleLight, .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays, .asterixText,
              .shpiSubtitle, .featureLabel, .teamTvbTimeSinceTitle, .qotAlertMessage, .myDataParameterSelectionTitle,
-             .myDataParameterSelectionSubtitle, .mySprintDetailsProgress, .mySensorsDescriptionBody, .searchNoResults:
+             .myDataParameterSelectionSubtitle, .mySprintDetailsProgress, .mySensorsDescriptionBody, .searchNoResults, .H01Medium, .H02Medium:
             return Fonts.fontRegular14
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
              .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
@@ -1031,7 +1037,7 @@ enum ThemeText {
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .optionPage, .optionPageDisabled, .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
-        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .registerIntroNoteTitle:
+        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .registerIntroNoteTitle, .baseHeaderTitle:
             return Fonts.fontDisplayRegular20
         case .teamVisionSentence:
             return Fonts.fontRegular24
@@ -1093,7 +1099,7 @@ enum ThemeText {
             case .scale: return Fonts.fontLight20
             case .scaleNot: return Fonts.fontLight16
             }
-        case .articleTitleNotScaled, .registerIntroTitle, .baseHeaderTitle:
+        case .articleTitleNotScaled, .registerIntroTitle:
             return Fonts.fontDisplayLight34
         case .articleTitle:
             switch textScale {
@@ -1223,20 +1229,20 @@ enum ThemeText {
         case .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader, .Text02Light,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle, .H03Light, .Text03Light, .performanceSectionText,
              .qotToolsSectionSubtitle, .resultHeader2, .audioPlayerTitleDark, .qotToolsSubtitle, .durationString,
-             .paymentReminderCellSubtitle, .Text01Light, .performanceSubtitle, .resultDate, .audioFullScreenCategory:
+             .paymentReminderCellSubtitle, .Text01Light, .performanceSubtitle, .resultDate, .audioFullScreenCategory, .H02Medium:
             return Palette.darkGrey
 
         // MARK: - .white40
         case .searchSuggestionHeader:
             return .white40
         // MARK: - .blue
-        case .coachTitle:
-            return Palette.tignumBlue
+        case .coachTitle, .articleContactSupportLink:
+            return .actionBlue
         // MARK: - .black
         case .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle,
             .audioFullScreenTitle, .H02Light, .H01Light, .Text01LightCarbon100, .featureTitle, .featureExplanation,
-            .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight:
+            .featureLabel, .whiteBanner, .coachSubtitle, .coachHeaderSubtitle, .audioLabelLight, .H01Medium:
             return .black
 
         // MARK: - .mindsetShifter Green
@@ -1265,8 +1271,7 @@ enum ThemeText {
         case .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline, .articleHeadlineSmall,
              .articleNavigationTitle, .articleTagTitle, .articleParagraph, .article, .articleQuestion, .articleSub,
              .articleNum, .articleSector, .articleTitle, .articleTitleNotScaled, .articleBody,
-             .articleToolBarTint, .articleContactSupportLink,
-             .articleAudioBar, .audioLabel:
+             .articleToolBarTint, .articleAudioBar, .audioLabel:
             return Palette.light(.black, or: .white)
         case .articleHeadlineSmallRed:
             return Palette.cherryRed
@@ -1284,7 +1289,7 @@ enum ThemeText {
             return isSelected ? .white : .black
         case .chatbotProgress(let active, let isDark):
             if active {
-                return.white
+                return isDark ? .white : .black
             } else {
                 return isDark ? Palette.lightGrey : Palette.darkGrey
             }
@@ -1315,7 +1320,7 @@ enum ThemeText {
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader, .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
-             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .myPlansHeader,
+             .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .H01Medium, .H02Medium, .myPlansHeader,
              .myQOTBoxTitleDisabled, .optionPage, .optionPageDisabled, .bodyText, .questionairePageCurrent, .questionairePageTotal,
              .tbvQuestionLow, .tbvQuestionHigh, .librarySubtitle:
             string = NSAttributedString(string: text,
@@ -1716,7 +1721,7 @@ private struct Palette {
         return UIColor(red: 83/255, green: 83/255, blue: 83/255, alpha: 1)
     }
 
-    static var tignumBlue: UIColor {
+    static var actionBlue: UIColor {
         return UIColor(red: 0/255, green: 98/255, blue: 255/255, alpha: 1)
     }
 
