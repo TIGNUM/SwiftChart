@@ -41,7 +41,7 @@ final class CollapsableContentCell: UITableViewCell, Dequeueable {
     // MARK: - private
     private func reload() {
         guard let isChecked = isChecked else { return }
-        let image = (isChecked == true) ? R.image.ic_radio_selected() : R.image.ic_radio_unselected()
+        let image = isChecked ? R.image.ic_radio_selected() : R.image.ic_radio_unselected()
         button.setImage(image, for: .normal)
     }
 

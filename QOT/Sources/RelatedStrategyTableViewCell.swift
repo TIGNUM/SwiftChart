@@ -14,10 +14,13 @@ final class RelatedStrategyTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var separatorView: UIView!
 
     func configure(title: String?, duration: String?) {
         ThemeText.resultTitle.apply(title?.uppercased(), to: titleLabel)
         ThemeText.resultDate.apply(duration, to: durationLabel)
+        iconView.tintColor = .darkGray
+        iconView.image = R.image.ic_seen_of()
     }
 }

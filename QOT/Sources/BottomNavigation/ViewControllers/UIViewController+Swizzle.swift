@@ -449,6 +449,7 @@ extension UIViewController {
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
                                          textColor: UIColor = .white,
+                                         tintColor: UIColor = .white,
                                          backgroundColor: UIColor = .black,
                                          borderColor: UIColor = .clear) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
@@ -464,6 +465,7 @@ extension UIViewController {
             button.setImage(image, for: .normal)
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
         }
+        button.tintColor = tintColor
         button.titleEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
         button.addTarget(self, action: action, for: .touchUpInside)
         button.corner(radius: Layout.cornerRadius20, borderColor: borderColor)
