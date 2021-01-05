@@ -41,7 +41,7 @@ extension UIViewController {
                                     buttonWidth: .Cancel,
                                     action: action,
                                     backgroundColor: .clear,
-                                    borderColor: .accent40)
+                                    borderColor: .white)
     }
 
     func continueButtonItem(_ action: Selector) -> UIBarButtonItem {
@@ -54,15 +54,15 @@ extension UIViewController {
 
     func saveButtonItem(_ action: Selector) -> UIBarButtonItem {
         return roundedBarButtonItem(title: AppTextService.get(.my_qot_my_profile_account_settings_edit_button_save),
-                                    buttonWidth: .Cancel,
+                                    buttonWidth: .Save,
                                     action: action,
-                                    backgroundColor: .accent40)
+                                    borderColor: .white)
     }
 
     func updateChangesButtonItem(_ action: Selector) -> UIBarButtonItem {
         return roundedBarButtonItem(title: AppTextService.get(.generic_view_button_update),
                                     buttonWidth: .Update,
                                     action: action,
-                                    borderColor: .accent40)
+                                    borderColor: .white)
     }
 }

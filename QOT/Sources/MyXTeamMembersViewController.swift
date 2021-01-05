@@ -26,7 +26,7 @@ final class MyXTeamMembersViewController: BaseViewController, ScreenZLevel3 {
     private lazy var addMembersButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(addMembers))
         let title = AppTextService.get(.settings_team_settings_team_members_add_members)
-        ThemableButton.myTbvDataRate.apply(button, title: title)
+        ThemableButton.darkButton.apply(button, title: title)
         return button.barButton
     }()
 

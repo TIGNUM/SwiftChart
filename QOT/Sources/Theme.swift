@@ -423,7 +423,6 @@ enum ThemableButton {
     case walkthroughGotIt
     case myPlans
     case signinInfo
-    case myTbvDataRate
     case createAccountInfo
     case trackSelection
     case paymentReminder
@@ -446,7 +445,6 @@ enum ThemableButton {
         case .syncedCalendar,
              .walkthroughGotIt,
              .signinInfo,
-             .myTbvDataRate,
              .createAccountInfo,
              .trackSelection,
              .level5:
@@ -480,7 +478,6 @@ enum ThemableButton {
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
-             .myTbvDataRate,
              .createAccountInfo,
              .trackSelection:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
@@ -524,8 +521,7 @@ enum ThemableButton {
 
     var disabled: ButtonTheme? {
         switch self {
-        case .myPlans,
-             .myTbvDataRate:
+        case .myPlans:
             return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .darkButton:
             return ButtonTheme(foreground: .black, background: .white, border: nil)

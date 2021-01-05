@@ -17,8 +17,8 @@ final class MyQotProfileSettingsKeybaordInputView: UIView {
 
     var shouldAllowSave: Bool = false {
         willSet {
-            saveButton.backgroundColor = newValue == true ? .sand : .sand08
-            let titleColor: UIColor = newValue == true ? .accent : .sand30
+            saveButton.layer.borderColor = newValue == true ? UIColor.white.cgColor : UIColor.clear.cgColor
+            let titleColor: UIColor = newValue == true ? .white : .darkGray
             saveButton.setTitleColor(titleColor, for: .normal)
         }
     }
@@ -32,7 +32,7 @@ final class MyQotProfileSettingsKeybaordInputView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         saveButton.corner(radius: Layout.cornerRadius20, borderColor: .clear)
-        closeButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        closeButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
         shouldAllowSave = false
     }
 

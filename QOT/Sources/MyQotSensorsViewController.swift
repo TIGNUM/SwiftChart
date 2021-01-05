@@ -80,12 +80,12 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     }
 
     func setHealthKit(title: String, status: String, showNoDataInfo: Bool) {
+        ThemableButton.darkButton.apply(healthKitStatusButton, title: status)
         ThemeText.mySensorsDescriptionTitle.apply(title, to: healthKitLabel)
-        ThemableButton.darkButton.apply(healthKitStatusButton, title: title)
     }
 
     func setOuraRing(title: String, status: String, labelStatus: String) {
-        ThemableButton.darkButton.apply(ouraRingStatusButton, title: title)
+        ThemableButton.darkButton.apply(ouraRingStatusButton, title: status)
         ThemeText.mySensorsDescriptionTitle.apply(title, to: ouraRingLabel)
     }
 
