@@ -28,6 +28,7 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
 
     var shouldAllowSave: Bool = false {
         willSet {
+            refreshBottomNavigationItems()
             keyboardInputView.shouldAllowSave = newValue
         }
     }
@@ -228,12 +229,16 @@ extension ProfileSettingsViewController {
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        let cancelItem = roundedBarButtonItem(title: AppTextService.get(.generic_view_button_cancel),
-                                              buttonWidth: .Cancel,
-                                              action: #selector(didCancel),
+        let cancelItem = cancelButtonItem(#selector(didCancel))
+        var saveItem = roundedBarButtonItem(title: AppTextService.get(.my_qot_my_profile_account_settings_edit_button_save),
+                                              buttonWidth: .Save,
+                                              action: #selector(didSave),
+                                              textColor: .darkGray,
                                               backgroundColor: .black,
-                                              borderColor: .accent40)
-        let saveItem = saveButtonItem(#selector(didSave))
+                                              borderColor: .clear)
+        if shouldAllowSave {
+            saveItem = saveButtonItem(#selector(didSave))
+        }
         return [saveItem, cancelItem]
     }
 }
