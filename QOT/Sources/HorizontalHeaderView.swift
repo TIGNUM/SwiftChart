@@ -103,7 +103,6 @@ extension HorizontalHeaderView: UICollectionViewDataSource, UICollectionViewDele
                                selected: item.isSelected,
                                canDeselect: canDeselect,
                                newCount: item.batchCount)
-            
             case .invite:
                 cell.configure(teamInvites: item.invites)
             case .team:

@@ -125,11 +125,17 @@ private extension TeamHeaderCell {
         guard teamInvites.isEmpty else { return }
         itemButton.layer.borderColor = UIColor(hex: hexColorString).withAlphaComponent(0.4).cgColor
         if selected {
-            itemButton.backgroundColor = UIColor(hex: hexColorString)
-            itemButton.setTitleColor(.white, for: .normal)
-        } else {
-            if HorizontalHeaderView.setMyX == true && teamId == Team.Header.myX.inviteId {
+            if teamId == Team.Header.myX.inviteId {
+                itemButton.backgroundColor = .white
+                itemButton.setTitleColor(.black, for: .normal)
+            } else {
                 itemButton.backgroundColor = UIColor(hex: hexColorString)
+                itemButton.setTitleColor(.white, for: .normal)
+            }
+        } else {
+            if teamId == Team.Header.myX.inviteId {
+                itemButton.backgroundColor = .black
+                itemButton.layer.borderColor = UIColor.white.cgColor
                 itemButton.setTitleColor(.white, for: .normal)
             } else {
                 itemButton.backgroundColor = .clear
