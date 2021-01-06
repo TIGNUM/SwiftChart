@@ -71,10 +71,12 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
 
     func selectButton(_ forTag: Int) {
         for button in allButtons where button.tag == forTag {
-            ThemeButton.accent40.apply(button, selected: true)
+            ThemeButton.whiteSelected.apply(button, selected: true)
+            button.setTitleColor(.black, for: .selected)
             button.isSelected = true
             for otherButton in allButtons where button != otherButton {
-                ThemeButton.accent40.apply(otherButton, selected: false)
+                ThemeButton.whiteRounded.apply(otherButton, selected: false)
+                button.setTitleColor(.white, for: .normal)
                 otherButton.isSelected = false
             }
         }
