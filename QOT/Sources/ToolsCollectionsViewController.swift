@@ -257,7 +257,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
 // MARK: - Bottom Navigation
 extension ToolsCollectionsViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItemLight()]
+        return [dismissNavigationItem()]
     }
 }
 

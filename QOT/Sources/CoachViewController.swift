@@ -44,7 +44,7 @@ final class CoachViewController: BaseWithTableViewController, ScreenZLevelCoach 
 // MARK: - Bottom Navigation
 extension CoachViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItemLight()]
+        return [dismissNavigationItem()]
     }
 }
 

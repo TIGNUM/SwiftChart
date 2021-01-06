@@ -51,7 +51,7 @@ final class DTPrepareStartViewController: UIViewController, ScreenZLevel3 {
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [backNavigationItemLight()]
+        return [backNavigationItem()]
     }
 }
 

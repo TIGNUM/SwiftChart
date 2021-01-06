@@ -194,7 +194,7 @@ private extension VisionRatingExplanationViewController {
     }
 
     func getLeftBarButtonItems() -> [UIBarButtonItem] {
-        return [dismissNavigationItemBlack(action: #selector(didTapDismissButton))]
+        return [dismissNavigationItem(action: #selector(didTapDismissButton))]
     }
 
     func removeObserver() {

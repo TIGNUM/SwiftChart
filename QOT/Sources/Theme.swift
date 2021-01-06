@@ -334,7 +334,7 @@ enum ThemeButton {
             colorSelected = Palette.light(Palette.sand, or: Palette.carbon)
             colorUnselected = colorSelected
             colorBorder = .accent30
-        case .audioButtonGrey, .backButtonLight:
+        case .audioButtonGrey:
             colorSelected = .lightGrey
             colorUnselected = .clear
             colorBorder = .sand30
@@ -342,6 +342,9 @@ enum ThemeButton {
             colorSelected = Palette.light(.white30, or: .black30, forcedColorMode: mode)
             colorUnselected = Palette.light(.white, or: .black, forcedColorMode: mode)
             colorBorder = Palette.light(.black, or: .white, forcedColorMode: mode)
+        case .backButtonLight:
+            colorUnselected = .white
+            colorBorder = .black
         case .dailyBriefButtons, .audioButtonStrategy:
             colorSelected = .lightGrey
             colorUnselected = .clear

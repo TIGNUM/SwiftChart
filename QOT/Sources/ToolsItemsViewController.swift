@@ -216,7 +216,7 @@ extension ToolsItemsViewController {
     }
 
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItemLight()]
+        return [dismissNavigationItem()]
     }
 }
 
