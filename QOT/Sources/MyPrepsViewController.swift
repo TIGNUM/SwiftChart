@@ -84,8 +84,8 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     }()
 
     func getDeleteButton(isEnabled: Bool) -> UIBarButtonItem {
-        let button = RoundedButton(title: nil, target: self, action: #selector(removeRows(_:)))
-        ThemableButton.darkButton.apply(button, title: AppTextService.get(.generic_view_button_delete))
+        let button = RoundedButton(title: AppTextService.get(.generic_view_button_delete), target: self, action: #selector(removeRows(_:)))
+        ThemeButton.carbonButton.apply(button)
         button.isEnabled = isEnabled
         return button.barButton
     }
@@ -141,12 +141,12 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func editButton(_ sender: Any) {
         editPressed = !editPressed
+        canDelete = false
         if editPressed {
-            bottomNavigationItems.rightBarButtonItems = [getDeleteButton(isEnabled: editPressed), cancelButton]
+            bottomNavigationItems.rightBarButtonItems = [getDeleteButton(isEnabled: canDelete), cancelButton]
         } else {
             bottomNavigationItems.rightBarButtonItems = nil
         }
-        canDelete = false
         let title = editPressed ? viewModel?.titleEditMode : viewModel.title
         baseHeaderView?.fadeTransition(0.5)
         baseHeaderView?.configure(title: title, subtitle: nil)
@@ -288,6 +288,9 @@ private extension MyPrepsViewController {
 
     func updateDeleteButtonIfNeeded(_ tableView: UITableView) {
         canDelete = !(tableView.indexPathsForSelectedRows?.isEmpty ?? true)
+        if editPressed {
+            bottomNavigationItems.rightBarButtonItems = [getDeleteButton(isEnabled: canDelete), cancelButton]
+        }
         refreshBottomNavigationItems()
     }
 }
