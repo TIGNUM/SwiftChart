@@ -1293,13 +1293,12 @@ extension DailyBriefInteractor {
         guard libraryFeeds.isEmpty == false else { return [] }
         let teamQotIds = Set(libraryFeeds.compactMap({ $0.teamStorage?.teamQotId })).sorted()
         var models: [BaseDailyBriefViewModel] = []
-        let date = Date(timeIntervalSince1970: 0)
-        let vision = bucket.teamToBeVisions?.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first
-        let imageURL = vision?.profileImageResource?.remoteURLString == nil ? bucket.bucketImages?.first?.mediaUrl : vision?.profileImageResource?.remoteURLString
         for teamQotId in teamQotIds {
             let filteredFeeds = libraryFeeds.filter({ $0.teamQotId == teamQotId })
             if let firstFeed = filteredFeeds.first,
                let team = firstFeed.team,
+               let vision = bucket.teamToBeVisions?.filter({ $0.teamId == team.remoteID }).first,
+               let imageURL = vision.profileImageResource?.remoteURLString == nil ? bucket.bucketImages?.first?.mediaUrl : vision.profileImageResource?.remoteURLString,
                firstFeed.teamStorage != nil {
                 models.append(TeamNewsFeedDailyBriefViewModel(team: team,
                                                               title: AppTextService.get(.daily_brief_news_feed_title),
