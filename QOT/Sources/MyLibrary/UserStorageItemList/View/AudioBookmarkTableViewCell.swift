@@ -24,7 +24,8 @@ class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell {
 
     func configure(playButtonTitle: String?, playButtonTag: Int = 0) {
         configure()
-        ThemableButton.darkButton.apply(playButton, title: playButtonTitle)
+        ThemeButton.carbonButton.apply(playButton)
+        playButton.setTitle(playButtonTitle)
         playButton.tag = playButtonTag
     }
 }

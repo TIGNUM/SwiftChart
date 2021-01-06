@@ -91,7 +91,8 @@ private extension MyLibraryNotesViewController {
         }
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let save = RoundedButton(title: interactor?.saveTitle, target: self, action: #selector(didTapSaveButton))
-        ThemableButton.darkButton.apply(save, title: interactor?.saveTitle)
+        ThemeButton.carbonButton.apply(save)
+        save.setTitle(interactor?.saveTitle)
         saveButton = save
         toolbar.items = [dismissButton, space, save.barButton]
         return toolbar

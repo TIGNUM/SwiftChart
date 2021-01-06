@@ -79,4 +79,41 @@ extension BaseMyLibraryTableViewCell {
         bottomVirticalSpace.constant = verticalSpacing
         setNeedsUpdateConstraints()
     }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        if editing {
+            setEditingAccesory(forState: false)
+        }
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if isEditing {
+            setEditingAccesory(forState: selected)
+        }
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        if isEditing {
+            setEditingAccesory(forState: highlighted)
+        }
+    }
+
+    private func setEditingAccesory(forState selected: Bool) {
+        let image = selected ? R.image.ic_radio_selected_white() : R.image.ic_radio_unselected_white()
+        for subViewA in self.subviews {
+            if subViewA.classForCoder.description() == "UITableViewCellEditControl" {
+                if let subViewB = subViewA.subviews.last {
+                    if subViewB.isKind(of: UIImageView.classForCoder()) {
+                        if let imageView = subViewB as? UIImageView {
+                            imageView.contentMode = .scaleAspectFit
+                            imageView.image = image
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
