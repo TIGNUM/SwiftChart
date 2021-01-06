@@ -312,6 +312,7 @@ enum ThemeButton {
     case dateButtons
     case newBlueButton
     case whiteRounded
+    case whiteSelected
     case level5Button
     case darkButton
 
@@ -372,6 +373,10 @@ enum ThemeButton {
             colorSelected = .white30
             colorBorder = .white
             colorUnselected = .clear
+        case .whiteSelected:
+            colorSelected = .white
+            colorBorder = .white
+            colorUnselected = .white
         case .level5Button:
             colorSelected = .actionBlue
             colorUnselected = .clear
@@ -1004,8 +1009,7 @@ enum ThemeText {
     private var font: UIFont {
         switch self {
         // MARK: - .fontRegular
-        case .registrationCodeDisclaimerError, .resultCounterMax, .mySensorsNoDataInfoLabel, .myDataHeatMapLegendText,
-             .myDataParameterLegendText, .weatherLastUpdate:
+        case .registrationCodeDisclaimerError, .resultCounterMax, .mySensorsNoDataInfoLabel, .weatherLastUpdate:
             return Fonts.fontRegular12
         case .asterix, .weatherLocation:
             return Fonts.fontRegular13
@@ -1017,16 +1021,16 @@ enum ThemeText {
              .registrationNamesMandatory, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark,
              .audioPlayerTitleLight, .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays, .asterixText,
              .shpiSubtitle, .featureLabel, .teamTvbTimeSinceTitle, .qotAlertMessage, .myDataParameterSelectionTitle,
-             .myDataParameterSelectionSubtitle, .mySprintDetailsProgress, .mySensorsDescriptionBody, .searchNoResults, .H01Medium, .H02Medium:
+             .myDataParameterSelectionSubtitle, .myDataHeatMapDetailCellDate, .mySprintDetailsProgress, .mySensorsDescriptionBody, .searchNoResults, .H01Medium, .H02Medium, .myDataParameterLegendText, .myDataHeatMapLegendText:
             return Fonts.fontRegular14
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
-             .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
+             .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle,
              .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage, .customizeQuestion,
              .weatherIntro, .weatherBody, .dailyBriefSubtitle, .dailyBriefSand, .paymentReminderCellTitle, .averageRating, .myRating, .totalVotes,
              .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .featureExplanation,
              .coachMarkSubtitle, .registerIntroBody, .memberEmail, .ratingExplanationText, .ratingExplanationVideoTitle, .whiteBanner, .darkBanner,
-             .baseHeaderSubtitleBold, .bodyText:
+             .baseHeaderSubtitleBold, .bodyText, .myDataHeatMapCellDateText:
             return Fonts.fontRegular16
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder, .trends, .tbvQuestionLow:
             return Fonts.fontRegular18
@@ -1052,6 +1056,8 @@ enum ThemeText {
             case .scale: return Fonts.fontRegular24
             case .scaleNot: return Fonts.fontRegular16
             }
+        case .featureTitle, .ratingExplanationTitle:
+            return Fonts.fontDisplayRegular34
 
         // MARK: - .fontLight
         case .articleTag, .articleTagSelected, .articleTagNight, .version, .placeholder,
@@ -1130,7 +1136,7 @@ enum ThemeText {
              .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader, .mySensorsTitle, .H03Light,
              .MediumBodySand, .questionairePageCurrent, .questionairePageTotal:
             return Fonts.fontMedium14
-        case .sprintName, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader,
+        case .sprintName, .tbvQuestionMedium, .resultListHeader,
              .dailyBriefFromTignumTitle:
             return Fonts.fontMedium16
         case .tbvQuestionHigh:
@@ -1143,7 +1149,7 @@ enum ThemeText {
              .myDataWeekdaysHighlighted, .registrationCodeLink, .articleContactSupportLink,
              .loginSeparator, .chatbotProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
-        case .myDataHeatMapCellDateHighlighted, .registrationCodeDescriptionEmail, .walkthroughMessage,
+        case .registrationCodeDescriptionEmail, .walkthroughMessage,
              .coachMarkTitle, .weatherDescription:
             return Fonts.fontSemiBold16
         case .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
@@ -1152,18 +1158,22 @@ enum ThemeText {
         case .onboardingInfoTitle:
             return Fonts.fontApercuBold90
 
+        // MARK: - fontHeavy
+        case .myDataHeatMapCellDateHighlighted:
+            return Fonts.fontHeavy16
+
         // MARK: - fontDisplayThin
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
              .mySprintDetailsTitle, .H01Light, .dailyQuestion:
             return Fonts.fontDisplayLight24
         case .iRscore:
             return Fonts.fontDisplayThin30
-        case .myDataHeatMapDetailCellValue, .quotation, .aboutMeContent:
+        case .quotation, .aboutMeContent:
             return Fonts.fontDisplayThin34
         case .strategyTitle:
             return Fonts.fontDisplayThin38
-        case .featureTitle, .ratingExplanationTitle:
-            return Fonts.fontDisplayRegular34
+        case .myDataHeatMapDetailCellValue:
+            return Fonts.fontDisplayThin42
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
         case .tvbCounter:
@@ -1184,8 +1194,8 @@ enum ThemeText {
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle, .accountHeaderTitle,
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText, .myLibraryGroupName,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
-             .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .optionPage, .linkMenuItem, .loginSeparator,
-             .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
+             .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .myDataHeatMapDetailCellDate, .optionPage, .linkMenuItem, .loginSeparator,
+             .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .myDataHeatMapCellDateText, .registrationEmailTitle, .registrationCodeTitle,
              .dailyBriefLevelTitle, .searchSuggestion, .myRating, .trends, .articleStrategyTitle, .audioBar, .tbvButton, .mySprintDetailsCta,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
              .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
@@ -1196,7 +1206,7 @@ enum ThemeText {
              .strategyTitle, .customizeQuestion, .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle,
              .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark, .dailyBriefSand, .ratingExplanationTitle,
              .ratingExplanationText, .ratingExplanationVideoTitle, .darkBanner, .baseHeaderSubtitleBold, .teamVisionSentence, .dailyQuestion,
-             .questionairePageCurrent, .chatbotButtonSelected, .tbvTrackerAnswerTeam, .registrationCodeTermsAndPrivacy, .registrationCodeLink:
+             .questionairePageCurrent, .chatbotButtonSelected, .tbvTrackerAnswerTeam, .registrationCodeTermsAndPrivacy, .registrationCodeLink, .myDataHeatMapLegendText:
             return UIColor.white
 
         // MARK: - .lightGrey
@@ -1208,8 +1218,8 @@ enum ThemeText {
              .dailyInsightsChartBarLabelUnselected, .guideNavigationTitle, .shpiSubtitle, .myPlansHeader, .myQOTBoxTitleDisabled,
              .MediumBodySand, .teamTvbTimeSinceTitle, .optionPageDisabled, .linkMenuComment, .strategySubHeader, .sprintText,
              .goodToKnow, .readinessScore, .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer,
-             .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText,
-             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
+             .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataWeekdaysNotHighlighted,
+             .myDataExplanationCellSubtitle, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeInfoActions, .registrationAgeDescription, .librarySubtitle,
              .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights,
@@ -1219,7 +1229,7 @@ enum ThemeText {
              .averageRating, .totalVotes, .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
              .shpiContent, .qotAlertMessage, .suggestionMyBest, .asterixText, .memberEmail, .dailyInsightsTbvAdvice,
              .articleHeadlineSmallFade, .articleTagSelected, .articleStrategyRead, .articleRelatedDetailInStrategyRead,
-             .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail,
+             .quoteAuthor, .chatButton, .myDataChartValueLabels, .bespokeText, .accountDetailEmail,
              .dailyBriefSubtitle, .registerIntroBody, .version, .weatherLastUpdate, .articleRelatedDetailInStrategy,
              .myLibraryItemsItemNameGrey, .calendarNoAccess, .articleTag, .bodyText, .questionairePageTotal, .searchNoResults:
             return Palette.lightGrey
@@ -1693,6 +1703,8 @@ private struct Fonts {
     static let fontSemiBold14 = UIFont.sfProtextSemibold(ofSize: 14.0)
     static let fontSemiBold16 = UIFont.sfProtextSemibold(ofSize: 16.0)
 
+    static let fontHeavy16 = UIFont.sfProtextHeavy(ofSize: 16)
+
     static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
     static let fontDisplayLight34 = UIFont.sfProDisplayLight(ofSize: 34.0)
     static let fontDisplayLight40 = UIFont.sfProDisplayLight(ofSize: 40.0)
@@ -1703,6 +1715,7 @@ private struct Fonts {
     static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
     static let fontDisplayThin38 = UIFont.sfProDisplayThin(ofSize: 38.0)
+    static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
 

@@ -44,7 +44,7 @@ final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
     }
 
     private func setupForSelected(selected: Bool) {
-        let image = selected ? UIImage.init(named: "ic_radio_selected") : UIImage.init(named: "ic_radio_unselected")
+        let image = selected ? UIImage.init(named: "ic_radio_selected_white") : UIImage.init(named: "ic_radio_unselected_white")
         checkMarkImageView.image = image
     }
 }
