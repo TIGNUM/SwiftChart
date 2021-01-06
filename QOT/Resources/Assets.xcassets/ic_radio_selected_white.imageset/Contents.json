@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "checmark-white.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "checmark-white@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "checmark-white@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

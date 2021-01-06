@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,7 +30,7 @@
                             <constraint firstAttribute="width" constant="32" id="R7c-Zc-SuB"/>
                             <constraint firstAttribute="height" constant="32" id="lKC-xK-MRS"/>
                         </constraints>
-                        <state key="normal" image="ic_radio_unselected"/>
+                        <state key="normal" image="ic_radio_selected"/>
                         <connections>
                             <action selector="buttonPressed:" destination="EWv-wp-fkR" eventType="touchUpInside" id="zQz-tk-UyH"/>
                         </connections>
@@ -78,7 +78,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="i2X-bt-aRb" secondAttribute="trailing" constant="24" id="CeN-19-vjM"/>
                     <constraint firstItem="O3H-8A-6fQ" firstAttribute="leading" secondItem="SQs-AP-dw3" secondAttribute="leading" constant="24" id="EOU-8b-dow"/>
@@ -88,8 +88,8 @@
                     <constraint firstItem="O3H-8A-6fQ" firstAttribute="centerY" secondItem="SQs-AP-dw3" secondAttribute="centerY" id="wh8-x4-BVG"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="button" destination="O3H-8A-6fQ" id="iNW-jO-CnY"/>
                 <outlet property="durationLabel" destination="ncG-Yd-z9s" id="Fxm-Xb-Kok"/>
@@ -101,7 +101,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_radio_unselected" width="32" height="32"/>
-        <image name="ic_seen_of" width="11" height="12"/>
+        <image name="ic_radio_selected" width="24" height="24"/>
+        <image name="ic_seen_of" width="16" height="16"/>
     </resources>
 </document>

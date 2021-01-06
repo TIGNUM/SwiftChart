@@ -10,14 +10,11 @@ import UIKit
 
 class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
 
-    private static let gradientIdentifier = "MySprintsListTableViewCell.gradient"
-
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var statusIcon: UIImageView!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var progressLabel: UILabel!
     let skeletonManager = SkeletonManager()
-    private var editingOverlay: UIView!
 
     private lazy var reorderImage: UIImage? = {
         return UIImage.qot_reorderControlImage()
@@ -26,12 +23,32 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        editingOverlay = UIView()
-        self.addSubview(editingOverlay)
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(statusLabel)
         skeletonManager.addOtherView(progressLabel)
         skeletonManager.addOtherView(statusIcon)
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        if editing {
+            changeReorderControlImage()
+            setEditingAccesory(forState: false)
+        }
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if isEditing {
+            setEditingAccesory(forState: selected)
+        }
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        if isEditing {
+            setEditingAccesory(forState: highlighted)
+        }
     }
 
     func set(title: String?, status: MySprintStatus?, description: String?, progress: String?) {
@@ -53,23 +70,6 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
             ThemeView.clear.apply(contentView)
         }
     }
-
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        editingOverlay.isHidden = !editing
-
-        if editing {
-            changeReorderControlImage()
-        }
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        editingOverlay.frame = self.bounds
-
-        removeGradient(from: editingOverlay)
-        addGradient(to: editingOverlay)
-    }
 }
 
 // MARK: - Private methods
@@ -88,24 +88,6 @@ extension MySprintsListTableViewCell {
         }
     }
 
-    private func removeGradient(from view: UIView) {
-        view.layer.sublayers?.forEach {
-            if let name = $0.name, name == MySprintsListTableViewCell.gradientIdentifier {
-                $0.removeFromSuperlayer()
-            }
-        }
-    }
-
-    private func addGradient(to view: UIView) {
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.name = MySprintsListTableViewCell.gradientIdentifier
-        gradient.colors = [UIColor.carbon.withAlphaComponent(0).cgColor, UIColor.carbon.cgColor]
-        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.endPoint = CGPoint(x: 0.8, y: 1.0)
-        gradient.frame = view.bounds
-        view.layer.insertSublayer(gradient, at: 0)
-    }
-
     private func changeReorderControlImage() {
         guard let reorderImage = self.reorderImage else {
             return
@@ -115,6 +97,22 @@ extension MySprintsListTableViewCell {
             for case let subview as UIImageView in view.subviews {
                 subview.image = reorderImage
                 subview.frame = CGRect(center: CGPoint(x: subview.center.x, y: self.frame.size.height/2.0), size: reorderImage.size)
+            }
+        }
+    }
+
+    private func setEditingAccesory(forState selected: Bool) {
+        let image = selected ? R.image.ic_radio_selected_white() : R.image.ic_radio_unselected_white()
+        for subViewA in self.subviews {
+            if subViewA.classForCoder.description() == "UITableViewCellEditControl" {
+                if let subViewB = subViewA.subviews.last {
+                    if subViewB.isKind(of: UIImageView.classForCoder()) {
+                        if let imageView = subViewB as? UIImageView {
+                            imageView.contentMode = .scaleAspectFit
+                            imageView.image = image
+                        }
+                    }
+                }
             }
         }
     }

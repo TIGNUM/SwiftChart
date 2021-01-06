@@ -72,6 +72,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="durationLabel" destination="b0o-Fz-H7a" id="bKV-fp-DnC"/>
+                <outlet property="iconView" destination="r6b-SA-5iC" id="9E3-1A-ttN"/>
                 <outlet property="separatorView" destination="z2a-df-gaS" id="Nkt-0J-cp6"/>
                 <outlet property="titleLabel" destination="KIP-F0-MPj" id="QJP-Jk-eCR"/>
             </connections>

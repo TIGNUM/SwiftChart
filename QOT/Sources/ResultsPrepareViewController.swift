@@ -258,16 +258,22 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
         case .strategies(let strategies):
             let strategy = strategies.at(index: indexPath.row)
             let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: strategy?.title.uppercased(), duration: strategy?.durationString)
+            var format: ContentFormat = .text
+            if strategy?.hasVideoOnly ?? false {
+                format = .video
+            } else if strategy?.hasAudioItems ?? false {
+                format = .audio
+            }
+            cell.configure(title: strategy?.title, duration: strategy?.durationString)
             cell.layoutMargins = UIEdgeInsets.zero
             cell.selectedBackgroundView = backgroundView
             return cell
         case .strategyItems(let strategyItems):
-        let strategyItem = strategyItems.at(index: indexPath.row)
-        let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: strategyItem?.valueText, duration: strategyItem?.durationString)
-        cell.selectedBackgroundView = backgroundView
-        return cell
+            let strategyItem = strategyItems.at(index: indexPath.row)
+            let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: strategyItem?.valueText, duration: strategyItem?.durationString)
+            cell.selectedBackgroundView = backgroundView
+            return cell
         }
     }
 
