@@ -572,6 +572,9 @@ public extension AppTextKey {
     static let my_x_team_tbv_section_update_subtitle = AppTextKey("my_x.team_tbv.section_update.subtitle")
     static let my_x_team_tbv_section_rating_button = AppTextKey("my_x.team_tbv_section.rating_button")
     static let my_x_team_tbv_section_poll_button = AppTextKey("my_x.team_tbv_section.poll_button")
+    static let my_x_team_tbv_section_poll_button_voted = AppTextKey("my_x.team_tbv_section.poll_button_voted")
+    static let my_x_team_tbv_section_poll_button_vote = AppTextKey("my_x.team_tbv_section.poll_button_vote")
+    static let my_x_team_tbv_section_poll_button_options = AppTextKey("my_x.team_tbv_section.poll_button_options")
     static let my_x_team_tbv_section_trends_label = AppTextKey("my_x.team_tbv_section.trends_label")
 
     static let my_x_team_tbv_section_rating_explanation_title = AppTextKey("my_x.team_tbv_section.rating_explanation.title")
