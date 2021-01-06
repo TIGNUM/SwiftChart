@@ -407,6 +407,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
             let cta = try poll.stateWithAction()
             pollButton.ctaState = cta.state
             pollButton.ctaAction = cta.action
+            ThemableButton.poll.apply(pollButton, title: cta.label)
             removeBatchPollButton()
             pollButton.isSelected = false
             switch cta.state {
