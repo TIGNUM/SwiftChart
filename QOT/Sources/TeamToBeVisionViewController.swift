@@ -436,6 +436,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
             let cta = try poll.stateWithAction()
             trackerButton.ctaState = cta.state
             trackerButton.ctaAction = cta.action
+            ThemableButton.poll.apply(trackerButton, title: cta.label)
             removeBatchTrackerButton()
             trackerButton.isSelected = false
             switch cta.state {

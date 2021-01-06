@@ -60,6 +60,7 @@ extension ButtonTheme {
             let voted = AppTextService.get(.my_x_team_tbv_section_poll_button_voted)
             let vote = AppTextService.get(.my_x_team_tbv_section_poll_button_vote)
             let options = AppTextService.get(.my_x_team_tbv_section_poll_button_options)
+            let rate = AppTextService.get(.my_x_team_tbv_section_rating_button)
             switch self {
             case .generator(let visionPoll, let trackerPoll, let team, let tbv):
                 log("🎯🎯🎯 Generator: trackerPoll?.open == \(trackerPoll?.open == true)", level: .debug)
@@ -123,35 +124,35 @@ extension ButtonTheme {
                 case (false, false, false, false),
                      (true, _, _, false):
                     log("🎱🎱🎱 Tracker.State: .isHidden", level: .debug)
-                    return (state: .isHidden, action: .undefined, label: "Rate ToBeVision")
+                    return (state: .isHidden, action: .undefined, label: rate)
 
                 case (false, false, _, true):
                     log("🎱🎱🎱 Tracker.State: .isActive, action: .showIntro", level: .debug)
-                    return (state: .isActive, action: .showIntroRating, label: "Rate ToBeVision")
+                    return (state: .isActive, action: .showIntroRating, label: rate)
                 case (false, true, true, false):
                     log("🎱🎱🎱 Tracker.State: .isInactive, action: .showBanner", level: .debug)
                     let string = AppTextService.get(.team_tbv_rate_ends)
                     let message = string.replacingOccurrences(of: "${number_of_days}", with: String(trackerPoll?.remainingDays ?? 0))
-                    return (state: .isInactive, action: .showBanner(message: message), label: "Rate ToBeVision")
+                    return (state: .isInactive, action: .showBanner(message: message), label: rate)
                 case (true, false, false, true):
                     log("🎱🎱🎱 Tracker.State: .isInactive, action: .showBanner", level: .debug)
                     let message = AppTextService.get(.banner_unavailable_while_poll_active)
-                    return (state: .isInactive, action: .showBanner(message: message), label: "Rate ToBeVision")
+                    return (state: .isInactive, action: .showBanner(message: message), label: rate)
                 case (_, _, true, false):
                     log("🎱🎱🎱 Tracker.State: .isInactive, action: .showBanner", level: .debug)
                     let message = AppTextService.get(.banner_unavailable_while_poll_active)
-                    return (state: .isInactive, action: .showBanner(message: message), label: "Rate ToBeVision")
+                    return (state: .isInactive, action: .showBanner(message: message), label: rate)
 
                 case (false, true, false, false):
                     log("🎱🎱🎱 Tracker.State: .hasBatch, action: .showIntro", level: .debug)
-                    return (state: .hasBatch, action: .showIntroRating, label: "Rate ToBeVision")
+                    return (state: .hasBatch, action: .showIntroRating, label: rate)
 
                 case (false, true, false, true):
                     log("🎱🎱🎱 Tracker.State: .hasBatch, action: .showAdminOptionsRating", level: .debug)
-                    return (state: .hasBatch, action: .showAdminOptionsRating, label: "Rate ToBeVision")
+                    return (state: .hasBatch, action: .showAdminOptionsRating, label: rate)
                 case (false, true, true, true):
                     log("🎱🎱🎱 Tracker.State: .isActive, action: .showAdminOptionsRating", level: .debug)
-                    return(state: .isActive, action: .showAdminOptionsRating, label: "Rate ToBeVision")
+                    return(state: .isActive, action: .showAdminOptionsRating, label: rate)
                 default:
                     log("🎱🎱🎱 Tracker.State: StateError.unknown", level: .debug)
                     throw State.StateError.unknown
