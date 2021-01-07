@@ -1092,6 +1092,8 @@ enum ThemeText {
             return Fonts.fontLight34
         case .articlePostTitle:
             return Fonts.fontLight36
+        case .coachHeader:
+            return Fonts.fontLight40
         case .articleNum:
             return Fonts.fontLight72
         case .articleQuote:
@@ -1158,7 +1160,7 @@ enum ThemeText {
             return Fonts.fontHeavy16
 
         // MARK: - fontDisplayThin
-        case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
+        case .tbvStatement, .qotToolsTitle, .resultHeader1, .accountUserName, .paymentReminderHeaderTitle,
              .mySprintDetailsTitle, .H01Light, .dailyQuestion:
             return Fonts.fontDisplayLight24
         case .iRscore:
@@ -1320,8 +1322,7 @@ enum ThemeText {
         case .articleCategory, .articleCategoryNotScaled, .audioFullScreenCategory, .articleAuthor, .articleDatestamp,
              .author, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .dailyBriefTitleBlack,
              .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash,
-             .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
-             .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader, .myLibraryTitle,
+             .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader, .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle, .mySprintsTitle, .mySprintsCellStatus,
              .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle, .H01Light, .H01Medium, .H02Medium, .myPlansHeader,
@@ -1367,7 +1368,7 @@ enum ThemeText {
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .askPermissionTitle,
              .weatherDescription, .weatherLocation, .weatherLastUpdate, .weatherTitle, .weatherBody, .mySensorsSensorTitle,
              .mySensorsTitle, .mySensorsNoDataInfoLabel, .mySensorsDescriptionTitle, .mySensorsDescriptionBody,
-             .insightsTBVText, .insightsSHPIText, .insightsTBVSentence, .H02Light:
+             .insightsTBVText, .insightsSHPIText, .insightsTBVSentence, .H02Light, .coachHeader:
             string = NSAttributedString(string: text,
                                         letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color,
                                         alignment: alignment ?? .left)
