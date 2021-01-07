@@ -144,6 +144,7 @@ extension MyVisionEditDetailsViewController: UITextViewDelegate {
             isButtonEnabled = true
         }
         keyboardInputView.saveButton.isEnabled = isButtonEnabled
+        keyboardInputView.saveButton.corner(radius: 20, borderColor: isButtonEnabled ? .white : .clear)
         keyboardInputView.saveButton.alpha = isButtonEnabled ? 1.0 : 0.5
     }
 }
