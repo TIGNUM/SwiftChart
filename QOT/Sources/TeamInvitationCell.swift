@@ -13,9 +13,9 @@ final class TeamInvitationCell: BaseDailyBriefCell {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var invitationLabel: UILabel!
-    @IBOutlet private weak var declineButton: AnimatedButton!
-    @IBOutlet private weak var joinButton: AnimatedButton!
-    @IBOutlet private weak var seePendingButton: AnimatedButton!
+    @IBOutlet private weak var declineButton: RoundedButton!
+    @IBOutlet private weak var joinButton: RoundedButton!
+    @IBOutlet private weak var seePendingButton: RoundedButton!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     private var teamInvitation: QDMTeamInvitation?
@@ -23,9 +23,6 @@ final class TeamInvitationCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        joinButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        declineButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        seePendingButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(invitationLabel)
@@ -36,24 +33,23 @@ final class TeamInvitationCell: BaseDailyBriefCell {
 
     func configure(model: TeamInvitationModel?) {
         skeletonManager.hide()
-        let joinCta = AppTextService.get(.daily_brief_team_invitation_join_cta)
         let title = AppTextService.get(.daily_brief_team_invitation_title)
         baseHeaderView?.configure(title: title,
                                   subtitle: nil)
-        joinButton.setTitle(joinCta, for: .normal)
         let text1 = AppTextService.get(.daily_brief_team_invitation_one_team_statement)
         let belongingText = AppTextService.get(.daily_brief_team_invitation_belonging_sentence)
         let text2 = AppTextService.get(.daily_brief_team_invitation_several_teams_statement)
 
+        let joinCta = AppTextService.get(.daily_brief_team_invitation_join_cta)
         let declineCta = AppTextService.get(.daily_brief_team_invitation_decline_cta)
         let pendingCta = AppTextService.get(.daily_brief_team_invitation_see_pending_cta)
-        declineButton.setTitle(declineCta, for: .normal)
-        seePendingButton.setTitle(pendingCta, for: .normal)
+        ThemableButton.darkButton.apply(declineButton, title: declineCta)
+        ThemableButton.darkButton.apply(joinButton, title: joinCta)
+        ThemableButton.darkButton.apply(seePendingButton, title: pendingCta)
         seePendingButton.isHidden = model?.teamNames?.count == 1
         guard let count = model?.teamNames?.count else { return }
         let whiteAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 16), .foregroundColor: UIColor.white]
         let greyAttributes: [NSAttributedString.Key: Any]? = [.font: UIFont.sfProtextRegular(ofSize: 16), .foregroundColor: UIColor.lightGrey]
-        ThemeButton.dailyBriefButtons.apply(joinButton)
         if count > 1 {
             joinButton.isHidden = true
             declineButton.isHidden = true

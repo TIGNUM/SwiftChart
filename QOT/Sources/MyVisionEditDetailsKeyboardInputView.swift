@@ -23,8 +23,10 @@ final class MyVisionEditDetailsKeyboardInputView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        saveButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        closeButton.corner(radius: closeButton.frame.size.width/2, borderColor: .accent40)
+        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.setTitleColor(.lightGrey, for: .disabled)
+        closeButton.corner(radius: closeButton.frame.size.width/2, borderColor: .white)
+        closeButton.imageView?.tintColor = .white
     }
 
     @IBAction func closeButtonAction(_ sender: Any) {

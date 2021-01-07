@@ -26,6 +26,8 @@ final class TeamMemberTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
         self.backgroundView = UIView(frame: bounds)
         self.selectedBackgroundView = UIView(frame: bounds)
+        joinedIcon.tintColor = .white
+        joinedBorder.tintColor = .white
         ThemeView.level2Selected.apply(selectedBackgroundView!)
         setDemoHidden(true)
     }

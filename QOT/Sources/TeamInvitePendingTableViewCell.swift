@@ -13,8 +13,8 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var teamNameLabel: UILabel!
     @IBOutlet private weak var inviteInfoLabel: UILabel!
     @IBOutlet private weak var maxTeamCountInfoLabel: UILabel!
-    @IBOutlet private weak var declineButton: UIButton!
-    @IBOutlet private weak var joinButton: UIButton!
+    @IBOutlet private weak var declineButton: RoundedButton!
+    @IBOutlet private weak var joinButton: RoundedButton!
     @IBOutlet private weak var infoLabelHeightConstriant: NSLayoutConstraint!
     private lazy var keyJoin: AppTextKey = .team_invite_cta_join
     private lazy var keyDecline: AppTextKey = .team_invite_cta_decline
@@ -39,11 +39,8 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: - Private
 private extension TeamInvitePendingTableViewCell {
-    func layoutButton(_ button: UIButton, _ key: AppTextKey, _ canJoin: Bool) {
-        button.corner(radius: 20, borderColor: canJoin ? .accent40 : .sand10, borderWidth: canJoin ? 1 : 0)
-        button.setTitleColor(canJoin ? .accent : .lightGrey, for: .normal)
-        button.setTitle(AppTextService.get(key), for: .normal)
-        button.backgroundColor = canJoin ? .carbon90 : .sand10
+    func layoutButton(_ button: RoundedButton, _ key: AppTextKey, _ canJoin: Bool) {
+        ThemableButton.darkButton.apply(button, title: AppTextService.get(key))
         button.isEnabled = canJoin
     }
 
