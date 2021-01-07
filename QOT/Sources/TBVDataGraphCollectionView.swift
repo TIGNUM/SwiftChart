@@ -60,6 +60,8 @@ private extension TBVDataGraphCollectionView {
         let selected = date == getSelectedDate
 
         cell.setup(with: config, isSelected: selected, ratingTime: date, rating: rating, range: range)
+
+        cell.layer.zPosition = CGFloat(TBVGraph.BarTypes.numberOfGraphs) - CGFloat(indexPath.row)
         return cell
     }
 
