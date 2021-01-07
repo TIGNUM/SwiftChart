@@ -300,7 +300,6 @@ enum ThemeButton {
     case audioButton
     case closeButton(ThemeColorMode)
     case dailyBriefButtons
-    case dailyBriefWithoutBorder
     case clear
     case onboarding
     case backButton
@@ -350,10 +349,6 @@ enum ThemeButton {
             colorSelected = .lightGrey
             colorUnselected = .clear
             colorBorder = .white
-        case .dailyBriefWithoutBorder:
-            colorSelected = .accent40
-            colorUnselected = .clear
-            colorBorder = .none
         case .clear:
             colorSelected = .clear
         case .onboarding:
@@ -532,7 +527,7 @@ enum ThemableButton {
         case .myPlans:
             return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .darkButton:
-            return ButtonTheme(foreground: .black, background: .white, border: nil)
+            return ButtonTheme(foreground: .lightGrey, background: .black, border: .clear)
         case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .newBlueButton:

@@ -74,9 +74,9 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         self.counterLabel.isHidden = teamInvites.count == 0
         self.counterLabel.text = "\(teamInvites.count)"
         itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)
-        itemButton.backgroundColor = .carbon
-        itemButton.layer.borderColor = UIColor.accent40.cgColor
-        itemButton.setTitleColor(.accent, for: .normal)
+        itemButton.backgroundColor = .black
+        itemButton.layer.borderColor = UIColor.white.cgColor
+        itemButton.setTitleColor(.white, for: .normal)
         setSelected(false)
     }
 }
@@ -133,7 +133,7 @@ private extension TeamHeaderCell {
                 itemButton.setTitleColor(.white, for: .normal)
             }
         } else {
-            if teamId == Team.Header.myX.inviteId {
+            if teamId == Team.Header.myX.inviteId || teamId == Team.Header.invite.inviteId {
                 itemButton.backgroundColor = .black
                 itemButton.layer.borderColor = UIColor.white.cgColor
                 itemButton.setTitleColor(.white, for: .normal)
