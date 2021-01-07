@@ -1003,8 +1003,8 @@ public extension AppTextKey {
     static let generic_payment_screen_section_footer_subtitle_footer = AppTextKey("generic.payment_screen.section_footer.subtitle_footer")
     static let generic_payment_screen_section_two_title_impact = AppTextKey("generic.payment_screen.section_two.title_impact")
     static let generic_payment_screen_section_four_title_data = AppTextKey("generic.payment_screen.section_four.title_data")
-    static let generic_payment_screen_expire_soon_section_header_title_header = AppTextKey("generic.payment_screen.expire_soon.section_header.title_header")
-    static let generic_payment_screen_expired_section_header_title_header_expired = AppTextKey("generic.payment_screen.expired.section_header.title_header_expired")
+    static let generic_payment_screen_expire_soon_section_header_title_header_new = AppTextKey("generic.payment_screen.expire_soon.section_header.title_header_new")
+    static let generic_payment_screen_expired_section_header_title_header_expired_new = AppTextKey("generic.payment_screen.expired.section_header.title_header_expired_new")
     static let generic_payment_screen_expired_section_footer_subtitle_switch_account = AppTextKey("generic.payment_screen.expired.section_footer.subtitle_switch_account")
     static let generic_payment_screen_section_three_subtitle_grow = AppTextKey("generic.payment_screen.section_three.subtitle_grow")
     static let generic_payment_screen_expired_section_header_subtitle_header_expired = AppTextKey("generic.payment_screen.expired.section_header.subtitle_header_expired")
@@ -1257,4 +1257,6 @@ public extension AppTextKey {
     static let coach_tools_section_movement_title = AppTextKey("coach.tools.section_movement.title")
     static let coach_tools_section_nutrition_title = AppTextKey("coach.tools.section_nutrition.title")
     static let coach_tools_section_recovery_title = AppTextKey("coach.tools.section_recovery.title")
+    static let generic_payment_screen_expire_soon_section_header_title_header = AppTextKey("generic.payment_screen.expire_soon.section_header.title_header")
+    static let generic_payment_screen_expired_section_header_title_header_expired = AppTextKey("generic.payment_screen.expired.section_header.title_header_expired")
 }
