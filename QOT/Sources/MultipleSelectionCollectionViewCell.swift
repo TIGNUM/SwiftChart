@@ -57,9 +57,10 @@ extension MultipleSelectionCollectionViewCell {
             delegate?.didDeSelectAnswer(answer)
             NotificationCenter.default.post(name: .didUnVoteTeamTBV, object: answer.remoteId)
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
-            answer.setSelected(true)
-            isAnswered = true
-            selectionButton?.switchBackgroundColor(isSelected: true)
+            let shouldMarkSelected = !(selectionCounter == 0 && maxSelections == 0)
+            answer.setSelected(shouldMarkSelected)
+            isAnswered = shouldMarkSelected
+            selectionButton?.switchBackgroundColor(isSelected: shouldMarkSelected)
             delegate?.didSelectAnswer(answer)
             NotificationCenter.default.post(name: .didVoteTeamTBV, object: answer.remoteId)
         }
