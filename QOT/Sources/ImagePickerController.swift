@@ -96,7 +96,7 @@ final class ImagePickerController {
             alertController.addAction(deleteAction)
         }
         alertController.addAction(cancelAction)
-        alertController.view.tintColor = .accent
+        alertController.view.tintColor = .white
         self.viewController?.present(alertController, animated: true)
     }
 

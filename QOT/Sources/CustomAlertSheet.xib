@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAlertSheetContentViewController" customModule="QOT" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAlertSheetContentViewController" customModule="TIGNUM_X" customModuleProvider="target">
             <connections>
                 <outlet property="titleLabel" destination="EPT-CP-loc" id="Btg-RV-f1d"/>
                 <outlet property="view" destination="mk5-nu-Cvq" id="vBl-5q-zxa"/>
@@ -29,19 +27,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPT-CP-loc">
-                    <rect key="frame" x="177.5" y="32.5" width="59" height="23"/>
+                    <rect key="frame" x="177.5" y="49.5" width="59" height="23"/>
                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <color key="textColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="rQF-yz-iL6"/>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="EPT-CP-loc" firstAttribute="centerX" secondItem="rQF-yz-iL6" secondAttribute="centerX" id="SJj-oJ-IsO"/>
                 <constraint firstItem="EPT-CP-loc" firstAttribute="centerY" secondItem="rQF-yz-iL6" secondAttribute="centerY" id="vRo-3s-WjG"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="rQF-yz-iL6"/>
             <point key="canvasLocation" x="137.68115942028987" y="-121.20535714285714"/>
         </view>
     </objects>
