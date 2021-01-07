@@ -101,7 +101,8 @@ private extension MyLibraryUserStorageViewController {
         bottomNavigationItems.rightBarButtonItems = buttons.map {
             let button = RoundedButton(title: $0.title, target: $0.target, action: $0.action)
             button.isEnabled = $0.isEnabled
-            ThemableButton.darkButton.apply(button, title: $0.title)
+            ThemeButton.carbonButton.apply(button)
+            button.setTitle($0.title)
             return button.barButton
         }
         refreshBottomNavigationItems()
@@ -160,7 +161,8 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         addButton.setImage(R.image.ic_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
         ThemeTint.white.apply(addButton.imageView ?? UIImageView.init())
         addButton.setImage(R.image.ic_note()?.withRenderingMode(.alwaysTemplate), for: .disabled)
-        ThemableButton.darkButton.apply(addButton, title: " " + interactor.addTitle)
+        ThemeButton.carbonButton.apply(addButton)
+        addButton.setTitle(" " + interactor.addTitle)
         // (interactor.items == nil) means, need to show skeleton
         tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? 0) == 0
     }
@@ -173,7 +175,7 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         editButtonWidthConstraint.constant = interactor.showEditButton ? 40.0 : 0.0
         setEditButton(enabled: interactor.canEdit)
-        addButton.isEnabled = !isEditing
+        addButton.isHidden = isEditing
 
         // (interactor.items == nil) means, need to show skeleton
         tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? 0) == 0
