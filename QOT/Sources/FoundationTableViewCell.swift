@@ -53,7 +53,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
         mediaIconImageView.image = R.image.ic_camera_grey()
         colorMode == .dark ? ThemeTint.lightGrey.apply(mediaIconImageView) : ThemeTint.darkGrey.apply(mediaIconImageView)
-        checkIfSeen()
+        checkIfSeen(darkMode: forcedColorMode == .dark)
         skeletonManager.hide()
     }
 
@@ -64,7 +64,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
 
 private extension FoundationTableViewCell {
 
-    private func checkIfSeen() {
+    private func checkIfSeen(darkMode: Bool) {
         if isSeen {
             ThemeText.articleStrategyRead.apply(titleText, to: titleLabel)
             seenCheckMark.image?.withRenderingMode(.alwaysOriginal)
@@ -72,7 +72,7 @@ private extension FoundationTableViewCell {
             seenCheckMark.isHidden = false
             setToBlackAndWhite(image: previewImageView.image)
         } else {
-            let forcedMode: ThemeColorMode = colorMode == .dark ? .dark : .light
+            let forcedMode: ThemeColorMode = darkMode ? .dark : .light
             ThemeText.articleRelatedTitle(forcedMode).apply(titleText, to: titleLabel)
             seenCheckMark.isHidden = true
         }
