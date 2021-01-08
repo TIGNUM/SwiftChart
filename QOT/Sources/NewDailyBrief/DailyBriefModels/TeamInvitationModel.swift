@@ -36,7 +36,7 @@ final class TeamInvitationModel: BaseDailyBriefViewModel {
 
         let body = (inviteCount ?? 0) > 1 ? multipleTeamsBody : singleTeamBody
         super.init(domainModel,
-                   caption: AppTextService.get(.daily_brief_team_invitation_title),
+                   caption: AppTextService.get(.daily_brief_team_invitation_title_new),
                    title: title,
                    body: body,
                    image: image)

@@ -84,7 +84,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         self.sprint = sprint
         self.sprintStepNumber = sprintStepNumber
         self.relatedStrategiesModels = relatedStrategiesModels.filter { $0.sprintDay == "SPRINT_BUCKET_DAY_" + "\(sprintStepNumber ?? 0)" }
-        let caption = AppTextService.get(.daily_brief_section_sprint_challenge_caption) + " \(sprintStepNumber ?? 0)"
+        let caption = sprintStepNumber == 0 ? AppTextService.get(.daily_brief_section_sprint_challenge_intro_caption) : AppTextService.get(.daily_brief_section_sprint_challenge_caption) + " \(sprintStepNumber ?? 0)"
         super.init(domainModel,
                    caption: caption,
                    title: sprintTitle,

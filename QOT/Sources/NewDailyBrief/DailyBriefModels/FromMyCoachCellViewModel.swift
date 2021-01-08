@@ -30,7 +30,7 @@ final class FromMyCoachCellViewModel: BaseDailyBriefViewModel {
         self.detail = detail
         self.messages = messages
         super.init(domainModel,
-                   caption: AppTextService.get(.daily_brief_section_from_my_tignum_coach_card_title),
+                   caption: AppTextService.get(.daily_brief_section_from_my_tignum_coach_title_new),
                    title: detail.title,
                    body: messages.first?.text,
                    image: image)

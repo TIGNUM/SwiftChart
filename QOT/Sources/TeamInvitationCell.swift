@@ -33,7 +33,7 @@ final class TeamInvitationCell: BaseDailyBriefCell {
 
     func configure(model: TeamInvitationModel?) {
         skeletonManager.hide()
-        let title = AppTextService.get(.daily_brief_team_invitation_title)
+        let title = AppTextService.get(.daily_brief_team_invitation_title_new)
         baseHeaderView?.configure(title: title,
                                   subtitle: nil)
         let text1 = AppTextService.get(.daily_brief_team_invitation_one_team_statement)

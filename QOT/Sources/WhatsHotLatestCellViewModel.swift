@@ -42,7 +42,7 @@ final class WhatsHotLatestCellViewModel: BaseDailyBriefViewModel {
 
     func setupStrings() {
         let dateAndDurationText = DateFormatter.whatsHotBucket.string(from: publisheDate) + " | " + timeToRead
-        caption = AppTextService.get(.daily_brief_section_whats_hot_title)
+        caption = AppTextService.get(.daily_brief_section_whats_hot_title_new)
         body = dateAndDurationText
     }
 }
