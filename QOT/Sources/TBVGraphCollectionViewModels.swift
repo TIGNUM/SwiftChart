@@ -35,14 +35,14 @@ struct TBVGraph {
         let unSelectedBarRatingColor: UIColor
 
         static func tbvDataConfig() -> BarGraphConfig {
-            return BarGraphConfig(graphBarColor: .sand08,
-                                  progressBarColor: .accent40,
-                                  selectedBarColor: .accent,
+            return BarGraphConfig(graphBarColor: .darkGrey,
+                                  progressBarColor: .lightGrey,
+                                  selectedBarColor: .white,
                                   unSelectedFont: .sfProtextLight(ofSize: 16),
                                   selectedFont: .sfProtextSemibold(ofSize: 16),
-                                  ratingCircleColor: .accent40,
-                                  selectedBarRatingColor: .accent,
-                                  unSelectedBarRatingColor: .accent70)
+                                  ratingCircleColor: .white,
+                                  selectedBarRatingColor: .black,
+                                  unSelectedBarRatingColor: .white)
 
         }
 

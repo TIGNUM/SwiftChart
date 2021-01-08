@@ -1009,7 +1009,7 @@ enum ThemeText {
         case .asterix, .weatherLocation:
             return Fonts.fontRegular13
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
-             .performanceSubtitle, .quoteAuthor, .reference, .tbvTrackerBody, .loginEmailMessage,
+             .performanceSubtitle, .quoteAuthor, .reference, .loginEmailMessage,
              .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
              .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
              .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .articleContactSupportInfoTitle,
@@ -1075,7 +1075,7 @@ enum ThemeText {
              .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
              .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
              .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle, .suggestionMyBest,
-             .H02Light, .Text01Light, .Text01LightCarbon100, .coachHeaderSubtitle, .searchSuggestion, .searchResult:
+             .H02Light, .Text01Light, .Text01LightCarbon100, .coachHeaderSubtitle, .searchSuggestion, .searchResult, .tbvTrackerBody:
             return Fonts.fontLight16
         case .articleSub:
             return Fonts.fontLight18
@@ -1305,7 +1305,7 @@ enum ThemeText {
         case .baseHeaderSubtitle(let mode), .articleAuthor(let mode):
             return Palette.light(Palette.darkGrey, or: Palette.lightGrey, forcedColorMode: mode)
         case .tbvTrackerRatingDigits(let lowValue):
-            return lowValue ? Palette.redOrange40 : Palette.lightGrey
+            return lowValue ? Palette.redOrange : Palette.lightGrey
         case .tbvTrackerRatingDigitsSelected(let lowValue):
             return lowValue ? Palette.redOrange : .white
         }
