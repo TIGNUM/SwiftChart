@@ -635,7 +635,7 @@ extension DailyBriefInteractor {
         }
         if let hour = dateComponents.hour {
             if 6 <= hour && hour < 12 {
-                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title),
+                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title_new),
                                                              title: exploreContentCollections.first?.title,
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.first?.remoteID,
@@ -645,7 +645,7 @@ extension DailyBriefInteractor {
                                                              section: exploreContentCollections.first?.section ?? ContentSection.Unkown))
                 return exploreModelList
             } else if 12 <= hour && hour < 18 {
-                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title),
+                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title_new),
                                                              title: exploreContentCollections.at(index: 1)?.title,
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.at(index: 1)?.remoteID,
@@ -655,7 +655,7 @@ extension DailyBriefInteractor {
                                                              section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unkown))
                 return exploreModelList
             } else if 18 <= hour && hour <= 24 || hour < 6 {
-                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title),
+                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title_new),
                                                              title: exploreContentCollections.last?.title,
                                                              introText: AppTextService.get(.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.last?.remoteID,
@@ -679,7 +679,7 @@ extension DailyBriefInteractor {
     func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createLevel5List: [BaseDailyBriefViewModel] = []
         var levelMessageModels: [Level5ViewModel.LevelDetail] = []
-        let caption = AppTextService.get(.daily_brief_section_level_5_title)
+        let caption = AppTextService.get(.daily_brief_section_level_5_title_new)
         let intro = AppTextService.get(.daily_brief_section_level_5_body)
         let question = AppTextService.get(.daily_brief_section_level_5_question)
         let youRatedPart1 = AppTextService.get(.daily_brief_section_level_5_question_with_data_one)
@@ -731,7 +731,7 @@ extension DailyBriefInteractor {
     // MARK: - Tobevision
     func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var meAtMyBestList: [BaseDailyBriefViewModel] = []
-        let createMeAtMyBestTitle = AppTextService.get(.daily_brief_section_my_best_title)
+        let createMeAtMyBestTitle = AppTextService.get(.daily_brief_section_my_best_title_new)
         guard createMeAtMyBestTitle.isEmpty == false else { return meAtMyBestList }
         if meAtMyBest.toBeVisionTrack?.sentence?.isEmpty != false {
             let tbvEmptyIntro = AppTextService.get(.daily_brief_section_my_best_empty_body)
@@ -795,7 +795,7 @@ extension DailyBriefInteractor {
         }
 
         if !messageModels.isEmpty {
-            let detailTitle = AppTextService.get(.daily_brief_section_from_my_tignum_coach_title).lowercased().capitalizingFirstLetter()
+            let detailTitle = AppTextService.get(.daily_brief_section_from_my_tignum_coach_title_new)
             let url = URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? "")
             let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
             let model = FromMyCoachCellViewModel(detail: detail,
@@ -813,7 +813,7 @@ extension DailyBriefInteractor {
         guard let collection = leadersWisdom.contentCollections?.first else {
             return leadersWisdomList
         }
-        leadersWisdomList.append(LeaderWisdomCellViewModel(title: AppTextService.get(.daily_brief_section_leader_wisdom_title),
+        leadersWisdomList.append(LeaderWisdomCellViewModel(title: AppTextService.get(.daily_brief_section_leader_wisdom_title_new),
                                                            subtitle: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "",
             description: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_TRANSCRIPT")}.first?.valueText ?? "",
             image: leadersWisdom.bucketImages?.first?.mediaUrl,
@@ -836,7 +836,7 @@ extension DailyBriefInteractor {
         guard let collection = expertThoughts.contentCollections?.first else {
             return expertThoughtsList
         }
-        expertThoughtsList.append(ExpertThoughtsCellViewModel(title: AppTextService.get(.daily_brief_section_expert_thoughts_title),
+        expertThoughtsList.append(ExpertThoughtsCellViewModel(title: AppTextService.get(.daily_brief_section_expert_thoughts_title_new),
                                                               subtitle: "",
             description: collection.contentItems.filter {$0.searchTags.contains("EXPERT_TRANSCRIPT")}.first?.valueText ?? "",
             image: expertThoughts.bucketImages?.first?.mediaUrl,
@@ -877,7 +877,7 @@ extension DailyBriefInteractor {
     // MARK: - My Peak Performances
     func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
-        let bucketTitle = AppTextService.get(.daily_brief_section_my_peak_performances_title)
+        let bucketTitle = AppTextService.get(.daily_brief_section_my_peak_performances_title_new)
         var contentSentence = ""
         var contentSubtitle = ""
         let beginingOfToday = Date().beginingOfDate()
@@ -945,7 +945,7 @@ extension DailyBriefInteractor {
     // MARK: - My Stats
     func createAboutMe(aboutMeBucket aboutMeModel: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var aboutMeList: [BaseDailyBriefViewModel] = []
-        let aboutMeBucketTitle = AppTextService.get(.daily_brief_section_my_stats_title)
+        let aboutMeBucketTitle = AppTextService.get(.daily_brief_section_my_stats_title_new)
         let aboutMeContent = aboutMeModel.stringValue ?? ""
         let aboutMeAdditionalContent = aboutMeModel.additionalDescription
 
@@ -989,7 +989,7 @@ extension DailyBriefInteractor {
         var createGoodToKnowList: [BaseDailyBriefViewModel] = []
         guard let collection = createGoodToKnow.contentCollections?.first else {
             return createGoodToKnowList }
-        createGoodToKnowList.append(GoodToKnowCellViewModel(title: AppTextService.get(.daily_brief_section_good_to_know_title),
+        createGoodToKnowList.append(GoodToKnowCellViewModel(title: AppTextService.get(.daily_brief_section_good_to_know_title_new),
                                                             fact: collection.contentItems.first?.valueText,
                                                             copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
                                                             image: createGoodToKnow.bucketImages?.first?.mediaUrl,
@@ -1005,7 +1005,7 @@ extension DailyBriefInteractor {
             createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: "", text: "", image: nil, domainModel: questionsWithoutAnswer))
             return createQuestionWithoutAnswerList
         }
-        createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: AppTextService.get(.daily_brief_section_big_questions_title),
+        createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: AppTextService.get(.daily_brief_section_big_questions_title_new),
                                                                      text: collection.contentItems.first?.valueText,
                                                                      image: questionsWithoutAnswer.bucketImages?.first?.mediaUrl,
                                                                      domainModel: questionsWithoutAnswer))
@@ -1017,7 +1017,7 @@ extension DailyBriefInteractor {
         var createThoughtsToPonderList: [BaseDailyBriefViewModel] = []
 
         guard let collection = thoughtsToPonder.contentCollections?.first else {
-            createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title),
+            createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title_new),
                                                                     thought: "",
                                                                     author: "",
                                                                     image: thoughtsToPonder.bucketImages?.first?.mediaUrl,
@@ -1025,7 +1025,7 @@ extension DailyBriefInteractor {
             return createThoughtsToPonderList
 
         }
-        createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title),
+        createThoughtsToPonderList.append(ThoughtsCellViewModel(caption: AppTextService.get(.daily_brief_section_big_thoughts_title_new),
                                                                 thought: collection.contentItems.first?.valueText ?? "",
                                                                 author: collection.author ?? "",
                                                                 image: thoughtsToPonder.bucketImages?.first?.mediaUrl,
@@ -1036,7 +1036,7 @@ extension DailyBriefInteractor {
     // MARK: - Tignum Messages
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createFromTignumList: [BaseDailyBriefViewModel] = []
-        let bucketTitle = AppTextService.get(.daily_brief_section_from_tignum_title)
+        let bucketTitle = AppTextService.get(.daily_brief_section_from_tignum_title_new)
         guard (fromTignum.contentCollections?.first) != nil, isValidFromTignumBucket(fromTignum) else {
             return createFromTignumList
         }
@@ -1259,7 +1259,7 @@ extension DailyBriefInteractor {
     // MARK: - Weather
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
-        let title = weatherBucket?.bucketName ?? ""
+        let title = weatherBucket?.bucketName?.lowercased().capitalizingFirstLetter() ?? ""
 
         let intro = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_INTRO")

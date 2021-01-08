@@ -34,7 +34,7 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
          titleColor: String? = "#9C9897") {
         self.domainModel = domainModel
         self.subIdentifier = subIdentifier ?? ""
-        self.caption = caption?.lowercased().capitalizingFirstLetter()
+        self.caption = caption
         self.title = title
         self.body = body
         self.attributedTitle = ThemeText.dailyBriefTitle.attributedString(title)

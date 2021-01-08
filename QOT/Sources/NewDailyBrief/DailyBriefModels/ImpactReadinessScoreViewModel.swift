@@ -62,7 +62,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
         self.impactDataModels = impactDataModels
         super.init(domainModel,
                    subIdentifier,
-                   caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title),
+                   caption: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title_new),
                    title: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_subtitle),
                    body: AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_body),
                    image: image)
