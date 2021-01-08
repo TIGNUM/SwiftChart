@@ -42,19 +42,19 @@ struct TBVGraph {
                                   selectedFont: .sfProtextSemibold(ofSize: 16),
                                   ratingCircleColor: .white,
                                   selectedBarRatingColor: .black,
-                                  unSelectedBarRatingColor: .white)
+                                  unSelectedBarRatingColor: .lightGrey)
 
         }
 
         static func tbvTrackerConfig() -> BarGraphConfig {
-            return BarGraphConfig(graphBarColor: .sand08,
-                                  progressBarColor: .sand40,
-                                  selectedBarColor: .sand,
+            return BarGraphConfig(graphBarColor: .darkGrey,
+                                  progressBarColor: .lightGrey,
+                                  selectedBarColor: .white,
                                   unSelectedFont: .sfProtextLight(ofSize: 16),
                                   selectedFont: .sfProtextSemibold(ofSize: 16),
                                   ratingCircleColor: .clear,
-                                  selectedBarRatingColor: .sand,
-                                  unSelectedBarRatingColor: .sand70)
+                                  selectedBarRatingColor: .white,
+                                  unSelectedBarRatingColor: .lightGrey)
 
         }
     }

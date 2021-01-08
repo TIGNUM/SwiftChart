@@ -188,7 +188,7 @@ extension MyToBeVisionTrackerViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        let doneItem = doneButtonItem(#selector(doneAction), borderColor: .accent40)
+        let doneItem = doneButtonItem(#selector(doneAction), borderColor: .white)
         return interactor.getDisplayType == .tracker ? [doneItem] : nil
     }
 }
