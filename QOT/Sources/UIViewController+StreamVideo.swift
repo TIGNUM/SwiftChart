@@ -176,12 +176,21 @@ extension UIViewController {
         } catch {
             print(error.localizedDescription)
         }
-
-        presentSwizzled(viewControllerToPresent: playerController, animated: true, completion: {
-            playerController.trackPage()
-            player.volume = 1
-            player.play()
-        })
+        
+        if (self as? BaseDailyBriefDetailsViewController) != nil {
+            playerController.modalPresentationStyle = .overFullScreen
+            self.navigationController?.presentModal(playerController, from: self, animated: true, completion: {
+                playerController.trackPage()
+                player.volume = 1
+                player.play()
+            })
+        } else {
+            presentSwizzled(viewControllerToPresent: playerController, animated: true, completion: {
+                playerController.trackPage()
+                player.volume = 1
+                player.play()
+            })
+        }
         if interactor?.isLoggedIn ?? false {
             addOverlay(to: playerController)
         }
