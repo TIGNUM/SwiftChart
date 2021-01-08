@@ -26,7 +26,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ThemeButton.accent40.apply(addButton)
+        ThemeButton.whiteRounded.apply(addButton)
         resetContent()
         skeletonManager.addSubtitle(stackView)
         skeletonManager.addOtherView(addButton)
@@ -41,6 +41,8 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
         guard let model = selectionModel else {
             return
         }
+        addButton.setImage(R.image.plus(), for: .normal)
+        ThemeTint.white.apply(addButton.imageView ?? UIImageView.init())
 
         HealthService.main.availableHealthKitTrackerDataIndexesForToday { [weak self] (healthData) in
             guard let strongSelf = self else { return }
