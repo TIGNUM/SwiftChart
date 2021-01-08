@@ -33,6 +33,8 @@ final class ToolsCollectionsVideoTableViewCell: BaseToolsTableViewCell, Dequeuea
         skeletonManager.addOtherView(previewImageView)
         previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
         mediaIconImageView.image = R.image.ic_camera_grey()
+        playIcon.image = R.image.ic_play_sand_hollow()
+        ThemeTint.white.apply(playIcon)
         ThemeTint.darkGrey.apply(mediaIconImageView)
     }
 }
