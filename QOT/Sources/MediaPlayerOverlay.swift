@@ -50,6 +50,7 @@ final class MediaPlayerOverlay: UIView {
         ThemableButton.fullscreenVideoPlayerDownload.apply(downloadButton, title: downloadTitle)
         downloadButton.isEnabled = !isDownloaded
         bookmarkButton.isSelected = isBokmarked
+        isBokmarked ? ThemeTint.black.apply(bookmarkButton) : ThemeTint.white.apply(bookmarkButton)
     }
 
     func buttonsForScreen() {
