@@ -25,8 +25,8 @@ final class PaymentSwitchAccountTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String?, buttonTitle: String?) {
         ThemeText.paymentReminderCellSubtitle.apply(title, to: signInLabel)
         switchAccountButton.setTitle(buttonTitle, for: .normal)
-        switchAccountButton.setTitleColor(.accent, for: .normal)
-        switchAccountButton.setTitleColor(.accent40, for: .highlighted)
+        switchAccountButton.setTitleColor(.blue, for: .normal)
+        switchAccountButton.setTitleColor(.blue, for: .highlighted)
     }
 
     @IBAction func didTapSwitchAccountButton(_ sender: UIButton) {
