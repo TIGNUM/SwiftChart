@@ -23,7 +23,9 @@ final class VisionRatingExplanationViewController: BaseViewController {
     @IBOutlet private weak var videoTitleLabel: UILabel!
     @IBOutlet private weak var videoDescriptionLabel: UILabel!
     @IBOutlet private weak var playIconBackgroundView: UIView!
+    @IBOutlet weak var playIcon: UIImageView!
     @IBOutlet private weak var videoImageView: UIImageView!
+    @IBOutlet weak var cameraIcon: UIImageView!
     @IBOutlet private weak var checkButton: UIButton!
     @IBOutlet private weak var loadingDotsContainer: UIView?
     private var downSyncObserver: NSObjectProtocol?
@@ -130,6 +132,10 @@ extension VisionRatingExplanationViewController {
         checkButton.layer.borderWidth = 1
         checkButton.layer.borderColor = UIColor.white.cgColor
         checkButton.corner(radius: 2)
+        cameraIcon.image = R.image.ic_camera_grey()
+        ThemeTint.darkGrey.apply(cameraIcon)
+        playIcon.image = R.image.ic_play_sand_hollow()
+        ThemeTint.actionBlue.apply(playIcon)
     }
 }
 

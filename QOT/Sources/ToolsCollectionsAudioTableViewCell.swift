@@ -53,6 +53,8 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
         ThemeText.qotTools.apply(title, to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
         mediaIconImageView.image = R.image.ic_audio()
+        labelIcon.image = R.image.ic_audio()
+        ThemeTint.black.apply(labelIcon)
         ThemeTint.darkGrey.apply(mediaIconImageView)
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60, Int(duration) % 60)
         ThemeText.audioLabelLight.apply(mediaDescription, to: audioLabel)
@@ -75,7 +77,7 @@ extension ToolsCollectionsAudioTableViewCell {
 
     func makePDFCell() {
         mediaIconImageView.image = R.image.ic_read()
-        ThemeTint.black.apply(mediaIconImageView)
+        ThemeTint.darkGrey.apply(mediaIconImageView)
         audioLabelView.isHidden = true
         audioButton.isHidden = true
     }

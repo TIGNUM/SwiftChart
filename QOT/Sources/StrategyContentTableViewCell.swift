@@ -133,20 +133,19 @@ private extension StrategyContentTableViewCell {
     }
 
     private func checkIfRead() {
+        ThemeTint.lightGrey.apply(readCheckMark)
+        audioIcon.image = R.image.ic_audio()
         if isRead {
             ThemeText.articleStrategyRead.apply(title, to: titleLabel)
             ThemeButton.audioButtonGrey.apply(audioButton)
             audioButton.layer.borderWidth = 0
-            audioIcon.image = R.image.ic_audio()
             ThemeTint.lightGrey.apply(audioIcon)
-            readCheckMark.image?.withRenderingMode(.alwaysOriginal)
-            ThemeTint.lightGrey.apply(readCheckMark)
             readCheckMark.alpha = 1
         } else {
             ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
             ThemeButton.audioButtonStrategy.apply(audioButton)
             ThemeBorder.white.apply(audioButton)
-            audioIcon.image = R.image.ic_audio()
+            ThemeTint.white.apply(audioIcon)
             readCheckMark.alpha = 0
         }
     }
