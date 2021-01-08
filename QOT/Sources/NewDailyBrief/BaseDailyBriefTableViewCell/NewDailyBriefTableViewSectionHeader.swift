@@ -10,6 +10,7 @@ import Foundation
 
 class NewDailyBriefTableViewSectionHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleTopConstraint: NSLayoutConstraint!
     let skeletonManager = SkeletonManager()
 
     func configure(title: String?) {
