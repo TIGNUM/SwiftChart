@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="otv-Ax-RUX" customClass="MediaPlayerOverlay" customModule="QOT" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="otv-Ax-RUX" customClass="MediaPlayerOverlay" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYC-a4-xQY" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYC-a4-xQY" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                     <rect key="frame" x="210" y="0.0" width="141" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -31,19 +31,23 @@
                         <action selector="didTapDownloadButton" destination="otv-Ax-RUX" eventType="touchUpInside" id="uBs-07-61R"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjA-Yn-GU0" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjA-Yn-GU0" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                     <rect key="frame" x="154" y="0.0" width="40" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="U76-gB-tcb"/>
                         <constraint firstAttribute="width" constant="40" id="fhJ-Xb-2HI"/>
                     </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" image="ic_bookmark"/>
+                    <state key="disabled" image="ic_bookmark_fill"/>
                     <state key="selected" image="ic_bookmark_fill"/>
                     <connections>
                         <action selector="didTapBookmarkButton" destination="otv-Ax-RUX" eventType="touchUpInside" id="ob3-RL-Nvz"/>
                     </connections>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="K05-hR-c15"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="TjA-Yn-GU0" secondAttribute="bottom" id="8ej-9F-Aht"/>
@@ -52,7 +56,6 @@
                 <constraint firstItem="K05-hR-c15" firstAttribute="trailing" secondItem="HYC-a4-xQY" secondAttribute="trailing" constant="24" id="cse-yM-42b"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="K05-hR-c15"/>
             <connections>
                 <outlet property="bookmarkButton" destination="TjA-Yn-GU0" id="5UU-5r-dLT"/>
                 <outlet property="downloadButton" destination="HYC-a4-xQY" id="OK0-Zw-XC6"/>
