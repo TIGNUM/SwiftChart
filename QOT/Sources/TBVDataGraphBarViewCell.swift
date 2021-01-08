@@ -34,6 +34,7 @@ final class TBVDataGraphBarViewCell: UICollectionViewCell, Dequeueable {
         ratingLabelContainerView.backgroundColor = isSelected ? config.ratingCircleColor : .clear
         progressView.backgroundColor = isSelected ? config.selectedBarColor : config.progressBarColor
         graphBarView.backgroundColor = config.graphBarColor
+        graphBarView.alpha = 0.5
 
         ratingLabel.text = rating <= 0 ? "" : String(format: "%.1f", rating)
         ratingLabel.font = isSelected ? config.selectedFont : config.unSelectedFont
