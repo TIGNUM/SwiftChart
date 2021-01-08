@@ -163,35 +163,6 @@ final class WeatherCell: BaseDailyBriefCell {
         }
     }
 
-//    private func setupUIAccordingToLocationPermissions() {
-//        let isCelsius = self.checkIfCelsius()
-//        self.accessImageView.image = isCelsius ? R.image.location_permission_C() : R.image.location_permission()
-//        var accessTitle = ""
-//        var accessButtonTitle = ""
-//        var accessButtonHeight: CGFloat = 0
-//        var shouldHideHeader = false
-//        switch viewModel?.locationPermissionStatus {
-//        case .granted?, .grantedWhileInForeground?:
-//            shouldHideHeader = true
-//            accessImageView.image = nil
-//        case .denied?:
-//            accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
-//            accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
-//            accessButtonHeight = ThemeButton.accent40.defaultHeight
-//        default:
-//            accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
-//            accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
-//            accessButtonHeight = ThemeButton.accent40.defaultHeight
-//        }
-//        ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
-//        accessButton.setTitle(accessButtonTitle, for: .normal)
-//        accessButtonHeightConstraint.constant = accessButtonHeight
-//        accessImageView.isHidden = shouldHideHeader
-//        accessImageContainerView.isHidden = shouldHideHeader
-//        lastUpdateLabel.isHidden = !shouldHideHeader
-//        layoutIfNeeded()
-//    }
-
     private func setupHourlyImage(for hourlyView: WeatherHourlyView,
                                   isNight: Bool,
                                   and imageURL: URL?,

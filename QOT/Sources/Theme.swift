@@ -296,7 +296,6 @@ enum ThemeSwitch {
 }
 
 enum ThemeButton {
-    case accent40
     case audioButton
     case closeButton(ThemeColorMode)
     case dailyBriefButtons
@@ -324,9 +323,6 @@ enum ThemeButton {
         var colorUnselected: UIColor = .clear
         var colorBorder: UIColor?
         switch self {
-        case .accent40:
-            colorSelected = Palette.accent40
-            colorBorder = Palette.accent30
         case .darkButton:
             colorSelected = .white
             colorBorder = .white

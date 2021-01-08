@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="Sg4-P2-IFa" customClass="MyDataChartLegendTableViewCell" customModule="QOT" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="Sg4-P2-IFa" customClass="MyDataChartLegendTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="558" height="99"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -22,7 +20,6 @@
                         <constraint firstAttribute="width" constant="40" id="76n-13-lYd"/>
                         <constraint firstAttribute="width" secondItem="Nl1-M7-SAR" secondAttribute="height" multiplier="1:1" id="aN2-OE-2Zp"/>
                     </constraints>
-                    <state key="normal" image="plus"/>
                     <connections>
                         <action selector="didTapAddButton:" destination="Sg4-P2-IFa" eventType="touchUpInside" id="SRo-7j-0hi"/>
                     </connections>
@@ -36,11 +33,11 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="we3-ME-URI" userLabel="Bottom separator view">
                     <rect key="frame" x="0.0" y="98" width="558" height="1"/>
+                    <viewLayoutGuide key="safeArea" id="cDe-fG-Xmn"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="vwi-rQ-AF2"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="cDe-fG-Xmn"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wbY-81-GMi">
                     <rect key="frame" x="24" y="33" width="480" height="54"/>
@@ -49,6 +46,7 @@
                     </constraints>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="34z-T8-JFN"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Nl1-M7-SAR" firstAttribute="top" secondItem="JMl-X8-LOa" secondAttribute="bottom" constant="19" id="6x7-OB-AI9"/>
@@ -67,7 +65,6 @@
                 <constraint firstItem="34z-T8-JFN" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wbY-81-GMi" secondAttribute="bottom" constant="5" id="xVV-1Y-xB1"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="34z-T8-JFN"/>
             <connections>
                 <outlet property="addButton" destination="Nl1-M7-SAR" id="frz-up-FkJ"/>
                 <outlet property="stackView" destination="wbY-81-GMi" id="Xna-eR-naV"/>
@@ -76,7 +73,4 @@
             <point key="canvasLocation" x="264" y="86.35682158920541"/>
         </view>
     </objects>
-    <resources>
-        <image name="plus" width="16" height="16"/>
-    </resources>
 </document>

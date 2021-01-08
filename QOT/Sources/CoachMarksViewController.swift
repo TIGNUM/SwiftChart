@@ -130,7 +130,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
     func setupView() {
         NewThemeView.dark.apply(view)
         NewThemeView.dark.apply(collectionView)
-        ThemeButton.accent40.apply(buttonBack)
+        ThemeButton.whiteRounded.apply(buttonBack)
         buttonBack.isHidden = true
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
