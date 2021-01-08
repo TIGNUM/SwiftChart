@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,11 +18,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="135" id="KGk-i7-Jjw" customClass="SolveStrategyTableViewCell" customModule="QOT" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="135" id="KGk-i7-Jjw" customClass="SolveStrategyTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="446" height="135"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="446" height="134.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="446" height="135"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lg-7w-NW4">
@@ -61,7 +59,7 @@
                         <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_read_grey" translatesAutoresizingMaskIntoConstraints="NO" id="so1-mT-wiz">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="so1-mT-wiz">
                         <rect key="frame" x="24" y="96.5" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="91z-ud-0Xy"/>
@@ -95,6 +93,7 @@
             <connections>
                 <outlet property="constraintHeaderHeight" destination="tha-hf-L5A" id="Z5c-Oo-KVR"/>
                 <outlet property="headerLabel" destination="1FU-4h-CjK" id="Eaa-jT-L6Z"/>
+                <outlet property="iconImageView" destination="so1-mT-wiz" id="64W-lm-34w"/>
                 <outlet property="minsToReadLabel" destination="30C-lp-hyk" id="c8S-5k-hcB"/>
                 <outlet property="strategyTitleLabel" destination="vNM-yc-f2h" id="9t0-ar-zCf"/>
                 <outlet property="topSeperatorView" destination="ib7-9F-nG3" id="7VF-on-khD"/>
@@ -102,7 +101,4 @@
             <point key="canvasLocation" x="228.98550724637684" y="183.81696428571428"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="ic_read_grey" width="16" height="16"/>
-    </resources>
 </document>
