@@ -119,7 +119,6 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
 private extension CoachViewController {
 
     func addDisclosure(to cell: UITableViewCell) {
-        
         let accessoryView = UIImageView(image: R.image.diagonalArrow())
         accessoryView.tintColor = .actionBlue
         cell.accessoryView = accessoryView
