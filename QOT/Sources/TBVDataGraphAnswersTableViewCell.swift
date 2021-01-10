@@ -39,7 +39,7 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
         removeAllLayers()
         setupTheme(sentence, isTeam: isTeam)
         setupView(sentence)
-        setupRatingLabels(sentence, selectedDate: selectedDate)
+        setupRatingLabels(sentence, selectedDate: selectedDate, isTeam: isTeam)
         if !showSkeleton {
             skeletonManager.hide()
         }
@@ -48,7 +48,7 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: - Private
 private extension TBVDataGraphAnswersTableViewCell {
-    func setupRatingLabels(_ sentence: QDMToBeVisionSentence, selectedDate: Date) {
+    func setupRatingLabels(_ sentence: QDMToBeVisionSentence, selectedDate: Date, isTeam: Bool) {
         let lowRange = NSRange(location: 1, length: 6)
         let sortedDict = sentence.last3Ratings.sorted(by: { $0.key < $1.key })
         var index = 0
@@ -60,7 +60,9 @@ private extension TBVDataGraphAnswersTableViewCell {
 
             if date == selectedDate {
                 theme = .tbvTrackerRatingDigitsSelected(isLow)
-                addUnderline(for: ratingContainerViews[index], color: isLow ? .redOrange : .sand)
+                if !isTeam {
+                    addUnderline(for: ratingContainerViews[index], color: isLow ? .redOrange : .sand)
+                }
             }
 
             theme.apply(text, to: ratingLabels[index])
