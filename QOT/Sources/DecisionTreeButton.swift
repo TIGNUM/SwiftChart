@@ -163,6 +163,7 @@ final class NavigationButton: AbstractTreeButton {
             ThemeText.chatbotProgress(isEnough, isDark).apply(counterText, to: counterLabel)
             if isEnough {
                 isDark ? ThemeBorder.white.apply(containerView) : ThemeBorder.black.apply(containerView)
+                containerView.backgroundColor = isDark ? .black : .white
             }
             constraintSpacerWidth.constant = counterText.isEmpty ? 0.0 : spacerWidth
         }
