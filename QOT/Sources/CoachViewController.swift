@@ -123,8 +123,6 @@ private extension CoachViewController {
         let accessoryView = UIImageView(image: R.image.diagonalArrow())
         accessoryView.tintColor = .actionBlue
         cell.accessoryView = accessoryView
-//        cell.accessoryView?.tintColor = .actionBlue
         cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
-//        cell.tintColor = .actionBlue
     }
 }
