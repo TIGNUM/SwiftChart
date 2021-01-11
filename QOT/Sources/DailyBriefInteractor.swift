@@ -512,11 +512,11 @@ extension DailyBriefInteractor {
             show5DaysImpactReadiness = true
             isCalculatingImpactReadiness = false
         }
-
+        let imageUrl = impactReadiness.bucketImages?.filter { $0.label == "impact" }.first?.mediaUrl
         let impactReadinessModel = ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      feedback: feedback,
                                                                      feedbackRelatedLink: impactReadiness.dailyCheckInResult?.feedbackContentItem?.links.first,
-                                                                     image: impactReadiness.bucketImages?.first?.mediaUrl,
+                                                                     image: imageUrl,
                                                                      linkCTA: impactReadiness.dailyCheckInResult?.feedbackContentItem?.links.first?.description,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
                                                                      readinessScore: readinessscore,
@@ -544,10 +544,11 @@ extension DailyBriefInteractor {
             let hasFullLoadData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForLoad
             let hasFullSleepQuantityData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForSleepQuantity
             let hasFullSleepQualityData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForSleepQuality
+            let rollingImage = impactReadiness.bucketImages?.filter { $0.label == "rolling" }.first?.mediaUrl
 
             impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
                                                                           asteriskText: asteriskText,
-                                                                          image: impactReadiness.bucketImages?.first?.mediaUrl,
+                                                                          image: rollingImage,
                                                                           sleepQuantityValue: roundedSleepQuantity,
                                                                           hasFiveDaySleepQuantityValues: hasFullSleepQuantityData,
                                                                           sleepQualityValue: sleepQuality,
