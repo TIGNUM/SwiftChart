@@ -110,7 +110,6 @@ extension MediaPlayerViewController: MediaPlayerViewControllerInterface {
 }
 
 extension MediaPlayerViewController: StreamVideoInteractorDelegate {
-
     func didUpdateData(interactor: StreamVideoInteractorInterface) {
         overlayControls?.configure(downloadTitle: interactor.downloadButtonTitle,
                                    isBokmarked: interactor.isBookmarked,
@@ -143,7 +142,6 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
 }
 
 extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
-
     func downloadMedia() {
         trackUserEvent(.DOWNLOAD, value: interactor?.contentItemId, stringValue: .SELECT, valueType: .VIDEO, action: .TAP)
         interactor?.didTapDownload()
@@ -176,7 +174,7 @@ extension UIViewController {
         } catch {
             print(error.localizedDescription)
         }
-        
+
         if (self as? BaseDailyBriefDetailsViewController) != nil {
             playerController.modalPresentationStyle = .overFullScreen
             self.navigationController?.presentModal(playerController, from: self, animated: true, completion: {
