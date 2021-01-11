@@ -103,8 +103,8 @@ final class AudioPlayerBar: UIView {
 private extension AudioPlayerBar {
     func setTitleLabel(title: String, isLight: Bool) {
         if isLight {
-        ThemeText.audioPlayerTitleLight.apply(title.uppercased(), to: titleLabel)
-        } else {  ThemeText.audioPlayerTitleDark.apply(title.uppercased(), to: titleLabel)}
+        ThemeText.audioPlayerTitleLight.apply(title, to: titleLabel)
+        } else {  ThemeText.audioPlayerTitleDark.apply(title, to: titleLabel)}
     }
 }
 

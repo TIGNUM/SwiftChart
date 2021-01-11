@@ -24,7 +24,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         super.awakeFromNib()
         counterLabel.circle()
         counterLabel.isHidden = true
-        itemButton.corner(radius: Layout.cornerRadius20, borderColor: .accent, borderWidth: 1)
+        itemButton.corner(radius: Layout.cornerRadius20, borderColor: .white, borderWidth: 1)
         _ = NotificationCenter.default.addObserver(forName: .didSelectTeam,
                                                    object: nil,
                                                    queue: .main) { [weak self] notification in

@@ -100,8 +100,8 @@ extension MyQOTAdminChooseBucketsViewController: MyQOTAdminChooseBucketsViewCont
         let rightButtons = [roundedBarButtonItem(title: interactor.getDoneButtonTitle(),
                                                buttonWidth: .Done,
                                                action: #selector(doneAction),
-                                               backgroundColor: .carbon,
-                                               borderColor: .accent40)]
+                                               backgroundColor: .black,
+                                               borderColor: .white)]
         updateBottomNavigation([backNavigationItem()], rightButtons)
     }
 }

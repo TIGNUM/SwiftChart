@@ -48,13 +48,13 @@ final class DTSprintViewController: DTViewController {
         let cancelButtonItem = roundedBarButtonItem(title: AppTextService.get(.generic_view_button_cancel),
                                                     buttonWidth: .Cancel,
                                                     action: #selector(didPressDimissInfoView),
-                                                    backgroundColor: .carbonDark,
-                                                    borderColor: .accent40)
+                                                    backgroundColor: .black,
+                                                    borderColor: .white)
         let continueButtonItem = roundedBarButtonItem(title: AppTextService.get(.my_qot_my_sprints_alert_button_continue),
                                                       buttonWidth: .Continue,
                                                       action: #selector(didTapStartSprint),
-                                                      backgroundColor: .carbonDark,
-                                                      borderColor: .accent40)
+                                                      backgroundColor: .black,
+                                                      borderColor: .white)
         QOTAlert.show(title: title, message: text, bottomItems: [cancelButtonItem, continueButtonItem])
     }
 

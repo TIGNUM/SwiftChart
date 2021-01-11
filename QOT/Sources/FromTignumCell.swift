@@ -41,7 +41,7 @@ final class FromTignumCell: BaseDailyBriefCell {
         ThemeText.bespokeText.apply(model.text, to: fromTignumText)
         if let ctaText = model.cta {
             ctaButton.setTitle(ctaText, for: .normal)
-            ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+            ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
             ctaButton.setButtonContentInset(padding: 16)
         } else {
             ctaButton.isHidden = true

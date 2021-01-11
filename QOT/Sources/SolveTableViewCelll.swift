@@ -19,7 +19,7 @@ final class SolveTableViewCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ThemeBorder.accent.apply(button)
+        ThemeBorder.white.apply(button)
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(dateLabel)
         skeletonManager.addOtherView(button)

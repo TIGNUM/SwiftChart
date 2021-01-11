@@ -20,7 +20,7 @@ final class RateOpenCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(rateLabel)
