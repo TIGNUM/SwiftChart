@@ -22,7 +22,7 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        button.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        button.corner(radius: Layout.cornerRadius20, borderColor: .white)
         ThemeButton.dailyBriefButtons.apply(button, selected: false)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)

@@ -22,7 +22,7 @@ final class RatingFeedbackCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        resultsButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        resultsButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(feedbackLabel)

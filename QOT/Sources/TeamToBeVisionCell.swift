@@ -39,7 +39,7 @@ final class TeamToBeVisionCell: BaseDailyBriefCell {
         ThemeText.bespokeText.apply(model.teamVision, to: toBeVisionLabel)
         let ctaText = AppTextService.get(.daily_brief_team_to_be_vision_cta)
         ctaButton.setTitle(ctaText, for: .normal)
-        ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
         ctaButton.setButtonContentInset(padding: 16)
         toBeVisionLabel.adjustsFontSizeToFitWidth = false
         toBeVisionLabel.lineBreakMode = .byTruncatingTail

@@ -49,7 +49,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         isDark ? ThemeTint.white.apply(previousButton.imageView ?? UIView.init()) : ThemeTint.black.apply(previousButton.imageView ?? UIView.init())
 
         if isDark {
-            ThemeBorder.accent.apply(previousButton)
+            ThemeBorder.white.apply(previousButton)
             navBottomGradientImageView.image = R.image.gradient_dark()
         }
 

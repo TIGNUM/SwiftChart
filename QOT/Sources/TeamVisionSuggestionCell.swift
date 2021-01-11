@@ -22,7 +22,7 @@ final class TeamVisionSuggestionCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        button.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        button.corner(radius: Layout.cornerRadius20, borderColor: .white)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(tbvSentence)
