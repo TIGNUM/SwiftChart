@@ -129,7 +129,7 @@ enum ThemeView {
         case .askPermissions:
             return Palette.carbon
         case .resultWhite:
-            return Palette.white40
+            return Palette.brightGrey
         case .guidedTrackBackground:
             return Palette.sand03
 
@@ -1731,6 +1731,10 @@ private struct Palette {
 
     static var accent: UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
+    }
+
+    static var brightGrey: UIColor {
+        return UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
     }
 
     static var white40: UIColor {

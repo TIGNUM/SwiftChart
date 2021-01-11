@@ -24,7 +24,6 @@ final class SolveTriggerTableViewCell: DTResultBaseTableViewCell, Dequeueable {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupView()
     }
 }
 
@@ -33,11 +32,13 @@ extension SolveTriggerTableViewCell {
     func configure(type: SolveTriggerType?, header: String, description: String, buttonText: String) {
         selectionStyle = .none
         ThemeView.resultWhite.apply(self)
-
         triggerType = type ?? .midsetShifter
         ThemeText.resultList.apply(header, to: headerLabel)
         ThemeText.resultHeader2.apply(description, to: triggerDescription)
         startButton.setTitle(buttonText, for: .normal)
+        startButton.corner(radius: startButton.frame.height / 2)
+        startButton.layer.borderColor = UIColor.black.cgColor
+        startButton.layer.borderWidth = 1.0
     }
 }
 
@@ -45,14 +46,5 @@ extension SolveTriggerTableViewCell {
 private extension SolveTriggerTableViewCell {
     @IBAction func didTapTriggerButton(_ sender: UIButton) {
         delegate?.didTapStart(triggerType)
-    }
-}
-
-// MARK: - Private
-private extension SolveTriggerTableViewCell {
-    func setupView() {
-        startButton.corner(radius: startButton.frame.height / 2)
-        startButton.layer.borderColor = UIColor.accent.cgColor
-        startButton.layer.borderWidth = 0.4
     }
 }
