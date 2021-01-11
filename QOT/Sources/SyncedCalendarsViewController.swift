@@ -26,9 +26,9 @@ final class SyncedCalendarsViewController: BaseViewController, ScreenZLevel3 {
 
     private lazy var rightButtons: [UIBarButtonItem] = {
         let save = RoundedButton(title: interactor?.saveButtonTitle, target: self, action: #selector(didTapSave))
-        ThemableButton.syncedCalendar.apply(save, title: interactor?.saveButtonTitle)
+        ThemableButton.darkButton.apply(save, title: interactor?.saveButtonTitle)
         let skip = RoundedButton(title: interactor?.skipButtonTitle, target: self, action: #selector(didTapSkip))
-        ThemableButton.syncedCalendar.apply(skip, title: interactor?.skipButtonTitle)
+        ThemableButton.darkButton.apply(skip, title: interactor?.skipButtonTitle)
         return [save.barButton, skip.barButton]
     }()
 
