@@ -18,9 +18,9 @@ final class StreamVideoWorker {
     private var content: QDMContentItem?
     private var bookmarks = [QDMUserStorage]()
     private var download: QDMUserStorage?
-    var bookMarkedToggled: Bool = false
     var downloadStatus: QOTDownloadStatus = .NONE
-    var wasBookmarkedOnce: Bool = false
+    var wasBookmarkedOnce = false
+    var didShowDownloadDestinationAlertOnce = false
 
     weak var delegate: StreamVideoWorkerDelegate?
 
@@ -32,7 +32,6 @@ final class StreamVideoWorker {
         bookmarks = content?.userStorages?.filter { $0.userStorageType == .BOOKMARK } ?? []
         download = downloadItem(for: content)
         downloadStatus = downloadStatus(for: download)
-        wasBookmarkedOnce = false
     }
 
     var isLoggedIn: Bool {
@@ -93,7 +92,6 @@ extension StreamVideoWorker {
     }
 
     func toggleBookmark(_ completion: @escaping () -> Void) {
-        bookMarkedToggled = true
         if let bookmark = bookmarks.filter({ $0.teamQotId == nil }).first {
             // remove
             service.deleteUserStorage(bookmark) { [weak self] (error) in
@@ -114,8 +112,7 @@ extension StreamVideoWorker {
         }
     }
 
-    func downloadItem(_ completion: @escaping (_ status: QOTDownloadStatus) -> Void) {
-        bookMarkedToggled = false
+    func downloadItem(_ completion: @escaping (_ status: QOTDownloadStatus) -> Void) {        
         guard let item = content else {
             downloadStatus = .NONE
             completion(.NONE)
