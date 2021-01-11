@@ -27,7 +27,7 @@ final class PaymentReminderWorker {
     // MARK: - Functions
 
     func paymentSections() -> PaymentModel {
-        let headerTitle = isExpired ? AppTextService.get(.generic_payment_screen_expired_section_header_title_header_expired) : AppTextService.get(.generic_payment_screen_expire_soon_section_header_title_header)
+        let headerTitle = isExpired ? AppTextService.get(.generic_payment_screen_expired_section_header_title_header_expired_new) : AppTextService.get(.generic_payment_screen_expire_soon_section_header_title_header_new)
         let headerSubtitle = isExpired ? AppTextService.get(.generic_payment_screen_expired_section_header_subtitle_header_expired) : AppTextService.get(.generic_payment_screen_expire_soon_section_header_subtitle_header)
         let sections = isExpired ? PaymentSection.expiredSectionValues : PaymentSection.notExpiredSectionValues
         let paymentItems =  sections.map {
