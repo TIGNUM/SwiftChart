@@ -116,8 +116,8 @@ private extension MySprintsListViewController {
 
     private func setEditButton(enabled: Bool) {
         editButton.isEnabled = enabled
-        let color = enabled ? UIColor.accent : UIColor.sand08
-        let borderColor = enabled ? UIColor.accent40 : UIColor.sand08
+        let color = enabled ? UIColor.white : UIColor.lightGrey
+        let borderColor = enabled ? UIColor.white : UIColor.lightGrey
         editButton.layer.borderColor = borderColor.cgColor
         editButton.tintColor = color
     }
