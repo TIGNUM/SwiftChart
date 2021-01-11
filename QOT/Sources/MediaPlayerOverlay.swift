@@ -21,6 +21,8 @@ final class MediaPlayerOverlay: UIView {
 
     @IBOutlet private weak var downloadButton: RoundedButton!
     @IBOutlet private weak var bookmarkButton: RoundedButton!
+    @IBOutlet private weak var tappableBookmarkView: UIView!
+    @IBOutlet private weak var tappableDownloadView: UIView!
     weak var delegate: MediaPlayerOverlayDelegate?
     var buttonsHidden: Bool? = false
 
@@ -36,6 +38,14 @@ final class MediaPlayerOverlay: UIView {
         setupView()
         buttonsForScreen()
         addOrientationObserver()
+        addTappGestureRecognizer()
+    }
+
+    private func addTappGestureRecognizer() {
+        tappableBookmarkView.gestureRecognizers = [UITapGestureRecognizer(target: self,
+                                                                          action: #selector(didTapBookmarkButton))]
+        tappableDownloadView.gestureRecognizers = [UITapGestureRecognizer(target: self,
+                                                                          action: #selector(didTapDownloadButton))]
     }
 
     private func addOrientationObserver() {
