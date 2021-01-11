@@ -418,15 +418,7 @@ enum ThemableButton {
     case fullscreenAudioPlayerDownload
     case fullscreenAudioPlayerDownloadLight
     case fullscreenVideoPlayerDownload
-    case syncedCalendar
-    case walkthroughGotIt
-    case myPlans
-    case signinInfo
-    case createAccountInfo
-    case trackSelection
-    case paymentReminder
     case articleMarkAsRead(selected: Bool, colorMode: ThemeColorMode)
-    case level5
     case tbvOption(disabled: Bool)
     case dateButtonsSelected
     case poll
@@ -441,16 +433,8 @@ enum ThemableButton {
 
     var normal: ButtonTheme? {
         switch self {
-        case .syncedCalendar,
-             .walkthroughGotIt,
-             .signinInfo,
-             .createAccountInfo,
-             .trackSelection,
-             .level5:
-            return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .fullscreenAudioPlayerDownload,
-             .fullscreenVideoPlayerDownload,
-             .paymentReminder, .myPlans, .darkButton:
+             .fullscreenVideoPlayerDownload, .darkButton:
             return ButtonTheme(foreground: .white, background: .black, border: .white)
         case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .black, background: .white, border: .black)
@@ -473,28 +457,15 @@ enum ThemableButton {
 
     var highlight: ButtonTheme? {
         switch self {
-        case .syncedCalendar,
-             .walkthroughGotIt,
-             .myPlans,
-             .signinInfo,
-             .createAccountInfo,
-             .trackSelection:
-            return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
-        case .fullscreenAudioPlayerDownload,
-             .fullscreenVideoPlayerDownload,
-             .paymentReminder:
-            return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight, .lightButton:
             return ButtonTheme(foreground: .white, background: .black, border: nil)
         case .articleMarkAsRead(let selected, let colorMode):
             return ButtonTheme(foreground: selected ? (colorMode == .dark ? .white : .black) : (colorMode == .dark ? .black : .white),
                                background: selected ? .clear : (colorMode == .dark ? .white : .black),
                                border: colorMode == .dark ? .white : .black)
-        case .level5:
-            return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .newBlueButton:
             return ButtonTheme(foreground: .white40, background: .actionBlue75, border: .clear)
-        case .darkButton:
+        case .darkButton, .fullscreenVideoPlayerDownload, .fullscreenAudioPlayerDownload:
             return ButtonTheme(foreground: .black, background: .white, border: .black)
         default:
             return nil
@@ -520,8 +491,6 @@ enum ThemableButton {
 
     var disabled: ButtonTheme? {
         switch self {
-        case .myPlans:
-            return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .darkButton:
             return ButtonTheme(foreground: .lightGrey, background: .black, border: .clear)
         case .fullscreenAudioPlayerDownloadLight, .lightButton:

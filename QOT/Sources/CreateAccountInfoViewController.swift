@@ -22,7 +22,7 @@ class CreateAccountInfoViewController: BaseViewController, ScreenZLevel1 {
 
     lazy var buttonCreate: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(didTapCreate))
-        ThemableButton.createAccountInfo.apply(button, title: AppTextService.get(.onboarding_sign_up_create_account_section_footer_button_create_account))
+        ThemableButton.darkButton.apply(button, title: AppTextService.get(.onboarding_sign_up_create_account_section_footer_button_create_account))
         return button.barButton
     }()
 

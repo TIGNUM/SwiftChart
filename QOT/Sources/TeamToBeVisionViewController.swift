@@ -83,7 +83,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if shouldShowCreate {
             let button = RoundedButton(title: nil, target: self, action: #selector(showCreateAlert))
-            ThemableButton.myPlans.apply(button, title: interactor.nullStateCTA)
+            ThemableButton.darkButton.apply(button, title: interactor.nullStateCTA)
             return [button.barButton]
         }
         return []
