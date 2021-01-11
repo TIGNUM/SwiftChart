@@ -24,7 +24,6 @@ protocol StreamVideoInteractorInterface {
     var yesContinueButtonTitle: String { get }
     var contentItemId: Int? { get }
     var contentFormat: ContentFormat? { get }
-    var bookMarkedToggled: Bool { get }
 
     var isBookmarked: Bool { get }
     var isDownloaded: Bool { get }
@@ -40,6 +39,7 @@ final class StreamVideoInteractor {
     weak var delegate: StreamVideoInteractorDelegate?
     private let worker: StreamVideoWorker
     private let presenter: StreamVideoPresenter
+    private var downloadMap: [String: QDMDownloadStatus] = [:]
 
     init(worker: StreamVideoWorker,
          presenter: StreamVideoPresenter) {
@@ -94,10 +94,6 @@ final class StreamVideoInteractor {
     var contentFormat: ContentFormat? {
         return worker.contentFormat
     }
-
-    var bookMarkedToggled: Bool {
-        return worker.bookMarkedToggled
-    }
 }
 
 extension StreamVideoInteractor: StreamVideoInteractorInterface {
@@ -130,7 +126,7 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
                 guard let strongSelf = self else { return }
                 NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 if strongSelf.isBookmarked, isChanged, strongSelf.worker.wasBookmarkedOnce == false {
-                    strongSelf.presenter.showDestinationAlert()
+                    strongSelf.showDestinationAlert()
                     strongSelf.worker.wasBookmarkedOnce = true
                 }
                 strongSelf.delegate?.didUpdateData(interactor: strongSelf)
@@ -150,7 +146,7 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
 
 private extension StreamVideoInteractor {
     func downloadItem() {
-        worker.downloadItem { [weak self] (_) in
+        worker.downloadItem { [weak self] (downloadStatus) in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.didUpdateData(interactor: strongSelf)
         }
@@ -160,18 +156,27 @@ private extension StreamVideoInteractor {
         guard let map = notification.object as? [String: QDMDownloadStatus] else {
             return
         }
+
         let passiveItems = map.values.filter { (status) -> Bool in
             switch status.status {
-            case .DOWNLOADED, .NONE:
+            case .DOWNLOADED,
+                 .NONE:
                 return true
-            case .DOWNLOADING, .WAITING:
+            case .DOWNLOADING,
+                 .WAITING:
                 return false
             }
         }
+
         if !passiveItems.isEmpty {
             worker.updateItemDownloadStatus { [weak self] in
                 guard let strongSelf = self else { return }
                 strongSelf.delegate?.didUpdateData(interactor: strongSelf)
+                if strongSelf.worker.downloadStatus == .DOWNLOADED &&
+                    !strongSelf.worker.didShowDownloadDestinationAlertOnce {
+                        strongSelf.showDestinationAlert()
+                        strongSelf.worker.didShowDownloadDestinationAlertOnce = true
+                }
             }
         }
     }

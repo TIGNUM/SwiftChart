@@ -18,7 +18,6 @@ final class MediaPlayerOverlay: UIView {
 
     // MARK: - Properties
     static let height: CGFloat = 40
-
     @IBOutlet private weak var downloadButton: RoundedButton!
     @IBOutlet private weak var bookmarkButton: RoundedButton!
     @IBOutlet private weak var tappableBookmarkView: UIView!
@@ -61,6 +60,10 @@ final class MediaPlayerOverlay: UIView {
         downloadButton.isEnabled = !isDownloaded
         bookmarkButton.isSelected = isBokmarked
         isBokmarked ? ThemeTint.black.apply(bookmarkButton) : ThemeTint.white.apply(bookmarkButton)
+        if isDownloaded {
+            downloadButton.setImage(R.image.ic_save()?.withRenderingMode(.alwaysTemplate), for: .disabled)
+            downloadButton.tintColor = .white50
+        }
     }
 
     func buttonsForScreen() {
