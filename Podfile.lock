@@ -1,15 +1,15 @@
 PODS:
-  - Airship (14.2.0):
-    - Airship/Automation (= 14.2.0)
-    - Airship/Core (= 14.2.0)
-    - Airship/ExtendedActions (= 14.2.0)
-    - Airship/MessageCenter (= 14.2.0)
-  - Airship/Automation (14.2.0):
+  - Airship (14.2.1):
+    - Airship/Automation (= 14.2.1)
+    - Airship/Core (= 14.2.1)
+    - Airship/ExtendedActions (= 14.2.1)
+    - Airship/MessageCenter (= 14.2.1)
+  - Airship/Automation (14.2.1):
     - Airship/Core
-  - Airship/Core (14.2.0)
-  - Airship/ExtendedActions (14.2.0):
+  - Airship/Core (14.2.1)
+  - Airship/ExtendedActions (14.2.1):
     - Airship/Core
-  - Airship/MessageCenter (14.2.0):
+  - Airship/MessageCenter (14.2.1):
     - Airship/Core
   - AppCenter (4.1.0):
     - AppCenter/Analytics (= 4.1.0)
@@ -28,9 +28,7 @@ PODS:
     - DifferenceKit/Core
   - JTAppleCalendar (7.1.6)
   - KeychainAccess (4.2.1)
-  - Kingfisher (5.15.8):
-    - Kingfisher/Core (= 5.15.8)
-  - Kingfisher/Core (5.15.8)
+  - Kingfisher (6.0.1)
   - qot_dal (1.0):
     - KeychainAccess
     - Realm (~> 10.5.0)
@@ -95,13 +93,13 @@ CHECKOUT OPTIONS:
     :git: "git@github.com:SanggeonPark/SwiftChart.git"
 
 SPEC CHECKSUMS:
-  Airship: 02ad73780f9eed21870e36b0aaab327acda6a102
+  Airship: 9d2bfec2bd9586ddee5d1dbeb15cf4fdbababf85
   AppCenter: 8832b158d17e54845c3b88a91076218f0b07174d
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
-  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  Kingfisher: adde87a4f74f6a3845395769354efff593581740
   qot_dal: e3a53b00b3d01f3514b2de2c7d89337badf1a1ad
   R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
