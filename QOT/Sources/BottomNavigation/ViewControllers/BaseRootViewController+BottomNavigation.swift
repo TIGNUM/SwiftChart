@@ -85,14 +85,14 @@ extension BaseRootViewController {
         bottomNavigationUpdateTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { [weak self] (_) in
             self?.setupBottomNavigationContainer()
             var needToUpdate = false
-            let currentNavigationItem = self?.navigationController?.navigationBar.items?.last
-            if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems?.count ?? 0 ||
-                navigationItem.rightBarButtonItems.count != currentNavigationItem?.rightBarButtonItems?.count ?? 0 {
+            let currentNavigationItem = self?.currentBottomNavigationItem()
+            if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems.count ?? 0 ||
+                navigationItem.rightBarButtonItems.count != currentNavigationItem?.rightBarButtonItems.count ?? 0 {
                     needToUpdate = true
             }
 
             for (index, item) in navigationItem.leftBarButtonItems.enumerated() {
-                guard needToUpdate == false, let currentItem = currentNavigationItem?.leftBarButtonItems?[index] else {
+                guard needToUpdate == false, let currentItem = currentNavigationItem?.leftBarButtonItems[index] else {
                     needToUpdate = true
                     break
                 }
@@ -103,7 +103,7 @@ extension BaseRootViewController {
             }
 
             for (index, item) in navigationItem.rightBarButtonItems.enumerated() {
-                guard needToUpdate == false, let currentItem = currentNavigationItem?.rightBarButtonItems?[index] else {
+                guard needToUpdate == false, let currentItem = currentNavigationItem?.rightBarButtonItems[index] else {
                     needToUpdate = true
                     break
                 }
