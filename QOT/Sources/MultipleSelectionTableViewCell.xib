@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,14 +33,14 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="eDj-Zs-ro4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="RKL-HO-RLx"/>
+                    <constraint firstItem="eDj-Zs-ro4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" priority="999" constant="24" id="RKL-HO-RLx"/>
                     <constraint firstAttribute="trailing" secondItem="eDj-Zs-ro4" secondAttribute="trailing" constant="24" id="UGG-ui-qex"/>
                     <constraint firstItem="eDj-Zs-ro4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="XK5-cM-M9b"/>
                     <constraint firstAttribute="bottom" secondItem="eDj-Zs-ro4" secondAttribute="bottom" id="zHY-FE-Qbu"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="collectionView" destination="eDj-Zs-ro4" id="Gep-4W-Vjc"/>
                 <outlet property="collectionViewHeight" destination="n3p-7O-4NQ" id="xNc-v0-zc3"/>

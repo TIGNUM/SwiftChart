@@ -47,14 +47,14 @@
             <constraints>
                 <constraint firstItem="nib-aX-5YD" firstAttribute="top" secondItem="W3b-tV-juL" secondAttribute="bottom" constant="18" id="0fD-ig-6Dy"/>
                 <constraint firstItem="OHV-HI-CeI" firstAttribute="leading" secondItem="Sg4-P2-IFa" secondAttribute="leading" constant="20" symbolic="YES" id="5j0-jM-vMX"/>
-                <constraint firstItem="W3b-tV-juL" firstAttribute="leading" secondItem="Sg4-P2-IFa" secondAttribute="leading" constant="24" id="6NB-GL-bMG"/>
+                <constraint firstItem="W3b-tV-juL" firstAttribute="leading" secondItem="Sg4-P2-IFa" secondAttribute="leading" priority="999" constant="24" id="6NB-GL-bMG"/>
                 <constraint firstItem="nib-aX-5YD" firstAttribute="trailing" secondItem="W3b-tV-juL" secondAttribute="trailing" id="AI6-Rg-Kcf"/>
                 <constraint firstAttribute="bottom" secondItem="nib-aX-5YD" secondAttribute="bottom" constant="16" id="J9e-vf-fET"/>
                 <constraint firstAttribute="trailing" secondItem="OHV-HI-CeI" secondAttribute="trailing" priority="999" id="Jgf-fq-Ryd"/>
-                <constraint firstAttribute="trailing" secondItem="W3b-tV-juL" secondAttribute="trailing" constant="24" id="QZF-fR-R42"/>
+                <constraint firstAttribute="trailing" secondItem="W3b-tV-juL" secondAttribute="trailing" priority="999" constant="24" id="QZF-fR-R42"/>
                 <constraint firstItem="nib-aX-5YD" firstAttribute="leading" secondItem="W3b-tV-juL" secondAttribute="leading" id="VPZ-Fm-vxU"/>
                 <constraint firstItem="OHV-HI-CeI" firstAttribute="top" secondItem="Sg4-P2-IFa" secondAttribute="top" constant="27" id="jtz-Tl-7kU"/>
-                <constraint firstItem="W3b-tV-juL" firstAttribute="top" secondItem="Sg4-P2-IFa" secondAttribute="top" constant="55" id="rYp-1B-CQn"/>
+                <constraint firstItem="W3b-tV-juL" firstAttribute="top" secondItem="Sg4-P2-IFa" secondAttribute="top" priority="999" constant="55" id="rYp-1B-CQn"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,11 +73,9 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Ho7-QO-HL9" firstAttribute="leading" secondItem="4HA-Ga-qQa" secondAttribute="leading" id="0Ma-35-Wyk"/>
-                    <constraint firstItem="TLJ-9G-2t1" firstAttribute="top" secondItem="Ho7-QO-HL9" secondAttribute="bottom" constant="24" id="2yt-4V-1ah"/>
                     <constraint firstItem="TLJ-9G-2t1" firstAttribute="leading" secondItem="4HA-Ga-qQa" secondAttribute="leading" constant="24" id="3x3-KL-Wk4"/>
                     <constraint firstItem="Ho7-QO-HL9" firstAttribute="top" secondItem="4HA-Ga-qQa" secondAttribute="top" id="KFE-4r-jdk"/>
                     <constraint firstItem="TLJ-9G-2t1" firstAttribute="top" secondItem="Ho7-QO-HL9" secondAttribute="bottom" id="QW5-OB-B8E"/>
-                    <constraint firstAttribute="trailing" secondItem="TLJ-9G-2t1" secondAttribute="trailing" constant="24" id="UPZ-rO-Lyd"/>
                     <constraint firstItem="iNB-fi-4rW" firstAttribute="centerY" secondItem="4HA-Ga-qQa" secondAttribute="centerY" id="ZBB-SG-nBC"/>
                     <constraint firstAttribute="trailing" secondItem="iNB-fi-4rW" secondAttribute="trailing" constant="23" id="cwn-Gh-cpi"/>
                     <constraint firstAttribute="trailing" secondItem="TLJ-9G-2t1" secondAttribute="trailing" id="ihg-fQ-0lc"/>

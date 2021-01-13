@@ -56,12 +56,47 @@ private extension ArticleTopNavBar {
             addSubview(container)
 
             container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: bottomMargin).isActive = true
-            addConstraint(NSLayoutConstraint(item: container, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: buttonSize))
-            addConstraint(NSLayoutConstraint(item: container, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: buttonSize))
+
+            let heightConstraint = NSLayoutConstraint(item: container,
+                                                      attribute: .height,
+                                                      relatedBy: .equal,
+                                                      toItem: nil,
+                                                      attribute: .height,
+                                                      multiplier: 1.0,
+                                                      constant: buttonSize)
+            heightConstraint.priority = UILayoutPriority.init(999)
+            addConstraint(heightConstraint)
+
+            let widthConstraint = NSLayoutConstraint(item: container,
+                                                     attribute: .width,
+                                                     relatedBy: .equal,
+                                                     toItem: nil,
+                                                     attribute: .width,
+                                                     multiplier: 1.0,
+                                                     constant: buttonSize)
+            widthConstraint.priority = UILayoutPriority.init(999)
+            addConstraint(widthConstraint)
+
             if let last = lastContainer {
-                addConstraint(NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: last, attribute: .leading, multiplier: 1.0, constant: spacing))
+                let trailingConstraint = NSLayoutConstraint(item: container,
+                                                            attribute: .trailing,
+                                                            relatedBy: .equal,
+                                                            toItem: last,
+                                                            attribute: .leading,
+                                                            multiplier: 1.0,
+                                                            constant: spacing)
+                trailingConstraint.priority = UILayoutPriority.init(999)
+                addConstraint(trailingConstraint)
             } else {
-                addConstraint(NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: rightMargin))
+                let trailingConstraint = NSLayoutConstraint(item: container,
+                                                            attribute: .trailing,
+                                                            relatedBy: .equal,
+                                                            toItem: self,
+                                                            attribute: .trailing,
+                                                            multiplier: 1.0,
+                                                            constant: rightMargin)
+                trailingConstraint.priority = UILayoutPriority.init(999)
+                addConstraint(trailingConstraint)
             }
             lastContainer = container
         }
@@ -69,8 +104,27 @@ private extension ArticleTopNavBar {
 
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
         addSubview(labelTitle)
-        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: titleMargin))
-        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: leftMargin))
+
+        let titleTrailingConstraint = NSLayoutConstraint(item: labelTitle,
+                                                         attribute: .trailing,
+                                                         relatedBy: .equal,
+                                                         toItem: self,
+                                                         attribute: .trailing,
+                                                         multiplier: 1.0,
+                                                         constant: titleMargin)
+        titleTrailingConstraint.priority = UILayoutPriority.init(999)
+        addConstraint(titleTrailingConstraint)
+
+        let titleLeadingConstraint = NSLayoutConstraint(item: labelTitle,
+                                                        attribute: .leading,
+                                                        relatedBy: .equal,
+                                                        toItem: self,
+                                                        attribute: .leading,
+                                                        multiplier: 1.0,
+                                                        constant: leftMargin)
+        titleLeadingConstraint.priority = UILayoutPriority.init(999)
+        addConstraint(titleLeadingConstraint)
+
         labelTitle.centerYAnchor.constraint(equalTo: lastContainer!.centerYAnchor).isActive = true
     }
 
