@@ -430,12 +430,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
-        tableView.registerDequeueable(TeamToBeVisionCell.self)
-        tableView.registerDequeueable(TeamVisionSuggestionCell.self)
-        tableView.registerDequeueable(TeamInvitationCell.self)
-        tableView.registerDequeueable(PollOpenCell.self)
-        tableView.registerDequeueable(RateOpenCell.self)
-        tableView.registerDequeueable(RatingFeedbackCell.self)
         tableView.registerDequeueable(NewBaseDailyBriefCell.self)
     }
 
