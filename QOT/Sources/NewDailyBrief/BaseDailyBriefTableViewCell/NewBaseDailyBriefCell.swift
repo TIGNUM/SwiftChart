@@ -41,7 +41,6 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         collectionView.registerDequeueable(NewDailyBriefGetStartedCollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
-
     }
 
     override func prepareForReuse() {
