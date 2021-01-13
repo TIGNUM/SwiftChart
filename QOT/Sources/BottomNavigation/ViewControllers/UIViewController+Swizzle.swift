@@ -361,13 +361,15 @@ extension UIViewController {
     }
 
     private func getLayoutConstraint(item: Any, attribute attr1: NSLayoutConstraint.Attribute) -> NSLayoutConstraint {
-        return NSLayoutConstraint(item: item,
-                                  attribute: attr1,
-                                  relatedBy: .equal,
-                                  toItem: nil,
-                                  attribute: .notAnAttribute,
-                                  multiplier: 1,
-                                  constant: 40)
+        let constraint = NSLayoutConstraint(item: item,
+                                            attribute: attr1,
+                                            relatedBy: .equal,
+                                            toItem: nil,
+                                            attribute: .notAnAttribute,
+                                            multiplier: 1,
+                                            constant: 40)
+        constraint.priority = UILayoutPriority(rawValue: 999)
+        return constraint
     }
 
     @objc open func backNavigationItem() -> UIBarButtonItem {
