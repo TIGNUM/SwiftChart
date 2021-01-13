@@ -35,7 +35,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="zyg-8w-fV0"/>
+                                    <constraint firstAttribute="height" priority="999" constant="120" id="zyg-8w-fV0"/>
                                 </constraints>
                                 <inset key="scrollIndicatorInsets" minX="-8" minY="0.0" maxX="8" maxY="0.0"/>
                                 <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>

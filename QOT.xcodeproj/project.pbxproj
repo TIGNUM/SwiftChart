@@ -994,6 +994,7 @@
 		B4BCE4A8255BD01600A1116F /* DismissCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE49D255BD01600A1116F /* DismissCardAnimator.swift */; };
 		B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */; };
 		B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */; };
+		B4D0A9BE25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D0A9BD25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift */; };
 		B4D2E286257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift */; };
 		B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib */; };
 		B4D6804125874E0D0003410F /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B4D6804025874DBA0003410F /* SF-Pro-Display-Bold.otf */; };
@@ -2419,6 +2420,7 @@
 		B4BCE49D255BD01600A1116F /* DismissCardAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissCardAnimator.swift; sourceTree = "<group>"; };
 		B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQOTAdminEditSprintsDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		B4D0A9BD25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
 		B4D2E285257EB06A00928219 /* SprintChallengeDay0VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeDay0VideoTableViewCell.swift; sourceTree = "<group>"; };
 		B4D2E28D257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeDay0VideoTableViewCell.xib; sourceTree = "<group>"; };
 		B4D6804025874DBA0003410F /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -5341,6 +5343,7 @@
 				36CB720922B8772300C99AFC /* qot_dal */,
 				8DC2F7222313F11D0002F29F /* UIViewController+StreamVideo */,
 				F96225742552FA68003FF235 /* UINavigationController+Extension.swift */,
+				B4D0A9BD25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -7445,6 +7448,7 @@
 				F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
 				DBA3920D2322B4B20017E7F6 /* MyQotMainViewController.swift in Sources */,
+				B4D0A9BE25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift in Sources */,
 				75423EF922CE242B008EE726 /* TBVRateHistoryWorker.swift in Sources */,
 				5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */,
 				DBF6F131235DE08100367CC7 /* Notification+Name.swift in Sources */,

@@ -17,7 +17,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nl1-M7-SAR">
                     <rect key="frame" x="504" y="40" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="76n-13-lYd"/>
+                        <constraint firstAttribute="width" priority="999" constant="40" id="76n-13-lYd"/>
                         <constraint firstAttribute="width" secondItem="Nl1-M7-SAR" secondAttribute="height" multiplier="1:1" id="aN2-OE-2Zp"/>
                     </constraints>
                     <connections>
@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="20" width="558" height="1"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="OTh-WZ-VL1"/>
+                        <constraint firstAttribute="height" priority="999" constant="1" id="OTh-WZ-VL1"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="we3-ME-URI" userLabel="Bottom separator view">
@@ -36,7 +36,7 @@
                     <viewLayoutGuide key="safeArea" id="cDe-fG-Xmn"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="vwi-rQ-AF2"/>
+                        <constraint firstAttribute="height" priority="999" constant="1" id="vwi-rQ-AF2"/>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wbY-81-GMi">
@@ -49,14 +49,14 @@
             <viewLayoutGuide key="safeArea" id="34z-T8-JFN"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Nl1-M7-SAR" firstAttribute="top" secondItem="JMl-X8-LOa" secondAttribute="bottom" constant="19" id="6x7-OB-AI9"/>
+                <constraint firstItem="Nl1-M7-SAR" firstAttribute="top" secondItem="JMl-X8-LOa" secondAttribute="bottom" priority="999" constant="19" id="6x7-OB-AI9"/>
                 <constraint firstItem="Nl1-M7-SAR" firstAttribute="leading" secondItem="wbY-81-GMi" secondAttribute="trailing" id="AD2-h7-oEP"/>
                 <constraint firstItem="we3-ME-URI" firstAttribute="bottom" secondItem="34z-T8-JFN" secondAttribute="bottom" id="Dac-Wi-5Zg"/>
-                <constraint firstItem="JMl-X8-LOa" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" constant="20" id="Kvn-WZ-9Zn"/>
+                <constraint firstItem="JMl-X8-LOa" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" priority="999" constant="20" id="Kvn-WZ-9Zn"/>
                 <constraint firstItem="JMl-X8-LOa" firstAttribute="centerX" secondItem="34z-T8-JFN" secondAttribute="centerX" id="M8f-A4-iwA"/>
                 <constraint firstItem="we3-ME-URI" firstAttribute="width" secondItem="Sg4-P2-IFa" secondAttribute="width" id="OeZ-1s-MUB"/>
-                <constraint firstItem="wbY-81-GMi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JMl-X8-LOa" secondAttribute="bottom" constant="5" id="StO-hm-O9V"/>
-                <constraint firstItem="Nl1-M7-SAR" firstAttribute="bottom" secondItem="34z-T8-JFN" secondAttribute="bottom" constant="-19" id="UXX-38-48P"/>
+                <constraint firstItem="wbY-81-GMi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JMl-X8-LOa" secondAttribute="bottom" priority="999" constant="5" id="StO-hm-O9V"/>
+                <constraint firstItem="Nl1-M7-SAR" firstAttribute="bottom" secondItem="34z-T8-JFN" secondAttribute="bottom" priority="999" constant="-19" id="UXX-38-48P"/>
                 <constraint firstItem="wbY-81-GMi" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="ZZT-Em-y02"/>
                 <constraint firstItem="wbY-81-GMi" firstAttribute="centerY" secondItem="Nl1-M7-SAR" secondAttribute="centerY" id="Zuc-55-7DZ"/>
                 <constraint firstItem="34z-T8-JFN" firstAttribute="leading" secondItem="we3-ME-URI" secondAttribute="leading" id="bXG-kN-YoY"/>
