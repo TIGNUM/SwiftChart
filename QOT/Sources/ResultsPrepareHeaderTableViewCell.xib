@@ -39,7 +39,7 @@
                         </connections>
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZTG-0u-PDc">
-                        <rect key="frame" x="24" y="6" width="232" height="76"/>
+                        <rect key="frame" x="18" y="6" width="238" height="76"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="76" id="lqH-Xr-J5Y"/>
@@ -58,7 +58,7 @@
                     <constraint firstItem="Zyo-8u-eqz" firstAttribute="leading" secondItem="ZTG-0u-PDc" secondAttribute="trailing" constant="10" id="XNn-dR-uPW"/>
                     <constraint firstItem="ZTG-0u-PDc" firstAttribute="top" secondItem="KWZ-Mi-MCt" secondAttribute="bottom" constant="5" id="YIi-8Y-kk3"/>
                     <constraint firstItem="KWZ-Mi-MCt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fJB-Cd-ae1"/>
-                    <constraint firstItem="ZTG-0u-PDc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="j6W-aS-FIR"/>
+                    <constraint firstItem="ZTG-0u-PDc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="j6W-aS-FIR"/>
                     <constraint firstItem="Zyo-8u-eqz" firstAttribute="centerY" secondItem="ZTG-0u-PDc" secondAttribute="centerY" id="pQQ-Ow-BKW"/>
                 </constraints>
             </tableViewCellContentView>
