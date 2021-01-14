@@ -55,7 +55,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     }
 
     private func setupCollectionView() {
-        var width = self.frame.width - (detailsMode ? 0 : 48)
+        var width = UIScreen.main.bounds.width - (detailsMode ? 0 : 48)
         var height: CGFloat = 463
         collectionView.bounces = datasource?.count ?? 0 > 1
         collectionView.decelerationRate = .fast
