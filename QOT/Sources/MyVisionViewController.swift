@@ -23,7 +23,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     static var storyboardID = NSStringFromClass(MyVisionViewController.classForCoder())
 
     @IBOutlet private weak var nullStateView: MyVisionNullStateView!
-    @IBOutlet private weak var navigationBarView: MyVisionNavigationBarView!
+    @IBOutlet private weak var navigationBarView: ToBeVisionSelectionBar!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
@@ -130,22 +130,10 @@ private extension MyVisionViewController {
         showRateScreen()
     }
 
-//    @IBAction func shareButtonAction(_ sender: UIButton) {
-//        trackUserEvent(.SHARE, action: .TAP)
-//        interactor.shareToBeVision()
-//    }
-
     @IBAction func updateButtonAction(_ sender: UIButton) {
         trackUserEvent(.OPEN, valueType: "UpdateConfirmationView", action: .TAP)
         interactor.showUpdateConfirmationScreen()
     }
-
-//    @IBAction func cameraButtonAction(_ sender: UIButton) {
-//        trackUserEvent(.OPEN, valueType: "CameraOptions", action: .TAP)
-//        imagePickerController.show(in: self, deletable: (tempImageURL != nil || tempImage != nil))
-//        imagePickerController.delegate = self
-//        RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
-//    }
 }
 
 // MARK: - Observer
@@ -188,6 +176,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     func setSelectionBarButtonItems() {
         toBeVisionSelectionBar.allOff()
         toBeVisionSelectionBar.configure(isOwner: true, isPersonal: true, self)
+        navigationBarView.configure(isOwner: true, isPersonal: true, self)
         NewThemeView.dark.apply(navigationBarView)
     }
 
@@ -212,7 +201,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
-        navigationBarView.delegate = self
         ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_qot_my_tbv_section_header_title),
                                          to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
@@ -372,12 +360,12 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
     }
 }
 
-extension MyVisionViewController: MyVisionNavigationBarViewProtocol {
-    func didShare() {
-        trackUserEvent(.SHARE, action: .TAP)
-        interactor.shareToBeVision()
-    }
-}
+//extension MyVisionViewController: MyVisionNavigationBarViewProtocol {
+//    func didShare() {
+//        trackUserEvent(.SHARE, action: .TAP)
+//        interactor.shareToBeVision()
+//    }
+//}
 
 extension MyVisionViewController: MyVisionNullStateViewProtocol {
     func editMyVisionAction() {
