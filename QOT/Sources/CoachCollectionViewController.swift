@@ -88,7 +88,7 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
         super.viewDidLoad()
         ThemeView.level1.apply(view)
         coachButton.layer.zPosition = 10000
-
+        coachButton.setTitle(AppTextService.get(AppTextKey.generic_coach_button_title), for: .normal)
         if let searchViewController = searchViewController {
             self.addChild(searchViewController)
             searchViewController.view.translatesAutoresizingMaskIntoConstraints = false
