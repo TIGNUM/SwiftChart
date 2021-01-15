@@ -209,34 +209,16 @@
                                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8g-k3-ZEc" userLabel="ButtonsView">
-                                                        <rect key="frame" x="24" y="320" width="366" height="50"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aw2-2S-Mjn">
-                                                                <rect key="frame" x="326" y="5" width="40" height="40"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="40" id="OZY-df-Cbh"/>
-                                                                </constraints>
-                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" image="photo"/>
-                                                                <connections>
-                                                                    <action selector="cameraButtonAction:" destination="D5c-1q-rLE" eventType="touchUpInside" id="zDu-vi-n4J"/>
-                                                                </connections>
-                                                            </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Epy-bb-btW">
-                                                                <rect key="frame" x="0.0" y="25" width="0.0" height="0.0"/>
-                                                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
-                                                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Epy-bb-btW">
+                                                        <rect key="frame" x="24" y="368" width="0.0" height="0.0"/>
+                                                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8g-k3-ZEc" userLabel="ButtonsView" customClass="ToBeVisionSelectionBar" customModule="TIGNUM_X" customModuleProvider="target">
+                                                        <rect key="frame" x="24" y="318" width="390" height="50"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="Epy-bb-btW" firstAttribute="leading" secondItem="d8g-k3-ZEc" secondAttribute="leading" id="1wF-86-P1f"/>
-                                                            <constraint firstAttribute="bottom" secondItem="aw2-2S-Mjn" secondAttribute="bottom" constant="5" id="JAD-op-5Rh"/>
-                                                            <constraint firstItem="aw2-2S-Mjn" firstAttribute="top" secondItem="d8g-k3-ZEc" secondAttribute="top" constant="5" id="egV-x3-Mtm"/>
-                                                            <constraint firstAttribute="trailing" secondItem="aw2-2S-Mjn" secondAttribute="trailing" id="gU9-e0-eoR"/>
-                                                            <constraint firstItem="Epy-bb-btW" firstAttribute="centerY" secondItem="d8g-k3-ZEc" secondAttribute="centerY" id="swh-pg-35L"/>
                                                             <constraint firstAttribute="height" constant="50" id="u3h-dp-MCo"/>
                                                         </constraints>
                                                     </view>
@@ -245,12 +227,14 @@
                                                 <constraints>
                                                     <constraint firstItem="d8g-k3-ZEc" firstAttribute="leading" secondItem="HJG-NY-ISU" secondAttribute="leading" constant="24" id="4Ip-OB-1aw"/>
                                                     <constraint firstItem="Tse-4U-RWD" firstAttribute="leading" secondItem="HJG-NY-ISU" secondAttribute="leading" constant="24" id="5fP-fT-Loo"/>
+                                                    <constraint firstItem="Epy-bb-btW" firstAttribute="leading" secondItem="Tse-4U-RWD" secondAttribute="leading" id="9ZT-vG-OWB"/>
+                                                    <constraint firstItem="Epy-bb-btW" firstAttribute="top" secondItem="d8g-k3-ZEc" secondAttribute="bottom" id="9nd-X9-wXR"/>
                                                     <constraint firstAttribute="trailing" secondItem="Tse-4U-RWD" secondAttribute="trailing" constant="24" id="PUL-eR-0xb"/>
-                                                    <constraint firstAttribute="trailing" secondItem="d8g-k3-ZEc" secondAttribute="trailing" constant="24" id="ZWy-SC-kmz"/>
+                                                    <constraint firstAttribute="trailing" secondItem="d8g-k3-ZEc" secondAttribute="trailing" id="ZWy-SC-kmz"/>
                                                     <constraint firstAttribute="trailing" secondItem="B7h-k9-Hqf" secondAttribute="trailing" id="ZZg-x2-RH7"/>
-                                                    <constraint firstItem="Tse-4U-RWD" firstAttribute="top" secondItem="d8g-k3-ZEc" secondAttribute="bottom" id="cqf-9B-oke"/>
                                                     <constraint firstAttribute="bottom" secondItem="Tse-4U-RWD" secondAttribute="bottom" constant="20" id="dj4-W8-K4P"/>
                                                     <constraint firstItem="B7h-k9-Hqf" firstAttribute="leading" secondItem="HJG-NY-ISU" secondAttribute="leading" id="e57-qj-MNF"/>
+                                                    <constraint firstItem="Epy-bb-btW" firstAttribute="bottom" secondItem="Tse-4U-RWD" secondAttribute="top" constant="-2" id="fov-xy-igG"/>
                                                     <constraint firstAttribute="bottom" secondItem="B7h-k9-Hqf" secondAttribute="bottom" constant="58" id="k3y-1u-ZBp"/>
                                                     <constraint firstItem="B7h-k9-Hqf" firstAttribute="top" secondItem="HJG-NY-ISU" secondAttribute="top" id="k5g-kd-COp"/>
                                                 </constraints>
@@ -262,19 +246,6 @@
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzd-I8-zJE">
-                                                <rect key="frame" x="350" y="24" width="40" height="40"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="KLc-2g-sfD"/>
-                                                    <constraint firstAttribute="height" constant="40" id="qMp-zw-oaH"/>
-                                                </constraints>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="share"/>
-                                                <connections>
-                                                    <action selector="shareButtonAction:" destination="D5c-1q-rLE" eventType="touchUpInside" id="Ofs-V8-jK9"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="eB5-aW-wiW">
                                                 <rect key="frame" x="24" y="477.5" width="366" height="74"/>
                                                 <subviews>
@@ -423,8 +394,6 @@
                                             <constraint firstItem="eB5-aW-wiW" firstAttribute="leading" secondItem="NLb-t8-vGY" secondAttribute="leading" constant="24" id="56X-oF-nZl"/>
                                             <constraint firstItem="8BV-tV-w1L" firstAttribute="leading" secondItem="NLb-t8-vGY" secondAttribute="leading" constant="24" id="73a-zu-Giu"/>
                                             <constraint firstAttribute="trailing" secondItem="eB5-aW-wiW" secondAttribute="trailing" constant="24" id="Hto-eB-2Ws"/>
-                                            <constraint firstAttribute="trailing" secondItem="Vzd-I8-zJE" secondAttribute="trailing" constant="24" id="Ox7-mm-Mjo"/>
-                                            <constraint firstItem="Vzd-I8-zJE" firstAttribute="top" secondItem="B7h-k9-Hqf" secondAttribute="top" constant="24" id="TwW-0L-NeY"/>
                                             <constraint firstItem="8BV-tV-w1L" firstAttribute="top" secondItem="NLb-t8-vGY" secondAttribute="top" constant="398" id="Z0j-BA-bu5"/>
                                             <constraint firstAttribute="bottom" secondItem="eB5-aW-wiW" secondAttribute="bottom" constant="40" id="fPv-9H-HW2"/>
                                             <constraint firstItem="8BV-tV-w1L" firstAttribute="top" secondItem="HJG-NY-ISU" secondAttribute="bottom" constant="8" id="gKg-e9-qSg"/>
@@ -615,7 +584,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="cameraButton" destination="aw2-2S-Mjn" id="QX1-1S-QrC"/>
                         <outlet property="detailTextView" destination="8BV-tV-w1L" id="9oa-Yn-pzg"/>
                         <outlet property="doubleMessageRatingView" destination="eTh-Nf-rEo" id="phz-dX-L4a"/>
                         <outlet property="headerLabel" destination="Tse-4U-RWD" id="cId-aW-gV8"/>
@@ -630,11 +598,11 @@
                         <outlet property="nullStateView" destination="2XZ-BD-gts" id="A48-VM-9ss"/>
                         <outlet property="rateButton" destination="mPg-CX-jiH" id="Vt1-xW-nUe"/>
                         <outlet property="scrollView" destination="qAA-fz-qZu" id="i3g-vf-aO6"/>
-                        <outlet property="shareButton" destination="Vzd-I8-zJE" id="uba-Lh-ref"/>
                         <outlet property="singleMessageRateButton" destination="Uxc-io-h3y" id="bej-qu-JPw"/>
                         <outlet property="singleMessageRatingLabel" destination="pag-nK-JWF" id="ZtK-cK-pWD"/>
                         <outlet property="singleMessageRatingView" destination="sTl-gm-Vsl" id="fPE-Qz-tKC"/>
                         <outlet property="toBeVisionLabel" destination="Epy-bb-btW" id="DLj-so-M1I"/>
+                        <outlet property="toBeVisionSelectionBar" destination="d8g-k3-ZEc" id="UC3-XI-ppB"/>
                         <outlet property="updateButton" destination="qAa-xx-Zg9" id="k1d-ml-lfP"/>
                         <outlet property="userImageView" destination="B7h-k9-Hqf" id="HTg-Oa-8rZ"/>
                         <outlet property="warningImageView" destination="B8j-ld-g8n" id="b4l-FY-rcN"/>
@@ -1007,7 +975,6 @@
         <image name="gradient_dark" width="375" height="100"/>
         <image name="ic_warning_circle" width="16" height="16"/>
         <image name="ic_warning_circles" width="136" height="136"/>
-        <image name="photo" width="16" height="16"/>
         <image name="share" width="16" height="16"/>
         <image name="teamTBVPlaceholder" width="375" height="332"/>
         <systemColor name="systemBackgroundColor">

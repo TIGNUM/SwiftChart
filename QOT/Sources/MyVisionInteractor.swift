@@ -67,6 +67,7 @@ final class MyVisionInteractor {
 
     func viewWillAppear() {
         didUpdateTBVRelatedData()
+        presenter.setSelectionBarButtonItems()
     }
 
     private func didUpdateTBVRelatedData() {
