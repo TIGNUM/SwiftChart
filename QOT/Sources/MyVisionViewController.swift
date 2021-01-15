@@ -41,9 +41,9 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var rateButton: UIButton!
     @IBOutlet private weak var singleMessageRateButton: UIButton!
     @IBOutlet private weak var updateButton: UIButton!
-    @IBOutlet weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
-    @IBOutlet weak var viewMyData: UIButton!
-    @IBOutlet weak var viewMyDataLabel: UILabel!
+    @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
+    @IBOutlet private weak var viewMyData: UIButton!
+    @IBOutlet private weak var viewMyDataLabel: UILabel!
 
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet weak var nullStateImageView: UIImageView!
