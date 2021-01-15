@@ -42,6 +42,8 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var singleMessageRateButton: UIButton!
     @IBOutlet private weak var updateButton: UIButton!
     @IBOutlet weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
+    @IBOutlet weak var viewMyData: UIButton!
+    @IBOutlet weak var viewMyDataLabel: UILabel!
 
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet weak var nullStateImageView: UIImageView!
@@ -80,23 +82,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
         trackPage()
     }
 
-    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if !didShowNullStateView {
-            return generateBottomNavigationItemForMainView()
-        }
-        return nil
-    }
-
-    func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        let title = AppTextService.get(.my_qot_my_tbv_section_footer_button_title_my_tbv_data)
-        return [roundedBarButtonItem(title: title,
-                                     buttonWidth: 160,
-                                     action: #selector(myTBVData),
-                                     backgroundColor: .black,
-                                     borderColor: .white)]
-    }
-
-    @objc func myTBVData() {
+    @IBAction func viewMyData(_ sender: Any) {
         trackUserEvent(.OPEN, valueType: "TBVData", action: .TAP)
         interactor.showTBVData()
     }
@@ -215,6 +201,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
+        let dataCta = AppTextService.get(.my_qot_my_tbv_section_footer_button_title_my_tbv_data)
+        viewMyDataLabel.text = dataCta
         userImageView.image = R.image.circlesWarning()
     }
 
@@ -359,13 +347,6 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
         refreshBottomNavigationItems()
     }
 }
-
-//extension MyVisionViewController: MyVisionNavigationBarViewProtocol {
-//    func didShare() {
-//        trackUserEvent(.SHARE, action: .TAP)
-//        interactor.shareToBeVision()
-//    }
-//}
 
 extension MyVisionViewController: MyVisionNullStateViewProtocol {
     func editMyVisionAction() {
