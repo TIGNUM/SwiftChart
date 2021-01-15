@@ -128,17 +128,21 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
             updateLabel()
         }
         ContentService.main.getContentItemById(media.mediaRemoteId) { [weak self] (item) in
-            self?.contentItem = item
-            self?.bookmarks = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
-                storage.userStorageType == .BOOKMARK
-            })
-            self?.bookmarkButton.isSelected = self?.bookmarks?.first != nil
-            self?.updateBookmarkButtonUI(self?.bookmarkButton.isSelected ?? false)
+            self?.bookmarkItem(item)
             self?.download = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
                 storage.userStorageType == .DOWNLOAD
             }).first
             self?.updateDownloadButtonState(self?.download?.downloadStaus ?? .NONE)
         }
+    }
+
+    func bookmarkItem(_ item: QDMContentItem?) {
+        contentItem = item
+        bookmarks = contentItem?.userStorages?.filter({ (storage) -> Bool in
+            storage.userStorageType == .BOOKMARK
+        })
+        bookmarkButton.isSelected = bookmarks?.first != nil
+        updateBookmarkButtonUI(bookmarkButton.isSelected)
     }
 
     func updateDownloadButtonState(_ state: UserStorageDownloadStatus) {
@@ -266,12 +270,7 @@ extension AudioFullScreenViewController {
     private func updateBookmarkButtonState() {
         guard let mediaId = media?.mediaRemoteId else { return }
         ContentService.main.getContentItemById(mediaId) { [weak self] (item) in
-            self?.contentItem = item
-            self?.bookmarks = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
-                storage.userStorageType == .BOOKMARK
-            })
-            self?.bookmarkButton.isSelected = self?.bookmarks?.first != nil
-            self?.updateBookmarkButtonUI(self?.bookmarkButton.isSelected ?? false)
+            self?.bookmarkItem(item)
             if self?.bookmarkButton.isSelected == true, self?.wasBookmarked == false {
                 self?.wasBookmarked = true
                 self?.showDestinationAlert()
