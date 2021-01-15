@@ -14,7 +14,7 @@
         <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="119" id="KGk-i7-Jjw" customClass="ResultsPrepareHeaderTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -27,7 +27,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zyo-8u-eqz">
-                        <rect key="frame" x="266" y="21.5" width="45" height="45"/>
+                        <rect key="frame" x="266" y="31.5" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="Erj-3d-k90"/>
                             <constraint firstAttribute="width" constant="45" id="vYq-Qu-ger"/>
@@ -39,10 +39,10 @@
                         </connections>
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZTG-0u-PDc">
-                        <rect key="frame" x="18" y="6" width="238" height="76"/>
+                        <rect key="frame" x="24" y="6" width="232" height="96"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="76" id="lqH-Xr-J5Y"/>
+                            <constraint firstAttribute="height" priority="999" constant="76" id="lqH-Xr-J5Y"/>
                         </constraints>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,7 +58,7 @@
                     <constraint firstItem="Zyo-8u-eqz" firstAttribute="leading" secondItem="ZTG-0u-PDc" secondAttribute="trailing" constant="10" id="XNn-dR-uPW"/>
                     <constraint firstItem="ZTG-0u-PDc" firstAttribute="top" secondItem="KWZ-Mi-MCt" secondAttribute="bottom" constant="5" id="YIi-8Y-kk3"/>
                     <constraint firstItem="KWZ-Mi-MCt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fJB-Cd-ae1"/>
-                    <constraint firstItem="ZTG-0u-PDc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="j6W-aS-FIR"/>
+                    <constraint firstItem="ZTG-0u-PDc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="j6W-aS-FIR"/>
                     <constraint firstItem="Zyo-8u-eqz" firstAttribute="centerY" secondItem="ZTG-0u-PDc" secondAttribute="centerY" id="pQQ-Ow-BKW"/>
                 </constraints>
             </tableViewCellContentView>

@@ -69,16 +69,38 @@ private extension ToBeVisionSelectionBar {
 
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
         addSubview(labelTitle)
-        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: titleMargin))
-        addConstraint(NSLayoutConstraint(item: labelTitle, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: leftMargin))
+        let trailingConstraint = NSLayoutConstraint(item: labelTitle,
+                                                    attribute: .trailing,
+                                                    relatedBy: .equal,
+                                                    toItem: self,
+                                                    attribute: .trailing,
+                                                    multiplier: 1.0,
+                                                    constant: titleMargin)
+        trailingConstraint.priority = UILayoutPriority.init(999)
+        addConstraint(trailingConstraint)
+
+        let leadingConstraint = NSLayoutConstraint(item: labelTitle,
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: self,
+                                                   attribute: .leading,
+                                                   multiplier: 1.0,
+                                                   constant: leftMargin)
+        leadingConstraint.priority = UILayoutPriority.init(999)
+        addConstraint(leadingConstraint)
+
         labelTitle.centerYAnchor.constraint(equalTo: lastContainer!.centerYAnchor).isActive = true
     }
 
     func setupButton(_ item: AnimatedButton?, image: UIImage?) {
         item?.setImage(image, for: .normal)
         item?.imageView?.tintColor = .white
-        item?.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        item?.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        let heightAnchorConstraint = item?.heightAnchor.constraint(equalToConstant: 44)
+        let widthAnchorConstraint = item?.widthAnchor.constraint(equalToConstant: 44)
+        heightAnchorConstraint?.priority = UILayoutPriority.init(999)
+        widthAnchorConstraint?.priority = UILayoutPriority.init(999)
+        heightAnchorConstraint?.isActive = true
+        widthAnchorConstraint?.isActive = true
         item?.translatesAutoresizingMaskIntoConstraints = false
         if let view = arrayViews[arrayViewsCount].value {
             guard let item = item else { return }

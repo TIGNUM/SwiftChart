@@ -41,7 +41,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="128" id="DNU-VD-Raa"/>
-                            <constraint firstAttribute="height" constant="72" id="P51-Zl-wPB"/>
+                            <constraint firstAttribute="height" priority="999" constant="72" id="P51-Zl-wPB"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera_grey" translatesAutoresizingMaskIntoConstraints="NO" id="8f0-2U-j1U">
@@ -72,7 +72,7 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="OpI-7o-In4" firstAttribute="top" secondItem="XhL-CQ-itM" secondAttribute="top" constant="30" id="CbV-eu-zL5"/>
+                    <constraint firstItem="OpI-7o-In4" firstAttribute="top" secondItem="XhL-CQ-itM" secondAttribute="top" priority="999" constant="30" id="CbV-eu-zL5"/>
                     <constraint firstItem="LJT-2m-ojb" firstAttribute="centerX" secondItem="PxG-cx-EZn" secondAttribute="centerX" id="KGw-Bq-Ffu"/>
                     <constraint firstItem="KS0-qy-TCd" firstAttribute="leading" secondItem="8f0-2U-j1U" secondAttribute="trailing" constant="12" id="Kjq-RE-yig"/>
                     <constraint firstItem="PxG-cx-EZn" firstAttribute="top" secondItem="OpI-7o-In4" secondAttribute="top" id="LVf-Jt-1Zc"/>

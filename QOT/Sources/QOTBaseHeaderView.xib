@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,10 +44,11 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Z4J-Oc-j2g"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="TXn-h7-ENx" firstAttribute="top" secondItem="imz-hD-ug8" secondAttribute="top" constant="40" id="7Of-Wd-9uT"/>
-                <constraint firstAttribute="bottom" secondItem="7pl-Ky-R5Q" secondAttribute="bottom" constant="18" id="8Hu-Ja-yth"/>
+                <constraint firstAttribute="bottom" secondItem="7pl-Ky-R5Q" secondAttribute="bottom" priority="999" constant="18" id="8Hu-Ja-yth"/>
                 <constraint firstItem="TXn-h7-ENx" firstAttribute="leading" secondItem="Z4J-Oc-j2g" secondAttribute="leading" constant="24" id="GNY-DR-ZEZ"/>
                 <constraint firstItem="7Gs-BN-MuS" firstAttribute="leading" secondItem="Z4J-Oc-j2g" secondAttribute="leading" constant="24" id="TaB-C1-6dU"/>
                 <constraint firstItem="Z4J-Oc-j2g" firstAttribute="trailing" secondItem="7Gs-BN-MuS" secondAttribute="trailing" constant="24" id="XRJ-5O-zgl"/>
@@ -57,7 +58,6 @@
                 <constraint firstItem="7pl-Ky-R5Q" firstAttribute="trailing" secondItem="7Gs-BN-MuS" secondAttribute="trailing" id="xcS-6N-BtM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="Z4J-Oc-j2g"/>
             <connections>
                 <outlet property="lineView" destination="TXn-h7-ENx" id="vQJ-wg-jfj"/>
                 <outlet property="subtitleTextView" destination="7pl-Ky-R5Q" id="1TZ-iJ-XbV"/>

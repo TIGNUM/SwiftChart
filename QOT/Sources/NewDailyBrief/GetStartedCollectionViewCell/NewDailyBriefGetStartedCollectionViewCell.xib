@@ -48,11 +48,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YH6-ma-PQf" firstAttribute="centerX" secondItem="fcO-3Z-HcM" secondAttribute="centerX" id="2I1-uR-B51"/>
-                            <constraint firstAttribute="width" constant="184" id="Cyl-yk-Nte"/>
+                            <constraint firstAttribute="width" priority="999" constant="184" id="Cyl-yk-Nte"/>
                             <constraint firstItem="YH6-ma-PQf" firstAttribute="centerY" secondItem="fcO-3Z-HcM" secondAttribute="centerY" id="X7V-k3-PFw"/>
                             <constraint firstAttribute="trailing" secondItem="FY9-hg-FWz" secondAttribute="trailing" constant="23" id="Xmi-xR-taH"/>
                             <constraint firstAttribute="bottom" secondItem="FY9-hg-FWz" secondAttribute="bottom" constant="22" id="cSb-5E-Mcc"/>
-                            <constraint firstAttribute="height" constant="184" id="eo4-zj-fDM"/>
+                            <constraint firstAttribute="height" priority="999" constant="184" id="eo4-zj-fDM"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpe-cZ-eHo">
