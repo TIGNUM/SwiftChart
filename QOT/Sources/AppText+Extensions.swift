@@ -1097,6 +1097,7 @@ public extension AppTextKey {
     static let onboarding_walkthrough_my_qot = AppTextKey("onboarding.walkthrough.my_qot")
     static let onboarding_walkthrough_search = AppTextKey("onboarding.walkthrough.search")
 
+    static let generic_coach_button_title = AppTextKey("generic.coach_button.title")
     static let generic_content_audio = AppTextKey("generic.content.audio")
     static let generic_content_pdf = AppTextKey("generic.content.pdf")
     static let generic_content_video = AppTextKey("generic.content.video")
