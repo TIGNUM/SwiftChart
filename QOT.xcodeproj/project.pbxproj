@@ -316,10 +316,6 @@
 		386C27BE241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27BC241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift */; };
 		386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */; };
 		386C398825816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */; };
-		386D9A7F25A8692F00FF2456 /* walkThrough_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 386D9A7B25A8692E00FF2456 /* walkThrough_coach.mp4 */; };
-		386D9A8025A8692F00FF2456 /* walkThrough_search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 386D9A7C25A8692E00FF2456 /* walkThrough_search.mp4 */; };
-		386D9A8125A8692F00FF2456 /* walkThrough_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 386D9A7D25A8692F00FF2456 /* walkThrough_know.mp4 */; };
-		386D9A8225A8692F00FF2456 /* walkThrough_myQOT.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 386D9A7E25A8692F00FF2456 /* walkThrough_myQOT.mp4 */; };
 		3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
 		3877862D257ECE3900F4B5ED /* NewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877862C257ECE3900F4B5ED /* NewTheme.swift */; };
@@ -1211,6 +1207,10 @@
 		F91087A724C5A6BD00CA343A /* TeamToBeVisionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */; };
 		F91087A924C5C7D500CA343A /* TeamToBeVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */; };
 		F91087AB24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */; };
+		F9114E5225B1E46B00D1F0E2 /* walkThrough_search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F9114E1925B1E1C700D1F0E2 /* walkThrough_search.mp4 */; };
+		F9114E5925B1E46F00D1F0E2 /* walkThrough_myQOT.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F9114E1C25B1E1C800D1F0E2 /* walkThrough_myQOT.mp4 */; };
+		F9114E5A25B1E47200D1F0E2 /* walkThrough_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F9114E1B25B1E1C800D1F0E2 /* walkThrough_know.mp4 */; };
+		F9114E6125B1E47600D1F0E2 /* walkThrough_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F9114E1D25B1E1E000D1F0E2 /* walkThrough_coach.mp4 */; };
 		F916AAF324192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */; };
 		F916AAF524192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */; };
 		F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */; };
@@ -1759,10 +1759,6 @@
 		386C27BC241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareQuestionTableViewCell.swift; sourceTree = "<group>"; };
 		386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareQuestionTableViewCell.xib; sourceTree = "<group>"; };
 		386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMToBeVisionRatingReport+Ext.swift"; sourceTree = "<group>"; };
-		386D9A7B25A8692E00FF2456 /* walkThrough_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_coach.mp4; sourceTree = "<group>"; };
-		386D9A7C25A8692E00FF2456 /* walkThrough_search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_search.mp4; sourceTree = "<group>"; };
-		386D9A7D25A8692F00FF2456 /* walkThrough_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_know.mp4; sourceTree = "<group>"; };
-		386D9A7E25A8692F00FF2456 /* walkThrough_myQOT.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_myQOT.mp4; sourceTree = "<group>"; };
 		3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamHeaderCell.xib; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		3877862C257ECE3900F4B5ED /* NewTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTheme.swift; sourceTree = "<group>"; };
@@ -2645,6 +2641,10 @@
 		F910879F24C5A6BC00CA343A /* TeamToBeVisionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionConfigurator.swift; sourceTree = "<group>"; };
 		F91087A824C5C7D500CA343A /* TeamToBeVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNullStateView.swift; sourceTree = "<group>"; };
 		F91087AA24C5DB8100CA343A /* TeamToBeVisionNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionNavigationBarView.swift; sourceTree = "<group>"; };
+		F9114E1925B1E1C700D1F0E2 /* walkThrough_search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_search.mp4; sourceTree = "<group>"; };
+		F9114E1B25B1E1C800D1F0E2 /* walkThrough_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_know.mp4; sourceTree = "<group>"; };
+		F9114E1C25B1E1C800D1F0E2 /* walkThrough_myQOT.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_myQOT.mp4; sourceTree = "<group>"; };
+		F9114E1D25B1E1E000D1F0E2 /* walkThrough_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_coach.mp4; sourceTree = "<group>"; };
 		F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeToPositiveTableViewCell.swift; sourceTree = "<group>"; };
 		F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveTableViewCell.xib; sourceTree = "<group>"; };
 		F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCell.swift; sourceTree = "<group>"; };
@@ -5158,10 +5158,10 @@
 		CB78D3361F9F674A0068A54A /* BundledMedia */ = {
 			isa = PBXGroup;
 			children = (
-				386D9A7B25A8692E00FF2456 /* walkThrough_coach.mp4 */,
-				386D9A7D25A8692F00FF2456 /* walkThrough_know.mp4 */,
-				386D9A7E25A8692F00FF2456 /* walkThrough_myQOT.mp4 */,
-				386D9A7C25A8692E00FF2456 /* walkThrough_search.mp4 */,
+				F9114E1D25B1E1E000D1F0E2 /* walkThrough_coach.mp4 */,
+				F9114E1B25B1E1C800D1F0E2 /* walkThrough_know.mp4 */,
+				F9114E1C25B1E1C800D1F0E2 /* walkThrough_myQOT.mp4 */,
+				F9114E1925B1E1C700D1F0E2 /* walkThrough_search.mp4 */,
 				8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */,
 			);
 			name = BundledMedia;
@@ -6317,6 +6317,7 @@
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				386C27B5241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib in Resources */,
 				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
+				F9114E5925B1E46F00D1F0E2 /* walkThrough_myQOT.mp4 in Resources */,
 				B44D4462256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
 				38593DF124A1114C00C2955D /* Team.storyboard in Resources */,
@@ -6329,15 +6330,14 @@
 				B8FE4A9C24DD7B7A00B47F1D /* AudioBookmarkTableViewCell.xib in Resources */,
 				38095D3024BDDE680077EE86 /* TeamInviteHeaderTableViewCell.xib in Resources */,
 				360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */,
-				386D9A7F25A8692F00FF2456 /* walkThrough_coach.mp4 in Resources */,
 				389CC8192512021600028C54 /* HorizontalHeaderCollectionViewCell.xib in Resources */,
 				B49BE661233B9BFB008CAED0 /* PaymentReminderViewController.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
+				F9114E6125B1E47600D1F0E2 /* walkThrough_coach.mp4 in Resources */,
 				F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
 				F9A5C93D22B29CFD00AB2E94 /* Coach.storyboard in Resources */,
-				386D9A8225A8692F00FF2456 /* walkThrough_myQOT.mp4 in Resources */,
 				ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */,
 				B4A075B9230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.xib in Resources */,
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
@@ -6348,6 +6348,7 @@
 				F906A02424AC8279007B6E1E /* TeamNameTableViewCell.xib in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreenX.storyboard in Resources */,
+				F9114E5225B1E46B00D1F0E2 /* walkThrough_search.mp4 in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
 				F9FEA8D725344F9F009BF786 /* PollOpenCell.xib in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
@@ -6387,7 +6388,6 @@
 				36E86D542270651A00371C67 /* ArticleRelatedTableViewCell.xib in Resources */,
 				B49AC293233BA5DC009AC1CF /* PaymentFooterView.xib in Resources */,
 				B4F9763C2359EBA20071F7EC /* QOTBaseHeaderView.xib in Resources */,
-				386D9A8025A8692F00FF2456 /* walkThrough_search.mp4 in Resources */,
 				8D13B8E122FB1F5B00B776E8 /* CreateAccountInfo.storyboard in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
@@ -6488,7 +6488,7 @@
 				B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */,
 				8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */,
 				B4792CA0256BABF200D24E7F /* Level5TableViewCell.xib in Resources */,
-				386D9A8125A8692F00FF2456 /* walkThrough_know.mp4 in Resources */,
+				F9114E5A25B1E47200D1F0E2 /* walkThrough_know.mp4 in Resources */,
 				B4B05CDF258F08CB0076A2E9 /* SearchNoResultsTableviewCell.xib in Resources */,
 				B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */,
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
