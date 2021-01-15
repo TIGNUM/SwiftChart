@@ -92,7 +92,7 @@ private extension ToBeVisionSelectionBar {
 // MARK: - Public
 
 extension ToBeVisionSelectionBar {
-    func configure(isOwner: Bool?, _ delegate: ToBeVisionSelectionBarProtocol) {
+    func configure(isOwner: Bool?, isPersonal: Bool?, _ delegate: ToBeVisionSelectionBarProtocol) {
         self.delegate = delegate
         if arrayViewsCount > 0 {
             arrayViewsCount = 0
@@ -106,7 +106,7 @@ extension ToBeVisionSelectionBar {
         setupButton(buttonMore, image: R.image.ic_more_unselected())
         buttonMore.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
         buttonMore.corner(radius: buttonSize / 2)
-        if isOwner == true {
+        if isOwner == true && isPersonal == false {
             delegate.isEditBlocked { [weak self] (hideEdit) in
                 guard hideEdit else {
                     self?.setupButton(self?.buttonEdit, image: R.image.ic_edit())
@@ -118,7 +118,11 @@ extension ToBeVisionSelectionBar {
                 }
             }
         }
-
+        if isPersonal == true {
+            setupButton(buttonCamera, image: R.image.photo())
+            buttonCamera.addTarget(self, action: #selector(didTapCameraItem), for: .touchUpInside)
+            allOff()
+        }
         delegate.isShareBlocked { [weak self] (hideShare) in
             self?.setupButton(self?.buttonShare, image: R.image.ic_share_sand())
             self?.buttonShare.addTarget(self, action: #selector(self?.didTapShareItem), for: .touchUpInside)

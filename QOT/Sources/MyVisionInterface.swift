@@ -13,6 +13,7 @@ protocol MyVisionViewControllerInterface: class {
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
+    func setSelectionBarButtonItems()
     func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String)
 }
@@ -25,6 +26,7 @@ protocol MyVisionPresenterInterface {
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
+    func setSelectionBarButtonItems()
     func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String)
 }

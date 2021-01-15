@@ -23,13 +23,12 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     static var storyboardID = NSStringFromClass(MyVisionViewController.classForCoder())
 
     @IBOutlet private weak var nullStateView: MyVisionNullStateView!
-    @IBOutlet private weak var navigationBarView: MyVisionNavigationBarView!
+    @IBOutlet private weak var navigationBarView: ToBeVisionSelectionBar!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var warningImageView: UIImageView!
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var cameraButton: UIButton!
     @IBOutlet private weak var singleMessageRatingView: UIView!
     @IBOutlet private weak var doubleMessageRatingView: UIView!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
@@ -40,9 +39,11 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var rateButton: UIButton!
-    @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var singleMessageRateButton: UIButton!
     @IBOutlet private weak var updateButton: UIButton!
+    @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
+    @IBOutlet private weak var viewMyData: UIButton!
+    @IBOutlet private weak var viewMyDataLabel: UILabel!
 
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet weak var nullStateImageView: UIImageView!
@@ -81,23 +82,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
         trackPage()
     }
 
-    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if !didShowNullStateView {
-            return generateBottomNavigationItemForMainView()
-        }
-        return nil
-    }
-
-    func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        let title = AppTextService.get(.my_qot_my_tbv_section_footer_button_title_my_tbv_data)
-        return [roundedBarButtonItem(title: title,
-                                     buttonWidth: 160,
-                                     action: #selector(myTBVData),
-                                     backgroundColor: .black,
-                                     borderColor: .white)]
-    }
-
-    @objc func myTBVData() {
+    @IBAction func viewMyData(_ sender: Any) {
         trackUserEvent(.OPEN, valueType: "TBVData", action: .TAP)
         interactor.showTBVData()
     }
@@ -116,7 +101,6 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     private func showSkeleton() {
         skeletonManager.addTitle(headerLabel)
         skeletonManager.addSubtitle(toBeVisionLabel)
-        skeletonManager.addOtherView(cameraButton)
         skeletonManager.addOtherView(userImageView)
         skeletonManager.addTitle(nullStateView.headerLabel)
         skeletonManager.addSubtitle(nullStateView.detailLabel)
@@ -132,21 +116,9 @@ private extension MyVisionViewController {
         showRateScreen()
     }
 
-    @IBAction func shareButtonAction(_ sender: UIButton) {
-        trackUserEvent(.SHARE, action: .TAP)
-        interactor.shareToBeVision()
-    }
-
     @IBAction func updateButtonAction(_ sender: UIButton) {
         trackUserEvent(.OPEN, valueType: "UpdateConfirmationView", action: .TAP)
         interactor.showUpdateConfirmationScreen()
-    }
-
-    @IBAction func cameraButtonAction(_ sender: UIButton) {
-        trackUserEvent(.OPEN, valueType: "CameraOptions", action: .TAP)
-        imagePickerController.show(in: self, deletable: (tempImageURL != nil || tempImage != nil))
-        imagePickerController.delegate = self
-        RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
 }
 
@@ -187,6 +159,13 @@ private extension MyVisionViewController {
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
 
+    func setSelectionBarButtonItems() {
+        toBeVisionSelectionBar.allOff()
+        toBeVisionSelectionBar.configure(isOwner: true, isPersonal: true, self)
+        navigationBarView.configure(isOwner: true, isPersonal: true, self)
+        NewThemeView.dark.apply(navigationBarView)
+    }
+
     func showNullState(with title: String, message: String, writeMessage: String) {
         didShowNullStateView = true
         nullStateView.isHidden = false
@@ -208,15 +187,10 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
-        navigationBarView.delegate = self
         ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_qot_my_tbv_section_header_title),
                                          to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
-        ThemeBorder.white.apply(cameraButton)
-        ThemeTint.white.apply(cameraButton.imageView ?? UIView.init())
-        ThemeBorder.white.apply(shareButton)
-        ThemeTint.white.apply(shareButton.imageView ?? UIView.init())
         ThemeBorder.white.apply(rateButton)
         ThemeBorder.white.apply(singleMessageRateButton)
         ThemeBorder.white.apply(updateButton)
@@ -227,6 +201,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
+        let dataCta = AppTextService.get(.my_qot_my_tbv_section_footer_button_title_my_tbv_data)
+        viewMyDataLabel.text = dataCta
         userImageView.image = R.image.circlesWarning()
     }
 
@@ -243,11 +219,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         }
         skeletonManager.hide()
         interactor.hideNullState()
-
-        interactor.isShareBlocked { [weak self] (hidden) in
-            self?.shareButton.isHidden = hidden
-        }
-
         var headline = myVision?.headline
         if headline?.isEmpty != false {
             headline = interactor.nullStateTitle
@@ -292,6 +263,30 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
                                       action: #selector(continueUpdatingTBV)).barButton
         let edit = RoundedButton(title: editTitle, target: self, action: #selector(editTBV)).barButton
         QOTAlert.show(title: title, message: message, bottomItems: [createNew, edit])
+    }
+}
+
+// MARK: - ToBeVisionSelectionBarProtocol
+extension MyVisionViewController: ToBeVisionSelectionBarProtocol {
+
+    func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
+        interactor.isShareBlocked(completion)
+    }
+
+    func isEditBlocked(_ completion: @escaping (Bool) -> Void) {}
+
+    func didTapEditItem() {}
+
+    func didTapCameraItem() {
+        trackUserEvent(.OPEN, valueType: "CameraOptions", action: .TAP)
+        imagePickerController.show(in: self, deletable: (tempImageURL != nil || tempImage != nil))
+        imagePickerController.delegate = self
+        RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
+    }
+
+    func didTapShareItem() {
+        trackUserEvent(.SHARE, action: .TAP)
+        interactor.shareToBeVision()
     }
 }
 
@@ -350,13 +345,6 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
         saveToBeVisionImageAndData()
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
-    }
-}
-
-extension MyVisionViewController: MyVisionNavigationBarViewProtocol {
-    func didShare() {
-        trackUserEvent(.SHARE, action: .TAP)
-        interactor.shareToBeVision()
     }
 }
 
