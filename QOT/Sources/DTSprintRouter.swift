@@ -32,7 +32,9 @@ final class DTSprintRouter: DTRouter {
     }
 
     func showMySprintsCards(_ isPresentedFromCoach: Bool) {
-        if isPresentedFromCoach, let coachVC = (viewController?.presentingViewController as? UINavigationController)?.viewControllers.first as? CoachViewController {
+        if isPresentedFromCoach,
+           let naviController = (viewController?.presentingViewController as? UINavigationController),
+           let coachVC = naviController.viewControllers.first as? CoachViewController {
             viewController?.presentingViewController?.dismiss(animated: true, completion: {
                 NotificationHandler.postNotification(withName: .showSprintCards)
                 coachVC.dismiss(animated: true) {

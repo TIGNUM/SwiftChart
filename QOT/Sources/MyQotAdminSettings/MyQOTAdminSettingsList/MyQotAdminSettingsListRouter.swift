@@ -26,22 +26,32 @@ extension MyQotAdminSettingsListRouter: MyQotAdminSettingsListRouterInterface {
     }
 
     func presentEnvironmentSettings() {
-        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminEnvironmentSettingsSegueIdentifier, sender: nil)
+        viewController?.performSegue(
+            withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminEnvironmentSettingsSegueIdentifier,
+            sender: nil)
     }
 
     func presentLocalNotificationsSettings() {
-        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminLocalNotificationsSegueIdentifier, sender: nil)
+        viewController?.performSegue(
+            withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminLocalNotificationsSegueIdentifier,
+            sender: nil)
     }
 
     func presentSixthQuestionPriority() {
-        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminDCSixthQuestionSegueIdentifier, sender: nil)
+        viewController?.performSegue(
+            withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminDCSixthQuestionSegueIdentifier,
+            sender: nil)
     }
 
     func presentChooseDailyBriefBuckets() {
-        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminChooseBucketsSegueIdentifier, sender: nil)
+        viewController?.performSegue(
+            withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminChooseBucketsSegueIdentifier,
+            sender: nil)
     }
 
     func presentEditSprints() {
-        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminEditSprintsSegueIdentifier, sender: nil)
+        viewController?.performSegue(
+            withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminEditSprintsSegueIdentifier,
+            sender: nil)
     }
 }

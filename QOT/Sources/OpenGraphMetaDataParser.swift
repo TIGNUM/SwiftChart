@@ -11,7 +11,7 @@ import Foundation
 typealias MetaDataResult = (OpenGraphMetaData?, Error?) -> Void
 
 struct OpenGraphMetaData {
-    enum property: String {
+    enum Property: String {
         case title = "og:title"
         case image = "og:image"
         case url = "og:url"
@@ -26,12 +26,12 @@ struct OpenGraphMetaData {
         metaDataDictionary = meta
     }
 
-    func content(for property: OpenGraphMetaData.property) -> String? {
-        return content(for: property.rawValue)
+    func content(for Property: OpenGraphMetaData.Property) -> String? {
+        return content(for: Property.rawValue)
     }
 
-    func content(for property: String) -> String? {
-        return metaDataDictionary[property]
+    func content(for Property: String) -> String? {
+        return metaDataDictionary[Property]
     }
 }
 
@@ -71,13 +71,13 @@ final class OpenGraphMetaDataParser: NSObject, XMLParserDelegate {
                 }
 
                 DispatchQueue.main.async {
-                    if self.dictionary[OpenGraphMetaData.property.image.rawValue] == nil,
+                    if self.dictionary[OpenGraphMetaData.Property.image.rawValue] == nil,
                         let imageURL = self.imageURL {
-                        self.dictionary[OpenGraphMetaData.property.image.rawValue] = imageURL
+                        self.dictionary[OpenGraphMetaData.Property.image.rawValue] = imageURL
                     }
-                    if self.dictionary[OpenGraphMetaData.property.title.rawValue] == nil,
+                    if self.dictionary[OpenGraphMetaData.Property.title.rawValue] == nil,
                         let title = self.title {
-                        self.dictionary[OpenGraphMetaData.property.title.rawValue] = title
+                        self.dictionary[OpenGraphMetaData.Property.title.rawValue] = title
                     }
                     self.completion?(OpenGraphMetaData(self.dictionary), nil)
                     self.completion = nil
@@ -94,7 +94,7 @@ final class OpenGraphMetaDataParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?,
                 qualifiedName qName: String?, attributes attributeDict: [String: String] = [:]) {
         currentElement = elementName
-        if elementName == "meta", let poperty = attributeDict["property"] {
+        if elementName == "meta", let poperty = attributeDict["Property"] {
             dictionary[poperty] = attributeDict["content"]
         } else if self.imageURL == nil, elementName == "link",
             let rel = attributeDict["rel"], rel.lowercased().contains("icon"),

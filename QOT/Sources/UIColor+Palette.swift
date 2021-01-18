@@ -40,7 +40,7 @@ extension UIColor {
             let start = hex.index(hex.startIndex, offsetBy: 1)
             var hexColor = String(hex[start...])
             if hexColor.count == 6 {
-                hexColor = hexColor + "FF"
+                hexColor += "FF"
             }
             if hexColor.count == 8 {
                 let scanner = Scanner(string: hexColor)

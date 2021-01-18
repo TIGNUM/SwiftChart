@@ -62,7 +62,7 @@ extension ComponentDetailViewController: UIScrollViewDelegate {
 
 extension ComponentDetailViewController {
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+                                    shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }
@@ -174,7 +174,7 @@ private extension ComponentDetailViewController {
 
             // Disable gesture until reverse closing animation finishes.
             gesture.isEnabled = false
-            dismissalAnimator?.addCompletion { [unowned self] (pos) in
+            dismissalAnimator?.addCompletion { [unowned self] (_) in
                 self.didCancelDismissalTransition()
                 gesture.isEnabled = true
             }

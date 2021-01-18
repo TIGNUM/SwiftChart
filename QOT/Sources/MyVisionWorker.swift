@@ -72,7 +72,7 @@ final class MyVisionWorker: WorkerTeam {
     }
 
     func updateMyToBeVision(_ new: QDMToBeVision, completion: @escaping (_ toBeVision: QDMToBeVision?) -> Void) {
-        UserService.main.updateMyToBeVision(new) { [weak self] error in
+        UserService.main.updateMyToBeVision(new) { [weak self] _ in
             self?.getToBeVision { [weak self] (_, qdmVision) in
                 self?.updateWidget()
                 completion(qdmVision)

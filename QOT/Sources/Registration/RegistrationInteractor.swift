@@ -111,7 +111,7 @@ extension RegistrationInteractor: RegistrationDelegate {
 
     func didTapCreateAccount() {
         presenter.presentActivity(state: .inProgress)
-        worker.createAccount(with: registrationData) { [weak self] (result, error) in
+        worker.createAccount(with: registrationData) { [weak self] (result, _) in
             guard let strongSelf = self else { return }
             self?.presenter.presentActivity(state: nil)
             if case .userCreated =  result.code {

@@ -874,6 +874,7 @@
 		B45DA6C323AA6316006E7E33 /* MyQOTAdminChooseBucketsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DA6BB23AA6316006E7E33 /* MyQOTAdminChooseBucketsConfigurator.swift */; };
 		B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */; };
 		B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */; };
+		B465823F25B5BE90005CA5A5 /* DailyBriefInteractor+BucketCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465823E25B5BE90005CA5A5 /* DailyBriefInteractor+BucketCreation.swift */; };
 		B474CA8D2398F85F00A829B5 /* RegisterIntroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */; };
 		B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */; };
 		B474CA8F2398F85F00A829B5 /* RegisterIntroRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */; };
@@ -2300,6 +2301,7 @@
 		B45DA6BB23AA6316006E7E33 /* MyQOTAdminChooseBucketsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminChooseBucketsConfigurator.swift; sourceTree = "<group>"; };
 		B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapLegendTableViewCell.xib; sourceTree = "<group>"; };
 		B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapLegendTableViewCell.swift; sourceTree = "<group>"; };
+		B465823E25B5BE90005CA5A5 /* DailyBriefInteractor+BucketCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyBriefInteractor+BucketCreation.swift"; sourceTree = "<group>"; };
 		B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroPresenter.swift; sourceTree = "<group>"; };
 		B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroWorker.swift; sourceTree = "<group>"; };
 		B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroRouter.swift; sourceTree = "<group>"; };
@@ -3174,6 +3176,7 @@
 			children = (
 				3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */,
 				36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */,
+				B465823E25B5BE90005CA5A5 /* DailyBriefInteractor+BucketCreation.swift */,
 				B855C53923EADAC600A5F6A3 /* DailyBriefInteractor+BucketValidation.swift */,
 				36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */,
 				36376603223A4BEC00C2C429 /* DailyBriefPresenter.swift */,
@@ -6756,6 +6759,7 @@
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
 				38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */,
+				B465823F25B5BE90005CA5A5 /* DailyBriefInteractor+BucketCreation.swift in Sources */,
 				36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */,
 				F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */,
 				38A2D17C25025C7100CEA071 /* DTTeamTBVInteractor.swift in Sources */,

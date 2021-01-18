@@ -126,7 +126,7 @@ extension TeamToBeVisionOptionsInteractor: TeamToBeVisionOptionsInteractorInterf
             }
         case .voting:
             if let poll = toBeVisionPoll {
-                closeTeamToBeVisionPoll(poll) { (qdmPoll) in
+                closeTeamToBeVisionPoll(poll) { (_) in
                     completion()
                 }
             }

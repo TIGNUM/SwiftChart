@@ -241,14 +241,14 @@ class AVPlayerObserver: NSObject {
 
     init(playerItem: AVPlayerItem) {
         super.init()
-        observation = playerItem.observe(\.status, options: [.initial]) { [weak self] (item, changes) in
+        observation = playerItem.observe(\.status, options: [.initial]) { [weak self] (_, _) in
             self?.updateHandler?(playerItem)
         }
     }
 
     init(player: AVPlayer) {
         super.init()
-        playerObservation = player.observe(\.timeControlStatus, options: [.new, .old]) { [weak self] (player, changes) in
+        playerObservation = player.observe(\.timeControlStatus, options: [.new, .old]) { [weak self] (player, _) in
              self?.playerUpdateHandler?(player)
          }
     }

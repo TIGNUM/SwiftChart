@@ -44,8 +44,20 @@ final class MyToBeVisionPageComponentView: UIView {
             let view = UIView()
             view.backgroundColor = pageColor
             view.translatesAutoresizingMaskIntoConstraints = false
-            view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
-            view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: defaultPageComponentWidth))
+            view.addConstraint(NSLayoutConstraint(item: view,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: nil,
+                                                  attribute: .notAnAttribute,
+                                                  multiplier: 1,
+                                                  constant: 1))
+            view.addConstraint(NSLayoutConstraint(item: view,
+                                                  attribute: .width,
+                                                  relatedBy: .equal,
+                                                  toItem: nil,
+                                                  attribute: .notAnAttribute,
+                                                  multiplier: 1,
+                                                  constant: defaultPageComponentWidth))
             stackView.addArrangedSubview(view)
         }
     }

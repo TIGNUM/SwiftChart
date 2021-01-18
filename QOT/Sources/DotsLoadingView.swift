@@ -58,7 +58,7 @@ final class DotsLoadingView: UIView {
         if alpha > 0 {
             UIView.animate(withDuration: Animation.duration_03, animations: {
                 self.alpha = 0
-            }, completion: { (finished) in
+            }, completion: { (_) in
                 completion?()
             })
         }

@@ -96,7 +96,7 @@ extension MyQotSensorsWorker {
     }
 
     func getOuraRingAuthStatus(_ completion: @escaping (Bool) -> Void) {
-        HealthService.main.ouraRingAuthStatus { (tracker, config) in
+        HealthService.main.ouraRingAuthStatus { (tracker, _) in
             completion(tracker?.authenticationSuccessful ?? false)
         }
     }

@@ -29,11 +29,11 @@ extension NSAttributedString {
 }
 
 func Attributes(letterSpacing: CGFloat = 1,
-               font: UIFont,
-               lineSpacing: CGFloat = 0,
-               textColor: UIColor = .white,
-               alignment: NSTextAlignment = .left,
-               lineBreakMode: NSLineBreakMode? = nil) -> [NSAttributedString.Key: Any] {
+                font: UIFont,
+                lineSpacing: CGFloat = 0,
+                textColor: UIColor = .white,
+                alignment: NSTextAlignment = .left,
+                lineBreakMode: NSLineBreakMode? = nil) -> [NSAttributedString.Key: Any] {
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineSpacing = lineSpacing
     paragraphStyle.alignment = alignment

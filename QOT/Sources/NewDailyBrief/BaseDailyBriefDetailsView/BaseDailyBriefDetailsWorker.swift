@@ -46,7 +46,7 @@ final class BaseDailyBriefDetailsWorker {
     }
 
     func getTargetValue(completion: @escaping (Int?) -> Void) {
-        SettingService.main.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
+        SettingService.main.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, _, _) in
             guard let savedTarget = settings?.first?.longValue else {
                 completion(270) // 270 Minutes is 4:30 hours
                 return
@@ -56,7 +56,7 @@ final class BaseDailyBriefDetailsWorker {
     }
 
     func saveTargetValue(value: Int?) {
-        SettingService.main.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
+        SettingService.main.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, _, error) in
             if let setting = settings?.first {
                 var updatedSetting = setting
                 // turning sleep target from an answer index to a number of hours per day

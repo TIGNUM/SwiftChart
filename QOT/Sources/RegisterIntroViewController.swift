@@ -56,7 +56,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         setupView()
         _ = NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
                                                    object: nil,
-                                                   queue: .main) { [weak self] notification in
+                                                   queue: .main) { [weak self] _ in
             self?.didChangeOrientation()
         }
     }

@@ -57,7 +57,7 @@ extension PollButton {
     @objc func didVote(_ notification: Notification) {
         if let answerId = notification.object as? Int, self.answerId == answerId {
             if votes > 0 {
-                topConstraint.constant = topConstraint.constant - counterLabelTop.frame.height
+                topConstraint.constant -= counterLabelTop.frame.height
             }
             backgroundWidthConstraint.constant = 24
             labelTopWidthConstraint.constant = 24
@@ -78,7 +78,7 @@ extension PollButton {
     @objc func didUnVote(_ notification: Notification) {
         if let answerId = notification.object as? Int, self.answerId == answerId {
             if votes > 0 {
-                topConstraint.constant = topConstraint.constant + counterLabelTop.frame.height
+                topConstraint.constant += counterLabelTop.frame.height
             } else {
                 backgroundWidthConstraint.constant = 0
                 labelTopWidthConstraint.constant = 0

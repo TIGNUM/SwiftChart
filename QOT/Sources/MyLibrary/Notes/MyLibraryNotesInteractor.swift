@@ -49,7 +49,7 @@ final class MyLibraryNotesInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        worker.getText { [weak self] (text) in
+        worker.getText { [weak self] (_) in
             self?.presenter.present()
         }
     }

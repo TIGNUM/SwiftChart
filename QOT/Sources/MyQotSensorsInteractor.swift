@@ -41,7 +41,7 @@ final class MyQotSensorsInteractor {
 extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
     func handleOuraRingAuthResultURL(url: URL, ouraRingAuthConfiguration: QDMOuraRingConfig?) {
         worker.handleOuraRingAuthResultURL(url: url,
-                                           ouraRingAuthConfiguration: ouraRingAuthConfiguration) { [weak self] (tracker) in
+                                           ouraRingAuthConfiguration: ouraRingAuthConfiguration) { [weak self] (_) in
                                             self?.updateOuraStatus()
         }
     }
@@ -61,7 +61,7 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
     }
 
     func requestAuraAuthorization() {
-        worker.requestAuraAuthorization { [weak self] (tracker, config) in
+        worker.requestAuraAuthorization { [weak self] (_, config) in
             if let oauthConfig = config, let requestURL = oauthConfig.authRequestURL() {
                 self?.router.startOuraAuth(requestURL: requestURL, config: oauthConfig)
             }

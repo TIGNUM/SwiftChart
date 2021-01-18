@@ -277,7 +277,7 @@ extension MyToBeVisionRateViewController: QuestionnaireAnswer {
         guard let nextViewController = next(from: viewController) else {
             return
         }
-        nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_04, repeats: false) { timer in
+        nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_04, repeats: false) { _ in
             self.pageController?.setViewControllers([nextViewController],
                                                     direction: .forward,
                                                     animated: true,

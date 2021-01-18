@@ -13,9 +13,9 @@ class NewDailyBriefTableViewHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
-    typealias actionClosure = (() -> Void)
-    private var actionLeft: actionClosure?
-    private var actionRight: actionClosure?
+    typealias ActionClosure = (() -> Void)
+    private var actionLeft: ActionClosure?
+    private var actionRight: ActionClosure?
 
     override class func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +29,7 @@ class NewDailyBriefTableViewHeader: UITableViewHeaderFooterView {
         actionRight?()
     }
 
-    public func configure(tapLeft: actionClosure?, tapRight: actionClosure?) {
+    public func configure(tapLeft: ActionClosure?, tapRight: ActionClosure?) {
         actionLeft = tapLeft
         actionRight = tapRight
         ThemeText.navigationBarHeader.apply(AppTextService.get(.daily_brief_section_header_title), to: titleLabel)

@@ -48,10 +48,33 @@ extension UIView {
         imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
 
-        addConstraint(NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: 0.0))
-        addConstraint(NSLayoutConstraint(item: imageView, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1.0, constant: 0.0))
-        addConstraint(NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: image.size.height))
-        addConstraint(NSLayoutConstraint(item: imageView, attribute: top ? .top : .bottom, relatedBy: .equal, toItem: self, attribute: top ? .top : .bottom, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: imageView,
+                                         attribute: .left,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .left,
+                                         multiplier: 1.0,
+                                         constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: imageView,
+                                         attribute: .right,
+                                         relatedBy: .equal,
+                                         toItem: self,
+                                         attribute: .right,
+                                         multiplier: 1.0,
+                                         constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: imageView,
+                                         attribute: .height,
+                                         relatedBy: .equal,
+                                         toItem: nil,
+                                         attribute: .height,
+                                         multiplier: 1.0,
+                                         constant: image.size.height))
+        addConstraint(NSLayoutConstraint(item: imageView,
+                                         attribute: top ? .top : .bottom,
+                                         relatedBy: .equal,
+                                         toItem: self, attribute: top ? .top : .bottom,
+                                         multiplier: 1.0,
+                                         constant: 0.0))
     }
 
     func takeSnapshot() -> UIImage {

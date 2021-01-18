@@ -146,7 +146,7 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
 
 private extension StreamVideoInteractor {
     func downloadItem() {
-        worker.downloadItem { [weak self] (downloadStatus) in
+        worker.downloadItem { [weak self] (_) in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.didUpdateData(interactor: strongSelf)
         }

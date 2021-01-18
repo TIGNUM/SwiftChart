@@ -26,7 +26,7 @@ final class MyQotAdminDCSixthQuestionSettingsInteractor {
     }
 
     public static func getSixthQuestionPriority(completion: @escaping ([Int]) -> Void) {
-        let defaultPriority = dailyCheckinQuestionsPriorities.tbvShpiPeak
+        let defaultPriority = DailyCheckinQuestionsPriorities.tbvShpiPeak
         SettingService.main.getSettingFor(key: SettingKey.DailyCheckInSixthQuestionWeight) { (setting, _, _) in
             if let json = setting?.textValue, let jsonData = json.data(using: .utf8) {
                 do {
@@ -113,17 +113,17 @@ extension MyQotAdminDCSixthQuestionSettingsInteractor: MyQotAdminDCSixthQuestion
     func getTitle(for index: Int) -> String {
         switch index {
         case 0:
-            return dailyCheckinQuestionPriorityString.tbvShpiPeak.rawValue
+            return DailyCheckinQuestionPriorityString.tbvShpiPeak.rawValue
         case 1:
-            return dailyCheckinQuestionPriorityString.tbvPeakShpi.rawValue
+            return DailyCheckinQuestionPriorityString.tbvPeakShpi.rawValue
         case 2:
-            return dailyCheckinQuestionPriorityString.shpiTbvPeak.rawValue
+            return DailyCheckinQuestionPriorityString.shpiTbvPeak.rawValue
         case 3:
-            return dailyCheckinQuestionPriorityString.shpiPeakTbv.rawValue
+            return DailyCheckinQuestionPriorityString.shpiPeakTbv.rawValue
         case 4:
-            return dailyCheckinQuestionPriorityString.peakTbvShpi.rawValue
+            return DailyCheckinQuestionPriorityString.peakTbvShpi.rawValue
         default:
-            return dailyCheckinQuestionPriorityString.peakShpiTbv.rawValue
+            return DailyCheckinQuestionPriorityString.peakShpiTbv.rawValue
         }
     }
 

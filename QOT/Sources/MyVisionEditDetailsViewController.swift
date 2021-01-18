@@ -30,17 +30,12 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
         interactor?.viewDidLoad()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeObservers()
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
     }
 
-    private func removeObservers() {
+    deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -94,9 +89,11 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsControllerInterf
         titleTextView.returnKeyType = .next
         didChangeTitle = !title.isEmpty
         didChangeVision = !vision.isEmpty
-        titleTextField.attributedText = title.isEmpty ? interactor.formatPlaceholder(title: AppTextService.get(.my_qot_my_tbv_edit_title_placeholder)) : interactor.formatPlaceholder(title: "")
+        titleTextField.attributedText = title.isEmpty ? interactor.formatPlaceholder(title: AppTextService.get(.my_qot_my_tbv_edit_title_placeholder)) :
+                                                        interactor.formatPlaceholder(title: "")
         titleTextView.attributedText = interactor.format(title: title)
-        visionTextField.attributedText = vision.isEmpty ? interactor.formatPlaceholder(vision: AppTextService.get(.my_qot_my_tbv_edit_body_placeholder)) : interactor.formatPlaceholder(vision: "")
+        visionTextField.attributedText = vision.isEmpty ? interactor.formatPlaceholder(vision: AppTextService.get(.my_qot_my_tbv_edit_body_placeholder)) :
+                                                          interactor.formatPlaceholder(vision: "")
         descriptionTextView.attributedText = interactor.format(vision: vision)
         titleTextView.becomeFirstResponder()
         keyboardInputView.delegate = self
@@ -127,11 +124,15 @@ extension MyVisionEditDetailsViewController: UITextViewDelegate {
             if textView == titleTextView {
                 didChangeTitle = !changedText.isEmpty
                 enableSaveButton(didChangeTitle && didChangeVision)
-                titleTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(title: AppTextService.get(.my_qot_my_tbv_edit_title_placeholder)) : interactor?.formatPlaceholder(title: "")
+                titleTextField.attributedText = changedText.isEmpty ?
+                                                interactor?.formatPlaceholder(title: AppTextService.get(.my_qot_my_tbv_edit_title_placeholder)) :
+                                                interactor?.formatPlaceholder(title: "")
             } else {
                 didChangeVision = !changedText.isEmpty
                 enableSaveButton(didChangeTitle && didChangeVision)
-                visionTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(vision: AppTextService.get(.my_qot_my_tbv_edit_body_placeholder)) : interactor?.formatPlaceholder(vision: "")
+                visionTextField.attributedText = changedText.isEmpty ?
+                                                 interactor?.formatPlaceholder(vision: AppTextService.get(.my_qot_my_tbv_edit_body_placeholder)) :
+                                                 interactor?.formatPlaceholder(vision: "")
             }
         }
         return true
@@ -162,16 +163,16 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
         trackUserEvent(.CONFIRM, valueType: "EditMyToBeVision", action: .TAP)
         guard let team = interactor?.team else {
             guard let toBeVision = interactor?.myVision else {
-                UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
+                UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, _) in
                     guard let newVision = vision, let finalVision = self?.getVision(for: newVision) else { return }
-                    self?.interactor?.updateMyToBeVision(finalVision, {[weak self] (error) in
+                    self?.interactor?.updateMyToBeVision(finalVision, {[weak self] (_) in
                         self?.dismissController()
                     })
                 }
                 return
             }
             let myVision = getVision(for: toBeVision)
-            interactor?.updateMyToBeVision(myVision, {[weak self] (error) in
+            interactor?.updateMyToBeVision(myVision, {[weak self] (_) in
                 self?.dismissController()
             })
 
@@ -181,16 +182,19 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
             TeamService.main.createTeamToBeVision(headline: "",
                                                   subHeadline: "",
                                                   text: "",
-                                                  for: team, { [weak self] (teamVision, _, error) in
-                                                    guard let newTeamVision = teamVision, let finalTeamVision = self?.getTeamVision(for: newTeamVision) else { return }
-                                                    self?.interactor?.updateTeamToBeVision(finalTeamVision, { [weak self] (error) in
+                                                  for: team, { [weak self] (teamVision, _, _) in
+                                                    guard let newTeamVision = teamVision,
+                                                          let finalTeamVision = self?.getTeamVision(for: newTeamVision) else {
+                                                        return
+                                                    }
+                                                    self?.interactor?.updateTeamToBeVision(finalTeamVision, { [weak self] (_) in
                                                         self?.dismissController()
                                                     })
             })
             return
         }
         let teamToBeVision = getTeamVision(for: teamVision)
-        interactor?.updateTeamToBeVision(teamToBeVision, {[weak self] (error) in
+        interactor?.updateTeamToBeVision(teamToBeVision, {[weak self] (_) in
             self?.dismissController()
         })
     }

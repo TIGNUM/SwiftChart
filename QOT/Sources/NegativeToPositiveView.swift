@@ -195,7 +195,7 @@ extension NegativeToPositiveView {
         }
         let titleLabelSize = titleLabel.sizeThatFits(CGSize(width: width - horizontalConstraintsSum,
                                                             height: .greatestFiniteMagnitude))
-        height = height + titleLabelSize.height + verticalConstraintsSum
+        height += titleLabelSize.height + verticalConstraintsSum
         return height
     }
 }

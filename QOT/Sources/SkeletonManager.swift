@@ -149,10 +149,10 @@ private class ShimmerAnimatedView: UIView {
     }
 
     private func addGradientLayer(toView: UIView,
-                                 withColor: UIColor = .white,
-                                 lighterShimmer: Bool = false,
-                                 animationDuration: CFTimeInterval,
-                                 animated: Bool = true) {
+                                  withColor: UIColor = .white,
+                                  lighterShimmer: Bool = false,
+                                  animationDuration: CFTimeInterval,
+                                  animated: Bool = true) {
 
         gradientLayer.colors = [withColor.cgColor,
                                 lighterShimmer ? withColor.withAlphaComponent(0.5).lighter.cgColor :

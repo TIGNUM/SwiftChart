@@ -29,7 +29,9 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBAction func showMoreButton(_ sender: Any) {
         showMore = !showMore
         self.sprintInfo?.numberOfLines = showMore ? 0 : 3
-        self.showMoreButton.setTitle(showMore ? AppTextService.get(.daily_brief_section_sprint_challenge_button_show_less) : AppTextService.get(.daily_brief_section_sprint_challenge_button_show_more), for: .normal)
+        let showMoreText = showMore ? AppTextService.get(.daily_brief_section_sprint_challenge_button_show_less) :
+                                      AppTextService.get(.daily_brief_section_sprint_challenge_button_show_more)
+        self.showMoreButton.setTitle(showMoreText, for: .normal)
         self.sprintInfo?.sizeToFit()
         delegate?.reloadSprintCell(cell: self)
     }
@@ -41,7 +43,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         tableView.registerDequeueable(SprintChallengeTableViewCell.self)
         self.sprintInfo?.lineBreakMode = .byWordWrapping
         tableView.setNeedsLayout()
-        observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
+        observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (_, _) in
             self?.checkScroll()
             }
         ]

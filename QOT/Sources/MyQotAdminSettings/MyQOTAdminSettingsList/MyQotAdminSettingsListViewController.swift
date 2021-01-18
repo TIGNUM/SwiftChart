@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum adminSettingsItem: Int, CaseIterable {
+enum AdminSettingsItem: Int, CaseIterable {
     case environmentSettings = 0
     case localNotifications
     case dailyCheckinSixthQuestion
@@ -81,25 +81,25 @@ private extension MyQotAdminSettingsListViewController {
 
 extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return adminSettingsItem.allCases.count
+        return AdminSettingsItem.allCases.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
         switch indexPath.row {
-        case adminSettingsItem.environmentSettings.rawValue:
+        case AdminSettingsItem.environmentSettings.rawValue:
             cell.configure(title: interactor.getTitleForEnvironmentSettings(),
                            subtitle: interactor.getSubtitleForEnvironmentSettings())
-        case adminSettingsItem.localNotifications.rawValue:
+        case AdminSettingsItem.localNotifications.rawValue:
             cell.configure(title: interactor.getTitleForLocalNotifications(),
                            subtitle: nil)
-        case adminSettingsItem.dailyCheckinSixthQuestion.rawValue:
+        case AdminSettingsItem.dailyCheckinSixthQuestion.rawValue:
             cell.configure(title: interactor.getTitleForDCQuestion(),
                            subtitle: interactor.getSubtitleForDCQuestion())
-        case adminSettingsItem.chooseDailyBriefBuckets.rawValue:
+        case AdminSettingsItem.chooseDailyBriefBuckets.rawValue:
             cell.configure(title: interactor.getTitleForChooseBuckets(),
                            subtitle: nil)
-        case adminSettingsItem.editSprints.rawValue:
+        case AdminSettingsItem.editSprints.rawValue:
             cell.configure(title: interactor.getTitleForEditSprints(),
                            subtitle: nil)
         default:
@@ -112,15 +112,15 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
-        case adminSettingsItem.environmentSettings.rawValue:
+        case AdminSettingsItem.environmentSettings.rawValue:
             router.presentEnvironmentSettings()
-        case adminSettingsItem.localNotifications.rawValue:
+        case AdminSettingsItem.localNotifications.rawValue:
             router.presentLocalNotificationsSettings()
-        case adminSettingsItem.dailyCheckinSixthQuestion.rawValue:
+        case AdminSettingsItem.dailyCheckinSixthQuestion.rawValue:
             router.presentSixthQuestionPriority()
-        case adminSettingsItem.chooseDailyBriefBuckets.rawValue:
+        case AdminSettingsItem.chooseDailyBriefBuckets.rawValue:
             router.presentChooseDailyBriefBuckets()
-        case adminSettingsItem.editSprints.rawValue:
+        case AdminSettingsItem.editSprints.rawValue:
             router.presentEditSprints()
         default:
             break

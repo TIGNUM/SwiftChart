@@ -15,8 +15,8 @@ final class DTRecoveryInteractor: DTInteractor {
     private lazy var recoveryWorker: DTRecoveryWorker? = DTRecoveryWorker()
 
      override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer],
-                                    questionKey: String?,
-                                    content: QDMContentCollection?) -> String? {
+                                  questionKey: String?,
+                                  content: QDMContentCollection?) -> String? {
         if questionKey == Recovery.QuestionKey.Symptom {
             return Recovery.getFatigueSymptom(selectedAnswers).replacement
         }

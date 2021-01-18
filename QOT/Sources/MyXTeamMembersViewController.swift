@@ -147,7 +147,7 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
         }
         inviteAgainAction.backgroundColor = .accent10
         let invited = AppTextService.get(.settings_team_settings_team_members_invited)
-        let invitedAction = UITableViewRowAction(style: .normal, title: invited) {(action, indexPath) in
+        let invitedAction = UITableViewRowAction(style: .normal, title: invited) {(_, _) in
 
         }
         invitedAction.backgroundColor = .accent10
@@ -159,7 +159,10 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
                 self?.trackUserEvent(.REMOVE_MEMBER, value: member.member.remoteID ?? 0, action: .TAP)
                 self?.interactor.removeMember(at: indexPath)
             }
-            QOTAlert.show(title: AppTextService.get(.alert_remove_member_title).replacingOccurrences(of: "${name_of_team}", with: self.interactor.getSelectedTeamItem?.title ?? ""), message: AppTextService.get(.alert_remove_member_message), bottomItems: [cancel, remove])
+            QOTAlert.show(title: AppTextService.get(.alert_remove_member_title).replacingOccurrences(of: "${name_of_team}",
+                                                                                                     with: self.interactor.getSelectedTeamItem?.title ?? ""),
+                          message: AppTextService.get(.alert_remove_member_message),
+                          bottomItems: [cancel, remove])
         }
         removeAction.backgroundColor = .redOrange
         switch member.status {

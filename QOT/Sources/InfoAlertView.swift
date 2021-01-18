@@ -201,7 +201,7 @@ extension InfoAlertView {
     func dismiss(animated: Bool = true) {
         UIView.animate(withDuration: duration(animated), animations: { [weak self] in
             self?.alpha = 0
-        }, completion: {  [weak self] (completion) in
+        }, completion: {  [weak self] (_) in
             self?.onDismiss?()
             self?.removeFromSuperview()
         })

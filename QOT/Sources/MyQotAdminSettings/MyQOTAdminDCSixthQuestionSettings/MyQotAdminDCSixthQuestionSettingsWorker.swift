@@ -10,13 +10,13 @@ import UIKit
 
 final class MyQotAdminDCSixthQuestionSettingsWorker {
 
-    var currentSetting: [Int] = dailyCheckinQuestionsPriorities.tbvShpiPeak
-    var datasource: [[Int]] = [dailyCheckinQuestionsPriorities.tbvShpiPeak,
-                               dailyCheckinQuestionsPriorities.tbvPeakShpi,
-                               dailyCheckinQuestionsPriorities.shpiTbvPeak,
-                               dailyCheckinQuestionsPriorities.shpiPeakTbv,
-                               dailyCheckinQuestionsPriorities.peakTbvShpi,
-                               dailyCheckinQuestionsPriorities.peakShpiTbv]
+    var currentSetting: [Int] = DailyCheckinQuestionsPriorities.tbvShpiPeak
+    var datasource: [[Int]] = [DailyCheckinQuestionsPriorities.tbvShpiPeak,
+                               DailyCheckinQuestionsPriorities.tbvPeakShpi,
+                               DailyCheckinQuestionsPriorities.shpiTbvPeak,
+                               DailyCheckinQuestionsPriorities.shpiPeakTbv,
+                               DailyCheckinQuestionsPriorities.peakTbvShpi,
+                               DailyCheckinQuestionsPriorities.peakShpiTbv]
 
     // MARK: - Init
     init() { /* */ }

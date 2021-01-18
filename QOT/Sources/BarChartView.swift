@@ -53,7 +53,7 @@ class BarChartView: UIView {
     func percentage(_ votes: Int) -> Int {
         var totalVotes = 0
         dataEntries.forEach { (item) in
-            totalVotes = totalVotes + item.votes
+            totalVotes += item.votes
         }
         return (votes * 100)/totalVotes
     }

@@ -91,7 +91,7 @@ extension SolveResultsWorker {
             UserService.main.createSolve(selectedAnswerId: answerId,
                                          solutionCollectionId: contentId,
                                          strategyIds: relatedStragyIds,
-                                         followUp: followUp) { (solve, error) in
+                                         followUp: followUp) { (_, error) in
                                             if let error = error {
                                                 log("Error createSolve: \(error.localizedDescription)", level: .error)
                                             }

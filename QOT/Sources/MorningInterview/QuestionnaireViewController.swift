@@ -190,7 +190,7 @@ extension QuestionnaireViewController {
                        initialSpringVelocity: 0.5,
                        animations: {
                         self.progressView.layoutIfNeeded()
-        }, completion: {[weak self] (value: Bool) in
+        }, completion: {[weak self] (_: Bool) in
             self?.upArrowBottomConstraint.constant = 5
             UIView.animate(withDuration: 0.8,
                            delay: 0,
@@ -206,7 +206,7 @@ extension QuestionnaireViewController {
                        initialSpringVelocity: 0.5,
                        animations: {
                         self.progressView.layoutIfNeeded()
-        }, completion: {[weak self] (value: Bool) in
+        }, completion: {[weak self] (_: Bool) in
             self?.downArrowTopConstraint.constant = 5
             UIView.animate(withDuration: 0.8,
                            delay: 0,
@@ -291,7 +291,7 @@ extension QuestionnaireViewController {
                         self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
                         self.questionLabel.alpha = 1
                         self.progressView.alpha = 1
-        }, completion: { [weak self] finished in
+        }, completion: { [weak self] _ in
             self?.setupImages()
             self?.questionLabel.alpha = 1
             self?.questionLabel.isHidden = false
@@ -340,7 +340,7 @@ extension QuestionnaireViewController {
             self.dragTo(yPosition: position, isTouch: isTouch)
             self.fillView.setNeedsUpdateConstraints()
             self.fillView.layoutIfNeeded()
-        }, completion: { finished in
+        }, completion: { _ in
             self.animateArrows()
             QuestionnaireViewController.hasArrowsAnimated = true
         })
@@ -387,7 +387,8 @@ extension QuestionnaireViewController {
             if answerIndex < finalAnswers.count {
                 switch controllerType {
                 case .customize:
-                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
+                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "",
+                                                                        isLast: answerIndex == finalAnswers.count - 1)
                     let subtitle = AppTextService.get(.daily_brief_customize_sleep_amount_section_question_subtitle)
 //                    calculating 5 days * target amount of sleep relative to answerIndex
                     let hoursLabelText = subtitle.replacingOccurrences(of: "$(amount)", with: String(((answerIndex / 2) + 1) * 5))
@@ -396,7 +397,8 @@ extension QuestionnaireViewController {
                         ThemeText.asterixText.apply(hoursLabelText, to: totalHoursLabel)
                     }
                 default:
-                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
+                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "",
+                                                                        isLast: answerIndex == finalAnswers.count - 1)
                     indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count ?? 0 > 0 ? 1.0 : 0.0
                  }
             }
@@ -513,7 +515,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
                            options: [.curveEaseInOut], animations: {
                             cell.transform = CGAffineTransform(translationX: 0, y: 0)
                             cell.alpha = 1
-            }, completion: { finished in
+            }, completion: { _ in
                 if self.finishedLoadingInitialTableCells {
                     self.applyGradientColor(at: self.currentIndex)
                 }
@@ -560,7 +562,7 @@ extension QuestionnaireViewController {
     }
 
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+                                    shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
 

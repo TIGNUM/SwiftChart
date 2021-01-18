@@ -175,7 +175,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
                     myVision.profileImageResource = nil
                 }
 
-                self?.worker.updateMyToBeVision(myVision) { [weak self] (responseMyVision) in
+                self?.worker.updateMyToBeVision(myVision) { [weak self] (_) in
                     self?.didUpdateTBVRelatedData()
                 }
             }

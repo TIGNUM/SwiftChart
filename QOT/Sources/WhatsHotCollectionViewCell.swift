@@ -9,7 +9,9 @@
 import UIKit
 
 final class WhatsHotCollectionViewCell: UICollectionViewCell, Dequeueable {
-    private static let sizingCell = UINib(nibName: "WhatsHotCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? WhatsHotCollectionViewCell
+    private static let sizingCell = UINib(nibName: "WhatsHotCollectionViewCell",
+                                          bundle: nil).instantiate(withOwner: nil,
+                                                                   options: nil).first! as? WhatsHotCollectionViewCell
     // MARK: - Properties
     @IBOutlet private weak var whatsHotImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!

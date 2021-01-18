@@ -21,8 +21,8 @@ final class StrategyListInteractor {
     // MARK: - Init
 
     init(worker: StrategyListWorker,
-        presenter: StrategyListPresenterInterface,
-        router: StrategyListRouterInterface) {
+         presenter: StrategyListPresenterInterface,
+         router: StrategyListRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

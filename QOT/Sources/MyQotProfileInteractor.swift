@@ -20,8 +20,8 @@ final class MyQotProfileInteractor {
     // MARK: - Init
 
     init(worker: MyQotProfileWorker,
-        presenter: MyQotProfilePresenterInterface,
-        router: MyQotProfileRouterInterface) {
+         presenter: MyQotProfilePresenterInterface,
+         router: MyQotProfileRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
@@ -34,13 +34,13 @@ final class MyQotProfileInteractor {
         updateViewData()
         _ = NotificationCenter.default.addObserver(forName: .updatedTeams,
                                                    object: nil,
-                                                   queue: .main) { [weak self] notification in
+                                                   queue: .main) { [weak self] _ in
             self?.updateViewData()
         }
     }
 
     @objc func updateViewData() {
-        getData({ [weak self] (profile) in
+        getData({ [weak self] (_) in
             SettingService.main.getSettingFor(key: SettingKey.SystemDevelopmentMode) { [weak self] (setting, _, _) in
                 self?.worker.developmentMode = setting?.booleanValue ?? false
                 var controllerTypes: [ProfileItemControllerType] = [.accountSettings, .appSettings]

@@ -23,9 +23,9 @@ final class RegistrationNamesInteractor {
     // MARK: - Init
 
     init(worker: RegistrationNamesWorker,
-        presenter: RegistrationNamesPresenterInterface,
-        router: RegistrationNamesRouterInterface,
-        delegate: RegistrationDelegate) {
+         presenter: RegistrationNamesPresenterInterface,
+         router: RegistrationNamesRouterInterface,
+         delegate: RegistrationDelegate) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

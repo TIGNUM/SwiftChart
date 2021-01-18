@@ -18,7 +18,7 @@ final class MyPrepsWorker {
 
     // MARK: - Functions
     func preparations(completion: @escaping (MyPrepsModel?) -> Void) {
-        UserService.main.getUserPreparations { [weak self] (preparations, initialized, error) in
+        UserService.main.getUserPreparations { [weak self] (preparations, _, _) in
             var criticalItems = [MyPrepsModel.Item]()
             var everydayItems = [MyPrepsModel.Item]()
             preparations?.forEach { (preparation) in
@@ -44,7 +44,7 @@ final class MyPrepsWorker {
     }
 
     func recoveries(completion: @escaping (RecoveriesModel?) -> Void) {
-        UserService.main.getRecovery3D { [weak self] (recoveries, initialized, error) in
+        UserService.main.getRecovery3D { [weak self] (recoveries, _, _) in
             var recoveryItems = [RecoveriesModel.Item]()
             recoveries?.forEach {
                 let recoveryItem = RecoveriesModel.Item(title: $0.causeAnwser?.subtitle ?? "",
@@ -52,13 +52,14 @@ final class MyPrepsWorker {
                                                          qdmRec: $0)
                 recoveryItems.append(recoveryItem)
             }
-            self?.recModel = RecoveriesModel(items: recoveryItems.sorted(by: { $0.qdmRec.createdAt ?? Date.distantFuture < $1.qdmRec.createdAt ?? Date.distantFuture }))
+            let items = recoveryItems.sorted(by: { $0.qdmRec.createdAt ?? Date.distantFuture < $1.qdmRec.createdAt ?? Date.distantFuture })
+            self?.recModel = RecoveriesModel(items: items)
             completion(self?.recModel)
         }
     }
 
     func mindsetShifters(completion: @escaping (MindsetShiftersModel?) -> Void) {
-        UserService.main.getMindsetShifters { [weak self] (mindsetShifters, initialized, error) in
+        UserService.main.getMindsetShifters { [weak self] (mindsetShifters, _, _) in
             var mindsetItems = [MindsetShiftersModel.Item]()
             mindsetShifters?.forEach {
                 let mindsetItem = MindsetShiftersModel.Item(title: $0.triggerAnswer?.subtitle ?? "",
@@ -66,7 +67,8 @@ final class MyPrepsWorker {
                                                              qdmMind: $0)
                 mindsetItems.append(mindsetItem)
             }
-            self?.mindModel = MindsetShiftersModel(items: mindsetItems.sorted(by: { $0.qdmMind.createdAt ?? Date.distantFuture < $1.qdmMind.createdAt ?? Date.distantFuture }))
+            let items = mindsetItems.sorted(by: { $0.qdmMind.createdAt ?? Date.distantFuture < $1.qdmMind.createdAt ?? Date.distantFuture })
+            self?.mindModel = MindsetShiftersModel(items: items)
             completion(self?.mindModel)
         }
     }
@@ -74,17 +76,17 @@ final class MyPrepsWorker {
     func createModels(completion: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        preparations(completion: { (myPrepsModel) in
+        preparations(completion: { (_) in
             dispatchGroup.leave()
             completion()
         })
         dispatchGroup.enter()
-        recoveries(completion: { (myPrepsModel) in
+        recoveries(completion: { (_) in
             dispatchGroup.leave()
             completion()
         })
         dispatchGroup.enter()
-        mindsetShifters(completion: { (myPrepsModel) in
+        mindsetShifters(completion: { (_) in
             dispatchGroup.leave()
             completion()
         })
