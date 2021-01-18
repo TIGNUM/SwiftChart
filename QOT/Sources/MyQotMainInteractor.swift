@@ -253,7 +253,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                 if let poll = teamTBVPoll {
 
                     switch (teamTBV == nil, poll.creator, poll.userDidVote, poll.open) {
-                    /// member
+                    // member
                     case (true, false, true, true):
                         showBanner(poll: poll)
                     case (true, false, false, true):
@@ -262,7 +262,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                          (false, false, true, true):
                         router.showTeamTBV(team)
 
-                    /// admin
+                    // admin
                     case (_, true, _, false),
                          (false, true, _, true):
                         router.showTeamTBV(team)

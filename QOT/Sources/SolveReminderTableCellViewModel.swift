@@ -20,7 +20,6 @@ final class SolveReminderTableCellViewModel: BaseDailyBriefViewModel {
         self.date = date
         self.solve = solve
         super.init(domainModel, title: title)
-        
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

@@ -135,9 +135,9 @@ final class ImagePickerController {
     private func handleError(_ error: ImagePicker.ImagePickerError, forOption option: Option) {
         switch error {
         case .sourceNotAvailable:
-            viewController?.showAlert(type: .cameraNotAvailable) {
+            viewController?.showAlert(type: .cameraNotAvailable, handlerDestructive: {
                 self.finish()
-            }
+            })
         case .notAuthorized:
             handleAuthorizationForOption(option)
         }

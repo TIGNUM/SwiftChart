@@ -112,7 +112,7 @@ extension StreamVideoWorker {
         }
     }
 
-    func downloadItem(_ completion: @escaping (_ status: QOTDownloadStatus) -> Void) {        
+    func downloadItem(_ completion: @escaping (_ status: QOTDownloadStatus) -> Void) {
         guard let item = content else {
             downloadStatus = .NONE
             completion(.NONE)
