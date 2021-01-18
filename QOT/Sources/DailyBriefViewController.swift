@@ -78,7 +78,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         }
         _ = NotificationCenter.default.addObserver(forName: .showSprintCards,
                                                    object: nil,
-                                                   queue: .main) { [weak self] notification in
+                                                   queue: .main) { [weak self] _ in
             self?.scrollToSprintCard = true
         }
     }
@@ -413,7 +413,8 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         if scrollToSprintCard {
             var sectionIndex = 0
             for index in 0...(interactor.bucketViewModelNew()?.count ?? 0) {
-                if interactor.bucketViewModelNew()?.at(index: index)?.model.title == AppTextService.get(AppTextKey.init("daily_brief.section_cluster_practice.title")) {
+                let clusterPracticeTitle = AppTextService.get(AppTextKey.init("daily_brief.section_cluster_practice.title"))
+                if interactor.bucketViewModelNew()?.at(index: index)?.model.title == clusterPracticeTitle {
                     sectionIndex = index
                 }
             }
@@ -484,7 +485,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func showTeamTBV(_ team: QDMTeam) {
-        interactor.getTeamTBVPoll(for: team) { [weak self] (poll) in
+        interactor.getTeamTBVPoll(for: team) { [weak self] (_) in
             self?.router.showTeamTBV(team)
         }
     }

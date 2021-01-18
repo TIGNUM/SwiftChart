@@ -981,7 +981,8 @@ enum ThemeText {
              .registrationNamesMandatory, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark,
              .audioPlayerTitleLight, .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays, .asterixText,
              .shpiSubtitle, .featureLabel, .teamTvbTimeSinceTitle, .qotAlertMessage, .myDataParameterSelectionTitle,
-             .myDataParameterSelectionSubtitle, .myDataHeatMapDetailCellDate, .mySprintDetailsProgress, .mySensorsDescriptionBody, .searchNoResults, .H01Medium, .H02Medium, .myDataParameterLegendText, .myDataHeatMapLegendText:
+             .myDataParameterSelectionSubtitle, .myDataHeatMapDetailCellDate, .mySprintDetailsProgress, .mySensorsDescriptionBody,
+             .searchNoResults, .H01Medium, .H02Medium, .myDataParameterLegendText, .myDataHeatMapLegendText:
             return Fonts.fontRegular14
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
              .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle,
@@ -1000,7 +1001,8 @@ enum ThemeText {
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .optionPage, .optionPageDisabled, .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
-        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .registerIntroNoteTitle, .baseHeaderTitle:
+        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader,
+             .registerIntroNoteTitle, .baseHeaderTitle:
             return Fonts.fontDisplayRegular20
         case .teamVisionSentence:
             return Fonts.fontRegular24

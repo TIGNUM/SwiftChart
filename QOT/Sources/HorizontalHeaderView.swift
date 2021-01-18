@@ -29,7 +29,7 @@ final class HorizontalHeaderView: UIView {
 
         _ = NotificationCenter.default.addObserver(forName: .didSelectMyX,
                                                    object: nil,
-                                                   queue: .main) { [weak self] notification in
+                                                   queue: .main) { [weak self] _ in
             self?.scrollToItem(index: 0)
         }
     }

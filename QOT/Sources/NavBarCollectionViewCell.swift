@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias actionClosure = (() -> Void)
+typealias ActionClosure = (() -> Void)
 
 final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
 
@@ -18,8 +18,8 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     let skeletonManager = SkeletonManager()
 
-    private var actionLeft: actionClosure?
-    private var actionRight: actionClosure?
+    private var actionLeft: ActionClosure?
+    private var actionRight: ActionClosure?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,7 +38,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
         buttonRight.isHidden = true
     }
 
-    func configure(title: String, tapLeft: actionClosure? = nil, tapRight: actionClosure? = nil) {
+    func configure(title: String, tapLeft: ActionClosure? = nil, tapRight: ActionClosure? = nil) {
         skeletonManager.hide()
         container.alpha = 1.0
         ThemeText.navigationBarHeader.apply(title, to: titleLabel)

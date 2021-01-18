@@ -371,7 +371,7 @@ extension WorkerTeam {
     func closeRatingPoll(for team: QDMTeam, _ completion: @escaping () -> Void) {
         getCurrentRatingPoll(for: team) { (currentTrackingPoll) in
             guard let currentPoll = currentTrackingPoll else { return }
-            TeamService.main.closeTeamToBeVisionTrackerPoll(currentPoll) { (poll, _, error) in
+            TeamService.main.closeTeamToBeVisionTrackerPoll(currentPoll) { (_, _, error) in
                 if let error = error {
                     log("Error closeTeamToBeVisionTrackerPoll: \(error.localizedDescription)", level: .error)
                     // TODO handle error

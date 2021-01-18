@@ -54,17 +54,17 @@ extension MyQotAdminSettingsListInteractor: MyQotAdminSettingsListInteractorInte
 
     func getSubtitleForDCQuestion() -> String {
         if worker.currentSixthQuestionSetting == [0, 2, 1] {
-            return dailyCheckinQuestionPriorityString.tbvPeakShpi.rawValue
+            return DailyCheckinQuestionPriorityString.tbvPeakShpi.rawValue
         } else if worker.currentSixthQuestionSetting == [1, 0, 2] {
-            return dailyCheckinQuestionPriorityString.shpiTbvPeak.rawValue
+            return DailyCheckinQuestionPriorityString.shpiTbvPeak.rawValue
         } else if worker.currentSixthQuestionSetting == [1, 2, 0] {
-            return dailyCheckinQuestionPriorityString.shpiPeakTbv.rawValue
+            return DailyCheckinQuestionPriorityString.shpiPeakTbv.rawValue
         } else if worker.currentSixthQuestionSetting == [2, 0, 1] {
-            return dailyCheckinQuestionPriorityString.peakTbvShpi.rawValue
+            return DailyCheckinQuestionPriorityString.peakTbvShpi.rawValue
         } else if worker.currentSixthQuestionSetting == [2, 1, 0] {
-            return dailyCheckinQuestionPriorityString.peakShpiTbv.rawValue
+            return DailyCheckinQuestionPriorityString.peakShpiTbv.rawValue
         } else {
-            return dailyCheckinQuestionPriorityString.tbvShpiPeak.rawValue
+            return DailyCheckinQuestionPriorityString.tbvShpiPeak.rawValue
         }
     }
 

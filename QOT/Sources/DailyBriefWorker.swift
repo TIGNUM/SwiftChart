@@ -63,7 +63,7 @@ final class DailyBriefWorker: WorkerTeam {
     }
 
     func hasConnectedWearable(_ completion: @escaping (Bool) -> Void) {
-        HealthService.main.ouraRingAuthStatus { (tracker, config) in
+        HealthService.main.ouraRingAuthStatus { (tracker, _) in
             if tracker != nil {
                 completion(true)
             } else if HealthService.main.isHealthDataAvailable() {
@@ -76,7 +76,7 @@ final class DailyBriefWorker: WorkerTeam {
 
     func hasSiriShortcuts(_ completion: @escaping (Bool) -> Void) {
         if #available(iOS 12.0, *) {
-            INVoiceShortcutCenter.shared.getAllVoiceShortcuts { (shortcuts, error) in
+            INVoiceShortcutCenter.shared.getAllVoiceShortcuts { (shortcuts, _) in
                 DispatchQueue.main.async {
                     completion(shortcuts?.isEmpty == false)
                 }
@@ -120,7 +120,7 @@ extension DailyBriefWorker {
     }
 
     func getToBeVisionImage(completion: @escaping (URL?) -> Void) {
-        userService.getMyToBeVision {(vision, initialized, error) in
+        userService.getMyToBeVision {(vision, _, error) in
             if let error = error {
                 log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
             }
@@ -129,7 +129,7 @@ extension DailyBriefWorker {
     }
 
    func saveTargetValue(value: Int?) {
-        settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
+        settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, _, error) in
             if let setting = settings?.first {
                 var updatedSetting = setting
                 // turning sleep target from an answer index to a number of hours per day
@@ -144,7 +144,7 @@ extension DailyBriefWorker {
     }
 
     func getTargetValue(completion: @escaping (Int?) -> Void) {
-        settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
+        settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, _, _) in
             guard let savedTarget = settings?.first?.longValue else {
                 completion(270) // 270 Minutes is 4:30 hours
                 return

@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 
 extension UIViewController {
-    typealias keyboardAnimationParameters = (endFrameY: CGFloat, height: CGFloat, duration: TimeInterval, animationCurve: UIView.AnimationOptions)
+    typealias KeyboardAnimationParameters = (endFrameY: CGFloat, height: CGFloat, duration: TimeInterval, animationCurve: UIView.AnimationOptions)
 
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -42,7 +42,7 @@ extension UIViewController {
         fatalError("keyboardWillDisappear: must be overriden")
     }
 
-    func keyboardParameters(from notification: Notification) -> keyboardAnimationParameters? {
+    func keyboardParameters(from notification: Notification) -> KeyboardAnimationParameters? {
         guard let userInfo = notification.userInfo else { return nil }
 
         let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue

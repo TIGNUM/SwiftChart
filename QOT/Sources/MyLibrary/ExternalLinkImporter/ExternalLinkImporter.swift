@@ -60,7 +60,7 @@ final class ExternalLinkImporter {
         ExtensionUserDefaults.removeObject(for: .share, key: .saveLink)
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        TeamService.main.getTeams { (teams, _, error) in
+        TeamService.main.getTeams { (teams, _, _) in
             for externalLink in externalLinks {
                 var team: QDMTeam?
                 if let teamQotId = externalLink.teamQotId {

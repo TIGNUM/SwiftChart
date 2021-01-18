@@ -58,7 +58,7 @@ final class DailyCheckinQuestionsWorker {
 
     func checkHealthDataAndGetQuestions(_ completion: @escaping([RatingQuestionViewModel.Question]?) -> Void) {
         // check ouraRingAuthStatus
-        HealthService.main.ouraRingAuthStatus { [weak self] (tracker, config) in
+        HealthService.main.ouraRingAuthStatus { [weak self] (tracker, _) in
             if tracker != nil { // if user has ouraring
                 HealthService.main.availableOuraRingDataIndexesForToday({ (indexes) in
                     if indexes?.isEmpty == false {
@@ -67,7 +67,7 @@ final class DailyCheckinQuestionsWorker {
                     }
                     requestSynchronization(.HEALTH_DATA, .DOWN_SYNC) // request oura data
                     // wait for HEALTH_DATA sync for 3.5 seconds.
-                    var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { (timer) in
+                    var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { (_) in
                         self?.getQuestions(completion)
                     }
 

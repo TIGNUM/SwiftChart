@@ -41,15 +41,18 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         }
         self.mindsetShifter = viewModel.mindsetShifter
         skeletonManager.hide()
-        let lowTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_low).lowercased().capitalizingFirstLetter()
+        let lowTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_low)
+        let highTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high)
+        let lowTitleSentenceCase = lowTitle.lowercased().capitalizingFirstLetter()
+        let highTitleSentenceCase = highTitle.lowercased().capitalizingFirstLetter()
         let lowItems = viewModel.mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? "" } ?? []
-        let highTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high).lowercased().capitalizingFirstLetter()
+
         let highItems = viewModel.mindsetShifter?.highPerformanceContentItems.compactMap { $0.valueText } ?? []
         seeMyPlanButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_button_title), for: .normal)
         ThemeButton.whiteRounded.apply(seeMyPlanButton)
 
-        ThemeText.tbvQuestionLow.apply(lowTitle, to: lowTitleLabel)
-        ThemeText.tbvQuestionHigh.apply(highTitle, to: highTitleLabel)
+        ThemeText.tbvQuestionLow.apply(lowTitleSentenceCase, to: lowTitleLabel)
+        ThemeText.tbvQuestionHigh.apply(highTitleSentenceCase, to: highTitleLabel)
 
         ThemeText.tbvQuestionLow.apply(lowItems.at(index: 0), to: lowFirstStatement)
         ThemeText.tbvQuestionLow.apply(lowItems.at(index: 1), to: lowSecondStatement)

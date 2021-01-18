@@ -22,7 +22,7 @@ final class DTSprintWorker: DTWorker {
 // MARK: - Sprint
 extension DTSprintWorker {
     func addSprintToQueue(sprintContentId: Int) {
-        createSprint(sprintContentId) { (sprint) in}
+        createSprint(sprintContentId) { (_) in}
     }
 
     func isSprintInProgress(_ completion: @escaping (QDMSprint?, Date?) -> Void) {
@@ -35,7 +35,7 @@ extension DTSprintWorker {
 
     func stopActiveSprintAndStartNewSprint(activeSprint: QDMSprint?, newSprintContentId: Int?, completion: @escaping (QDMSprint?) -> Void) {
         guard let activeSprint = activeSprint, let newSprintContentId = newSprintContentId else { return }
-        UserService.main.pauseSprint(activeSprint) { [weak self]  (sprint, error) in
+        UserService.main.pauseSprint(activeSprint) { [weak self]  (_, error) in
             if let error = error {
                 log("Error while trying to pause sprint: \(error.localizedDescription)", level: .error)
             }
@@ -101,7 +101,7 @@ private extension DTSprintWorker {
     func createSprintAndStart(_ targetContentId: Int, completion: @escaping (QDMSprint?) -> Void) {
         createSprint(targetContentId) { (sprint) in
             if let sprint = sprint {
-                UserService.main.startSprint(sprint) { (sprint, error) in
+                UserService.main.startSprint(sprint) { (sprint, _) in
                     completion(sprint)
                 }
             } else {

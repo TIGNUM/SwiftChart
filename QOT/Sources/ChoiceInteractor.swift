@@ -17,8 +17,8 @@ final class ChoiceInteractor {
 
     // MARK: - Init
     init(worker: ChoiceWorker,
-        presenter: ChoicePresenterInterface,
-        router: ChoiceRouterInterface) {
+         presenter: ChoicePresenterInterface,
+         router: ChoiceRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

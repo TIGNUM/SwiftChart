@@ -176,7 +176,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func getSubtitle(for item: MyX.Item?) -> (String?, Bool) {
         switch item {
         case .teamCreate:
-            return self.isCellEnabled[MyX.Item.teamCreate.rawValue] == true ? (AppTextService.get(.my_x_team_create_subheader), false) : (AppTextService.get(.my_x_team_create_max_team_sutitle), false)
+            return self.isCellEnabled[MyX.Item.teamCreate.rawValue] == true ?
+                            (AppTextService.get(.my_x_team_create_subheader), false) :
+                            (AppTextService.get(.my_x_team_create_max_team_sutitle), false)
         case .library:
             return (self.subtitles[MyX.Item.library.rawValue] ?? nil, self.newLibraryItemCount != 0)
         case .toBeVision:
@@ -299,7 +301,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         }
         teamInviteObserver = NotificationCenter.default.addObserver(forName: .didSelectTeamInvite,
                                                                     object: nil,
-                                                                    queue: .main) { [weak self] notification in
+                                                                    queue: .main) { [weak self] _ in
             self?.presentTeamPendingInvites()
         }
         synchronizationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization,

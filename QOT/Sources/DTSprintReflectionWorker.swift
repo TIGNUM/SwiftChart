@@ -12,7 +12,7 @@ import qot_dal
 final class DTSprintReflectionWorker: DTWorker {
     func updateSprint(sprint: QDMSprint?) {
         if let sprint = sprint {
-            UserService.main.updateSprint(sprint) { (sprint, error) in
+            UserService.main.updateSprint(sprint) { (_, error) in
                 if let error = error {
                     log("Error updateSprint \(error.localizedDescription)", level: .error)
                 }

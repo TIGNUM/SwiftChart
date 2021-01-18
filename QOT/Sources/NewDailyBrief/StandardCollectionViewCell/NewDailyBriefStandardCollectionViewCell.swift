@@ -21,7 +21,9 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
     let skeletonManager = SkeletonManager()
     var disabledHighlightedAnimation = false
     public var hideCTAButton = true
-    private static let sizingCell = UINib(nibName: "NewDailyBriefStandardCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyBriefStandardCollectionViewCell
+    private static let sizingCell = UINib(nibName: "NewDailyBriefStandardCollectionViewCell",
+                                          bundle: nil).instantiate(withOwner: nil,
+                                                                   options: nil).first! as? NewDailyBriefStandardCollectionViewCell
 
     // MARK: - Lifecycle
     override func awakeFromNib() {

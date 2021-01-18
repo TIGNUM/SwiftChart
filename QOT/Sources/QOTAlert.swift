@@ -61,10 +61,10 @@ class QOTAlert {
     }
 
     static func showWithoutDismiss(title: String?,
-                     message: String?,
-                     bottomItems: [QOTAlertAction]? = nil,
-                     buttonAlignment: QOTAlertViewController.ButtonsAlignment = .right,
-                     cancelHandler: (() -> Void)? = nil) {
+                                   message: String?,
+                                   bottomItems: [QOTAlertAction]? = nil,
+                                   buttonAlignment: QOTAlertViewController.ButtonsAlignment = .right,
+                                   cancelHandler: (() -> Void)? = nil) {
 
         shared.show(title: title,
                     message: message,
@@ -353,7 +353,7 @@ private extension QOTAlertViewController {
     @objc func detectedPan(_ recognizer: UIPanGestureRecognizer) {
         var offset  = recognizer.translation(in: backgroundView).y - initialPanLocation
         if offset < 0 {
-            offset = offset * 0.5
+            offset *= 0.5
         }
 
         // Handle gesture end

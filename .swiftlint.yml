@@ -1,21 +1,56 @@
 cyclomatic_complexity:
+  warning: 15
+  error: 30
   ignores_case_statements: true
-  
+  ignore_guard: true
+
+line_length:
+  warning: 160
+  error: 200
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true
+
+variable_name:
+    max_length:
+        warning: 45
+        error: 60
+    min_length:
+        warning: 1
+
+type_name:
+    max_length:
+        warning: 60
+        error: 100
+    min_length:
+        warning: 1
+
+function_body_length:
+    warning: 180
+    error: 500
+
+file_length:
+    warning: 800
+    error: 1000
+
 disabled_rules:
     - identifier_name
+    - large_tuple
+    - todo
+    - cyclomatic_complexity
+    - function_parameter_count
+    - type_body_length
+    - nesting
+
     #- class_delegate_protocol # This can give false positives if the protocol is inherited.
-    #- large_tuple
-    #- nesting
-    #- todo
-    #- cyclomatic_complexity
-    #- function_parameter_count
     #- function_body_length
     #- file_length
     #- unused_closure_parameter
     #- type_name
     #- shorthand_operator
     #- vertical_parameter_alignment
-    #- type_body_length
+
     #- line_length
     #- notification_center_detachment
 
@@ -25,3 +60,5 @@ included: # paths to include during linting. `--path` is ignored if present.
 
 excluded:
   - QOT/Generated
+  - QOT/Sources/Theme.swift
+  - QOT/Sources/AppText+Extensions.swift

@@ -51,7 +51,8 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     }
 
     lazy var knowingNavigationController: KnowingNavigationController? = {
-        let navController = R.storyboard.main().instantiateViewController(withIdentifier: KnowingNavigationController.storyboardID) as? KnowingNavigationController
+        let navController = R.storyboard.main().instantiateViewController(withIdentifier: KnowingNavigationController.storyboardID)
+                            as? KnowingNavigationController
         guard let knowingViewController = navController?.viewControllers.first  as? KnowingViewController else {
             return nil
         }
@@ -60,7 +61,8 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     }()
 
     lazy var dailyBriefNavigationController: DailyBriefNavigationController? = {
-        let navController = R.storyboard.main().instantiateViewController(withIdentifier: DailyBriefNavigationController.storyboardID) as? DailyBriefNavigationController
+        let navController = R.storyboard.main().instantiateViewController(withIdentifier: DailyBriefNavigationController.storyboardID)
+                            as? DailyBriefNavigationController
         guard let dailyBriefViewController = navController?.viewControllers.first as? DailyBriefViewController else {
             return nil
         }
@@ -183,7 +185,9 @@ extension CoachCollectionViewController {
 // MARK: - Coach button
 extension CoachCollectionViewController {
     @IBAction func showCoachScreen() {
-        guard let coachViewController = R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier) as? CoachViewController else {
+        guard let coachViewController =
+                R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier)
+                as? CoachViewController else {
             return
         }
         CoachConfigurator.make(viewController: coachViewController)

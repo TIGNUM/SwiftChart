@@ -91,7 +91,7 @@ private extension DTQuestionnaireViewController {
         tableView.separatorStyle = .none
         tableView.clipsToBounds = false
         attachTableView()
-        observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
+        observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (_, _) in
             self?.checkScroll()
             }
         ]

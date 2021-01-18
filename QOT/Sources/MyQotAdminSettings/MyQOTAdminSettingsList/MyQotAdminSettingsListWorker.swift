@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct dailyCheckinQuestionsPriorities: Codable {
+public struct DailyCheckinQuestionsPriorities: Codable {
     static var tbvShpiPeak: [Int] = [0, 1, 2]
     static var tbvPeakShpi: [Int] = [0, 2, 1]
     static var shpiTbvPeak: [Int] = [1, 0, 2]
@@ -17,7 +17,7 @@ public struct dailyCheckinQuestionsPriorities: Codable {
     static var peakShpiTbv: [Int] = [2, 1, 0]
 }
 
-public enum dailyCheckinQuestionPriorityString: String {
+public enum DailyCheckinQuestionPriorityString: String {
     case tbvShpiPeak = "TBV - SHPI - PEAK"
     case tbvPeakShpi = "TBV - PEAK - SHPI"
     case shpiTbvPeak = "SHPI - TBV - PEAK"
@@ -28,7 +28,7 @@ public enum dailyCheckinQuestionPriorityString: String {
 
 final class MyQotAdminSettingsListWorker {
 
-    var currentSixthQuestionSetting: [Int] = dailyCheckinQuestionsPriorities.tbvShpiPeak
+    var currentSixthQuestionSetting: [Int] = DailyCheckinQuestionsPriorities.tbvShpiPeak
     // MARK: - Init
     init() { /* */ }
 }

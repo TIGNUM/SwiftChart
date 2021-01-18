@@ -10,18 +10,18 @@ import UIKit
 
 final class NavBarTableViewCell: UIView {
 
-    typealias actionClosure = (() -> Void)?
+    typealias ActionClosure = (() -> Void)?
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var buttonLeft: UIButton!
     @IBOutlet weak var buttonRight: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
 
-    private var actionLeft: actionClosure?
-    private var actionRight: actionClosure?
+    private var actionLeft: ActionClosure?
+    private var actionRight: ActionClosure?
 
     static func instantiateFromNib(title: String,
-                                   tapLeft: actionClosure? = nil,
-                                   tapRight: actionClosure? = nil) -> NavBarTableViewCell {
+                                   tapLeft: ActionClosure? = nil,
+                                   tapRight: ActionClosure? = nil) -> NavBarTableViewCell {
         guard let navBar = R.nib.navBarTableViewCell.instantiate(withOwner: self).first as? NavBarTableViewCell else {
             fatalError("Cannot load nav bar")
         }
@@ -30,7 +30,7 @@ final class NavBarTableViewCell: UIView {
         return navBar
     }
 
-    func configure(title: String, tapLeft: actionClosure?, tapRight: actionClosure?) {
+    func configure(title: String, tapLeft: ActionClosure?, tapRight: ActionClosure?) {
         ThemeView.level1.apply(self)
         container.alpha = 1.0
         ThemeText.navigationBarHeader.apply(title, to: titleLabel)

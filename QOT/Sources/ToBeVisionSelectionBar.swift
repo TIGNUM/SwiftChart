@@ -56,12 +56,36 @@ private extension ToBeVisionSelectionBar {
             addSubview(container)
 
             container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: bottomMargin).isActive = true
-            addConstraint(NSLayoutConstraint(item: container, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: buttonSize))
-            addConstraint(NSLayoutConstraint(item: container, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: buttonSize))
+            addConstraint(NSLayoutConstraint(item: container,
+                                             attribute: .height,
+                                             relatedBy: .equal,
+                                             toItem: nil,
+                                             attribute: .height,
+                                             multiplier: 1.0,
+                                             constant: buttonSize))
+            addConstraint(NSLayoutConstraint(item: container,
+                                             attribute: .width,
+                                             relatedBy: .equal,
+                                             toItem: nil,
+                                             attribute: .width,
+                                             multiplier: 1.0,
+                                             constant: buttonSize))
             if let last = lastContainer {
-                addConstraint(NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: last, attribute: .leading, multiplier: 1.0, constant: spacing))
+                addConstraint(NSLayoutConstraint(item: container,
+                                                 attribute: .trailing,
+                                                 relatedBy: .equal,
+                                                 toItem: last,
+                                                 attribute: .leading,
+                                                 multiplier: 1.0,
+                                                 constant: spacing))
             } else {
-                addConstraint(NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: rightMargin))
+                addConstraint(NSLayoutConstraint(item: container,
+                                                 attribute: .trailing,
+                                                 relatedBy: .equal,
+                                                 toItem: self,
+                                                 attribute: .trailing,
+                                                 multiplier: 1.0,
+                                                 constant: rightMargin))
             }
             lastContainer = container
         }
@@ -145,7 +169,7 @@ extension ToBeVisionSelectionBar {
             buttonCamera.addTarget(self, action: #selector(didTapCameraItem), for: .touchUpInside)
             allOff()
         }
-        delegate.isShareBlocked { [weak self] (hideShare) in
+        delegate.isShareBlocked { [weak self] (_) in
             self?.setupButton(self?.buttonShare, image: R.image.ic_share_sand())
             self?.buttonShare.addTarget(self, action: #selector(self?.didTapShareItem), for: .touchUpInside)
             self?.allOff()

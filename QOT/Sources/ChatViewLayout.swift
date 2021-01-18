@@ -19,7 +19,7 @@ protocol ChatViewLayoutDelegate: class {
     func chatViewLayout(_ layout: ChatViewLayout, sizeForFooterAt section: Int) -> CGSize?
     func chatViewLayout(_ layout: ChatViewLayout, showAvatarInSection section: Int) -> Bool
     func chatViewLayout(_ layout: ChatViewLayout,
-                         animatorForLayoutAttributes: UICollectionViewLayoutAttributes) -> ChatViewAnimator?
+                        animatorForLayoutAttributes: UICollectionViewLayoutAttributes) -> ChatViewAnimator?
     func chatViewLayout(_ layout: ChatViewLayout, snapToTopOffsetInSection section: Int) -> CGFloat?
     func chatViewLayout(_ layout: ChatViewLayout, updateContentSize: CGSize)
 }
@@ -85,7 +85,8 @@ final class ChatViewLayout: UICollectionViewLayout {
         cache = sections
 
         let width = collectionView.bounds.width - collectionView.contentInset.horizontal
-        let height: CGFloat = max(originY, finalSnapOffset().y + collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom)
+        let height: CGFloat = max(originY,
+                                  finalSnapOffset().y + collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom)
 
         contentSize = CGSize(width: width, height: height)
         delegate.chatViewLayout(self, updateContentSize: contentSize)

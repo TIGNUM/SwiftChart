@@ -94,13 +94,13 @@ extension StreamVideoWorker {
     func toggleBookmark(_ completion: @escaping () -> Void) {
         if let bookmark = bookmarks.filter({ $0.teamQotId == nil }).first {
             // remove
-            service.deleteUserStorage(bookmark) { [weak self] (error) in
+            service.deleteUserStorage(bookmark) { [weak self] (_) in
                 self?.bookmarks.remove(object: bookmark)
                 self?.updateBookmarks(completion)
             }
         } else if let content = self.content {
             // add
-            service.addBookmarkContentItem(content) { [weak self] (bookmark, error) in
+            service.addBookmarkContentItem(content) { [weak self] (bookmark, _) in
                 if let bookmark = bookmark {
                     self?.bookmarks.append(bookmark)
                 }
@@ -135,7 +135,7 @@ extension StreamVideoWorker {
                 completion(.DOWNLOADED)
             }
         } else {
-            service.addToDownload(contentItem: item) { [weak self] (storage, error) in
+            service.addToDownload(contentItem: item) { [weak self] (storage, _) in
                 self?.download = storage
                 guard let download = storage else {
                     self?.downloadStatus = .NONE

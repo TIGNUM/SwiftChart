@@ -74,7 +74,7 @@ private extension NotificationBanner {
     }
 
     func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
             self.hide()
         }
     }

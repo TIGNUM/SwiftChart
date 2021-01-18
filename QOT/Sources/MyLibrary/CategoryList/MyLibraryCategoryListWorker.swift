@@ -28,7 +28,7 @@ final class MyLibraryCategoryListWorker {
         var initiated = false
         dispatchGroup.enter()
         if let team = team {
-            service.getTeamStorages(in: team) { (teamStorages, initialized, error) in
+            service.getTeamStorages(in: team) { (teamStorages, initialized, _) in
                 storages = teamStorages
                 initiated = initialized
                 dispatchGroup.leave()
@@ -39,7 +39,7 @@ final class MyLibraryCategoryListWorker {
                 dispatchGroup.leave()
             }
         } else {
-            service.getUserStorages { (userStorages, initialized, error) in
+            service.getUserStorages { (userStorages, initialized, _) in
                 initiated = initialized
                 storages = userStorages
                 dispatchGroup.leave()

@@ -19,8 +19,8 @@ final class CoachInteractor {
     // MARK: - Init
 
     init(worker: CoachWorker,
-        presenter: CoachPresenterInterface,
-        router: CoachRouterInterface) {
+         presenter: CoachPresenterInterface,
+         router: CoachRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

@@ -28,7 +28,7 @@ final class MyDataScreenInteractor: NSObject {
     func viewDidLoad() {
         presenter.present(for: worker.myDataSections())
         presenter.setupView()
-        self.getDailyResults(around: worker.heatMapFirstDayOfVisibleMonth, withMonthsBefore: 1, monthsAfter: 1) { [weak self] (results, error) in
+        self.getDailyResults(around: worker.heatMapFirstDayOfVisibleMonth, withMonthsBefore: 1, monthsAfter: 1) { [weak self] (_, _) in
             guard let s = self else { return }
             s.presenter.dataSourceFinished(firstLoad: true)
         }
@@ -128,7 +128,7 @@ extension MyDataScreenInteractor: JTAppleCalendarViewDelegate {
 
         if firstDay != worker.heatMapFirstDayOfVisibleMonth {
             worker.heatMapFirstDayOfVisibleMonth = firstDay
-            self.getDailyResults(around: firstDay, withMonthsBefore: 1, monthsAfter: 1) { [weak self] (results, error) in
+            self.getDailyResults(around: firstDay, withMonthsBefore: 1, monthsAfter: 1) { [weak self] (_, _) in
                 guard let s = self else { return }
                 s.worker.firstLoad = false
                 s.presenter.dataSourceFinished(firstLoad: s.worker.firstLoad)

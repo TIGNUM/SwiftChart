@@ -29,7 +29,7 @@ class WorkerTBV {
                 newVision.headline = AppTextService.get(.generic_tobevision_default_title)
             }
             if shouldSave, SessionService.main.getCurrentSession() != nil {
-                UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})
+                UserService.main.updateMyToBeVision(newVision, { (_) in /* WOW ;) */})
             }
         }
     }
