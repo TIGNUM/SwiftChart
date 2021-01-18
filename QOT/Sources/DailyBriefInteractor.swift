@@ -1269,8 +1269,8 @@ extension DailyBriefInteractor {
         let requestLocationPermissionDescription = AppTextService.get(.daily_brief_section_weather_empty_body_under_pic)
         let deniedLocationPermissionDescription = AppTextService.get(.daily_brief_section_weather_empty_body_under_pic)
         let accessLocationPermissionTitle = AppTextService.get(.daily_brief_section_weather_card_title)
-        let celciusImageUrl = weatherBucket?.bucketImages?.filter ({$0.label == "CELSIUS"}).first?.mediaUrl
-        let fahrenheitImageUrl = weatherBucket?.bucketImages?.filter ({$0.label == "FAHRENHEIT"}).first?.mediaUrl
+        let celciusImageUrl = weatherBucket?.bucketImages?.filter({$0.label == "CELSIUS"}).first?.mediaUrl
+        let fahrenheitImageUrl = weatherBucket?.bucketImages?.filter({$0.label == "FAHRENHEIT"}).first?.mediaUrl
         let image = isCelsius() ? celciusImageUrl : fahrenheitImageUrl
         let locationPermission = AppCoordinator.permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
         weatherList.append(WeatherViewModel(bucketTitle: title,

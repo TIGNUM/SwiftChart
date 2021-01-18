@@ -35,7 +35,7 @@ final class CardPresentationController: UIPresentationController {
                 strongSelf.blurView.effect = UIBlurEffect(style: .dark)
                 strongSelf.blurView.alpha = 1
             })
-        }) { (ctx) in }
+        }, completion: { (ctx) in })
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
