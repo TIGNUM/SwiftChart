@@ -15,13 +15,12 @@ public extension Notification.Name {
 }
 
 protocol CoachCollectionViewControllerDelegate: class {
-    func didTapCancel()
+    func didTapCancelSearch()
     func handlePan(offsetY: CGFloat, isDragging: Bool, isScrolling: Bool)
-    func moveToCell(item: Int)
+    func scrollToPage(item: Int)
 }
 
 final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
-
     enum Page: Int, CaseIterable {
         case know = 0
         case dailyBrief
@@ -33,48 +32,47 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     @IBOutlet private weak var coachButton: UIButton!
     private var bottomSearchViewConstraint: NSLayoutConstraint!
     private var heightSearchViewConstraint: NSLayoutConstraint!
-    private var preSelectedItem: Page? = .dailyBrief
-    private var panActive = false
-    private var panSearchShowing: Bool = false {
-        didSet {
-            refreshBottomNavigationItems()
-        }
-    }
     private var didDownSyncPreparations = false
     private var didDownSyncEvents = false
     private var displaySearchDragOffset: CGFloat = 88.0
     private var displaySearchWithDecelerating: Bool = false
     private var currentPage = Page.dailyBrief
+    private var isAppStart = true
 
-    func getCurrentPage() -> Page {
-        return currentPage
+    private var shouldShowSearch: Bool = false {
+        didSet {
+            refreshBottomNavigationItems()
+        }
     }
 
     lazy var knowingNavigationController: KnowingNavigationController? = {
-        let navController = R.storyboard.main().instantiateViewController(withIdentifier: KnowingNavigationController.storyboardID) as? KnowingNavigationController
-        guard let knowingViewController = navController?.viewControllers.first  as? KnowingViewController else {
-            return nil
+        let identifier = KnowingNavigationController.storyboardID
+        let navController = instantiateViewController(with: identifier) as? KnowingNavigationController
+        if let controller = navController?.viewControllers.first as? KnowingViewController {
+            KnowingConfigurator.configure(delegate: self, viewController: controller)
+            return navController
         }
-        KnowingConfigurator.configure(delegate: self, viewController: knowingViewController)
-        return navController
+        return nil
     }()
 
     lazy var dailyBriefNavigationController: DailyBriefNavigationController? = {
-        let navController = R.storyboard.main().instantiateViewController(withIdentifier: DailyBriefNavigationController.storyboardID) as? DailyBriefNavigationController
-        guard let dailyBriefViewController = navController?.viewControllers.first as? DailyBriefViewController else {
-            return nil
+        let identifier = DailyBriefNavigationController.storyboardID
+        let navController = instantiateViewController(with: identifier) as? DailyBriefNavigationController
+        if let controller = navController?.viewControllers.first as? DailyBriefViewController {
+            DailyBriefConfigurator.configure(delegate: self, viewController: controller)
+            return navController
         }
-        DailyBriefConfigurator.configure(delegate: self, viewController: dailyBriefViewController)
-        return navController
+        return nil
     }()
 
     lazy var myQotNavigationController: MyQotNavigationController? = {
-        let navController = R.storyboard.main().instantiateViewController(withIdentifier: MyQotNavigationController.storyboardID) as? MyQotNavigationController
-        guard let myQotViewController = navController?.viewControllers.first  as? MyQotMainViewController else {
-            return nil
+        let identifier = MyQotNavigationController.storyboardID
+        let navController = instantiateViewController(with: identifier) as? MyQotNavigationController
+        if let controller = navController?.viewControllers.first as? MyQotMainViewController {
+            MyQotMainConfigurator.configure(delegate: self, viewController: controller)
+            return navController
         }
-        MyQotMainConfigurator.configure(delegate: self, viewController: myQotViewController)
-        return navController
+        return nil
     }()
 
     lazy var searchViewController: SearchViewController? = {
@@ -86,15 +84,197 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObservers()
         ThemeView.level1.apply(view)
-        coachButton.layer.zPosition = 10000
-        coachButton.setTitle(AppTextService.get(AppTextKey.generic_coach_button_title), for: .normal)
+        setupCoachButton()
+        setupSearchViewController()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBar(colorMode: .dark)
+        updateSearchView()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        RestartHelper().checkRestartURLAndRoute()
+        showPreparationPopUpIfNeeded()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateSearchViewControllerConstraintsIfNeeded()
+    }
+
+    func getCurrentPage() -> Page {
+        return currentPage
+    }
+}
+
+// MARK: - Notification
+extension CoachCollectionViewController {
+    @objc func didGetScreenChangeNotification(_ notification: Notification) {
+        guard let page = notification.object as? Page else { return }
+        scrollToPage(item: page.rawValue)
+    }
+
+    fileprivate func updateSyncFlags(_ syncResult: SyncResultContext) {
+        switch syncResult.dataType {
+        case .PREPARATION: didDownSyncPreparations = true
+        case .CALENDAR_EVENT: didDownSyncEvents = true
+        default: break
+        }
+    }
+
+    @objc func didFinishSynchronization(_ notification: Notification) {
+        guard let syncResult = notification.object as? SyncResultContext,
+            syncResult.syncRequestType == .DOWN_SYNC else { return }
+        updateSyncFlags(syncResult)
+        showPreparationPopUpIfNeeded()
+    }
+}
+
+// MARK: - Coach button
+extension CoachCollectionViewController {
+    @IBAction func showCoachScreen() {
+        let identifier = R.storyboard.coach.coachViewControllerID.identifier
+        guard let controller = R.storyboard.coach()
+                .instantiateViewController(withIdentifier: identifier) as? CoachViewController else { return }
+
+        CoachConfigurator.make(viewController: controller)
+        let navi = UINavigationController(rootViewController: controller)
+        navi.modalTransitionStyle = .coverVertical
+        navi.isNavigationBarHidden = true
+        navi.isToolbarHidden = true
+        navi.view.backgroundColor = .clear
+        present(navi, animated: true)
+        trackUserEvent(.OPEN, valueType: "COACH", action: .TAP)
+    }
+}
+
+// MARK: - handlepan
+extension CoachCollectionViewController {
+    private func updateSearchViewController(currentY: CGFloat) {
+        bottomSearchViewConstraint.constant = -currentY
+        let duration: Double = shouldShowSearch ? 0.25 : 0.0
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+
+        searchViewController?.isVisible = shouldShowSearch
+        if shouldShowSearch {
+            searchViewController?.activate(duration)
+        }
+        refreshCoachButton(isDragging: true)
+    }
+
+    func updateCurrentPageController(_ controller: UIViewController?, cell: UICollectionViewCell) {
+        guard let controller = controller else { return }
+        if controller.parent != self {
+            addChild(controller)
+        }
+        cell.contentView.removeSubViews()
+        cell.contentView.addSubview(controller.view)
+        controller.view.edges(to: cell.contentView)
+        controller.didMove(toParent: self)
+    }
+
+    func currentPageController(at indexPath: IndexPath) -> UIViewController? {
+        guard let page = Page(rawValue: indexPath.row) else { return nil }
+        switch page {
+        case .know: return knowingNavigationController
+        case .dailyBrief: return dailyBriefNavigationController
+        case .myX: return myQotNavigationController
+        }
+    }
+}
+
+// MARK: - UICollectionVieControllerDataSource, UICollectionViewControllerDelegate
+extension CoachCollectionViewController: UICollectionViewDataSource,
+                                         UICollectionViewDelegate,
+                                         UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return Page.allCases.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath)
+        cell.layoutIfNeeded()
+        updateCurrentPageController(currentPageController(at: indexPath), cell: cell)
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        if isAppStart {
+            isAppStart = false
+            scrollToPage(item: Page.dailyBrief.rawValue)
+        }
+    }
+}
+
+// MARK: - CoachCollectionViewControllerDelegate
+extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
+    func didTapCancelSearch() {
+        shouldShowSearch = false
         if let searchViewController = searchViewController {
-            self.addChild(searchViewController)
+            let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
+            bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
+            UIView.animate(withDuration: 0.25) {
+                searchViewController.view.superview?.layoutIfNeeded()
+            }
+        }
+        refreshCoachButton(isDragging: false)
+    }
+
+    func handlePan(offsetY: CGFloat, isDragging: Bool, isScrolling: Bool) {
+        guard shouldShowSearch == false else { return }
+
+        let maxDistance = displaySearchDragOffset
+        var newY: CGFloat = offsetY
+        if offsetY <= -maxDistance, (isDragging || displaySearchWithDecelerating) {
+            shouldShowSearch = true
+            newY = -view.frame.height
+        }
+        updateSearchViewController(currentY: newY)
+    }
+
+    func scrollToPage(item: Int) {
+        collectionView.scrollToItem(at: IndexPath(item: item, section: 0),
+                                    at: .centeredHorizontally, animated: true)
+    }
+}
+
+// MARK: - Private methods
+private extension CoachCollectionViewController {
+    func setupCoachButton() {
+        coachButton.layer.zPosition = 10000
+        let title = AppTextService.get(AppTextKey.generic_coach_button_title)
+        coachButton.setAttributedTitle(NSAttributedString(string: title.uppercased(),
+                                                          font: .sfProDisplayRegular(ofSize: 14),
+                                                          textColor: UIColor.white,
+                                                          alignment: .center),
+                                       for: .normal)
+    }
+
+    func setupSearchViewController() {
+        if let searchViewController = searchViewController {
+            addChild(searchViewController)
             searchViewController.view.translatesAutoresizingMaskIntoConstraints = false
             setupSearchConstraints(searchViewController.view, parentView: view)
         }
+    }
 
+    func addObservers() {
         _ = NotificationCenter.default.addObserver(forName: .showFirstLevelScreen,
                                                    object: nil,
                                                    queue: .main) { [weak self] notification in
@@ -107,127 +287,29 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setStatusBar(colorMode: .dark)
-
-        coachButton.alpha = 0.0
-
-        UIView.animate(withDuration: 0.75, delay: 0.4, options: []) {  [weak self] in
-            self?.coachButton.alpha = self?.panSearchShowing == true ? 0.0 : 1.0
-        }
-
-        let settingService = SettingService.main
-        settingService.getSettingFor(key: .Level1ScreenSearchBarDragOffset) { (setting, _, _) in
+    func updateSearchView() {
+        SettingService.main.getSettingFor(key: .Level1ScreenSearchBarDragOffset) { (setting, _, _) in
             if let offset = setting?.longValue {
                 self.displaySearchDragOffset = CGFloat(offset)
             }
         }
 
-        settingService.getSettingFor(key: .Level1ScreenDisplaySearchWithDecelerating) { (setting, _, _) in
+        SettingService.main.getSettingFor(key: .Level1ScreenDisplaySearchWithDecelerating) { (setting, _, _) in
             self.displaySearchWithDecelerating = setting?.booleanValue ?? false
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // Handle stored link when it's ready to handle
-        RestartHelper().checkRestartURLAndRoute()
-
-        //because of QOT-2324, when Level 1 Screen is shown we can show PopUp screen for Preparations with unrecognized events.
-        if didDownSyncEvents, didDownSyncPreparations {
+    func showPreparationPopUpIfNeeded() {
+        if didDownSyncEvents,
+           didDownSyncPreparations,
+           isTopVisibleViewController() {
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .needToCheckDeletedEventForPreparation, object: nil)
             }
         }
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if bottomSearchViewConstraint.constant == 0 {
-            let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
-            bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
-        }
-
-        if heightSearchViewConstraint.constant != view.frame.height {
-            heightSearchViewConstraint.constant = view.frame.height
-        }
-    }
-}
-
-// MARK: - Notification
-extension CoachCollectionViewController {
-    @objc func didGetScreenChangeNotification(_ notification: Notification) {
-        guard let page = notification.object as? Page else { return }
-        moveToCell(item: page.rawValue)
-    }
-
-    @objc func didFinishSynchronization(_ notification: Notification) {
-        guard let syncResult = notification.object as? SyncResultContext,
-            syncResult.syncRequestType == .DOWN_SYNC else { return }
-        switch syncResult.dataType {
-        case .PREPARATION: didDownSyncPreparations = true
-        case .CALENDAR_EVENT: didDownSyncEvents = true
-        default: break
-        }
-
-        //because of QOT-2324, when Level 1 Screen is shown we can show PopUp screen for Preparations with unrecognized events.
-        if didDownSyncEvents, didDownSyncPreparations, isTopVisibleViewController() {
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .needToCheckDeletedEventForPreparation, object: nil)
-            }
-        }
-    }
-}
-
-// MARK: - Coach button
-extension CoachCollectionViewController {
-    @IBAction func showCoachScreen() {
-        guard let coachViewController = R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier) as? CoachViewController else {
-            return
-        }
-        CoachConfigurator.make(viewController: coachViewController)
-        let navi = UINavigationController(rootViewController: coachViewController)
-        navi.modalTransitionStyle = .coverVertical
-        navi.isNavigationBarHidden = true
-        navi.isToolbarHidden = true
-        navi.view.backgroundColor = .clear
-        present(navi, animated: true)
-        trackUserEvent(.OPEN, valueType: "COACH", action: .TAP)
-    }
-}
-
-// MARK: - handlepan
-extension CoachCollectionViewController {
-    private func updatePan(currentY: CGFloat, isDragging: Bool) {
-        let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
-        bottomSearchViewConstraint.constant = panActive ? -currentY : -currentViewsYPositionInWindow
-        let duration: Double = panSearchShowing ? 0.25 : 0.0
-        UIView.animate(withDuration: duration) {
-            self.view.layoutIfNeeded()
-        }
-        refreshCoachButton(isDragging: isDragging)
-        searchViewController?.showing = panSearchShowing
-        if panSearchShowing {
-            searchViewController?.activate(duration)
-        }
-    }
-
-    private func refreshCoachButton(isDragging: Bool) {
-        if isDragging, bottomSearchViewConstraint.constant <= 0 {
-            UIView.animate(withDuration: 0.5) {
-                self.coachButton.alpha = 0
-            }
-        } else if !isDragging || bottomSearchViewConstraint.constant > 0 {
-            let newAlpha: CGFloat = abs(1 - min((CGFloat(bottomSearchViewConstraint.constant) / 100), 1))
-            let alpha = min(newAlpha, 1.0)
-            UIView.animate(withDuration: 0.5) {
-                self.coachButton.alpha = alpha
-            }
-        }
-    }
-
-    private func setupSearchConstraints(_ targetView: UIView, parentView: UIView) {
+    func setupSearchConstraints(_ targetView: UIView, parentView: UIView) {
         if targetView.superview != parentView {
             parentView.addSubview(targetView)
         }
@@ -244,106 +326,33 @@ extension CoachCollectionViewController {
             ])
     }
 
-    func display(contentController content: UIViewController, cell: UICollectionViewCell) {
-        if content.parent != self {
-            self.addChild(content)
-        }
-        cell.contentView.removeSubViews()
-        cell.contentView.addSubview(content.view)
-        content.view.edges(to: cell.contentView)
-        content.didMove(toParent: self)
-    }
-}
-
-// MARK: - UICollectionViewControllerDataSource, UICollectionViewControllerDelegate
-extension CoachCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath)
-        cell.layoutIfNeeded()
-        guard let page = Page(rawValue: indexPath.row) else {
-            assertionFailure()
-            return UICollectionViewCell()
-        }
-        switch page {
-        case .know:
-            if let knowingNavigationController = knowingNavigationController {
-                display(contentController: knowingNavigationController, cell: cell)
-            }
-            return cell
-        case .dailyBrief:
-            if let dailyBriefNavigationController = dailyBriefNavigationController {
-                display(contentController: dailyBriefNavigationController, cell: cell)
-            }
-            return cell
-        case .myX:
-            if let myQotNavigationController = myQotNavigationController {
-                display(contentController: myQotNavigationController, cell: cell)
-            }
-            return cell
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // Show Daily Brief on app launch
-        guard let item = preSelectedItem else { return }
-        moveToCell(item: item.rawValue, animated: false)
-        preSelectedItem = nil
-    }
-}
-
-// MARK: - CoachCollectionViewControllerDelegate
-extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
-    func didTapCancel() {
-        panSearchShowing = false
-        if let searchViewController = searchViewController {
+    func updateSearchViewControllerConstraintsIfNeeded() {
+        if bottomSearchViewConstraint.constant == 0 {
             let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
             bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
-            UIView.animate(withDuration: 0.25) {
-                self.refreshCoachButton(isDragging: false)
-                searchViewController.view.superview?.layoutIfNeeded()
-            }
+        }
+
+        if heightSearchViewConstraint.constant != view.frame.height {
+            heightSearchViewConstraint.constant = view.frame.height
         }
     }
 
-    func handlePan(offsetY: CGFloat, isDragging: Bool, isScrolling: Bool) {
-        if panSearchShowing { return }
-
-        let maxDistance = displaySearchDragOffset
-        var newY: CGFloat = offsetY
-
-        if panActive {
-            if offsetY >= 0 {
-                panActive = false
-            }
-        } else {
-            if offsetY < 0 {
-                panActive = true
-            }
-        }
-        if offsetY <= -maxDistance, (isDragging || displaySearchWithDecelerating) {
-            panSearchShowing = true
-            newY = -view.frame.height
-        }
-        updatePan(currentY: newY, isDragging: isDragging)
+    func instantiateViewController(with identifier: String) -> UIViewController? {
+        return R.storyboard.main().instantiateViewController(withIdentifier: identifier)
     }
 
-    func moveToCell(item: Int) {
-        moveToCell(item: item, animated: true)
-    }
-}
-
-// MARK: - Private methods
-private extension CoachCollectionViewController {
-    func moveToCell(item: Int, animated: Bool) {
-        collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .centeredHorizontally, animated: animated)
+    private func refreshCoachButton(isDragging: Bool) {
+        if isDragging, bottomSearchViewConstraint.constant <= 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.coachButton.alpha = 0
+            }
+        } else if !isDragging || bottomSearchViewConstraint.constant > 0 {
+            let newAlpha: CGFloat = abs(1 - min((CGFloat(bottomSearchViewConstraint.constant) / 100), 1))
+            let alpha = min(newAlpha, 1.0)
+            UIView.animate(withDuration: 0.5) {
+                self.coachButton.alpha = alpha
+            }
+        }
     }
 }
 
@@ -358,17 +367,11 @@ extension CoachCollectionViewController {
 // MARK: - Bottom Navigation
 extension CoachCollectionViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if panSearchShowing {
-            return nil
-        }
-        return super.bottomNavigationLeftBarItems()
+        return shouldShowSearch ? nil : super.bottomNavigationLeftBarItems()
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if panSearchShowing {
-            return nil
-        }
-        return super.bottomNavigationRightBarItems()
+        return shouldShowSearch ? nil : super.bottomNavigationRightBarItems()
     }
 }
 
