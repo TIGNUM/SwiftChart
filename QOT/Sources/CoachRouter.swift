@@ -36,55 +36,31 @@ extension CoachRouter: CoachRouterInterface {
             viewController?.pushToStart(childViewController: searchViewController)
             searchViewController.activate(0.0)
         case .tools:
-            //            if UserDefault.toolsExplanation.boolValue {
             let toolsViewController = R.storyboard.tools.toolsViewControllerID()
             if let toolsViewController = toolsViewController {
                 ToolsConfigurator.make(viewController: toolsViewController)
                 viewController?.present(toolsViewController, animated: true, completion: nil)
             }
-            //            } else {
-            //                showFeatureExplanation(.tools)
-        //            }
         case .sprint:
-            //            if UserDefault.sprintExplanation.boolValue {
             let configurator = DTSprintConfigurator.make()
             let controller = DTSprintViewController(configure: configurator)
             viewController?.present(controller, animated: true)
-            //            } else {
-            //                showFeatureExplanation(.sprint)
-        //            }
         case .event:
-            //            if UserDefault.prepareExplanation.boolValue {
             if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
                 AppDelegate.current.launchHandler.process(url: launchURL)
             }
-            //            } else {
-            //               showFeatureExplanation(.prepare)
-        //            }
         case .challenge:
-            //            if UserDefault.solveExplanation.boolValue {
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
             viewController?.present(controller, animated: true)
-            //            } else {
-            //                showFeatureExplanation(.solve)
-        //            }
         case .mindset:
-            //            if UserDefault.mindsetExplanation.boolValue {
             let configurator = DTMindsetConfigurator.make()
             let controller = DTMindsetViewController(configure: configurator)
             viewController?.present(controller, animated: true)
-            //            } else {
-            //               showFeatureExplanation(.mindsetShifter)
-        //            }
         case .recovery:
-            //            if UserDefault.recoveryExplanation.boolValue {
             let configurator = DTRecoveryConfigurator.make()
             let controller = DTRecoveryViewController(configure: configurator)
             viewController?.present(controller, animated: true)
-            //            } else {
-            //                showFeatureExplanation(.recovery)
-            //            }
         }
     }
 

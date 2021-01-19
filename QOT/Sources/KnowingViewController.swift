@@ -132,7 +132,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             let title = AppTextService.get(.know_section_header_title)
             cell.configure(title: title, tapRight: { [weak self] in
-                self?.delegate?.moveToCell(item: 1)
+                self?.delegate?.scrollToPage(item: 1)
             })
             return cell
         case Knowing.Section.strategies.rawValue:

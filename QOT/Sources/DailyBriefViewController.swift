@@ -56,9 +56,9 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     func setupTableView() {
         let headerView = R.nib.newDailyBriefTableViewHeader(owner: self)
         headerView?.configure(tapLeft: { [weak self] in
-            self?.delegate?.moveToCell(item: 0)
+            self?.delegate?.scrollToPage(item: 0)
         }, tapRight: { [weak self] in
-            self?.delegate?.moveToCell(item: 2)
+            self?.delegate?.scrollToPage(item: 2)
         })
         tableView.tableHeaderView = headerView
         tableView.rowHeight = UITableView.automaticDimension
@@ -349,11 +349,11 @@ extension DailyBriefViewController {
 // MARK: - IBActions
 private extension DailyBriefViewController {
     @IBAction func didTapLeftArrowButton(_ sender: Any?) {
-        delegate?.moveToCell(item: 0)
+        delegate?.scrollToPage(item: 0)
     }
 
     @IBAction func didTapRightArrowButton(_ sender: Any?) {
-        delegate?.moveToCell(item: 2)
+        delegate?.scrollToPage(item: 2)
     }
 }
 
@@ -418,7 +418,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
                 }
             }
             self.scrollToSection(at: sectionIndex)
-            self.delegate?.moveToCell(item: 1)
+            self.delegate?.scrollToPage(item: 1)
             scrollToSprintCard = false
         }
     }

@@ -131,7 +131,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(title: AppTextService.get(.my_qot_section_header_title),
                        tapLeft: { [weak self] in
-                        self?.delegate?.moveToCell(item: 1) },
+                        self?.delegate?.scrollToPage(item: 1) },
                        tapRight: { [weak self] in
                         self?.interactor.presentMyProfile() })
         interactor.getSettingsButtonTitle { (title) in
