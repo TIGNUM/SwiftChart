@@ -1,8 +1,18 @@
-cyclomatic_complexity:
-  warning: 15
-  error: 30
-  ignores_case_statements: true
-  ignore_guard: true
+disabled_rules:
+    - identifier_name
+    - large_tuple
+    - todo
+    - function_parameter_count
+    - type_body_length
+    - nesting
+
+file_length:
+    warning: 800
+    error: 1000
+
+function_body_length:
+    warning: 180
+    error: 500
 
 line_length:
   warning: 160
@@ -26,33 +36,10 @@ type_name:
     min_length:
         warning: 1
 
-function_body_length:
-    warning: 180
-    error: 500
-
-file_length:
-    warning: 800
-    error: 1000
-
-disabled_rules:
-    - identifier_name
-    - large_tuple
-    - todo
-    - cyclomatic_complexity
-    - function_parameter_count
-    - type_body_length
-    - nesting
-
-    #- class_delegate_protocol # This can give false positives if the protocol is inherited.
-    #- function_body_length
-    #- file_length
-    #- unused_closure_parameter
-    #- type_name
-    #- shorthand_operator
-    #- vertical_parameter_alignment
-
-    #- line_length
-    #- notification_center_detachment
+cyclomatic_complexity:
+  warning: 30
+  error: 50
+  ignores_case_statements: true
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT
