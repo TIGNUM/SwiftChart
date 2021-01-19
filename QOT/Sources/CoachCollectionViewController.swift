@@ -166,7 +166,7 @@ extension CoachCollectionViewController {
         if shouldShowSearch {
             searchViewController?.activate(duration)
         }
-        refreshCoachButton(isDragging: true)
+        refreshCoachButton(isHidden: true)
     }
 
     func updateCurrentPageController(_ controller: UIViewController?, cell: UICollectionViewCell) {
@@ -233,7 +233,7 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
                 searchViewController.view.superview?.layoutIfNeeded()
             }
         }
-        refreshCoachButton(isDragging: false)
+        refreshCoachButton(isHidden: false)
     }
 
     func handlePan(offsetY: CGFloat, isDragging: Bool, isScrolling: Bool) {
@@ -341,17 +341,14 @@ private extension CoachCollectionViewController {
         return R.storyboard.main().instantiateViewController(withIdentifier: identifier)
     }
 
-    private func refreshCoachButton(isDragging: Bool) {
-        if isDragging, bottomSearchViewConstraint.constant <= 0 {
-            UIView.animate(withDuration: 0.5) {
-                self.coachButton.alpha = 0
-            }
-        } else if !isDragging || bottomSearchViewConstraint.constant > 0 {
+    private func refreshCoachButton(isHidden: Bool) {
+        var alpha: CGFloat = 0
+        if !isHidden || bottomSearchViewConstraint.constant > 0 {
             let newAlpha: CGFloat = abs(1 - min((CGFloat(bottomSearchViewConstraint.constant) / 100), 1))
-            let alpha = min(newAlpha, 1.0)
-            UIView.animate(withDuration: 0.5) {
-                self.coachButton.alpha = alpha
-            }
+            alpha = min(newAlpha, 1.0)
+        }
+        UIView.animate(withDuration: 0.5) {
+            self.coachButton.alpha = alpha
         }
     }
 }
