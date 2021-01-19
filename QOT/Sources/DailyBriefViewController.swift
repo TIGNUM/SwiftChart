@@ -165,6 +165,7 @@ extension DailyBriefViewController {
                     let model = NewDailyBriefGetStartedModel.init(title: item.title,
                                                                   image: item.image,
                                                                   appLink: item.appLink,
+                                                                  isCompleted: item.isCompleted,
                                                                   domainModel: guidedTrackViewModel.domainModel)
                     cellModels.append(model)
                 }
@@ -448,11 +449,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         if granted {
             requestSynchronization(.DAILY_BRIEF_WEATHER, .DOWN_SYNC)
         }
-    }
-
-    func reloadSprintCell(cell: UITableViewCell) {
-        tableView.beginUpdates()
-        tableView.endUpdates()
     }
 
     func saveTargetValue(value: Int?) {

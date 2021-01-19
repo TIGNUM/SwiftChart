@@ -13,10 +13,12 @@ final class NewDailyBriefGetStartedModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var appLink: QDMAppLink?
+    var isCompleted: Bool?
 
     // MARK: - Init
-    init(title: String?, image: String?, appLink: QDMAppLink?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, image: String?, appLink: QDMAppLink?, isCompleted: Bool?, domainModel: QDMDailyBriefBucket?) {
         self.appLink = appLink
+        self.isCompleted = isCompleted
         super.init(domainModel, title: title, image: image)
     }
 
