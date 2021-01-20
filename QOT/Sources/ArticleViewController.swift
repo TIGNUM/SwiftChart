@@ -604,17 +604,6 @@ extension ArticleViewController {
             articleTopNavBar.allOff()
         }
     }
-
-    func showDestinationAlert() {
-        let doneButton = QOTAlertAction(title: AppTextService.get(.generic_view_button_done)) { [weak self] (_) in
-            self?.dismissAlert()
-        }
-        QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [doneButton])
-    }
-
-    @objc func dismissAlert() {
-        QOTAlert.dismiss()
-    }
 }
 
 // MARK: - Mark as Read

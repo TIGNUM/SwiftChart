@@ -274,7 +274,7 @@ extension AudioFullScreenViewController {
             self?.updateBookmarkButtonUI(self?.bookmarkButton.isSelected ?? false)
             if self?.bookmarkButton.isSelected == true, self?.wasBookmarked == false {
                 self?.wasBookmarked = true
-                self?.showDestinationAlert()
+                self?.showAddedAlert()
             }
         }
     }
@@ -360,15 +360,6 @@ private extension AudioFullScreenViewController {
                       bottomItems: [cancel, buttonContinue])
     }
 
-    func showDestinationAlert() {
-        let closeButtonItem = createCloseButton(#selector(dismissAlert))
-        QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
-    }
-
-    @objc func dismissAlert() {
-        QOTAlert.dismiss()
-    }
-
     func continueDownload() {
         trackUserEvent(.DOWNLOAD, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         guard let item = contentItem else {
@@ -432,7 +423,7 @@ extension AudioFullScreenViewController {
             updateDownloadButtonState(convertDownloadStatus(statusData.status))
             switch statusData.status {
             case .DOWNLOADED:
-                showDestinationAlert()
+                showAddedAlert()
             default:
                 break
             }

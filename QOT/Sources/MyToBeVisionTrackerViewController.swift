@@ -56,10 +56,6 @@ extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterfa
         QOTAlert.show(title: title, message: message, bottomItems: [closeButtonItem])
     }
 
-    @objc func dismissAlert() {
-        QOTAlert.dismiss()
-    }
-
     func showReport(_ report: ToBeVisionReport) {
         self.report = report
         tableView.reloadData()
