@@ -152,6 +152,15 @@ extension DailyBriefWorker {
             completion(NSNumber(value: savedTarget).intValue)
         })
     }
+
+    func hasPreparation(completion: @escaping (Bool?) -> Void) {
+        UserService.main.getUserPreparations { (preparations, _, error) in
+            if let error = error {
+                log("Error while getting preparations with error: \(error)", level: .error)
+            }
+            completion(preparations?.isEmpty == false)
+        }
+    }
 }
 
 // MARK: - Daily Checkin 2

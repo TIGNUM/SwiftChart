@@ -32,8 +32,6 @@ protocol DailyBriefViewControllerDelegate: class {
 
     func presentMindsetResults(for mindsetShifter: QDMMindsetShifter?)
 
-    func reloadSprintCell(cell: UITableViewCell)
-
     func displayCoachPreparationScreen()
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)

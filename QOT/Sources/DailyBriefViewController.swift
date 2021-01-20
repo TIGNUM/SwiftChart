@@ -451,11 +451,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         }
     }
 
-    func reloadSprintCell(cell: UITableViewCell) {
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
-
     func saveTargetValue(value: Int?) {
         interactor.saveTargetValue(value: value)
     }

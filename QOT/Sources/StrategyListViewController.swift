@@ -92,14 +92,6 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
         lastAudioIndexPath = indexPath
         tableView.reloadRows(at: array, with: UITableView.RowAnimation.none)
     }
-
-    func checkIfAllSeen() {
-        guard interactor?.foundationStrategies.isEmpty == true else {
-            let allSeen = interactor?.foundationStrategies.filter { $0.isRead == true }.count == interactor?.foundationStrategies.count
-            UserDefault.allFoundationsSeen.setBoolValue(value: allSeen)
-            return
-        }
-    }
 }
 
 extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -112,7 +104,6 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if interactor?.isFoundation == true {
-            checkIfAllSeen()
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             guard interactor?.foundationStrategies.count ?? 0 > indexPath.row,
                     let strategy = interactor?.foundationStrategies[indexPath.item] else {

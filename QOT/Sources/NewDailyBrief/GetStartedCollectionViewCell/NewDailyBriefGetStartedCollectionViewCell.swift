@@ -15,6 +15,7 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var arrowButton: UIButton!
     let skeletonManager = SkeletonManager()
+    @IBOutlet weak var completedIcon: UIImageView!
 
     private static let sizingCell = UINib(nibName: "NewDailyBriefGetStartedCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyBriefGetStartedCollectionViewCell
 
@@ -39,6 +40,7 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
         imageView.image = UIImage.init(named: model.image ?? "")
         upperContentView.backgroundColor = model.isCompleted == true ? UIColor.black60 : .clear
         title.textColor = model.isCompleted == true ? UIColor.white60 : .white
+        completedIcon.isHidden = model.isCompleted == false
     }
 
     public static func height(for viewModel: NewDailyBriefGetStartedModel, forWidth width: CGFloat) -> CGFloat {

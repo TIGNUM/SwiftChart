@@ -35,6 +35,7 @@ final class DailyBriefInteractor {
     var hasSiriShortcuts = false
     var hasToBeVision = false
     var hasConnectedWearable = false
+    var hasPreparation = false
 
     private lazy var firstInstallTimeStamp = UserDefault.firstInstallationTimestamp.object as? Date
     private lazy var worker = DailyBriefWorker(questionService: QuestionService.main,
@@ -214,6 +215,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         isLoadingBuckets = true
         var dailyBriefViewModels: [BaseDailyBriefViewModel] = []
         var sectionDataList: [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>] = []
+        worker.hasPreparation(completion: {(hasPrep) in
+            self.hasPreparation = hasPrep == true
+        })
 
         worker.getDailyBriefBucketsForViewModel { [weak self] (bucketsList) in
             guard let strongSelf = self,
@@ -318,7 +322,7 @@ extension DailyBriefInteractor {
             guard let bucketName = bucket.bucketName else { return }
             switch bucketName {
             case .GUIDE_TRACK:
-                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket, hasToBeVision: bucket.toBeVision != nil))
+                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket, hasToBeVision: bucket.toBeVision != nil, hasSeenFoundations: UserDefault.allFoundationsSeen.boolValue))
             case .DAILY_CHECK_IN_1:
                 strongSelf.hasToBeVision = (bucket.toBeVision != nil)
                 strongSelf.didDailyCheckIn = (bucket.dailyCheckInAnswerIds?.isEmpty == false)
@@ -407,7 +411,7 @@ extension DailyBriefInteractor {
      */
 
     // MARK: - Guided tour
-    func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket, hasToBeVision: Bool?) -> [BaseDailyBriefViewModel] {
+    func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket, hasToBeVision: Bool?, hasSeenFoundations: Bool?) -> [BaseDailyBriefViewModel] {
         var guidedTrackList: [GuidedTrackViewModel] = []
         let title = AppTextService.get(.daily_brief_section_guided_track_title)
         var items: [GuidedTrackItem] = []
@@ -423,7 +427,7 @@ extension DailyBriefInteractor {
                     items.append(GuidedTrackItem.init(title: title,
                                                       image: image,
                                                       appLink: qdmAppLink,
-                                                      isCompleted: UserDefault.allFoundationsSeen.boolValue))
+                                                      isCompleted: hasSeenFoundations))
                 case "DB_GUIDED_TRACK_2":
                     title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_tbv)
                     image = "get-started-tbv"
@@ -432,24 +436,13 @@ extension DailyBriefInteractor {
                                                       appLink: qdmAppLink,
                                                       isCompleted: hasToBeVision))
                 case "DB_GUIDED_TRACK_4":
-                    var hasPreparations = false
                     title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_prepare)
                     image = "get-started-prepare"
-                    let dispatchGroup = DispatchGroup()
-                    dispatchGroup.enter()
-                    UserService.main.getUserPreparations { (preparations, _, error) in
-                        if let error = error {
-                            log("Error while getting preparations with error: \(error)", level: .error)
-                        }
-                        hasPreparations = preparations?.isEmpty == false
-                        dispatchGroup.leave()
-                    }
-                    dispatchGroup.notify(queue: .main) {
                     items.append(GuidedTrackItem.init(title: title,
                                                       image: image,
                                                       appLink: qdmAppLink,
-                                                      isCompleted: hasPreparations))
-                    }
+                                                      isCompleted: hasPreparation))
+
                 default:
                     break
                 }
@@ -460,7 +453,6 @@ extension DailyBriefInteractor {
                                                              items: items,
                                                              domain: guidedTrack)
         guidedTrackList.append(guidedTrackViewModel)
-
         return guidedTrackList
     }
 
