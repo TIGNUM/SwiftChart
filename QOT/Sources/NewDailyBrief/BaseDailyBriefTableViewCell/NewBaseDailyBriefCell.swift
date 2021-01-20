@@ -65,6 +65,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
             let dummyModel = NewDailyBriefGetStartedModel.init(title: "Label",
                                                                image: nil,
                                                                appLink: nil,
+                                                               isCompleted: false,
                                                                domainModel: nil)
             height = NewDailyBriefGetStartedCollectionViewCell.height(for: viewModel ?? dummyModel, forWidth: width)
             collectionView.isPagingEnabled = false
@@ -151,10 +152,8 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
             case .getStarted:
                 let cell: NewDailyBriefGetStartedCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 cell.configure(with: nil)
-
                 return cell
             }
-
         }
     }
 

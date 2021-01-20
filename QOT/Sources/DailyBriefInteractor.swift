@@ -318,7 +318,7 @@ extension DailyBriefInteractor {
             guard let bucketName = bucket.bucketName else { return }
             switch bucketName {
             case .GUIDE_TRACK:
-                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket))
+                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket, hasToBeVision: bucket.toBeVision != nil))
             case .DAILY_CHECK_IN_1:
                 strongSelf.hasToBeVision = (bucket.toBeVision != nil)
                 strongSelf.didDailyCheckIn = (bucket.dailyCheckInAnswerIds?.isEmpty == false)
@@ -407,7 +407,7 @@ extension DailyBriefInteractor {
      */
 
     // MARK: - Guided tour
-    func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+    func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket, hasToBeVision: Bool?) -> [BaseDailyBriefViewModel] {
         var guidedTrackList: [GuidedTrackViewModel] = []
         let title = AppTextService.get(.daily_brief_section_guided_track_title)
         var items: [GuidedTrackItem] = []
@@ -422,19 +422,28 @@ extension DailyBriefInteractor {
                     image = "get-started-video"
                     items.append(GuidedTrackItem.init(title: title,
                                                       image: image,
-                                                      appLink: qdmAppLink))
+                                                      appLink: qdmAppLink,
+                                                      isCompleted: UserDefault.allFoundationsSeen.boolValue))
                 case "DB_GUIDED_TRACK_2":
                     title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_tbv)
                     image = "get-started-tbv"
                     items.append(GuidedTrackItem.init(title: title,
                                                       image: image,
-                                                      appLink: qdmAppLink))
+                                                      appLink: qdmAppLink,
+                                                      isCompleted: hasToBeVision))
                 case "DB_GUIDED_TRACK_4":
                     title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_prepare)
                     image = "get-started-prepare"
-                    items.append(GuidedTrackItem.init(title: title,
-                                                      image: image,
-                                                      appLink: qdmAppLink))
+                    UserService.main.getUserPreparations { (preparations, _, error) in
+                        if let error = error {
+                            log("Error while getting preparations with error: \(error)", level: .error)
+                        }
+                        let hasPreparations = preparations?.isEmpty == false
+                        items.append(GuidedTrackItem.init(title: title,
+                                                          image: image,
+                                                          appLink: qdmAppLink,
+                                                          isCompleted: hasPreparations))
+                    }
                 default:
                     break
                 }

@@ -165,6 +165,7 @@ extension DailyBriefViewController {
                     let model = NewDailyBriefGetStartedModel.init(title: item.title,
                                                                   image: item.image,
                                                                   appLink: item.appLink,
+                                                                  isCompleted: item.isCompleted,
                                                                   domainModel: guidedTrackViewModel.domainModel)
                     cellModels.append(model)
                 }

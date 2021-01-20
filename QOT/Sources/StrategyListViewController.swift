@@ -24,6 +24,7 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
                                                    queue: .main) { [weak self] notification in
             self?.didEndAudio(notification)
         }
+        checkIfAllSeen() 
         ThemeView.level2.apply(self.view)
     }
 
@@ -91,6 +92,11 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
         }
         lastAudioIndexPath = indexPath
         tableView.reloadRows(at: array, with: UITableView.RowAnimation.none)
+    }
+
+    func checkIfAllSeen() {
+        let allSeen = interactor?.foundationStrategies.filter { $0.isRead == true }.count == interactor?.foundationStrategies.count
+        UserDefault.allFoundationsSeen.setBoolValue(value: allSeen)
     }
 }
 
