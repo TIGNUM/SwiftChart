@@ -45,6 +45,9 @@ final class KnowingWorker {
             self?.strategies = strategyItems.sorted(by: { (lhs, rhs) -> Bool in
                 lhs.sortOrder < rhs.sortOrder
             })
+            let foundationStrategy = self?.strategies.filter { $0.title.contains("Foundation") }.first
+             let allSeen = foundationStrategy?.viewedCount == 5
+             UserDefault.allFoundationsSeen.setBoolValue(value: allSeen)
             dispatchGroup.leave()
         }
         dispatchGroup.enter()

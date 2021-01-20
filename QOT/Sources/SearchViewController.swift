@@ -33,7 +33,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
     private var activateAnimateDuration: Double = 0.0
-    public var showing = false
+    public var isVisible = false
 
     init(configure: Configurator<SearchViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -69,7 +69,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         if interactor.shouldStartDeactivated() {
-            if !showing {
+            if !isVisible {
                 deactivate(animated: false)
             }
         } else {
@@ -241,7 +241,7 @@ extension SearchViewController: UISearchBarDelegate {
             }
         } else {
             deactivate()
-            delegate?.didTapCancel()
+            delegate?.didTapCancelSearch()
             if searchResults.isEmpty == true {
                 segmentedControl.selectedSegmentIndex = 0
                 updateViewsState(false)

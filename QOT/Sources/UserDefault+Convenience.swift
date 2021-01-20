@@ -36,6 +36,7 @@ enum UserDefault: String {
     case showTableViewSwipeDemo = "qot.userdefault.key.show.table.view.swipe.demo"
     case teamVisionSuggestion = "qot.userdefault.key.team.vision.suggestion"
     case teamVisionSuggestionDate = "qot.userdefault.key.team.vision.suggestion.date"
+    case allFoundationsSeen = "qot.userdefault.key.all.foundations.seen"
 }
 
 extension UserDefault {
@@ -57,6 +58,7 @@ extension UserDefault {
                 .newGuideItem,
                 .lastInstaledAppVersion,
                 .hasShownOnbordingSlideShowInAppBuild,
+                .allFoundationsSeen,
                 .whatsHotListLastViewed,
                 .iPadAdviceDoNotShowAgain,
                 .firstInstallationTimestamp,

@@ -15,11 +15,13 @@ struct GuidedTrackItem: Equatable {
     var image: String?
     var appLink: QDMAppLink?
     var subIdentifier = ""
+    var isCompleted: Bool?
 
-    init(title: String?, image: String?, appLink: QDMAppLink) {
+    init(title: String?, image: String?, appLink: QDMAppLink, isCompleted: Bool?) {
         self.title = title
         self.image = image
         self.appLink = appLink
+        self.isCompleted = isCompleted
     }
 
     static func == (lhs: GuidedTrackItem, rhs: GuidedTrackItem) -> Bool {
