@@ -63,9 +63,11 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
+        showNullState(with: "", message: "", header: "")
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-        showNullState(with: "", message: "", header: "")
+        teamNullStateView.gradientBackground(top: true)
+        teamNullStateView.gradientBackground(top: false)
         showSkeleton()
     }
 
@@ -131,6 +133,8 @@ private extension TeamToBeVisionViewController {
     func addGradients() {
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
+        teamNullStateView.gradientBackground(top: true)
+        teamNullStateView.gradientBackground(top: false)
     }
 
     func hideNavigationBarView() {
@@ -274,6 +278,8 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
                                                                                                      with: interactor.team.name?.uppercased() ?? "")
         ThemeText.tbvSectionHeader.apply(title, to: toBeVisionLabel)
         userImageView.image = R.image.teamTBVPlaceholder()
+        userImageView.gradientBackground(top: true)
+        userImageView.gradientBackground(top: false)
 
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
