@@ -211,7 +211,6 @@ enum ThemeView {
         case .sand70:
             NewThemeView.light.apply(view, alpha: 0.7, with: radius)
         default:
-            print("ThemeView----------\(self)-----------")
             view.backgroundColor = color
         }
     }
