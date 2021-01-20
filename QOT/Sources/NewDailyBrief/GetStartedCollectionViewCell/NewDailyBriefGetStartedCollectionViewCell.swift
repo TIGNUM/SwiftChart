@@ -39,7 +39,6 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
         title.text = model.title
         imageView.image = UIImage.init(named: model.image ?? "")
         contentView.layer.opacity = model.isCompleted == true ? 0.6 : 1
-//        title.textColor = model.isCompleted == true ? UIColor.white60 : .white
         completedIcon.isHidden = model.isCompleted == false
     }
 

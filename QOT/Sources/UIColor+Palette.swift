@@ -118,10 +118,6 @@ extension UIColor {
         return UIColor.black.withAlphaComponent(0.3)
     }
 
-    static var black60: UIColor {
-        return UIColor.black.withAlphaComponent(0.6)
-    }
-
     public class var redOrange40: UIColor {
         return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 0.4)
     }
