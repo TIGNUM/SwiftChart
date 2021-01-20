@@ -58,6 +58,7 @@ extension UserDefault {
                 .newGuideItem,
                 .lastInstaledAppVersion,
                 .hasShownOnbordingSlideShowInAppBuild,
+                .allFoundationsSeen,
                 .whatsHotListLastViewed,
                 .iPadAdviceDoNotShowAgain,
                 .firstInstallationTimestamp,

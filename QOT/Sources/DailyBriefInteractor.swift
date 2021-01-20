@@ -432,17 +432,23 @@ extension DailyBriefInteractor {
                                                       appLink: qdmAppLink,
                                                       isCompleted: hasToBeVision))
                 case "DB_GUIDED_TRACK_4":
+                    var hasPreparations = false
                     title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_prepare)
                     image = "get-started-prepare"
+                    let dispatchGroup = DispatchGroup()
+                    dispatchGroup.enter()
                     UserService.main.getUserPreparations { (preparations, _, error) in
                         if let error = error {
                             log("Error while getting preparations with error: \(error)", level: .error)
                         }
-                        let hasPreparations = preparations?.isEmpty == false
-                        items.append(GuidedTrackItem.init(title: title,
-                                                          image: image,
-                                                          appLink: qdmAppLink,
-                                                          isCompleted: hasPreparations))
+                        hasPreparations = preparations?.isEmpty == false
+                        dispatchGroup.leave()
+                    }
+                    dispatchGroup.notify(queue: .main) {
+                    items.append(GuidedTrackItem.init(title: title,
+                                                      image: image,
+                                                      appLink: qdmAppLink,
+                                                      isCompleted: hasPreparations))
                     }
                 default:
                     break

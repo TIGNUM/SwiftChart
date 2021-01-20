@@ -24,7 +24,6 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
                                                    queue: .main) { [weak self] notification in
             self?.didEndAudio(notification)
         }
-        checkIfAllSeen() 
         ThemeView.level2.apply(self.view)
     }
 
@@ -95,8 +94,11 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
     }
 
     func checkIfAllSeen() {
-        let allSeen = interactor?.foundationStrategies.filter { $0.isRead == true }.count == interactor?.foundationStrategies.count
-        UserDefault.allFoundationsSeen.setBoolValue(value: allSeen)
+        guard interactor?.foundationStrategies.isEmpty == true else {
+            let allSeen = interactor?.foundationStrategies.filter { $0.isRead == true }.count == interactor?.foundationStrategies.count
+            UserDefault.allFoundationsSeen.setBoolValue(value: allSeen)
+            return
+        }
     }
 }
 
@@ -110,6 +112,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if interactor?.isFoundation == true {
+            checkIfAllSeen()
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             guard interactor?.foundationStrategies.count ?? 0 > indexPath.row,
                     let strategy = interactor?.foundationStrategies[indexPath.item] else {

@@ -37,6 +37,8 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
         arrowButton.isHidden = false
         title.text = model.title
         imageView.image = UIImage.init(named: model.image ?? "")
+        upperContentView.backgroundColor = model.isCompleted == true ? UIColor.black60 : .clear
+        title.textColor = model.isCompleted == true ? UIColor.white60 : .white
     }
 
     public static func height(for viewModel: NewDailyBriefGetStartedModel, forWidth width: CGFloat) -> CGFloat {
