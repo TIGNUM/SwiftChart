@@ -131,7 +131,6 @@ private extension TeamToBeVisionViewController {
     func addGradients() {
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-
     }
 
     func hideNavigationBarView() {
