@@ -842,7 +842,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="XbP-3W-6KU" firstAttribute="leading" secondItem="MkE-ah-pNG" secondAttribute="leading" constant="50" id="1Re-fO-yFx"/>
                                     <constraint firstAttribute="bottom" secondItem="XbP-3W-6KU" secondAttribute="bottom" id="8I2-0B-4kR"/>

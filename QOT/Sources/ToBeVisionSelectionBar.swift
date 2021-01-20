@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol ToBeVisionSelectionBarProtocol: class {
     func didTapEditItem()
@@ -120,7 +121,8 @@ extension ToBeVisionSelectionBar {
             arrayViewsCount = 0
             arrayViews = []
         }
-
+        let title = isPersonal == true ? AppTextService.get(.my_qot_my_tbv_section_header_title) :  AppTextService.get(.my_x_section_team_tbv_title)
+        ThemeText.articleNavigationTitle.apply(title, to: labelTitle)
         let expectedButtonCount: CGFloat = 4
         spacing = -(bounds.width - expectedButtonCount * buttonSize - rightMargin * 2) / expectedButtonCount
 
