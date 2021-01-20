@@ -330,7 +330,9 @@ extension DailyBriefInteractor {
             guard let bucketName = bucket.bucketName else { return }
             switch bucketName {
             case .GUIDE_TRACK:
-                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket, hasToBeVision: bucket.toBeVision != nil, hasSeenFoundations: UserDefault.allFoundationsSeen.boolValue))
+                dailyBriefViewModels.append(contentsOf: strongSelf.createGuidedTrack(guidedTrackBucket: bucket,
+                                                                                     hasToBeVision: bucket.toBeVision != nil,
+                                                                                     hasSeenFoundations: UserDefault.allFoundationsSeen.boolValue))
             case .DAILY_CHECK_IN_1:
                 strongSelf.hasToBeVision = (bucket.toBeVision != nil)
                 strongSelf.didDailyCheckIn = (bucket.dailyCheckInAnswerIds?.isEmpty == false)

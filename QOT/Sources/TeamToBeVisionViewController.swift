@@ -262,7 +262,7 @@ private extension TeamToBeVisionViewController {
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func setSelectionBarButtonItems() {
         toBeVisionSelectionBar.allOff()
-        toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner,isPersonal: false, self)
+        toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner, isPersonal: false, self)
         toBeVisionSelectionBar.title = nil
         navigationBarView.configure(isOwner: interactor.team.thisUserIsOwner, isPersonal: false, self)
         NewThemeView.dark.apply(navigationBarView)
