@@ -157,7 +157,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
                     self?.worker.updateBookmarkStatus({ [weak self] (hasBookmark) in
                         self?.presenter.updateBookmark(hasBookmark)
                         if self?.needToShowDestinationAlert == true, hasBookmark {
-                            self?.showDestinationAlert()
+                            self?.showAddedAlert()
                         }
                     })
                     self?.presenter.trackPage()
@@ -166,7 +166,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
             } else {
                 self?.worker.toggleBookmark { [weak self] hasBookmark in
                     if self?.needToShowDestinationAlert == true, hasBookmark {
-                        self?.showDestinationAlert()
+                        self?.showAddedAlert()
                     }
                     self?.presenter.updateBookmark(hasBookmark)
                 }
@@ -174,8 +174,8 @@ extension ArticleInteractor: ArticleInteractorInterface {
         }
     }
 
-    func showDestinationAlert() {
+    func showAddedAlert() {
         needToShowDestinationAlert = false
-        presenter.showDestinationAlert()
+        presenter.showAddedAlert()
     }
 }
