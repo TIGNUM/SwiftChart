@@ -34,12 +34,12 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
         }
         skeletonManager.hide()
         upperContentView.layer.borderWidth = 0.5
-        upperContentView.layer.borderColor = UIColor.lightGray.cgColor
+        upperContentView.layer.borderColor =  model.isCompleted == true ? UIColor.darkGrey.cgColor : UIColor.lightGray.cgColor
         arrowButton.isHidden = false
         title.text = model.title
         imageView.image = UIImage.init(named: model.image ?? "")
-        upperContentView.backgroundColor = model.isCompleted == true ? UIColor.black60 : .clear
-        title.textColor = model.isCompleted == true ? UIColor.white60 : .white
+        contentView.layer.opacity = model.isCompleted == true ? 0.6 : 1
+//        title.textColor = model.isCompleted == true ? UIColor.white60 : .white
         completedIcon.isHidden = model.isCompleted == false
     }
 
