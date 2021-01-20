@@ -116,7 +116,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
         return [roundedBarButtonItem(title: AppTextService.get(.my_qot_my_tbv_tbv_tracker_result_section_footer_button_done),
                                      buttonWidth: .Done,
                                      action: #selector(doneAction),
-                                     backgroundColor: .carbon,
+                                     backgroundColor: .black,
                                      borderColor: .white)]
     }
 
