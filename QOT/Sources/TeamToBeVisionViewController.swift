@@ -63,9 +63,9 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
+        showNullState(with: "", message: "", header: "")
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-        showNullState(with: "", message: "", header: "")
         showSkeleton()
     }
 
@@ -134,11 +134,11 @@ private extension TeamToBeVisionViewController {
     }
 
     func hideNavigationBarView() {
-        navigationBarViewTopMarginConstraint.constant = -100
+        navigationBarViewTopMarginConstraint.constant = -140
     }
 
     func showNavigationBarView() {
-        navigationBarViewTopMarginConstraint.constant = 0
+        navigationBarViewTopMarginConstraint.constant = 40
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
@@ -262,7 +262,8 @@ private extension TeamToBeVisionViewController {
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func setSelectionBarButtonItems() {
         toBeVisionSelectionBar.allOff()
-        toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner, isPersonal: false, self)
+        toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner,isPersonal: false, self)
+        toBeVisionSelectionBar.title = nil
         navigationBarView.configure(isOwner: interactor.team.thisUserIsOwner, isPersonal: false, self)
         NewThemeView.dark.apply(navigationBarView)
     }

@@ -12,7 +12,7 @@ import AVKit
 import qot_dal
 
 protocol MediaPlayerViewControllerInterface: class {
-    func showDestinationAlert()
+    func showInfoAlert()
 }
 
 final class MediaPlayerViewController: AVPlayerViewController {
@@ -96,16 +96,12 @@ final class MediaPlayerViewController: AVPlayerViewController {
         trackUserEvent(.CLOSE, value: interactor?.contentItemId, valueType: contentType, action: .SWIPE)
         dismiss(animated: true, completion: nil)
     }
-
-    @objc func dismissAlert() {
-        QOTAlert.dismiss()
-    }
 }
 
 extension MediaPlayerViewController: MediaPlayerViewControllerInterface {
-    func showDestinationAlert() {
-        let closeButtonItem = createCloseButton(#selector(dismissAlert))
-        QOTAlert.show(title: nil, message: AppTextService.get(.video_player_alert_added_to_library_body), bottomItems: [closeButtonItem])
+
+    func showInfoAlert() {
+        showAddedAlert()
     }
 }
 

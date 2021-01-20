@@ -15,7 +15,7 @@ protocol ArticleViewControllerInterface: class {
     func reloadData()
     func hasBookmark(_ hasBookmark: Bool)
     func dataUpdated()
-    func showDestinationAlert()
+    func showAddedAlert()
     func refreshBottomNavigationItems()
     func trackPage()
     func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool)
@@ -29,7 +29,7 @@ protocol ArticlePresenterInterface {
     func updateBookmark(_ hasBookmark: Bool)
     func dataUpdated()
     func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool)
-    func showDestinationAlert()
+    func showAddedAlert()
     func showBookmarkSelectionViewController(with contentId: Int, _ completion: @escaping (Bool) -> Void)
     func refreshBottomNavigationItems()
     func trackPage()
@@ -63,7 +63,7 @@ protocol ArticleInteractorInterface: class, Interactor {
     var whatsHotShareable: WhatsHotShareable { get }
     func dataUpdated()
     func toggleBookmark()
-    func showDestinationAlert()
+    func showAddedAlert()
 }
 
 protocol ArticleRouterInterface: BaseRouterInterface {}

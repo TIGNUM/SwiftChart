@@ -126,7 +126,7 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
                 guard let strongSelf = self else { return }
                 NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 if strongSelf.isBookmarked, isChanged, strongSelf.worker.wasBookmarkedOnce == false {
-                    strongSelf.showDestinationAlert()
+                    strongSelf.showAddedAlert()
                     strongSelf.worker.wasBookmarkedOnce = true
                 }
                 strongSelf.delegate?.didUpdateData(interactor: strongSelf)
@@ -174,14 +174,14 @@ private extension StreamVideoInteractor {
                 strongSelf.delegate?.didUpdateData(interactor: strongSelf)
                 if strongSelf.worker.downloadStatus == .DOWNLOADED &&
                     !strongSelf.worker.didShowDownloadDestinationAlertOnce {
-                        strongSelf.showDestinationAlert()
+                        strongSelf.showAddedAlert()
                         strongSelf.worker.didShowDownloadDestinationAlertOnce = true
                 }
             }
         }
     }
 
-    func showDestinationAlert() {
-        presenter.showDestinationAlert()
+    func showAddedAlert() {
+        presenter.showAddedAlert()
     }
 }

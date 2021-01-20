@@ -136,22 +136,24 @@ private extension MyToBeVisionRateWorker {
                 return
             }
             self?.trackerPoll = poll
-            let questions = trackers.compactMap { (track) -> RatingQuestionViewModel.Question? in
-                guard let remoteID = track.remoteID else { return nil }
-                let question = track.sentence
+            var questionnaire: [RatingQuestionViewModel.Question] = []
+            trackers.sorted { $0.sortOrder ?? 0 > $1.sortOrder ?? 0 }.forEach { (track) in
+                guard let remoteID = track.remoteID else { return }
+                let sentence = track.sentence
                 let range = 10
-                return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                        title: question ?? "",
-                                                        htmlTitle: nil,
-                                                        subtitle: nil,
-                                                        dailyPrepTitle: nil,
-                                                        key: nil,
-                                                        answers: nil,
-                                                        range: range,
-                                                        selectedAnswerIndex: nil)
+                guard let question = RatingQuestionViewModel.Question(remoteID: remoteID,
+                                                                       title: sentence ?? "",
+                                                                       htmlTitle: nil,
+                                                                       subtitle: nil,
+                                                                       dailyPrepTitle: nil,
+                                                                       key: nil,
+                                                                       answers: nil,
+                                                                       range: range,
+                                                                       selectedAnswerIndex: nil) else { return }
+                questionnaire.append(question)
             }
-            self?.questions = questions
-            completion(questions)
+            self?.questions = questionnaire
+            completion(questionnaire)
         }
     }
 }

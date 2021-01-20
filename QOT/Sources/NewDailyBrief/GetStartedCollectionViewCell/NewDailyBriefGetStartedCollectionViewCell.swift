@@ -30,6 +30,7 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
     public func configure(with viewModel: NewDailyBriefGetStartedModel?) {
         guard let model = viewModel else {
             skeletonManager.addOtherView(upperContentView)
+            skeletonManager.addOtherView(completedIcon)
             skeletonManager.addTitle(title)
             arrowButton.isHidden = true
             return

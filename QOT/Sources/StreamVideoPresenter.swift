@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 
 protocol StreamVideoPresenterInterface {
-    func showDestinationAlert()
+    func showAddedAlert()
 }
 
 final class StreamVideoPresenter {
@@ -26,7 +26,7 @@ final class StreamVideoPresenter {
 
 // MARK: - StreamVideoPresenterInterface
 extension StreamVideoPresenter: StreamVideoPresenterInterface {
-    func showDestinationAlert() {
-        viewController?.showDestinationAlert()
+    func showAddedAlert() {
+        viewController?.showInfoAlert()
     }
 }

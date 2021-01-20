@@ -438,10 +438,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     func scrollToSection(at: Int) {
         tableView.scrollToRow(at: IndexPath(row: 0, section: at), at: .middle, animated: true)
     }
-
-    @objc func dismissAlert() {
-        QOTAlert.dismiss()
-    }
 }
 
 // MARK: - DailyBriefViewControllerDelegate

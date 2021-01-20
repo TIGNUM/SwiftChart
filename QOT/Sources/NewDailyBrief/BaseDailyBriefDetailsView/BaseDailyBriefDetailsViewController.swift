@@ -78,10 +78,6 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
         QOTAlert.show(title: nil, message: message, bottomItems: [closeButtonItem])
     }
 
-    @objc func dismissAlert() {
-        QOTAlert.dismiss()
-    }
-
     func presentMyDataScreen() {
         router.showMyDataScreen()
     }

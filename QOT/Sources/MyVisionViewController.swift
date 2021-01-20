@@ -162,6 +162,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     func setSelectionBarButtonItems() {
         toBeVisionSelectionBar.allOff()
         toBeVisionSelectionBar.configure(isOwner: true, isPersonal: true, self)
+        toBeVisionSelectionBar.title = nil
         navigationBarView.configure(isOwner: true, isPersonal: true, self)
         NewThemeView.dark.apply(navigationBarView)
     }
