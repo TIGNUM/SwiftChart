@@ -32,9 +32,9 @@ final class MySprintNotesInteractor {
     // MARK: - Init
 
     init(worker: MySprintNotesWorker,
-        presenter: MySprintNotesPresenterInterface,
-        router: MySprintNotesRouterInterface,
-        notificationCenter: NotificationCenter = NotificationCenter.default) {
+         presenter: MySprintNotesPresenterInterface,
+         router: MySprintNotesRouterInterface,
+         notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

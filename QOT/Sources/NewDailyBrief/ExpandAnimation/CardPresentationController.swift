@@ -29,13 +29,13 @@ final class CardPresentationController: UIPresentationController {
         blurView.alpha = 0.0
 
         presentingViewController.beginAppearanceTransition(false, animated: false)
-        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { [weak self] (ctx) in
+        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { [weak self] (_) in
             guard let strongSelf = self else { return }
             UIView.animate(withDuration: 0.5, animations: {
                 strongSelf.blurView.effect = UIBlurEffect(style: .dark)
                 strongSelf.blurView.alpha = 1
             })
-        }) { (ctx) in }
+        }, completion: { (_) in })
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
@@ -44,7 +44,7 @@ final class CardPresentationController: UIPresentationController {
 
     override func dismissalTransitionWillBegin() {
         presentingViewController.beginAppearanceTransition(true, animated: true)
-        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { [weak self] (ctx) in
+        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { [weak self] (_) in
             guard let strongSelf = self else { return }
             strongSelf.blurView.alpha = 0.0
         }, completion: nil)

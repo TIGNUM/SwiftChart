@@ -18,8 +18,8 @@ final class SigningInfoInteractor {
 
     // MARK: - Init
     init(worker: SigningInfoWorker,
-        presenter: SigningInfoPresenterInterface,
-        router: SigningInfoRouterInterface) {
+         presenter: SigningInfoPresenterInterface,
+         router: SigningInfoRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

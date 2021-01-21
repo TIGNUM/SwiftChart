@@ -449,7 +449,7 @@ extension LaunchHandler {
     }
 
     func showPreparationWith(identifier: String) {
-        UserService.main.getUserPreparationWith(qotId: identifier) { (preparation, initialized, _) in
+        UserService.main.getUserPreparationWith(qotId: identifier) { (preparation, _, _) in
             if let qdmUserPreparation = preparation {
                 let configurator = ResultsPrepareConfigurator.make(qdmUserPreparation, resultType: .prepareDailyBrief)
                 let controller = ResultsPrepareViewController(configure: configurator)

@@ -169,12 +169,12 @@ class AudioPlayer {
     func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.isEnabled = true
-        commandCenter.playCommand.addTarget {event in
+        commandCenter.playCommand.addTarget {_ in
             self.player?.play()
             return .success
         }
         commandCenter.pauseCommand.isEnabled = true
-        commandCenter.pauseCommand.addTarget {event in
+        commandCenter.pauseCommand.addTarget {_ in
             self.player?.pause()
             self.pause()
             return .success

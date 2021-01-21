@@ -401,14 +401,16 @@ final class ArticleWorker {
         guard let emailAddress = contactSupportItems.first?.content else {
             return contactSupport
         }
-        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(AppTextService.get(.my_qot_my_profile_support_section_contact_support_email)))
+        let supportEmail = AppTextService.get(.my_qot_my_profile_support_section_contact_support_email)
+        let attrString = ThemeText.articleContactSupportLink(emailAddress).attributedString(supportEmail)
+        contactSupport.append(attrString)
 
         return contactSupport
     }
 
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
         guard let content = content else { return }
-        ContentService.main.markContentCollectionAs(read: read, content) { (error) in
+        ContentService.main.markContentCollectionAs(read: read, content) { (_) in
             completion()
         }
     }
@@ -452,13 +454,13 @@ final class ArticleWorker {
     func toggleBookmark(_ completion: @escaping (Bool) -> Void) {
         if let bookmark = bookmarks?.first {
             // remove
-            UserStorageService.main.deleteUserStorage(bookmark) { [weak self] (error) in
+            UserStorageService.main.deleteUserStorage(bookmark) { [weak self] (_) in
                 self?.bookmarks = nil
                 completion(self?.bookmarks?.first != nil)
             }
         } else if let content = self.content {
             // add
-            UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, error) in
+            UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, _) in
                 self?.bookmarks = bookmark != nil ? [bookmark!] : nil
                 completion(self?.bookmarks?.first != nil)
             }

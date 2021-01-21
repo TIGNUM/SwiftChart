@@ -53,7 +53,7 @@ final class ExtensionsDataManager {
 private extension ExtensionsDataManager {
 
     func updateToBeVision() {
-        UserService.main.getMyToBeVision {(vision, status, error) in
+        UserService.main.getMyToBeVision {(vision, _, _) in
             let sharedVision = ExtensionModel.ToBeVision(headline: vision?.headline,
                                                          text: vision?.text,
                                                          imageURL: vision?.profileImageResource?.url())
@@ -63,7 +63,7 @@ private extension ExtensionsDataManager {
 
     func updateTeams() {
         getShareExtensionStrings()
-        TeamService.main.getTeams {(teams, initiated, error) in
+        TeamService.main.getTeams {(teams, _, _) in
             var teamList = [ExtensionModel.TeamLibrary]()
             teams?.forEach {(team) in
                 teamList.append(ExtensionModel.TeamLibrary(teamName: team.name,
@@ -86,7 +86,7 @@ private extension ExtensionsDataManager {
     }
 
     func updateUpcomingEvents() {
-        UserService.main.getUserPreparations { (preparations, initiated, error) in
+        UserService.main.getUserPreparations { (preparations, _, error) in
             guard let preparations = preparations, error == nil else {
                 return
             }

@@ -1276,7 +1276,4 @@ public extension AppTextKey {
     static let daily_brief_section_my_best_title = AppTextKey("daily_brief.section_my_best.title")
     static let daily_brief_section_mindset_shifter_title = AppTextKey("daily_brief.section_mindset_shifter.title")
     static let daily_brief_section_from_my_tignum_coach_title = AppTextKey("daily_brief.section_from_my_tignum_coach.title")
-
-
-
 }

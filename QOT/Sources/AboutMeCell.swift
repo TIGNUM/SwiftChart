@@ -63,7 +63,7 @@ final class AboutMeCell: BaseDailyBriefCell {
         }
         let moreInfoLabelSize = aboutMeMoreInfoLabel.sizeThatFits(CGSize(width: width - horizontalConstraintsSum,
                                                                     height: .greatestFiniteMagnitude))
-        height = height + moreInfoLabelSize.height + verticalConstraintsSum
+        height += moreInfoLabelSize.height + verticalConstraintsSum
         return height
     }
 }

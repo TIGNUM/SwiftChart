@@ -74,14 +74,25 @@ enum ContentItemValue {
             }
         case .video:
             if let title = text, let video = mediaURL {
-                self = .video(remoteId: item.remoteID ?? 0, title: title, description: description, placeholderURL: imageURL, videoURL: video, duration: duration)
+                self = .video(remoteId: item.remoteID ?? 0,
+                              title: title,
+                              description: description,
+                              placeholderURL: imageURL,
+                              videoURL: video,
+                              duration: duration)
             } else {
                 self = .invalid
             }
         case .audio:
             if let audio = mediaURL {
                 let title = text ?? ""
-                self = .audio(remoteId: item.remoteID ?? 0, title: title, description: description, placeholderURL: audio, audioURL: audio, duration: duration, waveformData: [])
+                self = .audio(remoteId: item.remoteID ?? 0,
+                              title: title,
+                              description: description,
+                              placeholderURL: audio,
+                              audioURL: audio,
+                              duration: duration,
+                              waveformData: [])
             } else {
                 self = .invalid
             }

@@ -34,7 +34,7 @@ final class MyQotSensorsViewController: BaseViewController, ScreenZLevel3 {
         interactor?.viewDidLoad()
         _ = NotificationCenter.default.addObserver(forName: .requestSynchronization,
                                                    object: nil,
-                                                   queue: .main) { [weak self] notification in
+                                                   queue: .main) { [weak self] _ in
             self?.didUpdateData()
         }
     }

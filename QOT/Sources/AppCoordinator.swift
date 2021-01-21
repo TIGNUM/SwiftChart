@@ -290,7 +290,7 @@ extension AppCoordinator {
             return
         }
         log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
-        NotificationService.main.reportReceivedPushNotification(identifier: nil, internalNotificationIdentifier: identifier, link: url.absoluteString) { (error) in
+        NotificationService.main.reportReceivedPushNotification(identifier: nil, internalNotificationIdentifier: identifier, link: url.absoluteString) { (_) in
             completionHandler(.noData)
         }
         // TODO: handle silent push notification... ie. Sync Content or import Calendar Events .. and so on
@@ -303,7 +303,7 @@ extension AppCoordinator {
             return
         }
         log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
-        NotificationService.main.reportReceivedPushNotification(identifier: nil, internalNotificationIdentifier: identifier, link: url.absoluteString) { (error) in
+        NotificationService.main.reportReceivedPushNotification(identifier: nil, internalNotificationIdentifier: identifier, link: url.absoluteString) { (_) in
             completionHandler()
         }
         // TODO: handle silent push notification... ie. Sync Content or import Calendar Events .. and so on
@@ -319,7 +319,7 @@ extension AppCoordinator {
 // MARK: - PermissionDelegate
 extension AppCoordinator: PermissionManagerDelegate {
     func permissionManager(_ manager: PermissionsManager,
-                            didUpdatePermissions permissions: [PermissionsManager.Permission]) {
+                           didUpdatePermissions permissions: [PermissionsManager.Permission]) {
         var devicePermissions = [QDMDevicePermission]()
         for permission in manager.allPermissions {
             var devicePermission = QDMDevicePermission()
@@ -388,7 +388,7 @@ extension AppCoordinator {
         guard CalendarService.main.isCalendarInitialized() else {
             return
         }
-        UserService.main.getUserPreparationsWithMissingEvent(from: Date.beginingOfDay(), { (preps, initalized, error) in
+        UserService.main.getUserPreparationsWithMissingEvent(from: Date.beginingOfDay(), { (preps, _, _) in
             guard let preparations = preps, preparations.count > 0 else { return }
             log("preps with missing events : \(preparations)", level: .debug)
             let configurator = PreparationWithMissingEventConfigurator.make(preparations)

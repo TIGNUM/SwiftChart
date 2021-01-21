@@ -68,23 +68,23 @@ final class ImagePickerController {
         self.viewController = viewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let photoAction = UIAlertAction(title: AppTextService.get(.my_qot_my_tbv_alert_edit_photo_button_choose_picture),
-                                        style: .default) { [weak self] (alertAction: UIAlertAction) in
+                                        style: .default) { [weak self] (_: UIAlertAction) in
                                             self?.handleOption(.photo)
                                             self?.resetAlertViewAppearance()
         }
         let cameraAction = UIAlertAction(title: AppTextService.get(.my_qot_my_tbv_alert_edit_photo_button_take_a_picture),
-                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
+                                         style: .default) { [weak self] (_: UIAlertAction) in
                                             self?.handleOption(.camera)
                                             self?.resetAlertViewAppearance()
         }
         let deleteAction = UIAlertAction(title: AppTextService.get(.my_qot_my_tbv_alert_edit_photo_button_delete_photo),
-                                         style: .destructive) { [weak self] (alertAction: UIAlertAction) in
+                                         style: .destructive) { [weak self] (_: UIAlertAction) in
                                             self?.adapter?.deleteImageEvent()
                                             self?.delegate?.deleteImage()
                                             self?.resetAlertViewAppearance()
         }
         let cancelAction = UIAlertAction(title: AppTextService.get(.generic_view_button_cancel),
-                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
+                                         style: .default) { [weak self] (_: UIAlertAction) in
                                             self?.adapter?.cancelSelectionEvent()
                                             self?.delegate?.cancelSelection()
                                             self?.resetAlertViewAppearance()
@@ -135,9 +135,9 @@ final class ImagePickerController {
     private func handleError(_ error: ImagePicker.ImagePickerError, forOption option: Option) {
         switch error {
         case .sourceNotAvailable:
-            viewController?.showAlert(type: .cameraNotAvailable) {
+            viewController?.showAlert(type: .cameraNotAvailable, handlerDestructive: {
                 self.finish()
-            }
+            })
         case .notAuthorized:
             handleAuthorizationForOption(option)
         }

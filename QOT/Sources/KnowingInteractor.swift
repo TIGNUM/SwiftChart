@@ -24,8 +24,8 @@ final class KnowingInteractor {
     // MARK: - Init
 
     init(worker: KnowingWorker,
-        presenter: KnowingPresenterInterface,
-        router: KnowingRouterInterface) {
+         presenter: KnowingPresenterInterface,
+         router: KnowingRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

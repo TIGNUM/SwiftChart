@@ -19,8 +19,8 @@ final class ArticleInteractor {
 
     // MARK: - Init
     init(worker: ArticleWorker,
-        presenter: ArticlePresenterInterface,
-        router: ArticleRouterInterface) {
+         presenter: ArticlePresenterInterface,
+         router: ArticleRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
@@ -153,7 +153,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
         let contentId = worker.remoteID
         TeamService.main.getTeams { [weak self] (teams, _, _) in
             if let teams = teams, teams.isEmpty == false {
-                self?.presenter.showBookmarkSelectionViewController(with: contentId) { [weak self] (isChanged) in
+                self?.presenter.showBookmarkSelectionViewController(with: contentId) { [weak self] (_) in
                     self?.worker.updateBookmarkStatus({ [weak self] (hasBookmark) in
                         self?.presenter.updateBookmark(hasBookmark)
                         if self?.needToShowDestinationAlert == true, hasBookmark {

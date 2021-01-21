@@ -205,7 +205,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                     teamVision.profileImageResource = nil
                 }
                 self?.worker.updateTeamToBeVision(teamVision,
-                                                  team: tmpTeam) { [weak self] (responseTeamVision) in
+                                                  team: tmpTeam) { [weak self] (_) in
                     self?.didUpdateTBVRelatedData()
                 }
             }

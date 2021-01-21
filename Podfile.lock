@@ -42,7 +42,7 @@ PODS:
   - Realm/Headers (10.5.1)
   - RealmSwift (10.5.1):
     - Realm (= 10.5.1)
-  - RSKImageCropper (3.0.1)
+  - RSKImageCropper (3.0.2)
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
   - SwiftyBeaver (1.9.3)
@@ -105,7 +105,7 @@ SPEC CHECKSUMS:
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   Realm: 77fcb4e0b9f2963ea06f584749a0d7dc9cab95e1
   RealmSwift: 6abe6aa6cd8b70cc1a87afcb9232cabea74ff1ac
-  RSKImageCropper: 617b4976e4a0ca18f3ce84f6cfa5945e574b51a3
+  RSKImageCropper: 1ac71e9a82e3f41eea3eedfff8eacb0d3821c9ec
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: 2e8acd6fc90c6d0a27055867a290794926d57c02

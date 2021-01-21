@@ -69,7 +69,7 @@ extension String {
         var currentWeekNumber = Calendar.sharedUTC.component(.weekOfYear, from: Date())
 
         for _ in 0 ..< 4 {
-            currentWeekNumber = currentWeekNumber - 1
+            currentWeekNumber -= 1
 
             if currentWeekNumber <= 0 {
                 currentWeekNumber = 52

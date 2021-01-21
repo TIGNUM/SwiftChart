@@ -51,7 +51,8 @@ final class CoachPageViewController: UIPageViewController {
 //    }()
 
     lazy var knowingNavigationController: KnowingNavigationController? = {
-        let navController = R.storyboard.main().instantiateViewController(withIdentifier: KnowingNavigationController.storyboardID) as? KnowingNavigationController
+        let navController = R.storyboard.main().instantiateViewController(withIdentifier: KnowingNavigationController.storyboardID)
+                            as? KnowingNavigationController
         guard let knowingViewController = navController?.viewControllers.first  as? KnowingViewController else {
             return nil
         }
@@ -60,7 +61,8 @@ final class CoachPageViewController: UIPageViewController {
     }()
 
     lazy var dailyBriefNavigationController: DailyBriefNavigationController? = {
-        let navController = R.storyboard.main().instantiateViewController(withIdentifier: DailyBriefNavigationController.storyboardID) as? DailyBriefNavigationController
+        let navController = R.storyboard.main().instantiateViewController(withIdentifier: DailyBriefNavigationController.storyboardID)
+                            as? DailyBriefNavigationController
         guard let dailyBriefViewController = navController?.viewControllers.first  as? DailyBriefViewController else {
             return nil
         }

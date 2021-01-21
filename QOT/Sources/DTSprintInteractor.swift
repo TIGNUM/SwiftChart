@@ -32,8 +32,8 @@ final class DTSprintInteractor: DTInteractor {
     }
 
     override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer],
-                                    questionKey: String?,
-                                    content: QDMContentCollection?) -> String? {
+                                 questionKey: String?,
+                                 content: QDMContentCollection?) -> String? {
         let firstSelectedAnswer = selectedAnswers.first
         if firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
             selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? 0
@@ -121,7 +121,9 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
     }
 
     func stopActiveSprintAndStartNewSprint() {
-        sprintWorker?.stopActiveSprintAndStartNewSprint(activeSprint: activeSprint, newSprintContentId: newSprintContentId, completion: { [weak self] (sprint) in
+        sprintWorker?.stopActiveSprintAndStartNewSprint(activeSprint: activeSprint,
+                                                        newSprintContentId: newSprintContentId,
+                                                        completion: { [weak self] (sprint) in
             self?.activeSprint = sprint
         })
         if let selection = lastQuestionSelection {

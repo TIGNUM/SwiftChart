@@ -235,7 +235,7 @@ final class UserNotificationsManager {
                         notificationCenter.removePendingNotificationRequests(withIdentifiers: pendingNotificationIdsToRemove)
                     }
                 }
-                notificationCenter.getPendingNotificationRequests(completionHandler: { (requests) in
+                notificationCenter.getPendingNotificationRequests(completionHandler: { (_) in
                     // Schedule new Notifications
                     self.queue.async {
                         for request in finalRequests {
@@ -346,7 +346,7 @@ final class UserNotificationsManager {
 
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        MyDataService.main.getDailyCheckInResults(from: beginningOfToday, to: Date.endOfDay()) { (results, initiated, error) in
+        MyDataService.main.getDailyCheckInResults(from: beginningOfToday, to: Date.endOfDay()) { (results, _, _) in
             removeAll = (results?.filter({$0.date.beginingOfDate() == beginningOfToday}).count ?? 0) > 0
             dispatchGroup.leave()
         }

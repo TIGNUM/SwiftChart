@@ -100,8 +100,8 @@ struct Search {
     }
 
     static func articleResultFrom(_ contentCollections: [QDMContentCollection],
-                           filter: Filter,
-                           displayType: DisplayType) -> [Search.Result] {
+                                  filter: Filter,
+                                  displayType: DisplayType) -> [Search.Result] {
         return contentCollections.compactMap({
             Search.Result(filter: filter,
                           title: $0.title,

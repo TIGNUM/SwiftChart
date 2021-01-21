@@ -19,8 +19,8 @@ final class OnoardingLoginInteractor {
     // MARK: - Init
 
     init(worker: OnoardingLoginWorker,
-        presenter: OnoardingLoginPresenterInterface,
-        router: OnoardingLoginRouterInterface) {
+         presenter: OnoardingLoginPresenterInterface,
+         router: OnoardingLoginRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

@@ -221,7 +221,7 @@ extension AudioFullScreenViewController {
         guard let itemId = contentItem?.remoteID, itemId != 0 else { return }
         TeamService.main.getTeams { [weak self] (teams, _, _) in
             if let teams = teams, teams.isEmpty == false {
-                self?.showBookmarkSelectionViewController(with: itemId, { (isChanged) in
+                self?.showBookmarkSelectionViewController(with: itemId, { (_) in
                     self?.updateBookmarkButtonState()
                 })
             } else {
@@ -254,7 +254,7 @@ extension AudioFullScreenViewController {
             }
         } else if let item = contentItem {
             dispatchGroup.enter()
-            UserStorageService.main.addBookmarkContentItem(item) {(storage, error) in
+            UserStorageService.main.addBookmarkContentItem(item) {(_, error) in
                 if let error = error {
                     log("failed to add bookmark: \(error)", level: .info)
                 }
@@ -372,7 +372,7 @@ private extension AudioFullScreenViewController {
                  .WAITING: UserStorageService.main.resumeDownload(download) { [weak self] (status) in
                     self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
                 }
-            case .DOWNLOADING: UserStorageService.main.deleteUserStorage(download) { [weak self] (error) in
+            case .DOWNLOADING: UserStorageService.main.deleteUserStorage(download) { [weak self] (_) in
                 self?.updateDownloadButtonState(.NONE)
                 self?.download = nil
                 }
@@ -380,7 +380,7 @@ private extension AudioFullScreenViewController {
                 self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
             }
         } else {
-            UserStorageService.main.addToDownload(contentItem: item) { [weak self] (storage, error) in
+            UserStorageService.main.addToDownload(contentItem: item) { [weak self] (storage, _) in
                 self?.download = storage
                 self?.updateDownloadButtonState(storage?.downloadStaus ?? .NONE)
                 guard let download = storage else {

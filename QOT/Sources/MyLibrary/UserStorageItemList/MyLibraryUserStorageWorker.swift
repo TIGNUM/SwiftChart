@@ -221,14 +221,14 @@ extension MyLibraryUserStorageWorker {
         if item.type != .ALL {
             if let team = team {
                 let teamService = TeamService.main
-                service.getTeamStorages(for: storageType, in: team) { [weak self] (storages, initiated, error) in
+                service.getTeamStorages(for: storageType, in: team) { [weak self] (storages, initiated, _) in
                     self?.handleStorages(storages)
                     teamService.teamLibraryItemFeeds(for: team) { (feeds, _, _) in
                         completion(initiated, self?.storages ?? [], feeds)
                     }
                 }
             } else {
-                service.getUserStorages(for: storageType) { [weak self] (storages, initiated, error) in
+                service.getUserStorages(for: storageType) { [weak self] (storages, initiated, _) in
                     self?.handleStorages(storages)
                     completion(initiated, self?.storages ?? [], nil)
                 }
@@ -236,14 +236,14 @@ extension MyLibraryUserStorageWorker {
         } else {
             if let team = team {
                 let teamService = TeamService.main
-                service.getTeamStorages(in: team) { [weak self] (teamStorages, initiated, error) in
+                service.getTeamStorages(in: team) { [weak self] (teamStorages, initiated, _) in
                     self?.handleStorages(teamStorages)
                     teamService.teamLibraryItemFeeds(for: team) { (feeds, _, _) in
                         completion(initiated, self?.storages ?? [], feeds)
                     }
                 }
             } else {
-                service.getUserStorages { [weak self] (storages, initiated, error) in
+                service.getUserStorages { [weak self] (storages, initiated, _) in
                     self?.handleStorages(storages)
                     completion(initiated, self?.storages ?? [], nil)
                 }
@@ -260,7 +260,7 @@ extension MyLibraryUserStorageWorker {
             completion(.NONE)
             return
         }
-        service.deleteUserStorage(item) { (error) in
+        service.deleteUserStorage(item) { (_) in
             completion(.NONE)
         }
     }

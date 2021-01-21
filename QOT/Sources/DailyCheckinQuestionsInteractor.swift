@@ -20,8 +20,8 @@ final class DailyCheckinQuestionsInteractor {
     // MARK: - Init
 
     init(worker: DailyCheckinQuestionsWorker,
-        presenter: DailyCheckinQuestionsPresenterInterface,
-        router: DailyCheckinQuestionsRouterInterface) {
+         presenter: DailyCheckinQuestionsPresenterInterface,
+         router: DailyCheckinQuestionsRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

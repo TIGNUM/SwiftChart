@@ -252,7 +252,8 @@ private extension TeamToBeVisionViewController {
         tempTeamImageURL = teamVision?.profileImageResource?.url()
         userImageView.contentMode = .scaleAspectFill
         userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
-        let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}", with: interactor?.lastUpdatedTeamVision() ?? "")
+        let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}",
+                                                                                                           with: interactor?.lastUpdatedTeamVision() ?? "")
         ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }
 }
@@ -261,7 +262,7 @@ private extension TeamToBeVisionViewController {
 extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     func setSelectionBarButtonItems() {
         toBeVisionSelectionBar.allOff()
-        toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner,isPersonal: false, self)
+        toBeVisionSelectionBar.configure(isOwner: interactor.team.thisUserIsOwner, isPersonal: false, self)
         toBeVisionSelectionBar.title = nil
         navigationBarView.configure(isOwner: interactor.team.thisUserIsOwner, isPersonal: false, self)
         NewThemeView.dark.apply(navigationBarView)

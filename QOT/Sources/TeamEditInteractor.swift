@@ -172,7 +172,7 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
     func sendInvite(_ email: String?) {
         if !showAlertIfNeeded(email: email) {
             let row = members.count
-            sendInvite(email, team: team) { [weak self] (member, error) in
+            sendInvite(email, team: team) { [weak self] (member, _) in
                 if let member = member {
                     let emails = self?.members.compactMap { $0.email } ?? []
                     if emails.contains(obj: email) == false {

@@ -131,7 +131,8 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
         futureLoadScoreButton.setTitle(String(viewModel?.futureLoadValue ?? 0) + asteriskLoad, for: .normal)
         // Tracked days
         if let  numberOfDays = viewModel?.maxTrackingDays {
-        let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days", with: String(numberOfDays))
+        let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days",
+                                                                                                                            with: String(numberOfDays))
         ThemeText.trackedDays.apply(trackedDays, to: trackedDaysLabel)
         }
 

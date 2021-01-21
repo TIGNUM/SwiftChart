@@ -212,7 +212,9 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
         if myVision == nil {
-            interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "", writeMessage: interactor.nullStateCTA ?? "")
+            interactor.showNullState(with: interactor.nullStateTitle ?? "",
+                                     message: interactor.nullStateSubtitle ?? "",
+                                     writeMessage: interactor.nullStateCTA ?? "")
             return
         }
         if scrollView.alpha == 0 {

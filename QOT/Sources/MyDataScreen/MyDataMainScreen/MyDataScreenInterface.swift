@@ -27,7 +27,8 @@ protocol MyDataScreenPresenterInterface {
     func dataSourceFinished(firstLoad: Bool)
 }
 
-protocol MyDataScreenInteractorInterface: Interactor, JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+protocol MyDataScreenInteractorInterface: Interactor, JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate,
+                                          UICollectionViewDelegate, UICollectionViewDataSource {
     func myDataSelectionSections() -> MyDataSelectionModel
     func initialDataSelectionSections() -> MyDataSelectionModel
     func setOldestAvailableDate(date: Date)

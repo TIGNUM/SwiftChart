@@ -109,7 +109,10 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
         ratingsView.alpha = 0
         barChartView.alpha = 0
         setValues(data)
-        ratingsView.frame = CGRect(x: ratingsView.frame.origin.x, y: ratingsView.frame.origin.y + 25, width: ratingsView.frame.width, height: ratingsView.frame.height)
+        ratingsView.frame = CGRect(x: ratingsView.frame.origin.x,
+                                   y: ratingsView.frame.origin.y + 25,
+                                   width: ratingsView.frame.width,
+                                   height: ratingsView.frame.height)
         UIView.animate(withDuration: 0.4, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {
             self.ratingsView.frame = CGRect(x: self.ratingsView.frame.origin.x,
                                             y: self.ratingsView.frame.origin.y - 25,

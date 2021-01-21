@@ -48,14 +48,14 @@ final class MyVisionEditDetailsWorker {
     }
 
     func getMyToBeVision() {
-        UserService.main.getMyToBeVision({ [weak self] (vision, initilized, error) in
+        UserService.main.getMyToBeVision({ [weak self] (vision, _, _) in
             self?.myToBeVision = vision
         })
     }
 
     func getTeamToBeVision(for team: QDMTeam?) {
         guard let team = team else { return }
-        TeamService.main.getTeamToBevision(for: team, {[weak self] (teamVision, initialized, error) in
+        TeamService.main.getTeamToBevision(for: team, {[weak self] (teamVision, _, _) in
             self?.teamToBeVision = teamVision
         })
     }
@@ -68,7 +68,7 @@ final class MyVisionEditDetailsWorker {
     }
 
     func updateTeamToBeVision(_ newVision: QDMTeamToBeVision, completion: @escaping ( Error?) -> Void) {
-        TeamService.main.updateTeamToBevision(vision: newVision) { [weak self] vision, error  in
+        TeamService.main.updateTeamToBevision(vision: newVision) { [weak self] _, error  in
             self?.getTeamToBeVision(for: self?.team)
             completion(error)
         }

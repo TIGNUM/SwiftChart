@@ -80,7 +80,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         viewModel.sendCodeEnabled = false
         presenter.present()
         presenter.presentActivity(state: .inProgress)
-        worker.verifyEmail(email) { [weak self] (result, error) in
+        worker.verifyEmail(email) { [weak self] (result, _) in
             guard let strongSelf = self else { return }
 
             strongSelf.viewModel.emailResponseCode = result.code
@@ -116,7 +116,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         viewModel.sendCodeEnabled = false
         presenter.present()
         presenter.presentActivity(state: .inProgress)
-        worker.requestCode(for: email) { [weak self] (result, error) in
+        worker.requestCode(for: email) { [weak self] (result, _) in
             if case .codeSent = result.code {
                 // Success
                 self?.presenter.presentCodeEntry()
@@ -136,7 +136,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         }
 
         presenter.presentActivity(state: .inProgress)
-        worker.validate(code: code, for: email, forLogin: true) { [weak self] (result, error) in
+        worker.validate(code: code, for: email, forLogin: true) { [weak self] (result, _) in
             self?.presenter.presentActivity(state: nil)
             switch result.code {
             case .codeValid,

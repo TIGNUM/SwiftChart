@@ -10,8 +10,8 @@ import UIKit
 
 extension NSLayoutConstraint {
     static func getConstantConstraint(item: Any,
-                                    constant: CGFloat,
-                                    attribute attr1: NSLayoutConstraint.Attribute) -> NSLayoutConstraint {
+                                      constant: CGFloat,
+                                      attribute attr1: NSLayoutConstraint.Attribute) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(item: item,
                                             attribute: attr1,
                                             relatedBy: .equal,

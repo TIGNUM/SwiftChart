@@ -37,7 +37,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         }
         _ = NotificationCenter.default.addObserver(forName: .didSelectMyX,
                                                    object: nil,
-                                                   queue: .main) { [weak self] notification in
+                                                   queue: .main) { [weak self] _ in
             self?.setSelected(self?.teamId == Team.Header.myX.inviteId)
         }
     }

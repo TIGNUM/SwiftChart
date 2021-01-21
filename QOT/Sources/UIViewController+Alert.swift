@@ -214,8 +214,20 @@ extension UIViewController {
 
     func createCloseButton(_ action: Selector) -> UIBarButtonItem {
          let button = RoundedButton.init(title: nil, target: self, action: action)
-         let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-         let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+         let heightConstraint = NSLayoutConstraint.init(item: button,
+                                                        attribute: .height,
+                                                        relatedBy: .equal,
+                                                        toItem: nil,
+                                                        attribute: .notAnAttribute,
+                                                        multiplier: 1,
+                                                        constant: 40)
+         let widthConstraint = NSLayoutConstraint.init(item: button,
+                                                       attribute: .width,
+                                                       relatedBy: .equal,
+                                                       toItem: nil,
+                                                       attribute: .notAnAttribute,
+                                                       multiplier: 1,
+                                                       constant: 40)
          button.addConstraints([heightConstraint, widthConstraint])
          button.setImage(R.image.ic_close(), for: .normal)
          ThemeTint.white.apply(button.imageView ?? UIImageView.init())
@@ -225,8 +237,20 @@ extension UIViewController {
 
     func createBlackCloseButton(_ action: Selector) -> UIBarButtonItem {
             let button = RoundedButton.init(title: nil, target: self, action: action)
-            let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-            let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+            let heightConstraint = NSLayoutConstraint.init(item: button,
+                                                           attribute: .height,
+                                                           relatedBy: .equal,
+                                                           toItem: nil,
+                                                           attribute: .notAnAttribute,
+                                                           multiplier: 1,
+                                                           constant: 40)
+            let widthConstraint = NSLayoutConstraint.init(item: button,
+                                                          attribute: .width,
+                                                          relatedBy: .equal,
+                                                          toItem: nil,
+                                                          attribute: .notAnAttribute,
+                                                          multiplier: 1,
+                                                          constant: 40)
             button.addConstraints([heightConstraint, widthConstraint])
             button.setImage(R.image.ic_close(), for: .normal)
             button.backgroundColor = .black

@@ -123,7 +123,7 @@ extension QOTBaseHeaderView {
         if subtitleTextView.text.isEmpty {
             subtitleLabelSize = .zero
         }
-        height = height + titleLabelSize.height + subtitleLabelSize.height + verticalConstraintsSum
+        height += titleLabelSize.height + subtitleLabelSize.height + verticalConstraintsSum
         return height
     }
 }

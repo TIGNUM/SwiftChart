@@ -17,7 +17,9 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
     let skeletonManager = SkeletonManager()
     @IBOutlet weak var completedIcon: UIImageView!
 
-    private static let sizingCell = UINib(nibName: "NewDailyBriefGetStartedCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first! as? NewDailyBriefGetStartedCollectionViewCell
+    private static let sizingCell = UINib(nibName: "NewDailyBriefGetStartedCollectionViewCell", bundle: nil).instantiate(withOwner: nil,
+                                                                                                                         options: nil).first!
+                                    as? NewDailyBriefGetStartedCollectionViewCell
 
     // MARK: - Actions
     @IBAction func didTapArrowButton(_ sender: Any) {

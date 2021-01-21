@@ -159,7 +159,7 @@ private extension MyQotProfileWorker {
     }
 
     func userHasTeam() {
-        TeamService.main.getTeams {(teams, initiated, error) in
+        TeamService.main.getTeams {(teams, _, _) in
             if let teams = teams {
                 self.hasTeam = !teams.isEmpty
             }

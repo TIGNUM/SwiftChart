@@ -70,10 +70,10 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
         }
 
         for rawValue in selectedValues {
-            if let parameterValue = MyDataParameter(rawValue: rawValue) {
-                sectionModel.myDataSelectionItems.append(MyDataSelectionModel.SelectionItem(myDataExplanationSection: parameterValue,
-                                                                                            title: self.myDataSelectionSectionTitles(for: parameterValue),
-                                                                                            subtitle: self.myDataExplanationSectionSubtitles(for: parameterValue),
+            if let paramValue = MyDataParameter(rawValue: rawValue) {
+                sectionModel.myDataSelectionItems.append(MyDataSelectionModel.SelectionItem(myDataExplanationSection: paramValue,
+                                                                                            title: self.myDataSelectionSectionTitles(for: paramValue),
+                                                                                            subtitle: self.myDataExplanationSectionSubtitles(for: paramValue),
                                                                                             selected: true))
             }
         }
@@ -125,7 +125,7 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
                          _ completion: @escaping([Date: MyDataDailyCheckInModel]?, Error?) -> Void) {
             let beginDate = date.dayAfter(months: -withMonthsBefore).firstDayOfMonth()
             let endDate = date.dayAfter(months: monthsAfter).lastDayOfMonth()
-        MyDataService.main.getDailyCheckInResults(from: beginDate, to: endDate) { [weak self] (results, initialized, error) in
+        MyDataService.main.getDailyCheckInResults(from: beginDate, to: endDate) { [weak self] (results, _, error) in
             guard let results = results, let s = self else {
                 completion(nil, error)
                 return

@@ -184,7 +184,7 @@ private extension SearchViewController {
         if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
             cancelButton.titleLabel?.font = UIFont.sfProtextSemibold(ofSize: 14)
-            observers = [cancelButton.observe(\.isEnabled) { (cancelButton, value) in
+            observers = [cancelButton.observe(\.isEnabled) { (cancelButton, _) in
                 if !cancelButton.isEnabled {
                     cancelButton.isEnabled = true
                 }
@@ -351,7 +351,7 @@ private extension SearchViewController {
         let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem)
         if let playerViewController = playerViewController, let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
-            avPlayerObserver?.onStatusUpdate { (player) in
+            avPlayerObserver?.onStatusUpdate { (_) in
                 if playerItem.error != nil {
                     playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
                 }

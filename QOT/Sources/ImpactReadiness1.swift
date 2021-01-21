@@ -23,12 +23,12 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBOutlet private weak var buttonLeft: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var buttonRight: UIButton!
-    typealias actionClosure = (() -> Void)
+    typealias ActionClosure = (() -> Void)
     weak var delegate: DailyBriefViewControllerDelegate?
     private weak var baseHeaderView: QOTBaseHeaderView?
     private var score: Int = 0
-    private var actionLeft: actionClosure?
-    private var actionRight: actionClosure?
+    private var actionLeft: ActionClosure?
+    private var actionRight: ActionClosure?
     private var showDailyCheckInScreen = false
     private var feedbackRelatedLink: QDMAppLink?
 
@@ -63,7 +63,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         actionRight?()
     }
 
-    func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
+    func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: ActionClosure?, tapRight: ActionClosure?) {
         guard let model = viewModel else { return }
         baseHeaderView?.titleLabel.isHidden = false
         skeletonManager.hide()

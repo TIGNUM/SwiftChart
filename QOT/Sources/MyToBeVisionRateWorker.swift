@@ -67,7 +67,7 @@ final class MyToBeVisionRateWorker: WorkerTeam {
 private extension MyToBeVisionRateWorker {
     func savePersonalRating(_ completion: @escaping () -> Void) {
         guard let tracks = dataTracks else { return }
-        UserService.main.updateToBeVisionTracks(tracks) { (error) in
+        UserService.main.updateToBeVisionTracks(tracks) { (_) in
             completion()
         }
     }

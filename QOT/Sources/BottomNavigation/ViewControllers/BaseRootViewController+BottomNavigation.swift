@@ -144,7 +144,7 @@ extension BaseRootViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.audioPlayerContainer.alpha = 1
             self.bottomNavigationBar.alpha = 0
-        }, completion: { [weak self] (finished) in
+        }, completion: { [weak self] (_) in
             self?.audioPlayerContainer.isUserInteractionEnabled = true
         })
 
@@ -156,7 +156,7 @@ extension BaseRootViewController {
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
             self?.audioPlayerContainer.alpha = 0
             self?.bottomNavigationBar.alpha = 1
-        }, completion: { (finished) in
+        }, completion: { (_) in
 
         })
         let currentItem = bottomNavigationBar.items?.last
