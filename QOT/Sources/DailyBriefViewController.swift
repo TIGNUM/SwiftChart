@@ -192,11 +192,12 @@ extension DailyBriefViewController {
             }
         case .LEADERS_WISDOM?:
             if let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel {
+                let format: ContentFormat = leadersWisdomViewModel.format == .unknown ? .text : leadersWisdomViewModel.format
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                   title: bucketItem.title,
                                                                   body: bucketItem.body,
                                                                   image: bucketItem.image,
-                                                                  CTAType: leadersWisdomViewModel.format,
+                                                                  CTAType: format,
                                                                   titleColor: bucketItem.titleColor,
                                                                   domainModel: bucketItem.domainModel))
             }
@@ -225,6 +226,19 @@ extension DailyBriefViewController {
 
                 return cell
             }
+            //  Cards that should't show arrow because they don't expand
+        case .QUESTION_WITHOUT_ANSWER?, .THOUGHTS_TO_PONDER?, .GOOD_TO_KNOW?:
+                cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
+                                                                    title: bucketItem.title,
+                                                                    body: bucketItem.body,
+                                                                    image: bucketItem.image,
+                                                                    CTAType: .unknown,
+                                                                    titleColor: bucketItem.titleColor,
+                                                                    domainModel: bucketItem.domainModel))
+                cell.configure(with: cellModels)
+                cell.delegate = self
+                return cell
+
         case .TEAM_TOBEVISION_GENERATOR_POLL?:
             let numberOfLines = 6
             cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
@@ -631,6 +645,9 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
             } else {
                 router.showTBVGenerator()
             }
+        //  Cards that should't expand
+        case .QUESTION_WITHOUT_ANSWER, .THOUGHTS_TO_PONDER, .GOOD_TO_KNOW:
+            break
         case .TEAM_TO_BE_VISION:
             var bucketsToMarkasSeen = [QDMDailyBriefBucket]()
             if let teamVisionBucket = bucketItem?.domainModel {

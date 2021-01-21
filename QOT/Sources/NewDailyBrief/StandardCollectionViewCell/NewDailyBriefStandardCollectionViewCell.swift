@@ -51,12 +51,16 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         caption.textColor = UIColor(hex: model.titleColor ?? "")
         skeletonManager.hide()
         var CTAIcon = UIImage.init(named: "diagonal arrow")
-
+        arrowButton.isHidden = false
         switch viewModel?.CTAType {
         case .audio:
             CTAIcon = UIImage.init(named: "ic_audio")
         case .video:
             CTAIcon = UIImage.init(named: "ic_camera_grey")
+        case .text:
+            CTAIcon = UIImage.init(named: "diagonal arrow")
+        case .unknown:
+            arrowButton.isHidden = true
         default:
             break
         }
