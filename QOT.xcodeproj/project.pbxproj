@@ -4835,8 +4835,8 @@
 		B4BCE452255BCEC500A1116F /* StandardCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				B4BCE453255BCEC500A1116F /* NewDailyBriefStandardCollectionViewCell.swift */,
 				B4BCE455255BCEC500A1116F /* NewDailyBriefStandardModel.swift */,
+				B4BCE453255BCEC500A1116F /* NewDailyBriefStandardCollectionViewCell.swift */,
 				B4BCE454255BCEC500A1116F /* NewDailyBriefStandardCollectionViewCell.xib */,
 			);
 			path = StandardCollectionViewCell;

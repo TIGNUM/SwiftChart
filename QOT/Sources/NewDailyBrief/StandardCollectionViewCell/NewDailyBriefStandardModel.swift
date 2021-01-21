@@ -34,7 +34,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
 
          numberOfLinesForBody: Int = 2,
          isInAnimationTransition: Bool = false,
-         CTAType: ContentFormat = .unknown,
+         CTAType: ContentFormat = .text,
          titleColor: String?,
          domainModel: QDMDailyBriefBucket?) {
         self.detailsMode = detailsMode
