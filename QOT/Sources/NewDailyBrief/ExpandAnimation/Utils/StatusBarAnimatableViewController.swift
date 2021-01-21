@@ -67,7 +67,7 @@ class StatusBarAnimatableViewController: UIViewController {
         shouldCurrentlyHideStatusBar = UIApplication.shared.isStatusBarHidden
     }
 
-    final override var prefersStatusBarHidden: Bool {
+    override var prefersStatusBarHidden: Bool {
         return shouldCurrentlyHideStatusBar
     }
 
