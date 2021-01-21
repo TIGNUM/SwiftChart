@@ -66,10 +66,12 @@ private extension DTPrepareStartViewController {
 // MARK: - Actions
 private extension DTPrepareStartViewController {
     @IBAction func didTapCriticalEvent() {
+        removeBottomNavigation()
         router.presentChatBotCritical()
     }
 
     @IBAction func didTapDailyEvent() {
+        removeBottomNavigation() 
         router.presentChatBotDaily()
     }
 }
