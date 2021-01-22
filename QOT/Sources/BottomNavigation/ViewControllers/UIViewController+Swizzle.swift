@@ -427,6 +427,7 @@ extension UIViewController {
 
     @objc open func didTapBackButton() {
         navigationController?.popViewController(animated: true)
+        removeBottomNavigation()
         trackUserEvent(.PREVIOUS, action: .TAP)
     }
 

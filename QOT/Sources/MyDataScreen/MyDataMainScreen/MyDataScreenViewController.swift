@@ -62,6 +62,7 @@ final class MyDataScreenViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        updateBottomNavigation([backNavigationItem()], [])
         trackPage()
     }
 
