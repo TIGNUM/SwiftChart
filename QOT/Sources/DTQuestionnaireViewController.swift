@@ -108,9 +108,7 @@ private extension DTQuestionnaireViewController {
     func attachTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-        let bottomConstraint = tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -.BottomNavBar)
-        bottomConstraint.priority = UILayoutPriority.init(999)
-        bottomConstraint.isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -.BottomNavBar).isActive = true
         tableView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
