@@ -19,7 +19,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
     var dailyCheckImageURL: URL?
     var readinessScore: Int?
     var isCalculating: Bool
-    var enableButton: Bool
+    var hasError: Bool
     var type = ImpactReadinessType.NO_CHECK_IN
 
     // MARK: - Init
@@ -32,7 +32,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
                   readinessScore: Int?,
                   readinessIntro: String?,
                   isCalculating: Bool,
-                  enableButton: Bool,
+                  hasError: Bool,
                   domainModel: QDMDailyBriefBucket?) {
         self.feedback = feedback
         self.feedbackRelatedLink = feedbackRelatedLink
@@ -41,7 +41,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         self.readinessScore = readinessScore
         self.readinessIntro = readinessIntro
         self.isCalculating = isCalculating
-        self.enableButton = enableButton
+        self.hasError = hasError
         let body = feedback?.isEmpty ?? true ? readinessIntro : feedback
         super.init(domainModel, caption: title, title: title, body: body, image: image)
         self.attributedTitle = ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: self.readinessScore,
@@ -54,7 +54,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         }
         return super.isContentEqual(to: source) &&
             readinessScore == source.readinessScore &&
-            enableButton == source.enableButton &&
+            hasError == source.hasError &&
             domainModel?.toBeVision?.profileImageResource?.url() == source.domainModel?.toBeVision?.profileImageResource?.url() &&
             domainModel?.dailyCheckInResult?.targetSleepQuantity == source.domainModel?.dailyCheckInResult?.targetSleepQuantity
     }

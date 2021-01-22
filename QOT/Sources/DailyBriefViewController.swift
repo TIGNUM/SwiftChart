@@ -605,7 +605,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 }
                 return
             }
-            if impactReadinessCellViewModel.readinessScore == -1 && !impactReadinessCellViewModel.isCalculating {
+            if impactReadinessCellViewModel.readinessScore == -1 && !impactReadinessCellViewModel.isCalculating && !impactReadinessCellViewModel.hasError {
                 showDailyCheckInQuestions()
             } else {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in

@@ -77,7 +77,7 @@ extension DailyBriefInteractor {
         var show5DaysImpactReadiness = true
         //If the daily check in completed update the ImpactReadinessCellViewModel
         let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? -1)
-        var enableButton = true
+        var hasError = false
         if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false,
             impactReadiness.dailyCheckInResult == nil {
             show5DaysImpactReadiness = false
@@ -97,7 +97,7 @@ extension DailyBriefInteractor {
                 dailyCheckInResultRequestCheckTimer = nil
                 show5DaysImpactReadiness = false
                 isCalculatingImpactReadiness = false
-                enableButton = false
+                hasError = true
             }
             // if it took longer than dailyCheckInResultRequestTimeOut and still we don't have result
             else if answerDate.dateAfterSeconds(dailyCheckInResultRequestTimeOut) < Date() {
@@ -106,7 +106,7 @@ extension DailyBriefInteractor {
                 dailyCheckInResultRequestCheckTimer = nil
                 show5DaysImpactReadiness = false
                 isCalculatingImpactReadiness = false
-                enableButton = false
+                hasError = true
             } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
                 dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(2),
                                                                            repeats: true) { (_) in
@@ -135,7 +135,7 @@ extension DailyBriefInteractor {
                                                                      readinessScore: readinessscore,
                                                                      readinessIntro: readinessIntro,
                                                                      isCalculating: isCalculatingImpactReadiness,
-                                                                     enableButton: enableButton,
+                                                                     hasError: hasError,
                                                                      domainModel: impactReadiness)
         impactReadinessList.append(impactReadinessModel)
         detailsDelegate?.didUpdateImpactReadiness(with: impactReadinessModel)
