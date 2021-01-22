@@ -51,7 +51,6 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         caption.textColor = UIColor(hex: model.titleColor ?? "")
         skeletonManager.hide()
         var CTAIcon = UIImage.init(named: "diagonal arrow")
-        arrowButton.isHidden = false
         switch viewModel?.CTAType {
         case .audio:
             CTAIcon = UIImage.init(named: "ic_audio")
@@ -60,13 +59,12 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         case .text:
             CTAIcon = UIImage.init(named: "diagonal arrow")
         case .unknown:
+            CTAIcon = nil
             arrowButton.isHidden = true
         default:
             break
         }
-
         arrowButton.setImage(CTAIcon, for: .normal)
-        ThemeTint.white.apply(arrowButton.imageView ?? UIView.init())
     }
 
     public func startSkeleton() {
