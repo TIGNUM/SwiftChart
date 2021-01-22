@@ -69,11 +69,11 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
-    private var statusbBarIsHidden = false
     private weak var readButtonCell: MarkAsReadTableViewCell?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var articleTopNavBar: ArticleTopNavBar!
     @IBOutlet private weak var constraintNavBar: NSLayoutConstraint!
+    var hideStatusBar: Bool = false
 
     private var lastScrollViewOffsetY: CGFloat = 0.0
     private var lastScrollViewActionOffsetY: CGFloat = 0.0
@@ -119,9 +119,8 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 
-    override var statusBarAnimatableConfig: StatusBarAnimatableConfig {
-        return StatusBarAnimatableConfig(prefersHidden: true,
-                                         animation: .slide)
+    override var prefersStatusBarHidden: Bool {
+        return hideStatusBar
     }
 }
 
@@ -563,7 +562,7 @@ extension ArticleViewController {
                 let offset = scrollViewOffsetY - lastScrollViewActionOffsetY
                 if offset > pixelBuffer {
                     navigationBar(show: false)
-                    statusbBarIsHidden = true
+                    hideStatusBar = true
                     setNeedsStatusBarAppearanceUpdate()
                     lastScrollViewActionOffsetY = scrollViewOffsetY
                 }
@@ -577,7 +576,7 @@ extension ArticleViewController {
                     let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
                     if offset > pixelBuffer || scrollViewOffsetY <= 0 {
                         navigationBar(show: true)
-                        statusbBarIsHidden = false
+                        hideStatusBar = false
                         setNeedsStatusBarAppearanceUpdate()
                         lastScrollViewActionOffsetY = scrollViewOffsetY <= 0.0 ? 0.0 : scrollViewOffsetY
                     }
