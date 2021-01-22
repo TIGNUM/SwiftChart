@@ -697,6 +697,15 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                     }
                 }
             }
+        case .FROM_MY_COACH:
+            var bucketsToMarkasSeen = [QDMDailyBriefBucket]()
+            if let coachBucket = bucketItem?.domainModel {
+                bucketsToMarkasSeen.append(coachBucket)
+                DailyBriefService.main.markAsSeenBuckets(bucketsToMarkasSeen)
+            }
+            performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
+                self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
+            }
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                 self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
