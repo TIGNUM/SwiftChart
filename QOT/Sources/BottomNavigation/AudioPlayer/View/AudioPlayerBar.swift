@@ -181,7 +181,7 @@ extension AudioPlayerBar {
     }
 
     private func timeString(for seconds: Double) -> String {
-        return String(format: "%02i:%02i", Int(seconds) / 60 % 60, Int(seconds) % 60)
+        return String(format: "%02i:%02i", Int(seconds) / 60, Int(seconds) % 60)
     }
 
     func trackUserEvent(_ name: QDMUserEventTracking.Name) {
