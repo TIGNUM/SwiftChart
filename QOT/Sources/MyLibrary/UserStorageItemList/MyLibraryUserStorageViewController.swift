@@ -93,8 +93,7 @@ private extension MyLibraryUserStorageViewController {
         }
         bottomNavigationItems.leftBarButtonItems = [backNavigationItem()]
         bottomNavigationItems.rightBarButtonItems = nil
-        bottomNavigationItems.leftBarButtonItems = [backNavigationItem()]
-    }
+        refreshBottomNavigationItems()    }
 
     private func showBottomButtons(_ buttons: [ButtonParameters]) {
         bottomNavigationItems.leftBarButtonItems = nil

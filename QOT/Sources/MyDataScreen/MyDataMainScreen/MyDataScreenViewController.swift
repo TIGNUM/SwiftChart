@@ -40,7 +40,6 @@ final class MyDataScreenViewController: BaseViewController, ScreenZLevel3 {
     private let maxZoomScale: CGFloat = 4.0
     private let minZoomScale: CGFloat = 1.0
     private let scaleStepForTableViewAlpha: CGFloat = 1.5
-    private var bottomNavigationItems = UINavigationItem()
 
     // MARK: - Init
     init(configure: Configurator<MyDataScreenViewController>) {
@@ -66,7 +65,6 @@ final class MyDataScreenViewController: BaseViewController, ScreenZLevel3 {
         updateBottomNavigation([backNavigationItem()], [])
         trackPage()
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var type = MyDataSection.dailyImpact
