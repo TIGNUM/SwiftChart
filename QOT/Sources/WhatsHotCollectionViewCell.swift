@@ -52,7 +52,7 @@ final class WhatsHotCollectionViewCell: UICollectionViewCell, Dequeueable {
         }
         whatsHotImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
 
-        titleLabel.text = titleText.lowercased().capitalizingFirstLetter()
+        titleLabel.text = titleText
         let dateFormatter = DateFormatter.whatsHot
         let displayDate = dateFormatter.string(from: date)
         let detailText = String(format: "%@ | %@", displayDate, time)
