@@ -703,8 +703,11 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 bucketsToMarkasSeen.append(coachBucket)
                 DailyBriefService.main.markAsSeenBuckets(bucketsToMarkasSeen)
             }
-            performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
-                self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel, transitioningDelegate: self?.transition)
+            performExpandAnimation(for: sender,
+                                   withInsideIndexPath: indexPath,
+                                   model: dailyBriefCellViewModel) { [weak self] in
+                self?.router.presentDailyBriefDetailsScreen(model: dailyBriefCellViewModel,
+                                                            transitioningDelegate: self?.transition)
             }
         default:
             performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in

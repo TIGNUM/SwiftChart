@@ -207,9 +207,8 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                       let cell: FromMyCoachTableViewCell = R.nib.fromMyCoachTableViewCell(owner: owner) else {
                     return UITableViewCell.init()
                 }
-
-                cell.configure(with: fromMyCoachModel.messages[indexPath.row - 1], hideSeparatorView: indexPath.row == fromMyCoachModel.messages.count)
-
+                cell.configure(with: fromMyCoachModel.messages[indexPath.row - 1],
+                               hideSeparatorView: indexPath.row == fromMyCoachModel.messages.count)
                 return cell
             case DailyBriefBucketName.SPRINT_CHALLENGE:
                 guard let sprintCellModel = model as? SprintChallengeViewModel,

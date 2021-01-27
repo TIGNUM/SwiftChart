@@ -87,7 +87,8 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func presentDailyBriefDetailsScreen(model: BaseDailyBriefViewModel, transitioningDelegate: UIViewControllerTransitioningDelegate?) {
+    func presentDailyBriefDetailsScreen(model: BaseDailyBriefViewModel,
+                                        transitioningDelegate: UIViewControllerTransitioningDelegate?) {
         if let controller = R.storyboard.main.baseDailyBriefDetailsViewController() {
             BaseDailyBriefDetailsConfigurator.configure(model: model, viewController: controller)
             dailyBriefViewController?.interactor.setDetailsDelegate(controller)

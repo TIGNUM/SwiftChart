@@ -12,6 +12,7 @@ import qot_dal
 protocol MultipleSelectionDelegate: class {
     func didSelectAnswer(_ answer: DTViewModel.Answer)
     func didDeSelectAnswer(_ answer: DTViewModel.Answer)
+    func didSwitchSingleSelectedAnswer(_ answer: DTViewModel.Answer)
 }
 
 class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
@@ -34,6 +35,12 @@ class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
                                                    queue: .main) { [weak self] notification in
             self?.syncButton(notification)
         }
+
+        _ = NotificationCenter.default.addObserver(forName: .didSwitchSingleSelection,
+                                                   object: nil,
+                                                   queue: .main) { [weak self] notification in
+            self?.switchSelection(notification)
+        }
     }
 
     // MARK: - Configure
@@ -50,19 +57,15 @@ class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
 extension MultipleSelectionCollectionViewCell {
     @IBAction func didTapButton() {
         guard var answer = answer else { return }
+        if selectionCounter == 1, maxSelections == 1, isAnswered == false {
+            delegate?.didSwitchSingleSelectedAnswer(answer)
+            selectAnswer(&answer)
+            return
+        }
         if isAnswered == true {
-            answer.setSelected(false)
-            isAnswered = false
-            selectionButton?.switchBackgroundColor(isSelected: false)
-            delegate?.didDeSelectAnswer(answer)
-            NotificationCenter.default.post(name: .didUnVoteTeamTBV, object: answer.remoteId)
+            deselectAnswer(&answer)
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
-            let shouldMarkSelected = !(selectionCounter == 0 && maxSelections == 0)
-            answer.setSelected(shouldMarkSelected)
-            isAnswered = shouldMarkSelected
-            selectionButton?.switchBackgroundColor(isSelected: shouldMarkSelected)
-            delegate?.didSelectAnswer(answer)
-            NotificationCenter.default.post(name: .didVoteTeamTBV, object: answer.remoteId)
+            selectAnswer(&answer)
         }
     }
 }
@@ -73,6 +76,30 @@ private extension MultipleSelectionCollectionViewCell {
         if let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int {
             selectionCounter = counter > maxSelections ? 0 : counter
         }
+    }
+
+    @objc func switchSelection(_ notification: Notification) {
+        if let answerRemoteId = notification.object as? Int,
+           var answer = answer, answer.remoteId == answerRemoteId {
+            deselectAnswer(&answer)
+        }
+    }
+
+    func deselectAnswer(_ answer: inout DTViewModel.Answer) {
+        answer.setSelected(false)
+        isAnswered = false
+        selectionButton?.switchBackgroundColor(isSelected: false)
+        delegate?.didDeSelectAnswer(answer)
+        NotificationCenter.default.post(name: .didUnVoteTeamTBV, object: answer.remoteId)
+    }
+
+    func selectAnswer(_ answer: inout DTViewModel.Answer) {
+        let shouldMarkSelected = !(selectionCounter == 0 && maxSelections == 0)
+        answer.setSelected(shouldMarkSelected)
+        isAnswered = shouldMarkSelected
+        selectionButton?.switchBackgroundColor(isSelected: shouldMarkSelected)
+        delegate?.didSelectAnswer(answer)
+        NotificationCenter.default.post(name: .didVoteTeamTBV, object: answer.remoteId)
     }
 }
 
