@@ -25,7 +25,7 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
         } else {
             ThemeText.articleCategory.apply(articleHeader.categoryTitle, to: categoryTitleLabel)
         }
-        ThemeText.articleTitle.apply(articleHeader.title.lowercased().capitalizingFirstLetter(), to: titleLabel)
+        ThemeText.articleTitle.apply(articleHeader.title, to: titleLabel)
         setAuthor(author: articleHeader.author)
         setDetails(publishDate: articleHeader.publishDate, timeToRead: articleHeader.timeToRead)
     }
