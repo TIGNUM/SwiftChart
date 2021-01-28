@@ -58,6 +58,10 @@ final class SearchWorker {
                         searchArray.append(contentsOf: Search.resultFrom([content],
                                                                          filter: searchFilter,
                                                                          displayType: .files))
+                    } else if content.section == .AppSections {
+                        searchArray.append(contentsOf: Search.linkFrom([content],
+                                                                       displayType: .link))
+
                     } else if content.section != .QOTLibrary {
                         searchArray.append(contentsOf: Search.articleResultFrom([content],
                                                                                 filter: searchFilter,
