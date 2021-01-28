@@ -9,7 +9,10 @@
 import UIKit
 import qot_dal
 
-class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestionnaireViewControllerDelegate, ScreenZLevelChatBot {
+class DTViewController: BaseViewController,
+                        DTViewControllerInterface,
+                        DTQuestionnaireViewControllerDelegate,
+                        ScreenZLevelChatBot {
 
     // MARK: - Properties
     var viewModel: DTViewModel?
@@ -224,6 +227,12 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         setSelectedAnswer(answer)
+    }
+
+    func didSwitchSingleSelectedAnswer(_ answer: DTViewModel.Answer) {
+        let selectedAnswer = viewModel?.selectedAnswers.filter { $0.selected }.first
+        NotificationCenter.default.post(name: .didSwitchSingleSelection, object: selectedAnswer?.remoteId ?? 0)
+        viewModel?.resetSelectedAnswers()
     }
 
     func didSelectExistingPreparation(_ qdmPreparation: QDMUserPreparation?) {

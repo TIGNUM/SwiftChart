@@ -12,6 +12,7 @@ import qot_dal
 protocol MultipleSelectionCellDelegate: class {
     func didSelectAnswer(_ answer: DTViewModel.Answer)
     func didDeSelectAnswer(_ answer: DTViewModel.Answer)
+    func didSwitchSingleSelectedAnswer(_ answer: DTViewModel.Answer)
     func didSetHeight(to height: CGFloat)
 }
 
@@ -59,6 +60,10 @@ class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable, MultipleSele
 
     func didSelectAnswer(_ answer: DTViewModel.Answer) {
         delegate?.didSelectAnswer(answer)
+    }
+
+    func didSwitchSingleSelectedAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didSwitchSingleSelectedAnswer(answer)
     }
 }
 

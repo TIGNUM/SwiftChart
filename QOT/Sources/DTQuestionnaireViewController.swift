@@ -18,6 +18,7 @@ protocol DTQuestionnaireViewControllerDelegate: class {
     func didTapBinarySelection(_ answer: DTViewModel.Answer)
     func didSelectAnswer(_ answer: DTViewModel.Answer)
     func didDeSelectAnswer(_ answer: DTViewModel.Answer)
+    func didSwitchSingleSelectedAnswer(_ answer: DTViewModel.Answer)
     func didSelectExistingPreparation(_ qdmPreparation: QDMUserPreparation?)
 }
 
@@ -291,6 +292,10 @@ extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         delegate?.didDeSelectAnswer(answer)
+    }
+
+    func didSwitchSingleSelectedAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didSwitchSingleSelectedAnswer(answer)
     }
 }
 
