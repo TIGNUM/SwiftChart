@@ -279,7 +279,7 @@ class BaseRouter: BaseRouterInterface {
     }
 
     func showTBVGenerator() {
-        let configurator = DTTBVConfigurator.make(delegate: viewController as? MyVisionViewController)
+        let configurator = DTTBVConfigurator.make(delegate: nil)
         let controller = DTTBVViewController(configure: configurator)
         present(controller)
     }
