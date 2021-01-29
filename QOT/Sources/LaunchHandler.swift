@@ -216,6 +216,28 @@ final class LaunchHandler {
         case .tbvTrackerPollOpened:
             guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
             showTBVRating(teamId)
+        case .generateToBeVision:
+            let configurator = DTTBVConfigurator.make(delegate: nil)
+            let controller = DTTBVViewController(configure: configurator)
+            present(viewController: controller)
+        case .myBookmarks:
+            guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
+                assertionFailure()
+                return
+            }
+            let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
+            let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .BOOKMARK, newItemCount: 0)
+            configurator(controller, item)
+            push(viewController: controller)
+        case .myDownloads:
+            guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
+                assertionFailure()
+                return
+            }
+            let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
+            let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .DOWNLOAD, newItemCount: 0)
+            configurator(controller, item)
+            push(viewController: controller)
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
