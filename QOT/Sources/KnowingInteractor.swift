@@ -95,8 +95,7 @@ extension KnowingInteractor {
     @objc func didGetNotificationToShowsKnowingSection(_ notification: Notification) {
         guard let section = notification.object as? Knowing.Section else { return }
         switch section {
-        case .strategies:
-            loadData()
+        case .strategies: break
         case .whatsHot: break
         default: break
         }
