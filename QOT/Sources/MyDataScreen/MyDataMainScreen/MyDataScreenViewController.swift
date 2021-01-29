@@ -19,7 +19,7 @@ enum MyDataRowType: Int, CaseIterable {
     case heatMap
 }
 
-final class MyDataScreenViewController: BaseViewController, ScreenZLevel3 {
+final class MyDataScreenViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
     var interactor: MyDataScreenInteractorInterface?
