@@ -97,7 +97,7 @@ struct Search {
                           section: ContentSection(rawValue: $0.section.rawValue),
                           mediaURL: nil,
                           displayType: displayType,
-                          duration: "digital tool")
+                          duration: "")
         }
     }
 

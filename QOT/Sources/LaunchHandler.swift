@@ -50,8 +50,12 @@ final class LaunchHandler {
         switch scheme {
         case .dailyBrief,
              .guide:
-            showFirstLevelScreen(page: .dailyBrief, queries[scheme.queryNames.first ?? ""] ?? nil)
-
+            let identifier = DailyBriefNavigationController.storyboardID
+            let navController = R.storyboard.main().instantiateViewController(withIdentifier: identifier) as? DailyBriefNavigationController
+            if let controller = navController?.viewControllers.first as? DailyBriefViewController {
+                DailyBriefConfigurator.configure(delegate: nil, viewController: controller)
+                present(viewController: controller)
+            }
         case .dailyCheckIn,
              .dailyPrep:
 
@@ -69,10 +73,22 @@ final class LaunchHandler {
             guard let itemIdString = queries[scheme.queryNames.first ?? ""] ?? nil, let itemId = Int(itemIdString) else { break }
             showContentItem(itemId)
         case .knowFeed,
-             .strategies: showFirstLevelScreen(page: .know)
+             .strategies:
+            let identifier = KnowingNavigationController.storyboardID
+            let navController = R.storyboard.main().instantiateViewController(withIdentifier: identifier) as? KnowingNavigationController
+            if let controller = navController?.viewControllers.first as? KnowingViewController {
+                KnowingConfigurator.configure(delegate: nil, viewController: controller)
+                present(viewController: controller)
+            }
         case .myQOT,
              .meQotPartner,
-             .meTravel: showFirstLevelScreen(page: .myX)
+             .meTravel:
+            let identifier = MyQotNavigationController.storyboardID
+            let navController = R.storyboard.main().instantiateViewController(withIdentifier: identifier) as? MyQotNavigationController
+            if let controller = navController?.viewControllers.first as? MyQotMainViewController {
+                MyQotMainConfigurator.configure(delegate: nil, viewController: controller)
+                present(viewController: controller)
+            }
         case .coachMode: presentCoachModeScreen()
         case .createSolveAChallenge,
              .prepareProblem:
@@ -358,7 +374,6 @@ extension LaunchHandler {
         mainNavi.dismissAllPresentedViewControllers(mainNavi, true) {
             NotificationCenter.default.post(name: .showFirstLevelScreen, object: page)
         }
-
         if let section = knowingSection {
             NotificationCenter.default.post(name: .showKnowingSection, object: section)
         }
