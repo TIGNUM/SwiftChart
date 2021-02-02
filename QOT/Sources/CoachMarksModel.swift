@@ -34,6 +34,24 @@ struct CoachMark {
             }
         }
 
+        var title: String {
+            switch self {
+            case .coach: return AppTextService.get(.onboarding_walkthrough_tools_title)
+            case .know: return AppTextService.get(.onboarding_walkthrough_know_title)
+            case .myQot: return AppTextService.get(.onboarding_walkthrough_myx_title)
+            case .search: return AppTextService.get(.onboarding_walkthrough_search_title)
+            }
+        }
+
+        var subtitle: String {
+            switch self {
+            case .coach: return AppTextService.get(.onboarding_walkthrough_coach_section_body_body)
+            case .know: return AppTextService.get(.onboarding_walkthrough_know_section_body_body)
+            case .myQot: return AppTextService.get(.onboarding_walkthrough_my_qot_section_body_body)
+            case .search: return AppTextService.get(.onboarding_walkthrough_search_section_body_body)
+            }
+        }
+
         var rightButtonTitle: String? {
             if .search == self { return AppTextService.get(.onboarding_guided_track_section_footer_button_get_started)}
             return AppTextService.get(.my_qot_my_sprints_alert_button_continue)

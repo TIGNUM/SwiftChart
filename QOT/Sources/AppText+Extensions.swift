@@ -1034,6 +1034,13 @@ public extension AppTextKey {
     static let onboarding_walkthrough_search_section_body_body = AppTextKey("onboarding.walkthrough.search.section_body.body")
     static let onboarding_walkthrough_my_qot_section_body_body = AppTextKey("onboarding.walkthrough.my_qot.section_body.body")
     static let onboarding_walkthrough_coach_section_body_body = AppTextKey("onboarding.walkthrough.coach.section_body.body")
+    static let onboarding_walkthrough_know_section_body_body = AppTextKey("onboarding.walkthrough.know.section_body.body")
+
+    static let onboarding_walkthrough_know_title = AppTextKey("onboarding.walkthrough.know.title")
+    static let onboarding_walkthrough_tools_title = AppTextKey("onboarding.walkthrough.tools.title")
+    static let onboarding_walkthrough_search_title = AppTextKey("onboarding.walkthrough.search.title")
+    static let onboarding_walkthrough_myx_title = AppTextKey("onboarding.walkthrough.myx.title")
+
     static let my_qot_my_sprints_null_state_button_add_sprint = AppTextKey("my_qot.my_sprints.null_state.button_add_sprint")
     static let generic_alert_no_email_body = AppTextKey("generic.alert.no_email.body")
     static let onboarding_guided_track_section_footer_button_get_started = AppTextKey("onboarding.guided_track.section_footer.button_get_started")
