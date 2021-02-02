@@ -22,7 +22,9 @@ extension DailyBriefInteractor {
         var guidedTrackList: [GuidedTrackViewModel] = []
         let title = AppTextService.get(.daily_brief_section_guided_track_title)
         var items: [GuidedTrackItem] = []
-
+        if hasToBeVision == true, hasSeenFoundations == true, hasPreparation == true {
+            return []
+        }
         guidedTrack.contentCollections?.forEach { (contentItem) in
             var title: String = ""
             var image: String = ""
@@ -55,9 +57,6 @@ extension DailyBriefInteractor {
                 }
             }
         }
-        if hasToBeVision == true, hasSeenFoundations == true, hasPreparation == true {
-            return guidedTrackList
-        }
 
         let guidedTrackViewModel = GuidedTrackViewModel.init(title: title,
                                                              items: items,
@@ -65,6 +64,7 @@ extension DailyBriefInteractor {
         guidedTrackList.append(guidedTrackViewModel)
         return guidedTrackList
     }
+
     // MARK: - Impact Readiness
     func createImpactReadinessCell(impactReadinessBucket impactReadiness: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var impactReadinessList: [BaseDailyBriefViewModel] = []
