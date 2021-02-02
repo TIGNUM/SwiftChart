@@ -55,6 +55,9 @@ extension DailyBriefInteractor {
                 }
             }
         }
+        if hasToBeVision == true, hasSeenFoundations == true, hasPreparation == true {
+            return guidedTrackList
+        }
 
         let guidedTrackViewModel = GuidedTrackViewModel.init(title: title,
                                                              items: items,
