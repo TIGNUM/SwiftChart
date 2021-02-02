@@ -19,12 +19,13 @@ extension DailyBriefInteractor {
 
     // MARK: - Guided tour
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket, hasToBeVision: Bool?, hasSeenFoundations: Bool?) -> [BaseDailyBriefViewModel] {
-        var guidedTrackList: [GuidedTrackViewModel] = []
-        let title = AppTextService.get(.daily_brief_section_guided_track_title)
-        var items: [GuidedTrackItem] = []
         if hasToBeVision == true, hasSeenFoundations == true, hasPreparation == true {
             return []
         }
+        
+        var guidedTrackList: [GuidedTrackViewModel] = []
+        let title = AppTextService.get(.daily_brief_section_guided_track_title)
+        var items: [GuidedTrackItem] = []
         guidedTrack.contentCollections?.forEach { (contentItem) in
             var title: String = ""
             var image: String = ""
