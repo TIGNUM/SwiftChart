@@ -1297,6 +1297,14 @@
 		F9925235257E408D00DD5AD5 /* TeamVisionSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9925234257E408D00DD5AD5 /* TeamVisionSuggestionTableViewCell.swift */; };
 		F992523D257E409F00DD5AD5 /* TeamVisionSuggestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F992523C257E409F00DD5AD5 /* TeamVisionSuggestionTableViewCell.xib */; };
 		F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9999DDB24B3315500DB05CA /* Notification+Team.swift */; };
+		F99C2C5D25CAB28C00F207D0 /* NotificationSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C2C5525CAB28C00F207D0 /* NotificationSettingsPresenter.swift */; };
+		F99C2C5E25CAB28C00F207D0 /* NotificationSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C2C5625CAB28C00F207D0 /* NotificationSettingsWorker.swift */; };
+		F99C2C5F25CAB28C00F207D0 /* NotificationSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C2C5725CAB28C00F207D0 /* NotificationSettingsRouter.swift */; };
+		F99C2C6025CAB28C00F207D0 /* NotificationSettingsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C2C5825CAB28C00F207D0 /* NotificationSettingsInterface.swift */; };
+		F99C2C6125CAB28C00F207D0 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C2C5925CAB28C00F207D0 /* NotificationSettingsViewController.swift */; };
+		F99C2C6225CAB28C00F207D0 /* NotificationSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C2C5A25CAB28C00F207D0 /* NotificationSettingsInteractor.swift */; };
+		F99C2C6325CAB28C00F207D0 /* NotificationSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C2C5B25CAB28C00F207D0 /* NotificationSettingsModel.swift */; };
+		F99C2C6425CAB28C00F207D0 /* NotificationSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C2C5C25CAB28C00F207D0 /* NotificationSettingsConfigurator.swift */; };
 		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
 		F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */; };
 		F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */; };
@@ -2731,6 +2739,14 @@
 		F9925234257E408D00DD5AD5 /* TeamVisionSuggestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamVisionSuggestionTableViewCell.swift; sourceTree = "<group>"; };
 		F992523C257E409F00DD5AD5 /* TeamVisionSuggestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamVisionSuggestionTableViewCell.xib; sourceTree = "<group>"; };
 		F9999DDB24B3315500DB05CA /* Notification+Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Team.swift"; sourceTree = "<group>"; };
+		F99C2C5525CAB28C00F207D0 /* NotificationSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsPresenter.swift; sourceTree = "<group>"; };
+		F99C2C5625CAB28C00F207D0 /* NotificationSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsWorker.swift; sourceTree = "<group>"; };
+		F99C2C5725CAB28C00F207D0 /* NotificationSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsRouter.swift; sourceTree = "<group>"; };
+		F99C2C5825CAB28C00F207D0 /* NotificationSettingsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsInterface.swift; sourceTree = "<group>"; };
+		F99C2C5925CAB28C00F207D0 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
+		F99C2C5A25CAB28C00F207D0 /* NotificationSettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsInteractor.swift; sourceTree = "<group>"; };
+		F99C2C5B25CAB28C00F207D0 /* NotificationSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsModel.swift; sourceTree = "<group>"; };
+		F99C2C5C25CAB28C00F207D0 /* NotificationSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsConfigurator.swift; sourceTree = "<group>"; };
 		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
 		F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsPresenter.swift; sourceTree = "<group>"; };
 		F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsWorker.swift; sourceTree = "<group>"; };
@@ -2955,6 +2971,7 @@
 		363765F2223A4BB500C2C429 /* MyQOT */ = {
 			isa = PBXGroup;
 			children = (
+				F99C2C5425CAB26200F207D0 /* NotificationSettings */,
 				F9207CCD24B77992007B1AB6 /* MyXTeamMembers */,
 				F9458C5824AA3769004E2383 /* MyXTeamSettings */,
 				5FD8909C2280766900B1CE7F /* MyQot.storyboard */,
@@ -5861,6 +5878,21 @@
 			name = GoodToKnow;
 			sourceTree = "<group>";
 		};
+		F99C2C5425CAB26200F207D0 /* NotificationSettings */ = {
+			isa = PBXGroup;
+			children = (
+				F99C2C5525CAB28C00F207D0 /* NotificationSettingsPresenter.swift */,
+				F99C2C5625CAB28C00F207D0 /* NotificationSettingsWorker.swift */,
+				F99C2C5725CAB28C00F207D0 /* NotificationSettingsRouter.swift */,
+				F99C2C5825CAB28C00F207D0 /* NotificationSettingsInterface.swift */,
+				F99C2C5925CAB28C00F207D0 /* NotificationSettingsViewController.swift */,
+				F99C2C5A25CAB28C00F207D0 /* NotificationSettingsInteractor.swift */,
+				F99C2C5B25CAB28C00F207D0 /* NotificationSettingsModel.swift */,
+				F99C2C5C25CAB28C00F207D0 /* NotificationSettingsConfigurator.swift */,
+			);
+			name = NotificationSettings;
+			sourceTree = "<group>";
+		};
 		F99DF5F02292D45400341DAB /* ToolsCollections */ = {
 			isa = PBXGroup;
 			children = (
@@ -6753,6 +6785,7 @@
 				365825792327D19200AC3F4A /* DTShortTBVWorker.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				B411ECB925751C5100EB7A78 /* GuidedTrackItem.swift in Sources */,
+				F99C2C5F25CAB28C00F207D0 /* NotificationSettingsRouter.swift in Sources */,
 				B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */,
 				DB086F3524C5E56100D4F64E /* BookMarkSelectionModel.swift in Sources */,
 				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
@@ -6836,6 +6869,7 @@
 				DB086F3224C5E56100D4F64E /* BookMarkSelectionInterface.swift in Sources */,
 				ACF0B9782260BC80008CFAEC /* TextTableViewCell.swift in Sources */,
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
+				F99C2C6425CAB28C00F207D0 /* NotificationSettingsConfigurator.swift in Sources */,
 				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
 				38095D2324BDC4EA0077EE86 /* TeamInvitesPresenter.swift in Sources */,
@@ -6866,6 +6900,7 @@
 				38406DAC2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift in Sources */,
 				5FF1A0FE22857BB300D76D55 /* MyQotAppSettingsRouter.swift in Sources */,
 				3608382A225F3ED000664B9B /* ArticleViewController.swift in Sources */,
+				F99C2C6225CAB28C00F207D0 /* NotificationSettingsInteractor.swift in Sources */,
 				8DF7870822FEB50800CDE0A9 /* RegistrationCodeRouter.swift in Sources */,
 				8D60A20C22CF7CBF0034F33F /* NoteTableViewCell.swift in Sources */,
 				36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */,
@@ -6982,9 +7017,11 @@
 				382CDC6424A2433300B34BCE /* TeamEditInteractor.swift in Sources */,
 				F91087A124C5A6BD00CA343A /* TeamToBeVisionWorker.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
+				F99C2C6325CAB28C00F207D0 /* NotificationSettingsModel.swift in Sources */,
 				F947EA092521F45D004C7076 /* TeamVisionTrackerDetailsWorker.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
 				8D25778922F8748300D42B90 /* OnboardingLoginViewModel.swift in Sources */,
+				F99C2C6025CAB28C00F207D0 /* NotificationSettingsInterface.swift in Sources */,
 				F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */,
 				8D25327722EA0FF300FE4205 /* CtaItemDetailsItemCell.swift in Sources */,
 				DB086F3124C5E56100D4F64E /* BookMarkSelectionRouter.swift in Sources */,
@@ -7018,6 +7055,7 @@
 				38E5A08D2412B06C008FCF8F /* CalendarEventSelectionInterface.swift in Sources */,
 				B474CA932398F85F00A829B5 /* RegisterIntroModel.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
+				F99C2C6125CAB28C00F207D0 /* NotificationSettingsViewController.swift in Sources */,
 				3876051023A266D30034B451 /* BaseRouter.swift in Sources */,
 				389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
@@ -7079,6 +7117,7 @@
 				38A2D17D25025C7100CEA071 /* DTTeamTBV.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				AC103E462285B27200F426F0 /* MindsetResult.swift in Sources */,
+				F99C2C5E25CAB28C00F207D0 /* NotificationSettingsWorker.swift in Sources */,
 				B4BCE478255BCEC500A1116F /* NewDailyBriefTableViewHeader.swift in Sources */,
 				5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */,
 				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
@@ -7453,6 +7492,7 @@
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
 				DBA3920D2322B4B20017E7F6 /* MyQotMainViewController.swift in Sources */,
 				B4D0A9BE25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift in Sources */,
+				F99C2C5D25CAB28C00F207D0 /* NotificationSettingsPresenter.swift in Sources */,
 				75423EF922CE242B008EE726 /* TBVRateHistoryWorker.swift in Sources */,
 				5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */,
 				DBF6F131235DE08100367CC7 /* Notification+Name.swift in Sources */,
