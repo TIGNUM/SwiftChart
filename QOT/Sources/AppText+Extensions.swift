@@ -657,6 +657,22 @@ public extension AppTextKey {
      static let settings_team_settings_team_members_add_members = AppTextKey("settings.team_settings.team_members.add_members")
      static let settings_team_settings_team_members_admin_label = AppTextKey("settings.team_settings.team_members.admin_label")
 
+    // MARK: - Notification Settings
+
+    static let notification_settings_header_title = AppTextKey("notification_settings.header.title")
+    static let notification_settings_header_subtitle = AppTextKey("notification_settings.header.subtitle")
+
+    static let notification_settings_daily_subtitle = AppTextKey("notification_settings.daily.subtitle")
+    static let notification_settings_daily_title = AppTextKey("notification_settings.daily.title")
+    static let notification_settings_sunday_title = AppTextKey("notification_settings.sunday.title")
+    static let notification_settings_sunday_subtitle = AppTextKey("notification_settings.sunday.subtitle")
+    static let notification_settings_peak_title = AppTextKey("notification_settings.peak.title")
+    static let notification_settings_peak_subtitle = AppTextKey("notification_settings.peak.subtitle")
+    static let notification_settings_sprint_title = AppTextKey("notification_settings.sprint.title")
+    static let notification_settings_sprint_subtitle = AppTextKey("notification_settings.sprint.subtitle")
+    static let notification_settings_team_title = AppTextKey("notification_settings.team.title")
+    static let notification_settings_team_subtitle = AppTextKey("notification_settings.team.subtitle")
+
     // MARK: - Team Invitations
     static let team_invite_banner_message_decline = AppTextKey("team_invite.banner_message.decline")
     static let team_invite_banner_message_join = AppTextKey("team_invite.banner_meesage.join")

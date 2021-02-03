@@ -9,11 +9,11 @@
 import Foundation
 
 protocol NotificationSettingsViewControllerInterface: class {
-    func setupView()
+    func setup(_ notification: NotificationSettingsModel)
 }
 
 protocol NotificationSettingsPresenterInterface {
-    func setupView()
+    func present(_ notification: NotificationSettingsModel)
 }
 
 protocol NotificationSettingsInteractorInterface: Interactor {}

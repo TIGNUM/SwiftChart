@@ -81,6 +81,7 @@
                         <segue destination="bUa-0I-I46" kind="show" identifier="myQot.myLibrary.segue.identifier" id="nLz-oJ-HxZ"/>
                         <segue destination="3ZV-BA-t3g" kind="show" identifier="myQot.adminSettings.segue.identifier" id="kVG-3l-IG5"/>
                         <segue destination="2gz-w2-K3t" kind="show" identifier="myX.teamSettings.segue.identifier" id="2JH-lT-VyY"/>
+                        <segue destination="yC7-zf-1c0" kind="show" identifier="myQot.notificationSettings.segue.identifier" id="s07-Br-wNH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iN9-WJ-cdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1476,6 +1477,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFB-pf-DvD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3834" y="-1374"/>
+        </scene>
+        <!--Notification Settings View Controller-->
+        <scene sceneID="fha-nB-u6H">
+            <objects>
+                <viewController storyboardIdentifier="MyQotAppSettingsViewController" id="yC7-zf-1c0" customClass="NotificationSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4jF-uo-cUb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Wq-LX-yNl">
+                                <rect key="frame" x="0.0" y="98" width="375" height="549"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yC7-zf-1c0" id="0Vz-FQ-1py"/>
+                                    <outlet property="delegate" destination="yC7-zf-1c0" id="Ex1-uH-aJr"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FbJ-0G-u3V">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="98" id="hdf-PR-atT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3Y8-8i-Bji"/>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="FbJ-0G-u3V" firstAttribute="top" secondItem="3Y8-8i-Bji" secondAttribute="top" id="1Db-mg-axS"/>
+                            <constraint firstItem="6Wq-LX-yNl" firstAttribute="leading" secondItem="3Y8-8i-Bji" secondAttribute="leading" id="3cg-qU-o6U"/>
+                            <constraint firstItem="3Y8-8i-Bji" firstAttribute="trailing" secondItem="FbJ-0G-u3V" secondAttribute="trailing" id="G27-jy-u5I"/>
+                            <constraint firstItem="3Y8-8i-Bji" firstAttribute="bottom" secondItem="6Wq-LX-yNl" secondAttribute="bottom" id="JG2-wg-Ltk"/>
+                            <constraint firstItem="6Wq-LX-yNl" firstAttribute="top" secondItem="FbJ-0G-u3V" secondAttribute="bottom" id="MPk-WK-yVP"/>
+                            <constraint firstItem="FbJ-0G-u3V" firstAttribute="leading" secondItem="4jF-uo-cUb" secondAttribute="leading" id="lme-Jp-1LO"/>
+                            <constraint firstItem="3Y8-8i-Bji" firstAttribute="trailing" secondItem="6Wq-LX-yNl" secondAttribute="trailing" id="rAU-Th-6UN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bcN-7d-Mk3"/>
+                    <connections>
+                        <outlet property="headerView" destination="FbJ-0G-u3V" id="0O2-8o-7gV"/>
+                        <outlet property="headerViewHeightConstraint" destination="hdf-PR-atT" id="lOt-kq-ubS"/>
+                        <outlet property="tableView" destination="6Wq-LX-yNl" id="hbA-MQ-9qg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HrX-YS-56s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-175" y="2184"/>
         </scene>
     </scenes>
     <resources>

@@ -21,7 +21,7 @@ final class NotificationSettingsPresenter {
 
 // MARK: - NotificationSettingsInterface
 extension NotificationSettingsPresenter: NotificationSettingsPresenterInterface {
-    func setupView() {
-        viewController?.setupView()
+    func present(_ notification: NotificationSettingsModel) {
+        viewController?.setup(notification)
     }
 }
