@@ -218,27 +218,11 @@ final class LaunchHandler {
             guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
             showTBVRating(teamId)
         case .generateToBeVision:
-            let configurator = DTTBVConfigurator.make(delegate: nil)
-            let controller = DTTBVViewController(configure: configurator)
-            present(viewController: controller)
+            generateTBV()
         case .myBookmarks:
-            guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
-                assertionFailure()
-                return
-            }
-            let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
-            let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .BOOKMARK, newItemCount: 0)
-            configurator(controller, item)
-            push(viewController: controller)
+            showBookmarks()
         case .myDownloads:
-            guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
-                assertionFailure()
-                return
-            }
-            let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
-            let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .DOWNLOAD, newItemCount: 0)
-            configurator(controller, item)
-            push(viewController: controller)
+            showDownloads()
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
@@ -371,10 +355,6 @@ extension LaunchHandler {
         if let coachVC = baseRootViewController?.children.first as? CoachCollectionViewController {
             coachVC.didTapCancelSearch()
         }
-//        if let previousVC = navigationController?.viewControllers.dropLast().last {
-//            if previousVC is CoachViewController {
-//                navigationController?.popToViewController(previousVC, animated: true)
-//            }
     }
 
     func showDailyCheckIn() {
@@ -486,6 +466,28 @@ extension LaunchHandler {
         }
     }
 
+    func showBookmarks() {
+        guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
+            assertionFailure()
+            return
+        }
+        let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
+        let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .BOOKMARK, newItemCount: 0)
+        configurator(controller, item)
+        push(viewController: controller)
+    }
+
+    func showDownloads() {
+        guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
+            assertionFailure()
+            return
+        }
+        let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
+        let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .DOWNLOAD, newItemCount: 0)
+        configurator(controller, item)
+        push(viewController: controller)
+    }
+
     func showMindsetShifterDecisionTree() {
         guard let mainNavigationController = baseRootViewController?.navigationController else { return }
         mainNavigationController.dismissAllPresentedViewControllers(mainNavigationController, true) {
@@ -506,6 +508,12 @@ extension LaunchHandler {
             self.present(viewController: controller)
             baseRootViewController?.removeBottomNavigation()
         }
+    }
+
+    func generateTBV() {
+        let configurator = DTTBVConfigurator.make(delegate: nil)
+        let controller = DTTBVViewController(configure: configurator)
+        present(viewController: controller)
     }
 
     func showMyLibrary(_ queries: [String: String?]) {
