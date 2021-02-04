@@ -9,14 +9,17 @@
 import Foundation
 
 protocol NotificationSettingsViewControllerInterface: class {
-    func setup(_ notification: NotificationSettingsModel)
+    func setup()
 }
 
 protocol NotificationSettingsPresenterInterface {
-    func present(_ notification: NotificationSettingsModel)
+    func present()
 }
 
-protocol NotificationSettingsInteractorInterface: Interactor {}
+protocol NotificationSettingsInteractorInterface: Interactor {
+    var notificationsTitle: String { get }
+    var notificationsSubtitle: String { get }
+}
 
 protocol NotificationSettingsRouterInterface {
     func dismiss()

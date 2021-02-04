@@ -21,7 +21,14 @@ final class NotificationSettingsInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        presenter.present()
+    }
+
+    var notificationsTitle: String {
+        return worker.notificationsTitle
+    }
+    var notificationsSubtitle: String {
+        return worker.notificationsSubtitle
     }
 }
 

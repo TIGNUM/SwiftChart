@@ -18,8 +18,8 @@ final class NotificationSettingsViewController: BaseViewController, ScreenZLevel
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
+    private var notificationModel = NotificationSettingsModel()
 
-    private var notificationModel: NotificationSettingsModel!
 //    private var selectedSettings: MyQotAppSettingsModel.Setting?
 
     // MARK: - Init
@@ -76,10 +76,9 @@ private extension NotificationSettingsViewController {
 
 // MARK: - NotificationSettingsViewControllerInterface
 extension NotificationSettingsViewController: NotificationSettingsViewControllerInterface {
-    func setup(_ notification: NotificationSettingsModel) {
+    func setup() {
         ThemeView.level3.apply(view)
-        notificationModel = notification
-//        baseHeaderView?.configure(title: interactor?.appSettingsText, subtitle: nil)
+        baseHeaderView?.configure(title: interactor?.notificationsTitle, subtitle: interactor?.notificationsSubtitle)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 }
