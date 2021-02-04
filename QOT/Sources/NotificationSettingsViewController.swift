@@ -37,8 +37,9 @@ final class NotificationSettingsViewController: BaseViewController, ScreenZLevel
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(tableView)
-//        tableView.registerDequeueable(TitleSubtitleTableViewCell.self)
-//        tableView.registerDequeueable(TitleTableHeaderView.self)
+        tableView.registerDequeueable(TitleSubtitleTableViewCell.self)
+        tableView.registerDequeueable(TitleTableHeaderView.self)
+        tableView.registerDequeueable(NotificationSettingCell.self)
         interactor.viewDidLoad()
     }
 
@@ -81,4 +82,40 @@ extension NotificationSettingsViewController: NotificationSettingsViewController
         baseHeaderView?.configure(title: interactor?.notificationsTitle, subtitle: interactor?.notificationsSubtitle)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension NotificationSettingsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return notificationModel.notificationSettingsCount
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var allSettings = NotificationSettingsModel.Setting.allSettings
+        let item = NotificationSettingsModel.Setting.allSettings.at(index: indexPath.row)
+        switch indexPath.section {
+        case 0:
+            let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: notificationModel.title(for: item ?? .sprints), themeCell: .level3)
+            cell.configure(title: notificationModel.subtitle(for: item ?? .sprints), themeCell: .level3)
+            return cell
+        default:
+            let item = NotificationSettingsModel.Setting.allSettings.at(index: indexPath.row)
+            let cell: NotificationSettingCell = tableView.dequeueCell(for: indexPath)
+//            cell.calendarSyncDelegate = self
+            cell.configure(title: notificationModel.title(for: item ?? .sprints),
+                           subtitle: notificationModel.subtitle(for: item ?? .sprints),
+                           identifier: item?.identifier,
+                           isActive: item?.isSubscribed)
+            return cell
+
+        }
+
+
+    }
+
+
+
+
 }

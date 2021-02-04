@@ -1284,6 +1284,8 @@
 		F96D9F3A24D85ACB00188482 /* TeamInvitationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */; };
 		F96D9F3C24D85AE100188482 /* TeamInvitationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96D9F3B24D85AE100188482 /* TeamInvitationCell.xib */; };
 		F976016224E5701E00D0532E /* ToBeVisionSelectionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */; };
+		F97A166C25CC489D000885A9 /* NotificationSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97A166B25CC489D000885A9 /* NotificationSettingCell.swift */; };
+		F97A167425CC48CD000885A9 /* NotificationSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97A167325CC48CD000885A9 /* NotificationSettingCell.xib */; };
 		F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */; };
 		F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */; };
 		F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */; };
@@ -2726,6 +2728,8 @@
 		F96D9F3924D85ACB00188482 /* TeamInvitationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInvitationModel.swift; sourceTree = "<group>"; };
 		F96D9F3B24D85AE100188482 /* TeamInvitationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamInvitationCell.xib; sourceTree = "<group>"; };
 		F976016124E5701E00D0532E /* ToBeVisionSelectionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToBeVisionSelectionBar.swift; sourceTree = "<group>"; };
+		F97A166B25CC489D000885A9 /* NotificationSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingCell.swift; sourceTree = "<group>"; };
+		F97A167325CC48CD000885A9 /* NotificationSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSettingCell.xib; sourceTree = "<group>"; };
 		F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainConfigurator.swift; sourceTree = "<group>"; };
 		F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInteractor.swift; sourceTree = "<group>"; };
 		F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInterface.swift; sourceTree = "<group>"; };
@@ -3868,15 +3872,17 @@
 				F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */,
 				F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */,
 				5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */,
+				5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */,
 				5FF1A0E8228561C800D76D55 /* TitleTableHeaderView.swift */,
 				75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */,
 				5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */,
 				F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */,
 				F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */,
-				5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */,
 				5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */,
 				5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */,
 				5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */,
+				F97A166B25CC489D000885A9 /* NotificationSettingCell.swift */,
+				F97A167325CC48CD000885A9 /* NotificationSettingCell.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -6540,6 +6546,7 @@
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
 				F9FEA92425348D2C009BF786 /* RateOpenCell.xib in Resources */,
 				386C27A5241A398C00184EC9 /* ResultsPrepareTitleTableViewCell.xib in Resources */,
+				F97A167425CC48CD000885A9 /* NotificationSettingCell.xib in Resources */,
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */,
@@ -7256,6 +7263,7 @@
 				ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */,
 				8D204C2622F06F1000DF6A76 /* MySprintNotesPresenter.swift in Sources */,
 				5FA66648229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift in Sources */,
+				F97A166C25CC489D000885A9 /* NotificationSettingCell.swift in Sources */,
 				F9207CE824B77BEB007B1AB6 /* MyXTeamMembersRouter.swift in Sources */,
 				36288A7123257EDD0036C8C0 /* DTPresentationModel.swift in Sources */,
 				DB5121622331945F009BFF22 /* PreparationWithMissingEventInteractor.swift in Sources */,

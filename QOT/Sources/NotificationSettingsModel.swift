@@ -10,6 +10,8 @@ import UIKit
 import qot_dal
 
 struct NotificationSettingsModel {
+    let identifier: String?
+    let isActive: Bool?
 
     var notificationSettingsCount: Int {
         return Setting.team.rawValue + 1
@@ -61,7 +63,7 @@ struct NotificationSettingsModel {
 //        }
 //    }
 
-    private func title(for item: Setting) -> String {
+   func title(for item: Setting) -> String {
         switch item {
         case .dailyReminders:
             return "Daily reminders"
@@ -76,7 +78,7 @@ struct NotificationSettingsModel {
         }
     }
 
-    private func subtitle(for item: Setting) -> String {
+    func subtitle(for item: Setting) -> String {
         switch item {
         case .dailyReminders:
             return "Describe some values and benefits"
