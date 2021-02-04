@@ -368,6 +368,13 @@ extension LaunchHandler {
                 NotificationCenter.default.post(name: .scrollToBucket, object: bucket)
             }
         }
+        if let coachVC = baseRootViewController?.children.first as? CoachCollectionViewController {
+            coachVC.didTapCancelSearch()
+        }
+//        if let previousVC = navigationController?.viewControllers.dropLast().last {
+//            if previousVC is CoachViewController {
+//                navigationController?.popToViewController(previousVC, animated: true)
+//            }
     }
 
     func showDailyCheckIn() {
