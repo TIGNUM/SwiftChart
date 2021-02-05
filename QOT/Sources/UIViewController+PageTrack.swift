@@ -114,6 +114,7 @@ extension UIViewController {
         case is TeamToBeVisionViewController: return "teamTBV"
         case is VisionRatingExplanationViewController: return "rating_feature_explanation"
         case is TeamToBeVisionOptionsViewController: return "teamTBV.options"
+        case is NotificationSettingsViewController: return "notification.settings"
         default: preconditionFailure()
         }
     }

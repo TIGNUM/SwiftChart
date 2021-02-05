@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NotificationSettingsViewController: BaseViewController, ScreenZLevel3  {
+final class NotificationSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
@@ -20,8 +20,6 @@ final class NotificationSettingsViewController: BaseViewController, ScreenZLevel
     @IBOutlet private weak var tableView: UITableView!
     private var notificationModel = NotificationSettingsModel()
 
-//    private var selectedSettings: MyQotAppSettingsModel.Setting?
-
     // MARK: - Init
     init(configure: Configurator<NotificationSettingsViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -29,7 +27,7 @@ final class NotificationSettingsViewController: BaseViewController, ScreenZLevel
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+       super.init(coder: aDecoder)
     }
 
     override func viewDidLoad() {
@@ -55,13 +53,7 @@ final class NotificationSettingsViewController: BaseViewController, ScreenZLevel
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let siriShortcutsVC  = segue.destination as? MyQotSiriShortcutsViewController {
-//            MyQotSiriShortcutsConfigurator.configure(viewController: siriShortcutsVC)
-//        } else if let activityTrackerVC = segue.destination as? MyQotSensorsViewController {
-//            MyQotSensorsConfigurator.configure(viewController: activityTrackerVC)
-//        } else if let syncedCalendarVC = segue.destination as? SyncedCalendarsViewController {
-//            SyncedCalendarsConfigurator.configure(viewController: syncedCalendarVC)
-//        }
+
     }
 }
 
@@ -92,7 +84,6 @@ extension NotificationSettingsViewController: UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var allSettings = NotificationSettingsModel.Setting.allSettings
         let item = NotificationSettingsModel.Setting.allSettings.at(index: indexPath.row)
         switch indexPath.section {
         case 0:
@@ -106,16 +97,8 @@ extension NotificationSettingsViewController: UITableViewDelegate, UITableViewDa
 //            cell.calendarSyncDelegate = self
             cell.configure(title: notificationModel.title(for: item ?? .sprints),
                            subtitle: notificationModel.subtitle(for: item ?? .sprints),
-                           identifier: item?.identifier,
-                           isActive: item?.isSubscribed)
+                           isActive: notificationModel.isActive(for: item ?? .sprints))
             return cell
-
         }
-
-
     }
-
-
-
-
 }

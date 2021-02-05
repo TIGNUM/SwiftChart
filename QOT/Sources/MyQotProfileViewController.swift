@@ -53,7 +53,7 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
             MyQotAdminSettingsListConfigurator.configure(viewController: adminSettings)
         } else if let teamSettings = segue.destination as? MyXTeamSettingsViewController {
             MyXTeamSettingsConfigurator.configure(viewController: teamSettings)
-        }
+        } 
     }
 }
 

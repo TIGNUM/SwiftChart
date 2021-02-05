@@ -30,12 +30,10 @@ final class NotificationSettingCell: UITableViewCell, Dequeueable {
     // MARK: Configuration
     func configure(title: String?,
                    subtitle: String?,
-                   identifier: String?,
                    isActive: Bool?) {
 
         ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
         ThemeText.syncedCalendarRowSubtitle.apply(subtitle, to: subtitleLabel)
-        self.identifier = identifier
 
         if isActive == true {
             switchControl.isOn = false

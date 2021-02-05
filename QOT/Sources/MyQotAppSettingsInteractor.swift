@@ -42,7 +42,7 @@ extension MyQotAppSettingsInteractor: MyQotAppSettingsInteractorInterface {
     func handleTap(setting: MyQotAppSettingsModel.Setting) {
         switch setting {
         case .notifications:
-            router.askNotificationPermission()
+            router.presentNotificationSettings()
         case .permissions:
             router.openAppSettings()
         case .calendars:

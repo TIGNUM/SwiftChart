@@ -9,11 +9,9 @@
 import Foundation
 
 final class NotificationSettingsConfigurator {
-    static func make() -> (NotificationSettingsViewController) -> Void {
-        return { (viewController) in
-            let presenter = NotificationSettingsPresenter(viewController: viewController)
-            let interactor = NotificationSettingsInteractor(presenter: presenter)
-            viewController.interactor = interactor
-        }
+    static func make(viewController: NotificationSettingsViewController ) {
+        let presenter = NotificationSettingsPresenter(viewController: viewController)
+        let interactor = NotificationSettingsInteractor(presenter: presenter)
+        viewController.interactor = interactor
     }
 }

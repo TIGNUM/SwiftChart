@@ -81,7 +81,6 @@
                         <segue destination="bUa-0I-I46" kind="show" identifier="myQot.myLibrary.segue.identifier" id="nLz-oJ-HxZ"/>
                         <segue destination="3ZV-BA-t3g" kind="show" identifier="myQot.adminSettings.segue.identifier" id="kVG-3l-IG5"/>
                         <segue destination="2gz-w2-K3t" kind="show" identifier="myX.teamSettings.segue.identifier" id="2JH-lT-VyY"/>
-                        <segue destination="yC7-zf-1c0" kind="show" identifier="myQot.notificationSettings.segue.identifier" id="s07-Br-wNH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iN9-WJ-cdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -132,6 +131,7 @@
                         <segue destination="XM2-FH-qGD" kind="show" identifier="myQot.appSettings.siriShortcuts.segue.identifier" id="VNe-zJ-pRP"/>
                         <segue destination="TNS-Xr-HPB" kind="show" identifier="myQot.appSettings.activityTracker.segue.identifier" id="san-cH-HKL"/>
                         <segue destination="xt6-GT-5hV" kind="show" identifier="myQot.appSettings.syncedCalendar.segue.identifier" id="zxp-Au-9bd"/>
+                        <segue destination="yC7-zf-1c0" kind="show" identifier="myQot.notificationSettings.segue.identifier" id="MDZ-3c-dVc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HP0-kI-zbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1481,7 +1481,7 @@
         <!--Notification Settings View Controller-->
         <scene sceneID="fha-nB-u6H">
             <objects>
-                <viewController storyboardIdentifier="MyQotAppSettingsViewController" id="yC7-zf-1c0" customClass="NotificationSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotNotificationSettingsViewController" id="yC7-zf-1c0" customClass="NotificationSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4jF-uo-cUb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1517,7 +1517,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bcN-7d-Mk3"/>
                     <connections>
-                        <outlet property="headerView" destination="FbJ-0G-u3V" id="0O2-8o-7gV"/>
+                        <outlet property="headerView" destination="FbJ-0G-u3V" id="Lkf-os-HQ6"/>
                         <outlet property="headerViewHeightConstraint" destination="hdf-PR-atT" id="lOt-kq-ubS"/>
                         <outlet property="tableView" destination="6Wq-LX-yNl" id="hbA-MQ-9qg"/>
                     </connections>

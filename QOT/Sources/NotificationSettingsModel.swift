@@ -10,8 +10,7 @@ import UIKit
 import qot_dal
 
 struct NotificationSettingsModel {
-    let identifier: String?
-    let isActive: Bool?
+    let isActive: Bool? = true
 
     var notificationSettingsCount: Int {
         return Setting.team.rawValue + 1
@@ -62,6 +61,22 @@ struct NotificationSettingsModel {
 //            return AppTextService.get(.notification_settings_team_subtitle)
 //        }
 //    }
+
+//     check status of Notification settings
+    func isActive(for item: Setting) -> Bool {
+        switch item {
+        case .dailyReminders:
+            return true
+        case .peakEvents:
+            return false
+        case .sundays:
+            return true
+        case .sprints:
+            return false
+        case .team:
+            return true
+        }
+    }
 
    func title(for item: Setting) -> String {
         switch item {
