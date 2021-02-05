@@ -26,13 +26,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOMBOS@ABILITYMATRIX.COM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" translatesAutoresizingMaskIntoConstraints="NO" id="8wY-6N-LFY">
-                        <rect key="frame" x="24" y="12" width="217" height="20"/>
+                        <rect key="frame" x="24" y="12" width="197" height="20"/>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxn-ko-lrZ">
-                        <rect key="frame" x="24" y="36" width="217" height="15.5"/>
+                        <rect key="frame" x="24" y="36" width="197" height="15.5"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -48,9 +48,10 @@
                     </switch>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="avk-Gg-BdH" firstAttribute="leading" secondItem="8wY-6N-LFY" secondAttribute="trailing" constant="4" id="4Hf-u9-N0m"/>
+                    <constraint firstItem="avk-Gg-BdH" firstAttribute="leading" secondItem="8wY-6N-LFY" secondAttribute="trailing" constant="24" id="4Hf-u9-N0m"/>
                     <constraint firstItem="vxn-ko-lrZ" firstAttribute="top" secondItem="8wY-6N-LFY" secondAttribute="bottom" constant="4" id="J8s-ur-qjy"/>
                     <constraint firstItem="8wY-6N-LFY" firstAttribute="top" secondItem="d8A-Vs-SC5" secondAttribute="top" constant="12" id="O0G-aQ-uz7"/>
+                    <constraint firstItem="avk-Gg-BdH" firstAttribute="leading" secondItem="vxn-ko-lrZ" secondAttribute="trailing" constant="24" id="Vf1-1n-JsC"/>
                     <constraint firstItem="vxn-ko-lrZ" firstAttribute="trailing" secondItem="8wY-6N-LFY" secondAttribute="trailing" id="doW-tW-I4f"/>
                     <constraint firstItem="8wY-6N-LFY" firstAttribute="leading" secondItem="d8A-Vs-SC5" secondAttribute="leading" constant="24" id="eoF-H7-bWa"/>
                     <constraint firstAttribute="bottom" secondItem="vxn-ko-lrZ" secondAttribute="bottom" constant="12.5" id="jg3-ga-beK"/>

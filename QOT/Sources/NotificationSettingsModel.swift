@@ -63,6 +63,9 @@ struct NotificationSettingsModel {
 //    }
 
 //     check status of Notification settings
+//    If none are active and one is pressed : Allow Notification settings in phone
+//    If only one is active and we deactivate it :  Dont Allow in Notification settings in phone
+
     func isActive(for item: Setting) -> Bool {
         switch item {
         case .dailyReminders:

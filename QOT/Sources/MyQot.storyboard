@@ -1487,8 +1487,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Wq-LX-yNl">
-                                <rect key="frame" x="0.0" y="98" width="375" height="549"/>
-                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="130" width="375" height="517"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="yC7-zf-1c0" id="0Vz-FQ-1py"/>
@@ -1496,10 +1496,22 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FbJ-0G-u3V">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+                                <subviews>
+                                    <view opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sx-0N-kmB">
+                                        <rect key="frame" x="24" y="129" width="327" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="qz2-FU-13J"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="98" id="hdf-PR-atT"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Sx-0N-kmB" secondAttribute="trailing" constant="24" id="0JJ-ya-wCu"/>
+                                    <constraint firstItem="1Sx-0N-kmB" firstAttribute="leading" secondItem="FbJ-0G-u3V" secondAttribute="leading" constant="24" id="ERf-b9-DDP"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Sx-0N-kmB" secondAttribute="bottom" id="SDZ-Zv-U3r"/>
+                                    <constraint firstAttribute="height" constant="130" id="iSb-dx-oVp"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1512,19 +1524,19 @@
                             <constraint firstItem="3Y8-8i-Bji" firstAttribute="bottom" secondItem="6Wq-LX-yNl" secondAttribute="bottom" id="JG2-wg-Ltk"/>
                             <constraint firstItem="6Wq-LX-yNl" firstAttribute="top" secondItem="FbJ-0G-u3V" secondAttribute="bottom" id="MPk-WK-yVP"/>
                             <constraint firstItem="FbJ-0G-u3V" firstAttribute="leading" secondItem="4jF-uo-cUb" secondAttribute="leading" id="lme-Jp-1LO"/>
+                            <constraint firstItem="FbJ-0G-u3V" firstAttribute="top" secondItem="3Y8-8i-Bji" secondAttribute="top" id="oQz-cY-DIo"/>
                             <constraint firstItem="3Y8-8i-Bji" firstAttribute="trailing" secondItem="6Wq-LX-yNl" secondAttribute="trailing" id="rAU-Th-6UN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bcN-7d-Mk3"/>
                     <connections>
                         <outlet property="headerView" destination="FbJ-0G-u3V" id="Lkf-os-HQ6"/>
-                        <outlet property="headerViewHeightConstraint" destination="hdf-PR-atT" id="lOt-kq-ubS"/>
                         <outlet property="tableView" destination="6Wq-LX-yNl" id="hbA-MQ-9qg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HrX-YS-56s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-175" y="2184"/>
+            <point key="canvasLocation" x="-175.19999999999999" y="2183.658170914543"/>
         </scene>
     </scenes>
     <resources>

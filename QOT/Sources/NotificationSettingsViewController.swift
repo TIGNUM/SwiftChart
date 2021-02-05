@@ -72,7 +72,6 @@ extension NotificationSettingsViewController: NotificationSettingsViewController
     func setup() {
         ThemeView.level3.apply(view)
         baseHeaderView?.configure(title: interactor?.notificationsTitle, subtitle: interactor?.notificationsSubtitle)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 }
 
@@ -83,13 +82,17 @@ extension NotificationSettingsViewController: UITableViewDelegate, UITableViewDa
         return notificationModel.notificationSettingsCount
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = NotificationSettingsModel.Setting.allSettings.at(index: indexPath.row)
-        switch indexPath.section {
+        switch indexPath.row {
         case 0:
             let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: notificationModel.title(for: item ?? .sprints), themeCell: .level3)
-            cell.configure(title: notificationModel.subtitle(for: item ?? .sprints), themeCell: .level3)
+            cell.configure(title: notificationModel.title(for: item ?? .sprints),
+                           subtitle: notificationModel.subtitle(for: item ?? .sprints))
             return cell
         default:
             let item = NotificationSettingsModel.Setting.allSettings.at(index: indexPath.row)

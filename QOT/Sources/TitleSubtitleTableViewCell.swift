@@ -31,6 +31,11 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
         subTitleLabel.isHidden = isHidden
     }
 
+    func configure(title: String, subtitle: String) {
+        ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
+        ThemeText.syncedCalendarRowSubtitle.apply(subtitle, to: subTitleLabel)
+    }
+
     var hideArrow: Bool = false {
         willSet {
             arrowRight.isHidden = newValue

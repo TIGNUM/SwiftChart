@@ -9,7 +9,6 @@
 import Foundation
 
 final class NotificationSettingCell: UITableViewCell, Dequeueable {
-    
     @IBOutlet private weak var switchControl: UISwitch!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
@@ -38,7 +37,7 @@ final class NotificationSettingCell: UITableViewCell, Dequeueable {
         if isActive == true {
             switchControl.isOn = false
             isUserInteractionEnabled = false
-            switchControl.alpha = 0.1
+//            switchControl.alpha = 0.1
         }
     }
 }
