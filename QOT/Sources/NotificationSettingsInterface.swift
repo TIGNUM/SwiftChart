@@ -19,8 +19,10 @@ protocol NotificationSettingsPresenterInterface {
 protocol NotificationSettingsInteractorInterface: Interactor {
     var notificationsTitle: String { get }
     var notificationsSubtitle: String { get }
+    func handleTap(setting: NotificationSettingsModel.Setting)
 }
 
 protocol NotificationSettingsRouterInterface {
     func dismiss()
+    func didTapDailyReminders()
 }

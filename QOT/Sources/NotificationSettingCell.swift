@@ -12,7 +12,10 @@ final class NotificationSettingCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var switchControl: UISwitch!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
+    weak var settingDelegate: DailyRemindersViewControllerDelegate?
+    var indexPath: IndexPath?
     private var identifier: String?
+    var isOpen: Bool?
 
     // MARK: - Life Cycle
     override func awakeFromNib() {
@@ -30,15 +33,15 @@ final class NotificationSettingCell: UITableViewCell, Dequeueable {
     func configure(title: String?,
                    subtitle: String?,
                    isActive: Bool?) {
-
         ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
         ThemeText.syncedCalendarRowSubtitle.apply(subtitle, to: subtitleLabel)
+        switchControl.isOn = isActive == true
+    }
 
-        if isActive == true {
-            switchControl.isOn = false
-            isUserInteractionEnabled = false
-//            switchControl.alpha = 0.1
-        }
+    @IBAction func didSwitch(_ sender: UISwitch) {
+        guard let settingDelegate = settingDelegate, let indexPath = indexPath else { return }
+        settingDelegate.collapseCell(self, didTapCollapseAt: indexPath)
+//        switchControl.isOn.toggle()
     }
 }
 
@@ -50,4 +53,3 @@ extension NotificationSettingCell {
 //        }
 //    }
 }
-

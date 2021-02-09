@@ -43,7 +43,7 @@
                         <color key="onTintColor" red="0.0" green="0.38431372549999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
-                            <action selector="valueChanged:" destination="Wwx-jH-cSX" eventType="valueChanged" id="e8d-Vs-h4h"/>
+                            <action selector="didSwitch:" destination="Wwx-jH-cSX" eventType="valueChanged" id="KPC-Kv-meY"/>
                         </connections>
                     </switch>
                 </subviews>

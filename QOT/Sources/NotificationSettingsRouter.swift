@@ -24,4 +24,8 @@ extension NotificationSettingsRouter: NotificationSettingsRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
+
+    func didTapDailyReminders() {
+        viewController?.performSegue(withIdentifier: R.segue.notificationSettingsViewController.myQotDailyRemindersSegueIdentifier, sender: nil)
+    }
 }

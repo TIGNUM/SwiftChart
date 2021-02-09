@@ -13,10 +13,13 @@ final class NotificationSettingsInteractor {
     // MARK: - Properties
     private lazy var worker = NotificationSettingsWorker()
     private let presenter: NotificationSettingsPresenterInterface!
+    private let router: NotificationSettingsRouterInterface
 
     // MARK: - Init
-    init(presenter: NotificationSettingsPresenterInterface) {
+    init(presenter: NotificationSettingsPresenterInterface,
+         router: NotificationSettingsRouterInterface) {
         self.presenter = presenter
+        self.router = router
     }
 
     // MARK: - Interactor
@@ -34,5 +37,14 @@ final class NotificationSettingsInteractor {
 
 // MARK: - NotificationSettingsInteractorInterface
 extension NotificationSettingsInteractor: NotificationSettingsInteractorInterface {
+
+    func handleTap(setting: NotificationSettingsModel.Setting) {
+        switch setting {
+        case .dailyReminders:
+            router.didTapDailyReminders()
+        default:
+            break
+        }
+    }
 
 }

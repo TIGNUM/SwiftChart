@@ -1359,6 +1359,16 @@
 		F9B102A622D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B102A522D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift */; };
 		F9B3860A24AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */; };
 		F9B3860C24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */; };
+		F9BD946925D2A16F00A9BC77 /* DailyRemindersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD946125D2A16F00A9BC77 /* DailyRemindersPresenter.swift */; };
+		F9BD946A25D2A16F00A9BC77 /* DailyRemindersWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD946225D2A16F00A9BC77 /* DailyRemindersWorker.swift */; };
+		F9BD946B25D2A16F00A9BC77 /* DailyRemindersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD946325D2A16F00A9BC77 /* DailyRemindersRouter.swift */; };
+		F9BD946C25D2A16F00A9BC77 /* DailyRemindersInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD946425D2A16F00A9BC77 /* DailyRemindersInterface.swift */; };
+		F9BD946D25D2A16F00A9BC77 /* DailyRemindersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD946525D2A16F00A9BC77 /* DailyRemindersViewController.swift */; };
+		F9BD946E25D2A16F00A9BC77 /* DailyRemindersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD946625D2A16F00A9BC77 /* DailyRemindersInteractor.swift */; };
+		F9BD946F25D2A16F00A9BC77 /* DailyRemindersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD946725D2A16F00A9BC77 /* DailyRemindersModel.swift */; };
+		F9BD947025D2A16F00A9BC77 /* DailyRemindersConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD946825D2A16F00A9BC77 /* DailyRemindersConfigurator.swift */; };
+		F9BD947E25D2BF9500A9BC77 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BD947D25D2BF9500A9BC77 /* SettingCell.swift */; };
+		F9BD948625D2BFAA00A9BC77 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BD948525D2BFAA00A9BC77 /* SettingCell.xib */; };
 		F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8BB220DD9E100B40DD2 /* SiriShortcutsModel.swift */; };
 		F9D15B3324B88DB4006476FD /* TeamMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D15B3224B88DB4006476FD /* TeamMemberTableViewCell.swift */; };
 		F9D15B3524B88DC7006476FD /* TeamMemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D15B3424B88DC7006476FD /* TeamMemberTableViewCell.xib */; };
@@ -2803,6 +2813,16 @@
 		F9B102A522D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotLatestCellViewModel.swift; sourceTree = "<group>"; };
 		F9B3860924AB6EAE00C09D59 /* TeamSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F9B3860B24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSettingsTableViewCell.xib; sourceTree = "<group>"; };
+		F9BD946125D2A16F00A9BC77 /* DailyRemindersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRemindersPresenter.swift; sourceTree = "<group>"; };
+		F9BD946225D2A16F00A9BC77 /* DailyRemindersWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRemindersWorker.swift; sourceTree = "<group>"; };
+		F9BD946325D2A16F00A9BC77 /* DailyRemindersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRemindersRouter.swift; sourceTree = "<group>"; };
+		F9BD946425D2A16F00A9BC77 /* DailyRemindersInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRemindersInterface.swift; sourceTree = "<group>"; };
+		F9BD946525D2A16F00A9BC77 /* DailyRemindersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRemindersViewController.swift; sourceTree = "<group>"; };
+		F9BD946625D2A16F00A9BC77 /* DailyRemindersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRemindersInteractor.swift; sourceTree = "<group>"; };
+		F9BD946725D2A16F00A9BC77 /* DailyRemindersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRemindersModel.swift; sourceTree = "<group>"; };
+		F9BD946825D2A16F00A9BC77 /* DailyRemindersConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRemindersConfigurator.swift; sourceTree = "<group>"; };
+		F9BD947D25D2BF9500A9BC77 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		F9BD948525D2BFAA00A9BC77 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		F9C1D8BB220DD9E100B40DD2 /* SiriShortcutsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsModel.swift; sourceTree = "<group>"; };
 		F9D15B3224B88DB4006476FD /* TeamMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberTableViewCell.swift; sourceTree = "<group>"; };
 		F9D15B3424B88DC7006476FD /* TeamMemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamMemberTableViewCell.xib; sourceTree = "<group>"; };
@@ -2975,6 +2995,7 @@
 		363765F2223A4BB500C2C429 /* MyQOT */ = {
 			isa = PBXGroup;
 			children = (
+				F9BD946025D2A13100A9BC77 /* DailyReminders */,
 				F99C2C5425CAB26200F207D0 /* NotificationSettings */,
 				F9207CCD24B77992007B1AB6 /* MyXTeamMembers */,
 				F9458C5824AA3769004E2383 /* MyXTeamSettings */,
@@ -3883,6 +3904,8 @@
 				5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */,
 				F97A166B25CC489D000885A9 /* NotificationSettingCell.swift */,
 				F97A167325CC48CD000885A9 /* NotificationSettingCell.xib */,
+				F9BD947D25D2BF9500A9BC77 /* SettingCell.swift */,
+				F9BD948525D2BFAA00A9BC77 /* SettingCell.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -5979,6 +6002,21 @@
 			name = "Payment ";
 			sourceTree = "<group>";
 		};
+		F9BD946025D2A13100A9BC77 /* DailyReminders */ = {
+			isa = PBXGroup;
+			children = (
+				F9BD946125D2A16F00A9BC77 /* DailyRemindersPresenter.swift */,
+				F9BD946225D2A16F00A9BC77 /* DailyRemindersWorker.swift */,
+				F9BD946325D2A16F00A9BC77 /* DailyRemindersRouter.swift */,
+				F9BD946425D2A16F00A9BC77 /* DailyRemindersInterface.swift */,
+				F9BD946525D2A16F00A9BC77 /* DailyRemindersViewController.swift */,
+				F9BD946625D2A16F00A9BC77 /* DailyRemindersInteractor.swift */,
+				F9BD946725D2A16F00A9BC77 /* DailyRemindersModel.swift */,
+				F9BD946825D2A16F00A9BC77 /* DailyRemindersConfigurator.swift */,
+			);
+			name = DailyReminders;
+			sourceTree = "<group>";
+		};
 		F9D2BC1E22D4966B00DBF2CC /* FromTignum */ = {
 			isa = PBXGroup;
 			children = (
@@ -6385,6 +6423,7 @@
 				B49AC28D233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib in Resources */,
 				AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */,
 				F916AAF524192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib in Resources */,
+				F9BD948625D2BFAA00A9BC77 /* SettingCell.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				F906A02424AC8279007B6E1E /* TeamNameTableViewCell.xib in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
@@ -6808,6 +6847,7 @@
 				B4BCD0F923AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift in Sources */,
 				36EC23062323F45700DB5696 /* DTSprintInteractor.swift in Sources */,
 				F96D9F3124D4493100188482 /* TeamVisionSuggestionCell.swift in Sources */,
+				F9BD946D25D2A16F00A9BC77 /* DailyRemindersViewController.swift in Sources */,
 				36376631223A66AF00C2C429 /* CoachInterface.swift in Sources */,
 				B4BCE49F255BD01600A1116F /* StatusBarAnimatableViewController.swift in Sources */,
 				36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */,
@@ -7254,6 +7294,7 @@
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				B856B47922B0E29D0017A249 /* MyLibraryUserStorageWorker.swift in Sources */,
+				F9BD947025D2A16F00A9BC77 /* DailyRemindersConfigurator.swift in Sources */,
 				B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */,
 				38095D2524BDC4EA0077EE86 /* TeamInvitesRouter.swift in Sources */,
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
@@ -7353,6 +7394,7 @@
 				3666FD47232A4B7D00FC67D0 /* DTRecovery.swift in Sources */,
 				B4BCE4A6255BD01600A1116F /* CardPresentationController.swift in Sources */,
 				9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */,
+				F9BD946C25D2A16F00A9BC77 /* DailyRemindersInterface.swift in Sources */,
 				3666FD45232A4B7D00FC67D0 /* DTRecoveryViewController.swift in Sources */,
 				F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */,
 				386C27A02418EBFF00184EC9 /* ResultsPrepareModel.swift in Sources */,
@@ -7368,6 +7410,7 @@
 				36B5BD3323142B4A00439A64 /* AskPermissionConfigurator.swift in Sources */,
 				75EFB63222C51C6F00E8C64F /* TBVDataGraphTableViewCell.swift in Sources */,
 				B856B47D22B0E29D0017A249 /* MyLibraryUserStorageInteractor.swift in Sources */,
+				F9BD946925D2A16F00A9BC77 /* DailyRemindersPresenter.swift in Sources */,
 				5FA6663A229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift in Sources */,
 				B430D7D123A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsRouter.swift in Sources */,
 				AC84FFC122293BEB0056F9EA /* SiriEventsModel.swift in Sources */,
@@ -7394,6 +7437,7 @@
 				F9F470772510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */,
 				F95B9236228EAE69000DEAEC /* ToolsInterface.swift in Sources */,
+				F9BD946F25D2A16F00A9BC77 /* DailyRemindersModel.swift in Sources */,
 				8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */,
 				B4BCE473255BCEC500A1116F /* BaseDailyBriefDetailsWorker.swift in Sources */,
 				8DECF9AF22DE079D00451E65 /* MySprintsListHeaderView.swift in Sources */,
@@ -7437,6 +7481,7 @@
 				5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */,
 				F902CF5322DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift in Sources */,
 				B4BCE46F255BCEC500A1116F /* BaseDailyBriefDetailsInterface.swift in Sources */,
+				F9BD946A25D2A16F00A9BC77 /* DailyRemindersWorker.swift in Sources */,
 				DB2969EA22C6105300B8A590 /* AudioFullScreenViewController.swift in Sources */,
 				AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */,
 				8D0B4D272301CC4000A1AC47 /* RegistrationNamesInteractor.swift in Sources */,
@@ -7458,6 +7503,7 @@
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
 				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
 				38A2D17B25025C7100CEA071 /* DTTeamTBVViewController.swift in Sources */,
+				F9BD946E25D2A16F00A9BC77 /* DailyRemindersInteractor.swift in Sources */,
 				367CD18422EF4EDE00AF2187 /* OnboardingLoginInteractor.swift in Sources */,
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,
 				8D322B9822E89C13000141E1 /* MySprintDetailsHeaderView.swift in Sources */,
@@ -7495,6 +7541,7 @@
 				367A585A2326A15D0089A082 /* DTSolveConfigurator.swift in Sources */,
 				AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */,
 				36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */,
+				F9BD947E25D2BF9500A9BC77 /* SettingCell.swift in Sources */,
 				3655F2D92326EBD600334719 /* DTMindset.swift in Sources */,
 				F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
@@ -7578,6 +7625,7 @@
 				367A585D2326A1AF0089A082 /* DTViewController.swift in Sources */,
 				363B9CC9232D0B7D00C1A29E /* WorkerTBV.swift in Sources */,
 				B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */,
+				F9BD946B25D2A16F00A9BC77 /* DailyRemindersRouter.swift in Sources */,
 				F947EA252521F4DA004C7076 /* BarChartView.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
 				9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */,

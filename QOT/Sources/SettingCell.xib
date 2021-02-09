@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="383" id="gzH-gt-ftY" customClass="SettingCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="383"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gzH-gt-ftY" id="EFI-vM-mHO">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="383"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TUT-Qj-44T">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DsE-3E-dTp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="GOMBOS@ABILITYMATRIX.COM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" translatesAutoresizingMaskIntoConstraints="NO" id="5sS-IF-Srv">
+                                        <rect key="frame" x="24" y="20" width="216" height="25"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joT-Up-LEF">
+                                        <rect key="frame" x="250" y="17.5" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="settingTapped:" destination="gzH-gt-ftY" eventType="touchUpInside" id="ADy-Mr-wTB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="joT-Up-LEF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5sS-IF-Srv" secondAttribute="trailing" constant="10" id="7gE-4p-7O9"/>
+                                    <constraint firstItem="5sS-IF-Srv" firstAttribute="top" secondItem="DsE-3E-dTp" secondAttribute="top" constant="20" id="8E0-fD-hqU"/>
+                                    <constraint firstItem="joT-Up-LEF" firstAttribute="centerY" secondItem="5sS-IF-Srv" secondAttribute="centerY" id="CcT-Et-dvX"/>
+                                    <constraint firstAttribute="bottom" secondItem="5sS-IF-Srv" secondAttribute="bottom" constant="20" id="G93-oO-6TL"/>
+                                    <constraint firstItem="5sS-IF-Srv" firstAttribute="leading" secondItem="DsE-3E-dTp" secondAttribute="leading" constant="24" id="LwD-C7-DZj"/>
+                                    <constraint firstAttribute="height" constant="65" id="VMF-Hx-QSe"/>
+                                    <constraint firstAttribute="trailing" secondItem="joT-Up-LEF" secondAttribute="trailing" constant="24" id="gzW-bn-cTl"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YoS-aH-jqR">
+                                <rect key="frame" x="0.0" y="65" width="320" height="150"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uq-IS-cMx">
+                                        <rect key="frame" x="20" y="0.0" width="280" height="150"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="634590000.64800894">
+                                            <!--2021-02-09 19:00:00 +0000-->
+                                        </date>
+                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-978310800">
+                                            <!--1969-12-31 23:00:00 +0000-->
+                                        </date>
+                                        <date key="maximumDate" timeIntervalSinceReferenceDate="1167605940">
+                                            <!--2037-12-31 22:59:00 +0000-->
+                                        </date>
+                                        <connections>
+                                            <action selector="datePickerChanged:" destination="gzH-gt-ftY" eventType="valueChanged" id="YR2-nz-gdB"/>
+                                        </connections>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="IUj-eb-0rU"/>
+                                    <constraint firstItem="8uq-IS-cMx" firstAttribute="top" secondItem="YoS-aH-jqR" secondAttribute="top" id="YKT-rO-Ewg"/>
+                                    <constraint firstItem="8uq-IS-cMx" firstAttribute="leading" secondItem="YoS-aH-jqR" secondAttribute="leading" constant="20" id="aa6-mx-zJA"/>
+                                    <constraint firstAttribute="bottom" secondItem="8uq-IS-cMx" secondAttribute="bottom" id="eT3-gB-ein"/>
+                                    <constraint firstItem="8uq-IS-cMx" firstAttribute="centerX" secondItem="YoS-aH-jqR" secondAttribute="centerX" id="uOv-Ah-odn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="YoS-aH-jqR" firstAttribute="leading" secondItem="TUT-Qj-44T" secondAttribute="leading" id="0jf-J0-Rdj"/>
+                            <constraint firstAttribute="bottom" secondItem="YoS-aH-jqR" secondAttribute="bottom" id="11w-C4-xui"/>
+                            <constraint firstAttribute="trailing" secondItem="YoS-aH-jqR" secondAttribute="trailing" id="O1H-lh-NOg"/>
+                            <constraint firstItem="YoS-aH-jqR" firstAttribute="leading" secondItem="TUT-Qj-44T" secondAttribute="leading" id="VWN-Md-pMa"/>
+                            <constraint firstItem="YoS-aH-jqR" firstAttribute="top" secondItem="DsE-3E-dTp" secondAttribute="bottom" id="efC-z9-wlf"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="TUT-Qj-44T" secondAttribute="trailing" id="720-b5-rcb"/>
+                    <constraint firstAttribute="bottom" secondItem="TUT-Qj-44T" secondAttribute="bottom" id="lEe-nj-iC0"/>
+                    <constraint firstItem="TUT-Qj-44T" firstAttribute="top" secondItem="EFI-vM-mHO" secondAttribute="top" id="lcl-cZ-SFY"/>
+                    <constraint firstItem="TUT-Qj-44T" firstAttribute="leading" secondItem="EFI-vM-mHO" secondAttribute="leading" id="yY0-f3-qeq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="ROn-Os-ioF"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="datePicker" destination="8uq-IS-cMx" id="uT6-k2-7Vn"/>
+                <outlet property="settingButton" destination="joT-Up-LEF" id="jjc-r0-Wxd"/>
+                <outlet property="timePickerView" destination="YoS-aH-jqR" id="0PH-3d-uIs"/>
+                <outlet property="titleLabel" destination="5sS-IF-Srv" id="c6t-xb-acq"/>
+            </connections>
+            <point key="canvasLocation" x="318.84057971014494" y="233.37053571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

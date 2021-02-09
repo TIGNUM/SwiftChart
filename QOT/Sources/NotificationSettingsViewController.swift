@@ -15,7 +15,6 @@ final class NotificationSettingsViewController: BaseViewController, ScreenZLevel
     var interactor: NotificationSettingsInteractorInterface!
     private lazy var router: NotificationSettingsRouterInterface = NotificationSettingsRouter(viewController: self)
     @IBOutlet private weak var headerView: UIView!
-    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
     private var notificationModel = NotificationSettingsModel()
@@ -53,7 +52,9 @@ final class NotificationSettingsViewController: BaseViewController, ScreenZLevel
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        if let dailyRemindersVC = segue.destination as? DailyRemindersViewController {
+            DailyRemindersConfigurator.make(viewController: dailyRemindersVC)
+        }
     }
 }
 
@@ -103,5 +104,10 @@ extension NotificationSettingsViewController: UITableViewDelegate, UITableViewDa
                            isActive: notificationModel.isActive(for: item ?? .sprints))
             return cell
         }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let settingTapped = notificationModel.settingItem(at: indexPath)
+        interactor?.handleTap(setting: settingTapped)
     }
 }
