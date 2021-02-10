@@ -34,8 +34,6 @@ protocol DailyBriefViewControllerDelegate: class {
 
     func displayCoachPreparationScreen()
 
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
-
     func showDailyCheckInQuestions()
 
     func showAlert(message: String?)
@@ -101,6 +99,5 @@ protocol DailyBriefRouterInterface: BaseRouterInterface {
     func presentCoachPreparation()
     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?)
     func presentTeamPendingInvites()
-    func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)
     func showExplanation(_ team: QDMTeam, type: Explanation.Types)
 }
