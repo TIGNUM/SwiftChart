@@ -19,10 +19,13 @@ extension DailyBriefInteractor {
 
     // MARK: - Guided tour
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket, hasToBeVision: Bool?, hasSeenFoundations: Bool?) -> [BaseDailyBriefViewModel] {
+        if hasToBeVision == true, hasSeenFoundations == true, hasPreparation == true {
+            return []
+        }
+        
         var guidedTrackList: [GuidedTrackViewModel] = []
         let title = AppTextService.get(.daily_brief_section_guided_track_title)
         var items: [GuidedTrackItem] = []
-
         guidedTrack.contentCollections?.forEach { (contentItem) in
             var title: String = ""
             var image: String = ""
@@ -36,12 +39,14 @@ extension DailyBriefInteractor {
                                                       appLink: qdmAppLink,
                                                       isCompleted: hasSeenFoundations))
                 case "DB_GUIDED_TRACK_2":
-                    title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_tbv)
-                    image = "get-started-tbv"
-                    items.append(GuidedTrackItem.init(title: title,
-                                                      image: image,
-                                                      appLink: qdmAppLink,
-                                                      isCompleted: hasToBeVision))
+                    if let toBeVisionLink = contentItem.links.last {
+                        title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_tbv)
+                        image = "get-started-tbv"
+                        items.append(GuidedTrackItem.init(title: title,
+                                                          image: image,
+                                                          appLink: hasToBeVision == true ? qdmAppLink : toBeVisionLink,
+                                                          isCompleted: hasToBeVision))
+                    }
                 case "DB_GUIDED_TRACK_4":
                     title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_prepare)
                     image = "get-started-prepare"
@@ -62,6 +67,7 @@ extension DailyBriefInteractor {
         guidedTrackList.append(guidedTrackViewModel)
         return guidedTrackList
     }
+
     // MARK: - Impact Readiness
     func createImpactReadinessCell(impactReadinessBucket impactReadiness: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var impactReadinessList: [BaseDailyBriefViewModel] = []
