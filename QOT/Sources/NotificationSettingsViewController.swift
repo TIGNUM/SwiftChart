@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NotificationSettingsViewController: BaseViewController, ScreenZLevel3 {
+final class NotificationSettingsViewController: BaseWithTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
@@ -16,7 +16,7 @@ final class NotificationSettingsViewController: BaseViewController, ScreenZLevel
     private lazy var router: NotificationSettingsRouterInterface = NotificationSettingsRouter(viewController: self)
     @IBOutlet private weak var headerView: UIView!
     private var baseHeaderView: QOTBaseHeaderView?
-    @IBOutlet private weak var tableView: UITableView!
+//    @IBOutlet private weak var tableView: UITableView!
     private var notificationModel = NotificationSettingsModel()
 
     // MARK: - Init
@@ -107,6 +107,7 @@ extension NotificationSettingsViewController: UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let settingTapped = notificationModel.settingItem(at: indexPath)
         interactor?.handleTap(setting: settingTapped)
     }

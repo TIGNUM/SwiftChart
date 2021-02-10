@@ -16,13 +16,12 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView = UIView(frame: self.bounds)
-        ThemeView.level2Selected.apply(selectedBackgroundView!)
+        let bkView = UIView()
+        bkView.backgroundColor = .tignumPink10
+        selectedBackgroundView = bkView
     }
 
     func configure(title: String, themeCell: ThemeView = .level2) {
-        themeCell.apply(backgroundView!)
         ThemeText.linkMenuItem.apply(title.uppercased(), to: titleLabel)
     }
 

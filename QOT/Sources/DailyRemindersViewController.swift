@@ -87,6 +87,7 @@ extension DailyRemindersViewController: UITableViewDelegate, UITableViewDataSour
             cell.settingDelegate = self
             cell.indexPath = indexPath
             cell.isOpen = node.isOpen
+            cell.selectionStyle = .none
             return cell
         }
         let cell: SettingCell = tableView.dequeueCell(for: indexPath)
@@ -95,6 +96,7 @@ extension DailyRemindersViewController: UITableViewDelegate, UITableViewDataSour
         cell.indexPath = indexPath
         cell.type = item.settingType
         cell.settingDelegate = self
+        cell.selectionStyle = .none
         return cell
     }
 
