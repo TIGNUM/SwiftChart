@@ -54,11 +54,11 @@ DEPENDENCIES:
   - DifferenceKit
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:tignumaccountmaster/qot_dal.git`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
-  - "SwiftChart (from `git@github.com:tignumaccountmaster/SwiftChart.git`)"
+  - "SwiftChart (from `git@github.com:TIGNUM/SwiftChart.git`)"
   - SwiftyBeaver
 
 SPEC REPOS:
@@ -110,6 +110,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: 2e8acd6fc90c6d0a27055867a290794926d57c02
 
-PODFILE CHECKSUM: 199e2e024f2612bca078ab871ad86087efad3473
+PODFILE CHECKSUM: 9a784b152c2e2766673446e4c28874e2276a0205
 
 COCOAPODS: 1.10.1

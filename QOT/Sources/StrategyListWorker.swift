@@ -82,7 +82,7 @@ final class StrategyListWorker {
             })
             var items = [Strategy.Item]()
             learnContentList?.forEach { (contentCollection) in
-                let title = contentCollection.title.replacingOccurrences(of: "Performance ", with: "")
+                let title = contentCollection.title.replacingOccurrences(of: "PERFORMANCE ", with: "")
                 let firstAudioItem = contentCollection.contentItems.filter { $0.format == .audio }.first
                 items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? 0,
                                            categoryTitle: contentCollection.contentCategoryTitle ?? "",
