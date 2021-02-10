@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,7 +23,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TUT-Qj-44T">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="465"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DsE-3E-dTp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
@@ -55,10 +54,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YoS-aH-jqR">
-                                <rect key="frame" x="0.0" y="65" width="320" height="150"/>
+                                <rect key="frame" x="0.0" y="65" width="320" height="200"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uq-IS-cMx">
-                                        <rect key="frame" x="20" y="0.0" width="280" height="150"/>
+                                        <rect key="frame" x="20" y="0.0" width="280" height="162"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <date key="date" timeIntervalSinceReferenceDate="634590000.64800894">
@@ -71,39 +70,44 @@
                                             <!--2037-12-31 22:59:00 +0000-->
                                         </date>
                                         <connections>
-                                            <action selector="datePickerChanged:" destination="gzH-gt-ftY" eventType="valueChanged" id="YR2-nz-gdB"/>
+                                            <action selector="datePickerChanged:" destination="gzH-gt-ftY" eventType="valueChanged" id="6lP-Tz-BQE"/>
                                         </connections>
                                     </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="IUj-eb-0rU"/>
+                                    <constraint firstAttribute="bottom" secondItem="8uq-IS-cMx" secondAttribute="bottom" constant="38" id="5SM-e7-2tG"/>
+                                    <constraint firstAttribute="height" constant="200" id="IUj-eb-0rU"/>
                                     <constraint firstItem="8uq-IS-cMx" firstAttribute="top" secondItem="YoS-aH-jqR" secondAttribute="top" id="YKT-rO-Ewg"/>
                                     <constraint firstItem="8uq-IS-cMx" firstAttribute="leading" secondItem="YoS-aH-jqR" secondAttribute="leading" constant="20" id="aa6-mx-zJA"/>
-                                    <constraint firstAttribute="bottom" secondItem="8uq-IS-cMx" secondAttribute="bottom" id="eT3-gB-ein"/>
                                     <constraint firstItem="8uq-IS-cMx" firstAttribute="centerX" secondItem="YoS-aH-jqR" secondAttribute="centerX" id="uOv-Ah-odn"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KpM-IQ-6PU">
-                                <rect key="frame" x="0.0" y="215" width="320" height="164"/>
+                                <rect key="frame" x="0.0" y="265" width="320" height="200"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HdG-5m-P79">
-                                        <rect key="frame" x="20" y="0.0" width="280" height="164"/>
+                                        <rect key="frame" x="20" y="0.0" width="280" height="170"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pickerView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="HdG-5m-P79" secondAttribute="bottom" id="1xW-Yy-oHm"/>
+                                    <constraint firstAttribute="bottom" secondItem="HdG-5m-P79" secondAttribute="bottom" constant="30" id="1nx-cM-YK1"/>
                                     <constraint firstItem="HdG-5m-P79" firstAttribute="centerX" secondItem="KpM-IQ-6PU" secondAttribute="centerX" id="7Ov-ZG-GKO"/>
                                     <constraint firstItem="HdG-5m-P79" firstAttribute="top" secondItem="KpM-IQ-6PU" secondAttribute="top" id="RtF-as-VuL"/>
                                     <constraint firstItem="HdG-5m-P79" firstAttribute="leading" secondItem="KpM-IQ-6PU" secondAttribute="leading" constant="20" id="dzp-bp-IjQ"/>
+                                    <constraint firstAttribute="height" constant="200" id="m1X-AN-HIz"/>
                                 </constraints>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YoS-aH-jqR" firstAttribute="leading" secondItem="TUT-Qj-44T" secondAttribute="leading" id="0jf-J0-Rdj"/>
                             <constraint firstItem="KpM-IQ-6PU" firstAttribute="top" secondItem="YoS-aH-jqR" secondAttribute="bottom" id="98T-ZX-MDV"/>
                             <constraint firstAttribute="bottom" secondItem="KpM-IQ-6PU" secondAttribute="bottom" id="Bb9-vh-tOy"/>
+                            <constraint firstAttribute="bottom" secondItem="KpM-IQ-6PU" secondAttribute="bottom" id="LZo-8E-RJF"/>
                             <constraint firstAttribute="trailing" secondItem="YoS-aH-jqR" secondAttribute="trailing" id="O1H-lh-NOg"/>
                             <constraint firstItem="KpM-IQ-6PU" firstAttribute="leading" secondItem="TUT-Qj-44T" secondAttribute="leading" id="acY-AA-l8v"/>
                             <constraint firstItem="YoS-aH-jqR" firstAttribute="top" secondItem="DsE-3E-dTp" secondAttribute="bottom" id="efC-z9-wlf"/>
@@ -111,6 +115,7 @@
                         </constraints>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="TUT-Qj-44T" secondAttribute="trailing" id="720-b5-rcb"/>
                     <constraint firstItem="TUT-Qj-44T" firstAttribute="top" secondItem="EFI-vM-mHO" secondAttribute="top" id="lcl-cZ-SFY"/>
@@ -120,18 +125,14 @@
             <viewLayoutGuide key="safeArea" id="ROn-Os-ioF"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="datePicker" destination="8uq-IS-cMx" id="uT6-k2-7Vn"/>
+                <outlet property="dayPicker" destination="HdG-5m-P79" id="N9S-om-FhL"/>
                 <outlet property="dayPickerView" destination="KpM-IQ-6PU" id="gez-yl-Dd8"/>
                 <outlet property="settingButton" destination="joT-Up-LEF" id="jjc-r0-Wxd"/>
+                <outlet property="timePicker" destination="8uq-IS-cMx" id="YRs-hk-Axb"/>
                 <outlet property="timePickerView" destination="YoS-aH-jqR" id="0PH-3d-uIs"/>
                 <outlet property="titleLabel" destination="5sS-IF-Srv" id="c6t-xb-acq"/>
             </connections>
             <point key="canvasLocation" x="318.84057971014494" y="233.37053571428569"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

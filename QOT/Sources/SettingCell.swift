@@ -13,7 +13,8 @@ final class SettingCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var settingButton: UIButton!
     weak var settingDelegate: DailyRemindersViewControllerDelegate?
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var dayPicker: UIPickerView!
     var indexPath: IndexPath?
     var type: ReminderSetting.Setting?
     @IBOutlet weak var timePickerView: UIView!
@@ -23,6 +24,8 @@ final class SettingCell: UITableViewCell, Dequeueable {
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.dayPicker.delegate = self
+        self.dayPicker.dataSource = self
     }
 
     override func prepareForReuse() {
@@ -37,14 +40,20 @@ final class SettingCell: UITableViewCell, Dequeueable {
         self.type = type
         self.isExpanded = isExpanded
         switch type {
-        case.frequency:
+        case.time:
+            dayPickerView.isHidden = true
             timePickerView.isHidden = isExpanded != true
-        case .time:
+        case .frequency:
+            timePickerView.isHidden = true
             dayPickerView.isHidden = isExpanded != true
         default: break
         }
         if timePickerView.isHidden == false {
-            datePicker.setValue(UIColor.white, forKeyPath: "textColor")
+            timePicker.setValue(UIColor.white, forKeyPath: "textColor")
+        }
+        if dayPickerView.isHidden == false {
+            dayPicker.selectRow(4, inComponent: 0, animated: true)
+            dayPicker.setValue(UIColor.white, forKeyPath: "textColor")
         }
         ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
         settingButton.setTitle(setting, for: .normal)
@@ -53,6 +62,7 @@ final class SettingCell: UITableViewCell, Dequeueable {
     @IBAction func datePickerChanged(_ sender: Any) {
 
     }
+
     @IBAction func settingTapped(_ sender: Any) {
         guard let settingDelegate = settingDelegate, let indexPath = indexPath else { return }
         settingDelegate.collapseSetting(self, didTapCollapseAt: indexPath)
@@ -60,6 +70,10 @@ final class SettingCell: UITableViewCell, Dequeueable {
 }
 
 extension SettingCell: UIPickerViewDataSource, UIPickerViewDelegate {
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+           super.setSelected(selected, animated: animated)
+       }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -70,7 +84,7 @@ extension SettingCell: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch component {
+        switch row {
         case 0:
             return "Monday"
         case 1:
@@ -86,9 +100,7 @@ extension SettingCell: UIPickerViewDataSource, UIPickerViewDelegate {
         case 6:
             return "Sunday"
         default:
-            return ""
+            return "Sunday"
         }
     }
-
-
 }

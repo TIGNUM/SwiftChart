@@ -79,7 +79,7 @@ extension CGFloat.View.Height {
     static let ParentNode: CGFloat = 64
     static let ChildNode: CGFloat = 95
     static let Setting: CGFloat = 64
-    static let ExpandedSetting: CGFloat = 120
+    static let ExpandedSetting: CGFloat = 260
     static let Footer: CGFloat = 20
     static let TypingFooter: CGFloat = 80
     static let CalendarSelectionHeader: CGFloat = 111
