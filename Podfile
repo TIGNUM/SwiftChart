@@ -10,7 +10,7 @@ target 'QOT' do
   pod 'SwiftyBeaver'
   pod 'AppCenter'
   pod 'Kingfisher'
-  pod 'qot_dal', :git => 'git@github.com:karmicDev/qot_dal.git'
+  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'feature/QOT-3508-enviornment-pre-release'
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
   pod 'SwiftChart', :git => 'git@github.com:karmicDev/SwiftChart.git'
