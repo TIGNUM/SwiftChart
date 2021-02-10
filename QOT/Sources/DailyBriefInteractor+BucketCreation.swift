@@ -39,12 +39,14 @@ extension DailyBriefInteractor {
                                                       appLink: qdmAppLink,
                                                       isCompleted: hasSeenFoundations))
                 case "DB_GUIDED_TRACK_2":
-                    title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_tbv)
-                    image = "get-started-tbv"
-                    items.append(GuidedTrackItem.init(title: title,
-                                                      image: image,
-                                                      appLink: qdmAppLink,
-                                                      isCompleted: hasToBeVision))
+                    if let toBeVisionLink = contentItem.links.last {
+                        title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_tbv)
+                        image = "get-started-tbv"
+                        items.append(GuidedTrackItem.init(title: title,
+                                                          image: image,
+                                                          appLink: hasToBeVision == true ? qdmAppLink : toBeVisionLink,
+                                                          isCompleted: hasToBeVision))
+                    }
                 case "DB_GUIDED_TRACK_4":
                     title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_prepare)
                     image = "get-started-prepare"

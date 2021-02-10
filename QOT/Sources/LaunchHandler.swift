@@ -50,8 +50,7 @@ final class LaunchHandler {
         switch scheme {
         case .dailyBrief,
              .guide:
-            showFirstLevelScreen(page: .dailyBrief, queries[scheme.queryNames.first ?? ""] ?? nil)
-
+            showFirstLevelScreen(page: .dailyBrief)
         case .dailyCheckIn,
              .dailyPrep:
 
@@ -69,10 +68,12 @@ final class LaunchHandler {
             guard let itemIdString = queries[scheme.queryNames.first ?? ""] ?? nil, let itemId = Int(itemIdString) else { break }
             showContentItem(itemId)
         case .knowFeed,
-             .strategies: showFirstLevelScreen(page: .know)
+             .strategies:
+            showFirstLevelScreen(page: .know, nil, .strategies)
         case .myQOT,
              .meQotPartner,
-             .meTravel: showFirstLevelScreen(page: .myX)
+             .meTravel:
+            showFirstLevelScreen(page: .myX)
         case .coachMode: presentCoachModeScreen()
         case .createSolveAChallenge,
              .prepareProblem:
@@ -216,6 +217,12 @@ final class LaunchHandler {
         case .tbvTrackerPollOpened:
             guard let teamIdString = queries.first?.value, let teamId = Int(teamIdString) else { break }
             showTBVRating(teamId)
+        case .generateToBeVision:
+            generateTBV()
+        case .myBookmarks:
+            showBookmarks()
+        case .myDownloads:
+            showDownloads()
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
@@ -336,7 +343,6 @@ extension LaunchHandler {
         mainNavi.dismissAllPresentedViewControllers(mainNavi, true) {
             NotificationCenter.default.post(name: .showFirstLevelScreen, object: page)
         }
-
         if let section = knowingSection {
             NotificationCenter.default.post(name: .showKnowingSection, object: section)
         }
@@ -345,6 +351,9 @@ extension LaunchHandler {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) + .microseconds(500)) {
                 NotificationCenter.default.post(name: .scrollToBucket, object: bucket)
             }
+        }
+        if let coachVC = baseRootViewController?.children.first as? CoachCollectionViewController {
+            coachVC.didTapCancelSearch()
         }
     }
 
@@ -366,7 +375,6 @@ extension LaunchHandler {
                 } else {
                     self?.present(viewController: viewController)
                 }
-
             }
         }
     }
@@ -458,6 +466,28 @@ extension LaunchHandler {
         }
     }
 
+    func showBookmarks() {
+        guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
+            assertionFailure()
+            return
+        }
+        let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
+        let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .BOOKMARK, newItemCount: 0)
+        configurator(controller, item)
+        push(viewController: controller)
+    }
+
+    func showDownloads() {
+        guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
+            assertionFailure()
+            return
+        }
+        let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
+        let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .DOWNLOAD, newItemCount: 0)
+        configurator(controller, item)
+        push(viewController: controller)
+    }
+
     func showMindsetShifterDecisionTree() {
         guard let mainNavigationController = baseRootViewController?.navigationController else { return }
         mainNavigationController.dismissAllPresentedViewControllers(mainNavigationController, true) {
@@ -478,6 +508,12 @@ extension LaunchHandler {
             self.present(viewController: controller)
             baseRootViewController?.removeBottomNavigation()
         }
+    }
+
+    func generateTBV() {
+        let configurator = DTTBVConfigurator.make(delegate: nil)
+        let controller = DTTBVViewController(configure: configurator)
+        present(viewController: controller)
     }
 
     func showMyLibrary(_ queries: [String: String?]) {
