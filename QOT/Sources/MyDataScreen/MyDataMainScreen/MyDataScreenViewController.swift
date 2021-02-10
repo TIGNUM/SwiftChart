@@ -19,7 +19,7 @@ enum MyDataRowType: Int, CaseIterable {
     case heatMap
 }
 
-final class MyDataScreenViewController: BaseViewController, ScreenZLevel3 {
+final class MyDataScreenViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
     var interactor: MyDataScreenInteractorInterface?
@@ -62,7 +62,6 @@ final class MyDataScreenViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateBottomNavigation([backNavigationItem()], [])
         trackPage()
     }
 
