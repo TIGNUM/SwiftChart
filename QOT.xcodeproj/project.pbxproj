@@ -6626,7 +6626,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				$SRCROOT/QOT/Generated/R.generated.swift,
+				"$SRCROOT/QOT/Generated/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -8162,7 +8162,7 @@
 		};
 		38CA018925D3F61700945E46 /* AppCenter */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D2F517F0A68C796F3C9C214 /* Pods-QOT.novartis.xcconfig */;
+			baseConfigurationReference = 8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3.0";

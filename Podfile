@@ -13,7 +13,7 @@ target 'QOT' do
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'feature/QOT-3508-enviornment-pre-release'
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
-  pod 'SwiftChart', :git => 'git@github.com:karmicDev/SwiftChart.git'
+  pod 'SwiftChart', :git => 'git@github.com:TIGNUM/SwiftChart.git'
 end
 
 post_install do |installer|
