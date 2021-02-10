@@ -60,10 +60,6 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?) {
-        appLink?.launch()
-    }
-
      func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?) {
           let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
                                                             resultType: .mindsetShifterBucket)
