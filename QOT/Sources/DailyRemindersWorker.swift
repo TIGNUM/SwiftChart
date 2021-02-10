@@ -94,7 +94,10 @@ final class DailyRemindersWorker {
         var nodes: [DailyRemindersModel] = []
         var children: [ReminderSetting] = []
         ReminderSetting.Setting.allSettings.forEach { (setting) in
-            children.append(ReminderSetting(title: settingTitle(for: setting), settingValue: settingValue(for: setting), isExpanded: false, settingType: setting))
+            children.append(ReminderSetting(title: settingTitle(for: setting),
+                                            settingValue: settingValue(for: setting),
+                                            isExpanded: false,
+                                            settingType: setting))
         }
         DailyRemindersModel.ReminderType.allReminders.forEach {(type) in
             nodes.append(DailyRemindersModel(title: title(for: type), subtitle: subtitle(for: type), children: children, isOpen: false, type: type)

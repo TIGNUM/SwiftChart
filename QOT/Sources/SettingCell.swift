@@ -17,6 +17,7 @@ final class SettingCell: UITableViewCell, Dequeueable {
     var indexPath: IndexPath?
     var type: ReminderSetting.Setting?
     @IBOutlet weak var timePickerView: UIView!
+    @IBOutlet weak var dayPickerView: UIView!
     var isExpanded: Bool?
 
     // MARK: - Life Cycle
@@ -35,7 +36,13 @@ final class SettingCell: UITableViewCell, Dequeueable {
                    type: ReminderSetting.Setting? ) {
         self.type = type
         self.isExpanded = isExpanded
-        timePickerView.isHidden = isExpanded != true
+        switch type {
+        case.frequency:
+            timePickerView.isHidden = isExpanded != true
+        case .time:
+            dayPickerView.isHidden = isExpanded != true
+        default: break
+        }
         if timePickerView.isHidden == false {
             datePicker.setValue(UIColor.white, forKeyPath: "textColor")
         }
@@ -50,4 +57,38 @@ final class SettingCell: UITableViewCell, Dequeueable {
         guard let settingDelegate = settingDelegate, let indexPath = indexPath else { return }
         settingDelegate.collapseSetting(self, didTapCollapseAt: indexPath)
     }
+}
+
+extension SettingCell: UIPickerViewDataSource, UIPickerViewDelegate {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 7
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0:
+            return "Monday"
+        case 1:
+            return "Tuesday"
+        case 2:
+            return "Wednesday"
+        case 3:
+            return "Thursday"
+        case 4:
+            return "Friday"
+        case 5:
+            return "Saturday"
+        case 6:
+            return "Sunday"
+        default:
+            return ""
+        }
+    }
+
+
 }
