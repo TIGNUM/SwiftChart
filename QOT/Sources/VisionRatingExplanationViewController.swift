@@ -196,7 +196,7 @@ private extension VisionRatingExplanationViewController {
                                      buttonWidth: .Save,
                                      action: rightBarButtonAction,
                                      backgroundColor: .clear,
-                                     borderColor: .white40)]
+                                     borderColor: .white)]
     }
 
     func getLeftBarButtonItems() -> [UIBarButtonItem] {
