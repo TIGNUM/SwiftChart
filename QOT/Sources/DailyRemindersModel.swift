@@ -44,7 +44,6 @@ struct ReminderSetting {
     var isExpanded: Bool
     var settingType: Setting
 
-
     enum Setting: Int {
         case frequency = 0
         case time

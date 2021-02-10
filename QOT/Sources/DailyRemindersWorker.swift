@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DailyRemindersWorker {
 
@@ -33,6 +34,17 @@ final class DailyRemindersWorker {
          }
      }
 
+//    func title(for item: DailyRemindersModel.ReminderType) -> String {
+//         switch item {
+//         case .ready:
+//            return AppTextService.get(.daily_reminders_settings_ready_title)
+//         case .morning:
+//            return AppTextService.get(.daily_reminders_settings_morning_title)
+//         case .sleep:
+//            return AppTextService.get(.daily_reminders_settings_sleep_title)
+//         }
+//     }
+
     func subtitle(for item: DailyRemindersModel.ReminderType) -> String {
          switch item {
          case .ready:
@@ -44,6 +56,17 @@ final class DailyRemindersWorker {
          }
      }
 
+//    func subtitle(for item: DailyRemindersModel.ReminderType) -> String {
+//         switch item {
+//         case .ready:
+//            return AppTextService.get(.daily_reminders_settings_ready_subtitle)
+//         case .morning:
+//            return AppTextService.get(.daily_reminders_settings_ready_subtitle)
+//         case .sleep:
+//            return AppTextService.get(.daily_reminders_settings_sleep_subtitle)
+//         }
+//     }
+
     func settingTitle(for item: ReminderSetting.Setting) -> String {
         switch item {
         case .frequency:
@@ -53,6 +76,15 @@ final class DailyRemindersWorker {
         }
     }
 
+//    func settingTitle(for item: ReminderSetting.Setting) -> String {
+//        switch item {
+//        case .frequency:
+//            return AppTextService.get(.daily_reminders_setting_frequency_title)
+//        case .time:
+//            return AppTextService.get(.daily_reminders_setting_time_title)
+//        }
+//    }
+
     func settingValue(for item: ReminderSetting.Setting) -> String {
         switch item {
         case .frequency:
@@ -61,6 +93,15 @@ final class DailyRemindersWorker {
             return "5:00 am"
         }
     }
+
+//    func settingValue(for item: ReminderSetting.Setting) -> String {
+//        switch item {
+//        case .frequency:
+//            return AppTextService.get(.daily_reminders_setting_frequency_value)
+//        case .time:
+//            return AppTextService.get(.daily_reminders_setting_time_value)
+//        }
+//    }
 
     func isParentNode(atIndexPath indexPath: IndexPath) -> Bool {
         return indexPath.row == 0 // first row in section is always a node
