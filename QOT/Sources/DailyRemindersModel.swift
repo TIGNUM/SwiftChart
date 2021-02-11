@@ -47,7 +47,7 @@ struct ReminderSetting {
     enum Setting: Int {
         case frequency = 0
         case time
-        
+
         static var allSettings: [Setting] {
             return [.frequency, .time]
         }
