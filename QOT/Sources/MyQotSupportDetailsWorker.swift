@@ -53,7 +53,7 @@ extension MyQotSupportDetailsWorker {
         let content = item(at: indexPath)
         let contentItem = content.contentItems.filter { $0.format == .header3 }.first
         let text = contentItem?.valueText ?? content.title
-        return text.uppercased()
+        return text
     }
 
     var headerText: String {
