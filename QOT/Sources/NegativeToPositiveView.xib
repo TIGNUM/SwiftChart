@@ -162,7 +162,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JsA-uY-xkQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="1" height="280"/>
-                                                <color key="backgroundColor" red="0.83921568629999999" green="0.78823529410000004" blue="0.75294117650000003" alpha="0.69667245369999997" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="1" id="LqD-ZY-7Ak"/>
                                                 </constraints>
@@ -205,7 +205,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3p-o6-4D0" userLabel="Vertical View">
                                         <rect key="frame" x="16" y="0.0" width="1" height="30"/>
-                                        <color key="backgroundColor" red="0.83921568629999999" green="0.78823529410000004" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="9jY-A3-FhW"/>
                                             <constraint firstAttribute="height" constant="30" id="hlA-Ws-Uo6"/>
