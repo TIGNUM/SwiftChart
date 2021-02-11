@@ -24,8 +24,8 @@ final class AboutMeViewModel: BaseDailyBriefViewModel {
         self.aboutMeMoreInfo = aboutMeMoreInfo
     super.init(domainModel,
                caption: title,
-               title: aboutMeContent,
-               body: aboutMeMoreInfo,
+               title: AppTextService.get(.daily_brief_section_my_stats_subtitle),
+               body: (aboutMeContent ?? "") + "\n" + "\n" + (aboutMeMoreInfo ?? ""),
                image: image)
     }
 
