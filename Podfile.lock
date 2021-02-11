@@ -26,6 +26,7 @@ PODS:
   - DifferenceKit/Core (1.1.5)
   - DifferenceKit/UIKitExtension (1.1.5):
     - DifferenceKit/Core
+  - IOSSecuritySuite (1.8.0)
   - JTAppleCalendar (7.1.6)
   - KeychainAccess (4.2.1)
   - Kingfisher (6.1.0)
@@ -52,6 +53,7 @@ DEPENDENCIES:
   - AppCenter
   - Buglife
   - DifferenceKit
+  - IOSSecuritySuite
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
   - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
@@ -67,6 +69,7 @@ SPEC REPOS:
     - AppCenter
     - Buglife
     - DifferenceKit
+    - IOSSecuritySuite
     - JTAppleCalendar
     - KeychainAccess
     - Kingfisher
@@ -97,6 +100,7 @@ SPEC CHECKSUMS:
   AppCenter: 8832b158d17e54845c3b88a91076218f0b07174d
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
+  IOSSecuritySuite: 988d52f4c5dfd38f6acebe9a85ee508f4c575ceb
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
   Kingfisher: f5d8d60a0ef3edd642fd781bae60918599901aff
@@ -110,6 +114,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: 2e8acd6fc90c6d0a27055867a290794926d57c02
 
-PODFILE CHECKSUM: 9a784b152c2e2766673446e4c28874e2276a0205
+PODFILE CHECKSUM: 461be1ec44d6d46e7102453b8886cff60c0c7972
 
 COCOAPODS: 1.10.1

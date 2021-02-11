@@ -11,6 +11,7 @@ import UserNotifications
 import Airship
 import Buglife
 import qot_dal
+import IOSSecuritySuite
 
 final class AppCoordinator {
 
@@ -125,20 +126,42 @@ final class AppCoordinator {
                 return
         }
 
-        self.setRootViewController(naviController,
-                                   transitionStyle: .curveEaseIn,
-                                   duration: 0,
-                                   animated: false) {
-            DispatchQueue.main.async {
-                // Show coach marks on first launch (of v3.0 app)
-                let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
-                if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
-                    self.showCoachMarks()
-                } else {
-                    baseRootViewController.setContent(viewController: coachCollectionViewController)
-                    self.isReadyToProcessURL = true
+        if IOSSecuritySuite.amIJailbroken() || IOSSecuritySuite.amIReverseEngineered() {
+            let title = IOSSecuritySuite.amIJailbroken() ? "This is device is jailbroken" : "This is device is reversed engineered"
+            let message = "For security reason this app cannot run on unsecure devices"
+            let buttonTitle = "OK"
+            let viewController = UIViewController.init()
+            self.setRootViewController(viewController,
+                                       transitionStyle: .curveEaseIn,
+                                       duration: 0,
+                                       animated: false) {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: title,
+                                                  message: message,
+                                                  preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: buttonTitle,
+                                                  style: UIAlertAction.Style.default, handler: { _ in
+                        assertionFailure(title)
+                    }))
+                    viewController.present(alert, animated: true, completion: nil)
                 }
-                self.showSubscriptionReminderIfNeeded()
+            }
+        } else {
+            self.setRootViewController(naviController,
+                                       transitionStyle: .curveEaseIn,
+                                       duration: 0,
+                                       animated: false) {
+                DispatchQueue.main.async {
+                    // Show coach marks on first launch (of v3.0 app)
+                    let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
+                    if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
+                        self.showCoachMarks()
+                    } else {
+                        baseRootViewController.setContent(viewController: coachCollectionViewController)
+                        self.isReadyToProcessURL = true
+                    }
+                    self.showSubscriptionReminderIfNeeded()
+                }
             }
         }
     }
