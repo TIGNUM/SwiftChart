@@ -26,6 +26,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
     var sprintInfo: String?
     var sprintStepNumber: Int?
     var sprint: QDMSprint
+    var dayTask: String?
     var relatedStrategiesModels: [RelatedItemsModel]
 
     struct RelatedItemsModel {
@@ -76,18 +77,22 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
          sprintStepNumber: Int?,
          relatedStrategiesModels: [RelatedItemsModel],
          domainModel: QDMDailyBriefBucket?,
-         sprint: QDMSprint) {
+         sprint: QDMSprint,
+         dayTask: String?) {
 
         self.bucketTitle = bucketTitle
         self.sprintTitle = sprintTitle
         self.sprintInfo = sprintInfo
         self.sprint = sprint
         self.sprintStepNumber = sprintStepNumber
+        self.dayTask = dayTask
         self.relatedStrategiesModels = relatedStrategiesModels.filter { $0.sprintDay == "SPRINT_BUCKET_DAY_" + "\(sprintStepNumber ?? 0)" }
-        let caption = sprintStepNumber == 0 ? AppTextService.get(.daily_brief_section_sprint_challenge_intro_caption) : AppTextService.get(.daily_brief_section_sprint_challenge_caption) + " \(sprintStepNumber ?? 0)"
+        let caption = sprintTitle
+
+//        let caption = sprintStepNumber == 0 ? AppTextService.get(.daily_brief_section_sprint_challenge_intro_caption) : AppTextService.get(.daily_brief_section_sprint_challenge_caption) + " \(sprintStepNumber ?? 0)"
         super.init(domainModel,
                    caption: caption,
-                   title: sprintTitle,
+                   title: dayTask,
                    body: sprintInfo,
                    image: image)
     }
