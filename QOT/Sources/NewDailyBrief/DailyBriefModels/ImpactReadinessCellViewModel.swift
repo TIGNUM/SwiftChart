@@ -42,10 +42,8 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         self.readinessIntro = readinessIntro
         self.isCalculating = isCalculating
         self.hasError = hasError
-        let calculateTitle = "Complete your Daily Check-In"
-        let completedTitle = "Today's Impact Readiness Score"
-//        let calculateTitle = AppTextService.get(.daily_brief_section_impact_readiness_calculate_title)
-//        let completedTitle = AppTextService.get(.daily_brief_section_impact_readiness_completed_title)
+        let calculateTitle = AppTextService.get(.daily_brief_section_impact_readiness_calculate_title)
+        let completedTitle = AppTextService.get(.daily_brief_section_impact_readiness_completed_title)
         let caption = feedback?.isEmpty == true ? calculateTitle : completedTitle
         let body = feedback?.isEmpty ?? true ? readinessIntro : feedback
         super.init(domainModel, caption: caption, title: caption, body: body, image: image)
