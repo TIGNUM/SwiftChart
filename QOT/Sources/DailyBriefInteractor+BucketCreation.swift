@@ -22,7 +22,6 @@ extension DailyBriefInteractor {
         if hasToBeVision == true, hasSeenFoundations == true, hasPreparation == true {
             return []
         }
-        
         var guidedTrackList: [GuidedTrackViewModel] = []
         let title = AppTextService.get(.daily_brief_section_guided_track_title)
         var items: [GuidedTrackItem] = []
@@ -708,6 +707,7 @@ extension DailyBriefInteractor {
             }
             let sprintContentItems = sprintContentCollections?.first?.contentItems
             let sprintInfo = sprintContentItems?.first?.valueText ?? ""
+            let dayTask = sprintContentItems?.first?.valueDescription ?? ""
             if sprintContentItems?.count ?? 0 > 1, index == 0 {
                 let sprintMedia = sprintContentItems?[1]
                 relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(sprintMedia?.valueText,
@@ -776,7 +776,8 @@ extension DailyBriefInteractor {
                                                                       sprintStepNumber: index,
                                                                       relatedStrategiesModels: relatedItemsModels,
                                                                       domainModel: sprintBucket,
-                                                                      sprint: sprintBucket.sprint!))
+                                                                      sprint: sprintBucket.sprint!,
+                                                                      dayTask: dayTask))
         }
         return [SprintsCollectionViewModel.init(items: createSprintChallengeList, domainModel: sprintBucket)]
     }
