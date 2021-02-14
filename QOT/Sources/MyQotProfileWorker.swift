@@ -59,7 +59,7 @@ final class MyQotProfileWorker {
                 item = MyQotProfileModel.TableViewPresentationData(heading: aboutTignumText,
                                                                    subHeading: learnMoreAboutUsText)
             case .adminSettings:
-                item = MyQotProfileModel.TableViewPresentationData(heading: "ADMIN SETTINGS",
+                item = MyQotProfileModel.TableViewPresentationData(heading: "Admin settings",
                                                                    subHeading: "Settings for debug and testing")
             }
             if let menuItem = item { items.append(menuItem) }

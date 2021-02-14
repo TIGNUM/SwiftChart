@@ -523,10 +523,6 @@ extension DailyBriefViewController {
         router.presentDailyCheckInQuestions()
     }
 
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
-        router.launchAppLinkGuidedTrack(appLink)
-    }
-
     func displayCoachPreparationScreen() {
         router.presentCoachPreparation()
     }

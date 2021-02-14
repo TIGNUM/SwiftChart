@@ -103,6 +103,9 @@ enum URLScheme: String {
     case profile = "profile" // accountSetting
     case siriSettings = "siri-settings" // siriShortcuts
     case teamInvitations = "team-invitations" // open pending team invites
+    case generateToBeVision = "generate-tobevision"
+    case myBookmarks = "my-bookmarks"
+    case myDownloads = "my-downloads"
 
     var queryNames: [String] {
         switch self {
