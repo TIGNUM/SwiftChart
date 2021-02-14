@@ -36,15 +36,11 @@ extension CoachMarksPresenter: CoachMarksPresenterInterface {
 private extension CoachMarksPresenter {
     func createViewModel(_ presentationModel: CoachMark.PresentationModel) -> CoachMark.ViewModel {
         return CoachMark.ViewModel(mediaName: presentationModel.step.media,
-                                   title: getValueText(presentationModel.content, .title),
-                                   subtitle: getValueText(presentationModel.content, .subtitle),
+                                   title: presentationModel.step.title,
+                                   subtitle: presentationModel.step.subtitle,
                                    rightButtonTitle: presentationModel.step.rightButtonTitle,
                                    hideBackButton: presentationModel.step.hideBackButton,
                                    page: presentationModel.step.rawValue,
                                    isLastPage: presentationModel.step.isLastPage)
-    }
-
-    func getValueText(_ content: QDMContentCollection?, _ format: ContentFormat) -> String? {
-        return content?.contentItems.filter { $0.format == format }.first?.valueText
     }
 }
