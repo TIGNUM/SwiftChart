@@ -309,6 +309,9 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_section_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_load.number_ref")
     static let daily_brief_section_impact_readiness_section_sleep_quantity_new_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.new_title")
     static let daily_brief_section_impact_readiness_title = AppTextKey("daily_brief.section_impact_readiness.title")
+
+    static let daily_brief_section_impact_readiness_calculate_title = AppTextKey("daily_brief.section_impact_readiness.calculate_title")
+    static let daily_brief_section_impact_readiness_completed_title = AppTextKey("daily_brief.section_impact_readiness.completed_title")
     static let daily_brief_section_leader_wisdom_body = AppTextKey("daily_brief.section_leader_wisdom.body")
     static let daily_brief_section_leader_wisdom_title_new = AppTextKey("daily_brief.section_leader_wisdom.title_new")
     static let daily_brief_section_expert_thoughts_title_new = AppTextKey("daily_brief.section_expert_thoughts.title_new")
