@@ -344,6 +344,7 @@ public extension AppTextKey {
     static let daily_brief_section_level_5_button_saved = AppTextKey("daily_brief.section_level_5.button_saved")
     static let daily_brief_section_my_stats_body_missing_data = AppTextKey("daily_brief.section_my_stats.body_missing_data")
     static let daily_brief_section_my_stats_title_new = AppTextKey("daily_brief.section_my_stats.title_new")
+    static let daily_brief_section_my_stats_subtitle = AppTextKey("daily_brief.section_my_stats.subtitle")
     static let daily_brief_section_on_the_road_alert_copyright_body = AppTextKey("daily_brief.section_on_the_road.alert_copyright.body")
     static let daily_brief_section_on_the_road_title = AppTextKey("daily_brief.section_on_the_road.title")
     static let daily_brief_section_products_we_love_alert_copyright_body = AppTextKey("daily_brief.section_products_we_love.alert_copyright.body")
