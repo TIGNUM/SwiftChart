@@ -23,7 +23,7 @@ class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String, durationString: String, icon: UIImage?) {
         let isDark = colorMode == .dark
-        ThemeText.articleRelatedTitle(isDark ? .dark : .light).apply(title.uppercased(), to: titleLabel)
+        ThemeText.articleRelatedTitle(isDark ? .dark : .light).apply(title, to: titleLabel)
         ThemeText.articleRelatedDetail(isDark ? .dark : .light).apply(durationString, to: detailLabel)
         iconImageView.image = icon
         isDark ? ThemeTint.lightGrey.apply(iconImageView) :
