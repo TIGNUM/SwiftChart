@@ -1,15 +1,15 @@
 PODS:
-  - Airship (14.2.2):
-    - Airship/Automation (= 14.2.2)
-    - Airship/Core (= 14.2.2)
-    - Airship/ExtendedActions (= 14.2.2)
-    - Airship/MessageCenter (= 14.2.2)
-  - Airship/Automation (14.2.2):
+  - Airship (14.2.3):
+    - Airship/Automation (= 14.2.3)
+    - Airship/Core (= 14.2.3)
+    - Airship/ExtendedActions (= 14.2.3)
+    - Airship/MessageCenter (= 14.2.3)
+  - Airship/Automation (14.2.3):
     - Airship/Core
-  - Airship/Core (14.2.2)
-  - Airship/ExtendedActions (14.2.2):
+  - Airship/Core (14.2.3)
+  - Airship/ExtendedActions (14.2.3):
     - Airship/Core
-  - Airship/MessageCenter (14.2.2):
+  - Airship/MessageCenter (14.2.3):
     - Airship/Core
   - AppCenter (4.1.0):
     - AppCenter/Analytics (= 4.1.0)
@@ -93,7 +93,7 @@ CHECKOUT OPTIONS:
     :git: "git@github.com:TIGNUM/SwiftChart.git"
 
 SPEC CHECKSUMS:
-  Airship: c522e3aaab32165a834e65442b9ca9a6c85ce741
+  Airship: f0c50f03d085c6b187ee844c0718538e9bc664e4
   AppCenter: 8832b158d17e54845c3b88a91076218f0b07174d
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
