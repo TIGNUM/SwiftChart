@@ -301,7 +301,7 @@ enum ThemeButton {
     case clear
     case onboarding
     case backButton
-    case backButtonLight
+    case whiteRoundedWithBorder
     case editButton
     case carbonButton
     case audioButtonGrey
@@ -337,7 +337,7 @@ enum ThemeButton {
             colorSelected = Palette.light(.white30, or: .black30, forcedColorMode: mode)
             colorUnselected = Palette.light(.white, or: .black, forcedColorMode: mode)
             colorBorder = Palette.light(.black, or: .white, forcedColorMode: mode)
-        case .backButtonLight:
+        case .whiteRoundedWithBorder:
             colorUnselected = .white
             colorBorder = .black
         case .dailyBriefButtons, .audioButtonStrategy:
@@ -456,8 +456,10 @@ enum ThemableButton {
 
     var highlight: ButtonTheme? {
         switch self {
-        case .fullscreenAudioPlayerDownloadLight, .lightButton:
+        case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .white, background: .black, border: nil)
+        case .lightButton:
+            return ButtonTheme(foreground: .black, background: .clear, border: nil)
         case .articleMarkAsRead(let selected, let colorMode):
             return ButtonTheme(foreground: selected ? (colorMode == .dark ? .white : .black) : (colorMode == .dark ? .black : .white),
                                background: selected ? .clear : (colorMode == .dark ? .white : .black),
