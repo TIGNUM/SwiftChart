@@ -25,19 +25,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="MINDSET SHIFT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dq-5Y-hrZ">
-                        <rect key="frame" x="24" y="40.5" width="321" height="19.5"/>
+                        <rect key="frame" x="24" y="30" width="321" height="19.5"/>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="0.798828125" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 min video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eou-DT-zWb">
-                        <rect key="frame" x="52" y="68" width="67" height="15.5"/>
+                        <rect key="frame" x="52" y="57.5" width="67" height="14.5"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_audio" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-Le-fOn">
-                        <rect key="frame" x="24" y="68" width="16" height="16"/>
+                        <rect key="frame" x="24" y="57" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="I1k-Ld-3Uh"/>
                             <constraint firstAttribute="height" constant="16" id="Pit-Iq-2ct"/>
@@ -97,13 +97,12 @@
                     <constraint firstItem="s4r-OR-aem" firstAttribute="top" secondItem="xW5-78-nuP" secondAttribute="top" priority="999" constant="36.5" id="5Q6-0s-a6W"/>
                     <constraint firstItem="7Dq-5Y-hrZ" firstAttribute="leading" secondItem="xW5-78-nuP" secondAttribute="leading" constant="24" id="7kK-ia-3vb"/>
                     <constraint firstItem="8ju-Le-fOn" firstAttribute="centerY" secondItem="eou-DT-zWb" secondAttribute="centerY" id="Da3-GF-zS7"/>
-                    <constraint firstItem="7Dq-5Y-hrZ" firstAttribute="top" secondItem="xW5-78-nuP" secondAttribute="top" constant="40.5" id="Ddn-AV-Ab4"/>
+                    <constraint firstItem="7Dq-5Y-hrZ" firstAttribute="top" secondItem="xW5-78-nuP" secondAttribute="top" constant="30" id="Ddn-AV-Ab4"/>
                     <constraint firstAttribute="trailing" secondItem="s4r-OR-aem" secondAttribute="trailing" constant="24" id="Tn2-5U-Shw"/>
                     <constraint firstItem="8ju-Le-fOn" firstAttribute="leading" secondItem="xW5-78-nuP" secondAttribute="leading" constant="24" id="ZVd-hS-5eb"/>
                     <constraint firstItem="7Dq-5Y-hrZ" firstAttribute="trailing" secondItem="s4r-OR-aem" secondAttribute="leading" constant="-10" id="fT7-dp-Ydg"/>
                     <constraint firstItem="eou-DT-zWb" firstAttribute="leading" secondItem="8ju-Le-fOn" secondAttribute="trailing" constant="12" id="rhr-l8-iPg"/>
                     <constraint firstItem="eou-DT-zWb" firstAttribute="top" secondItem="7Dq-5Y-hrZ" secondAttribute="bottom" constant="8" id="xYj-1k-EPQ"/>
-                    <constraint firstAttribute="bottom" secondItem="eou-DT-zWb" secondAttribute="bottom" constant="29.5" id="yWQ-Yd-zKE"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
