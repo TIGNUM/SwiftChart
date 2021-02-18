@@ -73,6 +73,7 @@ final class MyVisionInteractor {
     private func didUpdateTBVRelatedData() {
         worker.getToBeVision { [weak self] (_, toBeVision) in
             self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
+                self?.presenter.deactivateRateButton()
                 self?.presenter.load(toBeVision,
                                      rateText: text,
                                      isRateEnabled: status,

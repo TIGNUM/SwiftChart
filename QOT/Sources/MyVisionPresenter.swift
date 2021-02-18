@@ -51,4 +51,8 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
                                               editTitle: editTitle,
                                               createNewTitle: crateNewTitle)
     }
+
+    func deactivateRateButton() {
+        viewController?.deactivateRateButton()
+    }
 }

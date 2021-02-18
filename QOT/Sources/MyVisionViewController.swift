@@ -167,6 +167,11 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         NewThemeView.dark.apply(navigationBarView)
     }
 
+    func deactivateRateButton() {
+        rateButton.isEnabled = false
+        rateButton.setTitle("Syncing...", for: .disabled)
+    }
+
     func showNullState(with title: String, message: String, writeMessage: String) {
         didShowNullStateView = true
         nullStateView.isHidden = false
