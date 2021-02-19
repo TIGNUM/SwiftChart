@@ -596,33 +596,6 @@ extension DailyBriefInteractor {
         return aboutMeList
     }
 
-    // MARK: - Solve Reminder
-    func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createSolveList: [BaseDailyBriefViewModel] = []
-        guard (solveBucket.solves?.first) != nil else {
-            return createSolveList
-        }
-
-        let bucketTitle = AppTextService.get(.daily_brief_section_solve_reflection_title)
-        let twoDaysAgo = AppTextService.get(.daily_brief_section_solve_reflection_body)
-        let question1 = AppTextService.get(.daily_brief_section_solve_reflection_bullet_1)
-        let question2 = AppTextService.get(.daily_brief_section_solve_reflection_bullet_2)
-        let question3 = AppTextService.get(.daily_brief_section_solve_reflection_bullet_3)
-        createSolveList.append(SolveReminderCellViewModel(bucketTitle: bucketTitle,
-                                                          twoDayAgo: twoDaysAgo,
-                                                          question1: question1,
-                                                          question2: question2,
-                                                          question3: question3,
-                                                          domainModel: solveBucket))
-        solveBucket.solves?.forEach {(solve) in
-            createSolveList.append(SolveReminderTableCellViewModel(title: solve.solveTitle,
-                                                                   date: DateFormatter.solveDate.string(from: solve.createdAt ?? Date()),
-                                                                   solve: solve,
-                                                                   domainModel: solveBucket))
-        }
-        return createSolveList
-    }
-
     // MARK: - Good to Know
     func createGoodToKnow(createGoodToKnowBucket createGoodToKnow: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createGoodToKnowList: [BaseDailyBriefViewModel] = []
