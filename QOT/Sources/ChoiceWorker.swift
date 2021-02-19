@@ -13,7 +13,7 @@ final class ChoiceWorker {
 
     enum ChoiceType: String {
         case CHOICE
-        case UNKOWN
+        case UNKNOWN
     }
 
     // MARK: - Properties
