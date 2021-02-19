@@ -52,7 +52,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var removeTitle: String = {
-        return AppTextService.get(.generic_view_button_delete)
+        return AppTextService.get(.generic_alert_view_button_remove)
     }()
 
     lazy var continueTitle: String = {
