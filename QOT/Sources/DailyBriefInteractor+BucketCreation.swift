@@ -922,7 +922,7 @@ extension DailyBriefInteractor {
     // MARK: - Weather
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
-        let title = weatherBucket?.bucketName?.lowercased().capitalizingFirstLetter() ?? ""
+        let title = weatherBucket?.bucketName?.lowercased() ?? ""
 
         let intro = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_INTRO")
