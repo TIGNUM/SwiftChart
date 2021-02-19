@@ -42,6 +42,7 @@ final class MyVisionWorker: WorkerTeam {
     lazy var emptyTBVTitlePlaceholder = AppTextService.get(.my_qot_my_tbv_section_header_title_headline)
     private lazy var notRatedText = AppTextService.get(.my_qot_my_tbv_section_track_null_state_title)
     private lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
+    private lazy var rateText = AppTextService.get(.my_x_my_tbv_rate_button_title)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
     private var isMyVisionInitialized: Bool = false
@@ -124,19 +125,19 @@ final class MyVisionWorker: WorkerTeam {
 
                 guard let visionText = strongSelf.toBeVision?.text,
                     !tracks.isEmpty else {
-                    completion(strongSelf.syncingText, nil, false)
+                    completion("", nil, false)
                     return
                 }
                 let sentences = tracks.compactMap({$0.sentence})
                 guard !sentences.isEmpty else {
-                    completion(strongSelf.syncingText, nil, false)
+                    completion("", nil, false)
                     requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
                     return
                 }
 
                 for sentence in sentences {
                     if visionText.contains(sentence) == false { // mismatched sentences.
-                        completion(strongSelf.syncingText, nil, false)
+                        completion("", nil, false)
                         requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
                         return
                     }
@@ -147,7 +148,7 @@ final class MyVisionWorker: WorkerTeam {
                     return
                 }
                 guard let date = report.dates.sorted().last?.beginingOfDate() else {
-                    completion(strongSelf.syncingText, true, false)
+                    completion("", true, false)
                     return
                 }
                 let days = DateComponentsFormatter.numberOfDays(date)

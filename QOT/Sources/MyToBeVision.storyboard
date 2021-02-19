@@ -315,15 +315,19 @@
                                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPg-CX-jiH">
-                                                                <rect key="frame" x="279" y="5" width="87" height="40"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPg-CX-jiH" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                                                                <rect key="frame" x="296" y="5" width="70" height="40"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="87" id="RuT-q9-tqv"/>
+                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="d5r-7D-c0Z"/>
                                                                     <constraint firstAttribute="height" constant="40" id="gi3-Dg-wZW"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                                                                 <state key="normal" title="Rate">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <state key="disabled" title="Syncing...">
+                                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="rateButtonAction:" destination="D5c-1q-rLE" eventType="touchUpInside" id="f5E-Df-2Rk"/>

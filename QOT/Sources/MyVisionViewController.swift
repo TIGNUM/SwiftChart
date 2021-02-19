@@ -38,7 +38,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var lastRatedComment: UILabel!
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
-    @IBOutlet private weak var rateButton: UIButton!
+    @IBOutlet private weak var rateButton: RoundedButton!
     @IBOutlet private weak var singleMessageRateButton: UIButton!
     @IBOutlet private weak var updateButton: UIButton!
     @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
@@ -197,6 +197,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
                                          to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
+        ThemableButton.darkButton.apply(rateButton, title: "Rate")
         ThemeBorder.white.apply(rateButton)
         ThemeBorder.white.apply(singleMessageRateButton)
         ThemeBorder.white.apply(updateButton)
@@ -227,6 +228,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         }
         skeletonManager.hide()
         interactor.hideNullState()
+        rateButton.setTitle(AppTextService.get(.my_qot_my_tbv_loading_body_syncing), for: .disabled)
+        rateButton.setTitle(AppTextService.get(.my_x_my_tbv_rate_button_title), for: .normal)
         var headline = myVision?.headline
         if headline?.isEmpty != false {
             headline = interactor.nullStateTitle

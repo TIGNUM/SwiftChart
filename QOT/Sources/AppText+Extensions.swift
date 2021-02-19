@@ -887,6 +887,7 @@ public extension AppTextKey {
     static let my_qot_my_tbv_section_update_subtitle = AppTextKey("my_qot.my_tbv.section_update.subtitle")
     static let my_qot_my_tbv_section_track_subtiitle = AppTextKey("my_qot.my_tbv.section_track.subtiitle")
     static let my_qot_my_tbv_loading_body_syncing = AppTextKey("my_qot.my_tbv.loading.body_syncing")
+    static let my_x_my_tbv_rate_button_title = AppTextKey("my_x.my_tbv.rate_button.title")
     static let my_qot_my_tbv_alert_edit_photo_button_take_a_picture = AppTextKey("my_qot.my_tbv.alert.edit_photo.button_take_a_picture")
     static let my_qot_my_tbv_edit_title_placeholder = AppTextKey("my_qot.my_tbv.edit.title_placeholder")
     static let my_qot_my_tbv_section_header_title = AppTextKey("my_qot.my_tbv.section_header.title")
