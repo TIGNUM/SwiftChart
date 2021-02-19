@@ -264,7 +264,7 @@ extension DailyBriefInteractor {
                                                              duration: exploreContentCollections.first?.durationString,
                                                              image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
-                                                             section: exploreContentCollections.first?.section ?? ContentSection.Unkown))
+                                                             section: exploreContentCollections.first?.section ?? ContentSection.Unknown))
                 return exploreModelList
             } else if 12 <= hour && hour < 18 {
                 exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title_new),
@@ -274,7 +274,7 @@ extension DailyBriefInteractor {
                                                              duration: exploreContentCollections.first?.durationString,
                                                              image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
-                                                             section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unkown))
+                                                             section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unknown))
                 return exploreModelList
             } else if 18 <= hour && hour <= 24 || hour < 6 {
                 exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title_new),
@@ -284,7 +284,7 @@ extension DailyBriefInteractor {
                                                              duration: exploreContentCollections.first?.durationString,
                                                              image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
-                                                             section: exploreContentCollections.last?.section ?? ContentSection.Unkown))
+                                                             section: exploreContentCollections.last?.section ?? ContentSection.Unknown))
                 return exploreModelList }
         }
         exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.first?.valueText,
@@ -293,7 +293,7 @@ extension DailyBriefInteractor {
                                                      duration: exploreContentCollections.first?.durationString,
                                                      image: explore.bucketImages?.first?.mediaUrl,
                                                      domainModel: explore,
-                                                     section: ContentSection.Unkown))
+                                                     section: ContentSection.Unknown))
         return exploreModelList
     }
 
@@ -702,7 +702,7 @@ extension DailyBriefInteractor {
                                                                                              contentItem.durationString,
                                                                                              nil,
                                                                                              contentItem.remoteID,
-                                                                                             .Unkown,
+                                                                                             .Unknown,
                                                                                              contentItem.format,
                                                                                              1,
                                                                                              nil,
@@ -716,7 +716,7 @@ extension DailyBriefInteractor {
                                                                                              nil,
                                                                                              link.remoteID,
                                                                                              nil,
-                                                                                             .Unkown,
+                                                                                             .Unknown,
                                                                                              .unknown,
                                                                                              1,
                                                                                              link,

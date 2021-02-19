@@ -429,7 +429,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 log("cta.state: undefined", level: .debug)
             }
         } catch {
-            log("StateError.unkown: \(error.localizedDescription)", level: .debug)
+            log("StateError.unknown: \(error.localizedDescription)", level: .debug)
         }
     }
 
@@ -458,7 +458,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 log("cta.state: undefined", level: .debug)
             }
         } catch {
-            log("StateError.unkown: \(error.localizedDescription)", level: .debug)
+            log("StateError.unknown: \(error.localizedDescription)", level: .debug)
         }
     }
 }

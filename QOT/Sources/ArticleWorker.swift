@@ -39,7 +39,7 @@ final class ArticleWorker {
     var bookmarks: [QDMUserStorage]?
 
     var section: ContentSection {
-        return content?.section ?? .Unkown
+        return content?.section ?? .Unknown
     }
 
     var alwaysHideTopBar: Bool {
@@ -189,7 +189,7 @@ final class ArticleWorker {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
         let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .FAQ_TEAM, .USING_QOT]
-        if infoArticleSections.contains(obj: content?.section ?? .Unkown) {
+        if infoArticleSections.contains(obj: content?.section ?? .Unknown) {
             content?.contentItems.forEach({ (item) in
                 if item.searchTags.contains("FAQ_SUPPORT_EMAIL") {
                     contactSupport.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
