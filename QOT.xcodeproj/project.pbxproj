@@ -686,12 +686,10 @@
 		91D4E2BB43301FA8D3995437 /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE5B5709A00341CFD794D10A /* Pods_QOT.framework */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		9C24237622F0869700B911E6 /* AboutMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24237522F0869700B911E6 /* AboutMeViewModel.swift */; };
-		9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C24237B22F0941D00B911E6 /* SolveReminderCell.xib */; };
 		9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */; };
 		9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */; };
 		9C6E48C6232A4E4E004D657F /* UIButton+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */; };
 		9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */; };
-		9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */; };
 		9CBFF845234CCD0200833AC2 /* AppText+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBFF844234CCD0200833AC2 /* AppText+Extensions.swift */; };
 		9CE28A2322E1C78C00013C44 /* DailyBriefSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE28A2222E1C78C00013C44 /* DailyBriefSectionModel.swift */; };
 		9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */; };
@@ -1188,8 +1186,6 @@
 		F909961C22B23FA900EAEAC6 /* MyPrepsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */; };
 		F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961D22B23FBA00EAEAC6 /* MyPrepsModel.swift */; };
 		F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961F22B23FCC00EAEAC6 /* MyPrepsPresenter.swift */; };
-		F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F90BD422230164B100008702 /* SolveTableViewCell.xib */; };
-		F90BD425230164CA00008702 /* SolveTableViewCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD424230164CA00008702 /* SolveTableViewCelll.swift */; };
 		F90BD4292301669A00008702 /* SolveReminderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */; };
 		F91087A024C5A6BD00CA343A /* TeamToBeVisionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */; };
 		F91087A124C5A6BD00CA343A /* TeamToBeVisionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910879924C5A6BC00CA343A /* TeamToBeVisionWorker.swift */; };
@@ -1206,8 +1202,6 @@
 		F9114E6125B1E47600D1F0E2 /* walkThrough_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F9114E1D25B1E1E000D1F0E2 /* walkThrough_coach.mp4 */; };
 		F916AAF324192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */; };
 		F916AAF524192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */; };
-		F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */; };
-		F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */; };
 		F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */; };
 		F9207CE624B77BEB007B1AB6 /* MyXTeamMembersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9207CDE24B77BEB007B1AB6 /* MyXTeamMembersPresenter.swift */; };
 		F9207CE724B77BEB007B1AB6 /* MyXTeamMembersWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9207CDF24B77BEB007B1AB6 /* MyXTeamMembersWorker.swift */; };
@@ -2106,14 +2100,12 @@
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		9482C2502E55FA84E54C707D /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		9C24237522F0869700B911E6 /* AboutMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeViewModel.swift; sourceTree = "<group>"; };
-		9C24237B22F0941D00B911E6 /* SolveReminderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveReminderCell.xib; sourceTree = "<group>"; };
 		9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheck2SHPIModel.swift; sourceTree = "<group>"; };
 		9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2TBVModel.swift; sourceTree = "<group>"; };
 		9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2PeakPerformanceModel.swift; sourceTree = "<group>"; };
 		9C6E48C32328D970004D657F /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
 		9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Animations.swift"; sourceTree = "<group>"; };
 		9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderTableCellViewModel.swift; sourceTree = "<group>"; };
-		9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
 		9CBFF844234CCD0200833AC2 /* AppText+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppText+Extensions.swift"; sourceTree = "<group>"; };
 		9CE28A2222E1C78C00013C44 /* DailyBriefSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBriefSectionModel.swift; sourceTree = "<group>"; };
 		9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2ViewModel.swift; sourceTree = "<group>"; };
@@ -2588,7 +2580,6 @@
 		F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsCellViewModel.swift; sourceTree = "<group>"; };
 		F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNameTableViewCell.swift; sourceTree = "<group>"; };
 		F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamNameTableViewCell.xib; sourceTree = "<group>"; };
-		F906A4DD2316B0F500351CAC /* SolveReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
 		F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeTableViewCell.xib; sourceTree = "<group>"; };
 		F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeTableViewCell.swift; sourceTree = "<group>"; };
 		F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsConfigurator.swift; sourceTree = "<group>"; };
@@ -2596,8 +2587,6 @@
 		F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsInterface.swift; sourceTree = "<group>"; };
 		F909961D22B23FBA00EAEAC6 /* MyPrepsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsModel.swift; sourceTree = "<group>"; };
 		F909961F22B23FCC00EAEAC6 /* MyPrepsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsPresenter.swift; sourceTree = "<group>"; };
-		F90BD422230164B100008702 /* SolveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveTableViewCell.xib; sourceTree = "<group>"; };
-		F90BD424230164CA00008702 /* SolveTableViewCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveTableViewCelll.swift; sourceTree = "<group>"; };
 		F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCellViewModel.swift; sourceTree = "<group>"; };
 		F910879824C5A6BC00CA343A /* TeamToBeVisionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionPresenter.swift; sourceTree = "<group>"; };
 		F910879924C5A6BC00CA343A /* TeamToBeVisionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamToBeVisionWorker.swift; sourceTree = "<group>"; };
@@ -2614,8 +2603,6 @@
 		F9114E1D25B1E1E000D1F0E2 /* walkThrough_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_coach.mp4; sourceTree = "<group>"; };
 		F916AAF224192CB1002C1EFE /* NegativeToPositiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeToPositiveTableViewCell.swift; sourceTree = "<group>"; };
 		F916AAF424192DF3002C1EFE /* NegativeToPositiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveTableViewCell.xib; sourceTree = "<group>"; };
-		F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCell.swift; sourceTree = "<group>"; };
-		F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtsCell.xib; sourceTree = "<group>"; };
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
 		F9207CDE24B77BEB007B1AB6 /* MyXTeamMembersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyXTeamMembersPresenter.swift; sourceTree = "<group>"; };
 		F9207CDF24B77BEB007B1AB6 /* MyXTeamMembersWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyXTeamMembersWorker.swift; sourceTree = "<group>"; };
@@ -2876,8 +2863,6 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
-				9C24237A22F093E700B911E6 /* SolveReminder  */,
-				F9EB5E6922C104A00085A03F /* ThoughtsToPonder */,
 				B49EACCB2328EA47006BA566 /* Weather */,
 				F96A4BCF22C4F16D0021C415 /* WhatsHotLatest */,
 				B4BCE451255BCEC500A1116F /* NewDailyBrief */,
@@ -4281,18 +4266,6 @@
 				9100194E20F63E1D00049118 /* Controller */,
 			);
 			path = QOTWidget;
-			sourceTree = "<group>";
-		};
-		9C24237A22F093E700B911E6 /* SolveReminder  */ = {
-			isa = PBXGroup;
-			children = (
-				9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */,
-				9C24237B22F0941D00B911E6 /* SolveReminderCell.xib */,
-				F90BD422230164B100008702 /* SolveTableViewCell.xib */,
-				F90BD424230164CA00008702 /* SolveTableViewCelll.swift */,
-				F906A4DD2316B0F500351CAC /* SolveReminderCell.swift */,
-			);
-			name = "SolveReminder ";
 			sourceTree = "<group>";
 		};
 		AC103E362285AF4700F426F0 /* ResultsMindsetShifter  */ = {
@@ -5803,15 +5776,6 @@
 			name = "Payment ";
 			sourceTree = "<group>";
 		};
-		F9EB5E6922C104A00085A03F /* ThoughtsToPonder */ = {
-			isa = PBXGroup;
-			children = (
-				F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */,
-				F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */,
-			);
-			name = ThoughtsToPonder;
-			sourceTree = "<group>";
-		};
 		F9F4706B2510C4A0002331F4 /* AdminOptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -6115,7 +6079,6 @@
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
 				B47CA1AE2334F66C001A65AE /* ArticleEmptyTableViewCell.xib in Resources */,
 				AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */,
-				F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */,
 				367A585F2326A4350089A082 /* DTViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				F9F4707D2510C51D002331F4 /* TeamToBeVisionOptions.storyboard in Resources */,
@@ -6283,7 +6246,6 @@
 				F9B3860C24AB6ED500C09D59 /* TeamSettingsTableViewCell.xib in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
-				9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */,
 				36AEA4DF2271AC8F00EC9C55 /* AudioPlayerBar.xib in Resources */,
 				DB086F4124C83A5300D4F64E /* BookMarkSelection.storyboard in Resources */,
 				B411ECE22575837C00EB7A78 /* NewDailyBriefTableViewSectionHeader.xib in Resources */,
@@ -6328,7 +6290,6 @@
 				DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */,
 				B4AB48D4230D3A9B003B3C1F /* MyDataChartTableViewCell.xib in Resources */,
 				F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */,
-				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
 				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
 				38C23E5A24235E000034571B /* DTPrepareStartViewController.xib in Resources */,
 				38C23E602423E8130034571B /* CalendarEventSelectionHeaderView.xib in Resources */,
@@ -6859,7 +6820,6 @@
 				36EC23042323F45700DB5696 /* DTSprintInterface.swift in Sources */,
 				F902CF5522DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift in Sources */,
 				F9F4707A2510C4D7002331F4 /* TeamToBeVisionOptionsModel.swift in Sources */,
-				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
 				F9FEA92C25348D42009BF786 /* RateOpenModel.swift in Sources */,
 				B411ECB525751C5100EB7A78 /* Notification+Ext.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
@@ -6987,7 +6947,6 @@
 				36EC230C2323F89900DB5696 /* DTQuestionnaireViewController.swift in Sources */,
 				7F9217B91FD01C2F00CAE9E0 /* RemoteNotificationPermission.swift in Sources */,
 				36E86D4F227059A100371C67 /* MarkAsReadTableViewCell.swift in Sources */,
-				F90BD425230164CA00008702 /* SolveTableViewCelll.swift in Sources */,
 				F9F70C1822F9A31E00E85BF3 /* SprintChallengeViewModel.swift in Sources */,
 				CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */,
 				5F8A899F2296DF520011A05C /* MyVisionRouter.swift in Sources */,
@@ -7110,7 +7069,6 @@
 				8DC2F7262313F4470002F29F /* StreamVideoWorker.swift in Sources */,
 				3666FD47232A4B7D00FC67D0 /* DTRecovery.swift in Sources */,
 				B4BCE4A6255BD01600A1116F /* CardPresentationController.swift in Sources */,
-				9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */,
 				3666FD45232A4B7D00FC67D0 /* DTRecoveryViewController.swift in Sources */,
 				F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */,
 				386C27A02418EBFF00184EC9 /* ResultsPrepareModel.swift in Sources */,
