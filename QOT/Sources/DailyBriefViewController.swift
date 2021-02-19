@@ -508,7 +508,7 @@ extension DailyBriefViewController {
         }
     }
     
-    func qgetWeatherCell(_ tableView: UITableView,
+    func getWeatherCell(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)

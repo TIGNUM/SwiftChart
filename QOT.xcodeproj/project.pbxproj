@@ -2864,7 +2864,6 @@
 			isa = PBXGroup;
 			children = (
 				B49EACCB2328EA47006BA566 /* Weather */,
-				F96A4BCF22C4F16D0021C415 /* WhatsHotLatest */,
 				B4BCE451255BCEC500A1116F /* NewDailyBrief */,
 				B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */,
 			);
@@ -5659,13 +5658,6 @@
 				F95B9231228EAE46000DEAEC /* ToolsWorker.swift */,
 			);
 			name = Tools;
-			sourceTree = "<group>";
-		};
-		F96A4BCF22C4F16D0021C415 /* WhatsHotLatest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = WhatsHotLatest;
 			sourceTree = "<group>";
 		};
 		F96D75A6249CE86700DFFB22 /* CustomizedShareViewController */ = {
