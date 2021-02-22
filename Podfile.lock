@@ -28,7 +28,7 @@ PODS:
     - DifferenceKit/Core
   - JTAppleCalendar (7.1.6)
   - KeychainAccess (4.2.1)
-  - Kingfisher (6.1.0)
+  - Kingfisher (6.1.1)
   - qot_dal (1.0):
     - KeychainAccess
     - Realm (~> 10.6.0)
@@ -54,7 +54,7 @@ DEPENDENCIES:
   - DifferenceKit
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `qot-dal/fixing-typo`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -80,14 +80,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
-    :branch: qot-dal/fixing-typo
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:TIGNUM/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 32ebc5b6811fe760772c67d9945095699e72cbda
+    :commit: 9e30a579ea155bb15cddfc069d907da8f4ba41a5
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -100,7 +99,7 @@ SPEC CHECKSUMS:
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
-  Kingfisher: f5d8d60a0ef3edd642fd781bae60918599901aff
+  Kingfisher: 676d63307fbef6ed5d5ed400bff36983480d7500
   qot_dal: 5ccc08decfd751cc8bd6e11f8143dd3cc6141b30
   R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
@@ -111,6 +110,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: 2e8acd6fc90c6d0a27055867a290794926d57c02
 
-PODFILE CHECKSUM: 67d1faf6e4e72056c76f14b138f3aed579ebb6eb
+PODFILE CHECKSUM: 9a784b152c2e2766673446e4c28874e2276a0205
 
 COCOAPODS: 1.10.1

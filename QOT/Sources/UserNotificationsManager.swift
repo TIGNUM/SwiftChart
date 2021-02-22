@@ -45,7 +45,7 @@ final class UserNotificationsManager {
         notificationCenter.removeAllDeliveredNotifications()
     }
 
-    func getDailyCheckInLocalNotificationConfigruations(_ completion: @escaping ([DailyCheckInLocalNotificationConfig]) -> Void) {
+    func getCoachMessagesLocalNotificationConfigruations(_ completion: @escaping ([DailyCheckInLocalNotificationConfig]) -> Void) {
         SettingService.main.getSettingFor(key: .DailyCheckInLocalNotifidationConfiguration) { (setting, _, _) in
             var configs: [DailyCheckInLocalNotificationConfig] = Array(1...7).compactMap({ // create default config
                 DailyCheckInLocalNotificationConfig(weekday: $0)
@@ -61,6 +61,30 @@ final class UserNotificationsManager {
         }
     }
 
+    func getDailyCheckInLocalNotificationConfigurations(_ completion: @escaping ([DailyCheckInLocalNotificationConfig]) -> Void) {
+        SettingService.main.getSettingFor(key: .DailyCheckInLocalNotifidationConfiguration) { (setting, _, _) in
+            var configs: [DailyCheckInLocalNotificationConfig] = Array(1...7).compactMap({ // create default config
+                DailyCheckInLocalNotificationConfig(weekday: $0)
+            })
+            if let json = setting?.textValue, let jsonData = json.data(using: .utf8) {
+                do { // update config from setting
+                    configs = try JSONDecoder().decode([DailyCheckInLocalNotificationConfig].self, from: jsonData)
+                } catch {
+                    log("failed to get Daily check in local notification configuration", level: .error)
+                }
+            }
+            completion(configs)
+        }
+    }
+
+    func getCoachMessages(_ completion: @escaping ([QDMCoachMessage]) -> Void) {
+        DailyBriefService.main.getDailyBriefBucketForTodayWithName(.FROM_MY_COACH) { (bucket, _) in
+            if let messages = bucket?.coachMessages {
+                completion(messages)
+            }
+        }
+    }
+
     func scheduleNotifications() {
         guard isScheduling == false else {
             needToSchedule = true
@@ -70,12 +94,58 @@ final class UserNotificationsManager {
             switch settings.authorizationStatus {
             case .authorized, .provisional:
                 self.isScheduling = true
-                self.getDailyCheckInLocalNotificationConfigruations { (configs) in
-                    self._scheduleNotifications(with: configs)
+                self.getDailyCheckInLocalNotificationConfigurations { [weak self] (configs) in
+                    self?._scheduleNotifications(with: configs)
+                }
+                self.getCoachMessages { [weak self] (messages) in
+                    self?._scheduleNotifications(with: messages)
                 }
             default: break
             }
         }
+    }
+
+    func _scheduleNotifications(with coachMessages: [QDMCoachMessage]) {
+        let dispatchGroup = DispatchGroup()
+
+        // schedule new coach message notifications
+        var requests = [UNNotificationRequest]()
+
+        dispatchGroup.enter()
+
+        for coachMessage in coachMessages {
+            // if it's valid sprint notification for today
+            let content = UNMutableNotificationContent(title: coachMessage.title,
+                                                       body: coachMessage.body ?? "",
+                                                       soundName: "QotNotification.aiff",
+                                                       link: coachMessage.link ?? "")
+            let triggerDate = Date().hour() > coachMessage.displayTime?.hour ?? 0 ?
+                                Date().beginingOfDate().dateAfterDays(1) :
+                                Date()
+            let dateComponent = DateComponents.init(calendar: Calendar.current,
+                                                    timeZone: Calendar.current.timeZone,
+                                                    year: triggerDate.year(),
+                                                    month: triggerDate.month(),
+                                                    day: triggerDate.day(),
+                                                    hour: coachMessage.displayTime?.hour,
+                                                    minute: coachMessage.displayTime?.minute,
+                                                    second: coachMessage.displayTime?.second,
+                                                    nanosecond: coachMessage.displayTime?.nano)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+            let identifier = coachMessage.id ?? 0
+
+            requests.append(UNNotificationRequest(identifier: "\(identifier)", content: content, trigger: trigger))
+        }
+        self.queue.async {
+            for request in requests {
+                self.notificationCenter.add(request) { (error) in
+                    if let error = error {
+                        log("Failed to schedule user notification request: \(request), error: \(error)")
+                    }
+                }
+            }
+        }
+        dispatchGroup.leave()
     }
 
     func _scheduleNotifications(with dailyCheckInNotificationConfigs: [DailyCheckInLocalNotificationConfig]) {
@@ -369,7 +439,7 @@ final class UserNotificationsManager {
 
 extension UserNotificationsManager {
     @objc func userLogout(_ notification: Notification) {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        removeAll()
     }
 
     @objc func didFinishSynchronization(_ notification: Notification) {
