@@ -803,8 +803,9 @@ extension DailyBriefInteractor {
                             vision?.profileImageResource?.remoteURLString
         let team = teamVisionBucket.myTeams?.filter { $0.qotId == vision?.teamQotId }.first
         let visionSentence = "\"" + (vision?.sentences.first?.sentence ?? String.empty) + "\""
-        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}", with: team?.name ?? String.empty).uppercased()
-        let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? " ")
+        let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}",
+                                                                                                     with: team?.name ?? String.empty).uppercased()
+        let suggestion = DailyBriefAtMyBestWorker().storedTeamVisionText(collections.randomElement()?.contentItems.first?.valueText ?? String.empty)
         let model = TeamVisionSuggestionModel(title: title,
                                               team: team,
                                               tbvSentence: visionSentence,
