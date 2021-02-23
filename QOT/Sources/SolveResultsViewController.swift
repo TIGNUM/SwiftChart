@@ -153,6 +153,8 @@ extension SolveResultsViewController: UITableViewDelegate {
         case .strategyContentItem(let id, _, _, _, _)?:
             router.presentContentItem(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT_ITEM, action: .TAP)
+        case .link(_, let appLink, _)?:
+            appLink.launch()
         default:
             tableView.isUserInteractionEnabled = true
             return
@@ -175,13 +177,18 @@ extension SolveResultsViewController: UITableViewDataSource {
         case .header(let title, let solution)?:
             let cell: SolveHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, solutionText: solution)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             return cell
         case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?,
              .strategyContentItem(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(hasHeader: hasHeader, title: title.uppercased(), minsToRead: minsToRead, headerTitle: headerTitle)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
+            return cell
+        case .link(_, _, let title)?:
+            let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(hasHeader: false, title: title.uppercased(), minsToRead: "", headerTitle: "")
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             return cell
         case .trigger(let type, let header, let description, let buttonText)?:
             let cell: SolveTriggerTableViewCell = tableView.dequeueCell(for: indexPath)

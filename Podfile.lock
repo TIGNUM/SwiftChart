@@ -54,7 +54,7 @@ DEPENDENCIES:
   - DifferenceKit
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `qot-dal/fixing-typo`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -80,14 +80,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
-    :branch: qot-dal/fixing-typo
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:TIGNUM/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 32ebc5b6811fe760772c67d9945095699e72cbda
+    :commit: 9e30a579ea155bb15cddfc069d907da8f4ba41a5
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -111,6 +110,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: 2e8acd6fc90c6d0a27055867a290794926d57c02
 
-PODFILE CHECKSUM: 67d1faf6e4e72056c76f14b138f3aed579ebb6eb
+PODFILE CHECKSUM: 9a784b152c2e2766673446e4c28874e2276a0205
 
 COCOAPODS: 1.10.1

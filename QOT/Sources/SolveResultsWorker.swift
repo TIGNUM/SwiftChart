@@ -145,6 +145,16 @@ private extension SolveResultsWorker {
         }
     }
 
+    func relatedAppLinks(_ contentId: Int? = nil, completion: @escaping( [SolveResult.Item]) -> Void ) {
+        var relatedLinks: [SolveResult.Item] = []
+        contentCollection(contentId) { (content) in
+            content?.links.forEach { (appLink) in
+                relatedLinks.append(.link(id: appLink.remoteID ?? 0, appLink: appLink, title: appLink.description ?? String.empty))
+            }
+            completion(relatedLinks)
+        }
+    }
+
     func relatedStrategiesContentItems(_ contentId: Int? = nil, _ completion: @escaping ([QDMContentItem]) -> Void) {
         contentCollection(contentId) { (content) in
             if let content = content {
@@ -166,8 +176,9 @@ private extension SolveResultsWorker {
         default:
             header = ""
         }
+        var relatedStrategyItems: [SolveResult.Item] = []
         relatedStrategies(contentId) { (related) in
-            var relatedStrategyItems: [SolveResult.Item] = []
+
             for (index, collection) in related.enumerated() {
                 relatedStrategyItems.append(.strategy(id: collection.remoteID ?? 0,
                                                       title: collection.title,
@@ -183,7 +194,10 @@ private extension SolveResultsWorker {
                                                                      hasHeader: false,
                                                                      headerTitle: ""))
                 }
-                completion(relatedStrategyItems)
+                self.relatedAppLinks(contentId) { (relatedLinks) in
+                    relatedStrategyItems.append(contentsOf: relatedLinks)
+                    completion(relatedStrategyItems)
+                }
             }
         }
     }

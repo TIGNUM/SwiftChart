@@ -34,6 +34,7 @@ extension SolveStrategyTableViewCell {
         let designerTopBottomMargin: CGFloat = 24 + 28
         constraintHeaderHeight.constant = hasHeader ? designerTopBottomMargin + headerLabel.bounds.height : 24
         topSeperatorView.isHidden = hasHeader
+        iconImageView.isHidden = minsToRead == ""
         updateConstraints()
     }
 }
