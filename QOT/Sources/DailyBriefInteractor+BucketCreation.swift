@@ -264,7 +264,7 @@ extension DailyBriefInteractor {
                                                              duration: exploreContentCollections.first?.durationString,
                                                              image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
-                                                             section: exploreContentCollections.first?.section ?? ContentSection.Unkown))
+                                                             section: exploreContentCollections.first?.section ?? ContentSection.Unknown))
                 return exploreModelList
             } else if 12 <= hour && hour < 18 {
                 exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title_new),
@@ -274,7 +274,7 @@ extension DailyBriefInteractor {
                                                              duration: exploreContentCollections.first?.durationString,
                                                              image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
-                                                             section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unkown))
+                                                             section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unknown))
                 return exploreModelList
             } else if 18 <= hour && hour <= 24 || hour < 6 {
                 exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(.daily_brief_section_explore_title_new),
@@ -284,7 +284,7 @@ extension DailyBriefInteractor {
                                                              duration: exploreContentCollections.first?.durationString,
                                                              image: explore.bucketImages?.first?.mediaUrl,
                                                              domainModel: explore,
-                                                             section: exploreContentCollections.last?.section ?? ContentSection.Unkown))
+                                                             section: exploreContentCollections.last?.section ?? ContentSection.Unknown))
                 return exploreModelList }
         }
         exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.first?.valueText,
@@ -293,7 +293,7 @@ extension DailyBriefInteractor {
                                                      duration: exploreContentCollections.first?.durationString,
                                                      image: explore.bucketImages?.first?.mediaUrl,
                                                      domainModel: explore,
-                                                     section: ContentSection.Unkown))
+                                                     section: ContentSection.Unknown))
         return exploreModelList
     }
 
@@ -596,33 +596,6 @@ extension DailyBriefInteractor {
         return aboutMeList
     }
 
-    // MARK: - Solve Reminder
-    func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createSolveList: [BaseDailyBriefViewModel] = []
-        guard (solveBucket.solves?.first) != nil else {
-            return createSolveList
-        }
-
-        let bucketTitle = AppTextService.get(.daily_brief_section_solve_reflection_title)
-        let twoDaysAgo = AppTextService.get(.daily_brief_section_solve_reflection_body)
-        let question1 = AppTextService.get(.daily_brief_section_solve_reflection_bullet_1)
-        let question2 = AppTextService.get(.daily_brief_section_solve_reflection_bullet_2)
-        let question3 = AppTextService.get(.daily_brief_section_solve_reflection_bullet_3)
-        createSolveList.append(SolveReminderCellViewModel(bucketTitle: bucketTitle,
-                                                          twoDayAgo: twoDaysAgo,
-                                                          question1: question1,
-                                                          question2: question2,
-                                                          question3: question3,
-                                                          domainModel: solveBucket))
-        solveBucket.solves?.forEach {(solve) in
-            createSolveList.append(SolveReminderTableCellViewModel(title: solve.solveTitle,
-                                                                   date: DateFormatter.solveDate.string(from: solve.createdAt ?? Date()),
-                                                                   solve: solve,
-                                                                   domainModel: solveBucket))
-        }
-        return createSolveList
-    }
-
     // MARK: - Good to Know
     func createGoodToKnow(createGoodToKnowBucket createGoodToKnow: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createGoodToKnowList: [BaseDailyBriefViewModel] = []
@@ -729,7 +702,7 @@ extension DailyBriefInteractor {
                                                                                              contentItem.durationString,
                                                                                              nil,
                                                                                              contentItem.remoteID,
-                                                                                             .Unkown,
+                                                                                             .Unknown,
                                                                                              contentItem.format,
                                                                                              1,
                                                                                              nil,
@@ -743,7 +716,7 @@ extension DailyBriefInteractor {
                                                                                              nil,
                                                                                              link.remoteID,
                                                                                              nil,
-                                                                                             .Unkown,
+                                                                                             .Unknown,
                                                                                              .unknown,
                                                                                              1,
                                                                                              link,
