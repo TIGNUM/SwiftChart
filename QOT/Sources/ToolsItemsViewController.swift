@@ -141,7 +141,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         switch tool.type {
         case ToolType.video.rawValue:
             let cell: ToolsCollectionsVideoTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             cell.configure(title: tool.title,
                            timeToWatch: tool.durationString,
                            imageURL: tool.imageURL)
@@ -151,7 +151,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case ToolType.audio.rawValue:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,
@@ -163,7 +163,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,

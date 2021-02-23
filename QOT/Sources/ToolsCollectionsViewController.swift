@@ -166,7 +166,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return cell
         } else if tool.type == "video" {
             let cell: ToolsCollectionsVideoTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             cell.configure(title: tool.title,
                            timeToWatch: tool.durationString,
                            imageURL: tool.imageURL)
@@ -204,7 +204,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return cell
         } else {
             let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             cell.configure(title: tool.title.lowercased().capitalizingFirstLetter(),
                            subtitle: AppTextService.get(.coach_tools_labels_label_interactive))
             cell.addTopLine(for: indexPath.row)
