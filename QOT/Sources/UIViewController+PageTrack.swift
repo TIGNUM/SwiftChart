@@ -105,7 +105,6 @@ extension UIViewController {
         case is DTPrepareStartViewController: return "decisiontree.prepare.start"
         case is CalendarEventSelectionViewController: return "calendar.event.selection"
         case is MyQotAdminSettingsListViewController: return "myqot.adminsettings"
-        case is MyQotAdminEnvironmentSettingsViewController: return "myqot.adminsettings.environment"
         case is MyXTeamSettingsViewController: return "myX.settings.teamsettings"
         case is MyXTeamMembersViewController: return "myX.settings.teamMembers"
         case is TeamEditViewController: return teamEditViewControllerPageKey

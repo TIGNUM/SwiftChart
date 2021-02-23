@@ -374,6 +374,13 @@
 		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
 		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
+		38F6C98125E0322F00BCA92D /* Live.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98025E0321400BCA92D /* Live.xcconfig */; };
+		38F6C98925E0333800BCA92D /* Live.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98825E0333800BCA92D /* Live.plist */; };
+		38F6C9A525E034D400BCA92D /* PreRelease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A325E034D300BCA92D /* PreRelease.plist */; };
+		38F6C9A625E034D400BCA92D /* Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A425E034D300BCA92D /* Staging.plist */; };
+		38F6C9AE25E035E500BCA92D /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */; };
+		38F6C9BC25E0360200BCA92D /* PreRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */; };
+		38F6CA2325E3BE9700BCA92D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F6CA2225E3BE9700BCA92D /* Environment.swift */; };
 		38F95C9825068106009265DC /* PollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9625068106009265DC /* PollCollectionViewCell.swift */; };
 		38F95C9925068106009265DC /* PollCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C9725068106009265DC /* PollCollectionViewCell.xib */; };
 		38F95C9C2507D51D009265DC /* PollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9A2507D51D009265DC /* PollTableViewCell.swift */; };
@@ -840,14 +847,6 @@
 		B430D7D423A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7C123A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsPresenter.swift */; };
 		B430D7D523A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7C223A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInterface.swift */; };
 		B430D7D623A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7C323A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsConfigurator.swift */; };
-		B430D7D723A911DE00C75C9C /* MyQotAdminEnvironmentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7C523A911DE00C75C9C /* MyQotAdminEnvironmentSettingsViewController.swift */; };
-		B430D7ED23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7E623A915EC00C75C9C /* MyQotAdminEnvironmentSettingsConfigurator.swift */; };
-		B430D7EE23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7E723A915EC00C75C9C /* MyQotAdminEnvironmentSettingsInterface.swift */; };
-		B430D7EF23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7E823A915EC00C75C9C /* MyQotAdminEnvironmentSettingsPresenter.swift */; };
-		B430D7F023A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7E923A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInteractor.swift */; };
-		B430D7F123A915ED00C75C9C /* MyQotAdminEnvironmentSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7EA23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsWorker.swift */; };
-		B430D7F223A915ED00C75C9C /* MyQotAdminEnvironmentSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7EB23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsRouter.swift */; };
-		B430D7F323A915ED00C75C9C /* MyQotAdminEnvironmentSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7EC23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsModel.swift */; };
 		B430D7FB23A916B600C75C9C /* MyQotAdminLocalNotificationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7F423A916B500C75C9C /* MyQotAdminLocalNotificationsInteractor.swift */; };
 		B430D7FC23A916B600C75C9C /* MyQotAdminLocalNotificationsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7F523A916B500C75C9C /* MyQotAdminLocalNotificationsRouter.swift */; };
 		B430D7FD23A916B600C75C9C /* MyQotAdminLocalNotificationsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7F623A916B500C75C9C /* MyQotAdminLocalNotificationsPresenter.swift */; };
@@ -1818,6 +1817,13 @@
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
+		38F6C98025E0321400BCA92D /* Live.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Live.xcconfig; sourceTree = "<group>"; };
+		38F6C98825E0333800BCA92D /* Live.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Live.plist; sourceTree = "<group>"; };
+		38F6C9A325E034D300BCA92D /* PreRelease.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PreRelease.plist; sourceTree = "<group>"; };
+		38F6C9A425E034D300BCA92D /* Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Staging.plist; sourceTree = "<group>"; };
+		38F6C9AD25E035E500BCA92D /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PreRelease.xcconfig; sourceTree = "<group>"; };
+		38F6CA2225E3BE9700BCA92D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		38F95C9625068106009265DC /* PollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCollectionViewCell.swift; sourceTree = "<group>"; };
 		38F95C9725068106009265DC /* PollCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollCollectionViewCell.xib; sourceTree = "<group>"; };
 		38F95C9A2507D51D009265DC /* PollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTableViewCell.swift; sourceTree = "<group>"; };
@@ -2269,14 +2275,6 @@
 		B430D7C123A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminDCSixthQuestionSettingsPresenter.swift; sourceTree = "<group>"; };
 		B430D7C223A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminDCSixthQuestionSettingsInterface.swift; sourceTree = "<group>"; };
 		B430D7C323A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminDCSixthQuestionSettingsConfigurator.swift; sourceTree = "<group>"; };
-		B430D7C523A911DE00C75C9C /* MyQotAdminEnvironmentSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsViewController.swift; sourceTree = "<group>"; };
-		B430D7E623A915EC00C75C9C /* MyQotAdminEnvironmentSettingsConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsConfigurator.swift; sourceTree = "<group>"; };
-		B430D7E723A915EC00C75C9C /* MyQotAdminEnvironmentSettingsInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsInterface.swift; sourceTree = "<group>"; };
-		B430D7E823A915EC00C75C9C /* MyQotAdminEnvironmentSettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsPresenter.swift; sourceTree = "<group>"; };
-		B430D7E923A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsInteractor.swift; sourceTree = "<group>"; };
-		B430D7EA23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsWorker.swift; sourceTree = "<group>"; };
-		B430D7EB23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsRouter.swift; sourceTree = "<group>"; };
-		B430D7EC23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsModel.swift; sourceTree = "<group>"; };
 		B430D7F423A916B500C75C9C /* MyQotAdminLocalNotificationsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminLocalNotificationsInteractor.swift; sourceTree = "<group>"; };
 		B430D7F523A916B500C75C9C /* MyQotAdminLocalNotificationsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminLocalNotificationsRouter.swift; sourceTree = "<group>"; };
 		B430D7F623A916B500C75C9C /* MyQotAdminLocalNotificationsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminLocalNotificationsPresenter.swift; sourceTree = "<group>"; };
@@ -2503,6 +2501,7 @@
 		BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotUISwitch.swift; sourceTree = "<group>"; };
 		BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationButton.xib; sourceTree = "<group>"; };
 		BCDA96BEE34D1D3D66234185 /* Pods-QOT.prerelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.prerelease.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.prerelease.xcconfig"; sourceTree = "<group>"; };
+		BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.staging.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.staging.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -2910,6 +2909,9 @@
 				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
 				CBB543811FBC816600AFD67B /* bundled_media.plist */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
+				38F6C98825E0333800BCA92D /* Live.plist */,
+				38F6C9A325E034D300BCA92D /* PreRelease.plist */,
+				38F6C9A425E034D300BCA92D /* Staging.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -3662,6 +3664,16 @@
 				38C23E5B2423D9B70034571B /* CalendarEventSelectionViewController.xib */,
 			);
 			name = CalendarEventSelection;
+			sourceTree = "<group>";
+		};
+		38F6C99025E0334500BCA92D /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				38F6C98025E0321400BCA92D /* Live.xcconfig */,
+				38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */,
+				38F6C9AD25E035E500BCA92D /* Staging.xcconfig */,
+			);
+			name = Configs;
 			sourceTree = "<group>";
 		};
 		5F360731228C1EBA0074FEC4 /* MyQotCalendars */ = {
@@ -4595,7 +4607,6 @@
 			isa = PBXGroup;
 			children = (
 				B430D7B023A911DD00C75C9C /* MyQOTAdminSettingsList */,
-				B430D7C423A911DE00C75C9C /* MyQOTAdminEnvironmentSettings */,
 				B430D7B923A911DE00C75C9C /* MyQOTAdminLocalNotificationSettings */,
 				B430D7BB23A911DE00C75C9C /* MyQOTAdminDCSixthQuestionSettings */,
 				B45DA6B323AA62F6006E7E33 /* MyQOTAdminChooseBuckets */,
@@ -4647,21 +4658,6 @@
 				B430D7BC23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsWorker.swift */,
 			);
 			path = MyQOTAdminDCSixthQuestionSettings;
-			sourceTree = "<group>";
-		};
-		B430D7C423A911DE00C75C9C /* MyQOTAdminEnvironmentSettings */ = {
-			isa = PBXGroup;
-			children = (
-				B430D7E623A915EC00C75C9C /* MyQotAdminEnvironmentSettingsConfigurator.swift */,
-				B430D7E923A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInteractor.swift */,
-				B430D7E723A915EC00C75C9C /* MyQotAdminEnvironmentSettingsInterface.swift */,
-				B430D7EC23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsModel.swift */,
-				B430D7E823A915EC00C75C9C /* MyQotAdminEnvironmentSettingsPresenter.swift */,
-				B430D7EB23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsRouter.swift */,
-				B430D7C523A911DE00C75C9C /* MyQotAdminEnvironmentSettingsViewController.swift */,
-				B430D7EA23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsWorker.swift */,
-			);
-			path = MyQOTAdminEnvironmentSettings;
 			sourceTree = "<group>";
 		};
 		B45DA6B323AA62F6006E7E33 /* MyQOTAdminChooseBuckets */ = {
@@ -5114,6 +5110,7 @@
 				BCDA96BEE34D1D3D66234185 /* Pods-QOT.prerelease.xcconfig */,
 				B1D22D27426671B05FEB7700 /* Pods-QOT.foomee.xcconfig */,
 				8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */,
+				BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -5389,6 +5386,7 @@
 				7F6567431FE28FBC00A6CB7F /* Clean.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
 				BB4061612302F3A600E5AB19 /* OrientationManager.swift */,
+				38F6CA2225E3BE9700BCA92D /* Environment.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -5490,12 +5488,13 @@
 		CBD791571E72F10E0006C590 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DBAC1E692294616900B9F829 /* Resource */,
 				367EA0F021776920003025CE /* Assets.xcassets */,
 				CB78D3361F9F674A0068A54A /* BundledMedia */,
+				38F6C99025E0334500BCA92D /* Configs */,
 				CBB4DD451EE0908E0071494A /* Fonts */,
 				36433D1B203EBFB30043F853 /* HTML */,
 				361DB158201F2CF000E8FD22 /* PLists */,
+				DBAC1E692294616900B9F829 /* Resource */,
 				CC7E80B81F614EEF006F9515 /* Sounds */,
 			);
 			path = Resources;
@@ -6320,12 +6319,15 @@
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
 				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
+				38F6C98925E0333800BCA92D /* Live.plist in Resources */,
 				759AB42022C4D5B50091BFB8 /* TBVGraphBarRangeCell.xib in Resources */,
 				386C27BB241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib in Resources */,
+				38F6C9A625E034D400BCA92D /* Staging.plist in Resources */,
 				B4BCE47A255BCEC500A1116F /* NewDailyBriefTableViewHeader.xib in Resources */,
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				386C27B5241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib in Resources */,
 				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
+				38F6C9A525E034D400BCA92D /* PreRelease.plist in Resources */,
 				F9114E5925B1E46F00D1F0E2 /* walkThrough_myQOT.mp4 in Resources */,
 				B44D4462256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
@@ -6414,6 +6416,7 @@
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
 				B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
+				38F6C9BC25E0360200BCA92D /* PreRelease.xcconfig in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
 				F9F470812510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib in Resources */,
@@ -6461,6 +6464,7 @@
 				389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */,
 				9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */,
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
+				38F6C98125E0322F00BCA92D /* Live.xcconfig in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				DB086F4324C8544A00D4F64E /* BookMarkSelectionCell.xib in Resources */,
@@ -6469,6 +6473,7 @@
 				B48B5471256468D100FC183D /* MeAtMyBestTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
+				38F6C9AE25E035E500BCA92D /* Staging.xcconfig in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
 				36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
@@ -6778,8 +6783,6 @@
 				B4BCE49F255BD01600A1116F /* StatusBarAnimatableViewController.swift in Sources */,
 				36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */,
 				AC1A40DB22A54EB70022156C /* SolveResultsWorker.swift in Sources */,
-				B430D7D723A911DE00C75C9C /* MyQotAdminEnvironmentSettingsViewController.swift in Sources */,
-				B430D7F223A915ED00C75C9C /* MyQotAdminEnvironmentSettingsRouter.swift in Sources */,
 				38A2D17825025C7100CEA071 /* DTTeamTBVWorker.swift in Sources */,
 				3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */,
 				382CDC6024A2433300B34BCE /* TeamEditWorker.swift in Sources */,
@@ -6810,7 +6813,6 @@
 				38A2D17A25025C7100CEA071 /* DTTeamTBVInterface.swift in Sources */,
 				9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
-				B430D7ED23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsConfigurator.swift in Sources */,
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
 				ACB449962260EB4F00B0E79F /* DecisionTreeButton.swift in Sources */,
 				3655F2DA2326EBD600334719 /* DTMindsetConfigurator.swift in Sources */,
@@ -6819,7 +6821,6 @@
 				36E12EC2232B57F0009E96EA /* DTPreparePresenter.swift in Sources */,
 				CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */,
 				F947EA0C2521F45D004C7076 /* TeamVisionTrackerDetailsViewController.swift in Sources */,
-				B430D7F323A915ED00C75C9C /* MyQotAdminEnvironmentSettingsModel.swift in Sources */,
 				CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */,
 				B430D7D023A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsModel.swift in Sources */,
 				363B9CC3232BF34A00C1A29E /* DTTBVViewController.swift in Sources */,
@@ -6884,6 +6885,7 @@
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				8D0B4D242301CC4000A1AC47 /* RegistrationNamesRouter.swift in Sources */,
+				38F6CA2325E3BE9700BCA92D /* Environment.swift in Sources */,
 				ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */,
 				75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */,
 				BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */,
@@ -7323,7 +7325,6 @@
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
 				F976016224E5701E00D0532E /* ToBeVisionSelectionBar.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
-				B430D7F123A915ED00C75C9C /* MyQotAdminEnvironmentSettingsWorker.swift in Sources */,
 				36B5BD3323142B4A00439A64 /* AskPermissionConfigurator.swift in Sources */,
 				75EFB63222C51C6F00E8C64F /* TBVDataGraphTableViewCell.swift in Sources */,
 				B856B47D22B0E29D0017A249 /* MyLibraryUserStorageInteractor.swift in Sources */,
@@ -7389,7 +7390,6 @@
 				367CD18022EF4EDE00AF2187 /* OnboardingLoginWorker.swift in Sources */,
 				75DC686822C11CFF00FF183D /* MyToBeVisionRateRouter.swift in Sources */,
 				B474CA902398F85F00A829B5 /* RegisterIntroInterface.swift in Sources */,
-				B430D7EF23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsPresenter.swift in Sources */,
 				5F360737228C1F030074FEC4 /* SyncedCalendarsWorker.swift in Sources */,
 				8D8AA75F22FDCB6700B59A81 /* RegistrationRouter.swift in Sources */,
 				8D5668BB22DCAD4800AA172F /* MySprintsListInteractor.swift in Sources */,
@@ -7399,7 +7399,6 @@
 				DB2969EA22C6105300B8A590 /* AudioFullScreenViewController.swift in Sources */,
 				AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */,
 				8D0B4D272301CC4000A1AC47 /* RegistrationNamesInteractor.swift in Sources */,
-				B430D7EE23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInterface.swift in Sources */,
 				5FF1A0F422857B2C00D76D55 /* MyQotAppSettingsViewController.swift in Sources */,
 				B4F9763A2359EB090071F7EC /* QOTBaseHeaderView.swift in Sources */,
 				F9D15B3324B88DB4006476FD /* TeamMemberTableViewCell.swift in Sources */,
@@ -7784,7 +7783,6 @@
 				B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */,
 				CBC191131F603055009E483B /* URL+Convenience.swift in Sources */,
-				B430D7F023A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInteractor.swift in Sources */,
 				B4BCE471255BCEC500A1116F /* BaseDailyBriefDetailsConfigurator.swift in Sources */,
 				5FF1A0F622857B4300D76D55 /* MyQotAppSettingsInterface.swift in Sources */,
 				B4BCD0EC23AB7CD900B80747 /* MyQOTAdminEditSprintsModel.swift in Sources */,
@@ -8098,6 +8096,7 @@
 		};
 		38CA018825D3F61700945E46 /* AppCenter */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -8183,7 +8182,7 @@
 					"COCOAPODS=1",
 					"NOVARTIS=1",
 				);
-				INFOPLIST_FILE = QOT/Resources/Info.plist;
+				INFOPLIST_FILE = QOT/Resources/PreRelease.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D NOVARTIS";
@@ -8332,6 +8331,232 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
 			name = AppCenter;
+		};
+		38F6C9F825E3B4A600BCA92D /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		38F6C9F925E3B4A600BCA92D /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = QOT/Resources/Staging.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
+				PRODUCT_NAME = "TIGNUM X";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		38F6C9FA25E3B4A600BCA92D /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		38F6C9FB25E3B4A600BCA92D /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Intent/Intent.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Intent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.Intent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Staging;
+		};
+		38F6C9FC25E3B4A600BCA92D /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = IntentUI/IntentUI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = IntentUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.IntentUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Staging;
+		};
+		38F6C9FD25E3B4A600BCA92D /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		38F6C9FE25E3B4A600BCA92D /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = Staging;
 		};
 		7FE151CC1F3DDC6200DA8F37 /* Database */ = {
 			isa = XCBuildConfiguration;
@@ -9090,6 +9315,7 @@
 		};
 		CBA0EBA11FCDB6C6009B33AB /* AppStore */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38F6C98025E0321400BCA92D /* Live.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9177,6 +9403,7 @@
 		};
 		CBB238071E6FFF1300AB5AEF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9241,6 +9468,7 @@
 		};
 		CBB238081E6FFF1300AB5AEF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38F6C98025E0321400BCA92D /* Live.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9314,7 +9542,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = QOT/Resources/Info.plist;
+				INFOPLIST_FILE = QOT/Resources/Staging.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
@@ -9345,7 +9573,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 3;
-				INFOPLIST_FILE = QOT/Resources/Info.plist;
+				INFOPLIST_FILE = QOT/Resources/Live.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
@@ -9470,6 +9698,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				918D5E2C20EE050900AEAD37 /* Debug */,
+				38F6C9FA25E3B4A600BCA92D /* Staging */,
 				385EE3E62359B4F800D41073 /* Novartis */,
 				38CA018A25D3F61700945E46 /* AppCenter */,
 				918D5E2D20EE050900AEAD37 /* UnitTest */,
@@ -9484,6 +9713,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC87A796220D94FB00622C90 /* Debug */,
+				38F6C9FC25E3B4A600BCA92D /* Staging */,
 				385EE3E82359B4F800D41073 /* Novartis */,
 				38CA018C25D3F61700945E46 /* AppCenter */,
 				AC87A797220D94FB00622C90 /* UnitTest */,
@@ -9498,6 +9728,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC87A791220D94FB00622C90 /* Debug */,
+				38F6C9FB25E3B4A600BCA92D /* Staging */,
 				385EE3E72359B4F800D41073 /* Novartis */,
 				38CA018B25D3F61700945E46 /* AppCenter */,
 				AC87A792220D94FB00622C90 /* UnitTest */,
@@ -9512,6 +9743,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8BCE58F22AAB5EF0012AAAC /* Debug */,
+				38F6C9FD25E3B4A600BCA92D /* Staging */,
 				385EE3E92359B4F800D41073 /* Novartis */,
 				38CA018D25D3F61700945E46 /* AppCenter */,
 				B8BCE59022AAB5EF0012AAAC /* UnitTest */,
@@ -9526,6 +9758,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BB8807212372B454001D61CE /* Debug */,
+				38F6C9FE25E3B4A600BCA92D /* Staging */,
 				BB8807222372B454001D61CE /* Novartis */,
 				38CA018E25D3F61700945E46 /* AppCenter */,
 				BB8807232372B454001D61CE /* UnitTest */,
@@ -9540,6 +9773,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
+				38F6C9F825E3B4A600BCA92D /* Staging */,
 				385EE3E32359B4F800D41073 /* Novartis */,
 				38CA018825D3F61700945E46 /* AppCenter */,
 				E8F43D3420B6F98800C9FF4F /* UnitTest */,
@@ -9554,6 +9788,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB2380A1E6FFF1300AB5AEF /* Debug */,
+				38F6C9F925E3B4A600BCA92D /* Staging */,
 				385EE3E42359B4F800D41073 /* Novartis */,
 				38CA018925D3F61700945E46 /* AppCenter */,
 				E8F43D3520B6F98800C9FF4F /* UnitTest */,

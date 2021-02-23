@@ -185,7 +185,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>Configuration</key>
-	<string>$(CONFIGURATION)</string>
+	<key>url_host</key>
+	<string>${url_host}</string>
+	<key>url_scheme</key>
+	<string>${url_scheme}</string>
 </dict>
 </plist>

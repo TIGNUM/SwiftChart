@@ -1,0 +1,13 @@
+//
+//  PreRelease.xcconfig
+//  QOT
+//
+//  Created by karmic on 19.02.21.
+//  Copyright © 2021 Tignum. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+url_scheme = https
+url_host = esb-pre.tignum.com
