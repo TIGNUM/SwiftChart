@@ -39,7 +39,8 @@ extension CoachRouter: CoachRouterInterface {
             let toolsViewController = R.storyboard.tools.toolsViewControllerID()
             if let toolsViewController = toolsViewController {
                 ToolsConfigurator.make(viewController: toolsViewController)
-                viewController?.present(toolsViewController, animated: true, completion: nil)
+//                viewController?.present(toolsViewController, animated: true, completion: nil)
+                viewController?.pushToStart(childViewController: toolsViewController)
             }
         case .sprint:
             let configurator = DTSprintConfigurator.make()

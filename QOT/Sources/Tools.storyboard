@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,41 +53,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xRI-V9-qF2">
-                                <rect key="frame" x="0.0" y="50" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="t5Z-7w-Qad" id="Qm9-gd-3uE"/>
                                     <outlet property="delegate" destination="t5Z-7w-Qad" id="Fxe-wP-CaZ"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cti-Zd-6jD">
-                                <rect key="frame" x="10" y="10" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="sUL-3T-EV6"/>
-                                    <constraint firstAttribute="height" constant="40" id="xNK-bf-4hM"/>
-                                </constraints>
-                                <color key="tintColor" red="0.0" green="0.38431372549999998" blue="1" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="ic_arrow_left"/>
-                                <connections>
-                                    <action selector="backButton:" destination="t5Z-7w-Qad" eventType="touchUpInside" id="oPB-vT-l8X"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YVN-Tw-bnZ"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="xRI-V9-qF2" firstAttribute="top" secondItem="Cti-Zd-6jD" secondAttribute="bottom" id="JV4-Ic-ILe"/>
+                            <constraint firstItem="xRI-V9-qF2" firstAttribute="top" secondItem="YVN-Tw-bnZ" secondAttribute="top" id="CbG-sP-MkA"/>
                             <constraint firstItem="YVN-Tw-bnZ" firstAttribute="trailing" secondItem="xRI-V9-qF2" secondAttribute="trailing" id="NyT-ya-LG1"/>
-                            <constraint firstItem="Cti-Zd-6jD" firstAttribute="top" secondItem="YVN-Tw-bnZ" secondAttribute="top" constant="10" id="RMc-Da-vHL"/>
-                            <constraint firstItem="Cti-Zd-6jD" firstAttribute="leading" secondItem="YVN-Tw-bnZ" secondAttribute="leading" constant="10" id="Uas-1a-StB"/>
                             <constraint firstItem="xRI-V9-qF2" firstAttribute="leading" secondItem="YVN-Tw-bnZ" secondAttribute="leading" id="diI-wV-4pZ"/>
                             <constraint firstItem="xRI-V9-qF2" firstAttribute="bottom" secondItem="YVN-Tw-bnZ" secondAttribute="bottom" id="nq0-UT-ht1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BQB-8Y-mMd"/>
                     <connections>
-                        <outlet property="backArrow" destination="Cti-Zd-6jD" id="XQp-Cg-g11"/>
-                        <outlet property="backButton" destination="Cti-Zd-6jD" id="XZJ-Sl-l5Q"/>
                         <outlet property="tableView" destination="xRI-V9-qF2" id="Xnc-Vk-xCX"/>
                         <segue destination="txY-qR-zaF" kind="show" identifier="collections.items.segue.identifier" id="d4K-o6-qzX"/>
                     </connections>
@@ -105,41 +89,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-IU-eEH">
-                                <rect key="frame" x="0.0" y="50" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="txY-qR-zaF" id="AjP-73-NKS"/>
                                     <outlet property="delegate" destination="txY-qR-zaF" id="4Na-89-HDX"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZi-Yw-SDe">
-                                <rect key="frame" x="10" y="10" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="1mf-Zj-O4u"/>
-                                    <constraint firstAttribute="height" constant="40" id="BoG-Yw-oAb"/>
-                                </constraints>
-                                <color key="tintColor" red="0.0" green="0.38431372549999998" blue="1" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="ic_arrow_left"/>
-                                <connections>
-                                    <action selector="backButton:" destination="t5Z-7w-Qad" eventType="touchUpInside" id="hP7-JP-cQp"/>
-                                    <action selector="backButton:" destination="txY-qR-zaF" eventType="touchUpInside" id="m3p-Sb-ypl"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LOp-pi-FKS"/>
                         <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Asb-IU-eEH" firstAttribute="top" secondItem="WZi-Yw-SDe" secondAttribute="bottom" id="HTL-xX-Oi3"/>
-                            <constraint firstItem="WZi-Yw-SDe" firstAttribute="top" secondItem="LOp-pi-FKS" secondAttribute="top" constant="10" id="b04-tI-bpM"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="bottom" secondItem="Asb-IU-eEH" secondAttribute="bottom" id="dri-GA-252"/>
                             <constraint firstItem="Asb-IU-eEH" firstAttribute="leading" secondItem="LOp-pi-FKS" secondAttribute="leading" id="hWr-ng-tNx"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="trailing" secondItem="Asb-IU-eEH" secondAttribute="trailing" id="iA6-Mb-3Bz"/>
-                            <constraint firstItem="WZi-Yw-SDe" firstAttribute="leading" secondItem="LOp-pi-FKS" secondAttribute="leading" constant="10" id="oQ7-MW-u1A"/>
+                            <constraint firstItem="Asb-IU-eEH" firstAttribute="top" secondItem="LOp-pi-FKS" secondAttribute="top" id="imo-sh-kKC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4sg-76-C2W"/>
                     <connections>
-                        <outlet property="backButton" destination="WZi-Yw-SDe" id="DTk-zV-6J1"/>
                         <outlet property="tableView" destination="Asb-IU-eEH" id="1wI-jH-RTa"/>
                     </connections>
                 </viewController>
@@ -148,7 +116,4 @@
             <point key="canvasLocation" x="1960.8" y="58.920539730134934"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ic_arrow_left" width="16" height="16"/>
-    </resources>
 </document>

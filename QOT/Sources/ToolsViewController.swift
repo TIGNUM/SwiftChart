@@ -71,7 +71,7 @@ private extension ToolsViewController {
 
 extension ToolsViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
+        return [backNavigationItem()]
     }
 }
 

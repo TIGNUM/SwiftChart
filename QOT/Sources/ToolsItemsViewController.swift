@@ -28,7 +28,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
 
     // MARK: - Properties
     var interactor: ToolsItemsInteractorInterface!
-    @IBOutlet weak var backButton: UIButton?
     private var lastAudioIndexPath: IndexPath?
 
     // MARK: - Init
@@ -54,9 +53,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if self == navigationController?.viewControllers.first {
-            backButton?.isHidden = true
-        }
         super.viewWillAppear(animated)
         setStatusBar(colorMode: .darkNot)
     }
@@ -87,22 +83,9 @@ private extension ToolsItemsViewController {
     }
 }
 
-// MARK: - Actions
-private extension ToolsItemsViewController {
-    @IBAction func backButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-
-    @IBAction func closeButton(_ sender: Any) {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
-    }
-}
-
 // MARK: - ToolsItemsViewControllerInterface
 extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func setupView() {
-        ThemeTint.black.apply(backButton?.imageView ?? UIView.init())
         setupTableView()
     }
 
@@ -216,7 +199,7 @@ extension ToolsItemsViewController {
     }
 
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
+        return [backNavigationItem()]
     }
 }
 

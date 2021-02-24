@@ -13,7 +13,6 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
 
     // MARK: - Properties
 
-    @IBOutlet private weak var backArrow: UIButton!
     private let mindsetShifterChatBotId = 102453
     private let recoveryChatBotId = 102451
     var interactor: ToolsCollectionsInteractorInterface!
@@ -22,15 +21,10 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
         case header = 0
         case sections
     }
-    @IBOutlet weak var backButton: UIButton!
 
     init(configure: Configurator<ToolsCollectionsViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
-    }
-
-    @IBAction func backButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -45,20 +39,9 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
         interactor.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if self == self.navigationController?.viewControllers.first {
-            backArrow.isHidden = true
-        }
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
-    }
-
-    @objc func pop() {
-        self.navigationController?.popViewController(animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,7 +94,6 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
 
     func setupView() {
         setupTableView()
-        ThemeTint.black.apply(backButton?.imageView ?? UIView.init())
     }
 
     func reload() {
@@ -257,7 +239,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
 // MARK: - Bottom Navigation
 extension ToolsCollectionsViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
+        return [backNavigationItem()]
     }
 }
 
