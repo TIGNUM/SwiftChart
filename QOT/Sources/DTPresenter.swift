@@ -106,10 +106,10 @@ class DTPresenter: DTPresenterInterface {
         }
         let htmlTitleString = getHtmlTitleString(question)
         return DTViewModel.Question(remoteId: question?.remoteID ?? 0,
-                                    title: title ?? "",
+                                    title: title ?? String.empty,
                                     htmlTitleString: htmlTitleString,
-                                    key: question?.key ?? "",
-                                    answerType: AnswerType(rawValue: question?.answerType ?? "") ?? .accept,
+                                    key: question?.key ?? String.empty,
+                                    answerType: AnswerType(rawValue: question?.answerType ?? String.empty) ?? .accept,
                                     duration: question?.layout?.animation?.duration ?? 3.0,
                                     maxSelections: question?.maxPossibleSelections ?? 0)
     }
@@ -128,7 +128,7 @@ class DTPresenter: DTPresenterInterface {
         return filteredAnswers.compactMap { (answer) -> DTViewModel.Answer in
             let selected = answer.subtitle?.isEmpty == true && question?.answerType == AnswerType.accept.rawValue
             return DTViewModel.Answer(remoteId: answer.remoteID ?? 0,
-                                      title: answer.subtitle ?? "",
+                                      title: answer.subtitle ?? String.empty,
                                       keys: answer.keys,
                                       selected: selected,
                                       backgroundColor: answerBackgroundColor(answer: answer),

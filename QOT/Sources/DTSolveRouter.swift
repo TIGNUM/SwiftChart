@@ -26,7 +26,7 @@ extension DTSolveRouter: DTSolveRouterInterface {
     }
 
     func dismissFlowAndGoToMyTBV() {
-        if let tbvURL = URLScheme.toBeVision.launchURLWithParameterValue("") {
+        if let tbvURL = URLScheme.toBeVision.launchURLWithParameterValue(String.empty) {
             AppDelegate.current.launchHandler.process(url: tbvURL)
         }
     }

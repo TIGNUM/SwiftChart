@@ -428,7 +428,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     // TODO Set correct pageName
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?) {
-        stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem)
+        stream(videoURL: videoURL ?? URL(string: String.empty)!, contentItem: contentItem)
     }
 
     func presentTeamPendingInvites() {
@@ -583,8 +583,8 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
         case .LEADERS_WISDOM:
             guard let leaderWisdomCellModel = dailyBriefCellViewModel as? LeaderWisdomCellViewModel else { return }
             if leaderWisdomCellModel.format == .audio {
-                let media = MediaPlayerModel(title: leaderWisdomCellModel.videoTitle?.uppercased() ?? "",
-                                             subtitle: "",
+                let media = MediaPlayerModel(title: leaderWisdomCellModel.videoTitle?.uppercased() ?? String.empty,
+                                             subtitle: String.empty,
                                              url: leaderWisdomCellModel.videoThumbnail,
                                              totalDuration: leaderWisdomCellModel.audioDuration ?? 0,
                                              progress: 0,
@@ -592,7 +592,7 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                                              mediaRemoteId: leaderWisdomCellModel.remoteID ?? 0)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
             } else if leaderWisdomCellModel.format == .video {
-                stream(videoURL: leaderWisdomCellModel.videoThumbnail ?? URL(string: "")!, contentItem: nil)
+                stream(videoURL: leaderWisdomCellModel.videoThumbnail ?? URL(string: String.empty)!, contentItem: nil)
             } else {
                 performExpandAnimation(for: sender, withInsideIndexPath: indexPath, model: dailyBriefCellViewModel) { [weak self] in
                     self?.router.presentDailyBriefDetailsScreen(model: leaderWisdomCellModel, transitioningDelegate: self?.transition)

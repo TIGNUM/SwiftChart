@@ -100,7 +100,7 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 let selectedValue = level5Model.domainModel?.currentGetToLevel5Value
 
                 let standardModel = NewDailyBriefStandardModel.init(caption: level5Model.caption,
-                                                                     title: level5Model.levelMessages[selectedValue ?? 0].levelTitle ?? "",
+                                                                     title: level5Model.levelMessages[selectedValue ?? 0].levelTitle ?? String.empty,
                                                                      body: level5Model.levelMessages[selectedValue ?? 0].levelContent,
                                                                      image: level5Model.image,
                                                                      detailsMode: true,

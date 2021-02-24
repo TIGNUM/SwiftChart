@@ -44,11 +44,11 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         caption.text = model.caption
         title.attributedText = model.attributedTitle
         body.attributedText = model.attributedBody
-        imageView.kf.setImage(with: URL.init(string: model.image ?? ""))
+        imageView.kf.setImage(with: URL.init(string: model.image ?? String.empty))
         arrowButton.isHidden = model.detailsMode && hideCTAButton
         body.numberOfLines = model.detailsMode ? ((model.isInAnimationTransition ?? false) ? model.numberOfLinesForBody : 0) : model.numberOfLinesForBody
         titleTrailingConstraint.constant = 20
-        caption.textColor = UIColor(hex: model.titleColor ?? "")
+        caption.textColor = UIColor(hex: model.titleColor ?? String.empty)
         skeletonManager.hide()
         var CTAIcon = UIImage.init(named: "diagonal arrow")
         switch viewModel?.CTAType {

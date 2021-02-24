@@ -30,7 +30,7 @@ final class DTPrepareConfigurator {
             let router = DTPrepareRouter(viewController: viewController)
             let presenter = DTPreparePresenter(viewController: viewController)
             presenter.intensionViewModel = viewModel
-            let interactor = DTPrepareInteractor(presenter, questionGroup: .Prepare_3_0, introKey: question?.key ?? "")
+            let interactor = DTPrepareInteractor(presenter, questionGroup: .Prepare_3_0, introKey: question?.key ?? String.empty)
             viewController.router = router
             viewController.prepareRouter = router
             viewController.interactor = interactor

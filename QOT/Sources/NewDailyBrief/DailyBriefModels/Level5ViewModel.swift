@@ -52,7 +52,7 @@ class Level5ViewModel: BaseDailyBriefViewModel {
     }
 
     func setupStrings() {
-            title = levelMessages[domainModel?.currentGetToLevel5Value ?? 0].levelTitle ?? ""
+            title = levelMessages[domainModel?.currentGetToLevel5Value ?? 0].levelTitle ?? String.empty
             body = levelMessages[domainModel?.currentGetToLevel5Value ?? 0].levelContent
     }
 

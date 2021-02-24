@@ -46,7 +46,7 @@ extension CoachRouter: CoachRouterInterface {
             let controller = DTSprintViewController(configure: configurator)
             viewController?.present(controller, animated: true)
         case .event:
-            if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+            if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue(String.empty) {
                 AppDelegate.current.launchHandler.process(url: launchURL)
             }
         case .challenge:

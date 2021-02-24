@@ -21,8 +21,8 @@ final class ToolsCollectionsGroupTableViewCell: BaseToolsTableViewCell, Dequeuea
     private var mediaURL: URL?
     private var title: String?
     private var remoteID: Int = 0
-    private var categoryTitle = ""
-    private var type = ""
+    private var categoryTitle = String.empty
+    private var type = String.empty
 
     override func awakeFromNib() {
         super.awakeFromNib()

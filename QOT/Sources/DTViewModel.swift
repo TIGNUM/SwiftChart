@@ -74,8 +74,8 @@ class DTViewModel {
             self.remoteId = qdmQuestion.remoteID ?? 0
             self.title = qdmQuestion.title
             self.htmlTitleString = nil
-            self.key = qdmQuestion.key ?? ""
-            self.answerType = AnswerType(rawValue: qdmQuestion.answerType ?? "") ?? .multiSelection
+            self.key = qdmQuestion.key ?? String.empty
+            self.answerType = AnswerType(rawValue: qdmQuestion.answerType ?? String.empty) ?? .multiSelection
             self.duration = qdmQuestion.layout?.animation?.duration ?? 0
             self.maxSelections = qdmQuestion.maxPossibleSelections ?? 0
         }
@@ -118,7 +118,7 @@ class DTViewModel {
 
         init(qdmAnswer: QDMAnswer, selectedIds: [Int], decisions: [Decision], votes: Int) {
             self.remoteId = qdmAnswer.remoteID ?? 0
-            self.title = qdmAnswer.subtitle ?? ""
+            self.title = qdmAnswer.subtitle ?? String.empty
             self.keys = qdmAnswer.keys
             self.selected = selectedIds.contains(obj: qdmAnswer.remoteID ?? 0)
             self.backgroundColor = .clear

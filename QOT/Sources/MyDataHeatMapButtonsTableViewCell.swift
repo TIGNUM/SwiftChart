@@ -38,8 +38,8 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
 
     func configure(with firstTitle: String?, and secondTitle: String?) {
         skeletonManager.hide()
-        dailyIRButton.setTitle(firstTitle ?? "", for: .normal)
-        fiveDaysRollingIRButton.setTitle(secondTitle ?? "", for: .normal)
+        dailyIRButton.setTitle(firstTitle ?? String.empty, for: .normal)
+        fiveDaysRollingIRButton.setTitle(secondTitle ?? String.empty, for: .normal)
     }
 
     // MARK: UI Setup

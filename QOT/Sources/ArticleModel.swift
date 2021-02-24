@@ -36,8 +36,8 @@ struct Article {
         init(remoteID: Int, type: ContentItemValue) {
             self.type = type
             self.remoteID = remoteID
-            content = ""
-            format = ""
+            content = String.empty
+            format = String.empty
             bundledAudioURL = nil
             thumbnailURL = nil
         }
@@ -45,8 +45,8 @@ struct Article {
         init(type: ContentItemValue) {
             self.type = type
             remoteID = 0
-            content = ""
-            format = ""
+            content = String.empty
+            format = String.empty
             bundledAudioURL = nil
             thumbnailURL = nil
         }
@@ -55,7 +55,7 @@ struct Article {
             self.type = type
             self.content = content
             remoteID = 0
-            format = ""
+            format = String.empty
             bundledAudioURL = nil
             thumbnailURL = nil
         }
@@ -92,8 +92,8 @@ struct Article {
         }
 
         init() {
-            categoryTitle = ""
-            title = ""
+            categoryTitle = String.empty
+            title = String.empty
             author = nil
             publishDate = nil
             timeToRead = nil

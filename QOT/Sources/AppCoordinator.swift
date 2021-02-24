@@ -242,7 +242,7 @@ extension AppCoordinator {
         setupBugLife()
         UserDefault.clearAllDataLogOut()
         isReadyToProcessURL = false
-        HorizontalHeaderView.selectedTeamId = ""
+        HorizontalHeaderView.selectedTeamId = String.empty
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
@@ -400,14 +400,14 @@ extension AppCoordinator {
     func handleContentDownSync() {
         ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
             guard let latest = items?.first else { return }
-            let item = ArticleCollectionViewData.Item(author: latest.author ?? "",
-                                                      title: latest.contentCategoryTitle ?? "",
+            let item = ArticleCollectionViewData.Item(author: latest.author ?? String.empty,
+                                                      title: latest.contentCategoryTitle ?? String.empty,
                                                       description: latest.title,
                                                       date: latest.publishedDate ?? Date(),
                                                       duration: latest.durationString,
                                                       articleDate: latest.publishedDate ?? Date(),
                                                       sortOrder: "0",
-                                                      previewImageURL: URL(string: latest.thumbnailURLString  ?? ""),
+                                                      previewImageURL: URL(string: latest.thumbnailURLString  ?? String.empty),
                                                       contentCollectionID: latest.remoteID ?? 0,
                                                       newArticle: true,
                                                       shareableLink: latest.shareableLink)

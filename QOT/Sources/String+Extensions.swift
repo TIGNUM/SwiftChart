@@ -91,10 +91,10 @@ extension String {
             let regex = try NSRegularExpression(pattern: regex)
             let nsString = text as NSString
             let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
-            return results.count > 0 ? nsString.substring(with: results[0].range) : ""
+            return results.count > 0 ? nsString.substring(with: results[0].range) : String.empty
         } catch {
             log("invalid regex: \(error.localizedDescription)")
-            return ""
+            return String.empty
         }
     }
 
@@ -129,6 +129,6 @@ extension String {
     }
 
     static var empty: String {
-        return ""
+        return String.empty
     }
 }

@@ -337,7 +337,7 @@ extension ArticleViewController {
 
     func sectionHasContent(_ section: Int) -> Bool {
         let numRows = interactor.itemCount(in: section)
-        let title = interactor.headerTitle(for: section) ?? ""
+        let title = interactor.headerTitle(for: section) ?? String.empty
         return !title.isEmpty && numRows > 0
     }
 }
@@ -385,7 +385,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .audio( _, let title, let description, placeholderURL: _, _, duration: _, waveformData: _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
-                           durationString: description ?? "",
+                           durationString: description ?? String.empty,
                            icon: R.image.ic_audio())
             return cell
         case .image(let title, _, let url):
@@ -421,7 +421,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .pdf(let title, let description, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
-                           durationString: description ?? "",
+                           durationString: description ?? String.empty,
                            icon: R.image.ic_seen_of())
             return cell
         case .articleRelatedWhatsHot(let relatedArticle):

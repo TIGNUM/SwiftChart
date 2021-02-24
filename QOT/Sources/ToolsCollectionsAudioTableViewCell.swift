@@ -21,7 +21,7 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     private var mediaURL: URL?
     private var title: String?
     private var remoteID: Int = 0
-    private var categoryTitle = ""
+    private var categoryTitle = String.empty
     private var duration: Double = 0
     weak var delegate: IsPlayingDelegate?
     @IBOutlet weak var audioLabelView: AudioButton!
@@ -68,7 +68,7 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
 extension ToolsCollectionsAudioTableViewCell {
 
     @IBAction func didTapAudioButton(_ sender: UIButton) {
-        let media = MediaPlayerModel(title: title ?? "",
+        let media = MediaPlayerModel(title: title ?? String.empty,
                                      subtitle: categoryTitle,
                                      url: mediaURL,
                                      totalDuration: duration, progress: 0, currentTime: 0, mediaRemoteId: remoteID)

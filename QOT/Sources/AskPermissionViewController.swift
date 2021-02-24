@@ -79,7 +79,7 @@ private extension AskPermissionViewController {
         switch interactor.getPermissionType {
         case .calendar,
              .calendarOpenSettings: leftBarButtonItems = [dismissNavigationItem(action: #selector(didTapCancelButton))]
-        default: rightBarButtonItems.append(cancelButton(viewModel.buttonTitleCancel ?? ""))
+        default: rightBarButtonItems.append(cancelButton(viewModel.buttonTitleCancel ?? String.empty))
         }
 
         updateBottomNavigation(leftBarButtonItems, rightBarButtonItems)

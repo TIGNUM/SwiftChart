@@ -174,7 +174,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let type = URLScheme(rawValue: shortcutItem.type) else { return }
         switch type {
         case .latestWhatsHotArticle, .tools, .myData:
-            guard let link = type.launchURLWithParameterValue("") else { return }
+            guard let link = type.launchURLWithParameterValue(String.empty) else { return }
             launchHandler.process(url: link)
         default: return
         }
@@ -304,13 +304,13 @@ extension AppDelegate {
         switch userActivity.activityType {
         case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue,
              NSUserActivity.ActivityType.toBeVision.rawValue:
-            launchURL = URLScheme.toBeVision.launchURLWithParameterValue("")
+            launchURL = URLScheme.toBeVision.launchURLWithParameterValue(String.empty)
         case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
-            launchURL = URLScheme.latestWhatsHotArticle.launchURLWithParameterValue("")
+            launchURL = URLScheme.latestWhatsHotArticle.launchURLWithParameterValue(String.empty)
         case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
-            launchURL = URLScheme.knowFeed.launchURLWithParameterValue("")
+            launchURL = URLScheme.knowFeed.launchURLWithParameterValue(String.empty)
         case NSUserActivity.ActivityType.dailyPrep.rawValue:
-            launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("")
+            launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue(String.empty)
         default:
             break
         }

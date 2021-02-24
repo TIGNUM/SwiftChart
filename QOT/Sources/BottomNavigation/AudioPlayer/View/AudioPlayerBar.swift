@@ -84,7 +84,7 @@ final class AudioPlayerBar: UIView {
 
     func refreshColorMode(isLight: Bool) {
         isLightMode = isLight
-        setTitleLabel(title: titleLabel.text ?? "", isLight: isLight)
+        setTitleLabel(title: titleLabel.text ?? String.empty, isLight: isLight)
         if isLight {
             NewThemeView.dark.apply(contentView)
             NewThemeView.dark.apply(progressModeContentView)
@@ -239,8 +239,8 @@ extension AudioPlayerBar: AudioPlayerDelegate {
 
     func didFinishAudio() {
         audioPlayer.resetPlayer()
-        audioPlayer.prepareToPlay(categoryTitle: currentMedia?.subtitle ?? "",
-                                  title: currentMedia?.title ?? "",
+        audioPlayer.prepareToPlay(categoryTitle: currentMedia?.subtitle ?? String.empty,
+                                  title: currentMedia?.title ?? String.empty,
                                   audioURL: currentMedia?.url,
                                   remoteID: currentMedia?.mediaRemoteId ?? 0)
         audioPlayer.pause()

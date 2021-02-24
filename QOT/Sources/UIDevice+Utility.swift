@@ -13,7 +13,7 @@ extension UIDevice {
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
-        let identifier = machineMirror.children.reduce("") { identifier, element in
+        let identifier = machineMirror.children.reduce(String.empty) { identifier, element in
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
@@ -21,7 +21,7 @@ extension UIDevice {
     }
 
     var deviceName: String {
-        var machineString: String = ""
+        var machineString: String = String.empty
         #if targetEnvironment(simulator)
         if let dir = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
             machineString = dir
@@ -30,7 +30,7 @@ extension UIDevice {
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
-        machineString = machineMirror.children.reduce("") { identifier, element in
+        machineString = machineMirror.children.reduce(String.empty) { identifier, element in
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
