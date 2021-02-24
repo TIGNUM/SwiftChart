@@ -78,16 +78,6 @@ private extension ToolsCollectionsViewController {
     }
 }
 
-// MARK: - Actions
-
-private extension ToolsCollectionsViewController {
-
-    @IBAction func closeButton(_ sender: UIButton) {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
-    }
-}
-
 // MARK: - ToolsViewControllerInterface
 
 extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterface {
