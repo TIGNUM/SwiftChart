@@ -28,7 +28,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
 
     // MARK: - Properties
     var interactor: ToolsItemsInteractorInterface!
-    @IBOutlet weak var backButton: UIButton?
     private var lastAudioIndexPath: IndexPath?
 
     // MARK: - Init
@@ -54,9 +53,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if self == navigationController?.viewControllers.first {
-            backButton?.isHidden = true
-        }
         super.viewWillAppear(animated)
         setStatusBar(colorMode: .darkNot)
     }
@@ -87,22 +83,9 @@ private extension ToolsItemsViewController {
     }
 }
 
-// MARK: - Actions
-private extension ToolsItemsViewController {
-    @IBAction func backButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-
-    @IBAction func closeButton(_ sender: Any) {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
-    }
-}
-
 // MARK: - ToolsItemsViewControllerInterface
 extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func setupView() {
-        ThemeTint.black.apply(backButton?.imageView ?? UIView.init())
         setupTableView()
     }
 
@@ -141,7 +124,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         switch tool.type {
         case ToolType.video.rawValue:
             let cell: ToolsCollectionsVideoTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(title: tool.title,
                            timeToWatch: tool.durationString,
                            imageURL: tool.imageURL)
@@ -151,7 +134,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case ToolType.audio.rawValue:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,
@@ -163,7 +146,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,
@@ -216,7 +199,7 @@ extension ToolsItemsViewController {
     }
 
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
+        return [backNavigationItem()]
     }
 }
 

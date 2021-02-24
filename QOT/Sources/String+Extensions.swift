@@ -127,6 +127,7 @@ extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + self.lowercased().dropFirst()
     }
+
     static var empty: String {
         return ""
     }
