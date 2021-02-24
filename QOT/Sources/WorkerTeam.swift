@@ -234,7 +234,7 @@ extension WorkerTeam {
             completion(team, error)
             NotificationCenter.default.post(name: .didEditTeamName,
                                             object: nil,
-                                            userInfo: [team?.qotId: team?.name ?? ""])
+                                            userInfo: [team?.qotId: team?.name ?? String.empty])
         }
     }
 
@@ -458,7 +458,7 @@ extension WorkerTeam {
                                                              .foregroundColor: UIColor.redOrange]
         let prefix = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends),
                                                attributes: greyAttributes)
-        var string = ""
+        var string = String.empty
         switch remainingDays {
         case 0:
             string = AppTextService.get(.my_x_team_tbv_options_today)

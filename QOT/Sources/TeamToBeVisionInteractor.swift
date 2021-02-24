@@ -127,17 +127,17 @@ private extension TeamToBeVisionInteractor {
 extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     func showEditVision(isFromNullState: Bool) {
         worker.getTeamToBeVision(for: team) { (teamVision) in
-            self.router.showEditVision(title: teamVision?.headline ?? "",
-                                       vision: teamVision?.text ?? "",
+            self.router.showEditVision(title: teamVision?.headline ?? String.empty,
+                                       vision: teamVision?.text ?? String.empty,
                                        isFromNullState: isFromNullState,
                                        team: self.team)
         }
     }
 
     func showNullState() {
-        presenter.showNullState(with: teamNullStateTitle ?? "",
+        presenter.showNullState(with: teamNullStateTitle ?? String.empty,
                                 teamName: team.name,
-                                message: teamNullStateSubtitle ?? "")
+                                message: teamNullStateSubtitle ?? String.empty)
     }
 
     func hideNullState() {
@@ -245,8 +245,8 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
     }
 
     func lastUpdatedTeamVision() -> String? {
-        var lastUpdatedVision = ""
-        guard let date = teamVision?.date?.beginingOfDate() else { return ""}
+        var lastUpdatedVision = String.empty
+        guard let date = teamVision?.date?.beginingOfDate() else { return String.empty}
         let days = DateComponentsFormatter.numberOfDays(date)
         lastUpdatedVision = worker.dateString(for: days)
         return lastUpdatedVision
@@ -278,7 +278,7 @@ extension TeamToBeVisionInteractor: TeamToBeVisionInteractorInterface {
                                        handler: nil, handlerDestructive: nil)
                 return
             }
-            let activityVC = UIActivityViewController(activityItems: [visionShare?.plainBody ?? ""],
+            let activityVC = UIActivityViewController(activityItems: [visionShare?.plainBody ?? String.empty],
                                                       applicationActivities: nil)
             activityVC.excludedActivityTypes = [UIActivity.ActivityType.openInIBooks,
                                                 UIActivity.ActivityType.airDrop,

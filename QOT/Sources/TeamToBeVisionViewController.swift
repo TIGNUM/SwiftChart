@@ -63,7 +63,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
-        showNullState(with: "", message: "", header: "")
+        showNullState(with: String.empty, message: String.empty, header: String.empty)
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
         showSkeleton()
@@ -253,7 +253,7 @@ private extension TeamToBeVisionViewController {
         userImageView.contentMode = .scaleAspectFill
         userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
         let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}",
-                                                                                                           with: interactor?.lastUpdatedTeamVision() ?? "")
+                                                                                                           with: interactor?.lastUpdatedTeamVision() ?? String.empty)
         ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }
 }
@@ -273,7 +273,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}",
-                                                                                                     with: interactor.team.name?.uppercased() ?? "")
+                                                                                                     with: interactor.team.name?.uppercased() ?? String.empty)
         ThemeText.tbvSectionHeader.apply(title, to: toBeVisionLabel)
         userImageView.image = R.image.teamTBVPlaceholder()
 

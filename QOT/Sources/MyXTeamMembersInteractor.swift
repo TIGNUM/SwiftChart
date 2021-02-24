@@ -55,7 +55,7 @@ private extension MyXTeamMembersInteractor {
         selectedTeamItem = items.filter { $0.isSelected }.first
         if selectedTeamItem == nil {
             selectedTeamItem = items.first
-            HorizontalHeaderView.selectedTeamId = selectedTeamItem?.teamId ?? ""
+            HorizontalHeaderView.selectedTeamId = selectedTeamItem?.teamId ?? String.empty
         }
         refreshView()
     }

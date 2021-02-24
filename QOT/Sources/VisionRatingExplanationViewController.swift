@@ -31,7 +31,7 @@ final class VisionRatingExplanationViewController: BaseViewController {
     private var downSyncObserver: NSObjectProtocol?
     private var skeletonManager = SkeletonManager()
     private var videoID: Int?
-    private var rightBarButtonTitle = ""
+    private var rightBarButtonTitle = String.empty
     private var rightBarButtonAction = #selector(startRating)
     private var loadingDots: DotsLoadingView?
 
@@ -156,7 +156,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
 
     func setupLabels(title: String, text: String, videoTitle: String) {
         ThemeText.ratingExplanationTitle.apply(title.uppercased(), to: titleLabel)
-        let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team?.name ?? "").uppercased())
+        let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team?.name ?? String.empty).uppercased())
         ThemeText.ratingExplanationText.apply(adaptedText, to: textLabel)
         ThemeText.ratingExplanationVideoTitle.apply(videoTitle, to: videoTitleLabel)
 

@@ -36,7 +36,7 @@ extension ResultsPrepareWorker {
         QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { [weak self] (qdmQuestion) in
             guard let qdmQuestion = qdmQuestion else { return }
             let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
-            let answerFilter = self?.getAnswerFilter(preparation: preparation) ?? ""
+            let answerFilter = self?.getAnswerFilter(preparation: preparation) ?? String.empty
             let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(answerFilter) }
             let answers = filteredAnswers.compactMap {
                 DTViewModel.Answer(qdmAnswer: $0,

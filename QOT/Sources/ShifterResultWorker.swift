@@ -12,14 +12,14 @@ import qot_dal
 final class ShifterResultWorker {
 
     // MARK: - Properties
-    private var headerTitle = ""
-    private var headerSubTitle = ""
-    private var triggerTitle = ""
-    private var reactionsTitle = ""
-    private var lowToHighTitle = ""
-    private var lowTitle = ""
-    private var highTitle = ""
-    private var visionTitle = ""
+    private var headerTitle = String.empty
+    private var headerSubTitle = String.empty
+    private var triggerTitle = String.empty
+    private var reactionsTitle = String.empty
+    private var lowToHighTitle = String.empty
+    private var lowTitle = String.empty
+    private var highTitle = String.empty
+    private var visionTitle = String.empty
     private let mindsetShifter: QDMMindsetShifter?
     private let resultType: ResultType
 
@@ -67,23 +67,23 @@ private extension ShifterResultWorker {
     }
 
     var getTrigger: MindsetResult.Section {
-        return .trigger(title: triggerTitle, item: mindsetShifter?.triggerAnswer?.subtitle ?? "")
+        return .trigger(title: triggerTitle, item: mindsetShifter?.triggerAnswer?.subtitle ?? String.empty)
     }
 
     var getReactions: MindsetResult.Section {
         return .reactions(title: reactionsTitle,
-                          items: mindsetShifter?.reactionsAnswers?.compactMap { $0.subtitle ?? "" } ?? [])
+                          items: mindsetShifter?.reactionsAnswers?.compactMap { $0.subtitle ?? String.empty } ?? [])
     }
 
     var getLowToHigh: MindsetResult.Section {
         return .lowToHigh(title: lowToHighTitle,
                           lowTitle: lowTitle,
-                          lowItems: mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? "" } ?? [],
+                          lowItems: mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? String.empty } ?? [],
                           highTitle: highTitle,
                           highItems: mindsetShifter?.highPerformanceContentItems.compactMap { $0.valueText } ?? [])
     }
 
     var getVision: MindsetResult.Section {
-        return .vision(title: visionTitle, text: mindsetShifter?.toBeVisionText ?? "")
+        return .vision(title: visionTitle, text: mindsetShifter?.toBeVisionText ?? String.empty)
     }
 }

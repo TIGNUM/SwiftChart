@@ -28,7 +28,7 @@ extension TeamToBeVisionPresenter: TeamToBeVisionPresenterInterface {
 
     func showNullState(with title: String, teamName: String?, message: String) {
         var header = AppTextService.get(.my_x_team_tbv_new_section_header_title)
-        header = header.replacingOccurrences(of: "{$TEAM_NAME}", with: teamName?.uppercased() ?? "")
+        header = header.replacingOccurrences(of: "{$TEAM_NAME}", with: teamName?.uppercased() ?? String.empty)
         viewController?.showNullState(with: title, message: message, header: header)
     }
 

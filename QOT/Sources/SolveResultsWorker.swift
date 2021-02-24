@@ -174,7 +174,7 @@ private extension SolveResultsWorker {
              .solveDailyBrief:
             header = AppTextService.get(.coach_solve_result_section_strategies_title)
         default:
-            header = ""
+            header = String.empty
         }
         var relatedStrategyItems: [SolveResult.Item] = []
         relatedStrategies(contentId) { (related) in
@@ -192,7 +192,7 @@ private extension SolveResultsWorker {
                                                                      title: item.valueText,
                                                                      minsToRead: item.durationString,
                                                                      hasHeader: false,
-                                                                     headerTitle: ""))
+                                                                     headerTitle: String.empty))
                 }
                 self.relatedAppLinks(contentId) { (relatedLinks) in
                     relatedStrategyItems.append(contentsOf: relatedLinks)
@@ -235,8 +235,8 @@ private extension SolveResultsWorker {
 
     func solveHeader(_ completion: @escaping (SolveResult.Item) -> Void) {
         contentCollection { [weak self] content in
-            let title = self?.valueText(for: "solve-header-title", content: content) ?? ""
-            let solution = self?.valueText(for: "solve-header-subtitle", content: content) ?? ""
+            let title = self?.valueText(for: "solve-header-title", content: content) ?? String.empty
+            let solution = self?.valueText(for: "solve-header-subtitle", content: content) ?? String.empty
             completion(.header(title: title, solution: solution))
         }
     }
@@ -244,9 +244,9 @@ private extension SolveResultsWorker {
     func trigger(_ completion: @escaping (SolveResult.Item?) -> Void) {
         contentCollection { [weak self] content in
             if let triggerType = content?.triggerType() {
-                let header = self?.valueText(for: "solve-trigger-header", content: content) ?? ""
-                let description = self?.valueText(for: "solve-trigger-description", content: content) ?? ""
-                let buttonText = self?.valueText(for: "solve-trigger-button", content: content) ?? ""
+                let header = self?.valueText(for: "solve-trigger-header", content: content) ?? String.empty
+                let description = self?.valueText(for: "solve-trigger-description", content: content) ?? String.empty
+                let buttonText = self?.valueText(for: "solve-trigger-button", content: content) ?? String.empty
                 let trigger = SolveResult.Item.trigger(type: triggerType,
                                                         header: header,
                                                         description: description,
@@ -272,8 +272,8 @@ private extension SolveResultsWorker {
 
     func followUp(_ completion: @escaping (SolveResult.Item) -> Void) {
         contentCollection {  [weak self] content in
-            let title = self?.valueText(for: "solve-follow-up-title", content: content) ?? ""
-            let subtitle = self?.valueText(for: "solve-follow-up-subtitle", content: content) ?? ""
+            let title = self?.valueText(for: "solve-follow-up-title", content: content) ?? String.empty
+            let subtitle = self?.valueText(for: "solve-follow-up-subtitle", content: content) ?? String.empty
             completion(.followUp(title: title, subtitle: subtitle))
         }
     }
@@ -304,8 +304,8 @@ private extension SolveResultsWorker {
 
     func recoveryHeader(_ completion: @escaping (SolveResult.Item) -> Void) {
         contentCollection(resultType.contentId) { [weak self] content in
-            let title = self?.valueText(for: "recovery-header-title", content: content) ?? ""
-            let solution = self?.valueText(for: "recovery-header-subtitle", content: content) ?? ""
+            let title = self?.valueText(for: "recovery-header-title", content: content) ?? String.empty
+            let solution = self?.valueText(for: "recovery-header-subtitle", content: content) ?? String.empty
             completion(.header(title: title, solution: solution))
         }
     }
@@ -313,15 +313,15 @@ private extension SolveResultsWorker {
     func fatigueSymptom(_ completion: @escaping (SolveResult.Item) -> Void) {
         let contentItemId = recovery?.causeAnwser?.targetId(.contentItem) ?? 0
         ContentService.main.getContentItemById(contentItemId) { (contentItem) in
-            completion(.fatigue(sympton: contentItem?.valueText ?? ""))
+            completion(.fatigue(sympton: contentItem?.valueText ?? String.empty))
         }
     }
 
     func cause(_ completion: @escaping (SolveResult.Item) -> Void) {
         let contentId = recovery?.causeAnwser?.targetId(.content) ?? 0
         ContentService.main.getContentCollectionById(contentId) { [weak self] (content) in
-            let cause = self?.recovery?.causeAnwser?.subtitle ?? ""
-            let fatigueCauseExplanation = content?.contentItems.first?.valueText ?? ""
+            let cause = self?.recovery?.causeAnwser?.subtitle ?? String.empty
+            let fatigueCauseExplanation = content?.contentItems.first?.valueText ?? String.empty
             completion(.cause(cause: cause, explanation: fatigueCauseExplanation))
         }
     }

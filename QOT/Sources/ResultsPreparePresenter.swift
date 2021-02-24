@@ -34,7 +34,7 @@ private extension ResultsPreparePresenter {
 
     func getDefaultHeader(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         let appText = AppTextService.get(.results_prepare_header_title)
-        let title = appText.replacingOccurrences(of: "[TYPE OF PREPARATION]", with: preparation?.eventType ?? "")
+        let title = appText.replacingOccurrences(of: "[TYPE OF PREPARATION]", with: preparation?.eventType ?? String.empty)
         return ResultsPrepare.Sections.header(title: title.uppercased())
     }
 
@@ -70,7 +70,7 @@ private extension ResultsPreparePresenter {
     func getBenefitsItem(_ preparation: QDMUserPreparation?) -> ResultsPrepare.Sections {
         return .benefits(title: AppTextService.get(.results_prepare_header_benefits),
                          subtitle: AppTextService.get(.results_prepare_benefits),
-                         benefits: preparation?.benefits ?? "")
+                         benefits: preparation?.benefits ?? String.empty)
     }
 
     func getStrategyTitleItem() -> ResultsPrepare.Sections {

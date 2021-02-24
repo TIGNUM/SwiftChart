@@ -28,14 +28,14 @@ final class MyQotAboutUsWorker {
 
     func trackingKeys(at indexPath: IndexPath) -> String {
         guard let item = MyQotAboutUsModel.Item(rawValue: indexPath.row) else {
-            return ""
+            return String.empty
         }
         return item.trackingKeys()
     }
 
     func title(at indexPath: IndexPath) -> String {
         guard let item = MyQotAboutUsModel.Item(rawValue: indexPath.row) else {
-            return ""
+            return String.empty
         }
         return item.title(for: contentService)
     }

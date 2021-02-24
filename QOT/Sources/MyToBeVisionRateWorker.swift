@@ -112,7 +112,7 @@ private extension MyToBeVisionRateWorker {
                 let question = track.sentence
                 let range = 10
                 return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                        title: question ?? "",
+                                                        title: question ?? String.empty,
                                                         htmlTitle: nil,
                                                         subtitle: nil,
                                                         dailyPrepTitle: nil,
@@ -142,7 +142,7 @@ private extension MyToBeVisionRateWorker {
                 let sentence = track.sentence
                 let range = 10
                 guard let question = RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                                       title: sentence ?? "",
+                                                                       title: sentence ?? String.empty,
                                                                        htmlTitle: nil,
                                                                        subtitle: nil,
                                                                        dailyPrepTitle: nil,

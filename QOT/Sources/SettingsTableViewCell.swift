@@ -73,7 +73,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             expandArrow.isHidden = true
             self.settingsType = settingsType
             self.bottomSeperatorView.isHidden = true
-            setupTextFieldCell(title: title, value: value ?? "", settingsType: settingsType)
+            setupTextFieldCell(title: title, value: value ?? String.empty, settingsType: settingsType)
         case .stringPicker(let title, let pickerItems, let selectedIndex, let settingsType):
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: pickerItems[selectedIndex], settingsType: settingsType)

@@ -27,7 +27,7 @@ extension MyPrepsRouter: MyPrepsRouterInterface {
     }
 
     func createEventPlan() {
-        if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+        if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue(String.empty) {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }

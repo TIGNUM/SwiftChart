@@ -80,9 +80,9 @@ private extension MyQotAccountSettingsWorker {
                                 telephone: user?.telephone,
                                 gender: user?.gender,
                                 height: user?.height ?? 150,
-                                heightUnit: user?.heightUnit ?? "",
+                                heightUnit: user?.heightUnit ?? String.empty,
                                 weight: user?.weight ?? 60,
-                                weightUnit: user?.weightUnit ?? "",
-                                birthday: user?.dateOfBirth ?? "")
+                                weightUnit: user?.weightUnit ?? String.empty,
+                                birthday: user?.dateOfBirth ?? String.empty)
     }
 }

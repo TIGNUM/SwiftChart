@@ -129,7 +129,7 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
 
         let adminText = AppTextService.get(.settings_team_settings_team_members_admin_label)
         let cell: TeamMemberTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(memberEmail: member.isTeamOwner ? (member.email ?? "") + " " + adminText : member.email,
+        cell.configure(memberEmail: member.isTeamOwner ? (member.email ?? String.empty) + " " + adminText : member.email,
                        memberStatus: member.status)
         return cell
     }
@@ -160,7 +160,7 @@ extension MyXTeamMembersViewController: UITableViewDelegate, UITableViewDataSour
                 self?.interactor.removeMember(at: indexPath)
             }
             QOTAlert.show(title: AppTextService.get(.alert_remove_member_title).replacingOccurrences(of: "${name_of_team}",
-                                                                                                     with: self.interactor.getSelectedTeamItem?.title ?? ""),
+                                                                                                     with: self.interactor.getSelectedTeamItem?.title ?? String.empty),
                           message: AppTextService.get(.alert_remove_member_message),
                           bottomItems: [cancel, remove])
         }

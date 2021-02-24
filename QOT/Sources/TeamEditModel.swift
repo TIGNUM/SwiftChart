@@ -25,7 +25,7 @@ enum TeamEdit {
         if let key = key(type) {
             return AppTextService.get(key)
         }
-        return ""
+        return String.empty
     }
 
     func key(_ type: TeamEdit.View) -> AppTextKey? {

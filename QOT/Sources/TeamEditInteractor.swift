@@ -38,7 +38,7 @@ private extension TeamEditInteractor {
     func setupMemberList(team: QDMTeam) {
         getTeamMembers(in: team) { (qdmMembers) in
            self.members = qdmMembers.compactMap { (qdmMember) -> TeamEdit.Member in
-               return TeamEdit.Member(email: qdmMember.email ?? "",
+               return TeamEdit.Member(email: qdmMember.email ?? String.empty,
                                       me: qdmMember.me,
                                       isOwner: qdmMember.isTeamOwner)
            }.sorted(by: { (first, second) -> Bool in
@@ -73,7 +73,7 @@ private extension TeamEditInteractor {
 
     func showAlertIfNeeded(email: String?) -> Bool {
         if (members.filter {
-            $0.me == true && $0.email.caseInsensitiveCompare(email ?? "") == .orderedSame
+            $0.me == true && $0.email.caseInsensitiveCompare(email ?? String.empty) == .orderedSame
         }.first != nil) {
             let title = AppTextService.get(.generic_alert_unknown_error_title)
             let message = AppTextService.get(.team_invite_error_add_myself)
@@ -81,7 +81,7 @@ private extension TeamEditInteractor {
             return true
         }
         if (members.filter {
-            $0.email.caseInsensitiveCompare(email ?? "") == .orderedSame && $0.me == false
+            $0.email.caseInsensitiveCompare(email ?? String.empty) == .orderedSame && $0.me == false
         }.first != nil) {
             let title = AppTextService.get(.generic_alert_unknown_error_title)
             let message = AppTextService.get(.team_invite_error_add_exisiting)
@@ -152,7 +152,7 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
                 self?.setupMemberList(team: team)
             } else {
                 ///oh man, maybe owner email can be part of team?
-                let email = SessionService.main.getCurrentSession()?.useremail ?? ""
+                let email = SessionService.main.getCurrentSession()?.useremail ?? String.empty
                 let member = TeamEdit.Member(email: email,
                                              me: true,
                                              isOwner: true)
@@ -176,7 +176,7 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
                 if let member = member {
                     let emails = self?.members.compactMap { $0.email } ?? []
                     if emails.contains(obj: email) == false {
-                        self?.members.append(TeamEdit.Member(email: member.email ?? "",
+                        self?.members.append(TeamEdit.Member(email: member.email ?? String.empty,
                                                              me: member.me,
                                                              isOwner: member.isTeamOwner))
                     }

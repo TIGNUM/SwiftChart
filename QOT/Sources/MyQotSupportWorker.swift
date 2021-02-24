@@ -29,21 +29,21 @@ final class MyQotSupportWorker {
 
     func trackingKeys(at indexPath: IndexPath) -> String {
         guard let item = MyQotSupportModel.MyQotSupportModelItem.supportValues.at(index: indexPath.row) else {
-            return ""
+            return String.empty
         }
         return item.trackingKeys()
     }
 
     func title(at indexPath: IndexPath) -> String {
         guard let item = MyQotSupportModel.MyQotSupportModelItem.supportValues.at(index: indexPath.row) else {
-            return ""
+            return String.empty
         }
         return item.title()
     }
 
     func subtitle(at indexPath: IndexPath) -> String {
         guard let item = MyQotSupportModel.MyQotSupportModelItem.supportValues.at(index: indexPath.row) else {
-            return ""
+            return String.empty
         }
         return item.subtitle()
     }

@@ -145,7 +145,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         self.viewModels = viewModels
         collectionView.reloadData()
         trackPage()
-        setupButtons(true, viewModels.first?.rightButtonTitle ?? "")
+        setupButtons(true, viewModels.first?.rightButtonTitle ?? String.empty)
         updatePageIndicator()
     }
 
@@ -166,16 +166,16 @@ extension CoachMarksViewController: UICollectionViewDelegate,
         if currentIndex != pageIndicator.currentPageIndex {
             updatePageIndicator()
             let model = viewModel(at: IndexPath(item: currentIndex, section: 0))
-            setupButtons(currentIndex == 0, model?.rightButtonTitle ?? "")
+            setupButtons(currentIndex == 0, model?.rightButtonTitle ?? String.empty)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CoachMarkCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         if let model = viewModel(at: indexPath) {
-            cell.configure(mediaName: model.mediaName, title: model.title ?? "", subtitle: model.subtitle ?? "")
+            cell.configure(mediaName: model.mediaName, title: model.title ?? String.empty, subtitle: model.subtitle ?? String.empty)
         } else {
-            cell.configure(mediaName: "", title: "", subtitle: "")
+            cell.configure(mediaName: String.empty, title: String.empty, subtitle: String.empty)
         }
         return cell
     }

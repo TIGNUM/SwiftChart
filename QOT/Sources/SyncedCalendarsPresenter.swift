@@ -41,11 +41,11 @@ extension SyncedCalendarsPresenter: SyncedCalendarsPresenterInterface {
 private extension SyncedCalendarsPresenter {
     func createViewModel(_ viewTitle: String, _ viewSubtitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting]) {
         let localSettings = qdmCalendarSettings.filter { (setting) -> Bool in
-            return EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? "")
+            return EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? String.empty)
         }
 
         let otherSettings = qdmCalendarSettings.filter { (setting) -> Bool in
-            let exist = EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? "")
+            let exist = EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? String.empty)
             return exist == false && setting.syncEnabled == true
         }
 

@@ -27,10 +27,10 @@ extension VisionRatingExplanationPresenter: VisionRatingExplanationPresenterInte
         viewController?.setupLabels(title: type.title,
                                     text: type.text,
                                     videoTitle: type.videoTitle)
-        viewController?.setupVideo(thumbNailURL: URL(string: videoItem?.valueImageURL ?? ""),
+        viewController?.setupVideo(thumbNailURL: URL(string: videoItem?.valueImageURL ?? String.empty),
                                    placeholder: R.image.preloading(),
-                                   videoURL: URL(string: videoItem?.valueMediaURL ?? ""),
-                                   duration: videoItem?.durationString ?? "",
+                                   videoURL: URL(string: videoItem?.valueMediaURL ?? String.empty),
+                                   duration: videoItem?.durationString ?? String.empty,
                                    remoteID: videoItem?.remoteID ?? 0)
         viewController?.setupView(type: type)
     }

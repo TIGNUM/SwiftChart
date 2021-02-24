@@ -270,13 +270,13 @@ extension MySprintDetailsInteractor {
         var items = [MySprintDetailsItem]()
         // Highlights
         items.append(MySprintDetailsItem(type: .header(action: .highlights), text: worker.headerHighlights))
-        items.append(MySprintDetailsItem(type: .listItem(appearance: .regular), text: sprint.notesLearnings ?? ""))
+        items.append(MySprintDetailsItem(type: .listItem(appearance: .regular), text: sprint.notesLearnings ?? String.empty))
         // Strategies
         items.append(MySprintDetailsItem(type: .header(action: .strategies), text: worker.headerStrategies))
-        items.append(MySprintDetailsItem(type: .listItem(appearance: .regular), text: sprint.notesReflection ?? ""))
+        items.append(MySprintDetailsItem(type: .listItem(appearance: .regular), text: sprint.notesReflection ?? String.empty))
         // Benefits
         items.append(MySprintDetailsItem(type: .header(action: .benefits), text: worker.headerBenefits))
-        items.append(MySprintDetailsItem(type: .listItem(appearance: .regular), text: sprint.notesBenefits ?? ""))
+        items.append(MySprintDetailsItem(type: .listItem(appearance: .regular), text: sprint.notesBenefits ?? String.empty))
         return items
     }
 

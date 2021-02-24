@@ -99,7 +99,7 @@ private extension RegistrationNamesViewController {
         createAccountButton.alpha = 0
         view.endEditing(true)
         interactor.didTapNext(with: name, lastName: lastNameField.text)
-        let userName = name + " " + (lastNameField.text ?? "")
+        let userName = name + " " + (lastNameField.text ?? String.empty)
         trackUserEvent(.CREATE_ACCOUNT,
                        stringValue: "userName: " + userName,
                        valueType: .USER_ANSWER,

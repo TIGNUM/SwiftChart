@@ -28,12 +28,12 @@ final class ToolsItemsWorker {
 
 extension ToolsItemsWorker: ToolsItemsWorkerInterface {
     var headerTitle: String {
-        return selectedTool?.title ?? ""
+        return selectedTool?.title ?? String.empty
     }
 
     var headerSubtitle: String {
-        guard let categoryTitle = self.selectedTool?.contentCategoryTitle else { return "" }
-        let headerSubtitle = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
+        guard let categoryTitle = self.selectedTool?.contentCategoryTitle else { return String.empty }
+        let headerSubtitle = categoryTitle.replacingOccurrences(of: "Performance ", with: String.empty)
         return headerSubtitle + " tools"
     }
 
@@ -53,11 +53,11 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
             let count = contentCollection?.contentItems.count ?? 0
             self?.toolItems = contentCollection?.contentItems.compactMap({ (contentItem) -> Tool.Item? in
                 Tool.Item(remoteID: contentItem.remoteID ?? 0,
-                          categoryTitle: "",
+                          categoryTitle: String.empty,
                           title: contentItem.valueText,
                           durationString: contentItem.durationString,
-                          imageURL: URL(string: contentItem.valueImageURL ?? ""),
-                          mediaURL: URL(string: (contentItem.valueMediaURL ?? "")),
+                          imageURL: URL(string: contentItem.valueImageURL ?? String.empty),
+                          mediaURL: URL(string: (contentItem.valueMediaURL ?? String.empty)),
                           duration: contentItem.valueDuration ?? 0,
                           isCollection: false,
                           contentCollectionId: contentCollection?.remoteID ?? 0,

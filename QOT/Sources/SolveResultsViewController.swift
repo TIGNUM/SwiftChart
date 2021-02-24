@@ -187,7 +187,7 @@ extension SolveResultsViewController: UITableViewDataSource {
             return cell
         case .link(_, _, let title)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(hasHeader: false, title: title.uppercased(), minsToRead: "", headerTitle: "")
+            cell.configure(hasHeader: false, title: title.uppercased(), minsToRead: String.empty, headerTitle: String.empty)
             cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             return cell
         case .trigger(let type, let header, let description, let buttonText)?:

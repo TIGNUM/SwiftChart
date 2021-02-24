@@ -28,7 +28,7 @@ final class ToolsCollectionsWorker {
 
 extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
     var headerTitle: String {
-        return selectedTool?.title ?? ""
+        return selectedTool?.title ?? String.empty
     }
 
     func tools(_ completion: @escaping ([Tool.Item]) -> Void) {
@@ -46,16 +46,16 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
                 let isCollection: Bool = collection.contentItems.count > 1
                 let toolItemId = isCollection ? collection.remoteID ?? 0 : collection.contentItems.first?.remoteID ?? 0
                 return Tool.Item(remoteID: toolItemId,
-                                 categoryTitle: collection.contentCategoryTitle ?? "",
+                                 categoryTitle: collection.contentCategoryTitle ?? String.empty,
                                  title: collection.title,
-                                 durationString: collection.contentItems.first?.durationString ?? "",
-                                 imageURL: URL(string: collection.contentItems.first?.valueImageURL ?? ""),
-                                 mediaURL: URL(string: (collection.contentItems.first?.valueMediaURL ?? "")),
+                                 durationString: collection.contentItems.first?.durationString ?? String.empty,
+                                 imageURL: URL(string: collection.contentItems.first?.valueImageURL ?? String.empty),
+                                 mediaURL: URL(string: (collection.contentItems.first?.valueMediaURL ?? String.empty)),
                                  duration: collection.contentItems.first?.valueDuration ?? 0,
                                  isCollection: isCollection,
                                  contentCollectionId: collection.remoteID ?? 0,
                                  numberOfItems: collection.contentItems.count,
-                                 type: collection.contentItems.first?.format.rawValue ?? "")
+                                 type: collection.contentItems.first?.format.rawValue ?? String.empty)
             })
             completion(items)
         }

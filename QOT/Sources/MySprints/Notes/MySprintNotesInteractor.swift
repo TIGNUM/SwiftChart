@@ -88,7 +88,7 @@ extension MySprintNotesInteractor: MySprintNotesInteractorInterface {
 
     func didTapDismiss(with text: String?) {
         self.text = text
-        if text == (worker.text ?? "") {
+        if text == (worker.text ?? String.empty) {
             router.dismiss()
             return
         }

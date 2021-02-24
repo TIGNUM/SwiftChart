@@ -167,7 +167,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         switch ContentFormat(rawValue: tool.type) {
         case .audio:
             let media = MediaPlayerModel(title: tool.title,
-                                         subtitle: "",
+                                         subtitle: String.empty,
                                          url: tool.mediaURL,
                                          totalDuration: tool.duration,
                                          progress: 0,

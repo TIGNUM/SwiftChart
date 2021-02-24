@@ -18,12 +18,12 @@ final class ProfileSettingsWorker {
     private var user: QDMUser?
     private let dispatchGroup = DispatchGroup()
 
-    private var personalTxt = ""
-    private var contactTxt = ""
-    private var nameTxt = ""
-    private var surnameTxt = ""
-    private var companyTxt = ""
-    private var emailTxt = ""
+    private var personalTxt = String.empty
+    private var contactTxt = String.empty
+    private var nameTxt = String.empty
+    private var surnameTxt = String.empty
+    private var companyTxt = String.empty
+    private var emailTxt = String.empty
 
     lazy var confirmationAlertTitle: String = {
         return AppTextService.get(.my_qot_my_profile_account_settings_alert_continue_without_saving_title)

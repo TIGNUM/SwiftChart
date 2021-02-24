@@ -61,7 +61,7 @@ final class WorkerCalendar {
     func hasSyncedCalendars(_ completion: @escaping (Bool) -> Void) {
         getCalendarSettings { (settings) in
             let hasSyncedCalenders = settings.filter { (setting) -> Bool in
-                let isLocal = EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? "")
+                let isLocal = EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? String.empty)
                 return isLocal && setting.syncEnabled == true
             }.isEmpty == false
             completion(hasSyncedCalenders)

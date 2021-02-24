@@ -57,7 +57,7 @@ extension MyQotSiriShortcutsViewController: UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: interactor?.title(for: indexPath).uppercased() ?? "",
+        cell.configure(title: interactor?.title(for: indexPath).uppercased() ?? String.empty,
                        bkgdTheme: .level3, titleTheme: .myQOTTitle)
         return cell
     }

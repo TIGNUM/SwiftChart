@@ -79,7 +79,7 @@ struct MyQotSupportModel {
             case .featureRequest:
                 return AppTextService.get(.my_qot_my_profile_support_section_feature_request_subtitle)
             case .introduction:
-                return ""
+                return String.empty
             }
         }
     }

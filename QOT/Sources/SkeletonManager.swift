@@ -172,7 +172,7 @@ private class ShimmerAnimatedView: UIView {
             animation.toValue = toView.frame.size.width
             animation.repeatCount = .infinity
 
-            gradientLayer.add(animation, forKey: "")
+            gradientLayer.add(animation, forKey: String.empty)
         }
     }
 
