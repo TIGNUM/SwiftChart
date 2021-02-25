@@ -328,7 +328,7 @@ extension MyLibraryUserStorageInteractor {
             return true
         case .DOWNLOAD:
             return handleDownload(item: item)
-        case .BOOKMARK, .UNKOWN:
+        case .BOOKMARK, .UNKNOWN:
             return false
         }
     }

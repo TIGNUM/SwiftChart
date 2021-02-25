@@ -70,7 +70,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="OpI-7o-In4" firstAttribute="top" secondItem="XhL-CQ-itM" secondAttribute="top" priority="999" constant="30" id="CbV-eu-zL5"/>
                     <constraint firstItem="LJT-2m-ojb" firstAttribute="centerX" secondItem="PxG-cx-EZn" secondAttribute="centerX" id="KGw-Bq-Ffu"/>
