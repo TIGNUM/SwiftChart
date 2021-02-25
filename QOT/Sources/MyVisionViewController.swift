@@ -169,7 +169,10 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
     func deactivateRateButton() {
         rateButton.isEnabled = false
-        rateButton.setTitle("Syncing...", for: .disabled)
+        singleMessageRateButton.isEnabled = false
+        singleMessageRateButton.setTitle(AppTextService.get(.my_qot_my_tbv_loading_body_syncing), for: .disabled)
+        rateButton.setTitle(AppTextService.get(.my_qot_my_tbv_loading_body_syncing), for: .disabled)
+
     }
 
     func showNullState(with title: String, message: String, writeMessage: String) {
@@ -197,7 +200,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
                                          to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
-        ThemableButton.darkButton.apply(rateButton, title: "Rate")
+        ThemableButton.darkButton.apply(rateButton, title: "")
         ThemeBorder.white.apply(rateButton)
         ThemeBorder.white.apply(singleMessageRateButton)
         ThemeBorder.white.apply(updateButton)
@@ -250,7 +253,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_track_subtiitle),
                                   to: lastRatedComment)
 
-        rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled
         if let shouldShowSingleMessage = shouldShowSingleMessageRating {
             singleMessageRatingView.isHidden = !shouldShowSingleMessage
@@ -266,6 +268,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
         ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle),
                                   to: lastUpdatedComment)
+        rateButton.isEnabled = isRateEnabled
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {
