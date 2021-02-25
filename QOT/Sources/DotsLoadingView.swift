@@ -55,9 +55,9 @@ final class DotsLoadingView: UIView {
     }
 
     func stopAnimation(_ completion: (() -> Void)? = nil) {
-        if alpha > 0 {
+        if alpha > .zero {
             UIView.animate(withDuration: Animation.duration_03, animations: {
-                self.alpha = 0
+                self.alpha = .zero
             }, completion: { (_) in
                 completion?()
             })

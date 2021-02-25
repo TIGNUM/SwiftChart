@@ -97,7 +97,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                 if let fdirValue = model.fiveDayImpactReadiness { fiveDIRdata.append((x: Double(index), y: fdirValue)) }
                 if let irValue = model.impactReadiness { irData.append((x: Double(index), y: irValue)) }
                 //look if there is data for the previous day. If not mark the previous space with no data
-                if index > 0 && withModels[datesOfCurrentWeek[index - 1]] == nil {
+                if index > .zero && withModels[datesOfCurrentWeek[index - 1]] == nil {
                     alignmentViewsCollection[index - 1].alpha = 1.0
                 }
             }
@@ -170,7 +170,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     func setup(irAverageLabel: UILabel, forValue: Double) {
         ThemeText.myDataChartIRAverageLabel.apply(AppTextService.get(.my_qot_my_data_section_impact_readiness_label_ir_average), to: irAverageLabel)
-        for view in alignmentViewsCollection where view.tag == 0 {
+        for view in alignmentViewsCollection where view.tag == .zero {
             createPositionConstraints(forView: irAverageLabel,
                                       and: view,
                                       with: calculateBottomConstraintDifference(for: forValue) - 10.0,

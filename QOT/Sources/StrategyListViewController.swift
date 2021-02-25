@@ -96,7 +96,7 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
 
 extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = interactor?.rowCount, count > 0 else {
+        guard let count = interactor?.rowCount, count > .zero else {
             return 5
         }
         return count
@@ -105,7 +105,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if interactor?.isFoundation == true {
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
-            guard interactor?.foundationStrategies.count ?? 0 > indexPath.row,
+            guard interactor?.foundationStrategies.count ??.zero > indexPath.row,
                     let strategy = interactor?.foundationStrategies[indexPath.item] else {
                 return cell
             }
@@ -117,7 +117,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             return cell
         } else {
             let cell: StrategyContentTableViewCell = tableView.dequeueCell(for: indexPath)
-            guard interactor?.strategies.count ?? 0 > indexPath.row,
+            guard interactor?.strategies.count ?? .zero > indexPath.row,
                     let strategy = interactor?.strategies[indexPath.item] else {
                 return cell
             }
@@ -138,7 +138,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
+        if section == .zero {
             return StrategyListHeaderView.instantiateFromNib(title: interactor?.headerTitle, theme: .level2)
         }
         return nil
@@ -147,7 +147,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if interactor?.isFoundation == true {
             guard
-                interactor?.foundationStrategies.count ?? 0 > indexPath.row,
+                interactor?.foundationStrategies.count ?? .zero > indexPath.row,
                 let foundation = interactor?.foundationStrategies[indexPath.row],
                 let videoURL = foundation.mediaURL else { return }
             didSelectRow(at: indexPath)
@@ -164,7 +164,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                 }
             }
         } else {
-            guard interactor?.strategies.count ?? 0 > indexPath.row,
+            guard interactor?.strategies.count ?? .zero > indexPath.row,
                 let strategy = interactor?.strategies[indexPath.item] else {
                     return
             }

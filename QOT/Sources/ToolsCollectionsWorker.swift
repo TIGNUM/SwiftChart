@@ -44,7 +44,7 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
             }
             let items = category.contentCollections.filter({ $0.section == .QOTLibrary }).compactMap({ (collection) -> Tool.Item? in
                 let isCollection: Bool = collection.contentItems.count > 1
-                let toolItemId = isCollection ? collection.remoteID ?? 0 : collection.contentItems.first?.remoteID ?? 0
+                let toolItemId = isCollection ? collection.remoteID ?? .zero : collection.contentItems.first?.remoteID ?? 0
                 return Tool.Item(remoteID: toolItemId,
                                  categoryTitle: collection.contentCategoryTitle ?? "",
                                  title: collection.title,

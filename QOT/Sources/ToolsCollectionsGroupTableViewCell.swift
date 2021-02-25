@@ -72,7 +72,7 @@ class BaseToolsTableViewCell: UITableViewCell {
     }
 
     func addTopLine(for row: Int) {
-        if row == 0 { return }
+        if row == .zero { return }
         let line = UIView(frame: .zero)
         line.translatesAutoresizingMaskIntoConstraints = false
         addSubview(line)

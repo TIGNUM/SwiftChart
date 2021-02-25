@@ -389,7 +389,7 @@ extension AppCoordinator {
             return
         }
         UserService.main.getUserPreparationsWithMissingEvent(from: Date.beginingOfDay(), { (preps, _, _) in
-            guard let preparations = preps, preparations.count > 0 else { return }
+            guard let preparations = preps, preparations.count > .zero else { return }
             log("preps with missing events : \(preparations)", level: .debug)
             let configurator = PreparationWithMissingEventConfigurator.make(preparations)
             let viewController = PreparationWithMissingEventViewController.init(configure: configurator)

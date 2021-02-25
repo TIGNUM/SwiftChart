@@ -101,7 +101,7 @@ private extension CoachMarksViewController {
 private extension CoachMarksViewController {
     @IBAction func didTapBack() {
         let indexPath = getCurrentIndexPath()
-        if indexPath.item != 0 {
+        if indexPath.item != .zero {
             let model = viewModel(at: indexPath)
             trackUserEvent(.PREVIOUS, stringValue: model?.mediaName, valueType: .VIDEO, action: .TAP)
 

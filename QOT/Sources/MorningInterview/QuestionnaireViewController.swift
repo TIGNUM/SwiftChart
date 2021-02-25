@@ -146,7 +146,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
         // Check TableView Size and set right cell height
         let tableViewHeight = tableView.bounds.height
 
-        cellHeight = tableViewHeight/(items == 0 ? CGFloat(1.0) : CGFloat(items))
+        cellHeight = tableViewHeight/(items == .zero ? CGFloat(1.0) : CGFloat(items))
         progressHeightConstraint.constant = presentationType == .fill ? tableViewHeight * 2 : cellHeight
     }
 
@@ -399,7 +399,7 @@ extension QuestionnaireViewController {
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "",
                                                                         isLast: answerIndex == finalAnswers.count - 1)
-                    indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count ?? 0 > 0 ? 1.0 : 0.0
+                    indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count ?? .zero > .zero ? 1.0 : 0.0
                  }
             }
         } else {
@@ -440,7 +440,7 @@ extension QuestionnaireViewController {
 extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView.isHidden ? 0 : items
+        return tableView.isHidden ? .zero : items
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -449,7 +449,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
         cell.cellIndicatorView.config = controllerType.config
         // handle multipliers
         if questionkey == .amount {
-            if indexPath.row <= 0 {
+            if indexPath.row <= .zero {
                 multiplier = multiplierForTimeFirstIndex
             } else if indexPath.row <= 6 {
                 multiplier = multiplierForTimeSecondIndex
@@ -457,7 +457,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
                 multiplier = (items - (indexPath.row) + 1)/2
             }
         } else {
-            if indexPath.row == 0 {
+            if indexPath.row == .zero {
                 multiplier = multiplierForFirstIndex
             } else if indexPath.row <= 2 {
                 multiplier = multiplierForSecondIndex
@@ -474,7 +474,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
         }
 
         if questionkey == .amount {
-            if indexPath.row % 2 != 0 {
+            if indexPath.row % 2 != .zero{
                 cell.cellIndicatorView.isTimeAmountSecondaryIndex = true
                 cell.cellIndicatorView.indicatorWidth = CGFloat(6)
             } else {
@@ -495,7 +495,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var lastInitialDisplayableCell = false
         //change flag as soon as last displayable cell is being loaded (which will mean table has initially loaded)
-        if items > 0 && !finishedLoadingInitialTableCells {
+        if items > .zero && !finishedLoadingInitialTableCells {
             if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows,
                 let lastIndexPath = indexPathsForVisibleRows.last, lastIndexPath.row == indexPath.row {
                 lastInitialDisplayableCell = true

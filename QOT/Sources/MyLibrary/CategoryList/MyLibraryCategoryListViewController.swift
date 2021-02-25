@@ -102,7 +102,7 @@ extension MyLibraryCategoryListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell: MyLibraryCategoryTableViewCell = tableView.dequeueCell(for: indexPath)
-        guard interactor?.categoryItems.count ?? 0 > 0 else {
+        guard interactor?.categoryItems.count ?? .zero > .zero else {
             categoryCell.configure(withModel: nil)
             return categoryCell
         }
@@ -114,7 +114,7 @@ extension MyLibraryCategoryListViewController: UITableViewDataSource {
 extension MyLibraryCategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if interactor?.categoryItems.count ?? 0 > 0 {
+        if interactor?.categoryItems.count ?? .zero > .zero {
             interactor?.handleSelectedItem(at: indexPath.row)
         }
     }

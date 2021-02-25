@@ -181,7 +181,7 @@ private extension FormView {
 
     func setupShowPasswordButton() {
         guard formType?.isSecureTextEntry == true else { return }
-        showPasswordButton.isHidden = textField.isSecureTextEntry == true && textField.text?.count ?? 0 < 3
+        showPasswordButton.isHidden = textField.isSecureTextEntry == true && textField.text?.count ?? .zero < 3
     }
 
     func animatePlaceholderLabel() {

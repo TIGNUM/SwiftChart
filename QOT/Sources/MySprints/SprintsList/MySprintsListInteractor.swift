@@ -120,7 +120,7 @@ extension MySprintsListInteractor: MySprintsListInteractorInterface {
         self.reorderedDisplayData[source.section].items = items
 
         // Remove items funtionality has priority over reordering
-        if identifiersForCheck.count == 0 {
+        if identifiersForCheck.count == .zero {
             viewModel.bottomButtons = reorderingButtons
             presenter.present()
         }
@@ -225,7 +225,7 @@ extension MySprintsListInteractor {
             identifiersForCheck.remove(item.identifier)
         }
 
-        if identifiersForCheck.count == 0 && !reorderedDisplayData.isEmpty {
+        if identifiersForCheck.count == .zero && !reorderedDisplayData.isEmpty {
             viewModel.bottomButtons = reorderingButtons
         } else {
             viewModel.bottomButtons = preRemoveButtons

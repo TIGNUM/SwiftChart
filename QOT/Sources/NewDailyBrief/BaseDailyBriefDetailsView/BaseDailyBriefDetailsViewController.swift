@@ -176,7 +176,7 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let model = interactor?.getModel() as? SprintChallengeViewModel,
-              indexPath.row > 0 else {
+              indexPath.row > .zero else {
             return
         }
         let relatedItem = model.relatedStrategiesModels[indexPath.row - 1]

@@ -137,7 +137,7 @@ private extension MyToBeVisionRateWorker {
             }
             self?.trackerPoll = poll
             var questionnaire: [RatingQuestionViewModel.Question] = []
-            trackers.sorted { $0.sortOrder ?? 0 > $1.sortOrder ?? 0 }.forEach { (track) in
+            trackers.sorted { $0.sortOrder ?? .zero > $1.sortOrder ?? .zero }.forEach { (track) in
                 guard let remoteID = track.remoteID else { return }
                 let sentence = track.sentence
                 let range = 10

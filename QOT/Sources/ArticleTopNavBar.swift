@@ -165,7 +165,7 @@ extension ArticleTopNavBar {
     func configure(_ delegate: ArticleTopNavBarProtocol, isShareable: Bool, isBookMarkable: Bool) {
         self.delegate = delegate
 
-        if arrayViewsCount > 0 { return }
+        if arrayViewsCount > .zero { return }
 
         let expectedButtonCount: CGFloat = 3 + (isShareable ? 1 : 0) + (isBookMarkable ? 1 : 0)
         spacing = -(bounds.width - expectedButtonCount * buttonSize - rightMargin * 2) / expectedButtonCount

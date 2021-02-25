@@ -113,7 +113,7 @@ extension DailyBriefViewController {
         }
         let sectionHeader = R.nib.newDailyBriefTableViewSectionHeader(owner: self)
         sectionHeader?.configure(title: interactor.bucketViewModelNew()?.at(index: section)?.model.title)
-        sectionHeader?.titleTopConstraint.constant = section == 0 ? 80 : 114
+        sectionHeader?.titleTopConstraint.constant = section == .zero ? 80 : 114
 
         return sectionHeader
     }
@@ -172,7 +172,7 @@ extension DailyBriefViewController {
             }
         case .DAILY_CHECK_IN_1?:
             if let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
-                let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? 0 : 2
+                let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? .zero : 2
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                   title: bucketItem.title,
                                                                   body: bucketItem.body,

@@ -196,9 +196,9 @@ class MyLibraryCellViewModelConverter {
         if durationSeconds > 30 {
             durationMinute += 1
         }
-        if  durationMinute > 0 {
+        if  durationMinute >.zero{
             simpleDuration = "\(durationMinute) min \(postfix)"
-        } else if durationSeconds > 0 {
+        } else if durationSeconds > .zero {
             simpleDuration = fullDuration
         }
 

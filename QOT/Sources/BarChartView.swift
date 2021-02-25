@@ -98,7 +98,7 @@ class BarChartView: UIView {
         textLayer.font = UIFont.sfProtextRegular(ofSize: 12.0)
         textLayer.fontSize = 12
         let percentageValue = percentage(votes)
-        if percentageValue > 0 {
+        if percentageValue > .zero {
             let percentageString = "(\(String(percentageValue))%)"
             textLayer.string = AppTextService.get(.my_x_team_vision_tracker_votes)
                 .replacingOccurrences(of: "${numberOfVotes}", with: String(votes))

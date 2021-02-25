@@ -32,7 +32,7 @@ extension Array where Element: Equatable {
 
 extension Array {
     func at(index: Int) -> Element? {
-        if index < 0 || index > count - 1 {
+        if index < .zero || index > count - 1 {
             return nil
         }
         return self[index]

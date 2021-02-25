@@ -218,7 +218,7 @@ extension AudioFullScreenViewController {
 
     @IBAction func didTapBookmarkButton() {
         trackUserEvent(.BOOKMARK, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
-        guard let itemId = contentItem?.remoteID, itemId != 0 else { return }
+        guard let itemId = contentItem?.remoteID, itemId != .zero else { return }
         TeamService.main.getTeams { [weak self] (teams, _, _) in
             if let teams = teams, teams.isEmpty == false {
                 self?.showBookmarkSelectionViewController(with: itemId, { (_) in

@@ -37,7 +37,7 @@ extension UITapGestureRecognizer {
         let textBoundingBox = layoutManager.usedRect(for: textContainer)
 
         // convert location from label.bounds to textBoundingBox
-        guard label.bounds.size.height > 0, label.bounds.size.width > 0 else {
+        guard label.bounds.size.height > 0, label.bounds.size.width > .zero else {
             return nil
         }
         let xScaleFactor = textBoundingBox.height / label.bounds.size.height

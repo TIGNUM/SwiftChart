@@ -96,7 +96,7 @@ extension DailyBriefWorker {
         questionService.question(with: 100360, in: .DailyCheckIn1) { (question) in
         // FIXME: need to separate question and answers from daily-check-in.
             guard let question = question else { return }
-            let answers = question.answers.sorted(by: { $0.sortOrder ?? 0 > $1.sortOrder ?? 0 })
+            let answers = question.answers.sorted(by: { $0.sortOrder ?? .zero > $1.sortOrder ?? .zero })
                 .compactMap({ (qdmAnswer) -> RatingQuestionViewModel.Answer? in
                     return RatingQuestionViewModel.Answer(remoteID: qdmAnswer.remoteID,
                                                           title: qdmAnswer.title,

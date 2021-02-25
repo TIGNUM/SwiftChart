@@ -70,7 +70,7 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     var sectionCount: Int {
-        guard let level = preparation?.type else { return 0 }
+        guard let level = preparation?.type else { return .zero }
         return ResultsPrepare.sectionCount(level: level)
     }
 
@@ -79,9 +79,9 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func rowCount(in section: Int) -> Int {
-        guard let level = preparation?.type else { return 0 }
-        let strategyCount = (preparation?.strategies.count ?? 0)
-        let strytegyItemCount = (preparation?.strategyItems.count ?? 0)
+        guard let level = preparation?.type else { return .zero }
+        let strategyCount = (preparation?.strategies.count ?? .zero)
+        let strytegyItemCount = (preparation?.strategyItems.count ?? .zero)
         if (level == .LEVEL_CRITICAL && section == 8) || (level == .LEVEL_DAILY && section == 7) {
             return strategyCount
         }
@@ -146,8 +146,8 @@ extension ResultsPrepareInteractor: ResultsPrepareInteractorInterface {
     }
 
     func updateStrategies(_ selectedIds: [Int], selectedItemIds: [Int]) {
-        preparation?.strategyIds = selectedIds.filter { $0 != 0 }
-        preparation?.strategyItemIds = selectedItemIds.filter { $0 != 0 }
+        preparation?.strategyIds = selectedIds.filter { $0 != .zero }
+        preparation?.strategyItemIds = selectedItemIds.filter { $0 != .zero }
         worker.getStrategies(selectedIds, selectedItemIds) { [weak self] (strategies, strategyItems) in
             self?.preparation?.strategies = strategies ?? []
             self?.preparation?.strategyItems = strategyItems ?? []

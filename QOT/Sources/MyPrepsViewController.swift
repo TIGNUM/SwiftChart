@@ -247,29 +247,29 @@ private extension MyPrepsViewController {
         case SegmentView.myPreps.rawValue:
             bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
             refreshBottomNavigationItems()
-            if interactor.numberOfRowsPreparations() == 0 {
+            if interactor.numberOfRowsPreparations() ==.zero{
                 baseHeaderView?.configure(title: title, subtitle: nil)
                 noPreparationsView.isHidden = false
-                tableView.alpha = 0
+                tableView.alpha = .zero
                 updateEditButton(hidden: true)
             }
         case SegmentView.mindsetShifter.rawValue:
             bottomNavigationItems.rightBarButtonItems = [addMindsetShiftButton]
             refreshBottomNavigationItems()
-            if interactor.numberOfRowsMindsetShifters() == 0 {
+            if interactor.numberOfRowsMindsetShifters() == .zero {
                 baseHeaderView?.configure(title: title, subtitle: nil)
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
-                tableView.alpha = 0
+                tableView.alpha = .zero
             }
         case SegmentView.recovery.rawValue:
             bottomNavigationItems.rightBarButtonItems = [planRecoveryButton]
             refreshBottomNavigationItems()
-            if interactor.numberOfRowsRecoveries() == 0 {
+            if interactor.numberOfRowsRecoveries() ==.zero {
                 baseHeaderView?.configure(title: title, subtitle: nil)
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
-                tableView.alpha = 0
+                tableView.alpha = .zero
             }
         default:
             return
@@ -324,7 +324,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
 
     func dataUpdated() {
         hideAllNoDataViews()
-        if tableView.alpha == 0 {
+        if tableView.alpha == .zero{
             UIView.animate(withDuration: Animation.duration_04) { self.tableView.alpha = 1 }
         }
         tableView.reloadData()
@@ -377,11 +377,11 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             case PrepTypes.criticalEvents.rawValue:
                 let count = interactor?.numberOfRowsCriticalPreparations()
                 let title = AppTextService.get(.my_qot_my_plans_section_header_critical)
-                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
+                return count ?? .zero > .zero ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
             case PrepTypes.everyday.rawValue:
                 let count = interactor?.numberOfRowsEverydayPreparations()
                 let title = AppTextService.get(.my_qot_my_plans_section_header_everyday)
-                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
+                return count ?? .zero > .zero ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
             default:
                 return nil
             }
@@ -395,9 +395,9 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         case SegmentView.myPreps.rawValue:
             switch section {
             case PrepTypes.criticalEvents.rawValue:
-                return interactor?.numberOfRowsCriticalPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+                return interactor?.numberOfRowsCriticalPreparations() ?? .zero > .zero ? tableView.estimatedSectionHeaderHeight : 0
             case PrepTypes.everyday.rawValue:
-                return interactor?.numberOfRowsEverydayPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+                return interactor?.numberOfRowsEverydayPreparations() ?? .zero > .zero ? tableView.estimatedSectionHeaderHeight : 0
             default:
                 return 0
             }

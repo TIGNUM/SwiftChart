@@ -10,7 +10,7 @@ import UIKit
 
 extension UISegmentedControl {
     func underline() -> (xCentre: CGFloat, width: CGFloat) {
-        if numberOfSegments == 0 {
+        if numberOfSegments == .zero {
             return (0, 0)
         }
 

@@ -374,7 +374,7 @@ enum ThemeButton {
         }
 
         if let color = colorBorder {
-            button.layer.borderWidth = selected ? 0 : 1
+            button.layer.borderWidth = selected ? .zero : 1
             button.layer.borderColor = selected ? UIColor.clear.cgColor : color.cgColor
         }
 

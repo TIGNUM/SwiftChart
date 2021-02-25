@@ -96,8 +96,8 @@ extension MyQotMainWorker {
             return
         }
         TeamService.main.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
-            guard let feeds = feeds, feeds.count > 0 else {
-                DispatchQueue.main.async { completion(nil, 0) }
+            guard let feeds = feeds, feeds.count > .zero else {
+                DispatchQueue.main.async { completion(nil, .zero) }
                 return
             }
             let latestDay = feeds.compactMap({ $0.createdAt }).sorted().last ?? Date()

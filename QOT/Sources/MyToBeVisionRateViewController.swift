@@ -70,7 +70,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
             return NSNotFound
         }
         let id = vc.questionID()
-        guard let filteredIndices = tracks.indices.filter({tracks[$0].remoteID == id}).first else { return 0 }
+        guard let filteredIndices = tracks.indices.filter({tracks[$0].remoteID == id}).first else { return .zero }
         return filteredIndices
     }
 
@@ -89,7 +89,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
         let previousIndex = currentIndex - 1
         trackUserEvent(.OPEN, value: previousIndex, valueType: "MyToBeVision.PresentedQuestion", action: .SWIPE)
-        if previousIndex < 0 {
+        if previousIndex < .zero {
             return nil
         }
 
@@ -150,7 +150,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     @IBAction func backAction() {
         guard let currentViewController = pageController?.viewControllers?.first else { return }
         let index = indexOf(currentViewController)
-        guard index > 0 else { return }
+        guard index > .zero else { return }
         trackUserEvent(.OPEN, value: index, valueType: "MyToBeVision.PresentedQuestion", action: .TAP)
         nextPageTimer?.invalidate()
         nextPageTimer = nil

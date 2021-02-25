@@ -98,7 +98,7 @@ final class MyLibraryUserStorageInteractor {
                 strongSelf.presenter.presentData()
             }
             strongSelf.items?.removeAll()
-            if !initiated || items.count == 0 {
+            if !initiated || items.count == .zero{
                 strongSelf.presenter.presentData()
                 strongSelf.showEmptyAlert()
             } else {
@@ -166,7 +166,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     var teamId: Int? {
-        return team?.remoteID == 0 ? nil : team?.remoteID
+        return team?.remoteID == .zero ? nil : team?.remoteID
     }
 
     func didTapEdit(isEditing: Bool) {

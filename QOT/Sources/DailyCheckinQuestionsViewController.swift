@@ -87,7 +87,7 @@ private extension DailyCheckinQuestionsViewController {
             return NSNotFound
         }
         let id = vc.questionID()
-        guard let filteredIndices = interactor.questions.indices.filter({interactor.questions[$0].remoteID == id}).first else { return 0 }
+        guard let filteredIndices = interactor.questions.indices.filter({interactor.questions[$0].remoteID == id}).first else { return .zero }
         return filteredIndices
     }
 
@@ -108,7 +108,7 @@ private extension DailyCheckinQuestionsViewController {
         let previousIndex = currentIndex - 1
         trackUserEvent(.OPEN, value: previousIndex, valueType: "DailyCheckin.PresentedQuestion", action: .SWIPE)
 
-        if previousIndex < 0 {
+        if previousIndex < .zero {
             return nil
         }
         return questionnaireViewController(with: interactor.questions[previousIndex])
@@ -134,7 +134,7 @@ private extension DailyCheckinQuestionsViewController {
     @IBAction func backAction() {
         let currentViewController = pageController?.viewControllers?.first
         let index = indexOf(currentViewController)
-        guard index > 0 && index != NSNotFound else { return }
+        guard index > .zero && index != NSNotFound else { return }
         trackUserEvent(.OPEN, value: index, valueType: "DailyCheckin.PresentedQuestion", action: .TAP)
         let question = interactor?.questions[index - 1]
         guard let viewController = questionnaireViewController(with: question) else { return }
@@ -242,7 +242,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         if isLastQuestion, let interactor = self.interactor {
             self.isDoneButtonEnabled = interactor.questions.count == (interactor.answeredQuestionCount + 1)
         } else {
-            isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
+            isDoneButtonEnabled = interactor?.questions.count ??.zero == interactor?.answeredQuestionCount
         }
         refreshBottomNavigationItems()
     }
@@ -252,7 +252,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         if index == NSNotFound { return }
         interactor?.questions[index].selectedAnswerIndex = answer
         trackUserEvent(.SELECT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .SWIPE)
-        isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
+        isDoneButtonEnabled = interactor?.questions.count ?? .zero == interactor?.answeredQuestionCount
         refreshBottomNavigationItems()
     }
 

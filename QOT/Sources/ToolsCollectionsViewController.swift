@@ -111,7 +111,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         switch cellType {
         case .header:
             let headerTitle = interactor.headerTitle
-            if headerTitle.count > 0 {
+            if headerTitle.count > .zero {
                 let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " tools"
                 return ToolsTableHeaderView.init(title: title.capitalizingFirstLetter(), subtitle: nil)
             }

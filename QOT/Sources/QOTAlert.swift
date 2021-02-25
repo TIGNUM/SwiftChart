@@ -297,7 +297,7 @@ private extension QOTAlertViewController {
 
         for (index, item) in items.enumerated() {
             // Large space before first item
-            if index == 0 {
+            if index ==.zero {
                 if bottomButtonsAlignment != .left {
                     tempItems.append(flexibleSpace)
                 }
@@ -352,7 +352,7 @@ private extension QOTAlertViewController {
 
     @objc func detectedPan(_ recognizer: UIPanGestureRecognizer) {
         var offset  = recognizer.translation(in: backgroundView).y - initialPanLocation
-        if offset < 0 {
+        if offset < .zero {
             offset *= 0.5
         }
 
@@ -367,7 +367,7 @@ private extension QOTAlertViewController {
         toolbar.alpha = backgroundView.alpha
         contentView.transform = CGAffineTransform.init(translationX: 0, y: offset)
         bottomView.transform = CGAffineTransform.init(translationX: 0, y: offset)
-        if offset > 0 {
+        if offset > .zero {
             toolbar.transform = CGAffineTransform.init(translationX: 0, y: offset)
         } else {
             toolbar.transform = .identity

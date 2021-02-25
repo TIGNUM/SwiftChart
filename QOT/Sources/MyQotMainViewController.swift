@@ -111,9 +111,9 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
                 return
             }
 
-            if deleteIndexPaths.count > 0 {
+            if deleteIndexPaths.count > .zero{
                 collectionView.deleteItems(at: deleteIndexPaths)
-            } else if insertIndexPaths.count > 0 {
+            } else if insertIndexPaths.count > .zero {
                 collectionView.insertItems(at: insertIndexPaths)
             }
         })

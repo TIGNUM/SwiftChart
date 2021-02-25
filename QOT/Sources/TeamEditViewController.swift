@@ -144,7 +144,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         updateKeyboardInputView(false)
         memberCounterLabel.text = String(memberCount)
 
-        if memberCount > 0 && !indexPath.isEmpty {
+        if memberCount > .zero && !indexPath.isEmpty {
             tableView.performBatchUpdates({
                 self.tableView.insertRows(at: indexPath, with: .automatic)
             }, completion: { _ in

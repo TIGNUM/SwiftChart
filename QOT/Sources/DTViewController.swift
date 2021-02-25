@@ -329,7 +329,7 @@ extension DTViewController {
     }
 
     private func constraintToZero(_ duration: Double) {
-        if constraintBottom.constant == 0 { return }
+        if constraintBottom.constant == .zero { return }
         constraintBottom.constant = 0
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()

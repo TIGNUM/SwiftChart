@@ -166,7 +166,7 @@ extension Date {
     }
 
     var is24hoursOld: Bool {
-        return Calendar.current.dateComponents([.hour], from: self, to: Date()).hour ?? 0 > 24
+        return Calendar.current.dateComponents([.hour], from: self, to: Date()).hour ?? .zero > 24
     }
 
     var time: String {
@@ -182,7 +182,7 @@ extension Date {
     func weekdayNumberOrdinal() -> Int {
         let calendar = Calendar.current
         var dayOfWeek = calendar.component(.weekday, from: Date()) + 1 - calendar.firstWeekday
-        if dayOfWeek <= 0 {
+        if dayOfWeek <= .zero {
             dayOfWeek += 7
         }
         return dayOfWeek

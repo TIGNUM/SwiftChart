@@ -141,7 +141,7 @@ private extension ToBeVisionSelectionBar {
 extension ToBeVisionSelectionBar {
     func configure(isOwner: Bool?, isPersonal: Bool?, _ delegate: ToBeVisionSelectionBarProtocol) {
         self.delegate = delegate
-        if arrayViewsCount > 0 {
+        if arrayViewsCount > .zero {
             arrayViewsCount = 0
             arrayViews = []
         }

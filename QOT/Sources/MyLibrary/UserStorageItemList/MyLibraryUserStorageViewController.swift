@@ -120,7 +120,7 @@ private extension MyLibraryUserStorageViewController {
             infoAlertView?.present(on: self.view)
         }
         infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
-        infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
+        infoAlertView?.topInset = model.isFullscreen ? .zero : headerViewHeightConstraint.constant
         infoAlertView?.bottomInset = BottomNavigationContainer.height
         infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }

@@ -368,11 +368,11 @@ final class ArticleWorker {
     func articleItem(at indexPath: IndexPath) -> Article.Item? {
         switch content?.section {
         case .WhatsHot?:
-            return indexPath.section == 0 ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
+            return indexPath.section == .zero ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
         case .FAQ_3_0?,
             .FAQ_TEAM?,
             .USING_QOT?:
-            return indexPath.section == 0 ? learnStrategyItems.at(index: indexPath.item) : contactSupportItems.at(index: indexPath.item)
+            return indexPath.section == .zero ? learnStrategyItems.at(index: indexPath.item) : contactSupportItems.at(index: indexPath.item)
         default:
             switch indexPath.section {
             case 0:
@@ -426,9 +426,9 @@ final class ArticleWorker {
         guard let content = content else { return 1 }
         switch content.section {
         case .WhatsHot:
-            return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
+            return section == .zero ? whatsHotArticleItems.count : whatsHotItems.count
         case .FAQ_3_0, .FAQ_TEAM, .USING_QOT:
-            return section == 0 ? learnStrategyItems.count : contactSupportItems.count
+            return section == .zero ? learnStrategyItems.count : contactSupportItems.count
         default:
             switch section {
             case 0:
@@ -445,7 +445,7 @@ final class ArticleWorker {
         guard let content = content else { return nil }
         switch content.section {
         case .WhatsHot:
-            return section == 0 ? nil : AppTextService.get(.know_wh_article_section_read_more_title)
+            return section == .zero ? nil : AppTextService.get(.know_wh_article_section_read_more_title)
         default:
             return section != 1 ? nil : AppTextService.get(.know_strategy_list_strategy_section_related_content_title)
         }

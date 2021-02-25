@@ -149,7 +149,7 @@ final class NavigationButton: AbstractTreeButton {
             isDark ? ThemeBorder.white.apply(containerView) : ThemeBorder.black.apply(containerView)
         }
 
-        if count == 0 && !isEnough {
+        if count == .zero && !isEnough {
             title = substitute(titleFirst)
             ThemeText.chatbotProgress(false, isDark).apply(title, to: continueLabel)
             ThemeView.chatbotProgress(false, isDark).apply(containerView)

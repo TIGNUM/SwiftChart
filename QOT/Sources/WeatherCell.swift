@@ -143,7 +143,7 @@ final class WeatherCell: BaseDailyBriefCell {
                     let temperature = formatTemperature(value: forecastModel.currentTempInCelcius) else {
                     return
             }
-            if index == 0 {
+            if index == .zero {
                 hourlyView.set(time: AppTextService.get(.daily_brief_section_weather_label_now),
                                temperature: temperature,
                                isNow: true)

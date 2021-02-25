@@ -58,7 +58,7 @@ private extension TeamInvitePendingTableViewCell {
 
     func setActive(_ canJoin: Bool, _ warning: String?) {
         maxTeamCountInfoLabel.text = canJoin ? "" : warning
-        infoLabelHeightConstriant.constant = canJoin ? 0 : 21
+        infoLabelHeightConstriant.constant = canJoin ?.zero : 21
         layoutButton(joinButton, keyJoin, canJoin)
         updateConstraintsIfNeeded()
     }

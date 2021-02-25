@@ -101,7 +101,7 @@ private extension MySprintsListViewController {
             infoAlertView = InfoAlertView()
             infoAlertView?.set(icon: model.icon, title: model.title, attributedText: nil)
             infoAlertView?.present(on: self.view)
-            infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
+            infoAlertView?.topInset = model.isFullscreen ? .zero : headerViewHeightConstraint.constant
             infoAlertView?.bottomInset = BottomNavigationContainer.height
             infoAlertView?.setBackgroundColor(self.view.backgroundColor)
         }
@@ -183,7 +183,7 @@ extension MySprintsListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard section < (interactor.viewModel.displayData.count) else { return 0 }
+        guard section < (interactor.viewModel.displayData.count) else { return .zero }
         return interactor.viewModel.displayData[section].items.count
     }
 

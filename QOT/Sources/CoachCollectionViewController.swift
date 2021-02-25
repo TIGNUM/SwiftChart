@@ -327,7 +327,7 @@ private extension CoachCollectionViewController {
     }
 
     func updateSearchViewControllerConstraintsIfNeeded() {
-        if bottomSearchViewConstraint.constant == 0 {
+        if bottomSearchViewConstraint.constant == .zero {
             let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
             bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
         }

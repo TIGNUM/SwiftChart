@@ -113,7 +113,7 @@ private extension OnboardingLoginViewController {
 
         emailField.textField.layer.borderColor = UIColor.sand20.cgColor
         ThemeText.loginEmailMessage.apply(interactor.emailInstructions, to: emailInstructionsLabel)
-        emailInstructionsLabel.alpha = didHideEmail ? 0 : 1
+        emailInstructionsLabel.alpha = didHideEmail ?.zero : 1
     }
 
     func loadDigitTextFieldsDefaultUI() {
@@ -264,7 +264,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         // On error make first field editable
         guard let field = textField as? TextField else { return true }
-        if interactor.viewModel.codeError != nil, let index = digitTextFields.firstIndex(of: field), index != 0 {
+        if interactor.viewModel.codeError != nil, let index = digitTextFields.firstIndex(of: field), index != .zero {
             digitTextFields.first?.becomeFirstResponder()
             return false
         }
@@ -334,7 +334,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
 extension OnboardingLoginViewController: TextFieldDelegate {
     func textFieldDidDelete(_ textField: TextField) {
         guard let index = digitTextFields.firstIndex(of: textField) else { return }
-        if index - 1 >= 0 {
+        if index - 1 >= .zero {
             let nextTextField = digitTextFields[index - 1]
             goToNextDigitField(textField, nextTextField: nextTextField)
         }

@@ -179,7 +179,7 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return indexPath.row == 0 ? videoCell : getNoteCell()
+        return indexPath.row == .zero ? videoCell : getNoteCell()
     }
 }
 

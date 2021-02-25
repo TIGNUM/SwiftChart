@@ -87,7 +87,7 @@ class InfoAlertView: UIView {
     var onDismiss: DismissClosure?
 
     /// Designates content distance to the top of the superview. Ignored if style is not `regular`.
-    var topInset: CGFloat = 0 {
+    var topInset: CGFloat = .zero {
         didSet {
             contentViewTopConstraint.constant = self.topInset
             setNeedsLayout()
@@ -219,7 +219,7 @@ extension InfoAlertView {
         let offset  = recognizer.translation(in: contentView).y - initialLocation
 
         // Do not drag up
-        if offset < 0 {
+        if offset < .zero {
             return
         }
 

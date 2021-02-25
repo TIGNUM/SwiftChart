@@ -113,12 +113,12 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
         case Knowing.Section.header.rawValue:
             return 1
         case Knowing.Section.strategies.rawValue:
-            guard let strategies = interactor?.strategies().count, strategies > 0 else {
+            guard let strategies = interactor?.strategies().count, strategies > .zero else {
                 return 6
             }
             return strategies
         default:
-            guard let articles = interactor?.whatsHotArticles().count, articles > 0 else {
+            guard let articles = interactor?.whatsHotArticles().count, articles > .zero else {
                 return 15
             }
             return articles
@@ -137,7 +137,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             return cell
         case Knowing.Section.strategies.rawValue:
             let cell: StrategyCategoryCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            if indexPath.item == 0 {
+            if indexPath.item == .zero {
                 let strategy = interactor?.foundationStrategy()
                 cell.configure(categoryTitle: strategy?.title,
                                viewCount: strategy?.viewedCount,
@@ -147,7 +147,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                 return cell
             } else {
                 guard
-                    interactor?.fiftyFiveStrategies().count ?? 0 > indexPath.item - 1,
+                    interactor?.fiftyFiveStrategies().count ?? .zero > indexPath.item - 1,
                     let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1] else {
                     cell.configure(categoryTitle: nil,
                                    viewCount: nil,
@@ -180,7 +180,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
         case Knowing.Section.header.rawValue:
             return CGSize(width: view.frame.width, height: .HeaderBarHeight)
         case Knowing.Section.strategies.rawValue:
-            if indexPath.item == 0 {
+            if indexPath.item == .zero {
                 return CGSize(width: view.frame.width, height: 126)
             } else {
                 return CGSize(width: view.frame.width * 0.5, height: 96)
@@ -271,7 +271,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
         case Knowing.Section.header.rawValue:
             break
         case Knowing.Section.strategies.rawValue:
-            if indexPath.item == 0 {
+            if indexPath.item == .zero {
                 let foundation = interactor?.foundationStrategy()
                 trackUserEvent(.SELECT, value: foundation?.remoteID, valueType: .CONTENT, action: .TAP)
                 interactor?.presentStrategyList(selectedStrategyID: nil)

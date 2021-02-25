@@ -50,7 +50,7 @@ final class MyLibraryCategoryListWorker {
             var userStorages = [MyLibraryCategoryListModel]()
             let removedDuplications = isTeam ? storages ?? [] : self.removeDuplicates(from: storages ?? [])
             let sorted = removedDuplications.sorted(by: { (first, second) -> Bool in
-                first.modifiedAt?.timeIntervalSince1970 ?? 0 > second.modifiedAt?.timeIntervalSince1970 ?? 0
+                first.modifiedAt?.timeIntervalSince1970 ?? .zero > second.modifiedAt?.timeIntervalSince1970 ?? 0
             })
 
             let bookmarks = sorted.compactMap { $0.userStorageType == .BOOKMARK ? $0 : nil }

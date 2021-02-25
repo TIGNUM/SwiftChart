@@ -474,7 +474,7 @@ extension WorkerTeam {
     }
 
     func dateString(for day: Int) -> String {
-        if day == 0 {
+        if day == .zero {
             return "Today"
         } else if day == 1 {
             return "Yesterday"

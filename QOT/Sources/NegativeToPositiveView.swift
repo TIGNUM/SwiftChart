@@ -35,7 +35,7 @@ final class NegativeToPositiveView: UIView, UIGestureRecognizerDelegate {
     private var initialOffset: CGFloat = 0
     private let singleOffset: CGFloat = 25
 
-    lazy var leftOffset: CGFloat = { return 0 }()
+    lazy var leftOffset: CGFloat = { return .zero }()
     lazy var middleOffset: CGFloat = { return self.bounds.width * 0.33 - self.singleOffset }()
     lazy var rightOffset: CGFloat = { return self.bounds.width - 2 * self.singleOffset }()
 
@@ -69,7 +69,7 @@ final class NegativeToPositiveView: UIView, UIGestureRecognizerDelegate {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        if initialOffset == 0 {
+        if initialOffset == .zero {
             initialOffset = self.bounds.width * 0.5 - self.singleOffset
             highPerformanceConstraint.constant = initialOffset
         }
@@ -120,11 +120,11 @@ private extension NegativeToPositiveView {
 
         let index1 = Int.random(in: 0..<max)
         var index2: Int = -1
-        while index2 < 0 || index2 == index1 {
+        while index2 < .zero || index2 == index1 {
             index2 = Int.random(in: 0..<max)
         }
         var index3: Int = -1
-        while index3 < 0 || index3 == index1 || index3 == index2 {
+        while index3 < .zero || index3 == index1 || index3 == index2 {
             index3 = Int.random(in: 0..<max)
         }
         return(index1, index2, index3)

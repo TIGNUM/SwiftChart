@@ -32,7 +32,7 @@ final class PresentCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         // Damping between 0.7 (far away) and 1.0 (nearer)
         let cardPositionY = params.fromCardFrame.minY
         let distanceToBounce = abs(params.fromCardFrame.minY)
-        let extentToBounce = cardPositionY < 0 ? params.fromCardFrame.height : UIScreen.main.bounds.height
+        let extentToBounce = cardPositionY < .zero ? params.fromCardFrame.height : UIScreen.main.bounds.height
         let dampFactorInterval: CGFloat = 0.3
         let damping: CGFloat = 1.0 - dampFactorInterval * (distanceToBounce / extentToBounce)
 

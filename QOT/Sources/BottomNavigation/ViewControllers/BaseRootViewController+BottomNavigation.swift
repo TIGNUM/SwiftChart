@@ -86,8 +86,8 @@ extension BaseRootViewController {
             self?.setupBottomNavigationContainer()
             var needToUpdate = false
             let currentNavigationItem = self?.currentBottomNavigationItem()
-            if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems.count ?? 0 ||
-                navigationItem.rightBarButtonItems.count != currentNavigationItem?.rightBarButtonItems.count ?? 0 {
+            if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems.count ?? .zero ||
+                navigationItem.rightBarButtonItems.count != currentNavigationItem?.rightBarButtonItems.count ?? .zero {
                     needToUpdate = true
             }
 

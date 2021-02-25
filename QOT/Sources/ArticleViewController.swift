@@ -110,7 +110,7 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc override func trackPage() {
-        guard interactor.remoteID != 0 else { return }
+        guard interactor.remoteID != .zero else { return }
         var pageTrack = QDMPageTracking()
         pageTrack.pageId = 0
         pageTrack.pageKey = pageKey
@@ -558,7 +558,7 @@ extension ArticleViewController {
         let scrollViewOffsetY = scrollView.contentOffset.y
         let movingUp = lastScrollViewOffsetY < scrollViewOffsetY
         if movingUp {
-            if !navBarIsHidden && scrollViewOffsetY > 0 {
+            if !navBarIsHidden && scrollViewOffsetY > .zero {
                 let offset = scrollViewOffsetY - lastScrollViewActionOffsetY
                 if offset > pixelBuffer {
                     navigationBar(show: false)
@@ -574,7 +574,7 @@ extension ArticleViewController {
                 let atBottom = Int(scrollViewOffsetY) >= Int(scrollView.contentSize.height - scrollView.bounds.height)
                 if !atBottom {
                     let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
-                    if offset > pixelBuffer || scrollViewOffsetY <= 0 {
+                    if offset > pixelBuffer || scrollViewOffsetY <= .zero {
                         navigationBar(show: true)
                         hideStatusBar = false
                         setNeedsStatusBarAppearanceUpdate()
@@ -593,7 +593,7 @@ extension ArticleViewController {
     }
 
     func navigationBar(show: Bool) {
-        constraintNavBar.constant = show ? 0 : -80
+        constraintNavBar.constant = show ? .zero : -80
         UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()
             self.articleTopNavBar.isHidden = !show

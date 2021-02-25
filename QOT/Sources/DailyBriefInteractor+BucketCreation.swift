@@ -311,7 +311,7 @@ extension DailyBriefInteractor {
         let level1Text = AppTextService.get(.daily_brief_section_level_5_level_1_body)
         let comeBackText = level5.bucketText?.contentItems.filter {$0.searchTags.contains("COME_BACK")}.first?.valueText ?? "Noted! Come back in 1 month."
         var questionLevel: String?
-        if let lastValue = level5.latestGetToLevel5Value, lastValue > 0 {
+        if let lastValue = level5.latestGetToLevel5Value, lastValue > .zero {
             questionLevel = youRatedPart1 + " " + String(lastValue) + " " + youRatedPart2
         } else {
             questionLevel = question
@@ -564,7 +564,7 @@ extension DailyBriefInteractor {
                     } ?? [QDMUserPreparation]()
                 contentSubtitle = AppTextService.get(.daily_brief_section_my_peak_performances_section_reflect_label)
             }
-            if localPreparationList.count > 0 {
+            if localPreparationList.count > .zero {
                 localPreparationList.forEach({ (prepareItem) in
                     let subtitle = prepareItem.eventType ?? String.empty + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
                     createMyPeakPerformanceList.append(PeakPerformanceViewModel.init(title: bucketTitle,
@@ -681,7 +681,7 @@ extension DailyBriefInteractor {
             let sprintContentItems = sprintContentCollections?.first?.contentItems
             let sprintInfo = sprintContentItems?.first?.valueText ?? String.empty
             let dayTask = sprintContentItems?.first?.valueDescription ?? String.empty
-            if sprintContentItems?.count ?? 0 > 1, index == 0 {
+            if sprintContentItems?.count ?? .zero > 1, index == .zero {
                 let sprintMedia = sprintContentItems?[1]
                 relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(sprintMedia?.valueText,
                                                                                      sprintMedia?.durationString,

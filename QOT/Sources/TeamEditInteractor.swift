@@ -148,7 +148,7 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
                 return
             }
             self?.team = team
-            if let team = team, team.remoteID != 0 {
+            if let team = team, team.remoteID != .zero {
                 self?.setupMemberList(team: team)
             } else {
                 ///oh man, maybe owner email can be part of team?

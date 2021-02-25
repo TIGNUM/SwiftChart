@@ -75,7 +75,7 @@ extension ChoiceWorker {
     }
 
     func isParentNode(atIndexPath indexPath: IndexPath) -> Bool {
-        return indexPath.row == 0 // first row in section is always a node
+        return indexPath.row == .zero // first row in section is always a node
     }
 
     func setIsOpen(_ isOpen: Bool, in section: Int) {

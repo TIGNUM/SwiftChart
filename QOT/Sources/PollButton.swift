@@ -43,12 +43,12 @@ final class PollButton: SelectionButton {
         self.answerId = answerId
         super.configure(title: title, isSelected: isSelected)
         pollTitleLabel.attributedText = ThemeText.chatbotButton(isSelected).attributedString(title, alignment: .center)
-        counterLabelTop.text = votes > 0 ? "\(votes)" : "\(votes + 1)"
+        counterLabelTop.text = votes > .zero ? "\(votes)" : "\(votes + 1)"
         counterLabelBottom.text = "\(votes + 1)"
-        backgroundWidthConstraint.constant = (votes == 0) ? 0 : 24
-        labelTopWidthConstraint.constant = (votes == 0) ? 0 : 24
-        labelBottomWidthConstraint.constant = (votes == 0) ? 0 : 24
-        containerWidthConstraint.constant = (votes == 0) ? 0 : 24
+        backgroundWidthConstraint.constant = (votes == .zero) ? .zero : 24
+        labelTopWidthConstraint.constant = (votes == .zero) ?.zero : 24
+        labelBottomWidthConstraint.constant = (votes == .zero) ? .zero : 24
+        containerWidthConstraint.constant = (votes == .zero) ? .zero : 24
     }
 }
 
@@ -56,7 +56,7 @@ final class PollButton: SelectionButton {
 extension PollButton {
     @objc func didVote(_ notification: Notification) {
         if let answerId = notification.object as? Int, self.answerId == answerId {
-            if votes > 0 {
+            if votes > .zero {
                 topConstraint.constant -= counterLabelTop.frame.height
             }
             backgroundWidthConstraint.constant = 24
@@ -64,8 +64,8 @@ extension PollButton {
             labelBottomWidthConstraint.constant = 24
             containerWidthConstraint.constant = 24
             UIView.animate(withDuration: 0.6) {
-                if self.votes > 0 {
-                    self.counterLabelTop.alpha = 0
+                if self.votes > .zero {
+                    self.counterLabelTop.alpha = .zero
                     self.counterLabelBottom.alpha = 1
                     self.counterBackgroundView.alpha = 1
                     self.counterBackgroundView.backgroundColor = .lightGray
@@ -77,7 +77,7 @@ extension PollButton {
 
     @objc func didUnVote(_ notification: Notification) {
         if let answerId = notification.object as? Int, self.answerId == answerId {
-            if votes > 0 {
+            if votes > .zero {
                 topConstraint.constant += counterLabelTop.frame.height
             } else {
                 backgroundWidthConstraint.constant = 0
@@ -86,7 +86,7 @@ extension PollButton {
                 containerWidthConstraint.constant = 0
             }
             UIView.animate(withDuration: 0.6) {
-                if self.votes > 0 {
+                if self.votes > .zero {
                     self.counterLabelTop.alpha = 1
                     self.counterLabelBottom.alpha = 0
                 }

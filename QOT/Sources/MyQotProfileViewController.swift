@@ -89,7 +89,7 @@ extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
 
 extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard interactor.getMenuItems().count > 0 else {
+        guard interactor.getMenuItems().count > .zero else {
             return 5
         }
         return interactor.getMenuItems().count

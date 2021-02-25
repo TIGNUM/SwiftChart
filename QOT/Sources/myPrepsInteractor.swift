@@ -69,14 +69,14 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Item? {
-        guard worker.recModel?.items.count ?? 0 > indexPath.row else {
+        guard worker.recModel?.items.count ?? .zero > indexPath.row else {
             return nil
         }
         return worker.recModel?.items[indexPath.row]
     }
 
     func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Item? {
-        guard worker.mindModel?.items.count ?? 0 > indexPath.row else {
+        guard worker.mindModel?.items.count ?? .zero > indexPath.row else {
             return nil
         }
         return worker.mindModel?.items[indexPath.row]

@@ -298,7 +298,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             teamNullStateImageView.gradientBackground(top: false)
             return
         }
-        if scrollView.alpha == 0 {
+        if scrollView.alpha == .zero {
             UIView.animate(withDuration: Animation.duration_04) {
                 self.scrollView.alpha = 1
             }
@@ -358,14 +358,14 @@ extension TeamToBeVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         if self.lastContentOffset > offsetY {
-            if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 400 {
+            if navigationBarViewTopMarginConstraint.constant < .zero && scrollView.contentOffset.y > 400 {
                 showNavigationBarView()
             }
-            if offsetY < 0 {
+            if offsetY < .zero {
                 hideNavigationBarView()
             }
         } else {
-            if navigationBarViewTopMarginConstraint.constant == 0 {
+            if navigationBarViewTopMarginConstraint.constant == .zero {
                 hideNavigationBarView()
             }
         }

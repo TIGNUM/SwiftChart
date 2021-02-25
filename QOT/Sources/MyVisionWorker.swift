@@ -142,7 +142,7 @@ final class MyVisionWorker: WorkerTeam {
                     }
                 }
 
-                guard let report = report, report.dates.count > 0 else {
+                guard let report = report, report.dates.count > .zero else {
                     completion(strongSelf.notRatedText, true, true)
                     return
                 }
