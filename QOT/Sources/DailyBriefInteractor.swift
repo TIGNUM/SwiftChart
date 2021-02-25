@@ -368,8 +368,6 @@ extension DailyBriefInteractor {
                 dailyBriefViewModels.append(contentsOf: strongSelf.createSprintChallenge(bucket: bucket))
             case .ABOUT_ME:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createAboutMe(aboutMeBucket: bucket))
-            case .SOLVE_REFLECTION:
-                dailyBriefViewModels.append(contentsOf: strongSelf.createSolveViewModel(bucket: bucket))
             case .WEATHER:
                 dailyBriefViewModels.append(contentsOf: strongSelf.createWeatherViewModel(weatherBucket: bucket))
             case .MINDSET_SHIFTER:

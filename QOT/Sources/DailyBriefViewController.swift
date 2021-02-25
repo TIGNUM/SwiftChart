@@ -201,13 +201,6 @@ extension DailyBriefViewController {
                                                                   titleColor: bucketItem.titleColor,
                                                                   domainModel: bucketItem.domainModel))
             }
-        case .SOLVE_REFLECTION?:
-            if (bucketItem as? SolveReminderCellViewModel) != nil {
-                return getSolveReminder(tableView, indexPath, bucketItem as? SolveReminderCellViewModel)
-            } else if (bucketItem as? SolveReminderTableCellViewModel) != nil {
-                return getSolveReminderTableCell(tableView, indexPath, bucketItem as? SolveReminderTableCellViewModel)
-            }
-            return UITableViewCell()
         case .SPRINT_CHALLENGE?:
             if let bucket = bucketItem as? SprintsCollectionViewModel,
                let items = bucket.items {
@@ -383,42 +376,6 @@ private extension DailyBriefViewController {
     }
 }
 
-// MARK: - Get TableViewCells
-private extension DailyBriefViewController {
-
-    func getSolveReminder(_ tableView: UITableView,
-                          _ indexPath: IndexPath,
-                          _ solveReminderViewModel: SolveReminderCellViewModel?) -> UITableViewCell {
-        let cell: SolveReminderCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: solveReminderViewModel)
-        cell.clickableLinkDelegate = self
-        cell.delegate = self
-        return cell
-    }
-
-    func getSolveReminderTableCell(_ tableView: UITableView,
-                                   _ indexPath: IndexPath,
-                                   _ solveReminderTableCellViewModel: SolveReminderTableCellViewModel?) -> UITableViewCell {
-        let cell: SolveTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: solveReminderTableCellViewModel?.title,
-                       date: solveReminderTableCellViewModel?.date,
-                       solve: solveReminderTableCellViewModel?.solve)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-
-    func getWeatherCell(_ tableView: UITableView,
-                        _ indexPath: IndexPath,
-                        _ weatherModel: WeatherViewModel?) -> UITableViewCell {
-        let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: weatherModel)
-        cell.delegate = self
-        cell.clickableLinkDelegate = self
-        return cell
-    }
-}
-
 // MARK: - DailyBriefViewControllerInterface
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>]>) {
@@ -443,8 +400,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.registerDequeueable(SolveReminderCell.self)
-        tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
         tableView.registerDequeueable(NewBaseDailyBriefCell.self)
     }
@@ -523,10 +478,6 @@ extension DailyBriefViewController {
         router.presentDailyCheckInQuestions()
     }
 
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
-        router.launchAppLinkGuidedTrack(appLink)
-    }
-
     func displayCoachPreparationScreen() {
         router.presentCoachPreparation()
     }
@@ -555,6 +506,16 @@ extension DailyBriefViewController {
         if let contentId = strategyID {
             router.presentContent(contentId)
         }
+    }
+    
+    func getWeatherCell(_ tableView: UITableView,
+                        _ indexPath: IndexPath,
+                        _ weatherModel: WeatherViewModel?) -> UITableViewCell {
+        let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: weatherModel)
+        cell.delegate = self
+        cell.clickableLinkDelegate = self
+        return cell
     }
 }
 

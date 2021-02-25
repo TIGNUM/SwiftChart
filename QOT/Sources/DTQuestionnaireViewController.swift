@@ -287,7 +287,9 @@ extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
     }
 
     func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        delegate?.didSelectAnswer(answer)
+        var selectedAnswer = answer
+        selectedAnswer.selected = true
+        delegate?.didSelectAnswer(selectedAnswer)
     }
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {

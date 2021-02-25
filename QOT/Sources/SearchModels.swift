@@ -45,6 +45,7 @@ struct Search {
         case video
         case pdf
         case tool
+        case link
 
         func mediaIcon() -> UIImage? {
             switch self {
@@ -57,6 +58,8 @@ struct Search {
             case .pdf, .article:
                 return R.image.read()
             case .tool:
+                return R.image.ic_group()
+            case .link:
                 return R.image.ic_group()
             }
         }
@@ -78,6 +81,23 @@ struct Search {
 
         static func == (lhs: Search.Result, rhs: Search.Result) -> Bool {
             return lhs.title == rhs.title && lhs.displayType == rhs.displayType
+        }
+    }
+
+    static func linkFrom(_ contentCollections: [QDMContentCollection],
+                         displayType: DisplayType) -> [Search.Result] {
+        return contentCollections.compactMap {
+            Search.Result(filter: .tools,
+                          title: $0.links.first?.description ?? "",
+                          contentID: $0.links.first?.remoteID,
+                          appLink: $0.links.first,
+                          contentItemID: nil,
+                          createdAt: Date(),
+                          searchTags: "",
+                          section: ContentSection(rawValue: $0.section.rawValue),
+                          mediaURL: nil,
+                          displayType: displayType,
+                          duration: "")
         }
     }
 
