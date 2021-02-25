@@ -141,7 +141,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
         tableView.registerDequeueable(ArticleContactSupportTableViewCell.self)
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 50, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.estimatedSectionHeaderHeight = interactor.sectionHeaderHeight
         tableView.backgroundColor = .clear
     }

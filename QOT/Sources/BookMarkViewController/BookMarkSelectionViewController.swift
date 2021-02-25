@@ -38,7 +38,7 @@ final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelIgn
         super.viewDidLayoutSubviews()
         // if table view is too long
         let maxTableViewHeight = view.frame.size.height * 0.5
-        var expectedTableViewHeight = CGFloat(interactor?.viewModels.count ?? 0) * tableViewCellHeight
+        var expectedTableViewHeight = CGFloat(interactor?.viewModels.count ?? .zero) * tableViewCellHeight
         if expectedTableViewHeight > maxTableViewHeight {
             expectedTableViewHeight = maxTableViewHeight
         }

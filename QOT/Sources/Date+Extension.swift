@@ -27,7 +27,7 @@ extension Date {
     }
 
     var nextDate: Date {
-        return Calendar.current.nextDate(after: self, matching: DateComponents(hour: 0), matchingPolicy: .nextTime) ?? self
+        return Calendar.current.nextDate(after: self, matching: DateComponents(hour: .zero), matchingPolicy: .nextTime) ?? self
     }
 
     var nextDay: Date {
@@ -84,7 +84,7 @@ extension Date {
 
     var minutesSinceMidnight: Int {
         let components = Calendar.current.dateComponents([.hour, .minute], from: self)
-        return 60 * (components.hour ?? 0) + (components.minute ?? 0)
+        return 60 * (components.hour ?? .zero) + (components.minute ?? .zero)
     }
 
     var dayOfMonth: Int {

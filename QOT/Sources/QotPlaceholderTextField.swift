@@ -105,7 +105,7 @@ private extension QotPlaceholderTextField {
             alpha = placeholderParameters.alpha
         }
         // Animations
-        UIView.animate(withDuration: animated ? Animation.duration_03 : 0) {
+        UIView.animate(withDuration: animated ? Animation.duration_03 : .zero) {
             self.placeholderLabel.transform = transform
             self.placeholderLabel.alpha = alpha
         }

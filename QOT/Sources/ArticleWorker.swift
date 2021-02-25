@@ -127,7 +127,7 @@ final class ArticleWorker {
         nextUp = nil
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? 0) { [weak self] (next) in
+        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? .zero) { [weak self] (next) in
             if let nextWhatsHot = next {
                 self?.nextWhatsHotContent = nextWhatsHot
             }
@@ -144,7 +144,7 @@ final class ArticleWorker {
                 }).first {
                     self?.nextUp = Article.Item(type: ContentItemValue.articleNextUp(title: nextCollection.title,
                                                                                      description: nextCollection.durationString,
-                                                                                     itemID: nextCollection.remoteID ?? 0))
+                                                                                     itemID: nextCollection.remoteID ?? .zero))
                 }
             }
             dispatchGroup.leave()
@@ -204,27 +204,27 @@ final class ArticleWorker {
                 itemsRelated.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
                                                                             description: item.durationString,
                                                                             pdfURL: pdfURL,
-                                                                            itemID: item.remoteID ?? 0)))
+                                                                            itemID: item.remoteID ?? .zero)))
             }
         }
         content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
             if let videoURL = URL(string: item.valueMediaURL ?? "") {
-                itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
+                itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? .zero,
                                                                               title: item.valueText,
                                                                               description: item.durationString,
                                                                               placeholderURL: URL(string: item.valueImageURL ?? ""),
                                                                               videoURL: videoURL,
-                                                                              duration: item.valueDuration ?? 0)))
+                                                                              duration: item.valueDuration ?? .zero)))
             }
         }
         content?.relatedContentItems.filter { $0.format == .audio }.forEach { item in
             if let audioURL = URL(string: item.valueMediaURL ?? "") {
-                itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? 0,
+                itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? .zero,
                                                                               title: item.valueText,
                                                                               description: item.durationString,
                                                                               placeholderURL: URL(string: item.valueImageURL ?? ""),
                                                                               audioURL: audioURL,
-                                                                              duration: item.valueDuration ?? 0,
+                                                                              duration: item.valueDuration ?? .zero,
                                                                               waveformData: [])))
             }
         }
@@ -233,7 +233,7 @@ final class ArticleWorker {
             guard let contentId = content.remoteID, nextUpContentIds.contains(obj: contentId) != true else { return }
             itemsRelated.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
                                                                                        description: content.durationString,
-                                                                                       itemID: content.remoteID ?? 0)))
+                                                                                       itemID: content.remoteID ?? .zero)))
         }
         if let nextUp = self.nextUp {
             itemsNextUp.append(nextUp)
@@ -318,7 +318,7 @@ final class ArticleWorker {
         relatedContent.forEach { content in
             articles.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
                                                                                        description: content.durationString,
-                                                                                       itemID: content.remoteID ?? 0)))
+                                                                                       itemID: content.remoteID ?? .zero)))
         }
         relatedArticlesStrategy = articles
     }

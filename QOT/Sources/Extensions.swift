@@ -307,7 +307,7 @@ extension UITableView {
     }
 
     func scrollToTop(animated: Bool) {
-        scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: animated)
+        scrollToRow(at: IndexPath(row: 0, section: .zero), at: .top, animated: animated)
     }
 }
 

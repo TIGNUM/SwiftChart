@@ -293,7 +293,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                                                         toItem: alignmentView,
                                                         attribute: toLeadingOfView ? .leading : .trailing,
                                                         multiplier: 1,
-                                                        constant: centeredCompensation ? -(forView.frame.size.width / 2) : 0)
+                                                        constant: centeredCompensation ? -(forView.frame.size.width / 2) : .zero)
         let bottomConstraint = NSLayoutConstraint.init(item: forView,
                                                        attribute: .bottom,
                                                        relatedBy: .equal,

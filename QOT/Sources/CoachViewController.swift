@@ -53,7 +53,7 @@ extension CoachViewController {
 private extension CoachViewController {
 
     func setupTableView() {
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.registerDequeueable(CoachTableViewCell.self)
     }
 }

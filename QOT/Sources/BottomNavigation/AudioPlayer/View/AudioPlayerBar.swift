@@ -242,7 +242,7 @@ extension AudioPlayerBar: AudioPlayerDelegate {
         audioPlayer.prepareToPlay(categoryTitle: currentMedia?.subtitle ?? "",
                                   title: currentMedia?.title ?? "",
                                   audioURL: currentMedia?.url,
-                                  remoteID: currentMedia?.mediaRemoteId ?? 0)
+                                  remoteID: currentMedia?.mediaRemoteId ?? .zero)
         audioPlayer.pause()
     }
 }

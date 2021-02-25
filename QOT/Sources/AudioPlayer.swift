@@ -147,7 +147,7 @@ class AudioPlayer {
             _isReset = false
             try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback,
                                                              mode: AVAudioSession.Mode.default,
-                                                             options: .init(rawValue: 0))
+                                                             options: .init(rawValue: .zero))
             try? AVAudioSession.sharedInstance().setActive(true)
         }
         updater = CADisplayLink(target: self, selector: #selector(trackAudio))

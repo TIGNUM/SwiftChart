@@ -419,8 +419,8 @@ extension AppCoordinator {
         MyDataService.main.getDailyCheckInResults(from: Date().beginingOfDate(), to: nil, { (results, initiated, error) in
             guard error == nil, initiated == true, let result = results?.first else { return }
 
-            let data = ExtensionModel.DailyPrep(loadValue: Float(result.load ?? 0),
-                                                recoveryValue: Float(result.impactReadiness ?? 0),
+            let data = ExtensionModel.DailyPrep(loadValue: Float(result.load ?? .zero),
+                                                recoveryValue: Float(result.impactReadiness ?? .zero),
                                                 feedback: result.feedback, displayDate: Date())
             ExtensionUserDefaults.set(data, for: .dailyPrep)
         })

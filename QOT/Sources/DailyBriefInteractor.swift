@@ -200,7 +200,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func getDailyBriefDummySectionModels() {
         var sectionDataList: [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>] = []
-        sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: 0),
+        sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: .zero),
                                                  elements: []))
         sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: 1),
                                                  elements: []))
