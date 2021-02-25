@@ -242,7 +242,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         if isLastQuestion, let interactor = self.interactor {
             self.isDoneButtonEnabled = interactor.questions.count == (interactor.answeredQuestionCount + 1)
         } else {
-            isDoneButtonEnabled = interactor?.questions.count ??.zero == interactor?.answeredQuestionCount
+            isDoneButtonEnabled = interactor?.questions.count ?? .zero == interactor?.answeredQuestionCount
         }
         refreshBottomNavigationItems()
     }
@@ -258,7 +258,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
 
     func setupPageIndicatorLabel(index: Int) {
         pageIndicatorLabel.isHidden = false
-        let total = interactor?.questions.count ?? 0
+        let total = interactor?.questions.count ?? .zero
         let attrString = NSMutableAttributedString.init()
         let currentAttrString = ThemeText.questionairePageCurrent.attributedString("\(index + 1)")
         let totalAttrString = ThemeText.questionairePageTotal.attributedString("/\(total)")

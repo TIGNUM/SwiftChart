@@ -131,7 +131,7 @@ private extension CustomizedShareViewController{
         UIView.setAnimationsEnabled(false)
         tableView.beginUpdates()
         tableView.separatorStyle = .none
-        tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+        tableView.reloadSections(IndexSet(integer: .zero), with: .fade)
         tableView.endUpdates()
         UIView.setAnimationsEnabled(true)
     }

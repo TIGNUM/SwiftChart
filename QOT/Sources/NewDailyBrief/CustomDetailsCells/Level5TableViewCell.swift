@@ -108,7 +108,7 @@ class Level5TableViewCell: BaseDailyBriefCell {
     }
 
     @IBAction func didPressLevel(_ sender: UIButton) {
-        tmpAnswer = tmpAnswer == sender.tag ?.zero : sender.tag
+        tmpAnswer = tmpAnswer == sender.tag ? .zero : sender.tag
         updateButtonStatus()
         initialSetup()
         if let level5Model = model {

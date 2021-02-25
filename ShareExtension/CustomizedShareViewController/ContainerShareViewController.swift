@@ -45,10 +45,10 @@ final class ContainerShareViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: customizedViewController)
         addChild(navigationController)
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .zero),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: .zero),
             containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/2),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: .zero)
         ])
         navigationController.view.frame = containerView.bounds
         containerView.addSubview(navigationController.view)

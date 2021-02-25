@@ -105,7 +105,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if interactor?.isFoundation == true {
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
-            guard interactor?.foundationStrategies.count ??.zero > indexPath.row,
+            guard interactor?.foundationStrategies.count ?? .zero > indexPath.row,
                     let strategy = interactor?.foundationStrategies[indexPath.item] else {
                 return cell
             }

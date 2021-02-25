@@ -330,7 +330,7 @@ extension DTViewController {
 
     private func constraintToZero(_ duration: Double) {
         if constraintBottom.constant == .zero { return }
-        constraintBottom.constant = 0
+        constraintBottom.constant = .zero
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
@@ -352,7 +352,7 @@ extension DTViewController {
             return false
         }
         let offset = viewController.contentOffset()
-        return previousButton.isHidden == false && offset.y == 0
+        return previousButton.isHidden == false && offset.y == .zero
     }
 
     @objc func didSwipeDown(_ recognizer: UIGestureRecognizer) {

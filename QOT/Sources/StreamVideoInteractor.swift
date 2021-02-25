@@ -119,7 +119,7 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
     }
 
     func didTapBookmark() {
-        guard let contentItemId = contentItemId, contentItemId != .zeroelse { return }
+        guard let contentItemId = contentItemId, contentItemId != .zero else { return }
         // FIXME: shows book mark selection
         TeamService.main.getTeams { [weak self] (teams, _, _) in
             let completion: (Bool) -> Void = { [weak self] (isChanged) in

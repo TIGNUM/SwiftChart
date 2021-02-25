@@ -105,7 +105,7 @@ private extension CoachMarksViewController {
             let model = viewModel(at: indexPath)
             trackUserEvent(.PREVIOUS, stringValue: model?.mediaName, valueType: .VIDEO, action: .TAP)
 
-            let previousIndexPath = IndexPath(item: (indexPath.item - 1), section: 0)
+            let previousIndexPath = IndexPath(item: (indexPath.item - 1), section: .zero)
             collectionView.scrollToItem(at: previousIndexPath, at: .centeredHorizontally, animated: true)
         }
     }
@@ -119,7 +119,7 @@ private extension CoachMarksViewController {
             let model = viewModel(at: indexPath)
             trackUserEvent(.NEXT, stringValue: model?.mediaName, valueType: .VIDEO, action: .TAP)
 
-            let nextIndexPath = IndexPath(item: (indexPath.item + 1), section: 0)
+            let nextIndexPath = IndexPath(item: (indexPath.item + 1), section: .zero)
             collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
         }
     }

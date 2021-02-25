@@ -297,7 +297,7 @@ private extension QOTAlertViewController {
 
         for (index, item) in items.enumerated() {
             // Large space before first item
-            if index ==.zero {
+            if index == .zero {
                 if bottomButtonsAlignment != .left {
                     tempItems.append(flexibleSpace)
                 }

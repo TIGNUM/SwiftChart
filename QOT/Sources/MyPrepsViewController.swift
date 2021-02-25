@@ -247,7 +247,7 @@ private extension MyPrepsViewController {
         case SegmentView.myPreps.rawValue:
             bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
             refreshBottomNavigationItems()
-            if interactor.numberOfRowsPreparations() ==.zero{
+            if interactor.numberOfRowsPreparations() == .zero {
                 baseHeaderView?.configure(title: title, subtitle: nil)
                 noPreparationsView.isHidden = false
                 tableView.alpha = .zero
@@ -265,7 +265,7 @@ private extension MyPrepsViewController {
         case SegmentView.recovery.rawValue:
             bottomNavigationItems.rightBarButtonItems = [planRecoveryButton]
             refreshBottomNavigationItems()
-            if interactor.numberOfRowsRecoveries() ==.zero {
+            if interactor.numberOfRowsRecoveries() == .zero {
                 baseHeaderView?.configure(title: title, subtitle: nil)
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
