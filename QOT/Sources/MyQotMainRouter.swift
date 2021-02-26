@@ -16,7 +16,7 @@ final class MyQotMainRouter: BaseRouter {
     weak var delegate: CoachCollectionViewControllerDelegate?
 
     // MARK: - Init
-    init(viewController: MyQotMainViewController?, delegate: CoachCollectionViewControllerDelegate) {
+    init(viewController: MyQotMainViewController?, delegate: CoachCollectionViewControllerDelegate?) {
         super.init(viewController: viewController)
         self.myQotViewController = viewController
         self.delegate = delegate

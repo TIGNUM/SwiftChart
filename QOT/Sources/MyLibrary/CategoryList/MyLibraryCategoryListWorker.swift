@@ -116,8 +116,14 @@ final class MyLibraryCategoryListWorker {
     private func removeDuplicates(from results: [QDMUserStorage]) -> [QDMUserStorage] {
         var tempResults = [QDMUserStorage]()
         for result in results {
-            if tempResults.contains(obj: result) == false {
-                tempResults.append(result)
+            if result.userStorageType == .NOTE {
+                if tempResults.contains(where: { $0.qotId == result.qotId }) == false {
+                    tempResults.append(result)
+                }
+            } else {
+                if tempResults.contains(obj: result) == false {
+                    tempResults.append(result)
+                }
             }
         }
         return tempResults
