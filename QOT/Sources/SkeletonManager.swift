@@ -103,7 +103,7 @@ class SkeletonManager {
             guard let button = view as? UIButton else { return }
             storeLayerBorderWidth(from: button)
             button.titleLabel?.isHidden = true
-            button.layer.borderWidth = 0
+            button.layer.borderWidth = .zero
         }
         let shimmerView = ShimmerAnimatedView.init(frame: view.frame,
                                                    color: withBackgroundColor,

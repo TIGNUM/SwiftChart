@@ -394,8 +394,8 @@ extension LaunchHandler {
                                              subtitle: "",
                                              url: mediaURL,
                                              totalDuration: Double(contentItem.valueDuration ?? .zero),
-                                             progress: 0,
-                                             currentTime: 0,
+                                             progress: .zero,
+                                             currentTime: .zero,
                                              mediaRemoteId: contentItem.remoteID ?? .zero)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
             case .video:
@@ -472,7 +472,7 @@ extension LaunchHandler {
             return
         }
         let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
-        let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .BOOKMARK, newItemCount: .zero)
+        let item = MyLibraryCategoryListModel(title: "", itemCount: .zero, lastUpdated: Date(), icon: nil, type: .BOOKMARK, newItemCount: .zero)
         configurator(controller, item)
         push(viewController: controller)
     }
@@ -483,7 +483,7 @@ extension LaunchHandler {
             return
         }
         let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
-        let item = MyLibraryCategoryListModel(title: "", itemCount: 0, lastUpdated: Date(), icon: nil, type: .DOWNLOAD, newItemCount: .zero)
+        let item = MyLibraryCategoryListModel(title: "", itemCount: .zero, lastUpdated: Date(), icon: nil, type: .DOWNLOAD, newItemCount: .zero)
         configurator(controller, item)
         push(viewController: controller)
     }

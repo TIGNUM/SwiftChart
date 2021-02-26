@@ -54,7 +54,7 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_CATEGORY
         pageTrack.associatedValueId = interactor.selectedCategoryId()
@@ -203,8 +203,8 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                                              subtitle: "",
                                              url: tool.mediaURL,
                                              totalDuration: tool.duration,
-                                             progress: 0,
-                                             currentTime: 0,
+                                             progress: .zero,
+                                             currentTime: .zero,
                                              mediaRemoteId: tool.remoteID)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
                 tableView.deselectRow(at: indexPath, animated: true)

@@ -30,7 +30,7 @@ final class ContainerShareViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.transform = CGAffineTransform(translationX: 0, y: self.view.frame.size.height)
+        self.view.transform = CGAffineTransform(translationX: .zero, y: self.view.frame.size.height)
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.view.transform = CGAffineTransform.identity
         })
