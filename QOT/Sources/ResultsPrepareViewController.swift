@@ -88,7 +88,7 @@ private extension ResultsPrepareViewController {
         }
         let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: title,
-                       firstItem: answers.at(index: 0)?.subtitle,
+                       firstItem: answers.at(index: .zero)?.subtitle,
                        secondItem: answers.at(index: 1)?.subtitle,
                        thirdItem: answers.at(index: 2)?.subtitle)
         cell.selectedBackgroundView = backgroundView

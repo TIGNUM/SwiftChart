@@ -231,7 +231,7 @@ class DTViewController: BaseViewController,
 
     func didSwitchSingleSelectedAnswer(_ answer: DTViewModel.Answer) {
         let selectedAnswer = viewModel?.selectedAnswers.filter { $0.selected }.first
-        NotificationCenter.default.post(name: .didSwitchSingleSelection, object: selectedAnswer?.remoteId ?? 0)
+        NotificationCenter.default.post(name: .didSwitchSingleSelection, object: selectedAnswer?.remoteId ?? .zero)
         viewModel?.resetSelectedAnswers()
     }
 

@@ -179,8 +179,8 @@ class MyLibraryCellViewModelConverter {
     }
 
     private func mediaDuration(for item: QDMUserStorage) -> (full: String, simple: String) {
-        var durationMinute = (item.durationInSeconds ?? 0)/60
-        let durationSeconds = (item.durationInSeconds ?? 0)%60
+        var durationMinute = (item.durationInSeconds ?? .zero)/60
+        let durationSeconds = (item.durationInSeconds ?? .zero)%60
         let fullDuration = String(format: "%d:%02d", durationMinute, durationSeconds)
 
         var postfix = read

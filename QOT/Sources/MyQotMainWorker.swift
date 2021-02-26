@@ -92,7 +92,7 @@ extension MyQotMainWorker {
 
     func getTeamLibrarySubtitleAndCount(team: QDMTeam?, _ completion: @escaping (String?, Int) -> Void) {
         guard let team = team else {
-            DispatchQueue.main.async { completion(nil, 0) }
+            DispatchQueue.main.async { completion(nil, .zero) }
             return
         }
         TeamService.main.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in

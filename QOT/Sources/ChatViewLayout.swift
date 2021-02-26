@@ -155,7 +155,7 @@ final class ChatViewLayout: UICollectionViewLayout {
     }
 
     func finalSnapOffset() -> CGPoint {
-        return CGPoint(x: 0, y: cache.filter { $0.snapPosY != nil }.last?.snapPosY ?? 0)
+        return CGPoint(x: 0, y: cache.filter { $0.snapPosY != nil }.last?.snapPosY ?? .zero)
     }
 
     private func section(_ indexPath: IndexPath) -> Section {

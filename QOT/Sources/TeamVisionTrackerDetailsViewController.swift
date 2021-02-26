@@ -154,7 +154,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
     }
 
     func setValues( _ data: [BarEntry]) {
-        myRatingValue.text = String(data.filter { $0.isMyVote == true }.first?.scoreIndex ?? 0)
+        myRatingValue.text = String(data.filter { $0.isMyVote == true }.first?.scoreIndex ?? .zero)
         totalVotesValue.text = String(totalVotes(data))
         averageRatingValue.text = String(format: "%.1f", calculateAverage(data))
     }

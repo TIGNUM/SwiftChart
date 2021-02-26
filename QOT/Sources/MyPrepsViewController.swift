@@ -98,7 +98,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         ThemeTint.white.apply(editButton.imageView ?? UIView.init())
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         updateIndicator()
         interactor.viewDidLoad()
     }

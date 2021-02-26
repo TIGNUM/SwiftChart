@@ -72,7 +72,7 @@ final class MediaPlayerViewController: AVPlayerViewController {
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_ITEM
         pageTrack.associatedValueId = interactor?.contentItemId
@@ -202,7 +202,7 @@ extension UIViewController {
         playerController.overlayControls = overlay
         if let contentView = playerController.view {
             contentView.addSubview(overlay)
-            overlay.frame = CGRect(x: 0,
+            overlay.frame = CGRect(x: .zero,
                                    y: (contentView.frame.height * 0.71) + MediaPlayerOverlay.height,
                                    width: contentView.frame.width,
                                    height: MediaPlayerOverlay.height)

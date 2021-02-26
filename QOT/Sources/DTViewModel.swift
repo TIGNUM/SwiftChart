@@ -120,7 +120,7 @@ class DTViewModel {
             self.remoteId = qdmAnswer.remoteID ?? 0
             self.title = qdmAnswer.subtitle ?? ""
             self.keys = qdmAnswer.keys
-            self.selected = selectedIds.contains(obj: qdmAnswer.remoteID ?? 0)
+            self.selected = selectedIds.contains(obj: qdmAnswer.remoteID ?? .zero)
             self.backgroundColor = .clear
             self.decisions = decisions
             self.votes = votes

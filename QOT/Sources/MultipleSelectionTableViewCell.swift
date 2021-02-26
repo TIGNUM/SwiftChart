@@ -113,7 +113,7 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        return UIEdgeInsets(top: .zero, left: .zero, bottom: 16, right: .zero)
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, sizeForHeaderAt section: Int) -> CGSize? {

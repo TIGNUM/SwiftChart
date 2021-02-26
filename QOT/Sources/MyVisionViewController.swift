@@ -190,7 +190,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeView.level2.apply(imageContainerView)
         ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_qot_my_tbv_section_header_title),
                                          to: toBeVisionLabel)
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: Layout.padding_50, right: .zero)
         scrollView.scrollsToTop = true
         ThemeBorder.white.apply(rateButton)
         ThemeBorder.white.apply(singleMessageRateButton)

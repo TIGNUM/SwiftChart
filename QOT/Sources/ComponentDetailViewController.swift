@@ -126,7 +126,7 @@ private extension ComponentDetailViewController {
             if let animator = dismissalAnimator {
                 return animator
             } else {
-                let animator = UIViewPropertyAnimator(duration: 0, curve: .linear, animations: {
+                let animator = UIViewPropertyAnimator(duration:.zero, curve: .linear, animations: {
                     targetAnimatedView.transform = .init(scaleX: targetShrinkScale, y: targetShrinkScale)
                     targetAnimatedView.layer.cornerRadius = targetCornerRadius
                 })

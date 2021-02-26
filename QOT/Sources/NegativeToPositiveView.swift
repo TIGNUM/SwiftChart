@@ -110,12 +110,12 @@ private extension NegativeToPositiveView {
         highPerformanceContainerView.addGestureRecognizer(gestureRecognizer)
         highPerformanceView.layer.shadowOpacity = 0.2
         highPerformanceView.layer.shadowRadius = 5
-        highPerformanceView.layer.shadowOffset = CGSize(width: -10, height: 0)
+        highPerformanceView.layer.shadowOffset = CGSize(width: -10, height: .zero)
     }
 
     func randomSet(max: Int) -> (index1: Int, index2: Int, index3: Int) {
         guard max >= 3 else {
-            return (0, 0, 0)
+            return (.zero, .zero, .zero)
         }
 
         let index1 = Int.random(in: 0..<max)

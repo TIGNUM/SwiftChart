@@ -89,7 +89,7 @@ private extension SyncedCalendarsViewController {
     func setupTableView() {
         tableView.registerDequeueable(SyncedCalendarCell.self)
         tableView.registerDequeueable(TitleTableHeaderView.self)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: .zero)
     }
 }
 
@@ -109,7 +109,7 @@ extension SyncedCalendarsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == .zero{
+        if section == .zero {
             return viewModel?.footerHeight ?? .zero
         }
         return .zero

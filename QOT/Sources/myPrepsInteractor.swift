@@ -39,23 +39,23 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func numberOfRowsPreparations() -> Int {
-        return (worker.model?.items.first?.count ?? 0) + (worker.model?.items.last?.count ?? 0)
+        return (worker.model?.items.first?.count ?? .zero) + (worker.model?.items.last?.count ?? .zero)
     }
 
     func numberOfRowsCriticalPreparations() -> Int {
-        return (worker.model?.items.first?.count ?? 0)
+        return (worker.model?.items.first?.count ?? .zero)
     }
 
     func numberOfRowsEverydayPreparations() -> Int {
-        return  (worker.model?.items.last?.count ?? 0)
+        return  (worker.model?.items.last?.count ?? .zero)
     }
 
     func numberOfRowsRecoveries() -> Int {
-        return (worker.recModel?.items.count ?? 0)
+        return (worker.recModel?.items.count ?? .zero)
     }
 
     func numberOfRowsMindsetShifters() -> Int {
-        return (worker.mindModel?.items.count ?? 0)
+        return (worker.mindModel?.items.count ?? .zero)
     }
 
     var criticalPrepItems: [MyPrepsModel.Item]? {

@@ -20,7 +20,7 @@ final class ToolsCollectionsGroupTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var counterImageView: UIImageView!
     private var mediaURL: URL?
     private var title: String?
-    private var remoteID: Int = 0
+    private var remoteID: Int = .zero
     private var categoryTitle = ""
     private var type = ""
 

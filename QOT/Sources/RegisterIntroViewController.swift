@@ -188,7 +188,7 @@ extension RegisterIntroViewController: RegisterIntroNoteTableViewCellDelegate {
         trackUserEvent(.READ_MORE, action: .TAP)
         expanded = true
         tableView.reloadRows(at: [IndexPath(row: RegisterIntroCellTypes.NoteCell.rawValue,
-                                           section: 0)],
+                                           section: .zero)],
                              with: .fade)
     }
 }

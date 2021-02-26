@@ -36,7 +36,7 @@ final class MyLibraryUserStorageInteractor {
         return [ButtonParameters(title: worker.removeTitle,
                                  target: self,
                                  action: #selector(removeItemsTapped),
-                                 isEnabled: !(identifiersForCheck.count == 0)),
+                                 isEnabled: !(identifiersForCheck.count == .zero)),
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
     }
     private lazy var removeButtons: [UIBarButtonItem] = {

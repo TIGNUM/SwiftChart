@@ -89,7 +89,7 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
 
     func updateView() {
         tableView.beginUpdates()
-        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
         tableView.endUpdates()
     }
 

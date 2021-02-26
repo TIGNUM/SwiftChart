@@ -86,7 +86,7 @@ final class MyVisionWorker: WorkerTeam {
 
     func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void) {
         getVisionTracks { (tracks) in
-            let date = Date(timeIntervalSince1970: 0)
+            let date = Date(timeIntervalSince1970: .zero)
 
             if let track = tracks.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first,
                 let rating = track.ratings.sorted(by: { $0.isoDate > $1.isoDate }).first {

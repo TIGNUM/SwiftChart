@@ -123,7 +123,7 @@ extension VisionRatingExplanationViewController {
     }
 
     @objc func videoTapped(_ sender: UITapGestureRecognizer) {
-        if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(videoID ?? 0)) {
+        if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(videoID ?? .zero)) {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
         }
     }

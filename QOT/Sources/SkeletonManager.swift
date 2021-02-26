@@ -204,28 +204,28 @@ private class ShimmerAnimatedView: UIView {
                            toItem: superview,
                            attribute: .centerX,
                            multiplier: 1,
-                           constant: 0),
+                           constant: .zero),
         NSLayoutConstraint(item: subview,
                            attribute: .centerY,
                            relatedBy: .equal,
                            toItem: superview,
                            attribute: .centerY,
                            multiplier: 1,
-                           constant: 0),
+                           constant: .zero),
         NSLayoutConstraint(item: subview,
                            attribute: .width,
                            relatedBy: .equal,
                            toItem: superview,
                            attribute: .width,
                            multiplier: 1,
-                           constant: 0),
+                           constant: .zero),
         NSLayoutConstraint(item: subview,
                            attribute: .height,
                            relatedBy: .equal,
                            toItem: superview,
                            attribute: .height,
                            multiplier: 1,
-                           constant: 0)
+                           constant: .zero)
         ])
     }
 }

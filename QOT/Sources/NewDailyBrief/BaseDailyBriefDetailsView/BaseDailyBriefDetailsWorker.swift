@@ -60,7 +60,7 @@ final class BaseDailyBriefDetailsWorker {
             if let setting = settings?.first {
                 var updatedSetting = setting
                 // turning sleep target from an answer index to a number of hours per day
-                updatedSetting.longValue = 60 + (Int64(value ?? 0) * 30)
+                updatedSetting.longValue = 60 + (Int64(value ?? .zero) * 30)
                 SettingService.main.updateSetting(updatedSetting, true, {(error) in
                     if let error = error {
                         log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)

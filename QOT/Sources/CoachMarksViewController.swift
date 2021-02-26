@@ -90,7 +90,7 @@ private extension CoachMarksViewController {
     func getCurrentIndexPath() -> IndexPath {
         let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
+        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: .zero, section: .zero)
     }
     func getCurrentPageIndex() -> Int {
         return getCurrentIndexPath().item
@@ -158,14 +158,14 @@ extension CoachMarksViewController: UICollectionViewDelegate,
                                     UICollectionViewDataSource,
                                     UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return askedNotificationPermissions ? (viewModels?.count ?? 0) : 0
+        return askedNotificationPermissions ? (viewModels?.count ?? .zero) : .zero
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentIndex = getCurrentPageIndex()
         if currentIndex != pageIndicator.currentPageIndex {
             updatePageIndicator()
-            let model = viewModel(at: IndexPath(item: currentIndex, section: 0))
+            let model = viewModel(at: IndexPath(item: currentIndex, section: .zero))
             setupButtons(currentIndex == 0, model?.rightButtonTitle ?? "")
         }
     }

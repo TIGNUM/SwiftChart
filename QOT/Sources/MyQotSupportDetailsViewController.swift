@@ -42,11 +42,11 @@ extension MyQotSupportDetailsViewController: MyQotSupportDetailsViewControllerIn
     func setupView() {
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TitleTableViewCell.self)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.delegate = self
         tableView.dataSource = self
         baseHeaderView?.configure(title: interactor.headerText, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
         tableView.reloadData()
     }
 }

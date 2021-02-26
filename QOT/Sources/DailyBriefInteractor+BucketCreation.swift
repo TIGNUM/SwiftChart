@@ -146,13 +146,13 @@ extension DailyBriefInteractor {
         detailsDelegate?.didUpdateImpactReadiness(with: impactReadinessModel)
 
         let howYouFeelToday = AppTextService.get(.daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer)
-        let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
+        let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? .zero
         let roundedSleepQuantity = round(10*sleepQuantity)/10
-        let sleepQuality = min(impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0, 10)
+        let sleepQuality = min(impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? .zero, 10)
         let maxTrackingDays = impactReadiness.dailyCheckInResult?.maxTrackingDays
-        let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
-        let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
-        let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
+        let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? .zero
+        let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? .zero
+        let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? .zero
         impactReadiness.contentCollections?.filter {$0.searchTags.contains("TITLE") }.forEach {(collection) in
             models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title,
                                                                             subTitle: collection.contentItems.first?.valueText))
@@ -190,7 +190,7 @@ extension DailyBriefInteractor {
         if dailyCheckIn2.toBeVisionTrackId != nil {
             // TBV Rated sentence
             let title: String = AppTextService.get(.daily_brief_section_daily_insights_tbv_title)
-            let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? String.empty) ?? 0
+            let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? String.empty) ?? .zero
             let intro: String = AppTextService.get(.daily_brief_section_daily_insights_tbv_subtitle_rating_of) + " " + String(tbvRating)
             let ctaText = AppTextService.get(.daily_brief_section_daily_insights_tbv_button_view_my_tbv)
             let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? String.empty
@@ -210,7 +210,7 @@ extension DailyBriefInteractor {
             let shpiTitle: String = AppTextService.get(.daily_brief_section_daily_insights_shpi_title)
             let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.SHPI
-            let rating = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? String.empty) ?? 0
+            let rating = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? String.empty) ?? .zero
             let question = dailyCheckIn2.SHPIQuestion?.title
             dailyCheckIn2ViewModel.caption = shpiTitle
             dailyCheckIn2ViewModel.title = question
@@ -223,9 +223,9 @@ extension DailyBriefInteractor {
         } else {
             // Peak Performance
             let peakPerformanceTitle = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_title)
-            let performanceCount = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? String.empty) ?? 0
+            let performanceCount = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? String.empty) ?? .zero
             var performanceBody: String?
-            let hasNoPerformance = performanceCount == 0
+            let hasNoPerformance = performanceCount == .zero
             let performanceString = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_body)
             if hasNoPerformance {
                 performanceBody = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_null_body)
@@ -404,7 +404,7 @@ extension DailyBriefInteractor {
                                                               publisheDate: collection.publishedDate ?? Date(),
                                                               timeToRead: collection.durationString,
                                                               isNew: self.isNew(collection),
-                                                              remoteID: collection.remoteID ?? 0,
+                                                              remoteID: collection.remoteID ?? .zero,
                                                               domainModel: whatsHotLatest))
         return latestWhatsHotList
     }
@@ -449,7 +449,7 @@ extension DailyBriefInteractor {
         let videoDuration = collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDuration
         let videoThumbnail = URL(string: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueMediaURL ?? String.empty)
         let format = collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.format ?? .unknown
-        let remoteID = collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.remoteID ?? 0
+        let remoteID = collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.remoteID ?? .zero
         let durationString = collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.durationString ?? String.empty
 
         leadersWisdomList.append(LeaderWisdomCellViewModel(title: title,
@@ -483,7 +483,7 @@ extension DailyBriefInteractor {
             audioDuration: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.valueDuration,
             audioLink: URL(string: collection.contentItems.filter {$0.searchTags.contains("EXPERT_FILE")}.first?.valueMediaURL ?? String.empty),
             format: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.format ?? .unknown,
-            remoteID: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.remoteID ?? 0,
+            remoteID: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.remoteID ?? .zero,
             durationString: collection.contentItems.filter { $0.searchTags.contains("EXPERT_FILE")}.first?.durationString ?? String.empty,
             name: collection.contentItems.filter {$0.searchTags.contains("EXPERT_NAME")}.first?.valueText ?? String.empty,
             domainModel: expertThoughts))
@@ -496,7 +496,7 @@ extension DailyBriefInteractor {
         guard let shifters = mindsetBucket.mindsetShifters else {
             return mindsetList
         }
-        let date = Date(timeIntervalSince1970: 0)
+        let date = Date(timeIntervalSince1970: .zero)
         let mindsetShifter = shifters.sorted(by: {$0.createdAt ?? $0.createdOnDevice ?? date > $1.createdAt ?? $1.createdOnDevice ?? date }).first
         guard let createdDate = mindsetShifter?.createdAt,
             createdDate.dateAfterDays(1).isFuture() else {
@@ -728,7 +728,7 @@ extension DailyBriefInteractor {
                     sprintBucket.sprint?.dailyBriefRelatedContent[index]?.forEach {(relatedContent) in
                         relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(relatedContent.title,
                                                                                              relatedContent.durationString,
-                                                                                             relatedContent.remoteID ?? 0,
+                                                                                             relatedContent.remoteID ?? .zero,
                                                                                              nil,
                                                                                              relatedContent.section,
                                                                                              relatedContent.contentItems.first?.format,
@@ -795,7 +795,7 @@ extension DailyBriefInteractor {
         guard let collections = teamVisionBucket.contentCollections else {
             return teamVisionList
         }
-        let date = Date(timeIntervalSince1970: 0)
+        let date = Date(timeIntervalSince1970: .zero)
         let vision = teamVisionBucket.teamToBeVisions?.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first
         guard vision != nil else { return teamVisionList }
         let imageURL = vision?.profileImageResource?.remoteURLString == nil ?

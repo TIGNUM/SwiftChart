@@ -59,7 +59,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
         collectionView.bounces = datasource?.count ?? .zero > 1
         collectionView.decelerationRate = .fast
 
-        if (datasource?.first as? NewDailyBriefGetStartedModel != nil && datasource?.count ?? .zero > 0) || skeletonMode == .getStarted {
+        if (datasource?.first as? NewDailyBriefGetStartedModel != nil && datasource?.count ?? .zero > .zero) || skeletonMode == .getStarted {
             width = 183
             let viewModel: NewDailyBriefGetStartedModel? = calculateHeighest(with: datasource ?? [], forWidth: width) as? NewDailyBriefGetStartedModel
             let dummyModel = NewDailyBriefGetStartedModel.init(title: "Label",
@@ -94,7 +94,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     }
 
     // MARK: - Public
-    func configure(with models: [BaseDailyBriefViewModel]?, selectedIndex: Int = 0, skeletonMode: SkeletonMode = .standard) {
+    func configure(with models: [BaseDailyBriefViewModel]?, selectedIndex: Int = .zero, skeletonMode: SkeletonMode = .standard) {
         datasource = models
         self.skeletonMode = skeletonMode
         setupCollectionView()
@@ -106,7 +106,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     func scrollToCard(at index: Int) {
         let pageWidth = self.flowLayout.itemSize.width + self.flowLayout.minimumInteritemSpacing
         let offsetX: CGFloat = CGFloat(index) * pageWidth
-        collectionView?.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+        collectionView?.setContentOffset(CGPoint(x: offsetX, y: .zero), animated: true)
     }
 }
 

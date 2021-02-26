@@ -84,7 +84,7 @@ final class MyLibraryCategoryListWorker {
                 let title = AppTextService.get(.my_qot_my_library_section_downloads_title)
                 userStorages.append(self.viewModelWith(title: title, items: downloads,
                                                        icon: R.image.ic_download(), type: .DOWNLOAD,
-                                                       newItemCount: 0))
+                                                       newItemCount: .zero))
             }
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_links_title),
                                                    items: links,

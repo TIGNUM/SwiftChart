@@ -33,14 +33,14 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.axesColor = .sand20
         chartView.gridColor = .sand20
         chartView.labelColor = .clear
-        chartView.topInset = 0
-        chartView.bottomInset = 0
+        chartView.topInset = .zero
+        chartView.bottomInset = .zero
 
         let maxString = upperValueLabel.text ?? "100"
         let minString = lowerValueLabel.text ?? "0"
         chartView.minY = Double(minString)
         chartView.maxY = Double(maxString)
-        chartView.minX = 0
+        chartView.minX = .zero
         chartView.maxX = 6
         chartView.showYGridDashed = false
         chartView.showXGridDashed = true
@@ -68,7 +68,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
             averageSeries.color = .sand40
             averageSeries.dashed = true
             chartView.add(averageSeries)
-            let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+            let irAverageLabel = UILabel.init(frame: CGRect(x: .zero, y: .zero, width: 100, height: 20))
             addSubview(irAverageLabel)
             addedViews.append(irAverageLabel)
             setup(irAverageLabel: irAverageLabel, forValue: defaultAverage)
@@ -160,7 +160,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
 
         chartView.add(ir)
         chartView.add(averageSeries)
-        let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        let irAverageLabel = UILabel.init(frame: CGRect(x: .zero, y: .zero, width: 100, height: 20))
 
         addSubview(irAverageLabel)
         addedViews.append(irAverageLabel)
@@ -241,7 +241,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                         alignmentView = view
                     }
                     let width: CGFloat = parameter == .IR ? largePointSize: normalPointSize
-                    pointView.frame = CGRect(x: 0, y: 0, width: width, height: width)
+                    pointView.frame = CGRect(x: .zero, y: .zero, width: width, height: width)
                     pointView.circle()
                     createPositionConstraints(for: pointView,
                                               andPointViewWidth: width,

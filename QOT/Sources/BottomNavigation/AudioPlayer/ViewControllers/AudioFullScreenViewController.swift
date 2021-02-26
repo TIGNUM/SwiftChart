@@ -157,7 +157,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         case .DONE:
             title = AppTextService.get(.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
-            downloadButton.layer.borderWidth = 0
+            downloadButton.layer.borderWidth = .zero
             switch colorMode {
             case .dark:
                 downloadButton.imageView?.tintColor = .black
@@ -185,7 +185,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_ITEM
         pageTrack.associatedValueId = media?.mediaRemoteId

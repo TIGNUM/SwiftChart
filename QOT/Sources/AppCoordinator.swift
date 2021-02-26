@@ -127,7 +127,7 @@ final class AppCoordinator {
 
         self.setRootViewController(naviController,
                                    transitionStyle: .curveEaseIn,
-                                   duration: 0,
+                                   duration: .zero,
                                    animated: false) {
             DispatchQueue.main.async {
                 // Show coach marks on first launch (of v3.0 app)
@@ -232,7 +232,7 @@ extension AppCoordinator {
                 return
         }
 
-        self.setRootViewController(naviController, transitionStyle: .curveEaseIn, duration: 0, animated: false) {
+        self.setRootViewController(naviController, transitionStyle: .curveEaseIn, duration: .zero, animated: false) {
             baseRootViewController.setContent(viewController: signinInfoController)
         }
     }
@@ -408,7 +408,7 @@ extension AppCoordinator {
                                                       articleDate: latest.publishedDate ?? Date(),
                                                       sortOrder: "0",
                                                       previewImageURL: URL(string: latest.thumbnailURLString  ?? ""),
-                                                      contentCollectionID: latest.remoteID ?? 0,
+                                                      contentCollectionID: latest.remoteID ?? .zero,
                                                       newArticle: true,
                                                       shareableLink: latest.shareableLink)
             ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)

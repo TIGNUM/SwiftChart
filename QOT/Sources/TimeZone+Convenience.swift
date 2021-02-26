@@ -21,10 +21,10 @@ extension TimeZone {
     static var hoursFromGMT: String {
         let hoursAndMinutes = TimeZone.secondsToHoursMinutes(seconds: TimeZone.current.secondsFromGMT())
         switch hoursAndMinutes {
-        case (let hours, let minutes) where hours > .zero && minutes == 0: return String(format: "GMT+%d", hours)
-        case (let hours, let minutes) where hours < .zero && minutes == 0: return String(format: "GMT%d", hours)
-        case (let hours, let minutes) where hours > .zero && minutes != 0: return String(format: "GMT+%d:%d", hours, minutes)
-        case (let hours, let minutes) where hours < .zero && minutes != 0: return String(format: "GMT%d:%d", hours, minutes)
+        case (let hours, let minutes) where hours > .zero && minutes == .zero: return String(format: "GMT+%d", hours)
+        case (let hours, let minutes) where hours < .zero && minutes == .zero: return String(format: "GMT%d", hours)
+        case (let hours, let minutes) where hours > .zero && minutes != .zero: return String(format: "GMT+%d:%d", hours, minutes)
+        case (let hours, let minutes) where hours < .zero && minutes != .zero: return String(format: "GMT%d:%d", hours, minutes)
         default: return "GMT+0"
         }
     }

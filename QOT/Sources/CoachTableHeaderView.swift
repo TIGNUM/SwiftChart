@@ -17,7 +17,7 @@ final class CoachTableHeaderView: UIView {
         self.init(frame: .zero)
         baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
         baseHeaderView?.configure(title: title, subtitle: subtitle)
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = .zero
         ThemeText.coachHeader.apply(title, to: baseHeaderView?.titleLabel)
         ThemeText.coachHeaderSubtitle.apply(subtitle, to: baseHeaderView?.subtitleTextView)
     }
@@ -31,6 +31,6 @@ final class CoachTableHeaderView: UIView {
     }
 
     func calculateHeight(for cellWidth: CGFloat) -> CGFloat {
-        return baseHeaderView?.calculateHeight(for: cellWidth) ?? 0
+        return baseHeaderView?.calculateHeight(for: cellWidth) ?? .zero
     }
 }

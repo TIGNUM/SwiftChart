@@ -202,7 +202,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 // MARK: - UIScrollViewDelegate
 extension MyQotMainViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? NavBarCollectionViewCell {
+        if let cell = collectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? NavBarCollectionViewCell {
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y,

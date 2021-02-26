@@ -39,7 +39,7 @@ extension MyLibraryUserStoragePresenter: MyLibraryUserStoragePresenterInterface 
     }
 
     func deleteRow(at index: Int) {
-        viewController?.deleteRow(at: IndexPath(row: index, section: 0))
+        viewController?.deleteRow(at: IndexPath(row: index, section: .zero))
     }
 
     func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {

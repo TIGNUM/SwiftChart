@@ -100,13 +100,13 @@ extension BookMarkSelectionViewController: UITableViewDelegate, UITableViewDataS
     // MARK: - TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.viewModels.count ?? 0
+        return interactor?.viewModels.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BookMarkSelectionCell = tableView.dequeueCell(for: indexPath)
         cell.selectionStyle = .none
-        cell.separator.isHidden = indexPath.row == 0
+        cell.separator.isHidden = indexPath.row == .zero
         guard let viewModels = interactor?.viewModels, viewModels.count > indexPath.row,
             let model = viewModels.at(index: indexPath.row) else { return cell }
         if let team = model.team {

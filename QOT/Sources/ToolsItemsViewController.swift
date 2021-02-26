@@ -79,7 +79,7 @@ private extension ToolsItemsViewController {
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 90
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: .zero)
     }
 }
 

@@ -55,7 +55,7 @@ final class ArticleWorker {
     }
 
     var remoteID: Int {
-        return content?.remoteID ?? 0
+        return content?.remoteID ?? .zero
     }
 
     var audioURL: URL? {
@@ -250,7 +250,7 @@ final class ArticleWorker {
         items.append(Article.Item(type: ContentItemValue.headerImage(imageURLString: articleHeader.imageURL)))
         content?.contentItems.forEach { item in
             guard item.remoteID != self.articleAudioItem?.remoteID else { return }
-            items.append(Article.Item(remoteID: item.remoteID ?? 0,
+            items.append(Article.Item(remoteID: item.remoteID ?? .zero,
                                       type: ContentItemValue(item: item),
                                       content: item.valueText,
                                       format: item.format.rawValue,
@@ -275,13 +275,13 @@ final class ArticleWorker {
                 articleAudioItem = nil
                 return
         }
-        audioArticleItem = Article.Item(remoteID: audioItem.remoteID ?? 0,
-                                        type: ContentItemValue.audio(remoteId: audioItem.remoteID ?? 0,
+        audioArticleItem = Article.Item(remoteID: audioItem.remoteID ?? .zero,
+                                        type: ContentItemValue.audio(remoteId: audioItem.remoteID ?? .zero,
                                                                      title: audioItem.valueText,
                                                                      description: audioItem.valueDescription,
                                                                      placeholderURL: URL(string: audioItem.valueImageURL ?? ""),
                                                                      audioURL: audioURL,
-                                                                     duration: audioItem.valueDuration ?? 0,
+                                                                     duration: audioItem.valueDuration ?? .zero,
                                                                      waveformData: []))
     }
 
@@ -290,7 +290,7 @@ final class ArticleWorker {
         relatedContent.forEach { content in
             if content.isWhatsHot == true {
                 let imageURL = URL(string: content.thumbnailURLString ?? "")
-                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? 0,
+                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? .zero,
                                                                title: content.title,
                                                                publishDate: content.publishedDate,
                                                                author: content.author,
@@ -301,7 +301,7 @@ final class ArticleWorker {
         }
         if relatedContent.isEmpty {
             let imageURL = URL(string: nextWhatsHotContent?.thumbnailURLString ?? "")
-            articles.append(Article.RelatedArticleWhatsHot(remoteID: nextWhatsHotContent?.remoteID ?? 0,
+            articles.append(Article.RelatedArticleWhatsHot(remoteID: nextWhatsHotContent?.remoteID ?? .zero,
                                                            title: nextWhatsHotContent?.title ?? "",
                                                            publishDate: nextWhatsHotContent?.publishedDate,
                                                            author: nextWhatsHotContent?.author,

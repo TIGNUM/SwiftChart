@@ -288,7 +288,7 @@ extension QuestionnaireViewController {
                        delay: Animation.duration_01,
                        options: [.curveEaseInOut],
                        animations: {
-                        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+                        self.questionLabel.transform = CGAffineTransform(translationX: .zero, y: .zero)
                         self.questionLabel.alpha = 1
                         self.progressView.alpha = 1
         }, completion: { [weak self] _ in
@@ -423,7 +423,7 @@ extension QuestionnaireViewController {
 
     func applyGradientColor(at selectedIndex: Int) {
         for index in 0...(items-1) {
-            let indexPath = IndexPath(row: index, section: 0)
+            let indexPath = IndexPath(row: index, section: .zero)
             guard let cell = tableView.cellForRow(at: indexPath) as? QuestionnaireTableViewCell else { continue }
             if index > selectedIndex {
                 cell.cellIndicatorView.isAboveCurrentIndex = true
@@ -513,7 +513,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
             UIView.animate(withDuration: Animation.duration_02,
                            delay: Animation.duration_01 * Double(indexPath.row),
                            options: [.curveEaseInOut], animations: {
-                            cell.transform = CGAffineTransform(translationX: 0, y: 0)
+                            cell.transform = CGAffineTransform(translationX: .zero, y: .zero)
                             cell.alpha = 1
             }, completion: { _ in
                 if self.finishedLoadingInitialTableCells {

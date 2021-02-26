@@ -51,6 +51,6 @@ extension UserProfileModel {
 
     var yearOfBirth: String {
         let dateOfBrith = DateFormatter.yyyyMMdd.date(from: birthday)
-        return String(dateOfBrith?.year() ?? 0)
+        return String(dateOfBrith?.year() ?? .zero)
     }
 }

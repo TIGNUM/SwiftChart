@@ -118,7 +118,7 @@ final class WeatherCell: BaseDailyBriefCell {
     // MARK: Helpers
     private func formatTemperature(value: Double?, shortStyle: Bool = true) -> String? {
         if let numberValue = numberFormatter.number(from: numberFormatter.string(for: value) ?? "") as? Double {
-            formatter.numberFormatter.maximumFractionDigits = 0
+            formatter.numberFormatter.maximumFractionDigits = .zero
             formatter.unitStyle = shortStyle ? .short : .medium
             let measurement = Measurement(value: numberValue, unit: UnitTemperature.celsius)
 

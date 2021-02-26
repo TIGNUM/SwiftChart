@@ -169,7 +169,7 @@ extension MyLibraryNotesViewController: UITextViewDelegate {
 extension MyLibraryNotesViewController {
     @objc override func keyboardWillAppear(_ notification: Notification) {
         let parameters = keyboardParameters(from: notification)
-        animateTextView(height: parameters?.height ?? 0)
+        animateTextView(height: parameters?.height ?? .zero)
     }
 
     @objc override func keyboardWillDisappear(_ notification: Notification) {

@@ -28,7 +28,7 @@ class AudioPlayer {
 
     static let current = AudioPlayer()
     private var _audioURL: URL?
-    private var _remoteID: Int = 0
+    private var _remoteID: Int = .zero
     private var _categoryTitle = ""
     private var _title = ""
     private var _currentTime = Double(0)

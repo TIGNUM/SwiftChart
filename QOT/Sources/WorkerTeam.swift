@@ -104,7 +104,7 @@ extension WorkerTeam {
 
     func getMaxTeamMemberCount(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
-            completion(config?.teamMaxMemberCount ?? 0)
+            completion(config?.teamMaxMemberCount ?? .zero)
         }
     }
 
@@ -118,13 +118,13 @@ extension WorkerTeam {
 
     func getMaxTeamCount(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
-            completion(config?.teamMaxCount ?? 0)
+            completion(config?.teamMaxCount ?? .zero)
         }
     }
 
     func getMaxChars(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
-            completion(config?.teamNameMaxLength ?? 0)
+            completion(config?.teamNameMaxLength ?? .zero)
         }
     }
 
@@ -564,7 +564,7 @@ private extension WorkerTeam {
         })
 
         if teams.isEmpty == false && isMyX {
-            teamHeaderItems.insert(Team.Item(myX: .myX), at: 0)
+            teamHeaderItems.insert(Team.Item(myX: .myX), at: .zero)
         }
         completion(teamHeaderItems)
     }

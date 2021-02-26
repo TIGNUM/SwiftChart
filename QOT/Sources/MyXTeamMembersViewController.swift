@@ -73,7 +73,7 @@ private extension MyXTeamMembersViewController {
 // MARK: - Actions
 private extension MyXTeamMembersViewController {
     func showDemoIfNeeded() {
-        let indexPath = IndexPath(row: 0, section: 0)
+        let indexPath = IndexPath(row: .zero, section: .zero)
 
         if let cell = tableView.cellForRow(at: indexPath) as? TeamMemberTableViewCell,
             let member = interactor.getMember(at: indexPath),
@@ -104,7 +104,7 @@ extension MyXTeamMembersViewController: MyXTeamMembersViewControllerInterface {
 
     func updateView(hasMembers: Bool) {
         tableView.beginUpdates()
-        tableView.reloadSections(IndexSet(arrayLiteral: 0), with: .none)
+        tableView.reloadSections(IndexSet(arrayLiteral: .zero), with: .none)
         tableView.endUpdates()
         showDemoIfNeeded()
 

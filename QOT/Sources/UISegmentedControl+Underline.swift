@@ -11,7 +11,7 @@ import UIKit
 extension UISegmentedControl {
     func underline() -> (xCentre: CGFloat, width: CGFloat) {
         if numberOfSegments == .zero {
-            return (0, 0)
+            return (.zero, .zero)
         }
 
         let currentIndex = selectedSegmentIndex

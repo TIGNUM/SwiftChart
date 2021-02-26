@@ -130,7 +130,7 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
         tableView.registerDequeueable(SolveDayPlanTableViewCell.self)
         tableView.registerDequeueable(FatigueTableViewCell.self)
         tableView.registerDequeueable(CauseTableViewCell.self)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: view.bounds.height * 0.1, right: .zero)
     }
 
     func load(_ resultViewModel: SolveResult, isFollowUpActive: Bool) {

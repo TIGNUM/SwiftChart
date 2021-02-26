@@ -15,7 +15,7 @@ final class MyDataScreenInteractor: NSObject {
     private let worker: MyDataScreenWorker
     private let presenter: MyDataScreenPresenterInterface
     private let router: MyDataScreenRouterInterface
-    private var visibleGraphIndexPath = IndexPath(row: 0, section: 0)
+    private var visibleGraphIndexPath = IndexPath(row: .zero, section: .zero)
 
     // MARK: - Init
     init(worker: MyDataScreenWorker, presenter: MyDataScreenPresenterInterface, router: MyDataScreenRouterInterface) {

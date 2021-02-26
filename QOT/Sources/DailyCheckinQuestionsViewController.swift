@@ -171,14 +171,14 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
     }
 
     func showQuestions() {
-        setupPageIndicatorLabel(index: 0)
+        setupPageIndicatorLabel(index: .zero)
         if let viewController = questionnaireViewController(with: interactor?.questions.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
     }
 
     func showLoadingDots() {
-        let dots = DotsLoadingView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+        let dots = DotsLoadingView(frame: CGRect(x: .zero, y: .zero, width: 28, height: 28))
         dots.configure(dotsColor: .white)
         dots.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(dots)
@@ -202,7 +202,7 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
     @objc private func doneAction() {
         NotificationCenter.default.post(name: .didFinishDailyCheckin, object: nil)
         guard isDoneButtonEnabled else { return }
-        if let answeredCount = interactor?.questions.count, answeredCount != 0,
+        if let answeredCount = interactor?.questions.count, answeredCount != .zero,
             answeredCount != interactor?.answeredQuestionCount,
             let vc = pageController?.viewControllers?.first as? QuestionnaireViewController {
             let answer = vc.currentAnswerIndex()
@@ -238,7 +238,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         if index == NSNotFound { return }
         setupPageIndicatorLabel(index: index)
         backButton.isHidden = index < 1
-        let isLastQuestion = index == ((interactor?.questions.count ?? 0) - 1)
+        let isLastQuestion = index == ((interactor?.questions.count ?? .zero) - 1)
         if isLastQuestion, let interactor = self.interactor {
             self.isDoneButtonEnabled = interactor.questions.count == (interactor.answeredQuestionCount + 1)
         } else {

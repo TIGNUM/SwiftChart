@@ -127,7 +127,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     func showAlert(action: QOTAlertAction, days: Int?) {
         QOTAlert.show(title: AppTextService.get(.alert_tracker_poll_answers_submitted_title) ,
                       message: AppTextService.get(.alert_tracker_poll_answers_submitted_message)
-                        .replacingOccurrences(of: "${NUMBER_OF_DAYS}", with: String(days ?? 0)),
+                        .replacingOccurrences(of: "${NUMBER_OF_DAYS}", with: String(days ?? .zero)),
                       bottomItems: [action])
     }
 
@@ -190,7 +190,7 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
         NewThemeView.dark.apply(loaderView)
         setupPageViewContollerOnce()
         self.tracks = questions
-        setupPageIndicatorLabel(index: 0)
+        setupPageIndicatorLabel(index: .zero)
         showWhiteBanner()
         if let viewController = questionnaireViewController(with: self.tracks.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
@@ -199,7 +199,7 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
 
     func setupPageIndicatorLabel(index: Int) {
         pageIndicatorLabel.isHidden = false
-        let total = interactor?.questions.count ?? 0
+        let total = interactor?.questions.count ?? .zero
         let attrString = NSMutableAttributedString.init()
         let currentAttrString = ThemeText.questionairePageCurrent.attributedString("\(index + 1)")
         let totalAttrString = ThemeText.questionairePageTotal.attributedString("/\(total)")

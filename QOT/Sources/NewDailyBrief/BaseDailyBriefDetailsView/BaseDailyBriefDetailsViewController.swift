@@ -107,7 +107,7 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
     func didUpdateLevel5(with model: Level5ViewModel) {
         interactor.updateModel(model)
         tableView.beginUpdates()
-        tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
+        tableView.reloadRows(at: [IndexPath.init(row: .zero, section: .zero)], with: .fade)
         tableView.endUpdates()
     }
 
@@ -138,7 +138,7 @@ extension BaseDailyBriefDetailsViewController: BaseDailyBriefDetailsViewControll
 // MARK: - BaseDailyBriefDetailsViewControllerInterface
 extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.getNumberOfRows() ?? 0
+        return interactor?.getNumberOfRows() ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,15 +154,15 @@ extension BaseDailyBriefDetailsViewController: UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return .zero
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return .zero
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 150)
+        let frame = CGRect(x: .zero, y: .zero, width: view.frame.width, height: 150)
         let footer = UIView(frame: frame)
         let gradientImageView = UIImageView(image: R.image.gradient_dark())
         footer.addSubview(gradientImageView)

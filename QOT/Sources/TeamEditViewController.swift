@@ -187,12 +187,12 @@ extension TeamEditViewController: UITextFieldDelegate {
         switch interactor.getType {
         case .create:
             updateKeyboardInputView(textField.text?.isEmpty == false)
-            updateTextCounter(String(textField.text?.count ?? 0))
+            updateTextCounter(String(textField.text?.count ?? .zero))
         case .memberInvite:
             updateKeyboardInputView(textField.text?.isEmail == true)
         case .edit:
             updateKeyboardInputView(textField.text?.isEmpty == false)
-            updateTextCounter(String(textField.text?.count ?? 0))
+            updateTextCounter(String(textField.text?.count ?? .zero))
         }
     }
 }

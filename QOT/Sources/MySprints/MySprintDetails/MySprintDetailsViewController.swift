@@ -33,7 +33,7 @@ final class MySprintDetailsViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.alwaysBounceVertical = false
         interactor.viewDidLoad()
     }
@@ -69,7 +69,7 @@ private extension MySprintDetailsViewController {
                                 toItem: tableView,
                                 attribute: .width,
                                 multiplier: 1.0,
-                                constant: 0).isActive = true
+                                constant: .zero).isActive = true
         tableView.setNeedsLayout()
         tableView.layoutIfNeeded()
     }

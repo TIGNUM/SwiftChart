@@ -83,7 +83,7 @@ final class WhatsHotCollectionViewCell: UICollectionViewCell, Dequeueable {
         guard let size = sizingCell?.systemLayoutSizeFitting(fittingSize,
                                                              withHorizontalFittingPriority: .required,
                                                              verticalFittingPriority: .defaultLow) else {
-            return 0
+            return .zero
         }
 
         guard size.height < maximumHeight else {

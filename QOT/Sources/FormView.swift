@@ -186,7 +186,7 @@ private extension FormView {
 
     func animatePlaceholderLabel() {
         if textField.isEditing == false {
-            let xPos = CGFloat(placeholderLabel.text?.count ?? 0) + 1
+            let xPos = CGFloat(placeholderLabel.text?.count ?? .zero) + 1
             var transform = CGAffineTransform.identity
             transform = transform.translatedBy(x: -xPos, y: -24)
             transform = transform.scaledBy(x: 0.75, y: 0.75)

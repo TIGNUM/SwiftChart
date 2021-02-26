@@ -113,28 +113,28 @@ private extension ChoiceWorker {
             .filter { $0.categoryIDs.first == category.remoteID }
             .map { (content: QDMContentCollection) -> Choice in
                 return Choice(categoryName: category.title,
-                              contentId: content.remoteID ?? 0,
-                              contentItemId: 0,
+                              contentId: content.remoteID ?? .zero,
+                              contentItemId: .zero,
                               title: content.title,
                               readingTime: content.durationString,
                               isDefault: false,
                               isSuggested: false,
-                              selected: selectedIds.contains(content.remoteID ?? 0))
+                              selected: selectedIds.contains(content.remoteID ?? .zero))
         }
 
         let relatedContentItemIds = relatedContentItems?.compactMap { $0.remoteID } ?? []
         let childrenContentItems = (relatedContentItemsCollection ?? []).filter { $0.categoryIDs.first == category.remoteID }
             .flatMap { $0.contentItems }
-            .filter { relatedContentItemIds.contains($0.remoteID ?? 0) }
+            .filter { relatedContentItemIds.contains($0.remoteID ?? .zero) }
             .map { (contentItem: QDMContentItem) -> Choice in
                 return Choice(categoryName: category.title,
-                              contentId: 0,
-                              contentItemId: contentItem.remoteID ?? 0,
+                              contentId: .zero,
+                              contentItemId: contentItem.remoteID ?? .zero,
                               title: contentItem.valueText,
                               readingTime: contentItem.durationString,
                               isDefault: false,
                               isSuggested: false,
-                              selected: selectedIds.contains(contentItem.remoteID ?? 0))
+                              selected: selectedIds.contains(contentItem.remoteID ?? .zero))
         }
 
         return childrenContent + childrenContentItems
@@ -153,7 +153,7 @@ private extension ChoiceWorker {
                     return
                 }
 
-                strongSelf._maxSelectionCount = (relatedContents?.count ?? 0) + (relatedContentItems?.count ?? 0)
+                strongSelf._maxSelectionCount = (relatedContents?.count ?? .zero) + (relatedContentItems?.count ?? .zero)
                 worker.getCategories(relatedContents, relatedContentItems) { (categories) in
                     categories?.forEach { (category) in
                         let children = strongSelf.getChildren(category: category,

@@ -36,7 +36,7 @@ final class KeyboardListener {
     typealias Handler = (_ state: State) -> Void
 
     private var changeHandler: Handler?
-    private(set) var state: State = .idle(height: 0) {
+    private(set) var state: State = .idle(height: .zero) {
         didSet { changeHandler?(state) }
     }
 
@@ -75,7 +75,7 @@ final class KeyboardListener {
     // FIXME: This only works when in portrait.
     private func visibleHeight(keyboardFrame: CGRect) -> CGFloat {
         let screenBounds = UIScreen.main.bounds
-        return max(screenBounds.height - keyboardFrame.origin.y, 0)
+        return max(screenBounds.height - keyboardFrame.origin.y, .zero)
     }
 }
 

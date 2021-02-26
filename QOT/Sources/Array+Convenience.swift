@@ -39,7 +39,7 @@ extension Array {
     }
 
     subscript(index: Int, default defaultValue: @autoclosure () -> Element) -> Element {
-        guard index >= 0, index < endIndex else { return defaultValue() }
+        guard index >= .zero, index < endIndex else { return defaultValue() }
         return self[index]
     }
 
@@ -48,6 +48,6 @@ extension Array {
     }
 
     func contains<T>(obj: T) -> Bool where T: Equatable {
-        return self.filter({$0 as? T == obj}).count > 0
+        return self.filter({$0 as? T == obj}).count > .zero
     }
 }

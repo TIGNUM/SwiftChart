@@ -104,7 +104,7 @@ extension UINavigationController {
 
     func dismissAllPresentedViewControllers(_ root: UIViewController,
                                             _ animated: Bool,
-                                            _ index: Int = 0,
+                                            _ index: Int = .zero,
                                             completion: @escaping (() -> Void)) {
         let newCompletion: (() -> Void) = {
             if index == .zero { // if there is nothing presented.

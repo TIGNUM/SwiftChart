@@ -112,7 +112,7 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     @objc override func trackPage() {
         guard interactor.remoteID != .zero else { return }
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_COLLECTION
         pageTrack.associatedValueId = interactor.remoteID
@@ -338,7 +338,7 @@ extension ArticleViewController {
     func sectionHasContent(_ section: Int) -> Bool {
         let numRows = interactor.itemCount(in: section)
         let title = interactor.headerTitle(for: section) ?? ""
-        return !title.isEmpty && numRows > 0
+        return !title.isEmpty && numRows > .zero
     }
 }
 
@@ -515,10 +515,10 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
 
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
+        let headerView = UIView(frame: CGRect(x: .zero, y: .zero, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
         headerView.backgroundColor = .clear
         if interactor.sectionNeedsLine {
-            let lineView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
+            let lineView = UIView(frame: CGRect(x:.zero, y: .zero, width: view.frame.width, height: 1.0))
             ThemeView.articleSeparator(nil).apply(lineView)
             headerView.addSubview(lineView)
         }
@@ -529,7 +529,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (sectionHasContent(section) && !(interactor.isSectionSupport())) ? tableView.estimatedSectionHeaderHeight : 0
+        return (sectionHasContent(section) && !(interactor.isSectionSupport())) ? tableView.estimatedSectionHeaderHeight : .zero
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -589,7 +589,7 @@ extension ArticleViewController {
     }
 
     var navBarIsHidden: Bool {
-        return constraintNavBar.constant != 0
+        return constraintNavBar.constant != .zero
     }
 
     func navigationBar(show: Bool) {

@@ -372,7 +372,7 @@ extension CoachCollectionViewController: UIScrollViewDelegate {
     func getCurrentIndexPath() -> IndexPath {
         let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: .zero)
+        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: .zero, section: .zero)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

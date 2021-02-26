@@ -203,16 +203,16 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch section {
         case Knowing.Section.header.rawValue:
-            return CGSize(width: view.frame.width, height: 0)
+            return CGSize(width: view.frame.width, height: .zero)
         default:
             if let componentHeader = self.collectionView(collectionView,
                                                          viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader,
-                                                         at: IndexPath(row: 0, section: section)) as? ComponentHeaderView,
+                                                         at: IndexPath(row: .zero, section: section)) as? ComponentHeaderView,
                 let sectionType = Knowing.Section(rawValue: section),
                 let header = interactor?.header(for: sectionType) {
                 componentHeader.configure(title: header.title,
                                           subtitle: header.subtitle,
-                                          showSeparatorView: section != 0,
+                                          showSeparatorView: section != .zero,
                                           secondary: true)
                 return CGSize(width: view.frame.width, height: ComponentHeaderView.height(title: header.title ?? "",
                                                                                           subtitle: header.subtitle ?? "",
@@ -282,13 +282,13 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             }
         default:
             let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
-            trackUserEvent(.OPEN, value: whatsHotArticle?.remoteID ?? 0, valueType: .CONTENT, action: .TAP)
-            interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? 0)
+            trackUserEvent(.OPEN, value: whatsHotArticle?.remoteID ?? .zero, valueType: .CONTENT, action: .TAP)
+            interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? .zero)
         }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? NavBarCollectionViewCell {
+        if let cell = collectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? NavBarCollectionViewCell {
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y,

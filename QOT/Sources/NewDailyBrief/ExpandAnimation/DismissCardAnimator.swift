@@ -51,8 +51,8 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             .first as? DailyBriefViewController
         let screens: (cardDetail: BaseDailyBriefDetailsViewController, home: DailyBriefViewController?) = (fromVC, toVC)
 
-        if let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewBaseDailyBriefCell,
-           let standardCell = dailyBriefCell.collectionView.cellForItem(at: IndexPath.init(item: 0, section: 0)) as? NewDailyBriefStandardCollectionViewCell,
+        if let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: .zero, section: .zero)) as? NewBaseDailyBriefCell,
+           let standardCell = dailyBriefCell.collectionView.cellForItem(at: IndexPath.init(item: .zero, section: .zero)) as? NewDailyBriefStandardCollectionViewCell,
            let viewModel = dailyBriefCell.datasource?.first as? NewDailyBriefStandardModel {
             viewModel.isInAnimationTransition = true
             standardCell.hideCTAButton = false
@@ -86,7 +86,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         let safeGuide = container.safeAreaLayoutGuide
 
         animatedContainerView.centerXAnchor.constraint(equalTo: safeGuide.centerXAnchor).isActive = true
-        let animatedContainerTopConstraint = animatedContainerView.topAnchor.constraint(equalTo: safeGuide.topAnchor, constant: 0)
+        let animatedContainerTopConstraint = animatedContainerView.topAnchor.constraint(equalTo: safeGuide.topAnchor, constant: .zero)
         let animatedContainerWidthConstraint = animatedContainerView.widthAnchor.constraint(equalToConstant: cardDetailView.frame.width)
         let animatedContainerHeightConstraint = animatedContainerView.heightAnchor.constraint(equalToConstant: cardDetailView.frame.height)
 
@@ -122,13 +122,13 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
                 cardDetailView.edges(to: container)
             }
             ctx.completeTransition(success)
-            if let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? NewBaseDailyBriefCell,
+            if let dailyBriefCell = screens.cardDetail.tableView.cellForRow(at: IndexPath.init(row: .zero, section: .zero)) as? NewBaseDailyBriefCell,
                let viewModel = dailyBriefCell.datasource?.first as? NewDailyBriefStandardModel {
                 viewModel.isInAnimationTransition = false
             }
         }
         UIView.animate(withDuration: transitionDuration(using: ctx),
-                       delay: 0,
+                       delay: .zero,
                        usingSpringWithDamping: 0.7,
                        initialSpringVelocity: 0.0,
                        options: [],
