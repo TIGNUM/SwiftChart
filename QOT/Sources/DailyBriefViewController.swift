@@ -113,7 +113,7 @@ extension DailyBriefViewController {
         }
         let sectionHeader = R.nib.newDailyBriefTableViewSectionHeader(owner: self)
         sectionHeader?.configure(title: interactor.bucketViewModelNew()?.at(index: section)?.model.title)
-        sectionHeader?.titleTopConstraint.constant = section == .zero ? 80 : 114
+        sectionHeader?.titleTopConstraint.constant = 30
 
         return sectionHeader
     }

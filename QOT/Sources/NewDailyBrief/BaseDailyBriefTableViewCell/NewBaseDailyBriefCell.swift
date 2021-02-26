@@ -79,7 +79,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
                                                              titleColor: "#FFFFFF",
                                                              domainModel: nil)
             detailsMode = viewModel?.detailsMode ?? false
-            collectionViewTopConstraint.constant  = detailsMode ? .zero : 30.0
+            collectionViewTopConstraint.constant  = detailsMode ? .zero : 20
             height = NewDailyBriefStandardCollectionViewCell.height(for: viewModel ?? dummyModel, forWidth: width)
             collectionView.isPagingEnabled = false
             flowLayout.minimumLineSpacing = detailsMode ? .zero : 8.0
