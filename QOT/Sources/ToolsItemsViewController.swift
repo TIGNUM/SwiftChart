@@ -64,7 +64,7 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_COLLECTION
         pageTrack.associatedValueId = interactor.selectedContentId()
@@ -79,7 +79,7 @@ private extension ToolsItemsViewController {
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 90
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: .zero)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
     }
 }
 
@@ -170,8 +170,8 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                                          subtitle: "",
                                          url: tool.mediaURL,
                                          totalDuration: tool.duration,
-                                         progress: 0,
-                                         currentTime: 0,
+                                         progress: .zero,
+                                         currentTime: .zero,
                                          mediaRemoteId: tool.remoteID)
             NotificationCenter.default.post(name: .playPauseAudio, object: media)
             tableView.deselectRow(at: indexPath, animated: true)

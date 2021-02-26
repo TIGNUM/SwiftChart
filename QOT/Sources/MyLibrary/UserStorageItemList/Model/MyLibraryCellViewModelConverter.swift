@@ -101,7 +101,7 @@ class MyLibraryCellViewModelConverter {
                                            mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: cellStatus,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model
@@ -123,7 +123,7 @@ class MyLibraryCellViewModelConverter {
                                       mediaType: item.mediaType ?? .UNKNOWN,
                                       downloadStatus: .none,
                                       identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
+                                      remoteId: Int(item.contentId ?? "0") ?? .zero,
                                       mediaURL: URL(string: item.mediaPath() ?? ""))
     }
 
@@ -142,7 +142,7 @@ class MyLibraryCellViewModelConverter {
                                            mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: .none,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model
@@ -160,7 +160,7 @@ class MyLibraryCellViewModelConverter {
                                            mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: .none,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model

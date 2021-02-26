@@ -72,8 +72,8 @@ private extension KnowingViewController {
         view.fill(subview: collectionView)
         collectionView.delaysContentTouches = false
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = .zero
+            layout.minimumInteritemSpacing = .zero
             layout.sectionInset = .zero
         }
         collectionView.clipsToBounds = false

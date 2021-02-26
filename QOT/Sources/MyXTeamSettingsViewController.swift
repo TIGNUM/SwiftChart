@@ -84,7 +84,7 @@ extension MyXTeamSettingsViewController: MyXTeamSettingsViewControllerInterface 
         tableView.registerDequeueable(TeamNameTableViewCell.self)
         ThemeView.level3.apply(view)
         baseHeaderView?.configure(title: interactor?.teamSettingsText, subtitle: nil)
-        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
     }
 
     func updateView() {

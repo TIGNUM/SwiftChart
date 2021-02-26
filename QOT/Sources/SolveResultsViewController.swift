@@ -167,7 +167,7 @@ extension SolveResultsViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension SolveResultsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultViewModel?.items.count ?? 0
+        return resultViewModel?.items.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

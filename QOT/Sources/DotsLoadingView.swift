@@ -107,7 +107,7 @@ private extension DotsLoadingView {
         layer.path = path.cgPath
         layer.backgroundColor = nil
         layer.fillColor = color?.cgColor
-        layer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        layer.frame = CGRect(x: .zero, y: .zero, width: size.width, height: size.height)
         return layer
     }
 }

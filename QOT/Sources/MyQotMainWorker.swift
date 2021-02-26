@@ -171,7 +171,7 @@ private extension MyQotMainWorker {
         if let monthSince = date?.months(to: Date()), monthSince > 1 {
             return Double(monthSince)
         }
-        return 0
+        return .zero
     }
 
     func makeToBeVisionSubtitle(toBeVision: QDMToBeVision? = nil,

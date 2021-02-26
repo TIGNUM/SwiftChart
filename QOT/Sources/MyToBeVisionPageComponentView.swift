@@ -68,7 +68,7 @@ final class MyToBeVisionPageComponentView: UIView {
         }
         let view = stackView.arrangedSubviews[currentPageIndex]
         view.widthConstaint?.constant = expandedPageComponentWidth
-        UIView.animate(withDuration: Animation.duration_01, delay: 0, animations: {
+        UIView.animate(withDuration: Animation.duration_01, delay: .zero, animations: {
             self.layoutIfNeeded()
         })
     }

@@ -16,8 +16,8 @@ final class TeamEditInteractor: TeamEditWorker {
     private var type: TeamEdit.View
     private var team: QDMTeam?
     private var members = [TeamEdit.Member]()
-    private var maxTeamMemberCount = 0
-    private var maxChars = 0
+    private var maxTeamMemberCount: Int = .zero
+    private var maxChars: Int = .zero
 
     // MARK: - Init
     init(presenter: TeamEditPresenterInterface, type: TeamEdit.View, team: QDMTeam?) {

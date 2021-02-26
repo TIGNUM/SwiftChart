@@ -15,7 +15,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var counterLabel: UILabel!
     private var teamId = ""
     private var hexColorString = ""
-    private var inviteCounter = 0
+    private var inviteCounter: Int = .zero
     private var itemSelected = false
     private var canDeselect = true
     private var teamInvites: [QDMTeamInvitation] = []

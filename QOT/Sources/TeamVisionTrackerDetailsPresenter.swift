@@ -60,6 +60,6 @@ private extension TeamVisionTrackerDetailsPresenter {
     }
 
     func indexOf(_ dates: [Date], selectedDate: Date) -> Int {
-        return dates.firstIndex(where: { $0 == selectedDate }) ?? 0
+        return dates.firstIndex(where: { $0 == selectedDate }) ?? .zero
     }
 }

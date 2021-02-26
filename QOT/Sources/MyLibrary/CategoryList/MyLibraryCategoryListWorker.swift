@@ -50,7 +50,7 @@ final class MyLibraryCategoryListWorker {
             var userStorages = [MyLibraryCategoryListModel]()
             let removedDuplications = isTeam ? storages ?? [] : self.removeDuplicates(from: storages ?? [])
             let sorted = removedDuplications.sorted(by: { (first, second) -> Bool in
-                first.modifiedAt?.timeIntervalSince1970 ?? .zero > second.modifiedAt?.timeIntervalSince1970 ?? 0
+                first.modifiedAt?.timeIntervalSince1970 ?? .zero > second.modifiedAt?.timeIntervalSince1970 ?? .zero
             })
 
             let bookmarks = sorted.compactMap { $0.userStorageType == .BOOKMARK ? $0 : nil }
@@ -58,14 +58,14 @@ final class MyLibraryCategoryListWorker {
             let notes = sorted.compactMap { $0.userStorageType == .NOTE ? $0 : nil }
             let links = sorted.compactMap { $0.userStorageType == .EXTERNAL_LINK ? $0 : nil }
 
-            var newBookmarkCount = 0, newNoteCount = 0, newLinkCount = 0, downloadCount = 0
+            var newBookmarkCount: Int = .zero, newNoteCount: Int = .zero, newLinkCount: Int = .zero, downloadCount: Int = .zero
             if isTeam {
-                newBookmarkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .BOOKMARK }).count ?? 0
-                newNoteCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .NOTE }).count ?? 0
-                newLinkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .EXTERNAL_LINK }).count ?? 0
+                newBookmarkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .BOOKMARK }).count ?? .zero
+                newNoteCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .NOTE }).count ?? .zero
+                newLinkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .EXTERNAL_LINK }).count ?? .zero
             }
             if !isTeam {
-                downloadCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .DOWNLOAD }).count ?? 0
+                downloadCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .DOWNLOAD }).count ?? .zero
             }
 
             let allCounts = newBookmarkCount + newNoteCount + newLinkCount + downloadCount
@@ -106,7 +106,7 @@ final class MyLibraryCategoryListWorker {
                        type: MyLibraryCategoryType,
                        newItemCount: Int) -> MyLibraryCategoryListModel {
         return MyLibraryCategoryListModel(title: title,
-                                          itemCount: items?.count ?? 0,
+                                          itemCount: items?.count ?? .zero,
                                           lastUpdated: items?.first?.modifiedAt,
                                           icon: icon,
                                           type: type,

@@ -26,7 +26,7 @@ final class MyToBeVisionRateWorker: WorkerTeam {
     }
 
     init(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?) {
-        self.visionId = 0
+        self.visionId = .zero
         self.team = team
         self.trackerPoll = trackerPoll
     }

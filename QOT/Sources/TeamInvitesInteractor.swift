@@ -17,8 +17,8 @@ final class TeamInvitesInteractor: TeamInvitesWorker {
     private var teamItems = [Team.Item]()
     private var qdmInvitations = [QDMTeamInvitation]()
     private var pendingInvites = [TeamInvite.Pending]()
-    private var partOfTeams = 0
-    private var maxTeamCount = 0
+    private var partOfTeams: Int = .zero
+    private var maxTeamCount: Int = .zero
     private var canJoinTeam = true
 
     // MARK: - Init

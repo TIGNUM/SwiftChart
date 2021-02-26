@@ -38,7 +38,7 @@ class MyQOTAdminEditSprintsDetailsTableViewCell: UITableViewCell, Dequeueable {
     @objc func textFieldDidChange(_ textField: UITextField) {
         switch sprintEditObject?.type {
         case .Int:
-            sprintEditObject?.value = Int(detailTextField.text ?? "") ?? 0
+            sprintEditObject?.value = Int(detailTextField.text ?? "") ?? .zero
         case .String:
             sprintEditObject?.value = detailTextField.text ?? ""
         default:

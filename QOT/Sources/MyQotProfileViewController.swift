@@ -68,7 +68,7 @@ private extension MyQotProfileViewController {
         tableView.registerDequeueable(MyQotProfileHeaderView.self)
         ThemeView.level2.apply(self.view)
         baseHeaderView?.configure(title: interactor.myProfileText(), subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
 
         tableView.delegate = self
         tableView.dataSource = self

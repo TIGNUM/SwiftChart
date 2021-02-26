@@ -255,7 +255,7 @@ extension MyDataScreenInteractor: UICollectionViewDelegate {
         }
         visibleGraphIndexPath = visibleIndexPath
         updateGraphHeader(forIndexPath: visibleIndexPath)
-        worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > 0
+        worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > .zero
     }
 }
 
@@ -267,7 +267,7 @@ extension MyDataScreenInteractor: UICollectionViewDataSource {
         if let visibleIndexPath = visibleIndexPath(for: collectionView),
            visibleIndexPath == indexPath {
             updateGraphHeader(forIndexPath: visibleIndexPath)
-            worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > 0
+            worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > .zero
         }
         return cell
     }

@@ -138,7 +138,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         pageIndicator.addConstraints(to: pageIndicatorView)
         pageIndicator.pageColor = ThemeView.coachMarkPageIndicator.color
         pageIndicator.pageCount = CoachMark.Step.allCases.count
-        pageIndicator.currentPageIndex = 0
+        pageIndicator.currentPageIndex = .zero
     }
 
     func updateView(_ viewModels: [CoachMark.ViewModel]) {
@@ -166,7 +166,7 @@ extension CoachMarksViewController: UICollectionViewDelegate,
         if currentIndex != pageIndicator.currentPageIndex {
             updatePageIndicator()
             let model = viewModel(at: IndexPath(item: currentIndex, section: .zero))
-            setupButtons(currentIndex == 0, model?.rightButtonTitle ?? "")
+            setupButtons(currentIndex == .zero, model?.rightButtonTitle ?? "")
         }
     }
 
@@ -187,6 +187,6 @@ extension CoachMarksViewController: UICollectionViewDelegate,
     }
 
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return .zero
     }
 }

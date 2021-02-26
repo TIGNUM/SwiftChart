@@ -87,7 +87,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
-        layout.sectionInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        layout.sectionInset = .init(top: .zero, left: 24, bottom: .zero, right: 24)
         layout.sectionHeadersPinToVisibleBounds = true
     }
 
@@ -104,14 +104,14 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
                          updateIndexPaths: [IndexPath], newIndexPathsForUpdatedItems: [IndexPath],
                          insertIndexPaths: [IndexPath]) {
         collectionView.performBatchUpdates({
-            if updateIndexPaths.count > 0, updateIndexPaths.count == newIndexPathsForUpdatedItems.count {
+            if updateIndexPaths.count > .zero, updateIndexPaths.count == newIndexPathsForUpdatedItems.count {
                 updateCell(originalIndexPath: updateIndexPaths, newIndexPath: newIndexPathsForUpdatedItems)
             } else {
                 reload()
                 return
             }
 
-            if deleteIndexPaths.count > .zero{
+            if deleteIndexPaths.count > .zero {
                 collectionView.deleteItems(at: deleteIndexPaths)
             } else if insertIndexPaths.count > .zero {
                 collectionView.insertItems(at: insertIndexPaths)

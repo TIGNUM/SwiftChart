@@ -104,7 +104,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
                 return nil
             }
 
-            let questionItems = questionnaire.items() ?? 0
+            let questionItems = questionnaire.items() ?? .zero
             // setup questions
             viewController.questionIdentifier = questionnaire.questionIdentifier()
             viewController.questionHtml = questionnaire.questionHtml()
@@ -185,7 +185,7 @@ extension QuestionnaireViewController {
         if QuestionnaireViewController.hasArrowsAnimated { return }
         self.upArrowBottomConstraint.constant = 10
         UIView.animate(withDuration: 0.8,
-                       delay: 0,
+                       delay: .zero,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 0.5,
                        animations: {
@@ -193,7 +193,7 @@ extension QuestionnaireViewController {
         }, completion: {[weak self] (_: Bool) in
             self?.upArrowBottomConstraint.constant = 5
             UIView.animate(withDuration: 0.8,
-                           delay: 0,
+                           delay: .zero,
                            animations: {
                             self?.progressView.layoutIfNeeded()
             }, completion: nil)
@@ -201,7 +201,7 @@ extension QuestionnaireViewController {
 
         self.downArrowTopConstraint.constant = 10
         UIView.animate(withDuration: 0.8,
-                       delay: 0,
+                       delay: .zero,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 0.5,
                        animations: {
@@ -209,7 +209,7 @@ extension QuestionnaireViewController {
         }, completion: {[weak self] (_: Bool) in
             self?.downArrowTopConstraint.constant = 5
             UIView.animate(withDuration: 0.8,
-                           delay: 0,
+                           delay: .zero,
                            animations: {
                             self?.progressView.layoutIfNeeded()
             }, completion: nil)
@@ -259,10 +259,10 @@ extension QuestionnaireViewController {
         tableView.isHidden = true
         tableView.reloadData()
         questionLabel.isHidden = false
-        questionLabel.alpha = 0
+        questionLabel.alpha = .zero
         progressView.alpha = 0.0
         progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
-        questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
+        questionLabel.transform = CGAffineTransform(translationX: .zero, y: -Layout.padding_100)
         fillView.setNeedsUpdateConstraints()
         var questionString = ""
         switch controllerType {
@@ -507,8 +507,8 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
                 finishedLoadingInitialTableCells = true
             }
             //animates the cell as it is being displayed for the first time
-            cell.transform = CGAffineTransform(translationX: 0, y: Layout.padding_40).scaledBy(x: 1, y: Layout.multiplier_150)
-            cell.alpha = 0
+            cell.transform = CGAffineTransform(translationX: .zero, y: Layout.padding_40).scaledBy(x: 1, y: Layout.multiplier_150)
+            cell.alpha = .zero
 
             UIView.animate(withDuration: Animation.duration_02,
                            delay: Animation.duration_01 * Double(indexPath.row),

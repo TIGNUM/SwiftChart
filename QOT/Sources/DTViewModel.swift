@@ -71,13 +71,13 @@ class DTViewModel {
         }
 
         init(qdmQuestion: QDMQuestion) {
-            self.remoteId = qdmQuestion.remoteID ?? 0
+            self.remoteId = qdmQuestion.remoteID ?? .zero
             self.title = qdmQuestion.title
             self.htmlTitleString = nil
             self.key = qdmQuestion.key ?? ""
             self.answerType = AnswerType(rawValue: qdmQuestion.answerType ?? "") ?? .multiSelection
-            self.duration = qdmQuestion.layout?.animation?.duration ?? 0
-            self.maxSelections = qdmQuestion.maxPossibleSelections ?? 0
+            self.duration = qdmQuestion.layout?.animation?.duration ?? .zero
+            self.maxSelections = qdmQuestion.maxPossibleSelections ?? .zero
         }
     }
 
@@ -117,7 +117,7 @@ class DTViewModel {
         }
 
         init(qdmAnswer: QDMAnswer, selectedIds: [Int], decisions: [Decision], votes: Int) {
-            self.remoteId = qdmAnswer.remoteID ?? 0
+            self.remoteId = qdmAnswer.remoteID ?? .zero
             self.title = qdmAnswer.subtitle ?? ""
             self.keys = qdmAnswer.keys
             self.selected = selectedIds.contains(obj: qdmAnswer.remoteID ?? .zero)

@@ -21,8 +21,8 @@ final class PollButton: SelectionButton {
     @IBOutlet weak var labelTopWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var labelBottomWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var backgroundWidthConstraint: NSLayoutConstraint!
-    private var votes = 0
-    private var answerId = 0
+    private var votes: Int = .zero
+    private var answerId: Int = .zero
 
     // MARK: - Life Cycle
     override func awakeFromNib() {
@@ -80,15 +80,15 @@ extension PollButton {
             if votes > .zero {
                 topConstraint.constant += counterLabelTop.frame.height
             } else {
-                backgroundWidthConstraint.constant = 0
-                labelTopWidthConstraint.constant = 0
-                labelBottomWidthConstraint.constant = 0
-                containerWidthConstraint.constant = 0
+                backgroundWidthConstraint.constant = .zero
+                labelTopWidthConstraint.constant = .zero
+                labelBottomWidthConstraint.constant = .zero
+                containerWidthConstraint.constant = .zero
             }
             UIView.animate(withDuration: 0.6) {
                 if self.votes > .zero {
                     self.counterLabelTop.alpha = 1
-                    self.counterLabelBottom.alpha = 0
+                    self.counterLabelBottom.alpha = .zero
                 }
                 self.layoutIfNeeded()
             }

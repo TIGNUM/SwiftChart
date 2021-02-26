@@ -185,9 +185,9 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         let media = MediaPlayerModel(title: item.title,
                                      subtitle: "",
                                      url: item.mediaURL,
-                                     totalDuration: 0,
-                                     progress: 0,
-                                     currentTime: 0,
+                                     totalDuration: .zero,
+                                     progress: .zero,
+                                     currentTime: .zero,
                                      mediaRemoteId: item.remoteId)
         notificationCenter.post(name: .playPauseAudio, object: media)
     }

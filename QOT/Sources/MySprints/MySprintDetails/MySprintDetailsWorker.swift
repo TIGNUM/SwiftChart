@@ -149,7 +149,7 @@ extension MySprintDetailsWorker {
         // if it is completed sprint. Create new sprint with same content and start the created sprint.
         if sprint.completedAt != nil {
             var model = CreateSprintModel()
-            model.sprintContentId = sprint.contentCollectionId ?? 0
+            model.sprintContentId = sprint.contentCollectionId ?? .zero
             model.relatedContentIds = sprint.relatedContentIds
             model.title = sprint.title ?? ""
             model.subTitle = sprint.subtitle ?? ""

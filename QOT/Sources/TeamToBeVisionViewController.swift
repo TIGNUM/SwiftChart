@@ -269,7 +269,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     }
 
     func setupView() {
-        scrollView.alpha = 0
+        scrollView.alpha = .zero
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}",

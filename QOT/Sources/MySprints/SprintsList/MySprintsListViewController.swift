@@ -140,7 +140,7 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
 
         baseHeaderView?.configure(title: interactor.title, subtitle: nil)
         ThemeText.mySprintsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
 
         ThemeButton.editButton.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)

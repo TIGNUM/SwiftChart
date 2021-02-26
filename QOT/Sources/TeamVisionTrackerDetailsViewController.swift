@@ -106,8 +106,8 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
     }
 
     func switchView(_ data: [BarEntry]) {
-        ratingsView.alpha = 0
-        barChartView.alpha = 0
+        ratingsView.alpha = .zero
+        barChartView.alpha = .zero
         setValues(data)
         ratingsView.frame = CGRect(x: ratingsView.frame.origin.x,
                                    y: ratingsView.frame.origin.y + 25,
@@ -137,7 +137,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
     }
 
     func calculateAverage(_ data: [BarEntry]) -> Float {
-        var sum = 0
+        var sum: Int = .zero
         data.forEach { (entry) in
             sum += entry.scoreIndex * entry.votes
         }
@@ -146,7 +146,7 @@ extension TeamVisionTrackerDetailsViewController: TeamVisionTrackerDetailsViewCo
     }
 
     func totalVotes(_ data: [BarEntry]) -> Int {
-        var totalSum = 0
+        var totalSum: Int = 0
         data.forEach {(item) in
             totalSum += item.votes
         }

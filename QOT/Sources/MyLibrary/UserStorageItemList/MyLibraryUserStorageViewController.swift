@@ -48,7 +48,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: .zero)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
 
         ThemeButton.editButton.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -172,7 +172,7 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         ThemeText.myLibraryItemsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
         baseHeaderView?.configure(title: interactor.title.lowercased().capitalizingFirstLetter(), subtitle: interactor.subtitle)
         headerViewHeightConstraint.constant = (baseHeaderView?.calculateHeight(for: view.frame.size.width) ?? .zero) + 10
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = .zero
         editButtonWidthConstraint.constant = interactor.showEditButton ? 40.0 : 0.0
         setEditButton(enabled: interactor.canEdit)
         addButton.isHidden = isEditing
@@ -233,7 +233,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if let items = interactor.items, items.count > 0,
+        if let items = interactor.items, items.count > .zero,
             let item = interactor.items?[indexPath.row] {
             return item.removable
         }

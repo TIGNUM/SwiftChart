@@ -45,7 +45,7 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_CATEGORY
         pageTrack.associatedValueId = interactor?.selectedStrategyId()

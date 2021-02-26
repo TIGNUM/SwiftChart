@@ -150,7 +150,7 @@ private extension MyVisionViewController {
     }
 
     func showNavigationBarView() {
-        navigationBarViewTopMarginConstraint.constant = 0
+        navigationBarViewTopMarginConstraint.constant = .zero
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
@@ -184,7 +184,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func setupView() {
-        scrollView.alpha = 0
+        scrollView.alpha = .zero
 
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)

@@ -40,7 +40,7 @@ class BarChartView: UIView {
             mainLayer.sublayers?.forEach { $0.removeFromSuperlayer() }
 
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-                self.mainLayer.frame = CGRect(x: self.frame.origin.x, y: 0,
+                self.mainLayer.frame = CGRect(x: self.frame.origin.x, y: .zero,
                                               width: UIScreen.main.bounds.width,
                                               height: self.frame.size.height)
                 for i in 0..<self.dataEntries.count {
@@ -51,7 +51,7 @@ class BarChartView: UIView {
     }
 
     func percentage(_ votes: Int) -> Int {
-        var totalVotes = 0
+        var totalVotes: Int = .zero
         dataEntries.forEach { (item) in
             totalVotes += item.votes
         }

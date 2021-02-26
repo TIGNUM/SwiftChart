@@ -96,7 +96,7 @@ private extension TBVDataGraphAnswersTableViewCell {
 
     func removeAllLayers() {
         ratingContainerViews.forEach { (ratingView) in
-            ratingView.corner(radius: 0, borderColor: .clear)
+            ratingView.corner(radius: .zero, borderColor: .clear)
         }
     }
 

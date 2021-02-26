@@ -18,7 +18,7 @@ final class ChoiceWorker {
 
     // MARK: - Properties
     private var dataSource = [CollapsableNode]()
-    private var _maxSelectionCount: Int = 0
+    private var _maxSelectionCount: Int = .zero
     let selectedIds: [Int]
     let relatedId: Int
     let choiceType: ChoiceType
@@ -71,7 +71,7 @@ extension ChoiceWorker {
     }
 
     func rowHeight(at indexPath: IndexPath) -> CGFloat {
-        return (indexPath.row == 0) ? .ParentNode : .Default
+        return (indexPath.row == .zero) ? .ParentNode : .Default
     }
 
     func isParentNode(atIndexPath indexPath: IndexPath) -> Bool {

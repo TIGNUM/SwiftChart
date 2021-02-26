@@ -44,7 +44,7 @@ struct Team {
         var teamId: String
         var color: String = ""
         var thisUserIsOwner = false
-        var batchCount: Int = 0
+        var batchCount: Int = .zero
 
         /// Init here Team.Item
         init(qdmTeam: QDMTeam) {

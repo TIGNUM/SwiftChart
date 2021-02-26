@@ -40,7 +40,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         cell?.delegate = self
         return cell ?? RegisterIntroMediaTableViewCell()
     }()
-    private var lastPlayTime: CMTime = CMTime.init(seconds: 0, preferredTimescale: .zero)
+    private var lastPlayTime: CMTime = CMTime.init(seconds: .zero, preferredTimescale: .zero)
     private var fullscreenPlayerViewController: AVPlayerViewController?
     private var expanded = false
 

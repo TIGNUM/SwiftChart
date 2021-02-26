@@ -52,7 +52,7 @@ extension AnimatedAnswerTableViewCell {
         answerLabel.attributedText = attributedString
 
         if animateTextDuration > .zero {
-            let dots = DotsLoadingView(frame: CGRect(x: 24, y: 0, width: 20, height: .TypingFooter))
+            let dots = DotsLoadingView(frame: CGRect(x: 24, y: .zero, width: 20, height: .TypingFooter))
             dots.configure(dotsColor: textColor)
             dots.translatesAutoresizingMaskIntoConstraints = false
             addSubview(dots)

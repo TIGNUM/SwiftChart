@@ -51,13 +51,13 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: .zero)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         interactor?.viewDidLoad()
     }
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         if let teamId = interactor?.teamId {
             pageTrack.associatedValueId = teamId
@@ -86,7 +86,7 @@ extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControll
         ThemeView.level2.apply(view)
         baseHeaderView?.configure(title: interactor?.titleText, subtitle: nil)
         ThemeText.myLibraryTitle.apply(interactor?.titleText, to: baseHeaderView?.titleLabel)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.view.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.view.frame.size.width) ?? .zero
     }
 
     func update() {
@@ -97,7 +97,7 @@ extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControll
 extension MyLibraryCategoryListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.categoryItems.count ?? 0
+        return interactor?.categoryItems.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -25,7 +25,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
     internal var subtitles = [String: String?]() // [MyX.Item.rawValue: subtitle string]
     internal var isCellEnabled = [String: Bool]() // [MyX.Item.rawValue: cell enabled]
     internal var settingTitle: String = ""
-    internal var newLibraryItemCount: Int = 0
+    internal var newLibraryItemCount: Int = .zero
     internal var tbvTitle: String = ""
     internal var teamTBVPoll: QDMTeamToBeVisionPoll?
     internal var teamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
@@ -55,7 +55,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
             dispatchGroup.leave()
         }
 
-        var tmpNewLibraryItemCount = 0
+        var tmpNewLibraryItemCount: Int = .zero
         var tmpToBeVisionTitle = ""
         var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
         var tmpTeamTrackerPoll: QDMTeamToBeVisionTrackerPoll?

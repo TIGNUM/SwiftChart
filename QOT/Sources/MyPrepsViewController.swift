@@ -308,7 +308,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeView.level3.apply(view)
         ThemeView.level3.apply(headerView)
         baseHeaderView?.configure(title: viewModel.title, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
         ThemeText.myQOTPrepTitle.apply(viewModel.myPrepsTitle, to: noPrepsTitle)
         ThemeText.myQOTPrepTitle.apply(viewModel.mindsetShifterTitle, to: noMindsetTitle)
         ThemeText.myQOTPrepTitle.apply(viewModel.recoveryTitle, to: noRecoveryTitle)
@@ -324,7 +324,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
 
     func dataUpdated() {
         hideAllNoDataViews()
-        if tableView.alpha == .zero{
+        if tableView.alpha == .zero {
             UIView.animate(withDuration: Animation.duration_04) { self.tableView.alpha = 1 }
         }
         tableView.reloadData()
@@ -338,18 +338,18 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         case SegmentView.myPreps.rawValue:
             switch section {
             case PrepTypes.criticalEvents.rawValue:
-                return interactor?.criticalPrepItems?.count ?? 0
+                return interactor?.criticalPrepItems?.count ?? .zero
             case PrepTypes.everyday.rawValue:
-                return interactor?.everydayPrepItems?.count ?? 0
+                return interactor?.everydayPrepItems?.count ?? .zero
             default:
-                return 0
+                return .zero
             }
         case SegmentView.mindsetShifter.rawValue:
             return interactor.numberOfRowsMindsetShifters()
         case SegmentView.recovery.rawValue:
             return interactor.numberOfRowsRecoveries()
         default:
-            return 0
+            return .zero
         }
     }
 
@@ -399,10 +399,10 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             case PrepTypes.everyday.rawValue:
                 return interactor?.numberOfRowsEverydayPreparations() ?? .zero > .zero ? tableView.estimatedSectionHeaderHeight : 0
             default:
-                return 0
+                return .zero
             }
         default:
-            return 0
+            return .zero
         }
     }
 

@@ -130,7 +130,7 @@ final class NavigationButton: AbstractTreeButton {
             constraintTotalWidthMin.constant = 0.0 //small value means it will grow/shrink
         }
 
-        update(count: 0, maxSelections: 1)
+        update(count: .zero, maxSelections: 1)
     }
 
     func update(count: Int, maxSelections: Int? = nil) {
@@ -138,7 +138,7 @@ final class NavigationButton: AbstractTreeButton {
             maxCount = maxSelections
         }
 
-        isHidden = maxCount == 0
+        isHidden = maxCount == .zero
 
         let isEnough = count >= minCount
         counterButton.isUserInteractionEnabled = isEnough

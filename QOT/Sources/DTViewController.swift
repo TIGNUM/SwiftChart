@@ -84,7 +84,7 @@ class DTViewController: BaseViewController,
     // MARK: - Actions
 
     @IBAction func didTapPrevious() {
-        constraintBottom.constant = 0
+        constraintBottom.constant = .zero
         self.view.layoutIfNeeded()
         trackQuestionInteraction(.PREVIOUS)
         if interactor.loadPreviousQuestion(selectedIds: interactor.getSelectedIds()) == false {

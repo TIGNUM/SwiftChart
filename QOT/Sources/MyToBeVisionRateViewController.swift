@@ -23,7 +23,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     private var loadingDots: DotsLoadingView?
     private var isLastPage: Bool = false
-    private var currentPageIndex: Int = 0
+    private var currentPageIndex: Int = .zero
     private var nextPageTimer: Timer?
     private var pageController: UIPageViewController?
 
@@ -259,7 +259,7 @@ extension MyToBeVisionRateViewController: QuestionnaireAnswer {
         backButton.isHidden = index < 1
         isLastPage = index == (tracks.count - 1)
 
-        interactor?.addRating(for: questionIdentifier ?? 0,
+        interactor?.addRating(for: questionIdentifier ?? .zero,
                               value: itemsOf(viewController) - (tracks[index].selectedAnswerIndex ?? 5))
         refreshBottomNavigationItems()
     }
@@ -272,7 +272,7 @@ extension MyToBeVisionRateViewController: QuestionnaireAnswer {
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
         tracks[index].selectedAnswerIndex = answer
-        interactor?.addRating(for: questionIdentifier ?? 0, value: itemsOf(viewController) - answer)
+        interactor?.addRating(for: questionIdentifier ?? .zero, value: itemsOf(viewController) - answer)
         trackUserEvent(.SELECT, value: answer, valueType: "MyToBeVision.RateQuestion", action: .SWIPE)
         guard let nextViewController = next(from: viewController) else {
             return

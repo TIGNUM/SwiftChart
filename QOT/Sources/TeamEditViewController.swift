@@ -24,7 +24,7 @@ final class TeamEditViewController: UIViewController {
     @IBOutlet private weak var memberMaxLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     private var bottomConstraintInitialValue: CGFloat = 0
-    private var max = 0
+    private var max: Int = .zero
     private var subHeader = ""
     private lazy var router: TeamEditRouterInterface = TeamEditRouter(viewController: self)
     var interactor: TeamEditInteractorInterface!
