@@ -103,9 +103,12 @@ final class UserNotificationsManager {
                                                        body: coachMessage.body ?? "",
                                                        soundName: "QotNotification.aiff",
                                                        link: coachMessage.link ?? "")
-            let triggerDate = Date().hour() > coachMessage.displayTime?.hour ?? 0 ?
-                                Date().beginingOfDate().dateAfterDays(1) :
-                                Date()
+
+            var triggerDate: Date = coachMessage.displayTime
+
+            if triggerDate.isPast() {
+                triggerDate = coachMessage.displayTime.dateAfterDays(1)
+            }
             let dateComponent = DateComponents.init(calendar: Calendar.current,
                                                     timeZone: Calendar.current.timeZone,
                                                     year: triggerDate.year(),
@@ -115,7 +118,7 @@ final class UserNotificationsManager {
                                                     minute: coachMessage.displayTime?.minute,
                                                     second: coachMessage.displayTime?.second,
                                                     nanosecond: coachMessage.displayTime?.nano)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
             let identifier = coachMessage.id ?? 0
 
             requests.append(UNNotificationRequest(identifier: "\(identifier)", content: content, trigger: trigger))
