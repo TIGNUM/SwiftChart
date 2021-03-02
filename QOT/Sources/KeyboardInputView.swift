@@ -35,7 +35,7 @@ final class KeyboardInputView: UIView {
         UIView.animate(withDuration: Animation.duration_02) { [weak self] in
             self?.rightButton.setTitleColor(isEnabled ? .white : .lightGrey, for: .normal)
             self?.rightButton.backgroundColor = .black
-            self?.rightButton.layer.borderWidth = isEnabled ? 1 : 0
+            self?.rightButton.layer.borderWidth = isEnabled ? 1 : .zero
         }
     }
 }

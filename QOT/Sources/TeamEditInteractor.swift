@@ -16,8 +16,8 @@ final class TeamEditInteractor: TeamEditWorker {
     private var type: TeamEdit.View
     private var team: QDMTeam?
     private var members = [TeamEdit.Member]()
-    private var maxTeamMemberCount = 0
-    private var maxChars = 0
+    private var maxTeamMemberCount: Int = .zero
+    private var maxChars: Int = .zero
 
     // MARK: - Init
     init(presenter: TeamEditPresenterInterface, type: TeamEdit.View, team: QDMTeam?) {
@@ -148,7 +148,7 @@ extension TeamEditInteractor: TeamEditInteractorInterface {
                 return
             }
             self?.team = team
-            if let team = team, team.remoteID != 0 {
+            if let team = team, team.remoteID != .zero {
                 self?.setupMemberList(team: team)
             } else {
                 ///oh man, maybe owner email can be part of team?

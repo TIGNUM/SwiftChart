@@ -13,7 +13,6 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
 
     // MARK: - Properties
 
-    @IBOutlet private weak var backArrow: UIButton!
     private let mindsetShifterChatBotId = 102453
     private let recoveryChatBotId = 102451
     var interactor: ToolsCollectionsInteractorInterface!
@@ -22,15 +21,10 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
         case header = 0
         case sections
     }
-    @IBOutlet weak var backButton: UIButton!
 
     init(configure: Configurator<ToolsCollectionsViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
-    }
-
-    @IBAction func backButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -45,20 +39,9 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
         interactor.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if self == self.navigationController?.viewControllers.first {
-            backArrow.isHidden = true
-        }
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
-    }
-
-    @objc func pop() {
-        self.navigationController?.popViewController(animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,7 +54,7 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_CATEGORY
         pageTrack.associatedValueId = interactor.selectedCategoryId()
@@ -88,20 +71,10 @@ private extension ToolsCollectionsViewController {
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsGroupTableViewCell.self)
         tableView.registerDequeueable(ToolsTableViewCell.self)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.tableFooterView = UIView()
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 60
-    }
-}
-
-// MARK: - Actions
-
-private extension ToolsCollectionsViewController {
-
-    @IBAction func closeButton(_ sender: UIButton) {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -111,7 +84,6 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
 
     func setupView() {
         setupTableView()
-        ThemeTint.black.apply(backButton?.imageView ?? UIView.init())
     }
 
     func reload() {
@@ -139,7 +111,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         switch cellType {
         case .header:
             let headerTitle = interactor.headerTitle
-            if headerTitle.count > 0 {
+            if headerTitle.count > .zero {
                 let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " tools"
                 return ToolsTableHeaderView.init(title: title.capitalizingFirstLetter(), subtitle: nil)
             }
@@ -204,7 +176,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return cell
         } else {
             let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(title: tool.title.lowercased().capitalizingFirstLetter(),
                            subtitle: AppTextService.get(.coach_tools_labels_label_interactive))
             cell.addTopLine(for: indexPath.row)
@@ -231,8 +203,8 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                                              subtitle: "",
                                              url: tool.mediaURL,
                                              totalDuration: tool.duration,
-                                             progress: 0,
-                                             currentTime: 0,
+                                             progress: .zero,
+                                             currentTime: .zero,
                                              mediaRemoteId: tool.remoteID)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -257,7 +229,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
 // MARK: - Bottom Navigation
 extension ToolsCollectionsViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
+        return [backNavigationItem()]
     }
 }
 

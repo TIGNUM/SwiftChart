@@ -14,8 +14,8 @@ final class SolveResultsWorker {
     // MARK: - Properties
     private var solve: QDMSolve?
     private var recovery: QDMRecovery3D?
-    private var selectedAnswerId: Int = 0
-    private var solutionCollectionId: Int = 0
+    private var selectedAnswerId: Int = .zero
+    private var solutionCollectionId: Int = .zero
     private let resultType: ResultType
 
     // MARK: - Init
@@ -33,8 +33,8 @@ final class SolveResultsWorker {
     init(solve: QDMSolve?, resultType: ResultType) {
         self.solve = solve
         self.resultType = resultType
-        self.solutionCollectionId = solve?.solutionCollectionId ?? 0
-        self.selectedAnswerId = solve?.selectedAnswerId ?? 0
+        self.solutionCollectionId = solve?.solutionCollectionId ?? .zero
+        self.selectedAnswerId = solve?.selectedAnswerId ?? .zero
     }
 }
 
@@ -169,15 +169,15 @@ private extension SolveResultsWorker {
         relatedStrategies(contentId) { (related) in
             var relatedStrategyItems: [SolveResult.Item] = []
             for (index, collection) in related.enumerated() {
-                relatedStrategyItems.append(.strategy(id: collection.remoteID ?? 0,
+                relatedStrategyItems.append(.strategy(id: collection.remoteID ?? .zero,
                                                       title: collection.title,
                                                       minsToRead: collection.durationString,
-                                                      hasHeader: index == 0,
+                                                      hasHeader: index == .zero,
                                                       headerTitle: header))
             }
             self.relatedStrategiesContentItems(contentId) { (items) in
                 items.forEach {(item) in
-                    relatedStrategyItems.append(.strategyContentItem(id: item.remoteID ?? 0,
+                    relatedStrategyItems.append(.strategyContentItem(id: item.remoteID ?? .zero,
                                                                      title: item.valueText,
                                                                      minsToRead: item.durationString,
                                                                      hasHeader: false,
@@ -250,7 +250,7 @@ private extension SolveResultsWorker {
             let filteredContentItems = content?.contentItems
                 .filter { $0.searchTagsDetailed.contains(where: { $0.name == "solve-dayplan-item" }) } ?? []
             for (index, item) in filteredContentItems.enumerated() {
-                dayPlanItems.append(.fiveDayPlay(hasHeader: index == 0, text: item.valueText))
+                dayPlanItems.append(.fiveDayPlay(hasHeader: index == .zero, text: item.valueText))
             }
             completion(dayPlanItems)
         }
@@ -297,14 +297,14 @@ private extension SolveResultsWorker {
     }
 
     func fatigueSymptom(_ completion: @escaping (SolveResult.Item) -> Void) {
-        let contentItemId = recovery?.causeAnwser?.targetId(.contentItem) ?? 0
+        let contentItemId = recovery?.causeAnwser?.targetId(.contentItem) ?? .zero
         ContentService.main.getContentItemById(contentItemId) { (contentItem) in
             completion(.fatigue(sympton: contentItem?.valueText ?? ""))
         }
     }
 
     func cause(_ completion: @escaping (SolveResult.Item) -> Void) {
-        let contentId = recovery?.causeAnwser?.targetId(.content) ?? 0
+        let contentId = recovery?.causeAnwser?.targetId(.content) ?? .zero
         ContentService.main.getContentCollectionById(contentId) { [weak self] (content) in
             let cause = self?.recovery?.causeAnwser?.subtitle ?? ""
             let fatigueCauseExplanation = content?.contentItems.first?.valueText ?? ""
@@ -315,10 +315,10 @@ private extension SolveResultsWorker {
     func strategyItems(_ contentCollections: [QDMContentCollection], headerTitle: String) -> [SolveResult.Item] {
         var strategyItem: [SolveResult.Item] = []
         for (index, collection) in contentCollections.enumerated() {
-            strategyItem.append(.strategy(id: collection.remoteID ?? 0,
+            strategyItem.append(.strategy(id: collection.remoteID ?? .zero,
                                           title: collection.title,
                                           minsToRead: collection.durationString,
-                                          hasHeader: index == 0,
+                                          hasHeader: index == .zero,
                                           headerTitle: headerTitle))
         }
         return strategyItem

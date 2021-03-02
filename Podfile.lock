@@ -1,15 +1,15 @@
 PODS:
-  - Airship (14.2.2):
-    - Airship/Automation (= 14.2.2)
-    - Airship/Core (= 14.2.2)
-    - Airship/ExtendedActions (= 14.2.2)
-    - Airship/MessageCenter (= 14.2.2)
-  - Airship/Automation (14.2.2):
+  - Airship (14.2.3):
+    - Airship/Automation (= 14.2.3)
+    - Airship/Core (= 14.2.3)
+    - Airship/ExtendedActions (= 14.2.3)
+    - Airship/MessageCenter (= 14.2.3)
+  - Airship/Automation (14.2.3):
     - Airship/Core
-  - Airship/Core (14.2.2)
-  - Airship/ExtendedActions (14.2.2):
+  - Airship/Core (14.2.3)
+  - Airship/ExtendedActions (14.2.3):
     - Airship/Core
-  - Airship/MessageCenter (14.2.2):
+  - Airship/MessageCenter (14.2.3):
     - Airship/Core
   - AppCenter (4.1.0):
     - AppCenter/Analytics (= 4.1.0)
@@ -32,17 +32,17 @@ PODS:
   - Kingfisher (6.1.0)
   - qot_dal (1.0):
     - KeychainAccess
-    - Realm (~> 10.5.0)
-    - RealmSwift (~> 10.5.0)
+    - Realm (~> 10.6.0)
+    - RealmSwift (~> 10.6.0)
     - SwiftyBeaver
   - R.swift (5.3.1):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
-  - Realm (10.5.1):
-    - Realm/Headers (= 10.5.1)
-  - Realm/Headers (10.5.1)
-  - RealmSwift (10.5.1):
-    - Realm (= 10.5.1)
+  - Realm (10.6.0):
+    - Realm/Headers (= 10.6.0)
+  - Realm/Headers (10.6.0)
+  - RealmSwift (10.6.0):
+    - Realm (= 10.6.0)
   - RSKImageCropper (3.0.2)
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
@@ -89,14 +89,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: ce1c18a5570acc67d7b52b4dd69394c71be2a228
+    :commit: 3c495b985bb7a1eba6719fed7a52d9b03adada9a
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
     :git: "git@github.com:TIGNUM/SwiftChart.git"
 
 SPEC CHECKSUMS:
-  Airship: c522e3aaab32165a834e65442b9ca9a6c85ce741
+  Airship: f0c50f03d085c6b187ee844c0718538e9bc664e4
   AppCenter: 8832b158d17e54845c3b88a91076218f0b07174d
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
@@ -104,11 +104,11 @@ SPEC CHECKSUMS:
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
   Kingfisher: f5d8d60a0ef3edd642fd781bae60918599901aff
-  qot_dal: e3a53b00b3d01f3514b2de2c7d89337badf1a1ad
+  qot_dal: 5ccc08decfd751cc8bd6e11f8143dd3cc6141b30
   R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
-  Realm: 77fcb4e0b9f2963ea06f584749a0d7dc9cab95e1
-  RealmSwift: 6abe6aa6cd8b70cc1a87afcb9232cabea74ff1ac
+  Realm: 1ef421d4581513400ad4f8bd39c8157f3266c62e
+  RealmSwift: f80216fb8334b01ccf526e4f2dd5ff0da61863a2
   RSKImageCropper: 1ac71e9a82e3f41eea3eedfff8eacb0d3821c9ec
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87

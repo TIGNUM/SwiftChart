@@ -309,6 +309,9 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_section_load_number_ref = AppTextKey("daily_brief.section_impact_readiness.section_load.number_ref")
     static let daily_brief_section_impact_readiness_section_sleep_quantity_new_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.new_title")
     static let daily_brief_section_impact_readiness_title = AppTextKey("daily_brief.section_impact_readiness.title")
+
+    static let daily_brief_section_impact_readiness_calculate_title = AppTextKey("daily_brief.section_impact_readiness.calculate_title")
+    static let daily_brief_section_impact_readiness_completed_title = AppTextKey("daily_brief.section_impact_readiness.completed_title")
     static let daily_brief_section_leader_wisdom_body = AppTextKey("daily_brief.section_leader_wisdom.body")
     static let daily_brief_section_leader_wisdom_title_new = AppTextKey("daily_brief.section_leader_wisdom.title_new")
     static let daily_brief_section_expert_thoughts_title_new = AppTextKey("daily_brief.section_expert_thoughts.title_new")
@@ -344,6 +347,7 @@ public extension AppTextKey {
     static let daily_brief_section_level_5_button_saved = AppTextKey("daily_brief.section_level_5.button_saved")
     static let daily_brief_section_my_stats_body_missing_data = AppTextKey("daily_brief.section_my_stats.body_missing_data")
     static let daily_brief_section_my_stats_title_new = AppTextKey("daily_brief.section_my_stats.title_new")
+    static let daily_brief_section_my_stats_subtitle = AppTextKey("daily_brief.section_my_stats.subtitle")
     static let daily_brief_section_on_the_road_alert_copyright_body = AppTextKey("daily_brief.section_on_the_road.alert_copyright.body")
     static let daily_brief_section_on_the_road_title = AppTextKey("daily_brief.section_on_the_road.title")
     static let daily_brief_section_products_we_love_alert_copyright_body = AppTextKey("daily_brief.section_products_we_love.alert_copyright.body")
@@ -1034,6 +1038,13 @@ public extension AppTextKey {
     static let onboarding_walkthrough_search_section_body_body = AppTextKey("onboarding.walkthrough.search.section_body.body")
     static let onboarding_walkthrough_my_qot_section_body_body = AppTextKey("onboarding.walkthrough.my_qot.section_body.body")
     static let onboarding_walkthrough_coach_section_body_body = AppTextKey("onboarding.walkthrough.coach.section_body.body")
+    static let onboarding_walkthrough_know_section_body_body = AppTextKey("onboarding.walkthrough.know.section_body.body")
+
+    static let onboarding_walkthrough_know_title = AppTextKey("onboarding.walkthrough.know.title")
+    static let onboarding_walkthrough_tools_title = AppTextKey("onboarding.walkthrough.tools.title")
+    static let onboarding_walkthrough_search_title = AppTextKey("onboarding.walkthrough.search.title")
+    static let onboarding_walkthrough_myx_title = AppTextKey("onboarding.walkthrough.myx.title")
+
     static let my_qot_my_sprints_null_state_button_add_sprint = AppTextKey("my_qot.my_sprints.null_state.button_add_sprint")
     static let generic_alert_no_email_body = AppTextKey("generic.alert.no_email.body")
     static let onboarding_guided_track_section_footer_button_get_started = AppTextKey("onboarding.guided_track.section_footer.button_get_started")
@@ -1139,7 +1150,7 @@ public extension AppTextKey {
     static let chatbot_prepare_start_strategyTitle = AppTextKey("chatbot_prepare_start.strategy.title")
     static let chatbot_prepare_start_strategies = AppTextKey("chatbot_prepare_start.strategy.content")
     static let chatbot_prepare_start_selectionTitle = AppTextKey("chatbot_prepare_start.selection.title")
-    static let chatbot_prepare_start_critical_button = AppTextKey("chatbot_prepare_start.button.critical")
+    static let chatbot_prepare_start_critical_button = AppTextKey("chatbot_prepare.start.critical_button")
     static let chatbot_prepare_start_daily_button = AppTextKey("chatbot_prepare_start.button.daily")
 
     // MARK: - Event Selection

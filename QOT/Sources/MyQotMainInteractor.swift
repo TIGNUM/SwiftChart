@@ -25,7 +25,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
     internal var subtitles = [String: String?]() // [MyX.Item.rawValue: subtitle string]
     internal var isCellEnabled = [String: Bool]() // [MyX.Item.rawValue: cell enabled]
     internal var settingTitle: String = ""
-    internal var newLibraryItemCount: Int = 0
+    internal var newLibraryItemCount: Int = .zero
     internal var tbvTitle: String = ""
     internal var teamTBVPoll: QDMTeamToBeVisionPoll?
     internal var teamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
@@ -55,7 +55,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
             dispatchGroup.leave()
         }
 
-        var tmpNewLibraryItemCount = 0
+        var tmpNewLibraryItemCount: Int = .zero
         var tmpToBeVisionTitle = ""
         var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
         var tmpTeamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
@@ -180,7 +180,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                             (AppTextService.get(.my_x_team_create_subheader), false) :
                             (AppTextService.get(.my_x_team_create_max_team_sutitle), false)
         case .library:
-            return (self.subtitles[MyX.Item.library.rawValue] ?? nil, self.newLibraryItemCount != 0)
+            return (self.subtitles[MyX.Item.library.rawValue] ?? nil, self.newLibraryItemCount != .zero)
         case .toBeVision:
             return (self.subtitles[MyX.Item.toBeVision.rawValue] ?? nil, teamTBVPoll?.showBatch == true ||
                         (teamTBVPoll?.open == true && teamTBVPoll?.userDidVote == false) ||

@@ -22,6 +22,6 @@ extension QDMSprintNotificationsSchedule {
         let minute = Int(stringComponents.last ?? "") else {
             return nil
         }
-        return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: inputDate)
+        return Calendar.current.date(bySettingHour: hour, minute: minute, second: .zero, of: inputDate)
     }
 }

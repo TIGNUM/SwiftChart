@@ -104,10 +104,10 @@ extension UINavigationController {
 
     func dismissAllPresentedViewControllers(_ root: UIViewController,
                                             _ animated: Bool,
-                                            _ index: Int = 0,
+                                            _ index: Int = .zero,
                                             completion: @escaping (() -> Void)) {
         let newCompletion: (() -> Void) = {
-            if index == 0 { // if there is nothing presented.
+            if index == .zero { // if there is nothing presented.
                 DispatchQueue.main.async {
                     completion()
                 }
@@ -118,7 +118,7 @@ extension UINavigationController {
         if let currentPresentedViewController = root.presentedViewController {
             dismissAllPresentedViewControllers(currentPresentedViewController, animated, index + 1, completion: newCompletion)
         } else {
-            if index == 0 { // if there is nothing presented.
+            if index == .zero { // if there is nothing presented.
                 DispatchQueue.main.async {
                     completion()
                 }

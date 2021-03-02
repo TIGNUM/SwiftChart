@@ -40,9 +40,12 @@ extension ExistingPreparationTableViewCell: UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         let preparation = preparations.at(index: indexPath.row)
         let title = preparation?.name ?? preparation?.eventType
         cell.configure(title: title, dateString: Prepare.prepareDateString(preparation?.createdAt))
+        cell.selectedBackgroundView = backgroundView
         return cell
     }
 

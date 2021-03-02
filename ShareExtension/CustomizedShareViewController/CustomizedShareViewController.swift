@@ -131,7 +131,7 @@ private extension CustomizedShareViewController{
         UIView.setAnimationsEnabled(false)
         tableView.beginUpdates()
         tableView.separatorStyle = .none
-        tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+        tableView.reloadSections(IndexSet(integer: .zero), with: .fade)
         tableView.endUpdates()
         UIView.setAnimationsEnabled(true)
     }
@@ -250,7 +250,7 @@ private extension CustomizedShareViewController{
     func handleString(_ teamQotIds: [String?], _ string: String) {
         if let url = URL(string: string) {
             handleURL(teamQotIds, url)
-        } else if let urls = urls(from: string), urls.count > 0 {
+        } else if let urls = urls(from: string), urls.count > .zero {
             let sorted = urls.filter { $0.absoluteString.contains("@") == false }
                 .sorted { $0.absoluteString.count >  $1.absoluteString.count }
             if let url = sorted.first {

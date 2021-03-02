@@ -16,7 +16,11 @@ final class DTTBVRouter: DTRouter {
     // MARK: - DTRouter
     override func dismiss() {
         viewController?.dismiss(animated: true) { [weak self] in
-            self?.delegate?.scrollToTop(true)
+            if let delegate = self?.delegate {
+                delegate.scrollToTop(true)
+            } else {
+                self?.showTBV()
+            }
         }
     }
 }

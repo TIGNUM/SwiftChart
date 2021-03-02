@@ -24,9 +24,9 @@ struct DailyCheckInLocalNotificationConfig: Codable {
     var bodyStrings: [String]?
 
     init(weekday: Int) {
-        version = 0
+        version = .zero
         hour = 5
-        minute = 0
+        minute = .zero
         self.weekday = weekday
         soundName = nil
         titleKey = "generic.local_notification.daily_check_in.default_title"

@@ -84,7 +84,7 @@ class DTViewController: BaseViewController,
     // MARK: - Actions
 
     @IBAction func didTapPrevious() {
-        constraintBottom.constant = 0
+        constraintBottom.constant = .zero
         self.view.layoutIfNeeded()
         trackQuestionInteraction(.PREVIOUS)
         if interactor.loadPreviousQuestion(selectedIds: interactor.getSelectedIds()) == false {
@@ -231,7 +231,7 @@ class DTViewController: BaseViewController,
 
     func didSwitchSingleSelectedAnswer(_ answer: DTViewModel.Answer) {
         let selectedAnswer = viewModel?.selectedAnswers.filter { $0.selected }.first
-        NotificationCenter.default.post(name: .didSwitchSingleSelection, object: selectedAnswer?.remoteId ?? 0)
+        NotificationCenter.default.post(name: .didSwitchSingleSelection, object: selectedAnswer?.remoteId ?? .zero)
         viewModel?.resetSelectedAnswers()
     }
 
@@ -329,8 +329,8 @@ extension DTViewController {
     }
 
     private func constraintToZero(_ duration: Double) {
-        if constraintBottom.constant == 0 { return }
-        constraintBottom.constant = 0
+        if constraintBottom.constant == .zero { return }
+        constraintBottom.constant = .zero
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
@@ -352,7 +352,7 @@ extension DTViewController {
             return false
         }
         let offset = viewController.contentOffset()
-        return previousButton.isHidden == false && offset.y == 0
+        return previousButton.isHidden == false && offset.y == .zero
     }
 
     @objc func didSwipeDown(_ recognizer: UIGestureRecognizer) {

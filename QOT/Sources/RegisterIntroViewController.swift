@@ -40,7 +40,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         cell?.delegate = self
         return cell ?? RegisterIntroMediaTableViewCell()
     }()
-    private var lastPlayTime: CMTime = CMTime.init(seconds: 0, preferredTimescale: .zero)
+    private var lastPlayTime: CMTime = CMTime.init(seconds: .zero, preferredTimescale: .zero)
     private var fullscreenPlayerViewController: AVPlayerViewController?
     private var expanded = false
 
@@ -179,7 +179,7 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return indexPath.row == 0 ? videoCell : getNoteCell()
+        return indexPath.row == .zero ? videoCell : getNoteCell()
     }
 }
 
@@ -188,7 +188,7 @@ extension RegisterIntroViewController: RegisterIntroNoteTableViewCellDelegate {
         trackUserEvent(.READ_MORE, action: .TAP)
         expanded = true
         tableView.reloadRows(at: [IndexPath(row: RegisterIntroCellTypes.NoteCell.rawValue,
-                                           section: 0)],
+                                           section: .zero)],
                              with: .fade)
     }
 }

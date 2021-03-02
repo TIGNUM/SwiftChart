@@ -51,8 +51,8 @@ extension AnimatedAnswerTableViewCell {
         attributedString.addAttribute(.foregroundColor, value: textColor, range: range)
         answerLabel.attributedText = attributedString
 
-        if animateTextDuration > 0 {
-            let dots = DotsLoadingView(frame: CGRect(x: 24, y: 0, width: 20, height: .TypingFooter))
+        if animateTextDuration > .zero {
+            let dots = DotsLoadingView(frame: CGRect(x: 24, y: .zero, width: 20, height: .TypingFooter))
             dots.configure(dotsColor: textColor)
             dots.translatesAutoresizingMaskIntoConstraints = false
             addSubview(dots)

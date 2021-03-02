@@ -36,7 +36,7 @@ final class MyLibraryUserStorageInteractor {
         return [ButtonParameters(title: worker.removeTitle,
                                  target: self,
                                  action: #selector(removeItemsTapped),
-                                 isEnabled: !(identifiersForCheck.count == 0)),
+                                 isEnabled: !(identifiersForCheck.count == .zero)),
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
     }
     private lazy var removeButtons: [UIBarButtonItem] = {
@@ -98,7 +98,7 @@ final class MyLibraryUserStorageInteractor {
                 strongSelf.presenter.presentData()
             }
             strongSelf.items?.removeAll()
-            if !initiated || items.count == 0 {
+            if !initiated || items.count == .zero{
                 strongSelf.presenter.presentData()
                 strongSelf.showEmptyAlert()
             } else {
@@ -166,7 +166,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     var teamId: Int? {
-        return team?.remoteID == 0 ? nil : team?.remoteID
+        return team?.remoteID == .zero ? nil : team?.remoteID
     }
 
     func didTapEdit(isEditing: Bool) {
@@ -185,9 +185,9 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         let media = MediaPlayerModel(title: item.title,
                                      subtitle: "",
                                      url: item.mediaURL,
-                                     totalDuration: 0,
-                                     progress: 0,
-                                     currentTime: 0,
+                                     totalDuration: .zero,
+                                     progress: .zero,
+                                     currentTime: .zero,
                                      mediaRemoteId: item.remoteId)
         notificationCenter.post(name: .playPauseAudio, object: media)
     }
@@ -328,7 +328,7 @@ extension MyLibraryUserStorageInteractor {
             return true
         case .DOWNLOAD:
             return handleDownload(item: item)
-        case .BOOKMARK, .UNKOWN:
+        case .BOOKMARK, .UNKNOWN:
             return false
         }
     }

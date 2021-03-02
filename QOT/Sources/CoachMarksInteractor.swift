@@ -16,7 +16,7 @@ final class CoachMarksInteractor {
     private let presenter: CoachMarksPresenterInterface
     private let router: CoachMarksRouterInterface
     private var contentCategory: QDMContentCategory?
-    var currentPage: Int = 0
+    var currentPage: Int = .zero
     // MARK: - Init
     init(presenter: CoachMarksPresenterInterface, router: CoachMarksRouterInterface) {
         self.presenter = presenter

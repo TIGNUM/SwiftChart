@@ -79,7 +79,7 @@ extension ToolsItemsInteractor {
         self.isMediaPlaying = true
         if let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool)
-            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: .zero))
         }
     }
 
@@ -90,7 +90,7 @@ extension ToolsItemsInteractor {
         self.isMediaPlaying = false
         if let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool)
-            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: .zero))
         }
     }
 
@@ -102,7 +102,7 @@ extension ToolsItemsInteractor {
         self.isMediaPlaying = false
         if let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool)
-            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: .zero))
         }
     }
 }

@@ -13,12 +13,12 @@ final class ChoiceWorker {
 
     enum ChoiceType: String {
         case CHOICE
-        case UNKOWN
+        case UNKNOWN
     }
 
     // MARK: - Properties
     private var dataSource = [CollapsableNode]()
-    private var _maxSelectionCount: Int = 0
+    private var _maxSelectionCount: Int = .zero
     let selectedIds: [Int]
     let relatedId: Int
     let choiceType: ChoiceType
@@ -71,11 +71,11 @@ extension ChoiceWorker {
     }
 
     func rowHeight(at indexPath: IndexPath) -> CGFloat {
-        return (indexPath.row == 0) ? .ParentNode : .Default
+        return (indexPath.row == .zero) ? .ParentNode : .Default
     }
 
     func isParentNode(atIndexPath indexPath: IndexPath) -> Bool {
-        return indexPath.row == 0 // first row in section is always a node
+        return indexPath.row == .zero // first row in section is always a node
     }
 
     func setIsOpen(_ isOpen: Bool, in section: Int) {
@@ -113,28 +113,28 @@ private extension ChoiceWorker {
             .filter { $0.categoryIDs.first == category.remoteID }
             .map { (content: QDMContentCollection) -> Choice in
                 return Choice(categoryName: category.title,
-                              contentId: content.remoteID ?? 0,
-                              contentItemId: 0,
+                              contentId: content.remoteID ?? .zero,
+                              contentItemId: .zero,
                               title: content.title,
                               readingTime: content.durationString,
                               isDefault: false,
                               isSuggested: false,
-                              selected: selectedIds.contains(content.remoteID ?? 0))
+                              selected: selectedIds.contains(content.remoteID ?? .zero))
         }
 
         let relatedContentItemIds = relatedContentItems?.compactMap { $0.remoteID } ?? []
         let childrenContentItems = (relatedContentItemsCollection ?? []).filter { $0.categoryIDs.first == category.remoteID }
             .flatMap { $0.contentItems }
-            .filter { relatedContentItemIds.contains($0.remoteID ?? 0) }
+            .filter { relatedContentItemIds.contains($0.remoteID ?? .zero) }
             .map { (contentItem: QDMContentItem) -> Choice in
                 return Choice(categoryName: category.title,
-                              contentId: 0,
-                              contentItemId: contentItem.remoteID ?? 0,
+                              contentId: .zero,
+                              contentItemId: contentItem.remoteID ?? .zero,
                               title: contentItem.valueText,
                               readingTime: contentItem.durationString,
                               isDefault: false,
                               isSuggested: false,
-                              selected: selectedIds.contains(contentItem.remoteID ?? 0))
+                              selected: selectedIds.contains(contentItem.remoteID ?? .zero))
         }
 
         return childrenContent + childrenContentItems
@@ -153,7 +153,7 @@ private extension ChoiceWorker {
                     return
                 }
 
-                strongSelf._maxSelectionCount = (relatedContents?.count ?? 0) + (relatedContentItems?.count ?? 0)
+                strongSelf._maxSelectionCount = (relatedContents?.count ?? .zero) + (relatedContentItems?.count ?? .zero)
                 worker.getCategories(relatedContents, relatedContentItems) { (categories) in
                     categories?.forEach { (category) in
                         let children = strongSelf.getChildren(category: category,

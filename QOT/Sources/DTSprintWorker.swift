@@ -113,7 +113,7 @@ private extension DTSprintWorker {
     func createSprint(_ targetContentId: Int, completion: @escaping (QDMSprint?) -> Void) {
         ContentService.main.getContentCollectionById(targetContentId) { (content) in
             var model = CreateSprintModel()
-            model.sprintContentId = content?.remoteID ?? 0
+            model.sprintContentId = content?.remoteID ?? .zero
             model.relatedContentIds = content?.relatedContentCollectionIDs ?? [Int]()
             model.title = content?.contentItems.filter { $0.format == .header1 }.first?.valueText ?? ""
             model.subTitle = content?.contentItems.filter { $0.format == .subtitle }.first?.valueText ?? ""

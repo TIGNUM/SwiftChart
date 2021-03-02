@@ -44,7 +44,7 @@ struct Article {
 
         init(type: ContentItemValue) {
             self.type = type
-            remoteID = 0
+            remoteID = .zero
             content = ""
             format = ""
             bundledAudioURL = nil
@@ -54,7 +54,7 @@ struct Article {
         init(type: ContentItemValue, content: String) {
             self.type = type
             self.content = content
-            remoteID = 0
+            remoteID = .zero
             format = ""
             bundledAudioURL = nil
             thumbnailURL = nil

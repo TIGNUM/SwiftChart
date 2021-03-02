@@ -16,8 +16,8 @@ final class DTSprintInteractor: DTInteractor {
     private var activeSprint: QDMSprint?
     private var newSprintContentId: Int?
     private var lastSprintQuestionId: Int?
-    private var selectedSprintContentId: Int = 0
-    private var selectedSprintTargetQuestionId: Int = 0
+    private var selectedSprintContentId: Int = .zero
+    private var selectedSprintTargetQuestionId: Int = .zero
     private var lastQuestionSelection: DTSelectionModel?
     private var selectedSprintTitle = ""
 
@@ -36,8 +36,8 @@ final class DTSprintInteractor: DTInteractor {
                                  content: QDMContentCollection?) -> String? {
         let firstSelectedAnswer = selectedAnswers.first
         if firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
-            selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? 0
-            selectedSprintTargetQuestionId = firstSelectedAnswer?.targetId(.question) ?? 0
+            selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? .zero
+            selectedSprintTargetQuestionId = firstSelectedAnswer?.targetId(.question) ?? .zero
             selectedSprintTitle = firstSelectedAnswer?.title ?? ""
             var result = ""
             if questionKey == Sprint.QuestionKey.Schedule {
@@ -60,7 +60,7 @@ final class DTSprintInteractor: DTInteractor {
     override func loadNextQuestion(selection: DTSelectionModel) {
         selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
         if selection.question?.key == Sprint.QuestionKey.Selection {
-            let contentId = selection.selectedAnswers.first?.decisions.filter { $0.targetType == TargetType.content }.first?.targetTypeId ?? 0
+            let contentId = selection.selectedAnswers.first?.decisions.filter { $0.targetType == TargetType.content }.first?.targetTypeId ?? .zero
             sprintWorker?.getContent(contentId: contentId, completion: { [weak self] (content) in
                 if let presentationModel = self?.createPresentationModel(selection: selection,
                                                                          questions: self?.questions ?? [],
@@ -105,7 +105,7 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
                 let message = String(format: updatedMessageFormat ?? "", dateString, self?.selectedSprintTitle ?? "")
                 self?.presenter?.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
             } else {
-                self?.sprintWorker?.startSprintTomorrow(selectedSprintContentId: self?.selectedSprintContentId ?? 0, completion: { [weak self] (sprint) in
+                self?.sprintWorker?.startSprintTomorrow(selectedSprintContentId: self?.selectedSprintContentId ?? .zero, completion: { [weak self] (sprint) in
                     self?.activeSprint = sprint
                 })
                 if let selection = self?.lastQuestionSelection {

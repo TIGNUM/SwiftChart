@@ -26,7 +26,7 @@ final class MyToBeVisionRateWorker: WorkerTeam {
     }
 
     init(trackerPoll: QDMTeamToBeVisionTrackerPoll?, team: QDMTeam?) {
-        self.visionId = 0
+        self.visionId = .zero
         self.team = team
         self.trackerPoll = trackerPoll
     }
@@ -137,7 +137,7 @@ private extension MyToBeVisionRateWorker {
             }
             self?.trackerPoll = poll
             var questionnaire: [RatingQuestionViewModel.Question] = []
-            trackers.sorted { $0.sortOrder ?? 0 > $1.sortOrder ?? 0 }.forEach { (track) in
+            trackers.sorted { $0.sortOrder ?? .zero > $1.sortOrder ?? .zero }.forEach { (track) in
                 guard let remoteID = track.remoteID else { return }
                 let sentence = track.sentence
                 let range = 10

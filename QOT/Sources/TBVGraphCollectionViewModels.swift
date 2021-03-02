@@ -76,7 +76,7 @@ struct TBVGraph {
         var index: Int {
             switch self {
             case .first,
-                 .firstCompanion: return 0
+                 .firstCompanion: return .zero
             case .second,
                  .secondCompanion: return 1
             case .third,

@@ -26,7 +26,7 @@ final class ToBeVisionSelectionBar: UIView {
     private var spacing: CGFloat = -15
     private let buttonSize: CGFloat = 40
     private var arrayViews: [Weak<UIView>] = []
-    private var arrayViewsCount = 0
+    private var arrayViewsCount: Int = .zero
     private var labelTitle = UILabel()
     private var buttonMore: AnimatedButton = AnimatedButton(type: .custom)
     private var buttonEdit: AnimatedButton = AnimatedButton(type: .custom)
@@ -141,8 +141,8 @@ private extension ToBeVisionSelectionBar {
 extension ToBeVisionSelectionBar {
     func configure(isOwner: Bool?, isPersonal: Bool?, _ delegate: ToBeVisionSelectionBarProtocol) {
         self.delegate = delegate
-        if arrayViewsCount > 0 {
-            arrayViewsCount = 0
+        if arrayViewsCount > .zero {
+            arrayViewsCount = .zero
             arrayViews = []
         }
         let title = isPersonal == true ? AppTextService.get(.my_qot_my_tbv_section_header_title) :  AppTextService.get(.my_x_section_team_tbv_title)

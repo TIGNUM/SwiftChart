@@ -49,7 +49,7 @@ extension QDMContentCollection {
         return contentItems.reduce(0, { (sum, item) -> Int in
             switch item.format {
             case .video, .audio, .image, .pdf: return sum
-            default: return sum + Int(item.valueDuration ?? 0)
+            default: return sum + Int(item.valueDuration ?? .zero)
             }
         }) / 60
     }

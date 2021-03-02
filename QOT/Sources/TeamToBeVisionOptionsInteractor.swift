@@ -21,8 +21,8 @@ final class TeamToBeVisionOptionsInteractor: WorkerTeam {
 
     private lazy var remainingDays: Int = {
         switch type {
-        case .rating: return trackerPoll?.remainingDays ?? 0
-        case .voting: return toBeVisionPoll?.remainingDays ?? 0
+        case .rating: return trackerPoll?.remainingDays ?? .zero
+        case .voting: return toBeVisionPoll?.remainingDays ?? .zero
         }
     }()
 

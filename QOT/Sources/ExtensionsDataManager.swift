@@ -98,8 +98,8 @@ private extension ExtensionsDataManager {
                                                         eventName: preparation.eventTitle!,
                                                         startDate: preparation.eventDate ?? Date(),
                                                         endDate: Date(),
-                                                        numberOfTasks: 0,
-                                                        tasksCompleted: 0) }
+                                                        numberOfTasks: .zero,
+                                                        tasksCompleted: .zero) }
             ExtensionUserDefaults.set(events, for: .upcomingEvents)
 
         }

@@ -19,7 +19,7 @@ final class TBVDataGraphBarNextDurationViewCell: UICollectionViewCell, Dequeueab
             let degrees: Double = -90 //the value in degrees
             durationlabel.transform = CGAffineTransform(rotationAngle: CGFloat(degrees * .pi/180))
             durationlabel.translatesAutoresizingMaskIntoConstraints = true
-            durationlabel.frame = CGRect(origin: CGPoint(x: 0, y: durationlabel.frame.origin.y), size: durationlabel.frame.size)
+            durationlabel.frame = CGRect(origin: CGPoint(x: .zero, y: durationlabel.frame.origin.y), size: durationlabel.frame.size)
             self.layoutIfNeeded()
         }
     }

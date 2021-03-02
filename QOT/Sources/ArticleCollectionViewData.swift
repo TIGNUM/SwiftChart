@@ -25,6 +25,6 @@ struct ArticleCollectionViewData: Codable {
 
     let items: [Item]
     var isReady: Bool {
-        return items.count > 0
+        return items.count > .zero
     }
 }

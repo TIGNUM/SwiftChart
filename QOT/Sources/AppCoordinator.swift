@@ -264,7 +264,7 @@ extension AppCoordinator {
                 return
         }
 
-        self.setRootViewController(naviController, transitionStyle: .curveEaseIn, duration: 0, animated: false) {
+        self.setRootViewController(naviController, transitionStyle: .curveEaseIn, duration: .zero, animated: false) {
             baseRootViewController.setContent(viewController: signinInfoController)
         }
     }
@@ -421,7 +421,7 @@ extension AppCoordinator {
             return
         }
         UserService.main.getUserPreparationsWithMissingEvent(from: Date.beginingOfDay(), { (preps, _, _) in
-            guard let preparations = preps, preparations.count > 0 else { return }
+            guard let preparations = preps, preparations.count > .zero else { return }
             log("preps with missing events : \(preparations)", level: .debug)
             let configurator = PreparationWithMissingEventConfigurator.make(preparations)
             let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
@@ -440,7 +440,7 @@ extension AppCoordinator {
                                                       articleDate: latest.publishedDate ?? Date(),
                                                       sortOrder: "0",
                                                       previewImageURL: URL(string: latest.thumbnailURLString  ?? ""),
-                                                      contentCollectionID: latest.remoteID ?? 0,
+                                                      contentCollectionID: latest.remoteID ?? .zero,
                                                       newArticle: true,
                                                       shareableLink: latest.shareableLink)
             ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
@@ -451,8 +451,8 @@ extension AppCoordinator {
         MyDataService.main.getDailyCheckInResults(from: Date().beginingOfDate(), to: nil, { (results, initiated, error) in
             guard error == nil, initiated == true, let result = results?.first else { return }
 
-            let data = ExtensionModel.DailyPrep(loadValue: Float(result.load ?? 0),
-                                                recoveryValue: Float(result.impactReadiness ?? 0),
+            let data = ExtensionModel.DailyPrep(loadValue: Float(result.load ?? .zero),
+                                                recoveryValue: Float(result.impactReadiness ?? .zero),
                                                 feedback: result.feedback, displayDate: Date())
             ExtensionUserDefaults.set(data, for: .dailyPrep)
         })

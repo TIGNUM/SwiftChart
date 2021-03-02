@@ -52,7 +52,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var removeTitle: String = {
-        return AppTextService.get(.generic_view_button_delete)
+        return AppTextService.get(.generic_alert_view_button_remove)
     }()
 
     lazy var continueTitle: String = {
@@ -209,13 +209,13 @@ extension MyLibraryUserStorageWorker {
 
     func loadData(in team: QDMTeam?,
                   _ completion: @escaping (_ initiated: Bool, [QDMUserStorage], [QDMTeamNewsFeed]?) -> Void) {
-        var storageType: UserStorageType = .UNKOWN
+        var storageType: UserStorageType = .UNKNOWN
         switch item.type {
         case .BOOKMARK: storageType = .BOOKMARK
         case .DOWNLOAD: storageType = .DOWNLOAD
         case .EXTERNAL_LINK: storageType = .EXTERNAL_LINK
         case .NOTE: storageType = .NOTE
-        case .ALL: storageType = .UNKOWN
+        case .ALL: storageType = .UNKNOWN
         }
 
         if item.type != .ALL {
@@ -283,7 +283,7 @@ extension MyLibraryUserStorageWorker {
     private func handleStorages(_ storages: [QDMUserStorage]?) {
         let unsortedStorages: [QDMUserStorage] = storages ?? []
         self.storages = unsortedStorages.sorted(by: {
-            ($0.createdAt?.timeIntervalSinceReferenceDate ?? 0) > ($1.createdAt?.timeIntervalSinceReferenceDate ?? 0) })
+            ($0.createdAt?.timeIntervalSinceReferenceDate ?? .zero) > ($1.createdAt?.timeIntervalSinceReferenceDate ?? .zero) })
     }
 
     func deleteFor(identifiers: [String], _ update: ((_ identifier: String, _ error: Error?) -> Void)?) {

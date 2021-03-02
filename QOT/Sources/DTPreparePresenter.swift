@@ -36,13 +36,13 @@ final class DTPreparePresenter: DTPresenter {
         if intensionViewModel != nil && presentationModel.question?.key == Prepare.Key.benefits.rawValue {
             let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
             button?.configure(title: AppTextService.get(.coach_prepare_calendar_not_sync_section_footer_button_save),
-                              minSelection: 0,
+                              minSelection: .zero,
                               isDark: isDark)
             return button
         }
         if intensionViewModel != nil && presentationModel.question?.key != Prepare.Key.benefits.rawValue {
             let navigationButton = super.getNavigationButton(presentationModel, isDark: isDark)
-            let count = intensionViewModel?.answers.filter { $0.selected }.count ?? 0
+            let count = intensionViewModel?.answers.filter { $0.selected }.count ?? .zero
             navigationButton?.update(count: count)
             return navigationButton
         }
@@ -50,16 +50,7 @@ final class DTPreparePresenter: DTPresenter {
     }
 
     override func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [QDMAnswer] {
-        guard var filter = answerFilter else { return question?.answers ?? [] }
-        // TODO: https://tignum.atlassian.net/browse/QOT-2850 - Update Survey Answer Keys
-        if filter == "x_prepare_event_type_relationship_meeting_with_conflicts" {
-            filter = "x_prepare_event_type_relationship_meeting_with_conflict"
-        }
-
-        if filter == "x_prepare_event_type_relationship_pay_raise" {
-            filter = "x_prepare_event_type_relationship_negotiation_pay_raise"
-        }
-
+        guard let filter = answerFilter else { return question?.answers ?? [] }
         if question?.key == Prepare.QuestionKey.BuildCritical {
             var answers: [QDMAnswer] = []
             let newPalnAnswer = question?.answers.filter { $0.remoteID == 102479 }.first
