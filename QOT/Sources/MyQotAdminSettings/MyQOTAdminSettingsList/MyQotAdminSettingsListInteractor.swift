@@ -32,18 +32,6 @@ extension MyQotAdminSettingsListInteractor: MyQotAdminSettingsListInteractorInte
         return "ADMIN SETTINGS"
     }
 
-    func getTitleForEnvironmentSettings() -> String {
-        return "Environment settings"
-    }
-
-    func getSubtitleForEnvironmentSettings() -> String {
-        var environment = "PRODUCTION"
-        if NetworkRequestManager.main.getCurrentEnvironment() == .development {
-            environment = "STAGING"
-        }
-        return environment
-    }
-
     func getTitleForLocalNotifications() -> String {
         return "Local notifications"
     }

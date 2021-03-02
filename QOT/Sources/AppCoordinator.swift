@@ -109,7 +109,7 @@ final class AppCoordinator {
     }
 
     func checkVersionIfNeeded() {
-        //guard services?.userService.user()?.appUpdatePrompt == true else { return }
+        // guard services?.userService.user()?.appUpdatePrompt == true else { return }
         // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
     }
 
