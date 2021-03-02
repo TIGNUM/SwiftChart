@@ -16,7 +16,6 @@ final class NotificationSettingsViewController: BaseWithTableViewController, Scr
     private lazy var router: NotificationSettingsRouterInterface = NotificationSettingsRouter(viewController: self)
     @IBOutlet private weak var headerView: UIView!
     private var baseHeaderView: QOTBaseHeaderView?
-//    @IBOutlet private weak var tableView: UITableView!
     private var notificationModel = NotificationSettingsModel()
 
     // MARK: - Init
@@ -47,7 +46,6 @@ final class NotificationSettingsViewController: BaseWithTableViewController, Scr
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        TRACK
         trackPage()
     }
 

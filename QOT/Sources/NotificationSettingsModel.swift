@@ -32,7 +32,7 @@ struct NotificationSettingsModel {
         return Setting.allSettings.at(index: indexPath.row) ?? .dailyReminders
     }
 
-    private func title(for item: Setting) -> String {
+    func title(for item: Setting) -> String {
         switch item {
         case .dailyReminders:
             return AppTextService.get(.notification_settings_daily_title)
@@ -47,7 +47,7 @@ struct NotificationSettingsModel {
         }
     }
 
-    private func subtitle(for item: Setting) -> String {
+    func subtitle(for item: Setting) -> String {
         switch item {
         case .dailyReminders:
             return AppTextService.get(.notification_settings_daily_subtitle)
