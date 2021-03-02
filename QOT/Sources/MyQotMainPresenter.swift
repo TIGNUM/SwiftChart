@@ -50,7 +50,7 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
                 if identifiers.contains(prefix) {
                     indexPathsToUpdate.append(indexPath)
                     handledPrefixes.append(prefix)
-                    newIndexPathsForUpdatedItems.append(IndexPath(item: identifiers.firstIndex(of: prefix) ?? 0, section: 2))
+                    newIndexPathsForUpdatedItems.append(IndexPath(item: identifiers.firstIndex(of: prefix) ?? .zero, section: 2))
                 } else {
                     indexPathsToRemove.append(indexPath)
                 }

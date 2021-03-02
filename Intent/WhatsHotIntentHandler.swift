@@ -22,10 +22,10 @@ final class WhatsHotIntentHandler: NSObject, WhatsHotIntentHandling {
         if let articles: ArticleCollectionViewData = ExtensionUserDefaults.object(for: .siri, key: .whatsHot) {
             let unReadArticles = articles.items.filter { $0.newArticle == true }
             if unReadArticles.count == 1 {
-                let articleID = unReadArticles[0].contentCollectionID.description
+                let articleID = unReadArticles[.zero].contentCollectionID.description
                 let userActivity = NSUserActivity.activity(for: .whatsHotArticle, arguments: [articleID])
-                let author = unReadArticles[0].author.displayableAuthor()
-                let title = unReadArticles[0].description
+                let author = unReadArticles[.zero].author.displayableAuthor()
+                let title = unReadArticles[.zero].description
                 let response = WhatsHotIntentResponse.successOneArticle(firstArticleAuthor: author,
                                                                         firstArticleTitle: title)
                 response.firstArticleImageURL = unReadArticles.first?.previewImageURL
@@ -34,16 +34,16 @@ final class WhatsHotIntentHandler: NSObject, WhatsHotIntentHandling {
                 completion(response)
             } else if unReadArticles.count > 1 {
                 let userActivity = NSUserActivity.activity(for: .whatsHotArticlesList)
-                let firstAuthor = unReadArticles[0].author.displayableAuthor()
-                let firstTitle = unReadArticles[0].description
+                let firstAuthor = unReadArticles[.zero].author.displayableAuthor()
+                let firstTitle = unReadArticles[.zero].description
                 let secondAuthor = unReadArticles[1].author.displayableAuthor()
                 let secondTitle = unReadArticles[1].description
                 let response = WhatsHotIntentResponse.successTwoArticles(firstArticleAuthor: firstAuthor,
                                                                          firstArticleTitle: firstTitle,
                                                                          secondArticleAuthor: secondAuthor,
                                                                          secondArticleTitle: secondTitle)
-                response.firstArticleImageURL = unReadArticles[0].previewImageURL
-                response.firstArticleDuration = unReadArticles[0].duration
+                response.firstArticleImageURL = unReadArticles[.zero].previewImageURL
+                response.firstArticleDuration = unReadArticles[.zero].duration
                 response.secondArticleDuration = unReadArticles[1].duration
                 response.secondArticleImageURL = unReadArticles[1].previewImageURL
                 response.userActivity = userActivity

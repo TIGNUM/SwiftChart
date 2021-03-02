@@ -118,7 +118,7 @@ final class WeatherCell: BaseDailyBriefCell {
     // MARK: Helpers
     private func formatTemperature(value: Double?, shortStyle: Bool = true) -> String? {
         if let numberValue = numberFormatter.number(from: numberFormatter.string(for: value) ?? "") as? Double {
-            formatter.numberFormatter.maximumFractionDigits = 0
+            formatter.numberFormatter.maximumFractionDigits = .zero
             formatter.unitStyle = shortStyle ? .short : .medium
             let measurement = Measurement(value: numberValue, unit: UnitTemperature.celsius)
 
@@ -143,7 +143,7 @@ final class WeatherCell: BaseDailyBriefCell {
                     let temperature = formatTemperature(value: forecastModel.currentTempInCelcius) else {
                     return
             }
-            if index == 0 {
+            if index == .zero {
                 hourlyView.set(time: AppTextService.get(.daily_brief_section_weather_label_now),
                                temperature: temperature,
                                isNow: true)

@@ -68,9 +68,9 @@ extension TeamMemberTableViewCell {
                        initialSpringVelocity: 0.5,
                        options: .allowAnimatedContent,
                        animations: {
-                        self.demoView.frame.origin = CGPoint(x: demoOrigin.x - 180, y: 0)
-                        self.demoRemoveView.frame.origin = CGPoint(x: demoRemoveOrigin.x - 80, y: 0)
-                        self.demoInviteView.frame.origin = CGPoint(x: demoInviteOrigin.x - 180, y: 0)
+                        self.demoView.frame.origin = CGPoint(x: demoOrigin.x - 180, y: .zero)
+                        self.demoRemoveView.frame.origin = CGPoint(x: demoRemoveOrigin.x - 80, y: .zero)
+                        self.demoInviteView.frame.origin = CGPoint(x: demoInviteOrigin.x - 180, y: .zero)
                        }, completion: { _ in })
 
         UIView.animate(withDuration: 0.8,
@@ -79,9 +79,9 @@ extension TeamMemberTableViewCell {
                        initialSpringVelocity: 0.8,
                        options: .allowAnimatedContent,
                        animations: {
-                        self.demoView.frame.origin = CGPoint(x: demoOrigin.x, y: 0)
-                        self.demoRemoveView.frame.origin = CGPoint(x: demoRemoveOrigin.x, y: 0)
-                        self.demoInviteView.frame.origin = CGPoint(x: demoInviteOrigin.x, y: 0)
+                        self.demoView.frame.origin = CGPoint(x: demoOrigin.x, y: .zero)
+                        self.demoRemoveView.frame.origin = CGPoint(x: demoRemoveOrigin.x, y: .zero)
+                        self.demoInviteView.frame.origin = CGPoint(x: demoInviteOrigin.x, y: .zero)
                        }, completion: { _ in
                         self.demoView.removeFromSuperview()
                         self.demoInviteView.removeFromSuperview()

@@ -123,7 +123,7 @@ extension VisionRatingExplanationViewController {
     }
 
     @objc func videoTapped(_ sender: UITapGestureRecognizer) {
-        if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(videoID ?? 0)) {
+        if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(videoID ?? .zero)) {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
         }
     }
@@ -241,7 +241,7 @@ private extension VisionRatingExplanationViewController {
 
     func showLoadingDots() {
         guard let loadingDotsContainer = loadingDotsContainer, loadingDots == nil else { return }
-        let dots = DotsLoadingView(with: CGRect(x: 0, y: 0, width: .LoadingDots, height: .LoadingDots),
+        let dots = DotsLoadingView(with: CGRect(x: .zero, y: .zero, width: .LoadingDots, height: .LoadingDots),
                                    parentView: loadingDotsContainer,
                                    dotsColor: .lightGrey)
         loadingDots = dots

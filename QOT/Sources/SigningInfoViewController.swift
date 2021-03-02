@@ -33,6 +33,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
     init() {
         if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension), let player = player {
             let playerItem = AVPlayerItem(url: media)
+            _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
             playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
         } else {
             playerLooper = nil
@@ -85,7 +86,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
         timer?.invalidate()
 
         UIView.animate(withDuration: Animation.duration_03) {
-            self.view.alpha = 0
+            self.view.alpha = .zero
             self.titleLabel.alpha = 0.0
         }
     }

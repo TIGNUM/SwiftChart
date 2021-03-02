@@ -347,7 +347,7 @@ final class UserNotificationsManager {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         MyDataService.main.getDailyCheckInResults(from: beginningOfToday, to: Date.endOfDay()) { (results, _, _) in
-            removeAll = (results?.filter({$0.date.beginingOfDate() == beginningOfToday}).count ?? 0) > 0
+            removeAll = (results?.filter({$0.date.beginingOfDate() == beginningOfToday}).count ?? .zero) > .zero
             dispatchGroup.leave()
         }
 

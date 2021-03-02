@@ -53,7 +53,7 @@ final class ExternalLinkImporter {
     func importLink() {
         guard SessionService.main.getCurrentSession() != nil,
             let externalLinks: [ShareExtentionData] = ExtensionUserDefaults.object(for: .share, key: .saveLink),
-            externalLinks.count > 0 else {
+            externalLinks.count > .zero else {
                 updateLinkTitleAndThumbnail()
                 return
         }

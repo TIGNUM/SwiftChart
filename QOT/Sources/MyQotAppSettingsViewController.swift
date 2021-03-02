@@ -64,7 +64,7 @@ extension MyQotAppSettingsViewController: MyQotAppSettingsViewControllerInterfac
         ThemeView.level3.apply(view)
         settingsModel = settings
         baseHeaderView?.configure(title: interactor?.appSettingsText, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
     }
 }
 

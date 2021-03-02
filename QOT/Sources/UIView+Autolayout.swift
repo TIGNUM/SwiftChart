@@ -20,28 +20,28 @@ extension UIView {
                            toItem: self,
                            attribute: .centerX,
                            multiplier: 1,
-                           constant: 0).isActive = true
+                           constant: .zero).isActive = true
         NSLayoutConstraint(item: subview,
                            attribute: .centerY,
                            relatedBy: .equal,
                            toItem: self,
                            attribute: .centerY,
                            multiplier: 1,
-                           constant: 0).isActive = true
+                           constant: .zero).isActive = true
         NSLayoutConstraint(item: subview,
                            attribute: .width,
                            relatedBy: .equal,
                            toItem: self,
                            attribute: .width,
                            multiplier: 1,
-                           constant: 0).isActive = true
+                           constant: .zero).isActive = true
         NSLayoutConstraint(item: subview,
                            attribute: .height,
                            relatedBy: .equal,
                            toItem: self,
                            attribute: .height,
                            multiplier: 1,
-                           constant: 0).isActive = true
+                           constant: .zero).isActive = true
     }
 
     func addConstraints(to superView: UIView) {

@@ -48,7 +48,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
 
         ThemeButton.editButton.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -64,7 +64,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         if let teamId = interactor?.teamId {
             pageTrack.associatedValueId = teamId
@@ -120,7 +120,7 @@ private extension MyLibraryUserStorageViewController {
             infoAlertView?.present(on: self.view)
         }
         infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
-        infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
+        infoAlertView?.topInset = model.isFullscreen ? .zero : headerViewHeightConstraint.constant
         infoAlertView?.bottomInset = BottomNavigationContainer.height
         infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }
@@ -164,21 +164,21 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         ThemeButton.carbonButton.apply(addButton)
         addButton.setTitle(" " + interactor.addTitle)
         // (interactor.items == nil) means, need to show skeleton
-        tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? 0) == 0
+        tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? .zero) == .zero
     }
 
     func update() {
         let isEditing = interactor.isEditing
         ThemeText.myLibraryItemsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
         baseHeaderView?.configure(title: interactor.title.lowercased().capitalizingFirstLetter(), subtitle: interactor.subtitle)
-        headerViewHeightConstraint.constant = (baseHeaderView?.calculateHeight(for: view.frame.size.width) ?? 0) + 10
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        headerViewHeightConstraint.constant = (baseHeaderView?.calculateHeight(for: view.frame.size.width) ?? .zero) + 10
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = .zero
         editButtonWidthConstraint.constant = interactor.showEditButton ? 40.0 : 0.0
         setEditButton(enabled: interactor.canEdit)
         addButton.isHidden = isEditing
 
         // (interactor.items == nil) means, need to show skeleton
-        tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? 0) == 0
+        tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? .zero) == .zero
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = isEditing
         tableView.setEditing(isEditing, animated: true)
@@ -191,7 +191,7 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         }
         if isEditing, let items = interactor.items {
             for (index, item) in items.enumerated() where interactor.getIdentifiersForCheckedItems().contains(item.identifier) {
-                let indexPath = IndexPath(row: index, section: 0)
+                let indexPath = IndexPath(row: index, section: .zero)
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
         }
@@ -223,15 +223,17 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let items = interactor.items, items.count > 0,
+        guard let items = interactor.items, items.count > .zero,
             let item = interactor.items?[indexPath.row] else {
-                return UITableViewCell()
+            let cell = UITableViewCell()
+            cell.backgroundColor = .black
+                return cell
         }
         return LibraryTableViewCellFactory.cellForStorageItem(tableView, indexPath, item)
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if let items = interactor.items, items.count > 0,
+        if let items = interactor.items, items.count > .zero,
             let item = interactor.items?[indexPath.row] {
             return item.removable
         }

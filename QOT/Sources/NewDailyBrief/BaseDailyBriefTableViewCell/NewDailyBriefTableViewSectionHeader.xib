@@ -22,8 +22,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="483" height="156"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXL-ig-Irk">
-                        <rect key="frame" x="24" y="114" width="435" height="42"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXL-ig-Irk">
+                        <rect key="frame" x="24" y="115" width="435" height="41"/>
                         <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="40"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                     <constraint firstAttribute="trailing" secondItem="AXL-ig-Irk" secondAttribute="trailing" constant="24" id="D0M-KJ-yhT"/>
                     <constraint firstItem="AXL-ig-Irk" firstAttribute="leading" secondItem="XdP-AA-oCt" secondAttribute="leading" constant="24" id="EWq-nc-xIb"/>
                     <constraint firstAttribute="bottom" secondItem="AXL-ig-Irk" secondAttribute="bottom" id="ftU-wc-ISn"/>
-                    <constraint firstItem="AXL-ig-Irk" firstAttribute="top" secondItem="XdP-AA-oCt" secondAttribute="top" constant="114" id="qMC-WM-W99"/>
+                    <constraint firstItem="AXL-ig-Irk" firstAttribute="top" secondItem="XdP-AA-oCt" secondAttribute="top" constant="30" id="qMC-WM-W99"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

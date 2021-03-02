@@ -19,7 +19,7 @@ enum QuestionKey {
         case Prepare.BenefitsInput:
             return 100
         default:
-            return 0
+            return .zero
         }
     }
 

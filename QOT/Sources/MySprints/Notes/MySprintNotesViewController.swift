@@ -76,7 +76,7 @@ private extension MySprintNotesViewController {
     }
 
     private func keyboardToolbar() -> UIToolbar {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
+        let toolbar = UIToolbar(frame: CGRect(x: .zero, y: .zero, width: 100, height: 80))
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
 

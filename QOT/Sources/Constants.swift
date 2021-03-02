@@ -130,7 +130,7 @@ struct Layout {
     static let multiplier_150: CGFloat = 1.50
 
     struct TabBarView {
-        static let insets = UIEdgeInsets(top: height, left: 0, bottom: 0, right: 0)
+        static let insets = UIEdgeInsets(top: height, left: 0, bottom: 0, right: .zero)
         static let height: CGFloat = 49
         static let animationDuration: TimeInterval = 0.3
     }

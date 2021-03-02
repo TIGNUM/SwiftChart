@@ -269,7 +269,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     }
 
     func setupView() {
-        scrollView.alpha = 0
+        scrollView.alpha = .zero
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}",
@@ -277,7 +277,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
         ThemeText.tbvSectionHeader.apply(title, to: toBeVisionLabel)
         userImageView.image = R.image.teamTBVPlaceholder()
 
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: Layout.padding_50, right: .zero)
         scrollView.scrollsToTop = true
         ThemableButton.poll.apply(pollButton, key: .my_x_team_tbv_section_poll_button)
         ThemableButton.poll.apply(trackerButton, key: .my_x_team_tbv_section_rating_button)
@@ -298,7 +298,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             teamNullStateImageView.gradientBackground(top: false)
             return
         }
-        if scrollView.alpha == 0 {
+        if scrollView.alpha == .zero {
             UIView.animate(withDuration: Animation.duration_04) {
                 self.scrollView.alpha = 1
             }
@@ -358,14 +358,14 @@ extension TeamToBeVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         if self.lastContentOffset > offsetY {
-            if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 400 {
+            if navigationBarViewTopMarginConstraint.constant < .zero && scrollView.contentOffset.y > 400 {
                 showNavigationBarView()
             }
-            if offsetY < 0 {
+            if offsetY < .zero {
                 hideNavigationBarView()
             }
         } else {
-            if navigationBarViewTopMarginConstraint.constant == 0 {
+            if navigationBarViewTopMarginConstraint.constant == .zero {
                 hideNavigationBarView()
             }
         }
@@ -429,7 +429,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 log("cta.state: undefined", level: .debug)
             }
         } catch {
-            log("StateError.unkown: \(error.localizedDescription)", level: .debug)
+            log("StateError.unknown: \(error.localizedDescription)", level: .debug)
         }
     }
 
@@ -458,7 +458,7 @@ extension TeamToBeVisionViewController: ImagePickerControllerDelegate {
                 log("cta.state: undefined", level: .debug)
             }
         } catch {
-            log("StateError.unkown: \(error.localizedDescription)", level: .debug)
+            log("StateError.unknown: \(error.localizedDescription)", level: .debug)
         }
     }
 }

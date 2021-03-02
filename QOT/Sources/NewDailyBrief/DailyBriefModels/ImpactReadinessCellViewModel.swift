@@ -42,8 +42,11 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         self.readinessIntro = readinessIntro
         self.isCalculating = isCalculating
         self.hasError = hasError
+        let calculateTitle = AppTextService.get(.daily_brief_section_impact_readiness_calculate_title)
+        let completedTitle = AppTextService.get(.daily_brief_section_impact_readiness_completed_title)
+        let caption = feedback?.isEmpty == true ? calculateTitle : completedTitle
         let body = feedback?.isEmpty ?? true ? readinessIntro : feedback
-        super.init(domainModel, caption: title, title: title, body: body, image: image)
+        super.init(domainModel, caption: caption, title: caption, body: body, image: image)
         self.attributedTitle = ImpactReadinessCellViewModel.createAttributedImpactReadinessTitle(for: self.readinessScore,
                                                                                                  impactReadinessNoDataTitle: title)
     }
@@ -66,7 +69,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
             return NSAttributedString.init(string: impactReadinessNoDataTitle ?? "", attributes: firstAttributes)
         }
 
-        let impactReadinessAttrString = NSMutableAttributedString(string: "\(readinessScore ?? 0)", attributes: firstAttributes)
+        let impactReadinessAttrString = NSMutableAttributedString(string: "\(readinessScore ?? .zero)", attributes: firstAttributes)
         let outOfAttrString = NSAttributedString(string: " out of 100", attributes: secondAttributes)
 
         impactReadinessAttrString.append(outOfAttrString)

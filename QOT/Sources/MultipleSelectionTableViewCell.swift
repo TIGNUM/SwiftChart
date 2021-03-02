@@ -25,8 +25,8 @@ class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable, MultipleSele
     private let layout = ChatViewLayout()
     private var selectedAnswers: [DTViewModel.Answer] = []
     var answers: [DTViewModel.Answer] = []
-    var maxPossibleSelections = 0
-    var selectionCounter = 0
+    var maxPossibleSelections: Int = .zero
+    var selectionCounter: Int = .zero
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -113,7 +113,7 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        return UIEdgeInsets(top: .zero, left: .zero, bottom: 16, right: .zero)
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, sizeForHeaderAt section: Int) -> CGSize? {
@@ -134,7 +134,7 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, snapToTopOffsetInSection section: Int) -> CGFloat? {
-        return 0
+        return .zero
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, updateContentSize: CGSize) {

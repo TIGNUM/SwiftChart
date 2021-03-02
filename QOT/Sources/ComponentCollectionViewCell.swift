@@ -22,7 +22,7 @@ class ComponentCollectionViewCell: UICollectionViewCell, Dequeueable {
 
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
-        layer.shadowOffset = .init(width: 0, height: 4)
+        layer.shadowOffset = .init(width: .zero, height: 4)
         layer.shadowRadius = 12
     }
 
@@ -49,18 +49,18 @@ class ComponentCollectionViewCell: UICollectionViewCell, Dequeueable {
         let animationOptions: UIView.AnimationOptions = [.allowUserInteraction]
         if isHighlighted {
             UIView.animate(withDuration: 0.5,
-                           delay: 0,
+                           delay: .zero,
                            usingSpringWithDamping: 1,
-                           initialSpringVelocity: 0,
+                           initialSpringVelocity: .zero,
                            options: animationOptions, animations: {
                             self.transform = .init(scaleX: 0.96,
                                                         y: 0.96)
             }, completion: completion)
         } else {
             UIView.animate(withDuration: 0.5,
-                           delay: 0,
+                           delay: .zero,
                            usingSpringWithDamping: 1,
-                           initialSpringVelocity: 0,
+                           initialSpringVelocity: .zero,
                            options: animationOptions, animations: {
                             self.transform = .identity
             }, completion: completion)

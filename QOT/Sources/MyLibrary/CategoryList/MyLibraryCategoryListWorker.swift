@@ -50,7 +50,7 @@ final class MyLibraryCategoryListWorker {
             var userStorages = [MyLibraryCategoryListModel]()
             let removedDuplications = isTeam ? storages ?? [] : self.removeDuplicates(from: storages ?? [])
             let sorted = removedDuplications.sorted(by: { (first, second) -> Bool in
-                first.modifiedAt?.timeIntervalSince1970 ?? 0 > second.modifiedAt?.timeIntervalSince1970 ?? 0
+                first.modifiedAt?.timeIntervalSince1970 ?? .zero > second.modifiedAt?.timeIntervalSince1970 ?? .zero
             })
 
             let bookmarks = sorted.compactMap { $0.userStorageType == .BOOKMARK ? $0 : nil }
@@ -58,14 +58,14 @@ final class MyLibraryCategoryListWorker {
             let notes = sorted.compactMap { $0.userStorageType == .NOTE ? $0 : nil }
             let links = sorted.compactMap { $0.userStorageType == .EXTERNAL_LINK ? $0 : nil }
 
-            var newBookmarkCount = 0, newNoteCount = 0, newLinkCount = 0, downloadCount = 0
+            var newBookmarkCount: Int = .zero, newNoteCount: Int = .zero, newLinkCount: Int = .zero, downloadCount: Int = .zero
             if isTeam {
-                newBookmarkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .BOOKMARK }).count ?? 0
-                newNoteCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .NOTE }).count ?? 0
-                newLinkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .EXTERNAL_LINK }).count ?? 0
+                newBookmarkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .BOOKMARK }).count ?? .zero
+                newNoteCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .NOTE }).count ?? .zero
+                newLinkCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .EXTERNAL_LINK }).count ?? .zero
             }
             if !isTeam {
-                downloadCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .DOWNLOAD }).count ?? 0
+                downloadCount = newItemFeeds?.filter({ $0.teamStorage?.userStorageType == .DOWNLOAD }).count ?? .zero
             }
 
             let allCounts = newBookmarkCount + newNoteCount + newLinkCount + downloadCount
@@ -84,7 +84,7 @@ final class MyLibraryCategoryListWorker {
                 let title = AppTextService.get(.my_qot_my_library_section_downloads_title)
                 userStorages.append(self.viewModelWith(title: title, items: downloads,
                                                        icon: R.image.ic_download(), type: .DOWNLOAD,
-                                                       newItemCount: 0))
+                                                       newItemCount: .zero))
             }
             userStorages.append(self.viewModelWith(title: AppTextService.get(.my_qot_my_library_section_links_title),
                                                    items: links,
@@ -106,7 +106,7 @@ final class MyLibraryCategoryListWorker {
                        type: MyLibraryCategoryType,
                        newItemCount: Int) -> MyLibraryCategoryListModel {
         return MyLibraryCategoryListModel(title: title,
-                                          itemCount: items?.count ?? 0,
+                                          itemCount: items?.count ?? .zero,
                                           lastUpdated: items?.first?.modifiedAt,
                                           icon: icon,
                                           type: type,
@@ -116,8 +116,14 @@ final class MyLibraryCategoryListWorker {
     private func removeDuplicates(from results: [QDMUserStorage]) -> [QDMUserStorage] {
         var tempResults = [QDMUserStorage]()
         for result in results {
-            if tempResults.contains(obj: result) == false {
-                tempResults.append(result)
+            if result.userStorageType == .NOTE {
+                if tempResults.contains(where: { $0.qotId == result.qotId }) == false {
+                    tempResults.append(result)
+                }
+            } else {
+                if tempResults.contains(obj: result) == false {
+                    tempResults.append(result)
+                }
             }
         }
         return tempResults

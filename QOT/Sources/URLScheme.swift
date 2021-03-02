@@ -103,6 +103,9 @@ enum URLScheme: String {
     case profile = "profile" // accountSetting
     case siriSettings = "siri-settings" // siriShortcuts
     case teamInvitations = "team-invitations" // open pending team invites
+    case generateToBeVision = "generate-tobevision"
+    case myBookmarks = "my-bookmarks"
+    case myDownloads = "my-downloads"
 
     var queryNames: [String] {
         switch self {
@@ -189,7 +192,7 @@ enum URLScheme: String {
         guard let urlSchemes = URLScheme.urlSchemes() else { return "tignumx://" }
         var urlString = "\(urlSchemes[0])://\(self.rawValue)"
         let queryNamesCount = queryNames.count
-        if queryNamesCount > 0 {
+        if queryNamesCount > .zero {
             urlString = "\(urlSchemes[0])://\(self.rawValue)?"
             for (index, queryName) in queryNames.enumerated() {
                 urlString.append("\(queryName)=\(value)")

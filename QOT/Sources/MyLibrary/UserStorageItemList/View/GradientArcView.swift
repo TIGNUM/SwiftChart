@@ -33,7 +33,7 @@ class GradientArcView: UIView {
     }
 
     /// Where the arc should end, measured in degrees, where 0 = "3 o'clock".
-    @IBInspectable var endAngle: CGFloat = 0 {
+    @IBInspectable var endAngle: CGFloat = .zero {
         didSet {
             setNeedsDisplay(self.bounds)
         }

@@ -70,7 +70,7 @@ extension CalendarEventSelectionViewController: CalendarEventSelectionViewContro
         tableView.registerDequeueable(PrepareEventTableViewCell.self)
         ThemeText.Text01LightCarbon100.apply(AppTextService.get(.event_selection_empty), to: emptyEventsLabel)
         NewThemeView.light.apply(tableView)
-        tableView.isHidden = interactor.rowCount == 0
+        tableView.isHidden = interactor.rowCount == .zero
         tableView.contentInset.top = 64
         tableView.contentInset.bottom = 40
         tableView.estimatedSectionHeaderHeight = 100
@@ -84,7 +84,7 @@ extension CalendarEventSelectionViewController: CalendarEventSelectionViewContro
     }
 
     func showLoadingDots() {
-        let dots = DotsLoadingView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+        let dots = DotsLoadingView(frame: CGRect(x: .zero, y: .zero, width: 28, height: 28))
         dots.configure(dotsColor: .carbon60)
         dots.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(dots)

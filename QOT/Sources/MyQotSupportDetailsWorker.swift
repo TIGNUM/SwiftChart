@@ -46,14 +46,14 @@ extension MyQotSupportDetailsWorker {
     func trackingID(at indexPath: IndexPath) -> Int {
         let content = item(at: indexPath)
         let contentItem = content.contentItems.filter { $0.format == .header3 }.first
-        return contentItem?.remoteID ?? 0
+        return contentItem?.remoteID ?? .zero
     }
 
     func title(at indexPath: IndexPath) -> String {
         let content = item(at: indexPath)
         let contentItem = content.contentItems.filter { $0.format == .header3 }.first
         let text = contentItem?.valueText ?? content.title
-        return text.uppercased()
+        return text
     }
 
     var headerText: String {

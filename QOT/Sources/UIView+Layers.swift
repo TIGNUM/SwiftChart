@@ -42,7 +42,7 @@ extension UIView {
 extension UIView {
     func gradientBackground(top: Bool) {
         guard let image = top ? R.image.topGradient() : R.image.bottomGradient() else { return }
-        let imageView = UIImageView(frame: CGRect(x: 0, y: top ? 0 : bounds.height - image.size.height, width: bounds.width, height: image.size.height))
+        let imageView = UIImageView(frame: CGRect(x: .zero, y: top ? .zero : bounds.height - image.size.height, width: bounds.width, height: image.size.height))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = image
         imageView.contentMode = .scaleAspectFill

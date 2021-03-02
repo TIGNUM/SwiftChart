@@ -35,7 +35,9 @@ extension QDMContentCollection {
             let total = String(Int(durations.reduce(0) { ($0/60) + ($1/60) }))
             return AppTextService.get(.generic_content_section_item_new_label_video).replacingOccurrences(of: "${AMOUNT}", with: total)
         } else if hasAudioItems == true {
-
+            let durations = contentItems.compactMap { $0.valueDuration }
+            let total = String(Int(durations.reduce(0) { ($0/60) + ($1/60) }))
+            return AppTextService.get(.generic_content_section_item_new_label_audio).replacingOccurrences(of: "${AMOUNT}", with: total)
         } else if isFoundation == true {
             let videoItem = contentItems.filter { $0.format == ContentFormat.video }.first
             return videoItem?.durationString ?? ""
@@ -47,7 +49,7 @@ extension QDMContentCollection {
         return contentItems.reduce(0, { (sum, item) -> Int in
             switch item.format {
             case .video, .audio, .image, .pdf: return sum
-            default: return sum + Int(item.valueDuration ?? 0)
+            default: return sum + Int(item.valueDuration ?? .zero)
             }
         }) / 60
     }

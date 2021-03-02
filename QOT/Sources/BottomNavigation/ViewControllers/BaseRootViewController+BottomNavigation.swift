@@ -51,7 +51,7 @@ extension BaseRootViewController {
     }
 
     @objc func hideBottomNavigationBar(_ notification: Notification) {
-        self.bottomNavigationContainer.alpha = 0
+        self.bottomNavigationContainer.alpha = .zero
         bottomNavigationUpdateTimer?.invalidate()
         bottomNavigationUpdateTimer = nil
     }
@@ -86,8 +86,8 @@ extension BaseRootViewController {
             self?.setupBottomNavigationContainer()
             var needToUpdate = false
             let currentNavigationItem = self?.currentBottomNavigationItem()
-            if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems.count ?? 0 ||
-                navigationItem.rightBarButtonItems.count != currentNavigationItem?.rightBarButtonItems.count ?? 0 {
+            if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems.count ?? .zero ||
+                navigationItem.rightBarButtonItems.count != currentNavigationItem?.rightBarButtonItems.count ?? .zero {
                     needToUpdate = true
             }
 
@@ -143,7 +143,7 @@ extension BaseRootViewController {
         // update play button
         UIView.animate(withDuration: 0.25, animations: {
             self.audioPlayerContainer.alpha = 1
-            self.bottomNavigationBar.alpha = 0
+            self.bottomNavigationBar.alpha = .zero
         }, completion: { [weak self] (_) in
             self?.audioPlayerContainer.isUserInteractionEnabled = true
         })
@@ -154,7 +154,7 @@ extension BaseRootViewController {
     @objc func didStopAudio(_ notification: Notification) {
         self.audioPlayerContainer.isUserInteractionEnabled = false
         UIView.animate(withDuration: 0.25, animations: { [weak self] in
-            self?.audioPlayerContainer.alpha = 0
+            self?.audioPlayerContainer.alpha = .zero
             self?.bottomNavigationBar.alpha = 1
         }, completion: { (_) in
 

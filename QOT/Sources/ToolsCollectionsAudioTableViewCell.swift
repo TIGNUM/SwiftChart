@@ -20,9 +20,9 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var labelIcon: UIImageView!
     private var mediaURL: URL?
     private var title: String?
-    private var remoteID: Int = 0
+    private var remoteID: Int = .zero
     private var categoryTitle = ""
-    private var duration: Double = 0
+    private var duration: Double = .zero
     weak var delegate: IsPlayingDelegate?
     @IBOutlet weak var audioLabelView: AudioButton!
 
@@ -71,7 +71,7 @@ extension ToolsCollectionsAudioTableViewCell {
         let media = MediaPlayerModel(title: title ?? "",
                                      subtitle: categoryTitle,
                                      url: mediaURL,
-                                     totalDuration: duration, progress: 0, currentTime: 0, mediaRemoteId: remoteID)
+                                     totalDuration: duration, progress: .zero, currentTime: .zero, mediaRemoteId: remoteID)
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 

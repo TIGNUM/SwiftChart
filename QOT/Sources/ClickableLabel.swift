@@ -62,7 +62,7 @@ final class ClickableLabel: UILabel, UIGestureRecognizerDelegate {
     // MARK: UIGestureRecognizerDelegate
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return links.count > 0
+        return links.count > .zero
     }
 }
 

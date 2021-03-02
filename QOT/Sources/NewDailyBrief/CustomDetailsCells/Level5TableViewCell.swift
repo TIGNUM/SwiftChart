@@ -31,7 +31,7 @@ class Level5TableViewCell: BaseDailyBriefCell {
     var levelMessages: [Level5ViewModel.LevelDetail] = []
     weak var delegate: BaseDailyBriefDetailsViewControllerInterface?
     var savedAnswer: Int?
-    var tmpAnswer: Int = 0
+    var tmpAnswer: Int = .zero
     var confirmationMessage: String?
     var model: Level5ViewModel?
 
@@ -68,11 +68,11 @@ class Level5TableViewCell: BaseDailyBriefCell {
         }
         savedAnswer = nil
         if let selectedValue = model?.domainModel?.latestGetToLevel5Value {
-            tmpAnswer = max(selectedValue, 0)
+            tmpAnswer = max(selectedValue, .zero)
         }
         if let currentAnswer = model?.domainModel?.currentGetToLevel5Value {
-            savedAnswer = max(currentAnswer, 0)
-            tmpAnswer = max(currentAnswer, 0)
+            savedAnswer = max(currentAnswer, .zero)
+            tmpAnswer = max(currentAnswer, .zero)
         }
         updateButtonStatus()
         initialSetup()
@@ -86,7 +86,7 @@ class Level5TableViewCell: BaseDailyBriefCell {
 
     //    when the bucket is loaded set level 1 as default
     func initialSetup() {
-        questionLabel.text = tmpAnswer != 0 ?  "" : model?.question
+        questionLabel.text = tmpAnswer != .zero ?  "" : model?.question
         updateUI(levelMessages.at(index: tmpAnswer)?.levelContent)
         setButtonBackgroundColor()
         setProgress()
@@ -108,7 +108,7 @@ class Level5TableViewCell: BaseDailyBriefCell {
     }
 
     @IBAction func didPressLevel(_ sender: UIButton) {
-        tmpAnswer = tmpAnswer == sender.tag ? 0 : sender.tag
+        tmpAnswer = tmpAnswer == sender.tag ? .zero : sender.tag
         updateButtonStatus()
         initialSetup()
         if let level5Model = model {

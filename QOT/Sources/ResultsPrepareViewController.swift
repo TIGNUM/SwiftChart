@@ -88,7 +88,7 @@ private extension ResultsPrepareViewController {
         }
         let cell: ResultsPrepareQuestionTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: title,
-                       firstItem: answers.at(index: 0)?.subtitle,
+                       firstItem: answers.at(index: .zero)?.subtitle,
                        secondItem: answers.at(index: 1)?.subtitle,
                        thirdItem: answers.at(index: 2)?.subtitle)
         cell.selectedBackgroundView = backgroundView
@@ -205,11 +205,11 @@ extension ResultsPrepareViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return .zero
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
+        return .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -318,9 +318,9 @@ extension ResultsPrepareViewController: ChoiceViewControllerDelegate {
     }
 
     func didTapRow(_ viewController: UIViewController, contentId: Int, contentItemId: Int) {
-        if contentId != 0 {
+        if contentId != .zero {
             router.didSelectStrategy(contentId)
-        } else if contentItemId != 0 {
+        } else if contentItemId != .zero {
             router.didSelectStrategyItem(contentItemId)
         }
     }

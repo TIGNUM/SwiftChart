@@ -55,7 +55,7 @@ class MyLibraryCellViewModelConverter {
             viewModel = noteViewModel(from: item, creationInfo: team == nil ? nil : creationInfo)
         case .EXTERNAL_LINK:
             viewModel = linkViewModel(from: item, creationInfo: team == nil ? nil : creationInfo)
-        case .UNKOWN:
+        case .UNKNOWN:
             return nil
         }
         if let team = team {
@@ -98,10 +98,10 @@ class MyLibraryCellViewModelConverter {
                                            icon: mediaIcon(for: item),
                                            previewURL: URL(string: item.previewImageUrl ?? ""),
                                            type: item.userStorageType,
-                                           mediaType: item.mediaType ?? .UNKOWN,
+                                           mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: cellStatus,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model
@@ -120,10 +120,10 @@ class MyLibraryCellViewModelConverter {
                                       icon: R.image.ic_note(),
                                       previewURL: nil,
                                       type: item.userStorageType,
-                                      mediaType: item.mediaType ?? .UNKOWN,
+                                      mediaType: item.mediaType ?? .UNKNOWN,
                                       downloadStatus: .none,
                                       identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
+                                      remoteId: Int(item.contentId ?? "0") ?? .zero,
                                       mediaURL: URL(string: item.mediaPath() ?? ""))
     }
 
@@ -139,10 +139,10 @@ class MyLibraryCellViewModelConverter {
                                            icon: R.image.ic_link(),
                                            previewURL: URL(string: item.previewImageUrl ?? item.note ?? ""),
                                            type: item.userStorageType,
-                                           mediaType: item.mediaType ?? .UNKOWN,
+                                           mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: .none,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model
@@ -157,10 +157,10 @@ class MyLibraryCellViewModelConverter {
                                            icon: mediaIcon(for: item),
                                            previewURL: URL(string: item.previewImageUrl ?? ""),
                                            type: item.userStorageType,
-                                           mediaType: item.mediaType ?? .UNKOWN,
+                                           mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: .none,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model
@@ -168,23 +168,23 @@ class MyLibraryCellViewModelConverter {
 
     // MARK: Presentation helper methods
     private func mediaIcon(for item: QDMUserStorage) -> UIImage? {
-        switch item.mediaType ?? .UNKOWN {
+        switch item.mediaType ?? .UNKNOWN {
         case .VIDEO:
             return R.image.my_library_camera()
         case .AUDIO:
             return R.image.my_library_listen()
-        case .PDF, .UNKOWN:
+        case .PDF, .UNKNOWN:
             return R.image.my_library_read()
         }
     }
 
     private func mediaDuration(for item: QDMUserStorage) -> (full: String, simple: String) {
-        var durationMinute = (item.durationInSeconds ?? 0)/60
-        let durationSeconds = (item.durationInSeconds ?? 0)%60
+        var durationMinute = (item.durationInSeconds ?? .zero)/60
+        let durationSeconds = (item.durationInSeconds ?? .zero)%60
         let fullDuration = String(format: "%d:%02d", durationMinute, durationSeconds)
 
         var postfix = read
-        switch item.mediaType ?? .UNKOWN {
+        switch item.mediaType ?? .UNKNOWN {
         case .VIDEO:
             postfix = watch
         case .AUDIO:
@@ -196,9 +196,9 @@ class MyLibraryCellViewModelConverter {
         if durationSeconds > 30 {
             durationMinute += 1
         }
-        if  durationMinute > 0 {
+        if  durationMinute > .zero {
             simpleDuration = "\(durationMinute) min \(postfix)"
-        } else if durationSeconds > 0 {
+        } else if durationSeconds > .zero {
             simpleDuration = fullDuration
         }
 
@@ -209,7 +209,7 @@ class MyLibraryCellViewModelConverter {
         let cellType: MyLibraryCellViewModel.CellType
         switch item.contentType {
         case .CONTENT_ITEM:
-            switch item.mediaType ?? .UNKOWN {
+            switch item.mediaType ?? .UNKNOWN {
             case .VIDEO:
                 cellType = .VIDEO
             case .AUDIO:

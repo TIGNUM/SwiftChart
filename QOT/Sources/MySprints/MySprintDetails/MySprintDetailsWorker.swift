@@ -85,7 +85,7 @@ final class MySprintDetailsWorker {
 
     lazy var infoPauseSprintMessage: String = {
         let format = AppTextService.get(.my_qot_my_sprints_my_sprint_details_alert_pause_sprint_body)
-        return String(format: format, sprint?.maxDays ?? 0)
+        return String(format: format, sprint?.maxDays ?? .zero)
     }()
 
     lazy var buttonPauseSprint: String = {
@@ -149,7 +149,7 @@ extension MySprintDetailsWorker {
         // if it is completed sprint. Create new sprint with same content and start the created sprint.
         if sprint.completedAt != nil {
             var model = CreateSprintModel()
-            model.sprintContentId = sprint.contentCollectionId ?? 0
+            model.sprintContentId = sprint.contentCollectionId ?? .zero
             model.relatedContentIds = sprint.relatedContentIds
             model.title = sprint.title ?? ""
             model.subTitle = sprint.subtitle ?? ""

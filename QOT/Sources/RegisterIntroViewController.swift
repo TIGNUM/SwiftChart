@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 import qot_dal
 
 enum RegisterIntroCellTypes: Int, CaseIterable {
@@ -21,6 +23,8 @@ protocol RegisterIntroUserEventTrackDelegate: class {
     func didPauseVideo()
 }
 
+let videoURL = "https://d2gjspw5enfim.cloudfront.net/qot_web/tignum_x_video.mp4"
+
 final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
@@ -32,11 +36,12 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         let cell = R.nib.registerIntroMediaTableViewCell.firstView(owner: self)
         cell?.configure(title: AppTextService.get(.onboarding_register_intro_video_section_header_title),
                        body: AppTextService.get(.onboarding_register_intro_video_section_body),
-                       videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/tignum_x_video.mp4")
+                       videoURL: videoURL)
         cell?.delegate = self
         return cell ?? RegisterIntroMediaTableViewCell()
     }()
-
+    private var lastPlayTime: CMTime = CMTime.init(seconds: .zero, preferredTimescale: .zero)
+    private var fullscreenPlayerViewController: AVPlayerViewController?
     private var expanded = false
 
     // MARK: - Init
@@ -112,23 +117,33 @@ extension RegisterIntroViewController {
         DispatchQueue.main.async {
             if UIDevice.current.orientation.isLandscape {
                 self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .LANDSCAPE, action: .ROTATE)
-                self.videoCell.playerController.removeFromParent()
-                self.view.fill(subview: self.videoCell.playerController.view)
-                self.addChild(self.videoCell.playerController)
-                self.videoCell.playerController.showsPlaybackControls = true
-                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-                self.updateBottomNavigation([], [])
-                UIApplication.shared.statusBarView?.isHidden = true
+                self.videoCell.playerController.player?.pause()
+                if let lastTime = self.videoCell.playerController.player?.currentItem?.currentTime() {
+                    self.lastPlayTime = lastTime
+                }
+                self.presentFullscreenVideoPlayer()
             } else {
                 self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .PORTRAIT, action: .ROTATE)
                 UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
-                self.videoCell.playerController.removeFromParent()
-                self.videoCell.mediaContentView.fill(subview: self.videoCell.playerController.view)
-                self.videoCell.playerController.showsPlaybackControls = false
-                self.videoCell.soundToggleButton.isSelected = !(self.videoCell.playerController.player?.isMuted ?? true)
-                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-                self.refreshBottomNavigationItems()
-                UIApplication.shared.statusBarView?.isHidden = false
+                self.fullscreenPlayerViewController?.dismiss(animated: true) {}
+            }
+        }
+    }
+
+    func presentFullscreenVideoPlayer() {
+        if let url = URL.init(string: videoURL) {
+            let player = AVPlayer(url: url)
+            fullscreenPlayerViewController = AVPlayerViewController()
+            fullscreenPlayerViewController?.delegate = self
+            fullscreenPlayerViewController?.player = player
+            if let playerViewController = fullscreenPlayerViewController {
+                self.presentSwizzled(viewControllerToPresent: playerViewController, animated: true) { [weak self] in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.fullscreenPlayerViewController?.player?.seek(to: strongSelf.lastPlayTime)
+                    strongSelf.fullscreenPlayerViewController?.player?.play()
+                }
             }
         }
     }
@@ -164,7 +179,7 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return indexPath.row == 0 ? videoCell : getNoteCell()
+        return indexPath.row == .zero ? videoCell : getNoteCell()
     }
 }
 
@@ -173,7 +188,7 @@ extension RegisterIntroViewController: RegisterIntroNoteTableViewCellDelegate {
         trackUserEvent(.READ_MORE, action: .TAP)
         expanded = true
         tableView.reloadRows(at: [IndexPath(row: RegisterIntroCellTypes.NoteCell.rawValue,
-                                           section: 0)],
+                                           section: .zero)],
                              with: .fade)
     }
 }
@@ -194,5 +209,19 @@ extension RegisterIntroViewController: RegisterIntroUserEventTrackDelegate {
 
     func didUnMuteVideo() {
         trackUserEvent(.UNMUTE_VIDEO, action: .TAP)
+    }
+}
+
+extension RegisterIntroViewController: AVPlayerViewControllerDelegate {
+    func playerViewController(_ playerViewController: AVPlayerViewController, willEndFullScreenPresentationWithAnimationCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        if let lastTime = playerViewController.player?.currentItem?.currentTime() {
+            self.lastPlayTime = lastTime
+        }
+        self.videoCell.playerController.player?.seek(to: self.lastPlayTime)
+        self.videoCell.playerController.player?.play()
+        self.videoCell.playerController.showsPlaybackControls = false
+        self.videoCell.playerController.player?.isMuted = playerViewController.player?.isMuted ?? true
+        self.videoCell.soundToggleButton.isSelected = !(playerViewController.player?.isMuted ?? true)
     }
 }

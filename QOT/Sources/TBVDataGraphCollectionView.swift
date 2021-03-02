@@ -28,7 +28,7 @@ class TBVDataGraphCollectionView: UICollectionView {
     }
 
     private func getRating(_ date: Date) -> CGFloat {
-        return CGFloat(getAverage[date] ?? 0)
+        return CGFloat(getAverage[date] ?? .zero)
     }
 
     override func awakeFromNib() {

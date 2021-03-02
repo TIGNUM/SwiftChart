@@ -28,7 +28,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
 
     // MARK: - Properties
     var interactor: ToolsItemsInteractorInterface!
-    @IBOutlet weak var backButton: UIButton?
     private var lastAudioIndexPath: IndexPath?
 
     // MARK: - Init
@@ -54,9 +53,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if self == navigationController?.viewControllers.first {
-            backButton?.isHidden = true
-        }
         super.viewWillAppear(animated)
         setStatusBar(colorMode: .darkNot)
     }
@@ -68,7 +64,7 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_COLLECTION
         pageTrack.associatedValueId = interactor.selectedContentId()
@@ -83,26 +79,13 @@ private extension ToolsItemsViewController {
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 90
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-    }
-}
-
-// MARK: - Actions
-private extension ToolsItemsViewController {
-    @IBAction func backButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-
-    @IBAction func closeButton(_ sender: Any) {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
     }
 }
 
 // MARK: - ToolsItemsViewControllerInterface
 extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func setupView() {
-        ThemeTint.black.apply(backButton?.imageView ?? UIView.init())
         setupTableView()
     }
 
@@ -141,7 +124,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         switch tool.type {
         case ToolType.video.rawValue:
             let cell: ToolsCollectionsVideoTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(title: tool.title,
                            timeToWatch: tool.durationString,
                            imageURL: tool.imageURL)
@@ -151,7 +134,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case ToolType.audio.rawValue:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,
@@ -163,7 +146,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
             cell.configure(categoryTitle: tool.categoryTitle,
                            title: tool.title,
                            timeToWatch: tool.durationString,
@@ -187,8 +170,8 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                                          subtitle: "",
                                          url: tool.mediaURL,
                                          totalDuration: tool.duration,
-                                         progress: 0,
-                                         currentTime: 0,
+                                         progress: .zero,
+                                         currentTime: .zero,
                                          mediaRemoteId: tool.remoteID)
             NotificationCenter.default.post(name: .playPauseAudio, object: media)
             tableView.deselectRow(at: indexPath, animated: true)
@@ -216,7 +199,7 @@ extension ToolsItemsViewController {
     }
 
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
+        return [backNavigationItem()]
     }
 }
 
