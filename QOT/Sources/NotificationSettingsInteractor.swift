@@ -46,5 +46,4 @@ extension NotificationSettingsInteractor: NotificationSettingsInteractorInterfac
             break
         }
     }
-
 }

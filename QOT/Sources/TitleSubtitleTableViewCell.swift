@@ -6,8 +6,6 @@
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
-import UIKit
-
 class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -16,9 +14,9 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        let bkView = UIView()
-        bkView.backgroundColor = .tignumPink10
-        selectedBackgroundView = bkView
+        self.backgroundView = UIView(frame: self.bounds)
+        self.selectedBackgroundView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(selectedBackgroundView!)
     }
 
     func configure(title: String, themeCell: ThemeView = .level2) {
@@ -32,9 +30,9 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String, subtitle: String) {
-        ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
-        ThemeText.syncedCalendarRowSubtitle.apply(subtitle, to: subTitleLabel)
-    }
+           ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
+           ThemeText.syncedCalendarRowSubtitle.apply(subtitle, to: subTitleLabel)
+       }
 
     var hideArrow: Bool = false {
         willSet {

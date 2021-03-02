@@ -41,12 +41,13 @@ final class NotificationSettingCell: UITableViewCell, Dequeueable {
     @IBAction func didSwitch(_ sender: UISwitch) {
         guard let settingDelegate = settingDelegate, let indexPath = indexPath else { return }
         settingDelegate.collapseCell(self, didTapCollapseAt: indexPath)
-//        switchControl.isOn.toggle()
     }
 }
 
 // MARK: - Actions
 extension NotificationSettingCell {
+//  To impletment later
+//
 //    @IBAction func valueChanged(_ sender: UISwitch) {
 //        if let identifier = identifier {
 //            calendarSyncDelegate?.didChangeCalendarSyncValue(enabled: sender.isOn, identifier: identifier)
