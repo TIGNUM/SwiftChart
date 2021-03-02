@@ -23,6 +23,7 @@ protocol MyQotAppSettingsRouterInterface {
     func openCalendarSettings()
     func openActivityTrackerSettings()
     func openSiriSettings()
+    func askNotificationPermission()
     func openCalendarPermission(_ type: AskPermission.Kind, delegate: AskPermissionDelegate)
 }
 
