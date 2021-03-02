@@ -14,19 +14,11 @@ final class NotificationSettingsWorker {
     // MARK: - Init
     init() { /**/ }
 
-//    var notificationsTitle: String {
-//        return AppTextService.get(.notification_settings_header_title)
-//    }
-//
-//    var notificationsSubtitle: String {
-//        return AppTextService.get(.notification_settings_header_subtitle)
-//    }
-
     var notificationsTitle: String {
-        return "Notifications"
+        return AppTextService.get(.notification_settings_header_title)
     }
 
     var notificationsSubtitle: String {
-        return "Select the..."
+        return AppTextService.get(.notification_settings_header_subtitle)
     }
 }
