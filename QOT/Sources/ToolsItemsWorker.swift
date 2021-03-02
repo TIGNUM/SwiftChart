@@ -50,17 +50,17 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
         }
         ContentService.main.getContentCollectionById(contentCollectionId) { [weak self] (contentCollection) in
             self?.selectedTool = contentCollection
-            let count = contentCollection?.contentItems.count ?? 0
+            let count = contentCollection?.contentItems.count ?? .zero
             self?.toolItems = contentCollection?.contentItems.compactMap({ (contentItem) -> Tool.Item? in
-                Tool.Item(remoteID: contentItem.remoteID ?? 0,
+                Tool.Item(remoteID: contentItem.remoteID ?? .zero,
                           categoryTitle: "",
                           title: contentItem.valueText,
                           durationString: contentItem.durationString,
                           imageURL: URL(string: contentItem.valueImageURL ?? ""),
                           mediaURL: URL(string: (contentItem.valueMediaURL ?? "")),
-                          duration: contentItem.valueDuration ?? 0,
+                          duration: contentItem.valueDuration ?? .zero,
                           isCollection: false,
-                          contentCollectionId: contentCollection?.remoteID ?? 0,
+                          contentCollectionId: contentCollection?.remoteID ?? .zero,
                           numberOfItems: count,
                           type: contentItem.format.rawValue)
             }) ?? []
@@ -69,6 +69,6 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
     }
 
     func selectedContentId() -> Int {
-        return selectedToolID ?? 0
+        return selectedToolID ?? .zero
     }
 }

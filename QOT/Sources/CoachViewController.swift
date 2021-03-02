@@ -53,7 +53,7 @@ extension CoachViewController {
 private extension CoachViewController {
 
     func setupTableView() {
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.registerDequeueable(CoachTableViewCell.self)
     }
 }
@@ -75,7 +75,7 @@ extension CoachViewController: CoachViewControllerInterface {
 extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return coachModel?.coachItems.count ?? 0
+         return coachModel?.coachItems.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -122,6 +122,6 @@ private extension CoachViewController {
         let accessoryView = UIImageView(image: R.image.diagonalArrow())
         accessoryView.tintColor = .actionBlue
         cell.accessoryView = accessoryView
-        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        cell.accessoryView?.frame = CGRect(x: .zero, y: .zero, width: 16, height: 16)
     }
 }

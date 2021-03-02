@@ -155,7 +155,7 @@ final class ChatViewLayout: UICollectionViewLayout {
     }
 
     func finalSnapOffset() -> CGPoint {
-        return CGPoint(x: 0, y: cache.filter { $0.snapPosY != nil }.last?.snapPosY ?? 0)
+        return CGPoint(x: .zero, y: cache.filter { $0.snapPosY != nil }.last?.snapPosY ?? .zero)
     }
 
     private func section(_ indexPath: IndexPath) -> Section {
@@ -205,10 +205,10 @@ private class Section {
         }
         var supplementaryViewAttributes: [SupplementaryViewKind: ChatViewLayoutAttibutes] = [:]
         for (key, frame) in supplementaryViewFrames {
-            let indexPath = IndexPath(item: 0, section: sectionNumber)
+            let indexPath = IndexPath(item: .zero, section: sectionNumber)
             let attrs = ChatViewLayoutAttibutes(forSupplementaryViewOfKind: key.rawValue, with: indexPath)
             attrs.frame = frame.offsetBy(dx: origin.x, dy: origin.y)
-            attrs.zIndex =  key == .avatar ? 1 : 0
+            attrs.zIndex =  key == .avatar ? 1 : .zero
             supplementaryViewAttributes[key] = attrs
         }
         self.supplementaryViewAttributes = supplementaryViewAttributes
@@ -256,13 +256,13 @@ private class Section {
             }
 
             // Main Attributes
-            var lineHeight: CGFloat = 0
+            var lineHeight: CGFloat = .zero
             for size in itemSizes {
                 if x + size.width > maxX && x != minX {
                     // Start new line
                     x = minX
                     y += lineHeight + verticalSpacing
-                    lineHeight = 0
+                    lineHeight = .zero
                     lines.append([])
                 }
 

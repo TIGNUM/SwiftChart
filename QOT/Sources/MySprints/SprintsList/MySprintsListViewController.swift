@@ -39,7 +39,7 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.addHeader(with: .sprintsActive)
         interactor.viewDidLoad()
     }
@@ -101,7 +101,7 @@ private extension MySprintsListViewController {
             infoAlertView = InfoAlertView()
             infoAlertView?.set(icon: model.icon, title: model.title, attributedText: nil)
             infoAlertView?.present(on: self.view)
-            infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
+            infoAlertView?.topInset = model.isFullscreen ? .zero : headerViewHeightConstraint.constant
             infoAlertView?.bottomInset = BottomNavigationContainer.height
             infoAlertView?.setBackgroundColor(self.view.backgroundColor)
         }
@@ -140,7 +140,7 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
 
         baseHeaderView?.configure(title: interactor.title, subtitle: nil)
         ThemeText.mySprintsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
 
         ThemeButton.editButton.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -183,7 +183,7 @@ extension MySprintsListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard section < (interactor.viewModel.displayData.count) else { return 0 }
+        guard section < (interactor.viewModel.displayData.count) else { return .zero }
         return interactor.viewModel.displayData[section].items.count
     }
 

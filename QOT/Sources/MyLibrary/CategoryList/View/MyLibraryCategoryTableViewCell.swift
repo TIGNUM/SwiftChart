@@ -38,7 +38,7 @@ class MyLibraryCategoryTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.hide()
         self.iconView.image = model.icon
         ThemeTint.lightGrey.apply(iconView)
-        newItemCountLabel.isHidden = (model.newItemCount == 0)
+        newItemCountLabel.isHidden = (model.newItemCount == .zero)
         categoryName.sizeToFit()
         newItemCountLeading.constant = categoryName.frame.size.width
         self.setNeedsLayout()

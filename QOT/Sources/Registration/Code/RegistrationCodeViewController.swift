@@ -171,7 +171,7 @@ extension RegistrationCodeViewController: UITextFieldDelegate {
         // On error make first field editable
         guard let field = textField as? TextField else { return true }
         if interactor.hasCodeError == true,
-            let index = digitTextFields.firstIndex(of: field), index != 0 {
+            let index = digitTextFields.firstIndex(of: field), index != .zero {
             digitTextFields.first?.becomeFirstResponder()
             return false
         }
@@ -224,7 +224,7 @@ extension RegistrationCodeViewController: UITextFieldDelegate {
 extension RegistrationCodeViewController: TextFieldDelegate {
     func textFieldDidDelete(_ textField: TextField) {
         guard let index = digitTextFields.firstIndex(of: textField) else { return }
-        if index - 1 >= 0 {
+        if index - 1 >= .zero {
             let nextTextField = digitTextFields[index - 1]
             goToNextDigitField(textField, nextTextField: nextTextField)
         }

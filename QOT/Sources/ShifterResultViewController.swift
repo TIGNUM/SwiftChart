@@ -112,7 +112,7 @@ extension ShifterResultViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension ShifterResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model?.sections.count ?? 0
+        return model?.sections.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

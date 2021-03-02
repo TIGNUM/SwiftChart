@@ -95,7 +95,7 @@ extension StrategyListInteractor {
         self.isMediaPlaying = true
         if let indexOfTool = strategies.firstIndex(where: {$0.mediaItem?.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = strategies.distance(from: strategies.startIndex, to: indexOfTool)
-            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: .zero))
         }
     }
 
@@ -106,7 +106,7 @@ extension StrategyListInteractor {
         self.isMediaPlaying = false
         if let indexOfTool = strategies.firstIndex(where: {$0.mediaItem?.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = strategies.distance(from: strategies.startIndex, to: indexOfTool)
-            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: .zero))
         }
     }
 
@@ -118,7 +118,7 @@ extension StrategyListInteractor {
         self.isMediaPlaying = false
         if let indexOfTool = strategies.firstIndex(where: {$0.mediaItem?.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = strategies.distance(from: strategies.startIndex, to: indexOfTool)
-            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: .zero))
         }
     }
 }

@@ -22,7 +22,7 @@ final class DTSprintReflectionInteractor: DTInteractor {
 
     override func loadIntroQuestion(_ firstQuestion: QDMQuestion?) {
         let questionUpdate = getTitleUpdate(selectedAnswers: [], questionKey: nil, content: nil)
-        let presentationModel = createPresentationModel(questionId: firstQuestion?.remoteID ?? 0,
+        let presentationModel = createPresentationModel(questionId: firstQuestion?.remoteID ?? .zero,
                                                         answerFilter: introKey,
                                                         userInputText: nil,
                                                         questionUpdate: questionUpdate,

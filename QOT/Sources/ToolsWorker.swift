@@ -34,7 +34,7 @@ extension ToolsWorker: ToolsWorkerInterface {
             let tools = categories.compactMap({ (category) -> ToolItem? in
                 let itemCount = category.contentCollections.filter({ $0.section == .QOTLibrary }).count
                 return ToolItem(title: category.title,
-                                remoteID: category.remoteID ?? 0,
+                                remoteID: category.remoteID ?? .zero,
                                 itemCount: itemCount,
                                 sortOrder: category.sortOrder)
             })

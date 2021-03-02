@@ -75,7 +75,7 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
 
     func set(headerTitle: String, sensorTitle: String) {
         baseHeaderView?.configure(title: headerTitle, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
         ThemeText.mySensorsTitle.apply(sensorTitle, to: sensorHeaderLabel)
     }
 

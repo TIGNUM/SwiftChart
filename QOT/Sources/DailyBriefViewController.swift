@@ -56,7 +56,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     func setupTableView() {
         let headerView = R.nib.newDailyBriefTableViewHeader(owner: self)
         headerView?.configure(tapLeft: { [weak self] in
-            self?.delegate?.scrollToPage(item: 0)
+            self?.delegate?.scrollToPage(item: .zero)
         }, tapRight: { [weak self] in
             self?.delegate?.scrollToPage(item: 2)
         })
@@ -94,7 +94,7 @@ extension DailyBriefViewController {
         if interactor.bucketViewModelNew()?.at(index: section)?.model.title == nil {
             return 1
         } else {
-            return interactor.bucketViewModelNew()?.at(index: section)?.elements.count ?? 0
+            return interactor.bucketViewModelNew()?.at(index: section)?.elements.count ?? .zero
         }
     }
 
@@ -108,7 +108,7 @@ extension DailyBriefViewController {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         //last section shouldn't have a headerView
-        guard section < (interactor.bucketViewModelNew()?.count ?? 0) - 1 else {
+        guard section < (interactor.bucketViewModelNew()?.count ?? .zero) - 1 else {
             return nil
         }
         let sectionHeader = R.nib.newDailyBriefTableViewSectionHeader(owner: self)
@@ -142,7 +142,7 @@ extension DailyBriefViewController {
         let cell: NewBaseDailyBriefCell = tableView.dequeueCell(for: indexPath)
         var cellModels: [BaseDailyBriefViewModel] = []
 
-        guard indexPath.row < interactor.bucketViewModelNew()?.at(index: indexPath.section)?.elements.count ?? 0,
+        guard indexPath.row < interactor.bucketViewModelNew()?.at(index: indexPath.section)?.elements.count ?? .zero,
               let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPath.section),
               let domainModel = bucketModel.elements[indexPath.row].domainModel else {
             switch indexPath.section {
@@ -172,7 +172,7 @@ extension DailyBriefViewController {
             }
         case .DAILY_CHECK_IN_1?:
             if let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
-                let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? 0 : 2
+                let numberOfLines = impactReadinessCellViewModel.readinessScore == -1 ? .zero : 2
                 cellModels.append(NewDailyBriefStandardModel.init(caption: bucketItem.caption,
                                                                   title: bucketItem.title,
                                                                   body: bucketItem.body,
@@ -214,7 +214,7 @@ extension DailyBriefViewController {
                                                                       titleColor: bucketItem.titleColor,
                                                                       domainModel: item.domainModel))
                 }
-                cell.configure(with: cellModels, selectedIndex: bucket.domainModel?.sprint?.currentDay ?? 0)
+                cell.configure(with: cellModels, selectedIndex: bucket.domainModel?.sprint?.currentDay ?? .zero)
                 cell.delegate = self
 
                 return cell
@@ -357,7 +357,7 @@ extension DailyBriefViewController {
 // MARK: - IBActions
 private extension DailyBriefViewController {
     @IBAction func didTapLeftArrowButton(_ sender: Any?) {
-        delegate?.scrollToPage(item: 0)
+        delegate?.scrollToPage(item: .zero)
     }
 
     @IBAction func didTapRightArrowButton(_ sender: Any?) {
@@ -384,7 +384,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         }
         if scrollToSprintCard {
             var sectionIndex = 0
-            for index in 0...(interactor.bucketViewModelNew()?.count ?? 0) {
+            for index in 0...(interactor.bucketViewModelNew()?.count ?? .zero) {
                 let clusterPracticeTitle = AppTextService.get(AppTextKey.init("daily_brief.section_cluster_practice.title"))
                 if interactor.bucketViewModelNew()?.at(index: index)?.model.title == clusterPracticeTitle {
                     sectionIndex = index
@@ -405,7 +405,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     }
 
     func scrollToSection(at: Int) {
-        tableView.scrollToRow(at: IndexPath(row: 0, section: at), at: .middle, animated: true)
+        tableView.scrollToRow(at: IndexPath(row: .zero, section: at), at: .middle, animated: true)
     }
 }
 
@@ -531,7 +531,7 @@ extension DailyBriefViewController: QuestionnaireAnswer {
         let index = 0
         if index == NSNotFound { return }
         interactor.customizeSleepQuestion { (question) in
-            let answers = question?.answers?.count ?? 0
+            let answers = question?.answers?.count ?? .zero
             question?.selectedAnswerIndex = (answers - 1) - answer
         }
     }
@@ -586,10 +586,10 @@ extension DailyBriefViewController: NewBaseDailyBriefCellProtocol {
                 let media = MediaPlayerModel(title: leaderWisdomCellModel.videoTitle?.uppercased() ?? "",
                                              subtitle: "",
                                              url: leaderWisdomCellModel.videoThumbnail,
-                                             totalDuration: leaderWisdomCellModel.audioDuration ?? 0,
-                                             progress: 0,
-                                             currentTime: 0,
-                                             mediaRemoteId: leaderWisdomCellModel.remoteID ?? 0)
+                                             totalDuration: leaderWisdomCellModel.audioDuration ?? .zero,
+                                             progress: .zero,
+                                             currentTime: .zero,
+                                             mediaRemoteId: leaderWisdomCellModel.remoteID ?? .zero)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
             } else if leaderWisdomCellModel.format == .video {
                 stream(videoURL: leaderWisdomCellModel.videoThumbnail ?? URL(string: "")!, contentItem: nil)

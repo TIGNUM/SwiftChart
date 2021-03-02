@@ -46,7 +46,7 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         body.attributedText = model.attributedBody
         imageView.kf.setImage(with: URL.init(string: model.image ?? ""))
         arrowButton.isHidden = model.detailsMode && hideCTAButton
-        body.numberOfLines = model.detailsMode ? ((model.isInAnimationTransition ?? false) ? model.numberOfLinesForBody : 0) : model.numberOfLinesForBody
+        body.numberOfLines = model.detailsMode ? ((model.isInAnimationTransition ?? false) ? model.numberOfLinesForBody : .zero) : model.numberOfLinesForBody
         titleTrailingConstraint.constant = 20
         caption.textColor = UIColor(hex: model.titleColor ?? "")
         skeletonManager.hide()
@@ -72,7 +72,7 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         skeletonManager.addSubtitle(caption)
         skeletonManager.addOtherView(body)
         skeletonManager.addOtherView(imageView)
-        self.layer.borderWidth = 0
+        self.layer.borderWidth = .zero
         arrowButton.isHidden = true
     }
 
@@ -98,7 +98,7 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         guard let size = sizingCell?.contentView.systemLayoutSizeFitting(fittingSize,
                                                                          withHorizontalFittingPriority: .required,
                                                                          verticalFittingPriority: .defaultLow) else {
-            return 0
+            return .zero
         }
 
         guard size.height < maximumHeight else {
@@ -132,17 +132,17 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
         ? [.allowUserInteraction] : []
         if isHighlighted {
             UIView.animate(withDuration: 0.5,
-                           delay: 0,
+                           delay: .zero,
                            usingSpringWithDamping: 1,
-                           initialSpringVelocity: 0,
+                           initialSpringVelocity: .zero,
                            options: animationOptions, animations: {
                             self.transform = .init(scaleX: GlobalConstants.cardHighlightedFactor, y: GlobalConstants.cardHighlightedFactor)
             }, completion: completion)
         } else {
             UIView.animate(withDuration: 0.5,
-                           delay: 0,
+                           delay: .zero,
                            usingSpringWithDamping: 1,
-                           initialSpringVelocity: 0,
+                           initialSpringVelocity: .zero,
                            options: animationOptions, animations: {
                             self.transform = .identity
             }, completion: completion)

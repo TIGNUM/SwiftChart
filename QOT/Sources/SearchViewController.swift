@@ -135,7 +135,7 @@ extension SearchViewController {
         mySearchBar.resignFirstResponder()
         updateViewsState(false)
         mySearchBar.text = ""
-        constraintSearch.constant = 0
+        constraintSearch.constant = .zero
         if animated {
             UIView.animate(withDuration: 0.25) {
                 self.view.layoutIfNeeded()
@@ -225,8 +225,8 @@ extension SearchViewController: UISearchBarDelegate {
         updateSearchResults()
         updateIndicator()
         if searchText.isEmpty == true {
-            segmentedControl.selectedSegmentIndex = 0
-            searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0)
+            segmentedControl.selectedSegmentIndex = .zero
+            searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: .zero)
             updateViewsState(false)
         } else {
             updateViewsState(true)
@@ -243,7 +243,7 @@ extension SearchViewController: UISearchBarDelegate {
             deactivate()
             delegate?.didTapCancelSearch()
             if searchResults.isEmpty == true {
-                segmentedControl.selectedSegmentIndex = 0
+                segmentedControl.selectedSegmentIndex = .zero
                 updateViewsState(false)
             }
         }
@@ -276,7 +276,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             preconditionFailure()
         }
-        return 0
+        return .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -312,7 +312,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.suggestionsTableView:
             return UITableView.automaticDimension
         default:
-            return 0
+            return .zero
         }
     }
 
@@ -420,10 +420,10 @@ private extension SearchViewController {
             let media = MediaPlayerModel(title: audioItem.title,
                                          subtitle: "",
                                          url: audioItem.mediaURL,
-                                         totalDuration: 0,
-                                         progress: 0,
-                                         currentTime: 0,
-                                         mediaRemoteId: audioItem.contentItemID ?? 0)
+                                         totalDuration: .zero,
+                                         progress: .zero,
+                                         currentTime: .zero,
+                                         mediaRemoteId: audioItem.contentItemID ?? .zero)
             NotificationCenter.default.post(name: .playPauseAudio, object: media)
             tableView.deselectRow(at: indexPath, animated: true)
         }

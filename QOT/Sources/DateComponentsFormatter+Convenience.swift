@@ -12,7 +12,7 @@ extension DateComponentsFormatter {
 
     class func timeIntervalToString(
         _ time: TimeInterval,
-        minimumTime: TimeInterval = 0,
+        minimumTime: TimeInterval = .zero,
         isShort: Bool = false,
         calendar: Calendar = Calendar.sharedUTC,
         unitsStyle: UnitsStyle = .full,
@@ -37,7 +37,7 @@ extension DateComponentsFormatter {
     class func numberOfDays(_ date: Date) -> Int {
         let georgianCalendar = Calendar.init(identifier: .gregorian)
         let components = georgianCalendar.dateComponents([.day], from: date, to: Date().beginingOfDate())
-        guard let days = components.day else { return 0 }
+        guard let days = components.day else { return .zero }
         return days
     }
 }

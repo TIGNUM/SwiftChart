@@ -200,7 +200,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func getDailyBriefDummySectionModels() {
         var sectionDataList: [ArraySection<DailyBriefSectionModel, BaseDailyBriefViewModel>] = []
-        sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: 0),
+        sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: .zero),
                                                  elements: []))
         sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: nil, sortOrder: 1),
                                                  elements: []))
@@ -260,7 +260,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     //create a section model with the previously added elements
                     let clusterTitle = AppTextService.get(AppTextKey.init(cluster.titleKey ?? ""))
 
-                    if cluster.enabled && elements.count > 0 {
+                    if cluster.enabled && elements.count > .zero {
                         sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: clusterTitle, sortOrder: cluster.sortOrder),
                                                                  elements: elements))
                     }
@@ -276,13 +276,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     strongSelf.getDailyBriefBucketsForViewModel()
                 }
 
-                if let bucketNameToScroll = strongSelf.targetBucketName, changeSet.count == 0 {
+                if let bucketNameToScroll = strongSelf.targetBucketName, changeSet.count == .zero{
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                         strongSelf.scrollToBucket(bucketNameToScroll)
                     })
                     strongSelf.targetBucketName = nil
                 }
-                if changeSet.count == 0 {
+                if changeSet.count == .zero {
                     requestSynchronization(.BUCKET_RECORD, .UP_SYNC)
                 }
             }

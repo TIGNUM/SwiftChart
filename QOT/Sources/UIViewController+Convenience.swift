@@ -46,9 +46,9 @@ extension UIViewController {
         guard let userInfo = notification.userInfo else { return nil }
 
         let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        let endFrameHeight = endFrame?.size.height ?? 0
-        let endFrameY = endFrame?.origin.y ?? 0
-        let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+        let endFrameHeight = endFrame?.size.height ?? .zero
+        let endFrameY = endFrame?.origin.y ?? .zero
+        let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? .zero
         let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
         let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
         let animationCurve: UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)

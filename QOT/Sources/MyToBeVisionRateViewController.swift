@@ -23,7 +23,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
     private var loadingDots: DotsLoadingView?
     private var isLastPage: Bool = false
-    private var currentPageIndex: Int = 0
+    private var currentPageIndex: Int = .zero
     private var nextPageTimer: Timer?
     private var pageController: UIPageViewController?
 
@@ -70,7 +70,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
             return NSNotFound
         }
         let id = vc.questionID()
-        guard let filteredIndices = tracks.indices.filter({tracks[$0].remoteID == id}).first else { return 0 }
+        guard let filteredIndices = tracks.indices.filter({tracks[$0].remoteID == id}).first else { return .zero }
         return filteredIndices
     }
 
@@ -89,7 +89,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
 
         let previousIndex = currentIndex - 1
         trackUserEvent(.OPEN, value: previousIndex, valueType: "MyToBeVision.PresentedQuestion", action: .SWIPE)
-        if previousIndex < 0 {
+        if previousIndex < .zero {
             return nil
         }
 
@@ -127,7 +127,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     func showAlert(action: QOTAlertAction, days: Int?) {
         QOTAlert.show(title: AppTextService.get(.alert_tracker_poll_answers_submitted_title) ,
                       message: AppTextService.get(.alert_tracker_poll_answers_submitted_message)
-                        .replacingOccurrences(of: "${NUMBER_OF_DAYS}", with: String(days ?? 0)),
+                        .replacingOccurrences(of: "${NUMBER_OF_DAYS}", with: String(days ?? .zero)),
                       bottomItems: [action])
     }
 
@@ -150,7 +150,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     @IBAction func backAction() {
         guard let currentViewController = pageController?.viewControllers?.first else { return }
         let index = indexOf(currentViewController)
-        guard index > 0 else { return }
+        guard index > .zero else { return }
         trackUserEvent(.OPEN, value: index, valueType: "MyToBeVision.PresentedQuestion", action: .TAP)
         nextPageTimer?.invalidate()
         nextPageTimer = nil
@@ -190,7 +190,7 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
         NewThemeView.dark.apply(loaderView)
         setupPageViewContollerOnce()
         self.tracks = questions
-        setupPageIndicatorLabel(index: 0)
+        setupPageIndicatorLabel(index: .zero)
         showWhiteBanner()
         if let viewController = questionnaireViewController(with: self.tracks.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
@@ -199,7 +199,7 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
 
     func setupPageIndicatorLabel(index: Int) {
         pageIndicatorLabel.isHidden = false
-        let total = interactor?.questions.count ?? 0
+        let total = interactor?.questions.count ?? .zero
         let attrString = NSMutableAttributedString.init()
         let currentAttrString = ThemeText.questionairePageCurrent.attributedString("\(index + 1)")
         let totalAttrString = ThemeText.questionairePageTotal.attributedString("/\(total)")
@@ -259,7 +259,7 @@ extension MyToBeVisionRateViewController: QuestionnaireAnswer {
         backButton.isHidden = index < 1
         isLastPage = index == (tracks.count - 1)
 
-        interactor?.addRating(for: questionIdentifier ?? 0,
+        interactor?.addRating(for: questionIdentifier ?? .zero,
                               value: itemsOf(viewController) - (tracks[index].selectedAnswerIndex ?? 5))
         refreshBottomNavigationItems()
     }
@@ -272,7 +272,7 @@ extension MyToBeVisionRateViewController: QuestionnaireAnswer {
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
         tracks[index].selectedAnswerIndex = answer
-        interactor?.addRating(for: questionIdentifier ?? 0, value: itemsOf(viewController) - answer)
+        interactor?.addRating(for: questionIdentifier ?? .zero, value: itemsOf(viewController) - answer)
         trackUserEvent(.SELECT, value: answer, valueType: "MyToBeVision.RateQuestion", action: .SWIPE)
         guard let nextViewController = next(from: viewController) else {
             return

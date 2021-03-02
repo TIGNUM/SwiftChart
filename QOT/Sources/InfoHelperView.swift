@@ -82,7 +82,7 @@ private extension InfoHelperView {
         case .description:
             characterSpacing = CharacterSpacing.kern1_2
         default:
-            characterSpacing = 0
+            characterSpacing = .zero
         }
 
         let mutableText = NSMutableAttributedString(attributedString: text)

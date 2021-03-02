@@ -133,10 +133,10 @@ private extension ColorPicker {
         if isOpen {
             UIView.animate(withDuration: Animation.duration_03, animations: {
                 self.updateOrder()
-                self.trailingConstraintPurple.constant = 0
-                self.trailingConstraintGreen.constant = 0
-                self.trailingConstraintYellow.constant = 0
-                self.trailingConstraintBlue.constant = 0
+                self.trailingConstraintPurple.constant = .zero
+                self.trailingConstraintGreen.constant = .zero
+                self.trailingConstraintYellow.constant = .zero
+                self.trailingConstraintBlue.constant = .zero
                 self.labelContainer.alpha = 1
                 self.layoutIfNeeded()
             }, completion: { _ in
@@ -144,7 +144,7 @@ private extension ColorPicker {
             })
         } else {
             UIView.animate(withDuration: Animation.duration_03) {
-                self.labelContainer.alpha = 0
+                self.labelContainer.alpha = .zero
                 self.trailingConstraintPurple.constant = 76
                 self.trailingConstraintGreen.constant = 76 * 2
                 self.trailingConstraintYellow.constant = 76 * 3

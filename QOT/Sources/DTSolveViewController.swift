@@ -67,7 +67,7 @@ private extension DTSolveViewController {
             if initiated && tbv?.text != nil {
                 let targetAnswer = DTViewModel.Answer(answer: answer,
                                                       newTargetId: Solve.QuestionTargetId.ReviewTBV,
-                                                      votes: 0)
+                                                      votes: .zero)
                 self?.setAnswerNeedsSelection(targetAnswer)
                 self?.loadNextQuestion()
             } else {
@@ -76,7 +76,7 @@ private extension DTSolveViewController {
                                                             let targetId = Solve.QuestionTargetId.PostCreationShortTBV
                                                             let targetAnswer = DTViewModel.Answer(answer: answer,
                                                                                                   newTargetId: targetId,
-                                                                                                  votes: 0)
+                                                                                                  votes: .zero)
                                                             self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion()
                 }

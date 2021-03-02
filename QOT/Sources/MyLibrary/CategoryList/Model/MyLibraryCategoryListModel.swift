@@ -23,7 +23,7 @@ struct MyLibraryCategoryListModel {
     var lastUpdated: Date?
     var icon: UIImage?
     var type: MyLibraryCategoryType
-    var newItemCount: Int = 0
+    var newItemCount: Int = .zero
 
     func infoText() -> String {
         var info: String

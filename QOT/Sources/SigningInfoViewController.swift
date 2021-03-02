@@ -86,7 +86,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
         timer?.invalidate()
 
         UIView.animate(withDuration: Animation.duration_03) {
-            self.view.alpha = 0
+            self.view.alpha = .zero
             self.titleLabel.alpha = 0.0
         }
     }

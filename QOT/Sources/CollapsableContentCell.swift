@@ -27,7 +27,7 @@ final class CollapsableContentCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorInset = UIEdgeInsets(top: 0, left: 75, bottom: 0, right: 0)
+        separatorInset = UIEdgeInsets(top: .zero, left: 75, bottom: .zero, right: .zero)
         readImageView.image = R.image.ic_seen_of()?.withRenderingMode(.alwaysTemplate)
         readImageView.tintColor = .carbon70
     }

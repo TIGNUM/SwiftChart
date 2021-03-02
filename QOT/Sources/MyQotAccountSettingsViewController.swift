@@ -89,7 +89,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
         ThemeView.level3.apply(view)
         baseHeaderView?.configure(title: AppTextService.get(.my_qot_my_profile_section_account_settings_title),
                                   subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
 
         ThemeView.level3.apply(headerView)
         subHeaderView.addHeader(with: .level3)

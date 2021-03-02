@@ -117,8 +117,8 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         model.level = .LEVEL_CRITICAL
         model.benefits = existingPreparation?.benefits
         model.answerFilter = existingPreparation?.answerFilter ?? ""
-        model.contentCollectionId = existingPreparation?.contentCollectionId ?? 0
-        model.relatedStrategyId = existingPreparation?.relatedStrategyId ?? 0
+        model.contentCollectionId = existingPreparation?.contentCollectionId ?? .zero
+        model.relatedStrategyId = existingPreparation?.relatedStrategyId ?? .zero
         model.strategyIds = existingPreparation?.strategyIds ?? []
         model.strategyItemIds = existingPreparation?.strategyItemIds ?? []
         model.preceiveAnswerIds = existingPreparation?.preceiveAnswerIds ?? []
@@ -131,7 +131,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
 
     func getUserPreparationDaily(answer: DTViewModel.Answer, _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
-        let relatedStrategyId = answer.targetId(.content) ?? 0
+        let relatedStrategyId = answer.targetId(.content) ?? .zero
         let preparationNames = preparations.compactMap { $0.name }
         let preparationName = createUniqueName(answer.title, in: preparationNames)
         prepareWorker.getRelatedStrategies(relatedStrategyId) { [weak self] (strategyIds) in
@@ -157,7 +157,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let knowIds = getAnswerIds(.know, selectedAnswers)
         let feelIds = getAnswerIds(.feel, selectedAnswers)
         let preparationNames = preparations.compactMap { $0.name }
-        let relatedStrategyId = filteredAnswer?.targetId(.content) ?? 0
+        let relatedStrategyId = filteredAnswer?.targetId(.content) ?? .zero
         prepareWorker.getRelatedStrategies(relatedStrategyId) { [weak self] (strategyIds) in
             self?.prepareWorker.getRelatedStrategyItems(relatedStrategyId) { (strategyItemIds) in
                 var model = CreateUserPreparationModel()
@@ -165,7 +165,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                 model.benefits = self?.inputText
                 model.answerFilter = answerFilter
                 model.contentCollectionId = QDMUserPreparation.Level.LEVEL_CRITICAL.contentID
-                model.relatedStrategyId = filteredAnswer?.targetId(.content) ?? 0
+                model.relatedStrategyId = filteredAnswer?.targetId(.content) ?? .zero
                 model.strategyIds = strategyIds
                 model.strategyItemIds = strategyItemIds
                 model.preceiveAnswerIds = perceivedIds

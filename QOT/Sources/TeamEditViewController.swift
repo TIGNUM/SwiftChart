@@ -24,7 +24,7 @@ final class TeamEditViewController: UIViewController {
     @IBOutlet private weak var memberMaxLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     private var bottomConstraintInitialValue: CGFloat = 0
-    private var max = 0
+    private var max: Int = .zero
     private var subHeader = ""
     private lazy var router: TeamEditRouterInterface = TeamEditRouter(viewController: self)
     var interactor: TeamEditInteractorInterface!
@@ -144,7 +144,7 @@ extension TeamEditViewController: TeamEditViewControllerInterface {
         updateKeyboardInputView(false)
         memberCounterLabel.text = String(memberCount)
 
-        if memberCount > 0 && !indexPath.isEmpty {
+        if memberCount > .zero && !indexPath.isEmpty {
             tableView.performBatchUpdates({
                 self.tableView.insertRows(at: indexPath, with: .automatic)
             }, completion: { _ in
@@ -187,12 +187,12 @@ extension TeamEditViewController: UITextFieldDelegate {
         switch interactor.getType {
         case .create:
             updateKeyboardInputView(textField.text?.isEmpty == false)
-            updateTextCounter(String(textField.text?.count ?? 0))
+            updateTextCounter(String(textField.text?.count ?? .zero))
         case .memberInvite:
             updateKeyboardInputView(textField.text?.isEmail == true)
         case .edit:
             updateKeyboardInputView(textField.text?.isEmpty == false)
-            updateTextCounter(String(textField.text?.count ?? 0))
+            updateTextCounter(String(textField.text?.count ?? .zero))
         }
     }
 }

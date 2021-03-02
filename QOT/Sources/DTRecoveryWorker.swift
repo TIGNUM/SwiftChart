@@ -17,9 +17,9 @@ final class DTRecoveryWorker: DTWorker {
             .filter { $0.question?.key == Recovery.QuestionKey.Symptom
                 || $0.question?.key == Recovery.QuestionKey.SymptomGeneral }
             .first?.answers.first
-        let causeAnswerId = causeAnswer?.remoteId ?? 0
-        let causeContentItemId = causeAnswer?.targetId(.contentItem) ?? 0
-        let causeContentId = causeAnswer?.targetId(.content) ?? 0
+        let causeAnswerId = causeAnswer?.remoteId ?? .zero
+        let causeContentItemId = causeAnswer?.targetId(.contentItem) ?? .zero
+        let causeContentId = causeAnswer?.targetId(.content) ?? .zero
 
         ContentService.main.getContentCollectionById(causeContentId) { (content) in
             var model = CreateRecovery3DModel()
