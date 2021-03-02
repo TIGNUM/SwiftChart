@@ -35,7 +35,7 @@ final class NegativeToPositiveView: UIView, UIGestureRecognizerDelegate {
     private var initialOffset: CGFloat = 0
     private let singleOffset: CGFloat = 25
 
-    lazy var leftOffset: CGFloat = { return 0 }()
+    lazy var leftOffset: CGFloat = { return .zero }()
     lazy var middleOffset: CGFloat = { return self.bounds.width * 0.33 - self.singleOffset }()
     lazy var rightOffset: CGFloat = { return self.bounds.width - 2 * self.singleOffset }()
 
@@ -69,7 +69,7 @@ final class NegativeToPositiveView: UIView, UIGestureRecognizerDelegate {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        if initialOffset == 0 {
+        if initialOffset == .zero {
             initialOffset = self.bounds.width * 0.5 - self.singleOffset
             highPerformanceConstraint.constant = initialOffset
         }
@@ -110,21 +110,21 @@ private extension NegativeToPositiveView {
         highPerformanceContainerView.addGestureRecognizer(gestureRecognizer)
         highPerformanceView.layer.shadowOpacity = 0.2
         highPerformanceView.layer.shadowRadius = 5
-        highPerformanceView.layer.shadowOffset = CGSize(width: -10, height: 0)
+        highPerformanceView.layer.shadowOffset = CGSize(width: -10, height: .zero)
     }
 
     func randomSet(max: Int) -> (index1: Int, index2: Int, index3: Int) {
         guard max >= 3 else {
-            return (0, 0, 0)
+            return (.zero, .zero, .zero)
         }
 
         let index1 = Int.random(in: 0..<max)
         var index2: Int = -1
-        while index2 < 0 || index2 == index1 {
+        while index2 < .zero || index2 == index1 {
             index2 = Int.random(in: 0..<max)
         }
         var index3: Int = -1
-        while index3 < 0 || index3 == index1 || index3 == index2 {
+        while index3 < .zero || index3 == index1 || index3 == index2 {
             index3 = Int.random(in: 0..<max)
         }
         return(index1, index2, index3)

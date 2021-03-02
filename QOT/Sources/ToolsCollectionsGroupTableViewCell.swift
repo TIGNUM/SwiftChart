@@ -20,7 +20,7 @@ final class ToolsCollectionsGroupTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var counterImageView: UIImageView!
     private var mediaURL: URL?
     private var title: String?
-    private var remoteID: Int = 0
+    private var remoteID: Int = .zero
     private var categoryTitle = String.empty
     private var type = String.empty
 
@@ -72,7 +72,7 @@ class BaseToolsTableViewCell: UITableViewCell {
     }
 
     func addTopLine(for row: Int) {
-        if row == 0 { return }
+        if row == .zero { return }
         let line = UIView(frame: .zero)
         line.translatesAutoresizingMaskIntoConstraints = false
         addSubview(line)

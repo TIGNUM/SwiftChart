@@ -52,7 +52,7 @@ extension MyQotAdminEnvironmentSettingsInteractor: MyQotAdminEnvironmentSettings
      }
 
     func changeSelection(for index: Int) {
-        NetworkRequestManager.main.switchTo(environmentType: index == 0 ? .development : .production)
+        NetworkRequestManager.main.switchTo(environmentType: index == .zero ? .development : .production)
         DatabaseManager.main.deleteUserRelatedData()
         NotificationCenter.default.post(name: .requestSynchronization, object: nil)
     }

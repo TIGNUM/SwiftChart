@@ -13,7 +13,7 @@ import qot_dal
 extension UIViewController {
     @objc func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
@@ -285,7 +285,7 @@ private extension UIViewController {
 // MARK: solveResults IDs
 private extension UIViewController {
     var walkThroughPageKey: String {
-        let pageIndex: Int = (self as? CoachMarksViewController)?.interactor?.currentPage ?? 0
+        let pageIndex: Int = (self as? CoachMarksViewController)?.interactor?.currentPage ?? .zero
         switch pageIndex {
         case 0:
             return "onboarding.walkthrough.know"

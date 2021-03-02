@@ -223,7 +223,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
+        return .zero
     }
 }
 
@@ -279,7 +279,7 @@ extension DTQuestionnaireViewController: SingleSelectionCellDelegate {
 // MARK: - MultiselectionCellDelegate
 extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
     func didSetHeight(to height: CGFloat) {
-        let setBefore = heightOfCollection != 0
+        let setBefore = heightOfCollection != .zero
         heightOfCollection = height
         if !setBefore {
             tableView.reloadData()

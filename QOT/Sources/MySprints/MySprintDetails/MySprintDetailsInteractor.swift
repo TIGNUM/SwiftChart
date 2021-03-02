@@ -220,7 +220,7 @@ extension MySprintDetailsInteractor {
         items.append(MySprintDetailsItem(type: .header(action: nil), text: worker.headerSprintTasks))
         let currentDay = sprint.currentDay - 1
         // Sprint is schedule to start
-        guard currentDay >= 0 else {
+        guard currentDay >= .zero else {
             items.append(MySprintDetailsItem(type: .listItem(appearance: .info), text: worker.activeInfoText))
             return items
         }

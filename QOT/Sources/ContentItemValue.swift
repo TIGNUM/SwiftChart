@@ -42,8 +42,8 @@ enum ContentItemValue {
 
         let mediaURL = URL(string: localMediaPath) ?? item.valueMediaURL.flatMap { URL(string: $0) }
         let imageURL = item.valueImageURL.flatMap { URL(string: $0) }
-        let duration = item.valueDuration ?? 0
-        let itemID = item.remoteID ?? 0
+        let duration = item.valueDuration ?? .zero
+        let itemID = item.remoteID ?? .zero
 
         switch item.format {
         case .header1,
@@ -74,7 +74,7 @@ enum ContentItemValue {
             }
         case .video:
             if let title = text, let video = mediaURL {
-                self = .video(remoteId: item.remoteID ?? 0,
+                self = .video(remoteId: item.remoteID ?? .zero,
                               title: title,
                               description: description,
                               placeholderURL: imageURL,
@@ -86,7 +86,7 @@ enum ContentItemValue {
         case .audio:
             if let audio = mediaURL {
                 let title = text ?? String.empty
-                self = .audio(remoteId: item.remoteID ?? 0,
+                self = .audio(remoteId: item.remoteID ?? .zero,
                               title: title,
                               description: description,
                               placeholderURL: audio,
@@ -141,7 +141,7 @@ enum ContentItemValue {
         switch self {
         case .audio(_, _, _, _, _, let duration, _),
              .video(_, _, _, _, _, let duration): return Int(duration)
-        default: return 0
+        default: return .zero
         }
     }
 

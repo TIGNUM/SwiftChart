@@ -35,16 +35,16 @@ struct MyDataDailyCheckInModel: Codable {
 
     init(withDailyCheckInResult: QDMDailyCheckInResult) {
         date = withDailyCheckInResult.date
-        impactReadiness = min((withDailyCheckInResult.impactReadiness ?? 0), 100)
-        sleepQuality = min((withDailyCheckInResult.sleepQuality ?? 0) * 10, 100)
-        sleepQuantity = min((withDailyCheckInResult.sleepQuantity ?? 0) * 10, 100)
-        fiveDayRecovery = min((withDailyCheckInResult.fiveDaysRecovery ?? 0) * 10, 100)
-        fiveDayLoad = min((withDailyCheckInResult.fiveDaysload ?? 0) * 10, 100)
-        tenDayLoad = min((withDailyCheckInResult.tenDaysFutureLoad ?? 0) * 10, 100)
-        fiveDayImpactReadiness = min((withDailyCheckInResult.fiveDaysImpactReadiness ?? 0), 100)
+        impactReadiness = min((withDailyCheckInResult.impactReadiness ?? .zero), 100)
+        sleepQuality = min((withDailyCheckInResult.sleepQuality ?? .zero) * 10, 100)
+        sleepQuantity = min((withDailyCheckInResult.sleepQuantity ?? .zero) * 10, 100)
+        fiveDayRecovery = min((withDailyCheckInResult.fiveDaysRecovery ?? .zero) * 10, 100)
+        fiveDayLoad = min((withDailyCheckInResult.fiveDaysload ?? .zero) * 10, 100)
+        tenDayLoad = min((withDailyCheckInResult.tenDaysFutureLoad ?? .zero) * 10, 100)
+        fiveDayImpactReadiness = min((withDailyCheckInResult.fiveDaysImpactReadiness ?? .zero), 100)
         let realAverage = withDailyCheckInResult.impactReadinessAverageMinimumThreshold ?? MyDataDailyCheckInModel.defaultAverageValue
         averageUsersImpactReadiness = min(realAverage, 100)
-        tenDaysFutureLoad = (withDailyCheckInResult.tenDaysFutureLoad ?? 0) * 10
+        tenDaysFutureLoad = (withDailyCheckInResult.tenDaysFutureLoad ?? .zero) * 10
     }
 }
 

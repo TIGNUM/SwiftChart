@@ -27,7 +27,7 @@ extension Date {
     }
 
     var nextDate: Date {
-        return Calendar.current.nextDate(after: self, matching: DateComponents(hour: 0), matchingPolicy: .nextTime) ?? self
+        return Calendar.current.nextDate(after: self, matching: DateComponents(hour: .zero), matchingPolicy: .nextTime) ?? self
     }
 
     var nextDay: Date {
@@ -84,7 +84,7 @@ extension Date {
 
     var minutesSinceMidnight: Int {
         let components = Calendar.current.dateComponents([.hour, .minute], from: self)
-        return 60 * (components.hour ?? 0) + (components.minute ?? 0)
+        return 60 * (components.hour ?? .zero) + (components.minute ?? .zero)
     }
 
     var dayOfMonth: Int {
@@ -114,35 +114,35 @@ extension Date {
 
     var isInCurrentWeek: Bool {
         let daysFromNow = Date().days(to: self)
-        return dayOfWeek - daysFromNow >= 0
+        return dayOfWeek - daysFromNow >= .zero
     }
 
     func year() -> Int {
-        return Calendar.sharedUTC.dateComponents([.year], from: self).year ?? 0
+        return Calendar.sharedUTC.dateComponents([.year], from: self).year ?? .zero
     }
 
     func years(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.year], from: self, to: date).year ?? 0
+        return Calendar.current.dateComponents([.year], from: self, to: date).year ?? .zero
     }
 
     func months(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.month], from: self, to: date).month ?? 0
+        return Calendar.current.dateComponents([.month], from: self, to: date).month ?? .zero
     }
 
     func weeks(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.weekOfMonth], from: self, to: date).weekOfMonth ?? 0
+        return Calendar.current.dateComponents([.weekOfMonth], from: self, to: date).weekOfMonth ?? .zero
     }
 
     func days(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
+        return Calendar.current.dateComponents([.day], from: self, to: date).day ?? .zero
     }
 
     func hours(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.hour], from: self, to: date).hour ?? 0
+        return Calendar.current.dateComponents([.hour], from: self, to: date).hour ?? .zero
     }
 
     func minutes(to date: Date) -> Int {
-        return Calendar.current.dateComponents([.minute], from: self, to: date).minute ?? 0
+        return Calendar.current.dateComponents([.minute], from: self, to: date).minute ?? .zero
     }
 
     var isNight: Bool {
@@ -166,7 +166,7 @@ extension Date {
     }
 
     var is24hoursOld: Bool {
-        return Calendar.current.dateComponents([.hour], from: self, to: Date()).hour ?? 0 > 24
+        return Calendar.current.dateComponents([.hour], from: self, to: Date()).hour ?? .zero > 24
     }
 
     var time: String {
@@ -182,7 +182,7 @@ extension Date {
     func weekdayNumberOrdinal() -> Int {
         let calendar = Calendar.current
         var dayOfWeek = calendar.component(.weekday, from: Date()) + 1 - calendar.firstWeekday
-        if dayOfWeek <= 0 {
+        if dayOfWeek <= .zero {
             dayOfWeek += 7
         }
         return dayOfWeek

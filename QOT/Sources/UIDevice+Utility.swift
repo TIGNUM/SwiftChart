@@ -14,7 +14,7 @@ extension UIDevice {
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
         let identifier = machineMirror.children.reduce(String.empty) { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
+        guard let value = element.value as? Int8, value != .zero else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
         return identifier
@@ -31,7 +31,7 @@ extension UIDevice {
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
         machineString = machineMirror.children.reduce(String.empty) { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
+        guard let value = element.value as? Int8, value != .zero else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
         #endif

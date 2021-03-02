@@ -416,7 +416,7 @@ extension UIViewController {
                                   for: .normal)
         if let image = image {
             button.setImage(image, for: .normal)
-            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
+            button.imageEdgeInsets = UIEdgeInsets(top: .zero, left: .zero, bottom: .zero, right: 4)
         }
         button.tintColor = tintColor
         button.titleEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)

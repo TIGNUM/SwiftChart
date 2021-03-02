@@ -28,7 +28,7 @@ class AudioPlayer {
 
     static let current = AudioPlayer()
     private var _audioURL: URL?
-    private var _remoteID: Int = 0
+    private var _remoteID: Int = .zero
     private var _categoryTitle = String.empty
     private var _title = String.empty
     private var _currentTime = Double(0)
@@ -147,7 +147,7 @@ class AudioPlayer {
             _isReset = false
             try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback,
                                                              mode: AVAudioSession.Mode.default,
-                                                             options: .init(rawValue: 0))
+                                                             options: .init(rawValue: .zero))
             try? AVAudioSession.sharedInstance().setActive(true)
         }
         updater = CADisplayLink(target: self, selector: #selector(trackAudio))

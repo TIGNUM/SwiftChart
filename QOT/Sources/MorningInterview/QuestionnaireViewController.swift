@@ -104,7 +104,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
                 return nil
             }
 
-            let questionItems = questionnaire.items() ?? 0
+            let questionItems = questionnaire.items() ?? .zero
             // setup questions
             viewController.questionIdentifier = questionnaire.questionIdentifier()
             viewController.questionHtml = questionnaire.questionHtml()
@@ -146,7 +146,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
         // Check TableView Size and set right cell height
         let tableViewHeight = tableView.bounds.height
 
-        cellHeight = tableViewHeight/(items == 0 ? CGFloat(1.0) : CGFloat(items))
+        cellHeight = tableViewHeight/(items == .zero ? CGFloat(1.0) : CGFloat(items))
         progressHeightConstraint.constant = presentationType == .fill ? tableViewHeight * 2 : cellHeight
     }
 
@@ -185,7 +185,7 @@ extension QuestionnaireViewController {
         if QuestionnaireViewController.hasArrowsAnimated { return }
         self.upArrowBottomConstraint.constant = 10
         UIView.animate(withDuration: 0.8,
-                       delay: 0,
+                       delay: .zero,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 0.5,
                        animations: {
@@ -193,7 +193,7 @@ extension QuestionnaireViewController {
         }, completion: {[weak self] (_: Bool) in
             self?.upArrowBottomConstraint.constant = 5
             UIView.animate(withDuration: 0.8,
-                           delay: 0,
+                           delay: .zero,
                            animations: {
                             self?.progressView.layoutIfNeeded()
             }, completion: nil)
@@ -201,7 +201,7 @@ extension QuestionnaireViewController {
 
         self.downArrowTopConstraint.constant = 10
         UIView.animate(withDuration: 0.8,
-                       delay: 0,
+                       delay: .zero,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 0.5,
                        animations: {
@@ -209,7 +209,7 @@ extension QuestionnaireViewController {
         }, completion: {[weak self] (_: Bool) in
             self?.downArrowTopConstraint.constant = 5
             UIView.animate(withDuration: 0.8,
-                           delay: 0,
+                           delay: .zero,
                            animations: {
                             self?.progressView.layoutIfNeeded()
             }, completion: nil)
@@ -259,10 +259,10 @@ extension QuestionnaireViewController {
         tableView.isHidden = true
         tableView.reloadData()
         questionLabel.isHidden = false
-        questionLabel.alpha = 0
+        questionLabel.alpha = .zero
         progressView.alpha = 0.0
         progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
-        questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
+        questionLabel.transform = CGAffineTransform(translationX: .zero, y: -Layout.padding_100)
         fillView.setNeedsUpdateConstraints()
         var questionString = String.empty
         switch controllerType {
@@ -288,7 +288,7 @@ extension QuestionnaireViewController {
                        delay: Animation.duration_01,
                        options: [.curveEaseInOut],
                        animations: {
-                        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+                        self.questionLabel.transform = CGAffineTransform(translationX: .zero, y: .zero)
                         self.questionLabel.alpha = 1
                         self.progressView.alpha = 1
         }, completion: { [weak self] _ in
@@ -399,7 +399,7 @@ extension QuestionnaireViewController {
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? String.empty,
                                                                         isLast: answerIndex == finalAnswers.count - 1)
-                    indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count ?? 0 > 0 ? 1.0 : 0.0
+                    indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count ?? .zero > .zero ? 1.0 : 0.0
                  }
             }
         } else {
@@ -423,7 +423,7 @@ extension QuestionnaireViewController {
 
     func applyGradientColor(at selectedIndex: Int) {
         for index in 0...(items-1) {
-            let indexPath = IndexPath(row: index, section: 0)
+            let indexPath = IndexPath(row: index, section: .zero)
             guard let cell = tableView.cellForRow(at: indexPath) as? QuestionnaireTableViewCell else { continue }
             if index > selectedIndex {
                 cell.cellIndicatorView.isAboveCurrentIndex = true
@@ -440,7 +440,7 @@ extension QuestionnaireViewController {
 extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView.isHidden ? 0 : items
+        return tableView.isHidden ? .zero : items
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -449,7 +449,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
         cell.cellIndicatorView.config = controllerType.config
         // handle multipliers
         if questionkey == .amount {
-            if indexPath.row <= 0 {
+            if indexPath.row <= .zero {
                 multiplier = multiplierForTimeFirstIndex
             } else if indexPath.row <= 6 {
                 multiplier = multiplierForTimeSecondIndex
@@ -457,7 +457,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
                 multiplier = (items - (indexPath.row) + 1)/2
             }
         } else {
-            if indexPath.row == 0 {
+            if indexPath.row == .zero {
                 multiplier = multiplierForFirstIndex
             } else if indexPath.row <= 2 {
                 multiplier = multiplierForSecondIndex
@@ -474,7 +474,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
         }
 
         if questionkey == .amount {
-            if indexPath.row % 2 != 0 {
+            if indexPath.row % 2 != .zero{
                 cell.cellIndicatorView.isTimeAmountSecondaryIndex = true
                 cell.cellIndicatorView.indicatorWidth = CGFloat(6)
             } else {
@@ -495,7 +495,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var lastInitialDisplayableCell = false
         //change flag as soon as last displayable cell is being loaded (which will mean table has initially loaded)
-        if items > 0 && !finishedLoadingInitialTableCells {
+        if items > .zero && !finishedLoadingInitialTableCells {
             if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows,
                 let lastIndexPath = indexPathsForVisibleRows.last, lastIndexPath.row == indexPath.row {
                 lastInitialDisplayableCell = true
@@ -507,13 +507,13 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
                 finishedLoadingInitialTableCells = true
             }
             //animates the cell as it is being displayed for the first time
-            cell.transform = CGAffineTransform(translationX: 0, y: Layout.padding_40).scaledBy(x: 1, y: Layout.multiplier_150)
-            cell.alpha = 0
+            cell.transform = CGAffineTransform(translationX: .zero, y: Layout.padding_40).scaledBy(x: 1, y: Layout.multiplier_150)
+            cell.alpha = .zero
 
             UIView.animate(withDuration: Animation.duration_02,
                            delay: Animation.duration_01 * Double(indexPath.row),
                            options: [.curveEaseInOut], animations: {
-                            cell.transform = CGAffineTransform(translationX: 0, y: 0)
+                            cell.transform = CGAffineTransform(translationX: .zero, y: .zero)
                             cell.alpha = 1
             }, completion: { _ in
                 if self.finishedLoadingInitialTableCells {

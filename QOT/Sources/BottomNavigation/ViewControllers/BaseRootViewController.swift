@@ -163,7 +163,7 @@ extension BaseRootViewController {
     @objc func keyboardWillHide(_ notification: Notification) {
         if let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double {
             UIView.animate(withDuration: duration) {
-                self.bottomNavigationBottomConstraint.constant = 0
+                self.bottomNavigationBottomConstraint.constant = .zero
             }
             view.layoutIfNeeded()
         }

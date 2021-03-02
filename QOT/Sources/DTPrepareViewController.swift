@@ -128,7 +128,7 @@ private extension DTPrepareViewController {
                                                             let targetId = Prepare.QuestionTargetId.IntentionPerceived
                                                             let targetAnswer = DTViewModel.Answer(answer: answer,
                                                                                                   newTargetId: targetId,
-                                                                                                  votes: 0)
+                                                                                                  votes: .zero)
                                                             self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion(answerFilter: self?.answerFilter)
                 }

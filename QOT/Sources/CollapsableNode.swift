@@ -12,7 +12,7 @@ struct CollapsableNode {
     var isOpen: Bool
 
     var numberOfRows: Int {
-        return isOpen == true ? children.count : 0
+        return isOpen == true ? children.count : .zero
     }
 
     func item(forRow row: Int) -> Choice? {

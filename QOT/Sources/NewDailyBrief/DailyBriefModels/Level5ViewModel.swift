@@ -52,8 +52,8 @@ class Level5ViewModel: BaseDailyBriefViewModel {
     }
 
     func setupStrings() {
-            title = levelMessages[domainModel?.currentGetToLevel5Value ?? 0].levelTitle ?? String.empty
-            body = levelMessages[domainModel?.currentGetToLevel5Value ?? 0].levelContent
+        title = levelMessages[domainModel?.currentGetToLevel5Value ?? .zero].levelTitle ?? String.empty
+        body = levelMessages[domainModel?.currentGetToLevel5Value ?? .zero].levelContent
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

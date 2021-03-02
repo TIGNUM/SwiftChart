@@ -196,7 +196,7 @@ extension UIViewController {
             case .notFound: showAlert(messageType: "notFound")
             case .unknown(let error, let statusCode):
                 showAlert(messageType: String(format: "error: %@\nStatusCode: %d",
-                                               error?.localizedDescription ?? String.empty, statusCode ?? 0))
+                                              error?.localizedDescription ?? String.empty, statusCode ?? .zero))
             case .badRequest: showAlert(messageType: "Bad Request")
             case .unknownError: showAlert(type: .unknown)
             case .forbidden: showAlert(messageType: "Forbidden")

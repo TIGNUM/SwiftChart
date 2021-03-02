@@ -98,7 +98,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         ThemeTint.white.apply(editButton.imageView ?? UIView.init())
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         updateIndicator()
         interactor.viewDidLoad()
     }
@@ -247,29 +247,29 @@ private extension MyPrepsViewController {
         case SegmentView.myPreps.rawValue:
             bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
             refreshBottomNavigationItems()
-            if interactor.numberOfRowsPreparations() == 0 {
+            if interactor.numberOfRowsPreparations() == .zero {
                 baseHeaderView?.configure(title: title, subtitle: nil)
                 noPreparationsView.isHidden = false
-                tableView.alpha = 0
+                tableView.alpha = .zero
                 updateEditButton(hidden: true)
             }
         case SegmentView.mindsetShifter.rawValue:
             bottomNavigationItems.rightBarButtonItems = [addMindsetShiftButton]
             refreshBottomNavigationItems()
-            if interactor.numberOfRowsMindsetShifters() == 0 {
+            if interactor.numberOfRowsMindsetShifters() == .zero {
                 baseHeaderView?.configure(title: title, subtitle: nil)
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
-                tableView.alpha = 0
+                tableView.alpha = .zero
             }
         case SegmentView.recovery.rawValue:
             bottomNavigationItems.rightBarButtonItems = [planRecoveryButton]
             refreshBottomNavigationItems()
-            if interactor.numberOfRowsRecoveries() == 0 {
+            if interactor.numberOfRowsRecoveries() == .zero {
                 baseHeaderView?.configure(title: title, subtitle: nil)
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
-                tableView.alpha = 0
+                tableView.alpha = .zero
             }
         default:
             return
@@ -308,7 +308,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeView.level3.apply(view)
         ThemeView.level3.apply(headerView)
         baseHeaderView?.configure(title: viewModel.title, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
         ThemeText.myQOTPrepTitle.apply(viewModel.myPrepsTitle, to: noPrepsTitle)
         ThemeText.myQOTPrepTitle.apply(viewModel.mindsetShifterTitle, to: noMindsetTitle)
         ThemeText.myQOTPrepTitle.apply(viewModel.recoveryTitle, to: noRecoveryTitle)
@@ -324,7 +324,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
 
     func dataUpdated() {
         hideAllNoDataViews()
-        if tableView.alpha == 0 {
+        if tableView.alpha == .zero {
             UIView.animate(withDuration: Animation.duration_04) { self.tableView.alpha = 1 }
         }
         tableView.reloadData()
@@ -338,18 +338,18 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         case SegmentView.myPreps.rawValue:
             switch section {
             case PrepTypes.criticalEvents.rawValue:
-                return interactor?.criticalPrepItems?.count ?? 0
+                return interactor?.criticalPrepItems?.count ?? .zero
             case PrepTypes.everyday.rawValue:
-                return interactor?.everydayPrepItems?.count ?? 0
+                return interactor?.everydayPrepItems?.count ?? .zero
             default:
-                return 0
+                return .zero
             }
         case SegmentView.mindsetShifter.rawValue:
             return interactor.numberOfRowsMindsetShifters()
         case SegmentView.recovery.rawValue:
             return interactor.numberOfRowsRecoveries()
         default:
-            return 0
+            return .zero
         }
     }
 
@@ -377,11 +377,11 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             case PrepTypes.criticalEvents.rawValue:
                 let count = interactor?.numberOfRowsCriticalPreparations()
                 let title = AppTextService.get(.my_qot_my_plans_section_header_critical)
-                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
+                return count ?? .zero > .zero ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
             case PrepTypes.everyday.rawValue:
                 let count = interactor?.numberOfRowsEverydayPreparations()
                 let title = AppTextService.get(.my_qot_my_plans_section_header_everyday)
-                return count ?? 0 > 0 ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
+                return count ?? .zero > .zero ? MyPlansHeaderView.instantiateFromNib(title: title, theme: .level2) : nil
             default:
                 return nil
             }
@@ -395,14 +395,14 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         case SegmentView.myPreps.rawValue:
             switch section {
             case PrepTypes.criticalEvents.rawValue:
-                return interactor?.numberOfRowsCriticalPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+                return interactor?.numberOfRowsCriticalPreparations() ?? .zero > .zero ? tableView.estimatedSectionHeaderHeight : 0
             case PrepTypes.everyday.rawValue:
-                return interactor?.numberOfRowsEverydayPreparations() ?? 0 > 0 ? tableView.estimatedSectionHeaderHeight : 0
+                return interactor?.numberOfRowsEverydayPreparations() ?? .zero > .zero ? tableView.estimatedSectionHeaderHeight : 0
             default:
-                return 0
+                return .zero
             }
         default:
-            return 0
+            return .zero
         }
     }
 

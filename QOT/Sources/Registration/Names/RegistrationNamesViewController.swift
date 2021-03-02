@@ -37,7 +37,7 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     }()
 
     lazy private var keyboardToolbar: UIToolbar = {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
+        let toolbar = UIToolbar(frame: CGRect(x: .zero, y: .zero, width: 100, height: 60))
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         toolbar.backgroundColor = .carbonNew
@@ -95,8 +95,8 @@ private extension RegistrationNamesViewController {
     @objc func didTapCreateAccount() {
         guard let name = firstNameField.text else { return }
         updateBottomNavigation([], [])
-        createAccountBarButton.alpha = 0
-        createAccountButton.alpha = 0
+        createAccountBarButton.alpha = .zero
+        createAccountButton.alpha = .zero
         view.endEditing(true)
         interactor.didTapNext(with: name, lastName: lastNameField.text)
         let userName = name + " " + (lastNameField.text ?? String.empty)
@@ -166,7 +166,7 @@ extension RegistrationNamesViewController {
         UIView.animate(withDuration: duration,
                        delay: TimeInterval(0),
                        options: animationCurve,
-                       animations: { self.scrollView.contentOffset = CGPoint(x: 0, y: offset) },
+                       animations: { self.scrollView.contentOffset = CGPoint(x: .zero, y: offset) },
                        completion: nil)
     }
 

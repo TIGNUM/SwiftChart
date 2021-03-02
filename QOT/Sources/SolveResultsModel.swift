@@ -71,7 +71,7 @@ enum ResultType {
              .recoveryMyPlans:
             return 101291
         default:
-            return 0
+            return .zero
         }
     }
 

@@ -79,7 +79,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         titleSizingLabel.attributedText = ThemeText.dailyBriefTitle.attributedString(title)
 
         let bodySizingLabel = UILabel()
-        bodySizingLabel.numberOfLines = isInAnimationTransition ?? false ? numberOfLinesForBody : 0
+        bodySizingLabel.numberOfLines = isInAnimationTransition ?? false ? numberOfLinesForBody : .zero
         bodySizingLabel.font = UIFont.sfProtextRegular(ofSize: 16.0)
         bodySizingLabel.lineBreakMode = .byTruncatingTail
         bodySizingLabel.text = body

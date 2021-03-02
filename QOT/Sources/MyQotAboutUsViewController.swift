@@ -49,7 +49,7 @@ final class MyQotAboutUsViewController: BaseViewController, ScreenZLevel3 {
 extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
     func setupView(with title: String) {
         baseHeaderView?.configure(title: title, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
     }
 }
 
@@ -58,7 +58,7 @@ extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
 extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.itemCount() ?? 0
+        return interactor?.itemCount() ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

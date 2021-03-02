@@ -31,7 +31,7 @@ extension VisionRatingExplanationPresenter: VisionRatingExplanationPresenterInte
                                    placeholder: R.image.preloading(),
                                    videoURL: URL(string: videoItem?.valueMediaURL ?? String.empty),
                                    duration: videoItem?.durationString ?? String.empty,
-                                   remoteID: videoItem?.remoteID ?? 0)
+                                   remoteID: videoItem?.remoteID ?? .zero)
         viewController?.setupView(type: type)
     }
 }

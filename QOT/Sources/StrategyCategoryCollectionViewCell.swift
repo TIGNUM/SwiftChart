@@ -39,7 +39,7 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
         let progress = String(format: "%d Seen of %d", views, items)
         ThemeText.datestamp.apply(progress, to: progressLabel)
         bottomSeperator.isHidden = !shouldShowSeparator
-        bottomSeparatorTopConstraint.constant = shouldShowSeparator ? 27.0 : 0
+        bottomSeparatorTopConstraint.constant = shouldShowSeparator ? 27.0 : .zero
         switch contentType {
         case .normal:
             seenIcon?.image = UIImage.init(named: R.image.ic_seen_of.name)

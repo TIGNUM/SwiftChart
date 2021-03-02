@@ -154,7 +154,7 @@ private extension MyQotProfileWorker {
             if let error = error {
              log("Error getTeamConfiguration: \(error.localizedDescription)", level: .error)
             }
-            completion(config?.teamNameMaxLength ?? 0)
+            completion(config?.teamNameMaxLength ?? .zero)
         }
     }
 

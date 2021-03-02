@@ -46,7 +46,7 @@ extension UIImage {
 
         let scaledSize = CGSize(width: newWidth, height: newHeight)
         UIGraphicsBeginImageContextWithOptions(scaledSize, true, image.scale)
-        image.draw(in: CGRect(x: 0, y: 0, width: scaledSize.width, height: scaledSize.height))
+        image.draw(in: CGRect(x: .zero, y: .zero, width: scaledSize.width, height: scaledSize.height))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return scaledImage!

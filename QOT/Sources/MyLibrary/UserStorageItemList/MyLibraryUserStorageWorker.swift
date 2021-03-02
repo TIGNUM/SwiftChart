@@ -283,7 +283,7 @@ extension MyLibraryUserStorageWorker {
     private func handleStorages(_ storages: [QDMUserStorage]?) {
         let unsortedStorages: [QDMUserStorage] = storages ?? []
         self.storages = unsortedStorages.sorted(by: {
-            ($0.createdAt?.timeIntervalSinceReferenceDate ?? 0) > ($1.createdAt?.timeIntervalSinceReferenceDate ?? 0) })
+            ($0.createdAt?.timeIntervalSinceReferenceDate ?? .zero) > ($1.createdAt?.timeIntervalSinceReferenceDate ?? .zero) })
     }
 
     func deleteFor(identifiers: [String], _ update: ((_ identifier: String, _ error: Error?) -> Void)?) {

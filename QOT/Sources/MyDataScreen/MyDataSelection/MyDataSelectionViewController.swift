@@ -66,7 +66,7 @@ final class MyDataSelectionViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - UITableView Delegate and Datasource
 extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myDataSelectionModel?.myDataSelectionItems.count ?? 0
+        return myDataSelectionModel?.myDataSelectionItems.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,7 +79,7 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let currentSelectedState = myDataSelectionModel?.myDataSelectionItems[indexPath.row].selected ?? false
-        if !currentSelectedState && myDataSelectionModel?.selectedItems().count ?? 0 >= MyDataSelectionModel.maximumSelectableItems {
+        if !currentSelectedState && myDataSelectionModel?.selectedItems().count ?? .zero >= MyDataSelectionModel.maximumSelectableItems {
             return
         }
         if let cell = tableView.cellForRow(at: indexPath) as? MyDataSelectionScreenTableViewCell {
@@ -89,7 +89,7 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 80))
+        return UIView.init(frame: CGRect.init(x: .zero, y: .zero, width: tableView.frame.size.width, height: 80))
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

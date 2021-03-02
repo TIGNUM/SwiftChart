@@ -37,7 +37,7 @@ final class KnowingWorker {
                 }).count
 
                 strategyItems.append(Knowing.StrategyItem(title: strategy.title,
-                                                          remoteID: strategy.remoteID ?? 0,
+                                                          remoteID: strategy.remoteID ?? .zero,
                                                           viewedCount: viewedCount,
                                                           itemCount: itemCount,
                                                           sortOrder: strategy.sortOrder))

@@ -91,11 +91,11 @@ private extension ProfileSettingsViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ProfileSettingsViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return interactor?.numberOfSections() ?? 0
+        return interactor?.numberOfSections() ?? .zero
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.numberOfItemsInSection(in: section) ?? 0
+        return interactor?.numberOfItemsInSection(in: section) ?? .zero
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

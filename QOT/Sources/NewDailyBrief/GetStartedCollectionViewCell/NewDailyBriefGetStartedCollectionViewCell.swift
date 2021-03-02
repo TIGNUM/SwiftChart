@@ -54,7 +54,7 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
         guard let size = sizingCell?.contentView.systemLayoutSizeFitting(fittingSize,
                                                                   withHorizontalFittingPriority: .required,
                                                                   verticalFittingPriority: .defaultLow) else {
-            return 0
+            return .zero
         }
 
         guard size.height < maximumHeight else {

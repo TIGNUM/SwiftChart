@@ -130,7 +130,7 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
         tableView.registerDequeueable(SolveDayPlanTableViewCell.self)
         tableView.registerDequeueable(FatigueTableViewCell.self)
         tableView.registerDequeueable(CauseTableViewCell.self)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: view.bounds.height * 0.1, right: .zero)
     }
 
     func load(_ resultViewModel: SolveResult, isFollowUpActive: Bool) {
@@ -169,7 +169,7 @@ extension SolveResultsViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension SolveResultsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultViewModel?.items.count ?? 0
+        return resultViewModel?.items.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

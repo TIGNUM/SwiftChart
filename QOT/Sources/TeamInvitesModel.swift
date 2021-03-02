@@ -36,7 +36,7 @@ struct TeamInvite {
         init(maxTeams: Int, partOfTeams: Int) {
             self.maxTeams = maxTeams
             self.partOfTeams = partOfTeams
-            self.showOnlyContent = partOfTeams == maxTeams || partOfTeams == 0
+            self.showOnlyContent = partOfTeams == maxTeams || partOfTeams == .zero
         }
 
         var noteText: String? {

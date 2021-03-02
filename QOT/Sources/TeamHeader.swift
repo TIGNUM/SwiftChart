@@ -44,7 +44,7 @@ struct Team {
         var teamId: String
         var color: String = String.empty
         var thisUserIsOwner = false
-        var batchCount: Int = 0
+        var batchCount: Int = .zero
 
         /// Init here Team.Item
         init(qdmTeam: QDMTeam) {
@@ -57,12 +57,12 @@ struct Team {
         }
 
         /// Team.Item
-        init(invites: [QDMTeamInvitation], _ newItemCount: Int? = 0) {
+        init(invites: [QDMTeamInvitation], _ newItemCount: Int? = .zero) {
             self.header = .invite
             self.title = Team.Header.invite.title
             self.teamId = Team.Header.invite.inviteId
             self.invites = invites
-            self.batchCount = newItemCount ?? 0
+            self.batchCount = newItemCount ?? .zero
         }
 
         init(myX: Team.Header) {

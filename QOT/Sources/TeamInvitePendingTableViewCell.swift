@@ -32,7 +32,7 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
         let qdmInvite = pendingInvite.qdmInvite
         let team = qdmInvite.team
         setupTeamLabel(team?.name ?? String.empty, team?.teamColor ?? String.empty)
-        setupInfoLabel(qdmInvite.invitedDate ?? Date(), qdmInvite.sender ?? String.empty, team?.memberCount ?? 0)
+        setupInfoLabel(qdmInvite.invitedDate ?? Date(), qdmInvite.sender ?? String.empty, team?.memberCount ?? .zero)
         setActive(pendingInvite.canJoin, pendingInvite.warning)
     }
 }
@@ -58,7 +58,7 @@ private extension TeamInvitePendingTableViewCell {
 
     func setActive(_ canJoin: Bool, _ warning: String?) {
         maxTeamCountInfoLabel.text = canJoin ? String.empty : warning
-        infoLabelHeightConstriant.constant = canJoin ? 0 : 21
+        infoLabelHeightConstriant.constant = canJoin ? .zero : 21
         layoutButton(joinButton, keyJoin, canJoin)
         updateConstraintsIfNeeded()
     }
@@ -67,12 +67,12 @@ private extension TeamInvitePendingTableViewCell {
 // MARK: - Actions
 extension TeamInvitePendingTableViewCell {
     @IBAction func didTabDecline() {
-        trackUserEvent(.DECLINE_TEAM_INVITATION, value: pendingInvite?.qdmInvite.team?.remoteID ?? 0)
+        trackUserEvent(.DECLINE_TEAM_INVITATION, value: pendingInvite?.qdmInvite.team?.remoteID ?? .zero)
         NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: pendingInvite?.qdmInvite)
     }
 
     @IBAction func didTabJoin() {
-        trackUserEvent(.ACCEPT_TEAM_INVITATION, value: pendingInvite?.qdmInvite.team?.remoteID ?? 0)
+        trackUserEvent(.ACCEPT_TEAM_INVITATION, value: pendingInvite?.qdmInvite.team?.remoteID ?? .zero)
         NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: pendingInvite?.qdmInvite)
     }
 

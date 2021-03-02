@@ -73,6 +73,6 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
 
     // MARK: - Public
     public func height(forWidth width: CGFloat) -> CGFloat {
-        return 0
+        return .zero
     }
 }

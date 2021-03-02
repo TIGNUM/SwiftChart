@@ -51,7 +51,7 @@ private extension ChoiceViewController {
         tableView.registerDequeueable(CollapsableContentCell.self)
         tableView.layoutMargins = .zero
         tableView.separatorInset = .zero
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: .Footer))
+        tableView.tableFooterView = UIView(frame: CGRect(x: .zero, y: .zero, width: .zero, height: .Footer))
         tableView.tableHeaderView = tableHeaderView
         tableHeaderViewLabel.text = AppTextService.get(.coach_prepare_result_long_edit_strategies_section_header_title)
     }

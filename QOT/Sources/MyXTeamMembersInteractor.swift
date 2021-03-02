@@ -15,7 +15,7 @@ final class MyXTeamMembersInteractor: MyXTeamMembersWorker {
     private let presenter: MyXTeamMembersPresenterInterface!
     private var selectedTeamItem: Team.Item?
     private var membersList: [TeamMember] = []
-    private var maxTeamMemberCount: Int = 0
+    private var maxTeamMemberCount: Int = .zero
 
     // MARK: - Init
     init(presenter: MyXTeamMembersPresenterInterface) {

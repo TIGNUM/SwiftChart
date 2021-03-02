@@ -12,7 +12,7 @@ import qot_dal
 final class WorkerContent {
     func getContentCategoryFromItem(_ contentItem: QDMContentItem?,
                                     _ completion: @escaping (QDMContentCategory?) -> Void) {
-        ContentService.main.getContentCollectionById(contentItem?.collectionID ?? 0) { (contentCollection) in
+        ContentService.main.getContentCollectionById(contentItem?.collectionID ?? .zero) { (contentCollection) in
             ContentService.main.getContentCategoriesByIds(contentCollection?.categoryIDs ?? []) { (categories) in
                 completion(categories?.first)
             }

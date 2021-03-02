@@ -155,8 +155,7 @@ extension MyQotAppSettingsModel {
         var primaryKey: Int {
             switch self {
             case .sensors: return 100935
-            default: return 0
-            }
+            default: return .zero            }
         }
 
         func contentCollection(for service: ContentService, completion: @escaping(QDMContentCollection?) -> Void) {

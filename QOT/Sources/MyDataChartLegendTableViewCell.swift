@@ -47,7 +47,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
         HealthService.main.availableHealthKitTrackerDataIndexesForToday { [weak self] (healthData) in
             guard let strongSelf = self else { return }
             strongSelf.resetContent()
-            let hasHealthKitDataForToday: Bool = (healthData?.count ?? 0) > 0
+            let hasHealthKitDataForToday: Bool = (healthData?.count ?? .zero) > .zero
             strongSelf.stackViewHeightConstraint.constant = strongSelf.lineHeight * CGFloat(model.myDataSelectionItems.count)
             strongSelf.skeletonManager.hide()
             for sectionModel in model.myDataSelectionItems {

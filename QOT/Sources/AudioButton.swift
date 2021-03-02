@@ -18,8 +18,8 @@ final class AudioButton: UIView {
     private var categoryTitle = String.empty
     private var title = String.empty
     private var audioURL: URL?
-    private var audioRemoteID: Int = 0
-    private var duration: Int = 0
+    private var audioRemoteID: Int = .zero
+    private var duration: Int = .zero
 
     static func instantiateFromNib() -> AudioButton {
         guard let audioButton = R.nib.audioButton.instantiate(withOwner: self).first as? AudioButton else {
@@ -72,7 +72,7 @@ private extension AudioButton {
         let media = MediaPlayerModel(title: title,
                                      subtitle: categoryTitle,
                                      url: audioURL,
-                                     totalDuration: Double(duration), progress: 0, currentTime: 0, mediaRemoteId: audioRemoteID)
+                                     totalDuration: Double(duration), progress: .zero, currentTime: .zero, mediaRemoteId: audioRemoteID)
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 }

@@ -58,7 +58,7 @@ private extension SyncedCalendarsPresenter {
         if !otherSettings.isEmpty {
             sections[SyncedCalendarsViewModel.Section.notOnDevice] = otherItems
         }
-        let footerHeight: CGFloat = localItems.filter { $0.isSubscribed == true }.isEmpty ? 0 : 80
+        let footerHeight: CGFloat = localItems.filter { $0.isSubscribed == true }.isEmpty ? .zero : 80
         viewModel = SyncedCalendarsViewModel(viewTitle: viewTitle,
                                              viewSubtitle: viewSubtitle,
                                              footerHeight: footerHeight,

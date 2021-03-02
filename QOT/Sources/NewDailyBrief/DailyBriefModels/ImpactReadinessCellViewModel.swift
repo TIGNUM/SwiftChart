@@ -69,7 +69,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
             return NSAttributedString.init(string: impactReadinessNoDataTitle ?? String.empty, attributes: firstAttributes)
         }
 
-        let impactReadinessAttrString = NSMutableAttributedString(string: "\(readinessScore ?? 0)", attributes: firstAttributes)
+        let impactReadinessAttrString = NSMutableAttributedString(string: "\(readinessScore ?? .zero)", attributes: firstAttributes)
         let outOfAttrString = NSAttributedString(string: " out of 100", attributes: secondAttributes)
 
         impactReadinessAttrString.append(outOfAttrString)

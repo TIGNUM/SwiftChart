@@ -52,7 +52,7 @@ final class StrategyListWorker {
 
     var strategies = [Strategy.Item]()
     func selectedStrategyId() -> Int {
-        return selectedStrategyID ?? 0
+        return selectedStrategyID ?? .zero
     }
 
     func loadStrategies() {
@@ -63,7 +63,7 @@ final class StrategyListWorker {
             }) ?? [] {
                 let foundationItem = contentCollection.contentItems.filter { $0.format == .video }.first
                 let imageURL = URL(string: foundationItem?.valueImageURL ?? String.empty)
-                items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? 0,
+                items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? .zero,
                                            categoryTitle: contentCollection.contentCategoryTitle ?? String.empty,
                                            title: contentCollection.title,
                                            imageURL: imageURL,
@@ -75,7 +75,7 @@ final class StrategyListWorker {
             self?.foundationStrategies = items
         }
 
-        ContentService.main.getContentCategoryById(selectedStrategyID ?? 0) { [weak self] (qdmCategory) in
+        ContentService.main.getContentCategoryById(selectedStrategyID ?? .zero) { [weak self] (qdmCategory) in
             self?.selectedStrategy = qdmCategory
             let learnContentList = qdmCategory?.contentCollections.filter({ (content) -> Bool in
                 content.section == .LearnStrategies
@@ -84,13 +84,13 @@ final class StrategyListWorker {
             learnContentList?.forEach { (contentCollection) in
                 let title = contentCollection.title
                 let firstAudioItem = contentCollection.contentItems.filter { $0.format == .audio }.first
-                items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? 0,
+                items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? .zero,
                                            categoryTitle: contentCollection.contentCategoryTitle ?? String.empty,
                                            title: title,
                                            imageURL: nil,
                                            mediaItem: firstAudioItem,
                                            contentItems: contentCollection.contentItems,
-                                           valueDuration: Int(firstAudioItem?.valueDuration ?? 0),
+                                           valueDuration: Int(firstAudioItem?.valueDuration ?? .zero),
                                            isRead: contentCollection.viewedAt != nil ))
             }
             self?.strategies = items

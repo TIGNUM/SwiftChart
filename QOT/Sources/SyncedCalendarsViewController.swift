@@ -63,7 +63,7 @@ extension SyncedCalendarsViewController: SyncedCalendarsViewControllerInterface 
         baseHeaderView?.configure(title: viewModel?.viewTitle, subtitle: viewModel?.viewSubtitle)
         ThemeText.syncedCalendarTitle.apply(viewModel?.viewTitle, to: baseHeaderView?.titleLabel)
         ThemeText.syncedCalendarDescription.apply(viewModel?.viewSubtitle, to: baseHeaderView?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
         ThemeView.syncedCalendarSeparator.apply(separator)
         tableView.reloadData()
     }
@@ -89,34 +89,34 @@ private extension SyncedCalendarsViewController {
     func setupTableView() {
         tableView.registerDequeueable(SyncedCalendarCell.self)
         tableView.registerDequeueable(TitleTableHeaderView.self)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension SyncedCalendarsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel?.sections.keys.count ?? 0
+        return viewModel?.sections.keys.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionItem = SyncedCalendarsViewModel.Section(rawValue: section) ?? .onDevice
-        return viewModel?.sections[sectionItem]?.count ?? 0
+        return viewModel?.sections[sectionItem]?.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel?.headerHeight ?? 0
+        return viewModel?.headerHeight ?? .zero
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return viewModel?.footerHeight ?? 0
+        if section == .zero {
+            return viewModel?.footerHeight ?? .zero
         }
-        return 0
+        return .zero
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == 0 {
+        if section == .zero {
             let title = AppTextService.get(.my_qot_my_profile_app_settings_synced_calendars_section_footer_title_calendars_you_own)
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
             headerView.configure(title: title, theme: .level3, themeText: .syncedCalendarTableHeader, showSkeleton: false)

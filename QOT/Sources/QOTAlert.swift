@@ -162,7 +162,7 @@ class QOTAlertViewController: BaseViewController {
     @IBOutlet private weak var toolbarHeight: NSLayoutConstraint! // To hide toolbar when there are no buttons
 
     // MARK: - Variables
-    private var initialPanLocation: CGFloat = 0
+    private var initialPanLocation: CGFloat = .zero
 
     var cancelHander: (() -> Void)?
     weak var delegate: QOTAlertViewControllerDelegate?
@@ -176,7 +176,7 @@ class QOTAlertViewController: BaseViewController {
     private var bottomItems: [UIBarButtonItem]? {
         didSet {
             toolbar.items = handleBottomItems(bottomItems)
-            toolbarHeight.constant = bottomItems != nil ? toolbarDefaultHeight : 0
+            toolbarHeight.constant = bottomItems != nil ? toolbarDefaultHeight : .zero
         }
     }
 
@@ -213,7 +213,7 @@ class QOTAlertViewController: BaseViewController {
 
         // Preparations for appear effects
         initialPanLocation = view.convert(dragView.frame.center, to: backgroundView).y - dragView.center.y
-        backgroundView.alpha = 0
+        backgroundView.alpha = .zero
         bottomContentConstraint.constant = hiddenContentPosition
         view.layoutIfNeeded()
 
@@ -268,8 +268,8 @@ extension QOTAlertViewController {
     func dismiss(completion: ((Bool) -> Void)?) {
         bottomContentConstraint.constant = hiddenContentPosition
         UIView.animate(withDuration: dismissDuration, animations: { [weak self] in
-            self?.backgroundView.alpha = 0
-            self?.toolbar.alpha = 0
+            self?.backgroundView.alpha = .zero
+            self?.toolbar.alpha = .zero
             self?.view.layoutIfNeeded()
         }, completion: completion)
     }
@@ -297,7 +297,7 @@ private extension QOTAlertViewController {
 
         for (index, item) in items.enumerated() {
             // Large space before first item
-            if index == 0 {
+            if index == .zero {
                 if bottomButtonsAlignment != .left {
                     tempItems.append(flexibleSpace)
                 }
@@ -352,7 +352,7 @@ private extension QOTAlertViewController {
 
     @objc func detectedPan(_ recognizer: UIPanGestureRecognizer) {
         var offset  = recognizer.translation(in: backgroundView).y - initialPanLocation
-        if offset < 0 {
+        if offset < .zero {
             offset *= 0.5
         }
 
@@ -365,17 +365,17 @@ private extension QOTAlertViewController {
         // Handle drag down
         backgroundView.alpha = 1.0 - 0.6 * (offset / contentView.frame.size.height) // Min. alpha during swiping is 60 %
         toolbar.alpha = backgroundView.alpha
-        contentView.transform = CGAffineTransform.init(translationX: 0, y: offset)
-        bottomView.transform = CGAffineTransform.init(translationX: 0, y: offset)
-        if offset > 0 {
-            toolbar.transform = CGAffineTransform.init(translationX: 0, y: offset)
+        contentView.transform = CGAffineTransform.init(translationX: .zero, y: offset)
+        bottomView.transform = CGAffineTransform.init(translationX: .zero, y: offset)
+        if offset > .zero {
+            toolbar.transform = CGAffineTransform.init(translationX: .zero, y: offset)
         } else {
             toolbar.transform = .identity
         }
     }
 
     private func handlePanEnd(offset: CGFloat) {
-        if offset > 0, abs(offset) > 0.25 * contentView.frame.size.height {
+        if offset > .zero, abs(offset) > 0.25 * contentView.frame.size.height {
             cancelHander?()
             didTapDismiss()
             return

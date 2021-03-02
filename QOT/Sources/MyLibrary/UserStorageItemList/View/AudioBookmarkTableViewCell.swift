@@ -22,7 +22,7 @@ class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell {
         playButton.isEnabled = !editing
     }
 
-    func configure(playButtonTitle: String?, playButtonTag: Int = 0) {
+    func configure(playButtonTitle: String?, playButtonTag: Int = .zero) {
         configure()
         ThemeButton.carbonButton.apply(playButton)
         playButton.setTitle(playButtonTitle)

@@ -23,7 +23,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var textField: UITextField!
     private lazy var pickerItems = [String]()
     private lazy var selectedIndex = 0
-    private lazy var indexPath = IndexPath(row: 0, section: 0)
+    private lazy var indexPath = IndexPath(row: .zero, section: .zero)
     private lazy var settingsType = SettingsType.company
     private var calendarIdentifier: String?
     private var calendarSource: String?

@@ -54,11 +54,11 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         ThemeText.tbvQuestionLow.apply(lowTitleSentenceCase, to: lowTitleLabel)
         ThemeText.tbvQuestionHigh.apply(highTitleSentenceCase, to: highTitleLabel)
 
-        ThemeText.tbvQuestionLow.apply(lowItems.at(index: 0), to: lowFirstStatement)
+        ThemeText.tbvQuestionLow.apply(lowItems.at(index: .zero), to: lowFirstStatement)
         ThemeText.tbvQuestionLow.apply(lowItems.at(index: 1), to: lowSecondStatement)
         ThemeText.tbvQuestionLow.apply(lowItems.at(index: 2), to: lowThirdStatement)
 
-        ThemeText.tbvQuestionHigh.apply(highItems.at(index: 0), to: highFirstStatement)
+        ThemeText.tbvQuestionHigh.apply(highItems.at(index: .zero), to: highFirstStatement)
         ThemeText.tbvQuestionHigh.apply(highItems.at(index: 1), to: highSecondStatement)
         ThemeText.tbvQuestionHigh.apply(highItems.at(index: 2), to: highThirdStatement)
 
@@ -68,10 +68,10 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         let highGradientLayer = CAGradientLayer()
         let lowGradientLayer = CAGradientLayer()
         let highGradientColor1 = UIColor.mindsetShifterGreen.withAlphaComponent(0.3).cgColor
-        let highGradientColor2 = UIColor.mindsetShifterGreen.withAlphaComponent(0).cgColor
+        let highGradientColor2 = UIColor.mindsetShifterGreen.withAlphaComponent(.zero).cgColor
 
         let lowGradientColor1 = UIColor.mindsetShifterRed.withAlphaComponent(0.3).cgColor
-        let lowGradientColor2 = UIColor.mindsetShifterRed.withAlphaComponent(0).cgColor
+        let lowGradientColor2 = UIColor.mindsetShifterRed.withAlphaComponent(.zero).cgColor
 
         highGradientLayer.colors = [highGradientColor1, highGradientColor2]
         highGradientLayer.locations = [0.0, 1.0]
@@ -81,10 +81,10 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         lowGradientLayer.locations = [0.0, 1.0]
         lowGradientLayer.frame = lowView.bounds
 
-        highView.layer.insertSublayer(highGradientLayer, at: 0)
+        highView.layer.insertSublayer(highGradientLayer, at: .zero)
         highView.layer.masksToBounds = true
 
-        lowView.layer.insertSublayer(lowGradientLayer, at: 0)
+        lowView.layer.insertSublayer(lowGradientLayer, at: .zero)
         lowView.layer.masksToBounds = true
     }
 
