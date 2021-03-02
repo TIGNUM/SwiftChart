@@ -19,10 +19,10 @@ extension UIColor {
     }
 
     var toHexString: String {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var alpha: CGFloat = 0
+        var r: CGFloat = .zero
+        var g: CGFloat = .zero
+        var b: CGFloat = .zero
+        var alpha: CGFloat = .zero
         getRed(&r, green: &g, blue: &b, alpha: &alpha)
         return String(format: "#%02X%02X%02X%02X",
                       Int(round(r * 255)),
@@ -44,7 +44,7 @@ extension UIColor {
             }
             if hexColor.count == 8 {
                 let scanner = Scanner(string: hexColor)
-                var hexNumber: UInt32 = 0
+                var hexNumber: UInt32 = .zero
                 if scanner.scanHexInt32(&hexNumber) {
                     r = CGFloat((hexNumber & 0xFF000000) >> 24) / 255
                     g = CGFloat((hexNumber & 0x00FF0000) >> 16) / 255

@@ -13,7 +13,7 @@ final class PreparationWithMissingEventWorker {
 
     // MARK: - Properties
     var preparations = [QDMUserPreparation]()
-    var currentIndex: Int = 0
+    var currentIndex: Int = .zero
     private var title: String = ""
     private var text: String = ""
     private var _keepButtonTitle: String = ""

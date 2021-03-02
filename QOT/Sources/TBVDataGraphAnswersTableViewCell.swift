@@ -55,7 +55,7 @@ private extension TBVDataGraphAnswersTableViewCell {
 
         for (date, rating) in sortedDict where !rating.isNaN {
             let isLow = lowRange.contains(Int(rating))
-            let text = rating <= 0 ? "-" : String(Int(rating))
+            let text = rating <= .zero ? "-" : String(Int(rating))
             var theme: ThemeText = .tbvTrackerRatingDigits(isLow)
 
             if date == selectedDate {
@@ -96,7 +96,7 @@ private extension TBVDataGraphAnswersTableViewCell {
 
     func removeAllLayers() {
         ratingContainerViews.forEach { (ratingView) in
-            ratingView.corner(radius: 0, borderColor: .clear)
+            ratingView.corner(radius: .zero, borderColor: .clear)
         }
     }
 

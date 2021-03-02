@@ -109,7 +109,7 @@ final class MyPrepsWorker {
 
 extension MyPrepsWorker {
     func remove(segmentedControl: Int, at indexPath: IndexPath, completion: @escaping () -> Void) {
-            if segmentedControl == 0 {
+            if segmentedControl == .zero {
                 let item = model?.items[indexPath.section][indexPath.row]
                 if let qdmPrep = item?.qdmPrep {
                     let externalIdentifier = qdmPrep.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first

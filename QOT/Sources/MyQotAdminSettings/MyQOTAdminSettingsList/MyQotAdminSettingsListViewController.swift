@@ -67,7 +67,7 @@ private extension MyQotAdminSettingsListViewController {
         ThemeView.level2.apply(self.view)
         baseHeaderView?.configure(title: interactor.getHeaderTitle(),
                                   subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
 
         tableView.delegate = self
         tableView.dataSource = self

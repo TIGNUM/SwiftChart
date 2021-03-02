@@ -102,7 +102,7 @@ extension PreparationWithMissingEventViewController: PreparationWithMissingEvent
         ThemeText.qotToolsTitle.apply(title, to: titleLabel)
         ThemeText.resultClosingText.apply(text, to: descriptionLabel)
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueId = interactor?.preparationRemoteId()
         pageTrack.associatedValueType = .PREPARATION
@@ -114,7 +114,7 @@ extension PreparationWithMissingEventViewController: PreparationWithMissingEvent
 
 extension PreparationWithMissingEventViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.eventCount() ?? 0
+        return interactor?.eventCount() ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

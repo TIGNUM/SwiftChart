@@ -70,11 +70,11 @@ final class QOTBaseHeaderView: UIView {
                                                            multiplier: 1.0,
                                                            constant: 0.0)
             subtitleTextView.addConstraint(heightConstraint)
-            subtitleTextViewBottomConstraint.constant = 0
+            subtitleTextViewBottomConstraint.constant = .zero
         }
         skeletonManager.hide()
         subtitleTextView.textContainerInset = .zero
-        subtitleTextView.textContainer.lineFragmentPadding = 0
+        subtitleTextView.textContainer.lineFragmentPadding = .zero
         refresh(darkMode: darkMode, animated: animated)
     }
 
@@ -107,9 +107,9 @@ extension QOTBaseHeaderView {
     // MARK: Public
 
     func calculateHeight(for cellWidth: CGFloat, _ defaultHeight: CGFloat? = 16) -> CGFloat {
-        var height: CGFloat = defaultHeight ?? 0
-        var verticalConstraintsSum: CGFloat = 0
-        var horizontalConstraintsSum: CGFloat = 0
+        var height: CGFloat = defaultHeight ?? .zero
+        var verticalConstraintsSum: CGFloat = .zero
+        var horizontalConstraintsSum: CGFloat = .zero
         for constraint in verticalConstraints {
             verticalConstraintsSum += constraint.constant
         }

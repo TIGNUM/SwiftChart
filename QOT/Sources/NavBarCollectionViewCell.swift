@@ -64,7 +64,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     func updateAlpha(basedOn offsetY: CGFloat) {
         let offset = container.frame.maxY - offsetY
-        if offset < 0 {
+        if offset < .zero {
             container.alpha = 0.0
         } else {
             container.alpha = (offset / container.frame.maxY)

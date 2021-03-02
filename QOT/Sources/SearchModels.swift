@@ -107,7 +107,7 @@ struct Search {
             return contentCollections.compactMap {
                 Search.Result(filter: filter,
                               title: $0.title,
-                              contentID: $0.remoteID ?? 0,
+                              contentID: $0.remoteID ?? .zero,
                               appLink: $0.links.first,
                               contentItemID: nil,
                               createdAt: $0.createdAt ?? Date(),
@@ -125,7 +125,7 @@ struct Search {
         return contentCollections.compactMap({
             Search.Result(filter: filter,
                           title: $0.title,
-                          contentID: $0.remoteID ?? 0,
+                          contentID: $0.remoteID ?? .zero,
                           appLink: $0.links.first,
                           contentItemID: nil,
                           createdAt: $0.createdAt ?? Date(),
@@ -142,7 +142,7 @@ struct Search {
                              title: contentItem.valueText,
                              contentID: nil,
                              appLink: nil,
-                             contentItemID: contentItem.remoteID ?? 0,
+                             contentItemID: contentItem.remoteID ?? .zero,
                              createdAt: contentItem.createdAt ?? Date(),
                              searchTags: "",
                              section: nil,

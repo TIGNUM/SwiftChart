@@ -165,9 +165,9 @@ extension ArticleTopNavBar {
     func configure(_ delegate: ArticleTopNavBarProtocol, isShareable: Bool, isBookMarkable: Bool) {
         self.delegate = delegate
 
-        if arrayViewsCount > 0 { return }
+        if arrayViewsCount > .zero { return }
 
-        let expectedButtonCount: CGFloat = 3 + (isShareable ? 1 : 0) + (isBookMarkable ? 1 : 0)
+        let expectedButtonCount: CGFloat = 3 + (isShareable ? 1 : .zero) + (isBookMarkable ? 1 : .zero)
         spacing = -(bounds.width - expectedButtonCount * buttonSize - rightMargin * 2) / expectedButtonCount
 
         setupContainers()
@@ -217,7 +217,7 @@ extension ArticleTopNavBar {
             [UIColor.white.cgColor,
              UIColor.white.cgColor,
              UIColor.white.withAlphaComponent(0.8).cgColor]
-        layer.insertSublayer(gradientShadow, at: 0)
+        layer.insertSublayer(gradientShadow, at: .zero)
         refreshButtonMore()
     }
 

@@ -55,7 +55,7 @@ final class MyDataChartTableViewCell: MyDataBaseTableViewCollectionViewCell {
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.itemSize = CGSize.init(width: collectionViewWidth, height: height)
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumLineSpacing = .zero
         graphCollectionView.collectionViewLayout = flowLayout
         stackViewTrailingConstraint.constant = (collectionViewWidth/6) + stackViewLeadingConstraint.constant
         populateWeekdaysLabels(Date().firstDayOfWeek())

@@ -23,6 +23,6 @@ extension ContentService {
         if contentItem.valueText.contains(Prepare.Key.benefits.tag) {
             return Prepare.Key.benefits.questionID
         }
-        return 0
+        return .zero
     }
 }

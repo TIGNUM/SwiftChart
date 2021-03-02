@@ -41,12 +41,12 @@ extension UICollectionView {
 
 extension UICollectionView {
     func updatedCollectionViewHeaderWidth() -> CGFloat {
-        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return 0 }
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
             return (frame.width - layout.minimumInteritemSpacing)
     }
 
     func updatedCollectionViewItemWidth() -> CGFloat {
-        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return 0 }
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
             return (frame.width
                 - layout.minimumInteritemSpacing
                 - layout.sectionInset.left
@@ -54,7 +54,7 @@ extension UICollectionView {
     }
 
     func updatedCollectionViewHeight() -> CGFloat {
-        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return 0 }
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
             return (
                 frame.height
                 - (layout.minimumLineSpacing + layout.sectionInset.top + layout.sectionInset.bottom) * 2

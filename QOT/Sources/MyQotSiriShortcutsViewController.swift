@@ -42,7 +42,7 @@ extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInte
         tableView.delegate = self
         tableView.dataSource = self
         baseHeaderView?.configure(title: interactor?.siriShortcutsHeaderText, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
         tableView.reloadData()
     }
 }
@@ -52,7 +52,7 @@ extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInte
 extension MyQotSiriShortcutsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.itemsCount() ?? 0
+        return interactor?.itemsCount() ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

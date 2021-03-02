@@ -99,7 +99,7 @@ extension ButtonTheme {
                 case (false, true, true, false):
                     log("🎯🎯🎯 Generator.State: .isInactive, action: .showBanner", level: .debug)
                     let string = AppTextService.get(.team_tbv_poll_ends)
-                    let message = string.replacingOccurrences(of: "${number_of_days}", with: String(visionPoll?.remainingDays ?? 0))
+                    let message = string.replacingOccurrences(of: "${number_of_days}", with: String(visionPoll?.remainingDays ?? .zero))
                     return (state: .isInactive, action: .showBanner(message: message), label: voted)
                 case (false, true, false, true):
                     log("🎯🎯🎯 Generator.State: .hasBatch, action: .showAdminOptionsGenerator", level: .debug)
@@ -132,7 +132,7 @@ extension ButtonTheme {
                 case (false, true, true, false):
                     log("🎱🎱🎱 Tracker.State: .isInactive, action: .showBanner", level: .debug)
                     let string = AppTextService.get(.team_tbv_rate_ends)
-                    let message = string.replacingOccurrences(of: "${number_of_days}", with: String(trackerPoll?.remainingDays ?? 0))
+                    let message = string.replacingOccurrences(of: "${number_of_days}", with: String(trackerPoll?.remainingDays ?? .zero))
                     return (state: .isInactive, action: .showBanner(message: message), label: rate)
                 case (true, false, false, true):
                     log("🎱🎱🎱 Tracker.State: .isInactive, action: .showBanner", level: .debug)

@@ -193,7 +193,7 @@ extension MyDataScreenViewController {
             return
         }
         let location = sender.location(in: tableView)
-        if tableView.indexPathForRow(at: location) != IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: 0) ||
+        if tableView.indexPathForRow(at: location) != IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: .zero) ||
             !(interactor?.getVisibleGraphHasData() ?? false) {
             return
         }
@@ -234,7 +234,7 @@ extension MyDataScreenViewController {
     private func transform(view: UIImageView, withTranslation translation: CGPoint) {
         var transform = CATransform3DIdentity
         transform = CATransform3DScale(transform, scale, scale, 1.01)
-        transform = CATransform3DTranslate(transform, translation.x, translation.y, 0)
+        transform = CATransform3DTranslate(transform, translation.x, translation.y, .zero)
         view.layer.transform = transform
     }
 
@@ -280,7 +280,7 @@ extension MyDataScreenViewController: MyDataSelectionViewControllerDelegate {
     func didChangeSelected(options: [MyDataSelectionModel.SelectionItem]) {
         if let sections = interactor?.initialDataSelectionSections().myDataSelectionItems, sections != options {
             tableView.reloadData()
-            tableView.scrollToRow(at: IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: 0),
+            tableView.scrollToRow(at: IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: .zero),
                                   at: .middle,
                                   animated: false)
         }
@@ -354,7 +354,7 @@ extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
             chartCell.skeletonManager.hide()
             if firstLoad {
                 chartCell.graphCollectionView.scrollToItem(at: IndexPath(row: (interactor?.getFirstWeekdaysDatasource().count ?? 1) - 1,
-                                                                         section: 0),
+                                                                         section: .zero),
                                                            at: .right,
                                                            animated: false)
             }
@@ -374,42 +374,42 @@ extension MyDataScreenViewController {
                                                   toItem: cell,
                                                   attribute: NSLayoutConstraint.Attribute.centerX,
                                                   multiplier: 1,
-                                                  constant: 0)
+                                                  constant: .zero)
         let leadingConstraint = NSLayoutConstraint(item: detailView,
                                                   attribute: NSLayoutConstraint.Attribute.leading,
                                                   relatedBy: NSLayoutConstraint.Relation.equal,
                                                   toItem: cell,
                                                   attribute: NSLayoutConstraint.Attribute.leading,
                                                   multiplier: 1,
-                                                  constant: 0)
+                                                  constant: .zero)
         let trailingConstraint = NSLayoutConstraint(item: detailView,
                                                    attribute: NSLayoutConstraint.Attribute.trailing,
                                                    relatedBy: NSLayoutConstraint.Relation.equal,
                                                    toItem: cell,
                                                    attribute: NSLayoutConstraint.Attribute.trailing,
                                                    multiplier: 1,
-                                                   constant: 0)
+                                                   constant: .zero)
         let bottomConstraint = NSLayoutConstraint(item: detailView,
                                                   attribute: NSLayoutConstraint.Attribute.bottom,
                                                   relatedBy: NSLayoutConstraint.Relation.equal,
                                                   toItem: cell,
                                                   attribute: NSLayoutConstraint.Attribute.bottom,
                                                   multiplier: 1,
-                                                  constant: 0)
+                                                  constant: .zero)
         let heightConstraint = NSLayoutConstraint(item: detailView,
                                                   attribute: .height,
                                                   relatedBy: .equal,
                                                   toItem: cell,
                                                   attribute: .height,
                                                   multiplier: 3,
-                                                  constant: 0)
+                                                  constant: .zero)
         let widthConstraint = NSLayoutConstraint(item: detailView,
                                                   attribute: .width,
                                                   relatedBy: .equal,
                                                   toItem: cell,
                                                   attribute: .width,
                                                   multiplier: 3,
-                                                  constant: 0)
+                                                  constant: .zero)
             switch cellState.column() {
             case 0:
                 calendar.addConstraints([leadingConstraint, bottomConstraint, heightConstraint, widthConstraint])
@@ -433,10 +433,10 @@ extension MyDataScreenViewController {
     }
 
     func getHeatMapCell() -> MyDataHeatMapTableViewCell? {
-        return tableView.cellForRow(at: IndexPath(row: MyDataRowType.heatMap.rawValue, section: 0)) as? MyDataHeatMapTableViewCell
+        return tableView.cellForRow(at: IndexPath(row: MyDataRowType.heatMap.rawValue, section: .zero)) as? MyDataHeatMapTableViewCell
     }
 
     func getChartCell() -> MyDataChartTableViewCell? {
-        return tableView.cellForRow(at: IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: 0)) as? MyDataChartTableViewCell
+        return tableView.cellForRow(at: IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: .zero)) as? MyDataChartTableViewCell
     }
 }

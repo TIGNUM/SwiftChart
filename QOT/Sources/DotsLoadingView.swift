@@ -55,9 +55,9 @@ final class DotsLoadingView: UIView {
     }
 
     func stopAnimation(_ completion: (() -> Void)? = nil) {
-        if alpha > 0 {
+        if alpha > .zero {
             UIView.animate(withDuration: Animation.duration_03, animations: {
-                self.alpha = 0
+                self.alpha = .zero
             }, completion: { (_) in
                 completion?()
             })
@@ -107,7 +107,7 @@ private extension DotsLoadingView {
         layer.path = path.cgPath
         layer.backgroundColor = nil
         layer.fillColor = color?.cgColor
-        layer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        layer.frame = CGRect(x: .zero, y: .zero, width: size.width, height: size.height)
         return layer
     }
 }

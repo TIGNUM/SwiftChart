@@ -58,7 +58,7 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
         let height = isKeyboardShowing ? keyboardFrame.height : Layout.padding_100
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: height, right: .zero)
         UIView.animate(withDuration: Animation.duration_06, animations: {
             self.view.layoutIfNeeded()
         })

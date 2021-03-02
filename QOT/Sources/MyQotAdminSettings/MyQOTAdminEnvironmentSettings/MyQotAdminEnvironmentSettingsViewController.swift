@@ -1,26 +1,26 @@
 //
-//  MyQotAdminDCSixthQuestionSettingsViewController.swift
+//  MyQotAdminEnvironmentSettingsViewController.swift
 //  QOT
 //
-//  Created by Simu Voicu-Mircea on 16/12/2019.
+//  Created by Simu Voicu-Mircea on 12/12/2019.
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-final class MyQotAdminDCSixthQuestionSettingsViewController: BaseViewController {
+final class MyQotAdminEnvironmentSettingsViewController: BaseViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
 
-    var interactor: MyQotAdminDCSixthQuestionSettingsInteractorInterface!
+    var interactor: MyQotAdminEnvironmentSettingsInteractorInterface!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        MyQotAdminDCSixthQuestionSettingsConfigurator.configure(viewController: self)
+        MyQotAdminEnvironmentSettingsConfigurator.configure(viewController: self)
     }
 
     // MARK: - Life Cycle
@@ -28,20 +28,18 @@ final class MyQotAdminDCSixthQuestionSettingsViewController: BaseViewController 
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        MyQotAdminDCSixthQuestionSettingsInteractor.getSixthQuestionPriority { [weak self] (setting) in
-            self?.interactor.setCurrentSetting(setting: setting)
-            self?.tableView.reloadData()
-        }
         setupTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
+        trackPage()
+        tableView.reloadData()
     }
 }
     // MARK: - Private
-private extension MyQotAdminDCSixthQuestionSettingsViewController {
+private extension MyQotAdminEnvironmentSettingsViewController {
     func setupTableView() {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(tableView)
@@ -60,33 +58,32 @@ private extension MyQotAdminDCSixthQuestionSettingsViewController {
 }
     // MARK: - TableView Delegate and Datasource
 
-extension MyQotAdminDCSixthQuestionSettingsViewController: UITableViewDelegate, UITableViewDataSource {
+extension MyQotAdminEnvironmentSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor.getDatasourceCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
-        let isSelected = interactor.isSelected(at: indexPath.row)
         let checkMark = R.image.registration_checkmark()
 
-        cell.configure(title: interactor.getTitle(for: indexPath.row),
-                       subtitle: nil)
-        cell.customAccessoryImageView.image = isSelected ? checkMark : nil
+        cell.configure(title: interactor.getTitle(at: indexPath.row),
+                    subtitle: nil)
+        cell.customAccessoryImageView.image = interactor.getIsSelected(for: indexPath.row) ? checkMark : nil
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        interactor.selectPriority(at: indexPath.row, completion: {
-            self.navigationController?.popViewController(animated: true)
-        })
+        interactor.changeSelection(for: indexPath.row)
+        self.navigationController?.popViewController(animated: true)
+
     }
 }
 
-// MARK: - MyQotAdminDCSixthQuestionSettingsViewControllerInterface
-extension MyQotAdminDCSixthQuestionSettingsViewController: MyQotAdminDCSixthQuestionSettingsViewControllerInterface {
+// MARK: - MyQotAdminEnvironmentSettingsViewControllerInterface
+extension MyQotAdminEnvironmentSettingsViewController: MyQotAdminEnvironmentSettingsViewControllerInterface {
     func setupView() {
         // Do any additional setup after loading the view.
     }

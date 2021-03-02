@@ -165,7 +165,7 @@ extension CoachCollectionViewController {
         searchViewController?.isVisible = shouldShowSearch
         if shouldShowSearch {
             searchViewController?.activate(duration)
-            refreshCoachButton(alpha: 0)
+            refreshCoachButton(alpha: .zero)
         }
     }
 
@@ -249,7 +249,7 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
     }
 
     func scrollToPage(item: Int) {
-        collectionView.scrollToItem(at: IndexPath(item: item, section: 0),
+        collectionView.scrollToItem(at: IndexPath(item: item, section: .zero),
                                     at: .centeredHorizontally, animated: true)
     }
 }
@@ -318,16 +318,16 @@ private extension CoachCollectionViewController {
                                                                         constant: -currentViewsYPositionInWindow)
         heightSearchViewConstraint = targetView.heightAnchor.constraint(equalToConstant: parentView.bounds.height)
         NSLayoutConstraint.activate([
-            targetView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: 0),
-            targetView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: 0),
+            targetView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: .zero),
+            targetView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: .zero),
             heightSearchViewConstraint,
             bottomSearchViewConstraint,
-            targetView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0)
+            targetView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: .zero)
             ])
     }
 
     func updateSearchViewControllerConstraintsIfNeeded() {
-        if bottomSearchViewConstraint.constant == 0 {
+        if bottomSearchViewConstraint.constant == .zero {
             let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
             bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
         }
@@ -372,7 +372,7 @@ extension CoachCollectionViewController: UIScrollViewDelegate {
     func getCurrentIndexPath() -> IndexPath {
         let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
+        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: .zero, section: .zero)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

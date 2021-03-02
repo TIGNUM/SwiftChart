@@ -11,7 +11,7 @@ import UIKit
 final class ErrorCell: UITableViewCell, Dequeueable {
 
     func configure(text: String, item: Article.Item) {
-        textLabel?.numberOfLines = 0
+        textLabel?.numberOfLines = .zero
         textLabel?.textColor = .red
         textLabel?.text = String(format: "%@\nfomat: %@\ntitle: %@\nid: %d",
                                  text,

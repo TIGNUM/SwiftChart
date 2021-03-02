@@ -86,7 +86,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         self.sprint = sprint
         self.sprintStepNumber = sprintStepNumber
         self.dayTask = dayTask
-        self.relatedStrategiesModels = relatedStrategiesModels.filter { $0.sprintDay == "SPRINT_BUCKET_DAY_" + "\(sprintStepNumber ?? 0)" }
+        self.relatedStrategiesModels = relatedStrategiesModels.filter { $0.sprintDay == "SPRINT_BUCKET_DAY_" + "\(sprintStepNumber ?? .zero)" }
         let caption = sprintTitle
 
         super.init(domainModel,

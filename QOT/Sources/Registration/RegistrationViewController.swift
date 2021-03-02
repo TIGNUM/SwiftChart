@@ -68,7 +68,7 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
         pageIndicator.addConstraints(to: pageIndicatorView)
         pageIndicator.pageColor = .sand
         pageIndicator.pageCount = interactor.totalPageCount
-        pageIndicator.currentPageIndex = 0
+        pageIndicator.currentPageIndex = .zero
 
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         self.pageController = pageController

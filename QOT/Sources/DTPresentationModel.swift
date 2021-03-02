@@ -59,7 +59,7 @@ struct DTPresentationModel {
         }
         let title = question.defaultButtonText?.isEmpty == true ? question.confirmationButtonText : question.defaultButtonText
         let navigationButton = NavigationButton.instantiateFromNib()
-        navigationButton.configure(title: title ?? "", minSelection: 0, isDark: isDark)
+        navigationButton.configure(title: title ?? "", minSelection: .zero, isDark: isDark)
         if !answerType.isEnabled,
             let maxSelections = question.maxPossibleSelections,
             let defaultTitle = question.defaultButtonText,
@@ -72,7 +72,7 @@ struct DTPresentationModel {
                                        titleNext: confirmationTitle,
                                        minSelection: minSelections,
                                        isDark: isDark)
-            navigationButton.update(count: 0, maxSelections: maxSelections)
+            navigationButton.update(count: .zero, maxSelections: maxSelections)
         }
         navigationButton.isHidden = isHidden
         return navigationButton

@@ -27,7 +27,7 @@ private extension TeamVisionTrackerDetailsWorker {
             if let report = (poll.qotTeamToBeVisionTrackers?.filter { $0.sentence == selectedSentence })?.first,
                let ratings = report.qotTeamToBeVisionTrackerRatings, ratings.isEmpty == false {
 
-                if index == 0 {
+                if index == .zero {
                     setDataEntry(for: &dataEntries1, ratings: ratings)
                 }
 

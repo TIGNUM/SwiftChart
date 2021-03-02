@@ -101,7 +101,7 @@ class MyLibraryCellViewModelConverter {
                                            mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: cellStatus,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model
@@ -123,7 +123,7 @@ class MyLibraryCellViewModelConverter {
                                       mediaType: item.mediaType ?? .UNKNOWN,
                                       downloadStatus: .none,
                                       identifier: item.qotId ?? "",
-                                      remoteId: Int(item.contentId ?? "0") ?? 0,
+                                      remoteId: Int(item.contentId ?? "0") ?? .zero,
                                       mediaURL: URL(string: item.mediaPath() ?? ""))
     }
 
@@ -142,7 +142,7 @@ class MyLibraryCellViewModelConverter {
                                            mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: .none,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model
@@ -160,7 +160,7 @@ class MyLibraryCellViewModelConverter {
                                            mediaType: item.mediaType ?? .UNKNOWN,
                                            downloadStatus: .none,
                                            identifier: item.qotId ?? "",
-                                           remoteId: Int(item.contentId ?? "0") ?? 0,
+                                           remoteId: Int(item.contentId ?? "0") ?? .zero,
                                            mediaURL: URL(string: item.mediaPath() ?? ""))
         model.storageUpdateInfo = creationInfo
         return model
@@ -179,8 +179,8 @@ class MyLibraryCellViewModelConverter {
     }
 
     private func mediaDuration(for item: QDMUserStorage) -> (full: String, simple: String) {
-        var durationMinute = (item.durationInSeconds ?? 0)/60
-        let durationSeconds = (item.durationInSeconds ?? 0)%60
+        var durationMinute = (item.durationInSeconds ?? .zero)/60
+        let durationSeconds = (item.durationInSeconds ?? .zero)%60
         let fullDuration = String(format: "%d:%02d", durationMinute, durationSeconds)
 
         var postfix = read
@@ -196,9 +196,9 @@ class MyLibraryCellViewModelConverter {
         if durationSeconds > 30 {
             durationMinute += 1
         }
-        if  durationMinute > 0 {
+        if  durationMinute > .zero {
             simpleDuration = "\(durationMinute) min \(postfix)"
-        } else if durationSeconds > 0 {
+        } else if durationSeconds > .zero {
             simpleDuration = fullDuration
         }
 

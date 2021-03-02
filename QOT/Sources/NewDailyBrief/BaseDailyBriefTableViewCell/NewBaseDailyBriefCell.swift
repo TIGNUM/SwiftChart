@@ -54,12 +54,12 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     }
 
     private func setupCollectionView() {
-        var width = UIScreen.main.bounds.width - (detailsMode ? 0 : 48)
+        var width = UIScreen.main.bounds.width - (detailsMode ? .zero : 48)
         var height: CGFloat = 463
-        collectionView.bounces = datasource?.count ?? 0 > 1
+        collectionView.bounces = datasource?.count ?? .zero > 1
         collectionView.decelerationRate = .fast
 
-        if (datasource?.first as? NewDailyBriefGetStartedModel != nil && datasource?.count ?? 0 > 0) || skeletonMode == .getStarted {
+        if (datasource?.first as? NewDailyBriefGetStartedModel != nil && datasource?.count ?? .zero > .zero) || skeletonMode == .getStarted {
             width = 183
             let viewModel: NewDailyBriefGetStartedModel? = calculateHeighest(with: datasource ?? [], forWidth: width) as? NewDailyBriefGetStartedModel
             let dummyModel = NewDailyBriefGetStartedModel.init(title: "Label",
@@ -79,13 +79,13 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
                                                              titleColor: "#FFFFFF",
                                                              domainModel: nil)
             detailsMode = viewModel?.detailsMode ?? false
-            collectionViewTopConstraint.constant  = detailsMode ? 0 : 20
+            collectionViewTopConstraint.constant  = detailsMode ? .zero : 20
             height = NewDailyBriefStandardCollectionViewCell.height(for: viewModel ?? dummyModel, forWidth: width)
             collectionView.isPagingEnabled = false
-            flowLayout.minimumLineSpacing = detailsMode ? 0 : 8.0
+            flowLayout.minimumLineSpacing = detailsMode ? .zero : 8.0
         }
-        flowLayout.sectionInset.left = detailsMode ? 0 : 24.0
-        flowLayout.sectionInset.right = detailsMode ? 0 : 24.0
+        flowLayout.sectionInset.left = detailsMode ?.zero : 24.0
+        flowLayout.sectionInset.right = detailsMode ? .zero : 24.0
 
         flowLayout.itemSize = CGSize(width: width, height: height)
         collectionViewHeightConstraint.constant = height
@@ -94,11 +94,11 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     }
 
     // MARK: - Public
-    func configure(with models: [BaseDailyBriefViewModel]?, selectedIndex: Int = 0, skeletonMode: SkeletonMode = .standard) {
+    func configure(with models: [BaseDailyBriefViewModel]?, selectedIndex: Int = .zero, skeletonMode: SkeletonMode = .standard) {
         datasource = models
         self.skeletonMode = skeletonMode
         setupCollectionView()
-        if selectedIndex < models?.count ?? 0 {
+        if selectedIndex < models?.count ?? .zero {
             scrollToCard(at: selectedIndex)
         }
     }
@@ -106,7 +106,7 @@ class NewBaseDailyBriefCell: UITableViewCell, Dequeueable {
     func scrollToCard(at index: Int) {
         let pageWidth = self.flowLayout.itemSize.width + self.flowLayout.minimumInteritemSpacing
         let offsetX: CGFloat = CGFloat(index) * pageWidth
-        collectionView?.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+        collectionView?.setContentOffset(CGPoint(x: offsetX, y: .zero), animated: true)
     }
 }
 
@@ -133,7 +133,7 @@ extension NewBaseDailyBriefCell: UICollectionViewDelegate, UICollectionViewDataS
                 cell.body.text = tbvStatement
                 cell.body.textColor = .white
             }
-            cell.layer.borderWidth = detailsMode ? 0 :  0.5
+            cell.layer.borderWidth = detailsMode ? .zero :  0.5
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.contentView.alpha = model.enabled ? 1.0 : 0.2
             cell.isUserInteractionEnabled = model.enabled
@@ -179,13 +179,13 @@ class MyCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let approximatePage = collectionView.contentOffset.x/pageWidth
 
         // Determine the current page based on velocity.
-        let currentPage = velocity.x == 0 ? round(approximatePage) : (velocity.x < 0.0 ? floor(approximatePage) : ceil(approximatePage))
+        let currentPage = velocity.x == .zero ? round(approximatePage) : (velocity.x < 0.0 ? floor(approximatePage) : ceil(approximatePage))
 
         // Create custom flickVelocity.
         let flickVelocity = velocity.x * 0.3
 
         // Check how many pages the user flicked, if <= 1 then flickedPages should return 0.
-        let flickedPages = (abs(round(flickVelocity)) <= 1) ? 0 : round(flickVelocity)
+        let flickedPages = (abs(round(flickVelocity)) <= 1) ? .zero : round(flickVelocity)
 
         // Calculate newHorizontalOffset.
         let newHorizontalOffset = ((currentPage + flickedPages) * pageWidth) - collectionView.contentInset.left

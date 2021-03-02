@@ -25,7 +25,7 @@ final class CollapsableCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
+        separatorInset = UIEdgeInsets(top: .zero, left: 24, bottom: .zero, right: .zero)
     }
 
     func setTitleText(_ text: String?, selectionCount: Int, strategyCount: Int) {
