@@ -18,10 +18,10 @@ extension QDMSprintNotificationsSchedule {
         guard let stringComponents = time?.components(separatedBy: ":") else {
             return nil
         }
-        guard let hour = Int(stringComponents.first ?? ""),
-        let minute = Int(stringComponents.last ?? "") else {
+        guard let hour = Int(stringComponents.first ?? String.empty),
+        let minute = Int(stringComponents.last ?? String.empty) else {
             return nil
         }
-        return Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: inputDate)
+        return Calendar.current.date(bySettingHour: hour, minute: minute, second: .zero, of: inputDate)
     }
 }

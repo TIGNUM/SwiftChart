@@ -25,7 +25,7 @@ final class MyVisionWorker: WorkerTeam {
             case .genderSheHe: return gender == .female ? "she" : (gender == .male ? "he" : "they")
             case .genderHerHis: return gender == .female ? "her" : (gender == .male ? "his" : "their")
             case .genderHerselfHimself: return gender == .female ? "herself" : (gender == .male ? "himself" : "themself")
-            default: return ""
+            default: return String.empty
             }
         }
     }
@@ -87,7 +87,7 @@ final class MyVisionWorker: WorkerTeam {
 
     func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void) {
         getVisionTracks { (tracks) in
-            let date = Date(timeIntervalSince1970: 0)
+            let date = Date(timeIntervalSince1970: .zero)
 
             if let track = tracks.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first,
                 let rating = track.ratings.sorted(by: { $0.isoDate > $1.isoDate }).first {
@@ -143,7 +143,7 @@ final class MyVisionWorker: WorkerTeam {
                     }
                 }
 
-                guard let report = report, report.dates.count > 0 else {
+                guard let report = report, report.dates.count > .zero else {
                     completion(strongSelf.notRatedText, true, true)
                     return
                 }

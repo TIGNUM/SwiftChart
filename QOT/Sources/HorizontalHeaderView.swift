@@ -30,7 +30,7 @@ final class HorizontalHeaderView: UIView {
         _ = NotificationCenter.default.addObserver(forName: .didSelectMyX,
                                                    object: nil,
                                                    queue: .main) { [weak self] _ in
-            self?.scrollToItem(index: 0)
+            self?.scrollToItem(index: .zero)
         }
     }
 
@@ -47,7 +47,7 @@ private extension HorizontalHeaderView {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
             if canDeselect {
-                HorizontalHeaderView.selectedTeamId = teamId == HorizontalHeaderView.selectedTeamId ? "" : teamId
+                HorizontalHeaderView.selectedTeamId = teamId == HorizontalHeaderView.selectedTeamId ? String.empty : teamId
             } else {
                 HorizontalHeaderView.selectedTeamId = teamId
             }
@@ -70,11 +70,11 @@ private extension HorizontalHeaderView {
     }
 
     func scrollToItem(index: Int) {
-        collectionView.scrollToItem(at: IndexPath(item: index, section: 0),
+        collectionView.scrollToItem(at: IndexPath(item: index, section: .zero),
                                     at: .centeredHorizontally,
                                     animated: true)
-        if index == 0 || headerItems.endIndex == index {
-            collectionView.setContentOffset(CGPoint(x: -16, y: 0), animated: true)
+        if index == .zero || headerItems.endIndex == index {
+            collectionView.setContentOffset(CGPoint(x: -16, y: .zero), animated: true)
         }
     }
 }

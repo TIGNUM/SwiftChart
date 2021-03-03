@@ -23,7 +23,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var textField: UITextField!
     private lazy var pickerItems = [String]()
     private lazy var selectedIndex = 0
-    private lazy var indexPath = IndexPath(row: 0, section: 0)
+    private lazy var indexPath = IndexPath(row: .zero, section: .zero)
     private lazy var settingsType = SettingsType.company
     private var calendarIdentifier: String?
     private var calendarSource: String?
@@ -73,7 +73,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             expandArrow.isHidden = true
             self.settingsType = settingsType
             self.bottomSeperatorView.isHidden = true
-            setupTextFieldCell(title: title, value: value ?? "", settingsType: settingsType)
+            setupTextFieldCell(title: title, value: value ?? String.empty, settingsType: settingsType)
         case .stringPicker(let title, let pickerItems, let selectedIndex, let settingsType):
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: pickerItems[selectedIndex], settingsType: settingsType)

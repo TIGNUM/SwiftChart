@@ -48,8 +48,8 @@ final class MyQotSupportViewController: BaseViewController, ScreenZLevel3 {
 extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        baseHeaderView?.configure(title: (interactor?.supportText ?? "").uppercased(), subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: (interactor?.supportText ?? String.empty).uppercased(), subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
         setUpTableView()
     }
 
@@ -63,14 +63,14 @@ extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
 extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.itemCount() ?? 0
+        return interactor?.itemCount() ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         let subtitle = interactor?.subtitle(at: indexPath)
-        cell.configure(title: interactor?.title(at: indexPath) ?? "", themeCell: .level3)
-        cell.configure(subTitle: subtitle ?? "", isHidden: subtitle == "")
+        cell.configure(title: interactor?.title(at: indexPath) ?? String.empty, themeCell: .level3)
+        cell.configure(subTitle: subtitle ?? String.empty, isHidden: subtitle == String.empty)
         return cell
     }
 

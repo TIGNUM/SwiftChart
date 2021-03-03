@@ -72,8 +72,8 @@ private extension KnowingViewController {
         view.fill(subview: collectionView)
         collectionView.delaysContentTouches = false
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = .zero
+            layout.minimumInteritemSpacing = .zero
             layout.sectionInset = .zero
         }
         collectionView.clipsToBounds = false
@@ -113,12 +113,12 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
         case Knowing.Section.header.rawValue:
             return 1
         case Knowing.Section.strategies.rawValue:
-            guard let strategies = interactor?.strategies().count, strategies > 0 else {
+            guard let strategies = interactor?.strategies().count, strategies > .zero else {
                 return 6
             }
             return strategies
         default:
-            guard let articles = interactor?.whatsHotArticles().count, articles > 0 else {
+            guard let articles = interactor?.whatsHotArticles().count, articles > .zero else {
                 return 15
             }
             return articles
@@ -137,7 +137,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             return cell
         case Knowing.Section.strategies.rawValue:
             let cell: StrategyCategoryCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            if indexPath.item == 0 {
+            if indexPath.item == .zero {
                 let strategy = interactor?.foundationStrategy()
                 cell.configure(categoryTitle: strategy?.title,
                                viewCount: strategy?.viewedCount,
@@ -147,7 +147,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                 return cell
             } else {
                 guard
-                    interactor?.fiftyFiveStrategies().count ?? 0 > indexPath.item - 1,
+                    interactor?.fiftyFiveStrategies().count ?? .zero > indexPath.item - 1,
                     let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1] else {
                     cell.configure(categoryTitle: nil,
                                    viewCount: nil,
@@ -180,7 +180,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
         case Knowing.Section.header.rawValue:
             return CGSize(width: view.frame.width, height: .HeaderBarHeight)
         case Knowing.Section.strategies.rawValue:
-            if indexPath.item == 0 {
+            if indexPath.item == .zero {
                 return CGSize(width: view.frame.width, height: 126)
             } else {
                 return CGSize(width: view.frame.width * 0.5, height: 96)
@@ -203,19 +203,19 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch section {
         case Knowing.Section.header.rawValue:
-            return CGSize(width: view.frame.width, height: 0)
+            return CGSize(width: view.frame.width, height: .zero)
         default:
             if let componentHeader = self.collectionView(collectionView,
                                                          viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader,
-                                                         at: IndexPath(row: 0, section: section)) as? ComponentHeaderView,
+                                                         at: IndexPath(row: .zero, section: section)) as? ComponentHeaderView,
                 let sectionType = Knowing.Section(rawValue: section),
                 let header = interactor?.header(for: sectionType) {
                 componentHeader.configure(title: header.title,
                                           subtitle: header.subtitle,
-                                          showSeparatorView: section != 0,
+                                          showSeparatorView: section != .zero,
                                           secondary: true)
-                return CGSize(width: view.frame.width, height: ComponentHeaderView.height(title: header.title ?? "",
-                                                                                          subtitle: header.subtitle ?? "",
+                return CGSize(width: view.frame.width, height: ComponentHeaderView.height(title: header.title ?? String.empty,
+                                                                                          subtitle: header.subtitle ?? String.empty,
                                                                                           forWidth: view.frame.width))
             }
             return CGSize(width: view.frame.width, height: 155)
@@ -271,7 +271,7 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
         case Knowing.Section.header.rawValue:
             break
         case Knowing.Section.strategies.rawValue:
-            if indexPath.item == 0 {
+            if indexPath.item == .zero {
                 let foundation = interactor?.foundationStrategy()
                 trackUserEvent(.SELECT, value: foundation?.remoteID, valueType: .CONTENT, action: .TAP)
                 interactor?.presentStrategyList(selectedStrategyID: nil)
@@ -282,13 +282,13 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             }
         default:
             let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
-            trackUserEvent(.OPEN, value: whatsHotArticle?.remoteID ?? 0, valueType: .CONTENT, action: .TAP)
-            interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? 0)
+            trackUserEvent(.OPEN, value: whatsHotArticle?.remoteID ?? .zero, valueType: .CONTENT, action: .TAP)
+            interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? .zero)
         }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? NavBarCollectionViewCell {
+        if let cell = collectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? NavBarCollectionViewCell {
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y,

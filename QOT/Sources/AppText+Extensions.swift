@@ -1151,7 +1151,7 @@ public extension AppTextKey {
     static let chatbot_prepare_start_strategyTitle = AppTextKey("chatbot_prepare_start.strategy.title")
     static let chatbot_prepare_start_strategies = AppTextKey("chatbot_prepare_start.strategy.content")
     static let chatbot_prepare_start_selectionTitle = AppTextKey("chatbot_prepare_start.selection.title")
-    static let chatbot_prepare_start_critical_button = AppTextKey("chatbot_prepare_start.button.critical")
+    static let chatbot_prepare_start_critical_button = AppTextKey("chatbot_prepare.start.critical_button")
     static let chatbot_prepare_start_daily_button = AppTextKey("chatbot_prepare_start.button.daily")
 
     // MARK: - Event Selection

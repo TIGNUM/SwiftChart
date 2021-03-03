@@ -66,13 +66,13 @@ private extension RegistrationCodeViewController {
     func sendCodeIfPossible() {
         let active = (digitTextFields.filter { $0.hasText == false }).isEmpty == true
         guard active == true else { return }
-        interactor.validateLoginCode(digitTextFields.reduce("", { $0 + ($1.text ?? "") }))
+        interactor.validateLoginCode(digitTextFields.reduce(String.empty, { $0 + ($1.text ?? String.empty) }))
     }
 
     func goToNextDigitField(_ currentTextField: UITextField, nextTextField: UITextField?) {
         currentTextField.resignFirstResponder()
         if let nextTextField = nextTextField {
-            nextTextField.text = ""
+            nextTextField.text = String.empty
             nextTextField.becomeFirstResponder()
         }
     }
@@ -85,7 +85,7 @@ private extension RegistrationCodeViewController {
         interactor.resetErrors()
         codeErrorLabel.attributedText = nil
         digitTextFields.forEach {
-            $0.text = ""
+            $0.text = String.empty
             $0.textColor = .white
             $0.layer.borderColor = UIColor.white20.cgColor
         }
@@ -171,7 +171,7 @@ extension RegistrationCodeViewController: UITextFieldDelegate {
         // On error make first field editable
         guard let field = textField as? TextField else { return true }
         if interactor.hasCodeError == true,
-            let index = digitTextFields.firstIndex(of: field), index != 0 {
+            let index = digitTextFields.firstIndex(of: field), index != .zero {
             digitTextFields.first?.becomeFirstResponder()
             return false
         }
@@ -224,7 +224,7 @@ extension RegistrationCodeViewController: UITextFieldDelegate {
 extension RegistrationCodeViewController: TextFieldDelegate {
     func textFieldDidDelete(_ textField: TextField) {
         guard let index = digitTextFields.firstIndex(of: textField) else { return }
-        if index - 1 >= 0 {
+        if index - 1 >= .zero {
             let nextTextField = digitTextFields[index - 1]
             goToNextDigitField(textField, nextTextField: nextTextField)
         }

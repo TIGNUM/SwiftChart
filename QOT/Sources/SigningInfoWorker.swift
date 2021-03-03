@@ -25,7 +25,7 @@ final class SigningInfoWorker {
     }()
 
     var bodyText: String? = {
-        return ""
+        return String.empty
     }()
 
     lazy var startButtonText: String? = {

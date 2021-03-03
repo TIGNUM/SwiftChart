@@ -28,7 +28,7 @@ extension SearchInteractor: SearchInteractorInterface {
 
     func showSuggestions() {
         worker.suggestions { suggestions in
-            self.presenter.load(suggestions ?? SearchSuggestions(header: "", suggestions: []))
+            self.presenter.load(suggestions ?? SearchSuggestions(header: String.empty, suggestions: []))
         }
     }
 

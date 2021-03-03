@@ -10,9 +10,9 @@ import UIKit
 import qot_dal
 
 struct RegistrationData {
-    var email: String = ""
-    var code: String = ""
-    var firstName: String = ""
+    var email: String = String.empty
+    var code: String = String.empty
+    var firstName: String = String.empty
     var lastName: String?
 }
 
@@ -62,7 +62,7 @@ final class RegistrationInteractor: RegistrationInteractorInterface {
     init(presenter: RegistrationPresenterInterface, router: RegistrationRouter, email: String?) {
         self.presenter = presenter
         self.router = router
-        self.registrationData.email = email ?? ""
+        self.registrationData.email = email ?? String.empty
         presentedControllers = [codeController]
     }
 

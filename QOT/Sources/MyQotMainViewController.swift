@@ -87,7 +87,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
-        layout.sectionInset = .init(top: 0, left: 24, bottom: 0, right: 24)
+        layout.sectionInset = .init(top: .zero, left: 24, bottom: .zero, right: 24)
         layout.sectionHeadersPinToVisibleBounds = true
     }
 
@@ -104,16 +104,16 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
                          updateIndexPaths: [IndexPath], newIndexPathsForUpdatedItems: [IndexPath],
                          insertIndexPaths: [IndexPath]) {
         collectionView.performBatchUpdates({
-            if updateIndexPaths.count > 0, updateIndexPaths.count == newIndexPathsForUpdatedItems.count {
+            if updateIndexPaths.count > .zero, updateIndexPaths.count == newIndexPathsForUpdatedItems.count {
                 updateCell(originalIndexPath: updateIndexPaths, newIndexPath: newIndexPathsForUpdatedItems)
             } else {
                 reload()
                 return
             }
 
-            if deleteIndexPaths.count > 0 {
+            if deleteIndexPaths.count > .zero {
                 collectionView.deleteItems(at: deleteIndexPaths)
-            } else if insertIndexPaths.count > 0 {
+            } else if insertIndexPaths.count > .zero {
                 collectionView.insertItems(at: insertIndexPaths)
             }
         })
@@ -202,7 +202,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 // MARK: - UIScrollViewDelegate
 extension MyQotMainViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? NavBarCollectionViewCell {
+        if let cell = collectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? NavBarCollectionViewCell {
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y,

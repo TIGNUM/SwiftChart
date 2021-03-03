@@ -81,9 +81,9 @@ final class NavigationButton: AbstractTreeButton {
     @IBOutlet private weak var constraintLeftMargin: NSLayoutConstraint!
 
     private var isDark = false
-    private var titleFirst = ""
-    private var titleNext = ""
-    private var title = ""
+    private var titleFirst = String.empty
+    private var titleNext = String.empty
+    private var title = String.empty
     private var maxCount = 1
     private var minCount = 1
 
@@ -95,7 +95,7 @@ final class NavigationButton: AbstractTreeButton {
         addObserver()
         spacerWidth = constraintSpacerWidth.constant
         containerView.cornerDefault()
-        configure(title: "", minSelection: 1, isDark: isDark)
+        configure(title: String.empty, minSelection: 1, isDark: isDark)
     }
 
     static func instantiateFromNib() -> NavigationButton {
@@ -110,12 +110,12 @@ final class NavigationButton: AbstractTreeButton {
             return titleFirst
         }
         if titleNext.isEmpty == false {
-            return titleNext + " " + (continueLabel.text ?? "")
+            return titleNext + " " + (continueLabel.text ?? String.empty)
         }
         return title
     }
 
-    func configure(title: String, titleNext: String = "", minSelection: Int, staticWidth: Bool = false, isDark: Bool) {
+    func configure(title: String, titleNext: String = String.empty, minSelection: Int, staticWidth: Bool = false, isDark: Bool) {
         self.titleFirst = title
         self.titleNext = titleNext.isEmpty ? titleFirst : titleNext
         self.minCount = minSelection
@@ -130,7 +130,7 @@ final class NavigationButton: AbstractTreeButton {
             constraintTotalWidthMin.constant = 0.0 //small value means it will grow/shrink
         }
 
-        update(count: 0, maxSelections: 1)
+        update(count: .zero, maxSelections: 1)
     }
 
     func update(count: Int, maxSelections: Int? = nil) {
@@ -138,7 +138,7 @@ final class NavigationButton: AbstractTreeButton {
             maxCount = maxSelections
         }
 
-        isHidden = maxCount == 0
+        isHidden = maxCount == .zero
 
         let isEnough = count >= minCount
         counterButton.isUserInteractionEnabled = isEnough
@@ -149,7 +149,7 @@ final class NavigationButton: AbstractTreeButton {
             isDark ? ThemeBorder.white.apply(containerView) : ThemeBorder.black.apply(containerView)
         }
 
-        if count == 0 && !isEnough {
+        if count == .zero && !isEnough {
             title = substitute(titleFirst)
             ThemeText.chatbotProgress(false, isDark).apply(title, to: continueLabel)
             ThemeView.chatbotProgress(false, isDark).apply(containerView)
@@ -159,7 +159,7 @@ final class NavigationButton: AbstractTreeButton {
             title = substitute(titleNext)
             ThemeView.chatbotProgress(isEnough, isDark).apply(containerView)
             ThemeText.chatbotProgress(isEnough, isDark).apply(title, to: continueLabel)
-            let counterText = maxCount <= 1 ? "" : "\(count)/\(maxCount)"
+            let counterText = maxCount <= 1 ? String.empty : "\(count)/\(maxCount)"
             ThemeText.chatbotProgress(isEnough, isDark).apply(counterText, to: counterLabel)
             if isEnough {
                 isDark ? ThemeBorder.white.apply(containerView) : ThemeBorder.black.apply(containerView)

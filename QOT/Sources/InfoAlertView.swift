@@ -80,14 +80,14 @@ class InfoAlertView: UIView {
     @IBOutlet private weak var dragView: UIButton!
 
     // Touch locations used in `halfScreenBlur` appearance
-    private var initialLocation: CGFloat = 0
+    private var initialLocation: CGFloat = .zero
 
     /// Closure to be executed when the alert is dismissed. Important for `halfScreen` style as user can dismiss the
     /// alert by tapping on blur or swiping down
     var onDismiss: DismissClosure?
 
     /// Designates content distance to the top of the superview. Ignored if style is not `regular`.
-    var topInset: CGFloat = 0 {
+    var topInset: CGFloat = .zero {
         didSet {
             contentViewTopConstraint.constant = self.topInset
             setNeedsLayout()
@@ -178,18 +178,18 @@ extension InfoAlertView {
 // MARK: - Public interface
 extension InfoAlertView {
     func set(icon: UIImage?, title: String?, text: String?) {
-        set(icon: icon, title: title, attributedText: NSAttributedString(string: text ?? ""))
+        set(icon: icon, title: title, attributedText: NSAttributedString(string: text ?? String.empty))
     }
 
     func set(icon: UIImage?, title: String?, attributedText text: NSAttributedString?) {
         iconImageView.image = icon?.withRenderingMode(.alwaysTemplate)
-        titleLabel.attributedText = addDisplayAttributes(to: NSAttributedString(string: title ?? ""), type: .title)
-        textLabel.attributedText = addDisplayAttributes(to: text ?? NSAttributedString(string: ""), type: .description)
+        titleLabel.attributedText = addDisplayAttributes(to: NSAttributedString(string: title ?? String.empty), type: .title)
+        textLabel.attributedText = addDisplayAttributes(to: text ?? NSAttributedString(string: String.empty), type: .description)
     }
 
     func present(on view: UIView, animated: Bool = true) {
         if self.superview != view {
-            self.alpha = 0
+            self.alpha = .zero
             view.addSubview(self)
             self.addConstraints(to: view)
             UIView.animate(withDuration: duration(animated)) { [weak self] in
@@ -200,7 +200,7 @@ extension InfoAlertView {
 
     func dismiss(animated: Bool = true) {
         UIView.animate(withDuration: duration(animated), animations: { [weak self] in
-            self?.alpha = 0
+            self?.alpha = .zero
         }, completion: {  [weak self] (_) in
             self?.onDismiss?()
             self?.removeFromSuperview()
@@ -219,7 +219,7 @@ extension InfoAlertView {
         let offset  = recognizer.translation(in: contentView).y - initialLocation
 
         // Do not drag up
-        if offset < 0 {
+        if offset < .zero {
             return
         }
 
@@ -231,7 +231,7 @@ extension InfoAlertView {
 
         // Handle drag down
         self.alpha = 1.0 - 0.4 * (offset / infoView.frame.size.height) // Min. alpha during swiping is 60 %
-        infoView.transform = CGAffineTransform.init(translationX: 0, y: offset)
+        infoView.transform = CGAffineTransform.init(translationX: .zero, y: offset)
     }
 
     private func handlePanEnd(offset: CGFloat) {
@@ -272,15 +272,15 @@ extension InfoAlertView {
         case .description:
             characterSpacing = 1.2
         case .regular:
-            characterSpacing = 0
+            characterSpacing = .zero
         }
 
         let mutableText = NSMutableAttributedString(attributedString: text)
-        mutableText.addAttribute(.kern, value: characterSpacing, range: NSRange(location: 0, length: text.length))
+        mutableText.addAttribute(.kern, value: characterSpacing, range: NSRange(location: .zero, length: text.length))
 
         let style = NSMutableParagraphStyle()
         style.lineSpacing = lineSpacing
-        mutableText.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: text.length))
+        mutableText.addAttribute(.paragraphStyle, value: style, range: NSRange(location: .zero, length: text.length))
         return mutableText
     }
 }

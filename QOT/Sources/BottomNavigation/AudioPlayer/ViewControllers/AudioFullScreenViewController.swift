@@ -90,10 +90,10 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         switch colorMode {
         case.dark:
             ThemeText.articleCategoryNotScaled.apply(media?.subtitle, to: categorytitleLabel)
-            ThemeText.audioFullScreenTitleDark.apply((media?.title ?? ""), to: titleLabel)
+            ThemeText.audioFullScreenTitleDark.apply(String.empty, to: titleLabel)
         case .darkNot:
             ThemeText.audioFullScreenCategory.apply(media?.subtitle, to: categorytitleLabel)
-            ThemeText.audioFullScreenTitle.apply((media?.title ?? ""), to: titleLabel)
+            ThemeText.audioFullScreenTitle.apply((media?.title ?? String.empty), to: titleLabel)
         }
     }
 
@@ -157,7 +157,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         case .DONE:
             title = AppTextService.get(.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
-            downloadButton.layer.borderWidth = 0
+            downloadButton.layer.borderWidth = .zero
             switch colorMode {
             case .dark:
                 downloadButton.imageView?.tintColor = .black
@@ -185,7 +185,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_ITEM
         pageTrack.associatedValueId = media?.mediaRemoteId
@@ -218,7 +218,7 @@ extension AudioFullScreenViewController {
 
     @IBAction func didTapBookmarkButton() {
         trackUserEvent(.BOOKMARK, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
-        guard let itemId = contentItem?.remoteID, itemId != 0 else { return }
+        guard let itemId = contentItem?.remoteID, itemId != .zero else { return }
         TeamService.main.getTeams { [weak self] (teams, _, _) in
             if let teams = teams, teams.isEmpty == false {
                 self?.showBookmarkSelectionViewController(with: itemId, { (_) in
@@ -319,7 +319,7 @@ extension AudioFullScreenViewController {
             velocityButton.setTitleColor(.white, for: .normal)
         }
 
-        var title = ""
+        var title = String.empty
         switch velocity {
         case 0.5:
             styleVelocityButton()

@@ -31,7 +31,7 @@ final class VisionRatingExplanationViewController: BaseViewController {
     private var downSyncObserver: NSObjectProtocol?
     private var skeletonManager = SkeletonManager()
     private var videoID: Int?
-    private var rightBarButtonTitle = ""
+    private var rightBarButtonTitle = String.empty
     private var rightBarButtonAction = #selector(startRating)
     private var loadingDots: DotsLoadingView?
 
@@ -123,7 +123,7 @@ extension VisionRatingExplanationViewController {
     }
 
     @objc func videoTapped(_ sender: UITapGestureRecognizer) {
-        if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(videoID ?? 0)) {
+        if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(videoID ?? .zero)) {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
         }
     }
@@ -156,7 +156,7 @@ extension VisionRatingExplanationViewController: VisionRatingExplanationViewCont
 
     func setupLabels(title: String, text: String, videoTitle: String) {
         ThemeText.ratingExplanationTitle.apply(title.uppercased(), to: titleLabel)
-        let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team?.name ?? "").uppercased())
+        let adaptedText = text.replacingOccurrences(of: "${TEAM_NAME}", with: (interactor.team?.name ?? String.empty).uppercased())
         ThemeText.ratingExplanationText.apply(adaptedText, to: textLabel)
         ThemeText.ratingExplanationVideoTitle.apply(videoTitle, to: videoTitleLabel)
 
@@ -241,7 +241,7 @@ private extension VisionRatingExplanationViewController {
 
     func showLoadingDots() {
         guard let loadingDotsContainer = loadingDotsContainer, loadingDots == nil else { return }
-        let dots = DotsLoadingView(with: CGRect(x: 0, y: 0, width: .LoadingDots, height: .LoadingDots),
+        let dots = DotsLoadingView(with: CGRect(x: .zero, y: .zero, width: .LoadingDots, height: .LoadingDots),
                                    parentView: loadingDotsContainer,
                                    dotsColor: .lightGrey)
         loadingDots = dots

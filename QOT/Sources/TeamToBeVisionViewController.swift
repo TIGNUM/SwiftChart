@@ -63,7 +63,7 @@ final class TeamToBeVisionViewController: BaseViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
-        showNullState(with: "", message: "", header: "")
+        showNullState(with: String.empty, message: String.empty, header: String.empty)
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
         showSkeleton()
@@ -253,7 +253,7 @@ private extension TeamToBeVisionViewController {
         userImageView.contentMode = .scaleAspectFill
         userImageView.setImage(url: tempTeamImageURL, placeholder: userImageView.image) { (_) in /* */}
         let lastModified = AppTextService.get(.my_x_team_tbv_section_update_subtitle).replacingOccurrences(of: "${date}",
-                                                                                                           with: interactor?.lastUpdatedTeamVision() ?? "")
+                                                                                                           with: interactor?.lastUpdatedTeamVision() ?? String.empty)
         ThemeText.teamTvbTimeSinceTitle.apply(lastModified, to: lastModifiedLabel)
     }
 }
@@ -269,15 +269,15 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
     }
 
     func setupView() {
-        scrollView.alpha = 0
+        scrollView.alpha = .zero
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         let title = AppTextService.get(.my_x_team_tbv_new_section_header_title).replacingOccurrences(of: "{$TEAM_NAME}",
-                                                                                                     with: interactor.team.name?.uppercased() ?? "")
+                                                                                                     with: interactor.team.name?.uppercased() ?? String.empty)
         ThemeText.tbvSectionHeader.apply(title, to: toBeVisionLabel)
         userImageView.image = R.image.teamTBVPlaceholder()
 
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: Layout.padding_50, right: .zero)
         scrollView.scrollsToTop = true
         ThemableButton.poll.apply(pollButton, key: .my_x_team_tbv_section_poll_button)
         ThemableButton.poll.apply(trackerButton, key: .my_x_team_tbv_section_rating_button)
@@ -298,7 +298,7 @@ extension TeamToBeVisionViewController: TeamToBeVisionViewControllerInterface {
             teamNullStateImageView.gradientBackground(top: false)
             return
         }
-        if scrollView.alpha == 0 {
+        if scrollView.alpha == .zero {
             UIView.animate(withDuration: Animation.duration_04) {
                 self.scrollView.alpha = 1
             }
@@ -358,14 +358,14 @@ extension TeamToBeVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         if self.lastContentOffset > offsetY {
-            if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 400 {
+            if navigationBarViewTopMarginConstraint.constant < .zero && scrollView.contentOffset.y > 400 {
                 showNavigationBarView()
             }
-            if offsetY < 0 {
+            if offsetY < .zero {
                 hideNavigationBarView()
             }
         } else {
-            if navigationBarViewTopMarginConstraint.constant == 0 {
+            if navigationBarViewTopMarginConstraint.constant == .zero {
                 hideNavigationBarView()
             }
         }

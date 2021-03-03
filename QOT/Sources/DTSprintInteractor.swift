@@ -16,10 +16,10 @@ final class DTSprintInteractor: DTInteractor {
     private var activeSprint: QDMSprint?
     private var newSprintContentId: Int?
     private var lastSprintQuestionId: Int?
-    private var selectedSprintContentId: Int = 0
-    private var selectedSprintTargetQuestionId: Int = 0
+    private var selectedSprintContentId: Int = .zero
+    private var selectedSprintTargetQuestionId: Int = .zero
     private var lastQuestionSelection: DTSelectionModel?
-    private var selectedSprintTitle = ""
+    private var selectedSprintTitle = String.empty
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +36,13 @@ final class DTSprintInteractor: DTInteractor {
                                  content: QDMContentCollection?) -> String? {
         let firstSelectedAnswer = selectedAnswers.first
         if firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
-            selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? 0
-            selectedSprintTargetQuestionId = firstSelectedAnswer?.targetId(.question) ?? 0
-            selectedSprintTitle = firstSelectedAnswer?.title ?? ""
-            var result = ""
+            selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? .zero
+            selectedSprintTargetQuestionId = firstSelectedAnswer?.targetId(.question) ?? .zero
+            selectedSprintTitle = firstSelectedAnswer?.title ?? String.empty
+            var result = String.empty
             if questionKey == Sprint.QuestionKey.Schedule {
-                let sprintTitle = content?.contentItems.filter { $0.format == .header1 }.first?.valueText ?? ""
-                let title = (content?.contentCategoryTitle ?? "") + ": " + sprintTitle + "\n"
+                let sprintTitle = content?.contentItems.filter { $0.format == .header1 }.first?.valueText ?? String.empty
+                let title = (content?.contentCategoryTitle ?? String.empty) + ": " + sprintTitle + "\n"
                 result.append(title)
                 let filteredItems = content?.contentItems.filter { $0.format == .title }
                 filteredItems?.reversed().forEach { result.append("\n" + "\n" + $0.valueText) }
@@ -60,7 +60,7 @@ final class DTSprintInteractor: DTInteractor {
     override func loadNextQuestion(selection: DTSelectionModel) {
         selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
         if selection.question?.key == Sprint.QuestionKey.Selection {
-            let contentId = selection.selectedAnswers.first?.decisions.filter { $0.targetType == TargetType.content }.first?.targetTypeId ?? 0
+            let contentId = selection.selectedAnswers.first?.decisions.filter { $0.targetType == TargetType.content }.first?.targetTypeId ?? .zero
             sprintWorker?.getContent(contentId: contentId, completion: { [weak self] (content) in
                 if let presentationModel = self?.createPresentationModel(selection: selection,
                                                                          questions: self?.questions ?? [],
@@ -99,13 +99,13 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
                 self?.lastSprintQuestionId = self?.selectedSprintTargetQuestionId
                 let title = AppTextService.get(.my_qot_my_sprints_my_sprint_details_alert_sprint_in_progress_title)
                 let messageFormat = AppTextService.get(.coach_sprints_alert_sprint_in_progress_body)
-                let updatedMessageFormat = self?.replaceMessagePlaceHolders(sprintInProgressTitle: sprint.title ?? "",
-                                                                            newSprintTitle: self?.selectedSprintTitle ?? "",
+                let updatedMessageFormat = self?.replaceMessagePlaceHolders(sprintInProgressTitle: sprint.title ?? String.empty,
+                                                                            newSprintTitle: self?.selectedSprintTitle ?? String.empty,
                                                                             message: messageFormat)
-                let message = String(format: updatedMessageFormat ?? "", dateString, self?.selectedSprintTitle ?? "")
+                let message = String(format: updatedMessageFormat ?? String.empty, dateString, self?.selectedSprintTitle ?? String.empty)
                 self?.presenter?.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
             } else {
-                self?.sprintWorker?.startSprintTomorrow(selectedSprintContentId: self?.selectedSprintContentId ?? 0, completion: { [weak self] (sprint) in
+                self?.sprintWorker?.startSprintTomorrow(selectedSprintContentId: self?.selectedSprintContentId ?? .zero, completion: { [weak self] (sprint) in
                     self?.activeSprint = sprint
                 })
                 if let selection = self?.lastQuestionSelection {

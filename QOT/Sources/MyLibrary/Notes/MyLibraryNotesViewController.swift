@@ -63,7 +63,7 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         if let teamId = interactor?.teamId {
             pageTrack.associatedValueId = teamId
@@ -80,7 +80,7 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - Private
 private extension MyLibraryNotesViewController {
     private func keyboardToolbar() -> UIToolbar {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
+        let toolbar = UIToolbar(frame: CGRect(x: .zero, y: .zero, width: 100, height: 80))
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
 
@@ -106,7 +106,7 @@ private extension MyLibraryNotesViewController {
                                                              .font: UIFont.sfProtextLight(ofSize: 16),
                                                              .kern: CharacterSpacing.kern05])
         } else {
-            attributedText = NSAttributedString(string: interactor?.placeholderText ?? "",
+            attributedText = NSAttributedString(string: interactor?.placeholderText ?? String.empty,
                                                 attributes: [.foregroundColor: UIColor.lightGrey,
                                                              .font: UIFont.sfProtextLight(ofSize: 16),
                                                              .kern: CharacterSpacing.kern05])
@@ -169,7 +169,7 @@ extension MyLibraryNotesViewController: UITextViewDelegate {
 extension MyLibraryNotesViewController {
     @objc override func keyboardWillAppear(_ notification: Notification) {
         let parameters = keyboardParameters(from: notification)
-        animateTextView(height: parameters?.height ?? 0)
+        animateTextView(height: parameters?.height ?? .zero)
     }
 
     @objc override func keyboardWillDisappear(_ notification: Notification) {

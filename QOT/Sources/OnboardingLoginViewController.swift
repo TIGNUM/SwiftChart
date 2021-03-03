@@ -19,7 +19,7 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevel3 {
     private let viewTheme = ThemeView.onboarding
     private var shouldBeginEmailEntry: Bool = true
     private var didHideEmail: Bool {
-        return sendButtonYPosition.constant != 0
+        return sendButtonYPosition.constant != .zero
     }
 
     var interactor: OnboardingLoginInteractorInterface!
@@ -113,14 +113,14 @@ private extension OnboardingLoginViewController {
 
         emailField.textField.layer.borderColor = UIColor.sand20.cgColor
         ThemeText.loginEmailMessage.apply(interactor.emailInstructions, to: emailInstructionsLabel)
-        emailInstructionsLabel.alpha = didHideEmail ? 0 : 1
+        emailInstructionsLabel.alpha = didHideEmail ?.zero : 1
     }
 
     func loadDigitTextFieldsDefaultUI() {
         interactor.resetCodeError()
 
         digitTextFields.forEach {
-            $0.text = ""
+            $0.text = String.empty
             $0.textColor = .white
             $0.layer.borderColor = UIColor.white20.cgColor
         }
@@ -149,7 +149,7 @@ private extension OnboardingLoginViewController {
         let active = (digitTextFields.filter { $0.hasText == false }).isEmpty == true
         guard active == true else { return }
         textField.resignFirstResponder()
-        let code = digitTextFields.reduce("", { $0 + ($1.text ?? "") })
+        let code = digitTextFields.reduce(String.empty, { $0 + ($1.text ?? String.empty) })
         interactor.validateLoginCode(code, for: emailField.text) { [weak self] (showCoachMarks) in
             if showCoachMarks {
                 self?.router.showCoachMarks()
@@ -161,7 +161,7 @@ private extension OnboardingLoginViewController {
 
     func goToNextDigitField(_ currentTextField: UITextField, nextTextField: UITextField?) {
         if let nextTextField = nextTextField {
-            nextTextField.text = ""
+            nextTextField.text = String.empty
             nextTextField.becomeFirstResponder()
         }
     }
@@ -170,17 +170,17 @@ private extension OnboardingLoginViewController {
         sendButtonYPosition.constant = digitsActiveOffset
         UIView.animate(withDuration: Animation.duration_02) {
             self.view.layoutIfNeeded()
-            self.buttonSendCode.alpha = 0
+            self.buttonSendCode.alpha = .zero
             self.viewResendButtons.alpha = 1.0
-            self.emailField.alpha = 0
-            self.emailInstructionsLabel.alpha = 0
+            self.emailField.alpha = .zero
+            self.emailInstructionsLabel.alpha = .zero
             self.updateCodeEntry(isEnabled: true)
             self.buttonGetHelp.alpha = 1.0
         }
     }
 
     func resetCodeInputPosition() {
-        sendButtonYPosition.constant = 0
+        sendButtonYPosition.constant = .zero
         UIView.animate(withDuration: Animation.duration_02) {
             self.view.layoutIfNeeded()
             self.buttonSendCode.alpha = 1
@@ -220,7 +220,7 @@ private extension OnboardingLoginViewController {
         if hasInternet() {
             trackUserEvent(.VERIFY_EMAIL, action: .TAP)
             emailField.textField.resignFirstResponder()
-            emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
+            emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: String.empty)
             interactor.didTapVerify(email: emailField.text) {
                 self.resetCodeInputPosition()
                 self.router.goToRegister(email: self.emailField.text)
@@ -264,7 +264,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         // On error make first field editable
         guard let field = textField as? TextField else { return true }
-        if interactor.viewModel.codeError != nil, let index = digitTextFields.firstIndex(of: field), index != 0 {
+        if interactor.viewModel.codeError != nil, let index = digitTextFields.firstIndex(of: field), index != .zero {
             digitTextFields.first?.becomeFirstResponder()
             return false
         }
@@ -334,7 +334,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
 extension OnboardingLoginViewController: TextFieldDelegate {
     func textFieldDidDelete(_ textField: TextField) {
         guard let index = digitTextFields.firstIndex(of: textField) else { return }
-        if index - 1 >= 0 {
+        if index - 1 >= .zero {
             let nextTextField = digitTextFields[index - 1]
             goToNextDigitField(textField, nextTextField: nextTextField)
         }
@@ -349,7 +349,7 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
         baseHeaderView?.addTo(superview: headerView)
         baseHeaderView?.configure(title: interactor.title, subtitle: nil)
         baseHeaderView?.refresh(titleThemeText: .registrationEmailTitle, subtitleThemeText: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
         ThemeText.loginEmailMessage.apply(interactor.emailInstructions, to: emailInstructionsLabel)
         ThemeText.loginEmailCode.apply(interactor.preCode, to: precodeLabel)
         ThemeText.loginEmailCodeMessage.apply(interactor.digitDescription, to: digitDescriptionLabel)

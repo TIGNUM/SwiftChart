@@ -22,7 +22,7 @@ final class BaseDailyBriefDetailsWorker {
         // FIXME: need to separate question and answers from daily-check-in.
             guard let strongSelf = self,
                   let question = question else { return }
-            let answers = question.answers.sorted(by: { $0.sortOrder ?? 0 > $1.sortOrder ?? 0 })
+            let answers = question.answers.sorted(by: { $0.sortOrder ?? .zero > $1.sortOrder ?? .zero })
                 .compactMap({ (qdmAnswer) -> RatingQuestionViewModel.Answer? in
                     return RatingQuestionViewModel.Answer(remoteID: qdmAnswer.remoteID,
                                                           title: qdmAnswer.title,
@@ -33,10 +33,10 @@ final class BaseDailyBriefDetailsWorker {
                 let selectedAnswerIndex = question.answers.count - 1 - (sleepTargetValue - 60)/30
                 let model = RatingQuestionViewModel.Question(remoteID: question.remoteID,
                                                              title: question.title,
-                                                             htmlTitle: question.htmlTitleString ?? "",
+                                                             htmlTitle: question.htmlTitleString ?? String.empty,
                                                              subtitle: question.subtitle,
-                                                             dailyPrepTitle: "",
-                                                             key: question.key ?? "",
+                                                             dailyPrepTitle: String.empty,
+                                                             key: question.key ?? String.empty,
                                                              answers: answers,
                                                              range: nil,
                                                              selectedAnswerIndex: selectedAnswerIndex)
@@ -60,7 +60,7 @@ final class BaseDailyBriefDetailsWorker {
             if let setting = settings?.first {
                 var updatedSetting = setting
                 // turning sleep target from an answer index to a number of hours per day
-                updatedSetting.longValue = 60 + (Int64(value ?? 0) * 30)
+                updatedSetting.longValue = 60 + (Int64(value ?? .zero) * 30)
                 SettingService.main.updateSetting(updatedSetting, true, {(error) in
                     if let error = error {
                         log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)

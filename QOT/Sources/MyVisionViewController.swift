@@ -66,7 +66,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
         interactor.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-        showNullState(with: " ", message: " ", writeMessage: "")
+        showNullState(with: " ", message: " ", writeMessage: String.empty)
         showSkeleton()
     }
 
@@ -150,7 +150,7 @@ private extension MyVisionViewController {
     }
 
     func showNavigationBarView() {
-        navigationBarViewTopMarginConstraint.constant = 0
+        navigationBarViewTopMarginConstraint.constant = .zero
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
@@ -192,13 +192,13 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func setupView() {
-        scrollView.alpha = 0
+        scrollView.alpha = .zero
 
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_qot_my_tbv_section_header_title),
                                          to: toBeVisionLabel)
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: Layout.padding_50, right: .zero)
         scrollView.scrollsToTop = true
         ThemableButton.darkButton.apply(rateButton, title: "")
         ThemeBorder.white.apply(rateButton)
@@ -221,12 +221,12 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
         if myVision == nil {
-            interactor.showNullState(with: interactor.nullStateTitle ?? "",
-                                     message: interactor.nullStateSubtitle ?? "",
-                                     writeMessage: interactor.nullStateCTA ?? "")
+            interactor.showNullState(with: interactor.nullStateTitle ?? String.empty,
+                                     message: interactor.nullStateSubtitle ?? String.empty,
+                                     writeMessage: interactor.nullStateCTA ?? String.empty)
             return
         }
-        if scrollView.alpha == 0 {
+        if scrollView.alpha == .zero {
             UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
         }
         skeletonManager.hide()
@@ -316,14 +316,14 @@ extension MyVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         if self.lastContentOffset > offsetY {
-            if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 400 {
+            if navigationBarViewTopMarginConstraint.constant < .zero && scrollView.contentOffset.y > 400 {
                 showNavigationBarView()
             }
-            if offsetY < 0 {
+            if offsetY < .zero {
                 hideNavigationBarView()
             }
         } else {
-            if navigationBarViewTopMarginConstraint.constant == 0 {
+            if navigationBarViewTopMarginConstraint.constant == .zero {
                 hideNavigationBarView()
             }
         }

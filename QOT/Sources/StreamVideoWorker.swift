@@ -79,7 +79,7 @@ final class StreamVideoWorker {
     }()
 
     func updateBookmarks(_ completion: @escaping () -> Void) {
-        ContentService.main.getContentItemById(content?.remoteID ?? 0) { [weak self] (item) in
+        ContentService.main.getContentItemById(content?.remoteID ?? .zero) { [weak self] (item) in
             self?.bookmarks = item?.userStorages?.filter { $0.userStorageType == .BOOKMARK } ?? []
             completion()
         }

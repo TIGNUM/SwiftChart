@@ -70,7 +70,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         captionSizingLabel.font = UIFont.sfProtextRegular(ofSize: 14.0)
         captionSizingLabel.lineBreakMode = .byTruncatingTail
         captionSizingLabel.text = caption
-        captionSizingLabel.textColor = UIColor(hex: titleColor ?? "")
+        captionSizingLabel.textColor = UIColor(hex: titleColor ?? String.empty)
 
         let titleSizingLabel = UILabel()
         titleSizingLabel.numberOfLines = 5
@@ -79,7 +79,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         titleSizingLabel.attributedText = ThemeText.dailyBriefTitle.attributedString(title)
 
         let bodySizingLabel = UILabel()
-        bodySizingLabel.numberOfLines = isInAnimationTransition ?? false ? numberOfLinesForBody : 0
+        bodySizingLabel.numberOfLines = isInAnimationTransition ?? false ? numberOfLinesForBody : .zero
         bodySizingLabel.font = UIFont.sfProtextRegular(ofSize: 16.0)
         bodySizingLabel.lineBreakMode = .byTruncatingTail
         bodySizingLabel.text = body

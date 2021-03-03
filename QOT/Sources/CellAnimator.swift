@@ -38,13 +38,13 @@ extension CellAnimator {
 
     static func moveUpWithFade(rowHeight: CGFloat, duration: TimeInterval, delayFactor: Double) -> CellAnimation {
         return { cell, indexPath in
-            cell.transform = CGAffineTransform(translationX: 0, y: rowHeight / 2)
-            cell.alpha = 0
+            cell.transform = CGAffineTransform(translationX: .zero, y: rowHeight / 2)
+            cell.alpha = .zero
             UIView.animate(withDuration: duration,
                            delay: delayFactor * Double(indexPath.row),
                            options: [.curveEaseInOut],
                            animations: {
-                            cell.transform = CGAffineTransform(translationX: 0, y: 0)
+                            cell.transform = CGAffineTransform(translationX: .zero, y: .zero)
                             cell.alpha = 1
             })
         }

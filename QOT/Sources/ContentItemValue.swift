@@ -38,12 +38,12 @@ enum ContentItemValue {
         let description = item.valueDescription.isEmpty ? nil : item.valueDescription.trimmingCharacters(in: .whitespacesAndNewlines)
         let localMediaPath = item.userStorages?.filter({ (storage) -> Bool in
             storage.userStorageType == .DOWNLOAD
-        }).first?.mediaPath() ?? ""
+        }).first?.mediaPath() ?? String.empty
 
         let mediaURL = URL(string: localMediaPath) ?? item.valueMediaURL.flatMap { URL(string: $0) }
         let imageURL = item.valueImageURL.flatMap { URL(string: $0) }
-        let duration = item.valueDuration ?? 0
-        let itemID = item.remoteID ?? 0
+        let duration = item.valueDuration ?? .zero
+        let itemID = item.remoteID ?? .zero
 
         switch item.format {
         case .header1,
@@ -74,7 +74,7 @@ enum ContentItemValue {
             }
         case .video:
             if let title = text, let video = mediaURL {
-                self = .video(remoteId: item.remoteID ?? 0,
+                self = .video(remoteId: item.remoteID ?? .zero,
                               title: title,
                               description: description,
                               placeholderURL: imageURL,
@@ -85,8 +85,8 @@ enum ContentItemValue {
             }
         case .audio:
             if let audio = mediaURL {
-                let title = text ?? ""
-                self = .audio(remoteId: item.remoteID ?? 0,
+                let title = text ?? String.empty
+                self = .audio(remoteId: item.remoteID ?? .zero,
                               title: title,
                               description: description,
                               placeholderURL: audio,
@@ -141,7 +141,7 @@ enum ContentItemValue {
         switch self {
         case .audio(_, _, _, _, _, let duration, _),
              .video(_, _, _, _, _, let duration): return Int(duration)
-        default: return 0
+        default: return .zero
         }
     }
 
@@ -150,7 +150,7 @@ enum ContentItemValue {
         switch self {
         case .audio: return AppTextService.get(.generic_content_section_item_new_label_audio).replacingOccurrences(of: "${AMOUNT}", with: min)
         case .video: return AppTextService.get(.generic_content_section_item_new_label_video).replacingOccurrences(of: "${AMOUNT}", with: min)
-        default: return ""
+        default: return String.empty
         }
     }
 }

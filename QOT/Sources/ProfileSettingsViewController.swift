@@ -91,11 +91,11 @@ private extension ProfileSettingsViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ProfileSettingsViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return interactor?.numberOfSections() ?? 0
+        return interactor?.numberOfSections() ?? .zero
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.numberOfItemsInSection(in: section) ?? 0
+        return interactor?.numberOfItemsInSection(in: section) ?? .zero
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -104,7 +104,7 @@ extension ProfileSettingsViewController {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
-        headerView.configure(title: interactor?.headerTitle(in: section) ?? "", theme: .level3, showSkeleton: false)
+        headerView.configure(title: interactor?.headerTitle(in: section) ?? String.empty, theme: .level3, showSkeleton: false)
         return headerView
     }
 
@@ -169,13 +169,13 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
             if interactor?.profile?.givenName != text {
                 interactor?.profile?.givenName = text
                 interactor?.generateSections()
-                shouldAllowSave = text != ""
+                shouldAllowSave = text != String.empty
             }
         case 1: // LastName
                 if interactor?.profile?.familyName != text {
                 interactor?.profile?.familyName = text
                 interactor?.generateSections()
-                shouldAllowSave = text != ""
+                shouldAllowSave = text != String.empty
                 }
         default: return
         }

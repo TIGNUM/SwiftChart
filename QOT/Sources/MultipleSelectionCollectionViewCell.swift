@@ -64,7 +64,7 @@ extension MultipleSelectionCollectionViewCell {
         }
         if isAnswered == true {
             deselectAnswer(&answer)
-        } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
+        } else if (selectionCounter < maxSelections) || (selectionCounter == .zero && maxSelections == .zero) {
             selectAnswer(&answer)
         }
     }
@@ -74,7 +74,7 @@ extension MultipleSelectionCollectionViewCell {
 private extension MultipleSelectionCollectionViewCell {
     @objc func syncButton(_ notification: Notification) {
         if let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int {
-            selectionCounter = counter > maxSelections ? 0 : counter
+            selectionCounter = counter > maxSelections ? .zero : counter
         }
     }
 
@@ -94,7 +94,7 @@ private extension MultipleSelectionCollectionViewCell {
     }
 
     func selectAnswer(_ answer: inout DTViewModel.Answer) {
-        let shouldMarkSelected = !(selectionCounter == 0 && maxSelections == 0)
+        let shouldMarkSelected = !(selectionCounter == .zero && maxSelections == .zero)
         answer.setSelected(shouldMarkSelected)
         isAnswered = shouldMarkSelected
         selectionButton?.switchBackgroundColor(isSelected: shouldMarkSelected)

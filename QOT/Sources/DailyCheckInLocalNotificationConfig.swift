@@ -24,13 +24,13 @@ struct DailyCheckInLocalNotificationConfig: Codable {
     var bodyStrings: [String]?
 
     init(weekday: Int) {
-        version = 0
+        version = .zero
         hour = 5
-        minute = 0
+        minute = .zero
         self.weekday = weekday
         soundName = nil
         titleKey = "generic.local_notification.daily_check_in.default_title"
-        link = URLScheme.dailyCheckIn.launchPathWithParameterValue("")
+        link = URLScheme.dailyCheckIn.launchPathWithParameterValue(String.empty)
         bodyContentItemIds = [107606, 107607, 107608, 107609, 107610, 107611, 107612, 107613, 107614, 107615,
                               107616, 107617, 107618, 107619, 107620, 107621]
         description = nil
@@ -43,7 +43,7 @@ struct DailyCheckInLocalNotificationConfig: Codable {
     func notificationRequest(with body: String) -> UNNotificationRequest {
         let componants = DateComponents(hour: hour, minute: minute, weekday: weekday)
         let title = AppTextService.get(AppTextKey(titleKey))
-        let content = UNMutableNotificationContent(title: title, body: body, soundName: soundName ?? "", link: link)
+        let content = UNMutableNotificationContent(title: title, body: body, soundName: soundName ?? String.empty, link: link)
         if soundName == nil || soundName?.isEmpty == true {
             content.sound = .none
         }

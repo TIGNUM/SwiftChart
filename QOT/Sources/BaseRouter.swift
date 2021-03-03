@@ -154,7 +154,7 @@ class BaseRouter: BaseRouterInterface {
     func presentMailComposer(recipients: [String], subject: String) {
         BaseRouter.sendEmail(to: recipients.first ?? Defaults.firstLevelSupportEmail,
                              subject: subject,
-                             body: "", from: viewController)
+                             body: String.empty, from: viewController)
     }
 
     static func sendEmail(to: String, subject: String, body: String, from: UIViewController?) {

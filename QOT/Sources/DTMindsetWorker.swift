@@ -51,7 +51,7 @@ private extension DTMindsetWorker {
         let lowAnswersContentIDs = lowAnswers.compactMap { $0.targetId(.content) }
 
         ContentService.main.getContentCollectionsByIds(lowAnswersContentIDs) { (contentCollections) in
-            let highContentItemIds = contentCollections?.flatMap { $0.contentItems }.map { $0.remoteID ?? 0 } ?? []
+            let highContentItemIds = contentCollections?.flatMap { $0.contentItems }.map { $0.remoteID ?? .zero } ?? []
             let resultItem = MindsetResult.Item(mindsetKillerAnswerId: mindsetKillerAnswer?.answers.first?.remoteId,
                                                 triggerAnswerId: triggerAnswer?.answers.first?.remoteId,
                                                 toBeVisionText: tbv?.text,

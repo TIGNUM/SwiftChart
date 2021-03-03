@@ -21,19 +21,19 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
     var body: String?
     var image: String?
     var domainModel: QDMDailyBriefBucket?
-    var subIdentifier = ""
+    var subIdentifier = String.empty
     var titleColor: String? = "9C9897"
 
     // MARK: - Init
     init(_ domainModel: QDMDailyBriefBucket?,
-         _ subIdentifier: String? = "",
-         caption: String? = "",
-         title: String? = "",
-         body: String? = "",
-         image: String? = "",
+         _ subIdentifier: String? = String.empty,
+         caption: String? = String.empty,
+         title: String? = String.empty,
+         body: String? = String.empty,
+         image: String? = String.empty,
          titleColor: String? = "#9C9897") {
         self.domainModel = domainModel
-        self.subIdentifier = subIdentifier ?? ""
+        self.subIdentifier = subIdentifier ?? String.empty
         self.caption = caption
         self.title = title
         self.body = body
@@ -44,7 +44,7 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
     }
 
     var differenceIdentifier: DifferenceIdentifier {
-        return (self.domainModel?.bucketName ?? "") + subIdentifier
+        return (self.domainModel?.bucketName ?? String.empty) + subIdentifier
     }
 
     func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
@@ -73,6 +73,6 @@ class BaseDailyBriefViewModel: Differentiable, DynamicHeightProtocol {
 
     // MARK: - Public
     public func height(forWidth width: CGFloat) -> CGFloat {
-        return 0
+        return .zero
     }
 }

@@ -14,7 +14,7 @@ struct GuidedTrackItem: Equatable {
     var title: String?
     var image: String?
     var appLink: QDMAppLink?
-    var subIdentifier = ""
+    var subIdentifier = String.empty
     var isCompleted: Bool?
 
     init(title: String?, image: String?, appLink: QDMAppLink, isCompleted: Bool?) {

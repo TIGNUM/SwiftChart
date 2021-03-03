@@ -194,10 +194,10 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return getPollCell(indexPath, tableView)
             case .text:
                 if viewModel.hasTypingAnimation {
-                    return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? "")
+                    return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? String.empty)
                 }
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(with: viewModel.tbvText ?? "",
+                cell.configure(with: viewModel.tbvText ?? String.empty,
                                textColor: (interactor.isDark) ? .white : .black)
                 return cell
 
@@ -223,7 +223,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
+        return .zero
     }
 }
 
@@ -231,7 +231,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
 private extension DTQuestionnaireViewController {
     func getTypingCell(_ indexPath: IndexPath, _ tableView: UITableView, title: String?) -> AnimatedAnswerTableViewCell {
         let cell: AnimatedAnswerTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: title ?? "",
+        cell.configure(with: title ?? String.empty,
                        html: nil,
                        questionUpdate: nil,
                        textColor: (interactor.isDark) ? .white : .black,
@@ -279,7 +279,7 @@ extension DTQuestionnaireViewController: SingleSelectionCellDelegate {
 // MARK: - MultiselectionCellDelegate
 extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
     func didSetHeight(to height: CGFloat) {
-        let setBefore = heightOfCollection != 0
+        let setBefore = heightOfCollection != .zero
         heightOfCollection = height
         if !setBefore {
             tableView.reloadData()

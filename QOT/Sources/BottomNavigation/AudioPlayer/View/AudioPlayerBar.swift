@@ -51,7 +51,7 @@ final class AudioPlayerBar: UIView {
         progressModeContentView.corner(radius: 20)
         progressModeProgressView.corner(radius: 20)
         progressModeSlider.setThumbImage(R.image.ic_audio_slider_white(), for: .normal)
-        let thumbImageWidth: CGFloat = progressModeSlider.thumbImage(for: .normal)?.size.width ?? 0
+        let thumbImageWidth: CGFloat = progressModeSlider.thumbImage(for: .normal)?.size.width ?? .zero
         sliderLeading.constant = -(thumbImageWidth/2)
         sliderTrailing.constant = -(thumbImageWidth/2)
         progressModeContentView.corner(radius: 20)
@@ -67,7 +67,7 @@ final class AudioPlayerBar: UIView {
 
     func configure(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int, titleColor: UIColor? = nil) {
         audioPlayer.delegate = self
-        progressView.progress = 0
+        progressView.progress = .zero
         setTitleLabel(title: title, isLight: isLightMode)
         audioPlayer.resetPlayer()
         audioPlayer.prepareToPlay(categoryTitle: categoryTitle, title: title, audioURL: audioURL, remoteID: remoteID)
@@ -84,7 +84,7 @@ final class AudioPlayerBar: UIView {
 
     func refreshColorMode(isLight: Bool) {
         isLightMode = isLight
-        setTitleLabel(title: titleLabel.text ?? "", isLight: isLight)
+        setTitleLabel(title: titleLabel.text ?? String.empty, isLight: isLight)
         if isLight {
             NewThemeView.dark.apply(contentView)
             NewThemeView.dark.apply(progressModeContentView)
@@ -125,7 +125,7 @@ extension AudioPlayerBar {
             progressModeSlider.isUserInteractionEnabled = false
             currentMedia = media
             audioPlayer.delegate = self
-            progressView.progress = 0
+            progressView.progress = .zero
             setTitleLabel(title: media.title, isLight: isLightMode)
 
             audioPlayer.prepareToPlay(categoryTitle: media.subtitle,
@@ -152,7 +152,7 @@ extension AudioPlayerBar {
         case .playPause:
             progressModeContentView.isUserInteractionEnabled = false
             UIView.animate(withDuration: 0.25) {
-                self.progressModeContentView.alpha = 0
+                self.progressModeContentView.alpha = .zero
             }
         case .progress:
             progressModeContentView.isUserInteractionEnabled = true
@@ -239,10 +239,10 @@ extension AudioPlayerBar: AudioPlayerDelegate {
 
     func didFinishAudio() {
         audioPlayer.resetPlayer()
-        audioPlayer.prepareToPlay(categoryTitle: currentMedia?.subtitle ?? "",
-                                  title: currentMedia?.title ?? "",
+        audioPlayer.prepareToPlay(categoryTitle: currentMedia?.subtitle ?? String.empty,
+                                  title: currentMedia?.title ?? String.empty,
                                   audioURL: currentMedia?.url,
-                                  remoteID: currentMedia?.mediaRemoteId ?? 0)
+                                  remoteID: currentMedia?.mediaRemoteId ?? .zero)
         audioPlayer.pause()
     }
 }

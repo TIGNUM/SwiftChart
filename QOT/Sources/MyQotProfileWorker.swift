@@ -15,18 +15,18 @@ final class MyQotProfileWorker {
     private let userService: UserService
     private let contentService: ContentService
     private let dispatchGroup = DispatchGroup()
-    private var accountSettingsText = ""
-    private var teamSettingsText = ""
-    private var manageYourProfileDetailsText = ""
-    private var appSettingsText = ""
-    private var enableNotificationsText = ""
-    private var supportText = ""
-    private var walkthroughOurFeaturesText = ""
-    private var aboutTignumText = ""
-    private var manageTeamSettingsText = ""
-    private var learnMoreAboutUsText = ""
-    var myProfileText = ""
-    var memberSinceText = ""
+    private var accountSettingsText = String.empty
+    private var teamSettingsText = String.empty
+    private var manageYourProfileDetailsText = String.empty
+    private var appSettingsText = String.empty
+    private var enableNotificationsText = String.empty
+    private var supportText = String.empty
+    private var walkthroughOurFeaturesText = String.empty
+    private var aboutTignumText = String.empty
+    private var manageTeamSettingsText = String.empty
+    private var learnMoreAboutUsText = String.empty
+    var myProfileText = String.empty
+    var memberSinceText = String.empty
     var hasTeam = false
     var userProfile: UserProfileModel?
     var developmentMode = false
@@ -154,7 +154,7 @@ private extension MyQotProfileWorker {
             if let error = error {
              log("Error getTeamConfiguration: \(error.localizedDescription)", level: .error)
             }
-            completion(config?.teamNameMaxLength ?? 0)
+            completion(config?.teamNameMaxLength ?? .zero)
         }
     }
 
@@ -177,9 +177,9 @@ private extension MyQotProfileWorker {
                                 telephone: user?.telephone,
                                 gender: user?.gender,
                                 height: user?.height ?? 150,
-                                heightUnit: user?.heightUnit ?? "",
+                                heightUnit: user?.heightUnit ?? String.empty,
                                 weight: user?.weight ?? 60,
-                                weightUnit: user?.weightUnit ?? "",
-                                birthday: user?.dateOfBirth ?? "")
+                                weightUnit: user?.weightUnit ?? String.empty,
+                                birthday: user?.dateOfBirth ?? String.empty)
     }
 }

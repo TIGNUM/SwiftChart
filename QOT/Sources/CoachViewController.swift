@@ -53,7 +53,7 @@ extension CoachViewController {
 private extension CoachViewController {
 
     func setupTableView() {
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.registerDequeueable(CoachTableViewCell.self)
     }
 }
@@ -75,28 +75,28 @@ extension CoachViewController: CoachViewControllerInterface {
 extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return coachModel?.coachItems.count ?? 0
+         return coachModel?.coachItems.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return CoachTableHeaderView.init(title: "/" + (coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? ""),
-                                             subtitle: coachModel?.headerSubtitle ?? "")
+            return CoachTableHeaderView.init(title: "/" + (coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? String.empty),
+                                             subtitle: coachModel?.headerSubtitle ?? String.empty)
         default: return nil
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CoachTableHeaderView.init(title: coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? "",
-                                         subtitle: coachModel?.headerSubtitle ?? "").calculateHeight(for: tableView.frame.size.width)
+        return CoachTableHeaderView.init(title: coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? String.empty,
+                                         subtitle: coachModel?.headerSubtitle ?? String.empty).calculateHeight(for: tableView.frame.size.width)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CoachTableViewCell = tableView.dequeueCell(for: indexPath)
         let item = coachModel?.coachItems[indexPath.row]
-        cell.configure(title: item?.title ?? "", subtitle: item?.subtitle ?? "")
+        cell.configure(title: item?.title ?? String.empty, subtitle: item?.subtitle ?? String.empty)
         cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
         addDisclosure(to: cell)
         cell.addTopLine(for: indexPath.row)
@@ -122,6 +122,6 @@ private extension CoachViewController {
         let accessoryView = UIImageView(image: R.image.diagonalArrow())
         accessoryView.tintColor = .actionBlue
         cell.accessoryView = accessoryView
-        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        cell.accessoryView?.frame = CGRect(x: .zero, y: .zero, width: 16, height: 16)
     }
 }

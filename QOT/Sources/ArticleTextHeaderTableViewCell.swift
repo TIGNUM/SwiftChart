@@ -21,7 +21,7 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
     func configure(articleHeader: Article.Header?) {
         guard let articleHeader = articleHeader else { return }
         if delegate?.section() == .About {
-            ThemeText.articleCategory.apply("", to: categoryTitleLabel)
+            ThemeText.articleCategory.apply(String.empty, to: categoryTitleLabel)
         } else {
             ThemeText.articleCategory.apply(articleHeader.categoryTitle, to: categoryTitleLabel)
         }

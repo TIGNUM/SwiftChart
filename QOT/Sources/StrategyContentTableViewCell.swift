@@ -23,9 +23,9 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     private var mediaURL: URL?
     private var timeToWatch: String?
     private var title: String?
-    private var remoteID: Int = 0
-    private var duration: Double = 0
-    private var categoryTitle = ""
+    private var remoteID: Int = .zero
+    private var duration: Double = .zero
+    private var categoryTitle = String.empty
     private var isRead = false
     weak var delegate: IsPlayingDelegate?
     let skeletonManager = SkeletonManager()
@@ -97,10 +97,10 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
 extension StrategyContentTableViewCell {
 
     @IBAction func didTapAudioButton() {
-        let media = MediaPlayerModel(title: title ?? "",
+        let media = MediaPlayerModel(title: title ?? String.empty,
                                      subtitle: categoryTitle,
                                      url: mediaURL,
-                                     totalDuration: duration, progress: 0, currentTime: 0, mediaRemoteId: remoteID)
+                                     totalDuration: duration, progress: .zero, currentTime: .zero, mediaRemoteId: remoteID)
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 }
@@ -116,7 +116,7 @@ private extension StrategyContentTableViewCell {
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
             ThemeView.audioPlaying.apply(audioView)
-            audioButton.layer.borderWidth = 0
+            audioButton.layer.borderWidth = .zero
         }
     }
 
@@ -124,7 +124,7 @@ private extension StrategyContentTableViewCell {
         if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
             if isPlaying {
                 ThemeView.audioPlaying.apply(audioView)
-                audioButton.layer.borderWidth = 0
+                audioButton.layer.borderWidth = .zero
             } else {
                 ThemeView.level1.apply(audioView)
                 audioButton.layer.borderWidth = 1
@@ -138,7 +138,7 @@ private extension StrategyContentTableViewCell {
         if isRead {
             ThemeText.articleStrategyRead.apply(title, to: titleLabel)
             ThemeButton.audioButtonGrey.apply(audioButton)
-            audioButton.layer.borderWidth = 0
+            audioButton.layer.borderWidth = .zero
             ThemeTint.lightGrey.apply(audioIcon)
             readCheckMark.alpha = 1
         } else {
@@ -146,7 +146,7 @@ private extension StrategyContentTableViewCell {
             ThemeButton.audioButtonStrategy.apply(audioButton)
             ThemeBorder.white.apply(audioButton)
             ThemeTint.white.apply(audioIcon)
-            readCheckMark.alpha = 0
+            readCheckMark.alpha = .zero
         }
     }
 }

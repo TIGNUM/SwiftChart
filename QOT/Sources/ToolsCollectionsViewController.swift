@@ -54,7 +54,7 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
 
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_CATEGORY
         pageTrack.associatedValueId = interactor.selectedCategoryId()
@@ -71,7 +71,7 @@ private extension ToolsCollectionsViewController {
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsGroupTableViewCell.self)
         tableView.registerDequeueable(ToolsTableViewCell.self)
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.tableFooterView = UIView()
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = 60
@@ -111,8 +111,8 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         switch cellType {
         case .header:
             let headerTitle = interactor.headerTitle
-            if headerTitle.count > 0 {
-                let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " tools"
+            if headerTitle.count > .zero {
+                let title = headerTitle.replacingOccurrences(of: "Performance ", with: String.empty) + " tools"
                 return ToolsTableHeaderView.init(title: title.capitalizingFirstLetter(), subtitle: nil)
             }
         default:
@@ -138,7 +138,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return cell
         } else if tool.type == "video" {
             let cell: ToolsCollectionsVideoTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             cell.configure(title: tool.title,
                            timeToWatch: tool.durationString,
                            imageURL: tool.imageURL)
@@ -200,11 +200,11 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             switch ContentFormat(rawValue: tool.type) {
             case .audio:
                 let media = MediaPlayerModel(title: tool.title,
-                                             subtitle: "",
+                                             subtitle: String.empty,
                                              url: tool.mediaURL,
                                              totalDuration: tool.duration,
-                                             progress: 0,
-                                             currentTime: 0,
+                                             progress: .zero,
+                                             currentTime: .zero,
                                              mediaRemoteId: tool.remoteID)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -245,7 +245,7 @@ private extension ToolsCollectionsViewController {
         guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
             return
         }
-        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
+        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? String.empty, url: url)
         pdfReaderConfigurator(readerViewController)
         present(navigationController, animated: true, completion: nil)
     }

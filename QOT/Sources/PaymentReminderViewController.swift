@@ -54,7 +54,7 @@ final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
     private func sendEmail() {
         BaseRouter.sendEmail(to: Defaults.firstLevelSupportEmail,
                              subject: "About my TIGNUM X Membership",
-                             body: "",
+                             body: String.empty,
                              from: self)
     }
 
@@ -77,7 +77,7 @@ extension PaymentReminderViewController: PaymentReminderViewControllerInterface 
 
 extension PaymentReminderViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return paymentModel?.paymentItems.count ?? 0
+        return paymentModel?.paymentItems.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

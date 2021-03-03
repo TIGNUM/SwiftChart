@@ -76,7 +76,7 @@ private extension MySprintNotesViewController {
     }
 
     private func keyboardToolbar() -> UIToolbar {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
+        let toolbar = UIToolbar(frame: CGRect(x: .zero, y: .zero, width: 100, height: 80))
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
 
@@ -107,7 +107,7 @@ private extension MySprintNotesViewController {
     }
 
     private func updateTextViewText() {
-        textView.attributedText = NSAttributedString(string: interactor?.noteText ?? "",
+        textView.attributedText = NSAttributedString(string: interactor?.noteText ?? String.empty,
                                                      attributes: [.foregroundColor: UIColor.white,
                                                                   .font: UIFont.sfProtextLight(ofSize: 16),
                                                                   .kern: CharacterSpacing.kern05])
@@ -135,9 +135,9 @@ private extension MySprintNotesViewController {
 extension MySprintNotesViewController: MySprintNotesViewControllerInterface {
 
     func update() {
-        titleLabel.attributedText = NSAttributedString(string: interactor?.title ?? "",
+        titleLabel.attributedText = NSAttributedString(string: interactor?.title ?? String.empty,
                                                        attributes: [.kern: CharacterSpacing.kern02])
-        characterCountLabel.text = interactor?.characterCountText ?? ""
+        characterCountLabel.text = interactor?.characterCountText ?? String.empty
         updateTextViewText()
 
         updateInfoViewWithViewModel(interactor?.infoViewModel)
@@ -164,6 +164,6 @@ extension MySprintNotesViewController: UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         interactor?.didUpdateText(textView.text)
-        characterCountLabel.text = interactor?.characterCountText ?? ""
+        characterCountLabel.text = interactor?.characterCountText ?? String.empty
     }
 }

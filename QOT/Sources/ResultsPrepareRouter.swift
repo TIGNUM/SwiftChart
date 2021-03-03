@@ -73,7 +73,7 @@ extension ResultsPrepareRouter: ResultsPrepareRouterInterface {
     func presentPlans() {
         dismissChatBotFlow()
         if !(baseRootViewController?.navigationController?.viewControllers.last is MyPrepsViewController),
-            let launchURL = URLScheme.myPreps.launchURLWithParameterValue("") {
+            let launchURL = URLScheme.myPreps.launchURLWithParameterValue(String.empty) {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }

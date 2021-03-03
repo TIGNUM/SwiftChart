@@ -58,7 +58,7 @@ extension MySprintNotesInteractor: MySprintNotesInteractorInterface {
     }
 
     var characterCountText: String {
-        return "\(text?.count ?? 0)/\(maxCharacterCount)"
+        return "\(text?.count ?? .zero)/\(maxCharacterCount)"
     }
 
     var saveTitle: String {
@@ -88,7 +88,7 @@ extension MySprintNotesInteractor: MySprintNotesInteractorInterface {
 
     func didTapDismiss(with text: String?) {
         self.text = text
-        if text == (worker.text ?? "") {
+        if text == (worker.text ?? String.empty) {
             router.dismiss()
             return
         }

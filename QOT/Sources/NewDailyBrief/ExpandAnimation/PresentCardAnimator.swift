@@ -32,14 +32,14 @@ final class PresentCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         // Damping between 0.7 (far away) and 1.0 (nearer)
         let cardPositionY = params.fromCardFrame.minY
         let distanceToBounce = abs(params.fromCardFrame.minY)
-        let extentToBounce = cardPositionY < 0 ? params.fromCardFrame.height : UIScreen.main.bounds.height
+        let extentToBounce = cardPositionY < .zero ? params.fromCardFrame.height : UIScreen.main.bounds.height
         let dampFactorInterval: CGFloat = 0.3
         let damping: CGFloat = 1.0 - dampFactorInterval * (distanceToBounce / extentToBounce)
 
         // Duration between 0.5 (nearer) and 0.9 (nearer)
         let baselineDuration: TimeInterval = 0.5
         let maxDuration: TimeInterval = 0.9
-        let duration: TimeInterval = baselineDuration + (maxDuration - baselineDuration) * TimeInterval(max(0, distanceToBounce)/UIScreen.main.bounds.height)
+        let duration: TimeInterval = baselineDuration + (maxDuration - baselineDuration) * TimeInterval(max(.zero, distanceToBounce)/UIScreen.main.bounds.height)
 
         let springTiming = UISpringTimingParameters(dampingRatio: damping, initialVelocity: .init(dx: 0, dy: 0))
         return UIViewPropertyAnimator(duration: duration, timingParameters: springTiming)
@@ -176,7 +176,7 @@ final class PresentCardTransitionDriver {
         func animateCardDetailViewSizing() {
             cardWidthConstraint.constant = animatedContainerView.bounds.width
             cardHeightConstraint.constant = animatedContainerView.bounds.height
-            cardDetailView.layer.cornerRadius = 0
+            cardDetailView.layer.cornerRadius = .zero
             container.layoutIfNeeded()
         }
 

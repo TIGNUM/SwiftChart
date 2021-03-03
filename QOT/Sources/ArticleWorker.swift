@@ -47,21 +47,21 @@ final class ArticleWorker {
     }
 
     var categoryTitle: String {
-        return content?.contentCategoryTitle ?? ""
+        return content?.contentCategoryTitle ?? String.empty
     }
 
     var title: String {
-        return content?.title ?? ""
+        return content?.title ?? String.empty
     }
 
     var remoteID: Int {
-        return content?.remoteID ?? 0
+        return content?.remoteID ?? .zero
     }
 
     var audioURL: URL? {
         if let download = articleAudioItem?.userStorages?.filter({ (storage) -> Bool in
             storage.userStorageType == .DOWNLOAD
-        }).first, let downloadURL = URL(string: download.mediaPath() ?? "") {
+        }).first, let downloadURL = URL(string: download.mediaPath() ?? String.empty) {
             return downloadURL
         }
         return URL(string: articleAudioItem?.valueMediaURL ?? "")
@@ -72,8 +72,8 @@ final class ArticleWorker {
     }
 
     var whatsHotShareable: WhatsHotShareable {
-        return WhatsHotShareable(message: content?.title ?? "",
-                                 imageURL: URL(string: content?.thumbnailURLString ?? ""),
+        return WhatsHotShareable(message: content?.title ?? String.empty,
+                                 imageURL: URL(string: content?.thumbnailURLString ?? String.empty),
                                  shareableLink: content?.shareableLink)
     }
 
@@ -117,7 +117,7 @@ final class ArticleWorker {
                 item.format == .audio && item.tabs.contains(obj: "AUDIO")
             }).first
         }
-        articleHeader = Article.Header(categoryTitle: content.contentCategoryTitle?.uppercased() ?? "",
+        articleHeader = Article.Header(categoryTitle: content.contentCategoryTitle?.uppercased() ?? String.empty,
                                        title: content.title,
                                        author: content.author,
                                        publishDate: content.publishedDate,
@@ -127,7 +127,7 @@ final class ArticleWorker {
         nextUp = nil
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? 0) { [weak self] (next) in
+        ContentService.main.getLatestUnreadWhatsHotArticle(exclude: content.remoteID ?? .zero) { [weak self] (next) in
             if let nextWhatsHot = next {
                 self?.nextWhatsHotContent = nextWhatsHot
             }
@@ -144,7 +144,7 @@ final class ArticleWorker {
                 }).first {
                     self?.nextUp = Article.Item(type: ContentItemValue.articleNextUp(title: nextCollection.title,
                                                                                      description: nextCollection.durationString,
-                                                                                     itemID: nextCollection.remoteID ?? 0))
+                                                                                     itemID: nextCollection.remoteID ?? .zero))
                 }
             }
             dispatchGroup.leave()
@@ -200,31 +200,31 @@ final class ArticleWorker {
         }
 
         content?.relatedContentItems.filter { $0.format == .pdf && $0.format != .video }.forEach { item in
-            if let pdfURL = URL(string: item.valueMediaURL ?? "") {
+            if let pdfURL = URL(string: item.valueMediaURL ?? String.empty) {
                 itemsRelated.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
                                                                             description: item.durationString,
                                                                             pdfURL: pdfURL,
-                                                                            itemID: item.remoteID ?? 0)))
+                                                                            itemID: item.remoteID ?? .zero)))
             }
         }
         content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
-            if let videoURL = URL(string: item.valueMediaURL ?? "") {
-                itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
+            if let videoURL = URL(string: item.valueMediaURL ?? String.empty) {
+            itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? .zero,
                                                                               title: item.valueText,
                                                                               description: item.durationString,
-                                                                              placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                              placeholderURL: URL(string: item.valueImageURL ?? String.empty),
                                                                               videoURL: videoURL,
-                                                                              duration: item.valueDuration ?? 0)))
+                                                                              duration: item.valueDuration ?? .zero)))
             }
         }
         content?.relatedContentItems.filter { $0.format == .audio }.forEach { item in
-            if let audioURL = URL(string: item.valueMediaURL ?? "") {
-                itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? 0,
+            if let audioURL = URL(string: item.valueMediaURL ?? String.empty) {
+            itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? .zero,
                                                                               title: item.valueText,
                                                                               description: item.durationString,
-                                                                              placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                              placeholderURL: URL(string: item.valueImageURL ?? String.empty),
                                                                               audioURL: audioURL,
-                                                                              duration: item.valueDuration ?? 0,
+                                                                              duration: item.valueDuration ?? .zero,
                                                                               waveformData: [])))
             }
         }
@@ -233,7 +233,7 @@ final class ArticleWorker {
             guard let contentId = content.remoteID, nextUpContentIds.contains(obj: contentId) != true else { return }
             itemsRelated.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
                                                                                        description: content.durationString,
-                                                                                       itemID: content.remoteID ?? 0)))
+                                                                                       itemID: content.remoteID ?? .zero)))
         }
         if let nextUp = self.nextUp {
             itemsNextUp.append(nextUp)
@@ -250,7 +250,7 @@ final class ArticleWorker {
         items.append(Article.Item(type: ContentItemValue.headerImage(imageURLString: articleHeader.imageURL)))
         content?.contentItems.forEach { item in
             guard item.remoteID != self.articleAudioItem?.remoteID else { return }
-            items.append(Article.Item(remoteID: item.remoteID ?? 0,
+            items.append(Article.Item(remoteID: item.remoteID ?? .zero,
                                       type: ContentItemValue(item: item),
                                       content: item.valueText,
                                       format: item.format.rawValue,
@@ -271,17 +271,17 @@ final class ArticleWorker {
     private func setupAudioArticleItem() {
         guard
             let audioItem = articleAudioItem,
-            let audioURL = URL(string: audioItem.valueMediaURL ?? "") else {
+            let audioURL = URL(string: audioItem.valueMediaURL ?? String.empty) else {
                 articleAudioItem = nil
                 return
         }
-        audioArticleItem = Article.Item(remoteID: audioItem.remoteID ?? 0,
-                                        type: ContentItemValue.audio(remoteId: audioItem.remoteID ?? 0,
+        audioArticleItem = Article.Item(remoteID: audioItem.remoteID ?? .zero,
+                                        type: ContentItemValue.audio(remoteId: audioItem.remoteID ?? .zero,
                                                                      title: audioItem.valueText,
                                                                      description: audioItem.valueDescription,
-                                                                     placeholderURL: URL(string: audioItem.valueImageURL ?? ""),
+                                                                     placeholderURL: URL(string: audioItem.valueImageURL ?? String.empty),
                                                                      audioURL: audioURL,
-                                                                     duration: audioItem.valueDuration ?? 0,
+                                                                     duration: audioItem.valueDuration ?? .zero,
                                                                      waveformData: []))
     }
 
@@ -289,8 +289,8 @@ final class ArticleWorker {
         var articles = [Article.RelatedArticleWhatsHot]()
         relatedContent.forEach { content in
             if content.isWhatsHot == true {
-                let imageURL = URL(string: content.thumbnailURLString ?? "")
-                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? 0,
+                let imageURL = URL(string: content.thumbnailURLString ?? String.empty)
+                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? .zero,
                                                                title: content.title,
                                                                publishDate: content.publishedDate,
                                                                author: content.author,
@@ -300,12 +300,12 @@ final class ArticleWorker {
             }
         }
         if relatedContent.isEmpty {
-            let imageURL = URL(string: nextWhatsHotContent?.thumbnailURLString ?? "")
-            articles.append(Article.RelatedArticleWhatsHot(remoteID: nextWhatsHotContent?.remoteID ?? 0,
-                                                           title: nextWhatsHotContent?.title ?? "",
+            let imageURL = URL(string: nextWhatsHotContent?.thumbnailURLString ?? String.empty)
+            articles.append(Article.RelatedArticleWhatsHot(remoteID: nextWhatsHotContent?.remoteID ?? .zero,
+                                                           title: nextWhatsHotContent?.title ?? String.empty,
                                                            publishDate: nextWhatsHotContent?.publishedDate,
                                                            author: nextWhatsHotContent?.author,
-                                                           timeToRead: nextWhatsHotContent?.durationString ?? "",
+                                                           timeToRead: nextWhatsHotContent?.durationString ?? String.empty,
                                                            imageURL: imageURL,
                                                            isNew: false))
 
@@ -318,7 +318,7 @@ final class ArticleWorker {
         relatedContent.forEach { content in
             articles.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
                                                                                        description: content.durationString,
-                                                                                       itemID: content.remoteID ?? 0)))
+                                                                                       itemID: content.remoteID ?? .zero)))
         }
         relatedArticlesStrategy = articles
     }
@@ -368,11 +368,11 @@ final class ArticleWorker {
     func articleItem(at indexPath: IndexPath) -> Article.Item? {
         switch content?.section {
         case .WhatsHot?:
-            return indexPath.section == 0 ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
+            return indexPath.section == .zero ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
         case .FAQ_3_0?,
             .FAQ_TEAM?,
             .USING_QOT?:
-            return indexPath.section == 0 ? learnStrategyItems.at(index: indexPath.item) : contactSupportItems.at(index: indexPath.item)
+            return indexPath.section == .zero ? learnStrategyItems.at(index: indexPath.item) : contactSupportItems.at(index: indexPath.item)
         default:
             switch indexPath.section {
             case 0:
@@ -426,9 +426,9 @@ final class ArticleWorker {
         guard let content = content else { return 1 }
         switch content.section {
         case .WhatsHot:
-            return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
+            return section == .zero ? whatsHotArticleItems.count : whatsHotItems.count
         case .FAQ_3_0, .FAQ_TEAM, .USING_QOT:
-            return section == 0 ? learnStrategyItems.count : contactSupportItems.count
+            return section == .zero ? learnStrategyItems.count : contactSupportItems.count
         default:
             switch section {
             case 0:
@@ -445,7 +445,7 @@ final class ArticleWorker {
         guard let content = content else { return nil }
         switch content.section {
         case .WhatsHot:
-            return section == 0 ? nil : AppTextService.get(.know_wh_article_section_read_more_title)
+            return section == .zero ? nil : AppTextService.get(.know_wh_article_section_read_more_title)
         default:
             return section != 1 ? nil : AppTextService.get(.know_strategy_list_strategy_section_related_content_title)
         }

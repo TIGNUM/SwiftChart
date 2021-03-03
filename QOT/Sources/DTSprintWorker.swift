@@ -71,7 +71,7 @@ extension DTSprintWorker {
     func getUpdatedTitle(contentId: Int, completion: @escaping (String?) -> Void) {
         ContentService.main.getContentCollectionById(contentId) { (content) in
             let filteredItems = content?.contentItems.filter { $0.searchTags.contains(obj: "sprint_task_day_") }
-            var result = ""
+            var result = String.empty
             filteredItems?.compactMap { $0.valueText }.forEach { (title) in
                 result.append(title)
             }
@@ -113,10 +113,10 @@ private extension DTSprintWorker {
     func createSprint(_ targetContentId: Int, completion: @escaping (QDMSprint?) -> Void) {
         ContentService.main.getContentCollectionById(targetContentId) { (content) in
             var model = CreateSprintModel()
-            model.sprintContentId = content?.remoteID ?? 0
+            model.sprintContentId = content?.remoteID ?? .zero
             model.relatedContentIds = content?.relatedContentCollectionIDs ?? [Int]()
-            model.title = content?.contentItems.filter { $0.format == .header1 }.first?.valueText ?? ""
-            model.subTitle = content?.contentItems.filter { $0.format == .subtitle }.first?.valueText ?? ""
+            model.title = content?.contentItems.filter { $0.format == .header1 }.first?.valueText ?? String.empty
+            model.subTitle = content?.contentItems.filter { $0.format == .subtitle }.first?.valueText ?? String.empty
             model.taskItemIds = content?.contentItems.filter { $0.format == .title }.compactMap { $0.remoteID } ?? []
             model.planItemIds = content?.contentItems.filter { $0.format == .listitem }.compactMap { $0.remoteID } ?? []
             UserService.main.createSprint(data: model) { (sprint, _) in

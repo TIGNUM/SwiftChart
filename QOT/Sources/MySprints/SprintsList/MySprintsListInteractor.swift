@@ -36,7 +36,7 @@ final class MySprintsListInteractor {
         return [ButtonParameters(title: worker.removeTitle,
                                  target: self,
                                  action: #selector(removeItemsTapped),
-                                 isEnabled: !(identifiersForCheck.count == 0)),
+                                 isEnabled: !(identifiersForCheck.count == .zero)),
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
     }
     private lazy var removeButtons: [UIBarButtonItem] = {
@@ -120,7 +120,7 @@ extension MySprintsListInteractor: MySprintsListInteractorInterface {
         self.reorderedDisplayData[source.section].items = items
 
         // Remove items funtionality has priority over reordering
-        if identifiersForCheck.count == 0 {
+        if identifiersForCheck.count == .zero {
             viewModel.bottomButtons = reorderingButtons
             presenter.present()
         }
@@ -225,7 +225,7 @@ extension MySprintsListInteractor {
             identifiersForCheck.remove(item.identifier)
         }
 
-        if identifiersForCheck.count == 0 && !reorderedDisplayData.isEmpty {
+        if identifiersForCheck.count == .zero && !reorderedDisplayData.isEmpty {
             viewModel.bottomButtons = reorderingButtons
         } else {
             viewModel.bottomButtons = preRemoveButtons
@@ -346,7 +346,7 @@ extension MySprintsListInteractor {
     }
 
     @objc private func continueRemovingTapped() {
-        let sprintsForRemoval = items.filter { identifiersForCheck.contains($0.qotId ?? "") }
+        let sprintsForRemoval = items.filter { identifiersForCheck.contains($0.qotId ?? String.empty) }
         if sprintsForRemoval.isEmpty {
             return
         }

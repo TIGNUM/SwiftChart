@@ -73,7 +73,7 @@ extension JTAppleCalendarView {
 
     //handle the touches outside of calendar view's bounds - because heatMapDetailView sometimes exceeds the calendar's bounds and we want to receive touches all over details view
     override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        if clipsToBounds || isHidden || alpha == 0 {
+        if clipsToBounds || isHidden || alpha == .zero {
             return nil
         }
         for subview in subviews.reversed() {

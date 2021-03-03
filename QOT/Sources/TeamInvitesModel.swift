@@ -36,7 +36,7 @@ struct TeamInvite {
         init(maxTeams: Int, partOfTeams: Int) {
             self.maxTeams = maxTeams
             self.partOfTeams = partOfTeams
-            self.showOnlyContent = partOfTeams == maxTeams || partOfTeams == 0
+            self.showOnlyContent = partOfTeams == maxTeams || partOfTeams == .zero
         }
 
         var noteText: String? {
@@ -67,7 +67,7 @@ struct TeamInvite {
 
     struct Pending {
         let qdmInvite: QDMTeamInvitation
-        var warning: String = ""
+        var warning: String = String.empty
         let canJoin: Bool
 
         init(invite: QDMTeamInvitation, canJoin: Bool, maxTeamCount: Int) {

@@ -33,8 +33,8 @@ extension MyQotMainWorker {
 
     func getPreparationSubtitle(_ completion: @escaping (String?) -> Void) {
         UserService.main.getUserPreparations { (preparations, _, _) in
-            let dateString = preparations?.last?.eventDate?.eventDateString ?? ""
-            let eventType = preparations?.last?.eventType ?? ""
+            let dateString = preparations?.last?.eventDate?.eventDateString ?? String.empty
+            let eventType = preparations?.last?.eventType ?? String.empty
             let subtitle = dateString + " " + eventType
             completion(subtitle)
         }
@@ -92,12 +92,12 @@ extension MyQotMainWorker {
 
     func getTeamLibrarySubtitleAndCount(team: QDMTeam?, _ completion: @escaping (String?, Int) -> Void) {
         guard let team = team else {
-            DispatchQueue.main.async { completion(nil, 0) }
+            DispatchQueue.main.async { completion(nil, .zero) }
             return
         }
         TeamService.main.teamNewsFeeds(for: team, type: .STORAGE_ADDED, onlyUnread: true) { (feeds, _, _) in
-            guard let feeds = feeds, feeds.count > 0 else {
-                DispatchQueue.main.async { completion(nil, 0) }
+            guard let feeds = feeds, feeds.count > .zero else {
+                DispatchQueue.main.async { completion(nil, .zero) }
                 return
             }
             let latestDay = feeds.compactMap({ $0.createdAt }).sorted().last ?? Date()
@@ -171,7 +171,7 @@ private extension MyQotMainWorker {
         if let monthSince = date?.months(to: Date()), monthSince > 1 {
             return Double(monthSince)
         }
-        return 0
+        return .zero
     }
 
     func makeToBeVisionSubtitle(toBeVision: QDMToBeVision? = nil,

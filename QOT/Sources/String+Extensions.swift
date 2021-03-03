@@ -71,7 +71,7 @@ extension String {
         for _ in 0 ..< 4 {
             currentWeekNumber -= 1
 
-            if currentWeekNumber <= 0 {
+            if currentWeekNumber <= .zero {
                 currentWeekNumber = 52
             }
 
@@ -91,10 +91,10 @@ extension String {
             let regex = try NSRegularExpression(pattern: regex)
             let nsString = text as NSString
             let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
-            return results.count > 0 ? nsString.substring(with: results[0].range) : ""
+            return results.count > .zero ? nsString.substring(with: results[0].range) : String.empty
         } catch {
             log("invalid regex: \(error.localizedDescription)")
-            return ""
+            return String.empty
         }
     }
 

@@ -37,7 +37,7 @@ final class KnowingWorker {
                 }).count
 
                 strategyItems.append(Knowing.StrategyItem(title: strategy.title,
-                                                          remoteID: strategy.remoteID ?? 0,
+                                                          remoteID: strategy.remoteID ?? .zero,
                                                           viewedCount: viewedCount,
                                                           itemCount: itemCount,
                                                           sortOrder: strategy.sortOrder))
@@ -63,10 +63,10 @@ final class KnowingWorker {
             for article in category.contentCollections.filter({ $0.section == .WhatsHot }) {
                 if let collectionId = article.remoteID {
                     whatsHotItems.append(Knowing.WhatsHotItem(title: article.title,
-                                                              body: article.contentItems.first?.valueText ?? "",
-                                                              image: URL(string: article.thumbnailURLString ?? ""),
+                                                              body: article.contentItems.first?.valueText ?? String.empty,
+                                                              image: URL(string: article.thumbnailURLString ?? String.empty),
                                                               remoteID: collectionId,
-                                                              author: article.author ?? "",
+                                                              author: article.author ?? String.empty,
                                                               publishDate: article.publishedDate ?? article.modifiedAt,
                                                               timeToRead: article.durationString,
                                                               isNew: strongSelf.isNew(article)))
@@ -98,7 +98,7 @@ final class KnowingWorker {
     func header(for section: Knowing.Section) -> (title: String?, subtitle: String?) {
         guard let title = section.title,
             let subtitle = section.subtitle else {
-                return (title: "", subtitle: "")
+                return (title: String.empty, subtitle: String.empty)
         }
         return (title: title, subtitle: subtitle)
     }

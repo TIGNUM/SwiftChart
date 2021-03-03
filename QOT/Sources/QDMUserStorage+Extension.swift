@@ -14,10 +14,10 @@ extension QDMUserStorage {
         var url: URL?
         switch userStorageType {
         case .BOOKMARK:
-            url = URLScheme.randomContent.launchURLWithParameterValue(contentId ?? "")
+            url = URLScheme.randomContent.launchURLWithParameterValue(contentId ?? String.empty)
         case .DOWNLOAD:
             if downloadStaus == .DONE {
-                url = URLScheme.contentItem.launchURLWithParameterValue(contentId ?? "")
+                url = URLScheme.contentItem.launchURLWithParameterValue(contentId ?? String.empty)
             }
         case .EXTERNAL_LINK:
             url = self.url != nil ? URL(string: self.url!) : nil

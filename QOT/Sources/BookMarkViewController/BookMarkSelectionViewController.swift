@@ -38,7 +38,7 @@ final class BookMarkSelectionViewController: BaseViewController, ScreenZLevelIgn
         super.viewDidLayoutSubviews()
         // if table view is too long
         let maxTableViewHeight = view.frame.size.height * 0.5
-        var expectedTableViewHeight = CGFloat(interactor?.viewModels.count ?? 0) * tableViewCellHeight
+        var expectedTableViewHeight = CGFloat(interactor?.viewModels.count ?? .zero) * tableViewCellHeight
         if expectedTableViewHeight > maxTableViewHeight {
             expectedTableViewHeight = maxTableViewHeight
         }
@@ -100,13 +100,13 @@ extension BookMarkSelectionViewController: UITableViewDelegate, UITableViewDataS
     // MARK: - TableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.viewModels.count ?? 0
+        return interactor?.viewModels.count ?? .zero
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BookMarkSelectionCell = tableView.dequeueCell(for: indexPath)
         cell.selectionStyle = .none
-        cell.separator.isHidden = indexPath.row == 0
+        cell.separator.isHidden = indexPath.row == .zero
         guard let viewModels = interactor?.viewModels, viewModels.count > indexPath.row,
             let model = viewModels.at(index: indexPath.row) else { return cell }
         if let team = model.team {
@@ -115,8 +115,8 @@ extension BookMarkSelectionViewController: UITableViewDelegate, UITableViewDataS
             ThemeText.asterixText.apply(membersString, to: cell.participantsLabel)
 
         } else {
-            ThemeText.myLibraryItemsTitle.apply(interactor?.myLibraryCellTitle ?? "", to: cell.teamLibraryName)
-            ThemeText.asterixText.apply(interactor?.myLibraryCellSubtitle ?? "", to: cell.participantsLabel)
+            ThemeText.myLibraryItemsTitle.apply(interactor?.myLibraryCellTitle ?? String.empty, to: cell.teamLibraryName)
+            ThemeText.asterixText.apply(interactor?.myLibraryCellSubtitle ?? String.empty, to: cell.participantsLabel)
         }
         if model.isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)

@@ -42,13 +42,13 @@ final class InfoHelperView: UIView {
     }
 
     func set(icon: UIImage?, title: String?, text: String?) {
-        set(icon: icon, title: title, attributedText: NSAttributedString(string: text ?? ""))
+        set(icon: icon, title: title, attributedText: NSAttributedString(string: text ?? String.empty))
     }
 
     func set(icon: UIImage?, title: String?, attributedText text: NSAttributedString?) {
         iconImageView.image = icon?.withRenderingMode(.alwaysTemplate)
-        titleLabel.attributedText = addDisplayAttributes(to: NSAttributedString(string: title ?? ""), type: .title)
-        textLabel.attributedText = addDisplayAttributes(to: text ?? NSAttributedString(string: ""), type: .description)
+        titleLabel.attributedText = addDisplayAttributes(to: NSAttributedString(string: title ?? String.empty), type: .title)
+        textLabel.attributedText = addDisplayAttributes(to: text ?? NSAttributedString(string: String.empty), type: .description)
     }
 }
 
@@ -82,7 +82,7 @@ private extension InfoHelperView {
         case .description:
             characterSpacing = CharacterSpacing.kern1_2
         default:
-            characterSpacing = 0
+            characterSpacing = .zero
         }
 
         let mutableText = NSMutableAttributedString(attributedString: text)

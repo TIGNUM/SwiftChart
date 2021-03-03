@@ -37,7 +37,7 @@ private extension TeamVisionTrackerDetailsPresenter {
         var thirdDateString: String?
         let selectedIndex = indexOf(dates, selectedDate: selectedDate)
 
-        if report.ratingExist(at: 0), let firstDate = dates.at(index: 0) {
+        if report.ratingExist(at: .zero), let firstDate = dates.at(index: .zero) {
             firstDateString = DateFormatter.whatsHot.string(from: firstDate)
         }
 
@@ -60,6 +60,6 @@ private extension TeamVisionTrackerDetailsPresenter {
     }
 
     func indexOf(_ dates: [Date], selectedDate: Date) -> Int {
-        return dates.firstIndex(where: { $0 == selectedDate }) ?? 0
+        return dates.firstIndex(where: { $0 == selectedDate }) ?? .zero
     }
 }

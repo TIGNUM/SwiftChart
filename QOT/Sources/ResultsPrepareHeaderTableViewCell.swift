@@ -37,7 +37,7 @@ final class ResultsPrepareHeaderTableViewCell: UITableViewCell, Dequeueable, UIT
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
-            didUpdateTitle(title: textView.text ?? "")
+            didUpdateTitle(title: textView.text ?? String.empty)
             editButton.isEnabled = true
             return false
         }

@@ -54,15 +54,15 @@ final class MyQOTAdminEditSprintsDetailsWorker {
         datasource.append((type: .Date, property: .pausedAt, value: sprint.pausedAt ?? Date()))
         datasource.append((type: .Date, property: .completedAt, value: sprint.completedAt ?? Date()))
 
-        datasource.append((type: .String, property: .title, value: sprint.title ?? ""))
-        datasource.append((type: .String, property: .subtitle, value: sprint.subtitle ?? ""))
+        datasource.append((type: .String, property: .title, value: sprint.title ?? String.empty))
+        datasource.append((type: .String, property: .subtitle, value: sprint.subtitle ?? String.empty))
 
         datasource.append((type: .Int, property: .sortOrder, value: sprint.sortOrder))
         datasource.append((type: .Int, property: .currentDay, value: sprint.currentDay))
 
-        datasource.append((type: .String, property: .notesReflection, value: sprint.notesReflection ?? ""))
-        datasource.append((type: .String, property: .notesLearnings, value: sprint.notesLearnings ?? ""))
-        datasource.append((type: .String, property: .notesBenefits, value: sprint.notesBenefits ?? ""))
+        datasource.append((type: .String, property: .notesReflection, value: sprint.notesReflection ?? String.empty))
+        datasource.append((type: .String, property: .notesLearnings, value: sprint.notesLearnings ?? String.empty))
+        datasource.append((type: .String, property: .notesBenefits, value: sprint.notesBenefits ?? String.empty))
         datasource.append((type: .Bool, property: .isInProgress, value: sprint.isInProgress))
 
         datasource.append((type: .Int, property: .completedDays, value: sprint.completedDays))

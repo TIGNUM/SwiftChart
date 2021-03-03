@@ -36,13 +36,13 @@ final class DTPreparePresenter: DTPresenter {
         if intensionViewModel != nil && presentationModel.question?.key == Prepare.Key.benefits.rawValue {
             let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
             button?.configure(title: AppTextService.get(.coach_prepare_calendar_not_sync_section_footer_button_save),
-                              minSelection: 0,
+                              minSelection: .zero,
                               isDark: isDark)
             return button
         }
         if intensionViewModel != nil && presentationModel.question?.key != Prepare.Key.benefits.rawValue {
             let navigationButton = super.getNavigationButton(presentationModel, isDark: isDark)
-            let count = intensionViewModel?.answers.filter { $0.selected }.count ?? 0
+            let count = intensionViewModel?.answers.filter { $0.selected }.count ?? .zero
             navigationButton?.update(count: count)
             return navigationButton
         }

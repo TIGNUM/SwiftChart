@@ -33,7 +33,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, durationString: String?, remoteID: Int?, section: ContentSection?, format: ContentFormat?, numberOfItems: Int) {
-        ThemeText.bucketTitle.apply((title ?? "").uppercased(), to: titleLabel)
+        ThemeText.bucketTitle.apply((title ?? String.empty).uppercased(), to: titleLabel)
         ThemeText.durationString.apply(durationString, to: durationLabel)
         var duration: String
         if numberOfItems > 1 {
@@ -51,7 +51,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
 
         if numberOfItems > 1 && section == .QOTLibrary {
             duration = String(numberOfItems) + " items"
-        } else { duration = ( durationString ?? "")
+        } else { duration = ( durationString ?? String.empty)
         }
         ThemeText.durationString.apply(duration, to: durationLabel)
         ThemeTint.darkGrey.apply(iconFiles)

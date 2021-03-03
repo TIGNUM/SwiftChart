@@ -15,7 +15,7 @@ final class DTTeamTBVPresenter: DTPresenter {
     }
 
     override func getVotes(answer: QDMAnswer, poll: QDMTeamToBeVisionPoll?) -> Int {
-        return poll?.voteResults.filter { $0.answer?.remoteID == answer.remoteID }.first?.count ?? 0
+        return poll?.voteResults.filter { $0.answer?.remoteID == answer.remoteID }.first?.count ?? .zero
     }
 }
 

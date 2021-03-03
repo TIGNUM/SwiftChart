@@ -39,7 +39,7 @@ final class OpenGraphMetaDataParser: NSObject, XMLParserDelegate {
     private var url: URL?
     private var completion: MetaDataResult?
     private var dictionary = [String: String]()
-    private var currentElement = ""
+    private var currentElement = String.empty
     private var imageURL: String?
     private var title: String?
 
@@ -55,13 +55,13 @@ final class OpenGraphMetaDataParser: NSObject, XMLParserDelegate {
             return
         }
         dictionary.removeAll()
-        currentElement = ""
+        currentElement = String.empty
         imageURL = nil
         title = nil
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 let data = try Data(contentsOf: url)
-                let string = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .ascii) ?? ""
+                let string = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .ascii) ?? String.empty
                 let regex = try NSRegularExpression(pattern: "<meta.*>|<title.*.title>|<link.*>")
                 _ = regex.matches(in: string, range: NSRange(string.startIndex..., in: string)).compactMap {
                     let metaString = String(string[Range($0.range, in: string)!])
@@ -103,14 +103,14 @@ final class OpenGraphMetaDataParser: NSObject, XMLParserDelegate {
             if href.hasPrefix(scheme) {
                 self.imageURL = href
             } else {
-                self.imageURL = "\(scheme)://\(self.url?.host ?? "")\(href)"
+                self.imageURL = "\(scheme)://\(self.url?.host ?? String.empty)\(href)"
             }
         }
     }
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if currentElement.lowercased() == "title" {
-            title = (title ?? "") + string
+            title = (title ?? String.empty) + string
         }
     }
 }

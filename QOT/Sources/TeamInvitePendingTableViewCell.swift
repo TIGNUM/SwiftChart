@@ -31,8 +31,8 @@ final class TeamInvitePendingTableViewCell: UITableViewCell, Dequeueable {
         self.pendingInvite = pendingInvite
         let qdmInvite = pendingInvite.qdmInvite
         let team = qdmInvite.team
-        setupTeamLabel(team?.name ?? "", team?.teamColor ?? "")
-        setupInfoLabel(qdmInvite.invitedDate ?? Date(), qdmInvite.sender ?? "", team?.memberCount ?? 0)
+        setupTeamLabel(team?.name ?? String.empty, team?.teamColor ?? String.empty)
+        setupInfoLabel(qdmInvite.invitedDate ?? Date(), qdmInvite.sender ?? String.empty, team?.memberCount ?? .zero)
         setActive(pendingInvite.canJoin, pendingInvite.warning)
     }
 }
@@ -46,7 +46,7 @@ private extension TeamInvitePendingTableViewCell {
 
     func setupInfoLabel(_ date: Date, _ sender: String, _ memberCount: Int) {
         let dateString = "\n" + DateFormatter.teamInvite.string(from: date)
-        let suffix = memberCount > 1 ? "s" : ""
+        let suffix = memberCount > 1 ? "s" : String.empty
         let info = String(format: AppTextService.get(.team_invite_details_text), sender, dateString, memberCount)
         ThemeText.MediumBodySand.apply(info + suffix, to: inviteInfoLabel)
     }
@@ -57,8 +57,8 @@ private extension TeamInvitePendingTableViewCell {
     }
 
     func setActive(_ canJoin: Bool, _ warning: String?) {
-        maxTeamCountInfoLabel.text = canJoin ? "" : warning
-        infoLabelHeightConstriant.constant = canJoin ? 0 : 21
+        maxTeamCountInfoLabel.text = canJoin ? String.empty : warning
+        infoLabelHeightConstriant.constant = canJoin ? .zero : 21
         layoutButton(joinButton, keyJoin, canJoin)
         updateConstraintsIfNeeded()
     }
@@ -67,12 +67,12 @@ private extension TeamInvitePendingTableViewCell {
 // MARK: - Actions
 extension TeamInvitePendingTableViewCell {
     @IBAction func didTabDecline() {
-        trackUserEvent(.DECLINE_TEAM_INVITATION, value: pendingInvite?.qdmInvite.team?.remoteID ?? 0)
+        trackUserEvent(.DECLINE_TEAM_INVITATION, value: pendingInvite?.qdmInvite.team?.remoteID ?? .zero)
         NotificationCenter.default.post(name: .didSelectTeamInviteDecline, object: pendingInvite?.qdmInvite)
     }
 
     @IBAction func didTabJoin() {
-        trackUserEvent(.ACCEPT_TEAM_INVITATION, value: pendingInvite?.qdmInvite.team?.remoteID ?? 0)
+        trackUserEvent(.ACCEPT_TEAM_INVITATION, value: pendingInvite?.qdmInvite.team?.remoteID ?? .zero)
         NotificationCenter.default.post(name: .didSelectTeamInviteJoin, object: pendingInvite?.qdmInvite)
     }
 

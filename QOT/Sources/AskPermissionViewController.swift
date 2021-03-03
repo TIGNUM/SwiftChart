@@ -79,7 +79,7 @@ private extension AskPermissionViewController {
         switch interactor.getPermissionType {
         case .calendar,
              .calendarOpenSettings: leftBarButtonItems = [dismissNavigationItem(action: #selector(didTapCancelButton))]
-        default: rightBarButtonItems.append(cancelButton(viewModel.buttonTitleCancel ?? ""))
+        default: rightBarButtonItems.append(cancelButton(viewModel.buttonTitleCancel ?? String.empty))
         }
 
         updateBottomNavigation(leftBarButtonItems, rightBarButtonItems)
@@ -105,7 +105,7 @@ extension AskPermissionViewController: AskPermissionViewControllerInterface {
         baseHeaderView?.configure(title: viewModel.title, subtitle: viewModel.description)
         ThemeText.askPermissionTitle.apply(viewModel.title, to: baseHeaderView?.titleLabel)
         ThemeText.askPermissionMessage.apply(viewModel.description, to: baseHeaderView?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.view.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.view.frame.size.width) ?? .zero
         imageView.image = interactor.placeholderImage
         setupBottomNavigation(viewModel)
     }

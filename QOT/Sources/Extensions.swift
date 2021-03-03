@@ -16,7 +16,7 @@ import qot_dal
 extension String {
 
     var removeFilePrefix: String {
-        return replacingOccurrences(of: "file://", with: "")
+        return replacingOccurrences(of: "file://", with: String.empty)
     }
 }
 
@@ -99,7 +99,7 @@ extension NSAttributedString {
 extension UIBezierPath {
 
     class func hexagonPath(forRect rect: CGRect) -> UIBezierPath {
-        return UIBezierPath(polygonIn: rect, sides: 6, lineWidth: 0, cornerRadius: 1, rotateByDegs: 180 / 6)
+        return UIBezierPath(polygonIn: rect, sides: 6, lineWidth: .zero, cornerRadius: 1, rotateByDegs: 180 / 6)
     }
 
     class func circlePath(center: CGPoint, radius: CGFloat) -> UIBezierPath {
@@ -165,7 +165,7 @@ extension UIBezierPath {
 
         close()
 
-        if degs != 0 {
+        if degs != .zero {
             // @see adapted from https://stackoverflow.com/questions/13738364/rotate-cgpath-without-changing-its-position
             let center = CGPoint(x: cgPath.boundingBox.midX, y: cgPath.boundingBox.midY)
             apply(CGAffineTransform(translationX: center.x, y: center.y).inverted())
@@ -199,7 +199,7 @@ extension CALayer {
 
     func removeGlowEffect(animate: Bool = true) {
         let opacity = shadowOpacity
-        shadowOpacity = 0
+        shadowOpacity = .zero
 
         if animate {
             let animation = CABasicAnimation(keyPath: "shadowOpacity")
@@ -247,9 +247,9 @@ extension UIView {
 
     static func headerView(with theme: ThemeView) -> UIView {
         let screenSize = UIScreen.main.bounds.size
-        let content = UIView(frame: CGRect(x: 0, y: -screenSize.height, width: screenSize.width, height: screenSize.height))
+        let content = UIView(frame: CGRect(x: .zero, y: -screenSize.height, width: screenSize.width, height: screenSize.height))
         theme.apply(content)
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 0.1))
+        let header = UIView(frame: CGRect(x: .zero, y: .zero, width: UIScreen.main.bounds.size.width, height: 0.1))
         header.addSubview(content)
         return header
     }
@@ -274,10 +274,10 @@ extension UIView {
 extension UIImage {
     // @see adapted from https://stackoverflow.com/questions/6496441/creating-a-uiimage-from-a-uicolor-to-use-as-a-background-image-for-uibutton
     static func from(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
-        guard size.width > 0, size.height > 0 else {
+        guard size.width > .zero, size.height > .zero else {
             return nil
         }
-        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        let rect = CGRect(x: .zero, y: .zero, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
@@ -295,11 +295,11 @@ extension UIImage {
 extension UITableView {
     func scrollToBottom(animated: Bool) {
         let sections = numberOfSections
-        guard sections > 0 else {
+        guard sections > .zero else {
             return
         }
         let rows = numberOfRows(inSection: sections - 1)
-        guard rows > 0 else {
+        guard rows > .zero else {
             return
         }
         let indexPath = IndexPath(row: rows - 1, section: sections - 1)
@@ -307,7 +307,7 @@ extension UITableView {
     }
 
     func scrollToTop(animated: Bool) {
-        scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: animated)
+        scrollToRow(at: IndexPath(row: .zero, section: .zero), at: .top, animated: animated)
     }
 }
 

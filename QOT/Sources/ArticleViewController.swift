@@ -110,9 +110,9 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     }
 
     @objc override func trackPage() {
-        guard interactor.remoteID != 0 else { return }
+        guard interactor.remoteID != .zero else { return }
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 0
+        pageTrack.pageId = .zero
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_COLLECTION
         pageTrack.associatedValueId = interactor.remoteID
@@ -141,7 +141,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
         tableView.registerDequeueable(ArticleContactSupportTableViewCell.self)
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 50, left: .zero, bottom: BottomNavigationContainer.height, right: .zero)
         tableView.estimatedSectionHeaderHeight = interactor.sectionHeaderHeight
         tableView.backgroundColor = .clear
     }
@@ -337,8 +337,8 @@ extension ArticleViewController {
 
     func sectionHasContent(_ section: Int) -> Bool {
         let numRows = interactor.itemCount(in: section)
-        let title = interactor.headerTitle(for: section) ?? ""
-        return !title.isEmpty && numRows > 0
+        let title = interactor.headerTitle(for: section) ?? String.empty
+        return !title.isEmpty && numRows > .zero
     }
 }
 
@@ -385,7 +385,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .audio( _, let title, let description, placeholderURL: _, _, duration: _, waveformData: _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
-                           durationString: description ?? "",
+                           durationString: description ?? String.empty,
                            icon: R.image.ic_audio())
             return cell
         case .image(let title, _, let url):
@@ -421,7 +421,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .pdf(let title, let description, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
-                           durationString: description ?? "",
+                           durationString: description ?? String.empty,
                            icon: R.image.ic_seen_of())
             return cell
         case .articleRelatedWhatsHot(let relatedArticle):
@@ -515,10 +515,10 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
 
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
+        let headerView = UIView(frame: CGRect(x: .zero, y: .zero, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
         headerView.backgroundColor = .clear
         if interactor.sectionNeedsLine {
-            let lineView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
+            let lineView = UIView(frame: CGRect(x:.zero, y: .zero, width: view.frame.width, height: 1.0))
             ThemeView.articleSeparator(nil).apply(lineView)
             headerView.addSubview(lineView)
         }
@@ -529,7 +529,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (sectionHasContent(section) && !(interactor.isSectionSupport())) ? tableView.estimatedSectionHeaderHeight : 0
+        return (sectionHasContent(section) && !(interactor.isSectionSupport())) ? tableView.estimatedSectionHeaderHeight : .zero
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -558,7 +558,7 @@ extension ArticleViewController {
         let scrollViewOffsetY = scrollView.contentOffset.y
         let movingUp = lastScrollViewOffsetY < scrollViewOffsetY
         if movingUp {
-            if !navBarIsHidden && scrollViewOffsetY > 0 {
+            if !navBarIsHidden && scrollViewOffsetY > .zero {
                 let offset = scrollViewOffsetY - lastScrollViewActionOffsetY
                 if offset > pixelBuffer {
                     navigationBar(show: false)
@@ -574,7 +574,7 @@ extension ArticleViewController {
                 let atBottom = Int(scrollViewOffsetY) >= Int(scrollView.contentSize.height - scrollView.bounds.height)
                 if !atBottom {
                     let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
-                    if offset > pixelBuffer || scrollViewOffsetY <= 0 {
+                    if offset > pixelBuffer || scrollViewOffsetY <= .zero {
                         navigationBar(show: true)
                         hideStatusBar = false
                         setNeedsStatusBarAppearanceUpdate()
@@ -589,11 +589,11 @@ extension ArticleViewController {
     }
 
     var navBarIsHidden: Bool {
-        return constraintNavBar.constant != 0
+        return constraintNavBar.constant != .zero
     }
 
     func navigationBar(show: Bool) {
-        constraintNavBar.constant = show ? 0 : -80
+        constraintNavBar.constant = show ? .zero : -80
         UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()
             self.articleTopNavBar.isHidden = !show

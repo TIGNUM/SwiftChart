@@ -22,7 +22,7 @@ class DTInteractor: DTInteractorInterface {
     var questions: [QDMQuestion] = []
     var presentedNodes: [Node] = []
     var selectedAnswers: [SelectedAnswer] = []
-    var inputText: String = ""
+    var inputText: String = String.empty
     var isDark: Bool = false    //TODO Maybe we wanna have ThemeModel in the future…
     var tbv: QDMToBeVision?
 

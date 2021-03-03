@@ -36,20 +36,20 @@ extension ResultsPrepareWorker {
         QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { [weak self] (qdmQuestion) in
             guard let qdmQuestion = qdmQuestion else { return }
             let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
-            let answerFilter = self?.getAnswerFilter(preparation: preparation) ?? ""
+            let answerFilter = self?.getAnswerFilter(preparation: preparation) ?? String.empty
             let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(answerFilter) }
             let answers = filteredAnswers.compactMap {
                 DTViewModel.Answer(qdmAnswer: $0,
                                    selectedIds: selectedIds,
                                    decisions: $0.getDTViewModelAnswerDecisions(),
-                                   votes: 0)
+                                   votes: .zero)
             }
             completion(DTViewModel(question: question,
                                    answers: answers,
                                    tbvText: nil,
                                    userInputText: preparation?.benefits,
                                    hasTypingAnimation: false,
-                                   typingAnimationDuration: 0,
+                                   typingAnimationDuration: .zero,
                                    previousButtonIsHidden: true,
                                    dismissButtonIsHidden: false,
                                    showNextQuestionAutomated: false),
@@ -71,7 +71,7 @@ extension ResultsPrepareWorker {
 extension ResultsPrepareWorker {
     func getAnswers(answerIds: [Int], key: Prepare.Key, _ completion: @escaping ([QDMAnswer]) -> Void) {
         QuestionService.main.questions(with: key.rawValue) { (questions) in
-            completion(questions?.first?.answers.filter { answerIds.contains($0.remoteID ?? 0) } ?? [])
+            completion(questions?.first?.answers.filter { answerIds.contains($0.remoteID ?? .zero) } ?? [])
         }
     }
 

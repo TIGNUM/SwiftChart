@@ -18,8 +18,8 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
     @IBOutlet private weak var descriptionTextView: UITextView!
     @IBOutlet private weak var keyboardInputView: MyVisionEditDetailsKeyboardInputView!
 
-    var originalVisionTitle = ""
-    var originalVisionSubtitle = ""
+    var originalVisionTitle = String.empty
+    var originalVisionSubtitle = String.empty
     var didChangeVision: Bool = false
     var didChangeTitle: Bool = false
 
@@ -58,7 +58,7 @@ final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelO
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
         let height = isKeyboardShowing ? keyboardFrame.height : Layout.padding_100
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: height, right: .zero)
         UIView.animate(withDuration: Animation.duration_06, animations: {
             self.view.layoutIfNeeded()
         })
@@ -90,10 +90,10 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsControllerInterf
         didChangeTitle = !title.isEmpty
         didChangeVision = !vision.isEmpty
         titleTextField.attributedText = title.isEmpty ? interactor.formatPlaceholder(title: AppTextService.get(.my_qot_my_tbv_edit_title_placeholder)) :
-                                                        interactor.formatPlaceholder(title: "")
+                                                        interactor.formatPlaceholder(title: String.empty)
         titleTextView.attributedText = interactor.format(title: title)
         visionTextField.attributedText = vision.isEmpty ? interactor.formatPlaceholder(vision: AppTextService.get(.my_qot_my_tbv_edit_body_placeholder)) :
-                                                          interactor.formatPlaceholder(vision: "")
+                                                          interactor.formatPlaceholder(vision: String.empty)
         descriptionTextView.attributedText = interactor.format(vision: vision)
         titleTextView.becomeFirstResponder()
         keyboardInputView.delegate = self
@@ -118,7 +118,7 @@ extension MyVisionEditDetailsViewController: UITextViewDelegate {
             titleTextView.resignFirstResponder()
             descriptionTextView.becomeFirstResponder()
         } else {
-            let currentText = textView.text ?? ""
+            let currentText = textView.text ?? String.empty
             guard let stringRange = Range(range, in: currentText) else { return false }
             let changedText = currentText.replacingCharacters(in: stringRange, with: text)
             if textView == titleTextView {
@@ -126,13 +126,13 @@ extension MyVisionEditDetailsViewController: UITextViewDelegate {
                 enableSaveButton(didChangeTitle && didChangeVision)
                 titleTextField.attributedText = changedText.isEmpty ?
                                                 interactor?.formatPlaceholder(title: AppTextService.get(.my_qot_my_tbv_edit_title_placeholder)) :
-                                                interactor?.formatPlaceholder(title: "")
+                                                interactor?.formatPlaceholder(title: String.empty)
             } else {
                 didChangeVision = !changedText.isEmpty
                 enableSaveButton(didChangeTitle && didChangeVision)
                 visionTextField.attributedText = changedText.isEmpty ?
                                                  interactor?.formatPlaceholder(vision: AppTextService.get(.my_qot_my_tbv_edit_body_placeholder)) :
-                                                 interactor?.formatPlaceholder(vision: "")
+                                                 interactor?.formatPlaceholder(vision: String.empty)
             }
         }
         return true
@@ -179,9 +179,9 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
             return
         }
         guard !descriptionTextView.text.isEmpty, let teamVision = interactor?.teamVision else {
-            TeamService.main.createTeamToBeVision(headline: "",
-                                                  subHeadline: "",
-                                                  text: "",
+            TeamService.main.createTeamToBeVision(headline: String.empty,
+                                                  subHeadline: String.empty,
+                                                  text: String.empty,
                                                   for: team, { [weak self] (teamVision, _, _) in
                                                     guard let newTeamVision = teamVision,
                                                           let finalTeamVision = self?.getTeamVision(for: newTeamVision) else {

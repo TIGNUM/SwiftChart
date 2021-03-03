@@ -16,7 +16,7 @@ final class MyToBeVisionPageComponentView: UIView {
 
     var pageColor: UIColor?
 
-    var pageCount: Int = 0 {
+    var pageCount: Int = .zero {
         didSet {
             formView()
         }
@@ -39,7 +39,7 @@ final class MyToBeVisionPageComponentView: UIView {
             stackView.addConstraints(to: self)
         }
         stackView.removeAllArrangedSubviews()
-        if pageCount == 0 { return }
+        if pageCount == .zero { return }
         for _ in 1...pageCount {
             let view = UIView()
             view.backgroundColor = pageColor
@@ -68,7 +68,7 @@ final class MyToBeVisionPageComponentView: UIView {
         }
         let view = stackView.arrangedSubviews[currentPageIndex]
         view.widthConstaint?.constant = expandedPageComponentWidth
-        UIView.animate(withDuration: Animation.duration_01, delay: 0, animations: {
+        UIView.animate(withDuration: Animation.duration_01, delay: .zero, animations: {
             self.layoutIfNeeded()
         })
     }

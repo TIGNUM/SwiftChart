@@ -47,7 +47,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func presentCoachPreparation() {
-        if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+        if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue(String.empty) {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }
@@ -68,7 +68,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
       }
 
     func presentTeamPendingInvites() {
-        if let launchURL = URLScheme.teamInvitations.launchURLWithParameterValue("") {
+        if let launchURL = URLScheme.teamInvitations.launchURLWithParameterValue(String.empty) {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }

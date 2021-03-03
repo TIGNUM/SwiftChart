@@ -46,7 +46,7 @@ final class MyLibraryCategoryListInteractor {
     // MARK: - Texts
     var titleText: String {
         if let team = team {
-            return worker.titleTemplateForTeam.replacingOccurrences(of: "${NAME}", with: team.name ?? "")
+            return worker.titleTemplateForTeam.replacingOccurrences(of: "${NAME}", with: team.name ?? String.empty)
         }
         return worker.titleText
     }
@@ -79,7 +79,7 @@ final class MyLibraryCategoryListInteractor {
 // MARK: - MyLibraryCategoryListInteractorInterface
 extension MyLibraryCategoryListInteractor: MyLibraryCategoryListInteractorInterface {
     var teamId: Int? {
-        return team?.remoteID == 0 ? nil : team?.remoteID
+        return team?.remoteID == .zero ? nil : team?.remoteID
     }
 
     func handleSelectedItem(at index: Int) {

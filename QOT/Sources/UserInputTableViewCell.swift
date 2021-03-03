@@ -23,7 +23,7 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
     private var inputText: String?
     private var maxCharacters = 100
     private var observers: [NSKeyValueObservation] = []
-    private var questionKey: String = ""
+    private var questionKey: String = String.empty
 
     func configure(questionKey: String,
                    inputText: String?,

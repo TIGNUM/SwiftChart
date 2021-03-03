@@ -66,7 +66,7 @@ extension PreparationWithMissingEventInteractor: PreparationWithMissingEventInte
     }
 
     func preparationTitle() -> String {
-        return preparation?.eventTitle ?? ""
+        return preparation?.eventTitle ?? String.empty
     }
 
     func keepPreparation() {

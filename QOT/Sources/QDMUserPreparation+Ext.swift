@@ -31,7 +31,7 @@ extension QDMUserPreparation.Level {
         case .LEVEL_ON_THE_GO: return 101256
         case .LEVEL_DAILY: return 101258
         case .LEVEL_CRITICAL: return 101260
-        default: return 0
+        default: return .zero
         }
     }
 

@@ -53,7 +53,7 @@ final class ExternalLinkImporter {
     func importLink() {
         guard SessionService.main.getCurrentSession() != nil,
             let externalLinks: [ShareExtentionData] = ExtensionUserDefaults.object(for: .share, key: .saveLink),
-            externalLinks.count > 0 else {
+            externalLinks.count > .zero else {
                 updateLinkTitleAndThumbnail()
                 return
         }
@@ -70,9 +70,9 @@ final class ExternalLinkImporter {
                 if let url = externalLink.url {
                     dispatchGroup.enter()
                     if let team = team {
-                        UserStorageService.main.addLink(title: "", url: url, in: team) { (_, _) in dispatchGroup.leave() }
+                        UserStorageService.main.addLink(title: String.empty, url: url, in: team) { (_, _) in dispatchGroup.leave() }
                     } else {
-                        UserStorageService.main.addLink(title: "", url: url) { (_, _) in dispatchGroup.leave() }
+                        UserStorageService.main.addLink(title: String.empty, url: url) { (_, _) in dispatchGroup.leave() }
                     }
                 } else if externalLink.type == UserStorageType.NOTE.rawValue, let note = externalLink.description {
                     dispatchGroup.enter()
@@ -106,9 +106,9 @@ final class ExternalLinkImporter {
         dispatchGroup.notify(queue: .main) {
             let dispatchGroup = DispatchGroup()
             dispatchGroup.enter()
-            for link in storages where (link.previewImageUrl ?? "").isEmpty == true {
+            for link in storages where (link.previewImageUrl ?? String.empty).isEmpty == true {
                 var link = link
-                let parser = OpenGraphMetaDataParser(with: URL(string: link.url ?? ""))
+                let parser = OpenGraphMetaDataParser(with: URL(string: link.url ?? String.empty))
                 dispatchGroup.enter()
                 parser.parseMeta { (meta, error) in
                     guard error == nil, meta != nil else {

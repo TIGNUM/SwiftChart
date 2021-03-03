@@ -62,12 +62,12 @@ struct Recovery {
         let keys = selectedAnswers.flatMap { $0.keys.filter { $0.contains("-item") } }
 
         if keys.count == 1 {
-            return symptomForKey(keys.first ?? "")
+            return symptomForKey(keys.first ?? String.empty)
         }
 
         if keys.count == 2 {
             if keys.first == keys.last {
-                return symptomForKey(keys.first ?? "")
+                return symptomForKey(keys.first ?? String.empty)
             }
             return .general
         }

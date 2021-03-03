@@ -33,14 +33,14 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.axesColor = .sand20
         chartView.gridColor = .sand20
         chartView.labelColor = .clear
-        chartView.topInset = 0
-        chartView.bottomInset = 0
+        chartView.topInset = .zero
+        chartView.bottomInset = .zero
 
         let maxString = upperValueLabel.text ?? "100"
         let minString = lowerValueLabel.text ?? "0"
         chartView.minY = Double(minString)
         chartView.maxY = Double(maxString)
-        chartView.minX = 0
+        chartView.minX = .zero
         chartView.maxX = 6
         chartView.showYGridDashed = false
         chartView.showXGridDashed = true
@@ -68,7 +68,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
             averageSeries.color = .sand40
             averageSeries.dashed = true
             chartView.add(averageSeries)
-            let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+            let irAverageLabel = UILabel.init(frame: CGRect(x: .zero, y: .zero, width: 100, height: 20))
             addSubview(irAverageLabel)
             addedViews.append(irAverageLabel)
             setup(irAverageLabel: irAverageLabel, forValue: defaultAverage)
@@ -97,7 +97,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                 if let fdirValue = model.fiveDayImpactReadiness { fiveDIRdata.append((x: Double(index), y: fdirValue)) }
                 if let irValue = model.impactReadiness { irData.append((x: Double(index), y: irValue)) }
                 //look if there is data for the previous day. If not mark the previous space with no data
-                if index > 0 && withModels[datesOfCurrentWeek[index - 1]] == nil {
+                if index > .zero && withModels[datesOfCurrentWeek[index - 1]] == nil {
                     alignmentViewsCollection[index - 1].alpha = 1.0
                 }
             }
@@ -160,7 +160,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
 
         chartView.add(ir)
         chartView.add(averageSeries)
-        let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        let irAverageLabel = UILabel.init(frame: CGRect(x: .zero, y: .zero, width: 100, height: 20))
 
         addSubview(irAverageLabel)
         addedViews.append(irAverageLabel)
@@ -170,7 +170,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     func setup(irAverageLabel: UILabel, forValue: Double) {
         ThemeText.myDataChartIRAverageLabel.apply(AppTextService.get(.my_qot_my_data_section_impact_readiness_label_ir_average), to: irAverageLabel)
-        for view in alignmentViewsCollection where view.tag == 0 {
+        for view in alignmentViewsCollection where view.tag == .zero {
             createPositionConstraints(forView: irAverageLabel,
                                       and: view,
                                       with: calculateBottomConstraintDifference(for: forValue) - 10.0,
@@ -241,7 +241,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                         alignmentView = view
                     }
                     let width: CGFloat = parameter == .IR ? largePointSize: normalPointSize
-                    pointView.frame = CGRect(x: 0, y: 0, width: width, height: width)
+                    pointView.frame = CGRect(x: .zero, y: .zero, width: width, height: width)
                     pointView.circle()
                     createPositionConstraints(for: pointView,
                                               andPointViewWidth: width,
@@ -293,7 +293,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                                                         toItem: alignmentView,
                                                         attribute: toLeadingOfView ? .leading : .trailing,
                                                         multiplier: 1,
-                                                        constant: centeredCompensation ? -(forView.frame.size.width / 2) : 0)
+                                                        constant: centeredCompensation ? -(forView.frame.size.width / 2) : .zero)
         let bottomConstraint = NSLayoutConstraint.init(item: forView,
                                                        attribute: .bottom,
                                                        relatedBy: .equal,

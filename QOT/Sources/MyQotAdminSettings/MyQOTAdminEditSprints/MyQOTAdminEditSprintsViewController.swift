@@ -58,7 +58,7 @@ private extension MyQOTAdminEditSprintsViewController {
         ThemeView.level2.apply(self.view)
         baseHeaderView?.configure(title: interactor.getHeaderTitle(),
                                   subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -75,8 +75,8 @@ extension MyQOTAdminEditSprintsViewController: UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: interactor.getSprint(at: indexPath.row).title ?? "",
-                       subtitle: interactor.getSprint(at: indexPath.row).subtitle ?? "")
+        cell.configure(title: interactor.getSprint(at: indexPath.row).title ?? String.empty,
+                       subtitle: interactor.getSprint(at: indexPath.row).subtitle ?? String.empty)
         return cell
     }
 

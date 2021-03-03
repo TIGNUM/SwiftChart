@@ -103,7 +103,7 @@ class SkeletonManager {
             guard let button = view as? UIButton else { return }
             storeLayerBorderWidth(from: button)
             button.titleLabel?.isHidden = true
-            button.layer.borderWidth = 0
+            button.layer.borderWidth = .zero
         }
         let shimmerView = ShimmerAnimatedView.init(frame: view.frame,
                                                    color: withBackgroundColor,
@@ -172,7 +172,7 @@ private class ShimmerAnimatedView: UIView {
             animation.toValue = toView.frame.size.width
             animation.repeatCount = .infinity
 
-            gradientLayer.add(animation, forKey: "")
+            gradientLayer.add(animation, forKey: String.empty)
         }
     }
 
@@ -204,28 +204,28 @@ private class ShimmerAnimatedView: UIView {
                            toItem: superview,
                            attribute: .centerX,
                            multiplier: 1,
-                           constant: 0),
+                           constant: .zero),
         NSLayoutConstraint(item: subview,
                            attribute: .centerY,
                            relatedBy: .equal,
                            toItem: superview,
                            attribute: .centerY,
                            multiplier: 1,
-                           constant: 0),
+                           constant: .zero),
         NSLayoutConstraint(item: subview,
                            attribute: .width,
                            relatedBy: .equal,
                            toItem: superview,
                            attribute: .width,
                            multiplier: 1,
-                           constant: 0),
+                           constant: .zero),
         NSLayoutConstraint(item: subview,
                            attribute: .height,
                            relatedBy: .equal,
                            toItem: superview,
                            attribute: .height,
                            multiplier: 1,
-                           constant: 0)
+                           constant: .zero)
         ])
     }
 }

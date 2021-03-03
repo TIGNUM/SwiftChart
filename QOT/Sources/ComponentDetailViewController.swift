@@ -42,7 +42,7 @@ class ComponentDetailViewController: BaseViewController, ScreenZLevel3 {
 
 extension ComponentDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if draggingDownToDismiss || scrollView.isTracking && scrollView.contentOffset.y < 0 {
+        if draggingDownToDismiss || scrollView.isTracking && scrollView.contentOffset.y < .zero {
             draggingDownToDismiss = true
             scrollView.contentOffset = .zero
         }
@@ -52,7 +52,7 @@ extension ComponentDetailViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                    withVelocity velocity: CGPoint,
                                    targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if velocity.y > 0 && scrollView.contentOffset.y <= 0 {
+        if velocity.y > .zero && scrollView.contentOffset.y <= .zero {
             scrollView.contentOffset = .zero
         }
     }
@@ -126,7 +126,7 @@ private extension ComponentDetailViewController {
             if let animator = dismissalAnimator {
                 return animator
             } else {
-                let animator = UIViewPropertyAnimator(duration: 0, curve: .linear, animations: {
+                let animator = UIViewPropertyAnimator(duration:.zero, curve: .linear, animations: {
                     targetAnimatedView.transform = .init(scaleX: targetShrinkScale, y: targetShrinkScale)
                     targetAnimatedView.layer.cornerRadius = targetCornerRadius
                 })

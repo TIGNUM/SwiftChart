@@ -104,7 +104,7 @@ extension WorkerTeam {
 
     func getMaxTeamMemberCount(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
-            completion(config?.teamMaxMemberCount ?? 0)
+            completion(config?.teamMaxMemberCount ?? .zero)
         }
     }
 
@@ -118,13 +118,13 @@ extension WorkerTeam {
 
     func getMaxTeamCount(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
-            completion(config?.teamMaxCount ?? 0)
+            completion(config?.teamMaxCount ?? .zero)
         }
     }
 
     func getMaxChars(_ completion: @escaping (Int) -> Void) {
         getConfig { (config) in
-            completion(config?.teamNameMaxLength ?? 0)
+            completion(config?.teamNameMaxLength ?? .zero)
         }
     }
 
@@ -234,7 +234,7 @@ extension WorkerTeam {
             completion(team, error)
             NotificationCenter.default.post(name: .didEditTeamName,
                                             object: nil,
-                                            userInfo: [team?.qotId: team?.name ?? ""])
+                                            userInfo: [team?.qotId: team?.name ?? String.empty])
         }
     }
 
@@ -458,7 +458,7 @@ extension WorkerTeam {
                                                              .foregroundColor: UIColor.redOrange]
         let prefix = NSMutableAttributedString(string: AppTextService.get(.my_x_team_tbv_options_ends),
                                                attributes: greyAttributes)
-        var string = ""
+        var string = String.empty
         switch remainingDays {
         case 0:
             string = AppTextService.get(.my_x_team_tbv_options_today)
@@ -474,7 +474,7 @@ extension WorkerTeam {
     }
 
     func dateString(for day: Int) -> String {
-        if day == 0 {
+        if day == .zero {
             return "Today"
         } else if day == 1 {
             return "Yesterday"
@@ -564,7 +564,7 @@ private extension WorkerTeam {
         })
 
         if teams.isEmpty == false && isMyX {
-            teamHeaderItems.insert(Team.Item(myX: .myX), at: 0)
+            teamHeaderItems.insert(Team.Item(myX: .myX), at: .zero)
         }
         completion(teamHeaderItems)
     }

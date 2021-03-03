@@ -86,7 +86,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
         timer?.invalidate()
 
         UIView.animate(withDuration: Animation.duration_03) {
-            self.view.alpha = 0
+            self.view.alpha = .zero
             self.titleLabel.alpha = 0.0
         }
     }
@@ -123,14 +123,14 @@ private extension SigningInfoViewController {
     }
 
     func setupStartButton() {
-        let attributedString = NSAttributedString(string: interactor?.startButtonText ?? "",
+        let attributedString = NSAttributedString(string: interactor?.startButtonText ?? String.empty,
                                                   letterSpacing: 0.2,
                                                   font: .sfProtextSemibold(ofSize: 14),
                                                   textColor: .white,
                                                   alignment: .center)
         startButton.setAttributedTitle(attributedString, for: .normal)
         startButton.corner(radius: Layout.cornerRadius20, borderColor: .white)
-        startButtonItem = roundedBarButtonItem(title: "",
+        startButtonItem = roundedBarButtonItem(title: String.empty,
                                               buttonWidth: view.frame.width,
                                               action: #selector(didTapStart),
                                               backgroundColor: .clear,

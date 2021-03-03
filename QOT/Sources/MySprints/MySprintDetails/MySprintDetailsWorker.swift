@@ -85,7 +85,7 @@ final class MySprintDetailsWorker {
 
     lazy var infoPauseSprintMessage: String = {
         let format = AppTextService.get(.my_qot_my_sprints_my_sprint_details_alert_pause_sprint_body)
-        return String(format: format, sprint?.maxDays ?? 0)
+        return String(format: format, sprint?.maxDays ?? .zero)
     }()
 
     lazy var buttonPauseSprint: String = {
@@ -114,8 +114,8 @@ final class MySprintDetailsWorker {
 
     func infoSprintInProgressMessage(sprintInProgressTitle: String?) -> String {
         let message = AppTextService.get(.my_qot_my_sprints_my_sprint_details_alert_sprint_in_progress_body)
-        return replaceMessagePlaceHolders(sprintInProgressTitle: sprintInProgressTitle ?? "",
-                                          newSprintTitle: self.sprint?.title ?? "",
+        return replaceMessagePlaceHolders(sprintInProgressTitle: sprintInProgressTitle ?? String.empty,
+                                          newSprintTitle: self.sprint?.title ?? String.empty,
                                           message: message)
     }
 
@@ -131,7 +131,7 @@ final class MySprintDetailsWorker {
             if let error = error {
                 log("Error getSprints: \(error.localizedDescription)", level: .error)
             }
-            let sprint = sprints?.filter { $0.qotId == self?.sprintId ?? "" }.first
+            let sprint = sprints?.filter { $0.qotId == self?.sprintId ?? String.empty }.first
             self?.sprint = sprint
             completion(sprint)
         }
@@ -149,10 +149,10 @@ extension MySprintDetailsWorker {
         // if it is completed sprint. Create new sprint with same content and start the created sprint.
         if sprint.completedAt != nil {
             var model = CreateSprintModel()
-            model.sprintContentId = sprint.contentCollectionId ?? 0
+            model.sprintContentId = sprint.contentCollectionId ?? .zero
             model.relatedContentIds = sprint.relatedContentIds
-            model.title = sprint.title ?? ""
-            model.subTitle = sprint.subtitle ?? ""
+            model.title = sprint.title ?? String.empty
+            model.subTitle = sprint.subtitle ?? String.empty
             model.taskItemIds = sprint.taskItems.compactMap({ $0.remoteID })
             model.planItemIds = sprint.planItems.compactMap({ $0.remoteID })
             UserService.main.createSprint(data: model) { (newSprint, error) in
@@ -201,7 +201,7 @@ extension MySprintDetailsWorker {
         }
         if let sprint = sprint {
             self.sprint = sprint
-            self.sprintId = sprint.qotId ?? ""
+            self.sprintId = sprint.qotId ?? String.empty
         }
         notificationCenter.post(name: .didUpdateMySprintsData, object: nil)
         completion(nil)

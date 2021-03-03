@@ -9,8 +9,7 @@
 import UIKit
 
 enum AdminSettingsItem: Int, CaseIterable {
-    case environmentSettings = 0
-    case localNotifications
+    case localNotifications = 0
     case dailyCheckinSixthQuestion
     case chooseDailyBriefBuckets
     case editSprints
@@ -68,7 +67,7 @@ private extension MyQotAdminSettingsListViewController {
         ThemeView.level2.apply(self.view)
         baseHeaderView?.configure(title: interactor.getHeaderTitle(),
                                   subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? .zero
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -87,9 +86,6 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
         switch indexPath.row {
-        case AdminSettingsItem.environmentSettings.rawValue:
-            cell.configure(title: interactor.getTitleForEnvironmentSettings(),
-                           subtitle: interactor.getSubtitleForEnvironmentSettings())
         case AdminSettingsItem.localNotifications.rawValue:
             cell.configure(title: interactor.getTitleForLocalNotifications(),
                            subtitle: nil)
@@ -112,8 +108,6 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
-        case AdminSettingsItem.environmentSettings.rawValue:
-            router.presentEnvironmentSettings()
         case AdminSettingsItem.localNotifications.rawValue:
             router.presentLocalNotificationsSettings()
         case AdminSettingsItem.dailyCheckinSixthQuestion.rawValue:

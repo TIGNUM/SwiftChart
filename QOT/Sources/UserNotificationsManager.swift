@@ -150,7 +150,7 @@ final class UserNotificationsManager {
 
         dispatchGroup.notify(queue: .main) {
             let preparationNotificationRequests = ciriticalPreparations.compactMap({
-                $0.notificationRequest(with: preparationNotificationContents.shuffled().first ?? "")
+                $0.notificationRequest(with: preparationNotificationContents.shuffled().first ?? String.empty)
             })
             // report scheduled preparation notifications
             for request in preparationNotificationRequests {
@@ -347,7 +347,7 @@ final class UserNotificationsManager {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         MyDataService.main.getDailyCheckInResults(from: beginningOfToday, to: Date.endOfDay()) { (results, _, _) in
-            removeAll = (results?.filter({$0.date.beginingOfDate() == beginningOfToday}).count ?? 0) > 0
+            removeAll = (results?.filter({$0.date.beginingOfDate() == beginningOfToday}).count ?? .zero) > .zero
             dispatchGroup.leave()
         }
 

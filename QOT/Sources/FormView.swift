@@ -166,7 +166,7 @@ private extension FormView {
             animatePlaceholderLabel()
         }
         if UIDevice.isPad == true {
-            textField.textContentType = UITextContentType(rawValue: "")
+            textField.textContentType = UITextContentType(rawValue: String.empty)
         }
         textField.isUserInteractionEnabled = enabled
     }
@@ -181,12 +181,12 @@ private extension FormView {
 
     func setupShowPasswordButton() {
         guard formType?.isSecureTextEntry == true else { return }
-        showPasswordButton.isHidden = textField.isSecureTextEntry == true && textField.text?.count ?? 0 < 3
+        showPasswordButton.isHidden = textField.isSecureTextEntry == true && textField.text?.count ?? .zero < 3
     }
 
     func animatePlaceholderLabel() {
         if textField.isEditing == false {
-            let xPos = CGFloat(placeholderLabel.text?.count ?? 0) + 1
+            let xPos = CGFloat(placeholderLabel.text?.count ?? .zero) + 1
             var transform = CGAffineTransform.identity
             transform = transform.translatedBy(x: -xPos, y: -24)
             transform = transform.scaledBy(x: 0.75, y: 0.75)

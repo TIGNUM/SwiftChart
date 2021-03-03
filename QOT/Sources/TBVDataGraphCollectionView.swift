@@ -28,7 +28,7 @@ class TBVDataGraphCollectionView: UICollectionView {
     }
 
     private func getRating(_ date: Date) -> CGFloat {
-        return CGFloat(getAverage[date] ?? 0)
+        return CGFloat(getAverage[date] ?? .zero)
     }
 
     override func awakeFromNib() {
@@ -48,7 +48,7 @@ private extension TBVDataGraphCollectionView {
 
     func durationCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TBVDataGraphBarNextDurationViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.duration = ""
+        cell.duration = String.empty
         return cell
     }
 

@@ -22,7 +22,7 @@ final class TeamVisionSuggestionModel: BaseDailyBriefViewModel {
         self.adviceText = adviceText
         self.team = team
         super.init(domainModel,
-                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? ""),
+                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? String.empty),
                    title: AppTextService.get(.daily_brief_vision_suggestion_title),
                    body: tbvSentence,
                    image: imageURL,

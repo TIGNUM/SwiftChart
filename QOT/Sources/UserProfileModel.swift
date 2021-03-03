@@ -44,13 +44,13 @@ struct UserProfileModel: Equatable {
 
 extension UserProfileModel {
     var name: String {
-        let firstName = givenName?.capitalized ?? ""
-        let lastName = familyName?.capitalized ?? ""
+        let firstName = givenName?.capitalized ?? String.empty
+        let lastName = familyName?.capitalized ?? String.empty
         return  firstName + " " + lastName
     }
 
     var yearOfBirth: String {
         let dateOfBrith = DateFormatter.yyyyMMdd.date(from: birthday)
-        return String(dateOfBrith?.year() ?? 0)
+        return String(dateOfBrith?.year() ?? .zero)
     }
 }

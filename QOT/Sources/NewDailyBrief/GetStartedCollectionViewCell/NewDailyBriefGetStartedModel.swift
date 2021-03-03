@@ -35,7 +35,7 @@ final class NewDailyBriefGetStartedModel: BaseDailyBriefViewModel {
     // MARK: - Public
     override public func height(forWidth width: CGFloat) -> CGFloat {
         let titleSizingLabel = UILabel()
-        titleSizingLabel.numberOfLines = 0
+        titleSizingLabel.numberOfLines = .zero
         titleSizingLabel.font = UIFont.sfProDisplayRegular(ofSize: 20.0)
         titleSizingLabel.lineBreakMode = .byTruncatingTail
         titleSizingLabel.text = title

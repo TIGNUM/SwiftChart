@@ -192,7 +192,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     func shareToBeVision() {
         worker.visionToShare { [weak self] (visionToShare) in
             guard let vision = visionToShare else { return }
-            self?.share(plainText: vision.plainBody ?? "")
+            self?.share(plainText: vision.plainBody ?? String.empty)
         }
     }
 
@@ -237,8 +237,8 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
 
     func showEditVision(isFromNullState: Bool) {
         worker.getToBeVision { [weak self] (_, toBeVision) in
-            self?.router.showEditVision(title: toBeVision?.headline ?? "",
-                                        vision: toBeVision?.text ?? "",
+            self?.router.showEditVision(title: toBeVision?.headline ?? String.empty,
+                                        vision: toBeVision?.text ?? String.empty,
                                         isFromNullState: isFromNullState,
                                         team: nil)
         }
@@ -251,6 +251,6 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
 
 extension MFMailComposeViewController {
     @objc func setBodySwizzeld(_ body: String, isHTML: Bool) {
-        self.setBodySwizzeld(MyVisionWorker.toBeSharedVisionHTML ?? "", isHTML: true)
+        self.setBodySwizzeld(MyVisionWorker.toBeSharedVisionHTML ?? String.empty, isHTML: true)
     }
 }
