@@ -11,7 +11,8 @@ import UserNotifications
 import qot_dal
 
 let DEBUG_LOCAL_NOTIFICATION_IDENTIFIER = "DEBUG_LOCAL_NOTIFICATION_IDENTIFIER"
-final class UserNotificationsManager {
+
+public final class UserNotificationsManager {
     static private var _main: UserNotificationsManager?
     static public var main: UserNotificationsManager {
         if _main == nil {
@@ -107,14 +108,14 @@ final class UserNotificationsManager {
         }
     }
 
-    func getCoachMessageContent(_ coachMessage: QDMCoachMessage) -> UNMutableNotificationContent {
+    public func getCoachMessageContent(_ coachMessage: QDMCoachMessage) -> UNMutableNotificationContent {
         return UNMutableNotificationContent(title: coachMessage.title,
                                             body: coachMessage.body ?? .empty,
                                             soundName: "QotNotification.aiff",
                                             link: coachMessage.link ?? .empty)
     }
 
-    func getCoachMessageTrigger(_ coachMessage: QDMCoachMessage) -> UNCalendarNotificationTrigger {
+    public func getCoachMessageTrigger(_ coachMessage: QDMCoachMessage) -> UNCalendarNotificationTrigger {
         let date = coachMessage.issueDate
         let issueDateComponent = DateComponents.init(calendar: Calendar.current,
                                                      timeZone: Calendar.current.timeZone,
