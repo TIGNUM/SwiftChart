@@ -374,12 +374,12 @@
 		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
 		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
-		38F6C98125E0322F00BCA92D /* Live.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98025E0321400BCA92D /* Live.xcconfig */; };
-		38F6C98925E0333800BCA92D /* Live.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98825E0333800BCA92D /* Live.plist */; };
-		38F6C9A525E034D400BCA92D /* PreRelease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A325E034D300BCA92D /* PreRelease.plist */; };
-		38F6C9A625E034D400BCA92D /* Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A425E034D300BCA92D /* Staging.plist */; };
-		38F6C9AE25E035E500BCA92D /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */; };
-		38F6C9BC25E0360200BCA92D /* PreRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */; };
+		38F6C98125E0322F00BCA92D /* PUB.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98025E0321400BCA92D /* PUB.xcconfig */; };
+		38F6C98925E0333800BCA92D /* PUB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98825E0333800BCA92D /* PUB.plist */; };
+		38F6C9A525E034D400BCA92D /* INT.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A325E034D300BCA92D /* INT.plist */; };
+		38F6C9A625E034D400BCA92D /* DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A425E034D300BCA92D /* DEV.plist */; };
+		38F6C9AE25E035E500BCA92D /* DEV.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9AD25E035E500BCA92D /* DEV.xcconfig */; };
+		38F6C9BC25E0360200BCA92D /* INT.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9BB25E0360200BCA92D /* INT.xcconfig */; };
 		38F6CA2325E3BE9700BCA92D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F6CA2225E3BE9700BCA92D /* Environment.swift */; };
 		38F95C9825068106009265DC /* PollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9625068106009265DC /* PollCollectionViewCell.swift */; };
 		38F95C9925068106009265DC /* PollCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C9725068106009265DC /* PollCollectionViewCell.xib */; };
@@ -1784,12 +1784,12 @@
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
-		38F6C98025E0321400BCA92D /* Live.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Live.xcconfig; sourceTree = "<group>"; };
-		38F6C98825E0333800BCA92D /* Live.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Live.plist; sourceTree = "<group>"; };
-		38F6C9A325E034D300BCA92D /* PreRelease.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PreRelease.plist; sourceTree = "<group>"; };
-		38F6C9A425E034D300BCA92D /* Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Staging.plist; sourceTree = "<group>"; };
-		38F6C9AD25E035E500BCA92D /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
-		38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PreRelease.xcconfig; sourceTree = "<group>"; };
+		38F6C98025E0321400BCA92D /* PUB.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PUB.xcconfig; sourceTree = "<group>"; };
+		38F6C98825E0333800BCA92D /* PUB.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PUB.plist; sourceTree = "<group>"; };
+		38F6C9A325E034D300BCA92D /* INT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = INT.plist; sourceTree = "<group>"; };
+		38F6C9A425E034D300BCA92D /* DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DEV.plist; sourceTree = "<group>"; };
+		38F6C9AD25E035E500BCA92D /* DEV.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DEV.xcconfig; sourceTree = "<group>"; };
+		38F6C9BB25E0360200BCA92D /* INT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = INT.xcconfig; sourceTree = "<group>"; };
 		38F6CA2225E3BE9700BCA92D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		38F95C9625068106009265DC /* PollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCollectionViewCell.swift; sourceTree = "<group>"; };
 		38F95C9725068106009265DC /* PollCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -2842,9 +2842,9 @@
 				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
 				CBB543811FBC816600AFD67B /* bundled_media.plist */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
-				38F6C98825E0333800BCA92D /* Live.plist */,
-				38F6C9A325E034D300BCA92D /* PreRelease.plist */,
-				38F6C9A425E034D300BCA92D /* Staging.plist */,
+				38F6C98825E0333800BCA92D /* PUB.plist */,
+				38F6C9A325E034D300BCA92D /* INT.plist */,
+				38F6C9A425E034D300BCA92D /* DEV.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -3587,9 +3587,9 @@
 		38F6C99025E0334500BCA92D /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				38F6C98025E0321400BCA92D /* Live.xcconfig */,
-				38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */,
-				38F6C9AD25E035E500BCA92D /* Staging.xcconfig */,
+				38F6C98025E0321400BCA92D /* PUB.xcconfig */,
+				38F6C9BB25E0360200BCA92D /* INT.xcconfig */,
+				38F6C9AD25E035E500BCA92D /* DEV.xcconfig */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -6095,15 +6095,15 @@
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
 				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
-				38F6C98925E0333800BCA92D /* Live.plist in Resources */,
+				38F6C98925E0333800BCA92D /* PUB.plist in Resources */,
 				759AB42022C4D5B50091BFB8 /* TBVGraphBarRangeCell.xib in Resources */,
 				386C27BB241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib in Resources */,
-				38F6C9A625E034D400BCA92D /* Staging.plist in Resources */,
+				38F6C9A625E034D400BCA92D /* DEV.plist in Resources */,
 				B4BCE47A255BCEC500A1116F /* NewDailyBriefTableViewHeader.xib in Resources */,
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				386C27B5241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib in Resources */,
 				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
-				38F6C9A525E034D400BCA92D /* PreRelease.plist in Resources */,
+				38F6C9A525E034D400BCA92D /* INT.plist in Resources */,
 				F9114E5925B1E46F00D1F0E2 /* walkThrough_myQOT.mp4 in Resources */,
 				B44D4462256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
@@ -6187,7 +6187,7 @@
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
 				B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
-				38F6C9BC25E0360200BCA92D /* PreRelease.xcconfig in Resources */,
+				38F6C9BC25E0360200BCA92D /* INT.xcconfig in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
 				F9F470812510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib in Resources */,
@@ -6233,7 +6233,7 @@
 				AC1A40F122A56FB90022156C /* SolveTriggerTableViewCell.xib in Resources */,
 				389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */,
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
-				38F6C98125E0322F00BCA92D /* Live.xcconfig in Resources */,
+				38F6C98125E0322F00BCA92D /* PUB.xcconfig in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				DB086F4324C8544A00D4F64E /* BookMarkSelectionCell.xib in Resources */,
@@ -6241,7 +6241,7 @@
 				B48B5471256468D100FC183D /* MeAtMyBestTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
-				38F6C9AE25E035E500BCA92D /* Staging.xcconfig in Resources */,
+				38F6C9AE25E035E500BCA92D /* DEV.xcconfig in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
 				36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
@@ -6396,7 +6396,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7842,9 +7842,9 @@
 			};
 			name = Novartis;
 		};
-		38CA018825D3F61700945E46 /* AppCenter */ = {
+		38CA018825D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */;
+			baseConfigurationReference = 38F6C9BB25E0360200BCA92D /* INT.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -7905,9 +7905,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018925D3F61700945E46 /* AppCenter */ = {
+		38CA018925D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */;
 			buildSettings = {
@@ -7944,9 +7944,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018A25D3F61700945E46 /* AppCenter */ = {
+		38CA018A25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7969,9 +7969,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018B25D3F61700945E46 /* AppCenter */ = {
+		38CA018B25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7996,9 +7996,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018C25D3F61700945E46 /* AppCenter */ = {
+		38CA018C25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8023,9 +8023,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018D25D3F61700945E46 /* AppCenter */ = {
+		38CA018D25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8050,9 +8050,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018E25D3F61700945E46 /* AppCenter */ = {
+		38CA018E25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -8078,11 +8078,11 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38F6C9F825E3B4A600BCA92D /* Staging */ = {
+		38F6C9F825E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */;
+			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* DEV.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -8143,9 +8143,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9F925E3B4A600BCA92D /* Staging */ = {
+		38F6C9F925E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */;
 			buildSettings = {
@@ -8175,9 +8175,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FA25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FA25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8200,9 +8200,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FB25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FB25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8226,9 +8226,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FC25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FC25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8252,9 +8252,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FD25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FD25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8278,9 +8278,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FE25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FE25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -8304,7 +8304,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
-			name = Staging;
+			name = DEV;
 		};
 		7FE151CC1F3DDC6200DA8F37 /* Database */ = {
 			isa = XCBuildConfiguration;
@@ -8477,7 +8477,7 @@
 			};
 			name = Database;
 		};
-		918D5E2F20EE050900AEAD37 /* Release */ = {
+		918D5E2F20EE050900AEAD37 /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8501,7 +8501,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = PUB;
 		};
 		918D5E3020EE050900AEAD37 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -8605,7 +8605,7 @@
 			};
 			name = Database;
 		};
-		AC87A794220D94FB00622C90 /* Release */ = {
+		AC87A794220D94FB00622C90 /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8628,7 +8628,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Release;
+			name = PUB;
 		};
 		AC87A795220D94FB00622C90 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -8731,7 +8731,7 @@
 			};
 			name = Database;
 		};
-		AC87A799220D94FB00622C90 /* Release */ = {
+		AC87A799220D94FB00622C90 /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8754,7 +8754,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Release;
+			name = PUB;
 		};
 		AC87A79A220D94FB00622C90 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -8857,7 +8857,7 @@
 			};
 			name = Database;
 		};
-		B8BCE59222AAB5EF0012AAAC /* Release */ = {
+		B8BCE59222AAB5EF0012AAAC /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8880,7 +8880,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = PUB;
 		};
 		B8BCE59322AAB5EF0012AAAC /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -9011,7 +9011,7 @@
 			};
 			name = Database;
 		};
-		BB8807252372B454001D61CE /* Release */ = {
+		BB8807252372B454001D61CE /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -9034,7 +9034,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
-			name = Release;
+			name = PUB;
 		};
 		BB8807262372B454001D61CE /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -9063,7 +9063,7 @@
 		};
 		CBA0EBA11FCDB6C6009B33AB /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C98025E0321400BCA92D /* Live.xcconfig */;
+			baseConfigurationReference = 38F6C98025E0321400BCA92D /* PUB.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9151,7 +9151,7 @@
 		};
 		CBB238071E6FFF1300AB5AEF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */;
+			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* DEV.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9214,9 +9214,9 @@
 			};
 			name = Debug;
 		};
-		CBB238081E6FFF1300AB5AEF /* Release */ = {
+		CBB238081E6FFF1300AB5AEF /* PUB */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C98025E0321400BCA92D /* Live.xcconfig */;
+			baseConfigurationReference = 38F6C98025E0321400BCA92D /* PUB.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9270,7 +9270,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = PUB;
 		};
 		CBB2380A1E6FFF1300AB5AEF /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -9304,7 +9304,7 @@
 			};
 			name = Debug;
 		};
-		CBB2380B1E6FFF1300AB5AEF /* Release */ = {
+		CBB2380B1E6FFF1300AB5AEF /* PUB */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9482C2502E55FA84E54C707D /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
@@ -9332,7 +9332,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = PUB;
 		};
 		E8F43D3420B6F98800C9FF4F /* UnitTest */ = {
 			isa = XCBuildConfiguration;
@@ -9446,106 +9446,106 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				918D5E2C20EE050900AEAD37 /* Debug */,
-				38F6C9FA25E3B4A600BCA92D /* Staging */,
+				38F6C9FA25E3B4A600BCA92D /* DEV */,
 				385EE3E62359B4F800D41073 /* Novartis */,
-				38CA018A25D3F61700945E46 /* AppCenter */,
+				38CA018A25D3F61700945E46 /* INT */,
 				918D5E2D20EE050900AEAD37 /* UnitTest */,
 				918D5E2E20EE050900AEAD37 /* Database */,
-				918D5E2F20EE050900AEAD37 /* Release */,
+				918D5E2F20EE050900AEAD37 /* PUB */,
 				918D5E3020EE050900AEAD37 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		AC87A79B220D94FE00622C90 /* Build configuration list for PBXNativeTarget "IntentUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC87A796220D94FB00622C90 /* Debug */,
-				38F6C9FC25E3B4A600BCA92D /* Staging */,
+				38F6C9FC25E3B4A600BCA92D /* DEV */,
 				385EE3E82359B4F800D41073 /* Novartis */,
-				38CA018C25D3F61700945E46 /* AppCenter */,
+				38CA018C25D3F61700945E46 /* INT */,
 				AC87A797220D94FB00622C90 /* UnitTest */,
 				AC87A798220D94FB00622C90 /* Database */,
-				AC87A799220D94FB00622C90 /* Release */,
+				AC87A799220D94FB00622C90 /* PUB */,
 				AC87A79A220D94FB00622C90 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		AC87A79C220D94FE00622C90 /* Build configuration list for PBXNativeTarget "Intent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC87A791220D94FB00622C90 /* Debug */,
-				38F6C9FB25E3B4A600BCA92D /* Staging */,
+				38F6C9FB25E3B4A600BCA92D /* DEV */,
 				385EE3E72359B4F800D41073 /* Novartis */,
-				38CA018B25D3F61700945E46 /* AppCenter */,
+				38CA018B25D3F61700945E46 /* INT */,
 				AC87A792220D94FB00622C90 /* UnitTest */,
 				AC87A793220D94FB00622C90 /* Database */,
-				AC87A794220D94FB00622C90 /* Release */,
+				AC87A794220D94FB00622C90 /* PUB */,
 				AC87A795220D94FB00622C90 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		B8BCE59422AAB5EF0012AAAC /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8BCE58F22AAB5EF0012AAAC /* Debug */,
-				38F6C9FD25E3B4A600BCA92D /* Staging */,
+				38F6C9FD25E3B4A600BCA92D /* DEV */,
 				385EE3E92359B4F800D41073 /* Novartis */,
-				38CA018D25D3F61700945E46 /* AppCenter */,
+				38CA018D25D3F61700945E46 /* INT */,
 				B8BCE59022AAB5EF0012AAAC /* UnitTest */,
 				B8BCE59122AAB5EF0012AAAC /* Database */,
-				B8BCE59222AAB5EF0012AAAC /* Release */,
+				B8BCE59222AAB5EF0012AAAC /* PUB */,
 				B8BCE59322AAB5EF0012AAAC /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		BB8807272372B454001D61CE /* Build configuration list for PBXNativeTarget "QOTTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BB8807212372B454001D61CE /* Debug */,
-				38F6C9FE25E3B4A600BCA92D /* Staging */,
+				38F6C9FE25E3B4A600BCA92D /* DEV */,
 				BB8807222372B454001D61CE /* Novartis */,
-				38CA018E25D3F61700945E46 /* AppCenter */,
+				38CA018E25D3F61700945E46 /* INT */,
 				BB8807232372B454001D61CE /* UnitTest */,
 				BB8807242372B454001D61CE /* Database */,
-				BB8807252372B454001D61CE /* Release */,
+				BB8807252372B454001D61CE /* PUB */,
 				BB8807262372B454001D61CE /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
-				38F6C9F825E3B4A600BCA92D /* Staging */,
+				38F6C9F825E3B4A600BCA92D /* DEV */,
 				385EE3E32359B4F800D41073 /* Novartis */,
-				38CA018825D3F61700945E46 /* AppCenter */,
+				38CA018825D3F61700945E46 /* INT */,
 				E8F43D3420B6F98800C9FF4F /* UnitTest */,
 				7FE151CC1F3DDC6200DA8F37 /* Database */,
-				CBB238081E6FFF1300AB5AEF /* Release */,
+				CBB238081E6FFF1300AB5AEF /* PUB */,
 				CBA0EBA11FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		CBB238091E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB2380A1E6FFF1300AB5AEF /* Debug */,
-				38F6C9F925E3B4A600BCA92D /* Staging */,
+				38F6C9F925E3B4A600BCA92D /* DEV */,
 				385EE3E42359B4F800D41073 /* Novartis */,
-				38CA018925D3F61700945E46 /* AppCenter */,
+				38CA018925D3F61700945E46 /* INT */,
 				E8F43D3520B6F98800C9FF4F /* UnitTest */,
 				7FE151CD1F3DDC6200DA8F37 /* Database */,
-				CBB2380B1E6FFF1300AB5AEF /* Release */,
+				CBB2380B1E6FFF1300AB5AEF /* PUB */,
 				CBA0EBA21FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 /* End XCConfigurationList section */
 	};

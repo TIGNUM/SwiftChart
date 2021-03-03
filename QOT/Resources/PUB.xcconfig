@@ -11,4 +11,4 @@
 
 url_scheme = https
 url_host = esb.tignum.com
-request_bundle_identifier_prefix = LIVE.
+scheme_name = PUB
