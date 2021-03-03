@@ -17,10 +17,6 @@ struct Toggle {
     static let seperator = "{toggle:seperator}"
 }
 
-struct Notification {
-    static let soundName = "QotNotification.aiff"
-}
-
 struct CharacterSpacing {
     static let kern02: CGFloat = 0.2
     static let kern05: CGFloat = 0.5

@@ -65,7 +65,7 @@ extension MyQotAdminLocalNotificationsInteractor: MyQotAdminLocalNotificationsIn
                     // if it's valid sprint notification for today
                     let content = UNMutableNotificationContent(title: title,
                                                                body: body,
-                                                               soundName: Notification.soundName,
+                                                               soundName: "QotNotification.aiff",
                                                                link: link)
                     let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
                     let identifier = QDMGuideItemNotification.notificationIdentifier(with: DEBUG_LOCAL_NOTIFICATION_IDENTIFIER,

@@ -10,11 +10,11 @@ target 'QOT' do
   pod 'SwiftyBeaver'
   pod 'AppCenter'
   pod 'Kingfisher'
-  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'bugfix/QOT-3562-fix-QDEDailyBriefCoachMessage-displayTime'
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
-  pod 'SwiftChart', :git => 'git@github.com:TIGNUM/SwiftChart.git'
   pod 'IOSSecuritySuite'
+  pod 'SwiftChart', :git => 'git@github.com:TIGNUM/SwiftChart.git'
+  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
 end
 
 post_install do |installer|

@@ -91,25 +91,10 @@ final class UserNotificationsManager {
 
     func _scheduleNotifications(with coachMessages: [QDMCoachMessage]) {
         var requests = [UNNotificationRequest]()
-
         for coachMessage in coachMessages {
-            let content = UNMutableNotificationContent(title: coachMessage.title,
-                                                       body: coachMessage.body ?? .empty,
-                                                       soundName: Notification.soundName,
-                                                       link: coachMessage.link ?? .empty)
-
-            let issueDateComponent = DateComponents.init(calendar: Calendar.current,
-                                                    timeZone: Calendar.current.timeZone,
-                                                    year: coachMessage.issueDate?.year(),
-                                                    month: coachMessage.issueDate?.month(),
-                                                    day: coachMessage.issueDate?.day(),
-                                                    hour: coachMessage.issueDate?.hour(),
-                                                    minute: coachMessage.displayTime?.minute(),
-                                                    second: coachMessage.displayTime?.second(),
-                                                    nanosecond: coachMessage.displayTime?.nano())
-            let trigger = UNCalendarNotificationTrigger(dateMatching: issueDateComponent, repeats: false)
-            let identifier = coachMessage.id ?? .zero
-            requests.append(UNNotificationRequest(identifier: "\(identifier)", content: content, trigger: trigger))
+            requests.append(UNNotificationRequest(identifier: "\(coachMessage.id ?? .zero)",
+                                                  content: getCoachMessageContent(coachMessage),
+                                                  trigger: getCoachMessageTrigger(coachMessage)))
         }
         queue.async {
             for request in requests {
@@ -120,6 +105,25 @@ final class UserNotificationsManager {
                 }
             }
         }
+    }
+
+    func getCoachMessageContent(_ coachMessage: QDMCoachMessage) -> UNMutableNotificationContent {
+        return UNMutableNotificationContent(title: coachMessage.title,
+                                            body: coachMessage.body ?? .empty,
+                                            soundName: "QotNotification.aiff",
+                                            link: coachMessage.link ?? .empty)
+    }
+
+    func getCoachMessageTrigger(_ coachMessage: QDMCoachMessage) -> UNCalendarNotificationTrigger {
+        let date = coachMessage.issueDate
+        let issueDateComponent = DateComponents.init(calendar: Calendar.current,
+                                                     timeZone: Calendar.current.timeZone,
+                                                     year: date?.year(),
+                                                     month: date?.month(),
+                                                     day: date?.day(),
+                                                     hour: date?.hour(),
+                                                     minute: date?.minute())
+        return UNCalendarNotificationTrigger(dateMatching: issueDateComponent, repeats: false)
     }
 
     func _scheduleNotifications(with dailyCheckInNotificationConfigs: [DailyCheckInLocalNotificationConfig]) {
@@ -348,7 +352,7 @@ final class UserNotificationsManager {
                     let link = URLScheme.dailyBrief.launchPathWithParameterValue(DailyBriefBucketName.SPRINT_CHALLENGE)
                     let content = UNMutableNotificationContent(title: notificationTitle,
                                                                body: notificationText,
-                                                               soundName: Notification.soundName,
+                                                               soundName: "QotNotification.aiff",
                                                                link: link)
                     let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
                     let identifier = QDMGuideItemNotification.notificationIdentifier(with: sprintConfig.sprintType,
