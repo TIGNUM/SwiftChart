@@ -14,6 +14,7 @@ target 'QOT' do
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
   pod 'SwiftChart', :git => 'git@github.com:TIGNUM/SwiftChart.git'
+  pod 'IOSSecuritySuite'
 end
 
 post_install do |installer|

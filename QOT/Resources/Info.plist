@@ -79,6 +79,10 @@
 		<string>ms-outlook</string>
 		<string>readdle-spark</string>
 		<string>ymail</string>
+		<string>cydia</string>
+		<string>undecimus</string>
+		<string>sileo</string>
+		<string>zbra</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
