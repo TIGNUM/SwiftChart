@@ -172,7 +172,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         singleMessageRateButton.isEnabled = false
         singleMessageRateButton.setTitle(AppTextService.get(.my_qot_my_tbv_loading_body_syncing), for: .disabled)
         rateButton.setTitle(AppTextService.get(.my_qot_my_tbv_loading_body_syncing), for: .disabled)
-
     }
 
     func showNullState(with title: String, message: String, writeMessage: String) {

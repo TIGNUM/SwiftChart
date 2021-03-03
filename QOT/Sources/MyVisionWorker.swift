@@ -125,19 +125,19 @@ final class MyVisionWorker: WorkerTeam {
 
                 guard let visionText = strongSelf.toBeVision?.text,
                     !tracks.isEmpty else {
-                    completion("", nil, false)
+                    completion(.empty, nil, false)
                     return
                 }
                 let sentences = tracks.compactMap({$0.sentence})
                 guard !sentences.isEmpty else {
-                    completion("", nil, false)
+                    completion(.empty, nil, false)
                     requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
                     return
                 }
 
                 for sentence in sentences {
                     if visionText.contains(sentence) == false { // mismatched sentences.
-                        completion("", nil, false)
+                        completion(.empty, nil, false)
                         requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
                         return
                     }
@@ -148,7 +148,7 @@ final class MyVisionWorker: WorkerTeam {
                     return
                 }
                 guard let date = report.dates.sorted().last?.beginingOfDate() else {
-                    completion("", true, false)
+                    completion(.empty, true, false)
                     return
                 }
                 let days = DateComponentsFormatter.numberOfDays(date)
