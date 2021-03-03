@@ -33,10 +33,10 @@ final class BaseDailyBriefDetailsWorker {
                 let selectedAnswerIndex = question.answers.count - 1 - (sleepTargetValue - 60)/30
                 let model = RatingQuestionViewModel.Question(remoteID: question.remoteID,
                                                              title: question.title,
-                                                             htmlTitle: question.htmlTitleString ?? "",
+                                                             htmlTitle: question.htmlTitleString ?? String.empty,
                                                              subtitle: question.subtitle,
-                                                             dailyPrepTitle: "",
-                                                             key: question.key ?? "",
+                                                             dailyPrepTitle: String.empty,
+                                                             key: question.key ?? String.empty,
                                                              answers: answers,
                                                              range: nil,
                                                              selectedAnswerIndex: selectedAnswerIndex)

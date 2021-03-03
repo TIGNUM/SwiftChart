@@ -86,11 +86,11 @@ final class MyQotSiriShortcutsWorker {
     }
 
     func trackingKey(for indexPath: IndexPath) -> String {
-        return shortcutModel.shortcuts[indexPath.row].trackingKey ?? ""
+        return shortcutModel.shortcuts[indexPath.row].trackingKey ?? String.empty
     }
 
     func title(for indexPath: IndexPath) -> String {
-         return shortcutModel.shortcuts[indexPath.row].title ?? ""
+         return shortcutModel.shortcuts[indexPath.row].title ?? String.empty
     }
 
     func itemsCount() -> Int {

@@ -20,7 +20,7 @@ struct MyQotProfileModel {
         let memberSinceTitle: String?
 
         var memberSinceContentTitle: String {
-            return memberSinceTitle ?? ""
+            return memberSinceTitle ?? String.empty
         }
 
         var name: String? {

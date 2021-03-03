@@ -11,6 +11,6 @@ import Foundation
 extension EKCalendar {
 
     var toggleIdentifier: String {
-        return String(format: "%@%@%@", title, Toggle.seperator, (source != nil ? source.title : ""))
+        return String(format: "%@%@%@", title, Toggle.seperator, (source != nil ? source.title : String.empty))
     }
 }

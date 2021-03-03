@@ -150,7 +150,7 @@ final class UserNotificationsManager {
 
         dispatchGroup.notify(queue: .main) {
             let preparationNotificationRequests = ciriticalPreparations.compactMap({
-                $0.notificationRequest(with: preparationNotificationContents.shuffled().first ?? "")
+                $0.notificationRequest(with: preparationNotificationContents.shuffled().first ?? String.empty)
             })
             // report scheduled preparation notifications
             for request in preparationNotificationRequests {

@@ -96,7 +96,7 @@ private extension MyXTeamSettingsInteractor {
         selectedTeamItem = items.filter { $0.isSelected }.first
         if selectedTeamItem == nil {
             selectedTeamItem = items.first
-            HorizontalHeaderView.selectedTeamId = selectedTeamItem?.teamId ?? ""
+            HorizontalHeaderView.selectedTeamId = selectedTeamItem?.teamId ?? String.empty
         }
     }
 
@@ -115,7 +115,7 @@ private extension MyXTeamSettingsInteractor {
     func getTitle(for item: MyXTeamSettingsModel.Setting) -> String? {
         switch item {
         case .teamName:
-            return ""
+            return String.empty
         case .teamMembers:
             return AppTextService.get(.settings_team_settings_team_members)
         case .leaveTeam:
@@ -167,15 +167,15 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
     }
 
      func getTeamName() -> String {
-        return selectedTeamItem?.title ?? ""
+        return selectedTeamItem?.title ?? String.empty
      }
 
     func getTeamId() -> String {
-        return selectedTeamItem?.teamId ?? ""
+        return selectedTeamItem?.teamId ?? String.empty
      }
 
      func getTeamColor() -> String {
-        return selectedTeamItem?.color ?? ""
+        return selectedTeamItem?.color ?? String.empty
      }
 
      func getAvailableColors(_ completion: @escaping ([String]) -> Void) {
@@ -183,11 +183,11 @@ extension MyXTeamSettingsInteractor: MyXTeamSettingsInteractorInterface {
      }
 
     func getTitleForItem(at indexPath: IndexPath) -> String {
-        return getTitle(for: getSettingItems().at(index: indexPath.row) ?? .teamName) ?? ""
+        return getTitle(for: getSettingItems().at(index: indexPath.row) ?? .teamName) ?? String.empty
     }
 
     func getSubtitleForItem(at indexPath: IndexPath) -> String {
-        return getSubtitle(for: getSettingItems().at(index: indexPath.row) ?? .teamName) ?? ""
+        return getSubtitle(for: getSettingItems().at(index: indexPath.row) ?? .teamName) ?? String.empty
     }
 
     func updateTeamColor(_ color: String) {

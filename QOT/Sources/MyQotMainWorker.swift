@@ -33,8 +33,8 @@ extension MyQotMainWorker {
 
     func getPreparationSubtitle(_ completion: @escaping (String?) -> Void) {
         UserService.main.getUserPreparations { (preparations, _, _) in
-            let dateString = preparations?.last?.eventDate?.eventDateString ?? ""
-            let eventType = preparations?.last?.eventType ?? ""
+            let dateString = preparations?.last?.eventDate?.eventDateString ?? String.empty
+            let eventType = preparations?.last?.eventType ?? String.empty
             let subtitle = dateString + " " + eventType
             completion(subtitle)
         }

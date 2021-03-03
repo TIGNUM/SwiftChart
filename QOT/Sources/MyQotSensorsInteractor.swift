@@ -96,14 +96,14 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
         updateHealthKitStatus()
         worker.headlineHealthKit { [weak self] (headlineHealthKit) in
             self?.worker.contentHealthKit { (contentHealthKit) in
-                self?.presenter.setHealthKitDescription(title: headlineHealthKit ?? "",
-                                                        description: contentHealthKit ?? "")
+                self?.presenter.setHealthKitDescription(title: headlineHealthKit ?? String.empty,
+                                                        description: contentHealthKit ?? String.empty)
             }
         }
         worker.headlineOuraRing { [weak self] (headlineOuraRing) in
             self?.worker.contentOuraRing { (contentOuraRing) in
-                self?.presenter.setOuraRingDescription(title: headlineOuraRing ?? "",
-                                                       description: contentOuraRing ?? "")
+                self?.presenter.setOuraRingDescription(title: headlineOuraRing ?? String.empty,
+                                                       description: contentOuraRing ?? String.empty)
             }
         }
         presenter.set(headerTitle: worker.headerTitle, sensorTitle: worker.sensorTitle)

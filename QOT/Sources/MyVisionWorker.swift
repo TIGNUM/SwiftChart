@@ -25,7 +25,7 @@ final class MyVisionWorker: WorkerTeam {
             case .genderSheHe: return gender == .female ? "she" : (gender == .male ? "he" : "they")
             case .genderHerHis: return gender == .female ? "her" : (gender == .male ? "his" : "their")
             case .genderHerselfHimself: return gender == .female ? "herself" : (gender == .male ? "himself" : "themself")
-            default: return ""
+            default: return String.empty
             }
         }
     }

@@ -44,8 +44,8 @@ struct UserProfileModel: Equatable {
 
 extension UserProfileModel {
     var name: String {
-        let firstName = givenName?.capitalized ?? ""
-        let lastName = familyName?.capitalized ?? ""
+        let firstName = givenName?.capitalized ?? String.empty
+        let lastName = familyName?.capitalized ?? String.empty
         return  firstName + " " + lastName
     }
 

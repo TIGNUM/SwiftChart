@@ -48,7 +48,7 @@ final class ColorPicker: UIView {
     private var isOpen = false
     private var selectedColor = UIColor.clear
     private var teamColors = [String]()
-    private var teamId = ""
+    private var teamId = String.empty
     private lazy var teamPink: UIColor = Color.pink.get(teamColors)
     private lazy var teamPurple: UIColor = Color.purple.get(teamColors)
     private lazy var teamGreen: UIColor = Color.green.get(teamColors)

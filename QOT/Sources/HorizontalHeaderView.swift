@@ -47,7 +47,7 @@ private extension HorizontalHeaderView {
         guard let userInfo = notification.userInfo as? [String: String] else { return }
         if let teamId = userInfo[Team.KeyTeamId] {
             if canDeselect {
-                HorizontalHeaderView.selectedTeamId = teamId == HorizontalHeaderView.selectedTeamId ? "" : teamId
+                HorizontalHeaderView.selectedTeamId = teamId == HorizontalHeaderView.selectedTeamId ? String.empty : teamId
             } else {
                 HorizontalHeaderView.selectedTeamId = teamId
             }

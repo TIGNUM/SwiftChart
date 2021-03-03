@@ -112,7 +112,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
             viewController.items = questionItems
             viewController.answers = questionnaire.getAnswers()
             viewController.currentIndex = questionnaire.selectedQuestionAnswerIndex() ?? questionItems / 2
-            viewController.questionkey = DailyCheckInQuestionKey(rawValue: questionnaire.questionKey() ?? "")
+            viewController.questionkey = DailyCheckInQuestionKey(rawValue: questionnaire.questionKey() ?? String.empty)
             viewController.presentationType = presentationType
             viewController.controllerType = controllerType
             viewController.answerDelegate = delegate
@@ -264,12 +264,12 @@ extension QuestionnaireViewController {
         progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
         questionLabel.transform = CGAffineTransform(translationX: .zero, y: -Layout.padding_100)
         fillView.setNeedsUpdateConstraints()
-        var questionString = ""
+        var questionString = String.empty
         switch controllerType {
         case .customize:
             questionString = AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question)
         case .dailyCheckin:
-            questionString = (questionHtml == nil ? questionText : questionHtml?.string) ?? ""
+            questionString = (questionHtml == nil ? questionText : questionHtml?.string) ?? String.empty
         case .vision:
             if let sentence = questionText?.trimmingCharacters(in: .whitespaces) {
                 let personalQuestion = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself)
@@ -387,7 +387,7 @@ extension QuestionnaireViewController {
             if answerIndex < finalAnswers.count {
                 switch controllerType {
                 case .customize:
-                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "",
+                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? String.empty,
                                                                         isLast: answerIndex == finalAnswers.count - 1)
                     let subtitle = AppTextService.get(.daily_brief_customize_sleep_amount_section_question_subtitle)
 //                    calculating 5 days * target amount of sleep relative to answerIndex
@@ -397,7 +397,7 @@ extension QuestionnaireViewController {
                         ThemeText.asterixText.apply(hoursLabelText, to: totalHoursLabel)
                     }
                 default:
-                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "",
+                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? String.empty,
                                                                         isLast: answerIndex == finalAnswers.count - 1)
                     indexLabel.layer.borderWidth = finalAnswers[answerIndex].subtitle?.count ?? .zero > .zero ? 1.0 : 0.0
                  }

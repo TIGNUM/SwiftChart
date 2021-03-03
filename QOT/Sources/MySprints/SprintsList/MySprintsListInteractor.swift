@@ -346,7 +346,7 @@ extension MySprintsListInteractor {
     }
 
     @objc private func continueRemovingTapped() {
-        let sprintsForRemoval = items.filter { identifiersForCheck.contains($0.qotId ?? "") }
+        let sprintsForRemoval = items.filter { identifiersForCheck.contains($0.qotId ?? String.empty) }
         if sprintsForRemoval.isEmpty {
             return
         }

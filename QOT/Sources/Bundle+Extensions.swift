@@ -11,7 +11,7 @@ import Foundation
 extension Bundle {
 
     var versionNumber: String {
-        return infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        return infoDictionary?["CFBundleShortVersionString"] as? String ?? String.empty
     }
 
     var isFirstVersion: Bool {
@@ -19,7 +19,7 @@ extension Bundle {
     }
 
     var buildNumber: String {
-        return infoDictionary?["CFBundleVersion"] as? String ?? ""
+        return infoDictionary?["CFBundleVersion"] as? String ?? String.empty
     }
 
     var versionAndBuildNumber: String {

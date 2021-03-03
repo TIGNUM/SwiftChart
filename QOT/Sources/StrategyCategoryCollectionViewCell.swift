@@ -34,7 +34,7 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
         skeletonManager.hide()
         ThemeText.performanceStaticTitle.apply(AppTextService.get(.know_section_strategies_title_performance).lowercased().capitalizingFirstLetter(),
                                                to: performanceLabel)
-        let titleText = title.replacingOccurrences(of: "Performance ", with: "")
+        let titleText = title.replacingOccurrences(of: "Performance ", with: String.empty)
         categoryTitleLabel.text = titleText
         let progress = String(format: "%d Seen of %d", views, items)
         ThemeText.datestamp.apply(progress, to: progressLabel)

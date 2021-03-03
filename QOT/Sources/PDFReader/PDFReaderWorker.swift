@@ -33,7 +33,7 @@ final class PDFReaderWorker {
                 return
             }
 
-            let content = Share.ContentItem(title: value.title ?? "", url: value.url ?? "", body: value.body ?? "")
+            let content = Share.ContentItem(title: value.title ?? String.empty, url: value.url ?? String.empty, body: value.body ?? String.empty)
             completion(.success(content))
         }
     }

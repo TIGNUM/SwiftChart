@@ -98,6 +98,7 @@ struct SolveResult {
     enum Item {
         case header(title: String, solution: String)
         case strategy(id: Int, title: String, minsToRead: String, hasHeader: Bool, headerTitle: String)
+        case link(id: Int, appLink: QDMAppLink, title: String)
         case strategyContentItem(id: Int, title: String, minsToRead: String, hasHeader: Bool, headerTitle: String)
         case trigger(type: SolveTriggerType?, header: String, description: String, buttonText: String)
         case fiveDayPlay(hasHeader: Bool, text: String)

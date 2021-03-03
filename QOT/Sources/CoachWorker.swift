@@ -23,7 +23,7 @@ final class CoachWorker {
     func coachSections(for user: QDMUser?) -> CoachModel {
         let headerTitle = AppTextService.get(.coach_section_header_title)
         let headerString = AppTextService.get(.coach_section_header_subtitle)
-        let headerSubtitle = headerString.replacingOccurrences(of: "${username}", with: String(user?.givenName ?? ""))
+        let headerSubtitle = headerString.replacingOccurrences(of: "${username}", with: String(user?.givenName ?? String.empty))
         let coachItems =  CoachSection.allCases.map {
             return CoachModel.Item(coachSections: $0,
                                    title: coachSectionTitles(for: $0),

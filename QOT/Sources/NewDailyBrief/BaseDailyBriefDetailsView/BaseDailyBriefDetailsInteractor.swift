@@ -100,12 +100,12 @@ extension BaseDailyBriefDetailsInteractor: BaseDailyBriefDetailsInteractorInterf
                 let selectedValue = level5Model.domainModel?.currentGetToLevel5Value
 
                 let standardModel = NewDailyBriefStandardModel.init(caption: level5Model.caption,
-                                                                     title: level5Model.levelMessages[selectedValue ?? .zero].levelTitle ?? "",
-                                                                     body: level5Model.levelMessages[selectedValue ?? .zero].levelContent,
-                                                                     image: level5Model.image,
-                                                                     detailsMode: true,
-                                                                     titleColor: level5Model.titleColor,
-                                                                     domainModel: level5Model.domainModel)
+                                                                    title: level5Model.levelMessages[selectedValue ?? .zero].levelTitle ?? String.empty,
+                                                                    body: level5Model.levelMessages[selectedValue ?? .zero].levelContent,
+                                                                    image: level5Model.image,
+                                                                    detailsMode: true,
+                                                                    titleColor: level5Model.titleColor,
+                                                                    domainModel: level5Model.domainModel)
 
                 cell.configure(with: [standardModel])
                 cell.collectionView.contentInsetAdjustmentBehavior = .never

@@ -23,7 +23,7 @@ struct Team {
             switch self {
             case .myX: return "team.key.myX.default"
             case .invite: return UUID().uuidString
-            case .team: return ""
+            case .team: return String.empty
             }
         }
 
@@ -31,7 +31,7 @@ struct Team {
             switch self {
             case .myX: return AppTextService.get(.my_qot_section_header_title).capitalized
             case .invite: return AppTextService.get(.team_invite_header_singular)
-            case .team: return ""
+            case .team: return String.empty
             }
         }
     }
@@ -42,16 +42,16 @@ struct Team {
         var header: Team.Header
         var title: String
         var teamId: String
-        var color: String = ""
+        var color: String = String.empty
         var thisUserIsOwner = false
         var batchCount: Int = .zero
 
         /// Init here Team.Item
         init(qdmTeam: QDMTeam) {
             self.header = .team
-            self.title = qdmTeam.name ?? ""
-            self.teamId = qdmTeam.qotId ?? ""
-            self.color = qdmTeam.teamColor ?? ""
+            self.title = qdmTeam.name ?? String.empty
+            self.teamId = qdmTeam.qotId ?? String.empty
+            self.color = qdmTeam.teamColor ?? String.empty
             self.thisUserIsOwner = qdmTeam.thisUserIsOwner
             self.qdmTeam = qdmTeam
         }

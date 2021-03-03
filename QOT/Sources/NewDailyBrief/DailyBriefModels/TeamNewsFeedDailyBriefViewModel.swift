@@ -24,11 +24,11 @@ final class TeamNewsFeedDailyBriefViewModel: BaseDailyBriefViewModel {
          domainModel: QDMDailyBriefBucket?) {
         self.team = team
         super.init(domainModel,
-                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team.name ?? ""),
+                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team.name ?? String.empty),
                    title: title,
                    body: AppTextService.get(.daily_brief_news_feed_body)
                     .replacingOccurrences(of: "${numberOfItems}", with: String(describing: itemsAdded ?? 1))
-                    .replacingOccurrences(of: "${team}", with: team.name ?? ""),
+                    .replacingOccurrences(of: "${team}", with: team.name ?? String.empty),
                    image: imageURL,
                    titleColor: team.teamColor)
     }

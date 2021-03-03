@@ -194,10 +194,10 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return getPollCell(indexPath, tableView)
             case .text:
                 if viewModel.hasTypingAnimation {
-                    return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? "")
+                    return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? String.empty)
                 }
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(with: viewModel.tbvText ?? "",
+                cell.configure(with: viewModel.tbvText ?? String.empty,
                                textColor: (interactor.isDark) ? .white : .black)
                 return cell
 
@@ -231,7 +231,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
 private extension DTQuestionnaireViewController {
     func getTypingCell(_ indexPath: IndexPath, _ tableView: UITableView, title: String?) -> AnimatedAnswerTableViewCell {
         let cell: AnimatedAnswerTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: title ?? "",
+        cell.configure(with: title ?? String.empty,
                        html: nil,
                        questionUpdate: nil,
                        textColor: (interactor.isDark) ? .white : .black,

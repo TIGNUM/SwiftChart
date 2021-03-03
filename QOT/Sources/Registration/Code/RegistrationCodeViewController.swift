@@ -66,13 +66,13 @@ private extension RegistrationCodeViewController {
     func sendCodeIfPossible() {
         let active = (digitTextFields.filter { $0.hasText == false }).isEmpty == true
         guard active == true else { return }
-        interactor.validateLoginCode(digitTextFields.reduce("", { $0 + ($1.text ?? "") }))
+        interactor.validateLoginCode(digitTextFields.reduce(String.empty, { $0 + ($1.text ?? String.empty) }))
     }
 
     func goToNextDigitField(_ currentTextField: UITextField, nextTextField: UITextField?) {
         currentTextField.resignFirstResponder()
         if let nextTextField = nextTextField {
-            nextTextField.text = ""
+            nextTextField.text = String.empty
             nextTextField.becomeFirstResponder()
         }
     }
@@ -85,7 +85,7 @@ private extension RegistrationCodeViewController {
         interactor.resetErrors()
         codeErrorLabel.attributedText = nil
         digitTextFields.forEach {
-            $0.text = ""
+            $0.text = String.empty
             $0.textColor = .white
             $0.layer.borderColor = UIColor.white20.cgColor
         }

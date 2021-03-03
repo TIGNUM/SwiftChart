@@ -24,10 +24,10 @@ struct Strategy {
         var mediaURL: URL? {
             if let download = mediaItem?.userStorages?.filter({ (storage) -> Bool in
                 storage.userStorageType == .DOWNLOAD
-            }).first, let downloadURL = URL(string: download.mediaPath() ?? "") {
+            }).first, let downloadURL = URL(string: download.mediaPath() ?? String.empty) {
                 return downloadURL
             }
-            return URL(string: mediaItem?.valueMediaURL ?? "")
+            return URL(string: mediaItem?.valueMediaURL ?? String.empty)
         }
 
         var duration: Double {
@@ -35,7 +35,7 @@ struct Strategy {
         }
 
         var durationString: String {
-            guard let mediaItem = mediaItem else { return "" }
+            guard let mediaItem = mediaItem else { return String.empty }
 
             if mediaItem.format == .audio,
                 let audioTextItems = contentItems?.filter({ $0.format == .paragraph || $0.format == .prepare }),

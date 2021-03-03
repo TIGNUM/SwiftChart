@@ -47,11 +47,11 @@ final class ArticleWorker {
     }
 
     var categoryTitle: String {
-        return content?.contentCategoryTitle ?? ""
+        return content?.contentCategoryTitle ?? String.empty
     }
 
     var title: String {
-        return content?.title ?? ""
+        return content?.title ?? String.empty
     }
 
     var remoteID: Int {
@@ -61,7 +61,7 @@ final class ArticleWorker {
     var audioURL: URL? {
         if let download = articleAudioItem?.userStorages?.filter({ (storage) -> Bool in
             storage.userStorageType == .DOWNLOAD
-        }).first, let downloadURL = URL(string: download.mediaPath() ?? "") {
+        }).first, let downloadURL = URL(string: download.mediaPath() ?? String.empty) {
             return downloadURL
         }
         return URL(string: articleAudioItem?.valueMediaURL ?? "")
@@ -72,8 +72,8 @@ final class ArticleWorker {
     }
 
     var whatsHotShareable: WhatsHotShareable {
-        return WhatsHotShareable(message: content?.title ?? "",
-                                 imageURL: URL(string: content?.thumbnailURLString ?? ""),
+        return WhatsHotShareable(message: content?.title ?? String.empty,
+                                 imageURL: URL(string: content?.thumbnailURLString ?? String.empty),
                                  shareableLink: content?.shareableLink)
     }
 
@@ -117,7 +117,7 @@ final class ArticleWorker {
                 item.format == .audio && item.tabs.contains(obj: "AUDIO")
             }).first
         }
-        articleHeader = Article.Header(categoryTitle: content.contentCategoryTitle?.uppercased() ?? "",
+        articleHeader = Article.Header(categoryTitle: content.contentCategoryTitle?.uppercased() ?? String.empty,
                                        title: content.title,
                                        author: content.author,
                                        publishDate: content.publishedDate,
@@ -200,7 +200,7 @@ final class ArticleWorker {
         }
 
         content?.relatedContentItems.filter { $0.format == .pdf && $0.format != .video }.forEach { item in
-            if let pdfURL = URL(string: item.valueMediaURL ?? "") {
+            if let pdfURL = URL(string: item.valueMediaURL ?? String.empty) {
                 itemsRelated.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
                                                                             description: item.durationString,
                                                                             pdfURL: pdfURL,
@@ -208,21 +208,21 @@ final class ArticleWorker {
             }
         }
         content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
-            if let videoURL = URL(string: item.valueMediaURL ?? "") {
-                itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? .zero,
+            if let videoURL = URL(string: item.valueMediaURL ?? String.empty) {
+            itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? .zero,
                                                                               title: item.valueText,
                                                                               description: item.durationString,
-                                                                              placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                              placeholderURL: URL(string: item.valueImageURL ?? String.empty),
                                                                               videoURL: videoURL,
                                                                               duration: item.valueDuration ?? .zero)))
             }
         }
         content?.relatedContentItems.filter { $0.format == .audio }.forEach { item in
-            if let audioURL = URL(string: item.valueMediaURL ?? "") {
-                itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? .zero,
+            if let audioURL = URL(string: item.valueMediaURL ?? String.empty) {
+            itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? .zero,
                                                                               title: item.valueText,
                                                                               description: item.durationString,
-                                                                              placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                              placeholderURL: URL(string: item.valueImageURL ?? String.empty),
                                                                               audioURL: audioURL,
                                                                               duration: item.valueDuration ?? .zero,
                                                                               waveformData: [])))
@@ -271,7 +271,7 @@ final class ArticleWorker {
     private func setupAudioArticleItem() {
         guard
             let audioItem = articleAudioItem,
-            let audioURL = URL(string: audioItem.valueMediaURL ?? "") else {
+            let audioURL = URL(string: audioItem.valueMediaURL ?? String.empty) else {
                 articleAudioItem = nil
                 return
         }
@@ -279,7 +279,7 @@ final class ArticleWorker {
                                         type: ContentItemValue.audio(remoteId: audioItem.remoteID ?? .zero,
                                                                      title: audioItem.valueText,
                                                                      description: audioItem.valueDescription,
-                                                                     placeholderURL: URL(string: audioItem.valueImageURL ?? ""),
+                                                                     placeholderURL: URL(string: audioItem.valueImageURL ?? String.empty),
                                                                      audioURL: audioURL,
                                                                      duration: audioItem.valueDuration ?? .zero,
                                                                      waveformData: []))
@@ -289,7 +289,7 @@ final class ArticleWorker {
         var articles = [Article.RelatedArticleWhatsHot]()
         relatedContent.forEach { content in
             if content.isWhatsHot == true {
-                let imageURL = URL(string: content.thumbnailURLString ?? "")
+                let imageURL = URL(string: content.thumbnailURLString ?? String.empty)
                 articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? .zero,
                                                                title: content.title,
                                                                publishDate: content.publishedDate,
@@ -300,12 +300,12 @@ final class ArticleWorker {
             }
         }
         if relatedContent.isEmpty {
-            let imageURL = URL(string: nextWhatsHotContent?.thumbnailURLString ?? "")
+            let imageURL = URL(string: nextWhatsHotContent?.thumbnailURLString ?? String.empty)
             articles.append(Article.RelatedArticleWhatsHot(remoteID: nextWhatsHotContent?.remoteID ?? .zero,
-                                                           title: nextWhatsHotContent?.title ?? "",
+                                                           title: nextWhatsHotContent?.title ?? String.empty,
                                                            publishDate: nextWhatsHotContent?.publishedDate,
                                                            author: nextWhatsHotContent?.author,
-                                                           timeToRead: nextWhatsHotContent?.durationString ?? "",
+                                                           timeToRead: nextWhatsHotContent?.durationString ?? String.empty,
                                                            imageURL: imageURL,
                                                            isNew: false))
 

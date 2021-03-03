@@ -32,7 +32,7 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
     var weatherImage: String?
 
     // MARK: - Init
-    internal init(bucketTitle: String = "",
+    internal init(bucketTitle: String = String.empty,
                   intro: String?,
                   requestLocationPermissionDescription: String?,
                   deniedLocationPermissionDescription: String?,
@@ -49,14 +49,14 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
         self.accessLocationPermissionTitle = accessLocationPermissionTitle
         self.locationName = locationName
         self.locationPermissionStatus = locationPermissionStatus
-        var accessBody = ""
+        var accessBody = String.empty
         switch self.locationPermissionStatus {
         case .granted, .grantedWhileInForeground:
             break
         case .denied:
-            accessBody = deniedLocationPermissionDescription ?? ""
+            accessBody = deniedLocationPermissionDescription ?? String.empty
         default:
-            accessBody = requestLocationPermissionDescription ?? ""
+            accessBody = requestLocationPermissionDescription ?? String.empty
         }
         super.init(domain, caption: bucketTitle, title: accessLocationPermissionTitle, body: accessBody)
     }

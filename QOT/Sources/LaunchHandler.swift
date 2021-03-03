@@ -65,7 +65,7 @@ final class LaunchHandler {
         case .ouraring: NotificationCenter.default.post(name: .requestOpenUrl, object: url)
         case .content_item,
              .contentItem:
-            guard let itemIdString = queries[scheme.queryNames.first ?? ""] ?? nil, let itemId = Int(itemIdString) else { break }
+            guard let itemIdString = queries[scheme.queryNames.first ?? String.empty] ?? nil, let itemId = Int(itemIdString) else { break }
             showContentItem(itemId)
         case .knowFeed,
              .strategies:
@@ -98,7 +98,7 @@ final class LaunchHandler {
             controller.triggeredByLaunchHandler = true
             baseRootViewController?.presentRightToLeft(controller: controller)
         case .preparation:
-            showPreparationWith(identifier: (queries[scheme.queryNames.first ?? ""] as? String) ?? "" )
+            showPreparationWith(identifier: (queries[scheme.queryNames.first ?? String.empty] as? String) ?? String.empty )
         case .myPreparations,
              .myPreps,
              .comingEvent,
@@ -196,7 +196,7 @@ final class LaunchHandler {
             showCategory(categoryId)
         case .randomContent,
              .featureExplainer:
-            guard let contentIdString = queries[scheme.queryNames.first ?? ""] ?? nil,
+            guard let contentIdString = queries[scheme.queryNames.first ?? String.empty] ?? nil,
                 let contentId = Int(contentIdString) else { break }
             showContentCollection(contentId)
         case .qrcode0001, .qrcode0002, .qrcode0003, .qrcode0004, .qrcode0005, .qrcode0006, .qrcode0007, .qrcode0008,
@@ -384,14 +384,14 @@ extension LaunchHandler {
             guard let contentItem = contentItem else { return }
             switch contentItem.format {
             case .pdf:
-                guard let pdfURL = URL(string: contentItem.valueMediaURL ?? "") else {
+                guard let pdfURL = URL(string: contentItem.valueMediaURL ?? String.empty) else {
                     return
                 }
                 baseRootViewController?.showPDFReader(withURL: pdfURL, title: contentItem.valueText, itemID: itemId)
             case .audio:
-                guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }
+                guard let mediaURL = URL(string: contentItem.valueMediaURL ?? String.empty) else { return }
                 let media = MediaPlayerModel(title: contentItem.valueText,
-                                             subtitle: "",
+                                             subtitle: String.empty,
                                              url: mediaURL,
                                              totalDuration: Double(contentItem.valueDuration ?? .zero),
                                              progress: .zero,
@@ -399,7 +399,7 @@ extension LaunchHandler {
                                              mediaRemoteId: contentItem.remoteID ?? .zero)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
             case .video:
-                guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }
+                guard let mediaURL = URL(string: contentItem.valueMediaURL ?? String.empty) else { return }
                 AppDelegate.topViewController()?.stream(videoURL: mediaURL, contentItem: contentItem)
             default: break
             }
@@ -472,7 +472,7 @@ extension LaunchHandler {
             return
         }
         let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
-        let item = MyLibraryCategoryListModel(title: "", itemCount: .zero, lastUpdated: Date(), icon: nil, type: .BOOKMARK, newItemCount: .zero)
+        let item = MyLibraryCategoryListModel(title: String.empty, itemCount: .zero, lastUpdated: Date(), icon: nil, type: .BOOKMARK, newItemCount: .zero)
         configurator(controller, item)
         push(viewController: controller)
     }
@@ -483,7 +483,7 @@ extension LaunchHandler {
             return
         }
         let configurator = MyLibraryUserStorageConfigurator.make(with: nil)
-        let item = MyLibraryCategoryListModel(title: "", itemCount: .zero, lastUpdated: Date(), icon: nil, type: .DOWNLOAD, newItemCount: .zero)
+        let item = MyLibraryCategoryListModel(title: String.empty, itemCount: .zero, lastUpdated: Date(), icon: nil, type: .DOWNLOAD, newItemCount: .zero)
         configurator(controller, item)
         push(viewController: controller)
     }

@@ -12,7 +12,7 @@ import DifferenceKit
 struct DailyBriefSectionModel: Differentiable {
     typealias DifferenceIdentifier = String
     var differenceIdentifier: DifferenceIdentifier {
-        return self.title ?? ""
+        return self.title ?? String.empty
     }
     var title: String?
     var sortOrder: Int

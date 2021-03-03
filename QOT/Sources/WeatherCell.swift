@@ -63,14 +63,14 @@ final class WeatherCell: BaseDailyBriefCell {
             guard let weather = relevantForecastModels.first else {
                 return
             }
-            var temperature = ""
+            var temperature = String.empty
             if let value = formatTemperature(value: weather.currentTempInCelcius?.rounded(), shortStyle: false),
                 isDateAfterNow(weather.date ?? Date()) {
                 temperature = value
             } else if let value = formatTemperature(value: relevantForecastModels.first?.currentTempInCelcius, shortStyle: false) {
                 temperature = value
             }
-            let temperatureDescription = "\(weather.shortDescription ?? "") \(temperature)"
+            let temperatureDescription = "\(weather.shortDescription ?? String.empty) \(temperature)"
             ThemeText.weatherDescription.apply(temperatureDescription, to: weatherDescriptionLabel)
             ThemeText.weatherLastUpdate.apply(weatherModel.updatedTimeString, to: lastUpdateLabel)
             ThemeText.weatherLocation.apply(model?.locationName, to: locationLabel)
@@ -78,7 +78,7 @@ final class WeatherCell: BaseDailyBriefCell {
             ThemeText.weatherBody.apply(weatherModel.body, to: weatherBodyLabel)
             if let imageUrl = weather.imageURL {
                 weatherImageView.setImage(url: imageUrl, placeholder: UIImage(named: "placeholder_large")) { (_) in /* */}
-            } else if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
+            } else if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? String.empty) {
                 weatherImageView.image = image(for: weatherType,
                                                largeSize: true,
                                                isNight: isNight(currentDate: weather.date,
@@ -87,9 +87,9 @@ final class WeatherCell: BaseDailyBriefCell {
             }
         } else if viewModel?.locationPermissionStatus == .granted ||
             viewModel?.locationPermissionStatus == .grantedWhileInForeground {
-            ThemeText.weatherDescription.apply("", to: weatherDescriptionLabel)
-            ThemeText.weatherLastUpdate.apply("", to: lastUpdateLabel)
-            ThemeText.weatherLocation.apply("", to: locationLabel)
+            ThemeText.weatherDescription.apply(String.empty, to: weatherDescriptionLabel)
+            ThemeText.weatherLastUpdate.apply(String.empty, to: lastUpdateLabel)
+            ThemeText.weatherLocation.apply(String.empty, to: locationLabel)
             let noData = AppTextService.get(.daily_brief_section_weather_view_label_no_data)
             let noDataBody = AppTextService.get(.daily_brief_section_weather_view_label_no_data_body)
             ThemeText.weatherTitle.apply(noData.isEmpty ? "No Data" : noData, to: weatherTitleLabel)
@@ -117,8 +117,8 @@ final class WeatherCell: BaseDailyBriefCell {
 
     // MARK: Helpers
     private func formatTemperature(value: Double?, shortStyle: Bool = true) -> String? {
-        if let numberValue = numberFormatter.number(from: numberFormatter.string(for: value) ?? "") as? Double {
-            formatter.numberFormatter.maximumFractionDigits = .zero
+        if let numberValue = numberFormatter.number(from: numberFormatter.string(for: value) ?? String.empty) as? Double {
+        formatter.numberFormatter.maximumFractionDigits = .zero
             formatter.unitStyle = shortStyle ? .short : .medium
             let measurement = Measurement(value: numberValue, unit: UnitTemperature.celsius)
 
@@ -171,7 +171,7 @@ final class WeatherCell: BaseDailyBriefCell {
         if let url = imageURL {
             hourlyView.set(imageUrl: url, placeholder: UIImage(named: "placeholder_small"))
         } else {
-            if let weatherType = WeatherType.init(rawValue: shortDescription ?? ""),
+            if let weatherType = WeatherType.init(rawValue: shortDescription ?? String.empty),
                 let hourlyImage = image(for: weatherType, largeSize: false, isNight: isNight) {
                 hourlyView.set(image: hourlyImage, isNow: isNow)
             } else if let fallbackDescription = shortDescription {

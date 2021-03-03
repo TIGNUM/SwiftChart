@@ -22,9 +22,9 @@ final class PollOpenModel: BaseDailyBriefViewModel {
         self.team = team
         self.imageURL = imageURL
         super.init(domainModel,
-                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? ""),
+                   caption: AppTextService.get(.daily_brief_vision_suggestion_caption).replacingOccurrences(of: "${team}", with: team?.name ?? String.empty),
                    title: AppTextService.get(.daily_brief_open_poll_title),
-                   body: AppTextService.get(.daily_brief_open_poll_text).replacingOccurrences(of: "${admin}", with: teamAdmin ?? ""),
+                   body: AppTextService.get(.daily_brief_open_poll_text).replacingOccurrences(of: "${admin}", with: teamAdmin ?? String.empty),
                    image: imageURL,
                    titleColor: team?.teamColor)
     }

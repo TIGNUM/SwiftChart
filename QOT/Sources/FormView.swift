@@ -166,7 +166,7 @@ private extension FormView {
             animatePlaceholderLabel()
         }
         if UIDevice.isPad == true {
-            textField.textContentType = UITextContentType(rawValue: "")
+            textField.textContentType = UITextContentType(rawValue: String.empty)
         }
         textField.isUserInteractionEnabled = enabled
     }

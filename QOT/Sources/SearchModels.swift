@@ -88,16 +88,16 @@ struct Search {
                          displayType: DisplayType) -> [Search.Result] {
         return contentCollections.compactMap {
             Search.Result(filter: .tools,
-                          title: $0.links.first?.description ?? "",
+                          title: $0.links.first?.description ?? String.empty,
                           contentID: $0.links.first?.remoteID,
                           appLink: $0.links.first,
                           contentItemID: nil,
                           createdAt: Date(),
-                          searchTags: "",
+                          searchTags: String.empty,
                           section: ContentSection(rawValue: $0.section.rawValue),
                           mediaURL: nil,
                           displayType: displayType,
-                          duration: "")
+                          duration: String.empty)
         }
     }
 
@@ -111,7 +111,7 @@ struct Search {
                               appLink: $0.links.first,
                               contentItemID: nil,
                               createdAt: $0.createdAt ?? Date(),
-                              searchTags: "",
+                              searchTags: String.empty,
                               section: ContentSection(rawValue: $0.section.rawValue),
                               mediaURL: nil,
                               displayType: displayType,
@@ -129,7 +129,7 @@ struct Search {
                           appLink: $0.links.first,
                           contentItemID: nil,
                           createdAt: $0.createdAt ?? Date(),
-                          searchTags: "",
+                          searchTags: String.empty,
                           section: ContentSection(rawValue: $0.section.rawValue),
                           mediaURL: nil,
                           displayType: displayType,
@@ -144,9 +144,9 @@ struct Search {
                              appLink: nil,
                              contentItemID: contentItem.remoteID ?? .zero,
                              createdAt: contentItem.createdAt ?? Date(),
-                             searchTags: "",
+                             searchTags: String.empty,
                              section: nil,
-                             mediaURL: URL(string: contentItem.valueMediaURL ?? ""),
+                             mediaURL: URL(string: contentItem.valueMediaURL ?? String.empty),
                              displayType: displayType,
                              duration: contentItem.durationString)
     }

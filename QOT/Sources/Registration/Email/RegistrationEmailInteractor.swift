@@ -66,7 +66,7 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
 
     func didTapNext() {
         guard let email = checkEmailValidity(self.email) else { return }
-        UserDefault.existingEmail.setStringValue(value: "")
+        UserDefault.existingEmail.setStringValue(value: String.empty)
 
         presenter.presentActivity(state: .inProgress)
         worker.verifyEmail(email) { [weak self] (result, error) in

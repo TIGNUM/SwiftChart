@@ -142,7 +142,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     var subtitle: String {
-        return isEditing && teamId != nil ? worker.editingSubtitle : ""
+        return isEditing && teamId != nil ? worker.editingSubtitle : String.empty
     }
 
     var addTitle: String {
@@ -183,7 +183,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         let item = items[row]
 
         let media = MediaPlayerModel(title: item.title,
-                                     subtitle: "",
+                                     subtitle: String.empty,
                                      url: item.mediaURL,
                                      totalDuration: .zero,
                                      progress: .zero,

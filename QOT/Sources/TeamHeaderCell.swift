@@ -13,8 +13,8 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
 
     @IBOutlet private weak var itemButton: UIButton!
     @IBOutlet private weak var counterLabel: UILabel!
-    private var teamId = ""
-    private var hexColorString = ""
+    private var teamId = String.empty
+    private var hexColorString = String.empty
     private var inviteCounter: Int = .zero
     private var itemSelected = false
     private var canDeselect = true
@@ -70,7 +70,7 @@ final class TeamHeaderCell: UICollectionViewCell, Dequeueable {
         self.counterLabel.text = String(teamInvites.count)
         self.teamInvites = teamInvites
         self.canDeselect = false
-        self.teamId = ""
+        self.teamId = String.empty
         self.counterLabel.isHidden = teamInvites.count == .zero
         self.counterLabel.text = "\(teamInvites.count)"
         itemButton.setTitle(AppTextService.get(.my_x_team_invite_cta), for: .normal)

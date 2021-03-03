@@ -63,7 +63,7 @@ extension AnimatedAnswerTableViewCell {
             typingAnimation = dots
             typingAnimationStart()
             textToDisplay = answerLabel.attributedText
-            answerLabel.text = ""
+            answerLabel.text = String.empty
         }
     }
 }

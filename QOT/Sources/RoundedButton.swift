@@ -88,7 +88,7 @@ extension RoundedButton {
     }
 
     override func setTitle(_ title: String?, for state: UIControl.State) {
-        setAttributedTitle(NSAttributedString(string: title ?? ""))
+        setAttributedTitle(NSAttributedString(string: title ?? String.empty))
     }
 
     func setAttributedTitle(_ title: NSAttributedString?) {
@@ -135,7 +135,7 @@ private extension RoundedButton {
     func setTheme(_ theme: ButtonTheme, for state: UIControl.State, with title: NSAttributedString?) {
         var attributes: [NSAttributedString.Key: Any] = titleAttributes ?? [NSAttributedString.Key: Any]()
         attributes[.foregroundColor] = theme.foregroundColor
-        let attributedTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
+        let attributedTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: String.empty))
         attributedTitle.addAttributes(attributes, range: NSRange(location: 0, length: attributedTitle.length))
         super.setAttributedTitle(attributedTitle, for: state)
         if let color = theme.backgroundColor, let image = UIImage.from(color: color) {

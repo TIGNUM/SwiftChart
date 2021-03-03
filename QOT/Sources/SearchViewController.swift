@@ -31,7 +31,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     private var searchResults = [Search.Result]()
     private var searchSuggestions: SearchSuggestions?
     private var searchFilter = Search.Filter.all
-    private var searchQuery = ""
+    private var searchQuery = String.empty
     private var activateAnimateDuration: Double = 0.0
     public var isVisible = false
 
@@ -134,7 +134,7 @@ extension SearchViewController {
     private func deactivate(animated: Bool = true) {
         mySearchBar.resignFirstResponder()
         updateViewsState(false)
-        mySearchBar.text = ""
+        mySearchBar.text = String.empty
         constraintSearch.constant = .zero
         if animated {
             UIView.animate(withDuration: 0.25) {
@@ -297,7 +297,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case self.suggestionsTableView:
             let suggestionCell: SuggestionSearchTableViewCell = tableView.dequeueCell(for: indexPath)
-            suggestionCell.configrue(suggestion: searchSuggestions?.suggestions[indexPath.row] ?? "")
+            suggestionCell.configrue(suggestion: searchSuggestions?.suggestions[indexPath.row] ?? String.empty)
             suggestionCell.setSelectedColor(.accent, alphaComponent: 0.15)
             return suggestionCell
         default:
@@ -329,7 +329,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 handleSelection(for: indexPath)
             }
         case self.suggestionsTableView:
-            let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? ""
+            let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? String.empty
             trackUserEvent(.SELECT, valueType: suggestion, action: .TAP)
             sendSearchResult(for: suggestion)
             mySearchBar.text = suggestion
@@ -418,7 +418,7 @@ private extension SearchViewController {
         case .listen:
             let audioItem = searchResults[indexPath.row]
             let media = MediaPlayerModel(title: audioItem.title,
-                                         subtitle: "",
+                                         subtitle: String.empty,
                                          url: audioItem.mediaURL,
                                          totalDuration: .zero,
                                          progress: .zero,
