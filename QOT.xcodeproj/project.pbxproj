@@ -2394,6 +2394,7 @@
 		B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveAll.swift"; sourceTree = "<group>"; };
 		B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTBaseHeaderView.swift; sourceTree = "<group>"; };
 		B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QOTBaseHeaderView.xib; sourceTree = "<group>"; };
+		B7BED75475C60864D779F5D6 /* Pods-QOT.int.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.int.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.int.xcconfig"; sourceTree = "<group>"; };
 		B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNewsFeedDailyBriefViewModel.swift; sourceTree = "<group>"; };
 		B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+EventDate.swift"; sourceTree = "<group>"; };
 		B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserStorage+Extension.swift"; sourceTree = "<group>"; };
@@ -2527,6 +2528,7 @@
 		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		D5485F211ED57AE200A08D1A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D9F8DC5F0BF916B1DE6E5C75 /* Pods-QOT.pub.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.pub.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.pub.xcconfig"; sourceTree = "<group>"; };
 		DB086F2724C5E56100D4F64E /* BookMarkSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionPresenter.swift; sourceTree = "<group>"; };
 		DB086F2824C5E56100D4F64E /* BookMarkSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionWorker.swift; sourceTree = "<group>"; };
 		DB086F2924C5E56100D4F64E /* BookMarkSelectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionRouter.swift; sourceTree = "<group>"; };
@@ -2571,6 +2573,7 @@
 		DBFD7EEC230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMSprintNotificationsSchedule+UserNotifications.swift"; sourceTree = "<group>"; };
 		DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookmarkTableViewCell.swift; sourceTree = "<group>"; };
+		E75F94412489729BDD0E88B4 /* Pods-QOT.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.dev.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.dev.xcconfig"; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFReaderViewController.storyboard; sourceTree = "<group>"; };
 		E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderConfigurator.swift; sourceTree = "<group>"; };
@@ -5020,6 +5023,9 @@
 				B1D22D27426671B05FEB7700 /* Pods-QOT.foomee.xcconfig */,
 				8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */,
 				BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */,
+				E75F94412489729BDD0E88B4 /* Pods-QOT.dev.xcconfig */,
+				B7BED75475C60864D779F5D6 /* Pods-QOT.int.xcconfig */,
+				D9F8DC5F0BF916B1DE6E5C75 /* Pods-QOT.pub.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -7909,7 +7915,7 @@
 		};
 		38CA018925D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */;
+			baseConfigurationReference = B7BED75475C60864D779F5D6 /* Pods-QOT.int.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3.0";
@@ -7930,7 +7936,7 @@
 					"COCOAPODS=1",
 					"NOVARTIS=1",
 				);
-				INFOPLIST_FILE = QOT/Resources/PreRelease.plist;
+				INFOPLIST_FILE = QOT/Resources/INT.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D NOVARTIS";
@@ -8147,7 +8153,7 @@
 		};
 		38F6C9F925E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */;
+			baseConfigurationReference = E75F94412489729BDD0E88B4 /* Pods-QOT.dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -8163,7 +8169,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = QOT/Resources/Staging.plist;
+				INFOPLIST_FILE = QOT/Resources/DEV.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
@@ -9290,7 +9296,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = QOT/Resources/Staging.plist;
+				INFOPLIST_FILE = QOT/Resources/DEV.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
@@ -9306,7 +9312,7 @@
 		};
 		CBB2380B1E6FFF1300AB5AEF /* PUB */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9482C2502E55FA84E54C707D /* Pods-QOT.release.xcconfig */;
+			baseConfigurationReference = D9F8DC5F0BF916B1DE6E5C75 /* Pods-QOT.pub.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -9321,7 +9327,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 3;
-				INFOPLIST_FILE = QOT/Resources/Live.plist;
+				INFOPLIST_FILE = QOT/Resources/PUB.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;

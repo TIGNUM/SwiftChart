@@ -104,21 +104,21 @@ final class UserNotificationsManager {
                                                        soundName: "QotNotification.aiff",
                                                        link: coachMessage.link ?? "")
 
-            var triggerDate: Date = coachMessage.displayTime
+            var triggerDate: Date? = coachMessage.displayTime
 
-            if triggerDate.isPast() {
-                triggerDate = coachMessage.displayTime.dateAfterDays(1)
+            if triggerDate?.isPast() == true {
+                triggerDate = coachMessage.displayTime?.dateAfterDays(1)
             }
             let dateComponent = DateComponents.init(calendar: Calendar.current,
                                                     timeZone: Calendar.current.timeZone,
-                                                    year: triggerDate.year(),
-                                                    month: triggerDate.month(),
-                                                    day: triggerDate.day(),
-                                                    hour: coachMessage.displayTime?.hour,
-                                                    minute: coachMessage.displayTime?.minute,
-                                                    second: coachMessage.displayTime?.second,
-                                                    nanosecond: coachMessage.displayTime?.nano)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+                                                    year: triggerDate?.year() ?? .zero,
+                                                    month: triggerDate?.month() ?? .zero,
+                                                    day: triggerDate?.day() ?? .zero,
+                                                    hour: coachMessage.displayTime?.hour(),
+                                                    minute: coachMessage.displayTime?.minute(),
+                                                    second: coachMessage.displayTime?.second(),
+                                                    nanosecond: coachMessage.displayTime?.nano())
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
             let identifier = coachMessage.id ?? 0
 
             requests.append(UNNotificationRequest(identifier: "\(identifier)", content: content, trigger: trigger))
