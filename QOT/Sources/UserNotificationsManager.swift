@@ -90,40 +90,28 @@ final class UserNotificationsManager {
     }
 
     func _scheduleNotifications(with coachMessages: [QDMCoachMessage]) {
-        let dispatchGroup = DispatchGroup()
-
-        // schedule new coach message notifications
         var requests = [UNNotificationRequest]()
 
-        dispatchGroup.enter()
-
         for coachMessage in coachMessages {
-            // if it's valid sprint notification for today
             let content = UNMutableNotificationContent(title: coachMessage.title,
-                                                       body: coachMessage.body ?? "",
-                                                       soundName: "QotNotification.aiff",
-                                                       link: coachMessage.link ?? "")
+                                                       body: coachMessage.body ?? .empty,
+                                                       soundName: Notification.soundName,
+                                                       link: coachMessage.link ?? .empty)
 
-            var triggerDate: Date = coachMessage.displayTime
-
-            if triggerDate.isPast() {
-                triggerDate = coachMessage.displayTime.dateAfterDays(1)
-            }
-            let dateComponent = DateComponents.init(calendar: Calendar.current,
+            let issueDateComponent = DateComponents.init(calendar: Calendar.current,
                                                     timeZone: Calendar.current.timeZone,
-                                                    year: triggerDate.year(),
-                                                    month: triggerDate.month(),
-                                                    day: triggerDate.day(),
-                                                    hour: coachMessage.displayTime?.hour,
-                                                    minute: coachMessage.displayTime?.minute,
-                                                    second: coachMessage.displayTime?.second,
-                                                    nanosecond: coachMessage.displayTime?.nano)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-            let identifier = coachMessage.id ?? 0
-
+                                                    year: coachMessage.issueDate?.year(),
+                                                    month: coachMessage.issueDate?.month(),
+                                                    day: coachMessage.issueDate?.day(),
+                                                    hour: coachMessage.issueDate?.hour(),
+                                                    minute: coachMessage.displayTime?.minute(),
+                                                    second: coachMessage.displayTime?.second(),
+                                                    nanosecond: coachMessage.displayTime?.nano())
+            let trigger = UNCalendarNotificationTrigger(dateMatching: issueDateComponent, repeats: false)
+            let identifier = coachMessage.id ?? .zero
             requests.append(UNNotificationRequest(identifier: "\(identifier)", content: content, trigger: trigger))
         }
-        self.queue.async {
+        queue.async {
             for request in requests {
                 self.notificationCenter.add(request) { (error) in
                     if let error = error {
@@ -132,7 +120,6 @@ final class UserNotificationsManager {
                 }
             }
         }
-        dispatchGroup.leave()
     }
 
     func _scheduleNotifications(with dailyCheckInNotificationConfigs: [DailyCheckInLocalNotificationConfig]) {
@@ -361,7 +348,7 @@ final class UserNotificationsManager {
                     let link = URLScheme.dailyBrief.launchPathWithParameterValue(DailyBriefBucketName.SPRINT_CHALLENGE)
                     let content = UNMutableNotificationContent(title: notificationTitle,
                                                                body: notificationText,
-                                                               soundName: "QotNotification.aiff",
+                                                               soundName: Notification.soundName,
                                                                link: link)
                     let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
                     let identifier = QDMGuideItemNotification.notificationIdentifier(with: sprintConfig.sprintType,
