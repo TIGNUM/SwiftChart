@@ -28,7 +28,7 @@ PODS:
     - DifferenceKit/Core
   - IOSSecuritySuite (1.8.0)
   - JTAppleCalendar (7.1.6)
-  - KeychainAccess (4.2.1)
+  - KeychainAccess (4.2.2)
   - Kingfisher (6.1.1)
   - qot_dal (1.0):
     - KeychainAccess
@@ -89,7 +89,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 5c3e1b03a1ee410cef2b11b75fde659b81a2ef2c
+    :commit: da7d441ded40f01c203ba51a303a7e9bcf29d64c
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -102,7 +102,7 @@ SPEC CHECKSUMS:
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   IOSSecuritySuite: 988d52f4c5dfd38f6acebe9a85ee508f4c575ceb
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
-  KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 676d63307fbef6ed5d5ed400bff36983480d7500
   qot_dal: 5ccc08decfd751cc8bd6e11f8143dd3cc6141b30
   R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
@@ -114,6 +114,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: 2e8acd6fc90c6d0a27055867a290794926d57c02
 
-PODFILE CHECKSUM: 461be1ec44d6d46e7102453b8886cff60c0c7972
+PODFILE CHECKSUM: 1375034324c082c841e23570b80a803b542807f6
 
 COCOAPODS: 1.10.1

@@ -317,6 +317,7 @@
 		386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */; };
 		386C398825816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */; };
 		3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */; };
+		38751B6425F039D6006164B2 /* UserNotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38751B6325F039D6006164B2 /* UserNotificationManagerTests.swift */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
 		3877862D257ECE3900F4B5ED /* NewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877862C257ECE3900F4B5ED /* NewTheme.swift */; };
 		388249442536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */; };
@@ -646,6 +647,7 @@
 		8DC59B6522FDA6BE00587EA4 /* Notification+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC59B6422FDA6BE00587EA4 /* Notification+Registration.swift */; };
 		8DC849B32326463900C4D4A3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC849B12326463900C4D4A3 /* Reachability.m */; };
 		8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC849B5232648C300C4D4A3 /* QOTReachability.swift */; };
+		8DCB7612BEBD83416086D900 /* Pods_TIGNUM_XTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E44A6BCFB68461FED494F8 /* Pods_TIGNUM_XTests.framework */; };
 		8DD6B5942308190800C582A4 /* UIViewController+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD6B5932308190800C582A4 /* UIViewController+ActivityIndicator.swift */; };
 		8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */; };
 		8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */; };
@@ -1058,7 +1060,6 @@
 		BB667EF82313D76A007C2AC8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB667EF72313D76A007C2AC8 /* Theme.swift */; };
 		BB7A66992327F3C500CCE8A4 /* AnimatedAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */; };
 		BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */; };
-		BB88071D2372B453001D61CE /* DailyBriefMyBestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB88071C2372B453001D61CE /* DailyBriefMyBestTests.swift */; };
 		BB8807292372B627001D61CE /* DailyBriefAtMyBestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8807282372B627001D61CE /* DailyBriefAtMyBestWorker.swift */; };
 		BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */; };
 		BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */; };
@@ -1354,6 +1355,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		38751B0B25F03800006164B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBB237E41E6FFF1200AB5AEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBB237EB1E6FFF1200AB5AEF;
+			remoteInfo = QOT;
+		};
 		918D5E2920EE050900AEAD37 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBB237E41E6FFF1200AB5AEF /* Project object */;
@@ -1381,13 +1389,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = B8BCE58322AAB5EE0012AAAC;
 			remoteInfo = ShareExtension;
-		};
-		BB88071F2372B453001D61CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CBB237E41E6FFF1200AB5AEF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CBB237EB1E6FFF1200AB5AEF;
-			remoteInfo = QOT;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1418,7 +1419,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1314025B156A67680BC1BA61 /* Pods-QOTTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.appstore.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.appstore.xcconfig"; sourceTree = "<group>"; };
+		2017ABC7AEC7A13477B26B43 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		23495A45EBEAB72E3CE1974A /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
+		23792940EB0437D87F00DA63 /* Pods-TIGNUM XTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.unittest.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		360256DF2051834F00862B0E /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		360256E12051836200862B0E /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		360256E32051837300862B0E /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
@@ -1727,6 +1731,9 @@
 		386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareQuestionTableViewCell.xib; sourceTree = "<group>"; };
 		386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMToBeVisionRatingReport+Ext.swift"; sourceTree = "<group>"; };
 		3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamHeaderCell.xib; sourceTree = "<group>"; };
+		38751B0625F03800006164B2 /* TIGNUM XTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TIGNUM XTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38751B0A25F03800006164B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38751B6325F039D6006164B2 /* UserNotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManagerTests.swift; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		3877862C257ECE3900F4B5ED /* NewTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTheme.swift; sourceTree = "<group>"; };
 		388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMTeamToBeVisionTrackerPoll+Ext.swift"; sourceTree = "<group>"; };
@@ -1796,6 +1803,8 @@
 		38F95C9A2507D51D009265DC /* PollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTableViewCell.swift; sourceTree = "<group>"; };
 		38F95C9B2507D51D009265DC /* PollTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollTableViewCell.xib; sourceTree = "<group>"; };
 		3D5D38914F9360DAF8EBC4DD /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
+		44733DDFA448BFD11A597A2E /* Pods-QOTTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.staging.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.staging.xcconfig"; sourceTree = "<group>"; };
+		4B61721DA3A1060728F03131 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		5D2F517F0A68C796F3C9C214 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
@@ -1886,7 +1895,9 @@
 		5FF1A0FD22857BB300D76D55 /* MyQotAppSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsRouter.swift; sourceTree = "<group>"; };
 		5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsModel.swift; sourceTree = "<group>"; };
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
+		64E44A6BCFB68461FED494F8 /* Pods_TIGNUM_XTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TIGNUM_XTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6836B8747681E6ED65F07504 /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
+		6E7715EEB747E264A50BA8D7 /* Pods-TIGNUM XTests.appcenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.appcenter.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.appcenter.xcconfig"; sourceTree = "<group>"; };
 		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewModel.swift; sourceTree = "<group>"; };
 		75423EF022CE242B008EE726 /* TBVRateHistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryPresenter.swift; sourceTree = "<group>"; };
@@ -1967,6 +1978,7 @@
 		852DADD51EF051C400A10882 /* UIView+Layers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layers.swift"; sourceTree = "<group>"; };
 		8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchHandler.swift; sourceTree = "<group>"; };
 		85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
+		884D81D13B4AB859341CDF38 /* Pods-TIGNUM XTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.release.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.release.xcconfig"; sourceTree = "<group>"; };
 		8D03A7B422E0872C000CA576 /* MySprintsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListViewModel.swift; sourceTree = "<group>"; };
 		8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWithTableViewController.swift; sourceTree = "<group>"; };
 		8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotPlaceholderTextField.swift; sourceTree = "<group>"; };
@@ -2117,6 +2129,7 @@
 		9CE28A2222E1C78C00013C44 /* DailyBriefSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBriefSectionModel.swift; sourceTree = "<group>"; };
 		9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2ViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckIn2ModelItemType.swift; sourceTree = "<group>"; };
+		9FF3004D418FC55CDD1F034C /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultPresenter.swift; sourceTree = "<group>"; };
 		AC103E392285B27200F426F0 /* ShifterResultWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultWorker.swift; sourceTree = "<group>"; };
 		AC103E3A2285B27200F426F0 /* ShifterResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultRouter.swift; sourceTree = "<group>"; };
@@ -2201,6 +2214,7 @@
 		ACFB725022BB8126003D0BA3 /* CauseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseTableViewCell.swift; sourceTree = "<group>"; };
 		ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CauseTableViewCell.xib; sourceTree = "<group>"; };
 		AE5B5709A00341CFD794D10A /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1A93E0A3A25397C4A831C00 /* Pods-TIGNUM XTests.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.novartis.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.novartis.xcconfig"; sourceTree = "<group>"; };
 		B1D22D27426671B05FEB7700 /* Pods-QOT.foomee.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.foomee.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.foomee.xcconfig"; sourceTree = "<group>"; };
 		B411ECA325751C5100EB7A78 /* GuidedTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidedTrackViewModel.swift; sourceTree = "<group>"; };
 		B411ECA425751C5100EB7A78 /* MeAtMyBestCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeAtMyBestCellViewModel.swift; sourceTree = "<group>"; };
@@ -2444,6 +2458,7 @@
 		B8FE4A9D24DD7BAD00B47F1D /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
 		B8FE4A9F24DD7BF300B47F1D /* DownloadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadTableViewCell.xib; sourceTree = "<group>"; };
 		B8FE4AA124DD81ED00B47F1D /* LibraryTableViewCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCellFactory.swift; sourceTree = "<group>"; };
+		BA285447F9562D1E58F83701 /* Pods-QOTTests.appcenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.appcenter.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.appcenter.xcconfig"; sourceTree = "<group>"; };
 		BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Underline.swift"; sourceTree = "<group>"; };
 		BB157759233A0E0500202978 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BB15775B233A1D1D00202978 /* ArticleTopNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTopNavBar.swift; sourceTree = "<group>"; };
@@ -2452,8 +2467,6 @@
 		BB667EF72313D76A007C2AC8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnimatedAnswerTableViewCell.xib; sourceTree = "<group>"; };
-		BB88071A2372B453001D61CE /* QOTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QOTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB88071C2372B453001D61CE /* DailyBriefMyBestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefMyBestTests.swift; sourceTree = "<group>"; };
 		BB88071E2372B453001D61CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB8807282372B627001D61CE /* DailyBriefAtMyBestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefAtMyBestWorker.swift; sourceTree = "<group>"; };
 		BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -2465,6 +2478,8 @@
 		BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationButton.xib; sourceTree = "<group>"; };
 		BCDA96BEE34D1D3D66234185 /* Pods-QOT.prerelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.prerelease.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.prerelease.xcconfig"; sourceTree = "<group>"; };
 		BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.staging.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.staging.xcconfig"; sourceTree = "<group>"; };
+		C7339375941585D66FE1E3C8 /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
+		CA489AA1CAF4DA3854DB3CD3 /* Pods-TIGNUM XTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.database.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.database.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -2571,6 +2586,9 @@
 		DBFD7EEC230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMSprintNotificationsSchedule+UserNotifications.swift"; sourceTree = "<group>"; };
 		DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookmarkTableViewCell.swift; sourceTree = "<group>"; };
+		DCEF945680DFAD599B1F299D /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2A12E1F7F1B6FFCBCAC873D /* Pods-TIGNUM XTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.debug.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E3E74E583A0696989B882E32 /* Pods-QOTTests.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.novartis.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.novartis.xcconfig"; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFReaderViewController.storyboard; sourceTree = "<group>"; };
 		E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderConfigurator.swift; sourceTree = "<group>"; };
@@ -2579,6 +2597,7 @@
 		E813F0AF2135284700C0723E /* PDFReaderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderRouter.swift; sourceTree = "<group>"; };
 		E813F0B12135285A00C0723E /* PDFReaderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderWorker.swift; sourceTree = "<group>"; };
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
+		F177BB95E7E9D50581C79488 /* Pods-TIGNUM XTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.appstore.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsCellViewModel.swift; sourceTree = "<group>"; };
 		F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNameTableViewCell.swift; sourceTree = "<group>"; };
 		F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamNameTableViewCell.xib; sourceTree = "<group>"; };
@@ -2753,9 +2772,18 @@
 		F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenModel.swift; sourceTree = "<group>"; };
 		F9FEA92B25348D42009BF786 /* RateOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenModel.swift; sourceTree = "<group>"; };
 		F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFeedbackModel.swift; sourceTree = "<group>"; };
+		FE3F97B3B933336E25054C1F /* Pods-TIGNUM XTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.staging.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		38751B0325F03800006164B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DCB7612BEBD83416086D900 /* Pods_TIGNUM_XTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		918D5E1C20EE050900AEAD37 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2780,13 +2808,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B8BCE58122AAB5EE0012AAAC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BB8807172372B453001D61CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3504,6 +3525,15 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		38751B0725F03800006164B2 /* TIGNUM XTests */ = {
+			isa = PBXGroup;
+			children = (
+				38751B0A25F03800006164B2 /* Info.plist */,
+				38751B6325F039D6006164B2 /* UserNotificationManagerTests.swift */,
+			);
+			path = "TIGNUM XTests";
+			sourceTree = "<group>";
+		};
 		389BBC7C235EE63C0009FA02 /* Walkthrough */ = {
 			isa = PBXGroup;
 			children = (
@@ -3946,6 +3976,8 @@
 				918D5E2020EE050900AEAD37 /* NotificationCenter.framework */,
 				AC87A782220D94F900622C90 /* IntentsUI.framework */,
 				AE5B5709A00341CFD794D10A /* Pods_QOT.framework */,
+				DCEF945680DFAD599B1F299D /* Pods_QOTTests.framework */,
+				64E44A6BCFB68461FED494F8 /* Pods_TIGNUM_XTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -5001,7 +5033,6 @@
 		BB88071B2372B453001D61CE /* QOTTests */ = {
 			isa = PBXGroup;
 			children = (
-				BB88071C2372B453001D61CE /* DailyBriefMyBestTests.swift */,
 				BB88071E2372B453001D61CE /* Info.plist */,
 			);
 			path = QOTTests;
@@ -5020,6 +5051,22 @@
 				B1D22D27426671B05FEB7700 /* Pods-QOT.foomee.xcconfig */,
 				8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */,
 				BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */,
+				2017ABC7AEC7A13477B26B43 /* Pods-QOTTests.debug.xcconfig */,
+				44733DDFA448BFD11A597A2E /* Pods-QOTTests.staging.xcconfig */,
+				E3E74E583A0696989B882E32 /* Pods-QOTTests.novartis.xcconfig */,
+				BA285447F9562D1E58F83701 /* Pods-QOTTests.appcenter.xcconfig */,
+				9FF3004D418FC55CDD1F034C /* Pods-QOTTests.unittest.xcconfig */,
+				4B61721DA3A1060728F03131 /* Pods-QOTTests.database.xcconfig */,
+				C7339375941585D66FE1E3C8 /* Pods-QOTTests.release.xcconfig */,
+				1314025B156A67680BC1BA61 /* Pods-QOTTests.appstore.xcconfig */,
+				E2A12E1F7F1B6FFCBCAC873D /* Pods-TIGNUM XTests.debug.xcconfig */,
+				FE3F97B3B933336E25054C1F /* Pods-TIGNUM XTests.staging.xcconfig */,
+				B1A93E0A3A25397C4A831C00 /* Pods-TIGNUM XTests.novartis.xcconfig */,
+				6E7715EEB747E264A50BA8D7 /* Pods-TIGNUM XTests.appcenter.xcconfig */,
+				23792940EB0437D87F00DA63 /* Pods-TIGNUM XTests.unittest.xcconfig */,
+				CA489AA1CAF4DA3854DB3CD3 /* Pods-TIGNUM XTests.database.xcconfig */,
+				884D81D13B4AB859341CDF38 /* Pods-TIGNUM XTests.release.xcconfig */,
+				F177BB95E7E9D50581C79488 /* Pods-TIGNUM XTests.appstore.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -5085,15 +5132,16 @@
 		CBB237E31E6FFF1200AB5AEF = {
 			isa = PBXGroup;
 			children = (
-				918D5E2220EE050900AEAD37 /* QOTWidget */,
+				7BD58BE66F7DCDCEF349DBD8 /* Frameworks */,
 				AC87A779220D94F800622C90 /* Intent */,
 				AC87A784220D94F900622C90 /* IntentUI */,
-				B8BCE58522AAB5EF0012AAAC /* ShareExtension */,
-				7BD58BE66F7DCDCEF349DBD8 /* Frameworks */,
+				BC59F5CD2FD700C00093E286 /* Pods */,
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
 				BB88071B2372B453001D61CE /* QOTTests */,
-				BC59F5CD2FD700C00093E286 /* Pods */,
+				918D5E2220EE050900AEAD37 /* QOTWidget */,
+				B8BCE58522AAB5EF0012AAAC /* ShareExtension */,
+				38751B0725F03800006164B2 /* TIGNUM XTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -5105,7 +5153,7 @@
 				AC87A778220D94F800622C90 /* Intent.appex */,
 				AC87A781220D94F900622C90 /* IntentUI.appex */,
 				B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */,
-				BB88071A2372B453001D61CE /* QOTTests.xctest */,
+				38751B0625F03800006164B2 /* TIGNUM XTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5793,6 +5841,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		38751B0525F03800006164B2 /* TIGNUM XTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38751B0D25F03800006164B2 /* Build configuration list for PBXNativeTarget "TIGNUM XTests" */;
+			buildPhases = (
+				93A59A5CBDAB1669D65FCB95 /* [CP] Check Pods Manifest.lock */,
+				38751B0225F03800006164B2 /* Sources */,
+				38751B0325F03800006164B2 /* Frameworks */,
+				38751B0425F03800006164B2 /* Resources */,
+				03974AC081F76ACF9CD400E8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38751B0C25F03800006164B2 /* PBXTargetDependency */,
+			);
+			name = "TIGNUM XTests";
+			productName = "TIGNUM XTests";
+			productReference = 38751B0625F03800006164B2 /* TIGNUM XTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		918D5E1E20EE050900AEAD37 /* QOTWidget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 918D5E3120EE050900AEAD37 /* Build configuration list for PBXNativeTarget "QOTWidget" */;
@@ -5862,24 +5930,6 @@
 			productReference = B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		BB8807192372B453001D61CE /* QOTTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BB8807272372B454001D61CE /* Build configuration list for PBXNativeTarget "QOTTests" */;
-			buildPhases = (
-				BB8807162372B453001D61CE /* Sources */,
-				BB8807172372B453001D61CE /* Frameworks */,
-				BB8807182372B453001D61CE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BB8807202372B453001D61CE /* PBXTargetDependency */,
-			);
-			name = QOTTests;
-			productName = QOTTests;
-			productReference = BB88071A2372B453001D61CE /* QOTTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		CBB237EB1E6FFF1200AB5AEF /* QOT */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBB238091E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOT" */;
@@ -5914,10 +5964,15 @@
 		CBB237E41E6FFF1200AB5AEF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Tignum;
 				TargetAttributes = {
+					38751B0525F03800006164B2 = {
+						CreatedOnToolsVersion = 12.4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CBB237EB1E6FFF1200AB5AEF;
+					};
 					918D5E1E20EE050900AEAD37 = {
 						CreatedOnToolsVersion = 9.4;
 						DevelopmentTeam = 4FQQH349R5;
@@ -5960,12 +6015,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					BB8807192372B453001D61CE = {
-						CreatedOnToolsVersion = 10.3;
-						DevelopmentTeam = 4FQQH349R5;
-						ProvisioningStyle = Automatic;
-						TestTargetID = CBB237EB1E6FFF1200AB5AEF;
 					};
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -6013,12 +6062,19 @@
 				AC87A777220D94F800622C90 /* Intent */,
 				AC87A780220D94F900622C90 /* IntentUI */,
 				B8BCE58322AAB5EE0012AAAC /* ShareExtension */,
-				BB8807192372B453001D61CE /* QOTTests */,
+				38751B0525F03800006164B2 /* TIGNUM XTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		38751B0425F03800006164B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		918D5E1D20EE050900AEAD37 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6053,13 +6109,6 @@
 			files = (
 				B88A19E6241A3A0200FC5019 /* Media.xcassets in Resources */,
 				B8BCE58A22AAB5EF0012AAAC /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BB8807182372B453001D61CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6302,6 +6351,52 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		03974AC081F76ACF9CD400E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Airship/Airship.framework",
+				"${BUILT_PRODUCTS_DIR}/Buglife/Buglife.framework",
+				"${BUILT_PRODUCTS_DIR}/DifferenceKit/DifferenceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/IOSSecuritySuite/IOSSecuritySuite.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/qot_dal/qot_dal.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Airship.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Buglife.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DifferenceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IOSSecuritySuite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/qot_dal.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9100195820FC798400049118 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6315,6 +6410,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		93A59A5CBDAB1669D65FCB95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TIGNUM XTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		B5C4922E34BE589FE8BED0D0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6396,7 +6513,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6437,6 +6554,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		38751B0225F03800006164B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38751B6425F039D6006164B2 /* UserNotificationManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		918D5E1B20EE050900AEAD37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6510,14 +6635,6 @@
 				B8BCE59B22AF8FEA0012AAAC /* ShareExtentionData.swift in Sources */,
 				DB086F3B24C7466900D4F64E /* Dequeueable.swift in Sources */,
 				B8BCE59922AAC2770012AAAC /* ExtensionUserDefaults.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BB8807162372B453001D61CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BB88071D2372B453001D61CE /* DailyBriefMyBestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7577,6 +7694,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		38751B0C25F03800006164B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBB237EB1E6FFF1200AB5AEF /* QOT */;
+			targetProxy = 38751B0B25F03800006164B2 /* PBXContainerItemProxy */;
+		};
 		918D5E2A20EE050900AEAD37 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 918D5E1E20EE050900AEAD37 /* QOTWidget */;
@@ -7596,11 +7718,6 @@
 			isa = PBXTargetDependency;
 			target = B8BCE58322AAB5EE0012AAAC /* ShareExtension */;
 			targetProxy = B8BCE58C22AAB5EF0012AAAC /* PBXContainerItemProxy */;
-		};
-		BB8807202372B453001D61CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CBB237EB1E6FFF1200AB5AEF /* QOT */;
-			targetProxy = BB88071F2372B453001D61CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -7842,6 +7959,191 @@
 			};
 			name = Novartis;
 		};
+		38751B0E25F03800006164B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2A12E1F7F1B6FFCBCAC873D /* Pods-TIGNUM XTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TIGNUM XTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "strings.TIGNUM-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = Debug;
+		};
+		38751B0F25F03800006164B2 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE3F97B3B933336E25054C1F /* Pods-TIGNUM XTests.staging.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TIGNUM XTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "strings.TIGNUM-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = Staging;
+		};
+		38751B1025F03800006164B2 /* Novartis */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1A93E0A3A25397C4A831C00 /* Pods-TIGNUM XTests.novartis.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TIGNUM XTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "strings.TIGNUM-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = Novartis;
+		};
+		38751B1125F03800006164B2 /* AppCenter */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E7715EEB747E264A50BA8D7 /* Pods-TIGNUM XTests.appcenter.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TIGNUM XTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "strings.TIGNUM-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = AppCenter;
+		};
+		38751B1225F03800006164B2 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23792940EB0437D87F00DA63 /* Pods-TIGNUM XTests.unittest.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TIGNUM XTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "strings.TIGNUM-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = UnitTest;
+		};
+		38751B1325F03800006164B2 /* Database */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA489AA1CAF4DA3854DB3CD3 /* Pods-TIGNUM XTests.database.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TIGNUM XTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "strings.TIGNUM-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = Database;
+		};
+		38751B1425F03800006164B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 884D81D13B4AB859341CDF38 /* Pods-TIGNUM XTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TIGNUM XTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "strings.TIGNUM-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = Release;
+		};
+		38751B1525F03800006164B2 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F177BB95E7E9D50581C79488 /* Pods-TIGNUM XTests.appstore.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TIGNUM XTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "strings.TIGNUM-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
+			};
+			name = AppStore;
+		};
 		38CA018825D3F61700945E46 /* AppCenter */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */;
@@ -8052,34 +8354,6 @@
 			};
 			name = AppCenter;
 		};
-		38CA018E25D3F61700945E46 /* AppCenter */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
-			};
-			name = AppCenter;
-		};
 		38F6C9F825E3B4A600BCA92D /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */;
@@ -8277,32 +8551,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Staging;
-		};
-		38F6C9FE25E3B4A600BCA92D /* Staging */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
 			};
 			name = Staging;
 		};
@@ -8907,160 +9155,6 @@
 			};
 			name = AppStore;
 		};
-		BB8807212372B454001D61CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
-			};
-			name = Debug;
-		};
-		BB8807222372B454001D61CE /* Novartis */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
-			};
-			name = Novartis;
-		};
-		BB8807232372B454001D61CE /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
-			};
-			name = UnitTest;
-		};
-		BB8807242372B454001D61CE /* Database */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
-			};
-			name = Database;
-		};
-		BB8807252372B454001D61CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
-			};
-			name = Release;
-		};
-		BB8807262372B454001D61CE /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = QOTTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TIGNUM X.app/TIGNUM X";
-			};
-			name = AppStore;
-		};
 		CBA0EBA11FCDB6C6009B33AB /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38F6C98025E0321400BCA92D /* Live.xcconfig */;
@@ -9442,6 +9536,21 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		38751B0D25F03800006164B2 /* Build configuration list for PBXNativeTarget "TIGNUM XTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38751B0E25F03800006164B2 /* Debug */,
+				38751B0F25F03800006164B2 /* Staging */,
+				38751B1025F03800006164B2 /* Novartis */,
+				38751B1125F03800006164B2 /* AppCenter */,
+				38751B1225F03800006164B2 /* UnitTest */,
+				38751B1325F03800006164B2 /* Database */,
+				38751B1425F03800006164B2 /* Release */,
+				38751B1525F03800006164B2 /* AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		918D5E3120EE050900AEAD37 /* Build configuration list for PBXNativeTarget "QOTWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9498,21 +9607,6 @@
 				B8BCE59122AAB5EF0012AAAC /* Database */,
 				B8BCE59222AAB5EF0012AAAC /* Release */,
 				B8BCE59322AAB5EF0012AAAC /* AppStore */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BB8807272372B454001D61CE /* Build configuration list for PBXNativeTarget "QOTTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BB8807212372B454001D61CE /* Debug */,
-				38F6C9FE25E3B4A600BCA92D /* Staging */,
-				BB8807222372B454001D61CE /* Novartis */,
-				38CA018E25D3F61700945E46 /* AppCenter */,
-				BB8807232372B454001D61CE /* UnitTest */,
-				BB8807242372B454001D61CE /* Database */,
-				BB8807252372B454001D61CE /* Release */,
-				BB8807262372B454001D61CE /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

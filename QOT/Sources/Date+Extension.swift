@@ -133,6 +133,10 @@ extension Date {
         return Calendar.sharedUTC.dateComponents([.hour], from: self).hour ?? 0
     }
 
+    func minute() -> Int {
+        return Calendar.sharedUTC.dateComponents([.minute], from: self).hour ?? 0
+    }
+
     func years(to date: Date) -> Int {
         return Calendar.current.dateComponents([.year], from: self, to: date).year ?? .zero
     }
