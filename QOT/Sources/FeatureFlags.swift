@@ -21,8 +21,6 @@ class FeatureFlags {
                 .PUB: []]
     }
 
-    let currentEnvironment = NetworkEnvironment().currentScheme
-
     func isFeatureActivated(feature: FeatureFlag, environment: NetworkEnvironment.Name) -> Bool {
         let dict = getActivatedFeatures()
         return ((dict[environment]?.contains(feature)) == true)
