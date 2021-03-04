@@ -375,12 +375,12 @@
 		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
 		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
-		38F6C98125E0322F00BCA92D /* Live.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98025E0321400BCA92D /* Live.xcconfig */; };
-		38F6C98925E0333800BCA92D /* Live.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98825E0333800BCA92D /* Live.plist */; };
-		38F6C9A525E034D400BCA92D /* PreRelease.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A325E034D300BCA92D /* PreRelease.plist */; };
-		38F6C9A625E034D400BCA92D /* Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A425E034D300BCA92D /* Staging.plist */; };
-		38F6C9AE25E035E500BCA92D /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */; };
-		38F6C9BC25E0360200BCA92D /* PreRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */; };
+		38F6C98125E0322F00BCA92D /* PUB.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98025E0321400BCA92D /* PUB.xcconfig */; };
+		38F6C98925E0333800BCA92D /* PUB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C98825E0333800BCA92D /* PUB.plist */; };
+		38F6C9A525E034D400BCA92D /* INT.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A325E034D300BCA92D /* INT.plist */; };
+		38F6C9A625E034D400BCA92D /* DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A425E034D300BCA92D /* DEV.plist */; };
+		38F6C9AE25E035E500BCA92D /* DEV.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9AD25E035E500BCA92D /* DEV.xcconfig */; };
+		38F6C9BC25E0360200BCA92D /* INT.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9BB25E0360200BCA92D /* INT.xcconfig */; };
 		38F6CA2325E3BE9700BCA92D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F6CA2225E3BE9700BCA92D /* Environment.swift */; };
 		38F95C9825068106009265DC /* PollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9625068106009265DC /* PollCollectionViewCell.swift */; };
 		38F95C9925068106009265DC /* PollCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C9725068106009265DC /* PollCollectionViewCell.xib */; };
@@ -1419,8 +1419,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1314025B156A67680BC1BA61 /* Pods-QOTTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.appstore.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.appstore.xcconfig"; sourceTree = "<group>"; };
-		2017ABC7AEC7A13477B26B43 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		148F9EBDC751DF0F22A401E1 /* Pods-TIGNUM XTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.dev.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.dev.xcconfig"; sourceTree = "<group>"; };
 		23495A45EBEAB72E3CE1974A /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
 		23792940EB0437D87F00DA63 /* Pods-TIGNUM XTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.unittest.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		360256DF2051834F00862B0E /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
@@ -1791,20 +1790,18 @@
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
-		38F6C98025E0321400BCA92D /* Live.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Live.xcconfig; sourceTree = "<group>"; };
-		38F6C98825E0333800BCA92D /* Live.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Live.plist; sourceTree = "<group>"; };
-		38F6C9A325E034D300BCA92D /* PreRelease.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PreRelease.plist; sourceTree = "<group>"; };
-		38F6C9A425E034D300BCA92D /* Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Staging.plist; sourceTree = "<group>"; };
-		38F6C9AD25E035E500BCA92D /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
-		38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PreRelease.xcconfig; sourceTree = "<group>"; };
+		38F6C98025E0321400BCA92D /* PUB.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PUB.xcconfig; sourceTree = "<group>"; };
+		38F6C98825E0333800BCA92D /* PUB.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PUB.plist; sourceTree = "<group>"; };
+		38F6C9A325E034D300BCA92D /* INT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = INT.plist; sourceTree = "<group>"; };
+		38F6C9A425E034D300BCA92D /* DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DEV.plist; sourceTree = "<group>"; };
+		38F6C9AD25E035E500BCA92D /* DEV.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DEV.xcconfig; sourceTree = "<group>"; };
+		38F6C9BB25E0360200BCA92D /* INT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = INT.xcconfig; sourceTree = "<group>"; };
 		38F6CA2225E3BE9700BCA92D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		38F95C9625068106009265DC /* PollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCollectionViewCell.swift; sourceTree = "<group>"; };
 		38F95C9725068106009265DC /* PollCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollCollectionViewCell.xib; sourceTree = "<group>"; };
 		38F95C9A2507D51D009265DC /* PollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTableViewCell.swift; sourceTree = "<group>"; };
 		38F95C9B2507D51D009265DC /* PollTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollTableViewCell.xib; sourceTree = "<group>"; };
 		3D5D38914F9360DAF8EBC4DD /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
-		44733DDFA448BFD11A597A2E /* Pods-QOTTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.staging.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.staging.xcconfig"; sourceTree = "<group>"; };
-		4B61721DA3A1060728F03131 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		5D2F517F0A68C796F3C9C214 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
@@ -1897,7 +1894,8 @@
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
 		64E44A6BCFB68461FED494F8 /* Pods_TIGNUM_XTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TIGNUM_XTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6836B8747681E6ED65F07504 /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
-		6E7715EEB747E264A50BA8D7 /* Pods-TIGNUM XTests.appcenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.appcenter.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.appcenter.xcconfig"; sourceTree = "<group>"; };
+		6F705ACF5A29522A93833956 /* Pods-QOT.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.dev.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.dev.xcconfig"; sourceTree = "<group>"; };
+		73C3F5319B7867B9362E71CF /* Pods-TIGNUM XTests.pub.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.pub.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.pub.xcconfig"; sourceTree = "<group>"; };
 		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewModel.swift; sourceTree = "<group>"; };
 		75423EF022CE242B008EE726 /* TBVRateHistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryPresenter.swift; sourceTree = "<group>"; };
@@ -2092,7 +2090,6 @@
 		8DF7870322FEB50800CDE0A9 /* RegistrationCodeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodeInteractor.swift; sourceTree = "<group>"; };
 		8DF7870522FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodeConfigurator.swift; sourceTree = "<group>"; };
 		8DF7870E22FEB53D00CDE0A9 /* RegistrationCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationCode.storyboard; sourceTree = "<group>"; };
-		8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appcenter.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appcenter.xcconfig"; sourceTree = "<group>"; };
 		9100195620F8A0E200049118 /* ExtensionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsDataManager.swift; sourceTree = "<group>"; };
 		91086E38208F0BE50035DA1F /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		91086E3A20909E7A0035DA1F /* ProfileSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsModel.swift; sourceTree = "<group>"; };
@@ -2129,7 +2126,6 @@
 		9CE28A2222E1C78C00013C44 /* DailyBriefSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBriefSectionModel.swift; sourceTree = "<group>"; };
 		9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2ViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckIn2ModelItemType.swift; sourceTree = "<group>"; };
-		9FF3004D418FC55CDD1F034C /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultPresenter.swift; sourceTree = "<group>"; };
 		AC103E392285B27200F426F0 /* ShifterResultWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultWorker.swift; sourceTree = "<group>"; };
 		AC103E3A2285B27200F426F0 /* ShifterResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultRouter.swift; sourceTree = "<group>"; };
@@ -2213,9 +2209,9 @@
 		ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		ACFB725022BB8126003D0BA3 /* CauseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseTableViewCell.swift; sourceTree = "<group>"; };
 		ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CauseTableViewCell.xib; sourceTree = "<group>"; };
+		AE5640B2DC1CB8284BD11E59 /* Pods-TIGNUM XTests.int.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.int.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.int.xcconfig"; sourceTree = "<group>"; };
 		AE5B5709A00341CFD794D10A /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A93E0A3A25397C4A831C00 /* Pods-TIGNUM XTests.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.novartis.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.novartis.xcconfig"; sourceTree = "<group>"; };
-		B1D22D27426671B05FEB7700 /* Pods-QOT.foomee.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.foomee.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.foomee.xcconfig"; sourceTree = "<group>"; };
 		B411ECA325751C5100EB7A78 /* GuidedTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidedTrackViewModel.swift; sourceTree = "<group>"; };
 		B411ECA425751C5100EB7A78 /* MeAtMyBestCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeAtMyBestCellViewModel.swift; sourceTree = "<group>"; };
 		B411ECA525751C5100EB7A78 /* LeaderWisdomCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderWisdomCellViewModel.swift; sourceTree = "<group>"; };
@@ -2408,6 +2404,7 @@
 		B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveAll.swift"; sourceTree = "<group>"; };
 		B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTBaseHeaderView.swift; sourceTree = "<group>"; };
 		B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QOTBaseHeaderView.xib; sourceTree = "<group>"; };
+		B7BED75475C60864D779F5D6 /* Pods-QOT.int.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.int.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.int.xcconfig"; sourceTree = "<group>"; };
 		B80B2EF324DAC4F300C6FD85 /* TeamNewsFeedDailyBriefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNewsFeedDailyBriefViewModel.swift; sourceTree = "<group>"; };
 		B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+EventDate.swift"; sourceTree = "<group>"; };
 		B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserStorage+Extension.swift"; sourceTree = "<group>"; };
@@ -2458,7 +2455,6 @@
 		B8FE4A9D24DD7BAD00B47F1D /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
 		B8FE4A9F24DD7BF300B47F1D /* DownloadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadTableViewCell.xib; sourceTree = "<group>"; };
 		B8FE4AA124DD81ED00B47F1D /* LibraryTableViewCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCellFactory.swift; sourceTree = "<group>"; };
-		BA285447F9562D1E58F83701 /* Pods-QOTTests.appcenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.appcenter.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.appcenter.xcconfig"; sourceTree = "<group>"; };
 		BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Underline.swift"; sourceTree = "<group>"; };
 		BB157759233A0E0500202978 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BB15775B233A1D1D00202978 /* ArticleTopNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTopNavBar.swift; sourceTree = "<group>"; };
@@ -2467,7 +2463,6 @@
 		BB667EF72313D76A007C2AC8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnimatedAnswerTableViewCell.xib; sourceTree = "<group>"; };
-		BB88071E2372B453001D61CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB8807282372B627001D61CE /* DailyBriefAtMyBestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefAtMyBestWorker.swift; sourceTree = "<group>"; };
 		BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -2476,9 +2471,6 @@
 		BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTResultBaseTableViewCell.swift; sourceTree = "<group>"; };
 		BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotUISwitch.swift; sourceTree = "<group>"; };
 		BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationButton.xib; sourceTree = "<group>"; };
-		BCDA96BEE34D1D3D66234185 /* Pods-QOT.prerelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.prerelease.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.prerelease.xcconfig"; sourceTree = "<group>"; };
-		BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.staging.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.staging.xcconfig"; sourceTree = "<group>"; };
-		C7339375941585D66FE1E3C8 /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		CA489AA1CAF4DA3854DB3CD3 /* Pods-TIGNUM XTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.database.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.database.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
@@ -2542,6 +2534,7 @@
 		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		D5485F211ED57AE200A08D1A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D9F8DC5F0BF916B1DE6E5C75 /* Pods-QOT.pub.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.pub.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.pub.xcconfig"; sourceTree = "<group>"; };
 		DB086F2724C5E56100D4F64E /* BookMarkSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionPresenter.swift; sourceTree = "<group>"; };
 		DB086F2824C5E56100D4F64E /* BookMarkSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionWorker.swift; sourceTree = "<group>"; };
 		DB086F2924C5E56100D4F64E /* BookMarkSelectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkSelectionRouter.swift; sourceTree = "<group>"; };
@@ -2588,7 +2581,6 @@
 		DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		DCEF945680DFAD599B1F299D /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A12E1F7F1B6FFCBCAC873D /* Pods-TIGNUM XTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.debug.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E3E74E583A0696989B882E32 /* Pods-QOTTests.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.novartis.xcconfig"; path = "Target Support Files/Pods-QOTTests/Pods-QOTTests.novartis.xcconfig"; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFReaderViewController.storyboard; sourceTree = "<group>"; };
 		E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderConfigurator.swift; sourceTree = "<group>"; };
@@ -2772,7 +2764,6 @@
 		F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenModel.swift; sourceTree = "<group>"; };
 		F9FEA92B25348D42009BF786 /* RateOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenModel.swift; sourceTree = "<group>"; };
 		F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFeedbackModel.swift; sourceTree = "<group>"; };
-		FE3F97B3B933336E25054C1F /* Pods-TIGNUM XTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.staging.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.staging.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2863,9 +2854,9 @@
 				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
 				CBB543811FBC816600AFD67B /* bundled_media.plist */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
-				38F6C98825E0333800BCA92D /* Live.plist */,
-				38F6C9A325E034D300BCA92D /* PreRelease.plist */,
-				38F6C9A425E034D300BCA92D /* Staging.plist */,
+				38F6C98825E0333800BCA92D /* PUB.plist */,
+				38F6C9A325E034D300BCA92D /* INT.plist */,
+				38F6C9A425E034D300BCA92D /* DEV.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -3617,9 +3608,9 @@
 		38F6C99025E0334500BCA92D /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				38F6C98025E0321400BCA92D /* Live.xcconfig */,
-				38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */,
-				38F6C9AD25E035E500BCA92D /* Staging.xcconfig */,
+				38F6C98025E0321400BCA92D /* PUB.xcconfig */,
+				38F6C9BB25E0360200BCA92D /* INT.xcconfig */,
+				38F6C9AD25E035E500BCA92D /* DEV.xcconfig */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -5030,14 +5021,6 @@
 			name = CustomSegue;
 			sourceTree = "<group>";
 		};
-		BB88071B2372B453001D61CE /* QOTTests */ = {
-			isa = PBXGroup;
-			children = (
-				BB88071E2372B453001D61CE /* Info.plist */,
-			);
-			path = QOTTests;
-			sourceTree = "<group>";
-		};
 		BC59F5CD2FD700C00093E286 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -5047,26 +5030,18 @@
 				3D5D38914F9360DAF8EBC4DD /* Pods-QOT.database.xcconfig */,
 				9482C2502E55FA84E54C707D /* Pods-QOT.release.xcconfig */,
 				5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */,
-				BCDA96BEE34D1D3D66234185 /* Pods-QOT.prerelease.xcconfig */,
-				B1D22D27426671B05FEB7700 /* Pods-QOT.foomee.xcconfig */,
-				8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */,
-				BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */,
-				2017ABC7AEC7A13477B26B43 /* Pods-QOTTests.debug.xcconfig */,
-				44733DDFA448BFD11A597A2E /* Pods-QOTTests.staging.xcconfig */,
-				E3E74E583A0696989B882E32 /* Pods-QOTTests.novartis.xcconfig */,
-				BA285447F9562D1E58F83701 /* Pods-QOTTests.appcenter.xcconfig */,
-				9FF3004D418FC55CDD1F034C /* Pods-QOTTests.unittest.xcconfig */,
-				4B61721DA3A1060728F03131 /* Pods-QOTTests.database.xcconfig */,
-				C7339375941585D66FE1E3C8 /* Pods-QOTTests.release.xcconfig */,
-				1314025B156A67680BC1BA61 /* Pods-QOTTests.appstore.xcconfig */,
+				B7BED75475C60864D779F5D6 /* Pods-QOT.int.xcconfig */,
+				D9F8DC5F0BF916B1DE6E5C75 /* Pods-QOT.pub.xcconfig */,
 				E2A12E1F7F1B6FFCBCAC873D /* Pods-TIGNUM XTests.debug.xcconfig */,
-				FE3F97B3B933336E25054C1F /* Pods-TIGNUM XTests.staging.xcconfig */,
 				B1A93E0A3A25397C4A831C00 /* Pods-TIGNUM XTests.novartis.xcconfig */,
-				6E7715EEB747E264A50BA8D7 /* Pods-TIGNUM XTests.appcenter.xcconfig */,
 				23792940EB0437D87F00DA63 /* Pods-TIGNUM XTests.unittest.xcconfig */,
 				CA489AA1CAF4DA3854DB3CD3 /* Pods-TIGNUM XTests.database.xcconfig */,
 				884D81D13B4AB859341CDF38 /* Pods-TIGNUM XTests.release.xcconfig */,
 				F177BB95E7E9D50581C79488 /* Pods-TIGNUM XTests.appstore.xcconfig */,
+				6F705ACF5A29522A93833956 /* Pods-QOT.dev.xcconfig */,
+				148F9EBDC751DF0F22A401E1 /* Pods-TIGNUM XTests.dev.xcconfig */,
+				AE5640B2DC1CB8284BD11E59 /* Pods-TIGNUM XTests.int.xcconfig */,
+				73C3F5319B7867B9362E71CF /* Pods-TIGNUM XTests.pub.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -5138,7 +5113,6 @@
 				BC59F5CD2FD700C00093E286 /* Pods */,
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
-				BB88071B2372B453001D61CE /* QOTTests */,
 				918D5E2220EE050900AEAD37 /* QOTWidget */,
 				B8BCE58522AAB5EF0012AAAC /* ShareExtension */,
 				38751B0725F03800006164B2 /* TIGNUM XTests */,
@@ -6144,15 +6118,15 @@
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
 				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
-				38F6C98925E0333800BCA92D /* Live.plist in Resources */,
+				38F6C98925E0333800BCA92D /* PUB.plist in Resources */,
 				759AB42022C4D5B50091BFB8 /* TBVGraphBarRangeCell.xib in Resources */,
 				386C27BB241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.xib in Resources */,
-				38F6C9A625E034D400BCA92D /* Staging.plist in Resources */,
+				38F6C9A625E034D400BCA92D /* DEV.plist in Resources */,
 				B4BCE47A255BCEC500A1116F /* NewDailyBriefTableViewHeader.xib in Resources */,
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				386C27B5241A63DA00184EC9 /* ResultsPrepareAddEventTableViewCell.xib in Resources */,
 				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
-				38F6C9A525E034D400BCA92D /* PreRelease.plist in Resources */,
+				38F6C9A525E034D400BCA92D /* INT.plist in Resources */,
 				F9114E5925B1E46F00D1F0E2 /* walkThrough_myQOT.mp4 in Resources */,
 				B44D4462256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
@@ -6236,7 +6210,7 @@
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
 				B4D2E28E257EB07600928219 /* SprintChallengeDay0VideoTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
-				38F6C9BC25E0360200BCA92D /* PreRelease.xcconfig in Resources */,
+				38F6C9BC25E0360200BCA92D /* INT.xcconfig in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
 				F9F470812510E742002331F4 /* TeamToBeVisionOptionTableViewCell.xib in Resources */,
@@ -6282,7 +6256,7 @@
 				AC1A40F122A56FB90022156C /* SolveTriggerTableViewCell.xib in Resources */,
 				389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */,
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
-				38F6C98125E0322F00BCA92D /* Live.xcconfig in Resources */,
+				38F6C98125E0322F00BCA92D /* PUB.xcconfig in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				DB086F4324C8544A00D4F64E /* BookMarkSelectionCell.xib in Resources */,
@@ -6290,7 +6264,7 @@
 				B48B5471256468D100FC183D /* MeAtMyBestTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
-				38F6C9AE25E035E500BCA92D /* Staging.xcconfig in Resources */,
+				38F6C9AE25E035E500BCA92D /* DEV.xcconfig in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
 				36D2F2FD229E88FF004BA110 /* ExistingPreparationTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
@@ -7985,7 +7959,6 @@
 		};
 		38751B0F25F03800006164B2 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE3F97B3B933336E25054C1F /* Pods-TIGNUM XTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8031,7 +8004,6 @@
 		};
 		38751B1125F03800006164B2 /* AppCenter */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E7715EEB747E264A50BA8D7 /* Pods-TIGNUM XTests.appcenter.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8144,9 +8116,9 @@
 			};
 			name = AppStore;
 		};
-		38CA018825D3F61700945E46 /* AppCenter */ = {
+		38CA018825D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C9BB25E0360200BCA92D /* PreRelease.xcconfig */;
+			baseConfigurationReference = 38F6C9BB25E0360200BCA92D /* INT.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -8207,11 +8179,11 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018925D3F61700945E46 /* AppCenter */ = {
+		38CA018925D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E44657FD53A6A6CD6D03C0F /* Pods-QOT.appcenter.xcconfig */;
+			baseConfigurationReference = B7BED75475C60864D779F5D6 /* Pods-QOT.int.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3.0";
@@ -8232,7 +8204,7 @@
 					"COCOAPODS=1",
 					"NOVARTIS=1",
 				);
-				INFOPLIST_FILE = QOT/Resources/PreRelease.plist;
+				INFOPLIST_FILE = QOT/Resources/INT.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D NOVARTIS";
@@ -8246,9 +8218,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018A25D3F61700945E46 /* AppCenter */ = {
+		38CA018A25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8271,9 +8243,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018B25D3F61700945E46 /* AppCenter */ = {
+		38CA018B25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8298,9 +8270,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018C25D3F61700945E46 /* AppCenter */ = {
+		38CA018C25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8325,9 +8297,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38CA018D25D3F61700945E46 /* AppCenter */ = {
+		38CA018D25D3F61700945E46 /* INT */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8352,11 +8324,35 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = AppCenter;
+			name = INT;
 		};
-		38F6C9F825E3B4A600BCA92D /* Staging */ = {
+		38E3143A25F0ED1400D8F286 /* DEV */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */;
+			baseConfigurationReference = 148F9EBDC751DF0F22A401E1 /* Pods-TIGNUM XTests.dev.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "TIGNUM XTests";
+			};
+			name = DEV;
+		};
+		38E3143B25F0ED1400D8F286 /* INT */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE5640B2DC1CB8284BD11E59 /* Pods-TIGNUM XTests.int.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "TIGNUM XTests";
+			};
+			name = INT;
+		};
+		38E3143C25F0ED1400D8F286 /* PUB */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73C3F5319B7867B9362E71CF /* Pods-TIGNUM XTests.pub.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "TIGNUM XTests";
+			};
+			name = PUB;
+		};
+		38F6C9F825E3B4A600BCA92D /* DEV */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* DEV.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -8417,11 +8413,11 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9F925E3B4A600BCA92D /* Staging */ = {
+		38F6C9F925E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEF4802D895DA4183DF12258 /* Pods-QOT.staging.xcconfig */;
+			baseConfigurationReference = 6F705ACF5A29522A93833956 /* Pods-QOT.dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -8437,7 +8433,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = QOT/Resources/Staging.plist;
+				INFOPLIST_FILE = QOT/Resources/DEV.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
@@ -8449,9 +8445,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FA25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FA25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8474,9 +8470,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FB25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FB25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8500,9 +8496,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FC25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FC25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8526,9 +8522,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Staging;
+			name = DEV;
 		};
-		38F6C9FD25E3B4A600BCA92D /* Staging */ = {
+		38F6C9FD25E3B4A600BCA92D /* DEV */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8552,7 +8548,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = DEV;
 		};
 		7FE151CC1F3DDC6200DA8F37 /* Database */ = {
 			isa = XCBuildConfiguration;
@@ -8725,7 +8721,7 @@
 			};
 			name = Database;
 		};
-		918D5E2F20EE050900AEAD37 /* Release */ = {
+		918D5E2F20EE050900AEAD37 /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8749,7 +8745,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = PUB;
 		};
 		918D5E3020EE050900AEAD37 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -8853,7 +8849,7 @@
 			};
 			name = Database;
 		};
-		AC87A794220D94FB00622C90 /* Release */ = {
+		AC87A794220D94FB00622C90 /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8876,7 +8872,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Release;
+			name = PUB;
 		};
 		AC87A795220D94FB00622C90 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -8979,7 +8975,7 @@
 			};
 			name = Database;
 		};
-		AC87A799220D94FB00622C90 /* Release */ = {
+		AC87A799220D94FB00622C90 /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9002,7 +8998,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Release;
+			name = PUB;
 		};
 		AC87A79A220D94FB00622C90 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -9105,7 +9101,7 @@
 			};
 			name = Database;
 		};
-		B8BCE59222AAB5EF0012AAAC /* Release */ = {
+		B8BCE59222AAB5EF0012AAAC /* PUB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -9128,7 +9124,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = PUB;
 		};
 		B8BCE59322AAB5EF0012AAAC /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -9157,7 +9153,7 @@
 		};
 		CBA0EBA11FCDB6C6009B33AB /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C98025E0321400BCA92D /* Live.xcconfig */;
+			baseConfigurationReference = 38F6C98025E0321400BCA92D /* PUB.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9245,7 +9241,7 @@
 		};
 		CBB238071E6FFF1300AB5AEF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* Staging.xcconfig */;
+			baseConfigurationReference = 38F6C9AD25E035E500BCA92D /* DEV.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9308,9 +9304,9 @@
 			};
 			name = Debug;
 		};
-		CBB238081E6FFF1300AB5AEF /* Release */ = {
+		CBB238081E6FFF1300AB5AEF /* PUB */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F6C98025E0321400BCA92D /* Live.xcconfig */;
+			baseConfigurationReference = 38F6C98025E0321400BCA92D /* PUB.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -9364,7 +9360,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = PUB;
 		};
 		CBB2380A1E6FFF1300AB5AEF /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -9384,7 +9380,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = QOT/Resources/Staging.plist;
+				INFOPLIST_FILE = QOT/Resources/DEV.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
@@ -9398,9 +9394,9 @@
 			};
 			name = Debug;
 		};
-		CBB2380B1E6FFF1300AB5AEF /* Release */ = {
+		CBB2380B1E6FFF1300AB5AEF /* PUB */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9482C2502E55FA84E54C707D /* Pods-QOT.release.xcconfig */;
+			baseConfigurationReference = D9F8DC5F0BF916B1DE6E5C75 /* Pods-QOT.pub.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -9415,7 +9411,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = 3;
-				INFOPLIST_FILE = QOT/Resources/Live.plist;
+				INFOPLIST_FILE = QOT/Resources/PUB.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
@@ -9426,7 +9422,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = PUB;
 		};
 		E8F43D3420B6F98800C9FF4F /* UnitTest */ = {
 			isa = XCBuildConfiguration;
@@ -9547,6 +9543,9 @@
 				38751B1325F03800006164B2 /* Database */,
 				38751B1425F03800006164B2 /* Release */,
 				38751B1525F03800006164B2 /* AppStore */,
+				38E3143A25F0ED1400D8F286 /* DEV */,
+				38E3143B25F0ED1400D8F286 /* INT */,
+				38E3143C25F0ED1400D8F286 /* PUB */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -9555,91 +9554,91 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				918D5E2C20EE050900AEAD37 /* Debug */,
-				38F6C9FA25E3B4A600BCA92D /* Staging */,
+				38F6C9FA25E3B4A600BCA92D /* DEV */,
 				385EE3E62359B4F800D41073 /* Novartis */,
-				38CA018A25D3F61700945E46 /* AppCenter */,
+				38CA018A25D3F61700945E46 /* INT */,
 				918D5E2D20EE050900AEAD37 /* UnitTest */,
 				918D5E2E20EE050900AEAD37 /* Database */,
-				918D5E2F20EE050900AEAD37 /* Release */,
+				918D5E2F20EE050900AEAD37 /* PUB */,
 				918D5E3020EE050900AEAD37 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		AC87A79B220D94FE00622C90 /* Build configuration list for PBXNativeTarget "IntentUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC87A796220D94FB00622C90 /* Debug */,
-				38F6C9FC25E3B4A600BCA92D /* Staging */,
+				38F6C9FC25E3B4A600BCA92D /* DEV */,
 				385EE3E82359B4F800D41073 /* Novartis */,
-				38CA018C25D3F61700945E46 /* AppCenter */,
+				38CA018C25D3F61700945E46 /* INT */,
 				AC87A797220D94FB00622C90 /* UnitTest */,
 				AC87A798220D94FB00622C90 /* Database */,
-				AC87A799220D94FB00622C90 /* Release */,
+				AC87A799220D94FB00622C90 /* PUB */,
 				AC87A79A220D94FB00622C90 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		AC87A79C220D94FE00622C90 /* Build configuration list for PBXNativeTarget "Intent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC87A791220D94FB00622C90 /* Debug */,
-				38F6C9FB25E3B4A600BCA92D /* Staging */,
+				38F6C9FB25E3B4A600BCA92D /* DEV */,
 				385EE3E72359B4F800D41073 /* Novartis */,
-				38CA018B25D3F61700945E46 /* AppCenter */,
+				38CA018B25D3F61700945E46 /* INT */,
 				AC87A792220D94FB00622C90 /* UnitTest */,
 				AC87A793220D94FB00622C90 /* Database */,
-				AC87A794220D94FB00622C90 /* Release */,
+				AC87A794220D94FB00622C90 /* PUB */,
 				AC87A795220D94FB00622C90 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		B8BCE59422AAB5EF0012AAAC /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8BCE58F22AAB5EF0012AAAC /* Debug */,
-				38F6C9FD25E3B4A600BCA92D /* Staging */,
+				38F6C9FD25E3B4A600BCA92D /* DEV */,
 				385EE3E92359B4F800D41073 /* Novartis */,
-				38CA018D25D3F61700945E46 /* AppCenter */,
+				38CA018D25D3F61700945E46 /* INT */,
 				B8BCE59022AAB5EF0012AAAC /* UnitTest */,
 				B8BCE59122AAB5EF0012AAAC /* Database */,
-				B8BCE59222AAB5EF0012AAAC /* Release */,
+				B8BCE59222AAB5EF0012AAAC /* PUB */,
 				B8BCE59322AAB5EF0012AAAC /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
-				38F6C9F825E3B4A600BCA92D /* Staging */,
+				38F6C9F825E3B4A600BCA92D /* DEV */,
 				385EE3E32359B4F800D41073 /* Novartis */,
-				38CA018825D3F61700945E46 /* AppCenter */,
+				38CA018825D3F61700945E46 /* INT */,
 				E8F43D3420B6F98800C9FF4F /* UnitTest */,
 				7FE151CC1F3DDC6200DA8F37 /* Database */,
-				CBB238081E6FFF1300AB5AEF /* Release */,
+				CBB238081E6FFF1300AB5AEF /* PUB */,
 				CBA0EBA11FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 		CBB238091E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB2380A1E6FFF1300AB5AEF /* Debug */,
-				38F6C9F925E3B4A600BCA92D /* Staging */,
+				38F6C9F925E3B4A600BCA92D /* DEV */,
 				385EE3E42359B4F800D41073 /* Novartis */,
-				38CA018925D3F61700945E46 /* AppCenter */,
+				38CA018925D3F61700945E46 /* INT */,
 				E8F43D3520B6F98800C9FF4F /* UnitTest */,
 				7FE151CD1F3DDC6200DA8F37 /* Database */,
-				CBB2380B1E6FFF1300AB5AEF /* Release */,
+				CBB2380B1E6FFF1300AB5AEF /* PUB */,
 				CBA0EBA21FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = PUB;
 		};
 /* End XCConfigurationList section */
 	};

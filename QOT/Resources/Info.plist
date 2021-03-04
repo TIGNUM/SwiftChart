@@ -177,7 +177,7 @@
 	<string>${url_host}</string>
 	<key>url_scheme</key>
 	<string>${url_scheme}</string>
-	<key>request_bundle_identifier_prefix</key>
-	<string>${request_bundle_identifier_prefix}</string>
+	<key>scheme_name</key>
+	<string>${scheme_name}</string>
 </dict>
 </plist>

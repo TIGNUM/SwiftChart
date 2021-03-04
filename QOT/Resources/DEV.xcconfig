@@ -11,4 +11,4 @@
 
 url_scheme = https
 url_host = esb-staging.tignum.com
-request_bundle_identifier_prefix = STG.
+scheme_name = DEV
