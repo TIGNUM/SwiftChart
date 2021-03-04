@@ -11,7 +11,8 @@ import UserNotifications
 import qot_dal
 
 let DEBUG_LOCAL_NOTIFICATION_IDENTIFIER = "DEBUG_LOCAL_NOTIFICATION_IDENTIFIER"
-final class UserNotificationsManager {
+
+public final class UserNotificationsManager {
     static private var _main: UserNotificationsManager?
     static public var main: UserNotificationsManager {
         if _main == nil {
@@ -90,40 +91,13 @@ final class UserNotificationsManager {
     }
 
     func _scheduleNotifications(with coachMessages: [QDMCoachMessage]) {
-        let dispatchGroup = DispatchGroup()
-
-        // schedule new coach message notifications
         var requests = [UNNotificationRequest]()
-
-        dispatchGroup.enter()
-
         for coachMessage in coachMessages {
-            // if it's valid sprint notification for today
-            let content = UNMutableNotificationContent(title: coachMessage.title,
-                                                       body: coachMessage.body ?? "",
-                                                       soundName: "QotNotification.aiff",
-                                                       link: coachMessage.link ?? "")
-
-            var triggerDate: Date? = coachMessage.displayTime
-
-            if triggerDate?.isPast() == true {
-                triggerDate = coachMessage.displayTime?.dateAfterDays(1)
-            }
-            let dateComponent = DateComponents.init(calendar: Calendar.current,
-                                                    timeZone: Calendar.current.timeZone,
-                                                    year: triggerDate?.year() ?? .zero,
-                                                    month: triggerDate?.month() ?? .zero,
-                                                    day: triggerDate?.day() ?? .zero,
-                                                    hour: coachMessage.displayTime?.hour(),
-                                                    minute: coachMessage.displayTime?.minute(),
-                                                    second: coachMessage.displayTime?.second(),
-                                                    nanosecond: coachMessage.displayTime?.nano())
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: false)
-            let identifier = coachMessage.id ?? 0
-
-            requests.append(UNNotificationRequest(identifier: "\(identifier)", content: content, trigger: trigger))
+            requests.append(UNNotificationRequest(identifier: "\(coachMessage.id ?? .zero)",
+                                                  content: getCoachMessageContent(coachMessage),
+                                                  trigger: getCoachMessageTrigger(coachMessage)))
         }
-        self.queue.async {
+        queue.async {
             for request in requests {
                 self.notificationCenter.add(request) { (error) in
                     if let error = error {
@@ -132,7 +106,25 @@ final class UserNotificationsManager {
                 }
             }
         }
-        dispatchGroup.leave()
+    }
+
+    public func getCoachMessageContent(_ coachMessage: QDMCoachMessage) -> UNMutableNotificationContent {
+        return UNMutableNotificationContent(title: coachMessage.title,
+                                            body: coachMessage.body ?? .empty,
+                                            soundName: "QotNotification.aiff",
+                                            link: coachMessage.link ?? .empty)
+    }
+
+    public func getCoachMessageTrigger(_ coachMessage: QDMCoachMessage) -> UNCalendarNotificationTrigger {
+        let date = coachMessage.issueDate
+        let issueDateComponent = DateComponents.init(calendar: Calendar.current,
+                                                     timeZone: Calendar.current.timeZone,
+                                                     year: date?.year(),
+                                                     month: date?.month(),
+                                                     day: date?.day(),
+                                                     hour: date?.hour(),
+                                                     minute: date?.minute())
+        return UNCalendarNotificationTrigger(dateMatching: issueDateComponent, repeats: false)
     }
 
     func _scheduleNotifications(with dailyCheckInNotificationConfigs: [DailyCheckInLocalNotificationConfig]) {
