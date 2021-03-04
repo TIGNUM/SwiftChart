@@ -56,7 +56,7 @@ DEPENDENCIES:
   - IOSSecuritySuite
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `qot-dal/feature-flags`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -83,13 +83,14 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
+    :branch: qot-dal/feature-flags
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:TIGNUM/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: da7d441ded40f01c203ba51a303a7e9bcf29d64c
+    :commit: 9f66bc0a08d23d5a55a1666aba1fe83d92f114c1
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -114,6 +115,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: 2e8acd6fc90c6d0a27055867a290794926d57c02
 
-PODFILE CHECKSUM: 1375034324c082c841e23570b80a803b542807f6
+PODFILE CHECKSUM: 872c65941e9e7ff6c7f74585e0ba283246802f7f
 
 COCOAPODS: 1.10.1
