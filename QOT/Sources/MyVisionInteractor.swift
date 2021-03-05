@@ -67,13 +67,13 @@ final class MyVisionInteractor {
 
     func viewWillAppear() {
         didUpdateTBVRelatedData()
-        presenter.setSelectionBarButtonItems()
+        presenter.setSelectionBarItems()
     }
 
     private func didUpdateTBVRelatedData() {
         worker.getToBeVision { [weak self] (_, toBeVision) in
             self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                self?.presenter.deactivateRateButton(syncingText: self?.syncingText ?? .empty)
+                self?.presenter.deactivateRate(syncingText: self?.syncingText ?? .empty)
                 self?.presenter.load(toBeVision,
                                      rateText: text,
                                      isRateEnabled: status,

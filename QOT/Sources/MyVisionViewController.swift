@@ -159,7 +159,7 @@ private extension MyVisionViewController {
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
 
-    func setSelectionBarButtonItems() {
+    func setSelectionBarItems() {
         toBeVisionSelectionBar.allOff()
         toBeVisionSelectionBar.configure(isOwner: true, isPersonal: true, self)
         toBeVisionSelectionBar.title = nil
@@ -167,7 +167,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         NewThemeView.dark.apply(navigationBarView)
     }
 
-    func deactivateRateButton(syncingText: String) {
+    func deactivateRate(syncingText: String) {
         rateButton.isEnabled = false
         singleMessageRateButton.isEnabled = false
         singleMessageRateButton.setTitle(syncingText, for: .disabled)
