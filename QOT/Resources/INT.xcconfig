@@ -11,4 +11,4 @@
 
 url_scheme = https
 url_host = esb-pre.tignum.com
-request_bundle_identifier_prefix = PRE.
+scheme_name = INT
