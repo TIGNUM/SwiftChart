@@ -13,7 +13,7 @@ protocol MyVisionViewControllerInterface: class {
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
-    func deactivateRateButton()
+    func deactivateRateButton(syncingText: String)
     func setSelectionBarButtonItems()
     func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String)
@@ -27,7 +27,7 @@ protocol MyVisionPresenterInterface {
     func showNullState(with title: String, message: String, writeMessage: String)
     func hideNullState()
     func setupView()
-    func deactivateRateButton()
+    func deactivateRateButton(syncingText: String)
     func setSelectionBarButtonItems()
     func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?)
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String)
@@ -39,6 +39,12 @@ protocol MyVisionInteractorInterface: Interactor {
     var nullStateSubtitle: String? { get }
     var nullStateTitle: String? { get }
     var nullStateCTA: String? { get }
+    var syncingText: String? { get }
+    var rateText: String? { get }
+    var sinceYouRated: String { get }
+    var sinceUpdated: String { get }
+    var myData: String { get }
+    var toBeVisionTitle: String { get }
 
     func showTracker()
     func showUpdateConfirmationScreen()

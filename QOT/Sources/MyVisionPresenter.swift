@@ -52,7 +52,7 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
                                               createNewTitle: crateNewTitle)
     }
 
-    func deactivateRateButton() {
-        viewController?.deactivateRateButton()
+    func deactivateRateButton(syncingText: String) {
+        viewController?.deactivateRateButton(syncingText: syncingText)
     }
 }

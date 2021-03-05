@@ -73,7 +73,7 @@ final class MyVisionInteractor {
     private func didUpdateTBVRelatedData() {
         worker.getToBeVision { [weak self] (_, toBeVision) in
             self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
-                self?.presenter.deactivateRateButton()
+                self?.presenter.deactivateRateButton(syncingText: self?.syncingText ?? .empty)
                 self?.presenter.load(toBeVision,
                                      rateText: text,
                                      isRateEnabled: status,
@@ -158,6 +158,30 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
 
     func lastUpdatedVision() -> String? {
         return worker.lastUpdatedVision()
+    }
+
+    var syncingText: String? {
+        worker.syncingText
+    }
+
+    var rateText: String? {
+        worker.rateText
+    }
+
+    var sinceYouRated: String {
+        worker.sinceYouRated
+    }
+
+    var sinceUpdated: String {
+        worker.sinceUpdated
+    }
+
+    var myData: String {
+        worker.myData
+    }
+
+    var toBeVisionTitle: String {
+        worker.toBeVisionTitle
     }
 
     func saveToBeVision(image: UIImage?) {
