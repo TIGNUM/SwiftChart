@@ -1299,6 +1299,8 @@
 		F99E9CCC24EABFB300325EAE /* VisionRatingExplanation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F99E9CCB24EABFB300325EAE /* VisionRatingExplanation.storyboard */; };
 		F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */; };
 		F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */; };
+		F9A10FE725F0E28400BD3EDC /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A10FE625F0E28400BD3EDC /* FeatureFlags.swift */; };
+		F9A1100825F0E59700BD3EDC /* FeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A1100725F0E59700BD3EDC /* FeatureFlagsTests.swift */; };
 		F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */; };
 		F9A5C93122B2401000AB2E94 /* MyPrepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */; };
 		F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */; };
@@ -2712,6 +2714,8 @@
 		F99E9CCB24EABFB300325EAE /* VisionRatingExplanation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VisionRatingExplanation.storyboard; sourceTree = "<group>"; };
 		F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCopyrightViewController.swift; sourceTree = "<group>"; };
 		F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpCopyrightViewController.xib; sourceTree = "<group>"; };
+		F9A10FE625F0E28400BD3EDC /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
+		F9A1100725F0E59700BD3EDC /* FeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsTests.swift; sourceTree = "<group>"; };
 		F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsRouter.swift; sourceTree = "<group>"; };
 		F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsViewController.swift; sourceTree = "<group>"; };
 		F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsWorker.swift; sourceTree = "<group>"; };
@@ -3224,6 +3228,7 @@
 		367BB012223955D200282AB6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F9A10FE525F0E27000BD3EDC /* FeatureFlags */,
 				367BB013223956A700282AB6 /* Main.storyboard */,
 				3876050F23A266D30034B451 /* BaseRouter.swift */,
 				BB157759233A0E0500202978 /* BaseViewController.swift */,
@@ -3521,6 +3526,7 @@
 			children = (
 				38751B0A25F03800006164B2 /* Info.plist */,
 				38751B6325F039D6006164B2 /* UserNotificationManagerTests.swift */,
+				F9A1100725F0E59700BD3EDC /* FeatureFlagsTests.swift */,
 			);
 			path = "TIGNUM XTests";
 			sourceTree = "<group>";
@@ -5779,6 +5785,14 @@
 			name = PopUpViewCopyright;
 			sourceTree = "<group>";
 		};
+		F9A10FE525F0E27000BD3EDC /* FeatureFlags */ = {
+			isa = PBXGroup;
+			children = (
+				F9A10FE625F0E28400BD3EDC /* FeatureFlags.swift */,
+			);
+			name = FeatureFlags;
+			sourceTree = "<group>";
+		};
 		F9A5C93E22B7CD1C00AB2E94 /* Payment  */ = {
 			isa = PBXGroup;
 			children = (
@@ -6532,6 +6546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A1100825F0E59700BD3EDC /* FeatureFlagsTests.swift in Sources */,
 				38751B6425F039D6006164B2 /* UserNotificationManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7573,6 +7588,7 @@
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				F9D2BC2222D4969A00DBF2CC /* FromTignumCellViewModel.swift in Sources */,
 				CCF19C591F6048600020D7B6 /* WebViewController.swift in Sources */,
+				F9A10FE725F0E28400BD3EDC /* FeatureFlags.swift in Sources */,
 				91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */,
 				7F3A9CC21FCDC89D000F1744 /* ArticleCollectionViewData.swift in Sources */,
 				8D40768A22E5A5AA0027864D /* MySprintDetailsPresenter.swift in Sources */,
