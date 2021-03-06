@@ -62,6 +62,16 @@
                ReferencedContainer = "container:QOT.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "38D5C71025F3FFB3001884FC"
+               BuildableName = "TignumXTests.xctest"
+               BlueprintName = "TignumXTests"
+               ReferencedContainer = "container:QOT.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

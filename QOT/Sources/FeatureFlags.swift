@@ -26,3 +26,19 @@ class FeatureFlags {
         return ((dict[environment]?.contains(feature)) == true)
     }
 }
+
+struct Feature {
+    enum Flag {
+        case editableNotifications
+
+        private var activated: [NetworkEnvironment.Name: [Feature.Flag]] {
+            return [.DEV: [.editableNotifications],
+                    .INT: [.editableNotifications],
+                    .PUB: []]
+        }
+
+        func isOn(for environment: NetworkEnvironment.Name) -> Bool {
+            return activated[environment]?.contains(self) == true
+        }
+    }
+}
