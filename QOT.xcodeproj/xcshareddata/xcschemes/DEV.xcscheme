@@ -32,16 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "38751B0525F03800006164B2"
-               BuildableName = "TIGNUM XTests.xctest"
-               BlueprintName = "TIGNUM XTests"
-               ReferencedContainer = "container:QOT.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "38D5C71025F3FFB3001884FC"
                BuildableName = "TignumXTests.xctest"
                BlueprintName = "TignumXTests"
