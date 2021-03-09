@@ -9,24 +9,6 @@
 import Foundation
 import qot_dal
 
-class FeatureFlags {
-
-    enum FeatureFlag {
-        case customizableNotifications
-    }
-
-    private func getActivatedFeatures() -> [NetworkEnvironment.Name: [FeatureFlag]] {
-        return [.DEV: [.customizableNotifications],
-                .INT: [.customizableNotifications],
-                .PUB: []]
-    }
-
-    func isFeatureActivated(feature: FeatureFlag, environment: NetworkEnvironment.Name) -> Bool {
-        let dict = getActivatedFeatures()
-        return ((dict[environment]?.contains(feature)) == true)
-    }
-}
-
 struct Feature {
     enum Flag {
         case editableNotifications

@@ -317,7 +317,6 @@
 		386C27BF241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C27BD241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.xib */; };
 		386C398825816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */; };
 		3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */; };
-		38751B6425F039D6006164B2 /* UserNotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38751B6325F039D6006164B2 /* UserNotificationManagerTests.swift */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
 		3877862D257ECE3900F4B5ED /* NewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877862C257ECE3900F4B5ED /* NewTheme.swift */; };
 		388249442536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */; };
@@ -360,8 +359,8 @@
 		38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */; };
 		38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E724A64C3000B6FA26 /* TeamHeader.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
-		38D5C71425F3FFB3001884FC /* TignumXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C71325F3FFB3001884FC /* TignumXTests.swift */; };
 		38D5C74425F40131001884FC /* FeatureFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C74325F40131001884FC /* FeatureFlagTests.swift */; };
+		38D5C76325F783FD001884FC /* UserNotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C76225F783FD001884FC /* UserNotificationManagerTests.swift */; };
 		38E5A08A2412B06C008FCF8F /* CalendarEventSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0822412B06C008FCF8F /* CalendarEventSelectionPresenter.swift */; };
 		38E5A08B2412B06C008FCF8F /* CalendarEventSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0832412B06C008FCF8F /* CalendarEventSelectionWorker.swift */; };
 		38E5A08C2412B06C008FCF8F /* CalendarEventSelectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0842412B06C008FCF8F /* CalendarEventSelectionRouter.swift */; };
@@ -1303,7 +1302,6 @@
 		F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */; };
 		F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */; };
 		F9A10FE725F0E28400BD3EDC /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A10FE625F0E28400BD3EDC /* FeatureFlags.swift */; };
-		F9A1100825F0E59700BD3EDC /* FeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A1100725F0E59700BD3EDC /* FeatureFlagsTests.swift */; };
 		F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */; };
 		F9A5C93122B2401000AB2E94 /* MyPrepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */; };
 		F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */; };
@@ -1746,8 +1744,6 @@
 		386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMToBeVisionRatingReport+Ext.swift"; sourceTree = "<group>"; };
 		3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamHeaderCell.xib; sourceTree = "<group>"; };
 		38751B0625F03800006164B2 /* TIGNUM XTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TIGNUM XTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		38751B0A25F03800006164B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38751B6325F039D6006164B2 /* UserNotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManagerTests.swift; sourceTree = "<group>"; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		3877862C257ECE3900F4B5ED /* NewTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTheme.swift; sourceTree = "<group>"; };
 		388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMTeamToBeVisionTrackerPoll+Ext.swift"; sourceTree = "<group>"; };
@@ -1791,9 +1787,9 @@
 		38D218E724A64C3000B6FA26 /* TeamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeader.swift; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38D5C71125F3FFB3001884FC /* TignumXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TignumXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		38D5C71325F3FFB3001884FC /* TignumXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TignumXTests.swift; sourceTree = "<group>"; };
 		38D5C71525F3FFB3001884FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38D5C74325F40131001884FC /* FeatureFlagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagTests.swift; sourceTree = "<group>"; };
+		38D5C76225F783FD001884FC /* UserNotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManagerTests.swift; sourceTree = "<group>"; };
 		38E5A0822412B06C008FCF8F /* CalendarEventSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionPresenter.swift; sourceTree = "<group>"; };
 		38E5A0832412B06C008FCF8F /* CalendarEventSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionWorker.swift; sourceTree = "<group>"; };
 		38E5A0842412B06C008FCF8F /* CalendarEventSelectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionRouter.swift; sourceTree = "<group>"; };
@@ -2739,7 +2735,6 @@
 		F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCopyrightViewController.swift; sourceTree = "<group>"; };
 		F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpCopyrightViewController.xib; sourceTree = "<group>"; };
 		F9A10FE625F0E28400BD3EDC /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
-		F9A1100725F0E59700BD3EDC /* FeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagsTests.swift; sourceTree = "<group>"; };
 		F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsRouter.swift; sourceTree = "<group>"; };
 		F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsViewController.swift; sourceTree = "<group>"; };
 		F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsWorker.swift; sourceTree = "<group>"; };
@@ -3554,16 +3549,6 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
-		38751B0725F03800006164B2 /* TIGNUM XTests */ = {
-			isa = PBXGroup;
-			children = (
-				38751B0A25F03800006164B2 /* Info.plist */,
-				38751B6325F039D6006164B2 /* UserNotificationManagerTests.swift */,
-				F9A1100725F0E59700BD3EDC /* FeatureFlagsTests.swift */,
-			);
-			path = "TIGNUM XTests";
-			sourceTree = "<group>";
-		};
 		389BBC7C235EE63C0009FA02 /* Walkthrough */ = {
 			isa = PBXGroup;
 			children = (
@@ -3629,9 +3614,9 @@
 		38D5C71225F3FFB3001884FC /* TignumXTests */ = {
 			isa = PBXGroup;
 			children = (
-				38D5C71325F3FFB3001884FC /* TignumXTests.swift */,
 				38D5C71525F3FFB3001884FC /* Info.plist */,
 				38D5C74325F40131001884FC /* FeatureFlagTests.swift */,
+				38D5C76225F783FD001884FC /* UserNotificationManagerTests.swift */,
 			);
 			path = TignumXTests;
 			sourceTree = "<group>";
@@ -5176,7 +5161,6 @@
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
 				918D5E2220EE050900AEAD37 /* QOTWidget */,
 				B8BCE58522AAB5EF0012AAAC /* ShareExtension */,
-				38751B0725F03800006164B2 /* TIGNUM XTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -6704,8 +6688,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9A1100825F0E59700BD3EDC /* FeatureFlagsTests.swift in Sources */,
-				38751B6425F039D6006164B2 /* UserNotificationManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6714,7 +6696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38D5C74425F40131001884FC /* FeatureFlagTests.swift in Sources */,
-				38D5C71425F3FFB3001884FC /* TignumXTests.swift in Sources */,
+				38D5C76325F783FD001884FC /* UserNotificationManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
