@@ -19,8 +19,8 @@ struct Feature {
                     .PUB: []]
         }
 
-        func isOn(for environment: NetworkEnvironment.Name) -> Bool {
-            return activated[environment]?.contains(self) == true
+        func isOn() -> Bool {
+            return activated[NetworkEnvironment().currentScheme]?.contains(self) == true
         }
     }
 }

@@ -12,8 +12,10 @@ import qot_dal
 
 class FeatureFlagTests: XCTestCase {
     func testActivatedFeatureEditableNotification() {
-        XCTAssertTrue(Feature.Flag.editableNotifications.isOn(for: .DEV))
-        XCTAssertTrue(Feature.Flag.editableNotifications.isOn(for: .INT))
-        XCTAssertFalse(Feature.Flag.editableNotifications.isOn(for: .PUB))
+        switch NetworkEnvironment().currentScheme {
+        case .DEV: XCTAssertTrue(Feature.Flag.editableNotifications.isOn())
+        case .INT: XCTAssertTrue(Feature.Flag.editableNotifications.isOn())
+        case .PUB: XCTAssertFalse(Feature.Flag.editableNotifications.isOn())
+        }
      }
 }

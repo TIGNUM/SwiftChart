@@ -35,7 +35,7 @@ PODS:
     - Realm (~> 10.6.0)
     - RealmSwift (~> 10.6.0)
     - SwiftyBeaver
-  - R.swift (5.3.1):
+  - R.swift (5.4.0):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
   - Realm (10.6.0):
@@ -89,7 +89,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 731d20babbe26686c5fc40f263ee689bd5193a91
+    :commit: 053f3dc7f06cd72eb7193e77227c1c5fb7e32637
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -105,7 +105,7 @@ SPEC CHECKSUMS:
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 676d63307fbef6ed5d5ed400bff36983480d7500
   qot_dal: 5ccc08decfd751cc8bd6e11f8143dd3cc6141b30
-  R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
+  R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   Realm: 1ef421d4581513400ad4f8bd39c8157f3266c62e
   RealmSwift: f80216fb8334b01ccf526e4f2dd5ff0da61863a2
@@ -114,6 +114,6 @@ SPEC CHECKSUMS:
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: 2e8acd6fc90c6d0a27055867a290794926d57c02
 
-PODFILE CHECKSUM: f454bb2ca6490801050efa344be509f1cfdf2fb9
+PODFILE CHECKSUM: c5d99f106791df9ecd7b41c2fc8360f4d179cb84
 
 COCOAPODS: 1.10.1

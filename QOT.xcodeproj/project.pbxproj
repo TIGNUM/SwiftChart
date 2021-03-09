@@ -648,7 +648,6 @@
 		8DC59B6522FDA6BE00587EA4 /* Notification+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC59B6422FDA6BE00587EA4 /* Notification+Registration.swift */; };
 		8DC849B32326463900C4D4A3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC849B12326463900C4D4A3 /* Reachability.m */; };
 		8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC849B5232648C300C4D4A3 /* QOTReachability.swift */; };
-		8DCB7612BEBD83416086D900 /* Pods_TIGNUM_XTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E44A6BCFB68461FED494F8 /* Pods_TIGNUM_XTests.framework */; };
 		8DD6B5942308190800C582A4 /* UIViewController+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD6B5932308190800C582A4 /* UIViewController+ActivityIndicator.swift */; };
 		8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */; };
 		8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */; };
@@ -1430,9 +1429,7 @@
 
 /* Begin PBXFileReference section */
 		039142F206E4005168DC57B4 /* Pods-TignumXTests.int.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TignumXTests.int.xcconfig"; path = "Target Support Files/Pods-TignumXTests/Pods-TignumXTests.int.xcconfig"; sourceTree = "<group>"; };
-		148F9EBDC751DF0F22A401E1 /* Pods-TIGNUM XTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.dev.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.dev.xcconfig"; sourceTree = "<group>"; };
 		23495A45EBEAB72E3CE1974A /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
-		23792940EB0437D87F00DA63 /* Pods-TIGNUM XTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.unittest.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		2E0C835B914C42B40FB2D57A /* Pods-TignumXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TignumXTests.debug.xcconfig"; path = "Target Support Files/Pods-TignumXTests/Pods-TignumXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		360256DF2051834F00862B0E /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		360256E12051836200862B0E /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
@@ -1908,10 +1905,8 @@
 		5FF1A0FD22857BB300D76D55 /* MyQotAppSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsRouter.swift; sourceTree = "<group>"; };
 		5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsModel.swift; sourceTree = "<group>"; };
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
-		64E44A6BCFB68461FED494F8 /* Pods_TIGNUM_XTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TIGNUM_XTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6836B8747681E6ED65F07504 /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		6F705ACF5A29522A93833956 /* Pods-QOT.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.dev.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.dev.xcconfig"; sourceTree = "<group>"; };
-		73C3F5319B7867B9362E71CF /* Pods-TIGNUM XTests.pub.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.pub.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.pub.xcconfig"; sourceTree = "<group>"; };
 		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewModel.swift; sourceTree = "<group>"; };
 		75423EF022CE242B008EE726 /* TBVRateHistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryPresenter.swift; sourceTree = "<group>"; };
@@ -1993,7 +1988,6 @@
 		8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchHandler.swift; sourceTree = "<group>"; };
 		85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		85CF378773996BD2B3E10721 /* Pods-TignumXTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TignumXTests.unittest.xcconfig"; path = "Target Support Files/Pods-TignumXTests/Pods-TignumXTests.unittest.xcconfig"; sourceTree = "<group>"; };
-		884D81D13B4AB859341CDF38 /* Pods-TIGNUM XTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.release.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.release.xcconfig"; sourceTree = "<group>"; };
 		8D03A7B422E0872C000CA576 /* MySprintsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListViewModel.swift; sourceTree = "<group>"; };
 		8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWithTableViewController.swift; sourceTree = "<group>"; };
 		8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotPlaceholderTextField.swift; sourceTree = "<group>"; };
@@ -2228,9 +2222,7 @@
 		ACFB725022BB8126003D0BA3 /* CauseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseTableViewCell.swift; sourceTree = "<group>"; };
 		ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CauseTableViewCell.xib; sourceTree = "<group>"; };
 		AD88949166659B7F9C57398A /* Pods-TignumXTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TignumXTests.database.xcconfig"; path = "Target Support Files/Pods-TignumXTests/Pods-TignumXTests.database.xcconfig"; sourceTree = "<group>"; };
-		AE5640B2DC1CB8284BD11E59 /* Pods-TIGNUM XTests.int.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.int.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.int.xcconfig"; sourceTree = "<group>"; };
 		AE5B5709A00341CFD794D10A /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1A93E0A3A25397C4A831C00 /* Pods-TIGNUM XTests.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.novartis.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.novartis.xcconfig"; sourceTree = "<group>"; };
 		B411ECA325751C5100EB7A78 /* GuidedTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidedTrackViewModel.swift; sourceTree = "<group>"; };
 		B411ECA425751C5100EB7A78 /* MeAtMyBestCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeAtMyBestCellViewModel.swift; sourceTree = "<group>"; };
 		B411ECA525751C5100EB7A78 /* LeaderWisdomCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderWisdomCellViewModel.swift; sourceTree = "<group>"; };
@@ -2491,7 +2483,6 @@
 		BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotUISwitch.swift; sourceTree = "<group>"; };
 		BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationButton.xib; sourceTree = "<group>"; };
 		C81408790D16A46C9AC03B02 /* Pods_TignumXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TignumXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA489AA1CAF4DA3854DB3CD3 /* Pods-TIGNUM XTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.database.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.database.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -2601,7 +2592,6 @@
 		DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		DCEF945680DFAD599B1F299D /* Pods_QOTTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2A12E1F7F1B6FFCBCAC873D /* Pods-TIGNUM XTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.debug.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFReaderViewController.storyboard; sourceTree = "<group>"; };
 		E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderConfigurator.swift; sourceTree = "<group>"; };
@@ -2610,8 +2600,6 @@
 		E813F0AF2135284700C0723E /* PDFReaderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderRouter.swift; sourceTree = "<group>"; };
 		E813F0B12135285A00C0723E /* PDFReaderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderWorker.swift; sourceTree = "<group>"; };
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
-		F0A6F5C35B5CBC90A98D9EB6 /* Pods-TIGNUM XTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.staging.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.staging.xcconfig"; sourceTree = "<group>"; };
-		F177BB95E7E9D50581C79488 /* Pods-TIGNUM XTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.appstore.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsCellViewModel.swift; sourceTree = "<group>"; };
 		F906A02124AC8263007B6E1E /* TeamNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamNameTableViewCell.swift; sourceTree = "<group>"; };
 		F906A02324AC8278007B6E1E /* TeamNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamNameTableViewCell.xib; sourceTree = "<group>"; };
@@ -2787,7 +2775,6 @@
 		F9FEA8DE25344FB2009BF786 /* PollOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOpenModel.swift; sourceTree = "<group>"; };
 		F9FEA92B25348D42009BF786 /* RateOpenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateOpenModel.swift; sourceTree = "<group>"; };
 		F9FEA95B2534A6DE009BF786 /* RatingFeedbackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFeedbackModel.swift; sourceTree = "<group>"; };
-		FE84FA0639BA66763F7AB686 /* Pods-TIGNUM XTests.appcenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TIGNUM XTests.appcenter.xcconfig"; path = "Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests.appcenter.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2795,7 +2782,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DCB7612BEBD83416086D900 /* Pods_TIGNUM_XTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4002,7 +3988,6 @@
 				AC87A782220D94F900622C90 /* IntentsUI.framework */,
 				AE5B5709A00341CFD794D10A /* Pods_QOT.framework */,
 				DCEF945680DFAD599B1F299D /* Pods_QOTTests.framework */,
-				64E44A6BCFB68461FED494F8 /* Pods_TIGNUM_XTests.framework */,
 				C81408790D16A46C9AC03B02 /* Pods_TignumXTests.framework */,
 			);
 			name = Frameworks;
@@ -5067,18 +5052,7 @@
 				5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */,
 				B7BED75475C60864D779F5D6 /* Pods-QOT.int.xcconfig */,
 				D9F8DC5F0BF916B1DE6E5C75 /* Pods-QOT.pub.xcconfig */,
-				E2A12E1F7F1B6FFCBCAC873D /* Pods-TIGNUM XTests.debug.xcconfig */,
-				B1A93E0A3A25397C4A831C00 /* Pods-TIGNUM XTests.novartis.xcconfig */,
-				23792940EB0437D87F00DA63 /* Pods-TIGNUM XTests.unittest.xcconfig */,
-				CA489AA1CAF4DA3854DB3CD3 /* Pods-TIGNUM XTests.database.xcconfig */,
-				884D81D13B4AB859341CDF38 /* Pods-TIGNUM XTests.release.xcconfig */,
-				F177BB95E7E9D50581C79488 /* Pods-TIGNUM XTests.appstore.xcconfig */,
 				6F705ACF5A29522A93833956 /* Pods-QOT.dev.xcconfig */,
-				148F9EBDC751DF0F22A401E1 /* Pods-TIGNUM XTests.dev.xcconfig */,
-				AE5640B2DC1CB8284BD11E59 /* Pods-TIGNUM XTests.int.xcconfig */,
-				73C3F5319B7867B9362E71CF /* Pods-TIGNUM XTests.pub.xcconfig */,
-				F0A6F5C35B5CBC90A98D9EB6 /* Pods-TIGNUM XTests.staging.xcconfig */,
-				FE84FA0639BA66763F7AB686 /* Pods-TIGNUM XTests.appcenter.xcconfig */,
 				2E0C835B914C42B40FB2D57A /* Pods-TignumXTests.debug.xcconfig */,
 				9D13C22FE339DBC62FE49F90 /* Pods-TignumXTests.dev.xcconfig */,
 				5AEA321C7C1A1B12EE3ABC5B /* Pods-TignumXTests.novartis.xcconfig */,
@@ -5873,11 +5847,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38751B0D25F03800006164B2 /* Build configuration list for PBXNativeTarget "TIGNUM XTests" */;
 			buildPhases = (
-				93A59A5CBDAB1669D65FCB95 /* [CP] Check Pods Manifest.lock */,
 				38751B0225F03800006164B2 /* Sources */,
 				38751B0325F03800006164B2 /* Frameworks */,
 				38751B0425F03800006164B2 /* Resources */,
-				03974AC081F76ACF9CD400E8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -6413,52 +6385,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03974AC081F76ACF9CD400E8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Airship/Airship.framework",
-				"${BUILT_PRODUCTS_DIR}/Buglife/Buglife.framework",
-				"${BUILT_PRODUCTS_DIR}/DifferenceKit/DifferenceKit.framework",
-				"${BUILT_PRODUCTS_DIR}/IOSSecuritySuite/IOSSecuritySuite.framework",
-				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
-				"${BUILT_PRODUCTS_DIR}/qot_dal/qot_dal.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Airship.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Buglife.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DifferenceKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IOSSecuritySuite.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/qot_dal.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TIGNUM XTests/Pods-TIGNUM XTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		81589F9D2B54CCB067291C0F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6518,28 +6444,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		93A59A5CBDAB1669D65FCB95 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TIGNUM XTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		B5C4922E34BE589FE8BED0D0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8105,7 +8009,6 @@
 		};
 		38751B0E25F03800006164B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2A12E1F7F1B6FFCBCAC873D /* Pods-TIGNUM XTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8129,7 +8032,6 @@
 		};
 		38751B0F25F03800006164B2 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0A6F5C35B5CBC90A98D9EB6 /* Pods-TIGNUM XTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8152,7 +8054,6 @@
 		};
 		38751B1025F03800006164B2 /* Novartis */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1A93E0A3A25397C4A831C00 /* Pods-TIGNUM XTests.novartis.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8175,7 +8076,6 @@
 		};
 		38751B1125F03800006164B2 /* AppCenter */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE84FA0639BA66763F7AB686 /* Pods-TIGNUM XTests.appcenter.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8198,7 +8098,6 @@
 		};
 		38751B1225F03800006164B2 /* UnitTest */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23792940EB0437D87F00DA63 /* Pods-TIGNUM XTests.unittest.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8221,7 +8120,6 @@
 		};
 		38751B1325F03800006164B2 /* Database */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA489AA1CAF4DA3854DB3CD3 /* Pods-TIGNUM XTests.database.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8244,7 +8142,6 @@
 		};
 		38751B1425F03800006164B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 884D81D13B4AB859341CDF38 /* Pods-TIGNUM XTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8267,7 +8164,6 @@
 		};
 		38751B1525F03800006164B2 /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F177BB95E7E9D50581C79488 /* Pods-TIGNUM XTests.appstore.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8980,7 +8876,6 @@
 		};
 		38E3143A25F0ED1400D8F286 /* DEV */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 148F9EBDC751DF0F22A401E1 /* Pods-TIGNUM XTests.dev.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "TIGNUM XTests";
 			};
@@ -8988,7 +8883,6 @@
 		};
 		38E3143B25F0ED1400D8F286 /* INT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE5640B2DC1CB8284BD11E59 /* Pods-TIGNUM XTests.int.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "TIGNUM XTests";
 			};
@@ -8996,7 +8890,6 @@
 		};
 		38E3143C25F0ED1400D8F286 /* PUB */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73C3F5319B7867B9362E71CF /* Pods-TIGNUM XTests.pub.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "TIGNUM XTests";
 			};
