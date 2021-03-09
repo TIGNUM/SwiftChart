@@ -202,8 +202,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
     }
 
-    func showNullState() {
-        interactor.showNullState(with: interactor.nullStateTitle ?? .empty,
+    func showEmptyTbv() {
+        interactor.showEmptyTbv(with: interactor.nullStateTitle ?? .empty,
                                  message: interactor.nullStateSubtitle ?? .empty,
                                  writeMessage: interactor.nullStateCTA ?? .empty)
     }
@@ -266,7 +266,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
         if myVision == nil {
-            showNullState()
+            showEmptyTbv()
             return
         }
         if scrollView.alpha == .zero {

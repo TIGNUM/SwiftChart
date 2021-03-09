@@ -128,7 +128,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
                                         crateNewTitle: worker.updateAlertCreateTitle)
     }
 
-    func showNullState(with title: String, message: String, writeMessage: String) {
+    func showEmptyTbv(with title: String, message: String, writeMessage: String) {
         presenter.showNullState(with: title, message: message, writeMessage: writeMessage)
     }
 

@@ -48,7 +48,7 @@ protocol MyVisionInteractorInterface: Interactor {
 
     func showTracker()
     func showUpdateConfirmationScreen()
-    func showNullState(with title: String, message: String, writeMessage: String)
+    func showEmptyTbv(with title: String, message: String, writeMessage: String)
     func showTBVData()
     func showEditVision(isFromNullState: Bool)
     func showRateScreen(delegate: TBVRateDelegate?)
