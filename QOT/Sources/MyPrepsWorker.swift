@@ -23,12 +23,12 @@ final class MyPrepsWorker {
             var everydayItems = [MyPrepsModel.Item]()
             preparations?.forEach { (preparation) in
                 let dateString = DateFormatter.ddMMM.string(from: preparation.eventDate ?? Date())
-                let prepItem = MyPrepsModel.Item(title: preparation.name ?? preparation.eventType ?? "",
+                let prepItem = MyPrepsModel.Item(title: preparation.name ?? preparation.eventType ?? String.empty,
                                                  date: dateString,
-                                                 eventType: preparation.eventType ?? "",
-                                                 type: preparation.type ?? "",
+                                                 eventType: preparation.eventType ?? String.empty,
+                                                 type: preparation.type ?? String.empty,
                                                  missingEvent: preparation.missingEvent,
-                                                 calendarEventTitle: preparation.eventTitle ?? "",
+                                                 calendarEventTitle: preparation.eventTitle ?? String.empty,
                                                  qdmPrep: preparation)
                 if preparation.type == "critical" {
                     criticalItems.append(prepItem)
@@ -47,7 +47,7 @@ final class MyPrepsWorker {
         UserService.main.getRecovery3D { [weak self] (recoveries, _, _) in
             var recoveryItems = [RecoveriesModel.Item]()
             recoveries?.forEach {
-                let recoveryItem = RecoveriesModel.Item(title: $0.causeAnwser?.subtitle ?? "",
+                let recoveryItem = RecoveriesModel.Item(title: $0.causeAnwser?.subtitle ?? String.empty,
                                                          date: DateFormatter.ddMMM.string(from: $0.createdAt ?? Date()),
                                                          qdmRec: $0)
                 recoveryItems.append(recoveryItem)
@@ -62,7 +62,7 @@ final class MyPrepsWorker {
         UserService.main.getMindsetShifters { [weak self] (mindsetShifters, _, _) in
             var mindsetItems = [MindsetShiftersModel.Item]()
             mindsetShifters?.forEach {
-                let mindsetItem = MindsetShiftersModel.Item(title: $0.triggerAnswer?.subtitle ?? "",
+                let mindsetItem = MindsetShiftersModel.Item(title: $0.triggerAnswer?.subtitle ?? String.empty,
                                                              date: DateFormatter.ddMMM.string(from: $0.createdAt ?? Date()),
                                                              qdmMind: $0)
                 mindsetItems.append(mindsetItem)

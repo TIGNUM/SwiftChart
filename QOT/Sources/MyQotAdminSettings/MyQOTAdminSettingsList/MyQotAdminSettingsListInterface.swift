@@ -18,8 +18,6 @@ protocol MyQotAdminSettingsListPresenterInterface {
 
 protocol MyQotAdminSettingsListInteractorInterface: Interactor {
     func getHeaderTitle() -> String
-    func getTitleForEnvironmentSettings() -> String
-    func getSubtitleForEnvironmentSettings() -> String
     func getTitleForLocalNotifications() -> String
     func getTitleForDCQuestion() -> String
     func getSubtitleForDCQuestion() -> String

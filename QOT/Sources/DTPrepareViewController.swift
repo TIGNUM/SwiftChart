@@ -42,7 +42,7 @@ final class DTPrepareViewController: DTViewController {
     override func didTapNext() {
         if delegate != nil {
             if viewModel?.question.key == Prepare.QuestionKey.BenefitsInput {
-                delegate?.didUpdateBenefits(prepareInteractor?.inputText ?? "")
+                delegate?.didUpdateBenefits(prepareInteractor?.inputText ?? String.empty)
                 prepareRouter?.dismissResultView()
             } else {
                 let answerIds = viewModel?.selectedAnswers.compactMap { $0.remoteId } ?? []
@@ -137,7 +137,7 @@ private extension DTPrepareViewController {
     }
 
     func createPreparationAndPresent() {
-        prepareInteractor.getUserPreparationCritical(answerFilter: answerFilter ?? "") { [weak self] (preparation) in
+        prepareInteractor.getUserPreparationCritical(answerFilter: answerFilter ?? String.empty) { [weak self] (preparation) in
             self?.prepareRouter?.presentPrepareResults(preparation)
         }
     }

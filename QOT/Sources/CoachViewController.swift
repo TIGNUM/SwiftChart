@@ -82,21 +82,21 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return CoachTableHeaderView.init(title: "/" + (coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? ""),
-                                             subtitle: coachModel?.headerSubtitle ?? "")
+            return CoachTableHeaderView.init(title: "/" + (coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? String.empty),
+                                             subtitle: coachModel?.headerSubtitle ?? String.empty)
         default: return nil
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CoachTableHeaderView.init(title: coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? "",
-                                         subtitle: coachModel?.headerSubtitle ?? "").calculateHeight(for: tableView.frame.size.width)
+        return CoachTableHeaderView.init(title: coachModel?.headerTitle?.lowercased().capitalizingFirstLetter() ?? String.empty,
+                                         subtitle: coachModel?.headerSubtitle ?? String.empty).calculateHeight(for: tableView.frame.size.width)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CoachTableViewCell = tableView.dequeueCell(for: indexPath)
         let item = coachModel?.coachItems[indexPath.row]
-        cell.configure(title: item?.title ?? "", subtitle: item?.subtitle ?? "")
+        cell.configure(title: item?.title ?? String.empty, subtitle: item?.subtitle ?? String.empty)
         cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
         addDisclosure(to: cell)
         cell.addTopLine(for: indexPath.row)

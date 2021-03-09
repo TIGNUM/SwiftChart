@@ -42,7 +42,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
          impactDataModels: [ImpactDataViewModel]?,
          maxTrackingDays: Int?,
          domainModel: QDMDailyBriefBucket,
-         _ subIdentifier: String? = "") {
+         _ subIdentifier: String? = String.empty) {
 
         self.howYouFeelToday = howYouFeelToday
         self.asteriskText = asteriskText

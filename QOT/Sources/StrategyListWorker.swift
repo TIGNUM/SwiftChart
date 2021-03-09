@@ -20,7 +20,7 @@ final class StrategyListWorker {
         if isFoundation == true {
             return AppTextService.get(.know_section_strategies_title_foundation).lowercased().capitalizingFirstLetter()
         }
-        return selectedStrategy?.title ?? ""
+        return selectedStrategy?.title ?? String.empty
     }
 
     lazy var isFoundation: Bool = {
@@ -62,9 +62,9 @@ final class StrategyListWorker {
                 collection.section == .LearnStrategies
             }) ?? [] {
                 let foundationItem = contentCollection.contentItems.filter { $0.format == .video }.first
-                let imageURL = URL(string: foundationItem?.valueImageURL ?? "")
+                let imageURL = URL(string: foundationItem?.valueImageURL ?? String.empty)
                 items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? .zero,
-                                           categoryTitle: contentCollection.contentCategoryTitle ?? "",
+                                           categoryTitle: contentCollection.contentCategoryTitle ?? String.empty,
                                            title: contentCollection.title,
                                            imageURL: imageURL,
                                            mediaItem: foundationItem,
@@ -85,7 +85,7 @@ final class StrategyListWorker {
                 let title = contentCollection.title
                 let firstAudioItem = contentCollection.contentItems.filter { $0.format == .audio }.first
                 items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? .zero,
-                                           categoryTitle: contentCollection.contentCategoryTitle ?? "",
+                                           categoryTitle: contentCollection.contentCategoryTitle ?? String.empty,
                                            title: title,
                                            imageURL: nil,
                                            mediaItem: firstAudioItem,

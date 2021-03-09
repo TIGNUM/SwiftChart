@@ -86,7 +86,7 @@ class Level5TableViewCell: BaseDailyBriefCell {
 
     //    when the bucket is loaded set level 1 as default
     func initialSetup() {
-        questionLabel.text = tmpAnswer != .zero ?  "" : model?.question
+        questionLabel.text = tmpAnswer != .zero ? String.empty : model?.question
         updateUI(levelMessages.at(index: tmpAnswer)?.levelContent)
         setButtonBackgroundColor()
         setProgress()

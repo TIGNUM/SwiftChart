@@ -80,7 +80,7 @@ struct Prepare {
             case .feel: return "FEEL"
             case .benefits: return "BENEFITS"
             case .benefitsTitle,
-                 .eventType: return ""
+                 .eventType: return String.empty
             }
         }
     }

@@ -70,7 +70,7 @@ final class NewDailyBriefStandardModel: BaseDailyBriefViewModel {
         captionSizingLabel.font = UIFont.sfProtextRegular(ofSize: 14.0)
         captionSizingLabel.lineBreakMode = .byTruncatingTail
         captionSizingLabel.text = caption
-        captionSizingLabel.textColor = UIColor(hex: titleColor ?? "")
+        captionSizingLabel.textColor = UIColor(hex: titleColor ?? String.empty)
 
         let titleSizingLabel = UILabel()
         titleSizingLabel.numberOfLines = 5

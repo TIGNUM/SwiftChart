@@ -214,8 +214,8 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                                           subtitle: header.subtitle,
                                           showSeparatorView: section != .zero,
                                           secondary: true)
-                return CGSize(width: view.frame.width, height: ComponentHeaderView.height(title: header.title ?? "",
-                                                                                          subtitle: header.subtitle ?? "",
+                return CGSize(width: view.frame.width, height: ComponentHeaderView.height(title: header.title ?? String.empty,
+                                                                                          subtitle: header.subtitle ?? String.empty,
                                                                                           forWidth: view.frame.width))
             }
             return CGSize(width: view.frame.width, height: 155)

@@ -112,7 +112,7 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.init(title: toolModel?.headerTitle ?? "", subtitle: nil)
+            return ToolsTableHeaderView.init(title: toolModel?.headerTitle ?? String.empty, subtitle: nil)
         default: return nil
         }
     }
@@ -123,7 +123,7 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
 
         let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
         let toolCount = tools[indexPath.item].itemCount
-        cell.configure(title: (toolModel?.toolItems[indexPath.row].title) ?? "", subtitle: "\(toolCount) tools")
+        cell.configure(title: (toolModel?.toolItems[indexPath.row].title) ?? String.empty, subtitle: "\(toolCount) tools")
         cell.setSelectedColor(.tignumPink40, alphaComponent: 0.4)
         cell.accessoryView = UIImageView(image: R.image.ic_disclosure())
         ThemeTint.black.apply(cell.accessoryView ?? UIView.init())

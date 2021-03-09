@@ -42,7 +42,7 @@ final class DailyCheckinQuestionsWorker {
                 if let answers = question.answers,
                     let answerIndex = question.selectedAnswerIndex,
                     answers.count > answerIndex,
-                    let count = Int(answers[answerIndex].subtitle ?? "") {
+                    let count = Int(answers[answerIndex].subtitle ?? String.empty) {
                     checkInAnswer.PeakPerformanceCount = count
                 }
             }

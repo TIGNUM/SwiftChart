@@ -145,6 +145,16 @@ private extension SolveResultsWorker {
         }
     }
 
+    func relatedAppLinks(_ contentId: Int? = nil, completion: @escaping( [SolveResult.Item]) -> Void ) {
+        var relatedLinks: [SolveResult.Item] = []
+        contentCollection(contentId) { (content) in
+            content?.links.forEach { (appLink) in
+                relatedLinks.append(.link(id: appLink.remoteID ?? 0, appLink: appLink, title: appLink.description ?? String.empty))
+            }
+            completion(relatedLinks)
+        }
+    }
+
     func relatedStrategiesContentItems(_ contentId: Int? = nil, _ completion: @escaping ([QDMContentItem]) -> Void) {
         contentCollection(contentId) { (content) in
             if let content = content {
@@ -164,10 +174,11 @@ private extension SolveResultsWorker {
              .solveDailyBrief:
             header = AppTextService.get(.coach_solve_result_section_strategies_title)
         default:
-            header = ""
+            header = String.empty
         }
+        var relatedStrategyItems: [SolveResult.Item] = []
         relatedStrategies(contentId) { (related) in
-            var relatedStrategyItems: [SolveResult.Item] = []
+
             for (index, collection) in related.enumerated() {
                 relatedStrategyItems.append(.strategy(id: collection.remoteID ?? .zero,
                                                       title: collection.title,
@@ -181,9 +192,12 @@ private extension SolveResultsWorker {
                                                                      title: item.valueText,
                                                                      minsToRead: item.durationString,
                                                                      hasHeader: false,
-                                                                     headerTitle: ""))
+                                                                     headerTitle: String.empty))
                 }
-                completion(relatedStrategyItems)
+                self.relatedAppLinks(contentId) { (relatedLinks) in
+                    relatedStrategyItems.append(contentsOf: relatedLinks)
+                    completion(relatedStrategyItems)
+                }
             }
         }
     }
@@ -221,8 +235,8 @@ private extension SolveResultsWorker {
 
     func solveHeader(_ completion: @escaping (SolveResult.Item) -> Void) {
         contentCollection { [weak self] content in
-            let title = self?.valueText(for: "solve-header-title", content: content) ?? ""
-            let solution = self?.valueText(for: "solve-header-subtitle", content: content) ?? ""
+            let title = self?.valueText(for: "solve-header-title", content: content) ?? String.empty
+            let solution = self?.valueText(for: "solve-header-subtitle", content: content) ?? String.empty
             completion(.header(title: title, solution: solution))
         }
     }
@@ -230,9 +244,9 @@ private extension SolveResultsWorker {
     func trigger(_ completion: @escaping (SolveResult.Item?) -> Void) {
         contentCollection { [weak self] content in
             if let triggerType = content?.triggerType() {
-                let header = self?.valueText(for: "solve-trigger-header", content: content) ?? ""
-                let description = self?.valueText(for: "solve-trigger-description", content: content) ?? ""
-                let buttonText = self?.valueText(for: "solve-trigger-button", content: content) ?? ""
+                let header = self?.valueText(for: "solve-trigger-header", content: content) ?? String.empty
+                let description = self?.valueText(for: "solve-trigger-description", content: content) ?? String.empty
+                let buttonText = self?.valueText(for: "solve-trigger-button", content: content) ?? String.empty
                 let trigger = SolveResult.Item.trigger(type: triggerType,
                                                         header: header,
                                                         description: description,
@@ -258,8 +272,8 @@ private extension SolveResultsWorker {
 
     func followUp(_ completion: @escaping (SolveResult.Item) -> Void) {
         contentCollection {  [weak self] content in
-            let title = self?.valueText(for: "solve-follow-up-title", content: content) ?? ""
-            let subtitle = self?.valueText(for: "solve-follow-up-subtitle", content: content) ?? ""
+            let title = self?.valueText(for: "solve-follow-up-title", content: content) ?? String.empty
+            let subtitle = self?.valueText(for: "solve-follow-up-subtitle", content: content) ?? String.empty
             completion(.followUp(title: title, subtitle: subtitle))
         }
     }
@@ -290,8 +304,8 @@ private extension SolveResultsWorker {
 
     func recoveryHeader(_ completion: @escaping (SolveResult.Item) -> Void) {
         contentCollection(resultType.contentId) { [weak self] content in
-            let title = self?.valueText(for: "recovery-header-title", content: content) ?? ""
-            let solution = self?.valueText(for: "recovery-header-subtitle", content: content) ?? ""
+            let title = self?.valueText(for: "recovery-header-title", content: content) ?? String.empty
+            let solution = self?.valueText(for: "recovery-header-subtitle", content: content) ?? String.empty
             completion(.header(title: title, solution: solution))
         }
     }
@@ -299,15 +313,15 @@ private extension SolveResultsWorker {
     func fatigueSymptom(_ completion: @escaping (SolveResult.Item) -> Void) {
         let contentItemId = recovery?.causeAnwser?.targetId(.contentItem) ?? .zero
         ContentService.main.getContentItemById(contentItemId) { (contentItem) in
-            completion(.fatigue(sympton: contentItem?.valueText ?? ""))
+            completion(.fatigue(sympton: contentItem?.valueText ?? String.empty))
         }
     }
 
     func cause(_ completion: @escaping (SolveResult.Item) -> Void) {
         let contentId = recovery?.causeAnwser?.targetId(.content) ?? .zero
         ContentService.main.getContentCollectionById(contentId) { [weak self] (content) in
-            let cause = self?.recovery?.causeAnwser?.subtitle ?? ""
-            let fatigueCauseExplanation = content?.contentItems.first?.valueText ?? ""
+            let cause = self?.recovery?.causeAnwser?.subtitle ?? String.empty
+            let fatigueCauseExplanation = content?.contentItems.first?.valueText ?? String.empty
             completion(.cause(cause: cause, explanation: fatigueCauseExplanation))
         }
     }

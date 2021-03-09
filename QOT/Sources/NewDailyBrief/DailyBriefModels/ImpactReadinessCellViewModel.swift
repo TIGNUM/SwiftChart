@@ -66,7 +66,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         let firstAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.white]
         let secondAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
         guard readinessScore != -1 else {
-            return NSAttributedString.init(string: impactReadinessNoDataTitle ?? "", attributes: firstAttributes)
+            return NSAttributedString.init(string: impactReadinessNoDataTitle ?? String.empty, attributes: firstAttributes)
         }
 
         let impactReadinessAttrString = NSMutableAttributedString(string: "\(readinessScore ?? .zero)", attributes: firstAttributes)

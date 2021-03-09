@@ -108,7 +108,7 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
 
     func didTapDismiss(with text: String?) {
         self.text = text
-        if text == (worker.text ?? "") || text == placeholderText {
+        if text == (worker.text ?? String.empty) || text == placeholderText {
             router.dismiss()
             return
         }

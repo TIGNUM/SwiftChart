@@ -78,16 +78,16 @@ final class ImpactReadiness5DaysRollingTableViewCell: BaseDailyBriefCell {
             viewModel?.hasFiveDaySleepQuantityValues != true {
             asterixText.attributedText = buildString(asterixCharacter,
                                                      ThemeText.dailyBriefSubtitle,
-                                                     (viewModel?.asteriskText ?? "").replacingOccurrences(of: asterixCharacter, with: ""),
+                                                     (viewModel?.asteriskText ?? String.empty).replacingOccurrences(of: asterixCharacter, with: String.empty),
                                                      ThemeText.asterixText,
                                                      textAlignment: .left)
         } else {
             asterixText.attributedText = nil
         }
 
-        asterixCharacter = viewModel?.hasFiveDaySleepQuantityValues == true ? "" : "*"
-        let asteriskQuality = viewModel?.hasFiveDaySleepQualityValue == true ? "" : "*"
-        let asteriskLoad = viewModel?.hasFiveDayLoadValue == true ? "" : "*"
+        asterixCharacter = viewModel?.hasFiveDaySleepQuantityValues == true ? String.empty : "*"
+        let asteriskQuality = viewModel?.hasFiveDaySleepQualityValue == true ? String.empty : "*"
+        let asteriskLoad = viewModel?.hasFiveDayLoadValue == true ? String.empty : "*"
 
         // Sleep Quantity
         let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_new_title).uppercased()

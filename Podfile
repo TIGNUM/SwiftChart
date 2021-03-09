@@ -1,7 +1,8 @@
 platform :ios, '12.0'
+use_frameworks!
+inhibit_all_warnings!
 
-target 'QOT' do
-  use_frameworks!
+def common_pods
   pod 'R.swift'
   pod 'RSKImageCropper'
   pod 'SVProgressHUD'
@@ -10,10 +11,19 @@ target 'QOT' do
   pod 'SwiftyBeaver'
   pod 'AppCenter'
   pod 'Kingfisher'
-  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
+  pod 'IOSSecuritySuite'
   pod 'SwiftChart', :git => 'git@github.com:TIGNUM/SwiftChart.git'
+  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
+end
+
+target 'QOT' do
+    common_pods
+end
+
+target 'TIGNUM XTests' do
+    common_pods
 end
 
 post_install do |installer|

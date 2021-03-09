@@ -48,7 +48,7 @@ private extension TBVDataGraphCollectionView {
 
     func durationCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TBVDataGraphBarNextDurationViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.duration = ""
+        cell.duration = String.empty
         return cell
     }
 

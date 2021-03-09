@@ -24,7 +24,7 @@ extension QDMGuideItemNotification {
     }
 
     var isDailyPrep: Bool {
-        guard let itemType = ItemType(rawValue: type ?? "") else { return false }
+        guard let itemType = ItemType(rawValue: type ?? String.empty) else { return false }
         return itemType == .morningInterview || itemType == .weeklyInterview
     }
 
@@ -34,7 +34,7 @@ extension QDMGuideItemNotification {
 
     var notificationRequest: UNNotificationRequest? {
         guard let triggerDate = localNotificationDate, isDailyPrep == false else { return nil }
-        let content = UNMutableNotificationContent(title: title, body: body ?? "", soundName: sound, link: link ?? "")
+        let content = UNMutableNotificationContent(title: title, body: body ?? String.empty, soundName: sound, link: link ?? String.empty)
         let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
         return UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
     }

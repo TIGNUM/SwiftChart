@@ -16,7 +16,7 @@ import qot_dal
 extension String {
 
     var removeFilePrefix: String {
-        return replacingOccurrences(of: "file://", with: "")
+        return replacingOccurrences(of: "file://", with: String.empty)
     }
 }
 

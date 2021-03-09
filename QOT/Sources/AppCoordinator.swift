@@ -11,6 +11,7 @@ import UserNotifications
 import Airship
 import Buglife
 import qot_dal
+import IOSSecuritySuite
 
 final class AppCoordinator {
 
@@ -109,37 +110,21 @@ final class AppCoordinator {
     }
 
     func checkVersionIfNeeded() {
-        //guard services?.userService.user()?.appUpdatePrompt == true else { return }
+        // guard services?.userService.user()?.appUpdatePrompt == true else { return }
         // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
     }
 
     func showApp(with displayedScreen: CoachCollectionViewController.Page? = .dailyBrief) {
-        ExtensionsDataManager.didUserLogIn(true)
-        ExtensionsDataManager().update(.toBeVision)
-        ExtensionsDataManager().update(.teams)
-        add3DTouchShortcuts()
-        setupBugLife()
-        guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
-            let naviController = R.storyboard.bottomNavigation().instantiateInitialViewController() as? UINavigationController,
-            let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
-                return
-        }
-
-        self.setRootViewController(naviController,
-                                   transitionStyle: .curveEaseIn,
-                                   duration: .zero,
-                                   animated: false) {
-            DispatchQueue.main.async {
-                // Show coach marks on first launch (of v3.0 app)
-                let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
-                if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
-                    self.showCoachMarks()
-                } else {
-                    baseRootViewController.setContent(viewController: coachCollectionViewController)
-                    self.isReadyToProcessURL = true
-                }
-                self.showSubscriptionReminderIfNeeded()
-            }
+        let isPhoneExposed = IOSSecuritySuite.amIJailbroken() || IOSSecuritySuite.amIReverseEngineered()
+        if isPhoneExposed {
+            showJailbrokenAlert()
+        } else {
+            ExtensionsDataManager.didUserLogIn(true)
+            ExtensionsDataManager().update(.toBeVision)
+            ExtensionsDataManager().update(.teams)
+            add3DTouchShortcuts()
+            setupBugLife()
+            showDefaultRootViewController()
         }
     }
 
@@ -163,6 +148,53 @@ final class AppCoordinator {
         }, completion: { _ in
             completion?()
         })
+    }
+
+    private func showJailbrokenAlert() {
+        let title = IOSSecuritySuite.amIJailbroken() ? "This is device is jailbroken" : "This is device is reversed engineered"
+        let message = "For security reason this app cannot run on unsecure devices"
+        let buttonTitle = "OK"
+        let viewController = UIViewController.init()
+        self.setRootViewController(viewController,
+                                   transitionStyle: .curveEaseIn,
+                                   duration: 0,
+                                   animated: false) {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: title,
+                                              message: message,
+                                              preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: buttonTitle,
+                                              style: UIAlertAction.Style.default, handler: { _ in
+                    assertionFailure(title)
+                }))
+                viewController.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+
+    private func showDefaultRootViewController() {
+        guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
+            let naviController = R.storyboard.bottomNavigation().instantiateInitialViewController() as? UINavigationController,
+            let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
+                return
+        }
+
+        self.setRootViewController(naviController,
+                                   transitionStyle: .curveEaseIn,
+                                   duration: 0,
+                                   animated: false) {
+            DispatchQueue.main.async {
+                // Show coach marks on first launch (of v3.0 app)
+                let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
+                if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
+                    self.showCoachMarks()
+                } else {
+                    baseRootViewController.setContent(viewController: coachCollectionViewController)
+                    self.isReadyToProcessURL = true
+                }
+                self.showSubscriptionReminderIfNeeded()
+            }
+        }
     }
 
     func isReadyToOpenURL() -> Bool {
@@ -242,7 +274,7 @@ extension AppCoordinator {
         setupBugLife()
         UserDefault.clearAllDataLogOut()
         isReadyToProcessURL = false
-        HorizontalHeaderView.selectedTeamId = ""
+        HorizontalHeaderView.selectedTeamId = String.empty
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
@@ -400,14 +432,14 @@ extension AppCoordinator {
     func handleContentDownSync() {
         ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
             guard let latest = items?.first else { return }
-            let item = ArticleCollectionViewData.Item(author: latest.author ?? "",
-                                                      title: latest.contentCategoryTitle ?? "",
+            let item = ArticleCollectionViewData.Item(author: latest.author ?? String.empty,
+                                                      title: latest.contentCategoryTitle ?? String.empty,
                                                       description: latest.title,
                                                       date: latest.publishedDate ?? Date(),
                                                       duration: latest.durationString,
                                                       articleDate: latest.publishedDate ?? Date(),
                                                       sortOrder: "0",
-                                                      previewImageURL: URL(string: latest.thumbnailURLString  ?? ""),
+                                                      previewImageURL: URL(string: latest.thumbnailURLString  ?? String.empty),
                                                       contentCollectionID: latest.remoteID ?? .zero,
                                                       newArticle: true,
                                                       shareableLink: latest.shareableLink)

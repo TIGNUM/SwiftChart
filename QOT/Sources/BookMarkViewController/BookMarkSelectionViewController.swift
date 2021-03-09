@@ -115,8 +115,8 @@ extension BookMarkSelectionViewController: UITableViewDelegate, UITableViewDataS
             ThemeText.asterixText.apply(membersString, to: cell.participantsLabel)
 
         } else {
-            ThemeText.myLibraryItemsTitle.apply(interactor?.myLibraryCellTitle ?? "", to: cell.teamLibraryName)
-            ThemeText.asterixText.apply(interactor?.myLibraryCellSubtitle ?? "", to: cell.participantsLabel)
+            ThemeText.myLibraryItemsTitle.apply(interactor?.myLibraryCellTitle ?? String.empty, to: cell.teamLibraryName)
+            ThemeText.asterixText.apply(interactor?.myLibraryCellSubtitle ?? String.empty, to: cell.participantsLabel)
         }
         if model.isSelected {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)

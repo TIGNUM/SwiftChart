@@ -45,7 +45,7 @@ class MindsetShifterTableViewCell: BaseDailyBriefCell {
         let highTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high)
         let lowTitleSentenceCase = lowTitle.lowercased().capitalizingFirstLetter()
         let highTitleSentenceCase = highTitle.lowercased().capitalizingFirstLetter()
-        let lowItems = viewModel.mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? "" } ?? []
+        let lowItems = viewModel.mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? String.empty } ?? []
 
         let highItems = viewModel.mindsetShifter?.highPerformanceContentItems.compactMap { $0.valueText } ?? []
         seeMyPlanButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_button_title), for: .normal)

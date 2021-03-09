@@ -75,8 +75,8 @@ extension MyQOTAdminEditSprintsViewController: UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: interactor.getSprint(at: indexPath.row).title ?? "",
-                       subtitle: interactor.getSprint(at: indexPath.row).subtitle ?? "")
+        cell.configure(title: interactor.getSprint(at: indexPath.row).title ?? String.empty,
+                       subtitle: interactor.getSprint(at: indexPath.row).subtitle ?? String.empty)
         return cell
     }
 

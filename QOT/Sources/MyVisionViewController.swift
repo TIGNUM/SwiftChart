@@ -66,7 +66,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
         interactor.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
-        showNullState(with: " ", message: " ", writeMessage: "")
+        showNullState(with: " ", message: " ", writeMessage: String.empty)
         showSkeleton()
     }
 
@@ -212,9 +212,9 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
         if myVision == nil {
-            interactor.showNullState(with: interactor.nullStateTitle ?? "",
-                                     message: interactor.nullStateSubtitle ?? "",
-                                     writeMessage: interactor.nullStateCTA ?? "")
+            interactor.showNullState(with: interactor.nullStateTitle ?? String.empty,
+                                     message: interactor.nullStateSubtitle ?? String.empty,
+                                     writeMessage: interactor.nullStateCTA ?? String.empty)
             return
         }
         if scrollView.alpha == .zero {

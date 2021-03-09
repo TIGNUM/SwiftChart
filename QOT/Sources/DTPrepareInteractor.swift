@@ -116,7 +116,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let preparationNames = preparations.compactMap { $0.name }
         model.level = .LEVEL_CRITICAL
         model.benefits = existingPreparation?.benefits
-        model.answerFilter = existingPreparation?.answerFilter ?? ""
+        model.answerFilter = existingPreparation?.answerFilter ?? String.empty
         model.contentCollectionId = existingPreparation?.contentCollectionId ?? .zero
         model.relatedStrategyId = existingPreparation?.relatedStrategyId ?? .zero
         model.strategyIds = existingPreparation?.strategyIds ?? []
@@ -124,13 +124,13 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         model.preceiveAnswerIds = existingPreparation?.preceiveAnswerIds ?? []
         model.knowAnswerIds = existingPreparation?.knowAnswerIds ?? []
         model.feelAnswerIds = existingPreparation?.feelAnswerIds ?? []
-        model.eventType = preparationTypeAnswer?.title ?? ""
-        model.name = createUniqueName(existingPreparation?.eventType ?? "", in: preparationNames)
+        model.eventType = preparationTypeAnswer?.title ?? String.empty
+        model.name = createUniqueName(existingPreparation?.eventType ?? String.empty, in: preparationNames)
         self.prepareWorker.createUserPreparation(from: model, completion)
     }
 
     func getUserPreparationDaily(answer: DTViewModel.Answer, _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
+        let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? String.empty
         let relatedStrategyId = answer.targetId(.content) ?? .zero
         let preparationNames = preparations.compactMap { $0.name }
         let preparationName = createUniqueName(answer.title, in: preparationNames)
@@ -171,8 +171,8 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                 model.preceiveAnswerIds = perceivedIds
                 model.knowAnswerIds = knowIds
                 model.feelAnswerIds = feelIds
-                model.eventType = filteredAnswer?.title ?? ""
-                model.name = self?.createUniqueName(filteredAnswer?.title ?? "", in: preparationNames)
+                model.eventType = filteredAnswer?.title ?? String.empty
+                model.name = self?.createUniqueName(filteredAnswer?.title ?? String.empty, in: preparationNames)
                 self?.prepareWorker.createUserPreparation(from: model, completion)
             }
         }

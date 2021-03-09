@@ -63,7 +63,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
 
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         //track tap gesture
-        showSafariVC(for: copyrightURL ?? "")
+        showSafariVC(for: copyrightURL ?? String.empty)
     }
 
     private func cancel() {
@@ -83,7 +83,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
     private func setupView() {
         NewThemeView.dark.apply(containerView)
         NewThemeView.dark.apply(backgroundView)
-        descriptionLabel.text = (descriptionText ?? "") + (copyrightURL ?? "")
+        descriptionLabel.text = (descriptionText ?? String.empty) + (copyrightURL ?? String.empty)
     }
 
     @IBAction func didTapClose(_ sender: Any) {

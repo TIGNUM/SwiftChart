@@ -36,13 +36,13 @@ private extension AskPermissionPresenter {
                          type: AskPermission.Kind?) -> AskPermission.ViewModel {
         return AskPermission.ViewModel(title: valueText(for: type?.titleTag, content),
                                        description: valueText(for: type?.bodyTag, content),
-                                       imageURL: URL(string: content?.thumbnailURLString ?? ""),
+                                       imageURL: URL(string: content?.thumbnailURLString ?? String.empty),
                                        buttonTitleCancel: valueText(for: type?.buttonCancelTag, content),
                                        buttonTitleConfirm: valueText(for: type?.buttonConfirmTag, content))
     }
 
     func valueText(for tag: String?, _ content: QDMContentCollection?) -> String? {
         return content?.contentItems.filter {
-            $0.searchTagsDetailed.contains(where: { ($0.name ?? "").lowercased() == tag?.lowercased() }) }.first?.valueText
+            $0.searchTagsDetailed.contains(where: { ($0.name ?? String.empty).lowercased() == tag?.lowercased() }) }.first?.valueText
     }
 }

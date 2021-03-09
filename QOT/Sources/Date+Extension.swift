@@ -118,7 +118,31 @@ extension Date {
     }
 
     func year() -> Int {
-        return Calendar.sharedUTC.dateComponents([.year], from: self).year ?? .zero
+        return Calendar.sharedUTC.dateComponents([.year], from: self).year ?? . zero
+    }
+
+    func month() -> Int {
+        return Calendar.sharedUTC.dateComponents([.month], from: self).month ?? .zero
+    }
+
+    func day() -> Int {
+        return Calendar.sharedUTC.dateComponents([.day], from: self).day ?? .zero
+    }
+
+    func hour() -> Int {
+        return Calendar.sharedUTC.dateComponents([.hour], from: self).hour ?? .zero
+    }
+
+    func minute() -> Int {
+        return Calendar.sharedUTC.dateComponents([.minute], from: self).hour ?? .zero
+    }
+
+    func second() -> Int {
+        return Calendar.sharedUTC.dateComponents([.second], from: self).hour ?? .zero
+    }
+
+    func nano() -> Int {
+        return Calendar.sharedUTC.dateComponents([.nanosecond], from: self).hour ?? .zero
     }
 
     func years(to date: Date) -> Int {

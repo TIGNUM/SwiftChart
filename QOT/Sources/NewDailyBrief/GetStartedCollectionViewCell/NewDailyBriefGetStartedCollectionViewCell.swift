@@ -40,7 +40,7 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
         upperContentView.layer.borderColor =  model.isCompleted == true ? UIColor.darkGrey.cgColor : UIColor.lightGray.cgColor
         arrowButton.isHidden = false
         title.text = model.title
-        imageView.image = UIImage.init(named: model.image ?? "")
+        imageView.image = UIImage.init(named: model.image ?? String.empty)
         contentView.layer.opacity = model.isCompleted == true ? 0.6 : 1
         completedIcon.isHidden = model.isCompleted == false
     }

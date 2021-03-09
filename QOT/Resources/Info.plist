@@ -79,6 +79,10 @@
 		<string>ms-outlook</string>
 		<string>readdle-spark</string>
 		<string>ymail</string>
+		<string>cydia</string>
+		<string>undecimus</string>
+		<string>sileo</string>
+		<string>zbra</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -169,5 +173,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>url_host</key>
+	<string>${url_host}</string>
+	<key>url_scheme</key>
+	<string>${url_scheme}</string>
+	<key>scheme_name</key>
+	<string>${scheme_name}</string>
 </dict>
 </plist>

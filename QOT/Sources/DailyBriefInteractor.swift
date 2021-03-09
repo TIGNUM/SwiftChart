@@ -258,7 +258,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     }
 
                     //create a section model with the previously added elements
-                    let clusterTitle = AppTextService.get(AppTextKey.init(cluster.titleKey ?? ""))
+                    let clusterTitle = AppTextService.get(AppTextKey.init(cluster.titleKey ?? String.empty))
 
                     if cluster.enabled && elements.count > .zero {
                         sectionDataList.append(ArraySection.init(model: DailyBriefSectionModel.init(title: clusterTitle, sortOrder: cluster.sortOrder),
@@ -387,7 +387,7 @@ extension DailyBriefInteractor {
             case .TEAM_TOBEVISION_TRACKER_POLL :
                 dailyBriefViewModels.append(contentsOf: strongSelf.createRate(rateBucket: bucket))
             default:
-                print("Default : \(bucket.bucketName ?? "" )")
+                print("Default : \(bucket.bucketName ?? String.empty )")
             }
         }
         return dailyBriefViewModels

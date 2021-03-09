@@ -1196,7 +1196,6 @@
                         <outlet property="headerView" destination="ywj-fm-jGd" id="jZ8-06-K29"/>
                         <outlet property="headerViewHeightConstraint" destination="mMB-Rj-xmW" id="j3p-IW-rKD"/>
                         <outlet property="tableView" destination="JAf-sZ-nEW" id="9rP-T6-wRZ"/>
-                        <segue destination="d6F-rf-vw8" kind="show" identifier="myQotAdminEnvironmentSettingsSegueIdentifier" id="vFg-b4-CbN"/>
                         <segue destination="oO3-uY-wR8" kind="show" identifier="myQotAdminLocalNotificationsSegueIdentifier" id="Pph-FH-jT8"/>
                         <segue destination="V6D-ip-iPA" kind="show" identifier="myQotAdminDCSixthQuestionSegueIdentifier" id="7ie-II-BTM"/>
                         <segue destination="7jH-od-wQ5" kind="show" identifier="myQotAdminChooseBucketsSegueIdentifier" id="UWr-qO-Lxd"/>
@@ -1206,51 +1205,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laC-IC-b13" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-110" y="-278"/>
-        </scene>
-        <!--My Qot Admin Environment Settings View Controller-->
-        <scene sceneID="EVJ-UE-qOH">
-            <objects>
-                <viewController storyboardIdentifier="MyQotAdminEnvironmentSettingsID" id="d6F-rf-vw8" customClass="MyQotAdminEnvironmentSettingsViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3or-De-2q5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="JOH-oi-kQi">
-                                <rect key="frame" x="0.0" y="98" width="375" height="469"/>
-                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0V1-QC-WhS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
-                                <color key="backgroundColor" red="0.031372549020000001" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="98" id="gcW-qU-oV3"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Sxp-t8-Wyb"/>
-                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="JOH-oi-kQi" firstAttribute="top" secondItem="0V1-QC-WhS" secondAttribute="bottom" id="Axy-Tf-WXq"/>
-                            <constraint firstItem="Sxp-t8-Wyb" firstAttribute="trailing" secondItem="0V1-QC-WhS" secondAttribute="trailing" id="FWn-Dt-rf3"/>
-                            <constraint firstItem="0V1-QC-WhS" firstAttribute="top" secondItem="Sxp-t8-Wyb" secondAttribute="top" id="bxk-qD-nwx"/>
-                            <constraint firstItem="JOH-oi-kQi" firstAttribute="leading" secondItem="Sxp-t8-Wyb" secondAttribute="leading" id="lFg-lT-2hJ"/>
-                            <constraint firstItem="JOH-oi-kQi" firstAttribute="trailing" secondItem="Sxp-t8-Wyb" secondAttribute="trailing" id="lxN-kG-8Cd"/>
-                            <constraint firstItem="Sxp-t8-Wyb" firstAttribute="bottom" secondItem="JOH-oi-kQi" secondAttribute="bottom" constant="80" id="zHv-ui-4HE"/>
-                            <constraint firstItem="0V1-QC-WhS" firstAttribute="leading" secondItem="3or-De-2q5" secondAttribute="leading" id="zrY-ml-Str"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="XKb-1a-aJ8"/>
-                    <connections>
-                        <outlet property="headerView" destination="0V1-QC-WhS" id="8lp-zq-SJX"/>
-                        <outlet property="headerViewHeightConstraint" destination="gcW-qU-oV3" id="noM-E7-iDH"/>
-                        <outlet property="tableView" destination="JOH-oi-kQi" id="mwE-Da-lbA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9jq-Np-tMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-665" y="-1366"/>
         </scene>
         <!--My Qot Admin Local Notifications View Controller-->
         <scene sceneID="Jmf-fF-tny">

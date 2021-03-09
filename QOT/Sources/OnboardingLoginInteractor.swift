@@ -72,7 +72,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
     }
 
     func didTapVerify(email: String?, completion: @escaping () -> Void) {
-        UserDefault.existingEmail.setStringValue(value: "")
+        UserDefault.existingEmail.setStringValue(value: String.empty)
 
         guard checkAndPresentEmailValidity(email) == true, let email = email else {
             return

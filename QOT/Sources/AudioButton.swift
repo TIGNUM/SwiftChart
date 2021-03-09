@@ -15,8 +15,8 @@ final class AudioButton: UIView {
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var audioIcon: UIImageView!
     @IBOutlet private weak var button: UIButton!
-    private var categoryTitle = ""
-    private var title = ""
+    private var categoryTitle = String.empty
+    private var title = String.empty
     private var audioURL: URL?
     private var audioRemoteID: Int = .zero
     private var duration: Int = .zero

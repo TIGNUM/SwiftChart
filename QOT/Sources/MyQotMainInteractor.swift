@@ -24,9 +24,9 @@ final class MyQotMainInteractor: MyQotMainWorker {
     internal var headerItems = [Team.Item]()
     internal var subtitles = [String: String?]() // [MyX.Item.rawValue: subtitle string]
     internal var isCellEnabled = [String: Bool]() // [MyX.Item.rawValue: cell enabled]
-    internal var settingTitle: String = ""
+    internal var settingTitle: String = String.empty
     internal var newLibraryItemCount: Int = .zero
-    internal var tbvTitle: String = ""
+    internal var tbvTitle: String = String.empty
     internal var teamTBVPoll: QDMTeamToBeVisionPoll?
     internal var teamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
     internal var teamTBV: QDMTeamToBeVision?
@@ -56,7 +56,7 @@ final class MyQotMainInteractor: MyQotMainWorker {
         }
 
         var tmpNewLibraryItemCount: Int = .zero
-        var tmpToBeVisionTitle = ""
+        var tmpToBeVisionTitle = String.empty
         var tmpTeamTBVPoll: QDMTeamToBeVisionPoll?
         var tmpTeamTrackerPoll: QDMTeamToBeVisionTrackerPoll?
         var tmpTeamTBV: QDMTeamToBeVision?
@@ -187,7 +187,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                         (teamTrackerPoll?.open == true && teamTrackerPoll?.didVote == false))
         default: break
         }
-        let subtitle = self.subtitles[item?.rawValue ?? ""] ?? nil
+        let subtitle = self.subtitles[item?.rawValue ?? String.empty] ?? nil
         return(subtitle, false)
     }
 
@@ -214,7 +214,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         let item = getItem(at: indexPath)
         let title = getTitle(for: item)
         cell.setTitle(title: title)
-        cell.setEnabled(self.isCellEnabled[item?.rawValue ?? ""] ?? true, title: title)
+        cell.setEnabled(self.isCellEnabled[item?.rawValue ?? String.empty] ?? true, title: title)
         let subtitleResult = getSubtitle(for: item)
         cell.setSubtitle(subtitleResult.0)
         cell.showRedDot(subtitleResult.1)

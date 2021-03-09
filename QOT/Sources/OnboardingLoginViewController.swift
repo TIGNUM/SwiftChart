@@ -120,7 +120,7 @@ private extension OnboardingLoginViewController {
         interactor.resetCodeError()
 
         digitTextFields.forEach {
-            $0.text = ""
+            $0.text = String.empty
             $0.textColor = .white
             $0.layer.borderColor = UIColor.white20.cgColor
         }
@@ -149,7 +149,7 @@ private extension OnboardingLoginViewController {
         let active = (digitTextFields.filter { $0.hasText == false }).isEmpty == true
         guard active == true else { return }
         textField.resignFirstResponder()
-        let code = digitTextFields.reduce("", { $0 + ($1.text ?? "") })
+        let code = digitTextFields.reduce(String.empty, { $0 + ($1.text ?? String.empty) })
         interactor.validateLoginCode(code, for: emailField.text) { [weak self] (showCoachMarks) in
             if showCoachMarks {
                 self?.router.showCoachMarks()
@@ -161,7 +161,7 @@ private extension OnboardingLoginViewController {
 
     func goToNextDigitField(_ currentTextField: UITextField, nextTextField: UITextField?) {
         if let nextTextField = nextTextField {
-            nextTextField.text = ""
+            nextTextField.text = String.empty
             nextTextField.becomeFirstResponder()
         }
     }
@@ -220,7 +220,7 @@ private extension OnboardingLoginViewController {
         if hasInternet() {
             trackUserEvent(.VERIFY_EMAIL, action: .TAP)
             emailField.textField.resignFirstResponder()
-            emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
+            emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: String.empty)
             interactor.didTapVerify(email: emailField.text) {
                 self.resetCodeInputPosition()
                 self.router.goToRegister(email: self.emailField.text)

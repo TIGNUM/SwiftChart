@@ -25,7 +25,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     private var title: String?
     private var remoteID: Int = .zero
     private var duration: Double = .zero
-    private var categoryTitle = ""
+    private var categoryTitle = String.empty
     private var isRead = false
     weak var delegate: IsPlayingDelegate?
     let skeletonManager = SkeletonManager()
@@ -97,7 +97,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
 extension StrategyContentTableViewCell {
 
     @IBAction func didTapAudioButton() {
-        let media = MediaPlayerModel(title: title ?? "",
+        let media = MediaPlayerModel(title: title ?? String.empty,
                                      subtitle: categoryTitle,
                                      url: mediaURL,
                                      totalDuration: duration, progress: .zero, currentTime: .zero, mediaRemoteId: remoteID)

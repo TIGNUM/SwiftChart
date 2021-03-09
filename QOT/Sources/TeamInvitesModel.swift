@@ -67,7 +67,7 @@ struct TeamInvite {
 
     struct Pending {
         let qdmInvite: QDMTeamInvitation
-        var warning: String = ""
+        var warning: String = String.empty
         let canJoin: Bool
 
         init(invite: QDMTeamInvitation, canJoin: Bool, maxTeamCount: Int) {

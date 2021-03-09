@@ -21,7 +21,7 @@ extension EKEvent: EKEventEditable {
             guard let status = status[.calendar], let strongSelf = self else { return }
             switch status {
             case .granted:
-                var tempNotes = strongSelf.notes ?? ""
+                var tempNotes = strongSelf.notes ?? String.empty
                 guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
                 tempNotes += "\n\n" + preparationLink
                 log("preparationLink: \(preparationLink)")
@@ -42,7 +42,7 @@ extension EKEvent: EKEventEditable {
 
     func addPreparationLink(preparationID: String?) {
         guard let localID = preparationID else { return }
-        var tempNotes = notes ?? ""
+        var tempNotes = notes ?? String.empty
         guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
         tempNotes += "\n\n" + preparationLink
         log("preparationLink: \(preparationLink)")
@@ -65,7 +65,7 @@ extension EKEvent: EKEventEditable {
         }
         // FIXME: swift 4 has ability to convert NSRange -> Range, so we can then use string.removeSubrange()
         // @see https://stackoverflow.com/questions/25138339/nsrange-to-rangestring-index
-        self.notes = (currentNotes as NSString).replacingCharacters(in: regexMatch.range, with: "")
+        self.notes = (currentNotes as NSString).replacingCharacters(in: regexMatch.range, with: String.empty)
     }
 }
 

@@ -106,7 +106,7 @@ private extension MyLibraryNotesViewController {
                                                              .font: UIFont.sfProtextLight(ofSize: 16),
                                                              .kern: CharacterSpacing.kern05])
         } else {
-            attributedText = NSAttributedString(string: interactor?.placeholderText ?? "",
+            attributedText = NSAttributedString(string: interactor?.placeholderText ?? String.empty,
                                                 attributes: [.foregroundColor: UIColor.lightGrey,
                                                              .font: UIFont.sfProtextLight(ofSize: 16),
                                                              .kern: CharacterSpacing.kern05])

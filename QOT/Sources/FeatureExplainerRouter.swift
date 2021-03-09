@@ -34,7 +34,7 @@ extension FeatureExplainerRouter: FeatureExplainerRouterInterface {
                 let controller = DTMindsetViewController(configure: configurator)
                 self.viewController?.present(controller, animated: true)
             case .prepare:
-                if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue("") {
+                if let launchURL = URLScheme.prepareEvent.launchURLWithParameterValue(String.empty) {
                     AppDelegate.current.launchHandler.process(url: launchURL)
                 }
             case .tools:

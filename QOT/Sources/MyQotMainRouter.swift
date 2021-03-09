@@ -66,7 +66,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
     }
 
     func presentTeamPendingInvites() {
-        if let launchURL = URLScheme.teamInvitations.launchURLWithParameterValue("") {
+        if let launchURL = URLScheme.teamInvitations.launchURLWithParameterValue(String.empty) {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }

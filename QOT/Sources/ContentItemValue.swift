@@ -38,7 +38,7 @@ enum ContentItemValue {
         let description = item.valueDescription.isEmpty ? nil : item.valueDescription.trimmingCharacters(in: .whitespacesAndNewlines)
         let localMediaPath = item.userStorages?.filter({ (storage) -> Bool in
             storage.userStorageType == .DOWNLOAD
-        }).first?.mediaPath() ?? ""
+        }).first?.mediaPath() ?? String.empty
 
         let mediaURL = URL(string: localMediaPath) ?? item.valueMediaURL.flatMap { URL(string: $0) }
         let imageURL = item.valueImageURL.flatMap { URL(string: $0) }
@@ -85,7 +85,7 @@ enum ContentItemValue {
             }
         case .audio:
             if let audio = mediaURL {
-                let title = text ?? ""
+                let title = text ?? String.empty
                 self = .audio(remoteId: item.remoteID ?? .zero,
                               title: title,
                               description: description,
@@ -150,7 +150,7 @@ enum ContentItemValue {
         switch self {
         case .audio: return AppTextService.get(.generic_content_section_item_new_label_audio).replacingOccurrences(of: "${AMOUNT}", with: min)
         case .video: return AppTextService.get(.generic_content_section_item_new_label_video).replacingOccurrences(of: "${AMOUNT}", with: min)
-        default: return ""
+        default: return String.empty
         }
     }
 }

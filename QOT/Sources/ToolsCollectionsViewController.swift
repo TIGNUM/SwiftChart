@@ -112,7 +112,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         case .header:
             let headerTitle = interactor.headerTitle
             if headerTitle.count > .zero {
-                let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " tools"
+                let title = headerTitle.replacingOccurrences(of: "Performance ", with: String.empty) + " tools"
                 return ToolsTableHeaderView.init(title: title.capitalizingFirstLetter(), subtitle: nil)
             }
         default:
@@ -138,7 +138,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return cell
         } else if tool.type == "video" {
             let cell: ToolsCollectionsVideoTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.setSelectedColor(.tignumPink40, alphaComponent: 0.1)
             cell.configure(title: tool.title,
                            timeToWatch: tool.durationString,
                            imageURL: tool.imageURL)
@@ -200,7 +200,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             switch ContentFormat(rawValue: tool.type) {
             case .audio:
                 let media = MediaPlayerModel(title: tool.title,
-                                             subtitle: "",
+                                             subtitle: String.empty,
                                              url: tool.mediaURL,
                                              totalDuration: tool.duration,
                                              progress: .zero,
@@ -245,7 +245,7 @@ private extension ToolsCollectionsViewController {
         guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
             return
         }
-        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
+        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? String.empty, url: url)
         pdfReaderConfigurator(readerViewController)
         present(navigationController, animated: true, completion: nil)
     }
