@@ -11,11 +11,15 @@ import qot_dal
 @testable import TIGNUM_X
 
 class FeatureFlagTests: XCTestCase {
+    private lazy var activated: [NetworkEnvironment.Name: [Feature.Flag]] = {
+        return [.DEV: [.editableNotifications],
+                .INT: [.editableNotifications],
+                .PUB: []]
+    }()
+
     func testActivatedFeatureEditableNotification() {
-        switch NetworkEnvironment().currentScheme {
-        case .DEV: XCTAssertTrue(Feature.Flag.editableNotifications.isOn())
-        case .INT: XCTAssertTrue(Feature.Flag.editableNotifications.isOn())
-        case .PUB: XCTAssertFalse(Feature.Flag.editableNotifications.isOn())
-        }
+        XCTAssertTrue(Feature.Flag.editableNotifications.isOn(activated, environment: .DEV))
+        XCTAssertTrue(Feature.Flag.editableNotifications.isOn(activated, environment: .INT))
+        XCTAssertFalse(Feature.Flag.editableNotifications.isOn(activated, environment: .PUB))
      }
 }
