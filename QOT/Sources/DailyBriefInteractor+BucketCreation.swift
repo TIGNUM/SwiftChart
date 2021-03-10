@@ -614,7 +614,10 @@ extension DailyBriefInteractor {
         var createQuestionWithoutAnswerList: [BaseDailyBriefViewModel] = []
 
         guard let collection = questionsWithoutAnswer.contentCollections?.first else {
-            createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: String.empty, text: String.empty, image: nil, domainModel: questionsWithoutAnswer))
+            createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: String.empty,
+                                                                         text: String.empty,
+                                                                         image: nil,
+                                                                         domainModel: questionsWithoutAnswer))
             return createQuestionWithoutAnswerList
         }
         createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: AppTextService.get(.daily_brief_section_big_questions_title_new),
@@ -681,7 +684,7 @@ extension DailyBriefInteractor {
             let sprintContentItems = sprintContentCollections?.first?.contentItems
             let sprintInfo = sprintContentItems?.first?.valueText ?? String.empty
             let dayTask = sprintContentItems?.first?.valueDescription ?? String.empty
-            if sprintContentItems?.count ?? .zero > 1, index == .zero {
+                if sprintContentItems?.count ?? .zero > 1, index == .zero {
                 let sprintMedia = sprintContentItems?[1]
                 relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(sprintMedia?.valueText,
                                                                                      sprintMedia?.durationString,
