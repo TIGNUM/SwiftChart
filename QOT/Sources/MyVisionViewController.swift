@@ -38,7 +38,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var lastRatedComment: UILabel!
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
-    @IBOutlet private weak var rateButton: UIButton!
+    @IBOutlet private weak var rateButton: RoundedButton!
     @IBOutlet private weak var singleMessageRateButton: UIButton!
     @IBOutlet private weak var updateButton: UIButton!
     @IBOutlet private weak var toBeVisionSelectionBar: ToBeVisionSelectionBar!
@@ -159,12 +159,19 @@ private extension MyVisionViewController {
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
 
-    func setSelectionBarButtonItems() {
+    func setSelectionBarItems() {
         toBeVisionSelectionBar.allOff()
         toBeVisionSelectionBar.configure(isOwner: true, isPersonal: true, self)
         toBeVisionSelectionBar.title = nil
         navigationBarView.configure(isOwner: true, isPersonal: true, self)
         NewThemeView.dark.apply(navigationBarView)
+    }
+
+    func deactivateRate(syncingText: String) {
+        rateButton.isEnabled = false
+        singleMessageRateButton.isEnabled = false
+        singleMessageRateButton.setTitle(syncingText, for: .disabled)
+        rateButton.setTitle(syncingText, for: .disabled)
     }
 
     func showNullState(with title: String, message: String, writeMessage: String) {
@@ -183,15 +190,63 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         }
     }
 
+    func loadMyVision(_ vision: QDMToBeVision?) {
+        interactor.hideNullState()
+        rateButton.setTitle(interactor.rateText ?? .empty, for: .normal)
+        var headline = vision?.headline
+        if headline?.isEmpty != false {
+            headline = interactor.nullStateTitle
+        }
+        ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
+        let text = (vision?.text?.isEmpty == Optional(false)) ? vision?.text : interactor.nullStateSubtitle
+        detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
+    }
+
+    func showEmptyTbv() {
+        interactor.showEmptyTbv(with: interactor.nullStateTitle ?? .empty,
+                                 message: interactor.nullStateSubtitle ?? .empty,
+                                 writeMessage: interactor.nullStateCTA ?? .empty)
+    }
+
+    func setImage(_ vision: QDMToBeVision?) {
+        tempImageURL = vision?.profileImageResource?.url()
+        userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
+        userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
+        removeGradients()
+        addGradients(for: vision)
+    }
+
+    func setLabels(_ rateText: String?) {
+        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
+        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
+        ThemeText.datestamp.apply(interactor.sinceYouRated, to: lastRatedComment)
+    }
+
+    func showWarningIcon() {
+        interactor.shouldShowWarningIcon { [weak self] (show) in
+            self?.warningImageView.isHidden = !show
+        }
+    }
+
+    func showRatingViews(_ shouldShowSingleMessageRating: Bool?) {
+        if let shouldShowSingleMessage = shouldShowSingleMessageRating {
+            singleMessageRatingView.isHidden = !shouldShowSingleMessage
+            doubleMessageRatingView.isHidden = shouldShowSingleMessage
+        } else {
+            singleMessageRatingView.isHidden = true
+            doubleMessageRatingView.isHidden = true
+        }
+    }
+
     func setupView() {
         scrollView.alpha = .zero
 
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
-        ThemeText.tbvSectionHeader.apply(AppTextService.get(.my_qot_my_tbv_section_header_title),
-                                         to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(interactor.toBeVisionTitle, to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: .zero, left: .zero, bottom: Layout.padding_50, right: .zero)
         scrollView.scrollsToTop = true
+        ThemableButton.darkButton.apply(rateButton, title: .empty)
         ThemeBorder.white.apply(rateButton)
         ThemeBorder.white.apply(singleMessageRateButton)
         ThemeBorder.white.apply(updateButton)
@@ -202,8 +257,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
                                                       imageSize: .medium,
                                                       adapter: adapter)
         imagePickerController.delegate = self
-        let dataCta = AppTextService.get(.my_qot_my_tbv_section_footer_button_title_my_tbv_data)
-        viewMyDataLabel.text = dataCta
+        viewMyDataLabel.text = interactor.myData
         userImageView.image = R.image.circlesWarning()
     }
 
@@ -212,52 +266,22 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
               isRateEnabled: Bool,
               shouldShowSingleMessageRating: Bool?) {
         if myVision == nil {
-            interactor.showNullState(with: interactor.nullStateTitle ?? String.empty,
-                                     message: interactor.nullStateSubtitle ?? String.empty,
-                                     writeMessage: interactor.nullStateCTA ?? String.empty)
+            showEmptyTbv()
             return
         }
         if scrollView.alpha == .zero {
             UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
         }
         skeletonManager.hide()
-        interactor.hideNullState()
-        var headline = myVision?.headline
-        if headline?.isEmpty != false {
-            headline = interactor.nullStateTitle
-        }
-        ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
-        let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor.nullStateSubtitle
-        detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
-
-        tempImageURL = myVision?.profileImageResource?.url()
-        userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
-        userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
-        removeGradients()
-        addGradients(for: myVision)
-
-        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
-        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
-
-        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_track_subtiitle),
-                                  to: lastRatedComment)
-
+        loadMyVision(myVision)
+        setImage(myVision)
+        setLabels(rateText)
+        showRatingViews(shouldShowSingleMessageRating)
+        showWarningIcon()
+        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
+        ThemeText.datestamp.apply(interactor.sinceUpdated, to: lastUpdatedComment)
         rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled
-        if let shouldShowSingleMessage = shouldShowSingleMessageRating {
-            singleMessageRatingView.isHidden = !shouldShowSingleMessage
-            doubleMessageRatingView.isHidden = shouldShowSingleMessage
-        } else {
-            singleMessageRatingView.isHidden = true
-            doubleMessageRatingView.isHidden = true
-        }
-
-        interactor.shouldShowWarningIcon { [weak self] (show) in
-            self?.warningImageView.isHidden = !show
-        }
-        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(AppTextService.get(.my_qot_my_tbv_section_update_subtitle),
-                                  to: lastUpdatedComment)
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {

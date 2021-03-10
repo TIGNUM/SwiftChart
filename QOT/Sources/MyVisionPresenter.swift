@@ -41,8 +41,8 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
                              shouldShowSingleMessageRating: shouldShowSingleMessageRating)
     }
 
-    func setSelectionBarButtonItems() {
-        viewController?.setSelectionBarButtonItems()
+    func setSelectionBarItems() {
+        viewController?.setSelectionBarItems()
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String) {
@@ -50,5 +50,9 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
                                               message: message,
                                               editTitle: editTitle,
                                               createNewTitle: crateNewTitle)
+    }
+
+    func deactivateRate(syncingText: String) {
+        viewController?.deactivateRate(syncingText: syncingText)
     }
 }
