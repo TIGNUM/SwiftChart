@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.0</string>
+	<string>3.3.4</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -41,7 +41,7 @@
 			<string>INTERNAL_VALIDATION_SCHEME_IDENTIFIER</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>INTERNAL_VALIDATION_SCHEME</string>
+				<string>com.tignum.qot.v2</string>
 			</array>
 		</dict>
 		<dict>
@@ -57,7 +57,7 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>Fabric</key>
+        <key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
 		<string>c5b6a77e0ac832aeb121a8444afaba1522a28469</string>
