@@ -90,10 +90,10 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         switch colorMode {
         case.dark:
             ThemeText.articleCategoryNotScaled.apply(media?.subtitle, to: categorytitleLabel)
-            ThemeText.audioFullScreenTitleDark.apply(String.empty, to: titleLabel)
+            ThemeText.audioFullScreenTitleDark.apply(media?.title, to: titleLabel)
         case .darkNot:
             ThemeText.audioFullScreenCategory.apply(media?.subtitle, to: categorytitleLabel)
-            ThemeText.audioFullScreenTitle.apply((media?.title ?? String.empty), to: titleLabel)
+            ThemeText.audioFullScreenTitle.apply((media?.title), to: titleLabel)
         }
     }
 
