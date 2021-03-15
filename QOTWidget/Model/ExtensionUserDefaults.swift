@@ -9,9 +9,9 @@
 import Foundation
 
 enum SuiteName: String, CaseIterable {
-    case widget = "group.widget.com.tignum.qot.novartis"
-    case siri = "group.siri.com.tignum"
-    case share = "group.share.tignum.qot.novartis"
+    case widget = "group.widget.com.tignum.qot.v2"
+    case siri = "group.siri.com.tignum.qot.v2"
+    case share = "group.share.com.tignum.qot.v2"
 }
 
 enum ExtensionUserDefaults: String, CaseIterable {
