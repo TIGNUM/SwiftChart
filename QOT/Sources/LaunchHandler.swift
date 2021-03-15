@@ -422,7 +422,7 @@ extension LaunchHandler {
             case .Tools, .QOTLibrary:
                 if let controller = R.storyboard.tools.tignum_XToolsItemsViewController() {
                     ToolsItemsConfigurator.make(viewController: controller, selectedToolID: collectionId)
-                    self?.present(viewController: controller)
+                    self?.push(viewController: controller)
                 }
             default:
                 if let controller = R.storyboard.main.tignum_XArticleViewController() {
