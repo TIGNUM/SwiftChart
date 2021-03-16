@@ -684,7 +684,7 @@ extension DailyBriefInteractor {
             let sprintContentItems = sprintContentCollections?.first?.contentItems
             let sprintInfo = sprintContentItems?.first?.valueText ?? String.empty
             let dayTask = sprintContentItems?.first?.valueDescription ?? String.empty
-                if sprintContentItems?.count ?? .zero > 1, index == .zero {
+            if sprintContentItems?.count ?? .zero > 1, index == .zero {
                 let sprintMedia = sprintContentItems?[1]
                 relatedItemsModels.append(SprintChallengeViewModel.RelatedItemsModel(sprintMedia?.valueText,
                                                                                      sprintMedia?.durationString,
