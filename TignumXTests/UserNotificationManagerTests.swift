@@ -1,8 +1,8 @@
 //
 //  UserNotificationManagerTests.swift
-//  TIGNUM XTests
+//  TignumXTests
 //
-//  Created by karmic on 03.03.21.
+//  Created by karmic on 09.03.21.
 //  Copyright © 2021 Tignum. All rights reserved.
 //
 
