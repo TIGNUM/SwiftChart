@@ -382,7 +382,6 @@
 		38F6C9A625E034D400BCA92D /* DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9A425E034D300BCA92D /* DEV.plist */; };
 		38F6C9AE25E035E500BCA92D /* DEV.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9AD25E035E500BCA92D /* DEV.xcconfig */; };
 		38F6C9BC25E0360200BCA92D /* INT.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 38F6C9BB25E0360200BCA92D /* INT.xcconfig */; };
-		38F6CA2325E3BE9700BCA92D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F6CA2225E3BE9700BCA92D /* Environment.swift */; };
 		38F95C9825068106009265DC /* PollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9625068106009265DC /* PollCollectionViewCell.swift */; };
 		38F95C9925068106009265DC /* PollCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F95C9725068106009265DC /* PollCollectionViewCell.xib */; };
 		38F95C9C2507D51D009265DC /* PollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F95C9A2507D51D009265DC /* PollTableViewCell.swift */; };
@@ -1808,7 +1807,6 @@
 		38F6C9A425E034D300BCA92D /* DEV.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DEV.plist; sourceTree = "<group>"; };
 		38F6C9AD25E035E500BCA92D /* DEV.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DEV.xcconfig; sourceTree = "<group>"; };
 		38F6C9BB25E0360200BCA92D /* INT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = INT.xcconfig; sourceTree = "<group>"; };
-		38F6CA2225E3BE9700BCA92D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		38F95C9625068106009265DC /* PollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollCollectionViewCell.swift; sourceTree = "<group>"; };
 		38F95C9725068106009265DC /* PollCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PollCollectionViewCell.xib; sourceTree = "<group>"; };
 		38F95C9A2507D51D009265DC /* PollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTableViewCell.swift; sourceTree = "<group>"; };
@@ -3242,7 +3240,6 @@
 		367BB012223955D200282AB6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				F9A10FE525F0E27000BD3EDC /* FeatureFlags */,
 				367BB013223956A700282AB6 /* Main.storyboard */,
 				3876050F23A266D30034B451 /* BaseRouter.swift */,
 				BB157759233A0E0500202978 /* BaseViewController.swift */,
@@ -5336,8 +5333,8 @@
 				CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */,
 				7F6567431FE28FBC00A6CB7F /* Clean.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
+				F9A10FE625F0E28400BD3EDC /* FeatureFlags.swift */,
 				BB4061612302F3A600E5AB19 /* OrientationManager.swift */,
-				38F6CA2225E3BE9700BCA92D /* Environment.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -5797,14 +5794,6 @@
 				F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */,
 			);
 			name = PopUpViewCopyright;
-			sourceTree = "<group>";
-		};
-		F9A10FE525F0E27000BD3EDC /* FeatureFlags */ = {
-			isa = PBXGroup;
-			children = (
-				F9A10FE625F0E28400BD3EDC /* FeatureFlags.swift */,
-			);
-			name = FeatureFlags;
 			sourceTree = "<group>";
 		};
 		F9A5C93E22B7CD1C00AB2E94 /* Payment  */ = {
@@ -6808,7 +6797,6 @@
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				8D0B4D242301CC4000A1AC47 /* RegistrationNamesRouter.swift in Sources */,
-				38F6CA2325E3BE9700BCA92D /* Environment.swift in Sources */,
 				ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */,
 				75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */,
 				BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */,
