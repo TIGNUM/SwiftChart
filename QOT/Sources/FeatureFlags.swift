@@ -13,15 +13,14 @@ struct Feature {
     enum Flag {
         case editableNotifications
 
-        var activated: [NetworkEnvironment.Name: [Feature.Flag]] {
+        private var activated: [Environment.Name: [Feature.Flag]] {
             return [.DEV: [.editableNotifications],
                     .INT: [.editableNotifications],
                     .PUB: []]
         }
 
-        func isOn(_ activated: [NetworkEnvironment.Name: [Feature.Flag]],
-                  environment: NetworkEnvironment.Name) -> Bool {
-            return activated[environment]?.contains(self) == true
+        var isOn: Bool {
+            return activated[Environment().current]?.contains(self) == true
         }
     }
 }
