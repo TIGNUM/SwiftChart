@@ -188,8 +188,10 @@
 	<key>scheme_name</key>
 	<string>${scheme_name}</string>
 	<key>url_host</key>
-	<string>${url_host}</string>
+	<string>${URL_HOST}</string>
 	<key>url_scheme</key>
-	<string>${url_scheme}</string>
+	<string>${URL_SCHEME}</string>
+	<key>scheme_name</key>
+	<string>${SCHEME_NAME}</string>
 </dict>
 </plist>
