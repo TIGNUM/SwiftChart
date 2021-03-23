@@ -31,11 +31,11 @@
     SUBQUERY (
         $extensionItem.attachments,
         $attachment,
-        (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.text&quot;
-        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.plain-text&quot;
-        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.utf8-plain-text&quot;
-        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.url&quot;)
-        AND NOT (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.file-url&quot;)
+        (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.utf8-plain-text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url")
+        AND NOT (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.file-url")
     ).@count != 0
 ).@count != 0</string>
 		</dict>

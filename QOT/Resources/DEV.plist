@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
+	<string>3.3.4</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -186,12 +186,10 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>scheme_name</key>
-	<string>${scheme_name}</string>
+	<string>${SCHEME_NAME}</string>
 	<key>url_host</key>
 	<string>${URL_HOST}</string>
 	<key>url_scheme</key>
 	<string>${URL_SCHEME}</string>
-	<key>scheme_name</key>
-	<string>${SCHEME_NAME}</string>
 </dict>
 </plist>
