@@ -3622,6 +3622,14 @@
 			name = CalendarEventSelection;
 			sourceTree = "<group>";
 		};
+		38EE03F9260B86990003A1FA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC87A779220D94F800622C90 /* Intent */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		38F6C99025E0334500BCA92D /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -5123,8 +5131,8 @@
 		CBB237E31E6FFF1200AB5AEF = {
 			isa = PBXGroup;
 			children = (
+				38EE03F9260B86990003A1FA /* Extensions */,
 				7BD58BE66F7DCDCEF349DBD8 /* Frameworks */,
-				AC87A779220D94F800622C90 /* Intent */,
 				AC87A784220D94F900622C90 /* IntentUI */,
 				BC59F5CD2FD700C00093E286 /* Pods */,
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
