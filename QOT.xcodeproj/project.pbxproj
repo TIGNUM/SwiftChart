@@ -3594,14 +3594,14 @@
 			name = Header;
 			sourceTree = "<group>";
 		};
-		38D5C71225F3FFB3001884FC /* TignumXTests */ = {
+		38D5C71225F3FFB3001884FC /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				38D5C71525F3FFB3001884FC /* Info.plist */,
 				38D5C74325F40131001884FC /* FeatureFlagTests.swift */,
 				38D5C76225F783FD001884FC /* UserNotificationManagerTests.swift */,
 			);
-			path = TignumXTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		38E5A0812412B011008FCF8F /* CalendarEventSelection */ = {
@@ -5123,7 +5123,6 @@
 		CBB237E31E6FFF1200AB5AEF = {
 			isa = PBXGroup;
 			children = (
-				38D5C71225F3FFB3001884FC /* TignumXTests */,
 				7BD58BE66F7DCDCEF349DBD8 /* Frameworks */,
 				AC87A779220D94F800622C90 /* Intent */,
 				AC87A784220D94F900622C90 /* IntentUI */,
@@ -5132,6 +5131,7 @@
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
 				918D5E2220EE050900AEAD37 /* QOTWidget */,
 				B8BCE58522AAB5EF0012AAAC /* ShareExtension */,
+				38D5C71225F3FFB3001884FC /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
