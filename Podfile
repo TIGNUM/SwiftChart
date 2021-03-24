@@ -15,7 +15,7 @@ def common_pods
   pod 'JTAppleCalendar', '7.1.6'
   pod 'IOSSecuritySuite'
   pod 'SwiftChart', :git => 'git@github.com:TIGNUM/SwiftChart.git'
-  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
+  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'task/xconfig-update-add-airship'
 end
 
 target 'QOT' do
