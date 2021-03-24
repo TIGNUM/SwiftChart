@@ -1798,6 +1798,11 @@
 		38E84B7B241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareBenefitsTableViewCell.xib; sourceTree = "<group>"; };
 		38E84B7E241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		38EE0430260B8AAE0003A1FA /* TIGNUM XINT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TIGNUM XINT.entitlements"; sourceTree = "<group>"; };
+		38EE0438260B8B1A0003A1FA /* ShareExtensionINT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtensionINT.entitlements; sourceTree = "<group>"; };
+		38EE0439260B8B3E0003A1FA /* IntentUIINT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentUIINT.entitlements; sourceTree = "<group>"; };
+		38EE043A260B8B7E0003A1FA /* IntentINT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentINT.entitlements; sourceTree = "<group>"; };
+		38EE043B260B8BD00003A1FA /* QOTWidgetINT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QOTWidgetINT.entitlements; sourceTree = "<group>"; };
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
@@ -3627,8 +3632,8 @@
 			children = (
 				AC87A779220D94F800622C90 /* Intent */,
 				AC87A784220D94F900622C90 /* IntentUI */,
-				918D5E2220EE050900AEAD37 /* QOTWidget */,
-				B8BCE58522AAB5EF0012AAAC /* ShareExtension */,
+				918D5E2220EE050900AEAD37 /* Widget */,
+				B8BCE58522AAB5EF0012AAAC /* Share */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4321,16 +4326,17 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		918D5E2220EE050900AEAD37 /* QOTWidget */ = {
+		918D5E2220EE050900AEAD37 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
 				912AB11520F3830A00E34328 /* QOTWidget.entitlements */,
+				38EE043B260B8BD00003A1FA /* QOTWidgetINT.entitlements */,
 				918D5E2820EE050900AEAD37 /* Info.plist */,
 				9100194C20F63DF100049118 /* Model */,
 				9100194D20F63E0800049118 /* View */,
 				9100194E20F63E1D00049118 /* Controller */,
 			);
-			path = QOTWidget;
+			path = Widget;
 			sourceTree = "<group>";
 		};
 		AC103E362285AF4700F426F0 /* ResultsMindsetShifter  */ = {
@@ -4419,6 +4425,7 @@
 			children = (
 				AC87A77C220D94F900622C90 /* Info.plist */,
 				ACA4B18A2211CFAF00552A54 /* Intent.entitlements */,
+				38EE043A260B8B7E0003A1FA /* IntentINT.entitlements */,
 				AC87A77A220D94F800622C90 /* IntentHandler.swift */,
 				AC84FFC32229477A0056F9EA /* IntentHandler+AppEvents.swift */,
 				AC84FFBF2229379B0056F9EA /* SiriEventsModel.swift */,
@@ -4435,6 +4442,7 @@
 			isa = PBXGroup;
 			children = (
 				AC87A78A220D94F900622C90 /* Info.plist */,
+				38EE0439260B8B3E0003A1FA /* IntentUIINT.entitlements */,
 				AC87A79F220D954900622C90 /* IntentUI.entitlements */,
 				AC87A787220D94F900622C90 /* MainInterface.storyboard */,
 				AC87A7AF220DBAE000622C90 /* ReadVisionView.xib */,
@@ -5020,17 +5028,18 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		B8BCE58522AAB5EF0012AAAC /* ShareExtension */ = {
+		B8BCE58522AAB5EF0012AAAC /* Share */ = {
 			isa = PBXGroup;
 			children = (
 				F96D75A6249CE86700DFFB22 /* CustomizedShareViewController */,
+				38EE0438260B8B1A0003A1FA /* ShareExtensionINT.entitlements */,
 				B8BCE59522AAB5FA0012AAAC /* ShareExtension.entitlements */,
 				B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */,
 				B8BCE58B22AAB5EF0012AAAC /* Info.plist */,
 				B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */,
 				B88A19E5241A3A0200FC5019 /* Media.xcassets */,
 			);
-			path = ShareExtension;
+			path = Share;
 			sourceTree = "<group>";
 		};
 		B8F7277622D4CFA1006FDD7A /* ExternalLinkImporter */ = {
@@ -5160,6 +5169,7 @@
 		CBB237EE1E6FFF1200AB5AEF /* QOT */ = {
 			isa = PBXGroup;
 			children = (
+				38EE0430260B8AAE0003A1FA /* TIGNUM XINT.entitlements */,
 				CC38B11E1F29E60000C2BB87 /* QOT.entitlements */,
 				CBD791571E72F10E0006C590 /* Resources */,
 				CBB4DD171EE07B010071494A /* Sources */,
@@ -7910,7 +7920,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K82G24324U;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/QOTWidget/Info.plist;
+				INFOPLIST_FILE = Extensions/Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime.widget;
@@ -7990,7 +8000,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = K82G24324U;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/ShareExtension/Info.plist;
+				INFOPLIST_FILE = Extensions/Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -8231,14 +8241,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "QOT/TIGNUM XINT.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8486;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = K82G24324U;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -8252,10 +8262,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 3.3.4;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v3;
 				PRODUCT_NAME = "TIGNUM X";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = DEVPPP_QOTmain;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -8271,18 +8281,19 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = K82G24324U;
+				CODE_SIGN_ENTITLEMENTS = Extensions/Widget/QOTWidgetINT.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/QOTWidget/Info.plist;
+				INFOPLIST_FILE = Extensions/Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v3.QOTWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = DEVDPP_QOTWidget;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -8296,20 +8307,20 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = Intent/Intent.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Extensions/Intent/IntentINT.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = K82G24324U;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Extensions/Intent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime.intent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v3.Intent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DEVDPP_QOTIntent;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -8323,20 +8334,20 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = IntentUI/IntentUI.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Extensions/IntentUI/IntentUIINT.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = K82G24324U;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Extensions/IntentUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime.intentui;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.Intent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DEVDPP_QOTIntentUI;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -8350,20 +8361,20 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Extensions/Share/ShareExtensionINT.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = K82G24324U;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/ShareExtension/Info.plist;
+				INFOPLIST_FILE = Extensions/Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime.shareextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v3.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DEVDPP_QOTShareExtension;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -8560,10 +8571,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = TFH2SGDX62;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -8916,7 +8928,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/QOTWidget/Info.plist;
+				INFOPLIST_FILE = Extensions/Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
@@ -8994,7 +9006,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/ShareExtension/Info.plist;
+				INFOPLIST_FILE = Extensions/Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -9019,7 +9031,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TFH2SGDX62;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/QOTWidget/Info.plist;
+				INFOPLIST_FILE = Extensions/Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2.QOTWidget;
@@ -9044,7 +9056,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/QOTWidget/Info.plist;
+				INFOPLIST_FILE = Extensions/Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2.QOTWidget;
@@ -9070,7 +9082,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TFH2SGDX62;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/QOTWidget/Info.plist;
+				INFOPLIST_FILE = Extensions/Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2.QOTWidget;
@@ -9096,7 +9108,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y5785Z5AB3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/QOTWidget/Info.plist;
+				INFOPLIST_FILE = Extensions/Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2.QOTWidget;
@@ -9324,7 +9336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TFH2SGDX62;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/ShareExtension/Info.plist;
+				INFOPLIST_FILE = Extensions/Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -9350,7 +9362,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TFH2SGDX62;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/ShareExtension/Info.plist;
+				INFOPLIST_FILE = Extensions/Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
@@ -9375,7 +9387,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TFH2SGDX62;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/ShareExtension/Info.plist;
+				INFOPLIST_FILE = Extensions/Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
@@ -9400,7 +9412,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TFH2SGDX62;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Extensions/ShareExtension/Info.plist;
+				INFOPLIST_FILE = Extensions/Share/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
