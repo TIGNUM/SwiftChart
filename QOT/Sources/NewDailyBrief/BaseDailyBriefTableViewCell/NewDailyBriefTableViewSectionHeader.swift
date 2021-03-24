@@ -16,6 +16,7 @@ class NewDailyBriefTableViewSectionHeader: UITableViewHeaderFooterView {
     func configure(title: String?) {
         guard let titleText = title else {
             skeletonManager.addTitle(titleLabel)
+            log("[DaiBriLOG: NewDailyBriefTableViewSectionHeader] configure -> title == nil; return ", level: .error)
             return
         }
         skeletonManager.hide()
