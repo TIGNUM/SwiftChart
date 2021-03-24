@@ -4332,9 +4332,9 @@
 				912AB11520F3830A00E34328 /* QOTWidget.entitlements */,
 				38EE043B260B8BD00003A1FA /* QOTWidgetINT.entitlements */,
 				918D5E2820EE050900AEAD37 /* Info.plist */,
+				9100194E20F63E1D00049118 /* Controller */,
 				9100194C20F63DF100049118 /* Model */,
 				9100194D20F63E0800049118 /* View */,
-				9100194E20F63E1D00049118 /* Controller */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -4423,17 +4423,17 @@
 		AC87A779220D94F800622C90 /* Intent */ = {
 			isa = PBXGroup;
 			children = (
-				AC87A77C220D94F900622C90 /* Info.plist */,
 				ACA4B18A2211CFAF00552A54 /* Intent.entitlements */,
 				38EE043A260B8B7E0003A1FA /* IntentINT.entitlements */,
+				AC87A79D220D953F00622C90 /* Intents.intentdefinition */,
+				AC87A77C220D94F900622C90 /* Info.plist */,
+				ACC68C8B221C4E3500ED899B /* DailyPrepIntentHandler.swift */,
 				AC87A77A220D94F800622C90 /* IntentHandler.swift */,
 				AC84FFC32229477A0056F9EA /* IntentHandler+AppEvents.swift */,
-				AC84FFBF2229379B0056F9EA /* SiriEventsModel.swift */,
 				ACA4B18B2211D13800552A54 /* NSUserActivity+Keys.swift */,
 				AC87A7A0220D961800622C90 /* ReadVisionIntentHandler.swift */,
+				AC84FFBF2229379B0056F9EA /* SiriEventsModel.swift */,
 				ACA4B18F2212DEA600552A54 /* WhatsHotIntentHandler.swift */,
-				ACC68C8B221C4E3500ED899B /* DailyPrepIntentHandler.swift */,
-				AC87A79D220D953F00622C90 /* Intents.intentdefinition */,
 			);
 			path = Intent;
 			sourceTree = "<group>";
@@ -4441,15 +4441,15 @@
 		AC87A784220D94F900622C90 /* IntentUI */ = {
 			isa = PBXGroup;
 			children = (
-				AC87A78A220D94F900622C90 /* Info.plist */,
-				38EE0439260B8B3E0003A1FA /* IntentUIINT.entitlements */,
 				AC87A79F220D954900622C90 /* IntentUI.entitlements */,
-				AC87A787220D94F900622C90 /* MainInterface.storyboard */,
+				38EE0439260B8B3E0003A1FA /* IntentUIINT.entitlements */,
+				AC87A78A220D94F900622C90 /* Info.plist */,
+				AC87A785220D94F900622C90 /* IntentViewController.swift */,
+				AC87A7AB220DBA2200622C90 /* ReadVisionViewController.swift */,
+				ACA4B1942212FEAA00552A54 /* WhatsHotViewController.swift */,
 				AC87A7AF220DBAE000622C90 /* ReadVisionView.xib */,
 				ACA4B196221300BD00552A54 /* WhatsHotView.xib */,
-				AC87A785220D94F900622C90 /* IntentViewController.swift */,
-				ACA4B1942212FEAA00552A54 /* WhatsHotViewController.swift */,
-				AC87A7AB220DBA2200622C90 /* ReadVisionViewController.swift */,
+				AC87A787220D94F900622C90 /* MainInterface.storyboard */,
 			);
 			path = IntentUI;
 			sourceTree = "<group>";
@@ -5031,13 +5031,13 @@
 		B8BCE58522AAB5EF0012AAAC /* Share */ = {
 			isa = PBXGroup;
 			children = (
-				F96D75A6249CE86700DFFB22 /* CustomizedShareViewController */,
-				38EE0438260B8B1A0003A1FA /* ShareExtensionINT.entitlements */,
 				B8BCE59522AAB5FA0012AAAC /* ShareExtension.entitlements */,
-				B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */,
+				38EE0438260B8B1A0003A1FA /* ShareExtensionINT.entitlements */,
 				B8BCE58B22AAB5EF0012AAAC /* Info.plist */,
 				B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */,
 				B88A19E5241A3A0200FC5019 /* Media.xcassets */,
+				F96D75A6249CE86700DFFB22 /* CustomizedShareViewController */,
+				B8BCE58822AAB5EF0012AAAC /* MainInterface.storyboard */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -8345,7 +8345,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.Intent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v3.IntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
