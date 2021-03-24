@@ -3641,6 +3641,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		38EE054D260BB40B0003A1FA /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				38EE0430260B8AAE0003A1FA /* TIGNUM XINT.entitlements */,
+				CC38B11E1F29E60000C2BB87 /* QOT.entitlements */,
+			);
+			name = Entitlements;
+			sourceTree = "<group>";
+		};
 		38F6C99025E0334500BCA92D /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -5172,8 +5181,6 @@
 		CBB237EE1E6FFF1200AB5AEF /* QOT */ = {
 			isa = PBXGroup;
 			children = (
-				38EE0430260B8AAE0003A1FA /* TIGNUM XINT.entitlements */,
-				CC38B11E1F29E60000C2BB87 /* QOT.entitlements */,
 				CBD791571E72F10E0006C590 /* Resources */,
 				CBB4DD171EE07B010071494A /* Sources */,
 			);
@@ -5460,6 +5467,7 @@
 				367EA0F021776920003025CE /* Assets.xcassets */,
 				CB78D3361F9F674A0068A54A /* BundledMedia */,
 				38F6C99025E0334500BCA92D /* Configs */,
+				38EE054D260BB40B0003A1FA /* Entitlements */,
 				CBB4DD451EE0908E0071494A /* Fonts */,
 				36433D1B203EBFB30043F853 /* HTML */,
 				361DB158201F2CF000E8FD22 /* PLists */,
