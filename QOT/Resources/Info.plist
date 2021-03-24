@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>APP_CENTER_ID</key>
-	<string>b0fc4862-5edc-47fc-bd1d-83a5a5f9f8a4</string>
+	<string>51390342-f340-4f4f-9a34-f58f8f9b550c</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.0</string>
+	<string>3.3.4</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -38,10 +38,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>INTERNAL_VALIDATION_SCHEME_IDENTIFIER</string>
+			<string>qualityoftime</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>INTERNAL_VALIDATION_SCHEME</string>
+				<string>com.tignum.qot.v2</string>
 			</array>
 		</dict>
 		<dict>
@@ -56,7 +56,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>8486</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -71,6 +71,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>HOCKEY_APP_ID</key>
+	<string>51390342-f340-4f4f-9a34-f58f8f9b550c</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -173,6 +175,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>scheme_name</key>
+	<string>${scheme_name}</string>
 	<key>url_host</key>
 	<string>${URL_HOST}</string>
 	<key>url_scheme</key>

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -76,7 +75,7 @@
                         <constraint firstAttribute="width" constant="16" id="x80-9A-uLF"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO3-v8-Pa0" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO3-v8-Pa0" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                     <rect key="frame" x="311" y="706" width="79" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="C0j-CP-ZT5"/>
@@ -84,13 +83,13 @@
                     <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                     <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                     <state key="normal" title="Button">
-                        <color key="titleColor" systemColor="labelColor"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="didTapCriticalEvent" destination="-1" eventType="touchUpInside" id="IEU-bh-eh1"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMu-ys-Vb7" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMu-ys-Vb7" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                     <rect key="frame" x="311" y="762" width="79" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ELA-qj-vxg"/>
@@ -138,9 +137,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="140.625"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
