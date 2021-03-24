@@ -11,16 +11,25 @@ import qot_dal
 @testable import TIGNUM_X
 
 class FeatureFlagTests: XCTestCase {
+    private lazy var environment = Environment()
+
     func testEditableNotification() {
-        let environment = Environment()
         switch environment.current {
         case .DEV,
              .INT:
-            XCTAssertTrue(Feature.Flag.editableNotifications.isOn == true)
-            XCTAssertFalse(Feature.Flag.editableNotifications.isOn == false)
+            XCTAssertTrue(Feature.Flag.editableNotifications.isOn)
         case .PUB:
-            XCTAssertFalse(Feature.Flag.editableNotifications.isOn == true)
-            XCTAssertTrue(Feature.Flag.editableNotifications.isOn == false)
+            XCTAssertTrue(!Feature.Flag.editableNotifications.isOn)
         }
      }
+
+    func testOnboardingSurvey() {
+        switch environment.current {
+        case .DEV,
+             .INT:
+            XCTAssertTrue(Feature.Flag.onboardingSurvey.isOn)
+        case .PUB:
+            XCTAssertTrue(!Feature.Flag.onboardingSurvey.isOn)
+        }
+    }
 }
