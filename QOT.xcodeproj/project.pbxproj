@@ -373,6 +373,8 @@
 		38E84B7D241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E84B7B241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib */; };
 		38E84B80241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E84B7E241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift */; };
 		38E84B81241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */; };
+		38EE04E4260BA63F0003A1FA /* AirshipConfigPUB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38EE04E2260BA63E0003A1FA /* AirshipConfigPUB.plist */; };
+		38EE04E5260BA63F0003A1FA /* AirshipConfigINT.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38EE04E3260BA63E0003A1FA /* AirshipConfigINT.plist */; };
 		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
 		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
@@ -1106,7 +1108,6 @@
 		CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */; };
 		CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC335EE61EBC84780085F5C5 /* ContentItemTextTableViewCell.xib */; };
 		CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */; };
-		CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */; };
 		CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */; };
 		CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
 		CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A301E81713200E7FDFD /* Constants.swift */; };
@@ -1803,6 +1804,8 @@
 		38EE0439260B8B3E0003A1FA /* IntentUIINT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentUIINT.entitlements; sourceTree = "<group>"; };
 		38EE043A260B8B7E0003A1FA /* IntentINT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentINT.entitlements; sourceTree = "<group>"; };
 		38EE043B260B8BD00003A1FA /* QOTWidgetINT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QOTWidgetINT.entitlements; sourceTree = "<group>"; };
+		38EE04E2260BA63E0003A1FA /* AirshipConfigPUB.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfigPUB.plist; sourceTree = "<group>"; };
+		38EE04E3260BA63E0003A1FA /* AirshipConfigINT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfigINT.plist; sourceTree = "<group>"; };
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
@@ -2531,7 +2534,6 @@
 		CC335EE81EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemTextTableViewCell.swift; sourceTree = "<group>"; };
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC38B11E1F29E60000C2BB87 /* QOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QOT.entitlements; sourceTree = "<group>"; };
-		CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
 		CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Create.swift"; sourceTree = "<group>"; };
 		CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		CC6B3A301E81713200E7FDFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -2872,7 +2874,8 @@
 		361DB158201F2CF000E8FD22 /* PLists */ = {
 			isa = PBXGroup;
 			children = (
-				CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */,
+				38EE04E3260BA63E0003A1FA /* AirshipConfigINT.plist */,
+				38EE04E2260BA63E0003A1FA /* AirshipConfigPUB.plist */,
 				CBB543811FBC816600AFD67B /* bundled_media.plist */,
 				CBB237FB1E6FFF1200AB5AEF /* Info.plist */,
 				38F6C98825E0333800BCA92D /* PUB.plist */,
@@ -3641,9 +3644,9 @@
 		38F6C99025E0334500BCA92D /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				38F6C98025E0321400BCA92D /* PUB.xcconfig */,
-				38F6C9BB25E0360200BCA92D /* INT.xcconfig */,
 				38F6C9AD25E035E500BCA92D /* DEV.xcconfig */,
+				38F6C9BB25E0360200BCA92D /* INT.xcconfig */,
+				38F6C98025E0321400BCA92D /* PUB.xcconfig */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -6167,6 +6170,7 @@
 				B47CA1AE2334F66C001A65AE /* ArticleEmptyTableViewCell.xib in Resources */,
 				AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */,
 				367A585F2326A4350089A082 /* DTViewController.xib in Resources */,
+				38EE04E5260BA63F0003A1FA /* AirshipConfigINT.plist in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				F9F4707D2510C51D002331F4 /* TeamToBeVisionOptions.storyboard in Resources */,
 				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
@@ -6207,11 +6211,11 @@
 				360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */,
 				389CC8192512021600028C54 /* HorizontalHeaderCollectionViewCell.xib in Resources */,
 				B49BE661233B9BFB008CAED0 /* PaymentReminderViewController.xib in Resources */,
-				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
 				F9114E6125B1E47600D1F0E2 /* walkThrough_coach.mp4 in Resources */,
 				F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
+				38EE04E4260BA63F0003A1FA /* AirshipConfigPUB.plist in Resources */,
 				F9A5C93D22B29CFD00AB2E94 /* Coach.storyboard in Resources */,
 				ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */,
 				B4A075B9230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.xib in Resources */,

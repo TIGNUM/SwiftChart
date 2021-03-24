@@ -12,3 +12,4 @@
 URL_SCHEME = https
 URL_HOST = esb-pre.tignum.com
 SCHEME_NAME = INT
+AIRSHIP_CONFIG = AirshipConfigINT

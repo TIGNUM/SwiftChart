@@ -177,5 +177,7 @@
 	<string>${URL_SCHEME}</string>
 	<key>scheme_name</key>
 	<string>${SCHEME_NAME}</string>
+	<key>airship_config</key>
+	<string>$(AIRSHIP_CONFIG)</string>
 </dict>
 </plist>

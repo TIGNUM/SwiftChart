@@ -12,3 +12,4 @@
 URL_SCHEME = https
 URL_HOST = esb-staging.tignum.com
 SCHEME_NAME = DEV
+AIRSHIP_CONFIG = AirshipConfigINT

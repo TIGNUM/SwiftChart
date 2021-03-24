@@ -165,5 +165,7 @@
 	<string>${URL_HOST}</string>
 	<key>url_scheme</key>
 	<string>${URL_SCHEME}</string>
+	<key>airship_config</key>
+	<string>$(AIRSHIP_CONFIG)</string>
 </dict>
 </plist>
