@@ -8265,7 +8265,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 3.3.4;
-				OTHER_SWIFT_FLAGS = "$(inherited) -D NOVARTIS";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.novartis.gbl.gbl.qualityoftime;
 				PRODUCT_NAME = "TIGNUM X";
 				PROVISIONING_PROFILE = "";
