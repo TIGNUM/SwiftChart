@@ -614,7 +614,10 @@ extension DailyBriefInteractor {
         var createQuestionWithoutAnswerList: [BaseDailyBriefViewModel] = []
 
         guard let collection = questionsWithoutAnswer.contentCollections?.first else {
-            createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: String.empty, text: String.empty, image: nil, domainModel: questionsWithoutAnswer))
+            createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: String.empty,
+                                                                         text: String.empty,
+                                                                         image: nil,
+                                                                         domainModel: questionsWithoutAnswer))
             return createQuestionWithoutAnswerList
         }
         createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: AppTextService.get(.daily_brief_section_big_questions_title_new),

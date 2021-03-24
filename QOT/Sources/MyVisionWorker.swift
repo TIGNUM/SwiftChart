@@ -40,8 +40,13 @@ final class MyVisionWorker: WorkerTeam {
     lazy var updateAlertCreateTitle = AppTextService.get(.my_qot_my_tbv_alert_update_create)
     lazy var emptyTBVTextPlaceholder = AppTextService.get(.my_qot_my_tbv_empty_subtitle_vision)
     lazy var emptyTBVTitlePlaceholder = AppTextService.get(.my_qot_my_tbv_section_header_title_headline)
+    lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
     private lazy var notRatedText = AppTextService.get(.my_qot_my_tbv_section_track_null_state_title)
-    private lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
+    lazy var rateText = AppTextService.get(.my_x_my_tbv_rate_button_title)
+    lazy var toBeVisionTitle = AppTextService.get(.my_qot_my_tbv_section_header_title)
+    lazy var sinceUpdated = AppTextService.get(.my_qot_my_tbv_section_update_subtitle)
+    lazy var sinceYouRated = AppTextService.get(.my_qot_my_tbv_section_track_subtiitle)
+    lazy var myData = AppTextService.get(.my_qot_my_tbv_section_footer_button_title_my_tbv_data)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
     private var isMyVisionInitialized: Bool = false
@@ -124,19 +129,19 @@ final class MyVisionWorker: WorkerTeam {
 
                 guard let visionText = strongSelf.toBeVision?.text,
                     !tracks.isEmpty else {
-                    completion(strongSelf.syncingText, nil, false)
+                    completion(.empty, nil, false)
                     return
                 }
                 let sentences = tracks.compactMap({$0.sentence})
                 guard !sentences.isEmpty else {
-                    completion(strongSelf.syncingText, nil, false)
+                    completion(.empty, nil, false)
                     requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
                     return
                 }
 
                 for sentence in sentences {
                     if visionText.contains(sentence) == false { // mismatched sentences.
-                        completion(strongSelf.syncingText, nil, false)
+                        completion(.empty, nil, false)
                         requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
                         return
                     }
@@ -147,7 +152,7 @@ final class MyVisionWorker: WorkerTeam {
                     return
                 }
                 guard let date = report.dates.sorted().last?.beginingOfDate() else {
-                    completion(strongSelf.syncingText, true, false)
+                    completion(.empty, true, false)
                     return
                 }
                 let days = DateComponentsFormatter.numberOfDays(date)
