@@ -12,10 +12,11 @@ import qot_dal
 struct Feature {
     enum Flag {
         case editableNotifications
+        case onboardingSurvey
 
         private var activated: [Environment.Name: [Feature.Flag]] {
-            return [.DEV: [.editableNotifications],
-                    .INT: [.editableNotifications],
+            return [.DEV: [.editableNotifications, .onboardingSurvey],
+                    .INT: [.editableNotifications, .onboardingSurvey],
                     .PUB: []]
         }
 
