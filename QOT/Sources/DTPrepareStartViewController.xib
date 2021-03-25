@@ -75,7 +75,7 @@
                         <constraint firstAttribute="width" constant="16" id="x80-9A-uLF"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO3-v8-Pa0" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO3-v8-Pa0" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                     <rect key="frame" x="311" y="706" width="79" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="C0j-CP-ZT5"/>
@@ -89,7 +89,7 @@
                         <action selector="didTapCriticalEvent" destination="-1" eventType="touchUpInside" id="IEU-bh-eh1"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMu-ys-Vb7" customClass="AnimatedButton" customModule="TIGNUM_X" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMu-ys-Vb7" customClass="RoundedButton" customModule="TIGNUM_X" customModuleProvider="target">
                     <rect key="frame" x="311" y="762" width="79" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ELA-qj-vxg"/>

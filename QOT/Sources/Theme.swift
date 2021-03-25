@@ -1207,7 +1207,7 @@ enum ThemeText {
             return Palette.darkGrey
 
         // MARK: - .white40
-        case .searchSuggestionHeader:
+        case .searchSuggestionHeader, .articleCategoryNotScaled:
             return .white40
         // MARK: - .blue
         case .coachTitle, .articleContactSupportLink:
@@ -1236,7 +1236,7 @@ enum ThemeText {
             return Palette.redOrange
         case .questionHintLabelRed:
             return .red
-        case .articleCategory, .articleCategoryNotScaled, .articleDatestamp:
+        case .articleCategory, .articleDatestamp:
              return Palette.light(.black30, or: .white30)
         case .articleNextTitle, .articleQuote, .articleMediaDescription, .articleBullet:
             return Palette.light(Palette.darkGrey, or: Palette.lightGrey)

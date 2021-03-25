@@ -57,20 +57,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>c5b6a77e0ac832aeb121a8444afaba1522a28469</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-		</array>
-	</dict>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -186,10 +172,12 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>scheme_name</key>
-	<string>${scheme_name}</string>
+	<string>${SCHEME_NAME}</string>
 	<key>url_host</key>
-	<string>${url_host}</string>
+	<string>${URL_HOST}</string>
 	<key>url_scheme</key>
-	<string>${url_scheme}</string>
+	<string>${URL_SCHEME}</string>
+	<key>airship_config</key>
+	<string>$(AIRSHIP_CONFIG)</string>
 </dict>
 </plist>

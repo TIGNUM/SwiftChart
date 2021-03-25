@@ -22,7 +22,7 @@ target 'QOT' do
     common_pods
 end
 
-target 'TIGNUM XTests' do
+target 'TignumXTests' do
     common_pods
 end
 

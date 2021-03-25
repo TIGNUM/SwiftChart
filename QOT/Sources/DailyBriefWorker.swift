@@ -42,6 +42,7 @@ final class DailyBriefWorker: WorkerTeam {
             if let bucketsList = buckets?.sorted(by: { $0.sortOrder < $1.sortOrder }) {
                 completion(bucketsList)
             } else {
+                log("[DaiBriLOG: DailyBriefWorker] getDailyBriefBucketsForViewModel -> completion([]) ", level: .error)
                 completion([])
             }
         })
@@ -57,6 +58,7 @@ final class DailyBriefWorker: WorkerTeam {
             if let clusterConfig = config?.sorted(by: { $0.sortOrder < $1.sortOrder }) {
                 completion(clusterConfig)
             } else {
+                log("[DaiBriLOG: DailyBriefWorker] getDailyBriefClusterConfig -> completion([]) ", level: .error)
                 completion([])
             }
         }
@@ -91,7 +93,7 @@ final class DailyBriefWorker: WorkerTeam {
 
 // MARK: - Daily Checkin 1
 extension DailyBriefWorker {
-
+    // FIXME please and find a better way than injecting the ID
     func customizeSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
         questionService.question(with: 100360, in: .DailyCheckIn1) { (question) in
         // FIXME: need to separate question and answers from daily-check-in.

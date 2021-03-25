@@ -9,6 +9,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-url_scheme = https
-url_host = esb-staging.tignum.com
-scheme_name = DEV
+URL_SCHEME = https
+URL_HOST = esb-staging.tignum.com
+SCHEME_NAME = DEV
+AIRSHIP_CONFIG = AirshipConfigINT

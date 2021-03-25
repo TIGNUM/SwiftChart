@@ -9,6 +9,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-url_scheme = https
-url_host = esb-pre.tignum.com
-scheme_name = INT
+URL_SCHEME = https
+URL_HOST = esb-pre.tignum.com
+SCHEME_NAME = INT
+AIRSHIP_CONFIG = AirshipConfigINT
