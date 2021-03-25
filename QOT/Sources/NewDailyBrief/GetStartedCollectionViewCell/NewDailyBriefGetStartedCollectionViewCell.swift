@@ -33,6 +33,7 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
             skeletonManager.addOtherView(completedIcon)
             skeletonManager.addTitle(title)
             arrowButton.isHidden = true
+            log("[DaiBriLOG: NewDailyBriefGetStartedCollectionViewCell] configure -> viewModel == nil; return ", level: .error)
             return
         }
         skeletonManager.hide()
