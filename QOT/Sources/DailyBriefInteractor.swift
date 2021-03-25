@@ -186,6 +186,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     // MARK: - Properties
     var rowViewSectionCount: Int {
+        log("[DaiBriLOG: DailyBriefInteractor] rowViewSectionCount -> \(viewModelOldListModels.count) ", level: .error)
         return viewModelOldListModels.count
     }
 
@@ -247,6 +248,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 }
 
                 dailyBriefViewModels = strongSelf.addBucketModels(from: bucketsList)
+                log("[DaiBriLOG: DailyBriefInteractor] dailyBriefViewModels -> \(dailyBriefViewModels.count) ", level: .error)
 
                 for cluster in clusterConfig {
                     var elements: [BaseDailyBriefViewModel] = []
@@ -387,7 +389,7 @@ extension DailyBriefInteractor {
             case .TEAM_TOBEVISION_TRACKER_POLL :
                 dailyBriefViewModels.append(contentsOf: strongSelf.createRate(rateBucket: bucket))
             default:
-                print("Default : \(bucket.bucketName ?? String.empty )")
+                log("Default : \(bucket.bucketName ?? String.empty )", level: .error)
             }
         }
         return dailyBriefViewModels
