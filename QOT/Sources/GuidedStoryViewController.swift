@@ -12,7 +12,7 @@ final class GuidedStoryViewController: UIViewController {
 
     // MARK: - Properties
     var interactor: GuidedStoryInteractorInterface!
-    private weak var router: GuidedStoryRouterInterface = GuidedStoryRouter(viewController: self)
+    private lazy var router = GuidedStoryRouter(viewController: self)
 
     // MARK: - Init
     init(configure: Configurator<GuidedStoryViewController>) {
