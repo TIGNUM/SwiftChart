@@ -29,7 +29,6 @@ protocol RegistrationInteractorInterface: Interactor {
 
 protocol RegistrationRouterInterface {
     func popBack()
-    func showCoachMarksViewController()
 }
 
 protocol RegistrationDelegate: class {

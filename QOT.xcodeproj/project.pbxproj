@@ -384,6 +384,7 @@
 		38EE0B20260DBE570003A1FA /* GuidedStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */; };
 		38EE0B29260DC3630003A1FA /* GuidedStorySurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */; };
 		38EE0B32260DC3870003A1FA /* GuidedStoryJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B31260DC3870003A1FA /* GuidedStoryJourneyViewController.swift */; };
+		38EE0B77260DEBD60003A1FA /* SessionService+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B76260DEBD50003A1FA /* SessionService+Convenience.swift */; };
 		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
 		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
@@ -1820,6 +1821,7 @@
 		38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuidedStory.storyboard; sourceTree = "<group>"; };
 		38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyViewController.swift; sourceTree = "<group>"; };
 		38EE0B31260DC3870003A1FA /* GuidedStoryJourneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyViewController.swift; sourceTree = "<group>"; };
+		38EE0B76260DEBD50003A1FA /* SessionService+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionService+Convenience.swift"; sourceTree = "<group>"; };
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
@@ -3384,16 +3386,17 @@
 				36735C7A22C60C8A0041678D /* QDMAnswer+Ext.swift */,
 				36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */,
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
+				38406DAB2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift */,
+				388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */,
 				366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */,
+				386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */,
 				385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */,
 				36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */,
 				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
 				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
-				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 				B816F2B924E1553300AE90C9 /* QDMUserStorage+Extension.swift */,
-				38406DAB2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift */,
-				388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */,
-				386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */,
+				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
+				38EE0B76260DEBD50003A1FA /* SessionService+Convenience.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -7571,6 +7574,7 @@
 				8D40768D22E5A5AA0027864D /* MySprintDetailsInterface.swift in Sources */,
 				5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */,
 				8DF7870922FEB50800CDE0A9 /* RegistrationCodeInterface.swift in Sources */,
+				38EE0B77260DEBD60003A1FA /* SessionService+Convenience.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
 				36376630223A66AF00C2C429 /* CoachRouter.swift in Sources */,
 				B8FE4AA224DD81EE00B47F1D /* LibraryTableViewCellFactory.swift in Sources */,

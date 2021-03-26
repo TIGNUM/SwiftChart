@@ -14,18 +14,6 @@ final class GuidedStoryViewController: UIViewController {
     var interactor: GuidedStoryInteractorInterface!
     private lazy var router = GuidedStoryRouter(viewController: self)
     @IBOutlet private weak var viewContainer: UIView!
-    private weak var surveyViewController: GuidedStorySurveyViewController?
-    private weak var journeyViewController: GuidedStoryJourneyViewController?
-
-    // MARK: - Init
-    init(configure: Configurator<GuidedStoryViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +29,14 @@ private extension GuidedStoryViewController {
 // MARK: - Actions
 private extension GuidedStoryViewController {
     @IBAction func didTabNext(_ sender: Any) {
-        
+        router.showJourney()
     }
 }
 
 // MARK: - GuidedStoryViewControllerInterface
 extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
     func setupView() {
-        // Do any additional setup after loading the view.
+        router.setViewContainer(viewContainer)
+        router.showSurvey()
     }
 }

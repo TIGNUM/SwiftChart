@@ -22,6 +22,7 @@ protocol BaseRouterInterface {
     func showHomeScreen()
     func showFAQScreen(category: ContentCategory)
     func showCoachMarks()
+    func showGuidedStory()
     func showAlert(type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?)
     func showViewController(viewController: UIViewController, completion: (() -> Void)?)
 
@@ -112,6 +113,14 @@ class BaseRouter: BaseRouterInterface {
     func showCoachMarks() {
         if let controller = R.storyboard.coachMark.coachMarksViewController() {
             let configurator = CoachMarksConfigurator.make()
+            configurator(controller)
+            push(controller)
+        }
+    }
+
+    func showGuidedStory() {
+        if let controller = R.storyboard.guidedStory.guidedStoryID() {
+            let configurator = GuidedStoryConfigurator.make()
             configurator(controller)
             push(controller)
         }

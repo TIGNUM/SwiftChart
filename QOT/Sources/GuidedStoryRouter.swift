@@ -12,6 +12,9 @@ final class GuidedStoryRouter {
 
     // MARK: - Properties
     private weak var viewController: GuidedStoryViewController?
+    private weak var surveyViewController: GuidedStorySurveyViewController?
+    private weak var journeyViewController: GuidedStoryJourneyViewController?
+    private weak var viewContainer: UIView!
 
     // MARK: - Init
     init(viewController: GuidedStoryViewController?) {
@@ -23,5 +26,30 @@ final class GuidedStoryRouter {
 extension GuidedStoryRouter: GuidedStoryRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func showSurvey() {
+
+    }
+
+    func showJourney() {
+    }
+
+    func setViewContainer(_ container: UIView) {
+        self.viewContainer = container
+    }
+
+    func cycleFromViewController(from old: UIViewController, to new: UIViewController) {
+        old.willMove(toParent: nil)
+        viewController?.add(new, to: viewContainer)
+        new.view.alpha = 0
+        new.view.layoutIfNeeded()
+
+        UIView.animate(withDuration: 0.5) {
+            new.view.alpha = 1
+            old.view.alpha = 0
+        } completion: { _ in
+            old.remove()
+        }
     }
 }

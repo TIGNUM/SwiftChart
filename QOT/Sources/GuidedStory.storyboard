@@ -12,7 +12,7 @@
         <!--Guided Story View Controller-->
         <scene sceneID="fiq-DO-sFW">
             <objects>
-                <viewController id="1Ck-xS-teo" customClass="GuidedStoryViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GuidedStoryID" id="1Ck-xS-teo" customClass="GuidedStoryViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I1p-0E-cyd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,7 +66,7 @@
         <!--Guided Story Journey View Controller-->
         <scene sceneID="GwE-lH-VT1">
             <objects>
-                <viewController id="3F0-ei-To9" customClass="GuidedStoryJourneyViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GuidedStoryJourneyViewControllerID" id="3F0-ei-To9" customClass="GuidedStoryJourneyViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QbT-OM-9au">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,7 +81,7 @@
         <!--Guided Story Survey View Controller-->
         <scene sceneID="if2-Rq-qg0">
             <objects>
-                <viewController id="wyU-uG-3Tc" customClass="GuidedStorySurveyViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GuidedStorySurveyViewControllerID" id="wyU-uG-3Tc" customClass="GuidedStorySurveyViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="upb-dz-Xmo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

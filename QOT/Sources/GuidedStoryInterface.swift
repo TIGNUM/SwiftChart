@@ -20,4 +20,8 @@ protocol GuidedStoryInteractorInterface: Interactor {}
 
 protocol GuidedStoryRouterInterface {
     func dismiss()
+    func setViewContainer(_ container: UIView)
+    func showSurvey()
+    func showJourney()
+    func cycleFromViewController(from old: UIViewController, to new: UIViewController)
 }
