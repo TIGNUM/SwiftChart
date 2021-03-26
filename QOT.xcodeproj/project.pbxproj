@@ -382,6 +382,8 @@
 		38EE0B0F260DBE260003A1FA /* GuidedStoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B07260DBE260003A1FA /* GuidedStoryModel.swift */; };
 		38EE0B10260DBE260003A1FA /* GuidedStoryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B08260DBE260003A1FA /* GuidedStoryConfigurator.swift */; };
 		38EE0B20260DBE570003A1FA /* GuidedStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */; };
+		38EE0B29260DC3630003A1FA /* GuidedStorySurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */; };
+		38EE0B32260DC3870003A1FA /* GuidedStoryJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B31260DC3870003A1FA /* GuidedStoryJourneyViewController.swift */; };
 		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
 		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
@@ -1816,6 +1818,8 @@
 		38EE0B07260DBE260003A1FA /* GuidedStoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryModel.swift; sourceTree = "<group>"; };
 		38EE0B08260DBE260003A1FA /* GuidedStoryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryConfigurator.swift; sourceTree = "<group>"; };
 		38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuidedStory.storyboard; sourceTree = "<group>"; };
+		38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyViewController.swift; sourceTree = "<group>"; };
+		38EE0B31260DC3870003A1FA /* GuidedStoryJourneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyViewController.swift; sourceTree = "<group>"; };
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
@@ -3653,6 +3657,8 @@
 				38EE0B05260DBE260003A1FA /* GuidedStoryViewController.swift */,
 				38EE0B02260DBE260003A1FA /* GuidedStoryWorker.swift */,
 				38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */,
+				38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */,
+				38EE0B31260DC3870003A1FA /* GuidedStoryJourneyViewController.swift */,
 			);
 			name = GuidedStory;
 			sourceTree = "<group>";
@@ -7636,6 +7642,7 @@
 				5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */,
 				5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */,
 				75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */,
+				38EE0B32260DC3870003A1FA /* GuidedStoryJourneyViewController.swift in Sources */,
 				360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */,
 				B8BB413122C50B41002897E4 /* Notification+MediaPlayer.swift in Sources */,
 				8DF7870A22FEB50800CDE0A9 /* RegistrationCodeViewController.swift in Sources */,
@@ -7688,6 +7695,7 @@
 				3632D0C822534E6400A4F234 /* ComponentHeaderView.swift in Sources */,
 				386C279A2418EBFF00184EC9 /* ResultsPreparePresenter.swift in Sources */,
 				F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */,
+				38EE0B29260DC3630003A1FA /* GuidedStorySurveyViewController.swift in Sources */,
 				B4BCE470255BCEC500A1116F /* BaseDailyBriefDetailsPresenter.swift in Sources */,
 				38290B882330F825004B5C14 /* DTSprintReflectionRouter.swift in Sources */,
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,

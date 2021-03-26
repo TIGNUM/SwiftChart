@@ -13,6 +13,9 @@ final class GuidedStoryViewController: UIViewController {
     // MARK: - Properties
     var interactor: GuidedStoryInteractorInterface!
     private lazy var router = GuidedStoryRouter(viewController: self)
+    @IBOutlet private weak var viewContainer: UIView!
+    private weak var surveyViewController: GuidedStorySurveyViewController?
+    private weak var journeyViewController: GuidedStoryJourneyViewController?
 
     // MARK: - Init
     init(configure: Configurator<GuidedStoryViewController>) {
@@ -37,7 +40,9 @@ private extension GuidedStoryViewController {
 
 // MARK: - Actions
 private extension GuidedStoryViewController {
-
+    @IBAction func didTabNext(_ sender: Any) {
+        
+    }
 }
 
 // MARK: - GuidedStoryViewControllerInterface
