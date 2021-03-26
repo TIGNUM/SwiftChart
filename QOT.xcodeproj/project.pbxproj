@@ -373,6 +373,15 @@
 		38E84B7D241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E84B7B241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib */; };
 		38E84B80241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E84B7E241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift */; };
 		38E84B81241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */; };
+		38EE0B09260DBE260003A1FA /* GuidedStoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B01260DBE260003A1FA /* GuidedStoryPresenter.swift */; };
+		38EE0B0A260DBE260003A1FA /* GuidedStoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B02260DBE260003A1FA /* GuidedStoryWorker.swift */; };
+		38EE0B0B260DBE260003A1FA /* GuidedStoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B03260DBE260003A1FA /* GuidedStoryRouter.swift */; };
+		38EE0B0C260DBE260003A1FA /* GuidedStoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B04260DBE260003A1FA /* GuidedStoryInterface.swift */; };
+		38EE0B0D260DBE260003A1FA /* GuidedStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B05260DBE260003A1FA /* GuidedStoryViewController.swift */; };
+		38EE0B0E260DBE260003A1FA /* GuidedStoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B06260DBE260003A1FA /* GuidedStoryInteractor.swift */; };
+		38EE0B0F260DBE260003A1FA /* GuidedStoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B07260DBE260003A1FA /* GuidedStoryModel.swift */; };
+		38EE0B10260DBE260003A1FA /* GuidedStoryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE0B08260DBE260003A1FA /* GuidedStoryConfigurator.swift */; };
+		38EE0B20260DBE570003A1FA /* GuidedStory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */; };
 		38EF3D4124ADC3BB0097F28E /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */; };
 		38EF3D4324ADC4740097F28E /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4224ADC4740097F28E /* ColorPicker.swift */; };
 		38EF3D4524AE256A0097F28E /* WorkerTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF3D4424AE256A0097F28E /* WorkerTeam.swift */; };
@@ -1798,6 +1807,15 @@
 		38E84B7B241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareBenefitsTableViewCell.xib; sourceTree = "<group>"; };
 		38E84B7E241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		38E84B7F241A9F51000BAB6C /* ResultsPrepareHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsPrepareHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		38EE0B01260DBE260003A1FA /* GuidedStoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryPresenter.swift; sourceTree = "<group>"; };
+		38EE0B02260DBE260003A1FA /* GuidedStoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryWorker.swift; sourceTree = "<group>"; };
+		38EE0B03260DBE260003A1FA /* GuidedStoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryRouter.swift; sourceTree = "<group>"; };
+		38EE0B04260DBE260003A1FA /* GuidedStoryInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryInterface.swift; sourceTree = "<group>"; };
+		38EE0B05260DBE260003A1FA /* GuidedStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryViewController.swift; sourceTree = "<group>"; };
+		38EE0B06260DBE260003A1FA /* GuidedStoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryInteractor.swift; sourceTree = "<group>"; };
+		38EE0B07260DBE260003A1FA /* GuidedStoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryModel.swift; sourceTree = "<group>"; };
+		38EE0B08260DBE260003A1FA /* GuidedStoryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryConfigurator.swift; sourceTree = "<group>"; };
+		38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuidedStory.storyboard; sourceTree = "<group>"; };
 		38EF3D4024ADC3BB0097F28E /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		38EF3D4224ADC4740097F28E /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		38EF3D4424AE256A0097F28E /* WorkerTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTeam.swift; sourceTree = "<group>"; };
@@ -3252,6 +3270,7 @@
 				7582615C22D8DB8B000094DE /* DailyCheckin */,
 				ACB0ED4B225FC28500BBF243 /* DecisionTree */,
 				F934801C247D462100DD1C7D /* FeatureExplainer */,
+				38EE0B00260DBDD00003A1FA /* GuidedStory */,
 				363765F0223A4B9B00C2C429 /* Know */,
 				DBA3921223247B2D0017E7F6 /* MorningInterview */,
 				B47953AA230AD512006EFE0F /* MyDataScreen */,
@@ -3620,6 +3639,22 @@
 				38C23E5B2423D9B70034571B /* CalendarEventSelectionViewController.xib */,
 			);
 			name = CalendarEventSelection;
+			sourceTree = "<group>";
+		};
+		38EE0B00260DBDD00003A1FA /* GuidedStory */ = {
+			isa = PBXGroup;
+			children = (
+				38EE0B08260DBE260003A1FA /* GuidedStoryConfigurator.swift */,
+				38EE0B06260DBE260003A1FA /* GuidedStoryInteractor.swift */,
+				38EE0B04260DBE260003A1FA /* GuidedStoryInterface.swift */,
+				38EE0B07260DBE260003A1FA /* GuidedStoryModel.swift */,
+				38EE0B01260DBE260003A1FA /* GuidedStoryPresenter.swift */,
+				38EE0B03260DBE260003A1FA /* GuidedStoryRouter.swift */,
+				38EE0B05260DBE260003A1FA /* GuidedStoryViewController.swift */,
+				38EE0B02260DBE260003A1FA /* GuidedStoryWorker.swift */,
+				38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */,
+			);
+			name = GuidedStory;
 			sourceTree = "<group>";
 		};
 		38F6C99025E0334500BCA92D /* Configs */ = {
@@ -6311,6 +6346,7 @@
 				DB086F4324C8544A00D4F64E /* BookMarkSelectionCell.xib in Resources */,
 				38C23E5C2423D9B70034571B /* CalendarEventSelectionViewController.xib in Resources */,
 				B48B5471256468D100FC183D /* MeAtMyBestTableViewCell.xib in Resources */,
+				38EE0B20260DBE570003A1FA /* GuidedStory.storyboard in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
 				38F6C9AE25E035E500BCA92D /* DEV.xcconfig in Resources */,
@@ -6680,6 +6716,7 @@
 				B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */,
 				DB086F3524C5E56100D4F64E /* BookMarkSelectionModel.swift in Sources */,
 				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
+				38EE0B0A260DBE260003A1FA /* GuidedStoryWorker.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
 				38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */,
@@ -6818,6 +6855,7 @@
 				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
 				B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */,
 				B4A075B0230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.swift in Sources */,
+				38EE0B10260DBE260003A1FA /* GuidedStoryConfigurator.swift in Sources */,
 				36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */,
 				5F8A89992296DEF70011A05C /* MyVisionPresenter.swift in Sources */,
 				3655F2DE2326FCA800334719 /* DTPresenter.swift in Sources */,
@@ -7112,6 +7150,7 @@
 				5FF1A0FA22857B9400D76D55 /* MyQotAppSettingsPresenter.swift in Sources */,
 				36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */,
 				B44D443C2568415800B3B4F6 /* MindsetShifterTableViewCell.swift in Sources */,
+				38EE0B0B260DBE260003A1FA /* GuidedStoryRouter.swift in Sources */,
 				B49AC292233BA5DC009AC1CF /* PaymentFooterView.swift in Sources */,
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
@@ -7236,12 +7275,14 @@
 				B430D7D123A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsRouter.swift in Sources */,
 				AC84FFC122293BEB0056F9EA /* SiriEventsModel.swift in Sources */,
 				386C27BE241A82A200184EC9 /* ResultsPrepareQuestionTableViewCell.swift in Sources */,
+				38EE0B09260DBE260003A1FA /* GuidedStoryPresenter.swift in Sources */,
 				DBA3921923247B2D0017E7F6 /* QuestionnaireViewController.swift in Sources */,
 				F9A5C94222B7CD8100AB2E94 /* PaymentReminderConfigurator.swift in Sources */,
 				7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */,
 				F906A02224AC8263007B6E1E /* TeamNameTableViewCell.swift in Sources */,
 				B49AD8A1233D0624000C5DCF /* CustomAlertSheetContentViewController.swift in Sources */,
 				8DF717E4232A48C700BB0E18 /* SyncedCalendarsRouter.swift in Sources */,
+				38EE0B0E260DBE260003A1FA /* GuidedStoryInteractor.swift in Sources */,
 				38A2D17725025C7100CEA071 /* DTTeamTBVPresenter.swift in Sources */,
 				B86E744B22A9519900B0AE75 /* MyLibraryCategoryListRouter.swift in Sources */,
 				3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */,
@@ -7437,6 +7478,7 @@
 				363B9CC9232D0B7D00C1A29E /* WorkerTBV.swift in Sources */,
 				B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */,
 				F947EA252521F4DA004C7076 /* BarChartView.swift in Sources */,
+				38EE0B0C260DBE260003A1FA /* GuidedStoryInterface.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
 				9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */,
 				B4AB48D5230D3A9B003B3C1F /* MyDataChartTableViewCell.swift in Sources */,
@@ -7556,10 +7598,12 @@
 				F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
 				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
+				38EE0B0D260DBE260003A1FA /* GuidedStoryViewController.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
 				F934802E247D467000DD1C7D /* FeatureExplainerConfigurator.swift in Sources */,
 				7F9217B71FD01C1600CAE9E0 /* CalendarPermission.swift in Sources */,
 				386C27A8241A454900184EC9 /* ResultsPrepareEditableTableViewCell.swift in Sources */,
+				38EE0B0F260DBE260003A1FA /* GuidedStoryModel.swift in Sources */,
 				7582617E22DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift in Sources */,
 				5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */,
 				B430D80023A916B600C75C9C /* MyQotAdminLocalNotificationsWorker.swift in Sources */,
