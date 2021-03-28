@@ -10,7 +10,11 @@ import Foundation
 
 final class GuidedStoryConfigurator {
     static func make(viewController: GuidedStoryViewController) {
-        let presenter = GuidedStoryPresenter(viewController: viewController)
+        let surveyViewController = R.storyboard.guidedStory.surveyViCo()
+        let journeyViewController = R.storyboard.guidedStory.journeyViCo()
+        let presenter = GuidedStoryPresenter(viewController: viewController,
+                                             surveyInterface: surveyViewController,
+                                             journeyInterface: journeyViewController)
         let interactor = GuidedStoryInteractor(presenter: presenter)
         viewController.interactor = interactor
     }

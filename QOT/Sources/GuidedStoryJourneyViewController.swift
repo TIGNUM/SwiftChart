@@ -16,3 +16,8 @@ final class GuidedStoryJourneyViewController: UIViewController {
         super.viewDidLoad()
     }
 }
+
+// MARK: - GuidedStoryJourneyViewControllerInterface
+extension GuidedStoryJourneyViewController: GuidedStoryJourneyViewControllerInterface {
+
+}

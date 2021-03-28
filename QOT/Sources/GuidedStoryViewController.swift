@@ -13,7 +13,7 @@ final class GuidedStoryViewController: UIViewController {
     // MARK: - Properties
     var interactor: GuidedStoryInteractorInterface!
     private lazy var router = GuidedStoryRouter(viewController: self)
-    @IBOutlet private weak var viewContainer: UIView!
+    @IBOutlet weak var viewContainer: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,6 @@ private extension GuidedStoryViewController {
 // MARK: - GuidedStoryViewControllerInterface
 extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
     func setupView() {
-        router.setViewContainer(viewContainer)
         router.showSurvey()
     }
 }

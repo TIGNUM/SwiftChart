@@ -12,10 +12,16 @@ final class GuidedStoryPresenter {
 
     // MARK: - Properties
     private weak var viewController: GuidedStoryViewControllerInterface?
+    private weak var surveyInterface: GudidedStorySurveyViewControllerInterface?
+    private weak var journeyInterface: GuidedStoryJourneyViewControllerInterface?
 
     // MARK: - Init
-    init(viewController: GuidedStoryViewControllerInterface?) {
+    init(viewController: GuidedStoryViewControllerInterface?,
+         surveyInterface: GudidedStorySurveyViewControllerInterface?,
+         journeyInterface: GuidedStoryJourneyViewControllerInterface?) {
         self.viewController = viewController
+        self.surveyInterface = surveyInterface
+        self.journeyInterface = journeyInterface
     }
 }
 

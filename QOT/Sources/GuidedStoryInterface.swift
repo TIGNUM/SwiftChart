@@ -12,15 +12,24 @@ protocol GuidedStoryViewControllerInterface: class {
     func setupView()
 }
 
+protocol GudidedStorySurveyViewControllerInterface: class {
+
+}
+
+protocol GuidedStoryJourneyViewControllerInterface: class {
+
+}
+
 protocol GuidedStoryPresenterInterface {
     func setupView()
 }
 
-protocol GuidedStoryInteractorInterface: Interactor {}
+protocol GuidedStoryInteractorInterface: Interactor {
+
+}
 
 protocol GuidedStoryRouterInterface {
     func dismiss()
-    func setViewContainer(_ container: UIView)
     func showSurvey()
     func showJourney()
 }

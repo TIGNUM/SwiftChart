@@ -13,8 +13,6 @@ final class GuidedStoryRouter {
     // MARK: - Properties
     private weak var viewController: GuidedStoryViewController?
     private weak var surveyViewController: GuidedStorySurveyViewController?
-    private weak var journeyViewController: GuidedStoryJourneyViewController?
-    private weak var viewContainer: UIView?
 
     // MARK: - Init
     init(viewController: GuidedStoryViewController?) {
@@ -31,21 +29,16 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
     func showSurvey() {
         if let survey = R.storyboard.guidedStory.surveyViCo() {
             surveyViewController = survey
-            surveyViewController?.interactor = viewController?.interactor
-            viewController?.add(survey, to: viewContainer)
+            survey.interactor = viewController?.interactor
+            viewController?.add(survey, to: viewController?.viewContainer)
         }
     }
 
     func showJourney() {
         if let journey = R.storyboard.guidedStory.journeyViCo() {
-            journeyViewController = journey
-            journeyViewController?.interactor = viewController?.interactor
+            journey.interactor = viewController?.interactor
             cycleFromViewController(from: surveyViewController, to: journey)
         }
-    }
-
-    func setViewContainer(_ container: UIView) {
-        self.viewContainer = container
     }
 }
 
@@ -53,7 +46,7 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
 private extension GuidedStoryRouter {
     func cycleFromViewController(from old: UIViewController?, to new: UIViewController?) {
         old?.willMove(toParent: nil)
-        viewController?.add(new, to: viewContainer)
+        viewController?.add(new, to: viewController?.viewContainer)
         new?.view.alpha = 0
         new?.view.layoutIfNeeded()
 

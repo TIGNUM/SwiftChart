@@ -299,6 +299,20 @@
 		38593DF124A1114C00C2955D /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38593DF024A1114C00C2955D /* Team.storyboard */; };
 		38699D0E2610D3470042355C /* RadioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D0C2610D3470042355C /* RadioTableViewCell.swift */; };
 		38699D0F2610D3470042355C /* RadioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38699D0D2610D3470042355C /* RadioTableViewCell.xib */; };
+		38699D34261111F00042355C /* GuidedStorySurveyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D2D261111EF0042355C /* GuidedStorySurveyPresenter.swift */; };
+		38699D35261111F00042355C /* GuidedStorySurveyWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D2E261111EF0042355C /* GuidedStorySurveyWorker.swift */; };
+		38699D36261111F00042355C /* GuidedStorySurveyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */; };
+		38699D37261111F00042355C /* GuidedStorySurveyInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D30261111EF0042355C /* GuidedStorySurveyInterface.swift */; };
+		38699D38261111F00042355C /* GuidedStorySurveyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D31261111EF0042355C /* GuidedStorySurveyInteractor.swift */; };
+		38699D39261111F00042355C /* GuidedStorySurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D32261111EF0042355C /* GuidedStorySurveyModel.swift */; };
+		38699D3A261111F00042355C /* GuidedStorySurveyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D33261111EF0042355C /* GuidedStorySurveyConfigurator.swift */; };
+		38699D4A2611126F0042355C /* GuidedStoryJourneyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D432611126F0042355C /* GuidedStoryJourneyPresenter.swift */; };
+		38699D4B2611126F0042355C /* GuidedStoryJourneyWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D442611126F0042355C /* GuidedStoryJourneyWorker.swift */; };
+		38699D4C2611126F0042355C /* GuidedStoryJourneyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D452611126F0042355C /* GuidedStoryJourneyRouter.swift */; };
+		38699D4D2611126F0042355C /* GuidedStoryJourneyInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D462611126F0042355C /* GuidedStoryJourneyInterface.swift */; };
+		38699D4E2611126F0042355C /* GuidedStoryJourneyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D472611126F0042355C /* GuidedStoryJourneyInteractor.swift */; };
+		38699D4F2611126F0042355C /* GuidedStoryJourneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D482611126F0042355C /* GuidedStoryJourneyModel.swift */; };
+		38699D502611126F0042355C /* GuidedStoryJourneyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D492611126F0042355C /* GuidedStoryJourneyConfigurator.swift */; };
 		386C279A2418EBFF00184EC9 /* ResultsPreparePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */; };
 		386C279B2418EBFF00184EC9 /* ResultsPrepareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */; };
 		386C279C2418EBFF00184EC9 /* ResultsPrepareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */; };
@@ -1736,6 +1750,20 @@
 		38593DF024A1114C00C2955D /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
 		38699D0C2610D3470042355C /* RadioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioTableViewCell.swift; sourceTree = "<group>"; };
 		38699D0D2610D3470042355C /* RadioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioTableViewCell.xib; sourceTree = "<group>"; };
+		38699D2D261111EF0042355C /* GuidedStorySurveyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyPresenter.swift; sourceTree = "<group>"; };
+		38699D2E261111EF0042355C /* GuidedStorySurveyWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyWorker.swift; sourceTree = "<group>"; };
+		38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyRouter.swift; sourceTree = "<group>"; };
+		38699D30261111EF0042355C /* GuidedStorySurveyInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyInterface.swift; sourceTree = "<group>"; };
+		38699D31261111EF0042355C /* GuidedStorySurveyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyInteractor.swift; sourceTree = "<group>"; };
+		38699D32261111EF0042355C /* GuidedStorySurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyModel.swift; sourceTree = "<group>"; };
+		38699D33261111EF0042355C /* GuidedStorySurveyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyConfigurator.swift; sourceTree = "<group>"; };
+		38699D432611126F0042355C /* GuidedStoryJourneyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyPresenter.swift; sourceTree = "<group>"; };
+		38699D442611126F0042355C /* GuidedStoryJourneyWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyWorker.swift; sourceTree = "<group>"; };
+		38699D452611126F0042355C /* GuidedStoryJourneyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyRouter.swift; sourceTree = "<group>"; };
+		38699D462611126F0042355C /* GuidedStoryJourneyInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyInterface.swift; sourceTree = "<group>"; };
+		38699D472611126F0042355C /* GuidedStoryJourneyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyInteractor.swift; sourceTree = "<group>"; };
+		38699D482611126F0042355C /* GuidedStoryJourneyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyModel.swift; sourceTree = "<group>"; };
+		38699D492611126F0042355C /* GuidedStoryJourneyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyConfigurator.swift; sourceTree = "<group>"; };
 		386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPreparePresenter.swift; sourceTree = "<group>"; };
 		386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareWorker.swift; sourceTree = "<group>"; };
 		386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareRouter.swift; sourceTree = "<group>"; };
@@ -3564,6 +3592,52 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		38699D2C261111B80042355C /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				38699D33261111EF0042355C /* GuidedStorySurveyConfigurator.swift */,
+				38699D31261111EF0042355C /* GuidedStorySurveyInteractor.swift */,
+				38699D30261111EF0042355C /* GuidedStorySurveyInterface.swift */,
+				38699D32261111EF0042355C /* GuidedStorySurveyModel.swift */,
+				38699D2D261111EF0042355C /* GuidedStorySurveyPresenter.swift */,
+				38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */,
+				38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */,
+				38699D2E261111EF0042355C /* GuidedStorySurveyWorker.swift */,
+			);
+			name = Survey;
+			sourceTree = "<group>";
+		};
+		38699D422611123E0042355C /* Journey */ = {
+			isa = PBXGroup;
+			children = (
+				38699D492611126F0042355C /* GuidedStoryJourneyConfigurator.swift */,
+				38699D472611126F0042355C /* GuidedStoryJourneyInteractor.swift */,
+				38699D462611126F0042355C /* GuidedStoryJourneyInterface.swift */,
+				38699D482611126F0042355C /* GuidedStoryJourneyModel.swift */,
+				38699D432611126F0042355C /* GuidedStoryJourneyPresenter.swift */,
+				38699D452611126F0042355C /* GuidedStoryJourneyRouter.swift */,
+				38EE0B31260DC3870003A1FA /* GuidedStoryJourneyViewController.swift */,
+				38699D442611126F0042355C /* GuidedStoryJourneyWorker.swift */,
+			);
+			name = Journey;
+			sourceTree = "<group>";
+		};
+		38699D5F261112A50042355C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */,
+				38EE0B08260DBE260003A1FA /* GuidedStoryConfigurator.swift */,
+				38EE0B06260DBE260003A1FA /* GuidedStoryInteractor.swift */,
+				38EE0B04260DBE260003A1FA /* GuidedStoryInterface.swift */,
+				38EE0B07260DBE260003A1FA /* GuidedStoryModel.swift */,
+				38EE0B01260DBE260003A1FA /* GuidedStoryPresenter.swift */,
+				38EE0B03260DBE260003A1FA /* GuidedStoryRouter.swift */,
+				38EE0B05260DBE260003A1FA /* GuidedStoryViewController.swift */,
+				38EE0B02260DBE260003A1FA /* GuidedStoryWorker.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		386C27912418EBD400184EC9 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -3683,17 +3757,9 @@
 		38EE0B00260DBDD00003A1FA /* GuidedStory */ = {
 			isa = PBXGroup;
 			children = (
-				38EE0B1F260DBE570003A1FA /* GuidedStory.storyboard */,
-				38EE0B08260DBE260003A1FA /* GuidedStoryConfigurator.swift */,
-				38EE0B06260DBE260003A1FA /* GuidedStoryInteractor.swift */,
-				38EE0B04260DBE260003A1FA /* GuidedStoryInterface.swift */,
-				38EE0B31260DC3870003A1FA /* GuidedStoryJourneyViewController.swift */,
-				38EE0B07260DBE260003A1FA /* GuidedStoryModel.swift */,
-				38EE0B01260DBE260003A1FA /* GuidedStoryPresenter.swift */,
-				38EE0B03260DBE260003A1FA /* GuidedStoryRouter.swift */,
-				38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */,
-				38EE0B05260DBE260003A1FA /* GuidedStoryViewController.swift */,
-				38EE0B02260DBE260003A1FA /* GuidedStoryWorker.swift */,
+				38699D5F261112A50042355C /* Main */,
+				38699D2C261111B80042355C /* Survey */,
+				38699D422611123E0042355C /* Journey */,
 			);
 			name = GuidedStory;
 			sourceTree = "<group>";
@@ -6823,6 +6889,7 @@
 				36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */,
 				380B03CA241FAC7E00B5376A /* ResultsPrepareQuestionDailyTableViewCell.swift in Sources */,
 				F947EA0F2521F45D004C7076 /* TeamVisionTrackerDetailsConfigurator.swift in Sources */,
+				38699D37261111F00042355C /* GuidedStorySurveyInterface.swift in Sources */,
 				F9A5C94A22B7D08500AB2E94 /* PaymentReminderPresenter.swift in Sources */,
 				F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */,
 				8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */,
@@ -7057,6 +7124,7 @@
 				B411ECB525751C5100EB7A78 /* Notification+Ext.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				B4B05CD7258F08C10076A2E9 /* SearchNoResultsTableviewCell.swift in Sources */,
+				38699D34261111F00042355C /* GuidedStorySurveyPresenter.swift in Sources */,
 				B48B5469256468C400FC183D /* MeAtMyBestTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
@@ -7138,6 +7206,7 @@
 				360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */,
 				B411ECB725751C5100EB7A78 /* FromMyCoachCellViewModel.swift in Sources */,
 				3666FD42232A4B7D00FC67D0 /* DTRecoveryWorker.swift in Sources */,
+				38699D502611126F0042355C /* GuidedStoryJourneyConfigurator.swift in Sources */,
 				F99E9CC524EABD9C00325EAE /* VisionRatingExplanationRouter.swift in Sources */,
 				389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
@@ -7235,6 +7304,7 @@
 				AC1A40DF22A54EB70022156C /* SolveResultsInteractor.swift in Sources */,
 				3655F2DC2326F1E400334719 /* DTInteractor.swift in Sources */,
 				8D6048E322D8D2970005BB29 /* Notification+MyLibrary.swift in Sources */,
+				38699D4F2611126F0042355C /* GuidedStoryJourneyModel.swift in Sources */,
 				38095D2824BDC4EA0077EE86 /* TeamInvitesInteractor.swift in Sources */,
 				388249442536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift in Sources */,
 				8D204C2822F06F1000DF6A76 /* MySprintNotesInterface.swift in Sources */,
@@ -7284,6 +7354,7 @@
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
 				38C23E5224235DCA0034571B /* DTPrepareStartWorker.swift in Sources */,
 				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
+				38699D4A2611126F0042355C /* GuidedStoryJourneyPresenter.swift in Sources */,
 				F9F4707B2510C4D7002331F4 /* TeamToBeVisionOptionsConfigurator.swift in Sources */,
 				F96225752552FA68003FF235 /* UINavigationController+Extension.swift in Sources */,
 				386C27BA241A6B4000184EC9 /* ResultsPrepareEventTableViewCell.swift in Sources */,
@@ -7339,6 +7410,7 @@
 				38E84B7C241A8860000BAB6C /* ResultsPrepareBenefitsTableViewCell.swift in Sources */,
 				DB51215F2331945F009BFF22 /* PreparationWithMissingEventRouter.swift in Sources */,
 				8DF7870D22FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift in Sources */,
+				38699D36261111F00042355C /* GuidedStorySurveyRouter.swift in Sources */,
 				5F57F9F122831768003A9EDF /* MyQotAccountSettingsInteractor.swift in Sources */,
 				36796A5C20D3C4B800B55429 /* SigningInfoInteractor.swift in Sources */,
 				F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */,
@@ -7383,6 +7455,7 @@
 				B474CA902398F85F00A829B5 /* RegisterIntroInterface.swift in Sources */,
 				5F360737228C1F030074FEC4 /* SyncedCalendarsWorker.swift in Sources */,
 				8D8AA75F22FDCB6700B59A81 /* RegistrationRouter.swift in Sources */,
+				38699D4B2611126F0042355C /* GuidedStoryJourneyWorker.swift in Sources */,
 				8D5668BB22DCAD4800AA172F /* MySprintsListInteractor.swift in Sources */,
 				5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */,
 				B4BCE46F255BCEC500A1116F /* BaseDailyBriefDetailsInterface.swift in Sources */,
@@ -7451,6 +7524,7 @@
 				5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */,
 				DBF6F131235DE08100367CC7 /* Notification+Name.swift in Sources */,
 				91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */,
+				38699D38261111F00042355C /* GuidedStorySurveyInteractor.swift in Sources */,
 				3637662E223A66AF00C2C429 /* CoachPresenter.swift in Sources */,
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				36083829225F3ED000664B9B /* ArticleInterface.swift in Sources */,
@@ -7560,11 +7634,14 @@
 				B4BCE4A8255BD01600A1116F /* DismissCardAnimator.swift in Sources */,
 				38C23E5324235DCA0034571B /* DTPrepareStartRouter.swift in Sources */,
 				8D6E058C22D7466E00EC2AEF /* MyLibraryNotesViewController.swift in Sources */,
+				38699D39261111F00042355C /* GuidedStorySurveyModel.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
 				B411ECB825751C5100EB7A78 /* ExploreCellViewModel.swift in Sources */,
 				F91087A724C5A6BD00CA343A /* TeamToBeVisionConfigurator.swift in Sources */,
+				38699D4D2611126F0042355C /* GuidedStoryJourneyInterface.swift in Sources */,
 				363B9CC6232BF34A00C1A29E /* DTTBVConfigurator.swift in Sources */,
 				AC1A40F422A573F80022156C /* SolveDayPlanTableViewCell.swift in Sources */,
+				38699D4C2611126F0042355C /* GuidedStoryJourneyRouter.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
 				B45DA6C323AA6316006E7E33 /* MyQOTAdminChooseBucketsConfigurator.swift in Sources */,
 				B4BCD0FA23AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift in Sources */,
@@ -7621,6 +7698,7 @@
 				36376602223A4BD200C2C429 /* KnowingConfigurator.swift in Sources */,
 				36E12EC6232B57F0009E96EA /* DTPrepareViewController.swift in Sources */,
 				DB086F3424C5E56100D4F64E /* BookMarkSelectionInteractor.swift in Sources */,
+				38699D4E2611126F0042355C /* GuidedStoryJourneyInteractor.swift in Sources */,
 				8D25326F22E9B8F700FE4205 /* MySprintDetailsItem.swift in Sources */,
 				F9458C6724AA379C004E2383 /* MyXTeamSettingsModel.swift in Sources */,
 				CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */,
@@ -7645,6 +7723,7 @@
 				F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
 				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
+				38699D35261111F00042355C /* GuidedStorySurveyWorker.swift in Sources */,
 				38EE0B0D260DBE260003A1FA /* GuidedStoryViewController.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
 				F934802E247D467000DD1C7D /* FeatureExplainerConfigurator.swift in Sources */,
@@ -7758,6 +7837,7 @@
 				F947EA0D2521F45D004C7076 /* TeamVisionTrackerDetailsInteractor.swift in Sources */,
 				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
+				38699D3A261111F00042355C /* GuidedStorySurveyConfigurator.swift in Sources */,
 				386C279C2418EBFF00184EC9 /* ResultsPrepareRouter.swift in Sources */,
 				F9207CE624B77BEB007B1AB6 /* MyXTeamMembersPresenter.swift in Sources */,
 				389CC8182512021600028C54 /* HorizontalHeaderCollectionViewCell.swift in Sources */,

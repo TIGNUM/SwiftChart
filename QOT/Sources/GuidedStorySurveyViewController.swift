@@ -28,10 +28,15 @@ extension GuidedStorySurveyViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension GuidedStorySurveyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
+}
+
+// MARK: - GudidedStorySurveyViewControllerInterface
+extension GuidedStorySurveyViewController: GudidedStorySurveyViewControllerInterface {
+
 }
