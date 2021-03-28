@@ -10,7 +10,7 @@ import UIKit
 
 final class GuidedStoryJourneyViewController: UIViewController {
 
-    var interactor: GuidedStoryInteractorInterface!
+    var interactor: GuidedStoryJourneyInteractorInterface!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,5 +19,7 @@ final class GuidedStoryJourneyViewController: UIViewController {
 
 // MARK: - GuidedStoryJourneyViewControllerInterface
 extension GuidedStoryJourneyViewController: GuidedStoryJourneyViewControllerInterface {
-
+    func setupView() {
+        
+    }
 }

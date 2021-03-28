@@ -9,11 +9,9 @@
 import Foundation
 
 final class GuidedStoryJourneyConfigurator {
-    static func make() -> (GuidedStoryJourneyViewController) -> Void {
-        return { (viewController) in
-            let presenter = GuidedStoryJourneyPresenter(viewController: viewController)
-            let interactor = GuidedStoryJourneyInteractor(presenter: presenter)
-            viewController.interactor = interactor
-        }
+    static func make(viewController: GuidedStoryJourneyViewController) {
+        let presenter = GuidedStoryJourneyPresenter(viewController: viewController)
+        let interactor = GuidedStoryJourneyInteractor(presenter: presenter)
+        viewController.interactor = interactor
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RadioTableViewCell: UITableViewCell {
+class RadioTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var lableView: UIView!
     @IBOutlet private weak var radioStatusView: UIView!

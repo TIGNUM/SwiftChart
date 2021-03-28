@@ -12,7 +12,7 @@ final class GuidedStorySurveyViewController: UIViewController {
 
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-    var interactor: GuidedStoryInteractorInterface!
+    var interactor: GuidedStorySurveyInteractorInterface!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +37,8 @@ extension GuidedStorySurveyViewController: UITableViewDataSource {
 }
 
 // MARK: - GudidedStorySurveyViewControllerInterface
-extension GuidedStorySurveyViewController: GudidedStorySurveyViewControllerInterface {
-
+extension GuidedStorySurveyViewController: GuidedStorySurveyViewControllerInterface {
+    func setupView() {
+        tableView.registerDequeueable(RadioTableViewCell.self)
+    }
 }

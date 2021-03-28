@@ -12,14 +12,6 @@ protocol GuidedStoryViewControllerInterface: class {
     func setupView()
 }
 
-protocol GudidedStorySurveyViewControllerInterface: class {
-
-}
-
-protocol GuidedStoryJourneyViewControllerInterface: class {
-
-}
-
 protocol GuidedStoryPresenterInterface {
     func setupView()
 }
