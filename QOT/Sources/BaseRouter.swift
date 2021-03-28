@@ -123,8 +123,7 @@ class BaseRouter: BaseRouterInterface {
 
     private func showGuidedStory() {
         if let controller = R.storyboard.guidedStory.guidedStoryID() {
-            let configurator = GuidedStoryConfigurator.make()
-            configurator(controller)
+            GuidedStoryConfigurator.make(viewController: controller)
             push(controller)
         }
     }

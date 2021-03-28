@@ -5709,14 +5709,14 @@
 			isa = PBXGroup;
 			children = (
 				F934801D247D464A00DD1C7D /* FeatureExplainer.storyboard */,
-				F934801F247D467000DD1C7D /* FeatureExplainerPresenter.swift */,
-				F9348020247D467000DD1C7D /* FeatureExplainerWorker.swift */,
-				F9348021247D467000DD1C7D /* FeatureExplainerRouter.swift */,
-				F9348022247D467000DD1C7D /* FeatureExplainerInterface.swift */,
-				F9348023247D467000DD1C7D /* FeatureExplainerViewController.swift */,
-				F9348024247D467000DD1C7D /* FeatureExplainerInteractor.swift */,
-				F9348025247D467000DD1C7D /* FeatureExplainerModel.swift */,
 				F9348026247D467000DD1C7D /* FeatureExplainerConfigurator.swift */,
+				F9348024247D467000DD1C7D /* FeatureExplainerInteractor.swift */,
+				F9348022247D467000DD1C7D /* FeatureExplainerInterface.swift */,
+				F9348025247D467000DD1C7D /* FeatureExplainerModel.swift */,
+				F934801F247D467000DD1C7D /* FeatureExplainerPresenter.swift */,
+				F9348021247D467000DD1C7D /* FeatureExplainerRouter.swift */,
+				F9348023247D467000DD1C7D /* FeatureExplainerViewController.swift */,
+				F9348020247D467000DD1C7D /* FeatureExplainerWorker.swift */,
 			);
 			name = FeatureExplainer;
 			sourceTree = "<group>";

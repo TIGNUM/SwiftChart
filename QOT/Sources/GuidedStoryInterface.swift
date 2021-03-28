@@ -23,5 +23,4 @@ protocol GuidedStoryRouterInterface {
     func setViewContainer(_ container: UIView)
     func showSurvey()
     func showJourney()
-    func cycleFromViewController(from old: UIViewController, to new: UIViewController)
 }
