@@ -10,6 +10,8 @@ import UIKit
 
 final class GuidedStoryJourneyViewController: UIViewController {
 
+    var interactor: GuidedStoryInteractorInterface!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

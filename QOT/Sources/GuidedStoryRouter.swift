@@ -31,6 +31,7 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
     func showSurvey() {
         if let survey = R.storyboard.guidedStory.surveyViCo() {
             surveyViewController = survey
+            surveyViewController?.interactor = viewController?.interactor
             viewController?.add(survey, to: viewContainer)
         }
     }
@@ -38,6 +39,7 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
     func showJourney() {
         if let journey = R.storyboard.guidedStory.journeyViCo() {
             journeyViewController = journey
+            journeyViewController?.interactor = viewController?.interactor
             cycleFromViewController(from: surveyViewController, to: journey)
         }
     }

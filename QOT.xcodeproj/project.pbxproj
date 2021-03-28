@@ -297,6 +297,8 @@
 		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
 		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
 		38593DF124A1114C00C2955D /* Team.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38593DF024A1114C00C2955D /* Team.storyboard */; };
+		38699D0E2610D3470042355C /* RadioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D0C2610D3470042355C /* RadioTableViewCell.swift */; };
+		38699D0F2610D3470042355C /* RadioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38699D0D2610D3470042355C /* RadioTableViewCell.xib */; };
 		386C279A2418EBFF00184EC9 /* ResultsPreparePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */; };
 		386C279B2418EBFF00184EC9 /* ResultsPrepareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */; };
 		386C279C2418EBFF00184EC9 /* ResultsPrepareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */; };
@@ -1732,6 +1734,8 @@
 		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
 		38593DF024A1114C00C2955D /* Team.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Team.storyboard; sourceTree = "<group>"; };
+		38699D0C2610D3470042355C /* RadioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioTableViewCell.swift; sourceTree = "<group>"; };
+		38699D0D2610D3470042355C /* RadioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioTableViewCell.xib; sourceTree = "<group>"; };
 		386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPreparePresenter.swift; sourceTree = "<group>"; };
 		386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareWorker.swift; sourceTree = "<group>"; };
 		386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareRouter.swift; sourceTree = "<group>"; };
@@ -3551,6 +3555,15 @@
 			name = Team;
 			sourceTree = "<group>";
 		};
+		38699D0B2610D1530042355C /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				38699D0C2610D3470042355C /* RadioTableViewCell.swift */,
+				38699D0D2610D3470042355C /* RadioTableViewCell.xib */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
 		386C27912418EBD400184EC9 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -5265,6 +5278,7 @@
 		CBB4DD1C1EE085600071494A /* ViewLayer */ = {
 			isa = PBXGroup;
 			children = (
+				38699D0B2610D1530042355C /* TableViewCells */,
 				CC7D21A41EFBF50A007A062E /* Article */,
 				36E12EB8232B4CD7009E96EA /* BaseViews */,
 				CBB4DD461EE0911A0071494A /* Common */,
@@ -6245,6 +6259,7 @@
 				F9114E5925B1E46F00D1F0E2 /* walkThrough_myQOT.mp4 in Resources */,
 				B44D4462256B1B0E00B3B4F6 /* PeakPerformanceTableViewCell.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
+				38699D0F2610D3470042355C /* RadioTableViewCell.xib in Resources */,
 				38593DF124A1114C00C2955D /* Team.storyboard in Resources */,
 				38F95C9925068106009265DC /* PollCollectionViewCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
@@ -7649,6 +7664,7 @@
 				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,
 				5F62BEAA228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift in Sources */,
 				36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */,
+				38699D0E2610D3470042355C /* RadioTableViewCell.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				3637660E223A4BEC00C2C429 /* DailyBriefInterface.swift in Sources */,
 				36376635223A66AF00C2C429 /* CoachConfigurator.swift in Sources */,
