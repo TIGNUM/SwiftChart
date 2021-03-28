@@ -100,10 +100,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2kK-4Q-BbG">
                                 <rect key="frame" x="20" y="185.5" width="374" height="676.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="wyU-uG-3Tc" id="XyJ-tU-2nI"/>
-                                    <outlet property="delegate" destination="wyU-uG-3Tc" id="sNc-Wq-97m"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="azI-mN-Bxx"/>

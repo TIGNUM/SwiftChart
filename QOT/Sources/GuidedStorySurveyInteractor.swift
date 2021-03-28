@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import qot_dal
 
 final class GuidedStorySurveyInteractor {
 
     // MARK: - Properties
     private lazy var worker = GuidedStorySurveyWorker()
     private let presenter: GuidedStorySurveyPresenterInterface!
+    private var currentQuestionKey = Survey.QuestionKey.intro.rawValue
 
     // MARK: - Init
     init(presenter: GuidedStorySurveyPresenterInterface) {
@@ -21,11 +23,17 @@ final class GuidedStorySurveyInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        let key = currentQuestionKey
+        worker.getQuestions { [weak self] in
+            self?.presenter.setupView()
+            self?.presenter.setQuestion(self?.worker.question(for: key))
+        }
     }
 }
 
 // MARK: - GuidedStorySurveyInteractorInterface
 extension GuidedStorySurveyInteractor: GuidedStorySurveyInteractorInterface {
-
+    var rowCount: Int {
+        return worker.question(for: currentQuestionKey)?.answers.count ?? .zero
+    }
 }

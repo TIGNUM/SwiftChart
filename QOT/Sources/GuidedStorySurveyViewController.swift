@@ -16,6 +16,7 @@ final class GuidedStorySurveyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor.viewDidLoad()
     }
 }
 
@@ -28,17 +29,32 @@ extension GuidedStorySurveyViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension GuidedStorySurveyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return interactor.rowCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell: RadioTableViewCell = tableView.dequeueCell(for: indexPath)
+        return cell
     }
 }
 
 // MARK: - GudidedStorySurveyViewControllerInterface
 extension GuidedStorySurveyViewController: GuidedStorySurveyViewControllerInterface {
     func setupView() {
+       setupTableView()
+    }
+
+    func setQuestionLabel(_ question: String?) {
+        questionLabel.text = question
+    }
+}
+
+// MARK: - Private
+private extension GuidedStorySurveyViewController {
+    func setupTableView() {
         tableView.registerDequeueable(RadioTableViewCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.reloadData()
     }
 }

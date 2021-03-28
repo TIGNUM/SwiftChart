@@ -8,6 +8,9 @@
 
 import UIKit
 
-struct GuidedStorySurveyModel {
-
+struct Survey {
+    enum QuestionKey: String {
+        case intro = "onboarding-survey-intro"
+        case last = "onboarding-survey-last-question"
+    }
 }
