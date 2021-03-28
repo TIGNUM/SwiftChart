@@ -24,8 +24,19 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBv-pU-UQA">
                         <rect key="frame" x="256" y="0.0" width="64" height="44"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radio_off" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-Hz-HZv">
+                                <rect key="frame" x="24" y="14" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="2Rg-bF-qzx"/>
+                                    <constraint firstAttribute="height" constant="16" id="WSP-HJ-zgL"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                         <constraints>
+                            <constraint firstItem="Op3-Hz-HZv" firstAttribute="centerX" secondItem="NBv-pU-UQA" secondAttribute="centerX" id="GyO-mt-LL5"/>
+                            <constraint firstItem="Op3-Hz-HZv" firstAttribute="centerY" secondItem="NBv-pU-UQA" secondAttribute="centerY" id="I30-7Q-ASz"/>
                             <constraint firstAttribute="width" constant="64" id="NCu-es-aXX"/>
                         </constraints>
                     </view>
@@ -46,6 +57,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ic_radio_off" width="16" height="16"/>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
