@@ -153,7 +153,7 @@ private extension OnboardingLoginViewController {
 
         interactor.validateLoginCode(code, for: emailField.text) { [weak self] (loginSuccess) in
             if loginSuccess {
-                Feature.Flag.onboardingSurvey.isOn ? self?.router.showGuidedStory() : self?.router.showCoachMarks()
+                self?.router.showOnboardingJourney()
             } else {
                 self?.router.showHomeScreen()
             }

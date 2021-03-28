@@ -17,12 +17,11 @@ final class AppCoordinator {
 
     // MARK: - Static Properties
     static var permissionsManager: PermissionsManager?
-    static var orientationManager: OrientationManager = OrientationManager()
+    static var orientationManager = OrientationManager()
 
     // MARK: - Properties
     private var isReadyToProcessURL = false
     private let remoteNotificationHandler: RemoteNotificationHandler
-    private var onDismiss: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
@@ -109,14 +108,8 @@ final class AppCoordinator {
         }
     }
 
-    func checkVersionIfNeeded() {
-        // guard services?.userService.user()?.appUpdatePrompt == true else { return }
-        // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
-    }
-
     func showApp(with displayedScreen: CoachCollectionViewController.Page? = .dailyBrief) {
-        let isPhoneExposed = IOSSecuritySuite.amIJailbroken() || IOSSecuritySuite.amIReverseEngineered()
-        if isPhoneExposed {
+        if IOSSecuritySuite.amIJailbroken() || IOSSecuritySuite.amIReverseEngineered() {
             showJailbrokenAlert()
         } else {
             ExtensionsDataManager.didUserLogIn(true)
@@ -185,7 +178,7 @@ final class AppCoordinator {
                                    animated: false) {
             DispatchQueue.main.async {
                 if SessionService.main.isUsersVeryFirstAppStart {
-                    Feature.Flag.onboardingSurvey.isOn ? self.showGuidedTour() : self.showCoachMarks()
+                    Feature.Flag.onboardingSurvey.isOn ? self.showGuidedStory() : self.showCoachMarks()
                 } else {
                     baseRootViewController.setContent(viewController: coachCollectionViewController)
                     self.isReadyToProcessURL = true
@@ -252,7 +245,7 @@ extension AppCoordinator {
         baseController.setContent(viewController: controller)
     }
 
-    func showGuidedTour() {
+    func showGuidedStory() {
         guard let controller = R.storyboard.guidedStory.guidedStoryID(),
             let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,
             let baseController = navigationController.viewControllers.first as? BaseRootViewController else { return }

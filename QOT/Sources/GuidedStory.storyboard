@@ -58,6 +58,9 @@
                             <constraint firstItem="lxn-Ep-dTe" firstAttribute="top" secondItem="vvO-cY-tqw" secondAttribute="top" id="tpn-6Y-eP5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="viewContainer" destination="lxn-Ep-dTe" id="dz4-ef-rNN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXo-pg-Bml" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,6 +88,7 @@
                     <view key="view" contentMode="scaleToFill" id="upb-dz-Xmo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="azI-mN-Bxx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>

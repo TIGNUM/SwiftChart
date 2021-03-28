@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import qot_dal
 
 class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var upperContentView: UIView!
@@ -17,9 +18,7 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
     let skeletonManager = SkeletonManager()
     @IBOutlet weak var completedIcon: UIImageView!
 
-    private static let sizingCell = UINib(nibName: "NewDailyBriefGetStartedCollectionViewCell", bundle: nil).instantiate(withOwner: nil,
-                                                                                                                         options: nil).first!
-                                    as? NewDailyBriefGetStartedCollectionViewCell
+    private static let sizingCell = R.nib.newDailyBriefGetStartedCollectionViewCell().instantiate(withOwner: nil, options: nil).first as? NewDailyBriefGetStartedCollectionViewCell
 
     // MARK: - Actions
     @IBAction func didTapArrowButton(_ sender: Any) {
@@ -33,8 +32,10 @@ class NewDailyBriefGetStartedCollectionViewCell: UICollectionViewCell, Dequeueab
             skeletonManager.addOtherView(completedIcon)
             skeletonManager.addTitle(title)
             arrowButton.isHidden = true
+            log("[DaiBriLOG: NewDailyBriefGetStartedCollectionViewCell] viewModel == nil; return ", level: .error)
             return
         }
+
         skeletonManager.hide()
         upperContentView.layer.borderWidth = 0.5
         upperContentView.layer.borderColor =  model.isCompleted == true ? UIColor.darkGrey.cgColor : UIColor.lightGray.cgColor

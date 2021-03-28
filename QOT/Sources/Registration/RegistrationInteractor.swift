@@ -114,17 +114,12 @@ extension RegistrationInteractor: RegistrationDelegate {
         worker.createAccount(with: registrationData) { [weak self] (result, _) in
             guard let strongSelf = self else { return }
             self?.presenter.presentActivity(state: nil)
+
             if case .userCreated = result.code {
-                self?.showNextView()
-            } else {                
+                self?.router.showOnboardingJourney()
+            } else {
                 self?.presenter.presentAlert(message: result.message ?? strongSelf.worker.generalError)
             }
         }
-    }
-}
-
-private extension RegistrationInteractor {
-    func showNextView() {
-        Feature.Flag.onboardingSurvey.isOn ? router.showGuidedStory() : router.showCoachMarksViewController()
     }
 }
