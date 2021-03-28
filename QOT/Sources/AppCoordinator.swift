@@ -177,6 +177,10 @@ final class AppCoordinator {
                                    duration: 0,
                                    animated: false) {
             DispatchQueue.main.async {
+                self.showGuidedStory()
+                return
+
+                // ################
                 if SessionService.main.isUsersVeryFirstAppStart {
                     Feature.Flag.onboardingSurvey.isOn ? self.showGuidedStory() : self.showCoachMarks()
                 } else {

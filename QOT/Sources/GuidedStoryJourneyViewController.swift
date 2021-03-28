@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GuidedStoryJourneyViewController: UIViewController {
+final class GuidedStoryJourneyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

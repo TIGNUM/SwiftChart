@@ -89,14 +89,44 @@
                     <view key="view" contentMode="scaleToFill" id="upb-dz-Xmo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fj-qE-rrg">
+                                <rect key="frame" x="20" y="44" width="374" height="101.5"/>
+                                <string key="text">Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2kK-4Q-BbG">
+                                <rect key="frame" x="20" y="185.5" width="374" height="676.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="wyU-uG-3Tc" id="XyJ-tU-2nI"/>
+                                    <outlet property="delegate" destination="wyU-uG-3Tc" id="sNc-Wq-97m"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="azI-mN-Bxx"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="2fj-qE-rrg" firstAttribute="leading" secondItem="azI-mN-Bxx" secondAttribute="leading" constant="20" id="FfC-QL-ACh"/>
+                            <constraint firstItem="2kK-4Q-BbG" firstAttribute="top" secondItem="2fj-qE-rrg" secondAttribute="bottom" constant="40" id="H6D-QQ-tQ7"/>
+                            <constraint firstItem="2kK-4Q-BbG" firstAttribute="bottom" secondItem="azI-mN-Bxx" secondAttribute="bottom" id="JaA-Gg-ils"/>
+                            <constraint firstItem="azI-mN-Bxx" firstAttribute="trailing" secondItem="2kK-4Q-BbG" secondAttribute="trailing" constant="20" id="Qqa-nl-fT4"/>
+                            <constraint firstItem="2kK-4Q-BbG" firstAttribute="leading" secondItem="azI-mN-Bxx" secondAttribute="leading" constant="20" id="WL4-De-a2T"/>
+                            <constraint firstAttribute="trailing" secondItem="2fj-qE-rrg" secondAttribute="trailing" constant="20" id="b6C-AV-6cp"/>
+                            <constraint firstItem="2fj-qE-rrg" firstAttribute="top" secondItem="azI-mN-Bxx" secondAttribute="top" id="eOi-Dm-XWI"/>
+                        </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="questionLabel" destination="2fj-qE-rrg" id="tdS-qR-tCB"/>
+                        <outlet property="tableView" destination="2kK-4Q-BbG" id="JvY-yf-uHd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eVy-0i-kip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343" y="737"/>
+            <point key="canvasLocation" x="340.57971014492756" y="736.60714285714278"/>
         </scene>
     </scenes>
     <resources>
