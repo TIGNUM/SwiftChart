@@ -11,39 +11,75 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RadioTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="KGk-i7-Jjw" customClass="RadioTableViewCell" customModule="TIGNUM_X" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bL1-tJ-u8D">
-                        <rect key="frame" x="0.0" y="0.0" width="256" height="44"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBv-pU-UQA">
-                        <rect key="frame" x="256" y="0.0" width="64" height="44"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bL1-tJ-u8D" userLabel="LabelView">
+                        <rect key="frame" x="0.0" y="0.0" width="256" height="56"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radio_off" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-Hz-HZv">
-                                <rect key="frame" x="24" y="14" width="16" height="16"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="otn-Mn-eys">
+                                <rect key="frame" x="24" y="0.0" width="232" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main / Title Label " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GG-F5-7Bs">
+                                        <rect key="frame" x="0.0" y="0.0" width="232" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle On/Off Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xe-l8-ETq">
+                                        <rect key="frame" x="0.0" y="28" width="232" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="otn-Mn-eys" secondAttribute="trailing" id="dS3-dZ-ePH"/>
+                            <constraint firstItem="otn-Mn-eys" firstAttribute="top" secondItem="bL1-tJ-u8D" secondAttribute="top" id="nrZ-6h-VpO"/>
+                            <constraint firstAttribute="bottom" secondItem="otn-Mn-eys" secondAttribute="bottom" id="o3k-0J-GHf"/>
+                            <constraint firstItem="otn-Mn-eys" firstAttribute="leading" secondItem="bL1-tJ-u8D" secondAttribute="leading" constant="24" id="q1a-Pi-6Jh"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBv-pU-UQA" userLabel="RadioStatusView">
+                        <rect key="frame" x="256" y="0.0" width="64" height="56"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g60-aD-Rcm">
+                                <rect key="frame" x="24" y="20" width="16" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="16" id="2Rg-bF-qzx"/>
-                                    <constraint firstAttribute="height" constant="16" id="WSP-HJ-zgL"/>
+                                    <constraint firstAttribute="height" constant="16" id="dP1-R2-hhQ"/>
+                                    <constraint firstAttribute="width" constant="16" id="lzv-vI-9lF"/>
                                 </constraints>
-                            </imageView>
+                                <state key="normal" image="ic_radio_off"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                         <constraints>
-                            <constraint firstItem="Op3-Hz-HZv" firstAttribute="centerX" secondItem="NBv-pU-UQA" secondAttribute="centerX" id="GyO-mt-LL5"/>
-                            <constraint firstItem="Op3-Hz-HZv" firstAttribute="centerY" secondItem="NBv-pU-UQA" secondAttribute="centerY" id="I30-7Q-ASz"/>
                             <constraint firstAttribute="width" constant="64" id="NCu-es-aXX"/>
+                            <constraint firstItem="g60-aD-Rcm" firstAttribute="centerY" secondItem="NBv-pU-UQA" secondAttribute="centerY" id="Sfp-4Z-sFb"/>
+                            <constraint firstItem="g60-aD-Rcm" firstAttribute="centerX" secondItem="NBv-pU-UQA" secondAttribute="centerX" id="rBg-0h-749"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pl7-6f-VEA">
+                        <rect key="frame" x="24" y="55" width="296" height="1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="aSR-vR-vAA"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="bL1-tJ-u8D" secondAttribute="bottom" id="14g-s8-YCO"/>
                     <constraint firstAttribute="bottom" secondItem="NBv-pU-UQA" secondAttribute="bottom" id="A65-n8-kqP"/>
+                    <constraint firstAttribute="bottom" secondItem="pl7-6f-VEA" secondAttribute="bottom" id="BDD-f0-dYN"/>
+                    <constraint firstAttribute="trailing" secondItem="pl7-6f-VEA" secondAttribute="trailing" id="Ian-sy-bIs"/>
+                    <constraint firstItem="pl7-6f-VEA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="M5h-o4-EtB"/>
                     <constraint firstItem="NBv-pU-UQA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VEX-Mo-91h"/>
                     <constraint firstItem="bL1-tJ-u8D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="f85-Km-ODf"/>
                     <constraint firstAttribute="trailing" secondItem="NBv-pU-UQA" secondAttribute="trailing" id="sQO-Xs-yYm"/>
@@ -53,11 +89,22 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" systemColor="systemGrayColor"/>
-            <point key="canvasLocation" x="-84.057971014492765" y="112.5"/>
+            <connections>
+                <outlet property="bottomDivider" destination="pl7-6f-VEA" id="3Ln-z7-KNj"/>
+                <outlet property="lableView" destination="bL1-tJ-u8D" id="q5U-w2-Q0z"/>
+                <outlet property="radioButton" destination="g60-aD-Rcm" id="wyP-WM-d4g"/>
+                <outlet property="radioStatusView" destination="NBv-pU-UQA" id="jUO-PR-Tdf"/>
+                <outlet property="subTitleLabel" destination="4Xe-l8-ETq" id="5Jt-uF-cvW"/>
+                <outlet property="titleLabel" destination="3GG-F5-7Bs" id="tN2-Lg-EQt"/>
+            </connections>
+            <point key="canvasLocation" x="-84.057971014492765" y="116.51785714285714"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="ic_radio_off" width="16" height="16"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

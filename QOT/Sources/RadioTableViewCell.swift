@@ -10,6 +10,13 @@ import UIKit
 
 class RadioTableViewCell: UITableViewCell {
 
+    @IBOutlet private weak var lableView: UIView!
+    @IBOutlet private weak var radioStatusView: UIView!
+    @IBOutlet private weak var bottomDivider: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var radioButton: UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

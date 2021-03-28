@@ -5278,7 +5278,6 @@
 		CBB4DD1C1EE085600071494A /* ViewLayer */ = {
 			isa = PBXGroup;
 			children = (
-				38699D0B2610D1530042355C /* TableViewCells */,
 				CC7D21A41EFBF50A007A062E /* Article */,
 				36E12EB8232B4CD7009E96EA /* BaseViews */,
 				CBB4DD461EE0911A0071494A /* Common */,
@@ -5286,6 +5285,7 @@
 				CBB4DD3F1EE08EF90071494A /* Launch */,
 				CBB4DD3E1EE08EB50071494A /* PrepareChat */,
 				CC02E1471F2799E500134574 /* SettingsCalendarList */,
+				38699D0B2610D1530042355C /* TableViewCells */,
 				36582581232853E400AC3F4A /* Theme */,
 			);
 			name = ViewLayer;
