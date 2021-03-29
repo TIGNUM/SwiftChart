@@ -25,9 +25,14 @@ final class GuidedStoryViewController: UIViewController {
 
 // MARK: - Private
 private extension GuidedStoryViewController {
-    func activateNextButton() {
+    func enableNextButton() {
         nextButton.isEnabled = true
         nextButton.backgroundColor = .blue
+    }
+
+    func disableNextButton() {
+        nextButton.isEnabled = false
+        nextButton.backgroundColor = .gray
     }
 }
 
@@ -35,6 +40,7 @@ private extension GuidedStoryViewController {
 private extension GuidedStoryViewController {
     @IBAction func didTabNext(_ sender: Any) {
         interactor.didTabNext()
+        disableNextButton()
     }
 
     @IBAction func didTabPrevious(_ sender: Any) {
@@ -60,6 +66,6 @@ extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
 // MARK: - GuidedStoryDelegate
 extension GuidedStoryViewController: GuidedStoryDelegate {
     func didSelectAnswer() {
-        activateNextButton()
+        enableNextButton()
     }
 }
