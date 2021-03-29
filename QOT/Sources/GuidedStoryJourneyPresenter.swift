@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class GuidedStoryJourneyPresenter {
 
@@ -23,5 +24,11 @@ final class GuidedStoryJourneyPresenter {
 extension GuidedStoryJourneyPresenter: GuidedStoryJourneyPresenterInterface {
     func setupView() {
         viewController?.setupView()
+    }
+
+    func setupHeaderView(content: QDMContentCollection?) {
+        viewController?.setupHeaderView(title: content?.title,
+                                        imageURL: URL(string: content?.thumbnailURLString ?? .empty),
+                                        color: .random)
     }
 }

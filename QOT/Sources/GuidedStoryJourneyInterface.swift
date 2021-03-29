@@ -7,16 +7,21 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol GuidedStoryJourneyViewControllerInterface: class {
     func setupView()
+    func setupHeaderView(title: String?, imageURL: URL?, color: UIColor)
 }
 
 protocol GuidedStoryJourneyPresenterInterface {
     func setupView()
+    func setupHeaderView(content: QDMContentCollection?)
 }
 
-protocol GuidedStoryJourneyInteractorInterface: Interactor {}
+protocol GuidedStoryJourneyInteractorInterface: Interactor {
+
+}
 
 protocol GuidedStoryJourneyRouterInterface {
     func dismiss()

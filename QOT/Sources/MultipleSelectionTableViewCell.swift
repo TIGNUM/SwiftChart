@@ -50,7 +50,7 @@ class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable, MultipleSele
 
         let width: CGFloat = label.bounds.width
         let height: CGFloat = label.bounds.height
-        return CGSize(width: width + 32, height: CGFloat(height) + 20)  //size includes constraints from cell.xib
+        return CGSize(width: width + 32, height: CGFloat(height) + 20)  // size includes constraints from cell.xib
     }
 
     // MARK: - MultipleSelectionDelegate

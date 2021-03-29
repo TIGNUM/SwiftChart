@@ -9,7 +9,7 @@
 import Foundation
 
 final class GuidedStoryJourneyConfigurator {
-    static func make(viewController: GuidedStoryJourneyViewController) {
+    static func make(viewController: GuidedStoryJourneyViewController, worker: GuidedStoryWorker) {
         let presenter = GuidedStoryJourneyPresenter(viewController: viewController)
         let interactor = GuidedStoryJourneyInteractor(presenter: presenter)
         viewController.interactor = interactor

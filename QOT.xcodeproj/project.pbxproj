@@ -303,10 +303,8 @@
 		38699D36261111F00042355C /* GuidedStorySurveyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */; };
 		38699D37261111F00042355C /* GuidedStorySurveyInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D30261111EF0042355C /* GuidedStorySurveyInterface.swift */; };
 		38699D38261111F00042355C /* GuidedStorySurveyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D31261111EF0042355C /* GuidedStorySurveyInteractor.swift */; };
-		38699D39261111F00042355C /* GuidedStorySurveyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D32261111EF0042355C /* GuidedStorySurveyModel.swift */; };
 		38699D3A261111F00042355C /* GuidedStorySurveyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D33261111EF0042355C /* GuidedStorySurveyConfigurator.swift */; };
 		38699D4A2611126F0042355C /* GuidedStoryJourneyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D432611126F0042355C /* GuidedStoryJourneyPresenter.swift */; };
-		38699D4B2611126F0042355C /* GuidedStoryJourneyWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D442611126F0042355C /* GuidedStoryJourneyWorker.swift */; };
 		38699D4C2611126F0042355C /* GuidedStoryJourneyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D452611126F0042355C /* GuidedStoryJourneyRouter.swift */; };
 		38699D4D2611126F0042355C /* GuidedStoryJourneyInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D462611126F0042355C /* GuidedStoryJourneyInterface.swift */; };
 		38699D4E2611126F0042355C /* GuidedStoryJourneyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D472611126F0042355C /* GuidedStoryJourneyInteractor.swift */; };
@@ -1753,10 +1751,8 @@
 		38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyRouter.swift; sourceTree = "<group>"; };
 		38699D30261111EF0042355C /* GuidedStorySurveyInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyInterface.swift; sourceTree = "<group>"; };
 		38699D31261111EF0042355C /* GuidedStorySurveyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyInteractor.swift; sourceTree = "<group>"; };
-		38699D32261111EF0042355C /* GuidedStorySurveyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyModel.swift; sourceTree = "<group>"; };
 		38699D33261111EF0042355C /* GuidedStorySurveyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyConfigurator.swift; sourceTree = "<group>"; };
 		38699D432611126F0042355C /* GuidedStoryJourneyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyPresenter.swift; sourceTree = "<group>"; };
-		38699D442611126F0042355C /* GuidedStoryJourneyWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyWorker.swift; sourceTree = "<group>"; };
 		38699D452611126F0042355C /* GuidedStoryJourneyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyRouter.swift; sourceTree = "<group>"; };
 		38699D462611126F0042355C /* GuidedStoryJourneyInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyInterface.swift; sourceTree = "<group>"; };
 		38699D472611126F0042355C /* GuidedStoryJourneyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyInteractor.swift; sourceTree = "<group>"; };
@@ -3596,7 +3592,6 @@
 				38699D33261111EF0042355C /* GuidedStorySurveyConfigurator.swift */,
 				38699D31261111EF0042355C /* GuidedStorySurveyInteractor.swift */,
 				38699D30261111EF0042355C /* GuidedStorySurveyInterface.swift */,
-				38699D32261111EF0042355C /* GuidedStorySurveyModel.swift */,
 				38699D2D261111EF0042355C /* GuidedStorySurveyPresenter.swift */,
 				38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */,
 				38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */,
@@ -3614,7 +3609,6 @@
 				38699D432611126F0042355C /* GuidedStoryJourneyPresenter.swift */,
 				38699D452611126F0042355C /* GuidedStoryJourneyRouter.swift */,
 				38EE0B31260DC3870003A1FA /* GuidedStoryJourneyViewController.swift */,
-				38699D442611126F0042355C /* GuidedStoryJourneyWorker.swift */,
 			);
 			name = Journey;
 			sourceTree = "<group>";
@@ -7452,7 +7446,6 @@
 				B474CA902398F85F00A829B5 /* RegisterIntroInterface.swift in Sources */,
 				5F360737228C1F030074FEC4 /* SyncedCalendarsWorker.swift in Sources */,
 				8D8AA75F22FDCB6700B59A81 /* RegistrationRouter.swift in Sources */,
-				38699D4B2611126F0042355C /* GuidedStoryJourneyWorker.swift in Sources */,
 				8D5668BB22DCAD4800AA172F /* MySprintsListInteractor.swift in Sources */,
 				5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */,
 				B4BCE46F255BCEC500A1116F /* BaseDailyBriefDetailsInterface.swift in Sources */,
@@ -7631,7 +7624,6 @@
 				B4BCE4A8255BD01600A1116F /* DismissCardAnimator.swift in Sources */,
 				38C23E5324235DCA0034571B /* DTPrepareStartRouter.swift in Sources */,
 				8D6E058C22D7466E00EC2AEF /* MyLibraryNotesViewController.swift in Sources */,
-				38699D39261111F00042355C /* GuidedStorySurveyModel.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
 				B411ECB825751C5100EB7A78 /* ExploreCellViewModel.swift in Sources */,
 				F91087A724C5A6BD00CA343A /* TeamToBeVisionConfigurator.swift in Sources */,

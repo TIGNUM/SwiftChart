@@ -27,7 +27,6 @@ extension GuidedStorySurveyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectAnswer()
         interactor.didSelectAnswer(at: indexPath.row)
-        log("didSelectRowAt: \(indexPath.row)", level: .debug)
     }
 }
 

@@ -40,7 +40,7 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
 
     func showJourney() {
         if let journey = R.storyboard.guidedStory.journeyViCo() {
-            GuidedStoryJourneyConfigurator.make(viewController: journey)
+            GuidedStoryJourneyConfigurator.make(viewController: journey, worker: worker)
             cycleFromViewController(from: surveyViewController, to: journey)
         }
     }

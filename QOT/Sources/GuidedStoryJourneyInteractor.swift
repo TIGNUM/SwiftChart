@@ -11,12 +11,13 @@ import UIKit
 final class GuidedStoryJourneyInteractor {
 
     // MARK: - Properties
-    private lazy var worker = GuidedStoryJourneyWorker()
+    private let worker: GuidedStoryWorker!
     private let presenter: GuidedStoryJourneyPresenterInterface!
 
     // MARK: - Init
-    init(presenter: GuidedStoryJourneyPresenterInterface) {
+    init(presenter: GuidedStoryJourneyPresenterInterface, worker: GuidedStoryWorker) {
         self.presenter = presenter
+        self.worker = worker
     }
 
     // MARK: - Interactor
