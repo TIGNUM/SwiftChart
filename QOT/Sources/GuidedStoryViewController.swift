@@ -29,7 +29,11 @@ private extension GuidedStoryViewController {
 // MARK: - Actions
 private extension GuidedStoryViewController {
     @IBAction func didTabNext(_ sender: Any) {
-        router.showJourney()
+        interactor.didTabNext()
+    }
+
+    @IBAction func didTabPrevious(_ sender: Any) {
+        interactor.didTabPrevious()
     }
 }
 

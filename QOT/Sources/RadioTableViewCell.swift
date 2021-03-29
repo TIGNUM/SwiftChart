@@ -9,7 +9,6 @@
 import UIKit
 
 class RadioTableViewCell: UITableViewCell, Dequeueable {
-
     @IBOutlet private weak var lableView: UIView!
     @IBOutlet private weak var radioStatusView: UIView!
     @IBOutlet private weak var bottomDivider: UIView!
@@ -17,14 +16,19 @@ class RadioTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var radioButton: UIButton!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func configure(title: String?, subtitle: String?, onColor: UIColor, isOn: Bool) {
+        titleLabel.text = title
+        setSubtitle(subtitle)
+    }
+}
+
+// MARK: - Private
+private extension RadioTableViewCell {
+    func setSubtitle(_ sub: String?) {
+        subTitleLabel.isHidden = sub == nil
+        subTitleLabel.text = sub
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setState(_ isOn: Bool) {
     }
 }

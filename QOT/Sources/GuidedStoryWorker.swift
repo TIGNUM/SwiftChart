@@ -7,9 +7,21 @@
 //
 
 import UIKit
+import qot_dal
 
-final class GuidedStoryWorker {
+class GuidedStoryWorker {
+    var questions = [QDMQuestion]()
+    var currentQuestionKey = GuidedStory.Survey.QuestionKey.intro.rawValue
+    var selectedAnswers = [[QDMQuestion: QDMAnswer]]()
 
-    // MARK: - Init
-    init() { /**/ }
+    func question(for key: String) -> QDMQuestion? {
+        return questions.first(where: { $0.key == key })
+    }
+
+    func getQuestions(_ completion: @escaping () -> Void) {
+        QuestionService.main.questionsWithQuestionGroup(.Onboarding, ascending: true) { (questions) in
+            self.questions = questions ?? []
+            completion()
+        }
+    }
 }

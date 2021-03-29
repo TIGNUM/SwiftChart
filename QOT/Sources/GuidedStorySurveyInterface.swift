@@ -21,6 +21,10 @@ protocol GuidedStorySurveyPresenterInterface {
 
 protocol GuidedStorySurveyInteractorInterface: Interactor {
     var rowCount: Int { get }
+    func title(at index: Int) -> String?
+    func subtitle(at index: Int) -> String?
+    func onColor(at index: Int) -> UIColor
+    func isOn(at index: Int) -> Bool
 }
 
 protocol GuidedStorySurveyRouterInterface {

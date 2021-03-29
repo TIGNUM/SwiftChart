@@ -17,7 +17,9 @@ protocol GuidedStoryPresenterInterface {
 }
 
 protocol GuidedStoryInteractorInterface: Interactor {
-
+    var currentQuestionKey: String { get }
+    func didTabNext()
+    func didTabPrevious()
 }
 
 protocol GuidedStoryRouterInterface {

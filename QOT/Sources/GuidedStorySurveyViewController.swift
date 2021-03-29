@@ -34,6 +34,13 @@ extension GuidedStorySurveyViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RadioTableViewCell = tableView.dequeueCell(for: indexPath)
+        let row = indexPath.row
+        let title = interactor.title(at: row)
+        let subtitle = interactor.subtitle(at: row)
+        let onColor = interactor.onColor(at: row)
+        let isOn = interactor.isOn(at: row)
+        cell.configure(title: title, subtitle: subtitle, onColor: onColor, isOn: isOn)
+
         return cell
     }
 }

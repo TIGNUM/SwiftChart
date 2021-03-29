@@ -9,18 +9,6 @@
 import UIKit
 import qot_dal
 
-final class GuidedStorySurveyWorker {
+final class GuidedStorySurveyWorker: GuidedStoryWorker {
 
-    var questions = [QDMQuestion]()
-
-    func question(for key: String) -> QDMQuestion? {
-        return questions.first(where: { $0.key == key })
-    }
-
-    func getQuestions(_ completion: @escaping () -> Void) {
-        QuestionService.main.questionsWithQuestionGroup(.Onboarding, ascending: true) { (questions) in
-            self.questions = questions ?? []
-            completion()
-        }
-    }
 }

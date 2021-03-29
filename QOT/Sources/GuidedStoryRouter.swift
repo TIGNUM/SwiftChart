@@ -40,6 +40,14 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
             cycleFromViewController(from: surveyViewController, to: journey)
         }
     }
+
+    func didTabNext(with questionKey: String) {
+        ##what next? pass in SelectedAnswer and check decision???
+    }
+
+    func didTabPrevious(with questionKey: String) {
+
+    }
 }
 
 // MARK: - Private

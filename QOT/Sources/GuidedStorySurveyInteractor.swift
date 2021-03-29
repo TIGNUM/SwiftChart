@@ -14,7 +14,6 @@ final class GuidedStorySurveyInteractor {
     // MARK: - Properties
     private lazy var worker = GuidedStorySurveyWorker()
     private let presenter: GuidedStorySurveyPresenterInterface!
-    private var currentQuestionKey = Survey.QuestionKey.intro.rawValue
 
     // MARK: - Init
     init(presenter: GuidedStorySurveyPresenterInterface) {
@@ -23,7 +22,7 @@ final class GuidedStorySurveyInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        let key = currentQuestionKey
+        let key = worker.currentQuestionKey
         worker.getQuestions { [weak self] in
             self?.presenter.setupView()
             self?.presenter.setQuestion(self?.worker.question(for: key))
@@ -34,6 +33,28 @@ final class GuidedStorySurveyInteractor {
 // MARK: - GuidedStorySurveyInteractorInterface
 extension GuidedStorySurveyInteractor: GuidedStorySurveyInteractorInterface {
     var rowCount: Int {
-        return worker.question(for: currentQuestionKey)?.answers.count ?? .zero
+        return currentQuestion?.answers.count ?? .zero
+    }
+
+    func title(at index: Int) -> String? {
+        return currentQuestion?.answers.at(index: index)?.title
+    }
+
+    func subtitle(at index: Int) -> String? {
+        return currentQuestion?.answers.at(index: index)?.subtitle
+    }
+
+    func onColor(at index: Int) -> UIColor {
+        return .blue
+    }
+
+    func isOn(at index: Int) -> Bool {
+        return false
+    }
+}
+
+private extension GuidedStorySurveyInteractor {
+    var currentQuestion: QDMQuestion? {
+        return worker.question(for: currentQuestionKey)
     }
 }
