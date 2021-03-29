@@ -14,6 +14,7 @@ final class GuidedStorySurveyViewController: UIViewController {
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     var interactor: GuidedStorySurveyInteractorInterface!
+    weak var delegate: GuidedStoryDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ final class GuidedStorySurveyViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension GuidedStorySurveyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectAnswer()
         interactor.didSelectAnswer(at: indexPath.row)
         log("didSelectRowAt: \(indexPath.row)", level: .debug)
     }

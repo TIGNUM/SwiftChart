@@ -32,6 +32,7 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
         if let survey = R.storyboard.guidedStory.surveyViCo() {
             GuidedStorySurveyConfigurator.make(viewController: survey, worker: worker)
             surveyViewController = survey
+            surveyViewController?.delegate = viewController
             viewController?.add(survey, to: viewController?.viewContainer)
         }
     }

@@ -14,6 +14,7 @@ final class GuidedStoryViewController: UIViewController {
     var interactor: GuidedStoryInteractorInterface!
     var router: GuidedStoryRouter!
     @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var nextButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,10 @@ final class GuidedStoryViewController: UIViewController {
 
 // MARK: - Private
 private extension GuidedStoryViewController {
-
+    func activateNextButton() {
+        nextButton.isEnabled = true
+        nextButton.backgroundColor = .blue
+    }
 }
 
 // MARK: - Actions
@@ -41,5 +45,12 @@ private extension GuidedStoryViewController {
 extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
     func setupView() {
         router.showSurvey()
+    }
+}
+
+// MARK: - GuidedStoryDelegate
+extension GuidedStoryViewController: GuidedStoryDelegate {
+    func didSelectAnswer() {
+        activateNextButton()
     }
 }

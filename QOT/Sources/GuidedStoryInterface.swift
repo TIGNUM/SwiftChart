@@ -27,3 +27,7 @@ protocol GuidedStoryRouterInterface {
     func showSurvey()
     func showJourney()
 }
+
+protocol GuidedStoryDelegate: class {
+    func didSelectAnswer()
+}
