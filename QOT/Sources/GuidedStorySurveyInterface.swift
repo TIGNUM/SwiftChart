@@ -25,6 +25,7 @@ protocol GuidedStorySurveyInteractorInterface: Interactor {
     func subtitle(at index: Int) -> String?
     func onColor(at index: Int) -> UIColor
     func isOn(at index: Int) -> Bool
+    func didSelectAnswer(at index: Int)
 }
 
 protocol GuidedStorySurveyRouterInterface {

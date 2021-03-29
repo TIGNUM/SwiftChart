@@ -12,7 +12,7 @@ final class GuidedStoryViewController: UIViewController {
 
     // MARK: - Properties
     var interactor: GuidedStoryInteractorInterface!
-    private lazy var router = GuidedStoryRouter(viewController: self)
+    var router: GuidedStoryRouter!
     @IBOutlet weak var viewContainer: UIView!
 
     override func viewDidLoad() {

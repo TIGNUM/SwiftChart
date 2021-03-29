@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class GuidedStorySurveyViewController: UIViewController {
 
@@ -23,6 +24,8 @@ final class GuidedStorySurveyViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension GuidedStorySurveyViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        interactor.didSelectAnswer(at: indexPath.row)
+        log("didSelectRowAt: \(indexPath.row)", level: .debug)
     }
 }
 

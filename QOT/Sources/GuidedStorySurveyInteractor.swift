@@ -12,12 +12,13 @@ import qot_dal
 final class GuidedStorySurveyInteractor {
 
     // MARK: - Properties
-    private lazy var worker = GuidedStorySurveyWorker()
+    private let worker: GuidedStoryWorker!
     private let presenter: GuidedStorySurveyPresenterInterface!
 
     // MARK: - Init
-    init(presenter: GuidedStorySurveyPresenterInterface) {
+    init(presenter: GuidedStorySurveyPresenterInterface, worker: GuidedStoryWorker) {
         self.presenter = presenter
+        self.worker = worker
     }
 
     // MARK: - Interactor
@@ -33,15 +34,15 @@ final class GuidedStorySurveyInteractor {
 // MARK: - GuidedStorySurveyInteractorInterface
 extension GuidedStorySurveyInteractor: GuidedStorySurveyInteractorInterface {
     var rowCount: Int {
-        return currentQuestion?.answers.count ?? .zero
+        return sortedAnswers.count
     }
 
     func title(at index: Int) -> String? {
-        return currentQuestion?.answers.at(index: index)?.title
+        return sortedAnswers.at(index: index)?.title
     }
 
     func subtitle(at index: Int) -> String? {
-        return currentQuestion?.answers.at(index: index)?.subtitle
+        return sortedAnswers.at(index: index)?.subtitle
     }
 
     func onColor(at index: Int) -> UIColor {
@@ -51,10 +52,18 @@ extension GuidedStorySurveyInteractor: GuidedStorySurveyInteractorInterface {
     func isOn(at index: Int) -> Bool {
         return false
     }
+
+    func didSelectAnswer(at index: Int) {
+        worker.didSelectAnswer(at: index)
+    }
 }
 
 private extension GuidedStorySurveyInteractor {
     var currentQuestion: QDMQuestion? {
-        return worker.question(for: currentQuestionKey)
+        return worker.question(for: worker.currentQuestionKey)
+    }
+
+    var sortedAnswers: [QDMAnswer] {
+        return worker.answers(for: worker.currentQuestionKey)
     }
 }

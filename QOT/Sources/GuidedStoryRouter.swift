@@ -13,10 +13,12 @@ final class GuidedStoryRouter {
     // MARK: - Properties
     private weak var viewController: GuidedStoryViewController?
     private weak var surveyViewController: GuidedStorySurveyViewController?
+    private let worker: GuidedStoryWorker!
 
     // MARK: - Init
-    init(viewController: GuidedStoryViewController?) {
+    init(viewController: GuidedStoryViewController?, worker: GuidedStoryWorker) {
         self.viewController = viewController
+        self.worker = worker
     }
 }
 
@@ -28,7 +30,7 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
 
     func showSurvey() {
         if let survey = R.storyboard.guidedStory.surveyViCo() {
-            GuidedStorySurveyConfigurator.make(viewController: survey)
+            GuidedStorySurveyConfigurator.make(viewController: survey, worker: worker)
             surveyViewController = survey
             viewController?.add(survey, to: viewController?.viewContainer)
         }
@@ -39,14 +41,6 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
             GuidedStoryJourneyConfigurator.make(viewController: journey)
             cycleFromViewController(from: surveyViewController, to: journey)
         }
-    }
-
-    func didTabNext(with questionKey: String) {
-        ##what next? pass in SelectedAnswer and check decision???
-    }
-
-    func didTabPrevious(with questionKey: String) {
-
     }
 }
 
