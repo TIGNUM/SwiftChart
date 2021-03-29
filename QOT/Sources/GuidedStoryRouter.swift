@@ -33,6 +33,7 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
             GuidedStorySurveyConfigurator.make(viewController: survey, worker: worker)
             surveyViewController = survey
             surveyViewController?.delegate = viewController
+            viewController?.surveyDelegate = surveyViewController
             viewController?.add(survey, to: viewController?.viewContainer)
         }
     }

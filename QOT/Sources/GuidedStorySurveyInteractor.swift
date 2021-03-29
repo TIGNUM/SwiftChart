@@ -23,10 +23,9 @@ final class GuidedStorySurveyInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        let key = worker.currentQuestionKey
         worker.getQuestions { [weak self] in
             self?.presenter.setupView()
-            self?.presenter.setQuestion(self?.worker.question(for: key))
+            self?.loadNextQuestion()
         }
     }
 }
@@ -56,14 +55,18 @@ extension GuidedStorySurveyInteractor: GuidedStorySurveyInteractorInterface {
     func didSelectAnswer(at index: Int) {
         worker.didSelectAnswer(at: index)
     }
+
+    func loadNextQuestion() {
+        presenter.setQuestion(worker.question())
+    }
 }
 
 private extension GuidedStorySurveyInteractor {
     var currentQuestion: QDMQuestion? {
-        return worker.question(for: worker.currentQuestionKey)
+        return worker.question()
     }
 
     var sortedAnswers: [QDMAnswer] {
-        return worker.answers(for: worker.currentQuestionKey)
+        return worker.answers()
     }
 }

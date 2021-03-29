@@ -28,5 +28,6 @@ extension GuidedStorySurveyPresenter: GuidedStorySurveyPresenterInterface {
 
     func setQuestion(_ question: QDMQuestion?) {
         viewController?.setQuestionLabel(question?.title)
+        viewController?.setAnswers()
     }
 }

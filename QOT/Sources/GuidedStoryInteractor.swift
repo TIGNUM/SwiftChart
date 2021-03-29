@@ -28,12 +28,13 @@ final class GuidedStoryInteractor {
 
 // MARK: - GuidedStoryInteractorInterface
 extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
-    var currentQuestionKey: String {
-        return worker.currentQuestionKey
-    }
-
     func didTabNext() {
-
+        if worker.isLastQuestion {
+            presenter.showJourney()
+        } else {
+            worker.didTabNext()
+            presenter.loadNextQuestion()
+        }
     }
 
     func didTabPrevious() {

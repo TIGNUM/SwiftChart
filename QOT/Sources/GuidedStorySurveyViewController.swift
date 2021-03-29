@@ -59,6 +59,10 @@ extension GuidedStorySurveyViewController: GuidedStorySurveyViewControllerInterf
     func setQuestionLabel(_ question: String?) {
         questionLabel.text = question
     }
+
+    func setAnswers() {
+        tableView.reloadData()
+    }
 }
 
 // MARK: - Private
@@ -68,5 +72,12 @@ private extension GuidedStorySurveyViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
+    }
+}
+
+// MARK: - GuidedStorySurveyDelegate
+extension GuidedStorySurveyViewController: GuidedStorySurveyDelegate {
+    func loadNextQuestion() {
+        interactor.loadNextQuestion()
     }
 }

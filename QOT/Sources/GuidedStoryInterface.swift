@@ -10,14 +10,17 @@ import Foundation
 
 protocol GuidedStoryViewControllerInterface: class {
     func setupView()
+    func showJourney()
+    func loadNextQuestion()
 }
 
 protocol GuidedStoryPresenterInterface {
     func setupView()
+    func showJourney()
+    func loadNextQuestion()
 }
 
 protocol GuidedStoryInteractorInterface: Interactor {
-    var currentQuestionKey: String { get }
     func didTabNext()
     func didTabPrevious()
 }
@@ -30,4 +33,8 @@ protocol GuidedStoryRouterInterface {
 
 protocol GuidedStoryDelegate: class {
     func didSelectAnswer()
+}
+
+protocol GuidedStorySurveyDelegate: class {
+    func loadNextQuestion()
 }

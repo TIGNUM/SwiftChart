@@ -13,6 +13,7 @@ final class GuidedStoryViewController: UIViewController {
     // MARK: - Properties
     var interactor: GuidedStoryInteractorInterface!
     var router: GuidedStoryRouter!
+    weak var surveyDelegate: GuidedStorySurveyDelegate?
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var nextButton: UIButton!
 
@@ -45,6 +46,14 @@ private extension GuidedStoryViewController {
 extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
     func setupView() {
         router.showSurvey()
+    }
+
+    func showJourney() {
+        router.showJourney()
+    }
+
+    func loadNextQuestion() {
+        surveyDelegate?.loadNextQuestion()
     }
 }
 

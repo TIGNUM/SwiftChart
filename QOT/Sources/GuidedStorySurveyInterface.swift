@@ -12,6 +12,7 @@ import qot_dal
 protocol GuidedStorySurveyViewControllerInterface: class {
     func setupView()
     func setQuestionLabel(_ question: String?)
+    func setAnswers()
 }
 
 protocol GuidedStorySurveyPresenterInterface {
@@ -26,6 +27,7 @@ protocol GuidedStorySurveyInteractorInterface: Interactor {
     func onColor(at index: Int) -> UIColor
     func isOn(at index: Int) -> Bool
     func didSelectAnswer(at index: Int)
+    func loadNextQuestion()
 }
 
 protocol GuidedStorySurveyRouterInterface {
