@@ -24,7 +24,7 @@ class GuidedStoryWorker {
 
     func answers() -> [QDMAnswer] {
         let answers = question()?.answers
-        return answers?.sorted(by: { $0.sortOrder ?? .zero > $1.sortOrder ?? .zero }) ?? []
+        return answers?.sorted(by: { $0.sortOrder ?? .zero < $1.sortOrder ?? .zero }) ?? []
     }
 
     func answer(at index: Int) -> QDMAnswer? {

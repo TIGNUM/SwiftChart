@@ -48,10 +48,6 @@ extension GuidedStorySurveyInteractor: GuidedStorySurveyInteractorInterface {
         return .blue
     }
 
-    func isOn(at index: Int) -> Bool {
-        return false
-    }
-
     func didSelectAnswer(at index: Int) {
         worker.didSelectAnswer(at: index)
     }

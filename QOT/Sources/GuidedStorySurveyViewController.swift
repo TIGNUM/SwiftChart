@@ -43,8 +43,7 @@ extension GuidedStorySurveyViewController: UITableViewDataSource {
         let title = interactor.title(at: row)
         let subtitle = interactor.subtitle(at: row)
         let onColor = interactor.onColor(at: row)
-        let isOn = interactor.isOn(at: row)
-        cell.configure(title: title, subtitle: subtitle, onColor: onColor, isOn: isOn)
+        cell.configure(title: title, subtitle: subtitle, onColor: onColor)
 
         return cell
     }
