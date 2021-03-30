@@ -23,10 +23,17 @@ final class GuidedStoryJourneyInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        presenter.setupHeaderView(content: worker.targetContent)
     }
 }
 
 // MARK: - GuidedStoryJourneyInteractorInterface
 extension GuidedStoryJourneyInteractor: GuidedStoryJourneyInteractorInterface {
+    var itemCount: Int {
+        return worker.storyItems.count
+    }
 
+    func body(at index: Int) -> String? {
+        return worker.storyItems.at(index: index)?.body
+    }
 }

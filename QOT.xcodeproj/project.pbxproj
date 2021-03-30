@@ -110,7 +110,6 @@
 		3658257C2327D19200AC3F4A /* DTShortTBVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365825742327D19200AC3F4A /* DTShortTBVViewController.swift */; };
 		3658257D2327D19200AC3F4A /* DTShortTBVInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365825752327D19200AC3F4A /* DTShortTBVInteractor.swift */; };
 		3658257F2327D19200AC3F4A /* DTShortTBVConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365825772327D19200AC3F4A /* DTShortTBVConfigurator.swift */; };
-		3659B7DE2295333D0039FF30 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 3659B7DD2295333D0039FF30 /* default.realm */; };
 		365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */; };
 		365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */; };
 		365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */; };
@@ -310,6 +309,8 @@
 		38699D4E2611126F0042355C /* GuidedStoryJourneyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D472611126F0042355C /* GuidedStoryJourneyInteractor.swift */; };
 		38699D4F2611126F0042355C /* GuidedStoryJourneyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D482611126F0042355C /* GuidedStoryJourneyModel.swift */; };
 		38699D502611126F0042355C /* GuidedStoryJourneyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D492611126F0042355C /* GuidedStoryJourneyConfigurator.swift */; };
+		38699DE6261268100042355C /* TextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699DE4261268100042355C /* TextCollectionViewCell.swift */; };
+		38699DE7261268100042355C /* TextCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38699DE5261268100042355C /* TextCollectionViewCell.xib */; };
 		386C279A2418EBFF00184EC9 /* ResultsPreparePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */; };
 		386C279B2418EBFF00184EC9 /* ResultsPrepareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */; };
 		386C279C2418EBFF00184EC9 /* ResultsPrepareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */; };
@@ -371,6 +372,7 @@
 		38D218E424A634C500B6FA26 /* HorizontalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */; };
 		38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */; };
 		38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E724A64C3000B6FA26 /* TeamHeader.swift */; };
+		38D3C7192612AB0B006FB904 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 38D3C7182612AB0B006FB904 /* default.realm */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		38D5C74425F40131001884FC /* FeatureFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C74325F40131001884FC /* FeatureFlagTests.swift */; };
 		38D5C76325F783FD001884FC /* UserNotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C76225F783FD001884FC /* UserNotificationManagerTests.swift */; };
@@ -1561,7 +1563,6 @@
 		365825742327D19200AC3F4A /* DTShortTBVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTShortTBVViewController.swift; sourceTree = "<group>"; };
 		365825752327D19200AC3F4A /* DTShortTBVInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTShortTBVInteractor.swift; sourceTree = "<group>"; };
 		365825772327D19200AC3F4A /* DTShortTBVConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTShortTBVConfigurator.swift; sourceTree = "<group>"; };
-		3659B7DD2295333D0039FF30 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Pods/qot_dal/qot_dal/Resource/default.realm; sourceTree = SOURCE_ROOT; };
 		365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotCollectionViewCell.swift; sourceTree = "<group>"; };
 		365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotCollectionViewCell.xib; sourceTree = "<group>"; };
 		365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotComponentView.swift; sourceTree = "<group>"; };
@@ -1758,6 +1759,8 @@
 		38699D472611126F0042355C /* GuidedStoryJourneyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyInteractor.swift; sourceTree = "<group>"; };
 		38699D482611126F0042355C /* GuidedStoryJourneyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyModel.swift; sourceTree = "<group>"; };
 		38699D492611126F0042355C /* GuidedStoryJourneyConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStoryJourneyConfigurator.swift; sourceTree = "<group>"; };
+		38699DE4261268100042355C /* TextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCollectionViewCell.swift; sourceTree = "<group>"; };
+		38699DE5261268100042355C /* TextCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextCollectionViewCell.xib; sourceTree = "<group>"; };
 		386C27922418EBFF00184EC9 /* ResultsPreparePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPreparePresenter.swift; sourceTree = "<group>"; };
 		386C27932418EBFF00184EC9 /* ResultsPrepareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareWorker.swift; sourceTree = "<group>"; };
 		386C27942418EBFF00184EC9 /* ResultsPrepareRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPrepareRouter.swift; sourceTree = "<group>"; };
@@ -1820,6 +1823,7 @@
 		38D218E324A634C500B6FA26 /* HorizontalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderView.swift; sourceTree = "<group>"; };
 		38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeaderCell.swift; sourceTree = "<group>"; };
 		38D218E724A64C3000B6FA26 /* TeamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeader.swift; sourceTree = "<group>"; };
+		38D3C7182612AB0B006FB904 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38D5C71125F3FFB3001884FC /* TignumXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TignumXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D5C71525F3FFB3001884FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -3629,6 +3633,15 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
+		38699DE3261267A70042355C /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				38699DE4261268100042355C /* TextCollectionViewCell.swift */,
+				38699DE5261268100042355C /* TextCollectionViewCell.xib */,
+			);
+			name = CollectionViewCells;
+			sourceTree = "<group>";
+		};
 		386C27912418EBD400184EC9 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -5337,6 +5350,7 @@
 			children = (
 				CC7D21A41EFBF50A007A062E /* Article */,
 				36E12EB8232B4CD7009E96EA /* BaseViews */,
+				38699DE3261267A70042355C /* CollectionViewCells */,
 				CBB4DD461EE0911A0071494A /* Common */,
 				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
 				CBB4DD3F1EE08EF90071494A /* Launch */,
@@ -5690,7 +5704,7 @@
 		DBAC1E692294616900B9F829 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				3659B7DD2295333D0039FF30 /* default.realm */,
+				38D3C7182612AB0B006FB904 /* default.realm */,
 			);
 			name = Resource;
 			path = Pods/qot_dal/qot_dal/Resource;
@@ -6356,7 +6370,6 @@
 				F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */,
 				B4BCE47B255BCEC500A1116F /* NewBaseDailyBriefCell.xib in Resources */,
 				B499A70A2395289B00BDD4CE /* RegisterIntroNoteTableViewCell.xib in Resources */,
-				3659B7DE2295333D0039FF30 /* default.realm in Resources */,
 				36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */,
 				ACFB725322BB8126003D0BA3 /* CauseTableViewCell.xib in Resources */,
 				36B5BD3523142BB300439A64 /* AskPermission.storyboard in Resources */,
@@ -6447,6 +6460,7 @@
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				DB086F4324C8544A00D4F64E /* BookMarkSelectionCell.xib in Resources */,
+				38699DE7261268100042355C /* TextCollectionViewCell.xib in Resources */,
 				38C23E5C2423D9B70034571B /* CalendarEventSelectionViewController.xib in Resources */,
 				B48B5471256468D100FC183D /* MeAtMyBestTableViewCell.xib in Resources */,
 				38EE0B20260DBE570003A1FA /* GuidedStory.storyboard in Resources */,
@@ -6465,6 +6479,7 @@
 				B411ECE22575837C00EB7A78 /* NewDailyBriefTableViewSectionHeader.xib in Resources */,
 				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
+				38D3C7192612AB0B006FB904 /* default.realm in Resources */,
 				B4BCE46E255BCEC500A1116F /* NewDailyBriefGetStartedCollectionViewCell.xib in Resources */,
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
@@ -6907,6 +6922,7 @@
 				B4BCD0FB23AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift in Sources */,
 				7582617D22DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift in Sources */,
 				367CD18622EF4EDE00AF2187 /* OnboardingLoginConfigurator.swift in Sources */,
+				38699DE6261268100042355C /* TextCollectionViewCell.swift in Sources */,
 				B80FB0DD23E3200F0040D034 /* Date+EventDate.swift in Sources */,
 				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
 				389BBC8A235EE68B0009FA02 /* CoachMarksInteractor.swift in Sources */,

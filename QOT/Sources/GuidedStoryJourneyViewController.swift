@@ -37,6 +37,7 @@ extension GuidedStoryJourneyViewController: GuidedStoryJourneyViewControllerInte
 // MARK: - Private
 private extension GuidedStoryJourneyViewController {
     func setupCollectionView() {
+        collectionView.registerDequeueable(TextCollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.reloadData()
@@ -51,11 +52,16 @@ extension GuidedStoryJourneyViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 extension GuidedStoryJourneyViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return interactor.itemCount
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell: TextCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        let title = interactor.body(at: indexPath.item)
+        cell.configure(title: title)
+        cell.backgroundColor = .random
+
+        return cell
     }
 }

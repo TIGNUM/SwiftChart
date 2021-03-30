@@ -30,6 +30,7 @@ final class GuidedStoryInteractor {
 extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
     func didTabNext() {
         if worker.isLastQuestion {
+            worker.loadJourney()
             presenter.showJourney()
         } else {
             worker.didTabNext()

@@ -106,7 +106,7 @@
                                     <constraint firstAttribute="trailing" secondItem="O1F-L3-SYx" secondAttribute="trailing" constant="24" id="sav-Ze-eLm"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T3z-wH-3bQ">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T3z-wH-3bQ">
                                 <rect key="frame" x="0.0" y="148" width="414" height="714"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n3z-JZ-pxC">
@@ -144,6 +144,11 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="collectionView" destination="T3z-wH-3bQ" id="teX-c2-t4z"/>
+                        <outlet property="headerImageView" destination="O1F-L3-SYx" id="OzQ-h8-Ekc"/>
+                        <outlet property="headerLabel" destination="Q5N-DE-NSN" id="Z7V-QP-BfA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHX-y7-2Cb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

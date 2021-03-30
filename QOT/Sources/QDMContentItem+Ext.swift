@@ -11,7 +11,6 @@ import qot_dal
 
 extension QDMContentItem {
     var durationString: String {
-
         let min = String(format: "%.0f", max((valueDuration ?? 60), 1) / 60)
         switch format {
         case .audio: return AppTextService.get(.generic_content_section_item_new_label_audio).replacingOccurrences(of: "${AMOUNT}", with: min)

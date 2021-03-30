@@ -20,7 +20,8 @@ protocol GuidedStoryJourneyPresenterInterface {
 }
 
 protocol GuidedStoryJourneyInteractorInterface: Interactor {
-
+    var itemCount: Int { get }
+    func body(at index: Int) -> String?
 }
 
 protocol GuidedStoryJourneyRouterInterface {

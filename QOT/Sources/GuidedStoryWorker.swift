@@ -10,8 +10,11 @@ import UIKit
 import qot_dal
 
 class GuidedStoryWorker {
+    var storyItems = [QDMGuidedStory]()
     var questions = [QDMQuestion]()
     var selectedAnswers = [String: QDMAnswer]()
+    var targetContent: QDMContentCollection?
+    private var targetContents = [QDMContentCollection]()
     private var currentQuestionKey = GuidedStory.Survey.QuestionKey.intro.rawValue
 
     var isLastQuestion: Bool {
@@ -38,14 +41,27 @@ class GuidedStoryWorker {
         }
     }
 
+    func getTargetContents() {
+        ContentService.main.getContentCategory(.OnboardingSurvey) { [weak self] (category) in
+            self?.targetContents = category?.contentCollections ?? []
+        }
+    }
+
     func didSelectAnswer(at index: Int) {
         selectedAnswers[currentQuestionKey] = answer(at: index)
-        log("selectedAnswers: \(selectedAnswers)", level: .debug)
     }
 
     func didTabNext() {
         saveSelectedUserAnswer()
         updateCurrentQuestionKey()
+    }
+}
+
+// MARK: - Journey
+extension GuidedStoryWorker {
+    func loadJourney() {
+        saveSelectedUserAnswer()
+        setSelectedJourney()
     }
 }
 
@@ -70,5 +86,11 @@ private extension GuidedStoryWorker {
         if let nextQuestionKey = questions.first(where: { $0.remoteID == nextQuestionId })?.key {
             currentQuestionKey = nextQuestionKey
         }
+    }
+
+    func setSelectedJourney() {
+        let targetId = selectedAnswers.first?.value.targetId(.content)
+        targetContent = targetContents.first(where: { $0.remoteID == targetId })
+        storyItems = ContentService.main.createOnboardingGuidedStory(targetContent: targetContent)
     }
 }
