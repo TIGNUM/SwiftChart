@@ -14,7 +14,7 @@ final class DotsLoadingView: UIView {
     // MARK: - Properties
 
     private var dotsColor: UIColor? = .carbonDark
-    private var size: CGSize?
+    private var cgSize: CGSize?
 
     convenience init(with frame: CGRect, parentView: UIView, dotsColor: UIColor) {
         self.init(frame: frame)
@@ -32,7 +32,7 @@ final class DotsLoadingView: UIView {
         alpha = 0.0
         self.dotsColor = dotsColor
         if let size = size {
-            self.size = size
+            self.cgSize = size
         }
     }
 
@@ -44,7 +44,7 @@ final class DotsLoadingView: UIView {
         UIView.animate(withDuration: Animation.duration_06) {
             self.alpha = 1.0
         }
-        setupAnimation(size: size ?? frame.size, color: dotsColor)
+        setupAnimation(size: cgSize ?? frame.size, color: dotsColor)
     }
 
     func startAnimation(withDuration duration: TimeInterval, _ completion: (() -> Void)? = nil) {

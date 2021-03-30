@@ -111,14 +111,21 @@
                                             <constraint firstItem="fnX-G2-x43" firstAttribute="top" secondItem="OPT-91-Irm" secondAttribute="top" id="nl1-uk-GuG"/>
                                         </constraints>
                                     </view>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-Jb-z6e">
+                                        <rect key="frame" x="125.5" y="62" width="123" height="28"/>
+                                        <color key="pageIndicatorTintColor" red="1" green="0.26548267590000002" blue="0.97403547769999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.84992400960615067" blue="0.55384875339551476" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="trailing" secondItem="OPT-91-Irm" secondAttribute="trailing" id="C0a-H8-Esu"/>
                                     <constraint firstAttribute="bottom" secondItem="ThZ-Cg-ZQe" secondAttribute="bottom" constant="8" id="EnA-ka-mRm"/>
+                                    <constraint firstItem="Jhi-Jb-z6e" firstAttribute="centerX" secondItem="bbD-jj-xsl" secondAttribute="centerX" id="Jh8-M5-ZOT"/>
                                     <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="leading" secondItem="bbD-jj-xsl" secondAttribute="leading" id="StX-Og-tmg"/>
                                     <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="top" secondItem="OPT-91-Irm" secondAttribute="top" id="b7E-Z3-kc5"/>
                                     <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="leading" secondItem="OPT-91-Irm" secondAttribute="leading" id="fKt-b1-YZ6"/>
+                                    <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="top" secondItem="Jhi-Jb-z6e" secondAttribute="bottom" constant="12" id="l4c-ZZ-4DV"/>
                                     <constraint firstAttribute="height" constant="150" id="o5d-Kw-Efe"/>
                                     <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="bottom" secondItem="OPT-91-Irm" secondAttribute="bottom" id="q5F-id-akD"/>
                                     <constraint firstAttribute="trailing" secondItem="ThZ-Cg-ZQe" secondAttribute="trailing" id="vP3-sG-hLb"/>
@@ -142,6 +149,7 @@
                         <outlet property="buttonViewSurvey" destination="ThZ-Cg-ZQe" id="BIT-PS-1zq"/>
                         <outlet property="nextButtonJourney" destination="HFZ-id-4oR" id="HVm-7r-3MN"/>
                         <outlet property="nextButtonSurvey" destination="RCz-xf-UDe" id="DBo-0c-zrN"/>
+                        <outlet property="pageControl" destination="Jhi-Jb-z6e" id="uNm-vC-8Xt"/>
                         <outlet property="previousButtonJourney" destination="LL7-ys-DG4" id="E7P-FE-dso"/>
                         <outlet property="skipButtonJourney" destination="fnX-G2-x43" id="Nzp-fu-qZF"/>
                         <outlet property="viewContainer" destination="lxn-Ep-dTe" id="dz4-ef-rNN"/>

@@ -373,6 +373,7 @@
 		38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */; };
 		38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E724A64C3000B6FA26 /* TeamHeader.swift */; };
 		38D3C7192612AB0B006FB904 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 38D3C7182612AB0B006FB904 /* default.realm */; };
+		38D3C7E32613B1E7006FB904 /* UIView+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3C7E22613B1E6006FB904 /* UIView+Dimensions.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		38D5C74425F40131001884FC /* FeatureFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C74325F40131001884FC /* FeatureFlagTests.swift */; };
 		38D5C76325F783FD001884FC /* UserNotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C76225F783FD001884FC /* UserNotificationManagerTests.swift */; };
@@ -1824,6 +1825,7 @@
 		38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeaderCell.swift; sourceTree = "<group>"; };
 		38D218E724A64C3000B6FA26 /* TeamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeader.swift; sourceTree = "<group>"; };
 		38D3C7182612AB0B006FB904 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
+		38D3C7E22613B1E6006FB904 /* UIView+Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Dimensions.swift"; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38D5C71125F3FFB3001884FC /* TignumXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TignumXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D5C71525F3FFB3001884FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -5397,14 +5399,16 @@
 				CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */,
 				AC516C6A228059CC009C4D30 /* CellAnimator.swift */,
 				91CD12EF2037168900E27822 /* CGRect+Convenience.swift */,
-				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
 				B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */,
+				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
 				7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */,
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
 				36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */,
 				36C8F17523089F0500CD718F /* EKEventStore+Ext.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
+				B4D0A9BD25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift */,
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
+				B42A5B872589F9F200DBD0DB /* PaddingLabel.swift */,
 				851676C91F39AA9C007A1DD6 /* String+Extensions.swift */,
 				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
 				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
@@ -5415,13 +5419,13 @@
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */,
 				7F47E83F1F8E4FE000ED4446 /* UIDevice+Utility.swift */,
-				B42A5B872589F9F200DBD0DB /* PaddingLabel.swift */,
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
 				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 				7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */,
 				8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */,
 				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
 				DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */,
+				F96225742552FA68003FF235 /* UINavigationController+Extension.swift */,
 				363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */,
 				BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */,
 				B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */,
@@ -5429,6 +5433,7 @@
 				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
 				DB82EEC32152859C002322B7 /* UIView+Animation.swift */,
 				DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */,
+				38D3C7E22613B1E6006FB904 /* UIView+Dimensions.swift */,
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
 				CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */,
 				8DD6B5932308190800C582A4 /* UIViewController+ActivityIndicator.swift */,
@@ -5446,8 +5451,6 @@
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				36CB720922B8772300C99AFC /* qot_dal */,
 				8DC2F7222313F11D0002F29F /* UIViewController+StreamVideo */,
-				F96225742552FA68003FF235 /* UINavigationController+Extension.swift */,
-				B4D0A9BD25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -6942,6 +6945,7 @@
 				38406DAC2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift in Sources */,
 				5FF1A0FE22857BB300D76D55 /* MyQotAppSettingsRouter.swift in Sources */,
 				3608382A225F3ED000664B9B /* ArticleViewController.swift in Sources */,
+				38D3C7E32613B1E7006FB904 /* UIView+Dimensions.swift in Sources */,
 				8DF7870822FEB50800CDE0A9 /* RegistrationCodeRouter.swift in Sources */,
 				8D60A20C22CF7CBF0034F33F /* NoteTableViewCell.swift in Sources */,
 				36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */,

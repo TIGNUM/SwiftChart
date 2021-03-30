@@ -21,6 +21,7 @@ final class GuidedStoryViewController: UIViewController {
     @IBOutlet weak var nextButtonJourney: UIButton!
     @IBOutlet weak var skipButtonJourney: UIButton!
     @IBOutlet weak var previousButtonJourney: UIButton!
+    @IBOutlet weak var pageControl: UIPageControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,11 @@ private extension GuidedStoryViewController {
     func setupJourneyView() {
         buttonViewJourney.isHidden = false
         buttonViewSurvey.isHidden = true
+        previousButtonJourney.isHidden = true
+    }
+
+    func setupPageControll() {
+
     }
 }
 
