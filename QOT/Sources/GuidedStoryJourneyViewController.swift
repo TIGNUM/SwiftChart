@@ -50,9 +50,15 @@ extension GuidedStoryJourneyViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension GuidedStoryJourneyViewController: UICollectionViewDataSource {
+extension GuidedStoryJourneyViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return interactor.itemCount
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
     }
 
     func collectionView(_ collectionView: UICollectionView,
