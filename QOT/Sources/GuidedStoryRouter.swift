@@ -13,10 +13,12 @@ final class GuidedStoryRouter {
     // MARK: - Properties
     private weak var viewController: GuidedStoryViewController?
     private weak var surveyViewController: GuidedStorySurveyViewController?
+    private let worker: GuidedStoryWorker!
 
     // MARK: - Init
-    init(viewController: GuidedStoryViewController?) {
+    init(viewController: GuidedStoryViewController?, worker: GuidedStoryWorker) {
         self.viewController = viewController
+        self.worker = worker
     }
 }
 
@@ -28,8 +30,10 @@ extension GuidedStoryRouter: GuidedStoryRouterInterface {
 
     func showSurvey() {
         if let survey = R.storyboard.guidedStory.surveyViCo() {
-            GuidedStorySurveyConfigurator.make(viewController: survey)
+            GuidedStorySurveyConfigurator.make(viewController: survey, worker: worker)
             surveyViewController = survey
+            surveyViewController?.delegate = viewController
+            viewController?.surveyDelegate = surveyViewController
             viewController?.add(survey, to: viewController?.viewContainer)
         }
     }

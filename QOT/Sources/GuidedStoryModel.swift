@@ -8,6 +8,16 @@
 
 import UIKit
 
-struct GuidedStoryModel {
+struct GuidedStory {
+    enum State {
+        case survey
+        case journey
+    }
 
+    struct Survey {
+        enum QuestionKey: String {
+            case intro = "onboarding-survey-intro"
+            case last = "onboarding-survey-last-question"
+        }
+    }
 }

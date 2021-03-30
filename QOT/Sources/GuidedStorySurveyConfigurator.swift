@@ -9,9 +9,9 @@
 import Foundation
 
 final class GuidedStorySurveyConfigurator {
-    static func make(viewController: GuidedStorySurveyViewController) {
+    static func make(viewController: GuidedStorySurveyViewController, worker: GuidedStoryWorker) {
         let presenter = GuidedStorySurveyPresenter(viewController: viewController)
-        let interactor = GuidedStorySurveyInteractor(presenter: presenter)
+        let interactor = GuidedStorySurveyInteractor(presenter: presenter, worker: worker)
         viewController.interactor = interactor
     }
 }

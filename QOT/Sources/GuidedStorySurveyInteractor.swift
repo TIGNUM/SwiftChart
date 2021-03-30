@@ -7,25 +7,62 @@
 //
 
 import UIKit
+import qot_dal
 
 final class GuidedStorySurveyInteractor {
 
     // MARK: - Properties
-    private lazy var worker = GuidedStorySurveyWorker()
+    private let worker: GuidedStoryWorker!
     private let presenter: GuidedStorySurveyPresenterInterface!
 
     // MARK: - Init
-    init(presenter: GuidedStorySurveyPresenterInterface) {
+    init(presenter: GuidedStorySurveyPresenterInterface, worker: GuidedStoryWorker) {
         self.presenter = presenter
+        self.worker = worker
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        worker.getQuestions { [weak self] in
+            self?.presenter.setupView()
+            self?.loadNextQuestion()
+        }
     }
 }
 
 // MARK: - GuidedStorySurveyInteractorInterface
 extension GuidedStorySurveyInteractor: GuidedStorySurveyInteractorInterface {
+    var rowCount: Int {
+        return sortedAnswers.count
+    }
 
+    func title(at index: Int) -> String? {
+        return sortedAnswers.at(index: index)?.title
+    }
+
+    func subtitle(at index: Int) -> String? {
+        return sortedAnswers.at(index: index)?.subtitle
+    }
+
+    func onColor(at index: Int) -> UIColor {
+        return .blue
+    }
+
+    func didSelectAnswer(at index: Int) {
+        worker.didSelectAnswer(at: index)
+    }
+
+    func loadNextQuestion() {
+        presenter.setQuestion(worker.question())
+    }
+}
+
+private extension GuidedStorySurveyInteractor {
+    var currentQuestion: QDMQuestion? {
+        return worker.question()
+    }
+
+    var sortedAnswers: [QDMAnswer] {
+        return worker.answers()
+    }
 }

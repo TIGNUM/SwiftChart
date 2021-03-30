@@ -300,7 +300,6 @@
 		38699D0E2610D3470042355C /* RadioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D0C2610D3470042355C /* RadioTableViewCell.swift */; };
 		38699D0F2610D3470042355C /* RadioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38699D0D2610D3470042355C /* RadioTableViewCell.xib */; };
 		38699D34261111F00042355C /* GuidedStorySurveyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D2D261111EF0042355C /* GuidedStorySurveyPresenter.swift */; };
-		38699D35261111F00042355C /* GuidedStorySurveyWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D2E261111EF0042355C /* GuidedStorySurveyWorker.swift */; };
 		38699D36261111F00042355C /* GuidedStorySurveyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */; };
 		38699D37261111F00042355C /* GuidedStorySurveyInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D30261111EF0042355C /* GuidedStorySurveyInterface.swift */; };
 		38699D38261111F00042355C /* GuidedStorySurveyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38699D31261111EF0042355C /* GuidedStorySurveyInteractor.swift */; };
@@ -1751,7 +1750,6 @@
 		38699D0C2610D3470042355C /* RadioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioTableViewCell.swift; sourceTree = "<group>"; };
 		38699D0D2610D3470042355C /* RadioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RadioTableViewCell.xib; sourceTree = "<group>"; };
 		38699D2D261111EF0042355C /* GuidedStorySurveyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyPresenter.swift; sourceTree = "<group>"; };
-		38699D2E261111EF0042355C /* GuidedStorySurveyWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyWorker.swift; sourceTree = "<group>"; };
 		38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyRouter.swift; sourceTree = "<group>"; };
 		38699D30261111EF0042355C /* GuidedStorySurveyInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyInterface.swift; sourceTree = "<group>"; };
 		38699D31261111EF0042355C /* GuidedStorySurveyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedStorySurveyInteractor.swift; sourceTree = "<group>"; };
@@ -3602,7 +3600,6 @@
 				38699D2D261111EF0042355C /* GuidedStorySurveyPresenter.swift */,
 				38699D2F261111EF0042355C /* GuidedStorySurveyRouter.swift */,
 				38EE0B28260DC3630003A1FA /* GuidedStorySurveyViewController.swift */,
-				38699D2E261111EF0042355C /* GuidedStorySurveyWorker.swift */,
 			);
 			name = Survey;
 			sourceTree = "<group>";
@@ -7723,7 +7720,6 @@
 				F9999DDC24B3315500DB05CA /* Notification+Team.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
 				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
-				38699D35261111F00042355C /* GuidedStorySurveyWorker.swift in Sources */,
 				38EE0B0D260DBE260003A1FA /* GuidedStoryViewController.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
 				F934802E247D467000DD1C7D /* FeatureExplainerConfigurator.swift in Sources */,

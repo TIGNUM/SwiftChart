@@ -10,8 +10,11 @@ import Foundation
 
 final class GuidedStoryConfigurator {
     static func make(viewController: GuidedStoryViewController) {
+        let worker = GuidedStoryWorker()
         let presenter = GuidedStoryPresenter(viewController: viewController)
-        let interactor = GuidedStoryInteractor(presenter: presenter)
+        let interactor = GuidedStoryInteractor(presenter: presenter, worker: worker)
+        let router = GuidedStoryRouter(viewController: viewController, worker: worker)
         viewController.interactor = interactor
+        viewController.router = router
     }
 }

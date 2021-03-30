@@ -39,7 +39,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" red="0.45853510802131048" green="1" blue="0.8648829107635343" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="otn-Mn-eys" secondAttribute="trailing" id="dS3-dZ-ePH"/>
                             <constraint firstItem="otn-Mn-eys" firstAttribute="top" secondItem="bL1-tJ-u8D" secondAttribute="top" id="nrZ-6h-VpO"/>
@@ -57,9 +57,10 @@
                                     <constraint firstAttribute="width" constant="16" id="lzv-vI-9lF"/>
                                 </constraints>
                                 <state key="normal" image="ic_radio_off"/>
+                                <state key="selected" image="ic_radio_on"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <color key="backgroundColor" red="1" green="0.26548267588994068" blue="0.97403547767379495" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="NCu-es-aXX"/>
                             <constraint firstItem="g60-aD-Rcm" firstAttribute="centerY" secondItem="NBv-pU-UQA" secondAttribute="centerY" id="Sfp-4Z-sFb"/>
@@ -102,17 +103,12 @@
     </objects>
     <resources>
         <image name="ic_radio_off" width="16" height="16"/>
+        <image name="ic_radio_on" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

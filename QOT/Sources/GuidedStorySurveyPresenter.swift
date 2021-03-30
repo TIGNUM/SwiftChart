@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class GuidedStorySurveyPresenter {
 
@@ -23,5 +24,10 @@ final class GuidedStorySurveyPresenter {
 extension GuidedStorySurveyPresenter: GuidedStorySurveyPresenterInterface {
     func setupView() {
         viewController?.setupView()
+    }
+
+    func setQuestion(_ question: QDMQuestion?) {
+        viewController?.setQuestionLabel(question?.title)
+        viewController?.setAnswers()
     }
 }

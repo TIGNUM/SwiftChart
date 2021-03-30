@@ -8,6 +8,5 @@
 
 import UIKit
 
-struct GuidedStorySurveyModel {
-
+struct Survey {
 }
