@@ -1,23 +1,23 @@
 PODS:
-  - Airship (14.2.3):
-    - Airship/Automation (= 14.2.3)
-    - Airship/Core (= 14.2.3)
-    - Airship/ExtendedActions (= 14.2.3)
-    - Airship/MessageCenter (= 14.2.3)
-  - Airship/Automation (14.2.3):
+  - Airship (14.3.0):
+    - Airship/Automation (= 14.3.0)
+    - Airship/Core (= 14.3.0)
+    - Airship/ExtendedActions (= 14.3.0)
+    - Airship/MessageCenter (= 14.3.0)
+  - Airship/Automation (14.3.0):
     - Airship/Core
-  - Airship/Core (14.2.3)
-  - Airship/ExtendedActions (14.2.3):
+  - Airship/Core (14.3.0)
+  - Airship/ExtendedActions (14.3.0):
     - Airship/Core
-  - Airship/MessageCenter (14.2.3):
+  - Airship/MessageCenter (14.3.0):
     - Airship/Core
-  - AppCenter (4.1.0):
-    - AppCenter/Analytics (= 4.1.0)
-    - AppCenter/Crashes (= 4.1.0)
-  - AppCenter/Analytics (4.1.0):
+  - AppCenter (4.1.1):
+    - AppCenter/Analytics (= 4.1.1)
+    - AppCenter/Crashes (= 4.1.1)
+  - AppCenter/Analytics (4.1.1):
     - AppCenter/Core
-  - AppCenter/Core (4.1.0)
-  - AppCenter/Crashes (4.1.0):
+  - AppCenter/Core (4.1.1)
+  - AppCenter/Crashes (4.1.1):
     - AppCenter/Core
   - Buglife (2.10.1)
   - DifferenceKit (1.1.5):
@@ -89,15 +89,15 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 455be1747f30f5052461af1660fb06e3e8550b09
+    :commit: e24889a2675ed7ab770873fca1443b1a0b9d4b2f
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
     :git: "git@github.com:TIGNUM/SwiftChart.git"
 
 SPEC CHECKSUMS:
-  Airship: f0c50f03d085c6b187ee844c0718538e9bc664e4
-  AppCenter: 8832b158d17e54845c3b88a91076218f0b07174d
+  Airship: 7609d263d3a207f112d6db066af5852b80af6819
+  AppCenter: cd53e3ed3563cc720bcb806c9731a12389b40d44
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
   IOSSecuritySuite: 988d52f4c5dfd38f6acebe9a85ee508f4c575ceb

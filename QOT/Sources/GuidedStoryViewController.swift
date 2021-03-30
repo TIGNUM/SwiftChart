@@ -12,17 +12,10 @@ final class GuidedStoryViewController: UIViewController {
 
     // MARK: - Properties
     var interactor: GuidedStoryInteractorInterface!
-    private lazy var router = GuidedStoryRouter(viewController: self)
-
-    // MARK: - Init
-    init(configure: Configurator<GuidedStoryViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var router: GuidedStoryRouter!
+    weak var surveyDelegate: GuidedStorySurveyDelegate?
+    @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var nextButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,17 +25,47 @@ final class GuidedStoryViewController: UIViewController {
 
 // MARK: - Private
 private extension GuidedStoryViewController {
+    func enableNextButton() {
+        nextButton.isEnabled = true
+        nextButton.backgroundColor = .blue
+    }
 
+    func disableNextButton() {
+        nextButton.isEnabled = false
+        nextButton.backgroundColor = .gray
+    }
 }
 
 // MARK: - Actions
 private extension GuidedStoryViewController {
+    @IBAction func didTabNext(_ sender: Any) {
+        interactor.didTabNext()
+        disableNextButton()
+    }
 
+    @IBAction func didTabPrevious(_ sender: Any) {
+        interactor.didTabPrevious()
+    }
 }
 
 // MARK: - GuidedStoryViewControllerInterface
 extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
     func setupView() {
-        // Do any additional setup after loading the view.
+        router.showSurvey()
+    }
+
+    func showJourney() {
+        router.showJourney()
+    }
+
+    func loadNextQuestion() {
+        surveyDelegate?.loadNextQuestion()
+    }
+}
+
+// MARK: - GuidedStoryDelegate
+extension GuidedStoryViewController: GuidedStoryDelegate {
+    func didSelectAnswer() {
+        enableNextButton()
     }
 }

@@ -10,8 +10,7 @@ import Foundation
 import qot_dal
 
 final class FeatureExplainerConfigurator {
-    static func make(viewController: FeatureExplainerViewController?,
-                     type: FeatureExplainer.Kind) {
+    static func make(viewController: FeatureExplainerViewController?, type: FeatureExplainer.Kind) {
         let presenter = FeatureExplainerPresenter(viewController: viewController)
         let interactor = FeatureExplainerInteractor(presenter: presenter, featureType: type)
         viewController?.interactor = interactor

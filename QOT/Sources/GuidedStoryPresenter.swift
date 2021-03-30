@@ -24,4 +24,12 @@ extension GuidedStoryPresenter: GuidedStoryPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func showJourney() {
+        viewController?.showJourney()
+    }
+
+    func loadNextQuestion() {
+        viewController?.loadNextQuestion()
+    }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import qot_dal
 
 let maximumHeight: CGFloat = 10000.0
 
@@ -39,6 +40,7 @@ class NewDailyBriefStandardCollectionViewCell: UICollectionViewCell, Dequeueable
     public func configure(with viewModel: NewDailyBriefStandardModel?) {
         guard let model = viewModel else {
             startSkeleton()
+            log("[DaiBriLOG: NewDailyBriefStandardCollectionViewCell] configure -> viewModel == nil; return ", level: .error)
             return
         }
         caption.text = model.caption

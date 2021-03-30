@@ -17,28 +17,32 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.3.4</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>8486</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
-			<key>IntentsRestrictedWhileLocked</key>
-			<array/>
-			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
-			<array/>
-			<key>IntentsSupported</key>
-			<array>
-				<string>DailyPrepIntent</string>
-				<string>ReadVisionIntent</string>
-				<string>WhatsHotIntent</string>
-			</array>
+			<key>NSExtensionActivationRule</key>
+			<string>SUBQUERY (
+    extensionItems,
+    $extensionItem,
+    SUBQUERY (
+        $extensionItem.attachments,
+        $attachment,
+        (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.utf8-plain-text"
+        || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url")
+        AND NOT (ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.file-url")
+    ).@count != 0
+).@count != 0</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.intents-service</string>
+		<string>com.apple.share-services</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).IntentHandler</string>
+		<string>ContainerShareViewController</string>
 	</dict>
 </dict>
 </plist>

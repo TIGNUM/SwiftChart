@@ -12,9 +12,9 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.widget.com.tignum.qot.novartis</string>
-		<string>group.siri.com.tignum</string>
-		<string>group.share.tignum.qot.novartis</string>
+		<string>group.share.com.tignum.qot.v3</string>
+		<string>group.siri.com.tignum.qot.v3</string>
+		<string>group.widget.com.tignum.qot.v3</string>
 	</array>
 </dict>
 </plist>
