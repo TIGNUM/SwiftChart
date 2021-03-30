@@ -57,6 +57,7 @@
                                     <constraint firstAttribute="width" constant="16" id="lzv-vI-9lF"/>
                                 </constraints>
                                 <state key="normal" image="ic_radio_off"/>
+                                <state key="selected" image="ic_radio_on"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.26548267588994068" blue="0.97403547767379495" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -102,6 +103,7 @@
     </objects>
     <resources>
         <image name="ic_radio_off" width="16" height="16"/>
+        <image name="ic_radio_on" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

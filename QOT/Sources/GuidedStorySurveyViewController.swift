@@ -43,8 +43,7 @@ extension GuidedStorySurveyViewController: UITableViewDataSource {
         let title = interactor.title(at: row)
         let subtitle = interactor.subtitle(at: row)
         let onColor = interactor.onColor(at: row)
-        let isOn = interactor.isOn(at: row)
-        cell.configure(title: title, subtitle: subtitle, onColor: onColor, isOn: isOn)
+        cell.configure(title: title, subtitle: subtitle, onColor: onColor)
 
         return cell
     }
@@ -59,6 +58,10 @@ extension GuidedStorySurveyViewController: GuidedStorySurveyViewControllerInterf
     func setQuestionLabel(_ question: String?) {
         questionLabel.text = question
     }
+
+    func setAnswers() {
+        tableView.reloadData()
+    }
 }
 
 // MARK: - Private
@@ -68,5 +71,12 @@ private extension GuidedStorySurveyViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
+    }
+}
+
+// MARK: - GuidedStorySurveyDelegate
+extension GuidedStorySurveyViewController: GuidedStorySurveyDelegate {
+    func loadNextQuestion() {
+        interactor.loadNextQuestion()
     }
 }

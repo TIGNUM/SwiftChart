@@ -11,19 +11,24 @@ import qot_dal
 
 class GuidedStoryWorker {
     var questions = [QDMQuestion]()
-    var currentQuestionKey = GuidedStory.Survey.QuestionKey.intro.rawValue
     var selectedAnswers = [String: QDMAnswer]()
+    private var currentQuestionKey = GuidedStory.Survey.QuestionKey.intro.rawValue
 
-    func question(for key: String) -> QDMQuestion? {
-        return questions.first(where: { $0.key == key })
+    var isLastQuestion: Bool {
+        return currentQuestionKey == GuidedStory.Survey.QuestionKey.last.rawValue
     }
 
-    func answers(for key: String) -> [QDMAnswer] {
-        return question(for: key)?.answers.sorted(by: { $0.sortOrder ?? .zero > $1.sortOrder ?? .zero }) ?? []
+    func question() -> QDMQuestion? {
+        return questions.first(where: { $0.key == currentQuestionKey })
+    }
+
+    func answers() -> [QDMAnswer] {
+        let answers = question()?.answers
+        return answers?.sorted(by: { $0.sortOrder ?? .zero < $1.sortOrder ?? .zero }) ?? []
     }
 
     func answer(at index: Int) -> QDMAnswer? {
-        return answers(for: currentQuestionKey).at(index: index)
+        return answers().at(index: index)
     }
 
     func getQuestions(_ completion: @escaping () -> Void) {
@@ -36,5 +41,34 @@ class GuidedStoryWorker {
     func didSelectAnswer(at index: Int) {
         selectedAnswers[currentQuestionKey] = answer(at: index)
         log("selectedAnswers: \(selectedAnswers)", level: .debug)
+    }
+
+    func didTabNext() {
+        saveSelectedUserAnswer()
+        updateCurrentQuestionKey()
+    }
+}
+
+// MARK: - Private
+private extension GuidedStoryWorker {
+    func saveSelectedUserAnswer() {
+        let currentQuestion = question()
+        let lastSelectedAnswer = selectedAnswers.first?.value
+        if let answer = lastSelectedAnswer, let questionId = currentQuestion?.remoteID {
+            QuestionService.main.saveOnboardingAnswer(answer: answer,
+                                                      questionId: questionId,
+                                                      questionGroupId: QuestionGroup.Onboarding.rawValue) { (error) in
+                if let error = error {
+                    log("Error while saveOnboardingAnswer -> \(error)", level: .error)
+                }
+            }
+        }
+    }
+
+    func updateCurrentQuestionKey() {
+        let nextQuestionId = selectedAnswers.first?.value.targetId(.question)
+        if let nextQuestionKey = questions.first(where: { $0.remoteID == nextQuestionId })?.key {
+            currentQuestionKey = nextQuestionKey
+        }
     }
 }
