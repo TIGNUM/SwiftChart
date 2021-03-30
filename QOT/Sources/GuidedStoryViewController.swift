@@ -50,6 +50,10 @@ private extension GuidedStoryViewController {
         buttonViewSurvey.isHidden = true
         previousButtonJourney.isHidden = true
     }
+
+    func setCurrentPageIndicator(_ page: Int) {
+        pageControl.currentPage = page
+    }
 }
 
 // MARK: - Actions
@@ -57,6 +61,7 @@ private extension GuidedStoryViewController {
     @IBAction func didTabNextSurvey(_ sender: Any) {
         interactor.didTabNextSurvey()
         disableNextButtonSurvey()
+        setCurrentPageIndicator(interactor.currentPage)
     }
 
     @IBAction func didTabNextJourney(_ sender: Any) {
@@ -65,6 +70,7 @@ private extension GuidedStoryViewController {
 
     @IBAction func didTabPreviousJourney(_ sender: Any) {
         interactor.didTabPreviousJourney()
+        setCurrentPageIndicator(interactor.currentPage)
     }
 
     @IBAction func didTabSkipJourney(_ sender: Any) {

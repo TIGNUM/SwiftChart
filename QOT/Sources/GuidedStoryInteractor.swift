@@ -30,6 +30,10 @@ final class GuidedStoryInteractor {
 
 // MARK: - GuidedStoryInteractorInterface
 extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
+    var currentPage: Int {
+        return worker.currentPage
+    }
+
     func didTabNextSurvey() {
         if worker.isLastQuestion {
             worker.loadJourney()

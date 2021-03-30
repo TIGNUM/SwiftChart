@@ -16,9 +16,14 @@ class GuidedStoryWorker {
     var targetContent: QDMContentCollection?
     private var targetContents = [QDMContentCollection]()
     private var currentQuestionKey = GuidedStory.Survey.QuestionKey.intro.rawValue
+    private var pageIndex = 0
 
     var isLastQuestion: Bool {
         return currentQuestionKey == GuidedStory.Survey.QuestionKey.last.rawValue
+    }
+
+    var currentPage: Int {
+        return pageIndex
     }
 
     func question() -> QDMQuestion? {
@@ -56,6 +61,7 @@ class GuidedStoryWorker {
     func didTabNext() {
         saveSelectedUserAnswer()
         updateCurrentQuestionKey()
+        pageIndex += 1
     }
 }
 
@@ -64,6 +70,7 @@ extension GuidedStoryWorker {
     func loadJourney() {
         saveSelectedUserAnswer()
         setSelectedJourney()
+        pageIndex += 1
     }
 }
 

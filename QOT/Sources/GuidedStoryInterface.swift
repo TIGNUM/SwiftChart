@@ -22,6 +22,7 @@ protocol GuidedStoryPresenterInterface {
 }
 
 protocol GuidedStoryInteractorInterface: Interactor {
+    var currentPage: Int { get }
     func didTabNextSurvey()
     func didTabNextJourney()
     func didTabPreviousJourney()
