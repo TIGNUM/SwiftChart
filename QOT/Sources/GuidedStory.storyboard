@@ -23,9 +23,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbD-jj-xsl">
                                 <rect key="frame" x="20" y="712" width="374" height="150"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCz-xf-UDe">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCz-xf-UDe">
                                         <rect key="frame" x="144" y="102" width="86" height="40"/>
-                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="JCB-K0-k8S"/>
                                         </constraints>
@@ -38,7 +38,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <color key="backgroundColor" red="1" green="0.84992400960615067" blue="0.55384875339551476" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="RCz-xf-UDe" secondAttribute="bottom" constant="8" id="Q4a-r7-ppR"/>
                                     <constraint firstAttribute="height" constant="150" id="o5d-Kw-Efe"/>
@@ -59,6 +59,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="nextButton" destination="RCz-xf-UDe" id="Pch-Sz-j28"/>
                         <outlet property="viewContainer" destination="lxn-Ep-dTe" id="dz4-ef-rNN"/>
                     </connections>
                 </viewController>
@@ -69,13 +70,14 @@
         <!--Guided Story Journey View Controller-->
         <scene sceneID="GwE-lH-VT1">
             <objects>
-                <viewController storyboardIdentifier="GuidedStoryJourneyViewControllerID" id="3F0-ei-To9" customClass="GuidedStoryJourneyViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JourneyViCo" id="3F0-ei-To9" customClass="GuidedStoryJourneyViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QbT-OM-9au">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="N7k-A1-q8p"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.45665683151766501" blue="0.54105477219966036" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
+                    <size key="freeformSize" width="414" height="896"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHX-y7-2Cb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,28 +86,49 @@
         <!--Guided Story Survey View Controller-->
         <scene sceneID="if2-Rq-qg0">
             <objects>
-                <viewController storyboardIdentifier="GuidedStorySurveyViewControllerID" id="wyU-uG-3Tc" customClass="GuidedStorySurveyViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SurveyViCo" id="wyU-uG-3Tc" customClass="GuidedStorySurveyViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="upb-dz-Xmo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fj-qE-rrg">
+                                <rect key="frame" x="20" y="44" width="374" height="101.5"/>
+                                <string key="text">Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2kK-4Q-BbG">
+                                <rect key="frame" x="20" y="185.5" width="374" height="676.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="azI-mN-Bxx"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.088609368816192524" green="1" blue="0.12003621845905166" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="2fj-qE-rrg" firstAttribute="leading" secondItem="azI-mN-Bxx" secondAttribute="leading" constant="20" id="FfC-QL-ACh"/>
+                            <constraint firstItem="2kK-4Q-BbG" firstAttribute="top" secondItem="2fj-qE-rrg" secondAttribute="bottom" constant="40" id="H6D-QQ-tQ7"/>
+                            <constraint firstItem="2kK-4Q-BbG" firstAttribute="bottom" secondItem="azI-mN-Bxx" secondAttribute="bottom" id="JaA-Gg-ils"/>
+                            <constraint firstItem="azI-mN-Bxx" firstAttribute="trailing" secondItem="2kK-4Q-BbG" secondAttribute="trailing" constant="20" id="Qqa-nl-fT4"/>
+                            <constraint firstItem="2kK-4Q-BbG" firstAttribute="leading" secondItem="azI-mN-Bxx" secondAttribute="leading" constant="20" id="WL4-De-a2T"/>
+                            <constraint firstAttribute="trailing" secondItem="2fj-qE-rrg" secondAttribute="trailing" constant="20" id="b6C-AV-6cp"/>
+                            <constraint firstItem="2fj-qE-rrg" firstAttribute="top" secondItem="azI-mN-Bxx" secondAttribute="top" id="eOi-Dm-XWI"/>
+                        </constraints>
                     </view>
+                    <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="questionLabel" destination="2fj-qE-rrg" id="tdS-qR-tCB"/>
+                        <outlet property="tableView" destination="2kK-4Q-BbG" id="JvY-yf-uHd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eVy-0i-kip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343" y="737"/>
+            <point key="canvasLocation" x="340.57971014492756" y="736.60714285714278"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

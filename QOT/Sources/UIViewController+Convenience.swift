@@ -126,9 +126,12 @@ extension UIViewController: ClickableLabelDelegate {
 }
 
 extension UIViewController {
-    func add(_ child: UIViewController, to parentView: UIView) {
-        addChild(child)
-        parentView.fill(subview: child.view)
+    func add(_ child: UIViewController?, to parentView: UIView?) {
+        if let child = child,
+           let parentView = parentView {
+            addChild(child)
+            parentView.fill(subview: child.view)
+        }
     }
 
     func remove() {

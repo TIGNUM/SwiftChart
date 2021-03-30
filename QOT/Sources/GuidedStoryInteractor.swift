@@ -11,12 +11,13 @@ import UIKit
 final class GuidedStoryInteractor {
 
     // MARK: - Properties
-    private lazy var worker = GuidedStoryWorker()
+    private let worker: GuidedStoryWorker!
     private let presenter: GuidedStoryPresenterInterface!
 
     // MARK: - Init
-    init(presenter: GuidedStoryPresenterInterface) {
+    init(presenter: GuidedStoryPresenterInterface, worker: GuidedStoryWorker) {
         self.presenter = presenter
+        self.worker = worker
     }
 
     // MARK: - Interactor
@@ -27,5 +28,16 @@ final class GuidedStoryInteractor {
 
 // MARK: - GuidedStoryInteractorInterface
 extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
+    func didTabNext() {
+        if worker.isLastQuestion {
+            presenter.showJourney()
+        } else {
+            worker.didTabNext()
+            presenter.loadNextQuestion()
+        }
+    }
 
+    func didTabPrevious() {
+
+    }
 }

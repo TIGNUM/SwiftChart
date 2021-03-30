@@ -177,6 +177,10 @@ final class AppCoordinator {
                                    duration: 0,
                                    animated: false) {
             DispatchQueue.main.async {
+                self.showGuidedStory()
+                return
+
+                // ################
                 if SessionService.main.isUsersVeryFirstAppStart {
                     Feature.Flag.onboardingSurvey.isOn ? self.showGuidedStory() : self.showCoachMarks()
                 } else {
@@ -247,8 +251,7 @@ extension AppCoordinator {
         guard let controller = R.storyboard.guidedStory.guidedStoryID(),
             let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,
             let baseController = navigationController.viewControllers.first as? BaseRootViewController else { return }
-        let configurator = GuidedStoryConfigurator.make()
-        configurator(controller)
+        GuidedStoryConfigurator.make(viewController: controller)
         baseController.setContent(viewController: controller)
     }
 
