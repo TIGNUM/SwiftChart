@@ -51,6 +51,8 @@ final class MyQotAppSettingsViewController: BaseViewController, ScreenZLevel3 {
             MyQotSensorsConfigurator.configure(viewController: activityTrackerVC)
         } else if let syncedCalendarVC = segue.destination as? SyncedCalendarsViewController {
             SyncedCalendarsConfigurator.configure(viewController: syncedCalendarVC)
+        } else if let notificationSettings = segue.destination as? NotificationSettingsViewController {
+            NotificationSettingsConfigurator.make(viewController: notificationSettings)
         }
     }
 }

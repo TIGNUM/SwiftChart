@@ -82,6 +82,18 @@ public extension AppTextKey {
     static let coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title = AppTextKey("coach.tools.interactive_tool.minsdset_shifter.result.section_your_answers.title")
     static let coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_vision = AppTextKey("coach.tools.interactive_tool.minsdset_shifter.result.section_your_answers.title_vision")
 
+    static let daily_reminders_settings_ready_title = AppTextKey("daily_reminders.settings_ready.title")
+    static let daily_reminders_settings_morning_title = AppTextKey("daily_reminders.settings_morning.title")
+    static let daily_reminders_settings_sleep_title = AppTextKey("daily_reminders.settings_sleep.title")
+
+    static let daily_reminders_settings_ready_subtitle = AppTextKey("daily_reminders.settings_ready.subtitle")
+    static let daily_reminders_settings_morning_subtitle = AppTextKey("daily_reminders.settings_morning.subtitle")
+    static let daily_reminders_settings_sleep_subtitle = AppTextKey("daily_reminders.settings_sleep.subtitle")
+    static let daily_reminders_setting_frequency_title = AppTextKey("daily_reminders.setting.frequency_title")
+    static let daily_reminders_setting_time_title = AppTextKey("daily_reminders.setting.time_title")
+    static let daily_reminders_setting_frequency_value = AppTextKey("daily_reminders.setting.frequency_value")
+    static let daily_reminders_setting_time_value = AppTextKey("daily_reminders.setting.time_value")
+
     static let coach_prepare_calendar_not_sync_section_header_title = AppTextKey("coach.prepare.calendar_not_sync.section_header.title")
     static let coach_prepare_alert_activate_reminder_title = AppTextKey("coach.prepare.alert.activate_reminder.title")
     static let coach_prepare_alert_activate_reminder_button_no = AppTextKey("coach.prepare.alert.activate_reminder.button_no")
@@ -660,6 +672,22 @@ public extension AppTextKey {
      static let settings_team_settings_team_members_remove = AppTextKey("settings.team_settings.team_members.remove")
      static let settings_team_settings_team_members_add_members = AppTextKey("settings.team_settings.team_members.add_members")
      static let settings_team_settings_team_members_admin_label = AppTextKey("settings.team_settings.team_members.admin_label")
+
+    // MARK: - Notification Settings
+
+    static let notification_settings_header_title = AppTextKey("notification_settings.header.title")
+    static let notification_settings_header_subtitle = AppTextKey("notification_settings.header.subtitle")
+
+    static let notification_settings_daily_subtitle = AppTextKey("notification_settings.daily.subtitle")
+    static let notification_settings_daily_title = AppTextKey("notification_settings.daily.title")
+    static let notification_settings_sunday_title = AppTextKey("notification_settings.sunday.title")
+    static let notification_settings_sunday_subtitle = AppTextKey("notification_settings.sunday.subtitle")
+    static let notification_settings_peak_title = AppTextKey("notification_settings.peak.title")
+    static let notification_settings_peak_subtitle = AppTextKey("notification_settings.peak.subtitle")
+    static let notification_settings_sprint_title = AppTextKey("notification_settings.sprint.title")
+    static let notification_settings_sprint_subtitle = AppTextKey("notification_settings.sprint.subtitle")
+    static let notification_settings_team_title = AppTextKey("notification_settings.team.title")
+    static let notification_settings_team_subtitle = AppTextKey("notification_settings.team.subtitle")
 
     // MARK: - Team Invitations
     static let team_invite_banner_message_decline = AppTextKey("team_invite.banner_message.decline")
