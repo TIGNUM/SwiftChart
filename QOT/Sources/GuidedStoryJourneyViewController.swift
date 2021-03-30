@@ -58,7 +58,7 @@ extension GuidedStoryJourneyViewController: UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return view.size
+        return collectionView.size
     }
 
     func collectionView(_ collectionView: UICollectionView,

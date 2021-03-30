@@ -1139,7 +1139,7 @@
 		CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */; };
 		CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
 		CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A301E81713200E7FDFD /* Constants.swift */; };
-		CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7682C71F28A85600F852A0 /* Array+Convenience.swift */; };
+		CC7682C81F28A85600F852A0 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7682C71F28A85600F852A0 /* Array+Extension.swift */; };
 		CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */ = {isa = PBXBuildFile; fileRef = CC7E80B91F614F1B006F9515 /* QotNotification.aiff */; };
 		CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80181F1F0256980040B03F /* UIViewController+Alert.swift */; };
 		CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4BD1E82730E002A8362 /* Extensions.swift */; };
@@ -2593,7 +2593,7 @@
 		CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Create.swift"; sourceTree = "<group>"; };
 		CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		CC6B3A301E81713200E7FDFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CC7682C71F28A85600F852A0 /* Array+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Convenience.swift"; sourceTree = "<group>"; };
+		CC7682C71F28A85600F852A0 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		CC7E80B91F614F1B006F9515 /* QotNotification.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = QotNotification.aiff; sourceTree = "<group>"; };
 		CC80181F1F0256980040B03F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		CCC0C4BD1E82730E002A8362 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -5393,7 +5393,7 @@
 			isa = PBXGroup;
 			children = (
 				9CBFF844234CCD0200833AC2 /* AppText+Extensions.swift */,
-				CC7682C71F28A85600F852A0 /* Array+Convenience.swift */,
+				CC7682C71F28A85600F852A0 /* Array+Extension.swift */,
 				368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */,
 				852988941F2F3E15003A36DF /* Bundle+Extensions.swift */,
 				CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */,
@@ -7710,7 +7710,7 @@
 				38699D4E2611126F0042355C /* GuidedStoryJourneyInteractor.swift in Sources */,
 				8D25326F22E9B8F700FE4205 /* MySprintDetailsItem.swift in Sources */,
 				F9458C6724AA379C004E2383 /* MyXTeamSettingsModel.swift in Sources */,
-				CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */,
+				CC7682C81F28A85600F852A0 /* Array+Extension.swift in Sources */,
 				360256E42051837300862B0E /* SearchWorker.swift in Sources */,
 				5F7BE77E2289586E00BA5DCF /* MyQotSupportInterface.swift in Sources */,
 				B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */,

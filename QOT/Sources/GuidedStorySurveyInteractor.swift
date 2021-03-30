@@ -23,11 +23,8 @@ final class GuidedStorySurveyInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        worker.getTargetContents()
-        worker.getQuestions { [weak self] in
-            self?.presenter.setupView()
-            self?.loadNextQuestion()
-        }
+        presenter.setupView()
+        loadNextQuestion()
     }
 }
 

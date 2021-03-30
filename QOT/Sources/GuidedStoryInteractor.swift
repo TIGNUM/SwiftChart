@@ -22,7 +22,9 @@ final class GuidedStoryInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        worker.getStory { [weak self] (pageCount) in
+            self?.presenter.setupView(pageCount: pageCount)
+        }
     }
 }
 

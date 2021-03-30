@@ -50,10 +50,6 @@ private extension GuidedStoryViewController {
         buttonViewSurvey.isHidden = true
         previousButtonJourney.isHidden = true
     }
-
-    func setupPageControll() {
-
-    }
 }
 
 // MARK: - Actions
@@ -90,6 +86,10 @@ extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
 
     func loadNextQuestion() {
         surveyDelegate?.loadNextQuestion()
+    }
+
+    func setupPageIndicator(pageCount: Int) {
+        pageControl.numberOfPages = pageCount
     }
 }
 

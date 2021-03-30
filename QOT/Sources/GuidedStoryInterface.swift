@@ -9,13 +9,14 @@
 import Foundation
 
 protocol GuidedStoryViewControllerInterface: class {
+    func setupPageIndicator(pageCount: Int)
     func setupView()
     func showJourney()
     func loadNextQuestion()
 }
 
 protocol GuidedStoryPresenterInterface {
-    func setupView()
+    func setupView(pageCount: Int)
     func showJourney()
     func loadNextQuestion()
 }

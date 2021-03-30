@@ -27,23 +27,25 @@ class GuidedStoryWorker {
 
     func answers() -> [QDMAnswer] {
         let answers = question()?.answers
-        return answers?.sorted(by: { $0.sortOrder ?? .zero < $1.sortOrder ?? .zero }) ?? []
+        return answers?.sorted(by: { $0.sortOrder ?? .zero < $1.sortOrder ?? .zero }) ?? .empty
     }
 
     func answer(at index: Int) -> QDMAnswer? {
         return answers().at(index: index)
     }
 
-    func getQuestions(_ completion: @escaping () -> Void) {
-        QuestionService.main.questionsWithQuestionGroup(.Onboarding, ascending: true) { (questions) in
-            self.questions = questions ?? []
-            completion()
+    func getStory(_ completion: @escaping (Int) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        getQuestions {
+            dispatchGroup.leave()
         }
-    }
-
-    func getTargetContents() {
-        ContentService.main.getContentCategory(.OnboardingSurvey) { [weak self] (category) in
-            self?.targetContents = category?.contentCollections ?? []
+        dispatchGroup.enter()
+        getTargetContents {
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            completion(self?.pageCount ?? .zero)
         }
     }
 
@@ -67,6 +69,20 @@ extension GuidedStoryWorker {
 
 // MARK: - Private
 private extension GuidedStoryWorker {
+    func getQuestions(_ completion: @escaping () -> Void) {
+        QuestionService.main.questionsWithQuestionGroup(.Onboarding, ascending: true) { [weak self] (questions) in
+            self?.questions = questions ?? .empty
+            completion()
+        }
+    }
+
+    func getTargetContents(_ completion: @escaping () -> Void) {
+        ContentService.main.getContentCategory(.OnboardingSurvey) { [weak self] (category) in
+            self?.targetContents = category?.contentCollections ?? .empty
+            completion()
+        }
+    }
+
     func saveSelectedUserAnswer() {
         let currentQuestion = question()
         let lastSelectedAnswer = selectedAnswers.first?.value
@@ -93,5 +109,11 @@ private extension GuidedStoryWorker {
         targetContent = targetContents.first(where: { $0.remoteID == targetId })
         let story = ContentService.main.createOnboardingGuidedStory(targetContent: targetContent)
         jounreyItems = story.sorted(by: { $0.sortOrder < $1.sortOrder })
+    }
+
+    var pageCount: Int {
+        let surveyItemCount = questions.count
+        let journeyItemCount = targetContents.first?.contentItems.filter { $0.format == .body }.count ?? .zero
+        return surveyItemCount + journeyItemCount
     }
 }

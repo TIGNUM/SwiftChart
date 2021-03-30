@@ -1,5 +1,5 @@
 //
-//  Array+Convenience.swift
+//  Array+Extension.swift
 //  QOT
 //
 //  Created by karmic on 26.07.17.
@@ -49,5 +49,9 @@ extension Array {
 
     func contains<T>(obj: T) -> Bool where T: Equatable {
         return self.filter({$0 as? T == obj}).count > .zero
+    }
+
+    static var empty: Array {
+        return []
     }
 }

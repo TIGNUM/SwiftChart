@@ -21,8 +21,9 @@ final class GuidedStoryPresenter {
 
 // MARK: - GuidedStoryInterface
 extension GuidedStoryPresenter: GuidedStoryPresenterInterface {
-    func setupView() {
+    func setupView(pageCount: Int) {
         viewController?.setupView()
+        viewController?.setupPageIndicator(pageCount: pageCount)
     }
 
     func showJourney() {
