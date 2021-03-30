@@ -30,10 +30,10 @@ final class GuidedStoryJourneyInteractor {
 // MARK: - GuidedStoryJourneyInteractorInterface
 extension GuidedStoryJourneyInteractor: GuidedStoryJourneyInteractorInterface {
     var itemCount: Int {
-        return worker.storyItems.count
+        return worker.jounreyItems.count
     }
 
     func body(at index: Int) -> String? {
-        return worker.storyItems.at(index: index)?.body
+        return worker.jounreyItems.at(index: index)?.body
     }
 }

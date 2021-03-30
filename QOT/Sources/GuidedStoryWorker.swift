@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 
 class GuidedStoryWorker {
-    var storyItems = [QDMGuidedStory]()
+    var jounreyItems = [QDMGuidedStory]()
     var questions = [QDMQuestion]()
     var selectedAnswers = [String: QDMAnswer]()
     var targetContent: QDMContentCollection?
@@ -91,6 +91,7 @@ private extension GuidedStoryWorker {
     func setSelectedJourney() {
         let targetId = selectedAnswers.first?.value.targetId(.content)
         targetContent = targetContents.first(where: { $0.remoteID == targetId })
-        storyItems = ContentService.main.createOnboardingGuidedStory(targetContent: targetContent)
+        let story = ContentService.main.createOnboardingGuidedStory(targetContent: targetContent)
+        jounreyItems = story.sorted(by: { $0.sortOrder ?? .zero < $1.sortOrder ?? .zero })
     }
 }
