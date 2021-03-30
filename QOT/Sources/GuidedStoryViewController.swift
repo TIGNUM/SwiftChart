@@ -15,7 +15,12 @@ final class GuidedStoryViewController: UIViewController {
     var router: GuidedStoryRouter!
     weak var surveyDelegate: GuidedStorySurveyDelegate?
     @IBOutlet weak var viewContainer: UIView!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var buttonViewSurvey: UIView!
+    @IBOutlet weak var buttonViewJourney: UIView!
+    @IBOutlet weak var nextButtonSurvey: UIButton!
+    @IBOutlet weak var nextButtonJourney: UIButton!
+    @IBOutlet weak var skipButtonJourney: UIButton!
+    @IBOutlet weak var previousButtonJourney: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,36 +30,55 @@ final class GuidedStoryViewController: UIViewController {
 
 // MARK: - Private
 private extension GuidedStoryViewController {
-    func enableNextButton() {
-        nextButton.isEnabled = true
-        nextButton.backgroundColor = .blue
+    func enableNextButtonSurvey() {
+        nextButtonSurvey.isEnabled = true
+        nextButtonSurvey.backgroundColor = .blue
     }
 
-    func disableNextButton() {
-        nextButton.isEnabled = false
-        nextButton.backgroundColor = .gray
+    func disableNextButtonSurvey() {
+        nextButtonSurvey.isEnabled = false
+        nextButtonSurvey.backgroundColor = .gray
+    }
+
+    func setupSurveyView() {
+        buttonViewJourney.isHidden = true
+    }
+
+    func setupJourneyView() {
+        buttonViewJourney.isHidden = false
+        buttonViewSurvey.isHidden = true
     }
 }
 
 // MARK: - Actions
 private extension GuidedStoryViewController {
-    @IBAction func didTabNext(_ sender: Any) {
-        interactor.didTabNext()
-        disableNextButton()
+    @IBAction func didTabNextSurvey(_ sender: Any) {
+        interactor.didTabNextSurvey()
+        disableNextButtonSurvey()
     }
 
-    @IBAction func didTabPrevious(_ sender: Any) {
-        interactor.didTabPrevious()
+    @IBAction func didTabNextJourney(_ sender: Any) {
+        interactor.didTabNextJourney()
+    }
+
+    @IBAction func didTabPreviousJourney(_ sender: Any) {
+        interactor.didTabPreviousJourney()
+    }
+
+    @IBAction func didTabSkipJourney(_ sender: Any) {
+        interactor.didTabSkipJourney()
     }
 }
 
 // MARK: - GuidedStoryViewControllerInterface
 extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
     func setupView() {
+        setupSurveyView()
         router.showSurvey()
     }
 
     func showJourney() {
+        setupJourneyView()
         router.showJourney()
     }
 
@@ -66,6 +90,10 @@ extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
 // MARK: - GuidedStoryDelegate
 extension GuidedStoryViewController: GuidedStoryDelegate {
     func didSelectAnswer() {
-        enableNextButton()
+        enableNextButtonSurvey()
+    }
+
+    func didStartJourney() {
+
     }
 }

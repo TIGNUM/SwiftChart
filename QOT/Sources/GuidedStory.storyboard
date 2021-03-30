@@ -17,6 +17,10 @@
                     <view key="view" contentMode="scaleToFill" id="I1p-0E-cyd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <userGuides>
+                            <userLayoutGuide location="370" affinity="minX"/>
+                            <userLayoutGuide location="44" affinity="minX"/>
+                        </userGuides>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-Ep-dTe">
                                 <rect key="frame" x="20" y="44" width="374" height="660"/>
@@ -24,26 +28,100 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbD-jj-xsl">
                                 <rect key="frame" x="20" y="712" width="374" height="150"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCz-xf-UDe">
-                                        <rect key="frame" x="144" y="102" width="86" height="40"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThZ-Cg-ZQe" userLabel="ButtonViewSurvey">
+                                        <rect key="frame" x="0.0" y="102" width="374" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCz-xf-UDe">
+                                                <rect key="frame" x="129" y="0.0" width="116" height="40"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="11" maxY="0.0"/>
+                                                <state key="normal" title="Continue  --&gt;">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTabNextSurvey:" destination="1Ck-xS-teo" eventType="touchUpInside" id="aVQ-HD-oa0"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="JCB-K0-k8S"/>
+                                            <constraint firstItem="RCz-xf-UDe" firstAttribute="top" secondItem="ThZ-Cg-ZQe" secondAttribute="top" id="FZJ-hP-jxM"/>
+                                            <constraint firstItem="RCz-xf-UDe" firstAttribute="centerX" secondItem="ThZ-Cg-ZQe" secondAttribute="centerX" id="Tn7-lM-9pt"/>
+                                            <constraint firstItem="RCz-xf-UDe" firstAttribute="centerY" secondItem="ThZ-Cg-ZQe" secondAttribute="centerY" id="VOE-ya-l5F"/>
+                                            <constraint firstAttribute="height" constant="40" id="dIm-YI-u8S"/>
+                                            <constraint firstAttribute="bottom" secondItem="RCz-xf-UDe" secondAttribute="bottom" id="gEu-Ug-Cqy"/>
                                         </constraints>
-                                        <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="11" maxY="0.0"/>
-                                        <state key="normal" title="Next  --&gt;">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTabNext:" destination="1Ck-xS-teo" eventType="touchUpInside" id="XSb-se-ESK"/>
-                                        </connections>
-                                    </button>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPT-91-Irm" userLabel="ButtonViewJourney">
+                                        <rect key="frame" x="0.0" y="102" width="374" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFZ-id-4oR">
+                                                <rect key="frame" x="144" y="0.0" width="86" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="11" maxY="0.0"/>
+                                                <state key="normal" title="Next  --&gt;">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTabNextJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="kIx-XK-1Kj"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fnX-G2-x43">
+                                                <rect key="frame" x="306" y="0.0" width="44" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="Ash-47-Soc"/>
+                                                </constraints>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Skip">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTabSkipJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="7dr-Xd-J4S"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LL7-ys-DG4">
+                                                <rect key="frame" x="24" y="0.0" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="6yI-g0-cQ1"/>
+                                                    <constraint firstAttribute="height" constant="40" id="XRS-we-GyM"/>
+                                                </constraints>
+                                                <state key="normal" title="&lt;--"/>
+                                                <connections>
+                                                    <action selector="didTabPreviousJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="2iD-8O-CMn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="fnX-G2-x43" secondAttribute="bottom" id="4u8-Za-Gdb"/>
+                                            <constraint firstItem="HFZ-id-4oR" firstAttribute="centerX" secondItem="OPT-91-Irm" secondAttribute="centerX" id="6uz-Mg-ARg"/>
+                                            <constraint firstItem="HFZ-id-4oR" firstAttribute="top" secondItem="OPT-91-Irm" secondAttribute="top" id="Civ-v7-PJs"/>
+                                            <constraint firstItem="LL7-ys-DG4" firstAttribute="leading" secondItem="OPT-91-Irm" secondAttribute="leading" constant="24" id="ME0-gR-7Z9"/>
+                                            <constraint firstItem="LL7-ys-DG4" firstAttribute="top" secondItem="OPT-91-Irm" secondAttribute="top" id="PYI-jr-o73"/>
+                                            <constraint firstAttribute="bottom" secondItem="LL7-ys-DG4" secondAttribute="bottom" id="Pby-F2-yvm"/>
+                                            <constraint firstAttribute="bottom" secondItem="HFZ-id-4oR" secondAttribute="bottom" id="jE3-Zc-tFl"/>
+                                            <constraint firstAttribute="trailing" secondItem="fnX-G2-x43" secondAttribute="trailing" constant="24" id="k4G-j4-KYZ"/>
+                                            <constraint firstItem="HFZ-id-4oR" firstAttribute="centerY" secondItem="OPT-91-Irm" secondAttribute="centerY" id="ldR-Vd-qH4"/>
+                                            <constraint firstItem="fnX-G2-x43" firstAttribute="top" secondItem="OPT-91-Irm" secondAttribute="top" id="nl1-uk-GuG"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.84992400960615067" blue="0.55384875339551476" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="RCz-xf-UDe" secondAttribute="bottom" constant="8" id="Q4a-r7-ppR"/>
+                                    <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="trailing" secondItem="OPT-91-Irm" secondAttribute="trailing" id="C0a-H8-Esu"/>
+                                    <constraint firstAttribute="bottom" secondItem="ThZ-Cg-ZQe" secondAttribute="bottom" constant="8" id="EnA-ka-mRm"/>
+                                    <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="leading" secondItem="bbD-jj-xsl" secondAttribute="leading" id="StX-Og-tmg"/>
+                                    <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="top" secondItem="OPT-91-Irm" secondAttribute="top" id="b7E-Z3-kc5"/>
+                                    <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="leading" secondItem="OPT-91-Irm" secondAttribute="leading" id="fKt-b1-YZ6"/>
                                     <constraint firstAttribute="height" constant="150" id="o5d-Kw-Efe"/>
-                                    <constraint firstItem="RCz-xf-UDe" firstAttribute="centerX" secondItem="bbD-jj-xsl" secondAttribute="centerX" id="zP9-HR-gJN"/>
+                                    <constraint firstItem="ThZ-Cg-ZQe" firstAttribute="bottom" secondItem="OPT-91-Irm" secondAttribute="bottom" id="q5F-id-akD"/>
+                                    <constraint firstAttribute="trailing" secondItem="ThZ-Cg-ZQe" secondAttribute="trailing" id="vP3-sG-hLb"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -60,13 +138,18 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="nextButton" destination="RCz-xf-UDe" id="Pch-Sz-j28"/>
+                        <outlet property="buttonViewJourney" destination="OPT-91-Irm" id="QfH-aE-2XK"/>
+                        <outlet property="buttonViewSurvey" destination="ThZ-Cg-ZQe" id="BIT-PS-1zq"/>
+                        <outlet property="nextButtonJourney" destination="HFZ-id-4oR" id="HVm-7r-3MN"/>
+                        <outlet property="nextButtonSurvey" destination="RCz-xf-UDe" id="DBo-0c-zrN"/>
+                        <outlet property="previousButtonJourney" destination="LL7-ys-DG4" id="E7P-FE-dso"/>
+                        <outlet property="skipButtonJourney" destination="fnX-G2-x43" id="Nzp-fu-qZF"/>
                         <outlet property="viewContainer" destination="lxn-Ep-dTe" id="dz4-ef-rNN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXo-pg-Bml" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="765" y="31"/>
+            <point key="canvasLocation" x="763.768115942029" y="30.803571428571427"/>
         </scene>
         <!--Guided Story Journey View Controller-->
         <scene sceneID="GwE-lH-VT1">
@@ -201,6 +284,15 @@
         <image name="rain_large" width="135" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

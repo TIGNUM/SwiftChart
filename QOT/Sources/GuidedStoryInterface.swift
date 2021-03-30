@@ -21,8 +21,10 @@ protocol GuidedStoryPresenterInterface {
 }
 
 protocol GuidedStoryInteractorInterface: Interactor {
-    func didTabNext()
-    func didTabPrevious()
+    func didTabNextSurvey()
+    func didTabNextJourney()
+    func didTabPreviousJourney()
+    func didTabSkipJourney()
 }
 
 protocol GuidedStoryRouterInterface {
@@ -33,6 +35,7 @@ protocol GuidedStoryRouterInterface {
 
 protocol GuidedStoryDelegate: class {
     func didSelectAnswer()
+    func didStartJourney()
 }
 
 protocol GuidedStorySurveyDelegate: class {

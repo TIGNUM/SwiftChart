@@ -28,7 +28,7 @@ final class GuidedStoryInteractor {
 
 // MARK: - GuidedStoryInteractorInterface
 extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
-    func didTabNext() {
+    func didTabNextSurvey() {
         if worker.isLastQuestion {
             worker.loadJourney()
             presenter.showJourney()
@@ -38,7 +38,15 @@ extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
         }
     }
 
-    func didTabPrevious() {
+    func didTabNextJourney() {
+
+    }
+
+    func didTabPreviousJourney() {
+
+    }
+
+    func didTabSkipJourney() {
 
     }
 }
