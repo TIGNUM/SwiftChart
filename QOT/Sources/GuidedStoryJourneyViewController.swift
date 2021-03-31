@@ -11,7 +11,7 @@ import UIKit
 final class GuidedStoryJourneyViewController: UIViewController {
 
     var interactor: GuidedStoryJourneyInteractorInterface!
-    weak var journeyDelegate: GuidedStoryJourneyDelegate?
+    weak var delegate: GuidedStoryDelegate?
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var headerImageView: UIImageView!
     @IBOutlet private weak var headerLabel: UILabel!
@@ -33,31 +33,6 @@ extension GuidedStoryJourneyViewController: GuidedStoryJourneyViewControllerInte
         headerImageView.kf.setImage(with: imageURL)
         view.backgroundColor = color
     }
-//
-//    @IBAction func didTapBack() {
-//        let indexPath = collectionView.currentIndexPath
-//        if indexPath.item != .zero {
-//            let model = viewModel(at: indexPath)
-//            trackUserEvent(.PREVIOUS, stringValue: model?.mediaName, valueType: .VIDEO, action: .TAP)
-//
-//            let previousIndexPath = IndexPath(item: (indexPath.item - 1), section: .zero)
-//            collectionView.scrollToItem(at: previousIndexPath, at: .centeredHorizontally, animated: true)
-//        }
-//    }
-//
-//    @IBAction func didTapContinue() {
-//        let indexPath = collectionView.currentIndexPath
-//        if indexPath.item == ((viewModels?.count ?? -1) - 1) {
-//            interactor?.saveCoachMarksViewed()
-//            router?.navigateToTrack()
-//        } else {
-//            let model = viewModel(at: indexPath)
-//            trackUserEvent(.NEXT, stringValue: model?.mediaName, valueType: .VIDEO, action: .TAP)
-//
-//            let nextIndexPath = IndexPath(item: (indexPath.item + 1), section: .zero)
-//            collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
-//        }
-//    }
 }
 
 // MARK: - Private
@@ -70,13 +45,10 @@ private extension GuidedStoryJourneyViewController {
     }
 }
 
-// MARK: - UICollectionViewDelegate
-extension GuidedStoryJourneyViewController: UICollectionViewDelegate {
-
-}
-
-// MARK: - UICollectionViewDataSource
-extension GuidedStoryJourneyViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+extension GuidedStoryJourneyViewController: UICollectionViewDataSource,
+                                            UICollectionViewDelegate,
+                                            UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return interactor.itemCount
     }
@@ -103,6 +75,14 @@ extension GuidedStoryJourneyViewController: UICollectionViewDataSource, UICollec
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        journeyDelegate?.didUpdateCollectionViewCurrentIndex(collectionView.currentPageIndex)
+        delegate?.didUpdateCollectionViewCurrentIndex(collectionView.currentPageIndex)
+    }
+}
+
+// MARK: - GuidedStoryJourneyDelegate
+extension GuidedStoryJourneyViewController: GuidedStoryJourneyDelegate {
+    func scrollToItem(at index: Int) {
+        let nextIndexPath = IndexPath(item: index, section: .zero)
+        collectionView.scrollToItem(at: nextIndexPath, at: .left, animated: true)
     }
 }

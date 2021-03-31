@@ -26,8 +26,18 @@ class GuidedStoryWorker {
         return pageIndex
     }
 
-    var surveyPageOffset: Int {
-        return questions.count
+    var currentJourneyIndex: Int {
+        let index = pageIndex - questions.count
+        return index
+    }
+
+    var previousButtonJourneyIsHidden: Bool {
+        return true
+    }
+
+    func updatePageIndex(_ page: Int) -> Int {
+        pageIndex = page + questions.count
+        return currentPage
     }
 
     func question() -> QDMQuestion? {
@@ -62,10 +72,18 @@ class GuidedStoryWorker {
         selectedAnswers[currentQuestionKey] = answer(at: index)
     }
 
-    func didTabNext() {
+    func didTapNextSurvey() {
         saveSelectedUserAnswer()
         updateCurrentQuestionKey()
         pageIndex += 1
+    }
+
+    func didTapNextJourney() {
+        pageIndex += 1
+    }
+
+    func didTapPreviousJourney() {
+        pageIndex -= 1
     }
 }
 

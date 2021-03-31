@@ -11,14 +11,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TextCollectionViewCell" customModule="TIGNUM_X" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label label LaBel LAbeL LaBeLLabel label LaBel LAbeL LaBeLLabel label LaBel LAbeL LaBeLLabel label LaBel LAbeL LaBeL" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WM8-vL-vYP">
-                        <rect key="frame" x="24" y="24" width="327" height="81.5"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label label LaBel LAbeL LaBeLLabel label LaBel LAbeL LaBeLLabel label LaBel LAbeL LaBeLLabel label LaBel LAbeL LaBeL" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WM8-vL-vYP">
+                        <rect key="frame" x="20" y="21" width="335" height="82"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -26,16 +27,11 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <constraints>
-                <constraint firstItem="WM8-vL-vYP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="CnN-dM-ICy"/>
-                <constraint firstAttribute="trailing" secondItem="WM8-vL-vYP" secondAttribute="trailing" constant="24" id="hvK-73-rO9"/>
-                <constraint firstItem="WM8-vL-vYP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="24" id="ltV-EQ-Pas"/>
-            </constraints>
-            <size key="customSize" width="375" height="241"/>
+            <size key="customSize" width="375" height="126"/>
             <connections>
                 <outlet property="titleLabel" destination="WM8-vL-vYP" id="3nH-PE-mLd"/>
             </connections>
-            <point key="canvasLocation" x="373.1884057971015" y="176.45089285714286"/>
+            <point key="canvasLocation" x="373.1884057971015" y="136.60714285714286"/>
         </collectionViewCell>
     </objects>
 </document>

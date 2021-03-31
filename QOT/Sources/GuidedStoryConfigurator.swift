@@ -16,6 +16,5 @@ final class GuidedStoryConfigurator {
         let router = GuidedStoryRouter(viewController: viewController, worker: worker)
         viewController.interactor = interactor
         viewController.router = router
-        viewController.journeyDelegate = interactor
     }
 }

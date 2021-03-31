@@ -34,33 +34,40 @@ extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
         return worker.currentPage
     }
 
+    var currentJourneyIndex: Int {
+        return worker.currentJourneyIndex
+    }
+
+    var previousButtonJourneyIsHidden: Bool {
+        return worker.previousButtonJourneyIsHidden
+    }
+
     func didTapNextSurvey() {
         if worker.isLastQuestion {
             worker.loadJourney()
             presenter.showJourney()
         } else {
-            worker.didTabNext()
+            worker.didTapNextSurvey()
             presenter.loadNextQuestion()
         }
     }
 
     func didTapNextJourney() {
-
+        worker.didTapNextJourney()
+        presenter.updatePageIndicator(worker.currentPage)
     }
 
     func didTapPreviousJourney() {
-
+        worker.didTapPreviousJourney()
+        presenter.updatePageIndicator(worker.currentPage)
     }
 
     func didTapSkipJourney() {
 
     }
-}
 
-// MARK: - GuidedStoryJourneyDelegate
-extension GuidedStoryInteractor: GuidedStoryJourneyDelegate {
-    func didUpdateCollectionViewCurrentIndex(_ index: Int) {
-        let newPage = index + worker.surveyPageOffset
+    func didUpdateJourneyCurrentIndex(_ index: Int) {
+        let newPage = worker.updatePageIndex(index)
         presenter.updatePageIndicator(newPage)
     }
 }

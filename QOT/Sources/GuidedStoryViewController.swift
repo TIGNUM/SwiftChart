@@ -51,6 +51,10 @@ private extension GuidedStoryViewController {
         buttonViewSurvey.isHidden = true
         previousButtonJourney.isHidden = true
     }
+
+    func updatePreviousButtonVisibility() {
+        previousButtonJourney.isHidden = interactor.previousButtonJourneyIsHidden
+    }
 }
 
 // MARK: - Actions
@@ -63,11 +67,12 @@ private extension GuidedStoryViewController {
 
     @IBAction func didTapNextJourney(_ sender: Any) {
         interactor.didTapNextJourney()
+        journeyDelegate?.scrollToItem(at: interactor.currentJourneyIndex)
     }
 
     @IBAction func didTapPreviousJourney(_ sender: Any) {
         interactor.didTapPreviousJourney()
-        updatePageIndicator(interactor.currentPage)
+        journeyDelegate?.scrollToItem(at: interactor.currentJourneyIndex)
     }
 
     @IBAction func didTapSkipJourney(_ sender: Any) {
@@ -108,5 +113,9 @@ extension GuidedStoryViewController: GuidedStoryDelegate {
 
     func didStartJourney() {
 
+    }
+
+    func didUpdateCollectionViewCurrentIndex(_ index: Int) {
+        interactor.didUpdateJourneyCurrentIndex(index)
     }
 }

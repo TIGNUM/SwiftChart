@@ -25,10 +25,13 @@ protocol GuidedStoryPresenterInterface {
 
 protocol GuidedStoryInteractorInterface: Interactor {
     var currentPage: Int { get }
+    var currentJourneyIndex: Int { get }
+    var previousButtonJourneyIsHidden: Bool { get }
     func didTapNextSurvey()
     func didTapNextJourney()
     func didTapPreviousJourney()
     func didTapSkipJourney()
+    func didUpdateJourneyCurrentIndex(_ index: Int)
 }
 
 protocol GuidedStoryRouterInterface {
@@ -40,6 +43,7 @@ protocol GuidedStoryRouterInterface {
 protocol GuidedStoryDelegate: class {
     func didSelectAnswer()
     func didStartJourney()
+    func didUpdateCollectionViewCurrentIndex(_ index: Int)
 }
 
 protocol GuidedStorySurveyDelegate: class {
@@ -47,6 +51,5 @@ protocol GuidedStorySurveyDelegate: class {
 }
 
 protocol GuidedStoryJourneyDelegate: class {
-    func didUpdateCollectionViewCurrentIndex(_ index: Int)
-
+    func scrollToItem(at index: Int)
 }
