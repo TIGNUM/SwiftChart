@@ -68,11 +68,13 @@ private extension GuidedStoryViewController {
     @IBAction func didTapNextJourney(_ sender: Any) {
         interactor.didTapNextJourney()
         journeyDelegate?.scrollToItem(at: interactor.currentJourneyIndex)
+        updatePreviousButtonVisibility()
     }
 
     @IBAction func didTapPreviousJourney(_ sender: Any) {
         interactor.didTapPreviousJourney()
         journeyDelegate?.scrollToItem(at: interactor.currentJourneyIndex)
+        updatePreviousButtonVisibility()
     }
 
     @IBAction func didTapSkipJourney(_ sender: Any) {
@@ -117,5 +119,6 @@ extension GuidedStoryViewController: GuidedStoryDelegate {
 
     func didUpdateCollectionViewCurrentIndex(_ index: Int) {
         interactor.didUpdateJourneyCurrentIndex(index)
+        updatePreviousButtonVisibility()
     }
 }

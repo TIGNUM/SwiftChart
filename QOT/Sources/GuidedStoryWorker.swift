@@ -32,7 +32,7 @@ class GuidedStoryWorker {
     }
 
     var previousButtonJourneyIsHidden: Bool {
-        return true
+        return currentJourneyIndex == 0
     }
 
     func updatePageIndex(_ page: Int) -> Int {
