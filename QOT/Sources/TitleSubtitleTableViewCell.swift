@@ -6,8 +6,6 @@
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
-import UIKit
-
 class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -30,6 +28,11 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
         ThemeText.linkMenuComment.apply(subTitle, to: subTitleLabel)
         subTitleLabel.isHidden = isHidden
     }
+
+    func configure(title: String, subtitle: String) {
+           ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
+           ThemeText.syncedCalendarRowSubtitle.apply(subtitle, to: subTitleLabel)
+       }
 
     var hideArrow: Bool = false {
         willSet {

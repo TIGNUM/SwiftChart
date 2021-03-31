@@ -18,11 +18,12 @@ protocol MyQotAppSettingsInteractorInterface: Interactor {
 }
 
 protocol MyQotAppSettingsRouterInterface {
-    func askNotificationPermission()
+    func presentNotificationSettings()
     func openAppSettings()
     func openCalendarSettings()
     func openActivityTrackerSettings()
     func openSiriSettings()
+    func askNotificationPermission()
     func openCalendarPermission(_ type: AskPermission.Kind, delegate: AskPermissionDelegate)
 }
 

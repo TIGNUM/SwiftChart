@@ -44,6 +44,10 @@ extension MyQotAppSettingsRouter: MyQotAppSettingsRouterInterface {
         }
     }
 
+    func presentNotificationSettings() {
+        viewController?.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotNotificationSettingsSegueIdentifier, sender: nil)
+    }
+
     func openAppSettings() {
         viewController?.showAlert(type: .changeNotifications, handler: {
             UIApplication.openAppSettings()
