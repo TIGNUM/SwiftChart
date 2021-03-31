@@ -25,7 +25,8 @@ final class GuidedStoryRouter {
 // MARK: - GuidedStoryRouterInterface
 extension GuidedStoryRouter: GuidedStoryRouterInterface {
     func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.dismiss(animated: true)
+        (UIApplication.shared.delegate as? AppDelegate)?.appCoordinator.showApp()
     }
 
     func showSurvey() {

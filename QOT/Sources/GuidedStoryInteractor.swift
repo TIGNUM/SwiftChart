@@ -62,10 +62,6 @@ extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
         presenter.updatePageIndicator(worker.currentPage)
     }
 
-    func didTapSkipJourney() {
-
-    }
-
     func didUpdateJourneyCurrentIndex(_ index: Int) {
         let newPage = worker.updatePageIndex(index)
         presenter.updatePageIndicator(newPage)

@@ -134,7 +134,8 @@ private extension GuidedStoryWorker {
     }
 
     func setSelectedJourney() {
-        let targetId = selectedAnswers.first?.value.targetId(.content)
+        let selected = selectedAnswers.filter { $0.key == GuidedStory.Survey.QuestionKey.last.rawValue }.first
+        let targetId = selected?.value.targetId(.content)
         targetContent = targetContents.first(where: { $0.remoteID == targetId })
         let story = ContentService.main.createOnboardingGuidedStory(targetContent: targetContent)
         jounreyItems = story.sorted(by: { $0.sortOrder < $1.sortOrder })

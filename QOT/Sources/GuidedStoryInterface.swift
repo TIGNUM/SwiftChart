@@ -30,7 +30,6 @@ protocol GuidedStoryInteractorInterface: Interactor {
     func didTapNextSurvey()
     func didTapNextJourney()
     func didTapPreviousJourney()
-    func didTapSkipJourney()
     func didUpdateJourneyCurrentIndex(_ index: Int)
 }
 

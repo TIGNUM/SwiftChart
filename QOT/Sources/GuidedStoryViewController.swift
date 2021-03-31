@@ -78,7 +78,7 @@ private extension GuidedStoryViewController {
     }
 
     @IBAction func didTapSkipJourney(_ sender: Any) {
-        interactor.didTapSkipJourney()
+        router.dismiss()
     }
 }
 
