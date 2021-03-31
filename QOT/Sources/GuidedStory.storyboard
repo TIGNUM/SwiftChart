@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,7 +13,7 @@
             <objects>
                 <viewController storyboardIdentifier="GuidedStoryID" id="1Ck-xS-teo" customClass="GuidedStoryViewController" customModule="TIGNUM_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I1p-0E-cyd">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <userGuides>
                             <userLayoutGuide location="370" affinity="minX"/>
@@ -23,23 +21,23 @@
                         </userGuides>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-Ep-dTe">
-                                <rect key="frame" x="20" y="44" width="388" height="690"/>
+                                <rect key="frame" x="20" y="0.0" width="560" height="442"/>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbD-jj-xsl">
-                                <rect key="frame" x="20" y="742" width="388" height="150"/>
+                                <rect key="frame" x="20" y="450" width="560" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThZ-Cg-ZQe" userLabel="ButtonViewSurvey">
-                                        <rect key="frame" x="0.0" y="102" width="388" height="40"/>
+                                        <rect key="frame" x="0.0" y="102" width="560" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCz-xf-UDe">
-                                                <rect key="frame" x="136" y="0.0" width="116" height="40"/>
+                                                <rect key="frame" x="222" y="0.0" width="116" height="40"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="11" maxY="0.0"/>
                                                 <state key="normal" title="Continue  --&gt;">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="didTabNextSurvey:" destination="1Ck-xS-teo" eventType="touchUpInside" id="aVQ-HD-oa0"/>
+                                                    <action selector="didTapNextSurvey:" destination="1Ck-xS-teo" eventType="touchUpInside" id="aVQ-HD-oa0"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -53,21 +51,21 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPT-91-Irm" userLabel="ButtonViewJourney">
-                                        <rect key="frame" x="0.0" y="102" width="388" height="40"/>
+                                        <rect key="frame" x="0.0" y="102" width="560" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFZ-id-4oR">
-                                                <rect key="frame" x="151" y="0.0" width="86" height="40"/>
+                                                <rect key="frame" x="237" y="0.0" width="86" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                 <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="11" maxY="0.0"/>
                                                 <state key="normal" title="Next  --&gt;">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="didTabNextJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="kIx-XK-1Kj"/>
+                                                    <action selector="didTapNextJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="kIx-XK-1Kj"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fnX-G2-x43">
-                                                <rect key="frame" x="320" y="0.0" width="44" height="40"/>
+                                                <rect key="frame" x="492" y="0.0" width="44" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="44" id="Ash-47-Soc"/>
                                                 </constraints>
@@ -82,7 +80,7 @@
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <action selector="didTabSkipJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="7dr-Xd-J4S"/>
+                                                    <action selector="didTapSkipJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="7dr-Xd-J4S"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LL7-ys-DG4">
@@ -93,7 +91,7 @@
                                                 </constraints>
                                                 <state key="normal" title="&lt;--"/>
                                                 <connections>
-                                                    <action selector="didTabPreviousJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="2iD-8O-CMn"/>
+                                                    <action selector="didTapPreviousJourney:" destination="1Ck-xS-teo" eventType="touchUpInside" id="2iD-8O-CMn"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -112,7 +110,7 @@
                                         </constraints>
                                     </view>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-Jb-z6e">
-                                        <rect key="frame" x="133.33333333333334" y="62" width="121.33333333333334" height="28"/>
+                                        <rect key="frame" x="219" y="62" width="122.5" height="28"/>
                                         <color key="pageIndicatorTintColor" red="1" green="0.26548267590000002" blue="0.97403547769999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
@@ -181,7 +179,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label LAbel labAlb lasdla lasd al ada asd asd asd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q5N-DE-NSN">
-                                        <rect key="frame" x="24" y="72.666666666666671" width="252" height="40.666666666666671"/>
+                                        <rect key="frame" x="24" y="72.5" width="252" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -198,7 +196,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T3z-wH-3bQ">
-                                <rect key="frame" x="0.0" y="148" width="414" height="744"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="748"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n3z-JZ-pxC">
                                     <size key="itemSize" width="128" height="128"/>
@@ -254,14 +252,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fj-qE-rrg">
-                                <rect key="frame" x="20" y="44.000000000000007" width="374" height="101.66666666666669"/>
+                                <rect key="frame" x="20" y="0.0" width="374" height="101.5"/>
                                 <string key="text">Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2kK-4Q-BbG">
-                                <rect key="frame" x="20" y="185.66666666666669" width="374" height="706.33333333333326"/>
+                                <rect key="frame" x="20" y="141.5" width="374" height="754.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>

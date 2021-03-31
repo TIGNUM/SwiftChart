@@ -34,7 +34,7 @@ extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
         return worker.currentPage
     }
 
-    func didTabNextSurvey() {
+    func didTapNextSurvey() {
         if worker.isLastQuestion {
             worker.loadJourney()
             presenter.showJourney()
@@ -44,15 +44,15 @@ extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
         }
     }
 
-    func didTabNextJourney() {
+    func didTapNextJourney() {
 
     }
 
-    func didTabPreviousJourney() {
+    func didTapPreviousJourney() {
 
     }
 
-    func didTabSkipJourney() {
+    func didTapSkipJourney() {
 
     }
 }

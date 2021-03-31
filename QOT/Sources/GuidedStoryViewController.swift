@@ -55,23 +55,23 @@ private extension GuidedStoryViewController {
 
 // MARK: - Actions
 private extension GuidedStoryViewController {
-    @IBAction func didTabNextSurvey(_ sender: Any) {
-        interactor.didTabNextSurvey()
+    @IBAction func didTapNextSurvey(_ sender: Any) {
+        interactor.didTapNextSurvey()
         disableNextButtonSurvey()
         updatePageIndicator(interactor.currentPage)
     }
 
-    @IBAction func didTabNextJourney(_ sender: Any) {
-        interactor.didTabNextJourney()
+    @IBAction func didTapNextJourney(_ sender: Any) {
+        interactor.didTapNextJourney()
     }
 
-    @IBAction func didTabPreviousJourney(_ sender: Any) {
-        interactor.didTabPreviousJourney()
+    @IBAction func didTapPreviousJourney(_ sender: Any) {
+        interactor.didTapPreviousJourney()
         updatePageIndicator(interactor.currentPage)
     }
 
-    @IBAction func didTabSkipJourney(_ sender: Any) {
-        interactor.didTabSkipJourney()
+    @IBAction func didTapSkipJourney(_ sender: Any) {
+        interactor.didTapSkipJourney()
     }
 }
 
