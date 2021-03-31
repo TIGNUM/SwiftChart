@@ -14,6 +14,7 @@ final class GuidedStoryViewController: UIViewController {
     var interactor: GuidedStoryInteractorInterface!
     var router: GuidedStoryRouter!
     weak var surveyDelegate: GuidedStorySurveyDelegate?
+    weak var journeyDelegate: GuidedStoryJourneyDelegate?
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var buttonViewSurvey: UIView!
     @IBOutlet weak var buttonViewJourney: UIView!
@@ -50,10 +51,6 @@ private extension GuidedStoryViewController {
         buttonViewSurvey.isHidden = true
         previousButtonJourney.isHidden = true
     }
-
-    func setCurrentPageIndicator(_ page: Int) {
-        pageControl.currentPage = page
-    }
 }
 
 // MARK: - Actions
@@ -61,7 +58,7 @@ private extension GuidedStoryViewController {
     @IBAction func didTabNextSurvey(_ sender: Any) {
         interactor.didTabNextSurvey()
         disableNextButtonSurvey()
-        setCurrentPageIndicator(interactor.currentPage)
+        updatePageIndicator(interactor.currentPage)
     }
 
     @IBAction func didTabNextJourney(_ sender: Any) {
@@ -70,7 +67,7 @@ private extension GuidedStoryViewController {
 
     @IBAction func didTabPreviousJourney(_ sender: Any) {
         interactor.didTabPreviousJourney()
-        setCurrentPageIndicator(interactor.currentPage)
+        updatePageIndicator(interactor.currentPage)
     }
 
     @IBAction func didTabSkipJourney(_ sender: Any) {
@@ -96,6 +93,10 @@ extension GuidedStoryViewController: GuidedStoryViewControllerInterface {
 
     func setupPageIndicator(pageCount: Int) {
         pageControl.numberOfPages = pageCount
+    }
+
+    func updatePageIndicator(_ page: Int) {
+        pageControl.currentPage = page
     }
 }
 

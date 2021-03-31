@@ -26,6 +26,10 @@ class GuidedStoryWorker {
         return pageIndex
     }
 
+    var surveyPageOffset: Int {
+        return questions.count
+    }
+
     func question() -> QDMQuestion? {
         return questions.first(where: { $0.key == currentQuestionKey })
     }

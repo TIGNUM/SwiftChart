@@ -56,3 +56,11 @@ extension GuidedStoryInteractor: GuidedStoryInteractorInterface {
 
     }
 }
+
+// MARK: - GuidedStoryJourneyDelegate
+extension GuidedStoryInteractor: GuidedStoryJourneyDelegate {
+    func didUpdateCollectionViewCurrentIndex(_ index: Int) {
+        let newPage = index + worker.surveyPageOffset
+        presenter.updatePageIndicator(newPage)
+    }
+}

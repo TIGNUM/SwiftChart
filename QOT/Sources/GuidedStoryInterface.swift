@@ -10,12 +10,14 @@ import Foundation
 
 protocol GuidedStoryViewControllerInterface: class {
     func setupPageIndicator(pageCount: Int)
+    func updatePageIndicator(_ page: Int)
     func setupView()
     func showJourney()
     func loadNextQuestion()
 }
 
 protocol GuidedStoryPresenterInterface {
+    func updatePageIndicator(_ page: Int)
     func setupView(pageCount: Int)
     func showJourney()
     func loadNextQuestion()
@@ -42,4 +44,8 @@ protocol GuidedStoryDelegate: class {
 
 protocol GuidedStorySurveyDelegate: class {
     func loadNextQuestion()
+}
+
+protocol GuidedStoryJourneyDelegate: class {
+    func didUpdateCollectionViewCurrentIndex(_ index: Int)
 }

@@ -33,4 +33,8 @@ extension GuidedStoryPresenter: GuidedStoryPresenterInterface {
     func loadNextQuestion() {
         viewController?.loadNextQuestion()
     }
+
+    func updatePageIndicator(_ page: Int) {
+        viewController?.updatePageIndicator(page)
+    }
 }
