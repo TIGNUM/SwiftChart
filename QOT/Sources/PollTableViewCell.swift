@@ -14,14 +14,13 @@ final class PollTableViewCell: MultipleSelectionTableViewCell {
         let offset = collectionView.bounds.width * 0.1
         let answerText = answers[indexPath.row].title
 
-        let label = UILabel(frame: CGRect(center: .zero, size: CGSize(width: collectionView.bounds.width - offset, height: .AnswerButtonBig)))
+        let labelSize = CGSize(width: collectionView.bounds.width - offset, height: .AnswerButtonBig)
+        let label = UILabel(frame: CGRect(center: .zero, size: labelSize))
         label.numberOfLines = 2
         label.attributedText = ThemeText.chatbotButton(false).attributedString(answerText)
         label.sizeToFit()
 
-        let width: CGFloat = label.bounds.width
-        let height: CGFloat = label.bounds.height
-        return CGSize(width: width + 66, height: CGFloat(height) + 20)  //size includes constraints from cell.xib
+        return CGSize(width: label.bounds.width + 66, height: label.bounds.height + 20)
     }
 
     override func collectionView(_ collectionView: UICollectionView,

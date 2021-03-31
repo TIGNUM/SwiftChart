@@ -77,7 +77,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             QOTService.main.reportAppStatus(.start)
             sendSiriEventsIfNeeded()
             UNUserNotificationCenter.current().delegate = self
-        #endif //#if UNIT_TEST
+        #endif
         return true
     }
 
@@ -86,8 +86,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         #else
             application.applicationIconBadgeNumber = 0
-            appCoordinator.checkVersionIfNeeded()
-        #endif //#if UNIT_TEST
+        #endif
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -95,7 +94,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return
         #else
             QOTService.main.reportAppStatus(.background)
-        #endif //#if UNIT_TEST
+        #endif
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -111,7 +110,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         #else
             ExternalLinkImporter.main.importLink()
-            appCoordinator.checkVersionIfNeeded()
             sendSiriEventsIfNeeded()
             QOTService.main.reportAppStatus(.didBecomeActive)
             if SessionService.main.getCurrentSession() != nil {
@@ -119,7 +117,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 appCoordinator.importCalendarEventsIfAuthorized()
                 NotificationCenter.default.post(name: .requestSynchronization, object: nil)
             }
-        #endif //#if UNIT_TEST
+        #endif
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -129,7 +127,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             requestSynchronization(.PAGE_TRACK, .UP_SYNC)
             requestSynchronization(.USER_EVENT_TRACK, .UP_SYNC)
             QOTService.main.reportAppStatus(.willResignActive)
-        #endif //#if UNIT_TEST
+        #endif
     }
 
     func application(_ app: UIApplication,
@@ -180,7 +178,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    //Interface Orientation
     func application(_ application: UIApplication,
                      supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return AppCoordinator.orientationManager.supportedOrientations
@@ -188,7 +185,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 // MARK: - private
-
 private extension AppDelegate {
     func incomingLocationEvent(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         guard let locationEvent = launchOptions?[UIApplication.LaunchOptionsKey.location] as? NSNumber else { return }
@@ -199,7 +195,8 @@ private extension AppDelegate {
     }
 
     func setupUAirship() {
-        guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
+        guard let path = Bundle.main.path(forResource: Environment().airshipConfigResource,
+                                          ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
         config.developmentLogLevel = .error
         UAirship.takeOff(config)
@@ -231,7 +228,6 @@ private extension AppDelegate {
 }
 
 // MARK: - Current top view controller
-
 extension AppDelegate {
 
     class func topViewController(base: UIViewController? = (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController) -> UIViewController? {
@@ -251,7 +247,6 @@ extension AppDelegate {
 }
 
 // MARK: - UNUserNotificationCenterDelegate
-
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func handleNotification(notification: UNNotification) {
@@ -296,7 +291,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 }
 
 // MARK: - NSUserActivity
-
 extension AppDelegate {
 
     private func handleActivity(userActivity: NSUserActivity) -> Bool {
@@ -323,7 +317,6 @@ extension AppDelegate {
 }
 
 // MARK: - AppEvents/PageTracking
-
 extension AppDelegate {
 
     func sendSiriEventsIfNeeded() {
@@ -354,7 +347,6 @@ extension AppDelegate {
 }
 
 // MARK: - SVProgressHUD
-
 extension AppDelegate {
     private func setupProgressHud() {
         SVProgressHUD.setGraceTimeInterval(0.2)

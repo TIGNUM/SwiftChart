@@ -17,12 +17,11 @@ final class AppCoordinator {
 
     // MARK: - Static Properties
     static var permissionsManager: PermissionsManager?
-    static var orientationManager: OrientationManager = OrientationManager()
+    static var orientationManager = OrientationManager()
 
     // MARK: - Properties
     private var isReadyToProcessURL = false
     private let remoteNotificationHandler: RemoteNotificationHandler
-    private var onDismiss: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
@@ -109,14 +108,8 @@ final class AppCoordinator {
         }
     }
 
-    func checkVersionIfNeeded() {
-        // guard services?.userService.user()?.appUpdatePrompt == true else { return }
-        // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
-    }
-
     func showApp(with displayedScreen: CoachCollectionViewController.Page? = .dailyBrief) {
-        let isPhoneExposed = IOSSecuritySuite.amIJailbroken() || IOSSecuritySuite.amIReverseEngineered()
-        if isPhoneExposed {
+        if IOSSecuritySuite.amIJailbroken() || IOSSecuritySuite.amIReverseEngineered() {
             showJailbrokenAlert()
         } else {
             ExtensionsDataManager.didUserLogIn(true)
@@ -184,10 +177,12 @@ final class AppCoordinator {
                                    duration: 0,
                                    animated: false) {
             DispatchQueue.main.async {
-                // Show coach marks on first launch (of v3.0 app)
-                let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
-                if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
-                    self.showCoachMarks()
+                self.showGuidedStory()
+                return
+
+                // ################
+                if SessionService.main.isUsersVeryFirstAppStart {
+                    Feature.Flag.onboardingSurvey.isOn ? self.showGuidedStory() : self.showCoachMarks()
                 } else {
                     baseRootViewController.setContent(viewController: coachCollectionViewController)
                     self.isReadyToProcessURL = true
@@ -208,13 +203,11 @@ private extension AppCoordinator {
         UserService.main.getUserData({ [weak self] (userData) in
             let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
             if userData?.subscriptionExpired == true {
-                // CHANGE ME https://tignum.atlassian.net/browse/QOT-2628
                 self?.showSubscriptionReminder(isExpired: true)
                 UserDefault.subscriptionInfoShow.clearObject()
             } else if userData?.subscriptionExpireSoon == true &&
                 (lastShownDate == nil || lastShownDate?.isToday == false) {
                 UserDefault.subscriptionInfoShow.setObject(Date())
-                // CHANGE ME https://tignum.atlassian.net/browse/QOT-2628
                 self?.showSubscriptionReminder(isExpired: false)
             } else if userData?.subscriptionExpired != true, userData?.subscriptionExpireSoon != true,
                 let topViewController = AppDelegate.topViewController() as? PaymentReminderViewController {
@@ -251,6 +244,14 @@ extension AppCoordinator {
             let baseController = navigationController.viewControllers.first as? BaseRootViewController else { return }
         let configurator = CoachMarksConfigurator.make()
         configurator(controller)
+        baseController.setContent(viewController: controller)
+    }
+
+    func showGuidedStory() {
+        guard let controller = R.storyboard.guidedStory.guidedStoryID(),
+            let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,
+            let baseController = navigationController.viewControllers.first as? BaseRootViewController else { return }
+        GuidedStoryConfigurator.make(viewController: controller)
         baseController.setContent(viewController: controller)
     }
 

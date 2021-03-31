@@ -17,8 +17,10 @@ struct Feature {
         case onboardingSurvey
 
         private var activated: [Environment.Name: [Feature.Flag]] {
-            return [.DEV: [.editableNotifications, .onboardingSurvey],
-                    .INT: [.editableNotifications, .onboardingSurvey],
+            return [.DEV: [.editableNotifications,
+                           .onboardingSurvey],
+                    .INT: [.editableNotifications,
+                           .onboardingSurvey],
                     .PUB: []]
         }
 

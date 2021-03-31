@@ -150,9 +150,10 @@ private extension OnboardingLoginViewController {
         guard active == true else { return }
         textField.resignFirstResponder()
         let code = digitTextFields.reduce(String.empty, { $0 + ($1.text ?? String.empty) })
-        interactor.validateLoginCode(code, for: emailField.text) { [weak self] (showCoachMarks) in
-            if showCoachMarks {
-                self?.router.showCoachMarks()
+
+        interactor.validateLoginCode(code, for: emailField.text) { [weak self] (loginSuccess) in
+            if loginSuccess {
+                self?.router.showOnboardingJourney()
             } else {
                 self?.router.showHomeScreen()
             }

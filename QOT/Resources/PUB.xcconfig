@@ -12,3 +12,4 @@
 URL_SCHEME = https
 URL_HOST = esb.tignum.com
 SCHEME_NAME = PUB
+AIRSHIP_CONFIG = AirshipConfigPUB

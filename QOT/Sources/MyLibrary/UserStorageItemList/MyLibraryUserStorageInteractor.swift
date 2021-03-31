@@ -138,31 +138,31 @@ final class MyLibraryUserStorageInteractor {
 extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterface {
 
     var title: String {
-        return isEditing ? worker.editingTitle : worker.title
+        isEditing ? worker.editingTitle : worker.title
     }
 
     var subtitle: String {
-        return isEditing && teamId != nil ? worker.editingSubtitle : String.empty
+        isEditing && teamId != nil ? worker.editingSubtitle : String.empty
     }
 
     var addTitle: String {
-        return worker.addTitle
+        worker.addTitle
     }
 
     var showAddButton: Bool {
-        return worker.showAddButton
+        worker.showAddButton
     }
 
     var showEditButton: Bool {
-        return !isEditing && hasRemovableItem
+        !isEditing && hasRemovableItem
     }
 
     var canEdit: Bool {
-        return showEditButton
+        showEditButton
     }
 
     var itemType: MyLibraryCategoryType {
-        return worker.item.type
+        worker.item.type
     }
 
     var teamId: Int? {

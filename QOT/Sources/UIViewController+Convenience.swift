@@ -124,3 +124,20 @@ extension UIViewController: ClickableLabelDelegate {
         trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: valueType, action: .TAP)
     }
 }
+
+extension UIViewController {
+    func add(_ child: UIViewController?, to parentView: UIView?) {
+        if let child = child,
+           let parentView = parentView {
+            addChild(child)
+            parentView.fill(subview: child.view)
+        }
+    }
+
+    func remove() {
+        guard parent != nil else { return }
+        view.removeFromSuperview()
+        removeFromParent()
+        didMove(toParent: self)
+    }
+}
