@@ -373,7 +373,7 @@
 		38D218E624A641CC00B6FA26 /* TeamHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */; };
 		38D218E824A64C3000B6FA26 /* TeamHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D218E724A64C3000B6FA26 /* TeamHeader.swift */; };
 		38D3C7192612AB0B006FB904 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 38D3C7182612AB0B006FB904 /* default.realm */; };
-		38D3C7E32613B1E7006FB904 /* UIView+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3C7E22613B1E6006FB904 /* UIView+Dimensions.swift */; };
+		38D3C8012613FE19006FB904 /* UICollectionView+Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D3C8002613FE18006FB904 /* UICollectionView+Pagination.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		38D5C74425F40131001884FC /* FeatureFlagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C74325F40131001884FC /* FeatureFlagTests.swift */; };
 		38D5C76325F783FD001884FC /* UserNotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5C76225F783FD001884FC /* UserNotificationManagerTests.swift */; };
@@ -1825,7 +1825,7 @@
 		38D218E524A641CC00B6FA26 /* TeamHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeaderCell.swift; sourceTree = "<group>"; };
 		38D218E724A64C3000B6FA26 /* TeamHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeader.swift; sourceTree = "<group>"; };
 		38D3C7182612AB0B006FB904 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
-		38D3C7E22613B1E6006FB904 /* UIView+Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Dimensions.swift"; sourceTree = "<group>"; };
+		38D3C8002613FE18006FB904 /* UICollectionView+Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Pagination.swift"; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38D5C71125F3FFB3001884FC /* TignumXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TignumXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D5C71525F3FFB3001884FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -5416,6 +5416,7 @@
 				7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */,
 				9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */,
 				CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */,
+				38D3C8002613FE18006FB904 /* UICollectionView+Pagination.swift */,
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */,
 				7F47E83F1F8E4FE000ED4446 /* UIDevice+Utility.swift */,
@@ -5433,7 +5434,6 @@
 				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
 				DB82EEC32152859C002322B7 /* UIView+Animation.swift */,
 				DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */,
-				38D3C7E22613B1E6006FB904 /* UIView+Dimensions.swift */,
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
 				CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */,
 				8DD6B5932308190800C582A4 /* UIViewController+ActivityIndicator.swift */,
@@ -6945,7 +6945,6 @@
 				38406DAC2527393300C3422E /* QDMTeamToBeVisionPoll+Ext.swift in Sources */,
 				5FF1A0FE22857BB300D76D55 /* MyQotAppSettingsRouter.swift in Sources */,
 				3608382A225F3ED000664B9B /* ArticleViewController.swift in Sources */,
-				38D3C7E32613B1E7006FB904 /* UIView+Dimensions.swift in Sources */,
 				8DF7870822FEB50800CDE0A9 /* RegistrationCodeRouter.swift in Sources */,
 				8D60A20C22CF7CBF0034F33F /* NoteTableViewCell.swift in Sources */,
 				36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */,
@@ -7488,6 +7487,7 @@
 				382CDC6524A2433300B34BCE /* TeamEditModel.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
 				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
+				38D3C8012613FE19006FB904 /* UICollectionView+Pagination.swift in Sources */,
 				38A2D17B25025C7100CEA071 /* DTTeamTBVViewController.swift in Sources */,
 				367CD18422EF4EDE00AF2187 /* OnboardingLoginInteractor.swift in Sources */,
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,

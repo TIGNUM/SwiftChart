@@ -17,6 +17,7 @@ final class CoachMarksInteractor {
     private let router: CoachMarksRouterInterface
     private var contentCategory: QDMContentCategory?
     var currentPage: Int = .zero
+
     // MARK: - Init
     init(presenter: CoachMarksPresenterInterface, router: CoachMarksRouterInterface) {
         self.presenter = presenter
@@ -36,7 +37,6 @@ final class CoachMarksInteractor {
 
 // MARK: - CoachMarksInteractorInterface
 extension CoachMarksInteractor: CoachMarksInteractorInterface {
-
     func saveCoachMarksViewed() {
         worker.saveCoachMarksViewed()
     }

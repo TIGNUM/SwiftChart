@@ -86,21 +86,12 @@ private extension CoachMarksViewController {
         }
         return nil
     }
-
-    func getCurrentIndexPath() -> IndexPath {
-        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
-        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        return collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: .zero, section: .zero)
-    }
-    func getCurrentPageIndex() -> Int {
-        return getCurrentIndexPath().item
-    }
 }
 
 // MARK: - Actions
 private extension CoachMarksViewController {
     @IBAction func didTapBack() {
-        let indexPath = getCurrentIndexPath()
+        let indexPath = collectionView.currentIndexPath
         if indexPath.item != .zero {
             let model = viewModel(at: indexPath)
             trackUserEvent(.PREVIOUS, stringValue: model?.mediaName, valueType: .VIDEO, action: .TAP)
@@ -111,7 +102,7 @@ private extension CoachMarksViewController {
     }
 
     @IBAction func didTapContinue() {
-        let indexPath = getCurrentIndexPath()
+        let indexPath = collectionView.currentIndexPath
         if indexPath.item == ((viewModels?.count ?? -1) - 1) {
             interactor?.saveCoachMarksViewed()
             router?.navigateToTrack()
@@ -145,12 +136,12 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         self.viewModels = viewModels
         collectionView.reloadData()
         trackPage()
-        setupButtons(true, viewModels.first?.rightButtonTitle ?? String.empty)
+        setupButtons(true, viewModels.first?.rightButtonTitle ?? .empty)
         updatePageIndicator()
     }
 
     func updatePageIndicator() {
-        pageIndicator.currentPageIndex = getCurrentPageIndex()
+        pageIndicator.currentPageIndex = collectionView.currentPageIndex
     }
 }
 
@@ -162,20 +153,20 @@ extension CoachMarksViewController: UICollectionViewDelegate,
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentIndex = getCurrentPageIndex()
+        let currentIndex = collectionView.currentPageIndex
         if currentIndex != pageIndicator.currentPageIndex {
             updatePageIndicator()
             let model = viewModel(at: IndexPath(item: currentIndex, section: .zero))
-            setupButtons(currentIndex == .zero, model?.rightButtonTitle ?? String.empty)
+            setupButtons(currentIndex == .zero, model?.rightButtonTitle ?? .empty)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CoachMarkCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         if let model = viewModel(at: indexPath) {
-            cell.configure(mediaName: model.mediaName, title: model.title ?? String.empty, subtitle: model.subtitle ?? String.empty)
+            cell.configure(mediaName: model.mediaName, title: model.title ?? .empty, subtitle: model.subtitle ?? .empty)
         } else {
-            cell.configure(mediaName: String.empty, title: String.empty, subtitle: String.empty)
+            cell.configure(mediaName: .empty, title: .empty, subtitle: .empty)
         }
         return cell
     }
@@ -186,7 +177,9 @@ extension CoachMarksViewController: UICollectionViewDelegate,
         return collectionView.bounds.size
     }
 
-   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+   func collectionView(_ collectionView: UICollectionView,
+                       layout collectionViewLayout: UICollectionViewLayout,
+                       minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return .zero
     }
 }

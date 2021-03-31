@@ -58,7 +58,13 @@ extension GuidedStoryJourneyViewController: UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.size
+        return collectionView.bounds.size
+    }
+
+   func collectionView(_ collectionView: UICollectionView,
+                       layout collectionViewLayout: UICollectionViewLayout,
+                       minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return .zero
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -67,7 +73,6 @@ extension GuidedStoryJourneyViewController: UICollectionViewDataSource, UICollec
         let title = interactor.body(at: indexPath.item)
         cell.configure(title: title)
         cell.backgroundColor = .random
-
         return cell
     }
 }
