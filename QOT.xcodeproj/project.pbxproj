@@ -333,6 +333,7 @@
 		386C398825816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C398725816CD600EC676D /* QDMToBeVisionRatingReport+Ext.swift */; };
 		3874B4D324B8CAD000B3D653 /* TeamHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */; };
 		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
+		38765074261C556B00790602 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38765073261C556B00790602 /* UIFont+Extension.swift */; };
 		3877862D257ECE3900F4B5ED /* NewTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877862C257ECE3900F4B5ED /* NewTheme.swift */; };
 		388249442536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */; };
 		389745EE24213C7500D7C891 /* NegativeToPositiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */; };
@@ -1804,6 +1805,7 @@
 		3874B4D224B8CAD000B3D653 /* TeamHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamHeaderCell.xib; sourceTree = "<group>"; };
 		38751B0625F03800006164B2 /* TIGNUM XTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TIGNUM XTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		38765073261C556B00790602 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		3877862C257ECE3900F4B5ED /* NewTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTheme.swift; sourceTree = "<group>"; };
 		388249432536F9FE00E9A34A /* QDMTeamToBeVisionTrackerPoll+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMTeamToBeVisionTrackerPoll+Ext.swift"; sourceTree = "<group>"; };
 		389745ED24213C7500D7C891 /* NegativeToPositiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveView.xib; sourceTree = "<group>"; };
@@ -5435,14 +5437,16 @@
 				CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */,
 				AC516C6A228059CC009C4D30 /* CellAnimator.swift */,
 				91CD12EF2037168900E27822 /* CGRect+Convenience.swift */,
-				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
 				B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */,
+				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
 				7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */,
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
 				36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */,
 				36C8F17523089F0500CD718F /* EKEventStore+Ext.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
+				B4D0A9BD25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift */,
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
+				B42A5B872589F9F200DBD0DB /* PaddingLabel.swift */,
 				851676C91F39AA9C007A1DD6 /* String+Extensions.swift */,
 				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
 				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
@@ -5453,13 +5457,14 @@
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */,
 				7F47E83F1F8E4FE000ED4446 /* UIDevice+Utility.swift */,
-				B42A5B872589F9F200DBD0DB /* PaddingLabel.swift */,
+				38765073261C556B00790602 /* UIFont+Extension.swift */,
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
 				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 				7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */,
 				8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */,
 				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
 				DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */,
+				F96225742552FA68003FF235 /* UINavigationController+Extension.swift */,
 				363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */,
 				BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */,
 				B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */,
@@ -5484,9 +5489,6 @@
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				36CB720922B8772300C99AFC /* qot_dal */,
 				8DC2F7222313F11D0002F29F /* UIViewController+StreamVideo */,
-				F96225742552FA68003FF235 /* UINavigationController+Extension.swift */,
-				B4D0A9BD25AF8F7300F37416 /* NSLayoutConstraint+Extension.swift */,
-				F9A10F6F25EE99ED00BD3EDC /* FeatureFlags.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -6738,7 +6740,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7505,6 +7507,7 @@
 				F9F470772510C4D7002331F4 /* TeamToBeVisionOptionsInterface.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */,
 				F95B9236228EAE69000DEAEC /* ToolsInterface.swift in Sources */,
+				38765074261C556B00790602 /* UIFont+Extension.swift in Sources */,
 				F9BD946F25D2A16F00A9BC77 /* DailyRemindersModel.swift in Sources */,
 				8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */,
 				B4BCE473255BCEC500A1116F /* BaseDailyBriefDetailsWorker.swift in Sources */,
@@ -7517,7 +7520,6 @@
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				B4BCE49E255BD01600A1116F /* CardTransition.swift in Sources */,
 				F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */,
-				F9A10F7025EE99ED00BD3EDC /* FeatureFlags.swift in Sources */,
 				38290B8C2330F825004B5C14 /* DTSprintReflection.swift in Sources */,
 				38C23E5624235DCA0034571B /* DTPrepareStartInteractor.swift in Sources */,
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
@@ -8297,7 +8299,6 @@
 		};
 		38751B0F25F03800006164B2 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2B0893E75DF2CC21AA2D40C /* Pods-TIGNUM XTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8342,7 +8343,6 @@
 		};
 		38751B1125F03800006164B2 /* AppCenter */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61125378274AC34CF084EEF0 /* Pods-TIGNUM XTests.appcenter.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

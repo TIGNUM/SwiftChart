@@ -537,9 +537,9 @@ enum ThemeSegment {
 
         switch self {
         case .lightGray:
-            normal = [NSAttributedString.Key.font: Fonts.fontRegular14,
+            normal = [NSAttributedString.Key.font: UIFont.fontRegular14,
                       NSAttributedString.Key.foregroundColor: Palette.lightGrey]
-            selected = [NSAttributedString.Key.font: Fonts.fontRegular14,
+            selected = [NSAttributedString.Key.font: UIFont.fontRegular14,
                         NSAttributedString.Key.foregroundColor: UIColor.white]
             view.tintColor = .clear
             view.backgroundColor = .clear
@@ -971,9 +971,9 @@ enum ThemeText {
         switch self {
         // MARK: - .fontRegular
         case .registrationCodeDisclaimerError, .resultCounterMax, .mySensorsNoDataInfoLabel, .weatherLastUpdate:
-            return Fonts.fontRegular12
+            return .fontRegular12
         case .asterix, .weatherLocation:
-            return Fonts.fontRegular13
+            return .fontRegular13
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .reference, .loginEmailMessage,
              .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
@@ -984,7 +984,7 @@ enum ThemeText {
              .shpiSubtitle, .featureLabel, .teamTvbTimeSinceTitle, .qotAlertMessage, .myDataParameterSelectionTitle,
              .myDataParameterSelectionSubtitle, .myDataHeatMapDetailCellDate, .mySprintDetailsProgress, .mySensorsDescriptionBody,
              .searchNoResults, .H01Medium, .H02Medium, .myDataParameterLegendText, .myDataHeatMapLegendText:
-            return Fonts.fontRegular14
+            return .fontRegular14
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
              .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle,
              .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
@@ -993,44 +993,44 @@ enum ThemeText {
              .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .featureExplanation,
              .coachMarkSubtitle, .registerIntroBody, .memberEmail, .ratingExplanationText, .ratingExplanationVideoTitle, .whiteBanner, .darkBanner,
              .baseHeaderSubtitleBold, .bodyText, .myDataHeatMapCellDateText:
-            return Fonts.fontRegular16
+            return .fontRegular16
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder, .trends, .tbvQuestionLow:
-            return Fonts.fontRegular18
+            return .fontRegular18
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .myQOTSectionHeader,
              .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle, .optionPage, .optionPageDisabled, .myDataParameterExplanationTitle:
-            return Fonts.fontRegular20
+            return .fontRegular20
         case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader,
              .registerIntroNoteTitle, .baseHeaderTitle:
-            return Fonts.fontDisplayRegular20
+            return .fontDisplayRegular20
         case .teamVisionSentence:
-            return Fonts.fontRegular24
+            return .fontRegular24
         case .coachTitle:
-            return Fonts.fontDisplayRegular23
+            return .fontDisplayRegular23
         case .articleBody:
             switch textScale {
-            case .scale: return Fonts.fontRegular24
-            case .scaleNot: return Fonts.fontRegular16
+            case .scale: return .fontRegular24
+            case .scaleNot: return .fontRegular16
             }
         case .article:
             switch textScale {
-            case .scale: return Fonts.fontRegular24
-            case .scaleNot: return Fonts.fontRegular16
+            case .scale: return .fontRegular24
+            case .scaleNot: return .fontRegular16
             }
         case .featureTitle, .ratingExplanationTitle:
-            return Fonts.fontDisplayRegular34
+            return .fontDisplayRegular34
 
         // MARK: - .fontLight
         case .articleTag, .articleTagSelected, .articleTagNight, .version, .placeholder,
              .articleParagraph, .learnVideo, .learnImage, .articleSector, .searchContent:
-            return Fonts.fontLight11
+            return .fontLight11
         case .dailyInsightsChartBarLabelSelected, .dailyInsightsChartBarLabelUnselected:
-            return Fonts.fontLight12
+            return .fontLight12
         case .articleNavigationTitle, .guideNavigationTitle, .calendarNoAccess, .myDataWeekdaysNotHighlighted,
              .quotationSmall, .Text02Light:
-            return Fonts.fontLight14
+            return .fontLight14
         case .articleRelatedTitle, .articleRelatedTitleInStrategy, .myQOTTitle, .whatsHotHeader, .sprintText,
             .bucketTitle, .solveQuestions, .impactBucket, .articleStrategyTitle, .articleStrategyRead,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
@@ -1044,108 +1044,108 @@ enum ThemeText {
              .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
              .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle, .suggestionMyBest,
              .H02Light, .Text01Light, .Text01LightCarbon100, .coachHeaderSubtitle, .searchSuggestion, .searchResult, .tbvTrackerBody:
-            return Fonts.fontLight16
+            return .fontLight16
         case .articleSub:
-            return Fonts.fontLight18
+            return .fontLight18
         case .articleQuestion:
-            return Fonts.fontLight19
+            return .fontLight19
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle, .articleHeadline, .learnPDF,
              .myLibraryGroupName, .myQOTBoxTitleDisabled, .qotAlertTitle:
-            return Fonts.fontLight20
+            return .fontLight20
         case .articleSubTitle, .myQOTProfileName, .quotationSlash:
-            return Fonts.fontLight24
+            return .fontLight24
         case .articleSecondaryTitle:
-            return Fonts.fontLight32
+            return .fontLight32
         case .tbvHeader, .tbvVisionHeader, .audioFullScreenTitle, .audioFullScreenTitleDark:
-            return Fonts.fontLight34
+            return .fontLight34
         case .articlePostTitle:
-            return Fonts.fontLight36
+            return .fontLight36
         case .coachHeader:
-            return Fonts.fontLight40
+            return .fontLight40
         case .articleNum:
-            return Fonts.fontLight72
+            return .fontLight72
         case .articleQuote:
             switch textScale {
-            case .scale: return Fonts.fontLight20
-            case .scaleNot: return Fonts.fontLight16
+            case .scale: return .fontLight20
+            case .scaleNot: return .fontLight16
             }
         case .articleTitleNotScaled, .registerIntroTitle:
-            return Fonts.fontDisplayLight34
+            return .fontDisplayLight34
         case .articleTitle:
             switch textScale {
-            case .scale: return Fonts.fontDisplayLight40
-            case .scaleNot: return Fonts.fontDisplayLight34
+            case .scale: return .fontDisplayLight40
+            case .scaleNot: return .fontDisplayLight34
             }
         case .articleBullet:
             switch textScale {
-            case .scale: return Fonts.fontLight24
-            case .scaleNot: return Fonts.fontLight16
+            case .scale: return .fontLight24
+            case .scaleNot: return .fontLight16
             }
 
         // MARK: - fontMedium
         case .articleCategory, .articleDatestamp:
             switch textScale {
-            case .scale: return Fonts.fontMedium14
-            case .scaleNot: return Fonts.fontMedium12
+            case .scale: return .fontMedium14
+            case .scaleNot: return .fontMedium12
             }
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail,
              .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .durationString, .resultDate,
              .resultFollowUp, .articleTagTitle, .settingsTitle, .settingsTitleFade, .myDataChartValueLabels,
              .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus, .Text03Light, .myPlansHeader,
              .articleCategoryNotScaled, .qotToolsSectionSubtitle, .audioFullScreenCategory, .librarySubtitle:
-            return Fonts.fontMedium12
+            return .fontMedium12
         case .articleNextTitle, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
              .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription,
              .dailyBriefImpactReadinessRolling, .onboardingInfoBody, .paymentReminderHeaderSubtitle,
              .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader, .mySensorsTitle, .H03Light,
              .MediumBodySand, .questionairePageCurrent, .questionairePageTotal:
-            return Fonts.fontMedium14
+            return .fontMedium14
         case .sprintName, .tbvQuestionMedium, .resultListHeader,
              .dailyBriefFromTignumTitle:
-            return Fonts.fontMedium16
+            return .fontMedium16
         case .tbvQuestionHigh:
-            return Fonts.fontMedium18
+            return .fontMedium18
 
         // MARK: - fontBold
         case .audioLabel, .audioLabelLight, .myDataChartIRAverageLabel, .resultCounter, .audioPlayerTime, .audioPlayerTimeLight:
-            return Fonts.fontSemiBold12
+            return .fontSemiBold12
         case .chatbotButton, .chatbotButtonSelected, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton,
              .myDataWeekdaysHighlighted, .registrationCodeLink, .articleContactSupportLink,
              .loginSeparator, .chatbotProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
-            return Fonts.fontSemiBold14
+            return .fontSemiBold14
         case .registrationCodeDescriptionEmail, .walkthroughMessage,
              .coachMarkTitle, .weatherDescription:
-            return Fonts.fontSemiBold16
+            return .fontSemiBold16
         case .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle:
-            return Fonts.fontDisplayBold30
+            return .fontDisplayBold30
         case .onboardingInfoTitle:
-            return Fonts.fontApercuBold90
+            return .fontApercuBold90
 
         // MARK: - fontHeavy
         case .myDataHeatMapCellDateHighlighted:
-            return Fonts.fontHeavy16
+            return .fontHeavy16
 
         // MARK: - fontDisplayThin
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .accountUserName, .paymentReminderHeaderTitle,
              .mySprintDetailsTitle, .H01Light, .dailyQuestion:
-            return Fonts.fontDisplayLight24
+            return .fontDisplayLight24
         case .iRscore:
-            return Fonts.fontDisplayThin30
+            return .fontDisplayThin30
         case .quotation, .aboutMeContent:
-            return Fonts.fontDisplayThin34
+            return .fontDisplayThin34
         case .strategyTitle:
-            return Fonts.fontDisplayThin38
+            return .fontDisplayThin38
         case .myDataHeatMapDetailCellValue:
-            return Fonts.fontDisplayThin42
+            return .fontDisplayThin42
         case .readinessScore:
-            return Fonts.fontDisplayUltralight64
+            return .fontDisplayUltralight64
         case .tvbCounter:
-            return Fonts.fontDisplayUltralight120
+            return .fontDisplayUltralight120
         // MARK: - .fontRegular20
         default:
-            return Fonts.fontRegular20
+            return .fontRegular20
         }
     }
 
@@ -1633,58 +1633,6 @@ private extension NSAttributedString {
         let rect = self.boundingRect(with: CGSize.init(width: containerWidth, height: .greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
         return ceil(rect.size.height)
     }
-}
-
-private struct Fonts {
-    static let fontRegular12 = UIFont.sfProtextRegular(ofSize: 12.0)
-    static let fontRegular13 = UIFont.sfProtextRegular(ofSize: 13.0)
-    static let fontRegular14 = UIFont.sfProtextRegular(ofSize: 14.0)
-    static let fontRegular16 = UIFont.sfProtextRegular(ofSize: 16.0)
-    static let fontRegular18 = UIFont.sfProtextRegular(ofSize: 18.0)
-    static let fontRegular20 = UIFont.sfProtextRegular(ofSize: 20.0)
-    static let fontRegular24 = UIFont.sfProtextRegular(ofSize: 24.0)
-
-    static let fontMedium12 = UIFont.sfProtextMedium(ofSize: 12.0)
-    static let fontMedium14 = UIFont.sfProtextMedium(ofSize: 14.0)
-    static let fontMedium16 = UIFont.sfProtextMedium(ofSize: 16.0)
-    static let fontMedium18 = UIFont.sfProtextMedium(ofSize: 18.0)
-
-    static let fontLight11 = UIFont.sfProtextLight(ofSize: 11.0)
-    static let fontLight12 = UIFont.sfProtextLight(ofSize: 12.0)
-    static let fontLight14 = UIFont.sfProtextLight(ofSize: 14.0)
-    static let fontLight16 = UIFont.sfProtextLight(ofSize: 16.0)
-    static let fontLight18 = UIFont.sfProtextLight(ofSize: 18.0)
-    static let fontLight19 = UIFont.sfProtextLight(ofSize: 19.0)
-    static let fontLight20 = UIFont.sfProtextLight(ofSize: 20.0)
-    static let fontLight24 = UIFont.sfProtextLight(ofSize: 24.0)
-    static let fontLight32 = UIFont.sfProtextLight(ofSize: 32.0)
-    static let fontLight34 = UIFont.sfProtextLight(ofSize: 34.0)
-    static let fontLight36 = UIFont.sfProtextLight(ofSize: 36.0)
-    static let fontLight40 = UIFont.sfProtextLight(ofSize: 40.0)
-    static let fontLight72 = UIFont.sfProtextLight(ofSize: 72.0)
-
-    static let fontSemiBold12 = UIFont.sfProtextSemibold(ofSize: 12.0)
-    static let fontSemiBold14 = UIFont.sfProtextSemibold(ofSize: 14.0)
-    static let fontSemiBold16 = UIFont.sfProtextSemibold(ofSize: 16.0)
-
-    static let fontHeavy16 = UIFont.sfProtextHeavy(ofSize: 16)
-
-    static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
-    static let fontDisplayLight34 = UIFont.sfProDisplayLight(ofSize: 34.0)
-    static let fontDisplayLight40 = UIFont.sfProDisplayLight(ofSize: 40.0)
-    static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
-    static let fontDisplayRegular23 = UIFont.sfProDisplayRegular(ofSize: 23.0)
-    static let fontDisplayRegular34 = UIFont.sfProDisplayRegular(ofSize: 34.0)
-    static let fontDisplayRegular40 = UIFont.sfProDisplayRegular(ofSize: 40.0)
-    static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
-    static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
-    static let fontDisplayThin38 = UIFont.sfProDisplayThin(ofSize: 38.0)
-    static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
-    static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
-    static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
-
-    static let fontDisplayBold30 = UIFont.apercuBold(ofSize: 30)
-    static let fontApercuBold90 = UIFont.apercuBold(ofSize: 90)
 }
 
 // MARK: - Color Palette
